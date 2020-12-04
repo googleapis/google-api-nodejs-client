@@ -640,11 +640,11 @@ export namespace pagespeedonline_v5 {
      *     // A Lighthouse category to run; if none are given, only Performance category will be run
      *     category: 'placeholder-value',
      *     // The locale used to localize formatted results
-     *     locale: 'placeholder-value',
+     *     locale: '[a-zA-Z]+((_|-)[a-zA-Z]+)?',
      *     // The analysis strategy (desktop or mobile) to use, and desktop is the default
      *     strategy: 'placeholder-value',
      *     // Required. The URL to fetch and analyze
-     *     url: 'placeholder-value',
+     *     url: '(?i)(url:|origin:)?http(s)?://.*',
      *     // Campaign name for analytics.
      *     utm_campaign: 'placeholder-value',
      *     // Campaign source for analytics.
@@ -750,7 +750,7 @@ export namespace pagespeedonline_v5 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['url'],
         pathParams: [],
         context: this.context,
       };
