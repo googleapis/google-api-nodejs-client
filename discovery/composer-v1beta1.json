@@ -258,6 +258,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "restartWebServer": {
+                  "description": "Restart Airflow web server.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/environments/{environmentsId}:restartWebServer",
+                  "httpMethod": "POST",
+                  "id": "composer.projects.locations.environments.restartWebServer",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The resource name of the environment to restart the web server for, in the form: \"projects/{projectId}/locations/{locationId}/environments/{environmentId}\"",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/environments/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:restartWebServer",
+                  "request": {
+                    "$ref": "RestartWebServerRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -272,6 +300,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "includePastReleases": {
+                      "description": "Whether or not image versions from old releases should be included.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "pageSize": {
                       "description": "The maximum number of image_versions to return.",
                       "format": "int32",
@@ -401,7 +434,7 @@
       }
     }
   },
-  "revision": "20201002",
+  "revision": "20201202",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -430,10 +463,43 @@
       },
       "type": "object"
     },
+    "Date": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "id": "Date",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EncryptionConfig": {
+      "description": "The encryption options for the Composer environment and its dependencies.",
+      "id": "EncryptionConfig",
+      "properties": {
+        "kmsKeyName": {
+          "description": "Optional. Customer-managed Encryption Key available through Google's Key Management Service. Cannot be updated. If not specified, Google-managed key will be used.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Environment": {
@@ -513,6 +579,10 @@
           "$ref": "DatabaseConfig",
           "description": "Optional. The configuration settings for Cloud SQL instance used internally by Apache Airflow software."
         },
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig",
+          "description": "Optional. The encryption options for the Composer environment and its dependencies. Cannot be updated."
+        },
         "gkeCluster": {
           "description": "Output only. The Kubernetes Engine cluster used to run this environment.",
           "readOnly": true,
@@ -577,6 +647,10 @@
       "description": "Image Version information",
       "id": "ImageVersion",
       "properties": {
+        "creationDisabled": {
+          "description": "Whether it is impossible to create an environment with the image version.",
+          "type": "boolean"
+        },
         "imageVersionId": {
           "description": "The string identifier of the ImageVersion, in the form: \"composer-x.y.z-airflow-a.b(.c)\"",
           "type": "string"
@@ -585,12 +659,20 @@
           "description": "Whether this is the default ImageVersion used by Composer during environment creation if no input ImageVersion is specified.",
           "type": "boolean"
         },
+        "releaseDate": {
+          "$ref": "Date",
+          "description": "The date of the version release."
+        },
         "supportedPythonVersions": {
           "description": "supported python versions",
           "items": {
             "type": "string"
           },
           "type": "array"
+        },
+        "upgradeDisabled": {
+          "description": "Whether it is impossible to upgrade an environment running with the image version.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -839,6 +921,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "RestartWebServerRequest": {
+      "description": "Restart Airflow web server.",
+      "id": "RestartWebServerRequest",
+      "properties": {},
       "type": "object"
     },
     "SoftwareConfig": {
