@@ -102,7 +102,7 @@ jobs:
         run: |
           cd src/apis/${{ matrix.package }}
           npm install
-          npm publish
+          npm publish --access=public
       - uses: actions/github-script@v3
         id: untag-release
         if: ${{steps.tag-release.outputs.pr}}
