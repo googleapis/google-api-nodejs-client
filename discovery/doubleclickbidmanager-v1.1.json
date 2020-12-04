@@ -342,7 +342,7 @@
       }
     }
   },
-  "revision": "20201105",
+  "revision": "20201202",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -2135,9 +2135,31 @@
               "METRIC_CONVERTING_PATHS",
               "METRIC_ACTIVITY_REVENUE",
               "METRIC_PERCENT_INVALID_IMPRESSIONS_PREBID",
-              "METRIC_PROVISIONAL_IMPRESSIONS"
+              "METRIC_GRP_CORRECTED_IMPRESSIONS",
+              "METRIC_DEMO_CORRECTED_CLICKS",
+              "METRIC_VIRTUAL_PEOPLE_IMPRESSION_REACH_BY_DEMO",
+              "METRIC_VIRTUAL_PEOPLE_CLICK_REACH_BY_DEMO",
+              "METRIC_VIRTUAL_PEOPLE_AVERAGE_IMPRESSION_FREQUENCY_BY_DEMO",
+              "METRIC_DEMO_COMPOSITION_IMPRESSION",
+              "METRIC_VIRTUAL_PEOPLE_IMPRESSION_REACH_SHARE_PERCENT",
+              "METRIC_DEMO_POPULATION",
+              "METRIC_VIRTUAL_PEOPLE_IMPRESSION_REACH_PERCENT",
+              "METRIC_TARGET_RATING_POINTS",
+              "METRIC_PROVISIONAL_IMPRESSIONS",
+              "METRIC_VENDOR_BLOCKED_ADS"
             ],
             "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
               "",
               "",
               "",
