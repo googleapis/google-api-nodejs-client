@@ -3691,7 +3691,7 @@
       "name": "servicecontrol",
       "version": "v1",
       "title": "Service Control API",
-      "description": "Provides control plane functionality to managed services, such as logging, monitoring, and status checks.",
+      "description": "Provides admission control and telemetry reporting for services integrated with Service Infrastructure.",
       "discoveryRestUrl": "https://servicecontrol.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3706,7 +3706,7 @@
       "name": "servicecontrol",
       "version": "v2",
       "title": "Service Control API",
-      "description": "Provides control plane functionality to managed services, such as logging, monitoring, and status checks.",
+      "description": "Provides admission control and telemetry reporting for services integrated with Service Infrastructure.",
       "discoveryRestUrl": "https://servicecontrol.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
