@@ -136,7 +136,6 @@ export namespace managedidentities_v1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
-    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -211,7 +210,7 @@ export namespace managedidentities_v1 {
     trust?: Schema$Trust;
   }
   /**
-   * Represents a managed Microsoft Active Directory domain.
+   * Represents a managed Microsoft Active Directory domain. If the domain is being changed, it will be placed into the UPDATING state, which indicates that the resource is being reconciled. At this point, Get will reflect an intermediate state.
    */
   export interface Schema$Domain {
     /**
@@ -858,7 +857,7 @@ export namespace managedidentities_v1 {
     seconds?: number | null;
   }
   /**
-   * Represents a relationship between two domains. This allows a controller in one domain to authenticate a user in another domain.
+   * Represents a relationship between two domains. This allows a controller in one domain to authenticate a user in another domain. If the trust is being changed, it will be placed into the UPDATING state, which indicates that the resource is being reconciled. At this point, Get will reflect an intermediate state.
    */
   export interface Schema$Trust {
     /**
