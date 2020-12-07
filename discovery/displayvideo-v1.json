@@ -541,12 +541,12 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\")` The length of this field should be no more than 500 characters.",
+                  "description": "Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\")` * All campaigns with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<=\"2020-11-04T18:54:47Z\"` * All campaigns with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime>=\"2020-11-04T18:54:47Z\"` The length of this field should be no more than 500 characters.",
                   "location": "query",
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `displayName desc`.",
+                  "description": "Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `displayName desc`.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1309,12 +1309,12 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `budget.budget_segments.date_range.end_date` must be LESS THAN (<). * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `budget.budget_segments.date_range.end_date` (input as YYYY-MM-DD) Examples: * All insertion orders under a campaign: `campaignId=\"1234\"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\")` * All insertion orders whose budget segments' dates end before March 28, 2019: `budget.budget_segments.date_range.end_date<\"2019-03-28\"` The length of this field should be no more than 500 characters.",
+                  "description": "Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `budget.budget_segments.date_range.end_date` must be LESS THAN (<). * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `budget.budget_segments.date_range.end_date` (input as YYYY-MM-DD) - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All insertion orders under a campaign: `campaignId=\"1234\"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\")` * All insertion orders whose budget segments' dates end before March 28, 2019: `budget.budget_segments.date_range.end_date<\"2019-03-28\"` * All insertion orders with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<=\"2020-11-04T18:54:47Z\"` * All insertion orders with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime>=\"2020-11-04T18:54:47Z\"` The length of this field should be no more than 500 characters.",
                   "location": "query",
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Field by which to sort the list. Acceptable values are: * \"displayName\" (default) * \"entityStatus\" The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `displayName desc`.",
+                  "description": "Field by which to sort the list. Acceptable values are: * \"displayName\" (default) * \"entityStatus\" * \"updateTime\" The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `displayName desc`.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1597,12 +1597,12 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` Examples: * All line items under an insertion order: `insertionOrderId=\"1234\"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\") AND lineItemType=\"LINE_ITEM_TYPE_DISPLAY_DEFAULT\"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<\"2019-03-28\"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:\"NO_VALID_CREATIVE\"` The length of this field should be no more than 500 characters.",
+                  "description": "Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) * The operator can be `NO LESS THAN (>=)` or `NO GREATER THAN (<=)`. - `updateTime` (format of ISO 8601) Examples: * All line items under an insertion order: `insertionOrderId=\"1234\"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\") AND lineItemType=\"LINE_ITEM_TYPE_DISPLAY_DEFAULT\"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<\"2019-03-28\"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:\"NO_VALID_CREATIVE\"` * All line items with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<=\"2020-11-04T18:54:47Z\"` * All line items with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime>=\"2020-11-04T18:54:47Z\"` The length of this field should be no more than 500 characters.",
                   "location": "query",
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Field by which to sort the list. Acceptable values are: * \"displayName\" (default) * \"entityStatus\" * “flight.dateRange.endDate” The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `displayName desc`.",
+                  "description": "Field by which to sort the list. Acceptable values are: * \"displayName\" (default) * \"entityStatus\" * “flight.dateRange.endDate” * \"updateTime\" The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. Example: `displayName desc`.",
                   "location": "query",
                   "type": "string"
                 },
@@ -3166,7 +3166,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of this assigned targeting option.",
+                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -3291,7 +3291,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of this assigned targeting option.",
+                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -3413,7 +3413,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of this assigned targeting option.",
+                      "description": "Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -3548,7 +3548,7 @@
                       "type": "string"
                     },
                     "targetingType": {
-                      "description": "Required. Identifies the type of assigned targeting options to list.",
+                      "description": "Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
                       "enum": [
                         "TARGETING_TYPE_UNSPECIFIED",
                         "TARGETING_TYPE_CHANNEL",
@@ -5960,6 +5960,114 @@
               "scopes": [
                 "https://www.googleapis.com/auth/display-video"
               ]
+            },
+            "search": {
+              "description": "Searches for targeting options of a given type based on the given search terms.",
+              "flatPath": "v1/targetingTypes/{targetingTypesId}/targetingOptions:search",
+              "httpMethod": "POST",
+              "id": "displayvideo.targetingTypes.targetingOptions.search",
+              "parameterOrder": [
+                "targetingType"
+              ],
+              "parameters": {
+                "targetingType": {
+                  "description": "Required. The type of targeting options to retrieve. Accepted values are: * `TARGETING_TYPE_GEO_REGION`",
+                  "enum": [
+                    "TARGETING_TYPE_UNSPECIFIED",
+                    "TARGETING_TYPE_CHANNEL",
+                    "TARGETING_TYPE_APP_CATEGORY",
+                    "TARGETING_TYPE_APP",
+                    "TARGETING_TYPE_URL",
+                    "TARGETING_TYPE_DAY_AND_TIME",
+                    "TARGETING_TYPE_AGE_RANGE",
+                    "TARGETING_TYPE_REGIONAL_LOCATION_LIST",
+                    "TARGETING_TYPE_PROXIMITY_LOCATION_LIST",
+                    "TARGETING_TYPE_GENDER",
+                    "TARGETING_TYPE_VIDEO_PLAYER_SIZE",
+                    "TARGETING_TYPE_USER_REWARDED_CONTENT",
+                    "TARGETING_TYPE_PARENTAL_STATUS",
+                    "TARGETING_TYPE_CONTENT_INSTREAM_POSITION",
+                    "TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION",
+                    "TARGETING_TYPE_DEVICE_TYPE",
+                    "TARGETING_TYPE_AUDIENCE_GROUP",
+                    "TARGETING_TYPE_BROWSER",
+                    "TARGETING_TYPE_HOUSEHOLD_INCOME",
+                    "TARGETING_TYPE_ON_SCREEN_POSITION",
+                    "TARGETING_TYPE_THIRD_PARTY_VERIFIER",
+                    "TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION",
+                    "TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION",
+                    "TARGETING_TYPE_ENVIRONMENT",
+                    "TARGETING_TYPE_CARRIER_AND_ISP",
+                    "TARGETING_TYPE_OPERATING_SYSTEM",
+                    "TARGETING_TYPE_DEVICE_MAKE_MODEL",
+                    "TARGETING_TYPE_KEYWORD",
+                    "TARGETING_TYPE_NEGATIVE_KEYWORD_LIST",
+                    "TARGETING_TYPE_VIEWABILITY",
+                    "TARGETING_TYPE_CATEGORY",
+                    "TARGETING_TYPE_INVENTORY_SOURCE",
+                    "TARGETING_TYPE_LANGUAGE",
+                    "TARGETING_TYPE_AUTHORIZED_SELLER_STATUS",
+                    "TARGETING_TYPE_GEO_REGION",
+                    "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
+                    "TARGETING_TYPE_EXCHANGE",
+                    "TARGETING_TYPE_SUB_EXCHANGE"
+                  ],
+                  "enumDescriptions": [
+                    "Default value when type is not specified or is unknown in this version.",
+                    "Target a channel (a custom group of related websites or apps).",
+                    "Target an app category (for example, education or puzzle games).",
+                    "Target a specific app (for example, Angry Birds).",
+                    "Target a specific url (for example, quora.com).",
+                    "Target ads during a chosen time period on a specific day.",
+                    "Target ads to a specific age range (for example, 18-24).",
+                    "Target ads to the specified regions on a regional location list.",
+                    "Target ads to the specified points of interest on a proximity location list.",
+                    "Target ads to a specific gender (for example, female or male).",
+                    "Target a specific video player size for video ads.",
+                    "Target user rewarded content for video ads.",
+                    "Target ads to a specific parental status (for example, parent or not a parent).",
+                    "Target video or audio ads in a specific content instream position (for example, pre-roll, mid-roll, or post-roll).",
+                    "Target ads in a specific content outstream position.",
+                    "Target ads to a specific device type (for example, tablet or connected TV).",
+                    "Target ads to an audience or groups of audiences. Singleton field, at most one can exist on a single Lineitem at a time.",
+                    "Target ads to specific web browsers (for example, Chrome).",
+                    "Target ads to a specific household income range (for example, top 10%).",
+                    "Target ads in a specific on screen position.",
+                    "Filter web sites through third party verification (for example, IAS or DoubleVerify).",
+                    "Filter web sites by specific digital content label ratings (for example, DL-MA: suitable only for mature audiences).",
+                    "Filter website content by sensitive categories (for example, adult).",
+                    "Target ads to a specific environment (for example, web or app).",
+                    "Target ads to a specific network carrier or internet service provider (ISP) (for example, Comcast or Orange).",
+                    "Target ads to a specific operating system (for example, macOS).",
+                    "Target ads to a specific device make or model (for example, Roku or Samsung).",
+                    "Target ads to a specific keyword (for example, dog or retriever).",
+                    "Target ads to a specific negative keyword list.",
+                    "Target ads to a specific viewability (for example, 80% viewable).",
+                    "Target ads to a specific content category (for example, arts & entertainment).",
+                    "Purchase impressions from specific deals and auction packages.",
+                    "Target ads to a specific language (for example, English or Japanese).",
+                    "Target ads to ads.txt authorized sellers.",
+                    "Target ads to a specific regional location (for example, a city or state).",
+                    "Purchase impressions from a group of deals and auction packages.",
+                    "Purchase impressions from specific exchanges.",
+                    "Purchase impressions from specific sub-exchanges."
+                  ],
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/targetingTypes/{+targetingType}/targetingOptions:search",
+              "request": {
+                "$ref": "SearchTargetingOptionsRequest"
+              },
+              "response": {
+                "$ref": "SearchTargetingOptionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
             }
           }
         }
@@ -6141,7 +6249,7 @@
       }
     }
   },
-  "revision": "20201112",
+  "revision": "20201201",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -7230,14 +7338,14 @@
       "id": "BulkEditAdvertiserAssignedTargetingOptionsRequest",
       "properties": {
         "createRequests": {
-          "description": "The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`.",
+          "description": "The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
           "items": {
             "$ref": "CreateAssignedTargetingOptionsRequest"
           },
           "type": "array"
         },
         "deleteRequests": {
-          "description": "The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`.",
+          "description": "The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`",
           "items": {
             "$ref": "DeleteAssignedTargetingOptionsRequest"
           },
@@ -10482,6 +10590,17 @@
       },
       "type": "object"
     },
+    "GeoRegionSearchTerms": {
+      "description": "Search terms for geo region targeting options.",
+      "id": "GeoRegionSearchTerms",
+      "properties": {
+        "geoRegionQuery": {
+          "description": "The search query for the desired geo region. The query can be a prefix, e.g. \"New Yor\", \"Seattle\", \"USA\", etc.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GeoRegionTargetingOptionDetails": {
       "description": "Represents a targetable geographic region. This will be populated in the geo_region_details field when targeting_type is `TARGETING_TYPE_GEO_REGION`.",
       "id": "GeoRegionTargetingOptionDetails",
@@ -10818,6 +10937,20 @@
           "description": "Output only. The unique ID of the insertion order. Assigned by the system.",
           "format": "int64",
           "readOnly": true,
+          "type": "string"
+        },
+        "insertionOrderType": {
+          "description": "The type of insertion order. If this field is unspecified in creation, the value defaults to `RTB`.",
+          "enum": [
+            "INSERTION_ORDER_TYPE_UNSPECIFIED",
+            "RTB",
+            "OVER_THE_TOP"
+          ],
+          "enumDescriptions": [
+            "Insertion order type is not specified or is unknown.",
+            "RTB Video type IO.",
+            "Video Over the top type IO."
+          ],
           "type": "string"
         },
         "integrationDetails": {
@@ -11573,7 +11706,7 @@
       "type": "object"
     },
     "LineItem": {
-      "description": "A single line item. Next id: 24",
+      "description": "A single line item.",
       "id": "LineItem",
       "properties": {
         "advertiserId": {
@@ -11673,7 +11806,8 @@
             "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INSTALL",
             "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INVENTORY",
             "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INVENTORY",
-            "LINE_ITEM_TYPE_AUDIO_DEFAULT"
+            "LINE_ITEM_TYPE_AUDIO_DEFAULT",
+            "LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP"
           ],
           "enumDescriptions": [
             "Type value is not specified or is unknown in this version.",
@@ -11683,7 +11817,8 @@
             "Video ads that drive installs of an app.",
             "Display ads served on mobile app inventory.",
             "Video ads served on mobile app inventory.",
-            "Rtb Audio ads sold for a variety of environments."
+            "Rtb Audio ads sold for a variety of environments.",
+            "Over the top ads present in OTT IOs. This type is only applicable to line items with an insertion order of insertion_order_type `OVER_THE_TOP`"
           ],
           "type": "string"
         },
@@ -11737,7 +11872,8 @@
               "TARGETING_REVOKED_OR_CLOSED_USER_LIST",
               "APP_INSTALL_NO_OPTIMAL_BIDDING_STRATEGY",
               "CREATIVE_SIZE_NOT_IN_USE_FOR_TARGETED_DEALS",
-              "NO_CREATIVE_FOR_TARGETED_DEALS"
+              "NO_CREATIVE_FOR_TARGETED_DEALS",
+              "TARGETING_DEPRECATED_GEO_TARGET"
             ],
             "enumDescriptions": [
               "Not specified or is unknown.",
@@ -11756,7 +11892,8 @@
               "This line item targets one or more user lists that are no longer available. In the future, this will prevent the line item from serving, so consider removing these lists from your targeting.",
               "This app install line item does not have an optimal bidding strategy.",
               "Deals targeted by this line item accept creative sizes which are not in use. This may limit the line item's delivery or performance.",
-              "This line item does not contain any creative for the targeted deals."
+              "This line item does not contain any creative for the targeted deals.",
+              "This line item targets a geo target that is deprecated."
             ],
             "type": "string"
           },
@@ -13469,6 +13606,49 @@
             "SDF version 5.2;"
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SearchTargetingOptionsRequest": {
+      "description": "Request message for SearchTargetingOptions.",
+      "id": "SearchTargetingOptionsRequest",
+      "properties": {
+        "advertiserId": {
+          "description": "Required. The Advertiser this request is being made in the context of.",
+          "format": "int64",
+          "type": "string"
+        },
+        "geoRegionSearchTerms": {
+          "$ref": "GeoRegionSearchTerms",
+          "description": "Search terms for geo region targeting options. Can only be used when targeting_type is `TARGETING_TYPE_GEO_REGION`."
+        },
+        "pageSize": {
+          "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pageToken": {
+          "description": "A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `SearchTargetingOptions` method. If not specified, the first page of results will be returned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SearchTargetingOptionsResponse": {
+      "description": "Response message for SearchTargetingOptionsResponse.",
+      "id": "SearchTargetingOptionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `SearchTargetingOptions` method to retrieve the next page of results.",
+          "type": "string"
+        },
+        "targetingOptions": {
+          "description": "The list of targeting options that match the search criteria. This list will be absent if empty.",
+          "items": {
+            "$ref": "TargetingOption"
+          },
+          "type": "array"
         }
       },
       "type": "object"

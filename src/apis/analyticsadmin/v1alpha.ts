@@ -1377,7 +1377,7 @@ export namespace analyticsadmin_v1alpha {
      *   const res = await analyticsadmin.accounts.patch({
      *     // Output only. Resource name of this account. Format: accounts/{account\} Example: "accounts/100"
      *     name: 'accounts/my-account',
-     *     // The list of fields to be updated. Omitted fields will not be updated.
+     *     // Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1688,7 +1688,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
     /**
-     * The list of fields to be updated. Omitted fields will not be updated.
+     * Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      */
     updateMask?: string;
 
@@ -4058,7 +4058,7 @@ export namespace analyticsadmin_v1alpha {
      *   const res = await analyticsadmin.properties.patch({
      *     // Output only. Resource name of this property. Format: properties/{property_id\} Example: "properties/1000"
      *     name: 'properties/my-propertie',
-     *     // The list of fields to be updated. Omitted fields will not be updated.
+     *     // Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4235,7 +4235,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
     /**
-     * The list of fields to be updated. Omitted fields will not be updated.
+     * Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      */
     updateMask?: string;
 
@@ -4853,7 +4853,7 @@ export namespace analyticsadmin_v1alpha {
      *     // Output only. Resource name of this Data Stream. Format: properties/{property_id\}/androidAppDataStreams/{stream_id\} Example: "properties/1000/androidAppDataStreams/2000"
      *     name:
      *       'properties/my-propertie/androidAppDataStreams/my-androidAppDataStream',
-     *     // The list of fields to be updated. Omitted fields will not be updated.
+     *     // Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5029,7 +5029,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
     /**
-     * The list of fields to be updated. Omitted fields will not be updated.
+     * Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      */
     updateMask?: string;
 
@@ -5494,7 +5494,7 @@ export namespace analyticsadmin_v1alpha {
      *   const res = await analyticsadmin.properties.firebaseLinks.patch({
      *     // Output only. Example format: properties/1234/firebaseLinks/5678
      *     name: 'properties/my-propertie/firebaseLinks/my-firebaseLink',
-     *     // The list of fields to be updated. Omitted fields will not be updated.
+     *     // Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5651,7 +5651,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
     /**
-     * The list of fields to be updated. Omitted fields will not be updated.
+     * Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      */
     updateMask?: string;
 
@@ -6129,7 +6129,7 @@ export namespace analyticsadmin_v1alpha {
      *   const res = await analyticsadmin.properties.googleAdsLinks.patch({
      *     // Output only. Format: properties/{propertyId\}/googleAdsLinks/{googleAdsLinkId\} Note: googleAdsLinkId is not the Google Ads customer ID.
      *     name: 'properties/my-propertie/googleAdsLinks/my-googleAdsLink',
-     *     // The list of fields to be updated. Omitted fields will not be updated.
+     *     // Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6302,7 +6302,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
     /**
-     * The list of fields to be updated. Omitted fields will not be updated.
+     * Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      */
     updateMask?: string;
 
@@ -6917,7 +6917,7 @@ export namespace analyticsadmin_v1alpha {
      *   const res = await analyticsadmin.properties.iosAppDataStreams.patch({
      *     // Output only. Resource name of this Data Stream. Format: properties/{property_id\}/iosAppDataStreams/{stream_id\} Example: "properties/1000/iosAppDataStreams/2000"
      *     name: 'properties/my-propertie/iosAppDataStreams/my-iosAppDataStream',
-     *     // The list of fields to be updated. Omitted fields will not be updated.
+     *     // Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7093,7 +7093,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
     /**
-     * The list of fields to be updated. Omitted fields will not be updated.
+     * Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      */
     updateMask?: string;
 
@@ -9565,7 +9565,7 @@ export namespace analyticsadmin_v1alpha {
      *   const res = await analyticsadmin.properties.webDataStreams.patch({
      *     // Output only. Resource name of this Data Stream. Format: properties/{property_id\}/webDataStreams/{stream_id\} Example: "properties/1000/webDataStreams/2000"
      *     name: 'properties/my-propertie/webDataStreams/my-webDataStream',
-     *     // The list of fields to be updated. Omitted fields will not be updated.
+     *     // Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -9725,7 +9725,7 @@ export namespace analyticsadmin_v1alpha {
      *       // Output only. Resource name of this Data Stream. Format: properties/{property_id\}/webDataStreams/{stream_id\}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
      *       name:
      *         'properties/my-propertie/webDataStreams/my-webDataStream/enhancedMeasurementSettings',
-     *       // The list of fields to be updated. Omitted fields will not be updated.
+     *       // Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -9940,7 +9940,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
     /**
-     * The list of fields to be updated. Omitted fields will not be updated.
+     * Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      */
     updateMask?: string;
 
@@ -9956,7 +9956,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string;
     /**
-     * The list of fields to be updated. Omitted fields will not be updated.
+     * Required. The list of fields to be updated. Omitted fields will not be updated. To replace the entire entity, use one path with the string "*" to match all fields.
      */
     updateMask?: string;
 

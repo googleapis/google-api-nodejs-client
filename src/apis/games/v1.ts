@@ -487,6 +487,28 @@ export namespace games_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Hash-like weak identifier of uploaded content bytes (saved game data blob, or cover image). Consistent per player per application per hash version. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash. It's extremely likely, though not guaranteed, that if two content hashes are equal, the blobs are identical.
+   */
+  export interface Schema$ContentHash {
+    /**
+     * Hash-like digest of the content.
+     */
+    digest?: string | null;
+    /**
+     * Version of the Hash encoding algorithm to hash the content.
+     */
+    version?: number | null;
+  }
+  /**
+   * Container for a URL end point of the requested type.
+   */
+  export interface Schema$EndPoint {
+    /**
+     * A URL suitable for loading in a web browser for the requested endpoint.
+     */
+    url?: string | null;
+  }
+  /**
    * A batch update failure resource.
    */
   export interface Schema$EventBatchRecordFailure {
@@ -1487,19 +1509,19 @@ export namespace games_v1 {
    */
   export interface Schema$SnapshotCoverImageResource {
     /**
-     * Output only. Hash-like weak identifier of the uploaded image bytes, consistent per player per application. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash. It's extremely likely, though not guaranteed, that if two content hashes are equal, the images are identical.
+     * Output only. Hash-like weak identifier of the uploaded image bytes, consistent per player per application per hash version. Within the context of a single player/application, it's guaranteed that two identical images coming from two different uploads will have the same content hash for the same hash algorithm version. It's extremely likely, though not guaranteed, that if two content hashes are equal, the images are identical. More than one content hash can be returned if more than one hash versions are supported.
      */
-    contentHash?: string | null;
+    contentHash?: Schema$ContentHash[];
     /**
      * Output only. A URL the client can use to download the image. May vary across requests, and only guaranteed to be valid for a short time after it is returned.
      */
     downloadUrl?: string | null;
     /**
-     * Output only. The height of the image in pixels.
+     * The height of the image in pixels.
      */
     height?: number | null;
     /**
-     * Output only. The MIME type of the image.
+     * The MIME type of the image.
      */
     mimeType?: string | null;
     /**
@@ -1507,7 +1529,7 @@ export namespace games_v1 {
      */
     resourceId?: string | null;
     /**
-     * Output only. The width of the image in pixels.
+     * The width of the image in pixels.
      */
     width?: number | null;
   }
@@ -1516,9 +1538,9 @@ export namespace games_v1 {
    */
   export interface Schema$SnapshotDataResource {
     /**
-     * Output only. Hash-like weak identifier of the uploaded blob, consistent per player per application. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash. It's extremely likely, though not guaranteed, that if two content hashes are equal, the blobs are identical.
+     * Output only. Hash-like weak identifier of the uploaded blob, consistent per player per application per hash version. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash for the same hash algorithm version. It's extremely likely, though not guaranteed, that if two content hashes are equal, the blobs are identical. More than one content hash can be returned if more than one hash versions are supported.
      */
-    contentHash?: string | null;
+    contentHash?: Schema$ContentHash[];
     /**
      * Output only. A URL that the client can use to download the blob. May vary across requests, and only guaranteed to be valid for a short time after it is returned.
      */
@@ -1528,7 +1550,7 @@ export namespace games_v1 {
      */
     resourceId?: string | null;
     /**
-     * Size of the saved game blob in bytes.
+     * Output only. Size of the saved game blob in bytes.
      */
     size?: string | null;
   }
@@ -2939,6 +2961,137 @@ export namespace games_v1 {
     }
 
     /**
+     * Returns a URL for the requested end point type.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.applications.getEndPoint({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *     // Type of endpoint being requested.
+     *     endPointType: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getEndPoint(
+      params: Params$Resource$Applications$Getendpoint,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getEndPoint(
+      params?: Params$Resource$Applications$Getendpoint,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EndPoint>;
+    getEndPoint(
+      params: Params$Resource$Applications$Getendpoint,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getEndPoint(
+      params: Params$Resource$Applications$Getendpoint,
+      options: MethodOptions | BodyResponseCallback<Schema$EndPoint>,
+      callback: BodyResponseCallback<Schema$EndPoint>
+    ): void;
+    getEndPoint(
+      params: Params$Resource$Applications$Getendpoint,
+      callback: BodyResponseCallback<Schema$EndPoint>
+    ): void;
+    getEndPoint(callback: BodyResponseCallback<Schema$EndPoint>): void;
+    getEndPoint(
+      paramsOrCallback?:
+        | Params$Resource$Applications$Getendpoint
+        | BodyResponseCallback<Schema$EndPoint>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EndPoint>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EndPoint>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EndPoint> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Applications$Getendpoint;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Applications$Getendpoint;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/games/v1/applications/getEndPoint').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EndPoint>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EndPoint>(parameters);
+      }
+    }
+
+    /**
      * Indicate that the currently authenticated user is playing your application.
      * @example
      * ```js
@@ -3208,6 +3361,17 @@ export namespace games_v1 {
      * Restrict application details returned to the specific platform.
      */
     platformType?: string;
+  }
+  export interface Params$Resource$Applications$Getendpoint
+    extends StandardParameters {
+    /**
+     * The application ID from the Google Play developer console.
+     */
+    applicationId?: string;
+    /**
+     * Type of endpoint being requested.
+     */
+    endPointType?: string;
   }
   export interface Params$Resource$Applications$Played
     extends StandardParameters {}

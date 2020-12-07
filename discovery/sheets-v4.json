@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20201102",
+  "revision": "20201130",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -1380,13 +1380,28 @@
           "$ref": "ColorStyle",
           "description": "The color for elements (such as bars, lines, and points) associated with this series. If empty, a default color is used. If color is also set, this field takes precedence."
         },
+        "dataLabel": {
+          "$ref": "DataLabel",
+          "description": "Information about the data labels for this series."
+        },
         "lineStyle": {
           "$ref": "LineStyle",
           "description": "The line style of this series. Valid only if the chartType is AREA, LINE, or SCATTER. COMBO charts are also supported if the series chart type is AREA or LINE."
         },
+        "pointStyle": {
+          "$ref": "PointStyle",
+          "description": "The style for points associated with this series. Valid only if the chartType is AREA, LINE, or SCATTER. COMBO charts are also supported if the series chart type is AREA, LINE, or SCATTER. If empty, a default point style is used."
+        },
         "series": {
           "$ref": "ChartData",
           "description": "The data being visualized in this chart series."
+        },
+        "styleOverrides": {
+          "description": "Style override settings for series data points.",
+          "items": {
+            "$ref": "BasicSeriesDataPointStyleOverride"
+          },
+          "type": "array"
         },
         "targetAxis": {
           "description": "The minor axis that will specify the range of values for this series. For example, if charting stocks over time, the \"Volume\" series may want to be pinned to the right with the prices pinned to the left, because the scale of trading volume is different than the scale of prices. It is an error to specify an axis that isn't a valid minor axis for the chart's type.",
@@ -1546,6 +1561,10 @@
         "threeDimensional": {
           "description": "True to make the chart 3D. Applies to Bar and Column charts.",
           "type": "boolean"
+        },
+        "totalDataLabel": {
+          "$ref": "DataLabel",
+          "description": "Controls whether to display additional data labels on stacked charts which sum the total value of all stacked values at each value along the domain axis. These data labels can only be set when chart_type is one of AREA, BAR, COLUMN, COMBO or STEPPED_AREA and stacked_type is either STACKED or PERCENT_STACKED. In addition, for COMBO, this will only be supported if there is only one type of stackable series type or one type has more series than the others and each of the other types have no more than one series. For example, if a chart has two stacked bar series and one area series, the total data labels will be supported. If it has three bar series and two area series, total data labels are not allowed. Neither CUSTOM nor placement can be set on the total_data_label."
         }
       },
       "type": "object"
@@ -1578,6 +1597,30 @@
             "$ref": "SortSpec"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BasicSeriesDataPointStyleOverride": {
+      "description": "Style override settings for a single series data point.",
+      "id": "BasicSeriesDataPointStyleOverride",
+      "properties": {
+        "color": {
+          "$ref": "Color",
+          "description": "Color of the series data point. If empty, the series default is used."
+        },
+        "colorStyle": {
+          "$ref": "ColorStyle",
+          "description": "Color of the series data point. If empty, the series default is used. If color is also set, this field takes precedence."
+        },
+        "index": {
+          "description": "Zero based index of the series data point.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "pointStyle": {
+          "$ref": "PointStyle",
+          "description": "Point style of the series data point. Valid only if the chartType is AREA, LINE, or SCATTER. COMBO charts are also supported if the series chart type is AREA, LINE, or SCATTER. If empty, the series default is used."
         }
       },
       "type": "object"
@@ -3226,6 +3269,63 @@
       },
       "type": "object"
     },
+    "DataLabel": {
+      "description": "Settings for one set of data labels. Data labels are annotations that appear next to a set of data, such as the points on a line chart, and provide additional information about what the data represents, such as a text representation of the value behind that point on the graph.",
+      "id": "DataLabel",
+      "properties": {
+        "customLabelData": {
+          "$ref": "ChartData",
+          "description": "Data to use for custom labels. Only used if type is set to CUSTOM. This data must be the same length as the series or other element this data label is applied to. In addition, if the series is split into multiple source ranges, this source data must come from the next column in the source data. For example, if the series is B2:B4,E6:E8 then this data must come from C2:C4,F6:F8."
+        },
+        "placement": {
+          "description": "The placement of the data label relative to the labeled data.",
+          "enum": [
+            "DATA_LABEL_PLACEMENT_UNSPECIFIED",
+            "CENTER",
+            "LEFT",
+            "RIGHT",
+            "ABOVE",
+            "BELOW",
+            "INSIDE_END",
+            "INSIDE_BASE",
+            "OUTSIDE_END"
+          ],
+          "enumDescriptions": [
+            "The positioning is determined automatically by the renderer.",
+            "Center within a bar or column, both horizontally and vertically.",
+            "To the left of a data point.",
+            "To the right of a data point.",
+            "Above a data point.",
+            "Below a data point.",
+            "Inside a bar or column at the end (top if positive, bottom if negative).",
+            "Inside a bar or column at the base.",
+            "Outside a bar or column at the end."
+          ],
+          "type": "string"
+        },
+        "textFormat": {
+          "$ref": "TextFormat",
+          "description": "The text format used for the data label."
+        },
+        "type": {
+          "description": "The type of the data label.",
+          "enum": [
+            "DATA_LABEL_TYPE_UNSPECIFIED",
+            "NONE",
+            "DATA",
+            "CUSTOM"
+          ],
+          "enumDescriptions": [
+            "The data label type is not specified and will be interpreted depending on the context of the data label within the chart.",
+            "The data label is not displayed.",
+            "The data label is displayed using values from the series data.",
+            "The data label is displayed using values from a custom data source indicated by customLabelData."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DataSource": {
       "description": "Information about an external data source in the spreadsheet.",
       "id": "DataSource",
@@ -4214,6 +4314,10 @@
       "description": "A chart embedded in a sheet.",
       "id": "EmbeddedChart",
       "properties": {
+        "border": {
+          "$ref": "EmbeddedObjectBorder",
+          "description": "The border of the chart."
+        },
         "chartId": {
           "description": "The ID of the chart.",
           "format": "int32",
@@ -4226,6 +4330,21 @@
         "spec": {
           "$ref": "ChartSpec",
           "description": "The specification of the chart."
+        }
+      },
+      "type": "object"
+    },
+    "EmbeddedObjectBorder": {
+      "description": "A border along an embedded object.",
+      "id": "EmbeddedObjectBorder",
+      "properties": {
+        "color": {
+          "$ref": "Color",
+          "description": "The color of the border."
+        },
+        "colorStyle": {
+          "$ref": "ColorStyle",
+          "description": "The color of the border. If color is also set, this field takes precedence."
         }
       },
       "type": "object"
@@ -5600,6 +5719,44 @@
       },
       "type": "object"
     },
+    "PointStyle": {
+      "description": "The style of a point on the chart.",
+      "id": "PointStyle",
+      "properties": {
+        "shape": {
+          "description": "The point shape. If empty or unspecified, a default shape is used.",
+          "enum": [
+            "POINT_SHAPE_UNSPECIFIED",
+            "CIRCLE",
+            "DIAMOND",
+            "HEXAGON",
+            "PENTAGON",
+            "SQUARE",
+            "STAR",
+            "TRIANGLE",
+            "X_MARK"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "A circle shape.",
+            "A diamond shape.",
+            "A hexagon shape.",
+            "A pentagon shape.",
+            "A square shape.",
+            "A star shape.",
+            "A triangle shape.",
+            "An x-mark shape."
+          ],
+          "type": "string"
+        },
+        "size": {
+          "description": "The point size. If empty, a default size is used.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "ProtectedRange": {
       "description": "A protected range.",
       "id": "ProtectedRange",
@@ -5957,6 +6114,10 @@
         "updateDimensionProperties": {
           "$ref": "UpdateDimensionPropertiesRequest",
           "description": "Updates dimensions' properties."
+        },
+        "updateEmbeddedObjectBorder": {
+          "$ref": "UpdateEmbeddedObjectBorderRequest",
+          "description": "Updates an embedded object's border."
         },
         "updateEmbeddedObjectPosition": {
           "$ref": "UpdateEmbeddedObjectPositionRequest",
@@ -7255,6 +7416,27 @@
       },
       "type": "object"
     },
+    "UpdateEmbeddedObjectBorderRequest": {
+      "description": "Updates an embedded object's border property.",
+      "id": "UpdateEmbeddedObjectBorderRequest",
+      "properties": {
+        "border": {
+          "$ref": "EmbeddedObjectBorder",
+          "description": "The border that applies to the embedded object."
+        },
+        "fields": {
+          "description": "The fields that should be updated. At least one field must be specified. The root `border` is implied and should not be specified. A single `\"*\"` can be used as short-hand for listing every field.",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
+        "objectId": {
+          "description": "The ID of the embedded object to update.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "UpdateEmbeddedObjectPositionRequest": {
       "description": "Update an embedded object's position (such as a moving or resizing a chart or image).",
       "id": "UpdateEmbeddedObjectPositionRequest",
@@ -7560,6 +7742,10 @@
           "$ref": "ChartData",
           "description": "The data being visualized in this series."
         },
+        "dataLabel": {
+          "$ref": "DataLabel",
+          "description": "Information about the data labels for this series."
+        },
         "hideTrailingSubtotal": {
           "description": "True to hide the subtotal column from the end of the series. By default, a subtotal column will appear at the end of each series. Setting this field to true will hide that subtotal column for this series.",
           "type": "boolean"
@@ -7619,6 +7805,10 @@
             "Series will spread out along the horizontal axis."
           ],
           "type": "string"
+        },
+        "totalDataLabel": {
+          "$ref": "DataLabel",
+          "description": "Controls whether to display additional data labels on stacked charts which sum the total value of all stacked values at each value along the domain axis. stacked_type must be STACKED and neither CUSTOM nor placement can be set on the total_data_label."
         }
       },
       "type": "object"

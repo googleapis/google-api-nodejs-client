@@ -1,6 +1,6 @@
 {
   "name": "googleapis",
-  "version": "65.0.0",
+  "version": "66.0.0",
   "repository": "googleapis/google-api-nodejs-client",
   "license": "Apache-2.0",
   "description": "Google APIs Client Library for Node.js",
@@ -76,7 +76,7 @@
     "@types/yargs-parser": "^15.0.0",
     "c8": "^7.0.0",
     "codecov": "^3.4.0",
-    "execa": "^4.0.0",
+    "execa": "^5.0.0",
     "gaxios": "^4.0.0",
     "gts": "^2.0.0",
     "js-green-licenses": "^2.0.0",

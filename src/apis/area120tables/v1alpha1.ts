@@ -382,6 +382,7 @@ export namespace area120tables_v1alpha1 {
      *       'https://www.googleapis.com/auth/drive.readonly',
      *       'https://www.googleapis.com/auth/spreadsheets',
      *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *       'https://www.googleapis.com/auth/tables',
      *     ],
      *   });
      *
@@ -516,6 +517,7 @@ export namespace area120tables_v1alpha1 {
      *       'https://www.googleapis.com/auth/drive.readonly',
      *       'https://www.googleapis.com/auth/spreadsheets',
      *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *       'https://www.googleapis.com/auth/tables',
      *     ],
      *   });
      *
@@ -676,6 +678,7 @@ export namespace area120tables_v1alpha1 {
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
      *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/tables',
      *     ],
      *   });
      *
@@ -825,6 +828,7 @@ export namespace area120tables_v1alpha1 {
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
      *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/tables',
      *     ],
      *   });
      *
@@ -974,6 +978,7 @@ export namespace area120tables_v1alpha1 {
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
      *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/tables',
      *     ],
      *   });
      *
@@ -1120,6 +1125,7 @@ export namespace area120tables_v1alpha1 {
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
      *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/tables',
      *     ],
      *   });
      *
@@ -1251,6 +1257,7 @@ export namespace area120tables_v1alpha1 {
      *       'https://www.googleapis.com/auth/drive.readonly',
      *       'https://www.googleapis.com/auth/spreadsheets',
      *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *       'https://www.googleapis.com/auth/tables',
      *     ],
      *   });
      *
@@ -1386,6 +1393,7 @@ export namespace area120tables_v1alpha1 {
      *       'https://www.googleapis.com/auth/drive.readonly',
      *       'https://www.googleapis.com/auth/spreadsheets',
      *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *       'https://www.googleapis.com/auth/tables',
      *     ],
      *   });
      *
@@ -1526,6 +1534,7 @@ export namespace area120tables_v1alpha1 {
      *       'https://www.googleapis.com/auth/drive',
      *       'https://www.googleapis.com/auth/drive.file',
      *       'https://www.googleapis.com/auth/spreadsheets',
+     *       'https://www.googleapis.com/auth/tables',
      *     ],
      *   });
      *
@@ -1776,6 +1785,7 @@ export namespace area120tables_v1alpha1 {
      *       'https://www.googleapis.com/auth/drive.readonly',
      *       'https://www.googleapis.com/auth/spreadsheets',
      *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *       'https://www.googleapis.com/auth/tables',
      *     ],
      *   });
      *
@@ -1910,6 +1920,7 @@ export namespace area120tables_v1alpha1 {
      *       'https://www.googleapis.com/auth/drive.readonly',
      *       'https://www.googleapis.com/auth/spreadsheets',
      *       'https://www.googleapis.com/auth/spreadsheets.readonly',
+     *       'https://www.googleapis.com/auth/tables',
      *     ],
      *   });
      *

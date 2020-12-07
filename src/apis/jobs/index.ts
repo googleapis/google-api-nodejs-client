@@ -17,11 +17,13 @@ import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {jobs_v2} from './v2';
 import {jobs_v3} from './v3';
 import {jobs_v3p1beta1} from './v3p1beta1';
+import {jobs_v4} from './v4';
 
 export const VERSIONS = {
   v2: jobs_v2.Jobs,
   v3: jobs_v3.Jobs,
   v3p1beta1: jobs_v3p1beta1.Jobs,
+  v4: jobs_v4.Jobs,
 };
 
 export function jobs(version: 'v2'): jobs_v2.Jobs;
@@ -30,7 +32,11 @@ export function jobs(version: 'v3'): jobs_v3.Jobs;
 export function jobs(options: jobs_v3.Options): jobs_v3.Jobs;
 export function jobs(version: 'v3p1beta1'): jobs_v3p1beta1.Jobs;
 export function jobs(options: jobs_v3p1beta1.Options): jobs_v3p1beta1.Jobs;
-export function jobs<T = jobs_v2.Jobs | jobs_v3.Jobs | jobs_v3p1beta1.Jobs>(
+export function jobs(version: 'v4'): jobs_v4.Jobs;
+export function jobs(options: jobs_v4.Options): jobs_v4.Jobs;
+export function jobs<
+  T = jobs_v2.Jobs | jobs_v3.Jobs | jobs_v3p1beta1.Jobs | jobs_v4.Jobs
+>(
   this: GoogleConfigurable,
   versionOrOptions:
     | 'v2'
@@ -39,6 +45,8 @@ export function jobs<T = jobs_v2.Jobs | jobs_v3.Jobs | jobs_v3p1beta1.Jobs>(
     | jobs_v3.Options
     | 'v3p1beta1'
     | jobs_v3p1beta1.Options
+    | 'v4'
+    | jobs_v4.Options
 ) {
   return getAPI<T>('jobs', versionOrOptions, VERSIONS, this);
 }
@@ -48,6 +56,7 @@ export {auth};
 export {jobs_v2};
 export {jobs_v3};
 export {jobs_v3p1beta1};
+export {jobs_v4};
 export {
   AuthPlus,
   GlobalOptions,

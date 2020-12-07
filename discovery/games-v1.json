@@ -388,6 +388,42 @@
             "https://www.googleapis.com/auth/games"
           ]
         },
+        "getEndPoint": {
+          "description": "Returns a URL for the requested end point type.",
+          "flatPath": "games/v1/applications/getEndPoint",
+          "httpMethod": "POST",
+          "id": "games.applications.getEndPoint",
+          "parameterOrder": [],
+          "parameters": {
+            "applicationId": {
+              "description": "The application ID from the Google Play developer console.",
+              "location": "query",
+              "type": "string"
+            },
+            "endPointType": {
+              "description": "Type of endpoint being requested.",
+              "enum": [
+                "END_POINT_TYPE_UNSPECIFIED",
+                "PROFILE_CREATION",
+                "PROFILE_SETTINGS"
+              ],
+              "enumDescriptions": [
+                "Default value. This value is unused.",
+                "Request a URL to create a new profile.",
+                "Request a URL for the Settings view."
+              ],
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "games/v1/applications/getEndPoint",
+          "response": {
+            "$ref": "EndPoint"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/games"
+          ]
+        },
         "played": {
           "description": "Indicate that the currently authenticated user is playing your application.",
           "flatPath": "games/v1/applications/played",
@@ -1220,7 +1256,7 @@
       }
     }
   },
-  "revision": "20201112",
+  "revision": "20201125",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -1683,6 +1719,33 @@
         },
         "nextPageToken": {
           "description": "Token corresponding to the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContentHash": {
+      "description": "Hash-like weak identifier of uploaded content bytes (saved game data blob, or cover image). Consistent per player per application per hash version. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash. It's extremely likely, though not guaranteed, that if two content hashes are equal, the blobs are identical.",
+      "id": "ContentHash",
+      "properties": {
+        "digest": {
+          "description": "Hash-like digest of the content.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the Hash encoding algorithm to hash the content.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "EndPoint": {
+      "description": "Container for a URL end point of the requested type.",
+      "id": "EndPoint",
+      "properties": {
+        "url": {
+          "description": "A URL suitable for loading in a web browser for the requested endpoint.",
           "type": "string"
         }
       },
@@ -3052,9 +3115,12 @@
       "id": "SnapshotCoverImageResource",
       "properties": {
         "contentHash": {
-          "description": "Output only. Hash-like weak identifier of the uploaded image bytes, consistent per player per application. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash. It's extremely likely, though not guaranteed, that if two content hashes are equal, the images are identical.",
+          "description": "Output only. Hash-like weak identifier of the uploaded image bytes, consistent per player per application per hash version. Within the context of a single player/application, it's guaranteed that two identical images coming from two different uploads will have the same content hash for the same hash algorithm version. It's extremely likely, though not guaranteed, that if two content hashes are equal, the images are identical. More than one content hash can be returned if more than one hash versions are supported.",
+          "items": {
+            "$ref": "ContentHash"
+          },
           "readOnly": true,
-          "type": "string"
+          "type": "array"
         },
         "downloadUrl": {
           "description": "Output only. A URL the client can use to download the image. May vary across requests, and only guaranteed to be valid for a short time after it is returned.",
@@ -3062,14 +3128,12 @@
           "type": "string"
         },
         "height": {
-          "description": "Output only. The height of the image in pixels.",
+          "description": "The height of the image in pixels.",
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         },
         "mimeType": {
-          "description": "Output only. The MIME type of the image.",
-          "readOnly": true,
+          "description": "The MIME type of the image.",
           "type": "string"
         },
         "resourceId": {
@@ -3077,9 +3141,8 @@
           "type": "string"
         },
         "width": {
-          "description": "Output only. The width of the image in pixels.",
+          "description": "The width of the image in pixels.",
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         }
       },
@@ -3090,9 +3153,12 @@
       "id": "SnapshotDataResource",
       "properties": {
         "contentHash": {
-          "description": "Output only. Hash-like weak identifier of the uploaded blob, consistent per player per application. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash. It's extremely likely, though not guaranteed, that if two content hashes are equal, the blobs are identical.",
+          "description": "Output only. Hash-like weak identifier of the uploaded blob, consistent per player per application per hash version. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash for the same hash algorithm version. It's extremely likely, though not guaranteed, that if two content hashes are equal, the blobs are identical. More than one content hash can be returned if more than one hash versions are supported.",
+          "items": {
+            "$ref": "ContentHash"
+          },
           "readOnly": true,
-          "type": "string"
+          "type": "array"
         },
         "downloadUrl": {
           "description": "Output only. A URL that the client can use to download the blob. May vary across requests, and only guaranteed to be valid for a short time after it is returned.",
@@ -3104,8 +3170,9 @@
           "type": "string"
         },
         "size": {
-          "description": "Size of the saved game blob in bytes.",
+          "description": "Output only. Size of the saved game blob in bytes.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },

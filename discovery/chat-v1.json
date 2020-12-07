@@ -96,6 +96,76 @@
   },
   "protocol": "rest",
   "resources": {
+    "dms": {
+      "methods": {
+        "messages": {
+          "description": "Legacy path for creating message. Calling these will result in a BadRequest response.",
+          "flatPath": "v1/dms/{dmsId}/messages",
+          "httpMethod": "POST",
+          "id": "chat.dms.messages",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAMpdlehY",
+              "location": "path",
+              "pattern": "^dms/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "threadKey": {
+              "description": "Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+parent}/messages",
+          "request": {
+            "$ref": "Message"
+          },
+          "response": {
+            "$ref": "Message"
+          }
+        }
+      },
+      "resources": {
+        "conversations": {
+          "methods": {
+            "messages": {
+              "description": "Legacy path for creating message. Calling these will result in a BadRequest response.",
+              "flatPath": "v1/dms/{dmsId}/conversations/{conversationsId}/messages",
+              "httpMethod": "POST",
+              "id": "chat.dms.conversations.messages",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAMpdlehY",
+                  "location": "path",
+                  "pattern": "^dms/[^/]+/conversations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "threadKey": {
+                  "description": "Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/messages",
+              "request": {
+                "$ref": "Message"
+              },
+              "response": {
+                "$ref": "Message"
+              }
+            }
+          }
+        }
+      }
+    },
     "media": {
       "methods": {
         "download": {
@@ -120,6 +190,76 @@
             "$ref": "Media"
           },
           "supportsMediaDownload": true
+        }
+      }
+    },
+    "rooms": {
+      "methods": {
+        "messages": {
+          "description": "Legacy path for creating message. Calling these will result in a BadRequest response.",
+          "flatPath": "v1/rooms/{roomsId}/messages",
+          "httpMethod": "POST",
+          "id": "chat.rooms.messages",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "parent": {
+              "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAMpdlehY",
+              "location": "path",
+              "pattern": "^rooms/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "threadKey": {
+              "description": "Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+parent}/messages",
+          "request": {
+            "$ref": "Message"
+          },
+          "response": {
+            "$ref": "Message"
+          }
+        }
+      },
+      "resources": {
+        "conversations": {
+          "methods": {
+            "messages": {
+              "description": "Legacy path for creating message. Calling these will result in a BadRequest response.",
+              "flatPath": "v1/rooms/{roomsId}/conversations/{conversationsId}/messages",
+              "httpMethod": "POST",
+              "id": "chat.rooms.conversations.messages",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Space resource name, in the form \"spaces/*\". Example: spaces/AAAAMpdlehY",
+                  "location": "path",
+                  "pattern": "^rooms/[^/]+/conversations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "threadKey": {
+                  "description": "Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/messages",
+              "request": {
+                "$ref": "Message"
+              },
+              "response": {
+                "$ref": "Message"
+              }
+            }
+          }
         }
       }
     },
@@ -372,7 +512,7 @@
       }
     }
   },
-  "revision": "20201028",
+  "revision": "20201127",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {

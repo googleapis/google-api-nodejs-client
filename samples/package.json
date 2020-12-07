@@ -16,7 +16,7 @@
   "dependencies": {
     "@google-cloud/local-auth": "^1.0.0",
     "express": "^4.17.1",
-    "googleapis": "^65.0.0",
+    "googleapis": "^66.0.0",
     "nconf": "^0.11.0",
     "open": "^7.0.3",
     "server-destroy": "^1.0.1",
@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "execa": "^4.0.0",
+    "execa": "^5.0.0",
     "mocha": "^8.0.0",
     "nock": "^13.0.0",
     "proxyquire": "^2.1.3"

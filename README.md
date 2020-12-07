@@ -13,7 +13,7 @@
 * [Google APIs](#google-apis)
 * [Getting started](#getting-started)
   * [Installation](#installation)
-  * [First example](#first-example)
+  * [Using the client library](#using-the-client-library)
   * [Samples](#samples)
   * [API Reference](#api-reference)
 * [Authentication and authorization](#authentication-and-authorization)
@@ -54,7 +54,8 @@ This library is distributed on `npm`. In order to add it as a dependency, run th
 $ npm install googleapis
 ```
 
-### First example
+### Using the client library
+
 This is a very simple example. This creates a Blogger client and retrieves the details of a blog given the blog Id:
 
 ``` js

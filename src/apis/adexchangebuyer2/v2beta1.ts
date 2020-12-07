@@ -678,7 +678,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     availableEndTime?: string | null;
     /**
-     * Optional proposed flight start time of the deal. This will generally be stored in the granularity of one second since deal serving starts at seconds boundary. Any time specified with more granularity (e.g., in milliseconds) will be truncated towards the start of time in seconds.
+     * Optional. Proposed flight start time of the deal. This will generally be stored in the granularity of one second since deal serving starts at seconds boundary. Any time specified with more granularity (e.g., in milliseconds) will be truncated towards the start of time in seconds.
      */
     availableStartTime?: string | null;
     /**
@@ -690,7 +690,7 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     createProductId?: string | null;
     /**
-     * Optional revision number of the product that the deal was created from. If present on create, and the server `product_revision` has advanced sinced the passed-in `create_product_revision`, an `ABORTED` error will be returned. Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
+     * Optional. Revision number of the product that the deal was created from. If present on create, and the server `product_revision` has advanced since the passed-in `create_product_revision`, an `ABORTED` error will be returned. Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.
      */
     createProductRevision?: string | null;
     /**
@@ -1761,6 +1761,10 @@ export namespace adexchangebuyer2_v2beta1 {
      * Output only. Contact information for the seller.
      */
     sellerContacts?: Schema$ContactInformation[];
+    /**
+     * Output only. The terms and conditions set by the publisher for this proposal.
+     */
+    termsAndConditions?: string | null;
     /**
      * Output only. The time when the proposal was last revised.
      */
@@ -5851,7 +5855,7 @@ export namespace adexchangebuyer2_v2beta1 {
     }
 
     /**
-     * Mark the proposal as accepted at the given revision number. If the number does not match the server's revision number an `ABORTED` error message will be returned. This call updates the proposal_state from `PROPOSED` to `BUYER_ACCEPTED`, or from `SELLER_ACCEPTED` to `FINALIZED`.
+     * Mark the proposal as accepted at the given revision number. If the number does not match the server's revision number an `ABORTED` error message will be returned. This call updates the proposal_state from `PROPOSED` to `BUYER_ACCEPTED`, or from `SELLER_ACCEPTED` to `FINALIZED`. Upon calling this endpoint, the buyer implicitly agrees to the terms and conditions optionally set within the proposal by the publisher.
      * @example
      * ```js
      * // Before running the sample:
@@ -5911,6 +5915,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   //   "proposalState": "my_proposalState",
      *   //   "seller": {},
      *   //   "sellerContacts": [],
+     *   //   "termsAndConditions": "my_termsAndConditions",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -6210,6 +6215,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   //   "proposalState": "my_proposalState",
      *   //   "seller": {},
      *   //   "sellerContacts": [],
+     *   //   "termsAndConditions": "my_termsAndConditions",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -6365,6 +6371,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   //   "proposalState": "my_proposalState",
      *   //   "seller": {},
      *   //   "sellerContacts": [],
+     *   //   "termsAndConditions": "my_termsAndConditions",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -6512,6 +6519,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *       //   "proposalState": "my_proposalState",
      *       //   "seller": {},
      *       //   "sellerContacts": [],
+     *       //   "termsAndConditions": "my_termsAndConditions",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -6537,6 +6545,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   //   "proposalState": "my_proposalState",
      *   //   "seller": {},
      *   //   "sellerContacts": [],
+     *   //   "termsAndConditions": "my_termsAndConditions",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -6686,6 +6695,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   //   "proposalState": "my_proposalState",
      *   //   "seller": {},
      *   //   "sellerContacts": [],
+     *   //   "termsAndConditions": "my_termsAndConditions",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -6986,6 +6996,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   //   "proposalState": "my_proposalState",
      *   //   "seller": {},
      *   //   "sellerContacts": [],
+     *   //   "termsAndConditions": "my_termsAndConditions",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -7141,6 +7152,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   //   "proposalState": "my_proposalState",
      *   //   "seller": {},
      *   //   "sellerContacts": [],
+     *   //   "termsAndConditions": "my_termsAndConditions",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -7290,6 +7302,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *       //   "proposalState": "my_proposalState",
      *       //   "seller": {},
      *       //   "sellerContacts": [],
+     *       //   "termsAndConditions": "my_termsAndConditions",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -7315,6 +7328,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   //   "proposalState": "my_proposalState",
      *   //   "seller": {},
      *   //   "sellerContacts": [],
+     *   //   "termsAndConditions": "my_termsAndConditions",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }

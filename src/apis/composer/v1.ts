@@ -124,6 +124,36 @@ export namespace composer_v1 {
   }
 
   /**
+   * Allowed IP range with user-provided description.
+   */
+  export interface Schema$AllowedIpRange {
+    /**
+     * Optional. User-provided description. It must contain at most 300 characters.
+     */
+    description?: string | null;
+    /**
+     * IP address or range, defined using CIDR notation, of requests that this rule applies to. Examples: `192.168.1.1` or `192.168.0.0/16` or `2001:db8::/32` or `2001:0db8:0000:0042:0000:8a2e:0370:7334`. IP range prefixes should be properly truncated. For example, `1.2.3.4/24` should be truncated to `1.2.3.0/24`. Similarly, for IPv6, `2001:db8::1/32` should be truncated to `2001:db8::/32`.
+     */
+    value?: string | null;
+  }
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -192,11 +222,19 @@ export namespace composer_v1 {
      * The configuration settings for software inside the environment.
      */
     softwareConfig?: Schema$SoftwareConfig;
+    /**
+     * Optional. The network-level access control policy for the Airflow web server. If unspecified, no network-level access restrictions will be applied.
+     */
+    webServerNetworkAccessControl?: Schema$WebServerNetworkAccessControl;
   }
   /**
    * ImageVersion information
    */
   export interface Schema$ImageVersion {
+    /**
+     * Whether it is impossible to create an environment with the image version.
+     */
+    creationDisabled?: boolean | null;
     /**
      * The string identifier of the ImageVersion, in the form: "composer-x.y.z-airflow-a.b(.c)"
      */
@@ -206,9 +244,17 @@ export namespace composer_v1 {
      */
     isDefault?: boolean | null;
     /**
+     * The date of the version release.
+     */
+    releaseDate?: Schema$Date;
+    /**
      * supported python versions
      */
     supportedPythonVersions?: string[] | null;
+    /**
+     * Whether it is impossible to upgrade an environment running with the image version.
+     */
+    upgradeDisabled?: boolean | null;
   }
   /**
    * Configuration for controlling how IPs are allocated in the GKE cluster running the Apache Airflow software.
@@ -452,6 +498,15 @@ export namespace composer_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Network-level access control policy for the Airflow web server.
+   */
+  export interface Schema$WebServerNetworkAccessControl {
+    /**
+     * A collection of allowed IP ranges with descriptions.
+     */
+    allowedIpRanges?: Schema$AllowedIpRange[];
   }
 
   export class Resource$Projects {
@@ -1068,7 +1123,7 @@ export namespace composer_v1 {
      *     // The relative resource name of the environment to update, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
      *     name:
      *       'projects/my-project/locations/my-location/environments/my-environment',
-     *     // Required. A comma-separated list of paths, relative to `Environment`, of fields to update. For example, to set the version of scikit-learn to install in the environment to 0.19.0 and to remove an existing installation of numpy, the `updateMask` parameter would include the following two `paths` values: "config.softwareConfig.pypiPackages.scikit-learn" and "config.softwareConfig.pypiPackages.numpy". The included patch environment would specify the scikit-learn version as follows: { "config":{ "softwareConfig":{ "pypiPackages":{ "scikit-learn":"==0.19.0" \} \} \} \} Note that in the above example, any existing PyPI packages other than scikit-learn and numpy will be unaffected. Only one update type may be included in a single request's `updateMask`. For example, one cannot update both the PyPI packages and labels in the same request. However, it is possible to update multiple members of a map field simultaneously in the same request. For example, to set the labels "label1" and "label2" while clearing "label3" (assuming it already exists), one can provide the paths "labels.label1", "labels.label2", and "labels.label3" and populate the patch environment as follows: { "labels":{ "label1":"new-label1-value" "label2":"new-label2-value" \} \} Note that in the above example, any existing labels that are not included in the `updateMask` will be unaffected. It is also possible to replace an entire map field by providing the map field's path in the `updateMask`. The new value of the field will be that which is provided in the patch environment. For example, to delete all pre-existing user-specified PyPI packages and install botocore at version 1.7.14, the `updateMask` would contain the path "config.softwareConfig.pypiPackages", and the patch environment would be the following: { "config":{ "softwareConfig":{ "pypiPackages":{ "botocore":"==1.7.14" \} \} \} \} **Note:** Only the following fields can be updated: *Mask* *Purpose* config.softwareConfig.pypiPackages Replace all custom custom PyPI packages. If a replacement package map is not included in `environment`, all custom PyPI packages are cleared. It is an error to provide both this mask and a mask specifying an individual package. config.softwareConfig.pypiPackages.packagename Update the custom PyPI package packagename, preserving other packages. To delete the package, include it in `updateMask`, and omit the mapping for it in `environment.config.softwareConfig.pypiPackages`. It is an error to provide both a mask of this form and the "config.softwareConfig.pypiPackages" mask. labels Replace all environment labels. If a replacement labels map is not included in `environment`, all labels are cleared. It is an error to provide both this mask and a mask specifying one or more individual labels. labels.labelName Set the label named labelName, while preserving other labels. To delete the label, include it in `updateMask` and omit its mapping in `environment.labels`. It is an error to provide both a mask of this form and the "labels" mask. config.nodeCount Horizontally scale the number of nodes in the environment. An integer greater than or equal to 3 must be provided in the `config.nodeCount` field. config.softwareConfig.airflowConfigOverrides Replace all Apache Airflow config overrides. If a replacement config overrides map is not included in `environment`, all config overrides are cleared. It is an error to provide both this mask and a mask specifying one or more individual config overrides. config.softwareConfig.airflowConfigOverrides.section-name Override the Apache Airflow config property name in the section named section, preserving other properties. To delete the property override, include it in `updateMask` and omit its mapping in `environment.config.softwareConfig.airflowConfigOverrides`. It is an error to provide both a mask of this form and the "config.softwareConfig.airflowConfigOverrides" mask. config.softwareConfig.envVariables Replace all environment variables. If a replacement environment variable map is not included in `environment`, all custom environment variables are cleared. It is an error to provide both this mask and a mask specifying one or more individual environment variables.
+     *     // Required. A comma-separated list of paths, relative to `Environment`, of fields to update. For example, to set the version of scikit-learn to install in the environment to 0.19.0 and to remove an existing installation of numpy, the `updateMask` parameter would include the following two `paths` values: "config.softwareConfig.pypiPackages.scikit-learn" and "config.softwareConfig.pypiPackages.numpy". The included patch environment would specify the scikit-learn version as follows: { "config":{ "softwareConfig":{ "pypiPackages":{ "scikit-learn":"==0.19.0" \} \} \} \} Note that in the above example, any existing PyPI packages other than scikit-learn and numpy will be unaffected. Only one update type may be included in a single request's `updateMask`. For example, one cannot update both the PyPI packages and labels in the same request. However, it is possible to update multiple members of a map field simultaneously in the same request. For example, to set the labels "label1" and "label2" while clearing "label3" (assuming it already exists), one can provide the paths "labels.label1", "labels.label2", and "labels.label3" and populate the patch environment as follows: { "labels":{ "label1":"new-label1-value" "label2":"new-label2-value" \} \} Note that in the above example, any existing labels that are not included in the `updateMask` will be unaffected. It is also possible to replace an entire map field by providing the map field's path in the `updateMask`. The new value of the field will be that which is provided in the patch environment. For example, to delete all pre-existing user-specified PyPI packages and install botocore at version 1.7.14, the `updateMask` would contain the path "config.softwareConfig.pypiPackages", and the patch environment would be the following: { "config":{ "softwareConfig":{ "pypiPackages":{ "botocore":"==1.7.14" \} \} \} \} **Note:** Only the following fields can be updated: *Mask* *Purpose* config.softwareConfig.pypiPackages Replace all custom custom PyPI packages. If a replacement package map is not included in `environment`, all custom PyPI packages are cleared. It is an error to provide both this mask and a mask specifying an individual package. config.softwareConfig.pypiPackages.packagename Update the custom PyPI package packagename, preserving other packages. To delete the package, include it in `updateMask`, and omit the mapping for it in `environment.config.softwareConfig.pypiPackages`. It is an error to provide both a mask of this form and the "config.softwareConfig.pypiPackages" mask. labels Replace all environment labels. If a replacement labels map is not included in `environment`, all labels are cleared. It is an error to provide both this mask and a mask specifying one or more individual labels. labels.labelName Set the label named labelName, while preserving other labels. To delete the label, include it in `updateMask` and omit its mapping in `environment.labels`. It is an error to provide both a mask of this form and the "labels" mask. config.nodeCount Horizontally scale the number of nodes in the environment. An integer greater than or equal to 3 must be provided in the `config.nodeCount` field. config.webServerNetworkAccessControl Replace the environment's current WebServerNetworkAccessControl. config.softwareConfig.airflowConfigOverrides Replace all Apache Airflow config overrides. If a replacement config overrides map is not included in `environment`, all config overrides are cleared. It is an error to provide both this mask and a mask specifying one or more individual config overrides. config.softwareConfig.airflowConfigOverrides.section-name Override the Apache Airflow config property name in the section named section, preserving other properties. To delete the property override, include it in `updateMask` and omit its mapping in `environment.config.softwareConfig.airflowConfigOverrides`. It is an error to provide both a mask of this form and the "config.softwareConfig.airflowConfigOverrides" mask. config.softwareConfig.envVariables Replace all environment variables. If a replacement environment variable map is not included in `environment`, all custom environment variables are cleared. It is an error to provide both this mask and a mask specifying one or more individual environment variables.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1234,7 +1289,7 @@ export namespace composer_v1 {
      */
     name?: string;
     /**
-     * Required. A comma-separated list of paths, relative to `Environment`, of fields to update. For example, to set the version of scikit-learn to install in the environment to 0.19.0 and to remove an existing installation of numpy, the `updateMask` parameter would include the following two `paths` values: "config.softwareConfig.pypiPackages.scikit-learn" and "config.softwareConfig.pypiPackages.numpy". The included patch environment would specify the scikit-learn version as follows: { "config":{ "softwareConfig":{ "pypiPackages":{ "scikit-learn":"==0.19.0" \} \} \} \} Note that in the above example, any existing PyPI packages other than scikit-learn and numpy will be unaffected. Only one update type may be included in a single request's `updateMask`. For example, one cannot update both the PyPI packages and labels in the same request. However, it is possible to update multiple members of a map field simultaneously in the same request. For example, to set the labels "label1" and "label2" while clearing "label3" (assuming it already exists), one can provide the paths "labels.label1", "labels.label2", and "labels.label3" and populate the patch environment as follows: { "labels":{ "label1":"new-label1-value" "label2":"new-label2-value" \} \} Note that in the above example, any existing labels that are not included in the `updateMask` will be unaffected. It is also possible to replace an entire map field by providing the map field's path in the `updateMask`. The new value of the field will be that which is provided in the patch environment. For example, to delete all pre-existing user-specified PyPI packages and install botocore at version 1.7.14, the `updateMask` would contain the path "config.softwareConfig.pypiPackages", and the patch environment would be the following: { "config":{ "softwareConfig":{ "pypiPackages":{ "botocore":"==1.7.14" \} \} \} \} **Note:** Only the following fields can be updated: *Mask* *Purpose* config.softwareConfig.pypiPackages Replace all custom custom PyPI packages. If a replacement package map is not included in `environment`, all custom PyPI packages are cleared. It is an error to provide both this mask and a mask specifying an individual package. config.softwareConfig.pypiPackages.packagename Update the custom PyPI package packagename, preserving other packages. To delete the package, include it in `updateMask`, and omit the mapping for it in `environment.config.softwareConfig.pypiPackages`. It is an error to provide both a mask of this form and the "config.softwareConfig.pypiPackages" mask. labels Replace all environment labels. If a replacement labels map is not included in `environment`, all labels are cleared. It is an error to provide both this mask and a mask specifying one or more individual labels. labels.labelName Set the label named labelName, while preserving other labels. To delete the label, include it in `updateMask` and omit its mapping in `environment.labels`. It is an error to provide both a mask of this form and the "labels" mask. config.nodeCount Horizontally scale the number of nodes in the environment. An integer greater than or equal to 3 must be provided in the `config.nodeCount` field. config.softwareConfig.airflowConfigOverrides Replace all Apache Airflow config overrides. If a replacement config overrides map is not included in `environment`, all config overrides are cleared. It is an error to provide both this mask and a mask specifying one or more individual config overrides. config.softwareConfig.airflowConfigOverrides.section-name Override the Apache Airflow config property name in the section named section, preserving other properties. To delete the property override, include it in `updateMask` and omit its mapping in `environment.config.softwareConfig.airflowConfigOverrides`. It is an error to provide both a mask of this form and the "config.softwareConfig.airflowConfigOverrides" mask. config.softwareConfig.envVariables Replace all environment variables. If a replacement environment variable map is not included in `environment`, all custom environment variables are cleared. It is an error to provide both this mask and a mask specifying one or more individual environment variables.
+     * Required. A comma-separated list of paths, relative to `Environment`, of fields to update. For example, to set the version of scikit-learn to install in the environment to 0.19.0 and to remove an existing installation of numpy, the `updateMask` parameter would include the following two `paths` values: "config.softwareConfig.pypiPackages.scikit-learn" and "config.softwareConfig.pypiPackages.numpy". The included patch environment would specify the scikit-learn version as follows: { "config":{ "softwareConfig":{ "pypiPackages":{ "scikit-learn":"==0.19.0" \} \} \} \} Note that in the above example, any existing PyPI packages other than scikit-learn and numpy will be unaffected. Only one update type may be included in a single request's `updateMask`. For example, one cannot update both the PyPI packages and labels in the same request. However, it is possible to update multiple members of a map field simultaneously in the same request. For example, to set the labels "label1" and "label2" while clearing "label3" (assuming it already exists), one can provide the paths "labels.label1", "labels.label2", and "labels.label3" and populate the patch environment as follows: { "labels":{ "label1":"new-label1-value" "label2":"new-label2-value" \} \} Note that in the above example, any existing labels that are not included in the `updateMask` will be unaffected. It is also possible to replace an entire map field by providing the map field's path in the `updateMask`. The new value of the field will be that which is provided in the patch environment. For example, to delete all pre-existing user-specified PyPI packages and install botocore at version 1.7.14, the `updateMask` would contain the path "config.softwareConfig.pypiPackages", and the patch environment would be the following: { "config":{ "softwareConfig":{ "pypiPackages":{ "botocore":"==1.7.14" \} \} \} \} **Note:** Only the following fields can be updated: *Mask* *Purpose* config.softwareConfig.pypiPackages Replace all custom custom PyPI packages. If a replacement package map is not included in `environment`, all custom PyPI packages are cleared. It is an error to provide both this mask and a mask specifying an individual package. config.softwareConfig.pypiPackages.packagename Update the custom PyPI package packagename, preserving other packages. To delete the package, include it in `updateMask`, and omit the mapping for it in `environment.config.softwareConfig.pypiPackages`. It is an error to provide both a mask of this form and the "config.softwareConfig.pypiPackages" mask. labels Replace all environment labels. If a replacement labels map is not included in `environment`, all labels are cleared. It is an error to provide both this mask and a mask specifying one or more individual labels. labels.labelName Set the label named labelName, while preserving other labels. To delete the label, include it in `updateMask` and omit its mapping in `environment.labels`. It is an error to provide both a mask of this form and the "labels" mask. config.nodeCount Horizontally scale the number of nodes in the environment. An integer greater than or equal to 3 must be provided in the `config.nodeCount` field. config.webServerNetworkAccessControl Replace the environment's current WebServerNetworkAccessControl. config.softwareConfig.airflowConfigOverrides Replace all Apache Airflow config overrides. If a replacement config overrides map is not included in `environment`, all config overrides are cleared. It is an error to provide both this mask and a mask specifying one or more individual config overrides. config.softwareConfig.airflowConfigOverrides.section-name Override the Apache Airflow config property name in the section named section, preserving other properties. To delete the property override, include it in `updateMask` and omit its mapping in `environment.config.softwareConfig.airflowConfigOverrides`. It is an error to provide both a mask of this form and the "config.softwareConfig.airflowConfigOverrides" mask. config.softwareConfig.envVariables Replace all environment variables. If a replacement environment variable map is not included in `environment`, all custom environment variables are cleared. It is an error to provide both this mask and a mask specifying one or more individual environment variables.
      */
     updateMask?: string;
 
@@ -1277,6 +1332,8 @@ export namespace composer_v1 {
      *
      *   // Do the magic
      *   const res = await composer.projects.locations.imageVersions.list({
+     *     // Whether or not image versions from old releases should be included.
+     *     includePastReleases: 'placeholder-value',
      *     // The maximum number of image_versions to return.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
@@ -1394,6 +1451,10 @@ export namespace composer_v1 {
 
   export interface Params$Resource$Projects$Locations$Imageversions$List
     extends StandardParameters {
+    /**
+     * Whether or not image versions from old releases should be included.
+     */
+    includePastReleases?: boolean;
     /**
      * The maximum number of image_versions to return.
      */

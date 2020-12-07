@@ -1,0 +1,125 @@
+on:
+  push:
+    branches:
+      - master
+name: release-please-monorepo
+jobs:
+  changeFinder:
+    runs-on: ubuntu-latest
+    outputs:
+      nodePaths: ${{ steps.interrogate.outputs.nodePaths }}
+    steps:
+      - uses: actions/checkout@v2
+      - id: interrogate
+        uses: actions/github-script@v3
+        with:
+            github-token: ${{secrets.GITHUB_TOKEN}}
+            script: |
+              const allowlist = ['youtube', 'drive', 'compute'];
+              const {execSync} = require('child_process');
+              const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+              const latestRelease = await github.repos.getLatestRelease({
+                owner,
+                repo
+              });
+              console.log(`latest release: ${JSON.stringify(latestRelease.data)}`);
+              execSync('git pull --tags');
+              execSync(`git reset --hard ${latestRelease.data.tag_name}`);
+              const status = execSync(`git diff --name-only origin/master`, { encoding: 'utf-8'});
+              console.log(status);
+              const changes = status.split('\n');
+              let nodePaths = new Set();
+              for (const change of changes) {
+                if (change.startsWith('src/apis/')) {
+                    const library = change.split('/')[2];
+                    if (allowlist.includes(library)) {
+                      nodePaths.add(library);
+                    }
+                };
+              }
+              nodePaths = Array.from(nodePaths);
+              console.log(`::set-output name=nodePaths::${JSON.stringify(nodePaths)}`);
+  release-pr:
+    runs-on: ubuntu-latest
+    needs: changeFinder
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{fromJson(needs.changeFinder.outputs.nodePaths)}}
+    steps:
+      - uses: GoogleCloudPlatform/release-please-action@v2
+        id: release-please
+        with:
+           path: src/apis/${{ matrix.package }}
+           token: ${{ secrets.FORKING_TOKEN }}
+           fork: true
+           release-type: node
+           package-name: ${{ matrix.package }}
+           monorepo-tags: true
+           command: release-pr
+      - id: label
+        if: ${{steps.release-please.outputs.pr}})
+        uses: actions/github-script@v3    
+        with:
+            github-token: ${{secrets.GITHUB_TOKEN}}
+            script: |
+              const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+              const latestRelease = await github.issues.addLabels({
+                owner,
+                repo,
+                issue_number: ${{steps.release-please.outputs.pr}},
+                labels: ['autorelease: pending']
+              });
+              console.log(`Tagged ${{steps.release-please.outputs.pr}}`)
+  release-please-release:
+    runs-on: ubuntu-latest
+    needs: changeFinder
+    strategy:
+      fail-fast: false
+      matrix:
+        package: ${{fromJson(needs.changeFinder.outputs.nodePaths)}}
+    steps:
+      - uses: GoogleCloudPlatform/release-please-action@v2
+        id: tag-release
+        with:
+          path: src/apis/${{ matrix.package }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          release-type: node
+          monorepo-tags: true
+          package-name: ${{ matrix.package }}
+          command: github-release
+      - uses: actions/checkout@v2
+        if: ${{ steps.tag-release.outputs.release_created }}
+      - uses: actions/setup-node@v1
+        if: ${{ steps.tag-release.outputs.release_created }}
+        with:
+          node-version: 14
+          registry-url: 'https://wombat-dressing-room.appspot.com/'
+      - name: publish
+        if: ${{ steps.tag-release.outputs.release_created }}
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_SUBMODULE_TOKEN}}
+        run: |
+          cd src/apis/${{ matrix.package }}
+          npm install
+          npm publish --access=public
+      - uses: actions/github-script@v3
+        id: untag-release
+        if: ${{steps.tag-release.outputs.pr}}
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+            await github.issues.addLabels({
+              owner,
+              repo,
+              issue_number: ${{steps.tag-release.outputs.pr}},
+              labels: ['autorelease: published']
+            });
+            github.issues.removeLabel({
+              owner,
+              repo,
+              issue_number: ${{steps.tag-release.outputs.pr}},
+              name: 'autorelease: tagged',
+            });
+            console.log(`Tagged ${{steps.tag-release.outputs.pr}}`)

@@ -981,7 +981,7 @@
         "proposals": {
           "methods": {
             "accept": {
-              "description": "Mark the proposal as accepted at the given revision number. If the number does not match the server's revision number an `ABORTED` error message will be returned. This call updates the proposal_state from `PROPOSED` to `BUYER_ACCEPTED`, or from `SELLER_ACCEPTED` to `FINALIZED`.",
+              "description": "Mark the proposal as accepted at the given revision number. If the number does not match the server's revision number an `ABORTED` error message will be returned. This call updates the proposal_state from `PROPOSED` to `BUYER_ACCEPTED`, or from `SELLER_ACCEPTED` to `FINALIZED`. Upon calling this endpoint, the buyer implicitly agrees to the terms and conditions optionally set within the proposal by the publisher.",
               "flatPath": "v2beta1/accounts/{accountId}/proposals/{proposalId}:accept",
               "httpMethod": "POST",
               "id": "adexchangebuyer2.accounts.proposals.accept",
@@ -2500,7 +2500,7 @@
       }
     }
   },
-  "revision": "20201125",
+  "revision": "20201202",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -3558,7 +3558,7 @@
           "type": "string"
         },
         "availableStartTime": {
-          "description": "Optional proposed flight start time of the deal. This will generally be stored in the granularity of one second since deal serving starts at seconds boundary. Any time specified with more granularity (e.g., in milliseconds) will be truncated towards the start of time in seconds.",
+          "description": "Optional. Proposed flight start time of the deal. This will generally be stored in the granularity of one second since deal serving starts at seconds boundary. Any time specified with more granularity (e.g., in milliseconds) will be truncated towards the start of time in seconds.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -3571,13 +3571,14 @@
           "type": "string"
         },
         "createProductRevision": {
-          "description": "Optional revision number of the product that the deal was created from. If present on create, and the server `product_revision` has advanced sinced the passed-in `create_product_revision`, an `ABORTED` error will be returned. Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.",
+          "description": "Optional. Revision number of the product that the deal was created from. If present on create, and the server `product_revision` has advanced since the passed-in `create_product_revision`, an `ABORTED` error will be returned. Note: This field may be set only when creating the resource. Modifying this field while updating the resource will result in an error.",
           "format": "int64",
           "type": "string"
         },
         "createTime": {
           "description": "Output only. The time of the deal creation.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "creativePreApprovalPolicy": {
@@ -3592,11 +3593,13 @@
             "The seller needs to approve each creative before it can serve.",
             "The seller does not need to approve each creative before it can serve."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "creativeRestrictions": {
           "$ref": "CreativeRestrictions",
-          "description": "Output only. Restricitions about the creatives associated with the deal (i.e., size) This is available for Programmatic Guaranteed/Preferred Deals in Ad Manager."
+          "description": "Output only. Restricitions about the creatives associated with the deal (i.e., size) This is available for Programmatic Guaranteed/Preferred Deals in Ad Manager.",
+          "readOnly": true
         },
         "creativeSafeFrameCompatibility": {
           "description": "Output only. Specifies whether the creative is safeFrame compatible.",
@@ -3610,15 +3613,18 @@
             "The creatives need to be compatible with the safe frame option.",
             "The creatives can be incompatible with the safe frame option."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "dealId": {
           "description": "Output only. A unique deal ID for the deal (server-assigned).",
+          "readOnly": true,
           "type": "string"
         },
         "dealServingMetadata": {
           "$ref": "DealServingMetadata",
-          "description": "Output only. Metadata about the serving status of this deal."
+          "description": "Output only. Metadata about the serving status of this deal.",
+          "readOnly": true
         },
         "dealTerms": {
           "$ref": "DealTerms",
@@ -3638,10 +3644,12 @@
         },
         "externalDealId": {
           "description": "Output only. The external deal ID assigned to this deal once the deal is finalized. This is the deal ID that shows up in serving/reporting etc.",
+          "readOnly": true,
           "type": "string"
         },
         "isSetupComplete": {
           "description": "Output only. True, if the buyside inventory setup is complete for this deal.",
+          "readOnly": true,
           "type": "boolean"
         },
         "programmaticCreativeSource": {
@@ -3656,10 +3664,12 @@
             "The advertiser provides the creatives.",
             "The publisher provides the creatives to be served."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "proposalId": {
           "description": "Output only. ID of the proposal that this deal is part of.",
+          "readOnly": true,
           "type": "string"
         },
         "sellerContacts": {
@@ -3667,6 +3677,7 @@
           "items": {
             "$ref": "ContactInformation"
           },
+          "readOnly": true,
           "type": "array"
         },
         "syndicationProduct": {
@@ -3689,7 +3700,8 @@
         },
         "targeting": {
           "$ref": "MarketplaceTargeting",
-          "description": "Output only. Specifies the subset of inventory targeted by the deal."
+          "description": "Output only. Specifies the subset of inventory targeted by the deal.",
+          "readOnly": true
         },
         "targetingCriterion": {
           "description": "The shared targeting visible to buyers and sellers. Each shared targeting entity is AND'd together.",
@@ -3701,6 +3713,7 @@
         "updateTime": {
           "description": "Output only. The time when the deal was last updated.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "webPropertyCode": {
@@ -3753,7 +3766,8 @@
       "properties": {
         "dealPauseStatus": {
           "$ref": "DealPauseStatus",
-          "description": "Output only. Tracks which parties (if any) have paused a deal."
+          "description": "Output only. Tracks which parties (if any) have paused a deal.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -3824,6 +3838,7 @@
             "Publisher blocking rules will be applied.",
             "The Ad Exchange policy blocking rules will be applied."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "deliveryRateType": {
@@ -3840,6 +3855,7 @@
             "Impressions are served front-loaded.",
             "Impressions are served as fast as possible."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "frequencyCaps": {
@@ -3847,6 +3863,7 @@
           "items": {
             "$ref": "FrequencyCap"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -5042,6 +5059,7 @@
         "createTime": {
           "description": "Output only. The timestamp for when this note was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "creatorRole": {
@@ -5056,6 +5074,7 @@
             "Specifies the role as buyer.",
             "Specifies the role as seller."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "note": {
@@ -5064,11 +5083,13 @@
         },
         "noteId": {
           "description": "Output only. The unique ID for the note.",
+          "readOnly": true,
           "type": "string"
         },
         "proposalRevision": {
           "description": "Output only. The revision number of the proposal when the note is created.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5295,7 +5316,8 @@
       "properties": {
         "billedBuyer": {
           "$ref": "Buyer",
-          "description": "Output only. Reference to the buyer that will get billed for this proposal."
+          "description": "Output only. Reference to the buyer that will get billed for this proposal.",
+          "readOnly": true
         },
         "buyer": {
           "$ref": "Buyer",
@@ -5325,10 +5347,12 @@
         },
         "isRenegotiating": {
           "description": "Output only. True if the proposal is being renegotiated.",
+          "readOnly": true,
           "type": "boolean"
         },
         "isSetupComplete": {
           "description": "Output only. True, if the buyside inventory setup is complete for this proposal.",
+          "readOnly": true,
           "type": "boolean"
         },
         "lastUpdaterOrCommentorRole": {
@@ -5343,6 +5367,7 @@
             "Specifies the role as buyer.",
             "Specifies the role as seller."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "notes": {
@@ -5350,6 +5375,7 @@
           "items": {
             "$ref": "Note"
           },
+          "readOnly": true,
           "type": "array"
         },
         "originatorRole": {
@@ -5364,19 +5390,23 @@
             "Specifies the role as buyer.",
             "Specifies the role as seller."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "privateAuctionId": {
           "description": "Output only. Private auction ID if this proposal is a private auction proposal.",
+          "readOnly": true,
           "type": "string"
         },
         "proposalId": {
           "description": "Output only. The unique ID of the proposal.",
+          "readOnly": true,
           "type": "string"
         },
         "proposalRevision": {
           "description": "Output only. The revision number for the proposal. Each update to the proposal or the deal causes the proposal revision number to auto-increment. The buyer keeps track of the last revision number they know of and pass it in when making an update. If the head revision number on the server has since incremented, then an ABORTED error is returned during the update operation to let the buyer know that a subsequent update was made.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "proposalState": {
@@ -5397,6 +5427,7 @@
             "The negotiations on the proposal were canceled and the proposal was never finalized.",
             "The proposal is finalized. During renegotiation, the proposal may not be in this state."
           ],
+          "readOnly": true,
           "type": "string"
         },
         "seller": {
@@ -5408,11 +5439,18 @@
           "items": {
             "$ref": "ContactInformation"
           },
+          "readOnly": true,
           "type": "array"
+        },
+        "termsAndConditions": {
+          "description": "Output only. The terms and conditions set by the publisher for this proposal.",
+          "readOnly": true,
+          "type": "string"
         },
         "updateTime": {
           "description": "Output only. The time when the proposal was last revised.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
