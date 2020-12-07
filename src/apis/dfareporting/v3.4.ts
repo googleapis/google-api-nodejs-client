@@ -13524,14 +13524,20 @@ export namespace dfareporting_v3_4 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>,
-      callback: BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>
+      callback: BodyResponseCallback<
+        Schema$CampaignCreativeAssociationsListResponse
+      >
     ): void;
     list(
       params: Params$Resource$Campaigncreativeassociations$List,
-      callback: BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>
+      callback: BodyResponseCallback<
+        Schema$CampaignCreativeAssociationsListResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>
+      callback: BodyResponseCallback<
+        Schema$CampaignCreativeAssociationsListResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -13588,9 +13594,9 @@ export namespace dfareporting_v3_4 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$CampaignCreativeAssociationsListResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$CampaignCreativeAssociationsListResponse
+        >(parameters);
       }
     }
   }
@@ -24236,14 +24242,20 @@ export namespace dfareporting_v3_4 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>,
-      callback: BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>
+      callback: BodyResponseCallback<
+        Schema$FloodlightActivitiesGenerateTagResponse
+      >
     ): void;
     generatetag(
       params: Params$Resource$Floodlightactivities$Generatetag,
-      callback: BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>
+      callback: BodyResponseCallback<
+        Schema$FloodlightActivitiesGenerateTagResponse
+      >
     ): void;
     generatetag(
-      callback: BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>
+      callback: BodyResponseCallback<
+        Schema$FloodlightActivitiesGenerateTagResponse
+      >
     ): void;
     generatetag(
       paramsOrCallback?:
@@ -25765,14 +25777,20 @@ export namespace dfareporting_v3_4 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>,
-      callback: BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>
+      callback: BodyResponseCallback<
+        Schema$FloodlightActivityGroupsListResponse
+      >
     ): void;
     list(
       params: Params$Resource$Floodlightactivitygroups$List,
-      callback: BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>
+      callback: BodyResponseCallback<
+        Schema$FloodlightActivityGroupsListResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>
+      callback: BodyResponseCallback<
+        Schema$FloodlightActivityGroupsListResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -26493,14 +26511,20 @@ export namespace dfareporting_v3_4 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>,
-      callback: BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>
+      callback: BodyResponseCallback<
+        Schema$FloodlightConfigurationsListResponse
+      >
     ): void;
     list(
       params: Params$Resource$Floodlightconfigurations$List,
-      callback: BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>
+      callback: BodyResponseCallback<
+        Schema$FloodlightConfigurationsListResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>
+      callback: BodyResponseCallback<
+        Schema$FloodlightConfigurationsListResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -39481,14 +39505,20 @@ export namespace dfareporting_v3_4 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>,
-      callback: BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>
+      callback: BodyResponseCallback<
+        Schema$TargetableRemarketingListsListResponse
+      >
     ): void;
     list(
       params: Params$Resource$Targetableremarketinglists$List,
-      callback: BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>
+      callback: BodyResponseCallback<
+        Schema$TargetableRemarketingListsListResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>
+      callback: BodyResponseCallback<
+        Schema$TargetableRemarketingListsListResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -40986,14 +41016,20 @@ export namespace dfareporting_v3_4 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>,
-      callback: BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>
+      callback: BodyResponseCallback<
+        Schema$UserRolePermissionGroupsListResponse
+      >
     ): void;
     list(
       params: Params$Resource$Userrolepermissiongroups$List,
-      callback: BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>
+      callback: BodyResponseCallback<
+        Schema$UserRolePermissionGroupsListResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>
+      callback: BodyResponseCallback<
+        Schema$UserRolePermissionGroupsListResponse
+      >
     ): void;
     list(
       paramsOrCallback?:

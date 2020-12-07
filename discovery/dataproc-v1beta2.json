@@ -2247,7 +2247,7 @@
       }
     }
   },
-  "revision": "20201029",
+  "revision": "20201120",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2356,9 +2356,6 @@
       "description": "Associates members with a role.",
       "id": "Binding",
       "properties": {
-        "bindingId": {
-          "type": "string"
-        },
         "condition": {
           "$ref": "Expr",
           "description": "The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies)."
@@ -2861,6 +2858,10 @@
           },
           "type": "array"
         },
+        "shieldedInstanceConfig": {
+          "$ref": "ShieldedInstanceConfig",
+          "description": "Optional. Shielded Instance Config for clusters using shielded VMs."
+        },
         "subnetworkUri": {
           "description": "Optional. The Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0 projects/[project_id]/regions/us-east1/subnetworks/sub0 sub0",
           "type": "string"
@@ -3114,6 +3115,10 @@
         },
         "instanceName": {
           "description": "The user-friendly name of the Compute Engine instance.",
+          "type": "string"
+        },
+        "publicKey": {
+          "description": "The public key used for sharing data with this instance.",
           "type": "string"
         }
       },
@@ -4068,6 +4073,25 @@
         "policy": {
           "$ref": "Policy",
           "description": "REQUIRED: The complete policy to be applied to the resource. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them."
+        }
+      },
+      "type": "object"
+    },
+    "ShieldedInstanceConfig": {
+      "description": "Shielded Instance Config for clusters using shielded VMs.",
+      "id": "ShieldedInstanceConfig",
+      "properties": {
+        "enableIntegrityMonitoring": {
+          "description": "Optional. Defines whether instances have integrity monitoring enabled.",
+          "type": "boolean"
+        },
+        "enableSecureBoot": {
+          "description": "Optional. Defines whether instances have Secure Boot enabled.",
+          "type": "boolean"
+        },
+        "enableVtpm": {
+          "description": "Optional. Defines whether instances have the vTPM enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"

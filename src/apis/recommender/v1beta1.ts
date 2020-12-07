@@ -577,14 +577,20 @@ export namespace recommender_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Insight
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Insight
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Insight
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -719,28 +725,42 @@ export namespace recommender_v1beta1 {
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Insighttypes$Insights$List
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -779,14 +799,13 @@ export namespace recommender_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse
+        >(parameters);
       }
     }
 
@@ -880,14 +899,20 @@ export namespace recommender_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Insight
+      >
     ): void;
     markAccepted(
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Insight
+      >
     ): void;
     markAccepted(
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Insight
+      >
     ): void;
     markAccepted(
       paramsOrCallback?:
@@ -1086,28 +1111,42 @@ export namespace recommender_v1beta1 {
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Recommendation
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Recommendation
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Recommendation
+      >
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Recommenders$Recommendations$Get
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1148,9 +1187,9 @@ export namespace recommender_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudRecommenderV1beta1Recommendation
+        >(parameters);
       }
     }
 
@@ -1221,7 +1260,9 @@ export namespace recommender_v1beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Recommenders$Recommendations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
+    >;
     list(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1231,32 +1272,48 @@ export namespace recommender_v1beta1 {
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Recommenders$Recommendations$List
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>
+      | GaxiosPromise<
+          Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Recommenders$Recommendations$List;
@@ -1291,14 +1348,13 @@ export namespace recommender_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse
+        >(parameters);
       }
     }
 
@@ -1390,28 +1446,42 @@ export namespace recommender_v1beta1 {
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Recommendation
+      >
     ): void;
     markClaimed(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Recommendation
+      >
     ): void;
     markClaimed(
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Recommendation
+      >
     ): void;
     markClaimed(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1455,9 +1525,9 @@ export namespace recommender_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudRecommenderV1beta1Recommendation
+        >(parameters);
       }
     }
 
@@ -1549,28 +1619,42 @@ export namespace recommender_v1beta1 {
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Recommendation
+      >
     ): void;
     markFailed(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Recommendation
+      >
     ): void;
     markFailed(
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Recommendation
+      >
     ): void;
     markFailed(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1614,9 +1698,9 @@ export namespace recommender_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudRecommenderV1beta1Recommendation
+        >(parameters);
       }
     }
 
@@ -1708,28 +1792,42 @@ export namespace recommender_v1beta1 {
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Recommendation
+      >
     ): void;
     markSucceeded(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded,
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Recommendation
+      >
     ): void;
     markSucceeded(
-      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudRecommenderV1beta1Recommendation
+      >
     ): void;
     markSucceeded(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<
+            Schema$GoogleCloudRecommenderV1beta1Recommendation
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1773,9 +1871,9 @@ export namespace recommender_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudRecommenderV1beta1Recommendation
+        >(parameters);
       }
     }
   }

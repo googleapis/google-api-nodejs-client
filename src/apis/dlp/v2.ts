@@ -3230,14 +3230,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Infotypes$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -3405,14 +3411,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Locations$Infotypes$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -3606,14 +3618,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     create(
       params: Params$Resource$Organizations$Deidentifytemplates$Create,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     create(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     create(
       paramsOrCallback?:
@@ -3878,14 +3896,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     get(
       params: Params$Resource$Organizations$Deidentifytemplates$Get,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -4021,28 +4045,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Organizations$Deidentifytemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Organizations$Deidentifytemplates$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Deidentifytemplates$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4081,14 +4119,13 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+        >(parameters);
       }
     }
 
@@ -4175,14 +4212,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     patch(
       params: Params$Resource$Organizations$Deidentifytemplates$Patch,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     patch(
       paramsOrCallback?:
@@ -4807,28 +4850,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Organizations$Inspecttemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Organizations$Inspecttemplates$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Inspecttemplates$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4872,9 +4929,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+        >(parameters);
       }
     }
 
@@ -5198,14 +5255,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     create(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Create,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     create(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     create(
       paramsOrCallback?:
@@ -5470,14 +5533,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     get(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Get,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -5613,28 +5682,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Deidentifytemplates$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -5673,14 +5756,13 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+        >(parameters);
       }
     }
 
@@ -5767,14 +5849,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     patch(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Patch,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     patch(
       paramsOrCallback?:
@@ -6401,28 +6489,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Organizations$Locations$Inspecttemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Inspecttemplates$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -6466,9 +6568,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+        >(parameters);
       }
     }
 
@@ -7183,28 +7285,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Organizations$Locations$Storedinfotypes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Storedinfotypes$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -7248,9 +7364,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+        >(parameters);
       }
     }
 
@@ -7960,28 +8076,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Organizations$Storedinfotypes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Organizations$Storedinfotypes$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Storedinfotypes$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -8025,9 +8155,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+        >(parameters);
       }
     }
 
@@ -8356,28 +8486,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Content$Deidentify,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+      >
     ): void;
     deidentify(
       params: Params$Resource$Projects$Content$Deidentify,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+      >
     ): void;
     deidentify(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+      >
     ): void;
     deidentify(
       paramsOrCallback?:
         | Params$Resource$Projects$Content$Deidentify
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -8421,9 +8565,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+        >(parameters);
       }
     }
 
@@ -8506,14 +8650,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2InspectContentResponse
+      >
     ): void;
     inspect(
       params: Params$Resource$Projects$Content$Inspect,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2InspectContentResponse
+      >
     ): void;
     inspect(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2InspectContentResponse
+      >
     ): void;
     inspect(
       paramsOrCallback?:
@@ -8570,9 +8720,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2InspectContentResponse
+        >(parameters);
       }
     }
 
@@ -8657,28 +8807,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Content$Reidentify,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+      >
     ): void;
     reidentify(
       params: Params$Resource$Projects$Content$Reidentify,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+      >
     ): void;
     reidentify(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+      >
     ): void;
     reidentify(
       paramsOrCallback?:
         | Params$Resource$Projects$Content$Reidentify
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -8722,9 +8886,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+        >(parameters);
       }
     }
   }
@@ -8855,14 +9019,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     create(
       params: Params$Resource$Projects$Deidentifytemplates$Create,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     create(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     create(
       paramsOrCallback?:
@@ -9125,14 +9295,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Deidentifytemplates$Get,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -9268,28 +9444,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Deidentifytemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Deidentifytemplates$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Deidentifytemplates$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -9328,14 +9518,13 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+        >(parameters);
       }
     }
 
@@ -9421,14 +9610,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     patch(
       params: Params$Resource$Projects$Deidentifytemplates$Patch,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     patch(
       paramsOrCallback?:
@@ -10194,14 +10389,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Dlpjobs$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -10423,14 +10624,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2RedactImageResponse
+      >
     ): void;
     redact(
       params: Params$Resource$Projects$Image$Redact,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2RedactImageResponse
+      >
     ): void;
     redact(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2RedactImageResponse
+      >
     ): void;
     redact(
       paramsOrCallback?:
@@ -11009,28 +11216,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Inspecttemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Inspecttemplates$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Inspecttemplates$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -11074,9 +11295,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+        >(parameters);
       }
     }
 
@@ -11955,15 +12176,23 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Jobtriggers$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListJobTriggersResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Jobtriggers$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -12020,9 +12249,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListJobTriggersResponse
+        >(parameters);
       }
     }
 
@@ -12374,28 +12603,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Locations$Content$Deidentify,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+      >
     ): void;
     deidentify(
       params: Params$Resource$Projects$Locations$Content$Deidentify,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+      >
     ): void;
     deidentify(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+      >
     ): void;
     deidentify(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Content$Deidentify
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -12439,9 +12682,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2DeidentifyContentResponse
+        >(parameters);
       }
     }
 
@@ -12524,14 +12767,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2InspectContentResponse
+      >
     ): void;
     inspect(
       params: Params$Resource$Projects$Locations$Content$Inspect,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2InspectContentResponse
+      >
     ): void;
     inspect(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2InspectContentResponse
+      >
     ): void;
     inspect(
       paramsOrCallback?:
@@ -12588,9 +12837,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2InspectContentResponse
+        >(parameters);
       }
     }
 
@@ -12675,28 +12924,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Locations$Content$Reidentify,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+      >
     ): void;
     reidentify(
       params: Params$Resource$Projects$Locations$Content$Reidentify,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+      >
     ): void;
     reidentify(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+      >
     ): void;
     reidentify(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Content$Reidentify
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -12740,9 +13003,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ReidentifyContentResponse
+        >(parameters);
       }
     }
   }
@@ -12873,14 +13136,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Create,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     create(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     create(
       paramsOrCallback?:
@@ -13145,14 +13414,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Get,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -13288,28 +13563,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Locations$Deidentifytemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Deidentifytemplates$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -13348,14 +13637,13 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
+        >(parameters);
       }
     }
 
@@ -13442,14 +13730,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Patch,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2DeidentifyTemplate
+      >
     ): void;
     patch(
       paramsOrCallback?:
@@ -14341,14 +14635,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2HybridInspectResponse
+      >
     ): void;
     hybridInspect(
       params: Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2HybridInspectResponse
+      >
     ): void;
     hybridInspect(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2HybridInspectResponse
+      >
     ): void;
     hybridInspect(
       paramsOrCallback?:
@@ -14492,14 +14792,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Dlpjobs$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -14745,14 +15051,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2RedactImageResponse
+      >
     ): void;
     redact(
       params: Params$Resource$Projects$Locations$Image$Redact,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2RedactImageResponse
+      >
     ): void;
     redact(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2RedactImageResponse
+      >
     ): void;
     redact(
       paramsOrCallback?:
@@ -15333,28 +15645,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Locations$Inspecttemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Inspecttemplates$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Inspecttemplates$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -15398,9 +15724,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
+        >(parameters);
       }
     }
 
@@ -16276,14 +16602,20 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2HybridInspectResponse
+      >
     ): void;
     hybridInspect(
       params: Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2HybridInspectResponse
+      >
     ): void;
     hybridInspect(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2HybridInspectResponse
+      >
     ): void;
     hybridInspect(
       paramsOrCallback?:
@@ -16424,15 +16756,23 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Locations$Jobtriggers$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListJobTriggersResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Jobtriggers$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -16489,9 +16829,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListJobTriggersResponse
+        >(parameters);
       }
     }
 
@@ -17237,28 +17577,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Locations$Storedinfotypes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Storedinfotypes$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Storedinfotypes$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -17302,9 +17656,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+        >(parameters);
       }
     }
 
@@ -18014,28 +18368,42 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Storedinfotypes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Storedinfotypes$List,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Storedinfotypes$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
+        | BodyResponseCallback<
+            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -18079,9 +18447,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
+        >(parameters);
       }
     }
 

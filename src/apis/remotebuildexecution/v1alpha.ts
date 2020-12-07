@@ -1633,7 +1633,9 @@ export namespace remotebuildexecution_v1alpha {
     get(
       params?: Params$Resource$Projects$Instances$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>;
+    ): GaxiosPromise<
+      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+    >;
     get(
       params: Params$Resource$Projects$Instances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1643,32 +1645,48 @@ export namespace remotebuildexecution_v1alpha {
       params: Params$Resource$Projects$Instances$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>,
-      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Instances$Get,
-      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+      >
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Get
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>
+      | GaxiosPromise<
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Get;
@@ -1701,14 +1719,13 @@ export namespace remotebuildexecution_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
+        >(parameters);
       }
     }
 
@@ -1769,7 +1786,9 @@ export namespace remotebuildexecution_v1alpha {
     list(
       params?: Params$Resource$Projects$Instances$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+    >;
     list(
       params: Params$Resource$Projects$Instances$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1779,32 +1798,48 @@ export namespace remotebuildexecution_v1alpha {
       params: Params$Resource$Projects$Instances$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Instances$List,
-      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$List
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>
+      | GaxiosPromise<
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$List;
@@ -1840,14 +1875,13 @@ export namespace remotebuildexecution_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
+        >(parameters);
       }
     }
 
@@ -2423,7 +2457,9 @@ export namespace remotebuildexecution_v1alpha {
     get(
       params?: Params$Resource$Projects$Instances$Workerpools$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>;
+    ): GaxiosPromise<
+      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+    >;
     get(
       params: Params$Resource$Projects$Instances$Workerpools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2433,32 +2469,48 @@ export namespace remotebuildexecution_v1alpha {
       params: Params$Resource$Projects$Instances$Workerpools$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>,
-      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Instances$Workerpools$Get,
-      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+      >
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Workerpools$Get
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>
+      | GaxiosPromise<
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Workerpools$Get;
@@ -2491,14 +2543,13 @@ export namespace remotebuildexecution_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
+        >(parameters);
       }
     }
 
@@ -2561,7 +2612,9 @@ export namespace remotebuildexecution_v1alpha {
     list(
       params?: Params$Resource$Projects$Instances$Workerpools$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+    >;
     list(
       params: Params$Resource$Projects$Instances$Workerpools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2571,32 +2624,48 @@ export namespace remotebuildexecution_v1alpha {
       params: Params$Resource$Projects$Instances$Workerpools$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Instances$Workerpools$List,
-      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Workerpools$List
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>
+      | GaxiosPromise<
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Workerpools$List;
@@ -2632,14 +2701,13 @@ export namespace remotebuildexecution_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
+        >(parameters);
       }
     }
 

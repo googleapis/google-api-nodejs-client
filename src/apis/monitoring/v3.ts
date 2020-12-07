@@ -1800,7 +1800,7 @@ export namespace monitoring_v3 {
      */
     monitoredResource?: Schema$MonitoredResource;
     /**
-     * A unique resource name for this Uptime check configuration. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID] This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response.
+     * A unique resource name for this Uptime check configuration. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID] [PROJECT_ID_OR_NUMBER] is the Workspace host project associated with the Uptime check.This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response.
      */
     name?: string | null;
     /**
@@ -4750,14 +4750,20 @@ export namespace monitoring_v3 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
-      callback: BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>
+      callback: BodyResponseCallback<
+        Schema$ListMonitoredResourceDescriptorsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Monitoredresourcedescriptors$List,
-      callback: BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>
+      callback: BodyResponseCallback<
+        Schema$ListMonitoredResourceDescriptorsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>
+      callback: BodyResponseCallback<
+        Schema$ListMonitoredResourceDescriptorsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -4814,9 +4820,9 @@ export namespace monitoring_v3 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$ListMonitoredResourceDescriptorsResponse
+        >(parameters);
       }
     }
   }
@@ -5075,28 +5081,42 @@ export namespace monitoring_v3 {
       params: Params$Resource$Projects$Notificationchanneldescriptors$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>,
-      callback: BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>
+        | BodyResponseCallback<
+            Schema$ListNotificationChannelDescriptorsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ListNotificationChannelDescriptorsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Notificationchanneldescriptors$List,
-      callback: BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>
+      callback: BodyResponseCallback<
+        Schema$ListNotificationChannelDescriptorsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>
+      callback: BodyResponseCallback<
+        Schema$ListNotificationChannelDescriptorsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Notificationchanneldescriptors$List
-        | BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>
+        | BodyResponseCallback<
+            Schema$ListNotificationChannelDescriptorsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>
+        | BodyResponseCallback<
+            Schema$ListNotificationChannelDescriptorsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>
+        | BodyResponseCallback<
+            Schema$ListNotificationChannelDescriptorsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -5139,9 +5159,9 @@ export namespace monitoring_v3 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ListNotificationChannelDescriptorsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$ListNotificationChannelDescriptorsResponse
+        >(parameters);
       }
     }
   }
@@ -5682,28 +5702,42 @@ export namespace monitoring_v3 {
       params: Params$Resource$Projects$Notificationchannels$Getverificationcode,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GetNotificationChannelVerificationCodeResponse>,
-      callback: BodyResponseCallback<Schema$GetNotificationChannelVerificationCodeResponse>
+        | BodyResponseCallback<
+            Schema$GetNotificationChannelVerificationCodeResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GetNotificationChannelVerificationCodeResponse
+      >
     ): void;
     getVerificationCode(
       params: Params$Resource$Projects$Notificationchannels$Getverificationcode,
-      callback: BodyResponseCallback<Schema$GetNotificationChannelVerificationCodeResponse>
+      callback: BodyResponseCallback<
+        Schema$GetNotificationChannelVerificationCodeResponse
+      >
     ): void;
     getVerificationCode(
-      callback: BodyResponseCallback<Schema$GetNotificationChannelVerificationCodeResponse>
+      callback: BodyResponseCallback<
+        Schema$GetNotificationChannelVerificationCodeResponse
+      >
     ): void;
     getVerificationCode(
       paramsOrCallback?:
         | Params$Resource$Projects$Notificationchannels$Getverificationcode
-        | BodyResponseCallback<Schema$GetNotificationChannelVerificationCodeResponse>
+        | BodyResponseCallback<
+            Schema$GetNotificationChannelVerificationCodeResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GetNotificationChannelVerificationCodeResponse>
+        | BodyResponseCallback<
+            Schema$GetNotificationChannelVerificationCodeResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GetNotificationChannelVerificationCodeResponse>
+        | BodyResponseCallback<
+            Schema$GetNotificationChannelVerificationCodeResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -5747,9 +5781,9 @@ export namespace monitoring_v3 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GetNotificationChannelVerificationCodeResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GetNotificationChannelVerificationCodeResponse
+        >(parameters);
       }
     }
 
@@ -7633,7 +7667,7 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.uptimeCheckConfigs.patch({
-     *     // A unique resource name for this Uptime check configuration. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID] This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response.
+     *     // A unique resource name for this Uptime check configuration. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID] [PROJECT_ID_OR_NUMBER] is the Workspace host project associated with the Uptime check.This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response.
      *     name: 'projects/my-project/uptimeCheckConfigs/my-uptimeCheckConfig',
      *     // Optional. If present, only the listed fields in the current Uptime check configuration are updated with values from the new configuration. If this field is empty, then the current configuration is completely replaced with the new configuration.
      *     updateMask: 'placeholder-value',
@@ -7812,7 +7846,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Uptimecheckconfigs$Patch
     extends StandardParameters {
     /**
-     * A unique resource name for this Uptime check configuration. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID] This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response.
+     * A unique resource name for this Uptime check configuration. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID] [PROJECT_ID_OR_NUMBER] is the Workspace host project associated with the Uptime check.This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response.
      */
     name?: string;
     /**

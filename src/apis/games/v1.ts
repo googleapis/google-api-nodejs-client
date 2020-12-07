@@ -487,6 +487,15 @@ export namespace games_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Container for a URL end point of the requested type.
+   */
+  export interface Schema$EndPoint {
+    /**
+     * A URL suitable for loading in a web browser for the requested endpoint.
+     */
+    url?: string | null;
+  }
+  /**
    * A batch update failure resource.
    */
   export interface Schema$EventBatchRecordFailure {
@@ -1487,7 +1496,7 @@ export namespace games_v1 {
    */
   export interface Schema$SnapshotCoverImageResource {
     /**
-     * Output only. Hash-like weak identifier of the uploaded image bytes, consistent per player per application. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash. It's extremely likely, though not guaranteed, that if two content hashes are equal, the images are identical.
+     * Output only. Hash-like weak identifier of the uploaded image bytes, consistent per player per application. The content hash for a given resource will not change if the binary data hasn't changed. Except in very rare circumstances, the content_hash for matching binary data will be the same within a given player and application.
      */
     contentHash?: string | null;
     /**
@@ -1495,11 +1504,11 @@ export namespace games_v1 {
      */
     downloadUrl?: string | null;
     /**
-     * Output only. The height of the image in pixels.
+     * The height of the image in pixels.
      */
     height?: number | null;
     /**
-     * Output only. The MIME type of the image.
+     * The MIME type of the image.
      */
     mimeType?: string | null;
     /**
@@ -1507,7 +1516,7 @@ export namespace games_v1 {
      */
     resourceId?: string | null;
     /**
-     * Output only. The width of the image in pixels.
+     * The width of the image in pixels.
      */
     width?: number | null;
   }
@@ -1516,7 +1525,7 @@ export namespace games_v1 {
    */
   export interface Schema$SnapshotDataResource {
     /**
-     * Output only. Hash-like weak identifier of the uploaded blob, consistent per player per application. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash. It's extremely likely, though not guaranteed, that if two content hashes are equal, the blobs are identical.
+     * Output only. Hash-like weak identifier of the uploaded blob bytes, consistent per player per application. The content hash for a given resource will not change if the binary data hasn't changed. Except in very rare circumstances, the content_hash for matching binary data will be the same within a given player and application.
      */
     contentHash?: string | null;
     /**
@@ -1528,12 +1537,12 @@ export namespace games_v1 {
      */
     resourceId?: string | null;
     /**
-     * Size of the saved game blob in bytes.
+     * Output only. Size of the saved game blob in bytes.
      */
     size?: string | null;
   }
   /**
-   * A snapshot represents a saved game state referred to using the developer-provided snapshot_id (think of it as a file's path). The set of attributes and binary data for a specific state is called a revision. Each revision is itself immutable, and referred to by a snapshot_revision_id. At any time, a snapshot has a "head" revision, and updates are made against that revision. If a snapshot update is received that isn't against the current head revision, then instead of changing the head revision it will result in a conflicting revision that must be specifically resolved.
+   * A snapshot represents a saved game state referred to using the developer-provided snapshot_name. The set of attributes and binary data for a specific state is called a revision. Each revision is itself immutable, and referred to by a snapshot revision id. At any time, a snapshot has a "head" revision, and updates are made against that revision. If a snapshot update is received that isn't against the current head revision, then instead of changing the head revision it will result in a conflicting revision that must be specifically resolved.
    */
   export interface Schema$SnapshotExtended {
     /**
@@ -1549,9 +1558,9 @@ export namespace games_v1 {
      */
     headRevision?: Schema$SnapshotRevision;
     /**
-     * An identifier of the snapshot,developer-specified.
+     * An identifier of the snapshot, developer-specified. It must match the pattern [0-9a-zA-Z-._~]{1,100\}.
      */
-    name?: string | null;
+    snapshotName?: string | null;
   }
   /**
    * An image of a snapshot.
@@ -1610,19 +1619,15 @@ export namespace games_v1 {
     /**
      * The duration associated with this snapshot. Values with sub-millisecond precision can be rounded or trimmed to the closest millisecond.
      */
-    duration?: string | null;
+    gameplayDuration?: string | null;
     /**
-     * The timestamp of the last modification to this snapshot. Values with sub-millisecond precision can be rounded or trimmed to the closest millisecond.
+     * The timestamp of the last modification to this snapshot as provided by the client. Values with sub-millisecond precision can be rounded or trimmed to the closest millisecond.
      */
     lastModifyTime?: string | null;
     /**
      * The progress value (64-bit integer set by developer) associated with this snapshot.
      */
     progressValue?: string | null;
-    /**
-     * The title of this snapshot.
-     */
-    title?: string | null;
   }
   /**
    * A Snapshot revision resource. Snapshot revisions are immutable.
@@ -2939,6 +2944,137 @@ export namespace games_v1 {
     }
 
     /**
+     * Returns a URL for the requested end point type.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/games.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const games = google.games('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/games'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await games.applications.getEndPoint({
+     *     // The application ID from the Google Play developer console.
+     *     applicationId: 'placeholder-value',
+     *     // Type of endpoint being requested.
+     *     endPointType: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getEndPoint(
+      params: Params$Resource$Applications$Getendpoint,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getEndPoint(
+      params?: Params$Resource$Applications$Getendpoint,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$EndPoint>;
+    getEndPoint(
+      params: Params$Resource$Applications$Getendpoint,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getEndPoint(
+      params: Params$Resource$Applications$Getendpoint,
+      options: MethodOptions | BodyResponseCallback<Schema$EndPoint>,
+      callback: BodyResponseCallback<Schema$EndPoint>
+    ): void;
+    getEndPoint(
+      params: Params$Resource$Applications$Getendpoint,
+      callback: BodyResponseCallback<Schema$EndPoint>
+    ): void;
+    getEndPoint(callback: BodyResponseCallback<Schema$EndPoint>): void;
+    getEndPoint(
+      paramsOrCallback?:
+        | Params$Resource$Applications$Getendpoint
+        | BodyResponseCallback<Schema$EndPoint>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$EndPoint>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$EndPoint>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$EndPoint> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Applications$Getendpoint;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Applications$Getendpoint;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/games/v1/applications/getEndPoint').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$EndPoint>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$EndPoint>(parameters);
+      }
+    }
+
+    /**
      * Indicate that the currently authenticated user is playing your application.
      * @example
      * ```js
@@ -3208,6 +3344,17 @@ export namespace games_v1 {
      * Restrict application details returned to the specific platform.
      */
     platformType?: string;
+  }
+  export interface Params$Resource$Applications$Getendpoint
+    extends StandardParameters {
+    /**
+     * The application ID from the Google Play developer console.
+     */
+    applicationId?: string;
+    /**
+     * Type of endpoint being requested.
+     */
+    endPointType?: string;
   }
   export interface Params$Resource$Applications$Played
     extends StandardParameters {}

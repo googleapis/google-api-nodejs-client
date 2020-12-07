@@ -256,14 +256,20 @@ export namespace sts_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleIdentityStsV1ExchangeTokenResponse>,
-      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1ExchangeTokenResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleIdentityStsV1ExchangeTokenResponse
+      >
     ): void;
     token(
       params: Params$Resource$V1$Token,
-      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1ExchangeTokenResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleIdentityStsV1ExchangeTokenResponse
+      >
     ): void;
     token(
-      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1ExchangeTokenResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleIdentityStsV1ExchangeTokenResponse
+      >
     ): void;
     token(
       paramsOrCallback?:
@@ -316,9 +322,9 @@ export namespace sts_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleIdentityStsV1ExchangeTokenResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleIdentityStsV1ExchangeTokenResponse
+        >(parameters);
       }
     }
   }

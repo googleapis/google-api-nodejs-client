@@ -209,7 +209,6 @@ export namespace dataproc_v1beta2 {
    * Associates members with a role.
    */
   export interface Schema$Binding {
-    bindingId?: string | null;
     /**
      * The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -565,6 +564,10 @@ export namespace dataproc_v1beta2 {
      */
     serviceAccountScopes?: string[] | null;
     /**
+     * Optional. Shielded Instance Config for clusters using shielded VMs.
+     */
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
+    /**
      * Optional. The Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0 projects/[project_id]/regions/us-east1/subnetworks/sub0 sub0
      */
     subnetworkUri?: string | null;
@@ -748,6 +751,10 @@ export namespace dataproc_v1beta2 {
      * The user-friendly name of the Compute Engine instance.
      */
     instanceName?: string | null;
+    /**
+     * The public key used for sharing data with this instance.
+     */
+    publicKey?: string | null;
   }
   /**
    * A request to instantiate a workflow template.
@@ -1433,6 +1440,23 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The complete policy to be applied to the resource. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
+  }
+  /**
+   * Shielded Instance Config for clusters using shielded VMs.
+   */
+  export interface Schema$ShieldedInstanceConfig {
+    /**
+     * Optional. Defines whether instances have integrity monitoring enabled.
+     */
+    enableIntegrityMonitoring?: boolean | null;
+    /**
+     * Optional. Defines whether instances have Secure Boot enabled.
+     */
+    enableSecureBoot?: boolean | null;
+    /**
+     * Optional. Defines whether instances have the vTPM enabled.
+     */
+    enableVtpm?: boolean | null;
   }
   /**
    * Specifies the selection and config of software inside the cluster.

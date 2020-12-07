@@ -1102,14 +1102,20 @@ export namespace reseller_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>,
-      callback: BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>
+      callback: BodyResponseCallback<
+        Schema$ResellernotifyGetwatchdetailsResponse
+      >
     ): void;
     getwatchdetails(
       params: Params$Resource$Resellernotify$Getwatchdetails,
-      callback: BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>
+      callback: BodyResponseCallback<
+        Schema$ResellernotifyGetwatchdetailsResponse
+      >
     ): void;
     getwatchdetails(
-      callback: BodyResponseCallback<Schema$ResellernotifyGetwatchdetailsResponse>
+      callback: BodyResponseCallback<
+        Schema$ResellernotifyGetwatchdetailsResponse
+      >
     ): void;
     getwatchdetails(
       paramsOrCallback?:

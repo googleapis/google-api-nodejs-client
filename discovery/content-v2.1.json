@@ -4575,7 +4575,7 @@
       }
     }
   },
-  "revision": "20201113",
+  "revision": "20201204",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -4768,17 +4768,16 @@
       "id": "AccountLabel",
       "properties": {
         "accountId": {
-          "description": "Output only. Immutable. The ID of account this label belongs to.",
+          "description": "Immutable. The ID of account this label belongs to.",
           "format": "int64",
-          "readOnly": true,
           "type": "string"
         },
         "description": {
-          "description": "Description for this label.",
+          "description": "The description of this label.",
           "type": "string"
         },
         "labelId": {
-          "description": "Output only. Immutable. The ID of the label.",
+          "description": "Output only. The ID of the label.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -5152,7 +5151,7 @@
           "type": "string"
         },
         "services": {
-          "description": "List of provided services.",
+          "description": "Provided services. Acceptable values are: - \"`shoppingAdsProductManagement`\" - \"`shoppingAdsOther`\" - \"`shoppingActionsProductManagement`\" - \"`shoppingActionsOrderManagement`\" - \"`shoppingActionsOther`\" ",
           "items": {
             "type": "string"
           },
@@ -6704,7 +6703,7 @@
         },
         "gmbAccounts": {
           "$ref": "GmbAccounts",
-          "description": "The the list of accessible GMB accounts."
+          "description": "The list of accessible GMB accounts."
         },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#liasettingsCustomBatchResponseEntry`\"",
@@ -11182,7 +11181,7 @@
           ],
           "enumDescriptions": [
             "Unused.",
-            "Buy Box winning price-based rules. In Buy on Google, the Buy Box refers to the offer for a product shown at the top of the Product Detail Page (PDP) with an \"Add to Cart\" button. If this rule is chosen, your offer price will be lowered within the range you set to help increase the likelihood that you will win the Buy Box. There is no RuleDefinition needed for this type."
+            "Buy Box winning price-based rules. In Buy on Google, the Buy Box refers to the offer for a product shown at the top of the Product Detail Page (PDP) with an \"Add to Cart\" button. If this rule is chosen, your offer price will be lowered within the range you set to help increase the likelihood that you will win the Buy Box. There is no RuleDefinition needed for this type. Deprecated: cannot create rules with this type anymore."
           ],
           "type": "string"
         }
@@ -11250,6 +11249,10 @@
         "offerIdMatcher": {
           "$ref": "RepricingRuleEligibleOfferMatcherStringMatcher",
           "description": "Filter by the offer id."
+        },
+        "skipWhenOnPromotion": {
+          "description": "When true, the rule won't be applied to offers with active promotions.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -11487,7 +11490,7 @@
           "type": "string"
         },
         "returnMethodType": {
-          "description": "Type of the return method. Acceptable values are: - \"`byMail`\" - \"`contactCustomerSupport`\" - \"`returnless`\" ",
+          "description": "Type of the return method. Acceptable values are: - \"`byMail`\" - \"`contactCustomerSupport`\" - \"`returnless`\" - \"`inStore`\" ",
           "type": "string"
         },
         "shipmentId": {
@@ -11848,7 +11851,7 @@
           "$ref": "SettlementTransactionAmountCommission"
         },
         "description": {
-          "description": "The description of the event. Acceptable values are: - \"`taxWithhold`\" - \"`principal`\" - \"`principalAdjustment`\" - \"`shippingFee`\" - \"`merchantRemittedSalesTax`\" - \"`googleRemittedSalesTax`\" - \"`merchantCoupon`\" - \"`merchantCouponTax`\" - \"`merchantRemittedDisposalTax`\" - \"`googleRemittedDisposalTax`\" - \"`merchantRemittedRedemptionFee`\" - \"`googleRemittedRedemptionFee`\" - \"`eeeEcoFee`\" - \"`furnitureEcoFee`\" - \"`copyPrivateFee`\" - \"`eeeEcoFeeCommission`\" - \"`furnitureEcoFeeCommission`\" - \"`copyPrivateFeeCommission`\" - \"`principalRefund`\" - \"`principalRefundTax`\" - \"`itemCommission`\" - \"`adjustmentCommission`\" - \"`shippingFeeCommission`\" - \"`commissionRefund`\" - \"`damaged`\" - \"`damagedOrDefectiveItem`\" - \"`expiredItem`\" - \"`faultyItem`\" - \"`incorrectItemReceived`\" - \"`itemMissing`\" - \"`qualityNotExpected`\" - \"`receivedTooLate`\" - \"`storePackageMissing`\" - \"`transitPackageMissing`\" - \"`unsuccessfulDeliveryUndeliverable`\" - \"`wrongChargeInStore`\" - \"`wrongItem`\" - \"`returns`\" - \"`undeliverable`\" - \"`refundFromMerchant`\" - \"`returnLabelShippingFee`\" ",
+          "description": "The description of the event. Acceptable values are: - \"`taxWithhold`\" - \"`principal`\" - \"`principalAdjustment`\" - \"`shippingFee`\" - \"`merchantRemittedSalesTax`\" - \"`googleRemittedSalesTax`\" - \"`merchantCoupon`\" - \"`merchantCouponTax`\" - \"`merchantRemittedDisposalTax`\" - \"`googleRemittedDisposalTax`\" - \"`merchantRemittedRedemptionFee`\" - \"`googleRemittedRedemptionFee`\" - \"`eeeEcoFee`\" - \"`furnitureEcoFee`\" - \"`copyPrivateFee`\" - \"`eeeEcoFeeCommission`\" - \"`furnitureEcoFeeCommission`\" - \"`copyPrivateFeeCommission`\" - \"`principalRefund`\" - \"`principalRefundTax`\" - \"`itemCommission`\" - \"`adjustmentCommission`\" - \"`shippingFeeCommission`\" - \"`commissionRefund`\" - \"`damaged`\" - \"`damagedOrDefectiveItem`\" - \"`expiredItem`\" - \"`faultyItem`\" - \"`incorrectItemReceived`\" - \"`itemMissing`\" - \"`qualityNotExpected`\" - \"`receivedTooLate`\" - \"`storePackageMissing`\" - \"`transitPackageMissing`\" - \"`unsuccessfulDeliveryUndeliverable`\" - \"`wrongChargeInStore`\" - \"`wrongItem`\" - \"`returns`\" - \"`undeliverable`\" - \"`refundFromMerchant`\" - \"`returnLabelShippingFee`\" - \"`pspFee`\" ",
           "type": "string"
         },
         "transactionAmount": {

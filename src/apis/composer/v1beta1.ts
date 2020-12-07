@@ -146,9 +146,35 @@ export namespace composer_v1beta1 {
     machineType?: string | null;
   }
   /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
+  /**
+   * The encryption options for the Composer environment and its dependencies.
+   */
+  export interface Schema$EncryptionConfig {
+    /**
+     * Optional. Customer-managed Encryption Key available through Google's Key Management Service. Cannot be updated. If not specified, Google-managed key will be used.
+     */
+    kmsKeyName?: string | null;
+  }
   /**
    * An environment for running orchestration tasks.
    */
@@ -199,6 +225,10 @@ export namespace composer_v1beta1 {
      */
     databaseConfig?: Schema$DatabaseConfig;
     /**
+     * Optional. The encryption options for the Composer environment and its dependencies. Cannot be updated.
+     */
+    encryptionConfig?: Schema$EncryptionConfig;
+    /**
      * Output only. The Kubernetes Engine cluster used to run this environment.
      */
     gkeCluster?: string | null;
@@ -232,6 +262,10 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$ImageVersion {
     /**
+     * Whether it is impossible to create an environment with the image version.
+     */
+    creationDisabled?: boolean | null;
+    /**
      * The string identifier of the ImageVersion, in the form: "composer-x.y.z-airflow-a.b(.c)"
      */
     imageVersionId?: string | null;
@@ -240,9 +274,17 @@ export namespace composer_v1beta1 {
      */
     isDefault?: boolean | null;
     /**
+     * The date of the version release.
+     */
+    releaseDate?: Schema$Date;
+    /**
      * supported python versions
      */
     supportedPythonVersions?: string[] | null;
+    /**
+     * Whether it is impossible to upgrade an environment running with the image version.
+     */
+    upgradeDisabled?: boolean | null;
   }
   /**
    * Configuration for controlling how IPs are allocated in the GKE cluster.
@@ -445,6 +487,10 @@ export namespace composer_v1beta1 {
      */
     webServerIpv4ReservedRange?: string | null;
   }
+  /**
+   * Restart Airflow web server.
+   */
+  export interface Schema$RestartWebServerRequest {}
   /**
    * Specifies the selection and configuration of software inside the environment.
    */
@@ -1236,6 +1282,146 @@ export namespace composer_v1beta1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Restart Airflow web server.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.environments.restartWebServer({
+     *     // The resource name of the environment to restart the web server for, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     *     name:
+     *       'projects/my-project/locations/my-location/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restartWebServer(
+      params: Params$Resource$Projects$Locations$Environments$Restartwebserver,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restartWebServer(
+      params?: Params$Resource$Projects$Locations$Environments$Restartwebserver,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    restartWebServer(
+      params: Params$Resource$Projects$Locations$Environments$Restartwebserver,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restartWebServer(
+      params: Params$Resource$Projects$Locations$Environments$Restartwebserver,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restartWebServer(
+      params: Params$Resource$Projects$Locations$Environments$Restartwebserver,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restartWebServer(callback: BodyResponseCallback<Schema$Operation>): void;
+    restartWebServer(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Restartwebserver
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Restartwebserver;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Environments$Restartwebserver;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:restartWebServer').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Environments$Create
@@ -1295,6 +1481,18 @@ export namespace composer_v1beta1 {
      */
     requestBody?: Schema$Environment;
   }
+  export interface Params$Resource$Projects$Locations$Environments$Restartwebserver
+    extends StandardParameters {
+    /**
+     * The resource name of the environment to restart the web server for, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RestartWebServerRequest;
+  }
 
   export class Resource$Projects$Locations$Imageversions {
     context: APIRequestContext;
@@ -1329,6 +1527,8 @@ export namespace composer_v1beta1 {
      *
      *   // Do the magic
      *   const res = await composer.projects.locations.imageVersions.list({
+     *     // Whether or not image versions from old releases should be included.
+     *     includePastReleases: 'placeholder-value',
      *     // The maximum number of image_versions to return.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
@@ -1446,6 +1646,10 @@ export namespace composer_v1beta1 {
 
   export interface Params$Resource$Projects$Locations$Imageversions$List
     extends StandardParameters {
+    /**
+     * Whether or not image versions from old releases should be included.
+     */
+    includePastReleases?: boolean;
     /**
      * The maximum number of image_versions to return.
      */

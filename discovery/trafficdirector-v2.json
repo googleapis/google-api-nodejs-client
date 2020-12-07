@@ -14,7 +14,7 @@
   "canonicalName": "Traffic Director Service",
   "description": "",
   "discoveryVersion": "v1",
-  "documentationLink": "https://www.envoyproxy.io/docs/envoy/latest/configuration/overview/v2_overview#management-server",
+  "documentationLink": "https://cloud.google.com/traffic-director",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20200916",
+  "revision": "20201123",
   "rootUrl": "https://trafficdirector.googleapis.com/",
   "schemas": {
     "Address": {

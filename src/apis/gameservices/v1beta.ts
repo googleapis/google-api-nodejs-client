@@ -2695,28 +2695,42 @@ export namespace gameservices_v1beta {
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$PreviewGameServerDeploymentRolloutResponse>,
-      callback: BodyResponseCallback<Schema$PreviewGameServerDeploymentRolloutResponse>
+        | BodyResponseCallback<
+            Schema$PreviewGameServerDeploymentRolloutResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$PreviewGameServerDeploymentRolloutResponse
+      >
     ): void;
     previewRollout(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout,
-      callback: BodyResponseCallback<Schema$PreviewGameServerDeploymentRolloutResponse>
+      callback: BodyResponseCallback<
+        Schema$PreviewGameServerDeploymentRolloutResponse
+      >
     ): void;
     previewRollout(
-      callback: BodyResponseCallback<Schema$PreviewGameServerDeploymentRolloutResponse>
+      callback: BodyResponseCallback<
+        Schema$PreviewGameServerDeploymentRolloutResponse
+      >
     ): void;
     previewRollout(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout
-        | BodyResponseCallback<Schema$PreviewGameServerDeploymentRolloutResponse>
+        | BodyResponseCallback<
+            Schema$PreviewGameServerDeploymentRolloutResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$PreviewGameServerDeploymentRolloutResponse>
+        | BodyResponseCallback<
+            Schema$PreviewGameServerDeploymentRolloutResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$PreviewGameServerDeploymentRolloutResponse>
+        | BodyResponseCallback<
+            Schema$PreviewGameServerDeploymentRolloutResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -2760,9 +2774,9 @@ export namespace gameservices_v1beta {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$PreviewGameServerDeploymentRolloutResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$PreviewGameServerDeploymentRolloutResponse
+        >(parameters);
       }
     }
 
@@ -6355,14 +6369,20 @@ export namespace gameservices_v1beta {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$PreviewCreateGameServerClusterResponse>,
-      callback: BodyResponseCallback<Schema$PreviewCreateGameServerClusterResponse>
+      callback: BodyResponseCallback<
+        Schema$PreviewCreateGameServerClusterResponse
+      >
     ): void;
     previewCreate(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewcreate,
-      callback: BodyResponseCallback<Schema$PreviewCreateGameServerClusterResponse>
+      callback: BodyResponseCallback<
+        Schema$PreviewCreateGameServerClusterResponse
+      >
     ): void;
     previewCreate(
-      callback: BodyResponseCallback<Schema$PreviewCreateGameServerClusterResponse>
+      callback: BodyResponseCallback<
+        Schema$PreviewCreateGameServerClusterResponse
+      >
     ): void;
     previewCreate(
       paramsOrCallback?:
@@ -6498,14 +6518,20 @@ export namespace gameservices_v1beta {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$PreviewDeleteGameServerClusterResponse>,
-      callback: BodyResponseCallback<Schema$PreviewDeleteGameServerClusterResponse>
+      callback: BodyResponseCallback<
+        Schema$PreviewDeleteGameServerClusterResponse
+      >
     ): void;
     previewDelete(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewdelete,
-      callback: BodyResponseCallback<Schema$PreviewDeleteGameServerClusterResponse>
+      callback: BodyResponseCallback<
+        Schema$PreviewDeleteGameServerClusterResponse
+      >
     ): void;
     previewDelete(
-      callback: BodyResponseCallback<Schema$PreviewDeleteGameServerClusterResponse>
+      callback: BodyResponseCallback<
+        Schema$PreviewDeleteGameServerClusterResponse
+      >
     ): void;
     previewDelete(
       paramsOrCallback?:
@@ -6658,14 +6684,20 @@ export namespace gameservices_v1beta {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$PreviewUpdateGameServerClusterResponse>,
-      callback: BodyResponseCallback<Schema$PreviewUpdateGameServerClusterResponse>
+      callback: BodyResponseCallback<
+        Schema$PreviewUpdateGameServerClusterResponse
+      >
     ): void;
     previewUpdate(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewupdate,
-      callback: BodyResponseCallback<Schema$PreviewUpdateGameServerClusterResponse>
+      callback: BodyResponseCallback<
+        Schema$PreviewUpdateGameServerClusterResponse
+      >
     ): void;
     previewUpdate(
-      callback: BodyResponseCallback<Schema$PreviewUpdateGameServerClusterResponse>
+      callback: BodyResponseCallback<
+        Schema$PreviewUpdateGameServerClusterResponse
+      >
     ): void;
     previewUpdate(
       paramsOrCallback?:

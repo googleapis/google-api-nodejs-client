@@ -2820,14 +2820,20 @@ export namespace cloudsearch_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>,
-      callback: BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>
+      callback: BodyResponseCallback<
+        Schema$ListItemNamesForUnmappedIdentityResponse
+      >
     ): void;
     listForunmappedidentity(
       params: Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
-      callback: BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>
+      callback: BodyResponseCallback<
+        Schema$ListItemNamesForUnmappedIdentityResponse
+      >
     ): void;
     listForunmappedidentity(
-      callback: BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>
+      callback: BodyResponseCallback<
+        Schema$ListItemNamesForUnmappedIdentityResponse
+      >
     ): void;
     listForunmappedidentity(
       paramsOrCallback?:
@@ -2883,9 +2889,9 @@ export namespace cloudsearch_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ListItemNamesForUnmappedIdentityResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$ListItemNamesForUnmappedIdentityResponse
+        >(parameters);
       }
     }
   }
@@ -8782,14 +8788,20 @@ export namespace cloudsearch_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GetSearchApplicationQueryStatsResponse>,
-      callback: BodyResponseCallback<Schema$GetSearchApplicationQueryStatsResponse>
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationQueryStatsResponse
+      >
     ): void;
     get(
       params: Params$Resource$Stats$Query$Searchapplications$Get,
-      callback: BodyResponseCallback<Schema$GetSearchApplicationQueryStatsResponse>
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationQueryStatsResponse
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GetSearchApplicationQueryStatsResponse>
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationQueryStatsResponse
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -8986,14 +8998,20 @@ export namespace cloudsearch_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GetSearchApplicationSessionStatsResponse>,
-      callback: BodyResponseCallback<Schema$GetSearchApplicationSessionStatsResponse>
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationSessionStatsResponse
+      >
     ): void;
     get(
       params: Params$Resource$Stats$Session$Searchapplications$Get,
-      callback: BodyResponseCallback<Schema$GetSearchApplicationSessionStatsResponse>
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationSessionStatsResponse
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GetSearchApplicationSessionStatsResponse>
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationSessionStatsResponse
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -9050,9 +9068,9 @@ export namespace cloudsearch_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GetSearchApplicationSessionStatsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GetSearchApplicationSessionStatsResponse
+        >(parameters);
       }
     }
   }
@@ -9190,14 +9208,20 @@ export namespace cloudsearch_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GetSearchApplicationUserStatsResponse>,
-      callback: BodyResponseCallback<Schema$GetSearchApplicationUserStatsResponse>
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationUserStatsResponse
+      >
     ): void;
     get(
       params: Params$Resource$Stats$User$Searchapplications$Get,
-      callback: BodyResponseCallback<Schema$GetSearchApplicationUserStatsResponse>
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationUserStatsResponse
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GetSearchApplicationUserStatsResponse>
+      callback: BodyResponseCallback<
+        Schema$GetSearchApplicationUserStatsResponse
+      >
     ): void;
     get(
       paramsOrCallback?:

@@ -388,6 +388,42 @@
             "https://www.googleapis.com/auth/games"
           ]
         },
+        "getEndPoint": {
+          "description": "Returns a URL for the requested end point type.",
+          "flatPath": "games/v1/applications/getEndPoint",
+          "httpMethod": "POST",
+          "id": "games.applications.getEndPoint",
+          "parameterOrder": [],
+          "parameters": {
+            "applicationId": {
+              "description": "The application ID from the Google Play developer console.",
+              "location": "query",
+              "type": "string"
+            },
+            "endPointType": {
+              "description": "Type of endpoint being requested.",
+              "enum": [
+                "END_POINT_TYPE_UNSPECIFIED",
+                "PROFILE_CREATION",
+                "PROFILE_SETTINGS"
+              ],
+              "enumDescriptions": [
+                "Default value. This value is unused.",
+                "Request a URL to create a new profile.",
+                "Request a URL for the Settings view."
+              ],
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "games/v1/applications/getEndPoint",
+          "response": {
+            "$ref": "EndPoint"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/games"
+          ]
+        },
         "played": {
           "description": "Indicate that the currently authenticated user is playing your application.",
           "flatPath": "games/v1/applications/played",
@@ -1220,7 +1256,7 @@
       }
     }
   },
-  "revision": "20201112",
+  "revision": "20201203",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -1683,6 +1719,17 @@
         },
         "nextPageToken": {
           "description": "Token corresponding to the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EndPoint": {
+      "description": "Container for a URL end point of the requested type.",
+      "id": "EndPoint",
+      "properties": {
+        "url": {
+          "description": "A URL suitable for loading in a web browser for the requested endpoint.",
           "type": "string"
         }
       },
@@ -3052,7 +3099,7 @@
       "id": "SnapshotCoverImageResource",
       "properties": {
         "contentHash": {
-          "description": "Output only. Hash-like weak identifier of the uploaded image bytes, consistent per player per application. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash. It's extremely likely, though not guaranteed, that if two content hashes are equal, the images are identical.",
+          "description": "Output only. Hash-like weak identifier of the uploaded image bytes, consistent per player per application. The content hash for a given resource will not change if the binary data hasn't changed. Except in very rare circumstances, the content_hash for matching binary data will be the same within a given player and application.",
           "readOnly": true,
           "type": "string"
         },
@@ -3062,14 +3109,12 @@
           "type": "string"
         },
         "height": {
-          "description": "Output only. The height of the image in pixels.",
+          "description": "The height of the image in pixels.",
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         },
         "mimeType": {
-          "description": "Output only. The MIME type of the image.",
-          "readOnly": true,
+          "description": "The MIME type of the image.",
           "type": "string"
         },
         "resourceId": {
@@ -3077,9 +3122,8 @@
           "type": "string"
         },
         "width": {
-          "description": "Output only. The width of the image in pixels.",
+          "description": "The width of the image in pixels.",
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         }
       },
@@ -3090,7 +3134,7 @@
       "id": "SnapshotDataResource",
       "properties": {
         "contentHash": {
-          "description": "Output only. Hash-like weak identifier of the uploaded blob, consistent per player per application. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash. It's extremely likely, though not guaranteed, that if two content hashes are equal, the blobs are identical.",
+          "description": "Output only. Hash-like weak identifier of the uploaded blob bytes, consistent per player per application. The content hash for a given resource will not change if the binary data hasn't changed. Except in very rare circumstances, the content_hash for matching binary data will be the same within a given player and application.",
           "readOnly": true,
           "type": "string"
         },
@@ -3104,15 +3148,16 @@
           "type": "string"
         },
         "size": {
-          "description": "Size of the saved game blob in bytes.",
+          "description": "Output only. Size of the saved game blob in bytes.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
       "type": "object"
     },
     "SnapshotExtended": {
-      "description": "A snapshot represents a saved game state referred to using the developer-provided snapshot_id (think of it as a file's path). The set of attributes and binary data for a specific state is called a revision. Each revision is itself immutable, and referred to by a snapshot_revision_id. At any time, a snapshot has a \"head\" revision, and updates are made against that revision. If a snapshot update is received that isn't against the current head revision, then instead of changing the head revision it will result in a conflicting revision that must be specifically resolved.",
+      "description": "A snapshot represents a saved game state referred to using the developer-provided snapshot_name. The set of attributes and binary data for a specific state is called a revision. Each revision is itself immutable, and referred to by a snapshot revision id. At any time, a snapshot has a \"head\" revision, and updates are made against that revision. If a snapshot update is received that isn't against the current head revision, then instead of changing the head revision it will result in a conflicting revision that must be specifically resolved.",
       "id": "SnapshotExtended",
       "properties": {
         "conflictingRevisions": {
@@ -3130,8 +3175,8 @@
           "$ref": "SnapshotRevision",
           "description": "The current head revision (the canonical revision as understood by the server)."
         },
-        "name": {
-          "description": "An identifier of the snapshot,developer-specified.",
+        "snapshotName": {
+          "description": "An identifier of the snapshot, developer-specified. It must match the pattern [0-9a-zA-Z-._~]{1,100}.",
           "type": "string"
         }
       },
@@ -3200,23 +3245,19 @@
           "description": "The device that created the current revision.",
           "type": "string"
         },
-        "duration": {
+        "gameplayDuration": {
           "description": "The duration associated with this snapshot. Values with sub-millisecond precision can be rounded or trimmed to the closest millisecond.",
           "format": "google-duration",
           "type": "string"
         },
         "lastModifyTime": {
-          "description": "The timestamp of the last modification to this snapshot. Values with sub-millisecond precision can be rounded or trimmed to the closest millisecond.",
+          "description": "The timestamp of the last modification to this snapshot as provided by the client. Values with sub-millisecond precision can be rounded or trimmed to the closest millisecond.",
           "format": "google-datetime",
           "type": "string"
         },
         "progressValue": {
           "description": "The progress value (64-bit integer set by developer) associated with this snapshot.",
           "format": "int64",
-          "type": "string"
-        },
-        "title": {
-          "description": "The title of this snapshot.",
           "type": "string"
         }
       },

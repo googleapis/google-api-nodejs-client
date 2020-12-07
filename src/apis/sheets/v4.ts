@@ -6463,14 +6463,20 @@ export namespace sheets_v4 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>,
-      callback: BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>
+      callback: BodyResponseCallback<
+        Schema$BatchClearValuesByDataFilterResponse
+      >
     ): void;
     batchClearByDataFilter(
       params: Params$Resource$Spreadsheets$Values$Batchclearbydatafilter,
-      callback: BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>
+      callback: BodyResponseCallback<
+        Schema$BatchClearValuesByDataFilterResponse
+      >
     ): void;
     batchClearByDataFilter(
-      callback: BodyResponseCallback<Schema$BatchClearValuesByDataFilterResponse>
+      callback: BodyResponseCallback<
+        Schema$BatchClearValuesByDataFilterResponse
+      >
     ): void;
     batchClearByDataFilter(
       paramsOrCallback?:
@@ -7082,14 +7088,20 @@ export namespace sheets_v4 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>,
-      callback: BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>
+      callback: BodyResponseCallback<
+        Schema$BatchUpdateValuesByDataFilterResponse
+      >
     ): void;
     batchUpdateByDataFilter(
       params: Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter,
-      callback: BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>
+      callback: BodyResponseCallback<
+        Schema$BatchUpdateValuesByDataFilterResponse
+      >
     ): void;
     batchUpdateByDataFilter(
-      callback: BodyResponseCallback<Schema$BatchUpdateValuesByDataFilterResponse>
+      callback: BodyResponseCallback<
+        Schema$BatchUpdateValuesByDataFilterResponse
+      >
     ): void;
     batchUpdateByDataFilter(
       paramsOrCallback?:

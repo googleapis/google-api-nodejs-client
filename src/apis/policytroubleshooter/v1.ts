@@ -392,7 +392,9 @@ export namespace policytroubleshooter_v1 {
     troubleshoot(
       params?: Params$Resource$Iam$Troubleshoot,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
+    >;
     troubleshoot(
       params: Params$Resource$Iam$Troubleshoot,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -402,32 +404,48 @@ export namespace policytroubleshooter_v1 {
       params: Params$Resource$Iam$Troubleshoot,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
+      >
     ): void;
     troubleshoot(
       params: Params$Resource$Iam$Troubleshoot,
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
+      >
     ): void;
     troubleshoot(
-      callback: BodyResponseCallback<Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
+      >
     ): void;
     troubleshoot(
       paramsOrCallback?:
         | Params$Resource$Iam$Troubleshoot
-        | BodyResponseCallback<Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse>
+      | GaxiosPromise<
+          Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Iam$Troubleshoot;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -462,14 +480,13 @@ export namespace policytroubleshooter_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
+        >(parameters);
       }
     }
   }

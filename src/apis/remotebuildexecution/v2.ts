@@ -1628,14 +1628,20 @@ export namespace remotebuildexecution_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ActionResult
+      >
     ): void;
     get(
       params: Params$Resource$Actionresults$Get,
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ActionResult
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ActionResult
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -1800,14 +1806,20 @@ export namespace remotebuildexecution_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>,
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ActionResult
+      >
     ): void;
     update(
       params: Params$Resource$Actionresults$Update,
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ActionResult
+      >
     ): void;
     update(
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ActionResult>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ActionResult
+      >
     ): void;
     update(
       paramsOrCallback?:
@@ -2174,28 +2186,42 @@ export namespace remotebuildexecution_v2 {
       params: Params$Resource$Blobs$Batchread,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>,
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+      >
     ): void;
     batchRead(
       params: Params$Resource$Blobs$Batchread,
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+      >
     ): void;
     batchRead(
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+      >
     ): void;
     batchRead(
       paramsOrCallback?:
         | Params$Resource$Blobs$Batchread
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -2234,14 +2260,13 @@ export namespace remotebuildexecution_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
+        >(parameters);
       }
     }
 
@@ -2310,7 +2335,9 @@ export namespace remotebuildexecution_v2 {
     batchUpdate(
       params?: Params$Resource$Blobs$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>;
+    ): GaxiosPromise<
+      Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+    >;
     batchUpdate(
       params: Params$Resource$Blobs$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2320,32 +2347,48 @@ export namespace remotebuildexecution_v2 {
       params: Params$Resource$Blobs$Batchupdate,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>,
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+      >
     ): void;
     batchUpdate(
       params: Params$Resource$Blobs$Batchupdate,
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+      >
     ): void;
     batchUpdate(
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+      >
     ): void;
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Blobs$Batchupdate
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>
+      | GaxiosPromise<
+          Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Blobs$Batchupdate;
@@ -2381,14 +2424,13 @@ export namespace remotebuildexecution_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
+        >(parameters);
       }
     }
 
@@ -2457,7 +2499,9 @@ export namespace remotebuildexecution_v2 {
     findMissing(
       params?: Params$Resource$Blobs$Findmissing,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>;
+    ): GaxiosPromise<
+      Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+    >;
     findMissing(
       params: Params$Resource$Blobs$Findmissing,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2467,32 +2511,48 @@ export namespace remotebuildexecution_v2 {
       params: Params$Resource$Blobs$Findmissing,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>,
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+      >
     ): void;
     findMissing(
       params: Params$Resource$Blobs$Findmissing,
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+      >
     ): void;
     findMissing(
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+      >
     ): void;
     findMissing(
       paramsOrCallback?:
         | Params$Resource$Blobs$Findmissing
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>
+      | GaxiosPromise<
+          Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Blobs$Findmissing;
@@ -2528,14 +2588,13 @@ export namespace remotebuildexecution_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
+        >(parameters);
       }
     }
 
@@ -2615,28 +2674,42 @@ export namespace remotebuildexecution_v2 {
       params: Params$Resource$Blobs$Gettree,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>,
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+      >
     ): void;
     getTree(
       params: Params$Resource$Blobs$Gettree,
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+      >
     ): void;
     getTree(
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+      >
     ): void;
     getTree(
       paramsOrCallback?:
         | Params$Resource$Blobs$Gettree
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -2679,9 +2752,9 @@ export namespace remotebuildexecution_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$BuildBazelRemoteExecutionV2GetTreeResponse
+        >(parameters);
       }
     }
   }
@@ -2988,28 +3061,42 @@ export namespace remotebuildexecution_v2 {
       params: Params$Resource$V2$Getcapabilities,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>,
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+          >,
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+      >
     ): void;
     getCapabilities(
       params: Params$Resource$V2$Getcapabilities,
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+      >
     ): void;
     getCapabilities(
-      callback: BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>
+      callback: BodyResponseCallback<
+        Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+      >
     ): void;
     getCapabilities(
       paramsOrCallback?:
         | Params$Resource$V2$Getcapabilities
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>
+        | BodyResponseCallback<
+            Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -3054,9 +3141,9 @@ export namespace remotebuildexecution_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$BuildBazelRemoteExecutionV2ServerCapabilities
+        >(parameters);
       }
     }
   }

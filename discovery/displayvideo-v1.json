@@ -6249,7 +6249,7 @@
       }
     }
   },
-  "revision": "20201201",
+  "revision": "20201204",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -10939,20 +10939,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "insertionOrderType": {
-          "description": "The type of insertion order. If this field is unspecified in creation, the value defaults to `RTB`.",
-          "enum": [
-            "INSERTION_ORDER_TYPE_UNSPECIFIED",
-            "RTB",
-            "OVER_THE_TOP"
-          ],
-          "enumDescriptions": [
-            "Insertion order type is not specified or is unknown.",
-            "RTB Video type IO.",
-            "Video Over the top type IO."
-          ],
-          "type": "string"
-        },
         "integrationDetails": {
           "$ref": "IntegrationDetails",
           "description": "Additional integration details of the insertion order."
@@ -11806,8 +11792,7 @@
             "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INSTALL",
             "LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INVENTORY",
             "LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INVENTORY",
-            "LINE_ITEM_TYPE_AUDIO_DEFAULT",
-            "LINE_ITEM_TYPE_VIDEO_OVER_THE_TOP"
+            "LINE_ITEM_TYPE_AUDIO_DEFAULT"
           ],
           "enumDescriptions": [
             "Type value is not specified or is unknown in this version.",
@@ -11817,8 +11802,7 @@
             "Video ads that drive installs of an app.",
             "Display ads served on mobile app inventory.",
             "Video ads served on mobile app inventory.",
-            "Rtb Audio ads sold for a variety of environments.",
-            "Over the top ads present in OTT IOs. This type is only applicable to line items with an insertion order of insertion_order_type `OVER_THE_TOP`"
+            "Rtb Audio ads sold for a variety of environments."
           ],
           "type": "string"
         },

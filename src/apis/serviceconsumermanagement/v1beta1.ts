@@ -2119,14 +2119,20 @@ export namespace serviceconsumermanagement_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$V1Beta1ListConsumerQuotaMetricsResponse>,
-      callback: BodyResponseCallback<Schema$V1Beta1ListConsumerQuotaMetricsResponse>
+      callback: BodyResponseCallback<
+        Schema$V1Beta1ListConsumerQuotaMetricsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Services$Consumerquotametrics$List,
-      callback: BodyResponseCallback<Schema$V1Beta1ListConsumerQuotaMetricsResponse>
+      callback: BodyResponseCallback<
+        Schema$V1Beta1ListConsumerQuotaMetricsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$V1Beta1ListConsumerQuotaMetricsResponse>
+      callback: BodyResponseCallback<
+        Schema$V1Beta1ListConsumerQuotaMetricsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -2768,14 +2774,20 @@ export namespace serviceconsumermanagement_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$V1Beta1ListProducerOverridesResponse>,
-      callback: BodyResponseCallback<Schema$V1Beta1ListProducerOverridesResponse>
+      callback: BodyResponseCallback<
+        Schema$V1Beta1ListProducerOverridesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$List,
-      callback: BodyResponseCallback<Schema$V1Beta1ListProducerOverridesResponse>
+      callback: BodyResponseCallback<
+        Schema$V1Beta1ListProducerOverridesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$V1Beta1ListProducerOverridesResponse>
+      callback: BodyResponseCallback<
+        Schema$V1Beta1ListProducerOverridesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:

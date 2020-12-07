@@ -13016,14 +13016,20 @@ export namespace logging_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
-      callback: BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>
+      callback: BodyResponseCallback<
+        Schema$ListMonitoredResourceDescriptorsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Monitoredresourcedescriptors$List,
-      callback: BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>
+      callback: BodyResponseCallback<
+        Schema$ListMonitoredResourceDescriptorsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>
+      callback: BodyResponseCallback<
+        Schema$ListMonitoredResourceDescriptorsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -13080,9 +13086,9 @@ export namespace logging_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$ListMonitoredResourceDescriptorsResponse
+        >(parameters);
       }
     }
   }

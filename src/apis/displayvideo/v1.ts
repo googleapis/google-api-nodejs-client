@@ -2345,10 +2345,6 @@ export namespace displayvideo_v1 {
      */
     insertionOrderId?: string | null;
     /**
-     * The type of insertion order. If this field is unspecified in creation, the value defaults to `RTB`.
-     */
-    insertionOrderType?: string | null;
-    /**
      * Additional integration details of the insertion order.
      */
     integrationDetails?: Schema$IntegrationDetails;
@@ -4423,28 +4419,42 @@ export namespace displayvideo_v1 {
       params: Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+      >
     ): void;
     bulkEditAdvertiserAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions,
-      callback: BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+      >
     ): void;
     bulkEditAdvertiserAssignedTargetingOptions(
-      callback: BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+      >
     ): void;
     bulkEditAdvertiserAssignedTargetingOptions(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions
-        | BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4483,14 +4493,13 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$BulkEditAdvertiserAssignedTargetingOptionsResponse
+        >(parameters);
       }
     }
 
@@ -4572,28 +4581,42 @@ export namespace displayvideo_v1 {
       params: Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+      >
     ): void;
     bulkListAdvertiserAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions,
-      callback: BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+      >
     ): void;
     bulkListAdvertiserAssignedTargetingOptions(
-      callback: BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+      >
     ): void;
     bulkListAdvertiserAssignedTargetingOptions(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions
-        | BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4632,14 +4655,13 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$BulkListAdvertiserAssignedTargetingOptionsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$BulkListAdvertiserAssignedTargetingOptionsResponse
+        >(parameters);
       }
     }
 
@@ -8835,7 +8857,6 @@ export namespace displayvideo_v1 {
      *       //   "entityStatus": "my_entityStatus",
      *       //   "frequencyCap": {},
      *       //   "insertionOrderId": "my_insertionOrderId",
-     *       //   "insertionOrderType": "my_insertionOrderType",
      *       //   "integrationDetails": {},
      *       //   "name": "my_name",
      *       //   "pacing": {},
@@ -8857,7 +8878,6 @@ export namespace displayvideo_v1 {
      *   //   "entityStatus": "my_entityStatus",
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
-     *   //   "insertionOrderType": "my_insertionOrderType",
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
@@ -9130,7 +9150,6 @@ export namespace displayvideo_v1 {
      *   //   "entityStatus": "my_entityStatus",
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
-     *   //   "insertionOrderType": "my_insertionOrderType",
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
@@ -9421,7 +9440,6 @@ export namespace displayvideo_v1 {
      *       //   "entityStatus": "my_entityStatus",
      *       //   "frequencyCap": {},
      *       //   "insertionOrderId": "my_insertionOrderId",
-     *       //   "insertionOrderType": "my_insertionOrderType",
      *       //   "integrationDetails": {},
      *       //   "name": "my_name",
      *       //   "pacing": {},
@@ -9443,7 +9461,6 @@ export namespace displayvideo_v1 {
      *   //   "entityStatus": "my_entityStatus",
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
-     *   //   "insertionOrderType": "my_insertionOrderType",
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
@@ -9713,28 +9730,42 @@ export namespace displayvideo_v1 {
       params: Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkEditLineItemAssignedTargetingOptionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BulkEditLineItemAssignedTargetingOptionsResponse
+      >
     ): void;
     bulkEditLineItemAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions,
-      callback: BodyResponseCallback<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$BulkEditLineItemAssignedTargetingOptionsResponse
+      >
     ): void;
     bulkEditLineItemAssignedTargetingOptions(
-      callback: BodyResponseCallback<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$BulkEditLineItemAssignedTargetingOptionsResponse
+      >
     ): void;
     bulkEditLineItemAssignedTargetingOptions(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions
-        | BodyResponseCallback<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkEditLineItemAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkEditLineItemAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkEditLineItemAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -9773,14 +9804,13 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$BulkEditLineItemAssignedTargetingOptionsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$BulkEditLineItemAssignedTargetingOptionsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$BulkEditLineItemAssignedTargetingOptionsResponse
+        >(parameters);
       }
     }
 
@@ -9864,28 +9894,42 @@ export namespace displayvideo_v1 {
       params: Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$BulkListLineItemAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$BulkListLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkListLineItemAssignedTargetingOptionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BulkListLineItemAssignedTargetingOptionsResponse
+      >
     ): void;
     bulkListLineItemAssignedTargetingOptions(
       params: Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions,
-      callback: BodyResponseCallback<Schema$BulkListLineItemAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$BulkListLineItemAssignedTargetingOptionsResponse
+      >
     ): void;
     bulkListLineItemAssignedTargetingOptions(
-      callback: BodyResponseCallback<Schema$BulkListLineItemAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$BulkListLineItemAssignedTargetingOptionsResponse
+      >
     ): void;
     bulkListLineItemAssignedTargetingOptions(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions
-        | BodyResponseCallback<Schema$BulkListLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkListLineItemAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$BulkListLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkListLineItemAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BulkListLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkListLineItemAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -9924,14 +9968,13 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BulkListLineItemAssignedTargetingOptionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$BulkListLineItemAssignedTargetingOptionsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$BulkListLineItemAssignedTargetingOptionsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$BulkListLineItemAssignedTargetingOptionsResponse
+        >(parameters);
       }
     }
 
@@ -11507,28 +11550,42 @@ export namespace displayvideo_v1 {
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListLineItemAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$ListLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$ListLineItemAssignedTargetingOptionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ListLineItemAssignedTargetingOptionsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List,
-      callback: BodyResponseCallback<Schema$ListLineItemAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$ListLineItemAssignedTargetingOptionsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$ListLineItemAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$ListLineItemAssignedTargetingOptionsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List
-        | BodyResponseCallback<Schema$ListLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$ListLineItemAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$ListLineItemAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ListLineItemAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$ListLineItemAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -11572,9 +11629,9 @@ export namespace displayvideo_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ListLineItemAssignedTargetingOptionsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$ListLineItemAssignedTargetingOptionsResponse
+        >(parameters);
       }
     }
   }
@@ -16061,28 +16118,42 @@ export namespace displayvideo_v1 {
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListAdvertiserAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$ListAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$ListAdvertiserAssignedTargetingOptionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ListAdvertiserAssignedTargetingOptionsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List,
-      callback: BodyResponseCallback<Schema$ListAdvertiserAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$ListAdvertiserAssignedTargetingOptionsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$ListAdvertiserAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$ListAdvertiserAssignedTargetingOptionsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List
-        | BodyResponseCallback<Schema$ListAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$ListAdvertiserAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$ListAdvertiserAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ListAdvertiserAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$ListAdvertiserAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -16126,9 +16197,9 @@ export namespace displayvideo_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ListAdvertiserAssignedTargetingOptionsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$ListAdvertiserAssignedTargetingOptionsResponse
+        >(parameters);
       }
     }
   }
@@ -17433,14 +17504,20 @@ export namespace displayvideo_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>,
-      callback: BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>
+      callback: BodyResponseCallback<
+        Schema$ListFirstAndThirdPartyAudiencesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Firstandthirdpartyaudiences$List,
-      callback: BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>
+      callback: BodyResponseCallback<
+        Schema$ListFirstAndThirdPartyAudiencesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$ListFirstAndThirdPartyAudiencesResponse>
+      callback: BodyResponseCallback<
+        Schema$ListFirstAndThirdPartyAudiencesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -19121,14 +19198,20 @@ export namespace displayvideo_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$BulkEditAssignedInventorySourcesResponse>,
-      callback: BodyResponseCallback<Schema$BulkEditAssignedInventorySourcesResponse>
+      callback: BodyResponseCallback<
+        Schema$BulkEditAssignedInventorySourcesResponse
+      >
     ): void;
     bulkEdit(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit,
-      callback: BodyResponseCallback<Schema$BulkEditAssignedInventorySourcesResponse>
+      callback: BodyResponseCallback<
+        Schema$BulkEditAssignedInventorySourcesResponse
+      >
     ): void;
     bulkEdit(
-      callback: BodyResponseCallback<Schema$BulkEditAssignedInventorySourcesResponse>
+      callback: BodyResponseCallback<
+        Schema$BulkEditAssignedInventorySourcesResponse
+      >
     ): void;
     bulkEdit(
       paramsOrCallback?:
@@ -19185,9 +19268,9 @@ export namespace displayvideo_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$BulkEditAssignedInventorySourcesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$BulkEditAssignedInventorySourcesResponse
+        >(parameters);
       }
     }
 
@@ -19563,14 +19646,20 @@ export namespace displayvideo_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListAssignedInventorySourcesResponse>,
-      callback: BodyResponseCallback<Schema$ListAssignedInventorySourcesResponse>
+      callback: BodyResponseCallback<
+        Schema$ListAssignedInventorySourcesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Inventorysourcegroups$Assignedinventorysources$List,
-      callback: BodyResponseCallback<Schema$ListAssignedInventorySourcesResponse>
+      callback: BodyResponseCallback<
+        Schema$ListAssignedInventorySourcesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$ListAssignedInventorySourcesResponse>
+      callback: BodyResponseCallback<
+        Schema$ListAssignedInventorySourcesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -20295,28 +20384,42 @@ export namespace displayvideo_v1 {
       params: Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+      >
     ): void;
     bulkEditPartnerAssignedTargetingOptions(
       params: Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions,
-      callback: BodyResponseCallback<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+      >
     ): void;
     bulkEditPartnerAssignedTargetingOptions(
-      callback: BodyResponseCallback<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+      >
     ): void;
     bulkEditPartnerAssignedTargetingOptions(
       paramsOrCallback?:
         | Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions
-        | BodyResponseCallback<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -20355,14 +20458,13 @@ export namespace displayvideo_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$BulkEditPartnerAssignedTargetingOptionsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$BulkEditPartnerAssignedTargetingOptionsResponse
+        >(parameters);
       }
     }
 
@@ -22655,28 +22757,42 @@ export namespace displayvideo_v1 {
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListPartnerAssignedTargetingOptionsResponse>,
-      callback: BodyResponseCallback<Schema$ListPartnerAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$ListPartnerAssignedTargetingOptionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ListPartnerAssignedTargetingOptionsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List,
-      callback: BodyResponseCallback<Schema$ListPartnerAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$ListPartnerAssignedTargetingOptionsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$ListPartnerAssignedTargetingOptionsResponse>
+      callback: BodyResponseCallback<
+        Schema$ListPartnerAssignedTargetingOptionsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List
-        | BodyResponseCallback<Schema$ListPartnerAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$ListPartnerAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListPartnerAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$ListPartnerAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ListPartnerAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<
+            Schema$ListPartnerAssignedTargetingOptionsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -22720,9 +22836,9 @@ export namespace displayvideo_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ListPartnerAssignedTargetingOptionsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$ListPartnerAssignedTargetingOptionsResponse
+        >(parameters);
       }
     }
   }

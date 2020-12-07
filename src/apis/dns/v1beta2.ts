@@ -621,6 +621,10 @@ export namespace dns_v1beta2 {
      * Maximum allowed number of DnsKeys per ManagedZone.
      */
     dnsKeysPerManagedZone?: number | null;
+    /**
+     * Maximum allowed number of GKE clusters per policy.
+     */
+    gkeClustersPerPolicy?: number | null;
     kind?: string | null;
     /**
      * Maximum allowed number of managed zones in the project.
