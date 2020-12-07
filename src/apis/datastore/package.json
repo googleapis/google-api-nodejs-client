@@ -1,4 +1,5 @@
  
+{
  "name": "@googleapis/datastore",
  "version": "0.1.0",
  "description": "datastore",
