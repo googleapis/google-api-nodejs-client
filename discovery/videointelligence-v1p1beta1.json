@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20201002",
+  "revision": "20201204",
   "rootUrl": "https://videointelligence.googleapis.com/",
   "schemas": {
     "GoogleCloudVideointelligenceV1_AnnotateVideoProgress": {
@@ -298,6 +298,18 @@
       "description": "Face detection annotation.",
       "id": "GoogleCloudVideointelligenceV1_FaceDetectionAnnotation",
       "properties": {
+        "thumbnail": {
+          "description": "The thumbnail of a person's face.",
+          "format": "byte",
+          "type": "string"
+        },
+        "tracks": {
+          "description": "The face tracks with attributes.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1_Track"
+          },
+          "type": "array"
+        },
         "version": {
           "description": "Feature version.",
           "type": "string"
@@ -1111,6 +1123,18 @@
       "description": "Face detection annotation.",
       "id": "GoogleCloudVideointelligenceV1beta2_FaceDetectionAnnotation",
       "properties": {
+        "thumbnail": {
+          "description": "The thumbnail of a person's face.",
+          "format": "byte",
+          "type": "string"
+        },
+        "tracks": {
+          "description": "The face tracks with attributes.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1beta2_Track"
+          },
+          "type": "array"
+        },
         "version": {
           "description": "Feature version.",
           "type": "string"
@@ -1994,6 +2018,18 @@
       "description": "Face detection annotation.",
       "id": "GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation",
       "properties": {
+        "thumbnail": {
+          "description": "The thumbnail of a person's face.",
+          "format": "byte",
+          "type": "string"
+        },
+        "tracks": {
+          "description": "The face tracks with attributes.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1p1beta1_Track"
+          },
+          "type": "array"
+        },
         "version": {
           "description": "Feature version.",
           "type": "string"
@@ -3038,6 +3074,18 @@
       "description": "Face detection annotation.",
       "id": "GoogleCloudVideointelligenceV1p2beta1_FaceDetectionAnnotation",
       "properties": {
+        "thumbnail": {
+          "description": "The thumbnail of a person's face.",
+          "format": "byte",
+          "type": "string"
+        },
+        "tracks": {
+          "description": "The face tracks with attributes.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1p2beta1_Track"
+          },
+          "type": "array"
+        },
         "version": {
           "description": "Feature version.",
           "type": "string"
@@ -3906,6 +3954,18 @@
       "description": "Face detection annotation.",
       "id": "GoogleCloudVideointelligenceV1p3beta1_FaceDetectionAnnotation",
       "properties": {
+        "thumbnail": {
+          "description": "The thumbnail of a person's face.",
+          "format": "byte",
+          "type": "string"
+        },
+        "tracks": {
+          "description": "The face tracks with attributes.",
+          "items": {
+            "$ref": "GoogleCloudVideointelligenceV1p3beta1_Track"
+          },
+          "type": "array"
+        },
         "version": {
           "description": "Feature version.",
           "type": "string"

@@ -4651,28 +4651,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$List
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4711,14 +4725,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
+        >(parameters);
       }
     }
 
@@ -5222,14 +5235,20 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1EntityType
+      >
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1EntityType
+      >
     ): void;
     create(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1EntityType
+      >
     ): void;
     create(
       paramsOrCallback?:
@@ -5286,9 +5305,9 @@ export namespace dialogflow_v3beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1EntityType>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1EntityType
+        >(parameters);
       }
     }
 
@@ -5505,14 +5524,20 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1EntityType
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1EntityType
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1EntityType
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -5566,9 +5591,9 @@ export namespace dialogflow_v3beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1EntityType>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1EntityType
+        >(parameters);
       }
     }
 
@@ -5639,7 +5664,9 @@ export namespace dialogflow_v3beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Agents$Entitytypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
+    >;
     list(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5649,32 +5676,48 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Entitytypes$List
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Entitytypes$List;
@@ -5709,14 +5752,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
+        >(parameters);
       }
     }
 
@@ -5816,14 +5858,20 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1EntityType
+      >
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$Patch,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1EntityType
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1EntityType
+      >
     ): void;
     patch(
       paramsOrCallback?:
@@ -5877,9 +5925,9 @@ export namespace dialogflow_v3beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1EntityType>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1EntityType
+        >(parameters);
       }
     }
   }
@@ -6333,15 +6381,23 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Environment>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Environment>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1Environment
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Environment
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Environments$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Environment>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Environment
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Environment>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Environment
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -6395,9 +6451,9 @@ export namespace dialogflow_v3beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Environment>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1Environment
+        >(parameters);
       }
     }
 
@@ -6466,7 +6522,9 @@ export namespace dialogflow_v3beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Agents$Environments$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
+    >;
     list(
       params: Params$Resource$Projects$Locations$Agents$Environments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6476,32 +6534,48 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Environments$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$List
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$List;
@@ -6536,14 +6610,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
+        >(parameters);
       }
     }
 
@@ -6615,7 +6688,9 @@ export namespace dialogflow_v3beta1 {
     lookupEnvironmentHistory(
       params?: Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
+    >;
     lookupEnvironmentHistory(
       params: Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6625,32 +6700,48 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
+      >
     ): void;
     lookupEnvironmentHistory(
       params: Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
+      >
     ): void;
     lookupEnvironmentHistory(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
+      >
     ): void;
     lookupEnvironmentHistory(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory;
@@ -6684,14 +6775,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
+        >(parameters);
       }
     }
 
@@ -7020,28 +7110,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Detectintent,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+      >
     ): void;
     detectIntent(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Detectintent,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+      >
     ): void;
     detectIntent(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+      >
     ): void;
     detectIntent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Sessions$Detectintent
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -7080,14 +7184,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+        >(parameters);
       }
     }
 
@@ -7167,7 +7270,9 @@ export namespace dialogflow_v3beta1 {
     fulfillIntent(
       params?: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+    >;
     fulfillIntent(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7177,32 +7282,48 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+      >
     ): void;
     fulfillIntent(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+      >
     ): void;
     fulfillIntent(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+      >
     ): void;
     fulfillIntent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent;
@@ -7237,14 +7358,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+        >(parameters);
       }
     }
 
@@ -7335,28 +7455,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Matchintent,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+      >
     ): void;
     matchIntent(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Matchintent,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+      >
     ): void;
     matchIntent(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+      >
     ): void;
     matchIntent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Sessions$Matchintent
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -7395,14 +7529,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+        >(parameters);
       }
     }
   }
@@ -7535,28 +7668,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Create,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     create(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Create
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -7595,14 +7742,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+        >(parameters);
       }
     }
 
@@ -7814,28 +7960,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Get
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -7871,14 +8031,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+        >(parameters);
       }
     }
 
@@ -7950,7 +8109,9 @@ export namespace dialogflow_v3beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+    >;
     list(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7960,32 +8121,48 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List;
@@ -8020,14 +8197,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+        >(parameters);
       }
     }
 
@@ -8118,28 +8294,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Patch,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Patch,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -8175,14 +8365,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+        >(parameters);
       }
     }
   }
@@ -8780,28 +8969,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Flows$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Flows$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Flows$List
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -8840,14 +9043,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
+        >(parameters);
       }
     }
 
@@ -9781,28 +9983,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Flows$Pages$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Flows$Pages$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Flows$Pages$List
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -9841,14 +10057,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
+        >(parameters);
       }
     }
 
@@ -10187,28 +10402,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Create,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+      >
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+      >
     ): void;
     create(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+      >
     ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Create
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -10247,14 +10476,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+        >(parameters);
       }
     }
 
@@ -10470,28 +10698,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+      >
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Get
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -10527,14 +10769,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+        >(parameters);
       }
     }
 
@@ -10608,7 +10849,9 @@ export namespace dialogflow_v3beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
+    >;
     list(
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10618,32 +10861,48 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List;
@@ -10678,14 +10937,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
+        >(parameters);
       }
     }
 
@@ -10778,28 +11036,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Patch,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+      >
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Patch,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+      >
     ): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -10835,14 +11107,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
+        >(parameters);
       }
     }
   }
@@ -11296,14 +11567,20 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Version
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Version
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Version
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -11439,28 +11716,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Flows$Versions$List
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -11499,14 +11790,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
+        >(parameters);
       }
     }
 
@@ -11754,14 +12044,20 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Version
+      >
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$Patch,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Version
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Version
+      >
     ): void;
     patch(
       paramsOrCallback?:
@@ -11993,14 +12289,20 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Intent
+      >
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Agents$Intents$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Intent
+      >
     ): void;
     create(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Intent
+      >
     ): void;
     create(
       paramsOrCallback?:
@@ -12275,14 +12577,20 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Intent
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Intents$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Intent
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Intent
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -12421,28 +12729,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Intents$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Intents$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Intents$List
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -12481,14 +12803,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
+        >(parameters);
       }
     }
 
@@ -12590,14 +12911,20 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Intent
+      >
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agents$Intents$Patch,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Intent
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Intent
+      >
     ): void;
     patch(
       paramsOrCallback?:
@@ -12830,28 +13157,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Sessions$Detectintent,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+      >
     ): void;
     detectIntent(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Detectintent,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+      >
     ): void;
     detectIntent(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+      >
     ): void;
     detectIntent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Sessions$Detectintent
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -12890,14 +13231,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
+        >(parameters);
       }
     }
 
@@ -12977,7 +13317,9 @@ export namespace dialogflow_v3beta1 {
     fulfillIntent(
       params?: Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+    >;
     fulfillIntent(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -12987,32 +13329,48 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+      >
     ): void;
     fulfillIntent(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+      >
     ): void;
     fulfillIntent(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+      >
     ): void;
     fulfillIntent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent;
@@ -13047,14 +13405,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
+        >(parameters);
       }
     }
 
@@ -13143,28 +13500,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Sessions$Matchintent,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+      >
     ): void;
     matchIntent(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Matchintent,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+      >
     ): void;
     matchIntent(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+      >
     ): void;
     matchIntent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Sessions$Matchintent
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -13203,14 +13574,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
+        >(parameters);
       }
     }
   }
@@ -13343,28 +13713,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Create,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     create(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Create
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -13403,14 +13787,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+        >(parameters);
       }
     }
 
@@ -13622,28 +14005,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Get
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -13679,14 +14076,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+        >(parameters);
       }
     }
 
@@ -13758,7 +14154,9 @@ export namespace dialogflow_v3beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+    >;
     list(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -13768,32 +14166,48 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
+      | GaxiosPromise<
+          Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List;
@@ -13828,14 +14242,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
+        >(parameters);
       }
     }
 
@@ -13926,28 +14339,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Patch,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Patch,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+      >
     ): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -13983,14 +14410,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
+        >(parameters);
       }
     }
   }
@@ -14146,14 +14572,20 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Webhook
+      >
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Agents$Webhooks$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Webhook
+      >
     ): void;
     create(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Webhook
+      >
     ): void;
     create(
       paramsOrCallback?:
@@ -14425,14 +14857,20 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Webhook
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Webhooks$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Webhook
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Webhook
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -14567,28 +15005,42 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Webhooks$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Webhooks$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Webhooks$List
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -14627,14 +15079,13 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
+        >(parameters);
       }
     }
 
@@ -14728,14 +15179,20 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Webhook
+      >
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agents$Webhooks$Patch,
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Webhook
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDialogflowCxV3beta1Webhook
+      >
     ): void;
     patch(
       paramsOrCallback?:
@@ -15215,14 +15672,20 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleLongrunningListOperationsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleLongrunningListOperationsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleLongrunningListOperationsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -15677,14 +16140,20 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleLongrunningListOperationsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Operations$List,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleLongrunningListOperationsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleLongrunningListOperationsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:

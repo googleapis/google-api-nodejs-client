@@ -2015,14 +2015,20 @@ export namespace apigateway_v1beta {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ApigatewayTestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$ApigatewayTestIamPermissionsResponse>
+      callback: BodyResponseCallback<
+        Schema$ApigatewayTestIamPermissionsResponse
+      >
     ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Testiampermissions,
-      callback: BodyResponseCallback<Schema$ApigatewayTestIamPermissionsResponse>
+      callback: BodyResponseCallback<
+        Schema$ApigatewayTestIamPermissionsResponse
+      >
     ): void;
     testIamPermissions(
-      callback: BodyResponseCallback<Schema$ApigatewayTestIamPermissionsResponse>
+      callback: BodyResponseCallback<
+        Schema$ApigatewayTestIamPermissionsResponse
+      >
     ): void;
     testIamPermissions(
       paramsOrCallback?:
@@ -3287,14 +3293,20 @@ export namespace apigateway_v1beta {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ApigatewayTestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$ApigatewayTestIamPermissionsResponse>
+      callback: BodyResponseCallback<
+        Schema$ApigatewayTestIamPermissionsResponse
+      >
     ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Configs$Testiampermissions,
-      callback: BodyResponseCallback<Schema$ApigatewayTestIamPermissionsResponse>
+      callback: BodyResponseCallback<
+        Schema$ApigatewayTestIamPermissionsResponse
+      >
     ): void;
     testIamPermissions(
-      callback: BodyResponseCallback<Schema$ApigatewayTestIamPermissionsResponse>
+      callback: BodyResponseCallback<
+        Schema$ApigatewayTestIamPermissionsResponse
+      >
     ): void;
     testIamPermissions(
       paramsOrCallback?:
@@ -4544,14 +4556,20 @@ export namespace apigateway_v1beta {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ApigatewayTestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$ApigatewayTestIamPermissionsResponse>
+      callback: BodyResponseCallback<
+        Schema$ApigatewayTestIamPermissionsResponse
+      >
     ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Gateways$Testiampermissions,
-      callback: BodyResponseCallback<Schema$ApigatewayTestIamPermissionsResponse>
+      callback: BodyResponseCallback<
+        Schema$ApigatewayTestIamPermissionsResponse
+      >
     ): void;
     testIamPermissions(
-      callback: BodyResponseCallback<Schema$ApigatewayTestIamPermissionsResponse>
+      callback: BodyResponseCallback<
+        Schema$ApigatewayTestIamPermissionsResponse
+      >
     ): void;
     testIamPermissions(
       paramsOrCallback?:

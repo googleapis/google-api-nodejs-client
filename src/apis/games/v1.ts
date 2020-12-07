@@ -487,19 +487,6 @@ export namespace games_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Hash-like weak identifier of uploaded content bytes (saved game data blob, or cover image). Consistent per player per application per hash version. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash. It's extremely likely, though not guaranteed, that if two content hashes are equal, the blobs are identical.
-   */
-  export interface Schema$ContentHash {
-    /**
-     * Hash-like digest of the content.
-     */
-    digest?: string | null;
-    /**
-     * Version of the Hash encoding algorithm to hash the content.
-     */
-    version?: number | null;
-  }
-  /**
    * Container for a URL end point of the requested type.
    */
   export interface Schema$EndPoint {
@@ -1509,9 +1496,9 @@ export namespace games_v1 {
    */
   export interface Schema$SnapshotCoverImageResource {
     /**
-     * Output only. Hash-like weak identifier of the uploaded image bytes, consistent per player per application per hash version. Within the context of a single player/application, it's guaranteed that two identical images coming from two different uploads will have the same content hash for the same hash algorithm version. It's extremely likely, though not guaranteed, that if two content hashes are equal, the images are identical. More than one content hash can be returned if more than one hash versions are supported.
+     * Output only. Hash-like weak identifier of the uploaded image bytes, consistent per player per application. The content hash for a given resource will not change if the binary data hasn't changed. Except in very rare circumstances, the content_hash for matching binary data will be the same within a given player and application.
      */
-    contentHash?: Schema$ContentHash[];
+    contentHash?: string | null;
     /**
      * Output only. A URL the client can use to download the image. May vary across requests, and only guaranteed to be valid for a short time after it is returned.
      */
@@ -1538,9 +1525,9 @@ export namespace games_v1 {
    */
   export interface Schema$SnapshotDataResource {
     /**
-     * Output only. Hash-like weak identifier of the uploaded blob, consistent per player per application per hash version. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash for the same hash algorithm version. It's extremely likely, though not guaranteed, that if two content hashes are equal, the blobs are identical. More than one content hash can be returned if more than one hash versions are supported.
+     * Output only. Hash-like weak identifier of the uploaded blob bytes, consistent per player per application. The content hash for a given resource will not change if the binary data hasn't changed. Except in very rare circumstances, the content_hash for matching binary data will be the same within a given player and application.
      */
-    contentHash?: Schema$ContentHash[];
+    contentHash?: string | null;
     /**
      * Output only. A URL that the client can use to download the blob. May vary across requests, and only guaranteed to be valid for a short time after it is returned.
      */
@@ -1555,7 +1542,7 @@ export namespace games_v1 {
     size?: string | null;
   }
   /**
-   * A snapshot represents a saved game state referred to using the developer-provided snapshot_id (think of it as a file's path). The set of attributes and binary data for a specific state is called a revision. Each revision is itself immutable, and referred to by a snapshot_revision_id. At any time, a snapshot has a "head" revision, and updates are made against that revision. If a snapshot update is received that isn't against the current head revision, then instead of changing the head revision it will result in a conflicting revision that must be specifically resolved.
+   * A snapshot represents a saved game state referred to using the developer-provided snapshot_name. The set of attributes and binary data for a specific state is called a revision. Each revision is itself immutable, and referred to by a snapshot revision id. At any time, a snapshot has a "head" revision, and updates are made against that revision. If a snapshot update is received that isn't against the current head revision, then instead of changing the head revision it will result in a conflicting revision that must be specifically resolved.
    */
   export interface Schema$SnapshotExtended {
     /**
@@ -1571,9 +1558,9 @@ export namespace games_v1 {
      */
     headRevision?: Schema$SnapshotRevision;
     /**
-     * An identifier of the snapshot,developer-specified.
+     * An identifier of the snapshot, developer-specified. It must match the pattern [0-9a-zA-Z-._~]{1,100\}.
      */
-    name?: string | null;
+    snapshotName?: string | null;
   }
   /**
    * An image of a snapshot.
@@ -1632,19 +1619,15 @@ export namespace games_v1 {
     /**
      * The duration associated with this snapshot. Values with sub-millisecond precision can be rounded or trimmed to the closest millisecond.
      */
-    duration?: string | null;
+    gameplayDuration?: string | null;
     /**
-     * The timestamp of the last modification to this snapshot. Values with sub-millisecond precision can be rounded or trimmed to the closest millisecond.
+     * The timestamp of the last modification to this snapshot as provided by the client. Values with sub-millisecond precision can be rounded or trimmed to the closest millisecond.
      */
     lastModifyTime?: string | null;
     /**
      * The progress value (64-bit integer set by developer) associated with this snapshot.
      */
     progressValue?: string | null;
-    /**
-     * The title of this snapshot.
-     */
-    title?: string | null;
   }
   /**
    * A Snapshot revision resource. Snapshot revisions are immutable.

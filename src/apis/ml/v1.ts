@@ -3241,14 +3241,20 @@ export namespace ml_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleIamV1__TestIamPermissionsResponse
+      >
     ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Jobs$Testiampermissions,
-      callback: BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleIamV1__TestIamPermissionsResponse
+      >
     ): void;
     testIamPermissions(
-      callback: BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleIamV1__TestIamPermissionsResponse
+      >
     ): void;
     testIamPermissions(
       paramsOrCallback?:
@@ -3637,14 +3643,20 @@ export namespace ml_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListLocationsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListLocationsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__ListLocationsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListLocationsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -4515,14 +4527,20 @@ export namespace ml_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudMlV1__ListStudiesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__ListStudiesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListStudiesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Studies$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__ListStudiesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListStudiesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__ListStudiesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListStudiesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -5733,28 +5751,42 @@ export namespace ml_v1 {
       params: Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListOptimalTrialsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__ListOptimalTrialsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+      >
     ): void;
     listOptimalTrials(
       params: Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials,
-      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__ListOptimalTrialsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+      >
     ): void;
     listOptimalTrials(
-      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__ListOptimalTrialsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+      >
     ): void;
     listOptimalTrials(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListOptimalTrialsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListOptimalTrialsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudMlV1__ListOptimalTrialsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -5798,9 +5830,9 @@ export namespace ml_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudMlV1__ListOptimalTrialsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+        >(parameters);
       }
     }
 
@@ -7318,14 +7350,20 @@ export namespace ml_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleIamV1__TestIamPermissionsResponse
+      >
     ): void;
     testIamPermissions(
       params: Params$Resource$Projects$Models$Testiampermissions,
-      callback: BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleIamV1__TestIamPermissionsResponse
+      >
     ): void;
     testIamPermissions(
-      callback: BodyResponseCallback<Schema$GoogleIamV1__TestIamPermissionsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleIamV1__TestIamPermissionsResponse
+      >
     ): void;
     testIamPermissions(
       paramsOrCallback?:
@@ -8036,14 +8074,20 @@ export namespace ml_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListVersionsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Models$Versions$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListVersionsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudMlV1__ListVersionsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListVersionsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -8866,15 +8910,23 @@ export namespace ml_v1 {
       params: Params$Resource$Projects$Operations$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleLongrunning__ListOperationsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleLongrunning__ListOperationsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Operations$List,
-      callback: BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleLongrunning__ListOperationsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleLongrunning__ListOperationsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleLongrunning__ListOperationsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -8931,9 +8983,9 @@ export namespace ml_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleLongrunning__ListOperationsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleLongrunning__ListOperationsResponse
+        >(parameters);
       }
     }
   }

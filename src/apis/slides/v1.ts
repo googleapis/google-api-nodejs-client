@@ -1738,7 +1738,7 @@ export namespace slides_v1 {
     solidFill?: Schema$SolidFill;
   }
   /**
-   * The properties of a Shape. If the shape is a placeholder shape as determined by the placeholder field, then these properties may be inherited from a parent placeholder shape. Determining the rendered value of the property depends on the corresponding property_state field value.
+   * The properties of a Shape. If the shape is a placeholder shape as determined by the placeholder field, then these properties may be inherited from a parent placeholder shape. Determining the rendered value of the property depends on the corresponding property_state field value. Any text autofit settings on the shape are automatically deactivated by requests that can impact how text fits in the shape.
    */
   export interface Schema$ShapeProperties {
     /**

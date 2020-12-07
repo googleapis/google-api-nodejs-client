@@ -7858,28 +7858,42 @@ export namespace sqladmin_v1beta4 {
       params: Params$Resource$Projects$Instances$Verifyexternalsyncsettings,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>,
-      callback: BodyResponseCallback<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
+        | BodyResponseCallback<
+            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+      >
     ): void;
     verifyExternalSyncSettings(
       params: Params$Resource$Projects$Instances$Verifyexternalsyncsettings,
-      callback: BodyResponseCallback<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
+      callback: BodyResponseCallback<
+        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+      >
     ): void;
     verifyExternalSyncSettings(
-      callback: BodyResponseCallback<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
+      callback: BodyResponseCallback<
+        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+      >
     ): void;
     verifyExternalSyncSettings(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Verifyexternalsyncsettings
-        | BodyResponseCallback<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
+        | BodyResponseCallback<
+            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
+        | BodyResponseCallback<
+            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
+        | BodyResponseCallback<
+            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -7923,9 +7937,9 @@ export namespace sqladmin_v1beta4 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$SqlInstancesVerifyExternalSyncSettingsResponse
+        >(parameters);
       }
     }
   }

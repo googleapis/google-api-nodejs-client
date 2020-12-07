@@ -894,14 +894,20 @@ export namespace gamesConfiguration_v1configuration {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$AchievementConfigurationListResponse>,
-      callback: BodyResponseCallback<Schema$AchievementConfigurationListResponse>
+      callback: BodyResponseCallback<
+        Schema$AchievementConfigurationListResponse
+      >
     ): void;
     list(
       params: Params$Resource$Achievementconfigurations$List,
-      callback: BodyResponseCallback<Schema$AchievementConfigurationListResponse>
+      callback: BodyResponseCallback<
+        Schema$AchievementConfigurationListResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$AchievementConfigurationListResponse>
+      callback: BodyResponseCallback<
+        Schema$AchievementConfigurationListResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
@@ -1869,14 +1875,20 @@ export namespace gamesConfiguration_v1configuration {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>,
-      callback: BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>
+      callback: BodyResponseCallback<
+        Schema$LeaderboardConfigurationListResponse
+      >
     ): void;
     list(
       params: Params$Resource$Leaderboardconfigurations$List,
-      callback: BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>
+      callback: BodyResponseCallback<
+        Schema$LeaderboardConfigurationListResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$LeaderboardConfigurationListResponse>
+      callback: BodyResponseCallback<
+        Schema$LeaderboardConfigurationListResponse
+      >
     ): void;
     list(
       paramsOrCallback?:

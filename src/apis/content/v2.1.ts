@@ -323,15 +323,15 @@ export namespace content_v2_1 {
    */
   export interface Schema$AccountLabel {
     /**
-     * Output only. Immutable. The ID of account this label belongs to.
+     * Immutable. The ID of account this label belongs to.
      */
     accountId?: string | null;
     /**
-     * Description for this label.
+     * The description of this label.
      */
     description?: string | null;
     /**
-     * Output only. Immutable. The ID of the label.
+     * Output only. The ID of the label.
      */
     labelId?: string | null;
     /**
@@ -420,7 +420,7 @@ export namespace content_v2_1 {
      */
     linkType?: string | null;
     /**
-     * List of provided services.
+     * Provided services. Acceptable values are: - "`shoppingAdsProductManagement`" - "`shoppingAdsOther`" - "`shoppingActionsProductManagement`" - "`shoppingActionsOrderManagement`" - "`shoppingActionsOther`"
      */
     services?: string[] | null;
   }
@@ -1749,7 +1749,7 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * The the list of accessible GMB accounts.
+     * The list of accessible GMB accounts.
      */
     gmbAccounts?: Schema$GmbAccounts;
     /**
@@ -5252,6 +5252,10 @@ export namespace content_v2_1 {
      * Filter by the offer id.
      */
     offerIdMatcher?: Schema$RepricingRuleEligibleOfferMatcherStringMatcher;
+    /**
+     * When true, the rule won't be applied to offers with active promotions.
+     */
+    skipWhenOnPromotion?: boolean | null;
   }
   /**
    * Matcher by string attributes.
@@ -5574,7 +5578,7 @@ export namespace content_v2_1 {
      */
     deliveryDate?: string | null;
     /**
-     * Type of the return method. Acceptable values are: - "`byMail`" - "`contactCustomerSupport`" - "`returnless`"
+     * Type of the return method. Acceptable values are: - "`byMail`" - "`contactCustomerSupport`" - "`returnless`" - "`inStore`"
      */
     returnMethodType?: string | null;
     /**
@@ -5718,7 +5722,7 @@ export namespace content_v2_1 {
   export interface Schema$SettlementTransactionAmount {
     commission?: Schema$SettlementTransactionAmountCommission;
     /**
-     * The description of the event. Acceptable values are: - "`taxWithhold`" - "`principal`" - "`principalAdjustment`" - "`shippingFee`" - "`merchantRemittedSalesTax`" - "`googleRemittedSalesTax`" - "`merchantCoupon`" - "`merchantCouponTax`" - "`merchantRemittedDisposalTax`" - "`googleRemittedDisposalTax`" - "`merchantRemittedRedemptionFee`" - "`googleRemittedRedemptionFee`" - "`eeeEcoFee`" - "`furnitureEcoFee`" - "`copyPrivateFee`" - "`eeeEcoFeeCommission`" - "`furnitureEcoFeeCommission`" - "`copyPrivateFeeCommission`" - "`principalRefund`" - "`principalRefundTax`" - "`itemCommission`" - "`adjustmentCommission`" - "`shippingFeeCommission`" - "`commissionRefund`" - "`damaged`" - "`damagedOrDefectiveItem`" - "`expiredItem`" - "`faultyItem`" - "`incorrectItemReceived`" - "`itemMissing`" - "`qualityNotExpected`" - "`receivedTooLate`" - "`storePackageMissing`" - "`transitPackageMissing`" - "`unsuccessfulDeliveryUndeliverable`" - "`wrongChargeInStore`" - "`wrongItem`" - "`returns`" - "`undeliverable`" - "`refundFromMerchant`" - "`returnLabelShippingFee`"
+     * The description of the event. Acceptable values are: - "`taxWithhold`" - "`principal`" - "`principalAdjustment`" - "`shippingFee`" - "`merchantRemittedSalesTax`" - "`googleRemittedSalesTax`" - "`merchantCoupon`" - "`merchantCouponTax`" - "`merchantRemittedDisposalTax`" - "`googleRemittedDisposalTax`" - "`merchantRemittedRedemptionFee`" - "`googleRemittedRedemptionFee`" - "`eeeEcoFee`" - "`furnitureEcoFee`" - "`copyPrivateFee`" - "`eeeEcoFeeCommission`" - "`furnitureEcoFeeCommission`" - "`copyPrivateFeeCommission`" - "`principalRefund`" - "`principalRefundTax`" - "`itemCommission`" - "`adjustmentCommission`" - "`shippingFeeCommission`" - "`commissionRefund`" - "`damaged`" - "`damagedOrDefectiveItem`" - "`expiredItem`" - "`faultyItem`" - "`incorrectItemReceived`" - "`itemMissing`" - "`qualityNotExpected`" - "`receivedTooLate`" - "`storePackageMissing`" - "`transitPackageMissing`" - "`unsuccessfulDeliveryUndeliverable`" - "`wrongChargeInStore`" - "`wrongItem`" - "`returns`" - "`undeliverable`" - "`refundFromMerchant`" - "`returnLabelShippingFee`" - "`pspFee`"
      */
     description?: string | null;
     /**
@@ -12118,28 +12122,42 @@ export namespace content_v2_1 {
       params: Params$Resource$Liasettings$Getaccessiblegmbaccounts,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$LiasettingsGetAccessibleGmbAccountsResponse>,
-      callback: BodyResponseCallback<Schema$LiasettingsGetAccessibleGmbAccountsResponse>
+        | BodyResponseCallback<
+            Schema$LiasettingsGetAccessibleGmbAccountsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$LiasettingsGetAccessibleGmbAccountsResponse
+      >
     ): void;
     getaccessiblegmbaccounts(
       params: Params$Resource$Liasettings$Getaccessiblegmbaccounts,
-      callback: BodyResponseCallback<Schema$LiasettingsGetAccessibleGmbAccountsResponse>
+      callback: BodyResponseCallback<
+        Schema$LiasettingsGetAccessibleGmbAccountsResponse
+      >
     ): void;
     getaccessiblegmbaccounts(
-      callback: BodyResponseCallback<Schema$LiasettingsGetAccessibleGmbAccountsResponse>
+      callback: BodyResponseCallback<
+        Schema$LiasettingsGetAccessibleGmbAccountsResponse
+      >
     ): void;
     getaccessiblegmbaccounts(
       paramsOrCallback?:
         | Params$Resource$Liasettings$Getaccessiblegmbaccounts
-        | BodyResponseCallback<Schema$LiasettingsGetAccessibleGmbAccountsResponse>
+        | BodyResponseCallback<
+            Schema$LiasettingsGetAccessibleGmbAccountsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$LiasettingsGetAccessibleGmbAccountsResponse>
+        | BodyResponseCallback<
+            Schema$LiasettingsGetAccessibleGmbAccountsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LiasettingsGetAccessibleGmbAccountsResponse>
+        | BodyResponseCallback<
+            Schema$LiasettingsGetAccessibleGmbAccountsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -12184,9 +12202,9 @@ export namespace content_v2_1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$LiasettingsGetAccessibleGmbAccountsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$LiasettingsGetAccessibleGmbAccountsResponse
+        >(parameters);
       }
     }
 
@@ -12396,14 +12414,20 @@ export namespace content_v2_1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$LiasettingsListPosDataProvidersResponse>,
-      callback: BodyResponseCallback<Schema$LiasettingsListPosDataProvidersResponse>
+      callback: BodyResponseCallback<
+        Schema$LiasettingsListPosDataProvidersResponse
+      >
     ): void;
     listposdataproviders(
       params: Params$Resource$Liasettings$Listposdataproviders,
-      callback: BodyResponseCallback<Schema$LiasettingsListPosDataProvidersResponse>
+      callback: BodyResponseCallback<
+        Schema$LiasettingsListPosDataProvidersResponse
+      >
     ): void;
     listposdataproviders(
-      callback: BodyResponseCallback<Schema$LiasettingsListPosDataProvidersResponse>
+      callback: BodyResponseCallback<
+        Schema$LiasettingsListPosDataProvidersResponse
+      >
     ): void;
     listposdataproviders(
       paramsOrCallback?:
@@ -12680,28 +12704,42 @@ export namespace content_v2_1 {
       params: Params$Resource$Liasettings$Requestinventoryverification,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$LiasettingsRequestInventoryVerificationResponse>,
-      callback: BodyResponseCallback<Schema$LiasettingsRequestInventoryVerificationResponse>
+        | BodyResponseCallback<
+            Schema$LiasettingsRequestInventoryVerificationResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$LiasettingsRequestInventoryVerificationResponse
+      >
     ): void;
     requestinventoryverification(
       params: Params$Resource$Liasettings$Requestinventoryverification,
-      callback: BodyResponseCallback<Schema$LiasettingsRequestInventoryVerificationResponse>
+      callback: BodyResponseCallback<
+        Schema$LiasettingsRequestInventoryVerificationResponse
+      >
     ): void;
     requestinventoryverification(
-      callback: BodyResponseCallback<Schema$LiasettingsRequestInventoryVerificationResponse>
+      callback: BodyResponseCallback<
+        Schema$LiasettingsRequestInventoryVerificationResponse
+      >
     ): void;
     requestinventoryverification(
       paramsOrCallback?:
         | Params$Resource$Liasettings$Requestinventoryverification
-        | BodyResponseCallback<Schema$LiasettingsRequestInventoryVerificationResponse>
+        | BodyResponseCallback<
+            Schema$LiasettingsRequestInventoryVerificationResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$LiasettingsRequestInventoryVerificationResponse>
+        | BodyResponseCallback<
+            Schema$LiasettingsRequestInventoryVerificationResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LiasettingsRequestInventoryVerificationResponse>
+        | BodyResponseCallback<
+            Schema$LiasettingsRequestInventoryVerificationResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -12741,14 +12779,13 @@ export namespace content_v2_1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LiasettingsRequestInventoryVerificationResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$LiasettingsRequestInventoryVerificationResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$LiasettingsRequestInventoryVerificationResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$LiasettingsRequestInventoryVerificationResponse
+        >(parameters);
       }
     }
 
@@ -12829,28 +12866,42 @@ export namespace content_v2_1 {
       params: Params$Resource$Liasettings$Setinventoryverificationcontact,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$LiasettingsSetInventoryVerificationContactResponse>,
-      callback: BodyResponseCallback<Schema$LiasettingsSetInventoryVerificationContactResponse>
+        | BodyResponseCallback<
+            Schema$LiasettingsSetInventoryVerificationContactResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$LiasettingsSetInventoryVerificationContactResponse
+      >
     ): void;
     setinventoryverificationcontact(
       params: Params$Resource$Liasettings$Setinventoryverificationcontact,
-      callback: BodyResponseCallback<Schema$LiasettingsSetInventoryVerificationContactResponse>
+      callback: BodyResponseCallback<
+        Schema$LiasettingsSetInventoryVerificationContactResponse
+      >
     ): void;
     setinventoryverificationcontact(
-      callback: BodyResponseCallback<Schema$LiasettingsSetInventoryVerificationContactResponse>
+      callback: BodyResponseCallback<
+        Schema$LiasettingsSetInventoryVerificationContactResponse
+      >
     ): void;
     setinventoryverificationcontact(
       paramsOrCallback?:
         | Params$Resource$Liasettings$Setinventoryverificationcontact
-        | BodyResponseCallback<Schema$LiasettingsSetInventoryVerificationContactResponse>
+        | BodyResponseCallback<
+            Schema$LiasettingsSetInventoryVerificationContactResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$LiasettingsSetInventoryVerificationContactResponse>
+        | BodyResponseCallback<
+            Schema$LiasettingsSetInventoryVerificationContactResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$LiasettingsSetInventoryVerificationContactResponse>
+        | BodyResponseCallback<
+            Schema$LiasettingsSetInventoryVerificationContactResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -12897,14 +12948,13 @@ export namespace content_v2_1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$LiasettingsSetInventoryVerificationContactResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$LiasettingsSetInventoryVerificationContactResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$LiasettingsSetInventoryVerificationContactResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$LiasettingsSetInventoryVerificationContactResponse
+        >(parameters);
       }
     }
 
@@ -12984,14 +13034,20 @@ export namespace content_v2_1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>,
-      callback: BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>
+      callback: BodyResponseCallback<
+        Schema$LiasettingsSetPosDataProviderResponse
+      >
     ): void;
     setposdataprovider(
       params: Params$Resource$Liasettings$Setposdataprovider,
-      callback: BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>
+      callback: BodyResponseCallback<
+        Schema$LiasettingsSetPosDataProviderResponse
+      >
     ): void;
     setposdataprovider(
-      callback: BodyResponseCallback<Schema$LiasettingsSetPosDataProviderResponse>
+      callback: BodyResponseCallback<
+        Schema$LiasettingsSetPosDataProviderResponse
+      >
     ): void;
     setposdataprovider(
       paramsOrCallback?:
@@ -13763,14 +13819,20 @@ export namespace content_v2_1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$OrderinvoicesCreateChargeInvoiceResponse>,
-      callback: BodyResponseCallback<Schema$OrderinvoicesCreateChargeInvoiceResponse>
+      callback: BodyResponseCallback<
+        Schema$OrderinvoicesCreateChargeInvoiceResponse
+      >
     ): void;
     createchargeinvoice(
       params: Params$Resource$Orderinvoices$Createchargeinvoice,
-      callback: BodyResponseCallback<Schema$OrderinvoicesCreateChargeInvoiceResponse>
+      callback: BodyResponseCallback<
+        Schema$OrderinvoicesCreateChargeInvoiceResponse
+      >
     ): void;
     createchargeinvoice(
-      callback: BodyResponseCallback<Schema$OrderinvoicesCreateChargeInvoiceResponse>
+      callback: BodyResponseCallback<
+        Schema$OrderinvoicesCreateChargeInvoiceResponse
+      >
     ): void;
     createchargeinvoice(
       paramsOrCallback?:
@@ -13828,9 +13890,9 @@ export namespace content_v2_1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$OrderinvoicesCreateChargeInvoiceResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$OrderinvoicesCreateChargeInvoiceResponse
+        >(parameters);
       }
     }
 
@@ -13917,14 +13979,20 @@ export namespace content_v2_1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$OrderinvoicesCreateRefundInvoiceResponse>,
-      callback: BodyResponseCallback<Schema$OrderinvoicesCreateRefundInvoiceResponse>
+      callback: BodyResponseCallback<
+        Schema$OrderinvoicesCreateRefundInvoiceResponse
+      >
     ): void;
     createrefundinvoice(
       params: Params$Resource$Orderinvoices$Createrefundinvoice,
-      callback: BodyResponseCallback<Schema$OrderinvoicesCreateRefundInvoiceResponse>
+      callback: BodyResponseCallback<
+        Schema$OrderinvoicesCreateRefundInvoiceResponse
+      >
     ): void;
     createrefundinvoice(
-      callback: BodyResponseCallback<Schema$OrderinvoicesCreateRefundInvoiceResponse>
+      callback: BodyResponseCallback<
+        Schema$OrderinvoicesCreateRefundInvoiceResponse
+      >
     ): void;
     createrefundinvoice(
       paramsOrCallback?:
@@ -13982,9 +14050,9 @@ export namespace content_v2_1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$OrderinvoicesCreateRefundInvoiceResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$OrderinvoicesCreateRefundInvoiceResponse
+        >(parameters);
       }
     }
   }
@@ -14106,14 +14174,20 @@ export namespace content_v2_1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>,
-      callback: BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>
+      callback: BodyResponseCallback<
+        Schema$OrderreportsListDisbursementsResponse
+      >
     ): void;
     listdisbursements(
       params: Params$Resource$Orderreports$Listdisbursements,
-      callback: BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>
+      callback: BodyResponseCallback<
+        Schema$OrderreportsListDisbursementsResponse
+      >
     ): void;
     listdisbursements(
-      callback: BodyResponseCallback<Schema$OrderreportsListDisbursementsResponse>
+      callback: BodyResponseCallback<
+        Schema$OrderreportsListDisbursementsResponse
+      >
     ): void;
     listdisbursements(
       paramsOrCallback?:
@@ -14256,14 +14330,20 @@ export namespace content_v2_1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>,
-      callback: BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>
+      callback: BodyResponseCallback<
+        Schema$OrderreportsListTransactionsResponse
+      >
     ): void;
     listtransactions(
       params: Params$Resource$Orderreports$Listtransactions,
-      callback: BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>
+      callback: BodyResponseCallback<
+        Schema$OrderreportsListTransactionsResponse
+      >
     ): void;
     listtransactions(
-      callback: BodyResponseCallback<Schema$OrderreportsListTransactionsResponse>
+      callback: BodyResponseCallback<
+        Schema$OrderreportsListTransactionsResponse
+      >
     ): void;
     listtransactions(
       paramsOrCallback?:
@@ -14616,14 +14696,20 @@ export namespace content_v2_1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$OrderreturnsCreateOrderReturnResponse>,
-      callback: BodyResponseCallback<Schema$OrderreturnsCreateOrderReturnResponse>
+      callback: BodyResponseCallback<
+        Schema$OrderreturnsCreateOrderReturnResponse
+      >
     ): void;
     createorderreturn(
       params: Params$Resource$Orderreturns$Createorderreturn,
-      callback: BodyResponseCallback<Schema$OrderreturnsCreateOrderReturnResponse>
+      callback: BodyResponseCallback<
+        Schema$OrderreturnsCreateOrderReturnResponse
+      >
     ): void;
     createorderreturn(
-      callback: BodyResponseCallback<Schema$OrderreturnsCreateOrderReturnResponse>
+      callback: BodyResponseCallback<
+        Schema$OrderreturnsCreateOrderReturnResponse
+      >
     ): void;
     createorderreturn(
       paramsOrCallback?:
@@ -15917,14 +16003,20 @@ export namespace content_v2_1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>,
-      callback: BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>
+      callback: BodyResponseCallback<
+        Schema$OrdersCancelTestOrderByCustomerResponse
+      >
     ): void;
     canceltestorderbycustomer(
       params: Params$Resource$Orders$Canceltestorderbycustomer,
-      callback: BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>
+      callback: BodyResponseCallback<
+        Schema$OrdersCancelTestOrderByCustomerResponse
+      >
     ): void;
     canceltestorderbycustomer(
-      callback: BodyResponseCallback<Schema$OrdersCancelTestOrderByCustomerResponse>
+      callback: BodyResponseCallback<
+        Schema$OrdersCancelTestOrderByCustomerResponse
+      >
     ): void;
     canceltestorderbycustomer(
       paramsOrCallback?:
@@ -18030,28 +18122,42 @@ export namespace content_v2_1 {
       params: Params$Resource$Orders$Updatelineitemshippingdetails,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$OrdersUpdateLineItemShippingDetailsResponse>,
-      callback: BodyResponseCallback<Schema$OrdersUpdateLineItemShippingDetailsResponse>
+        | BodyResponseCallback<
+            Schema$OrdersUpdateLineItemShippingDetailsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$OrdersUpdateLineItemShippingDetailsResponse
+      >
     ): void;
     updatelineitemshippingdetails(
       params: Params$Resource$Orders$Updatelineitemshippingdetails,
-      callback: BodyResponseCallback<Schema$OrdersUpdateLineItemShippingDetailsResponse>
+      callback: BodyResponseCallback<
+        Schema$OrdersUpdateLineItemShippingDetailsResponse
+      >
     ): void;
     updatelineitemshippingdetails(
-      callback: BodyResponseCallback<Schema$OrdersUpdateLineItemShippingDetailsResponse>
+      callback: BodyResponseCallback<
+        Schema$OrdersUpdateLineItemShippingDetailsResponse
+      >
     ): void;
     updatelineitemshippingdetails(
       paramsOrCallback?:
         | Params$Resource$Orders$Updatelineitemshippingdetails
-        | BodyResponseCallback<Schema$OrdersUpdateLineItemShippingDetailsResponse>
+        | BodyResponseCallback<
+            Schema$OrdersUpdateLineItemShippingDetailsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$OrdersUpdateLineItemShippingDetailsResponse>
+        | BodyResponseCallback<
+            Schema$OrdersUpdateLineItemShippingDetailsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$OrdersUpdateLineItemShippingDetailsResponse>
+        | BodyResponseCallback<
+            Schema$OrdersUpdateLineItemShippingDetailsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -18096,9 +18202,9 @@ export namespace content_v2_1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$OrdersUpdateLineItemShippingDetailsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$OrdersUpdateLineItemShippingDetailsResponse
+        >(parameters);
       }
     }
 
@@ -21868,14 +21974,20 @@ export namespace content_v2_1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>,
-      callback: BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>
+      callback: BodyResponseCallback<
+        Schema$RegionalinventoryCustomBatchResponse
+      >
     ): void;
     custombatch(
       params: Params$Resource$Regionalinventory$Custombatch,
-      callback: BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>
+      callback: BodyResponseCallback<
+        Schema$RegionalinventoryCustomBatchResponse
+      >
     ): void;
     custombatch(
-      callback: BodyResponseCallback<Schema$RegionalinventoryCustomBatchResponse>
+      callback: BodyResponseCallback<
+        Schema$RegionalinventoryCustomBatchResponse
+      >
     ): void;
     custombatch(
       paramsOrCallback?:
@@ -26083,28 +26195,42 @@ export namespace content_v2_1 {
       params: Params$Resource$Shippingsettings$Getsupportedcarriers,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$ShippingsettingsGetSupportedCarriersResponse>,
-      callback: BodyResponseCallback<Schema$ShippingsettingsGetSupportedCarriersResponse>
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedCarriersResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedCarriersResponse
+      >
     ): void;
     getsupportedcarriers(
       params: Params$Resource$Shippingsettings$Getsupportedcarriers,
-      callback: BodyResponseCallback<Schema$ShippingsettingsGetSupportedCarriersResponse>
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedCarriersResponse
+      >
     ): void;
     getsupportedcarriers(
-      callback: BodyResponseCallback<Schema$ShippingsettingsGetSupportedCarriersResponse>
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedCarriersResponse
+      >
     ): void;
     getsupportedcarriers(
       paramsOrCallback?:
         | Params$Resource$Shippingsettings$Getsupportedcarriers
-        | BodyResponseCallback<Schema$ShippingsettingsGetSupportedCarriersResponse>
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedCarriersResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ShippingsettingsGetSupportedCarriersResponse>
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedCarriersResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ShippingsettingsGetSupportedCarriersResponse>
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedCarriersResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -26148,9 +26274,9 @@ export namespace content_v2_1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ShippingsettingsGetSupportedCarriersResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$ShippingsettingsGetSupportedCarriersResponse
+        >(parameters);
       }
     }
 
@@ -26222,28 +26348,42 @@ export namespace content_v2_1 {
       params: Params$Resource$Shippingsettings$Getsupportedholidays,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$ShippingsettingsGetSupportedHolidaysResponse>,
-      callback: BodyResponseCallback<Schema$ShippingsettingsGetSupportedHolidaysResponse>
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedHolidaysResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedHolidaysResponse
+      >
     ): void;
     getsupportedholidays(
       params: Params$Resource$Shippingsettings$Getsupportedholidays,
-      callback: BodyResponseCallback<Schema$ShippingsettingsGetSupportedHolidaysResponse>
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedHolidaysResponse
+      >
     ): void;
     getsupportedholidays(
-      callback: BodyResponseCallback<Schema$ShippingsettingsGetSupportedHolidaysResponse>
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedHolidaysResponse
+      >
     ): void;
     getsupportedholidays(
       paramsOrCallback?:
         | Params$Resource$Shippingsettings$Getsupportedholidays
-        | BodyResponseCallback<Schema$ShippingsettingsGetSupportedHolidaysResponse>
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedHolidaysResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ShippingsettingsGetSupportedHolidaysResponse>
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedHolidaysResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ShippingsettingsGetSupportedHolidaysResponse>
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedHolidaysResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -26287,9 +26427,9 @@ export namespace content_v2_1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ShippingsettingsGetSupportedHolidaysResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$ShippingsettingsGetSupportedHolidaysResponse
+        >(parameters);
       }
     }
 
@@ -26361,28 +26501,42 @@ export namespace content_v2_1 {
       params: Params$Resource$Shippingsettings$Getsupportedpickupservices,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$ShippingsettingsGetSupportedPickupServicesResponse>,
-      callback: BodyResponseCallback<Schema$ShippingsettingsGetSupportedPickupServicesResponse>
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedPickupServicesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedPickupServicesResponse
+      >
     ): void;
     getsupportedpickupservices(
       params: Params$Resource$Shippingsettings$Getsupportedpickupservices,
-      callback: BodyResponseCallback<Schema$ShippingsettingsGetSupportedPickupServicesResponse>
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedPickupServicesResponse
+      >
     ): void;
     getsupportedpickupservices(
-      callback: BodyResponseCallback<Schema$ShippingsettingsGetSupportedPickupServicesResponse>
+      callback: BodyResponseCallback<
+        Schema$ShippingsettingsGetSupportedPickupServicesResponse
+      >
     ): void;
     getsupportedpickupservices(
       paramsOrCallback?:
         | Params$Resource$Shippingsettings$Getsupportedpickupservices
-        | BodyResponseCallback<Schema$ShippingsettingsGetSupportedPickupServicesResponse>
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedPickupServicesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ShippingsettingsGetSupportedPickupServicesResponse>
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedPickupServicesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ShippingsettingsGetSupportedPickupServicesResponse>
+        | BodyResponseCallback<
+            Schema$ShippingsettingsGetSupportedPickupServicesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -26421,14 +26575,13 @@ export namespace content_v2_1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ShippingsettingsGetSupportedPickupServicesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$ShippingsettingsGetSupportedPickupServicesResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$ShippingsettingsGetSupportedPickupServicesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$ShippingsettingsGetSupportedPickupServicesResponse
+        >(parameters);
       }
     }
 

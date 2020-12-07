@@ -7689,14 +7689,20 @@ export namespace adexchangebuyer_v1_4 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GetPublisherProfilesByAccountIdResponse>,
-      callback: BodyResponseCallback<Schema$GetPublisherProfilesByAccountIdResponse>
+      callback: BodyResponseCallback<
+        Schema$GetPublisherProfilesByAccountIdResponse
+      >
     ): void;
     list(
       params: Params$Resource$Pubprofiles$List,
-      callback: BodyResponseCallback<Schema$GetPublisherProfilesByAccountIdResponse>
+      callback: BodyResponseCallback<
+        Schema$GetPublisherProfilesByAccountIdResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GetPublisherProfilesByAccountIdResponse>
+      callback: BodyResponseCallback<
+        Schema$GetPublisherProfilesByAccountIdResponse
+      >
     ): void;
     list(
       paramsOrCallback?:

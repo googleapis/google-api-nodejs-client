@@ -962,28 +962,42 @@ export namespace datacatalog_v1beta1 {
       params: Params$Resource$Catalog$Search,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse
+      >
     ): void;
     search(
       params: Params$Resource$Catalog$Search,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse
+      >
     ): void;
     search(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse
+      >
     ): void;
     search(
       paramsOrCallback?:
         | Params$Resource$Catalog$Search
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1021,14 +1035,13 @@ export namespace datacatalog_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse
+        >(parameters);
       }
     }
   }
@@ -1335,14 +1348,20 @@ export namespace datacatalog_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1EntryGroup
+      >
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Entrygroups$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1EntryGroup
+      >
     ): void;
     create(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1EntryGroup
+      >
     ): void;
     create(
       paramsOrCallback?:
@@ -1604,14 +1623,20 @@ export namespace datacatalog_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1EntryGroup
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Entrygroups$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1EntryGroup
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1EntryGroup
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -1873,7 +1898,9 @@ export namespace datacatalog_v1beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Entrygroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+    >;
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1883,32 +1910,48 @@ export namespace datacatalog_v1beta1 {
       params: Params$Resource$Projects$Locations$Entrygroups$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Entrygroups$List
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse>
+      | GaxiosPromise<
+          Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Entrygroups$List;
@@ -1943,14 +1986,13 @@ export namespace datacatalog_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
+        >(parameters);
       }
     }
 
@@ -2038,14 +2080,20 @@ export namespace datacatalog_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1EntryGroup
+      >
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Entrygroups$Patch,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1EntryGroup
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1EntryGroup
+      >
     ): void;
     patch(
       paramsOrCallback?:
@@ -3172,28 +3220,42 @@ export namespace datacatalog_v1beta1 {
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Entrygroups$Entries$List
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -3232,14 +3294,13 @@ export namespace datacatalog_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse
+        >(parameters);
       }
     }
 
@@ -4016,28 +4077,42 @@ export namespace datacatalog_v1beta1 {
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$List
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4081,9 +4156,9 @@ export namespace datacatalog_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+        >(parameters);
       }
     }
 
@@ -4654,28 +4729,42 @@ export namespace datacatalog_v1beta1 {
       params: Params$Resource$Projects$Locations$Entrygroups$Tags$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Entrygroups$Tags$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Entrygroups$Tags$List
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4719,9 +4808,9 @@ export namespace datacatalog_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse
+        >(parameters);
       }
     }
 
@@ -5023,14 +5112,20 @@ export namespace datacatalog_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplate
+      >
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Tagtemplates$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplate
+      >
     ): void;
     create(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplate
+      >
     ): void;
     create(
       paramsOrCallback?:
@@ -5087,9 +5182,9 @@ export namespace datacatalog_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1TagTemplate
+        >(parameters);
       }
     }
 
@@ -5291,14 +5386,20 @@ export namespace datacatalog_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplate
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Tagtemplates$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplate
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplate
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -5352,9 +5453,9 @@ export namespace datacatalog_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1TagTemplate
+        >(parameters);
       }
     }
 
@@ -5581,14 +5682,20 @@ export namespace datacatalog_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplate
+      >
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Tagtemplates$Patch,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplate
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplate
+      >
     ): void;
     patch(
       paramsOrCallback?:
@@ -5642,9 +5749,9 @@ export namespace datacatalog_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1TagTemplate
+        >(parameters);
       }
     }
 
@@ -6121,28 +6228,42 @@ export namespace datacatalog_v1beta1 {
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Create,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+      >
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+      >
     ): void;
     create(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+      >
     ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Tagtemplates$Fields$Create
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -6186,9 +6307,9 @@ export namespace datacatalog_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+        >(parameters);
       }
     }
 
@@ -6407,28 +6528,42 @@ export namespace datacatalog_v1beta1 {
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Patch,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+      >
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Patch,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+      >
     ): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Tagtemplates$Fields$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -6469,9 +6604,9 @@ export namespace datacatalog_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+        >(parameters);
       }
     }
 
@@ -6556,28 +6691,42 @@ export namespace datacatalog_v1beta1 {
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Rename,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+      >
     ): void;
     rename(
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Rename,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+      >
     ): void;
     rename(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+      >
     ): void;
     rename(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Tagtemplates$Fields$Rename
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -6621,9 +6770,9 @@ export namespace datacatalog_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+        >(parameters);
       }
     }
   }
@@ -6773,28 +6922,42 @@ export namespace datacatalog_v1beta1 {
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+      >
     ): void;
     rename(
       params: Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+      >
     ): void;
     rename(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+      >
     ): void;
     rename(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -6838,9 +7001,9 @@ export namespace datacatalog_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1TagTemplateField
+        >(parameters);
       }
     }
   }
@@ -6954,14 +7117,20 @@ export namespace datacatalog_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1Taxonomy
+      >
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Taxonomies$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1Taxonomy
+      >
     ): void;
     create(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1Taxonomy
+      >
     ): void;
     create(
       paramsOrCallback?:
@@ -7209,7 +7378,9 @@ export namespace datacatalog_v1beta1 {
     export(
       params?: Params$Resource$Projects$Locations$Taxonomies$Export,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse
+    >;
     export(
       params: Params$Resource$Projects$Locations$Taxonomies$Export,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7219,32 +7390,48 @@ export namespace datacatalog_v1beta1 {
       params: Params$Resource$Projects$Locations$Taxonomies$Export,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse
+      >
     ): void;
     export(
       params: Params$Resource$Projects$Locations$Taxonomies$Export,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse
+      >
     ): void;
     export(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse
+      >
     ): void;
     export(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Taxonomies$Export
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse>
+      | GaxiosPromise<
+          Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Export;
@@ -7279,14 +7466,13 @@ export namespace datacatalog_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse
+        >(parameters);
       }
     }
 
@@ -7363,14 +7549,20 @@ export namespace datacatalog_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1Taxonomy
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Taxonomies$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1Taxonomy
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1Taxonomy
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -7635,7 +7827,9 @@ export namespace datacatalog_v1beta1 {
     import(
       params?: Params$Resource$Projects$Locations$Taxonomies$Import,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse
+    >;
     import(
       params: Params$Resource$Projects$Locations$Taxonomies$Import,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7645,32 +7839,48 @@ export namespace datacatalog_v1beta1 {
       params: Params$Resource$Projects$Locations$Taxonomies$Import,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse
+      >
     ): void;
     import(
       params: Params$Resource$Projects$Locations$Taxonomies$Import,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse
+      >
     ): void;
     import(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse
+      >
     ): void;
     import(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Taxonomies$Import
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse>
+      | GaxiosPromise<
+          Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Import;
@@ -7705,14 +7915,13 @@ export namespace datacatalog_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse
+        >(parameters);
       }
     }
 
@@ -7778,7 +7987,9 @@ export namespace datacatalog_v1beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Taxonomies$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse
+    >;
     list(
       params: Params$Resource$Projects$Locations$Taxonomies$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7788,32 +7999,48 @@ export namespace datacatalog_v1beta1 {
       params: Params$Resource$Projects$Locations$Taxonomies$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Taxonomies$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Taxonomies$List
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse>
+      | GaxiosPromise<
+          Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$List;
@@ -7848,14 +8075,13 @@ export namespace datacatalog_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse
+        >(parameters);
       }
     }
 
@@ -7947,14 +8173,20 @@ export namespace datacatalog_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1Taxonomy
+      >
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Taxonomies$Patch,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1Taxonomy
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1Taxonomy
+      >
     ): void;
     patch(
       paramsOrCallback?:
@@ -8516,14 +8748,20 @@ export namespace datacatalog_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1PolicyTag
+      >
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1PolicyTag
+      >
     ): void;
     create(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1PolicyTag
+      >
     ): void;
     create(
       paramsOrCallback?:
@@ -8786,14 +9024,20 @@ export namespace datacatalog_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1PolicyTag
+      >
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1PolicyTag
+      >
     ): void;
     get(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1PolicyTag
+      >
     ): void;
     get(
       paramsOrCallback?:
@@ -9057,7 +9301,9 @@ export namespace datacatalog_v1beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Taxonomies$Policytags$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse>;
+    ): GaxiosPromise<
+      Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse
+    >;
     list(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9067,32 +9313,48 @@ export namespace datacatalog_v1beta1 {
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse
+      >
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse
+      >
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse
+      >
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Taxonomies$Policytags$List
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse>
+        | BodyResponseCallback<
+            Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse>
+      | GaxiosPromise<
+          Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse
+        >
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Taxonomies$Policytags$List;
@@ -9127,14 +9389,13 @@ export namespace datacatalog_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
+        createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
-        return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse
+        >(parameters);
       }
     }
 
@@ -9225,14 +9486,20 @@ export namespace datacatalog_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1PolicyTag
+      >
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Taxonomies$Policytags$Patch,
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1PolicyTag
+      >
     ): void;
     patch(
-      callback: BodyResponseCallback<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDatacatalogV1beta1PolicyTag
+      >
     ): void;
     patch(
       paramsOrCallback?:

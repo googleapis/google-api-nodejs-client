@@ -4148,28 +4148,42 @@ export namespace admin_directory_v1 {
       params: Params$Resource$Customer$Devices$Chromeos$Issuecommand,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$DirectoryChromeosdevicesIssueCommandResponse>,
-      callback: BodyResponseCallback<Schema$DirectoryChromeosdevicesIssueCommandResponse>
+        | BodyResponseCallback<
+            Schema$DirectoryChromeosdevicesIssueCommandResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$DirectoryChromeosdevicesIssueCommandResponse
+      >
     ): void;
     issueCommand(
       params: Params$Resource$Customer$Devices$Chromeos$Issuecommand,
-      callback: BodyResponseCallback<Schema$DirectoryChromeosdevicesIssueCommandResponse>
+      callback: BodyResponseCallback<
+        Schema$DirectoryChromeosdevicesIssueCommandResponse
+      >
     ): void;
     issueCommand(
-      callback: BodyResponseCallback<Schema$DirectoryChromeosdevicesIssueCommandResponse>
+      callback: BodyResponseCallback<
+        Schema$DirectoryChromeosdevicesIssueCommandResponse
+      >
     ): void;
     issueCommand(
       paramsOrCallback?:
         | Params$Resource$Customer$Devices$Chromeos$Issuecommand
-        | BodyResponseCallback<Schema$DirectoryChromeosdevicesIssueCommandResponse>
+        | BodyResponseCallback<
+            Schema$DirectoryChromeosdevicesIssueCommandResponse
+          >
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$DirectoryChromeosdevicesIssueCommandResponse>
+        | BodyResponseCallback<
+            Schema$DirectoryChromeosdevicesIssueCommandResponse
+          >
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$DirectoryChromeosdevicesIssueCommandResponse>
+        | BodyResponseCallback<
+            Schema$DirectoryChromeosdevicesIssueCommandResponse
+          >
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4213,9 +4227,9 @@ export namespace admin_directory_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$DirectoryChromeosdevicesIssueCommandResponse>(
-          parameters
-        );
+        return createAPIRequest<
+          Schema$DirectoryChromeosdevicesIssueCommandResponse
+        >(parameters);
       }
     }
   }
