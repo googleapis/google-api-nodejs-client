@@ -152,6 +152,7 @@ export {dlp_v2} from './apis/dlp/v2';
 export {dns_v1} from './apis/dns/v1';
 export {dns_v1beta2} from './apis/dns/v1beta2';
 export {dns_v2beta1} from './apis/dns/v2beta1';
+export {docs_testIssue} from './apis/docs/testIssue';
 export {docs_v1} from './apis/docs/v1';
 export {documentai_v1beta2} from './apis/documentai/v1beta2';
 export {documentai_v1beta3} from './apis/documentai/v1beta3';

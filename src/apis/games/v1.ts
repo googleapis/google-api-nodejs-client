@@ -487,6 +487,19 @@ export namespace games_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Hash-like weak identifier of uploaded content bytes (saved game data blob, or cover image). Consistent per player per application per hash version. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash. It's extremely likely, though not guaranteed, that if two content hashes are equal, the blobs are identical.
+   */
+  export interface Schema$ContentHash {
+    /**
+     * Hash-like digest of the content.
+     */
+    digest?: string | null;
+    /**
+     * Version of the Hash encoding algorithm to hash the content.
+     */
+    version?: number | null;
+  }
+  /**
    * Container for a URL end point of the requested type.
    */
   export interface Schema$EndPoint {
@@ -1496,9 +1509,9 @@ export namespace games_v1 {
    */
   export interface Schema$SnapshotCoverImageResource {
     /**
-     * Output only. Hash-like weak identifier of the uploaded image bytes, consistent per player per application. The content hash for a given resource will not change if the binary data hasn't changed. Except in very rare circumstances, the content_hash for matching binary data will be the same within a given player and application.
+     * Output only. Hash-like weak identifier of the uploaded image bytes, consistent per player per application per hash version. Within the context of a single player/application, it's guaranteed that two identical images coming from two different uploads will have the same content hash for the same hash algorithm version. It's extremely likely, though not guaranteed, that if two content hashes are equal, the images are identical. More than one content hash can be returned if more than one hash versions are supported.
      */
-    contentHash?: string | null;
+    contentHash?: Schema$ContentHash[];
     /**
      * Output only. A URL the client can use to download the image. May vary across requests, and only guaranteed to be valid for a short time after it is returned.
      */
@@ -1525,9 +1538,9 @@ export namespace games_v1 {
    */
   export interface Schema$SnapshotDataResource {
     /**
-     * Output only. Hash-like weak identifier of the uploaded blob bytes, consistent per player per application. The content hash for a given resource will not change if the binary data hasn't changed. Except in very rare circumstances, the content_hash for matching binary data will be the same within a given player and application.
+     * Output only. Hash-like weak identifier of the uploaded blob, consistent per player per application per hash version. Within the context of a single player/application, it's guaranteed that two identical blobs coming from two different uploads will have the same content hash for the same hash algorithm version. It's extremely likely, though not guaranteed, that if two content hashes are equal, the blobs are identical. More than one content hash can be returned if more than one hash versions are supported.
      */
-    contentHash?: string | null;
+    contentHash?: Schema$ContentHash[];
     /**
      * Output only. A URL that the client can use to download the blob. May vary across requests, and only guaranteed to be valid for a short time after it is returned.
      */

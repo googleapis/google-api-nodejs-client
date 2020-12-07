@@ -14,23 +14,32 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {docs_testIssue} from './testIssue';
 import {docs_v1} from './v1';
 
 export const VERSIONS = {
+  testIssue: docs_testIssue.Docs,
   v1: docs_v1.Docs,
 };
 
+export function docs(version: 'testIssue'): docs_testIssue.Docs;
+export function docs(options: docs_testIssue.Options): docs_testIssue.Docs;
 export function docs(version: 'v1'): docs_v1.Docs;
 export function docs(options: docs_v1.Options): docs_v1.Docs;
-export function docs<T = docs_v1.Docs>(
+export function docs<T = docs_testIssue.Docs | docs_v1.Docs>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | docs_v1.Options
+  versionOrOptions:
+    | 'testIssue'
+    | docs_testIssue.Options
+    | 'v1'
+    | docs_v1.Options
 ) {
   return getAPI<T>('docs', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {docs_testIssue};
 export {docs_v1};
 export {
   AuthPlus,

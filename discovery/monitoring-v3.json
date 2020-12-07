@@ -1995,7 +1995,7 @@
       }
     }
   },
-  "revision": "20201203",
+  "revision": "20201201",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {

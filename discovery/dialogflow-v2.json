@@ -2065,7 +2065,7 @@
       }
     }
   },
-  "revision": "20201204",
+  "revision": "20201201",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3beta1CreateVersionOperationMetadata": {
