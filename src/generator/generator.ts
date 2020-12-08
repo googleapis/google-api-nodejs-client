@@ -230,7 +230,6 @@ export class Generator {
     const packageData = {name: file, desc, version: defaultVersion};
     // Use the version from the existing package.json, if possible:
     try {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires
       const pkgRaw = await readFile(pkgPath, 'utf8');
       const pkg = JSON.parse(pkgRaw);
       packageData.version = pkg.version;
