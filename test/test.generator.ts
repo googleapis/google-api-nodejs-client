@@ -62,7 +62,7 @@ describe(__filename, () => {
       'look I am bigquery',
       '1.2.3'
     );
-    assert.strictEqual(pkgPath, 'src/apis/bigquery/package.json');
+    assert.ok(pkgPath.endsWith('package.json'));
     assert.strictEqual(pkgData.version, '0.1.0');
     assert.strictEqual(pkgData.name, 'bigquery');
     assert.strictEqual(pkgData.desc, 'look I am bigquery');
@@ -75,7 +75,7 @@ describe(__filename, () => {
       'fake-api',
       'look I am fake'
     );
-    assert.strictEqual(pkgPath, 'src/apis/fake-api/package.json');
+    assert.ok(pkgPath.endsWith('package.json'));
     assert.strictEqual(pkgData.version, '0.1.0');
     assert.strictEqual(pkgData.name, 'fake-api');
     assert.strictEqual(pkgData.desc, 'look I am fake');
