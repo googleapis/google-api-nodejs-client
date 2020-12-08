@@ -53,4 +53,31 @@ describe(__filename, () => {
     assert.ok(idxStub.calledOnce);
     assert.ok(downloadCalled);
   });
+
+  it('loads existing version from package.json', async () => {
+    const generator = new gen.Generator();
+    const [pkgPath, pkgData] = await generator.getPkgPathAndData(
+      'src/apis/',
+      'bigquery',
+      'look I am bigquery',
+      '1.2.3'
+    );
+    assert.strictEqual(pkgPath, 'src/apis/bigquery/package.json');
+    assert.strictEqual(pkgData.version, '0.1.0');
+    assert.strictEqual(pkgData.name, 'bigquery');
+    assert.strictEqual(pkgData.desc, 'look I am bigquery');
+  });
+
+  it('uses default version if no package.json found', async () => {
+    const generator = new gen.Generator();
+    const [pkgPath, pkgData] = await generator.getPkgPathAndData(
+      'src/apis/',
+      'fake-api',
+      'look I am fake'
+    );
+    assert.strictEqual(pkgPath, 'src/apis/fake-api/package.json');
+    assert.strictEqual(pkgData.version, '0.1.0');
+    assert.strictEqual(pkgData.name, 'fake-api');
+    assert.strictEqual(pkgData.desc, 'look I am fake');
+  });
 });
