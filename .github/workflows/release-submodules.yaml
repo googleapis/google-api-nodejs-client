@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - master
-name: release-please-monorepo
+name: release-please-submodule
 jobs:
   changeFinder:
     runs-on: ubuntu-latest
@@ -58,7 +58,7 @@ jobs:
            monorepo-tags: true
            command: release-pr
       - id: label
-        if: ${{steps.release-please.outputs.pr}})
+        if: ${{steps.release-please.outputs.pr}}
         uses: actions/github-script@v3    
         with:
             github-token: ${{secrets.GITHUB_TOKEN}}
