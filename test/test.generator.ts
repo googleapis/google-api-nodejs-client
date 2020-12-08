@@ -30,7 +30,7 @@ describe(__filename, () => {
     const generator = new gen.Generator();
     const genStub = sandbox.stub(generator, 'generateAPI').resolves();
     const idxStub = sandbox.stub(generator, 'generateIndex').resolves();
-    await generator.generateAllAPIs('', true);
+    await generator.generateAllAPIs('', true, false);
     assert.ok(genStub.called);
     assert.ok(idxStub.calledOnce);
   });
@@ -48,7 +48,7 @@ describe(__filename, () => {
     const genStub = sandbox.stub(generator, 'generateAPI').resolves();
     const idxStub = sandbox.stub(generator, 'generateIndex').resolves();
     const discoUrl = 'https://www.googleapis.com/discovery/v1/apis/';
-    await generator.generateAllAPIs(discoUrl, false);
+    await generator.generateAllAPIs(discoUrl, false, false);
     assert.ok(genStub.called);
     assert.ok(idxStub.calledOnce);
     assert.ok(downloadCalled);

@@ -36,7 +36,9 @@ export interface SynthOptions {
   withPackageJson: boolean;
 }
 
-export async function synth(options: SynthOptions = {}) {
+export async function synth(
+  options: SynthOptions = {useCache: false, withPackageJson: false}
+) {
   const gen = new Generator();
   let changeSets: ChangeSet[] = [];
   if (!options.useCache) {
