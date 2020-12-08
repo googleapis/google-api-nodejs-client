@@ -32,7 +32,8 @@ export interface Changelog {
 }
 
 export interface SynthOptions {
-  useCache?: boolean;
+  useCache: boolean;
+  withPackageJson: boolean;
 }
 
 export async function synth(options: SynthOptions = {}) {
@@ -40,7 +41,11 @@ export async function synth(options: SynthOptions = {}) {
   let changeSets: ChangeSet[] = [];
   if (!options.useCache) {
     console.log('Removing old APIs...');
-    changeSets = await gen.generateAllAPIs(DISCOVERY_URL, false);
+    changeSets = await gen.generateAllAPIs(
+      DISCOVERY_URL,
+      options.useCache,
+      options.withPackageJson
+    );
   }
   const statusResult = await execa('git', ['status', '--porcelain']);
   const status = statusResult.stdout;
@@ -193,7 +198,8 @@ export function getSemverity(changeSets: ChangeSet[]) {
 if (require.main === module) {
   const argv = minimist(process.argv.slice(2));
   const useCache = !!argv['use-cache'];
-  synth({useCache}).catch(err => {
+  const withPackageJson = !!argv['with-package-json'];
+  synth({useCache, withPackageJson}).catch(err => {
     console.error(err);
     throw err;
   });

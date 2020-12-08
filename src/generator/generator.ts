@@ -95,7 +95,8 @@ export class Generator {
    */
   async generateAllAPIs(
     discoveryUrl: string,
-    useCache: boolean
+    useCache: boolean,
+    withPackageJson: boolean
   ): Promise<ChangeSet[]> {
     const ignore = require('../../../ignore.json').ignore as string[];
     const discoveryPath = path.join(__dirname, '../../../discovery');
@@ -152,11 +153,11 @@ export class Generator {
         }
       })
     );
-    await this.generateIndex(apis);
+    await this.generateIndex(apis, withPackageJson);
     return changes;
   }
 
-  async generateIndex(metadata: Schema[]) {
+  async generateIndex(metadata: Schema[], withPackageJson: boolean) {
     const apis: {[index: string]: {[index: string]: string}} = {};
     const apisPath = path.join(srcPath, 'apis');
     const indexPath = path.join(apisPath, 'index.ts');
@@ -185,9 +186,11 @@ export class Generator {
           const apiIndexData = {name: file, api: apis[file]};
           await this.render('api-index.njk', apiIndexData, apiIdxPath);
           // generate the package.json
-          const pkgPath = path.join(apisPath, file, 'package.json');
-          const packageData = {name: file, desc};
-          await this.render('package.json', packageData, pkgPath);
+          if (withPackageJson) {
+            const pkgPath = path.join(apisPath, file, 'package.json');
+            const packageData = {name: file, desc};
+            await this.render('package.json', packageData, pkgPath);
+          }
           // generate the README.md
           const rdPath = path.join(apisPath, file, 'README.md');
           const disclaimer = disclaimers.find(disclaimer => {
@@ -267,6 +270,7 @@ async function main() {
   const argv = minimist(process.argv.slice(2));
   const discoveryUrl = argv['discovery-url'];
   const useCache = argv['use-cache'];
+  const withPackageJson = !!argv['with-package-json'];
 
   console.log(`useCache: ${useCache}`);
 
@@ -279,7 +283,11 @@ async function main() {
     });
   } else {
     console.log('Generating APIs...');
-    await gen.generateAllAPIs(discoveryUrl || DISCOVERY_URL, useCache);
+    await gen.generateAllAPIs(
+      discoveryUrl || DISCOVERY_URL,
+      useCache,
+      withPackageJson
+    );
     console.log('Finished generating APIs!');
   }
 }
