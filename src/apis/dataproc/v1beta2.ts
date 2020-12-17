@@ -209,7 +209,6 @@ export namespace dataproc_v1beta2 {
    * Associates members with a role.
    */
   export interface Schema$Binding {
-    bindingId?: string | null;
     /**
      * The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -565,6 +564,10 @@ export namespace dataproc_v1beta2 {
      */
     serviceAccountScopes?: string[] | null;
     /**
+     * Optional. Shielded Instance Config for clusters using shielded VMs.
+     */
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
+    /**
      * Optional. The Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0 projects/[project_id]/regions/us-east1/subnetworks/sub0 sub0
      */
     subnetworkUri?: string | null;
@@ -671,6 +674,19 @@ export namespace dataproc_v1beta2 {
     scriptVariables?: {[key: string]: string} | null;
   }
   /**
+   * A request to inject credentials into a cluster.
+   */
+  export interface Schema$InjectCredentialsRequest {
+    /**
+     * Required. The cluster UUID.
+     */
+    clusterUuid?: string | null;
+    /**
+     * Required. The encrypted credentials being injected in to the cluster.The client is responsible for encrypting the credentials in a way that is supported by the cluster.A wrapped value is used here so that the actual contents of the encrypted credentials are not written to audit logs.
+     */
+    credentialsCiphertext?: string | null;
+  }
+  /**
    * Configuration for the size bounds of an instance group, including its proportional size to other groups.
    */
   export interface Schema$InstanceGroupAutoscalingPolicyConfig {
@@ -748,6 +764,10 @@ export namespace dataproc_v1beta2 {
      * The user-friendly name of the Compute Engine instance.
      */
     instanceName?: string | null;
+    /**
+     * The public key used for sharing data with this instance.
+     */
+    publicKey?: string | null;
   }
   /**
    * A request to instantiate a workflow template.
@@ -911,7 +931,7 @@ export namespace dataproc_v1beta2 {
      */
     maxFailuresPerHour?: number | null;
     /**
-     * Optional. Maximum number of times in total a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed. Maximum value is 240
+     * Optional. Maximum number of times in total a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed. Maximum value is 240.
      */
     maxFailuresTotal?: number | null;
   }
@@ -1433,6 +1453,23 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The complete policy to be applied to the resource. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them.
      */
     policy?: Schema$Policy;
+  }
+  /**
+   * Shielded Instance Config for clusters using shielded VMs.
+   */
+  export interface Schema$ShieldedInstanceConfig {
+    /**
+     * Optional. Defines whether instances have integrity monitoring enabled.
+     */
+    enableIntegrityMonitoring?: boolean | null;
+    /**
+     * Optional. Defines whether instances have Secure Boot enabled.
+     */
+    enableSecureBoot?: boolean | null;
+    /**
+     * Optional. Defines whether instances have the vTPM enabled.
+     */
+    enableVtpm?: boolean | null;
   }
   /**
    * Specifies the selection and config of software inside the cluster.
@@ -6591,6 +6628,152 @@ export namespace dataproc_v1beta2 {
     }
 
     /**
+     * Inject encrypted credentials into all of the VMs in a cluster.The target cluster must be a personal auth cluster assigned to the user who is issuing the RPC.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataproc.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dataproc = google.dataproc('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataproc.projects.regions.clusters.injectCredentials({
+     *     // Required. The cluster, in the form clusters/.
+     *     cluster: 'clusters/my-cluster',
+     *     // Required. The ID of the Google Cloud Platform project the cluster belongs to, of the form projects/.
+     *     project: 'projects/my-project',
+     *     // Required. The region containing the cluster, of the form regions/.
+     *     region: 'regions/my-region',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterUuid": "my_clusterUuid",
+     *       //   "credentialsCiphertext": "my_credentialsCiphertext"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    injectCredentials(
+      params: Params$Resource$Projects$Regions$Clusters$Injectcredentials,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    injectCredentials(
+      params?: Params$Resource$Projects$Regions$Clusters$Injectcredentials,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    injectCredentials(
+      params: Params$Resource$Projects$Regions$Clusters$Injectcredentials,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    injectCredentials(
+      params: Params$Resource$Projects$Regions$Clusters$Injectcredentials,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    injectCredentials(
+      params: Params$Resource$Projects$Regions$Clusters$Injectcredentials,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    injectCredentials(callback: BodyResponseCallback<Schema$Operation>): void;
+    injectCredentials(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Regions$Clusters$Injectcredentials
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Regions$Clusters$Injectcredentials;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Regions$Clusters$Injectcredentials;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataproc.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta2/{+project}/{+region}/{+cluster}:injectCredentials'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'region', 'cluster'],
+        pathParams: ['cluster', 'project', 'region'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Lists all regions/{region\}/clusters in a project alphabetically.
      * @example
      * ```js
@@ -7555,6 +7738,26 @@ export namespace dataproc_v1beta2 {
      * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      */
     resource?: string;
+  }
+  export interface Params$Resource$Projects$Regions$Clusters$Injectcredentials
+    extends StandardParameters {
+    /**
+     * Required. The cluster, in the form clusters/.
+     */
+    cluster?: string;
+    /**
+     * Required. The ID of the Google Cloud Platform project the cluster belongs to, of the form projects/.
+     */
+    project?: string;
+    /**
+     * Required. The region containing the cluster, of the form regions/.
+     */
+    region?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InjectCredentialsRequest;
   }
   export interface Params$Resource$Projects$Regions$Clusters$List
     extends StandardParameters {

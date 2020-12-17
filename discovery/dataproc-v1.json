@@ -1072,6 +1072,50 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "injectCredentials": {
+                  "description": "Inject encrypted credentials into all of the VMs in a cluster.The target cluster must be a personal auth cluster assigned to the user who is issuing the RPC.",
+                  "flatPath": "v1/projects/{projectsId}/regions/{regionsId}/clusters/{clustersId}:injectCredentials",
+                  "httpMethod": "POST",
+                  "id": "dataproc.projects.regions.clusters.injectCredentials",
+                  "parameterOrder": [
+                    "project",
+                    "region",
+                    "cluster"
+                  ],
+                  "parameters": {
+                    "cluster": {
+                      "description": "Required. The cluster, in the form clusters/.",
+                      "location": "path",
+                      "pattern": "^clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "project": {
+                      "description": "Required. The ID of the Google Cloud Platform project the cluster belongs to, of the form projects/.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "region": {
+                      "description": "Required. The region containing the cluster, of the form regions/.",
+                      "location": "path",
+                      "pattern": "^regions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+project}/{+region}/{+cluster}:injectCredentials",
+                  "request": {
+                    "$ref": "InjectCredentialsRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "list": {
                   "description": "Lists all regions/{region}/clusters in a project alphabetically.",
                   "flatPath": "v1/projects/{projectId}/regions/{region}/clusters",
@@ -2134,7 +2178,7 @@
       }
     }
   },
-  "revision": "20201029",
+  "revision": "20201210",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2243,9 +2287,6 @@
       "description": "Associates members with a role.",
       "id": "Binding",
       "properties": {
-        "bindingId": {
-          "type": "string"
-        },
         "condition": {
           "$ref": "Expr",
           "description": "The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies)."
@@ -2746,6 +2787,10 @@
           },
           "type": "array"
         },
+        "shieldedInstanceConfig": {
+          "$ref": "ShieldedInstanceConfig",
+          "description": "Optional. Shielded Instance Config for clusters using shielded VMs."
+        },
         "subnetworkUri": {
           "description": "Optional. The Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0 projects/[project_id]/regions/us-east1/subnetworks/sub0 sub0",
           "type": "string"
@@ -2881,6 +2926,21 @@
       },
       "type": "object"
     },
+    "InjectCredentialsRequest": {
+      "description": "A request to inject credentials into a cluster.",
+      "id": "InjectCredentialsRequest",
+      "properties": {
+        "clusterUuid": {
+          "description": "Required. The cluster UUID.",
+          "type": "string"
+        },
+        "credentialsCiphertext": {
+          "description": "Required. The encrypted credentials being injected in to the cluster.The client is responsible for encrypting the credentials in a way that is supported by the cluster.A wrapped value is used here so that the actual contents of the encrypted credentials are not written to audit logs.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "InstanceGroupAutoscalingPolicyConfig": {
       "description": "Configuration for the size bounds of an instance group, including its proportional size to other groups.",
       "id": "InstanceGroupAutoscalingPolicyConfig",
@@ -2988,6 +3048,10 @@
         },
         "instanceName": {
           "description": "The user-friendly name of the Compute Engine instance.",
+          "type": "string"
+        },
+        "publicKey": {
+          "description": "The public key used for sharing data with this instance.",
           "type": "string"
         }
       },
@@ -3184,7 +3248,7 @@
           "type": "integer"
         },
         "maxFailuresTotal": {
-          "description": "Optional. Maximum number of times in total a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed. Maximum value is 240",
+          "description": "Optional. Maximum number of times in total a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed. Maximum value is 240.",
           "format": "int32",
           "type": "integer"
         }
@@ -3911,6 +3975,25 @@
       },
       "type": "object"
     },
+    "ShieldedInstanceConfig": {
+      "description": "Shielded Instance Config for clusters using shielded VMs.",
+      "id": "ShieldedInstanceConfig",
+      "properties": {
+        "enableIntegrityMonitoring": {
+          "description": "Optional. Defines whether instances have integrity monitoring enabled.",
+          "type": "boolean"
+        },
+        "enableSecureBoot": {
+          "description": "Optional. Defines whether instances have Secure Boot enabled.",
+          "type": "boolean"
+        },
+        "enableVtpm": {
+          "description": "Optional. Defines whether instances have the vTPM enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "SoftwareConfig": {
       "description": "Specifies the selection and config of software inside the cluster.",
       "id": "SoftwareConfig",
@@ -4243,6 +4326,24 @@
           "description": "Output only. The create cluster operation metadata.",
           "readOnly": true
         },
+        "dagEndTime": {
+          "description": "Output only. DAG end time, only set for workflows with dag_timeout when DAG ends.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dagStartTime": {
+          "description": "Output only. DAG start time, only set for workflows with dag_timeout when DAG begins.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dagTimeout": {
+          "description": "Output only. The timeout duration for the DAG of jobs.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
         "deleteCluster": {
           "$ref": "ClusterOperation",
           "description": "Output only. The delete cluster operation metadata.",
@@ -4362,6 +4463,11 @@
           "description": "Output only. The time template was created.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "dagTimeout": {
+          "description": "Optional. Timeout duration for the DAG of jobs. You can use \"s\", \"m\", \"h\", and \"d\" suffixes for second, minute, hour, and day duration values, respectively. The timeout duration must be from 10 minutes (\"10m\") to 24 hours (\"24h\" or \"1d\"). The timer begins when the first job is submitted. If the workflow is running at the end of the timeout period, any remaining jobs are cancelled, the workflow is ended, and if the workflow was running on a managed cluster, the cluster is deleted.",
+          "format": "google-duration",
           "type": "string"
         },
         "id": {
