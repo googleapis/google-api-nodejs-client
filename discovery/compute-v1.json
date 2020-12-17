@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/ygG4zaVGMh6_TRd5MOsh3erj_7M\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/m_4nvWuSVQoEemlfuQ_d59dNy8Q\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -16178,7 +16178,7 @@
           ]
         },
         "patchPerInstanceConfigs": {
-          "description": "Insert or patch (for the ones that already exist) per-instance configs for the managed instance group. perInstanceConfig.instance serves as a key used to distinguish whether to perform insert or patch.",
+          "description": "Inserts or patches per-instance configs for the managed instance group. perInstanceConfig.name serves as a key used to distinguish whether to perform insert or patch.",
           "httpMethod": "POST",
           "id": "compute.regionInstanceGroupManagers.patchPerInstanceConfigs",
           "parameterOrder": [
@@ -16419,7 +16419,7 @@
           ]
         },
         "updatePerInstanceConfigs": {
-          "description": "Insert or update (for the ones that already exist) per-instance configs for the managed instance group. perInstanceConfig.instance serves as a key used to distinguish whether to perform insert or patch.",
+          "description": "Inserts or updates per-instance configs for the managed instance group. perInstanceConfig.name serves as a key used to distinguish whether to perform insert or patch.",
           "httpMethod": "POST",
           "id": "compute.regionInstanceGroupManagers.updatePerInstanceConfigs",
           "parameterOrder": [
@@ -20217,7 +20217,7 @@
           ]
         },
         "patch": {
-          "description": "Patches the specified policy with the data included in the request.",
+          "description": "Patches the specified policy with the data included in the request. This cannot be used to be update the rules in the policy. Please use the per rule methods like addRule, patchRule, and removeRule instead.",
           "httpMethod": "PATCH",
           "id": "compute.securityPolicies.patch",
           "parameterOrder": [
@@ -25521,7 +25521,7 @@
       }
     }
   },
-  "revision": "20201102",
+  "revision": "20201122",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -26828,7 +26828,7 @@
           "type": "string"
         },
         "recommendedSize": {
-          "description": "[Output Only] Target recommended MIG size (number of instances) computed by autoscaler. Autoscaler calculates recommended MIG size even when autoscaling policy mode is different from ON. This field is empty when autoscaler is not connected to the existing managed instance group or autoscaler did not generate its prediction.",
+          "description": "[Output Only] Target recommended MIG size (number of instances) computed by autoscaler. Autoscaler calculates the recommended MIG size even when the autoscaling policy mode is different from ON. This field is empty when autoscaler is not connected to an existing managed instance group or autoscaler did not generate its prediction.",
           "format": "int32",
           "type": "integer"
         },
@@ -26864,7 +26864,7 @@
           "type": "array"
         },
         "target": {
-          "description": "URL of the managed instance group that this autoscaler will scale.",
+          "description": "URL of the managed instance group that this autoscaler will scale. This field is required when creating an autoscaler.",
           "type": "string"
         },
         "zone": {
@@ -27121,7 +27121,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The type of error, warning, or notice returned. Current set of possible values:  \n- ALL_INSTANCES_UNHEALTHY (WARNING): All instances in the instance group are unhealthy (not in RUNNING state). \n- BACKEND_SERVICE_DOES_NOT_EXIST (ERROR): There is no backend service attached to the instance group. \n- CAPPED_AT_MAX_NUM_REPLICAS (WARNING): Autoscaler recommends a size greater than maxNumReplicas. \n- CUSTOM_METRIC_DATA_POINTS_TOO_SPARSE (WARNING): The custom metric samples are not exported often enough to be a credible base for autoscaling. \n- CUSTOM_METRIC_INVALID (ERROR): The custom metric that was specified does not exist or does not have the necessary labels. \n- MIN_EQUALS_MAX (WARNING): The minNumReplicas is equal to maxNumReplicas. This means the autoscaler cannot add or remove instances from the instance group. \n- MISSING_CUSTOM_METRIC_DATA_POINTS (WARNING): The autoscaler did not receive any data from the custom metric configured for autoscaling. \n- MISSING_LOAD_BALANCING_DATA_POINTS (WARNING): The autoscaler is configured to scale based on a load balancing signal but the instance group has not received any requests from the load balancer. \n- MODE_OFF (WARNING): Autoscaling is turned off. The number of instances in the group won't change automatically. The autoscaling configuration is preserved. \n- MODE_ONLY_UP (WARNING): Autoscaling is in the \"Autoscale only up\" mode. The autoscaler can add instances but not remove any. \n- MORE_THAN_ONE_BACKEND_SERVICE (ERROR): The instance group cannot be autoscaled because it has more than one backend service attached to it. \n- NOT_ENOUGH_QUOTA_AVAILABLE (ERROR): There is insufficient quota for the necessary resources, such as CPU or number of instances. \n- REGION_RESOURCE_STOCKOUT (ERROR): Shown only for regional autoscalers: there is a resource stockout in the chosen region. \n- SCALING_TARGET_DOES_NOT_EXIST (ERROR): The target to be scaled does not exist. \n- UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION (ERROR): Autoscaling does not work with an HTTP/S load balancer that has been configured for maxRate. \n- ZONE_RESOURCE_STOCKOUT (ERROR): For zonal autoscalers: there is a resource stockout in the chosen zone. For regional autoscalers: in at least one of the zones you're using there is a resource stockout.  New values might be added in the future. Some of the values might not be available in all API versions.",
+          "description": "The type of error, warning, or notice returned. Current set of possible values:  \n- ALL_INSTANCES_UNHEALTHY (WARNING): All instances in the instance group are unhealthy (not in RUNNING state). \n- BACKEND_SERVICE_DOES_NOT_EXIST (ERROR): There is no backend service attached to the instance group. \n- CAPPED_AT_MAX_NUM_REPLICAS (WARNING): Autoscaler recommends a size greater than maxNumReplicas. \n- CUSTOM_METRIC_DATA_POINTS_TOO_SPARSE (WARNING): The custom metric samples are not exported often enough to be a credible base for autoscaling. \n- CUSTOM_METRIC_INVALID (ERROR): The custom metric that was specified does not exist or does not have the necessary labels. \n- MIN_EQUALS_MAX (WARNING): The minNumReplicas is equal to maxNumReplicas. This means the autoscaler cannot add or remove instances from the instance group. \n- MISSING_CUSTOM_METRIC_DATA_POINTS (WARNING): The autoscaler did not receive any data from the custom metric configured for autoscaling. \n- MISSING_LOAD_BALANCING_DATA_POINTS (WARNING): The autoscaler is configured to scale based on a load balancing signal but the instance group has not received any requests from the load balancer. \n- MODE_OFF (WARNING): Autoscaling is turned off. The number of instances in the group won't change automatically. The autoscaling configuration is preserved. \n- MODE_ONLY_UP (WARNING): Autoscaling is in the \"Autoscale only out\" mode. The autoscaler can add instances but not remove any. \n- MORE_THAN_ONE_BACKEND_SERVICE (ERROR): The instance group cannot be autoscaled because it has more than one backend service attached to it. \n- NOT_ENOUGH_QUOTA_AVAILABLE (ERROR): There is insufficient quota for the necessary resources, such as CPU or number of instances. \n- REGION_RESOURCE_STOCKOUT (ERROR): Shown only for regional autoscalers: there is a resource stockout in the chosen region. \n- SCALING_TARGET_DOES_NOT_EXIST (ERROR): The target to be scaled does not exist. \n- UNSUPPORTED_MAX_RATE_LOAD_BALANCING_CONFIGURATION (ERROR): Autoscaling does not work with an HTTP/S load balancer that has been configured for maxRate. \n- ZONE_RESOURCE_STOCKOUT (ERROR): For zonal autoscalers: there is a resource stockout in the chosen zone. For regional autoscalers: in at least one of the zones you're using there is a resource stockout.  New values might be added in the future. Some of the values might not be available in all API versions.",
           "enum": [
             "ALL_INSTANCES_UNHEALTHY",
             "BACKEND_SERVICE_DOES_NOT_EXIST",
@@ -27270,7 +27270,7 @@
       "id": "AutoscalingPolicy",
       "properties": {
         "coolDownPeriodSec": {
-          "description": "The number of seconds that the autoscaler should wait before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. The default time autoscaler waits is 60 seconds.\n\nVirtual machine initialization times might vary because of numerous factors. We recommend that you test how long an instance may take to initialize. To do this, create an instance and time the startup process.",
+          "description": "The number of seconds that the autoscaler waits before it starts collecting information from a new instance. This prevents the autoscaler from collecting information when the instance is initializing, during which the collected usage would not be reliable. The default time autoscaler waits is 60 seconds.\n\nVirtual machine initialization times might vary because of numerous factors. We recommend that you test how long an instance may take to initialize. To do this, create an instance and time the startup process.",
           "format": "int32",
           "type": "integer"
         },
@@ -27290,12 +27290,12 @@
           "description": "Configuration parameters of autoscaling based on load balancer."
         },
         "maxNumReplicas": {
-          "description": "The maximum number of instances that the autoscaler can scale up to. This is required when creating or updating an autoscaler. The maximum number of replicas should not be lower than minimal number of replicas.",
+          "description": "The maximum number of instances that the autoscaler can scale out to. This is required when creating or updating an autoscaler. The maximum number of replicas must not be lower than minimal number of replicas.",
           "format": "int32",
           "type": "integer"
         },
         "minNumReplicas": {
-          "description": "The minimum number of replicas that the autoscaler can scale down to. This cannot be less than 0. If not provided, autoscaler will choose a default value depending on maximum number of instances allowed.",
+          "description": "The minimum number of replicas that the autoscaler can scale in to. This cannot be less than 0. If not provided, autoscaler chooses a default value depending on maximum number of instances allowed.",
           "format": "int32",
           "type": "integer"
         },
@@ -27326,7 +27326,7 @@
       "id": "AutoscalingPolicyCpuUtilization",
       "properties": {
         "utilizationTarget": {
-          "description": "The target CPU utilization that the autoscaler should maintain. Must be a float value in the range (0, 1]. If not specified, the default is 0.6.\n\nIf the CPU level is below the target utilization, the autoscaler scales down the number of instances until it reaches the minimum number of instances you specified or until the average CPU of your instances reaches the target utilization.\n\nIf the average CPU is above the target utilization, the autoscaler scales up until it reaches the maximum number of instances you specified or until the average utilization reaches the target utilization.",
+          "description": "The target CPU utilization that the autoscaler maintains. Must be a float value in the range (0, 1]. If not specified, the default is 0.6.\n\nIf the CPU level is below the target utilization, the autoscaler scales in the number of instances until it reaches the minimum number of instances you specified or until the average CPU of your instances reaches the target utilization.\n\nIf the average CPU is above the target utilization, the autoscaler scales out until it reaches the maximum number of instances you specified or until the average utilization reaches the target utilization.",
           "format": "double",
           "type": "number"
         }
@@ -27338,7 +27338,7 @@
       "id": "AutoscalingPolicyCustomMetricUtilization",
       "properties": {
         "filter": {
-          "description": "A filter string, compatible with a Stackdriver Monitoring filter string for TimeSeries.list API call. This filter is used to select a specific TimeSeries for the purpose of autoscaling and to determine whether the metric is exporting per-instance or per-group data.\n\nFor the filter to be valid for autoscaling purposes, the following rules apply:  \n- You can only use the AND operator for joining selectors. \n- You can only use direct equality comparison operator (=) without any functions for each selector. \n- You can specify the metric in both the filter string and in the metric field. However, if specified in both places, the metric must be identical. \n- The monitored resource type determines what kind of values are expected for the metric. If it is a gce_instance, the autoscaler expects the metric to include a separate TimeSeries for each instance in a group. In such a case, you cannot filter on resource labels.\nIf the resource type is any other value, the autoscaler expects this metric to contain values that apply to the entire autoscaled instance group and resource label filtering can be performed to point autoscaler at the correct TimeSeries to scale upon. This is called a per-group metric for the purpose of autoscaling.\n\nIf not specified, the type defaults to gce_instance.  \n\nYou should provide a filter that is selective enough to pick just one TimeSeries for the autoscaled group or for each of the instances (if you are using gce_instance resource type). If multiple TimeSeries are returned upon the query execution, the autoscaler will sum their respective values to obtain its scaling value.",
+          "description": "A filter string, compatible with a Stackdriver Monitoring filter string for TimeSeries.list API call. This filter is used to select a specific TimeSeries for the purpose of autoscaling and to determine whether the metric is exporting per-instance or per-group data.\n\nFor the filter to be valid for autoscaling purposes, the following rules apply:  \n- You can only use the AND operator for joining selectors. \n- You can only use direct equality comparison operator (=) without any functions for each selector. \n- You can specify the metric in both the filter string and in the metric field. However, if specified in both places, the metric must be identical. \n- The monitored resource type determines what kind of values are expected for the metric. If it is a gce_instance, the autoscaler expects the metric to include a separate TimeSeries for each instance in a group. In such a case, you cannot filter on resource labels.\nIf the resource type is any other value, the autoscaler expects this metric to contain values that apply to the entire autoscaled instance group and resource label filtering can be performed to point autoscaler at the correct TimeSeries to scale upon. This is called a per-group metric for the purpose of autoscaling.\n\nIf not specified, the type defaults to gce_instance.  \n\nTry to provide a filter that is selective enough to pick just one TimeSeries for the autoscaled group or for each of the instances (if you are using gce_instance resource type). If multiple TimeSeries are returned upon the query execution, the autoscaler will sum their respective values to obtain its scaling value.",
           "type": "string"
         },
         "metric": {
@@ -27346,12 +27346,12 @@
           "type": "string"
         },
         "singleInstanceAssignment": {
-          "description": "If scaling is based on a per-group metric value that represents the total amount of work to be done or resource usage, set this value to an amount assigned for a single instance of the scaled group. Autoscaler will keep the number of instances proportional to the value of this metric, the metric itself should not change value due to group resizing.\n\nA good metric to use with the target is for example pubsub.googleapis.com/subscription/num_undelivered_messages or a custom metric exporting the total number of requests coming to your instances.\n\nA bad example would be a metric exporting an average or median latency, since this value can't include a chunk assignable to a single instance, it could be better used with utilization_target instead.",
+          "description": "If scaling is based on a per-group metric value that represents the total amount of work to be done or resource usage, set this value to an amount assigned for a single instance of the scaled group. Autoscaler keeps the number of instances proportional to the value of this metric. The metric itself does not change value due to group resizing.\n\nA good metric to use with the target is for example pubsub.googleapis.com/subscription/num_undelivered_messages or a custom metric exporting the total number of requests coming to your instances.\n\nA bad example would be a metric exporting an average or median latency, since this value can't include a chunk assignable to a single instance, it could be better used with utilization_target instead.",
           "format": "double",
           "type": "number"
         },
         "utilizationTarget": {
-          "description": "The target value of the metric that autoscaler should maintain. This must be a positive value. A utilization metric scales number of virtual machines handling requests to increase or decrease proportionally to the metric.\n\nFor example, a good metric to use as a utilization_target is https://www.googleapis.com/compute/v1/instance/network/received_bytes_count. The autoscaler will work to keep this value constant for each of the instances.",
+          "description": "The target value of the metric that autoscaler maintains. This must be a positive value. A utilization metric scales number of virtual machines handling requests to increase or decrease proportionally to the metric.\n\nFor example, a good metric to use as a utilization_target is https://www.googleapis.com/compute/v1/instance/network/received_bytes_count. The autoscaler works to keep this value constant for each of the instances.",
           "format": "double",
           "type": "number"
         },
@@ -27377,7 +27377,7 @@
       "id": "AutoscalingPolicyLoadBalancingUtilization",
       "properties": {
         "utilizationTarget": {
-          "description": "Fraction of backend capacity utilization (set in HTTP(S) load balancing configuration) that autoscaler should maintain. Must be a positive float value. If not defined, the default is 0.8.",
+          "description": "Fraction of backend capacity utilization (set in HTTP(S) load balancing configuration) that the autoscaler maintains. Must be a positive float value. If not defined, the default is 0.8.",
           "format": "double",
           "type": "number"
         }
@@ -27393,7 +27393,7 @@
           "description": "Maximum allowed number (or %) of VMs that can be deducted from the peak recommendation during the window autoscaler looks at when computing recommendations. Possibly all these VMs can be deleted at once so user service needs to be prepared to lose that many VMs in one step."
         },
         "timeWindowSec": {
-          "description": "How long back autoscaling should look when computing recommendations to include directives regarding slower scale in, as described above.",
+          "description": "How far back autoscaling looks when computing recommendations to include directives regarding slower scale in, as described above.",
           "format": "int32",
           "type": "integer"
         }
@@ -27405,7 +27405,7 @@
       "id": "Backend",
       "properties": {
         "balancingMode": {
-          "description": "Specifies the balancing mode for the backend.\n\nWhen choosing a balancing mode, you need to consider the loadBalancingScheme, and protocol for the backend service, as well as the type of backend (instance group or NEG).\n\n \n- If the load balancing mode is CONNECTION, then the load is spread based on how many concurrent connections the backend can handle.\nYou can use the CONNECTION balancing mode if the protocol for the backend service is SSL, TCP, or UDP.\n\nIf the loadBalancingScheme for the backend service is EXTERNAL (SSL Proxy and TCP Proxy load balancers), you must also specify exactly one of the following parameters: maxConnections (except for regional managed instance groups), maxConnectionsPerInstance, or maxConnectionsPerEndpoint.\n\nIf the loadBalancingScheme for the backend service is INTERNAL (internal TCP/UDP load balancers), you cannot specify any additional parameters.\n \n- If the load balancing mode is RATE, the load is spread based on the rate of HTTP requests per second (RPS).\nYou can use the RATE balancing mode if the protocol for the backend service is HTTP or HTTPS. You must specify exactly one of the following parameters: maxRate (except for regional managed instance groups), maxRatePerInstance, or maxRatePerEndpoint.\n \n- If the load balancing mode is UTILIZATION, the load is spread based on the backend utilization of instances in an instance group.\nYou can use the UTILIZATION balancing mode if the loadBalancingScheme of the backend service is EXTERNAL, INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED and the backends are instance groups. There are no restrictions on the backend service protocol.",
+          "description": "Specifies the balancing mode for the backend.\n\nWhen choosing a balancing mode, you need to consider the loadBalancingScheme, and protocol for the backend service, as well as the type of backend (instance group or NEG).\n\n \n- If the load balancing mode is CONNECTION, then the load is spread based on how many concurrent connections the backend can handle.\nYou can use the CONNECTION balancing mode if the protocol for the backend service is SSL, TCP, or UDP.\n\nIf the loadBalancingScheme for the backend service is EXTERNAL (SSL Proxy and TCP Proxy load balancers), you must also specify exactly one of the following parameters: maxConnections (except for regional managed instance groups), maxConnectionsPerInstance, or maxConnectionsPerEndpoint.\n\nIf the loadBalancingScheme for the backend service is INTERNAL (internal TCP/UDP Load Balancers) or EXTERNAL  (Network Load Balancing), you cannot specify any additional parameters.\n \n- If the load balancing mode is RATE, the load is spread based on the rate of HTTP requests per second (RPS).\nYou can use the RATE balancing mode if the protocol for the backend service is HTTP, HTTP2, or HTTPS. You must specify exactly one of the following parameters: maxRate (except for regional managed instance groups), maxRatePerInstance, or maxRatePerEndpoint.\n \n- If the load balancing mode is UTILIZATION, the load is spread based on the backend utilization of instances in an instance group.\nYou can use the UTILIZATION balancing mode if the loadBalancingScheme of the backend service is EXTERNAL (except Network Load Balancing), INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED and the backends are instance groups. There are no restrictions on the backend service protocol.",
           "enum": [
             "CONNECTION",
             "RATE",
@@ -27419,7 +27419,7 @@
           "type": "string"
         },
         "capacityScaler": {
-          "description": "A multiplier applied to the group's maximum servicing capacity (based on UTILIZATION, RATE or CONNECTION). Default value is 1, which means the group will serve up to 100% of its configured capacity (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available capacity. Valid range is 0.0 and [0.1,1.0]. You cannot configure a setting larger than 0 and smaller than 0.1. You cannot configure a setting of 0 when there is only one backend attached to the backend service.\n\nThis cannot be used for internal load balancing.",
+          "description": "A multiplier applied to the group's maximum servicing capacity (based on UTILIZATION, RATE or CONNECTION). Default value is 1, which means the group will serve up to 100% of its configured capacity (depending on balancingMode). A setting of 0 means the group is completely drained, offering 0% of its available capacity. Valid range is 0.0 and [0.1,1.0]. You cannot configure a setting larger than 0 and smaller than 0.1. You cannot configure a setting of 0 when there is only one backend attached to the backend service.\n\nThis cannot be used for Internal TCP/UDP Load Balancing and Network Load Balancing.",
           "format": "float",
           "type": "number"
         },
@@ -27432,21 +27432,21 @@
           "type": "boolean"
         },
         "group": {
-          "description": "The fully-qualified URL of an instance group or network endpoint group (NEG) resource. The type of backend that a backend service supports depends on the backend service's loadBalancingScheme.\n\n \n- When the loadBalancingScheme for the backend service is EXTERNAL, INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED, the backend can be either an instance group or a NEG. The backends on the backend service must be either all instance groups or all NEGs. You cannot mix instance group and NEG backends on the same backend service. \n\n\n- When the loadBalancingScheme for the backend service is INTERNAL, the backend must be an instance group in the same region as the backend service. NEGs are not supported.  \n\nYou must use the fully-qualified URL (starting with https://www.googleapis.com/) to specify the instance group or NEG. Partial URLs are not supported.",
+          "description": "The fully-qualified URL of an instance group or network endpoint group (NEG) resource. The type of backend that a backend service supports depends on the backend service's loadBalancingScheme.\n\n \n- When the loadBalancingScheme for the backend service is EXTERNAL (except Network Load Balancing),  INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED , the backend can be either an instance group or a NEG. The backends on the backend service must be either all instance groups or all NEGs. You cannot mix instance group and NEG backends on the same backend service. \n\n\n- When the loadBalancingScheme for the backend service is EXTERNAL for Network Load Balancing or INTERNAL for Internal TCP/UDP Load Balancing, the backend must be an instance group. NEGs are not supported.  \n\nFor regional services, the backend must be in the same region as the backend service.\n\nYou must use the fully-qualified URL (starting with https://www.googleapis.com/) to specify the instance group or NEG. Partial URLs are not supported.",
           "type": "string"
         },
         "maxConnections": {
-          "description": "Defines a target maximum number of simultaneous connections that the backend can handle. Valid for network endpoint group and instance group backends (except for regional managed instance groups). If the backend's balancingMode is UTILIZATION, this is an optional parameter. If the backend's balancingMode is CONNECTION, and backend is attached to a backend service whose loadBalancingScheme is EXTERNAL, you must specify either this parameter, maxConnectionsPerInstance, or maxConnectionsPerEndpoint.\n\nNot available if the backend's balancingMode is RATE. If the loadBalancingScheme is INTERNAL, then maxConnections is not supported, even though the backend requires a balancing mode of CONNECTION.",
+          "description": "Defines a target maximum number of simultaneous connections that the backend can handle. Valid for network endpoint group and instance group backends (except for regional managed instance groups). If the backend's balancingMode is UTILIZATION, this is an optional parameter. If the backend's balancingMode is CONNECTION, and backend is attached to a backend service whose loadBalancingScheme is EXTERNAL (except Network Load Balancing), you must specify either this parameter, maxConnectionsPerInstance, or maxConnectionsPerEndpoint.\n\nNot available if the backend's balancingMode is RATE. Cannot be specified for Network Load Balancing or Internal TCP/UDP Load Balancing, even though those load balancers require a balancing mode of CONNECTION.",
           "format": "int32",
           "type": "integer"
         },
         "maxConnectionsPerEndpoint": {
-          "description": "Defines a target maximum number of simultaneous connections for an endpoint of a NEG. This is multiplied by the number of endpoints in the NEG to implicitly calculate a maximum number of target maximum simultaneous connections for the NEG. If the backend's balancingMode is CONNECTION, and the backend is attached to a backend service whose loadBalancingScheme is EXTERNAL, you must specify either this parameter, maxConnections, or maxConnectionsPerInstance.\n\nNot available if the backend's balancingMode is RATE. Internal TCP/UDP load balancing does not support setting maxConnectionsPerEndpoint even though its backends require a balancing mode of CONNECTION.",
+          "description": "Defines a target maximum number of simultaneous connections for an endpoint of a NEG. This is multiplied by the number of endpoints in the NEG to implicitly calculate a maximum number of target maximum simultaneous connections for the NEG. If the backend's balancingMode is CONNECTION, and backend is attached to a backend service whose loadBalancingScheme is EXTERNAL (except Network Load Balancing), you must specify either this parameter, maxConnections, or maxConnectionsPerInstance.\n\nNot available if the backend's balancingMode is RATE. Cannot be specified for Network Load Balancing or Internal TCP/UDP Load Balancing, even though those load balancers require a balancing mode of CONNECTION.",
           "format": "int32",
           "type": "integer"
         },
         "maxConnectionsPerInstance": {
-          "description": "Defines a target maximum number of simultaneous connections for a single VM in a backend instance group. This is multiplied by the number of instances in the instance group to implicitly calculate a target maximum number of simultaneous connections for the whole instance group. If the backend's balancingMode is UTILIZATION, this is an optional parameter. If the backend's balancingMode is CONNECTION, and backend is attached to a backend service whose loadBalancingScheme is EXTERNAL, you must specify either this parameter, maxConnections, or maxConnectionsPerEndpoint.\n\nNot available if the backend's balancingMode is RATE. Internal TCP/UDP load balancing does not support setting maxConnectionsPerInstance even though its backends require a balancing mode of CONNECTION.",
+          "description": "Defines a target maximum number of simultaneous connections for a single VM in a backend instance group. This is multiplied by the number of instances in the instance group to implicitly calculate a target maximum number of simultaneous connections for the whole instance group. If the backend's balancingMode is UTILIZATION, this is an optional parameter. If the backend's balancingMode is CONNECTION, and backend is attached to a backend service whose loadBalancingScheme is EXTERNAL (except Network Load Balancing), you must specify either this parameter,  maxConnections, or maxConnectionsPerEndpoint.\n\nNot available if the backend's balancingMode is RATE. Cannot be specified for Network Load Balancing or Internal TCP/UDP Load Balancing, even though those load balancers require a balancing mode of CONNECTION.",
           "format": "int32",
           "type": "integer"
         },
@@ -27489,6 +27489,13 @@
           "description": "[Output Only] Creation timestamp in RFC3339 text format.",
           "type": "string"
         },
+        "customResponseHeaders": {
+          "description": "Headers that the HTTP/S load balancer should add to proxied responses.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "description": {
           "description": "An optional textual description of the resource; provided by the client when the resource is created.",
           "type": "string"
@@ -27523,6 +27530,37 @@
       "description": "Message containing Cloud CDN configuration for a backend bucket.",
       "id": "BackendBucketCdnPolicy",
       "properties": {
+        "cacheMode": {
+          "description": "Specifies the cache setting for all responses from this backend. The possible values are:\n\nUSE_ORIGIN_HEADERS Requires the origin to set valid caching headers to cache content. Responses without these headers will not be cached at Google's edge, and will require a full trip to the origin on every request, potentially impacting performance and increasing load on the origin server.\n\nFORCE_CACHE_ALL Cache all content, ignoring any \"private\", \"no-store\" or \"no-cache\" directives in Cache-Control response headers. Warning: this may result in Cloud CDN caching private, per-user (user identifiable) content.\n\nCACHE_ALL_STATIC Automatically cache static content, including common image formats, media (video and audio), and web assets (JavaScript and CSS). Requests and responses that are marked as uncacheable, as well as dynamic content (including HTML), will not be cached.",
+          "enum": [
+            "CACHE_ALL_STATIC",
+            "FORCE_CACHE_ALL",
+            "INVALID_CACHE_MODE",
+            "USE_ORIGIN_HEADERS"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "clientTtl": {
+          "description": "Specifies a separate client (e.g. browser client) TTL, separate from the TTL for Cloud CDN's edge caches. Leaving this empty will use the same cache TTL for both Cloud CDN and the client-facing response. The maximum allowed value is 86400s (1 day).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "defaultTtl": {
+          "description": "Specifies the default TTL for cached content served by this origin for responses that do not have an existing valid TTL (max-age or s-max-age). Setting a TTL of \"0\" means \"always revalidate\". The value of defaultTTL cannot be set to a value greater than that of maxTTL, but can be equal. When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL will overwrite the TTL set in all responses. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxTtl": {
+          "description": "Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Headers sent to the client will not be modified. Setting a TTL of \"0\" means \"always revalidate\". The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "format": "int32",
+          "type": "integer"
+        },
         "signedUrlCacheMaxAgeSec": {
           "description": "Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a \"Cache-Control: public, max-age=[TTL]\" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.",
           "format": "int64",
@@ -27672,7 +27710,7 @@
         },
         "cdnPolicy": {
           "$ref": "BackendServiceCdnPolicy",
-          "description": "Cloud CDN configuration for this BackendService."
+          "description": "Cloud CDN configuration for this BackendService. Not available for Internal TCP/UDP Load Balancing and Network Load Balancing."
         },
         "circuitBreakers": {
           "$ref": "CircuitBreakers",
@@ -27696,6 +27734,13 @@
           },
           "type": "array"
         },
+        "customResponseHeaders": {
+          "description": "Headers that the HTTP/S load balancer should add to proxied responses.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "description": {
           "description": "An optional description of this resource. Provide this property when you create the resource.",
           "type": "string"
@@ -27706,7 +27751,7 @@
         },
         "failoverPolicy": {
           "$ref": "BackendServiceFailoverPolicy",
-          "description": "Applicable only to Failover for Internal TCP/UDP Load Balancing. Requires at least one backend instance group to be defined as a backup (failover) backend."
+          "description": "Applicable only to Failover for Internal TCP/UDP Load Balancing and Network Load Balancing. Requires at least one backend instance group to be defined as a backup (failover) backend."
         },
         "fingerprint": {
           "description": "Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a BackendService. An up-to-date fingerprint must be provided in order to update the BackendService, otherwise the request will fail with error 412 conditionNotMet.\n\nTo see the latest fingerprint, make a get() request to retrieve a BackendService.",
@@ -27722,7 +27767,7 @@
         },
         "iap": {
           "$ref": "BackendServiceIAP",
-          "description": "The configurations for Identity-Aware Proxy on this resource."
+          "description": "The configurations for Identity-Aware Proxy on this resource. Not available for Internal TCP/UDP Load Balancing and Network Load Balancing."
         },
         "id": {
           "description": "[Output Only] The unique identifier for the resource. This identifier is defined by the server.",
@@ -27735,7 +27780,7 @@
           "type": "string"
         },
         "loadBalancingScheme": {
-          "description": "Specifies the load balancer type. Choose EXTERNAL for load balancers that receive traffic from external clients. Choose INTERNAL for Internal TCP/UDP Load Balancing. Choose INTERNAL_MANAGED for Internal HTTP(S) Load Balancing. Choose INTERNAL_SELF_MANAGED for Traffic Director. A backend service created for one type of load balancing cannot be used with another. For more information, refer to Choosing a load balancer.",
+          "description": "Specifies the load balancer type. Choose EXTERNAL for external HTTP(S), SSL Proxy, TCP Proxy and Network Load Balancing. Choose  INTERNAL for Internal TCP/UDP Load Balancing. Choose  INTERNAL_MANAGED for Internal HTTP(S) Load Balancing.  INTERNAL_SELF_MANAGED for Traffic Director. A backend service created for one type of load balancer cannot be used with another. For more information, refer to Choosing a load balancer.",
           "enum": [
             "EXTERNAL",
             "INTERNAL",
@@ -27784,7 +27829,7 @@
           "type": "string"
         },
         "network": {
-          "description": "The URL of the network to which this backend service belongs. This field can only be spcified when the load balancing scheme is set to INTERNAL.",
+          "description": "The URL of the network to which this backend service belongs. This field can only be specified when the load balancing scheme is set to INTERNAL.",
           "type": "string"
         },
         "outlierDetection": {
@@ -27797,7 +27842,7 @@
           "type": "integer"
         },
         "portName": {
-          "description": "A named port on a backend instance group representing the port for communication to the backend VMs in that group. Required when the loadBalancingScheme is EXTERNAL, INTERNAL_MANAGED, or INTERNAL_SELF_MANAGED and the backends are instance groups. The named port must be defined on each backend instance group. This parameter has no meaning if the backends are NEGs.\n\n\n\nMust be omitted when the loadBalancingScheme is INTERNAL (Internal TCP/UDP Load Balancing).",
+          "description": "A named port on a backend instance group representing the port for communication to the backend VMs in that group. Required when the loadBalancingScheme is EXTERNAL (except Network Load Balancing), INTERNAL_MANAGED, or  INTERNAL_SELF_MANAGED and the backends are instance groups. The named port must be defined on each backend instance group. This parameter has no meaning if the backends are NEGs.\n\n\n\nBackend services for Internal TCP/UDP Load Balancing and Network Load Balancing require you omit port_name.",
           "type": "string"
         },
         "protocol": {
@@ -27839,7 +27884,7 @@
           "type": "string"
         },
         "sessionAffinity": {
-          "description": "Type of session affinity to use. The default is NONE. Session affinity is not applicable if the --protocol is UDP.\n\nWhen the loadBalancingScheme is EXTERNAL, possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. You can use GENERATED_COOKIE if the protocol is HTTP or HTTPS.\n\nWhen the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.\n\nWhen the loadBalancingScheme is INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.\n\nNot supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.",
+          "description": "Type of session affinity to use. The default is NONE.\n\nWhen the loadBalancingScheme is EXTERNAL: * For Network Load Balancing, the possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO. * For all other load balancers that use loadBalancingScheme=EXTERNAL, the possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. * You can use GENERATED_COOKIE if the protocol is HTTP, HTTP2, or HTTPS.\n\nWhen the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.\n\nWhen the loadBalancingScheme is INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.\n\nNot supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.",
           "enum": [
             "CLIENT_IP",
             "CLIENT_IP_PORT_PROTO",
@@ -28000,6 +28045,37 @@
           "$ref": "CacheKeyPolicy",
           "description": "The CacheKeyPolicy for this CdnPolicy."
         },
+        "cacheMode": {
+          "description": "Specifies the cache setting for all responses from this backend. The possible values are:\n\nUSE_ORIGIN_HEADERS Requires the origin to set valid caching headers to cache content. Responses without these headers will not be cached at Google's edge, and will require a full trip to the origin on every request, potentially impacting performance and increasing load on the origin server.\n\nFORCE_CACHE_ALL Cache all content, ignoring any \"private\", \"no-store\" or \"no-cache\" directives in Cache-Control response headers. Warning: this may result in Cloud CDN caching private, per-user (user identifiable) content.\n\nCACHE_ALL_STATIC Automatically cache static content, including common image formats, media (video and audio), and web assets (JavaScript and CSS). Requests and responses that are marked as uncacheable, as well as dynamic content (including HTML), will not be cached.",
+          "enum": [
+            "CACHE_ALL_STATIC",
+            "FORCE_CACHE_ALL",
+            "INVALID_CACHE_MODE",
+            "USE_ORIGIN_HEADERS"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "clientTtl": {
+          "description": "Specifies a separate client (e.g. browser client) TTL, separate from the TTL for Cloud CDN's edge caches. Leaving this empty will use the same cache TTL for both Cloud CDN and the client-facing response. The maximum allowed value is 86400s (1 day).",
+          "format": "int32",
+          "type": "integer"
+        },
+        "defaultTtl": {
+          "description": "Specifies the default TTL for cached content served by this origin for responses that do not have an existing valid TTL (max-age or s-max-age). Setting a TTL of \"0\" means \"always revalidate\". The value of defaultTTL cannot be set to a value greater than that of maxTTL, but can be equal. When the cacheMode is set to FORCE_CACHE_ALL, the defaultTTL will overwrite the TTL set in all responses. The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "maxTtl": {
+          "description": "Specifies the maximum allowed TTL for cached content served by this origin. Cache directives that attempt to set a max-age or s-maxage higher than this, or an Expires header more than maxTTL seconds in the future will be capped at the value of maxTTL, as if it were the value of an s-maxage Cache-Control directive. Headers sent to the client will not be modified. Setting a TTL of \"0\" means \"always revalidate\". The maximum allowed value is 31,622,400s (1 year), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
+          "format": "int32",
+          "type": "integer"
+        },
         "signedUrlCacheMaxAgeSec": {
           "description": "Maximum number of seconds the response to a signed URL request will be considered fresh. After this time period, the response will be revalidated before being served. Defaults to 1hr (3600s). When serving responses to signed URL requests, Cloud CDN will internally behave as though all responses from this backend had a \"Cache-Control: public, max-age=[TTL]\" header, regardless of any existing Cache-Control header. The actual headers served in responses will not be altered.",
           "format": "int64",
@@ -28016,7 +28092,7 @@
       "type": "object"
     },
     "BackendServiceFailoverPolicy": {
-      "description": "Applicable only to Failover for Internal TCP/UDP Load Balancing. On failover or failback, this field indicates whether connection draining will be honored. GCP has a fixed connection draining timeout of 10 minutes. A setting of true terminates existing TCP connections to the active pool during failover and failback, immediately draining traffic. A setting of false allows existing TCP connections to persist, even on VMs no longer in the active pool, for up to the duration of the connection draining timeout (10 minutes).",
+      "description": "Applicable only to Failover for Internal TCP/UDP Load Balancing and Network Load Balancing. On failover or failback, this field indicates whether connection draining will be honored. GCP has a fixed connection draining timeout of 10 minutes. A setting of true terminates existing TCP connections to the active pool during failover and failback, immediately draining traffic. A setting of false allows existing TCP connections to persist, even on VMs no longer in the active pool, for up to the duration of the connection draining timeout (10 minutes).",
       "id": "BackendServiceFailoverPolicy",
       "properties": {
         "disableConnectionDrainOnFailover": {
@@ -28024,11 +28100,11 @@
           "type": "boolean"
         },
         "dropTrafficIfUnhealthy": {
-          "description": "Applicable only to Failover for Internal TCP/UDP Load Balancing. If set to true, connections to the load balancer are dropped when all primary and all backup backend VMs are unhealthy. If set to false, connections are distributed among all primary VMs when all primary and all backup backend VMs are unhealthy.\n\nThe default is false.",
+          "description": "Applicable only to Failover for Internal TCP/UDP Load Balancing and Network Load Balancing, If set to true, connections to the load balancer are dropped when all primary and all backup backend VMs are unhealthy.If set to false, connections are distributed among all primary VMs when all primary and all backup backend VMs are unhealthy. The default is false.",
           "type": "boolean"
         },
         "failoverRatio": {
-          "description": "Applicable only to Failover for Internal TCP/UDP Load Balancing. The value of the field must be in the range [0, 1]. If the value is 0, the load balancer performs a failover when the number of healthy primary VMs equals zero. For all other values, the load balancer performs a failover when the total number of healthy primary VMs is less than this ratio.",
+          "description": "Applicable only to Failover for Internal TCP/UDP Load Balancing and Network Load Balancing. The value of the field must be in the range [0, 1]. If the value is 0, the load balancer performs a failover when the number of healthy primary VMs equals zero. For all other values, the load balancer performs a failover when the total number of healthy primary VMs is less than this ratio.",
           "format": "float",
           "type": "number"
         }
@@ -30930,11 +31006,11 @@
       "id": "ForwardingRule",
       "properties": {
         "IPAddress": {
-          "description": "IP address that this forwarding rule serves. When a client sends traffic to this IP address, the forwarding rule directs the traffic to the target that you specify in the forwarding rule.\n\nIf you don't specify a reserved IP address, an ephemeral IP address is assigned. Methods for specifying an IP address:\n\n* IPv4 dotted decimal, as in `100.1.2.3` * Full URL, as in https://www.googleapis.com/compute/v1/projects/project_id/regions/region/addresses/address-name * Partial URL or by name, as in: * projects/project_id/regions/region/addresses/address-name * regions/region/addresses/address-name * global/addresses/address-name * address-name \n\nThe loadBalancingScheme and the forwarding rule's target determine the type of IP address that you can use. For detailed information, refer to [IP address specifications](/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications).\n\nMust be set to `0.0.0.0` when the target is targetGrpcProxy that has validateForProxyless field set to true.\n\nFor Private Service Connect forwarding rules that forward traffic to Google APIs, IP address must be provided.",
+          "description": "IP address that this forwarding rule serves. When a client sends traffic to this IP address, the forwarding rule directs the traffic to the target that you specify in the forwarding rule.\n\nIf you don't specify a reserved IP address, an ephemeral IP address is assigned. Methods for specifying an IP address:\n\n* IPv4 dotted decimal, as in `100.1.2.3` * Full URL, as in https://www.googleapis.com/compute/v1/projects/project_id/regions/region/addresses/address-name * Partial URL or by name, as in:  \n- projects/project_id/regions/region/addresses/address-name \n- regions/region/addresses/address-name \n- global/addresses/address-name \n- address-name  \n\nThe loadBalancingScheme and the forwarding rule's target determine the type of IP address that you can use. For detailed information, refer to [IP address specifications](/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications).\n\nMust be set to `0.0.0.0` when the target is targetGrpcProxy that has validateForProxyless field set to true.\n\nFor Private Service Connect forwarding rules that forward traffic to Google APIs, IP address must be provided.",
           "type": "string"
         },
         "IPProtocol": {
-          "description": "The IP protocol to which this rule applies. For protocol forwarding, valid options are TCP, UDP, ESP, AH, SCTP or ICMP.\n\nFor Internal TCP/UDP Load Balancing, the load balancing scheme is INTERNAL, and one of TCP or UDP are valid. For Traffic Director, the load balancing scheme is INTERNAL_SELF_MANAGED, and only TCPis valid. For Internal HTTP(S) Load Balancing, the load balancing scheme is INTERNAL_MANAGED, and only TCP is valid. For HTTP(S), SSL Proxy, and TCP Proxy Load Balancing, the load balancing scheme is EXTERNAL and only TCP is valid. For Network TCP/UDP Load Balancing, the load balancing scheme is EXTERNAL, and one of TCP or UDP is valid.",
+          "description": "The IP protocol to which this rule applies.\n\nFor protocol forwarding, valid options are TCP, UDP, ESP, AH, SCTP and ICMP.\n\nThe valid IP protocols are different for different load balancing products:  \n- Internal TCP/UDP Load Balancing: The load balancing scheme is INTERNAL, and one of TCP, UDP or ALL is valid. \n- Traffic Director: The load balancing scheme is INTERNAL_SELF_MANAGED, and only TCP is valid.  \n- Internal HTTP(S) Load Balancing: The load balancing scheme is INTERNAL_MANAGED, and only TCP is valid. \n- HTTP(S), SSL Proxy, and TCP Proxy Load Balancing: The load balancing scheme is EXTERNAL and only TCP is valid. \n- Network Load Balancing: The load balancing scheme is EXTERNAL, and one of TCP or UDP is valid.",
           "enum": [
             "AH",
             "ESP",
@@ -30962,7 +31038,7 @@
           "type": "boolean"
         },
         "backendService": {
-          "description": "This field is only used for INTERNAL load balancing.\n\nFor internal load balancing, this field identifies the BackendService resource to receive the matched traffic.",
+          "description": "Identifies the backend service to which the forwarding rule sends traffic. Required for Internal TCP/UDP Load Balancing and Network Load Balancing; must be omitted for all other load balancer types.",
           "type": "string"
         },
         "creationTimestamp": {
@@ -31007,7 +31083,7 @@
           "type": "string"
         },
         "loadBalancingScheme": {
-          "description": "Specifies the forwarding rule type.\n\n \n- EXTERNAL is used for:  \n- Classic Cloud VPN gateways \n- Protocol forwarding to VMs from an external IP address \n- The following load balancers: HTTP(S), SSL Proxy, TCP Proxy, and Network TCP/UDP    \n- INTERNAL is used for:  \n- Protocol forwarding to VMs from an internal IP address \n- Internal TCP/UDP load balancers   \n- INTERNAL_MANAGED is used for:  \n- Internal HTTP(S) load balancers   \n- INTERNAL_SELF_MANAGED is used for:  \n- Traffic Director    \n\nFor more information about forwarding rules, refer to Forwarding rule concepts.",
+          "description": "Specifies the forwarding rule type.\n\n \n- EXTERNAL is used for:  \n- Classic Cloud VPN gateways \n- Protocol forwarding to VMs from an external IP address \n- HTTP(S), SSL Proxy, TCP Proxy, and Network Load Balancing    \n- INTERNAL is used for:  \n- Protocol forwarding to VMs from an internal IP address \n- Internal TCP/UDP Load Balancing   \n- INTERNAL_MANAGED is used for:  \n- Internal HTTP(S) Load Balancing   \n- INTERNAL_SELF_MANAGED is used for:  \n- Traffic Director    \n\nFor more information about forwarding rules, refer to Forwarding rule concepts.",
           "enum": [
             "EXTERNAL",
             "INTERNAL",
@@ -31037,7 +31113,7 @@
           "type": "string"
         },
         "network": {
-          "description": "This field is not used for external load balancing.\n\nFor internal load balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used.\n\nFor Private Service Connect forwarding rules that forward traffic to Google APIs, a network must be provided.",
+          "description": "This field is not used for external load balancing.\n\nFor Internal TCP/UDP Load Balancing, this field identifies the network that the load balanced IP should belong to for this Forwarding Rule. If this field is not specified, the default network will be used.\n\nFor Private Service Connect forwarding rules that forward traffic to Google APIs, a network must be provided.",
           "type": "string"
         },
         "networkTier": {
@@ -31053,11 +31129,11 @@
           "type": "string"
         },
         "portRange": {
-          "description": "When the load balancing scheme is EXTERNAL, INTERNAL_SELF_MANAGED and INTERNAL_MANAGED, you can specify a port_range. Use with a forwarding rule that points to a target proxy or a target pool. Do not use with a forwarding rule that points to a backend service. This field is used along with the target field for TargetHttpProxy, TargetHttpsProxy, TargetSslProxy, TargetTcpProxy, TargetGrpcProxy, TargetVpnGateway, TargetPool, TargetInstance.\n\nApplicable only when IPProtocol is TCP, UDP, or SCTP, only packets addressed to ports in the specified range will be forwarded to target. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.\n\nSome types of forwarding target have constraints on the acceptable ports:  \n- TargetHttpProxy: 80, 8080 \n- TargetHttpsProxy: 443 \n- TargetGrpcProxy: Any ports \n- TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222 \n- TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222 \n- TargetVpnGateway: 500, 4500",
+          "description": "This field can be used only if: * Load balancing scheme is one of EXTERNAL,  INTERNAL_SELF_MANAGED or INTERNAL_MANAGED, and * IPProtocol is one of TCP, UDP, or SCTP.\n\nPackets addressed to ports in the specified range will be forwarded to target or  backend_service. You can only use one of ports, port_range, or allPorts. The three are mutually exclusive. Forwarding rules with the same [IPAddress, IPProtocol] pair must have disjoint port ranges.\n\nSome types of forwarding target have constraints on the acceptable ports:  \n- TargetHttpProxy: 80, 8080 \n- TargetHttpsProxy: 443 \n- TargetGrpcProxy: no constraints \n- TargetTcpProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222 \n- TargetSslProxy: 25, 43, 110, 143, 195, 443, 465, 587, 700, 993, 995, 1688, 1883, 5222 \n- TargetVpnGateway: 500, 4500",
           "type": "string"
         },
         "ports": {
-          "description": "This field is used along with the backend_service field for internal load balancing.\n\nWhen the load balancing scheme is INTERNAL, a list of ports can be configured, for example, ['80'], ['8000','9000']. Only packets addressed to these ports are forwarded to the backends configured with the forwarding rule.\n\nIf the forwarding rule's loadBalancingScheme is INTERNAL, you can specify ports in one of the following ways:\n\n* A list of up to five ports, which can be non-contiguous * Keyword ALL, which causes the forwarding rule to forward traffic on any port of the forwarding rule's protocol.",
+          "description": "The ports field is only supported when the forwarding rule references a backend_service directly. Supported load balancing products are Internal TCP/UDP Load Balancing and Network Load Balancing. Only packets addressed to the specified list of ports are forwarded to backends.\n\nYou can only use one of ports and port_range, or allPorts. The three are mutually exclusive.\n\nYou can specify a list of up to five ports, which can be non-contiguous.\n\nFor Internal TCP/UDP Load Balancing, if you specify allPorts, you should not specify ports.\n\nFor more information, see [Port specifications](/load-balancing/docs/forwarding-rule-concepts#port_specifications).",
           "items": {
             "type": "string"
           },
@@ -31608,6 +31684,7 @@
           "description": "The ID of a supported feature. Read  Enabling guest operating system features to see a list of available options.",
           "enum": [
             "FEATURE_TYPE_UNSPECIFIED",
+            "GVNIC",
             "MULTI_IP_SUBNET",
             "SECURE_BOOT",
             "SEV_CAPABLE",
@@ -31616,6 +31693,7 @@
             "WINDOWS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -32483,6 +32561,24 @@
           "description": "The named port of the instance group, not necessarily the port that is health-checked.",
           "format": "int32",
           "type": "integer"
+        },
+        "weight": {
+          "type": "string"
+        },
+        "weightError": {
+          "enum": [
+            "INVALID_WEIGHT",
+            "MISSING_WEIGHT",
+            "UNAVAILABLE_WEIGHT",
+            "WEIGHT_NONE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -36635,6 +36731,11 @@
           "description": "[Output Only] Type of the resource. Always compute#interconnectAttachment for interconnect attachments.",
           "type": "string"
         },
+        "mtu": {
+          "description": "Maximum Transmission Unit (MTU), in bytes, of packets passing through this interconnect attachment. Only 1440 and 1500 are allowed. If not specified, the value will default to 1440.",
+          "format": "int32",
+          "type": "integer"
+        },
         "name": {
           "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
@@ -37978,6 +38079,26 @@
       },
       "type": "object"
     },
+    "LocalDisk": {
+      "id": "LocalDisk",
+      "properties": {
+        "diskCount": {
+          "description": "Specifies the number of such disks.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "diskSizeGb": {
+          "description": "Specifies the size of the disk in base-2 GB.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "diskType": {
+          "description": "Specifies the desired disk type on the node. This disk type must be a local storage type (e.g.: local-ssd). Note that for nodeTemplates, this should be the name of the disk type and not its URL.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "LogConfig": {
       "description": "Specifies what kind of log the caller must write",
       "id": "LogConfig",
@@ -38900,7 +39021,7 @@
       "type": "object"
     },
     "NetworkEndpointGroup": {
-      "description": "Represents a collection of network endpoints.\n\nA network endpoint group (NEG) defines how a set of endpoints should be reached, whether they are reachable, and where they are located. For more information about using NEGs, see  Setting up internet NEGs,  Setting up zonal NEGs, or  Setting up serverless NEGs. (== resource_for {$api_version}.networkEndpointGroups ==) (== resource_for {$api_version}.globalNetworkEndpointGroups ==) (== resource_for {$api_version}.regionNetworkEndpointGroups ==)",
+      "description": "Represents a collection of network endpoints.\n\nA network endpoint group (NEG) defines how a set of endpoints should be reached, whether they are reachable, and where they are located. For more information about using NEGs, see  Setting up external HTTP(S) Load Balancing with internet NEGs,  Setting up zonal NEGs, or  Setting up external HTTP(S) Load Balancing with serverless NEGs. (== resource_for {$api_version}.networkEndpointGroups ==) (== resource_for {$api_version}.globalNetworkEndpointGroups ==) (== resource_for {$api_version}.regionNetworkEndpointGroups ==)",
       "id": "NetworkEndpointGroup",
       "properties": {
         "annotations": {
@@ -39600,6 +39721,20 @@
           "description": "An IPv4 internal IP address to assign to the instance for this network interface. If not specified by the user, an unused internal IP is assigned by the system.",
           "type": "string"
         },
+        "nicType": {
+          "description": "The type of vNIC to be used on this interface. This may be gVNIC or VirtioNet.",
+          "enum": [
+            "GVNIC",
+            "UNSPECIFIED_NIC_TYPE",
+            "VIRTIO_NET"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "subnetwork": {
           "description": "The URL of the Subnetwork resource for this instance. If the network resource is in legacy mode, do not specify this field. If the network is in auto subnet mode, specifying the subnetwork is optional. If the network is in custom subnet mode, specifying the subnetwork is required. If you specify this field, you can specify the subnetwork as a full or partial URL. For example, the following are all valid URLs:  \n- https://www.googleapis.com/compute/v1/projects/project/regions/region/subnetworks/subnetwork \n- regions/region/subnetworks/subnetwork",
           "type": "string"
@@ -39893,6 +40028,9 @@
             ""
           ],
           "type": "string"
+        },
+        "maintenanceWindow": {
+          "$ref": "NodeGroupMaintenanceWindow"
         },
         "name": {
           "description": "The name of the resource, provided by the client when initially creating the resource. The resource name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
@@ -40204,9 +40342,31 @@
       },
       "type": "object"
     },
+    "NodeGroupMaintenanceWindow": {
+      "description": "Time window specified for daily maintenance operations. GCE's internal maintenance will be performed within this window.",
+      "id": "NodeGroupMaintenanceWindow",
+      "properties": {
+        "maintenanceDuration": {
+          "$ref": "Duration",
+          "description": "[Output only] A predetermined duration for the window, automatically chosen to be the smallest possible in the given scenario."
+        },
+        "startTime": {
+          "description": "Start time of the window. This must be in UTC format that resolves to one of 00:00, 04:00, 08:00, 12:00, 16:00, or 20:00. For example, both 13:00-5 and 08:00 are valid.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NodeGroupNode": {
       "id": "NodeGroupNode",
       "properties": {
+        "accelerators": {
+          "description": "Accelerators for this node.",
+          "items": {
+            "$ref": "AcceleratorConfig"
+          },
+          "type": "array"
+        },
         "cpuOvercommitType": {
           "description": "CPU overcommit.",
           "enum": [
@@ -40220,6 +40380,13 @@
             ""
           ],
           "type": "string"
+        },
+        "disks": {
+          "description": "Local disk configurations.",
+          "items": {
+            "$ref": "LocalDisk"
+          },
+          "type": "array"
         },
         "instances": {
           "description": "Instances scheduled on this node.",
@@ -40515,6 +40682,12 @@
       "description": "Represent a sole-tenant Node Template resource.\n\nYou can use a template to define properties for nodes in a node group. For more information, read Creating node groups and instances. (== resource_for {$api_version}.nodeTemplates ==)",
       "id": "NodeTemplate",
       "properties": {
+        "accelerators": {
+          "items": {
+            "$ref": "AcceleratorConfig"
+          },
+          "type": "array"
+        },
         "cpuOvercommitType": {
           "description": "CPU overcommit.",
           "enum": [
@@ -40536,6 +40709,12 @@
         "description": {
           "description": "An optional description of this resource. Provide this property when you create the resource.",
           "type": "string"
+        },
+        "disks": {
+          "items": {
+            "$ref": "LocalDisk"
+          },
+          "type": "array"
         },
         "id": {
           "description": "[Output Only] The unique identifier for the resource. This identifier is defined by the server.",
@@ -45686,7 +45865,7 @@
               "compute.routes.insert"
             ]
           },
-          "description": "The destination range of outgoing packets that this route applies to. Only IPv4 is supported.",
+          "description": "The destination range of outgoing packets that this route applies to. Both IPv4 and IPv6 are supported.",
           "type": "string"
         },
         "id": {
@@ -47030,6 +47209,10 @@
           "description": "Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted.\n\nBy default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.",
           "type": "boolean"
         },
+        "locationHint": {
+          "description": "An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.",
+          "type": "string"
+        },
         "minNodeCpus": {
           "description": "The minimum number of virtual CPUs this instance will consume when running on a sole-tenant node.",
           "format": "int32",
@@ -47319,7 +47502,7 @@
           "type": "boolean"
         },
         "priority": {
-          "description": "An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest prority.",
+          "description": "An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest priority.",
           "format": "int32",
           "type": "integer"
         }
@@ -48752,7 +48935,7 @@
           "type": "string"
         },
         "state": {
-          "description": "[Output Only] The state of the subnetwork, which can be one of READY or DRAINING. A subnetwork that is READY is ready to be used. The state of DRAINING is only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY.",
+          "description": "[Output Only] The state of the subnetwork, which can be one of the following values: READY: Subnetwork is created and ready to use DRAINING: only applicable to subnetworks that have the purpose set to INTERNAL_HTTPS_LOAD_BALANCER and indicates that connections to the load balancer are being drained. A subnetwork that is draining cannot be used or modified until it reaches a status of READY CREATING: Subnetwork is provisioning DELETING: Subnetwork is being deleted UPDATING: Subnetwork is being updated",
           "enum": [
             "DRAINING",
             "READY"
