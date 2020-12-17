@@ -124,7 +124,7 @@ export namespace manufacturers_v1 {
   }
 
   /**
-   * Attributes of the product. For more information, see https://support.google.com/manufacturers/answer/6124116.
+   * Attributes of the product. For more information, see https://support.google.com/manufacturers/answer/6124116. Next tag: 47
    */
   export interface Schema$Attributes {
     /**

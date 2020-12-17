@@ -287,11 +287,11 @@
       }
     }
   },
-  "revision": "20200805",
+  "revision": "20201208",
   "rootUrl": "https://manufacturers.googleapis.com/",
   "schemas": {
     "Attributes": {
-      "description": "Attributes of the product. For more information, see https://support.google.com/manufacturers/answer/6124116.",
+      "description": "Attributes of the product. For more information, see https://support.google.com/manufacturers/answer/6124116. Next tag: 47",
       "id": "Attributes",
       "properties": {
         "additionalImageLink": {
