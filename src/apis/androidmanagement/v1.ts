@@ -1091,6 +1091,10 @@ export namespace androidmanagement_v1 {
      */
     networkOperatorName?: string | null;
     /**
+     * Provides telephony information associated with each SIM card on the device. Only supported on fully managed devices starting from Android API level 23 and above.
+     */
+    telephonyInfos?: Schema$TelephonyInfo[];
+    /**
      * Wi-Fi MAC address of the device. For example, 7c:11:11:11:11:11.
      */
     wifiMacAddress?: string | null;
@@ -1917,6 +1921,19 @@ export namespace androidmanagement_v1 {
      * The status of an update: whether an update exists and what type it is.
      */
     updateStatus?: string | null;
+  }
+  /**
+   * Telephony information associated with a given SIM card on the device. Only supported on fully managed devices starting from Android API level 23 and above.
+   */
+  export interface Schema$TelephonyInfo {
+    /**
+     * The carrier name associated with this SIM card.
+     */
+    carrierName?: string | null;
+    /**
+     * The phone number associated with this SIM card.
+     */
+    phoneNumber?: string | null;
   }
   /**
    * A terms and conditions page to be accepted during provisioning.
