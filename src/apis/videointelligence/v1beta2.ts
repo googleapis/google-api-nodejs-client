@@ -278,6 +278,14 @@ export namespace videointelligence_v1beta2 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_FaceDetectionAnnotation {
     /**
+     * The thumbnail of a person's face.
+     */
+    thumbnail?: string | null;
+    /**
+     * The face tracks with attributes.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1beta2_Track[];
+    /**
      * Feature version.
      */
     version?: string | null;
@@ -1027,6 +1035,14 @@ export namespace videointelligence_v1beta2 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_FaceDetectionAnnotation {
     /**
+     * The thumbnail of a person's face.
+     */
+    thumbnail?: string | null;
+    /**
+     * The face tracks with attributes.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p1beta1_Track[];
+    /**
      * Feature version.
      */
     version?: string | null;
@@ -1594,6 +1610,14 @@ export namespace videointelligence_v1beta2 {
    * Face detection annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_FaceDetectionAnnotation {
+    /**
+     * The thumbnail of a person's face.
+     */
+    thumbnail?: string | null;
+    /**
+     * The face tracks with attributes.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p2beta1_Track[];
     /**
      * Feature version.
      */
@@ -2205,6 +2229,14 @@ export namespace videointelligence_v1beta2 {
    * Face detection annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_FaceDetectionAnnotation {
+    /**
+     * The thumbnail of a person's face.
+     */
+    thumbnail?: string | null;
+    /**
+     * The face tracks with attributes.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track[];
     /**
      * Feature version.
      */
@@ -2832,6 +2864,14 @@ export namespace videointelligence_v1beta2 {
    * Face detection annotation.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_FaceDetectionAnnotation {
+    /**
+     * The thumbnail of a person's face.
+     */
+    thumbnail?: string | null;
+    /**
+     * The face tracks with attributes.
+     */
+    tracks?: Schema$GoogleCloudVideointelligenceV1_Track[];
     /**
      * Feature version.
      */
