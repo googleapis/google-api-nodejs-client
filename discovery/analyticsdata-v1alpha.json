@@ -248,7 +248,7 @@
       }
     }
   },
-  "revision": "20201201",
+  "revision": "20201209",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "BatchRunPivotReportsRequest": {
@@ -398,12 +398,12 @@
       "id": "CohortsRange",
       "properties": {
         "endOffset": {
-          "description": "`endOffset` specifies the end date of the extended reporting date range for a cohort report. `endOffset` can be any positive integer but is commonly set to 5 to 10 so that reports contain data on the cohort for the next several granularity time periods. If `granularity` is `DAILY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset` days. If `granularity` is `WEEKLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 7` days. If `granularity` is `MONTHLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 30` days.",
+          "description": "Required. `endOffset` specifies the end date of the extended reporting date range for a cohort report. `endOffset` can be any positive integer but is commonly set to 5 to 10 so that reports contain data on the cohort for the next several granularity time periods. If `granularity` is `DAILY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset` days. If `granularity` is `WEEKLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 7` days. If `granularity` is `MONTHLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 30` days.",
           "format": "int32",
           "type": "integer"
         },
         "granularity": {
-          "description": "The granularity used to interpret the `startOffset` and `endOffset` for the extended reporting date range for a cohort report.",
+          "description": "Required. The granularity used to interpret the `startOffset` and `endOffset` for the extended reporting date range for a cohort report.",
           "enum": [
             "GRANULARITY_UNSPECIFIED",
             "DAILY",
