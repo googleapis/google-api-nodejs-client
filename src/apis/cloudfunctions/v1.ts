@@ -492,6 +492,10 @@ export namespace cloudfunctions_v1 {
      */
     request?: {[key: string]: any} | null;
     /**
+     * A field for Firebase function deployments
+     */
+    sourceToken?: string | null;
+    /**
      * Target of the operation - for example projects/project-1/locations/region-1/functions/function-1
      */
     target?: string | null;

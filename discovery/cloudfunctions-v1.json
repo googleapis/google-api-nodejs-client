@@ -546,7 +546,7 @@
       }
     }
   },
-  "revision": "20201107",
+  "revision": "20201203",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1062,6 +1062,10 @@
           },
           "description": "The original request that started the operation.",
           "type": "object"
+        },
+        "sourceToken": {
+          "description": "A field for Firebase function deployments",
+          "type": "string"
         },
         "target": {
           "description": "Target of the operation - for example projects/project-1/locations/region-1/functions/function-1",
