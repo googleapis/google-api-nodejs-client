@@ -323,15 +323,15 @@ export namespace content_v2_1 {
    */
   export interface Schema$AccountLabel {
     /**
-     * Output only. Immutable. The ID of account this label belongs to.
+     * Immutable. The ID of account this label belongs to.
      */
     accountId?: string | null;
     /**
-     * Description for this label.
+     * The description of this label.
      */
     description?: string | null;
     /**
-     * Output only. Immutable. The ID of the label.
+     * Output only. The ID of the label.
      */
     labelId?: string | null;
     /**
@@ -420,7 +420,7 @@ export namespace content_v2_1 {
      */
     linkType?: string | null;
     /**
-     * List of provided services.
+     * Provided services. Acceptable values are: - "`shoppingAdsProductManagement`" - "`shoppingAdsOther`" - "`shoppingActionsProductManagement`" - "`shoppingActionsOrderManagement`" - "`shoppingActionsOther`"
      */
     services?: string[] | null;
   }
@@ -1330,6 +1330,23 @@ export namespace content_v2_1 {
     language?: string | null;
   }
   /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
    * Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year is 0, the DateTime is considered not to have a specific year. month and day must have valid, non-zero values. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.
    */
   export interface Schema$DateTime {
@@ -1543,6 +1560,19 @@ export namespace content_v2_1 {
      */
     type?: string | null;
   }
+  /**
+   * Map of inapplicability details.
+   */
+  export interface Schema$InapplicabilityDetails {
+    /**
+     * Count of this inapplicable reason code.
+     */
+    inapplicableCount?: string | null;
+    /**
+     * Reason code this rule was not applicable.
+     */
+    inapplicableReason?: string | null;
+  }
   export interface Schema$Installment {
     /**
      * The amount the buyer has to pay per month.
@@ -1749,7 +1779,7 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * The the list of accessible GMB accounts.
+     * The list of accessible GMB accounts.
      */
     gmbAccounts?: Schema$GmbAccounts;
     /**
@@ -1882,6 +1912,32 @@ export namespace content_v2_1 {
      * The regions from the specified merchant.
      */
     regions?: Schema$Region[];
+  }
+  /**
+   * Response message for the ListRepricingProductReports method.
+   */
+  export interface Schema$ListRepricingProductReportsResponse {
+    /**
+     * A token for retrieving the next page. Its absence means there is no subsequent page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Periodic reports for the given Repricing product.
+     */
+    repricingProductReports?: Schema$RepricingProductReport[];
+  }
+  /**
+   * Response message for the ListRepricingRuleReports method.
+   */
+  export interface Schema$ListRepricingRuleReportsResponse {
+    /**
+     * A token for retrieving the next page. Its absence means there is no subsequent page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Daily reports for the given Repricing rule.
+     */
+    repricingRuleReports?: Schema$RepricingRuleReport[];
   }
   /**
    * Response message for the `ListRepricingRules` method.
@@ -3234,6 +3290,19 @@ export namespace content_v2_1 {
      */
     trackingId?: string | null;
   }
+  /**
+   * ScheduledDeliveryDetails used to update the scheduled delivery order.
+   */
+  export interface Schema$OrdersCustomBatchRequestEntryUpdateShipmentScheduledDeliveryDetails {
+    /**
+     * The phone number of the carrier fulfilling the delivery. The phone number should be formatted as the international notation in
+     */
+    carrierPhoneNumber?: string | null;
+    /**
+     * The date a shipment is scheduled for delivery, in ISO 8601 format.
+     */
+    scheduledDate?: string | null;
+  }
   export interface Schema$OrdersGetByMerchantOrderIdResponse {
     /**
      * Identifies what kind of resource this is. Value: the fixed string "content#ordersGetByMerchantOrderIdResponse".
@@ -3641,6 +3710,10 @@ export namespace content_v2_1 {
      * Date on which the shipment has been ready for pickup, in ISO 8601 format. Optional and can be provided only if `status` is `ready for pickup`.
      */
     readyPickupDate?: string | null;
+    /**
+     * Delivery details of the shipment if scheduling is needed.
+     */
+    scheduledDeliveryDetails?: Schema$OrdersCustomBatchRequestEntryUpdateShipmentScheduledDeliveryDetails;
     /**
      * The ID of the shipment.
      */
@@ -5169,9 +5242,67 @@ export namespace content_v2_1 {
     end?: string | null;
   }
   /**
+   * Resource that represents a daily Repricing product report. Each report contains stats for a single type of Repricing rule for a single product on a given day. If there are multiple rules of the same type for the product on that day, the report lists all the rules by rule ids, combines the stats, and paginates the results by date. To retrieve the stats of a particular rule, provide the rule_id in the request.
+   */
+  export interface Schema$RepricingProductReport {
+    /**
+     * Total count of Repricer applications. This value captures how many times the rule of this type was applied to this product during this reporting period.
+     */
+    applicationCount?: string | null;
+    /**
+     * Stats specific to buybox winning rules for product report.
+     */
+    buyboxWinningProductStats?: Schema$RepricingProductReportBuyboxWinningProductStats;
+    /**
+     * Date of the stats in this report. The report starts and ends according to the merchant's timezone.
+     */
+    date?: Schema$Date;
+    /**
+     * Maximum displayed price after repriced during this reporting period.
+     */
+    highWatermark?: Schema$PriceAmount;
+    /**
+     * List of all reasons the rule did not apply to the product during the specified reporting period.
+     */
+    inapplicabilityDetails?: Schema$InapplicabilityDetails[];
+    /**
+     * Minimum displayed price after repriced during this reporting period.
+     */
+    lowWatermark?: Schema$PriceAmount;
+    /**
+     * Total unit count of impacted products ordered while the rule was active on the date of the report. This count includes all orders that were started while the rule was active, even if the rule was no longer active when the order was completed.
+     */
+    orderItemCount?: number | null;
+    /**
+     * Ids of the Repricing rule for this report.
+     */
+    ruleIds?: string[] | null;
+    /**
+     * Total GMV generated by impacted products while the rule was active on the date of the report. This value includes all orders that were started while the rule was active, even if the rule was no longer active when the order was completed.
+     */
+    totalGmv?: Schema$PriceAmount;
+    /**
+     * Type of the rule.
+     */
+    type?: string | null;
+  }
+  /**
+   * Stats specific to buybox winning rules for product report.
+   */
+  export interface Schema$RepricingProductReportBuyboxWinningProductStats {
+    /**
+     * Number of times this product won the buybox with these rules during this time period.
+     */
+    buyboxWinsCount?: number | null;
+  }
+  /**
    * Represents a repricing rule. A repricing rule is used by shopping serving to adjust transactable offer prices if conditions are met. Next ID: 24
    */
   export interface Schema$RepricingRule {
+    /**
+     * The rule definition for TYPE_COGS_BASED. Required when the rule type is TYPE_COGS_BASED.
+     */
+    cogsBasedRule?: Schema$RepricingRuleCostOfGoodsSaleRule;
     /**
      * Required. Immutable. CLDR country code (e.g. "US").
      */
@@ -5205,6 +5336,10 @@ export namespace content_v2_1 {
      */
     ruleId?: string | null;
     /**
+     * The rule definition for TYPE_STATS_BASED. Required when the rule type is TYPE_STATS_BASED.
+     */
+    statsBasedRule?: Schema$RepricingRuleStatsBasedRule;
+    /**
      * The title for the rule.
      */
     title?: string | null;
@@ -5212,6 +5347,19 @@ export namespace content_v2_1 {
      * Required. Immutable. The type of the rule.
      */
     type?: string | null;
+  }
+  /**
+   * A repricing rule that changes the sale price based on cost of goods sale.
+   */
+  export interface Schema$RepricingRuleCostOfGoodsSaleRule {
+    /**
+     * The percent change against the COGS. Ex: 20 would mean to set the adjusted price 1.2X of the COGS data.
+     */
+    percentageDelta?: number | null;
+    /**
+     * The price delta against the COGS. E.g. 2 means $2 more of the COGS.
+     */
+    priceDelta?: string | null;
   }
   export interface Schema$RepricingRuleEffectiveTime {
     /**
@@ -5252,6 +5400,10 @@ export namespace content_v2_1 {
      * Filter by the offer id.
      */
     offerIdMatcher?: Schema$RepricingRuleEligibleOfferMatcherStringMatcher;
+    /**
+     * When true, the rule won't be applied to offers with active promotions.
+     */
+    skipWhenOnPromotion?: boolean | null;
   }
   /**
    * Matcher by string attributes.
@@ -5261,6 +5413,56 @@ export namespace content_v2_1 {
      * String attributes, as long as such attribute of an offer is one of the string attribute values, the offer is considered as passing the matcher. The string matcher checks an offer for inclusivity in the string attributes, not equality. Only literal string matching is supported, no regex.
      */
     strAttributes?: string[] | null;
+  }
+  /**
+   * Resource that represents a daily Repricing rule report. Next ID: 11
+   */
+  export interface Schema$RepricingRuleReport {
+    /**
+     * Stats specific to buybox winning rules for rule report.
+     */
+    buyboxWinningRuleStats?: Schema$RepricingRuleReportBuyboxWinningRuleStats;
+    /**
+     * Date of the stats in this report. The report starts and ends according to the merchant's timezone.
+     */
+    date?: Schema$Date;
+    /**
+     * List of product ids that are impacted by this rule during this reporting period. Out of stock products and products not searched for by customers are examples of non-impacted products.
+     */
+    impactedProducts?: string[] | null;
+    /**
+     * List of all reasons the rule did not apply to the inapplicable products during the specified reporting period.
+     */
+    inapplicabilityDetails?: Schema$InapplicabilityDetails[];
+    /**
+     * List of product ids that are inapplicable to this rule during this reporting period. To get the inapplicable reason for a specific product, see RepricingProductReport.
+     */
+    inapplicableProducts?: string[] | null;
+    /**
+     * Total unit count of impacted products ordered while the rule was active on the date of the report. This count includes all orders that were started while the rule was active, even if the rule was no longer active when the order was completed.
+     */
+    orderItemCount?: number | null;
+    /**
+     * Id of the Repricing rule for this report.
+     */
+    ruleId?: string | null;
+    /**
+     * Total GMV generated by impacted products while the rule was active on the date of the report. This value includes all orders that were started while the rule was active, even if the rule was no longer active when the order was completed.
+     */
+    totalGmv?: Schema$PriceAmount;
+    /**
+     * Type of the rule.
+     */
+    type?: string | null;
+  }
+  /**
+   * Stats specific to buybox winning rules for rule report.
+   */
+  export interface Schema$RepricingRuleReportBuyboxWinningRuleStats {
+    /**
+     * Number of unique products that won the buybox with this rule during this period of time.
+     */
+    buyboxWonProductCount?: number | null;
   }
   /**
    * Definition of a rule restriction. At least one of the following needs to be true: (1) use_auto_pricing_min_price is true (2) floor.price_delta exists (3) floor.percentage_delta exists If floor.price_delta and floor.percentage_delta are both set on a rule, the highest value will be chosen by the Repricer. In other words, for a product with a price of $50, if the `floor.percentage_delta` is "-10" and the floor.price_delta is "-12", the offer price will only be lowered $5 (10% lower than the original offer price).
@@ -5285,6 +5487,19 @@ export namespace content_v2_1 {
     percentageDelta?: number | null;
     /**
      * The price micros relative to the offer selling price. This field is signed. It must be negative in floor. For example, if an offer is selling at $10 and this field is -$2 in floor, the repricing rule only applies if the calculated new price is \>= $8.
+     */
+    priceDelta?: string | null;
+  }
+  /**
+   * Definition of stats based rule.
+   */
+  export interface Schema$RepricingRuleStatsBasedRule {
+    /**
+     * The percent change against the price target. Valid from 0 to 100 inclusively.
+     */
+    percentageDelta?: number | null;
+    /**
+     * The price delta against the above price target. A positive value means the price should be adjusted to be above statistical measure, and a negative value means below. Currency code must not be included.
      */
     priceDelta?: string | null;
   }
@@ -5574,7 +5789,7 @@ export namespace content_v2_1 {
      */
     deliveryDate?: string | null;
     /**
-     * Type of the return method. Acceptable values are: - "`byMail`" - "`contactCustomerSupport`" - "`returnless`"
+     * Type of the return method. Acceptable values are: - "`byMail`" - "`contactCustomerSupport`" - "`returnless`" - "`inStore`"
      */
     returnMethodType?: string | null;
     /**
@@ -5718,7 +5933,7 @@ export namespace content_v2_1 {
   export interface Schema$SettlementTransactionAmount {
     commission?: Schema$SettlementTransactionAmountCommission;
     /**
-     * The description of the event. Acceptable values are: - "`taxWithhold`" - "`principal`" - "`principalAdjustment`" - "`shippingFee`" - "`merchantRemittedSalesTax`" - "`googleRemittedSalesTax`" - "`merchantCoupon`" - "`merchantCouponTax`" - "`merchantRemittedDisposalTax`" - "`googleRemittedDisposalTax`" - "`merchantRemittedRedemptionFee`" - "`googleRemittedRedemptionFee`" - "`eeeEcoFee`" - "`furnitureEcoFee`" - "`copyPrivateFee`" - "`eeeEcoFeeCommission`" - "`furnitureEcoFeeCommission`" - "`copyPrivateFeeCommission`" - "`principalRefund`" - "`principalRefundTax`" - "`itemCommission`" - "`adjustmentCommission`" - "`shippingFeeCommission`" - "`commissionRefund`" - "`damaged`" - "`damagedOrDefectiveItem`" - "`expiredItem`" - "`faultyItem`" - "`incorrectItemReceived`" - "`itemMissing`" - "`qualityNotExpected`" - "`receivedTooLate`" - "`storePackageMissing`" - "`transitPackageMissing`" - "`unsuccessfulDeliveryUndeliverable`" - "`wrongChargeInStore`" - "`wrongItem`" - "`returns`" - "`undeliverable`" - "`refundFromMerchant`" - "`returnLabelShippingFee`"
+     * The description of the event. Acceptable values are: - "`taxWithhold`" - "`principal`" - "`principalAdjustment`" - "`shippingFee`" - "`merchantRemittedSalesTax`" - "`googleRemittedSalesTax`" - "`merchantCoupon`" - "`merchantCouponTax`" - "`merchantRemittedDisposalTax`" - "`googleRemittedDisposalTax`" - "`merchantRemittedRedemptionFee`" - "`googleRemittedRedemptionFee`" - "`eeeEcoFee`" - "`furnitureEcoFee`" - "`copyPrivateFee`" - "`eeeEcoFeeCommission`" - "`furnitureEcoFeeCommission`" - "`copyPrivateFeeCommission`" - "`principalRefund`" - "`principalRefundTax`" - "`itemCommission`" - "`adjustmentCommission`" - "`shippingFeeCommission`" - "`commissionRefund`" - "`damaged`" - "`damagedOrDefectiveItem`" - "`expiredItem`" - "`faultyItem`" - "`incorrectItemReceived`" - "`itemMissing`" - "`qualityNotExpected`" - "`receivedTooLate`" - "`storePackageMissing`" - "`transitPackageMissing`" - "`unsuccessfulDeliveryUndeliverable`" - "`wrongChargeInStore`" - "`wrongItem`" - "`returns`" - "`undeliverable`" - "`refundFromMerchant`" - "`returnLabelShippingFee`" - "`pspFee`"
      */
     description?: string | null;
     /**
@@ -6060,6 +6275,10 @@ export namespace content_v2_1 {
      * The delivery address
      */
     address?: Schema$TestOrderAddress;
+    /**
+     * Whether the order is scheduled delivery order.
+     */
+    isScheduledDelivery?: boolean | null;
     /**
      * The phone number of the person receiving the delivery.
      */
@@ -18294,6 +18513,7 @@ export namespace content_v2_1 {
      *       //   "lastPickupDate": "my_lastPickupDate",
      *       //   "operationId": "my_operationId",
      *       //   "readyPickupDate": "my_readyPickupDate",
+     *       //   "scheduledDeliveryDetails": {},
      *       //   "shipmentId": "my_shipmentId",
      *       //   "status": "my_status",
      *       //   "trackingId": "my_trackingId",
@@ -20998,8 +21218,12 @@ export namespace content_v2_1 {
 
   export class Resource$Productstatuses {
     context: APIRequestContext;
+    repricingreports: Resource$Productstatuses$Repricingreports;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.repricingreports = new Resource$Productstatuses$Repricingreports(
+        this.context
+      );
     }
 
     /**
@@ -21473,6 +21697,197 @@ export namespace content_v2_1 {
      * The token returned by the previous request.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Productstatuses$Repricingreports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the metrics report for a given Repricing product. Reports of the last 3 days may not be complete.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.productstatuses.repricingreports.list({
+     *     // Gets Repricing reports on and before this date in the merchant's timezone. You can only retrieve data up to 3 days ago (default) or earlier. Format is YYYY-MM-DD.
+     *     endDate: 'placeholder-value',
+     *     // Required. Id of the merchant who owns the Repricing rule.
+     *     merchantId: 'placeholder-value',
+     *     // Maximum number of days of reports to return. There can be more than one rule report returned per day. For example, if 3 rule types got applied to the same product within a 24-hour period, then a page_size of 1 will return 3 rule reports. The page size defaults to 50 and values above 1000 are coerced to 1000. This service may return fewer days of reports than this value, for example, if the time between your start and end date is less than the page size.
+     *     pageSize: 'placeholder-value',
+     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Id of the Repricing product. Also known as the [REST_ID](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.id)
+     *     productId: 'placeholder-value',
+     *     // Id of the Repricing rule. If specified, only gets this rule's reports.
+     *     ruleId: 'placeholder-value',
+     *     // Gets Repricing reports on and after this date in the merchant's timezone, up to one year ago. Do not use a start date later than 3 days ago (default). Format is YYYY-MM-DD.
+     *     startDate: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "repricingProductReports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Productstatuses$Repricingreports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Productstatuses$Repricingreports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRepricingProductReportsResponse>;
+    list(
+      params: Params$Resource$Productstatuses$Repricingreports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Productstatuses$Repricingreports$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRepricingProductReportsResponse>,
+      callback: BodyResponseCallback<Schema$ListRepricingProductReportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Productstatuses$Repricingreports$List,
+      callback: BodyResponseCallback<Schema$ListRepricingProductReportsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRepricingProductReportsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Productstatuses$Repricingreports$List
+        | BodyResponseCallback<Schema$ListRepricingProductReportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRepricingProductReportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRepricingProductReportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRepricingProductReportsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Productstatuses$Repricingreports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Productstatuses$Repricingreports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/productstatuses/{productId}/repricingreports'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'productId'],
+        pathParams: ['merchantId', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRepricingProductReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRepricingProductReportsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Productstatuses$Repricingreports$List
+    extends StandardParameters {
+    /**
+     * Gets Repricing reports on and before this date in the merchant's timezone. You can only retrieve data up to 3 days ago (default) or earlier. Format is YYYY-MM-DD.
+     */
+    endDate?: string;
+    /**
+     * Required. Id of the merchant who owns the Repricing rule.
+     */
+    merchantId?: string;
+    /**
+     * Maximum number of days of reports to return. There can be more than one rule report returned per day. For example, if 3 rule types got applied to the same product within a 24-hour period, then a page_size of 1 will return 3 rule reports. The page size defaults to 50 and values above 1000 are coerced to 1000. This service may return fewer days of reports than this value, for example, if the time between your start and end date is less than the page size.
+     */
+    pageSize?: number;
+    /**
+     * Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Id of the Repricing product. Also known as the [REST_ID](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.id)
+     */
+    productId?: string;
+    /**
+     * Id of the Repricing rule. If specified, only gets this rule's reports.
+     */
+    ruleId?: string;
+    /**
+     * Gets Repricing reports on and after this date in the merchant's timezone, up to one year ago. Do not use a start date later than 3 days ago (default). Format is YYYY-MM-DD.
+     */
+    startDate?: string;
   }
 
   export class Resource$Pubsubnotificationsettings {
@@ -22896,8 +23311,12 @@ export namespace content_v2_1 {
 
   export class Resource$Repricingrules {
     context: APIRequestContext;
+    repricingreports: Resource$Repricingrules$Repricingreports;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.repricingreports = new Resource$Repricingrules$Repricingreports(
+        this.context
+      );
     }
 
     /**
@@ -22936,6 +23355,7 @@ export namespace content_v2_1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cogsBasedRule": {},
      *       //   "countryCode": "my_countryCode",
      *       //   "effectiveTimePeriod": {},
      *       //   "eligibleOfferMatcher": {},
@@ -22944,6 +23364,7 @@ export namespace content_v2_1 {
      *       //   "paused": false,
      *       //   "restriction": {},
      *       //   "ruleId": "my_ruleId",
+     *       //   "statsBasedRule": {},
      *       //   "title": "my_title",
      *       //   "type": "my_type"
      *       // }
@@ -22953,6 +23374,7 @@ export namespace content_v2_1 {
      *
      *   // Example response
      *   // {
+     *   //   "cogsBasedRule": {},
      *   //   "countryCode": "my_countryCode",
      *   //   "effectiveTimePeriod": {},
      *   //   "eligibleOfferMatcher": {},
@@ -22961,6 +23383,7 @@ export namespace content_v2_1 {
      *   //   "paused": false,
      *   //   "restriction": {},
      *   //   "ruleId": "my_ruleId",
+     *   //   "statsBasedRule": {},
      *   //   "title": "my_title",
      *   //   "type": "my_type"
      *   // }
@@ -23217,6 +23640,7 @@ export namespace content_v2_1 {
      *
      *   // Example response
      *   // {
+     *   //   "cogsBasedRule": {},
      *   //   "countryCode": "my_countryCode",
      *   //   "effectiveTimePeriod": {},
      *   //   "eligibleOfferMatcher": {},
@@ -23225,6 +23649,7 @@ export namespace content_v2_1 {
      *   //   "paused": false,
      *   //   "restriction": {},
      *   //   "ruleId": "my_ruleId",
+     *   //   "statsBasedRule": {},
      *   //   "title": "my_title",
      *   //   "type": "my_type"
      *   // }
@@ -23502,6 +23927,7 @@ export namespace content_v2_1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cogsBasedRule": {},
      *       //   "countryCode": "my_countryCode",
      *       //   "effectiveTimePeriod": {},
      *       //   "eligibleOfferMatcher": {},
@@ -23510,6 +23936,7 @@ export namespace content_v2_1 {
      *       //   "paused": false,
      *       //   "restriction": {},
      *       //   "ruleId": "my_ruleId",
+     *       //   "statsBasedRule": {},
      *       //   "title": "my_title",
      *       //   "type": "my_type"
      *       // }
@@ -23519,6 +23946,7 @@ export namespace content_v2_1 {
      *
      *   // Example response
      *   // {
+     *   //   "cogsBasedRule": {},
      *   //   "countryCode": "my_countryCode",
      *   //   "effectiveTimePeriod": {},
      *   //   "eligibleOfferMatcher": {},
@@ -23527,6 +23955,7 @@ export namespace content_v2_1 {
      *   //   "paused": false,
      *   //   "restriction": {},
      *   //   "ruleId": "my_ruleId",
+     *   //   "statsBasedRule": {},
      *   //   "title": "my_title",
      *   //   "type": "my_type"
      *   // }
@@ -23700,6 +24129,191 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$RepricingRule;
+  }
+
+  export class Resource$Repricingrules$Repricingreports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the metrics report for a given Repricing rule. Reports of the last 3 days may not be complete.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.repricingrules.repricingreports.list({
+     *     // Gets Repricing reports on and before this date in the merchant's timezone. You can only retrieve data up to 3 days ago (default) or earlier. Format: YYYY-MM-DD.
+     *     endDate: 'placeholder-value',
+     *     // Required. Id of the merchant who owns the Repricing rule.
+     *     merchantId: 'placeholder-value',
+     *     // Maximum number of daily reports to return. Each report includes data from a single 24-hour period. The page size defaults to 50 and values above 1000 are coerced to 1000. This service may return fewer days than this value, for example, if the time between your start and end date is less than page size.
+     *     pageSize: 'placeholder-value',
+     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Id of the Repricing rule.
+     *     ruleId: 'placeholder-value',
+     *     // Gets Repricing reports on and after this date in the merchant's timezone, up to one year ago. Do not use a start date later than 3 days ago (default). Format: YYYY-MM-DD.
+     *     startDate: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "repricingRuleReports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Repricingrules$Repricingreports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Repricingrules$Repricingreports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRepricingRuleReportsResponse>;
+    list(
+      params: Params$Resource$Repricingrules$Repricingreports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Repricingrules$Repricingreports$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRepricingRuleReportsResponse>,
+      callback: BodyResponseCallback<Schema$ListRepricingRuleReportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Repricingrules$Repricingreports$List,
+      callback: BodyResponseCallback<Schema$ListRepricingRuleReportsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRepricingRuleReportsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Repricingrules$Repricingreports$List
+        | BodyResponseCallback<Schema$ListRepricingRuleReportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRepricingRuleReportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRepricingRuleReportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRepricingRuleReportsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Repricingrules$Repricingreports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Repricingrules$Repricingreports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/repricingrules/{ruleId}/repricingreports'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'ruleId'],
+        pathParams: ['merchantId', 'ruleId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRepricingRuleReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRepricingRuleReportsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Repricingrules$Repricingreports$List
+    extends StandardParameters {
+    /**
+     * Gets Repricing reports on and before this date in the merchant's timezone. You can only retrieve data up to 3 days ago (default) or earlier. Format: YYYY-MM-DD.
+     */
+    endDate?: string;
+    /**
+     * Required. Id of the merchant who owns the Repricing rule.
+     */
+    merchantId?: string;
+    /**
+     * Maximum number of daily reports to return. Each report includes data from a single 24-hour period. The page size defaults to 50 and values above 1000 are coerced to 1000. This service may return fewer days than this value, for example, if the time between your start and end date is less than page size.
+     */
+    pageSize?: number;
+    /**
+     * Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Id of the Repricing rule.
+     */
+    ruleId?: string;
+    /**
+     * Gets Repricing reports on and after this date in the merchant's timezone, up to one year ago. Do not use a start date later than 3 days ago (default). Format: YYYY-MM-DD.
+     */
+    startDate?: string;
   }
 
   export class Resource$Returnaddress {
