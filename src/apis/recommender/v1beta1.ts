@@ -111,6 +111,7 @@ export namespace recommender_v1beta1 {
    */
   export class Recommender {
     context: APIRequestContext;
+    billingAccounts: Resource$Billingaccounts;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -119,6 +120,7 @@ export namespace recommender_v1beta1 {
         google,
       };
 
+      this.billingAccounts = new Resource$Billingaccounts(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -455,6 +457,1396 @@ export namespace recommender_v1beta1 {
      * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      */
     units?: string | null;
+  }
+
+  export class Resource$Billingaccounts {
+    context: APIRequestContext;
+    locations: Resource$Billingaccounts$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Billingaccounts$Locations(this.context);
+    }
+  }
+
+  export class Resource$Billingaccounts$Locations {
+    context: APIRequestContext;
+    insightTypes: Resource$Billingaccounts$Locations$Insighttypes;
+    recommenders: Resource$Billingaccounts$Locations$Recommenders;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.insightTypes = new Resource$Billingaccounts$Locations$Insighttypes(
+        this.context
+      );
+      this.recommenders = new Resource$Billingaccounts$Locations$Recommenders(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Billingaccounts$Locations$Insighttypes {
+    context: APIRequestContext;
+    insights: Resource$Billingaccounts$Locations$Insighttypes$Insights;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.insights = new Resource$Billingaccounts$Locations$Insighttypes$Insights(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Billingaccounts$Locations$Insighttypes$Insights {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the requested insight. Requires the recommender.*.get IAM permission for the specified insight type.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.billingAccounts.locations.insightTypes.insights.get(
+     *     {
+     *       // Required. Name of the insight.
+     *       name:
+     *         'billingAccounts/my-billingAccount/locations/my-location/insightTypes/my-insightType/insights/my-insight',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedRecommendations": [],
+     *   //   "category": "my_category",
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "insightSubtype": "my_insightSubtype",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "observationPeriod": "my_observationPeriod",
+     *   //   "stateInfo": {},
+     *   //   "targetResources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Insight>;
+    get(
+      params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Insight>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists insights for a Cloud project. Requires the recommender.*.list IAM permission for the specified insight type.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.billingAccounts.locations.insightTypes.insights.list(
+     *     {
+     *       // Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
+     *       filter: 'placeholder-value',
+     *       // Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The container resource on which to execute the request. Acceptable formats: 1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]", LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ INSIGHT_TYPE_ID refers to supported insight types: https://cloud.google.com/recommender/docs/insights/insight-types.
+     *       parent:
+     *         'billingAccounts/my-billingAccount/locations/my-location/insightTypes/my-insightType',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "insights": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/insights').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1ListInsightsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Marks the Insight State as Accepted. Users can use this method to indicate to the Recommender API that they have applied some action based on the insight. This stops the insight content from being updated. MarkInsightAccepted can be applied to insights in ACTIVE state. Requires the recommender.*.update IAM permission for the specified insight.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.billingAccounts.locations.insightTypes.insights.markAccepted(
+     *     {
+     *       // Required. Name of the insight.
+     *       name:
+     *         'billingAccounts/my-billingAccount/locations/my-location/insightTypes/my-insightType/insights/my-insight',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "etag": "my_etag",
+     *         //   "stateMetadata": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedRecommendations": [],
+     *   //   "category": "my_category",
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "insightSubtype": "my_insightSubtype",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "observationPeriod": "my_observationPeriod",
+     *   //   "stateInfo": {},
+     *   //   "targetResources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    markAccepted(
+      params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    markAccepted(
+      params?: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Insight>;
+    markAccepted(
+      params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    markAccepted(
+      params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+    ): void;
+    markAccepted(
+      params: Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+    ): void;
+    markAccepted(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+    ): void;
+    markAccepted(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Insight>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Insight>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:markAccepted').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Insight>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the insight.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The container resource on which to execute the request. Acceptable formats: 1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]", LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ INSIGHT_TYPE_ID refers to supported insight types: https://cloud.google.com/recommender/docs/insights/insight-types.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted
+    extends StandardParameters {
+    /**
+     * Required. Name of the insight.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecommenderV1beta1MarkInsightAcceptedRequest;
+  }
+
+  export class Resource$Billingaccounts$Locations$Recommenders {
+    context: APIRequestContext;
+    recommendations: Resource$Billingaccounts$Locations$Recommenders$Recommendations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.recommendations = new Resource$Billingaccounts$Locations$Recommenders$Recommendations(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Billingaccounts$Locations$Recommenders$Recommendations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the requested recommendation. Requires the recommender.*.get IAM permission for the specified recommender.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.billingAccounts.locations.recommenders.recommendations.get(
+     *     {
+     *       // Required. Name of the recommendation.
+     *       name:
+     *         'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImpact": [],
+     *   //   "associatedInsights": [],
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "primaryImpact": {},
+     *   //   "recommenderSubtype": "my_recommenderSubtype",
+     *   //   "stateInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>;
+    get(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+    ): void;
+    get(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists recommendations for a Cloud project. Requires the recommender.*.list IAM permission for the specified recommender.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.billingAccounts.locations.recommenders.recommendations.list(
+     *     {
+     *       // Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
+     *       filter: 'placeholder-value',
+     *       // Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The container resource on which to execute the request. Acceptable formats: 1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]", LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ RECOMMENDER_ID refers to supported recommenders: https://cloud.google.com/recommender/docs/recommenders.
+     *       parent:
+     *         'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "recommendations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/recommendations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1ListRecommendationsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Marks the Recommendation State as Claimed. Users can use this method to indicate to the Recommender API that they are starting to apply the recommendation themselves. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationClaimed can be applied to recommendations in CLAIMED or ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.billingAccounts.locations.recommenders.recommendations.markClaimed(
+     *     {
+     *       // Required. Name of the recommendation.
+     *       name:
+     *         'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "etag": "my_etag",
+     *         //   "stateMetadata": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImpact": [],
+     *   //   "associatedInsights": [],
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "primaryImpact": {},
+     *   //   "recommenderSubtype": "my_recommenderSubtype",
+     *   //   "stateInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    markClaimed(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    markClaimed(
+      params?: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>;
+    markClaimed(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    markClaimed(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+    ): void;
+    markClaimed(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+    ): void;
+    markClaimed(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+    ): void;
+    markClaimed(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:markClaimed').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.billingAccounts.locations.recommenders.recommendations.markFailed(
+     *     {
+     *       // Required. Name of the recommendation.
+     *       name:
+     *         'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "etag": "my_etag",
+     *         //   "stateMetadata": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImpact": [],
+     *   //   "associatedInsights": [],
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "primaryImpact": {},
+     *   //   "recommenderSubtype": "my_recommenderSubtype",
+     *   //   "stateInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    markFailed(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    markFailed(
+      params?: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>;
+    markFailed(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    markFailed(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+    ): void;
+    markFailed(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+    ): void;
+    markFailed(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+    ): void;
+    markFailed(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:markFailed').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Marks the Recommendation State as Succeeded. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation was successful. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationSucceeded can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const recommender = google.recommender('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await recommender.billingAccounts.locations.recommenders.recommendations.markSucceeded(
+     *     {
+     *       // Required. Name of the recommendation.
+     *       name:
+     *         'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "etag": "my_etag",
+     *         //   "stateMetadata": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImpact": [],
+     *   //   "associatedInsights": [],
+     *   //   "content": {},
+     *   //   "description": "my_description",
+     *   //   "etag": "my_etag",
+     *   //   "lastRefreshTime": "my_lastRefreshTime",
+     *   //   "name": "my_name",
+     *   //   "primaryImpact": {},
+     *   //   "recommenderSubtype": "my_recommenderSubtype",
+     *   //   "stateInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    markSucceeded(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    markSucceeded(
+      params?: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>;
+    markSucceeded(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    markSucceeded(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+    ): void;
+    markSucceeded(
+      params: Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+    ): void;
+    markSucceeded(
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+    ): void;
+    markSucceeded(
+      paramsOrCallback?:
+        | Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudRecommenderV1beta1Recommendation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://recommender.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:markSucceeded').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRecommenderV1beta1Recommendation>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the recommendation.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List
+    extends StandardParameters {
+    /**
+     * Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
+     */
+    pageToken?: string;
+    /**
+     * Required. The container resource on which to execute the request. Acceptable formats: 1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]", LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ RECOMMENDER_ID refers to supported recommenders: https://cloud.google.com/recommender/docs/recommenders.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed
+    extends StandardParameters {
+    /**
+     * Required. Name of the recommendation.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecommenderV1beta1MarkRecommendationClaimedRequest;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed
+    extends StandardParameters {
+    /**
+     * Required. Name of the recommendation.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecommenderV1beta1MarkRecommendationFailedRequest;
+  }
+  export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded
+    extends StandardParameters {
+    /**
+     * Required. Name of the recommendation.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRecommenderV1beta1MarkRecommendationSucceededRequest;
   }
 
   export class Resource$Projects {
