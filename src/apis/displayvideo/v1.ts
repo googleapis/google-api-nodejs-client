@@ -2345,10 +2345,6 @@ export namespace displayvideo_v1 {
      */
     insertionOrderId?: string | null;
     /**
-     * The type of insertion order. If this field is unspecified in creation, the value defaults to `RTB`.
-     */
-    insertionOrderType?: string | null;
-    /**
      * Additional integration details of the insertion order.
      */
     integrationDetails?: Schema$IntegrationDetails;
@@ -8835,7 +8831,6 @@ export namespace displayvideo_v1 {
      *       //   "entityStatus": "my_entityStatus",
      *       //   "frequencyCap": {},
      *       //   "insertionOrderId": "my_insertionOrderId",
-     *       //   "insertionOrderType": "my_insertionOrderType",
      *       //   "integrationDetails": {},
      *       //   "name": "my_name",
      *       //   "pacing": {},
@@ -8857,7 +8852,6 @@ export namespace displayvideo_v1 {
      *   //   "entityStatus": "my_entityStatus",
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
-     *   //   "insertionOrderType": "my_insertionOrderType",
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
@@ -9130,7 +9124,6 @@ export namespace displayvideo_v1 {
      *   //   "entityStatus": "my_entityStatus",
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
-     *   //   "insertionOrderType": "my_insertionOrderType",
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
@@ -9421,7 +9414,6 @@ export namespace displayvideo_v1 {
      *       //   "entityStatus": "my_entityStatus",
      *       //   "frequencyCap": {},
      *       //   "insertionOrderId": "my_insertionOrderId",
-     *       //   "insertionOrderType": "my_insertionOrderType",
      *       //   "integrationDetails": {},
      *       //   "name": "my_name",
      *       //   "pacing": {},
@@ -9443,7 +9435,6 @@ export namespace displayvideo_v1 {
      *   //   "entityStatus": "my_entityStatus",
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
-     *   //   "insertionOrderType": "my_insertionOrderType",
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
