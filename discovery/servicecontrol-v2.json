@@ -15,7 +15,7 @@
   "baseUrl": "https://servicecontrol.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Service Control",
-  "description": "Provides control plane functionality to managed services, such as logging, monitoring, and status checks.",
+  "description": "Provides admission control and telemetry reporting for services integrated with Service Infrastructure. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/service-control/",
   "fullyEncodeReservedExpansion": true,
@@ -169,7 +169,7 @@
       }
     }
   },
-  "revision": "20201025",
+  "revision": "20201207",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "Api": {

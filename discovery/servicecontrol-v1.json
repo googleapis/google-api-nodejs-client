@@ -15,7 +15,7 @@
   "baseUrl": "https://servicecontrol.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Service Control",
-  "description": "Provides control plane functionality to managed services, such as logging, monitoring, and status checks.",
+  "description": "Provides admission control and telemetry reporting for services integrated with Service Infrastructure. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/service-control/",
   "fullyEncodeReservedExpansion": true,
@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20201025",
+  "revision": "20201207",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -1184,9 +1184,9 @@
             "DEBUG"
           ],
           "enumDescriptions": [
-            "The API implementation may cache and aggregate the data. The data may be lost when rare and unexpected system failures occur.",
-            "The API implementation doesn't cache and aggregate the data. If the method returns successfully, it's guaranteed that the data has been persisted in durable storage.",
-            "In addition to the behavior described in HIGH, DEBUG enables additional validation logic that is only useful during the onboarding process. This is only available to Google internal services and the service must be allowlisted by chemist-dev@google.com in order to use this level."
+            "Allows data caching, batching, and aggregation. It provides higher performance with higher data loss risk.",
+            "Disables data aggregation to minimize data loss. It is for operations that contains significant monetary value or audit trail. This feature only applies to the client libraries.",
+            "Deprecated. Do not use. Disables data aggregation and enables additional validation logic. It should only be used during the onboarding process. It is only available to Google internal services, and the service must be approved by chemist-dev@google.com in order to use this level."
           ],
           "type": "string"
         },
