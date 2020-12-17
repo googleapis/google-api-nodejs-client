@@ -308,7 +308,7 @@ export namespace transcoder_v1beta1 {
     saturation?: number | null;
   }
   /**
-   * Video cropping configuration.
+   * Video cropping configuration for the input video. The cropped input video is scaled to match the output resolution.
    */
   export interface Schema$Crop {
     /**
@@ -528,6 +528,10 @@ export namespace transcoder_v1beta1 {
      * Input only. Specify the `template_id` to use for populating `Job.config`. The default is `preset/web-hd`. Preset Transcoder templates: - `preset/{preset_id\}` - User defined JobTemplate: `{job_template_id\}`
      */
     templateId?: string | null;
+    /**
+     * Job time to live value in days, which will be effective after job completion. Job should be deleted automatically after the given TTL. Enter a value between 1 and 90. The default is 30.
+     */
+    ttlAfterCompletionDays?: number | null;
   }
   /**
    * Job configuration
@@ -1050,7 +1054,8 @@ export namespace transcoder_v1beta1 {
      *       //   "progress": {},
      *       //   "startTime": "my_startTime",
      *       //   "state": "my_state",
-     *       //   "templateId": "my_templateId"
+     *       //   "templateId": "my_templateId",
+     *       //   "ttlAfterCompletionDays": 0
      *       // }
      *     },
      *   });
@@ -1071,7 +1076,8 @@ export namespace transcoder_v1beta1 {
      *   //   "progress": {},
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
-     *   //   "templateId": "my_templateId"
+     *   //   "templateId": "my_templateId",
+     *   //   "ttlAfterCompletionDays": 0
      *   // }
      * }
      *
@@ -1337,7 +1343,8 @@ export namespace transcoder_v1beta1 {
      *   //   "progress": {},
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
-     *   //   "templateId": "my_templateId"
+     *   //   "templateId": "my_templateId",
+     *   //   "ttlAfterCompletionDays": 0
      *   // }
      * }
      *

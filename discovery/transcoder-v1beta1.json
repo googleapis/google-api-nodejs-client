@@ -355,7 +355,7 @@
       }
     }
   },
-  "revision": "20201111",
+  "revision": "20201209",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -604,7 +604,7 @@
       "type": "object"
     },
     "Crop": {
-      "description": "Video cropping configuration.",
+      "description": "Video cropping configuration for the input video. The cropped input video is scaled to match the output resolution.",
       "id": "Crop",
       "properties": {
         "bottomPixels": {
@@ -884,6 +884,11 @@
         "templateId": {
           "description": "Input only. Specify the `template_id` to use for populating `Job.config`. The default is `preset/web-hd`. Preset Transcoder templates: - `preset/{preset_id}` - User defined JobTemplate: `{job_template_id}`",
           "type": "string"
+        },
+        "ttlAfterCompletionDays": {
+          "description": "Job time to live value in days, which will be effective after job completion. Job should be deleted automatically after the given TTL. Enter a value between 1 and 90. The default is 30.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
