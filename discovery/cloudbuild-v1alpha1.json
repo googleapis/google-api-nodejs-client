@@ -306,7 +306,7 @@
       }
     }
   },
-  "revision": "20201001",
+  "revision": "20201211",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ArtifactObjects": {
@@ -446,7 +446,7 @@
           "type": "array"
         },
         "serviceAccount": {
-          "description": "IAM service account whose credentials will be used at build runtime. Must be of the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. ACCOUNT can be email address or uniqueId of the service account. This field is in alpha and is not publicly available.",
+          "description": "IAM service account whose credentials will be used at build runtime. Must be of the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. ACCOUNT can be email address or uniqueId of the service account. This field is in beta.",
           "type": "string"
         },
         "source": {
@@ -594,7 +594,7 @@
             "Only Cloud Storage logging is enabled.",
             "This option is the same as CLOUD_LOGGING_ONLY.",
             "Only Cloud Logging is enabled. Note that logs for both the Cloud Console UI and Cloud SDK are based on Cloud Storage logs, so neither will provide logs if this option is chosen.",
-            "Turn off all logging. No build logs will be captured. Next ID: 6"
+            "Turn off all logging. No build logs will be captured."
           ],
           "type": "string"
         },
@@ -603,12 +603,16 @@
           "enum": [
             "UNSPECIFIED",
             "N1_HIGHCPU_8",
-            "N1_HIGHCPU_32"
+            "N1_HIGHCPU_32",
+            "E2_HIGHCPU_8",
+            "E2_HIGHCPU_32"
           ],
           "enumDescriptions": [
             "Standard machine type.",
             "Highcpu machine with 8 CPUs.",
-            "Highcpu machine with 32 CPUs."
+            "Highcpu machine with 32 CPUs.",
+            "Highcpu e2 machine with 8 CPUs.",
+            "Highcpu e2 machine with 32 CPUs."
           ],
           "type": "string"
         },
@@ -668,7 +672,7 @@
           "type": "array"
         },
         "workerPool": {
-          "description": "Option to specify a `WorkerPool` for the build. Format: projects/{project}/locations/{location}/workerPools/{workerPool} This field is experimental.",
+          "description": "Option to specify a `WorkerPool` for the build. Format: projects/{project}/locations/{location}/workerPools/{workerPool} This field is in beta and is available only to restricted users.",
           "type": "string"
         }
       },
