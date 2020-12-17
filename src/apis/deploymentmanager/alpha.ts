@@ -1698,8 +1698,6 @@ export namespace deploymentmanager_alpha {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2214,10 +2212,6 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Compositetypes$Patch
     extends StandardParameters {
@@ -3099,8 +3093,6 @@ export namespace deploymentmanager_alpha {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -4140,10 +4132,6 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Deployments$Patch
     extends StandardParameters {
@@ -4446,8 +4434,6 @@ export namespace deploymentmanager_alpha {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -4594,10 +4580,6 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Operations {
@@ -4808,8 +4790,6 @@ export namespace deploymentmanager_alpha {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -4948,10 +4928,6 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Resources {
@@ -5157,8 +5133,6 @@ export namespace deploymentmanager_alpha {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -5305,10 +5279,6 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     */
-    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Typeproviders {
@@ -5988,8 +5958,6 @@ export namespace deploymentmanager_alpha {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -6142,8 +6110,6 @@ export namespace deploymentmanager_alpha {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the type provider for this request.
      *     typeProvider: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -6683,10 +6649,6 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     */
-    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Typeproviders$Listtypes
     extends StandardParameters {
@@ -6710,10 +6672,6 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     */
-    returnPartialSuccess?: boolean;
     /**
      * The name of the type provider for this request.
      */
@@ -6945,8 +6903,6 @@ export namespace deploymentmanager_alpha {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
-     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -7083,9 +7039,5 @@ export namespace deploymentmanager_alpha {
      * The project ID for this request.
      */
     project?: string;
-    /**
-     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     */
-    returnPartialSuccess?: boolean;
   }
 }

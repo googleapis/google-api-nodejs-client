@@ -361,11 +361,6 @@
               "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))",
               "required": true,
               "type": "string"
-            },
-            "returnPartialSuccess": {
-              "description": "Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.",
-              "location": "query",
-              "type": "boolean"
             }
           },
           "path": "deploymentmanager/v2/projects/{project}/global/deployments",
@@ -726,11 +721,6 @@
               "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))",
               "required": true,
               "type": "string"
-            },
-            "returnPartialSuccess": {
-              "description": "Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.",
-              "location": "query",
-              "type": "boolean"
             }
           },
           "path": "deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/manifests",
@@ -821,11 +811,6 @@
               "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))",
               "required": true,
               "type": "string"
-            },
-            "returnPartialSuccess": {
-              "description": "Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.",
-              "location": "query",
-              "type": "boolean"
             }
           },
           "path": "deploymentmanager/v2/projects/{project}/global/operations",
@@ -932,11 +917,6 @@
               "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))",
               "required": true,
               "type": "string"
-            },
-            "returnPartialSuccess": {
-              "description": "Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.",
-              "location": "query",
-              "type": "boolean"
             }
           },
           "path": "deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/resources",
@@ -992,11 +972,6 @@
               "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))",
               "required": true,
               "type": "string"
-            },
-            "returnPartialSuccess": {
-              "description": "Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.",
-              "location": "query",
-              "type": "boolean"
             }
           },
           "path": "deploymentmanager/v2/projects/{project}/global/types",
@@ -1013,7 +988,7 @@
       }
     }
   },
-  "revision": "20201119",
+  "revision": "20201211",
   "rootUrl": "https://deploymentmanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
