@@ -295,6 +295,7 @@ import {
   manufacturers,
 } from './manufacturers';
 import {VERSIONS as memcacheVersions, memcache} from './memcache';
+import {VERSIONS as metastoreVersions, metastore} from './metastore';
 import {VERSIONS as mlVersions, ml} from './ml';
 import {VERSIONS as monitoringVersions, monitoring} from './monitoring';
 import {
@@ -586,6 +587,7 @@ export const APIS: APIList = {
   managedidentities: managedidentitiesVersions,
   manufacturers: manufacturersVersions,
   memcache: memcacheVersions,
+  metastore: metastoreVersions,
   ml: mlVersions,
   monitoring: monitoringVersions,
   networkmanagement: networkmanagementVersions,
@@ -786,6 +788,7 @@ export class GeneratedAPIs {
   managedidentities = managedidentities;
   manufacturers = manufacturers;
   memcache = memcache;
+  metastore = metastore;
   ml = ml;
   monitoring = monitoring;
   networkmanagement = networkmanagement;

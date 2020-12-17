@@ -164,6 +164,31 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "delete": {
+          "description": "Delete an Apigee organization. Only supported for SubscriptionType TRIAL.",
+          "flatPath": "v1/organizations/{organizationsId}",
+          "httpMethod": "DELETE",
+          "id": "apigee.organizations.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Name of the organization. Use the following structure in your request: `organizations/{org}`",
+              "location": "path",
+              "pattern": "^organizations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "GoogleLongrunningOperation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "get": {
           "description": "Gets the profile for an Apigee organization. See [Understanding organizations](https://cloud.google.com/apigee/docs/api-platform/fundamentals/organization-structure).",
           "flatPath": "v1/organizations/{organizationsId}",
@@ -5451,6 +5476,152 @@
                   ]
                 }
               }
+            },
+            "natAddresses": {
+              "methods": {
+                "activate": {
+                  "description": "Activates the NAT address. The Apigee instance can now use this for Internet egress traffic. **Note:** Not supported for Apigee hybrid.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/natAddresses/{natAddressesId}:activate",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.instances.natAddresses.activate",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the nat address. Use the following structure in your request: `organizations/{org}/instances/{instances}/natAddresses/{nataddress}``",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+/natAddresses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:activate",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1ActivateNatAddressRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "create": {
+                  "description": "Creates a NAT address. The address is created in the RESERVED state and a static external IP address will be provisioned. At this time, the instance will not use this IP address for Internet egress traffic. The address can be activated for use once any required firewall IP whitelisting has been completed. **Note:** Not supported for Apigee hybrid.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/natAddresses",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.instances.natAddresses.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Name of the instance. Use the following structure in your request: `organizations/{org}/instances/{instance}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/natAddresses",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1NatAddress"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the NAT address. Connections that are actively using the address are drained before it is removed. **Note:** Not supported for Apigee hybrid.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/natAddresses/{natAddressesId}",
+                  "httpMethod": "DELETE",
+                  "id": "apigee.organizations.instances.natAddresses.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the nat address. Use the following structure in your request: `organizations/{org}/instances/{instances}/natAddresses/{nataddress}``",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+/natAddresses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the details of a NAT address. **Note:** Not supported for Apigee hybrid.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/natAddresses/{natAddressesId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.instances.natAddresses.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the nat address. Use the following structure in your request: `organizations/{org}/instances/{instances}/natAddresses/{nataddress}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+/natAddresses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1NatAddress"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists the NAT addresses for an Apigee instance. **Note:** Not supported for Apigee hybrid.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/natAddresses",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.instances.natAddresses.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of natAddresses to return. Defaults to 25.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Page token, returned from a previous ListNatAddresses call, that you can use to retrieve the next page of content.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of the instance. Use the following structure in your request: `organizations/{org}/instances/{instance}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/natAddresses",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListNatAddressesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         },
@@ -6275,7 +6446,7 @@
       }
     }
   },
-  "revision": "20201117",
+  "revision": "20201203",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -6360,6 +6531,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1ActivateNatAddressRequest": {
+      "description": "Request for ActivateNatAddressRequest. Activate the nat address request.",
+      "id": "GoogleCloudApigeeV1ActivateNatAddressRequest",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudApigeeV1Alias": {
@@ -8926,6 +9103,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ListNatAddressesResponse": {
+      "description": "Response for ListNatAddresses.",
+      "id": "GoogleCloudApigeeV1ListNatAddressesResponse",
+      "properties": {
+        "natAddresses": {
+          "description": "List of NAT Addresses for the instance.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1NatAddress"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token that you can include in a ListNatAddresses request to retrieve the next page of content. If omitted, no subsequent pages exist.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ListOfDevelopersResponse": {
       "id": "GoogleCloudApigeeV1ListOfDevelopersResponse",
       "properties": {
@@ -8999,6 +9194,39 @@
             "type": "any"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1NatAddress": {
+      "description": "Apigee NAT(network address translation) address. A NAT address is a static external IP address used for Internet egress traffic.",
+      "id": "GoogleCloudApigeeV1NatAddress",
+      "properties": {
+        "ipAddress": {
+          "description": "Required. The static IPV4 address.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Resource ID of the NAT address.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Required. State of the nat address.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "RESERVED",
+            "ACTIVE",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "The resource is in an unspecified state.",
+            "The NAT address is being created.",
+            "The NAT address is reserved but not yet used for Internet egress.",
+            "The NAT address is active and used for Internet egress.",
+            "The NAT address is being deleted."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

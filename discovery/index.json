@@ -407,6 +407,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": " https://cloud.google.com/api-gateway/docs",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "apigateway:v1",
+      "name": "apigateway",
+      "version": "v1",
+      "title": "API Gateway API",
+      "description": "",
+      "discoveryRestUrl": "https://apigateway.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": " https://cloud.google.com/api-gateway/docs",
       "preferred": true
     },
     {
@@ -542,6 +557,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/artifacts/docs/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "artifactregistry:v1",
+      "name": "artifactregistry",
+      "version": "v1",
+      "title": "Artifact Registry API",
+      "description": "Store and manage build artifacts in a scalable and integrated service built on Google infrastructure.",
+      "discoveryRestUrl": "https://artifactregistry.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/artifacts/docs/",
       "preferred": true
     },
     {
@@ -603,21 +633,6 @@
       },
       "documentationLink": "https://cloud.google.com/bigquery/",
       "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "bigqueryreservation:v1alpha2",
-      "name": "bigqueryreservation",
-      "version": "v1alpha2",
-      "title": "BigQuery Reservation API",
-      "description": "A service to modify your BigQuery flat-rate reservations.",
-      "discoveryRestUrl": "https://bigqueryreservation.googleapis.com/$discovery/rest?version=v1alpha2",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/bigquery/",
-      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -1805,6 +1820,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/dialogflow/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "dialogflow:v3",
+      "name": "dialogflow",
+      "version": "v3",
+      "title": "Dialogflow API",
+      "description": "Builds conversational interfaces (for example, chatbots, and voice-powered apps and devices).",
+      "discoveryRestUrl": "https://dialogflow.googleapis.com/$discovery/rest?version=v3",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/dialogflow/",
       "preferred": true
     },
     {
@@ -2906,6 +2936,36 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "metastore:v1alpha",
+      "name": "metastore",
+      "version": "v1alpha",
+      "title": "Dataproc Metastore API",
+      "description": "The Dataproc Metastore API is used to manage the lifecycle and configuration of metastore services.",
+      "discoveryRestUrl": "https://metastore.googleapis.com/$discovery/rest?version=v1alpha",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/dataproc-metastore/docs",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "metastore:v1beta",
+      "name": "metastore",
+      "version": "v1beta",
+      "title": "Dataproc Metastore API",
+      "description": "The Dataproc Metastore API is used to manage the lifecycle and configuration of metastore services.",
+      "discoveryRestUrl": "https://metastore.googleapis.com/$discovery/rest?version=v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/dataproc-metastore/docs",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "ml:v1",
       "name": "ml",
       "version": "v1",
@@ -3723,6 +3783,21 @@
       "title": "Service Directory API",
       "description": "Service Directory is a platform for discovering, publishing, and connecting services.",
       "discoveryRestUrl": "https://servicedirectory.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/service-directory",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "servicedirectory:v1",
+      "name": "servicedirectory",
+      "version": "v1",
+      "title": "Service Directory API",
+      "description": "Service Directory is a platform for discovering, publishing, and connecting services.",
+      "discoveryRestUrl": "https://servicedirectory.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
