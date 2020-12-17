@@ -216,6 +216,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "legacyAppEngineCron": {
+                      "description": "This field is used to manage the legacy App Engine Cron jobs using the Cloud Scheduler API. If the field is set to true, the job in the __cron queue with the corresponding name will be deleted instead.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.",
                       "location": "path",
@@ -266,6 +271,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "legacyAppEngineCron": {
+                      "description": "This field is used to manage the legacy App Engine Cron jobs using the Cloud Scheduler API. If the field is set to true, the jobs in the __cron queue will be listed instead.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "pageSize": {
                       "description": "Requested page size. The maximum page size is 500. If unspecified, the page size will be the maximum. Fewer jobs than requested might be returned, even if more jobs exist; use next_page_token to determine if more jobs exist.",
                       "format": "int32",
@@ -418,7 +428,7 @@
       }
     }
   },
-  "revision": "20200814",
+  "revision": "20201202",
   "rootUrl": "https://cloudscheduler.googleapis.com/",
   "schemas": {
     "AppEngineHttpTarget": {
@@ -581,6 +591,10 @@
           "description": "Output only. The time the last job attempt started.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "legacyAppEngineCron": {
+          "description": "Immutable. This field is used to manage the legacy App Engine Cron jobs using the Cloud Scheduler API. If the field is set to true, the job will be considered a legacy job. Note that App Engine Cron jobs have fewer features than Cloud Scheduler jobs, e.g., are only limited to App Engine targets.",
+          "type": "boolean"
         },
         "name": {
           "description": "Optionally caller-specified in CreateJob, after which it becomes output only. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`. * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), or periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the job's location. The list of available locations can be obtained by calling ListLocations. For more information, see https://cloud.google.com/about/locations/. * `JOB_ID` can contain only letters ([A-Za-z]), numbers ([0-9]), hyphens (-), or underscores (_). The maximum length is 500 characters.",
@@ -839,7 +853,12 @@
     "RunJobRequest": {
       "description": "Request message for forcing a job to run now using RunJob.",
       "id": "RunJobRequest",
-      "properties": {},
+      "properties": {
+        "legacyAppEngineCron": {
+          "description": "This field is used to manage the legacy App Engine Cron jobs using the Cloud Scheduler API. If the field is set to true, the job in the __cron queue with the corresponding name will be forced to run instead.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "Status": {

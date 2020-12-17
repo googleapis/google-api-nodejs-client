@@ -227,6 +227,10 @@ export namespace cloudscheduler_v1beta1 {
      */
     lastAttemptTime?: string | null;
     /**
+     * Immutable. This field is used to manage the legacy App Engine Cron jobs using the Cloud Scheduler API. If the field is set to true, the job will be considered a legacy job. Note that App Engine Cron jobs have fewer features than Cloud Scheduler jobs, e.g., are only limited to App Engine targets.
+     */
+    legacyAppEngineCron?: boolean | null;
+    /**
      * Optionally caller-specified in CreateJob, after which it becomes output only. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`. * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), or periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the job's location. The list of available locations can be obtained by calling ListLocations. For more information, see https://cloud.google.com/about/locations/. * `JOB_ID` can contain only letters ([A-Za-z]), numbers ([0-9]), hyphens (-), or underscores (_). The maximum length is 500 characters.
      */
     name?: string | null;
@@ -418,7 +422,12 @@ export namespace cloudscheduler_v1beta1 {
   /**
    * Request message for forcing a job to run now using RunJob.
    */
-  export interface Schema$RunJobRequest {}
+  export interface Schema$RunJobRequest {
+    /**
+     * This field is used to manage the legacy App Engine Cron jobs using the Cloud Scheduler API. If the field is set to true, the job in the __cron queue with the corresponding name will be forced to run instead.
+     */
+    legacyAppEngineCron?: boolean | null;
+  }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
@@ -800,6 +809,7 @@ export namespace cloudscheduler_v1beta1 {
      *       //   "description": "my_description",
      *       //   "httpTarget": {},
      *       //   "lastAttemptTime": "my_lastAttemptTime",
+     *       //   "legacyAppEngineCron": false,
      *       //   "name": "my_name",
      *       //   "pubsubTarget": {},
      *       //   "retryConfig": {},
@@ -821,6 +831,7 @@ export namespace cloudscheduler_v1beta1 {
      *   //   "description": "my_description",
      *   //   "httpTarget": {},
      *   //   "lastAttemptTime": "my_lastAttemptTime",
+     *   //   "legacyAppEngineCron": false,
      *   //   "name": "my_name",
      *   //   "pubsubTarget": {},
      *   //   "retryConfig": {},
@@ -952,6 +963,8 @@ export namespace cloudscheduler_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudscheduler.projects.locations.jobs.delete({
+     *     // This field is used to manage the legacy App Engine Cron jobs using the Cloud Scheduler API. If the field is set to true, the job in the __cron queue with the corresponding name will be deleted instead.
+     *     legacyAppEngineCron: 'placeholder-value',
      *     // Required. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      *     name: 'projects/my-project/locations/my-location/jobs/my-job',
      *   });
@@ -1089,6 +1102,7 @@ export namespace cloudscheduler_v1beta1 {
      *   //   "description": "my_description",
      *   //   "httpTarget": {},
      *   //   "lastAttemptTime": "my_lastAttemptTime",
+     *   //   "legacyAppEngineCron": false,
      *   //   "name": "my_name",
      *   //   "pubsubTarget": {},
      *   //   "retryConfig": {},
@@ -1217,6 +1231,8 @@ export namespace cloudscheduler_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudscheduler.projects.locations.jobs.list({
+     *     // This field is used to manage the legacy App Engine Cron jobs using the Cloud Scheduler API. If the field is set to true, the jobs in the __cron queue will be listed instead.
+     *     legacyAppEngineCron: 'placeholder-value',
      *     // Requested page size. The maximum page size is 500. If unspecified, the page size will be the maximum. Fewer jobs than requested might be returned, even if more jobs exist; use next_page_token to determine if more jobs exist.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server will return. To request the first page results, page_token must be empty. To request the next page of results, page_token must be the value of next_page_token returned from the previous call to ListJobs. It is an error to switch the value of filter or order_by while iterating through pages.
@@ -1366,6 +1382,7 @@ export namespace cloudscheduler_v1beta1 {
      *       //   "description": "my_description",
      *       //   "httpTarget": {},
      *       //   "lastAttemptTime": "my_lastAttemptTime",
+     *       //   "legacyAppEngineCron": false,
      *       //   "name": "my_name",
      *       //   "pubsubTarget": {},
      *       //   "retryConfig": {},
@@ -1387,6 +1404,7 @@ export namespace cloudscheduler_v1beta1 {
      *   //   "description": "my_description",
      *   //   "httpTarget": {},
      *   //   "lastAttemptTime": "my_lastAttemptTime",
+     *   //   "legacyAppEngineCron": false,
      *   //   "name": "my_name",
      *   //   "pubsubTarget": {},
      *   //   "retryConfig": {},
@@ -1533,6 +1551,7 @@ export namespace cloudscheduler_v1beta1 {
      *   //   "description": "my_description",
      *   //   "httpTarget": {},
      *   //   "lastAttemptTime": "my_lastAttemptTime",
+     *   //   "legacyAppEngineCron": false,
      *   //   "name": "my_name",
      *   //   "pubsubTarget": {},
      *   //   "retryConfig": {},
@@ -1682,6 +1701,7 @@ export namespace cloudscheduler_v1beta1 {
      *   //   "description": "my_description",
      *   //   "httpTarget": {},
      *   //   "lastAttemptTime": "my_lastAttemptTime",
+     *   //   "legacyAppEngineCron": false,
      *   //   "name": "my_name",
      *   //   "pubsubTarget": {},
      *   //   "retryConfig": {},
@@ -1819,7 +1839,9 @@ export namespace cloudscheduler_v1beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "legacyAppEngineCron": false
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -1831,6 +1853,7 @@ export namespace cloudscheduler_v1beta1 {
      *   //   "description": "my_description",
      *   //   "httpTarget": {},
      *   //   "lastAttemptTime": "my_lastAttemptTime",
+     *   //   "legacyAppEngineCron": false,
      *   //   "name": "my_name",
      *   //   "pubsubTarget": {},
      *   //   "retryConfig": {},
@@ -1951,6 +1974,10 @@ export namespace cloudscheduler_v1beta1 {
   export interface Params$Resource$Projects$Locations$Jobs$Delete
     extends StandardParameters {
     /**
+     * This field is used to manage the legacy App Engine Cron jobs using the Cloud Scheduler API. If the field is set to true, the job in the __cron queue with the corresponding name will be deleted instead.
+     */
+    legacyAppEngineCron?: boolean;
+    /**
      * Required. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
      */
     name?: string;
@@ -1964,6 +1991,10 @@ export namespace cloudscheduler_v1beta1 {
   }
   export interface Params$Resource$Projects$Locations$Jobs$List
     extends StandardParameters {
+    /**
+     * This field is used to manage the legacy App Engine Cron jobs using the Cloud Scheduler API. If the field is set to true, the jobs in the __cron queue will be listed instead.
+     */
+    legacyAppEngineCron?: boolean;
     /**
      * Requested page size. The maximum page size is 500. If unspecified, the page size will be the maximum. Fewer jobs than requested might be returned, even if more jobs exist; use next_page_token to determine if more jobs exist.
      */
