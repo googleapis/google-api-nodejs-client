@@ -247,6 +247,12 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+/queues/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "readMask": {
+                      "description": "Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats], if the mask is set to \"*\" all fields including [Queue.stats] will be returned, otherwise only the fields explicitly specified in the mask will be returned.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
                     }
                   },
                   "path": "v2beta3/{+name}",
@@ -315,6 +321,12 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "readMask": {
+                      "description": "Optional. Read mask is used for a more granular control on the queues that the API returns. If the mask is not present all fields will be returned except [Queue.stats], if the mask is set to \"*\" all fields including [Queue.stats] will be returned, otherwise only the fields explicitly specified in the mask will be returned.",
+                      "format": "google-fieldmask",
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -685,7 +697,7 @@
       }
     }
   },
-  "revision": "20201111",
+  "revision": "20201202",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AppEngineHttpQueue": {
@@ -1101,6 +1113,22 @@
       },
       "type": "object"
     },
+    "PullMessage": {
+      "description": "Pull Message. This proto can only be used for tasks in a queue which has PULL type. It currently exists for backwards compatibility with the App Engine Task Queue SDK. This message type maybe returned with methods list and get, when the response view is FULL.",
+      "id": "PullMessage",
+      "properties": {
+        "payload": {
+          "description": "A data payload consumed by the worker to execute the task.",
+          "format": "byte",
+          "type": "string"
+        },
+        "tag": {
+          "description": "The tasks's tag. The tag is less than 500 characters. SDK compatibility: Although the SDK allows tags to be either string or [bytes](https://cloud.google.com/appengine/docs/standard/java/javadoc/com/google/appengine/api/taskqueue/TaskOptions.html#tag-byte:A-), only UTF-8 encoded tags can be used in Cloud Tasks. If a tag isn't UTF-8 encoded, the tag will be empty when the task is returned by Cloud Tasks.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PurgeQueueRequest": {
       "description": "Request message for PurgeQueue.",
       "id": "PurgeQueueRequest",
@@ -1152,6 +1180,11 @@
           ],
           "type": "string"
         },
+        "stats": {
+          "$ref": "QueueStats",
+          "description": "Output only. The realtime, informational statistics for a queue. In order to receive the statistics the caller should include this field in the FieldMask.",
+          "readOnly": true
+        },
         "type": {
           "description": "Immutable. The type of a queue (push or pull). `Queue.type` is an immutable property of the queue that is set at the queue creation time. When left unspecified, the default value of `PUSH` is selected.",
           "enum": [
@@ -1164,6 +1197,43 @@
             "A pull queue.",
             "A push queue."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "QueueStats": {
+      "description": "Statistics for a queue.",
+      "id": "QueueStats",
+      "properties": {
+        "concurrentDispatchesCount": {
+          "description": "Output only. The number of requests that the queue has dispatched but has not received a reply for yet.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "effectiveExecutionRate": {
+          "description": "Output only. The current maximum number of tasks per second executed by the queue. The maximum value of this variable is controlled by the RateLimits of the Queue. However, this value could be less to avoid overloading the endpoints tasks in the queue are targeting.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "executedLastMinuteCount": {
+          "description": "Output only. The number of tasks that the queue has dispatched and received a reply for during the last minute. This variable counts both successful and non-successful executions.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "oldestEstimatedArrivalTime": {
+          "description": "Output only. An estimation of the nearest time in the future where a task in the queue is scheduled to be executed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tasksCount": {
+          "description": "Output only. An estimation of the number of tasks in the queue, that is, the tasks in the queue that haven't been executed, the tasks in the queue which the queue has dispatched but has not yet received a reply for, and the failed tasks that the queue is retrying.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1338,6 +1408,10 @@
         "name": {
           "description": "Optionally caller-specified in CreateTask. The task name. The task name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID` * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), or periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the task's location. The list of available locations can be obtained by calling ListLocations. For more information, see https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or hyphens (-). The maximum length is 100 characters. * `TASK_ID` can contain only letters ([A-Za-z]), numbers ([0-9]), hyphens (-), or underscores (_). The maximum length is 500 characters.",
           "type": "string"
+        },
+        "pullMessage": {
+          "$ref": "PullMessage",
+          "description": "Pull Message contained in a task in a PULL queue type. This payload type cannot be explicitly set through Cloud Tasks API. Its purpose, currently is to provide backward compatibility with App Engine Task Queue [pull](https://cloud.google.com/appengine/docs/standard/java/taskqueue/pull/) queues to provide a way to inspect contents of pull tasks through the CloudTasks."
         },
         "responseCount": {
           "description": "Output only. The number of attempts which have received a response.",

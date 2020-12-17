@@ -809,7 +809,7 @@
       }
     }
   },
-  "revision": "20201111",
+  "revision": "20201202",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AcknowledgeTaskRequest": {
@@ -1294,6 +1294,48 @@
             "Tasks are paused by the user. If the queue is paused then Cloud Tasks will stop delivering tasks from it, but more tasks can still be added to it by the user. When a pull queue is paused, all LeaseTasks calls will return a FAILED_PRECONDITION.",
             "The queue is disabled. A queue becomes `DISABLED` when [queue.yaml](https://cloud.google.com/appengine/docs/python/config/queueref) or [queue.xml](https://cloud.google.com/appengine/docs/standard/java/config/queueref) is uploaded which does not contain the queue. You cannot directly disable a queue. When a queue is disabled, tasks can still be added to a queue but the tasks are not dispatched and LeaseTasks calls return a `FAILED_PRECONDITION` error. To permanently delete this queue and all of its tasks, call DeleteQueue."
           ],
+          "type": "string"
+        },
+        "stats": {
+          "$ref": "QueueStats",
+          "description": "Output only. The realtime, informational statistics for a queue. In order to receive the statistics the caller should include this field in the FieldMask.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "QueueStats": {
+      "description": "Statistics for a queue.",
+      "id": "QueueStats",
+      "properties": {
+        "concurrentDispatchesCount": {
+          "description": "Output only. The number of requests that the queue has dispatched but has not received a reply for yet.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "effectiveExecutionRate": {
+          "description": "Output only. The current maximum number of tasks per second executed by the queue. The maximum value of this variable is controlled by the RateLimits of the Queue. However, this value could be less to avoid overloading the endpoints tasks in the queue are targeting.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "executedLastMinuteCount": {
+          "description": "Output only. The number of tasks that the queue has dispatched and received a reply for during the last minute. This variable counts both successful and non-successful executions.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "oldestEstimatedArrivalTime": {
+          "description": "Output only. An estimation of the nearest time in the future where a task in the queue is scheduled to be executed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tasksCount": {
+          "description": "Output only. An estimation of the number of tasks in the queue, that is, the tasks in the queue that haven't been executed, the tasks in the queue which the queue has dispatched but has not yet received a reply for, and the failed tasks that the queue is retrying.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
