@@ -1,4 +1,13 @@
 {
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/adwords": {
+          "description": "Manage your AdWords campaigns"
+        }
+      }
+    }
+  },
   "basePath": "",
   "baseUrl": "https://localservices.googleapis.com/",
   "batchPath": "batch",
@@ -161,7 +170,10 @@
           "path": "v1/accountReports:search",
           "response": {
             "$ref": "GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/adwords"
+          ]
         }
       }
     },
@@ -230,12 +242,15 @@
           "path": "v1/detailedLeadReports:search",
           "response": {
             "$ref": "GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse"
-          }
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/adwords"
+          ]
         }
       }
     }
   },
-  "revision": "20201016",
+  "revision": "20201213",
   "rootUrl": "https://localservices.googleapis.com/",
   "schemas": {
     "GoogleAdsHomeservicesLocalservicesV1AccountReport": {
