@@ -208,7 +208,7 @@ export namespace artifactregistry_v1beta2 {
     gcsSource?: Schema$GoogleDevtoolsArtifactregistryV1alpha1GcsSource;
   }
   /**
-   * Google Cloud Storage location for the input content.
+   * Google Cloud Storage location where the artifacts currently reside.
    */
   export interface Schema$GoogleDevtoolsArtifactregistryV1alpha1GcsSource {
     /**
@@ -4317,6 +4317,8 @@ export namespace artifactregistry_v1beta2 {
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.packages.versions.list(
      *     {
+     *       // Optional. Sorting field and order
+     *       orderBy: 'placeholder-value',
      *       // The maximum number of versions to return. Maximum page size is 10,000.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request, if any.
@@ -4459,6 +4461,10 @@ export namespace artifactregistry_v1beta2 {
   }
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Versions$List
     extends StandardParameters {
+    /**
+     * Optional. Sorting field and order
+     */
+    orderBy?: string;
     /**
      * The maximum number of versions to return. Maximum page size is 10,000.
      */

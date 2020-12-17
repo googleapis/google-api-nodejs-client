@@ -912,6 +912,11 @@
                             "parent"
                           ],
                           "parameters": {
+                            "orderBy": {
+                              "description": "Optional. Sorting field and order",
+                              "location": "query",
+                              "type": "string"
+                            },
                             "pageSize": {
                               "description": "The maximum number of versions to return. Maximum page size is 10,000.",
                               "format": "int32",
@@ -966,7 +971,7 @@
       }
     }
   },
-  "revision": "20201107",
+  "revision": "20201203",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1073,7 +1078,7 @@
       "type": "object"
     },
     "GoogleDevtoolsArtifactregistryV1alpha1GcsSource": {
-      "description": "Google Cloud Storage location for the input content.",
+      "description": "Google Cloud Storage location where the artifacts currently reside.",
       "id": "GoogleDevtoolsArtifactregistryV1alpha1GcsSource",
       "properties": {
         "uris": {
