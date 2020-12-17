@@ -973,7 +973,7 @@
                       ]
                     },
                     "setSize": {
-                      "description": "Sets the size for a specific node pool.",
+                      "description": "Sets the size for a specific node pool. The new size will be used for all replicas, including future replicas created by modifying NodePool.locations.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}/nodePools/{nodePoolsId}:setSize",
                       "httpMethod": "POST",
                       "id": "container.projects.locations.clusters.nodePools.setSize",
@@ -2231,7 +2231,7 @@
                       ]
                     },
                     "setSize": {
-                      "description": "Sets the size for a specific node pool.",
+                      "description": "Sets the size for a specific node pool. The new size will be used for all replicas, including future replicas created by modifying NodePool.locations.",
                       "flatPath": "v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/setSize",
                       "httpMethod": "POST",
                       "id": "container.projects.zones.clusters.nodePools.setSize",
@@ -2459,7 +2459,7 @@
       }
     }
   },
-  "revision": "20201007",
+  "revision": "20201127",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2493,6 +2493,10 @@
         "dnsCacheConfig": {
           "$ref": "DnsCacheConfig",
           "description": "Configuration for NodeLocalDNS, a dns cache running on cluster nodes"
+        },
+        "gcePersistentDiskCsiDriverConfig": {
+          "$ref": "GcePersistentDiskCsiDriverConfig",
+          "description": "Configuration for the Compute Engine Persistent Disk CSI driver."
         },
         "horizontalPodAutoscaling": {
           "$ref": "HorizontalPodAutoscaling",
@@ -2557,7 +2561,7 @@
           "type": "integer"
         },
         "diskType": {
-          "description": "Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'",
+          "description": "Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'",
           "type": "string"
         },
         "management": {
@@ -2907,7 +2911,7 @@
           "type": "string"
         },
         "statusMessage": {
-          "description": "[Output only] Additional information about the current status of this cluster, if available.",
+          "description": "[Output only] Deprecated. Use conditions instead. Additional information about the current status of this cluster, if available.",
           "type": "string"
         },
         "subnetwork": {
@@ -3032,6 +3036,22 @@
         "desiredPrivateClusterConfig": {
           "$ref": "PrivateClusterConfig",
           "description": "The desired private cluster configuration."
+        },
+        "desiredPrivateIpv6GoogleAccess": {
+          "description": "The desired state of IPv6 connectivity to Google Services.",
+          "enum": [
+            "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
+            "PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED",
+            "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE",
+            "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL"
+          ],
+          "enumDescriptions": [
+            "Default value. Same as DISABLED",
+            "No private access to or from Google Services",
+            "Enables private IPv6 access to Google Services from GKE",
+            "Enables priate IPv6 access to and from Google Services"
+          ],
+          "type": "string"
         },
         "desiredReleaseChannel": {
           "$ref": "ReleaseChannel",
@@ -3217,6 +3237,17 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "GcePersistentDiskCsiDriverConfig": {
+      "description": "Configuration for the Compute Engine PD CSI driver.",
+      "id": "GcePersistentDiskCsiDriverConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether the Compute Engine PD CSI driver is enabled for this cluster.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GetJSONWebKeysResponse": {
@@ -3681,6 +3712,22 @@
           "description": "Output only. The relative name of the Google Compute Engine network(https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network",
           "type": "string"
         },
+        "privateIpv6GoogleAccess": {
+          "description": "The desired state of IPv6 connectivity to Google Services. By default, no private IPv6 access to or from Google Services (all access will be via IPv4)",
+          "enum": [
+            "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
+            "PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED",
+            "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE",
+            "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL"
+          ],
+          "enumDescriptions": [
+            "Default value. Same as DISABLED",
+            "No private access to or from Google Services",
+            "Enables private IPv6 access to Google Services from GKE",
+            "Enables priate IPv6 access to and from Google Services"
+          ],
+          "type": "string"
+        },
         "subnetwork": {
           "description": "Output only. The relative name of the Google Compute Engine [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the cluster is connected. Example: projects/my-project/regions/us-central1/subnetworks/my-subnet",
           "type": "string"
@@ -3743,7 +3790,7 @@
           "type": "integer"
         },
         "diskType": {
-          "description": "Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'",
+          "description": "Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'",
           "type": "string"
         },
         "imageType": {
@@ -3930,7 +3977,7 @@
           "type": "string"
         },
         "statusMessage": {
-          "description": "[Output only] Additional information about the current status of this node pool instance, if available.",
+          "description": "[Output only] Deprecated. Use conditions instead. Additional information about the current status of this node pool instance, if available.",
           "type": "string"
         },
         "upgradeSettings": {
@@ -4779,7 +4826,7 @@
       "type": "object"
     },
     "SetNodePoolSizeRequest": {
-      "description": "SetNodePoolSizeRequest sets the size a node pool.",
+      "description": "SetNodePoolSizeRequest sets the size of a node pool.",
       "id": "SetNodePoolSizeRequest",
       "properties": {
         "clusterId": {
