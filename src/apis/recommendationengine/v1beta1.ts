@@ -2715,7 +2715,7 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * Makes a recommendation prediction. If using API Key based authentication, the API Key must be registered using the PredictionApiKeyRegistry service. [Learn more](/recommendations-ai/docs/setting-up#register-key).
+     * Makes a recommendation prediction. If using API Key based authentication, the API Key must be registered using the PredictionApiKeyRegistry service. [Learn more](https://cloud.google.com/recommendations-ai/docs/setting-up#register-key).
      * @example
      * ```js
      * // Before running the sample:
