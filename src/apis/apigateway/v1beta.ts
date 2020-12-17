@@ -189,7 +189,7 @@ export namespace apigateway_v1beta {
      */
     name?: string | null;
     /**
-     * Optional. OpenAPI specification documents. If specified, grpc_services and managed_service_config must not be included.
+     * Optional. OpenAPI specification documents. If specified, grpc_services and managed_service_configs must not be included.
      */
     openapiDocuments?: Schema$ApigatewayApiConfigOpenApiDocument[];
     /**
@@ -267,7 +267,7 @@ export namespace apigateway_v1beta {
     logType?: string | null;
   }
   /**
-   * Configuration for a backend.
+   * Configuration for all backends.
    */
   export interface Schema$ApigatewayBackendConfig {
     /**
@@ -279,7 +279,6 @@ export namespace apigateway_v1beta {
    * Associates `members` with a `role`.
    */
   export interface Schema$ApigatewayBinding {
-    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */

@@ -1083,7 +1083,7 @@
       }
     }
   },
-  "revision": "20201029",
+  "revision": "20201203",
   "rootUrl": "https://apigateway.googleapis.com/",
   "schemas": {
     "ApigatewayApi": {
@@ -1191,7 +1191,7 @@
           "type": "string"
         },
         "openapiDocuments": {
-          "description": "Optional. OpenAPI specification documents. If specified, grpc_services and managed_service_config must not be included.",
+          "description": "Optional. OpenAPI specification documents. If specified, grpc_services and managed_service_configs must not be included.",
           "items": {
             "$ref": "ApigatewayApiConfigOpenApiDocument"
           },
@@ -1220,7 +1220,7 @@
             "API Config creation failed.",
             "API Config is being deleted.",
             "API Config is being updated.",
-            "API Config settings are being activated in downstream systems. API Configs in this state cannot be used by Gateways.."
+            "API Config settings are being activated in downstream systems. API Configs in this state cannot be used by Gateways."
           ],
           "readOnly": true,
           "type": "string"
@@ -1328,7 +1328,7 @@
       "type": "object"
     },
     "ApigatewayBackendConfig": {
-      "description": "Configuration for a backend.",
+      "description": "Configuration for all backends.",
       "id": "ApigatewayBackendConfig",
       "properties": {
         "googleServiceAccount": {
@@ -1342,9 +1342,6 @@
       "description": "Associates `members` with a `role`.",
       "id": "ApigatewayBinding",
       "properties": {
-        "bindingId": {
-          "type": "string"
-        },
         "condition": {
           "$ref": "ApigatewayExpr",
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
