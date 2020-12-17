@@ -1376,6 +1376,11 @@
                   "required": true,
                   "type": "string"
                 },
+                "skipVerification": {
+                  "description": "Whether to skip the verification step (VESS).",
+                  "location": "query",
+                  "type": "boolean"
+                },
                 "syncMode": {
                   "description": "External sync mode.",
                   "enum": [
@@ -1829,7 +1834,7 @@
       }
     }
   },
-  "revision": "20201112",
+  "revision": "20201205",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2663,7 +2668,7 @@
           "type": "object"
         },
         "uri": {
-          "description": "The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form *gs: //bucketName/fileName*. If the file already exists, the requests // succeeds, but the operation fails. If *fileType* is // *SQL* and the filename ends with .gz, the contents are // compressed.",
+          "description": "The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form *gs://bucketName/fileName*. If the file already exists, the request succeeds, but the operation fails. If *fileType* is *SQL* and the filename ends with .gz, the contents are compressed.",
           "type": "string"
         }
       },
@@ -2889,7 +2894,7 @@
           "type": "string"
         },
         "uri": {
-          "description": "Path to the import file in Cloud Storage, in the form *gs: //bucketName/fileName*. Compressed gzip files (.gz) are supported // when *fileType* is *SQL*. The instance must have // write permissions to the bucket and read access to the file.",
+          "description": "Path to the import file in Cloud Storage, in the form *gs://bucketName/fileName*. Compressed gzip files (.gz) are supported when *fileType* is *SQL*. The instance must have write permissions to the bucket and read access to the file.",
           "type": "string"
         }
       },

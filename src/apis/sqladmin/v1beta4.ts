@@ -700,7 +700,7 @@ export namespace sqladmin_v1beta4 {
       tables?: string[];
     } | null;
     /**
-     * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form *gs: //bucketName/fileName*. If the file already exists, the requests // succeeds, but the operation fails. If *fileType* is // *SQL* and the filename ends with .gz, the contents are // compressed.
+     * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form *gs://bucketName/fileName*. If the file already exists, the request succeeds, but the operation fails. If *fileType* is *SQL* and the filename ends with .gz, the contents are compressed.
      */
     uri?: string | null;
   }
@@ -810,7 +810,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string | null;
     /**
-     * Path to the import file in Cloud Storage, in the form *gs: //bucketName/fileName*. Compressed gzip files (.gz) are supported // when *fileType* is *SQL*. The instance must have // write permissions to the bucket and read access to the file.
+     * Path to the import file in Cloud Storage, in the form *gs://bucketName/fileName*. Compressed gzip files (.gz) are supported when *fileType* is *SQL*. The instance must have write permissions to the bucket and read access to the file.
      */
     uri?: string | null;
   }
@@ -7664,6 +7664,8 @@ export namespace sqladmin_v1beta4 {
      *     instance: 'placeholder-value',
      *     // ID of the project that contains the instance.
      *     project: 'placeholder-value',
+     *     // Whether to skip the verification step (VESS).
+     *     skipVerification: 'placeholder-value',
      *     // External sync mode.
      *     syncMode: 'placeholder-value',
      *   });
@@ -7956,6 +7958,10 @@ export namespace sqladmin_v1beta4 {
      * ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * Whether to skip the verification step (VESS).
+     */
+    skipVerification?: boolean;
     /**
      * External sync mode.
      */
