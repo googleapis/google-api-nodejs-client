@@ -596,7 +596,7 @@
       }
     }
   },
-  "revision": "20201110",
+  "revision": "20201210",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -890,7 +890,7 @@
           "type": "string"
         },
         "transitEncryptionMode": {
-          "description": "Optional. The In-transit encryption mode of Redis instance. If not provided, in-transit encryption is disabled for instance.",
+          "description": "Optional. The TLS mode of the Redis instance. If not provided, TLS is disabled for the instance.",
           "enum": [
             "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED",
             "SERVER_AUTHENTICATION",
@@ -898,8 +898,8 @@
           ],
           "enumDescriptions": [
             "Not set.",
-            "In-transit encryption enabled with server authentication",
-            "In-transit encryption is disabled for instance."
+            "Client to Server traffic encryption enabled with server authentication.",
+            "TLS is disabled for the instance."
           ],
           "type": "string"
         }
