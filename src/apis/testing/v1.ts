@@ -744,7 +744,7 @@ export namespace testing_v1 {
     iosDevices?: Schema$IosDevice[];
   }
   /**
-   * A description of an iOS device tests may be run on. Next tag: 13
+   * A description of an iOS device tests may be run on.
    */
   export interface Schema$IosModel {
     /**

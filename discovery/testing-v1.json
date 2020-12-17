@@ -282,7 +282,7 @@
       }
     }
   },
-  "revision": "20201019",
+  "revision": "20201210",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -1140,7 +1140,7 @@
       "type": "object"
     },
     "IosModel": {
-      "description": "A description of an iOS device tests may be run on. Next tag: 13",
+      "description": "A description of an iOS device tests may be run on.",
       "id": "IosModel",
       "properties": {
         "deviceCapabilities": {
