@@ -310,7 +310,6 @@ export namespace healthcare_v1beta1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
-    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -355,7 +354,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$CheckDataAccessRequest {
     /**
-     * The Consents to evaluate the access request against. They must have the same `user_id` as the data to check access for, exist in the current `consent_store`, and can have a `state` of either `ACTIVE` or `DRAFT`. A maximum of 100 consents can be provided here.
+     * The Consents to evaluate the access request against. They must have the same `user_id` as the data to check access for, exist in the current `consent_store`, and can have a `state` of either `ACTIVE` or `DRAFT`. A maximum of 100 consents can be provided here. If unspecified, all `ACTIVE` unexpired consents in the current `consent_store` will be evaluated.
      */
     consentList?: Schema$ConsentList;
     /**
@@ -367,7 +366,7 @@ export namespace healthcare_v1beta1 {
      */
     requestAttributes?: {[key: string]: string} | null;
     /**
-     * The view for CheckDataAccessResponse.
+     * The view for CheckDataAccessResponse. If unspecified, defaults to `BASIC` and returns `consented` as `TRUE` or `FALSE`.
      */
     responseView?: string | null;
   }
@@ -405,6 +404,10 @@ export namespace healthcare_v1beta1 {
      * Timestamp in UTC of when this consent is considered expired.
      */
     expireTime?: string | null;
+    /**
+     * User-supplied key-value pairs used to organize consent resources. Metadata keys must: - be between 1 and 63 characters long - have a UTF-8 encoding of maximum 128 bytes - begin with a letter - consist of up to 63 characters including lowercase letters, numeric characters, underscores, and dashes Metadata values must be: - be between 1 and 63 characters long - have a UTF-8 encoding of maximum 128 bytes - consist of up to 63 characters including lowercase letters, numeric characters, underscores, and dashes No more than 64 metadata entries can be associated with a given consent.
+     */
+    metadata?: {[key: string]: string} | null;
     /**
      * Resource name of the Consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`.
      */
@@ -789,11 +792,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$EvaluateUserConsentsRequest {
     /**
-     * The resource names of the consents to evaluate against. Consents must be in the current `consent_store` and belong to the current `user_id`. Consents can be either active or draft. If this field is empty, the default behavior is to use all active consents that belong to `user_id`. A maximum of 100 consents can be provided here.
+     * The Consents to evaluate the access request against. They must have the same `user_id` as the data to check access for, exist in the current `consent_store`, and can have a `state` of either `ACTIVE` or `DRAFT`. A maximum of 100 consents can be provided here. If unspecified, all `ACTIVE` unexpired consents in the current `consent_store` will be evaluated.
      */
     consentList?: Schema$ConsentList;
     /**
-     * Limit on the number of user data mappings to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of user data mappings to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number | null;
     /**
@@ -809,7 +812,7 @@ export namespace healthcare_v1beta1 {
      */
     resourceAttributes?: {[key: string]: string} | null;
     /**
-     * The view for EvaluateUserConsentsResponse.
+     * The view for EvaluateUserConsentsResponse. If unspecified, defaults to `BASIC` and returns `consented` as `TRUE` or `FALSE`.
      */
     responseView?: string | null;
     /**
@@ -897,6 +900,14 @@ export namespace healthcare_v1beta1 {
      * The Cloud Storage output destination. The Cloud Healthcare Service Agent requires the `roles/storage.objectAdmin` Cloud IAM roles on the Cloud Storage location. The exported outputs are organized by FHIR resource types. The server creates one object per resource type. Each object contains newline delimited JSON, and each line is a FHIR resource.
      */
     gcsDestination?: Schema$GoogleCloudHealthcareV1beta1FhirGcsDestination;
+    /**
+     * If provided, only resources updated after this time are exported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
+     */
+    _since?: string | null;
+    /**
+     * String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are exported.
+     */
+    _type?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -1407,15 +1418,15 @@ export namespace healthcare_v1beta1 {
     extensions?: Array<{[key: string]: any}> | null;
   }
   /**
-   * An image.
+   * Raw bytes representing consent artifact content.
    */
   export interface Schema$Image {
     /**
-     * Input only. Points to a Cloud Storage URI containing the image. The URI must be in the following format: `gs://{bucket_id\}/{object_id\}`. The Cloud Healthcare API service account must have the `roles/storage.objectViewer` Cloud IAM role for this Cloud Storage location. The image at this URI is copied to a Cloud Storage location managed by the Cloud Healthcare API. Responses to image fetching requests return the image in raw_bytes.
+     * Input only. Points to a Cloud Storage URI containing the consent artifact content. The URI must be in the following format: `gs://{bucket_id\}/{object_id\}`. The Cloud Healthcare API service account must have the `roles/storage.objectViewer` Cloud IAM role for this Cloud Storage location. The consent artifact content at this URI is copied to a Cloud Storage location managed by the Cloud Healthcare API. Responses to fetching requests return the consent artifact content in raw_bytes.
      */
     gcsUri?: string | null;
     /**
-     * Image content represented as a stream of bytes. This field is populated when returned in GetConsentArtifact response, but not included in CreateConsentArtifact and ListConsentArtifact response.
+     * Consent artifact content represented as a stream of bytes. This field is populated when returned in GetConsentArtifact response, but not included in CreateConsentArtifact and ListConsentArtifact response.
      */
     rawBytes?: string | null;
   }
@@ -3400,7 +3411,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.list({
-     *     // The maximum number of items to return. Capped to 100 if not specified. May not be larger than 1000.
+     *     // The maximum number of items to return. If not specified, 100 is used. May not be larger than 1000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -3992,7 +4003,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$List
     extends StandardParameters {
     /**
-     * The maximum number of items to return. Capped to 100 if not specified. May not be larger than 1000.
+     * The maximum number of items to return. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -5059,7 +5070,7 @@ export namespace healthcare_v1beta1 {
      *     {
      *       // Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
      *       filter: 'placeholder-value',
-     *       // Limit on the number of Annotation stores to return in a single response. If zero the default page size of 100 is used.
+     *       // Limit on the number of Annotation stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from the previous List request, if any.
      *       pageToken: 'placeholder-value',
@@ -5693,7 +5704,7 @@ export namespace healthcare_v1beta1 {
      */
     filter?: string;
     /**
-     * Limit on the number of Annotation stores to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of Annotation stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -6193,7 +6204,7 @@ export namespace healthcare_v1beta1 {
      *     {
      *       // Restricts Annotations returned to those matching a filter. Functions available for filtering are: - `matches("annotation_source.cloud_healthcare_source.name", substring)`. Filter on `cloud_healthcare_source.name`. For example: `matches("annotation_source.cloud_healthcare_source.name", "some source")`. - `matches("annotation", substring)`. Filter on all fields of annotation. For example: `matches("annotation", "some-content")`. - `type("text")`, `type("image")`, `type("resource")`. Filter on the type of annotation `data`.
      *       filter: 'placeholder-value',
-     *       // Limit on the number of Annotations to return in a single response. If zero the default page size of 100 is used.
+     *       // Limit on the number of Annotations to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from the previous List request, if any.
      *       pageToken: 'placeholder-value',
@@ -6492,7 +6503,7 @@ export namespace healthcare_v1beta1 {
      */
     filter?: string;
     /**
-     * Limit on the number of Annotations to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of Annotations to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -7423,7 +7434,7 @@ export namespace healthcare_v1beta1 {
      *   const res = await healthcare.projects.locations.datasets.consentStores.list({
      *     // Restricts the stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. Only filtering on labels is supported. For example, `labels.key=value`.
      *     filter: 'placeholder-value',
-     *     // Limit on the number of Consent stores to return in a single response. If zero the default page size of 100 is used.
+     *     // Limit on the number of Consent stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *     pageSize: 'placeholder-value',
      *     // Token to retrieve the next page of results or empty to get the first page.
      *     pageToken: 'placeholder-value',
@@ -8189,7 +8200,7 @@ export namespace healthcare_v1beta1 {
      */
     filter?: string;
     /**
-     * Limit on the number of Consent stores to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of Consent stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -8709,7 +8720,7 @@ export namespace healthcare_v1beta1 {
      *     {
      *       // Restricts the attributes returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. The only field available for filtering is `category`.
      *       filter: 'placeholder-value',
-     *       // Limit on the number of attribute definitions to return in a single response. If zero the default page size of 100 is used.
+     *       // Limit on the number of attribute definitions to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
      *       // Token to retrieve the next page of results or empty to get the first page.
      *       pageToken: 'placeholder-value',
@@ -9017,7 +9028,7 @@ export namespace healthcare_v1beta1 {
      */
     filter?: string;
     /**
-     * Limit on the number of attribute definitions to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of attribute definitions to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -9499,7 +9510,7 @@ export namespace healthcare_v1beta1 {
      *     {
      *       // Restricts the artifacts returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_content_version
      *       filter: 'placeholder-value',
-     *       // Limit on the number of consent artifacts to return in a single response. If zero the default page size of 100 is used.
+     *       // Limit on the number of consent artifacts to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from the previous List request, if any.
      *       pageToken: 'placeholder-value',
@@ -9651,7 +9662,7 @@ export namespace healthcare_v1beta1 {
      */
     filter?: string;
     /**
-     * Limit on the number of consent artifacts to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of consent artifacts to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -9719,6 +9730,7 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "consentArtifact": "my_consentArtifact",
      *   //   "expireTime": "my_expireTime",
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "policies": [],
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -9858,6 +9870,7 @@ export namespace healthcare_v1beta1 {
      *         // {
      *         //   "consentArtifact": "my_consentArtifact",
      *         //   "expireTime": "my_expireTime",
+     *         //   "metadata": {},
      *         //   "name": "my_name",
      *         //   "policies": [],
      *         //   "revisionCreateTime": "my_revisionCreateTime",
@@ -9875,6 +9888,7 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "consentArtifact": "my_consentArtifact",
      *   //   "expireTime": "my_expireTime",
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "policies": [],
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -10272,6 +10286,7 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "consentArtifact": "my_consentArtifact",
      *   //   "expireTime": "my_expireTime",
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "policies": [],
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -10398,9 +10413,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.consents.list(
      *     {
-     *       // Restricts the consents returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_artifact - state - revision_create_time
+     *       // Restricts the consents returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_artifact - state - revision_create_time - metadata. For example, `Metadata("key")="value"` or `HasMetadata("key")`.
      *       filter: 'placeholder-value',
-     *       // Limit on the number of consents to return in a single response. If zero the default page size of 100 is used.
+     *       // Limit on the number of consents to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from the previous List request, if any.
      *       pageToken: 'placeholder-value',
@@ -10547,7 +10562,7 @@ export namespace healthcare_v1beta1 {
      *       // Required. The resource name of the consent to retrieve revisions for.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
-     *       // Limit on the number of revisions to return in a single response. If zero the default page size of 100 is used.
+     *       // Limit on the number of revisions to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
      *       // Token to retrieve the next page of results or empty if there are no more results in the list.
      *       pageToken: 'placeholder-value',
@@ -10702,6 +10717,7 @@ export namespace healthcare_v1beta1 {
      *         // {
      *         //   "consentArtifact": "my_consentArtifact",
      *         //   "expireTime": "my_expireTime",
+     *         //   "metadata": {},
      *         //   "name": "my_name",
      *         //   "policies": [],
      *         //   "revisionCreateTime": "my_revisionCreateTime",
@@ -10719,6 +10735,7 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "consentArtifact": "my_consentArtifact",
      *   //   "expireTime": "my_expireTime",
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "policies": [],
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -10864,6 +10881,7 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "consentArtifact": "my_consentArtifact",
      *   //   "expireTime": "my_expireTime",
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "policies": [],
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -11012,6 +11030,7 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "consentArtifact": "my_consentArtifact",
      *   //   "expireTime": "my_expireTime",
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "policies": [],
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -11162,11 +11181,11 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List
     extends StandardParameters {
     /**
-     * Restricts the consents returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_artifact - state - revision_create_time
+     * Restricts the consents returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_artifact - state - revision_create_time - metadata. For example, `Metadata("key")="value"` or `HasMetadata("key")`.
      */
     filter?: string;
     /**
-     * Limit on the number of consents to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of consents to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -11189,7 +11208,7 @@ export namespace healthcare_v1beta1 {
      */
     name?: string;
     /**
-     * Limit on the number of revisions to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of revisions to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -11830,7 +11849,7 @@ export namespace healthcare_v1beta1 {
      *     {
      *       // Restricts the user data mappings returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - data_id - user_id - archived - archive_time
      *       filter: 'placeholder-value',
-     *       // Limit on the number of user data mappings to return in a single response. If zero the default page size of 100 is used.
+     *       // Limit on the number of user data mappings to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
      *       // Token to retrieve the next page of results or empty to get the first page.
      *       pageToken: 'placeholder-value',
@@ -12143,7 +12162,7 @@ export namespace healthcare_v1beta1 {
      */
     filter?: string;
     /**
-     * Limit on the number of user data mappings to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of user data mappings to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -13180,7 +13199,7 @@ export namespace healthcare_v1beta1 {
      *   const res = await healthcare.projects.locations.datasets.dicomStores.list({
      *     // Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported. For example, `labels.key=value`.
      *     filter: 'placeholder-value',
-     *     // Limit on the number of DICOM stores to return in a single response. If zero the default page size of 100 is used.
+     *     // Limit on the number of DICOM stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from the previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -14361,7 +14380,7 @@ export namespace healthcare_v1beta1 {
      */
     filter?: string;
     /**
-     * Limit on the number of DICOM stores to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of DICOM stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -14474,7 +14493,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * DeleteStudyAsync deletes all instances within the given study using an operation. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. The method returns an Operation which will be marked successful when the deletion is complete. Warning: Inserting instances into a study while a delete operation is running for that study could result in the new instances not appearing in search results until the deletion operation finishes.
+     * DeleteStudyAsync deletes all instances within the given study using a long running operation. The method returns an Operation which will be marked successful when the deletion is complete. Warning: If you insert instances into a study while a delete operation is running for that study, the instances you insert might not appear in search results until after the deletion operation finishes.
      * @example
      * ```js
      * // Before running the sample:
@@ -15379,7 +15398,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * DeleteSeriesAsync deletes all instances within the given study and series using an operation. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. The method returns an Operation which will be marked successful when the deletion is complete. Warning: Inserting instances into a series while a delete operation is running for that series could result in the new instances not appearing in search results until the deletion operation finishes.
+     * DeleteSeriesAsync deletes all instances within the given study and series using a long running operation. The method returns an Operation which will be marked successful when the deletion is complete. Warning: If you insert instances into a series while a delete operation is running for that series, the instances you insert might not appear in search results until after the deletion operation finishes.
      * @example
      * ```js
      * // Before running the sample:
@@ -17333,6 +17352,8 @@ export namespace healthcare_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "_since": "my__since",
+     *       //   "_type": "my__type",
      *       //   "bigqueryDestination": {},
      *       //   "gcsDestination": {}
      *       // }
@@ -17885,7 +17906,7 @@ export namespace healthcare_v1beta1 {
      *   const res = await healthcare.projects.locations.datasets.fhirStores.list({
      *     // Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
      *     filter: 'placeholder-value',
-     *     // Limit on the number of FHIR stores to return in a single response. If zero the default page size of 100 is used.
+     *     // Limit on the number of FHIR stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from the previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -18526,7 +18547,7 @@ export namespace healthcare_v1beta1 {
      */
     filter?: string;
     /**
-     * Limit on the number of FHIR stores to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of FHIR stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -19885,7 +19906,7 @@ export namespace healthcare_v1beta1 {
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
      *       // Only include resource versions that were current at some point during the time period specified in the date time value. The date parameter format is yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm] Clients may specify any of the following: * An entire year: `_at=2019` * An entire month: `_at=2019-01` * A specific day: `_at=2019-01-20` * A specific second: `_at=2018-12-31T23:59:58Z`
      *       _at: 'placeholder-value',
-     *       // The maximum number of search results on a page. Default value is 100. Maximum value is 1,000.
+     *       // The maximum number of search results on a page. If not specified, 100 is used. May not be larger than 1000.
      *       _count: 'placeholder-value',
      *       // Used to retrieve the first, previous, next, or last page of resource versions when using pagination. Value should be set to the value of `_page_token` set in next or previous page links' URLs. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next". Omit `_page_token` if no previous request has been made.
      *       _page_token: 'placeholder-value',
@@ -20304,7 +20325,7 @@ export namespace healthcare_v1beta1 {
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/Patient/[^/]+',
      *       // The response includes records subsequent to the start date. If no start date is provided, all records prior to the end date are in scope.
      *       start: 'placeholder-value',
-     *       // Maximum number of resources in a page. Defaults to 100.
+     *       // Maximum number of resources in a page. If not specified, 100 is used. May not be larger than 1000.
      *       _count: 'placeholder-value',
      *       // Used to retrieve the next or previous page of results when using pagination. Set `_page_token` to the value of _page_token set in next or previous page links' url. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next". Omit `_page_token` if no previous request has been made.
      *       _page_token: 'placeholder-value',
@@ -21236,7 +21257,7 @@ export namespace healthcare_v1beta1 {
      */
     _at?: string;
     /**
-     * The maximum number of search results on a page. Default value is 100. Maximum value is 1,000.
+     * The maximum number of search results on a page. If not specified, 100 is used. May not be larger than 1000.
      */
     _count?: number;
     /**
@@ -21282,7 +21303,7 @@ export namespace healthcare_v1beta1 {
      */
     start?: string;
     /**
-     * Maximum number of resources in a page. Defaults to 100.
+     * Maximum number of resources in a page. If not specified, 100 is used. May not be larger than 1000.
      */
     _count?: number;
     /**
@@ -22212,7 +22233,7 @@ export namespace healthcare_v1beta1 {
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.list({
      *     // Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported. For example, `labels.key=value`.
      *     filter: 'placeholder-value',
-     *     // Limit on the number of HL7v2 stores to return in a single response. If zero the default page size of 100 is used.
+     *     // Limit on the number of HL7v2 stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from the previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -22835,7 +22856,7 @@ export namespace healthcare_v1beta1 {
      */
     filter?: string;
     /**
-     * Limit on the number of HL7v2 stores to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of HL7v2 stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -23488,7 +23509,7 @@ export namespace healthcare_v1beta1 {
      *       filter: 'placeholder-value',
      *       // Orders messages returned by the specified order_by clause. Syntax: https://cloud.google.com/apis/design/design_patterns#sorting_order Fields available for ordering are: * `send_time`
      *       orderBy: 'placeholder-value',
-     *       // Limit on the number of messages to return in a single response. If zero the default page size of 100 is used.
+     *       // Limit on the number of messages to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from the previous List request, if any.
      *       pageToken: 'placeholder-value',
@@ -23815,7 +23836,7 @@ export namespace healthcare_v1beta1 {
      */
     orderBy?: string;
     /**
-     * Limit on the number of messages to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of messages to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**

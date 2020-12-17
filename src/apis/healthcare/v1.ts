@@ -153,7 +153,6 @@ export namespace healthcare_v1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
-    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -2146,7 +2145,7 @@ export namespace healthcare_v1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.list({
-     *     // The maximum number of items to return. Capped to 100 if not specified. May not be larger than 1000.
+     *     // The maximum number of items to return. If not specified, 100 is used. May not be larger than 1000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -2738,7 +2737,7 @@ export namespace healthcare_v1 {
   export interface Params$Resource$Projects$Locations$Datasets$List
     extends StandardParameters {
     /**
-     * The maximum number of items to return. Capped to 100 if not specified. May not be larger than 1000.
+     * The maximum number of items to return. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -3789,7 +3788,7 @@ export namespace healthcare_v1 {
      *   const res = await healthcare.projects.locations.datasets.dicomStores.list({
      *     // Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported. For example, `labels.key=value`.
      *     filter: 'placeholder-value',
-     *     // Limit on the number of DICOM stores to return in a single response. If zero the default page size of 100 is used.
+     *     // Limit on the number of DICOM stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from the previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -4972,7 +4971,7 @@ export namespace healthcare_v1 {
      */
     filter?: string;
     /**
-     * Limit on the number of DICOM stores to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of DICOM stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -8503,7 +8502,7 @@ export namespace healthcare_v1 {
      *   const res = await healthcare.projects.locations.datasets.fhirStores.list({
      *     // Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
      *     filter: 'placeholder-value',
-     *     // Limit on the number of FHIR stores to return in a single response. If zero the default page size of 100 is used.
+     *     // Limit on the number of FHIR stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from the previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -9142,7 +9141,7 @@ export namespace healthcare_v1 {
      */
     filter?: string;
     /**
-     * Limit on the number of FHIR stores to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of FHIR stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -9786,7 +9785,7 @@ export namespace healthcare_v1 {
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
      *       // Only include resource versions that were current at some point during the time period specified in the date time value. The date parameter format is yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm] Clients may specify any of the following: * An entire year: `_at=2019` * An entire month: `_at=2019-01` * A specific day: `_at=2019-01-20` * A specific second: `_at=2018-12-31T23:59:58Z`
      *       _at: 'placeholder-value',
-     *       // The maximum number of search results on a page. Default value is 100. Maximum value is 1,000.
+     *       // The maximum number of search results on a page. If not specified, 100 is used. May not be larger than 1000.
      *       _count: 'placeholder-value',
      *       // Used to retrieve the first, previous, next, or last page of resource versions when using pagination. Value should be set to the value of `_page_token` set in next or previous page links' URLs. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next". Omit `_page_token` if no previous request has been made.
      *       _page_token: 'placeholder-value',
@@ -10072,7 +10071,7 @@ export namespace healthcare_v1 {
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/Patient/[^/]+',
      *       // The response includes records subsequent to the start date. If no start date is provided, all records prior to the end date are in scope.
      *       start: 'placeholder-value',
-     *       // Maximum number of resources in a page. Defaults to 100.
+     *       // Maximum number of resources in a page. If not specified, 100 is used. May not be larger than 1000.
      *       _count: 'placeholder-value',
      *       // Used to retrieve the next or previous page of results when using pagination. Set `_page_token` to the value of _page_token set in next or previous page links' url. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next". Omit `_page_token` if no previous request has been made.
      *       _page_token: 'placeholder-value',
@@ -10908,7 +10907,7 @@ export namespace healthcare_v1 {
      */
     _at?: string;
     /**
-     * The maximum number of search results on a page. Default value is 100. Maximum value is 1,000.
+     * The maximum number of search results on a page. If not specified, 100 is used. May not be larger than 1000.
      */
     _count?: number;
     /**
@@ -10947,7 +10946,7 @@ export namespace healthcare_v1 {
      */
     start?: string;
     /**
-     * Maximum number of resources in a page. Defaults to 100.
+     * Maximum number of resources in a page. If not specified, 100 is used. May not be larger than 1000.
      */
     _count?: number;
     /**
@@ -11588,7 +11587,7 @@ export namespace healthcare_v1 {
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.list({
      *     // Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported. For example, `labels.key=value`.
      *     filter: 'placeholder-value',
-     *     // Limit on the number of HL7v2 stores to return in a single response. If zero the default page size of 100 is used.
+     *     // Limit on the number of HL7v2 stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from the previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -12185,7 +12184,7 @@ export namespace healthcare_v1 {
      */
     filter?: string;
     /**
-     * Limit on the number of HL7v2 stores to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of HL7v2 stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -12836,7 +12835,7 @@ export namespace healthcare_v1 {
      *       filter: 'placeholder-value',
      *       // Orders messages returned by the specified order_by clause. Syntax: https://cloud.google.com/apis/design/design_patterns#sorting_order Fields available for ordering are: * `send_time`
      *       orderBy: 'placeholder-value',
-     *       // Limit on the number of messages to return in a single response. If zero the default page size of 100 is used.
+     *       // Limit on the number of messages to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from the previous List request, if any.
      *       pageToken: 'placeholder-value',
@@ -13161,7 +13160,7 @@ export namespace healthcare_v1 {
      */
     orderBy?: string;
     /**
-     * Limit on the number of messages to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of messages to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**

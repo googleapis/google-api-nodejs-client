@@ -331,7 +331,7 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "The maximum number of items to return. Capped to 100 if not specified. May not be larger than 1000.",
+                      "description": "The maximum number of items to return. If not specified, 100 is used. May not be larger than 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -664,7 +664,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Limit on the number of Annotation stores to return in a single response. If zero the default page size of 100 is used.",
+                          "description": "Limit on the number of Annotation stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -877,7 +877,7 @@
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "Limit on the number of Annotations to return in a single response. If zero the default page size of 100 is used.",
+                              "description": "Limit on the number of Annotations to return in a single response. If not specified, 100 is used. May not be larger than 1000.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -1143,7 +1143,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Limit on the number of Consent stores to return in a single response. If zero the default page size of 100 is used.",
+                          "description": "Limit on the number of Consent stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -1389,7 +1389,7 @@
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "Limit on the number of attribute definitions to return in a single response. If zero the default page size of 100 is used.",
+                              "description": "Limit on the number of attribute definitions to return in a single response. If not specified, 100 is used. May not be larger than 1000.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -1546,7 +1546,7 @@
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "Limit on the number of consent artifacts to return in a single response. If zero the default page size of 100 is used.",
+                              "description": "Limit on the number of consent artifacts to return in a single response. If not specified, 100 is used. May not be larger than 1000.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -1717,12 +1717,12 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "Restricts the consents returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_artifact - state - revision_create_time",
+                              "description": "Restricts the consents returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_artifact - state - revision_create_time - metadata. For example, `Metadata(\"key\")=\"value\"` or `HasMetadata(\"key\")`.",
                               "location": "query",
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "Limit on the number of consents to return in a single response. If zero the default page size of 100 is used.",
+                              "description": "Limit on the number of consents to return in a single response. If not specified, 100 is used. May not be larger than 1000.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -1770,7 +1770,7 @@
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "Limit on the number of revisions to return in a single response. If zero the default page size of 100 is used.",
+                              "description": "Limit on the number of revisions to return in a single response. If not specified, 100 is used. May not be larger than 1000.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -2004,7 +2004,7 @@
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "Limit on the number of user data mappings to return in a single response. If zero the default page size of 100 is used.",
+                              "description": "Limit on the number of user data mappings to return in a single response. If not specified, 100 is used. May not be larger than 1000.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -2283,7 +2283,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Limit on the number of DICOM stores to return in a single response. If zero the default page size of 100 is used.",
+                          "description": "Limit on the number of DICOM stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -2539,7 +2539,7 @@
                     "studies": {
                       "methods": {
                         "delete": {
-                          "description": "DeleteStudyAsync deletes all instances within the given study using an operation. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. The method returns an Operation which will be marked successful when the deletion is complete. Warning: Inserting instances into a study while a delete operation is running for that study could result in the new instances not appearing in search results until the deletion operation finishes.",
+                          "description": "DeleteStudyAsync deletes all instances within the given study using a long running operation. The method returns an Operation which will be marked successful when the deletion is complete. Warning: If you insert instances into a study while a delete operation is running for that study, the instances you insert might not appear in search results until after the deletion operation finishes.",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/dicomStores/{dicomStoresId}/dicomWeb/studies/{studiesId}",
                           "httpMethod": "DELETE",
                           "id": "healthcare.projects.locations.datasets.dicomStores.studies.delete",
@@ -2743,7 +2743,7 @@
                         "series": {
                           "methods": {
                             "delete": {
-                              "description": "DeleteSeriesAsync deletes all instances within the given study and series using an operation. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. The method returns an Operation which will be marked successful when the deletion is complete. Warning: Inserting instances into a series while a delete operation is running for that series could result in the new instances not appearing in search results until the deletion operation finishes.",
+                              "description": "DeleteSeriesAsync deletes all instances within the given study and series using a long running operation. The method returns an Operation which will be marked successful when the deletion is complete. Warning: If you insert instances into a series while a delete operation is running for that series, the instances you insert might not appear in search results until after the deletion operation finishes.",
                               "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/dicomStores/{dicomStoresId}/dicomWeb/studies/{studiesId}/series/{seriesId}",
                               "httpMethod": "DELETE",
                               "id": "healthcare.projects.locations.datasets.dicomStores.studies.series.delete",
@@ -3305,7 +3305,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Limit on the number of FHIR stores to return in a single response. If zero the default page size of 100 is used.",
+                          "description": "Limit on the number of FHIR stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -3555,7 +3555,7 @@
                           ],
                           "parameters": {
                             "_count": {
-                              "description": "Maximum number of resources in a page. Defaults to 100.",
+                              "description": "Maximum number of resources in a page. If not specified, 100 is used. May not be larger than 1000.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -3860,7 +3860,7 @@
                               "type": "string"
                             },
                             "_count": {
-                              "description": "The maximum number of search results on a page. Default value is 100. Maximum value is 1,000.",
+                              "description": "The maximum number of search results on a page. If not specified, 100 is used. May not be larger than 1000.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -4216,7 +4216,7 @@
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Limit on the number of HL7v2 stores to return in a single response. If zero the default page size of 100 is used.",
+                          "description": "Limit on the number of HL7v2 stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -4483,7 +4483,7 @@
                               "type": "string"
                             },
                             "pageSize": {
-                              "description": "Limit on the number of messages to return in a single response. If zero the default page size of 100 is used.",
+                              "description": "Limit on the number of messages to return in a single response. If not specified, 100 is used. May not be larger than 1000.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
@@ -4709,7 +4709,7 @@
       }
     }
   },
-  "revision": "20201118",
+  "revision": "20201202",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -4979,9 +4979,6 @@
       "description": "Associates `members` with a `role`.",
       "id": "Binding",
       "properties": {
-        "bindingId": {
-          "type": "string"
-        },
         "condition": {
           "$ref": "Expr",
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
@@ -5041,7 +5038,7 @@
       "properties": {
         "consentList": {
           "$ref": "ConsentList",
-          "description": "The Consents to evaluate the access request against. They must have the same `user_id` as the data to check access for, exist in the current `consent_store`, and can have a `state` of either `ACTIVE` or `DRAFT`. A maximum of 100 consents can be provided here."
+          "description": "The Consents to evaluate the access request against. They must have the same `user_id` as the data to check access for, exist in the current `consent_store`, and can have a `state` of either `ACTIVE` or `DRAFT`. A maximum of 100 consents can be provided here. If unspecified, all `ACTIVE` unexpired consents in the current `consent_store` will be evaluated."
         },
         "dataId": {
           "description": "The unique identifier of the data to check access for. It must exist in the given `consent_store`.",
@@ -5055,7 +5052,7 @@
           "type": "object"
         },
         "responseView": {
-          "description": "The view for CheckDataAccessResponse.",
+          "description": "The view for CheckDataAccessResponse. If unspecified, defaults to `BASIC` and returns `consented` as `TRUE` or `FALSE`.",
           "enum": [
             "RESPONSE_VIEW_UNSPECIFIED",
             "BASIC",
@@ -5112,6 +5109,13 @@
           "description": "Timestamp in UTC of when this consent is considered expired.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "User-supplied key-value pairs used to organize consent resources. Metadata keys must: - be between 1 and 63 characters long - have a UTF-8 encoding of maximum 128 bytes - begin with a letter - consist of up to 63 characters including lowercase letters, numeric characters, underscores, and dashes Metadata values must be: - be between 1 and 63 characters long - have a UTF-8 encoding of maximum 128 bytes - consist of up to 63 characters including lowercase letters, numeric characters, underscores, and dashes No more than 64 metadata entries can be associated with a given consent.",
+          "type": "object"
         },
         "name": {
           "description": "Resource name of the Consent, of the form `projects/{project_id}/locations/{location_id}/datasets/{dataset_id}/consentStores/{consent_store_id}/consents/{consent_id}`.",
@@ -5639,10 +5643,10 @@
       "properties": {
         "consentList": {
           "$ref": "ConsentList",
-          "description": "The resource names of the consents to evaluate against. Consents must be in the current `consent_store` and belong to the current `user_id`. Consents can be either active or draft. If this field is empty, the default behavior is to use all active consents that belong to `user_id`. A maximum of 100 consents can be provided here."
+          "description": "The Consents to evaluate the access request against. They must have the same `user_id` as the data to check access for, exist in the current `consent_store`, and can have a `state` of either `ACTIVE` or `DRAFT`. A maximum of 100 consents can be provided here. If unspecified, all `ACTIVE` unexpired consents in the current `consent_store` will be evaluated."
         },
         "pageSize": {
-          "description": "Limit on the number of user data mappings to return in a single response. If zero the default page size of 100 is used.",
+          "description": "Limit on the number of user data mappings to return in a single response. If not specified, 100 is used. May not be larger than 1000.",
           "format": "int32",
           "type": "integer"
         },
@@ -5665,7 +5669,7 @@
           "type": "object"
         },
         "responseView": {
-          "description": "The view for EvaluateUserConsentsResponse.",
+          "description": "The view for EvaluateUserConsentsResponse. If unspecified, defaults to `BASIC` and returns `consented` as `TRUE` or `FALSE`.",
           "enum": [
             "RESPONSE_VIEW_UNSPECIFIED",
             "BASIC",
@@ -5774,6 +5778,14 @@
       "description": "Request to export resources.",
       "id": "ExportResourcesRequest",
       "properties": {
+        "_since": {
+          "description": "If provided, only resources updated after this time are exported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.",
+          "type": "string"
+        },
+        "_type": {
+          "description": "String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are exported.",
+          "type": "string"
+        },
         "bigqueryDestination": {
           "$ref": "GoogleCloudHealthcareV1beta1FhirBigQueryDestination",
           "description": "The BigQuery output destination. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`. The output is one BigQuery table per resource type."
@@ -6523,15 +6535,15 @@
       "type": "object"
     },
     "Image": {
-      "description": "An image.",
+      "description": "Raw bytes representing consent artifact content.",
       "id": "Image",
       "properties": {
         "gcsUri": {
-          "description": "Input only. Points to a Cloud Storage URI containing the image. The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The Cloud Healthcare API service account must have the `roles/storage.objectViewer` Cloud IAM role for this Cloud Storage location. The image at this URI is copied to a Cloud Storage location managed by the Cloud Healthcare API. Responses to image fetching requests return the image in raw_bytes.",
+          "description": "Input only. Points to a Cloud Storage URI containing the consent artifact content. The URI must be in the following format: `gs://{bucket_id}/{object_id}`. The Cloud Healthcare API service account must have the `roles/storage.objectViewer` Cloud IAM role for this Cloud Storage location. The consent artifact content at this URI is copied to a Cloud Storage location managed by the Cloud Healthcare API. Responses to fetching requests return the consent artifact content in raw_bytes.",
           "type": "string"
         },
         "rawBytes": {
-          "description": "Image content represented as a stream of bytes. This field is populated when returned in GetConsentArtifact response, but not included in CreateConsentArtifact and ListConsentArtifact response.",
+          "description": "Consent artifact content represented as a stream of bytes. This field is populated when returned in GetConsentArtifact response, but not included in CreateConsentArtifact and ListConsentArtifact response.",
           "format": "byte",
           "type": "string"
         }
