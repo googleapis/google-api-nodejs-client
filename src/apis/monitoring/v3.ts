@@ -275,7 +275,7 @@ export namespace monitoring_v3 {
     service?: string | null;
   }
   /**
-   * Istio service scoped to a single Kubernetes cluster. Learn more at http://istio.io.
+   * Istio service scoped to a single Kubernetes cluster. Learn more at http://istio.io. Clusters running OSS Istio will have their services ingested as this type.
    */
   export interface Schema$ClusterIstio {
     /**
@@ -1025,7 +1025,7 @@ export namespace monitoring_v3 {
     uptimeCheckIps?: Schema$UptimeCheckIp[];
   }
   /**
-   * Istio service scoped to an Istio mesh
+   * Istio service scoped to an Istio mesh. Anthos clusters running ASM < 1.6.8 will have their services ingested as this type.
    */
   export interface Schema$MeshIstio {
     /**

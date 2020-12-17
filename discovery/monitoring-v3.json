@@ -1995,7 +1995,7 @@
       }
     }
   },
-  "revision": "20201201",
+  "revision": "20201208",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2270,7 +2270,7 @@
       "type": "object"
     },
     "ClusterIstio": {
-      "description": "Istio service scoped to a single Kubernetes cluster. Learn more at http://istio.io.",
+      "description": "Istio service scoped to a single Kubernetes cluster. Learn more at http://istio.io. Clusters running OSS Istio will have their services ingested as this type.",
       "id": "ClusterIstio",
       "properties": {
         "clusterName": {
@@ -3347,7 +3347,7 @@
       "type": "object"
     },
     "MeshIstio": {
-      "description": "Istio service scoped to an Istio mesh",
+      "description": "Istio service scoped to an Istio mesh. Anthos clusters running ASM < 1.6.8 will have their services ingested as this type.",
       "id": "MeshIstio",
       "properties": {
         "meshUid": {
