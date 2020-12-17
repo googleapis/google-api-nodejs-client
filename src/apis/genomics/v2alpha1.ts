@@ -177,7 +177,7 @@ export namespace genomics_v2alpha1 {
      */
     mounts?: Schema$Mount[];
     /**
-     * An optional name for the container. The container hostname will be set to this name, making it useful for inter-container communication. The name must contain only upper and lowercase alphanumeric characters and hypens and cannot start with a hyphen.
+     * An optional name for the container. The container hostname will be set to this name, making it useful for inter-container communication. The name must contain only upper and lowercase alphanumeric characters and hyphens and cannot start with a hyphen.
      */
     name?: string | null;
     /**
@@ -317,11 +317,11 @@ export namespace genomics_v2alpha1 {
     metrics?: string[] | null;
   }
   /**
-   * Carries information about a disk that can be attached to a VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations.
+   * Carries information about a disk that can be attached to a VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations. Specify either `Volume` or `Disk`, but not both.
    */
   export interface Schema$Disk {
     /**
-     * A user-supplied name for the disk. Used when mounting the disk into actions. The name must contain only upper and lowercase alphanumeric characters and hypens and cannot start with a hyphen.
+     * A user-supplied name for the disk. Used when mounting the disk into actions. The name must contain only upper and lowercase alphanumeric characters and hyphens and cannot start with a hyphen.
      */
     name?: string | null;
     /**
@@ -754,7 +754,7 @@ export namespace genomics_v2alpha1 {
      */
     cpuPlatform?: string | null;
     /**
-     * The list of disks to create and attach to the VM.
+     * The list of disks to create and attach to the VM. Specify either the `volumes[]` field or the `disks[]` field, but not both.
      */
     disks?: Schema$Disk[];
     /**
@@ -790,12 +790,12 @@ export namespace genomics_v2alpha1 {
      */
     serviceAccount?: Schema$ServiceAccount;
     /**
-     * The list of disks and other storage to create or attach to the VM.
+     * The list of disks and other storage to create or attach to the VM. Specify either the `volumes[]` field or the `disks[]` field, but not both.
      */
     volumes?: Schema$Volume[];
   }
   /**
-   * Carries information about storage that can be attached to a VM.
+   * Carries information about storage that can be attached to a VM. Specify either `Volume` or `Disk`, but not both.
    */
   export interface Schema$Volume {
     /**

@@ -301,7 +301,7 @@
       }
     }
   },
-  "revision": "20201102",
+  "revision": "20201207",
   "rootUrl": "https://genomics.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -392,7 +392,7 @@
           "type": "array"
         },
         "name": {
-          "description": "An optional name for the container. The container hostname will be set to this name, making it useful for inter-container communication. The name must contain only upper and lowercase alphanumeric characters and hypens and cannot start with a hyphen.",
+          "description": "An optional name for the container. The container hostname will be set to this name, making it useful for inter-container communication. The name must contain only upper and lowercase alphanumeric characters and hyphens and cannot start with a hyphen.",
           "type": "string"
         },
         "pidNamespace": {
@@ -582,11 +582,11 @@
       "type": "object"
     },
     "Disk": {
-      "description": "Carries information about a disk that can be attached to a VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations.",
+      "description": "Carries information about a disk that can be attached to a VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations. Specify either `Volume` or `Disk`, but not both.",
       "id": "Disk",
       "properties": {
         "name": {
-          "description": "A user-supplied name for the disk. Used when mounting the disk into actions. The name must contain only upper and lowercase alphanumeric characters and hypens and cannot start with a hyphen.",
+          "description": "A user-supplied name for the disk. Used when mounting the disk into actions. The name must contain only upper and lowercase alphanumeric characters and hyphens and cannot start with a hyphen.",
           "type": "string"
         },
         "sizeGb": {
@@ -1197,7 +1197,7 @@
           "type": "string"
         },
         "disks": {
-          "description": "The list of disks to create and attach to the VM.",
+          "description": "The list of disks to create and attach to the VM. Specify either the `volumes[]` field or the `disks[]` field, but not both.",
           "items": {
             "$ref": "Disk"
           },
@@ -1242,7 +1242,7 @@
           "description": "The service account to install on the VM. This account does not need any permissions other than those required by the pipeline."
         },
         "volumes": {
-          "description": "The list of disks and other storage to create or attach to the VM.",
+          "description": "The list of disks and other storage to create or attach to the VM. Specify either the `volumes[]` field or the `disks[]` field, but not both.",
           "items": {
             "$ref": "Volume"
           },
@@ -1252,7 +1252,7 @@
       "type": "object"
     },
     "Volume": {
-      "description": "Carries information about storage that can be attached to a VM.",
+      "description": "Carries information about storage that can be attached to a VM. Specify either `Volume` or `Disk`, but not both.",
       "id": "Volume",
       "properties": {
         "existingDisk": {
