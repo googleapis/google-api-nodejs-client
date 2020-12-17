@@ -717,6 +717,10 @@ export namespace appengine_v1 {
      */
     vmIp?: string | null;
     /**
+     * Output only. The liveness health check of this instance. Only applicable for instances in App Engine flexible environment.
+     */
+    vmLiveness?: string | null;
+    /**
      * Output only. Name of the virtual machine where this instance lives. Only applicable for instances in App Engine flexible environment.
      */
     vmName?: string | null;
@@ -7552,6 +7556,7 @@ export namespace appengine_v1 {
      *   //   "vmDebugEnabled": false,
      *   //   "vmId": "my_vmId",
      *   //   "vmIp": "my_vmIp",
+     *   //   "vmLiveness": "my_vmLiveness",
      *   //   "vmName": "my_vmName",
      *   //   "vmStatus": "my_vmStatus",
      *   //   "vmZoneName": "my_vmZoneName"
