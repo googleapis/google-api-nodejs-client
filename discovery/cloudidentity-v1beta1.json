@@ -142,7 +142,7 @@
           }
         },
         "create": {
-          "description": "Creates a device. Only company-owned device may be created.",
+          "description": "Creates a device. Only company-owned device may be created. **Note**: This method is available only to customers who have one of the following SKUs: Enterprise Standard, Enterprise Plus, Enterprise for Education, and Cloud Identity Premium",
           "flatPath": "v1beta1/devices",
           "httpMethod": "POST",
           "id": "cloudidentity.devices.create",
@@ -578,7 +578,7 @@
                   }
                 },
                 "patch": {
-                  "description": "Updates the client state for the device user",
+                  "description": "Updates the client state for the device user **Note**: This method is available only to customers who have one of the following SKUs: Enterprise Standard, Enterprise Plus, Enterprise for Education, and Cloud Identity Premium",
                   "flatPath": "v1beta1/devices/{devicesId}/deviceUsers/{deviceUsersId}/clientStates/{clientStatesId}",
                   "httpMethod": "PATCH",
                   "id": "cloudidentity.devices.deviceUsers.clientStates.patch",
@@ -1221,7 +1221,7 @@
       }
     }
   },
-  "revision": "20201121",
+  "revision": "20201213",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -1827,7 +1827,7 @@
       "id": "DynamicGroupMetadata",
       "properties": {
         "queries": {
-          "description": "Memberships will be the union of all queries. Only one entry with USER resource is currently supported.",
+          "description": "Memberships will be the union of all queries. Only one entry with USER resource is currently supported. Customers can create up to 100 dynamic groups.",
           "items": {
             "$ref": "DynamicGroupQuery"
           },

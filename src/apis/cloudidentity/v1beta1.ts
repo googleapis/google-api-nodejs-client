@@ -477,7 +477,7 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$DynamicGroupMetadata {
     /**
-     * Memberships will be the union of all queries. Only one entry with USER resource is currently supported.
+     * Memberships will be the union of all queries. Only one entry with USER resource is currently supported. Customers can create up to 100 dynamic groups.
      */
     queries?: Schema$DynamicGroupQuery[];
     /**
@@ -1425,7 +1425,7 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
-     * Creates a device. Only company-owned device may be created.
+     * Creates a device. Only company-owned device may be created. **Note**: This method is available only to customers who have one of the following SKUs: Enterprise Standard, Enterprise Plus, Enterprise for Education, and Cloud Identity Premium
      * @example
      * ```js
      * // Before running the sample:
@@ -3625,7 +3625,7 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
-     * Updates the client state for the device user
+     * Updates the client state for the device user **Note**: This method is available only to customers who have one of the following SKUs: Enterprise Standard, Enterprise Plus, Enterprise for Education, and Cloud Identity Premium
      * @example
      * ```js
      * // Before running the sample:
