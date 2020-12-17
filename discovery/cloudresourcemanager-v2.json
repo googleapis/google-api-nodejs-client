@@ -450,7 +450,7 @@
       }
     }
   },
-  "revision": "20201111",
+  "revision": "20201214",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1091,18 +1091,6 @@
     "UndeleteProjectMetadata": {
       "description": "A status object which is used as the `metadata` field for the Operation returned by UndeleteProject.",
       "id": "UndeleteProjectMetadata",
-      "properties": {},
-      "type": "object"
-    },
-    "UndeleteTagKeyMetadata": {
-      "description": "Runtime operation information for undeleting a TagKey.",
-      "id": "UndeleteTagKeyMetadata",
-      "properties": {},
-      "type": "object"
-    },
-    "UndeleteTagValueMetadata": {
-      "description": "Runtime operation information for deleting a TagValue.",
-      "id": "UndeleteTagValueMetadata",
       "properties": {},
       "type": "object"
     },

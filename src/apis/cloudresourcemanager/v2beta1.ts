@@ -563,14 +563,6 @@ export namespace cloudresourcemanager_v2beta1 {
    */
   export interface Schema$UndeleteProjectMetadata {}
   /**
-   * Runtime operation information for undeleting a TagKey.
-   */
-  export interface Schema$UndeleteTagKeyMetadata {}
-  /**
-   * Runtime operation information for deleting a TagValue.
-   */
-  export interface Schema$UndeleteTagValueMetadata {}
-  /**
    * A status object which is used as the `metadata` field for the Operation returned by UpdateFolder.
    */
   export interface Schema$UpdateFolderMetadata {}

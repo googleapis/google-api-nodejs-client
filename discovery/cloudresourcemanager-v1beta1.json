@@ -566,7 +566,7 @@
       }
     }
   },
-  "revision": "20201111",
+  "revision": "20201214",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "Ancestor": {
@@ -1230,18 +1230,6 @@
     "UndeleteProjectRequest": {
       "description": "The request sent to the UndeleteProject method.",
       "id": "UndeleteProjectRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "UndeleteTagKeyMetadata": {
-      "description": "Runtime operation information for undeleting a TagKey.",
-      "id": "UndeleteTagKeyMetadata",
-      "properties": {},
-      "type": "object"
-    },
-    "UndeleteTagValueMetadata": {
-      "description": "Runtime operation information for deleting a TagValue.",
-      "id": "UndeleteTagValueMetadata",
       "properties": {},
       "type": "object"
     },
