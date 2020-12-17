@@ -914,7 +914,7 @@ export namespace privateca_v1beta1 {
      */
     key?: string | null;
     /**
-     * Required. The type of public key.
+     * Optional. The type of public key. If specified, it must match the public key used for the`key` field.
      */
     type?: string | null;
   }

@@ -1254,7 +1254,7 @@
       }
     }
   },
-  "revision": "20201112",
+  "revision": "20201203",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -2369,7 +2369,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. The type of public key.",
+          "description": "Optional. The type of public key. If specified, it must match the public key used for the`key` field.",
           "enum": [
             "KEY_TYPE_UNSPECIFIED",
             "PEM_RSA_KEY",
@@ -2377,8 +2377,8 @@
           ],
           "enumDescriptions": [
             "Default unspecified value.",
-            "A PEM-encoded PKCS#1/RFC 3447 RSAPrivateKey structure, or an RFC 5280 [SubjectPublicKeyInfo](https://tools.ietf.org/html/rfc5280#section-4.1) structure containing the former.",
-            "A PEM-encoded compressed NIST P-256/secp256r1/prime256v1 or P-384 key, or an RFC 5280 [SubjectPublicKeyInfo](https://tools.ietf.org/html/rfc5280#section-4.1) structure containing the former."
+            "A PEM-encoded PKCS#1/RFC 3447 RSAPublicKey structure, or an RFC 5280 [SubjectPublicKeyInfo](https://tools.ietf.org/html/rfc5280#section-4.1) structure containing the former.",
+            "An RFC 5280 [SubjectPublicKeyInfo](https://tools.ietf.org/html/rfc5280#section-4.1) structure containing a PEM-encoded compressed NIST P-256/secp256r1/prime256v1 or P-384 key."
           ],
           "type": "string"
         }
