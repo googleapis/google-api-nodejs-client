@@ -1739,7 +1739,7 @@
               "type": "string"
             },
             "query": {
-              "description": "Search string in the format given at http://support.google.com/a/bin/answer.py?answer=1408863#search",
+              "description": "Search string in the format given at https://developers.google.com/admin-sdk/directory/v1/search-operators",
               "location": "query",
               "type": "string"
             },
@@ -4139,7 +4139,7 @@
       }
     }
   },
-  "revision": "20201124",
+  "revision": "20201215",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {

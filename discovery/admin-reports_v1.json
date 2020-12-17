@@ -175,14 +175,14 @@
                 "The Data Studio activity reports return information about various types of Data Studio activity events."
               ],
               "location": "path",
-              "pattern": "(admin)|(calendar)|(drive)|(login)|(mobile)|(token)|(groups)|(saml)|(chat)|(gplus)|(rules)|(jamboard)|(meet)|(user_accounts)|(access_transparency)|(groups_enterprise)|(gcp)|(context_aware_access)|(data_studio)|(chrome)",
+              "pattern": "(access_transparency)|(admin)|(calendar)|(chat)|(chrome)|(context_aware_access)|(data_studio)|(drive)|(gcp)|(gplus)|(groups)|(groups_enterprise)|(jamboard)|(login)|(meet)|(mobile)|(rules)|(saml)|(token)|(user_accounts)",
               "required": true,
               "type": "string"
             },
             "customerId": {
               "description": "The unique ID of the customer to retrieve data for.",
               "location": "query",
-              "pattern": "C.+",
+              "pattern": "C.+|my_customer",
               "type": "string"
             },
             "endTime": {
@@ -314,14 +314,14 @@
                 "The Data Studio activity reports return information about various types of Data Studio activity events."
               ],
               "location": "path",
-              "pattern": "(admin)|(calendar)|(drive)|(login)|(mobile)|(token)|(groups)|(saml)|(chat)|(gplus)|(rules)|(jamboard)|(meet)|(user_accounts)|(access_transparency)|(groups_enterprise)|(gcp)|(context_aware_access)|(data_studio)|(chrome)",
+              "pattern": "(access_transparency)|(admin)|(calendar)|(chat)|(chrome)|(context_aware_access)|(data_studio)|(drive)|(gcp)|(gplus)|(groups)|(groups_enterprise)|(jamboard)|(login)|(meet)|(mobile)|(rules)|(saml)|(token)|(user_accounts)",
               "required": true,
               "type": "string"
             },
             "customerId": {
               "description": "The unique ID of the customer to retrieve data for.",
               "location": "query",
-              "pattern": "C.+",
+              "pattern": "C.+|my_customer",
               "type": "string"
             },
             "endTime": {
@@ -427,7 +427,7 @@
             "customerId": {
               "description": "The unique ID of the customer to retrieve data for.",
               "location": "query",
-              "pattern": "C.+",
+              "pattern": "C.+|my_customer",
               "type": "string"
             },
             "date": {
@@ -475,7 +475,7 @@
             "customerId": {
               "description": "The unique ID of the customer to retrieve data for.",
               "location": "query",
-              "pattern": "C.+",
+              "pattern": "C.+|my_customer",
               "type": "string"
             },
             "date": {
@@ -568,7 +568,7 @@
             "customerId": {
               "description": "The unique ID of the customer to retrieve data for.",
               "location": "query",
-              "pattern": "C.+",
+              "pattern": "C.+|my_customer",
               "type": "string"
             },
             "date": {
@@ -635,7 +635,7 @@
       }
     }
   },
-  "revision": "20201124",
+  "revision": "20201215",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {
