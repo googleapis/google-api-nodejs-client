@@ -132,7 +132,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAccount {
     /**
-     * Country of business. Must be a non-deprecated code for a UN M.49 region. https: //unicode.org/cldr/charts/latest/supplem // ental/territory_containment_un_m_49.html
+     * Country of business. Must be a non-deprecated code for a UN M.49 region. https://unicode.org/cldr/charts/latest/supplemental/territory_containment_un_m_49.html
      */
     countryCode?: string | null;
     /**
@@ -586,6 +586,10 @@ export namespace analyticsadmin_v1alpha {
      * List of FirebaseLinks. This will have at most one value.
      */
     firebaseLinks?: Schema$GoogleAnalyticsAdminV1alphaFirebaseLink[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. Currently, Google Analytics supports only one FirebaseLink per property, so this will never be populated.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response message for ListGoogleAdsLinks RPC.
@@ -928,7 +932,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single Account. Throws "Target not found" if no such account found, or if caller does not have permissions to access it.
+     * Lookup for a single Account.
      * @example
      * ```js
      * // Before running the sample:
@@ -3742,7 +3746,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single "GA4" Property. Throws "Target not found" if no such property found, if property is not of the type "GA4", or if caller does not have permissions to access it.
+     * Lookup for a single "GA4" Property.
      * @example
      * ```js
      * // Before running the sample:
@@ -4538,7 +4542,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single AndroidAppDataStream Throws "Target not found" if no such android app data stream found, or if the caller does not have permissions to access it.
+     * Lookup for a single AndroidAppDataStream
      * @example
      * ```js
      * // Before running the sample:
@@ -5353,6 +5357,10 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.firebaseLinks.list({
+     *     // The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
      *     // Required. Format: properties/{property_id\} Example: properties/1234
      *     parent: 'properties/my-propertie',
      *   });
@@ -5360,7 +5368,8 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
-     *   //   "firebaseLinks": []
+     *   //   "firebaseLinks": [],
+     *   //   "nextPageToken": "my_nextPageToken"
      *   // }
      * }
      *
@@ -5639,6 +5648,14 @@ export namespace analyticsadmin_v1alpha {
   }
   export interface Params$Resource$Properties$Firebaselinks$List
     extends StandardParameters {
+    /**
+     * The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.
+     */
+    pageToken?: string;
     /**
      * Required. Format: properties/{property_id\} Example: properties/1234
      */
@@ -6604,7 +6621,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single IosAppDataStream Throws "Target not found" if no such iOS app data stream found, or if the caller does not have permissions to access it.
+     * Lookup for a single IosAppDataStream
      * @example
      * ```js
      * // Before running the sample:
@@ -8958,7 +8975,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single WebDataStream Throws "Target not found" if no such web data stream found, or if the caller does not have permissions to access it.
+     * Lookup for a single WebDataStream
      * @example
      * ```js
      * // Before running the sample:

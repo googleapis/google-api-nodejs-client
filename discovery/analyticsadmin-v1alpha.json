@@ -12,7 +12,7 @@
           "description": "View Google Analytics user permissions"
         },
         "https://www.googleapis.com/auth/analytics.readonly": {
-          "description": "View your Google Analytics data"
+          "description": "See and download your Google Analytics data"
         }
       }
     }
@@ -173,7 +173,7 @@
           ]
         },
         "get": {
-          "description": "Lookup for a single Account. Throws \"Target not found\" if no such account found, or if caller does not have permissions to access it.",
+          "description": "Lookup for a single Account.",
           "flatPath": "v1alpha/accounts/{accountsId}",
           "httpMethod": "GET",
           "id": "analyticsadmin.accounts.get",
@@ -650,7 +650,7 @@
           ]
         },
         "get": {
-          "description": "Lookup for a single \"GA4\" Property. Throws \"Target not found\" if no such property found, if property is not of the type \"GA4\", or if caller does not have permissions to access it.",
+          "description": "Lookup for a single \"GA4\" Property.",
           "flatPath": "v1alpha/properties/{propertiesId}",
           "httpMethod": "GET",
           "id": "analyticsadmin.properties.get",
@@ -803,7 +803,7 @@
               ]
             },
             "get": {
-              "description": "Lookup for a single AndroidAppDataStream Throws \"Target not found\" if no such android app data stream found, or if the caller does not have permissions to access it.",
+              "description": "Lookup for a single AndroidAppDataStream",
               "flatPath": "v1alpha/properties/{propertiesId}/androidAppDataStreams/{androidAppDataStreamsId}",
               "httpMethod": "GET",
               "id": "analyticsadmin.properties.androidAppDataStreams.get",
@@ -963,6 +963,17 @@
                 "parent"
               ],
               "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "parent": {
                   "description": "Required. Format: properties/{property_id} Example: properties/1234",
                   "location": "path",
@@ -1198,7 +1209,7 @@
               ]
             },
             "get": {
-              "description": "Lookup for a single IosAppDataStream Throws \"Target not found\" if no such iOS app data stream found, or if the caller does not have permissions to access it.",
+              "description": "Lookup for a single IosAppDataStream",
               "flatPath": "v1alpha/properties/{propertiesId}/iosAppDataStreams/{iosAppDataStreamsId}",
               "httpMethod": "GET",
               "id": "analyticsadmin.properties.iosAppDataStreams.get",
@@ -1644,7 +1655,7 @@
               ]
             },
             "get": {
-              "description": "Lookup for a single WebDataStream Throws \"Target not found\" if no such web data stream found, or if the caller does not have permissions to access it.",
+              "description": "Lookup for a single WebDataStream",
               "flatPath": "v1alpha/properties/{propertiesId}/webDataStreams/{webDataStreamsId}",
               "httpMethod": "GET",
               "id": "analyticsadmin.properties.webDataStreams.get",
@@ -1827,7 +1838,7 @@
       }
     }
   },
-  "revision": "20201202",
+  "revision": "20201213",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -1835,7 +1846,7 @@
       "id": "GoogleAnalyticsAdminV1alphaAccount",
       "properties": {
         "countryCode": {
-          "description": "Country of business. Must be a non-deprecated code for a UN M.49 region. https: //unicode.org/cldr/charts/latest/supplem // ental/territory_containment_un_m_49.html",
+          "description": "Country of business. Must be a non-deprecated code for a UN M.49 region. https://unicode.org/cldr/charts/latest/supplemental/territory_containment_un_m_49.html",
           "type": "string"
         },
         "createTime": {
@@ -2422,6 +2433,10 @@
             "$ref": "GoogleAnalyticsAdminV1alphaFirebaseLink"
           },
           "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. Currently, Google Analytics supports only one FirebaseLink per property, so this will never be populated.",
+          "type": "string"
         }
       },
       "type": "object"
