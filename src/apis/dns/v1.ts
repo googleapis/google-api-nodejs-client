@@ -335,6 +335,10 @@ export namespace dns_v1 {
      */
     reverseLookupConfig?: Schema$ManagedZoneReverseLookupConfig;
     /**
+     * This field links to the associated service directory namespace. This field should not be set for public zones or forwarding zones.
+     */
+    serviceDirectoryConfig?: Schema$ManagedZoneServiceDirectoryConfig;
+    /**
      * The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
      */
     visibility?: string | null;
@@ -418,6 +422,27 @@ export namespace dns_v1 {
   }
   export interface Schema$ManagedZoneReverseLookupConfig {
     kind?: string | null;
+  }
+  /**
+   * Contains information about Service Directory-backed zones.
+   */
+  export interface Schema$ManagedZoneServiceDirectoryConfig {
+    kind?: string | null;
+    /**
+     * Contains information about the namespace associated with the zone.
+     */
+    namespace?: Schema$ManagedZoneServiceDirectoryConfigNamespace;
+  }
+  export interface Schema$ManagedZoneServiceDirectoryConfigNamespace {
+    /**
+     * The time that the namespace backing this zone was deleted, empty string if it still exists. This is in RFC3339 text format. Output only.
+     */
+    deletionTime?: string | null;
+    kind?: string | null;
+    /**
+     * The fully qualified URL of the namespace associated with the zone. This should be formatted like https://servicedirectory.googleapis.com/v1/projects/{project\}/locations/{location\}/namespaces/{namespace\}
+     */
+    namespaceUrl?: string | null;
   }
   export interface Schema$ManagedZonesListResponse {
     header?: Schema$ResponseHeader;
@@ -2036,6 +2061,7 @@ export namespace dns_v1 {
      *       //   "peeringConfig": {},
      *       //   "privateVisibilityConfig": {},
      *       //   "reverseLookupConfig": {},
+     *       //   "serviceDirectoryConfig": {},
      *       //   "visibility": "my_visibility"
      *       // }
      *     },
@@ -2058,6 +2084,7 @@ export namespace dns_v1 {
      *   //   "peeringConfig": {},
      *   //   "privateVisibilityConfig": {},
      *   //   "reverseLookupConfig": {},
+     *   //   "serviceDirectoryConfig": {},
      *   //   "visibility": "my_visibility"
      *   // }
      * }
@@ -2338,6 +2365,7 @@ export namespace dns_v1 {
      *   //   "peeringConfig": {},
      *   //   "privateVisibilityConfig": {},
      *   //   "reverseLookupConfig": {},
+     *   //   "serviceDirectoryConfig": {},
      *   //   "visibility": "my_visibility"
      *   // }
      * }
@@ -2634,6 +2662,7 @@ export namespace dns_v1 {
      *       //   "peeringConfig": {},
      *       //   "privateVisibilityConfig": {},
      *       //   "reverseLookupConfig": {},
+     *       //   "serviceDirectoryConfig": {},
      *       //   "visibility": "my_visibility"
      *       // }
      *     },
@@ -2798,6 +2827,7 @@ export namespace dns_v1 {
      *       //   "peeringConfig": {},
      *       //   "privateVisibilityConfig": {},
      *       //   "reverseLookupConfig": {},
+     *       //   "serviceDirectoryConfig": {},
      *       //   "visibility": "my_visibility"
      *       // }
      *     },

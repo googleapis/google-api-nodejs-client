@@ -1037,7 +1037,7 @@
       }
     }
   },
-  "revision": "20201116",
+  "revision": "20201215",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
@@ -1356,6 +1356,10 @@
           "$ref": "ManagedZoneReverseLookupConfig",
           "description": "The presence of this field indicates that this is a managed reverse lookup zone and Cloud DNS will resolve reverse lookup queries using automatically configured records for VPC resources. This only applies to networks listed under private_visibility_config."
         },
+        "serviceDirectoryConfig": {
+          "$ref": "ManagedZoneServiceDirectoryConfig",
+          "description": "This field links to the associated service directory namespace. This field should not be set for public zones or forwarding zones."
+        },
         "visibility": {
           "description": "The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.",
           "enum": [
@@ -1549,6 +1553,39 @@
       "properties": {
         "kind": {
           "default": "dns#managedZoneReverseLookupConfig",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ManagedZoneServiceDirectoryConfig": {
+      "description": "Contains information about Service Directory-backed zones.",
+      "id": "ManagedZoneServiceDirectoryConfig",
+      "properties": {
+        "kind": {
+          "default": "dns#managedZoneServiceDirectoryConfig",
+          "type": "string"
+        },
+        "namespace": {
+          "$ref": "ManagedZoneServiceDirectoryConfigNamespace",
+          "description": "Contains information about the namespace associated with the zone."
+        }
+      },
+      "type": "object"
+    },
+    "ManagedZoneServiceDirectoryConfigNamespace": {
+      "id": "ManagedZoneServiceDirectoryConfigNamespace",
+      "properties": {
+        "deletionTime": {
+          "description": "The time that the namespace backing this zone was deleted, empty string if it still exists. This is in RFC3339 text format. Output only.",
+          "type": "string"
+        },
+        "kind": {
+          "default": "dns#managedZoneServiceDirectoryConfigNamespace",
+          "type": "string"
+        },
+        "namespaceUrl": {
+          "description": "The fully qualified URL of the namespace associated with the zone. This should be formatted like https://servicedirectory.googleapis.com/v1/projects/{project}/locations/{location}/namespaces/{namespace}",
           "type": "string"
         }
       },
