@@ -44,6 +44,12 @@ export interface GeneratorOptions {
   includePrivate?: boolean;
 }
 
+interface PkgData {
+  name: string;
+  version: string;
+  desc: string;
+}
+
 export class Generator {
   private env: nunjucks.Environment;
   private options: GeneratorOptions;
@@ -185,9 +191,12 @@ export class Generator {
           const apiIndexData = {name: file, api: apis[file]};
           await this.render('api-index.njk', apiIndexData, apiIdxPath);
           // generate the package.json
-          const pkgPath = path.join(apisPath, file, 'package.json');
-          const packageData = {name: file, desc};
-          await this.render('package.json', packageData, pkgPath);
+          const [pkgPath, pkgData] = await this.getPkgPathAndData(
+            apisPath,
+            file,
+            desc || ''
+          );
+          await this.render('package.json', pkgData, pkgPath);
           // generate the README.md
           const rdPath = path.join(apisPath, file, 'README.md');
           const disclaimer = disclaimers.find(disclaimer => {
@@ -209,6 +218,29 @@ export class Generator {
     }
     await this.render('index.njk', {apis}, indexPath);
     await this.render('root-index.njk', {apis}, rootIndexPath);
+  }
+
+  async getPkgPathAndData(
+    apisPath: string,
+    file: string,
+    desc: string,
+    defaultVersion = '0.1.0'
+  ): Promise<[string, PkgData]> {
+    const pkgPath = path.join(apisPath, file, 'package.json');
+    const packageData = {name: file, desc, version: defaultVersion};
+    // Use the version from the existing package.json, if possible:
+    try {
+      const pkgRaw = await readFile(pkgPath, 'utf8');
+      const pkg = JSON.parse(pkgRaw);
+      packageData.version = pkg.version;
+    } catch (err) {
+      if (err.code === 'ENOENT') {
+        console.info(`${pkgPath} not found`);
+      } else {
+        throw err;
+      }
+    }
+    return [pkgPath, packageData];
   }
 
   /**
