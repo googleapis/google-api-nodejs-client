@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.1.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/v0.1.1...v0.1.2) (2021-01-23)
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v5 ([#2497](https://www.github.com/googleapis/google-api-nodejs-client/issues/2497)) ([fec087a](https://www.github.com/googleapis/google-api-nodejs-client/commit/fec087abcf3d994dd41c3ffa0a0c12b1f9f09dae))
+* **drive:** update the API ([a553bf7](https://www.github.com/googleapis/google-api-nodejs-client/commit/a553bf7b1e93137ed507913a1201e7796864f039))
+
 ### [0.1.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/drive-v0.1.0...v0.1.1) (2020-12-04)
 
 
