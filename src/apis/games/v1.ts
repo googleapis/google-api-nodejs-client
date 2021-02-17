@@ -1387,6 +1387,10 @@ export namespace games_v1 {
    */
   export interface Schema$ResolveSnapshotHeadRequest {
     /**
+     * The maximum number of SnapshotRevision resources for `conflictingRevisions` to return per SnapshotExtended resource in the response. For any response, the actual number of resources returned may be less than specified by `maxConflictsPerSnapshot`. The value provided should be greater or equal to 0. If no value is provided, the server will use a sensible default.
+     */
+    maxConflictsPerSnapshot?: number | null;
+    /**
      * Required. The automatic resolution policy. All conflicts are resolved in chronological order, starting from the/ least recent. If the comparison metric is equal for the tentative head and the conflict, the head wins.
      */
     resolutionPolicy?: string | null;
@@ -1508,7 +1512,7 @@ export namespace games_v1 {
      */
     height?: number | null;
     /**
-     * The MIME type of the image.
+     * Output only. The MIME type of the image.
      */
     mimeType?: string | null;
     /**
@@ -6149,6 +6153,7 @@ export namespace games_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "maxConflictsPerSnapshot": 0,
      *       //   "resolutionPolicy": "my_resolutionPolicy"
      *       // }
      *     },

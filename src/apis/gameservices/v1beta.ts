@@ -401,6 +401,10 @@ export namespace gameservices_v1beta {
    */
   export interface Schema$GameServerCluster {
     /**
+     * Optional. The allocation priority assigned to the game server cluster. Game server clusters receive new game server allocations based on the relative allocation priorites set for each cluster, if the realm is configured for multicluster allocation.
+     */
+    allocationPriority?: string | null;
+    /**
      * The game server cluster connection information. This information is used to manage game server clusters.
      */
     connectionInfo?: Schema$GameServerClusterConnectionInfo;
@@ -437,6 +441,10 @@ export namespace gameservices_v1beta {
      * Reference to the GKE cluster where the game servers are installed.
      */
     gkeClusterReference?: Schema$GkeClusterReference;
+    /**
+     * Reference to a Kubernetes cluster registered through GKE Hub. See https://cloud.google.com/anthos/multicluster-management/ for more information about registering Kubernetes clusters.
+     */
+    gkeHubClusterReference?: Schema$GkeHubClusterReference;
     /**
      * Namespace designated on the game server cluster where the Agones game server instances will be created. Existence of the namespace will be validated during creation.
      */
@@ -554,6 +562,15 @@ export namespace gameservices_v1beta {
      * The full or partial name of a GKE cluster, using one of the following forms: * `projects/{project\}/locations/{location\}/clusters/{cluster\}` * `locations/{location\}/clusters/{cluster\}` * `{cluster\}` If project and location are not specified, the project and location of the GameServerCluster resource are used to generate the full name of the GKE cluster.
      */
     cluster?: string | null;
+  }
+  /**
+   * GkeHubClusterReference represents a reference to a Kubernetes cluster registered through GKE Hub.
+   */
+  export interface Schema$GkeHubClusterReference {
+    /**
+     * The full or partial name of a GKE Hub membership, using one of the following forms: * `https://gkehub.googleapis.com/v1beta1/projects/{project_id\}/locations/global/memberships/{membership_id\}` * `projects/{project_id\}/locations/global/memberships/{membership_id\}` * `{membership_id\}` If project is not specified, the project of the GameServerCluster resource is used to generate the full name of the GKE Hub membership.
+     */
+    membership?: string | null;
   }
   /**
    * The label selector, used to group labels on the resources.
@@ -2489,7 +2506,7 @@ export namespace gameservices_v1beta {
      *       // The resource name of the game server deployment, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
-     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -2639,7 +2656,7 @@ export namespace gameservices_v1beta {
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *       // Optional. The target timestamp to compute the preview. Defaults to the immediately after the proposed rollout completes.
      *       previewTime: 'placeholder-value',
-     *       // Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     *       // Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -3104,7 +3121,7 @@ export namespace gameservices_v1beta {
      *       // The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
-     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -3315,7 +3332,7 @@ export namespace gameservices_v1beta {
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -3335,7 +3352,7 @@ export namespace gameservices_v1beta {
      */
     previewTime?: string;
     /**
-     * Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -3375,7 +3392,7 @@ export namespace gameservices_v1beta {
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -5190,7 +5207,7 @@ export namespace gameservices_v1beta {
      *   const res = await gameservices.projects.locations.realms.patch({
      *     // The resource name of the realm, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`. For example, `projects/my-project/locations/{location\}/realms/my-realm`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
-     *     // Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     *     // Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5338,7 +5355,7 @@ export namespace gameservices_v1beta {
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *     // Optional. The target timestamp to compute the preview.
      *     previewTime: 'placeholder-value',
-     *     // Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     *     // Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5523,7 +5540,7 @@ export namespace gameservices_v1beta {
      */
     name?: string;
     /**
-     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -5543,7 +5560,7 @@ export namespace gameservices_v1beta {
      */
     previewTime?: string;
     /**
-     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -5596,6 +5613,7 @@ export namespace gameservices_v1beta {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "allocationPriority": "my_allocationPriority",
      *         //   "connectionInfo": {},
      *         //   "createTime": "my_createTime",
      *         //   "description": "my_description",
@@ -5880,6 +5898,7 @@ export namespace gameservices_v1beta {
      *
      *   // Example response
      *   // {
+     *   //   "allocationPriority": "my_allocationPriority",
      *   //   "connectionInfo": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -6162,13 +6181,14 @@ export namespace gameservices_v1beta {
      *       // Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`. For example, `projects/my-project/locations/{location\}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
-     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "allocationPriority": "my_allocationPriority",
      *         //   "connectionInfo": {},
      *         //   "createTime": "my_createTime",
      *         //   "description": "my_description",
@@ -6319,6 +6339,7 @@ export namespace gameservices_v1beta {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "allocationPriority": "my_allocationPriority",
      *         //   "connectionInfo": {},
      *         //   "createTime": "my_createTime",
      *         //   "description": "my_description",
@@ -6627,13 +6648,14 @@ export namespace gameservices_v1beta {
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *       // Optional. The target timestamp to compute the preview.
      *       previewTime: 'placeholder-value',
-     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "allocationPriority": "my_allocationPriority",
      *         //   "connectionInfo": {},
      *         //   "createTime": "my_createTime",
      *         //   "description": "my_description",
@@ -6821,7 +6843,7 @@ export namespace gameservices_v1beta {
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 
@@ -6872,7 +6894,7 @@ export namespace gameservices_v1beta {
      */
     previewTime?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
+     * Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      */
     updateMask?: string;
 

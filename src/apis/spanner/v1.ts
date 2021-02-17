@@ -128,7 +128,7 @@ export namespace spanner_v1 {
    */
   export interface Schema$Backup {
     /**
-     * Output only. The backup will contain an externally consistent copy of the database at the timestamp specified by `create_time`. `create_time` is approximately the time the CreateBackup request is received.
+     * Output only. The time the CreateBackup request is received. If the request does not specify `version_time`, the `version_time` of the backup will be equivalent to the `create_time`.
      */
     createTime?: string | null;
     /**
@@ -155,6 +155,10 @@ export namespace spanner_v1 {
      * Output only. The current state of the backup.
      */
     state?: string | null;
+    /**
+     * The backup will contain an externally consistent copy of the database at the timestamp specified by `version_time`. If `version_time` is not specified, the system will set `version_time` to the `create_time` of the backup.
+     */
+    versionTime?: string | null;
   }
   /**
    * Information about a backup.
@@ -165,13 +169,17 @@ export namespace spanner_v1 {
      */
     backup?: string | null;
     /**
-     * The backup contains an externally consistent copy of `source_database` at the timestamp specified by `create_time`.
+     * The time the CreateBackup request was received.
      */
     createTime?: string | null;
     /**
      * Name of the database the backup was created from.
      */
     sourceDatabase?: string | null;
+    /**
+     * The backup contains an externally consistent copy of `source_database` at the timestamp specified by `version_time`. If the CreateBackup request did not specify `version_time`, the `version_time` of the backup is equivalent to the `create_time`.
+     */
+    versionTime?: string | null;
   }
   /**
    * The request for BatchCreateSessions.
@@ -247,6 +255,10 @@ export namespace spanner_v1 {
      */
     mutations?: Schema$Mutation[];
     /**
+     * If `true`, then statistics related to the transaction will be included in the CommitResponse. Default value is `false`.
+     */
+    returnCommitStats?: boolean | null;
+    /**
      * Execute mutations in a temporary transaction. Note that unlike commit of a previously-started transaction, commit with a temporary transaction is non-idempotent. That is, if the `CommitRequest` is sent to Cloud Spanner more than once (for instance, due to retries in the application, or in the transport library), it is possible that the mutations are executed more than once. If this is undesirable, use BeginTransaction and Commit instead.
      */
     singleUseTransaction?: Schema$TransactionOptions;
@@ -260,9 +272,22 @@ export namespace spanner_v1 {
    */
   export interface Schema$CommitResponse {
     /**
+     * The statistics about this Commit. Not returned by default. For more information, see CommitRequest.return_commit_stats.
+     */
+    commitStats?: Schema$CommitStats;
+    /**
      * The Cloud Spanner timestamp at which the transaction committed.
      */
     commitTimestamp?: string | null;
+  }
+  /**
+   * Additional statistics about a commit.
+   */
+  export interface Schema$CommitStats {
+    /**
+     * The total number of mutations for the transaction. Knowing the `mutation_count` value can help you maximize the number of mutations in a transaction and minimize the number of API round trips. You can also monitor this value to prevent transactions from exceeding the system [limit](http://cloud.google.com/spanner/quotas#limits_for_creating_reading_updating_and_deleting_data). If the number of mutations exceeds the limit, the server returns [INVALID_ARGUMENT](http://cloud.google.com/spanner/docs/reference/rest/v1/Code#ENUM_VALUES.INVALID_ARGUMENT).
+     */
+    mutationCount?: string | null;
   }
   /**
    * Metadata type for the operation returned by CreateBackup.
@@ -359,6 +384,10 @@ export namespace spanner_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. Earliest timestamp at which older versions of the data can be read.
+     */
+    earliestVersionTime?: string | null;
+    /**
      * Required. The name of the database. Values are of the form `projects//instances//databases/`, where `` is as specified in the `CREATE DATABASE` statement. This name can be passed to other API methods to identify the database.
      */
     name?: string | null;
@@ -370,6 +399,10 @@ export namespace spanner_v1 {
      * Output only. The current database state.
      */
     state?: string | null;
+    /**
+     * Output only. The period in which Cloud Spanner retains all versions of data for the database. This is same as the value of version_retention_period database option set using UpdateDatabaseDdl. Defaults to 1 hour, if not set.
+     */
+    versionRetentionPeriod?: string | null;
   }
   /**
    * Arguments to delete operations.
@@ -685,6 +718,10 @@ export namespace spanner_v1 {
      * `next_page_token` can be sent in a subsequent ListInstances call to fetch more of the matching instances.
      */
     nextPageToken?: string | null;
+    /**
+     * The list of unreachable instances. It includes the names of instances whose metadata could not be retrieved within instance_deadline.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -2354,6 +2391,8 @@ export namespace spanner_v1 {
      *   const res = await spanner.projects.instances.list({
      *     // An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `display_name` * `labels.key` where key is the name of a label Some examples of using filters are: * `name:*` --\> The instance has a name. * `name:Howl` --\> The instance's name contains the string "howl". * `name:HOWL` --\> Equivalent to above. * `NAME:howl` --\> Equivalent to above. * `labels.env:*` --\> The instance has the label "env". * `labels.env:dev` --\> The instance has the label "env" and the value of the label contains the string "dev". * `name:howl labels.env:dev` --\> The instance's name contains "howl" and it has the label "env" with its value containing "dev".
      *     filter: 'placeholder-value',
+     *     // Deadline used while retrieving metadata for instances. Instances whose metadata cannot be retrieved within this deadline will be added to unreachable in ListInstancesResponse.
+     *     instanceDeadline: 'placeholder-value',
      *     // Number of instances to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
      *     pageSize: 'placeholder-value',
      *     // If non-empty, `page_token` should contain a next_page_token from a previous ListInstancesResponse.
@@ -2366,7 +2405,8 @@ export namespace spanner_v1 {
      *   // Example response
      *   // {
      *   //   "instances": [],
-     *   //   "nextPageToken": "my_nextPageToken"
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
      *   // }
      * }
      *
@@ -2947,6 +2987,10 @@ export namespace spanner_v1 {
      */
     filter?: string;
     /**
+     * Deadline used while retrieving metadata for instances. Instances whose metadata cannot be retrieved within this deadline will be added to unreachable in ListInstancesResponse.
+     */
+    instanceDeadline?: string;
+    /**
      * Number of instances to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.
      */
     pageSize?: number;
@@ -3226,7 +3270,8 @@ export namespace spanner_v1 {
      *       //   "name": "my_name",
      *       //   "referencingDatabases": [],
      *       //   "sizeBytes": "my_sizeBytes",
-     *       //   "state": "my_state"
+     *       //   "state": "my_state",
+     *       //   "versionTime": "my_versionTime"
      *       // }
      *     },
      *   });
@@ -3503,7 +3548,8 @@ export namespace spanner_v1 {
      *   //   "name": "my_name",
      *   //   "referencingDatabases": [],
      *   //   "sizeBytes": "my_sizeBytes",
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "versionTime": "my_versionTime"
      *   // }
      * }
      *
@@ -3924,7 +3970,8 @@ export namespace spanner_v1 {
      *       //   "name": "my_name",
      *       //   "referencingDatabases": [],
      *       //   "sizeBytes": "my_sizeBytes",
-     *       //   "state": "my_state"
+     *       //   "state": "my_state",
+     *       //   "versionTime": "my_versionTime"
      *       // }
      *     },
      *   });
@@ -3938,7 +3985,8 @@ export namespace spanner_v1 {
      *   //   "name": "my_name",
      *   //   "referencingDatabases": [],
      *   //   "sizeBytes": "my_sizeBytes",
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "versionTime": "my_versionTime"
      *   // }
      * }
      *
@@ -5501,9 +5549,11 @@ export namespace spanner_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "earliestVersionTime": "my_earliestVersionTime",
      *   //   "name": "my_name",
      *   //   "restoreInfo": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "versionRetentionPeriod": "my_versionRetentionPeriod"
      *   // }
      * }
      *
@@ -7622,6 +7672,7 @@ export namespace spanner_v1 {
      *       // request body parameters
      *       // {
      *       //   "mutations": [],
+     *       //   "returnCommitStats": false,
      *       //   "singleUseTransaction": {},
      *       //   "transactionId": "my_transactionId"
      *       // }
@@ -7631,6 +7682,7 @@ export namespace spanner_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "commitStats": {},
      *   //   "commitTimestamp": "my_commitTimestamp"
      *   // }
      * }

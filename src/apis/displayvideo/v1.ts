@@ -1492,7 +1492,7 @@ export namespace displayvideo_v1 {
      */
     requireMraid?: boolean | null;
     /**
-     * Optional. Indicates that the creative will wait for a return ping for attribution. Only valid when using a Campaign Manager 360 tracking ad with a third-party ad server parameter and the ${DC_DBM_TOKEN\} macro. Optional and only valid for third-party tag creatives or third-party VAST tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`
+     * Optional. Indicates that the creative will wait for a return ping for attribution. Only valid when using a Campaign Manager 360 tracking ad with a third-party ad server parameter and the ${DC_DBM_TOKEN\} macro. Optional and only valid for third-party tag creatives or third-party VAST tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO`
      */
     requirePingForAttribution?: boolean | null;
     /**
@@ -1536,7 +1536,7 @@ export namespace displayvideo_v1 {
      */
     updateTime?: string | null;
     /**
-     * Optional. The URL of the VAST tag for a third-party VAST tag creative. Required and only valid for third-party VAST tag creatives. Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`
+     * Optional. The URL of the VAST tag for a third-party VAST tag creative. Required and only valid for third-party VAST tag creatives. Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO`
      */
     vastTagUrl?: string | null;
     /**
@@ -2345,6 +2345,10 @@ export namespace displayvideo_v1 {
      */
     insertionOrderId?: string | null;
     /**
+     * The type of insertion order. If this field is unspecified in creation, the value defaults to `RTB`.
+     */
+    insertionOrderType?: string | null;
+    /**
      * Additional integration details of the insertion order.
      */
     integrationDetails?: Schema$IntegrationDetails;
@@ -2732,6 +2736,10 @@ export namespace displayvideo_v1 {
      * Required. Immutable. The type of the line item.
      */
     lineItemType?: string | null;
+    /**
+     * The mobile app promoted by the line item. This is applicable only when line_item_type is either `LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INSTALL` or `LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INSTALL`.
+     */
+    mobileApp?: Schema$MobileApp;
     /**
      * Output only. The resource name of the line item.
      */
@@ -3182,6 +3190,27 @@ export namespace displayvideo_v1 {
      * Whether or not to include DV360 data in CM360 data transfer reports.
      */
     dv360ToCmDataSharingEnabled?: boolean | null;
+  }
+  /**
+   * A mobile app promoted by a mobile app install line item.
+   */
+  export interface Schema$MobileApp {
+    /**
+     * Required. The ID of the app provided by the platform store. Android apps are identified by the bundle ID used by Android's Play store, such as `com.google.android.gm`. iOS apps are identified by a nine-digit app ID used by Apple's App store, such as `422689480`.
+     */
+    appId?: string | null;
+    /**
+     * Output only. The app name.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The app platform.
+     */
+    platform?: string | null;
+    /**
+     * Output only. The app publisher.
+     */
+    publisher?: string | null;
   }
   /**
    * Represents an amount of money with its currency type.
@@ -5111,9 +5140,9 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.list({
-     *     // Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` * All advertisers with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All advertisers with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
      *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
      *     pageSize: 'placeholder-value',
@@ -5453,11 +5482,11 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$List extends StandardParameters {
     /**
-     * Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
+     * Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` * All advertisers with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All advertisers with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -8857,6 +8886,7 @@ export namespace displayvideo_v1 {
      *       //   "entityStatus": "my_entityStatus",
      *       //   "frequencyCap": {},
      *       //   "insertionOrderId": "my_insertionOrderId",
+     *       //   "insertionOrderType": "my_insertionOrderType",
      *       //   "integrationDetails": {},
      *       //   "name": "my_name",
      *       //   "pacing": {},
@@ -8878,6 +8908,7 @@ export namespace displayvideo_v1 {
      *   //   "entityStatus": "my_entityStatus",
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
+     *   //   "insertionOrderType": "my_insertionOrderType",
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
@@ -9150,6 +9181,7 @@ export namespace displayvideo_v1 {
      *   //   "entityStatus": "my_entityStatus",
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
+     *   //   "insertionOrderType": "my_insertionOrderType",
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
@@ -9440,6 +9472,7 @@ export namespace displayvideo_v1 {
      *       //   "entityStatus": "my_entityStatus",
      *       //   "frequencyCap": {},
      *       //   "insertionOrderId": "my_insertionOrderId",
+     *       //   "insertionOrderType": "my_insertionOrderType",
      *       //   "integrationDetails": {},
      *       //   "name": "my_name",
      *       //   "pacing": {},
@@ -9461,6 +9494,7 @@ export namespace displayvideo_v1 {
      *   //   "entityStatus": "my_entityStatus",
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
+     *   //   "insertionOrderType": "my_insertionOrderType",
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
@@ -10027,6 +10061,7 @@ export namespace displayvideo_v1 {
      *       //   "inventorySourceIds": [],
      *       //   "lineItemId": "my_lineItemId",
      *       //   "lineItemType": "my_lineItemType",
+     *       //   "mobileApp": {},
      *       //   "name": "my_name",
      *       //   "pacing": {},
      *       //   "partnerCosts": [],
@@ -10056,6 +10091,7 @@ export namespace displayvideo_v1 {
      *   //   "inventorySourceIds": [],
      *   //   "lineItemId": "my_lineItemId",
      *   //   "lineItemType": "my_lineItemType",
+     *   //   "mobileApp": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
      *   //   "partnerCosts": [],
@@ -10336,6 +10372,7 @@ export namespace displayvideo_v1 {
      *   //   "inventorySourceIds": [],
      *   //   "lineItemId": "my_lineItemId",
      *   //   "lineItemType": "my_lineItemType",
+     *   //   "mobileApp": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
      *   //   "partnerCosts": [],
@@ -10632,6 +10669,7 @@ export namespace displayvideo_v1 {
      *       //   "inventorySourceIds": [],
      *       //   "lineItemId": "my_lineItemId",
      *       //   "lineItemType": "my_lineItemType",
+     *       //   "mobileApp": {},
      *       //   "name": "my_name",
      *       //   "pacing": {},
      *       //   "partnerCosts": [],
@@ -10661,6 +10699,7 @@ export namespace displayvideo_v1 {
      *   //   "inventorySourceIds": [],
      *   //   "lineItemId": "my_lineItemId",
      *   //   "lineItemType": "my_lineItemType",
+     *   //   "mobileApp": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
      *   //   "partnerCosts": [],

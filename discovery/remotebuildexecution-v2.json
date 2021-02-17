@@ -447,7 +447,7 @@
       }
     }
   },
-  "revision": "20201201",
+  "revision": "20210213",
   "rootUrl": "https://remotebuildexecution.googleapis.com/",
   "schemas": {
     "BuildBazelRemoteExecutionV2Action": {
@@ -1439,6 +1439,11 @@
       "description": "CommandDuration contains the various duration metrics tracked when a bot performs a command.",
       "id": "GoogleDevtoolsRemotebuildbotCommandDurations",
       "properties": {
+        "cmWaitForAssignment": {
+          "description": "The time spent waiting for Container Manager to assign an asynchronous container for execution.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "dockerPrep": {
           "description": "The time spent preparing the command to be run in a Docker container (includes pulling the Docker image, if necessary).",
           "format": "google-duration",
@@ -1501,6 +1506,20 @@
       "description": "CommandEvents contains counters for the number of warnings and errors that occurred during the execution of a command.",
       "id": "GoogleDevtoolsRemotebuildbotCommandEvents",
       "properties": {
+        "cmUsage": {
+          "description": "Indicates if and how Container Manager is being used for task execution.",
+          "enum": [
+            "NONE",
+            "CONFIG_MATCH",
+            "CONFIG_MISMATCH"
+          ],
+          "enumDescriptions": [
+            "Container Manager is disabled or not running for this execution.",
+            "Container Manager is enabled and there was a matching container available for use during execution.",
+            "Container Manager is enabled, but there was no matching container available for execution."
+          ],
+          "type": "string"
+        },
         "dockerCacheHit": {
           "description": "Indicates whether we are using a cached Docker image (true) or had to pull the Docker image (false) for this command.",
           "type": "boolean"
@@ -1523,6 +1542,10 @@
           "description": "The number of warnings reported.",
           "format": "uint64",
           "type": "string"
+        },
+        "usedAsyncContainer": {
+          "description": "Indicates whether an asynchronous container was used for execution.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1572,7 +1595,8 @@
             "DOCKER_CREATE_RUNTIME_PERMISSION_DENIED",
             "DOCKER_CREATE_PROCESS_FILE_NOT_FOUND",
             "DOCKER_CREATE_COMPUTE_SYSTEM_INCORRECT_PARAMETER_ERROR",
-            "DOCKER_TOO_MANY_SYMBOLIC_LINK_LEVELS"
+            "DOCKER_TOO_MANY_SYMBOLIC_LINK_LEVELS",
+            "LOCAL_CONTAINER_MANAGER_NOT_RUNNING"
           ],
           "enumDescriptions": [
             "The command succeeded.",
@@ -1613,7 +1637,8 @@
             "Docker failed to create OCI runtime because of permission denied.",
             "Docker failed to create process because of file not found.",
             "Docker failed to run containers with CreateComputeSystem error that involves an incorrect parameter (more specific version of DOCKER_CREATE_COMPUTE_SYSTEM_ERROR that is user-caused).",
-            "Docker failed to create an overlay mount because of too many levels of symbolic links."
+            "Docker failed to create an overlay mount because of too many levels of symbolic links.",
+            "The local Container Manager is not running."
           ],
           "type": "string"
         },
@@ -1919,7 +1944,7 @@
       "id": "GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsRequest",
       "properties": {
         "filter": {
-          "description": "Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `>`, `>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count > 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`",
+          "description": "Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `>`, `>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count > 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the e2-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: e2-standard`",
           "type": "string"
         },
         "parent": {
@@ -2007,7 +2032,7 @@
           "type": "object"
         },
         "machineType": {
-          "description": "Required. Machine type of the worker, such as `n1-standard-2`. See https://cloud.google.com/compute/docs/machine-types for a list of supported machine types. Note that `f1-micro` and `g1-small` are not yet supported.",
+          "description": "Required. Machine type of the worker, such as `e2-standard-2`. See https://cloud.google.com/compute/docs/machine-types for a list of supported machine types. Note that `f1-micro` and `g1-small` are not yet supported.",
           "type": "string"
         },
         "maxConcurrentActions": {

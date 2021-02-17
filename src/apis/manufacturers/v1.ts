@@ -212,6 +212,10 @@ export namespace manufacturers_v1 {
      */
     productDetail?: Schema$ProductDetail[];
     /**
+     * The product highlights. For more information, see https://support.google.com/manufacturers/answer/10066942
+     */
+    productHighlight?: string[] | null;
+    /**
      * The name of the group of products related to the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productline.
      */
     productLine?: string | null;
@@ -949,6 +953,7 @@ export namespace manufacturers_v1 {
      *       //   "mpn": "my_mpn",
      *       //   "pattern": "my_pattern",
      *       //   "productDetail": [],
+     *       //   "productHighlight": [],
      *       //   "productLine": "my_productLine",
      *       //   "productName": "my_productName",
      *       //   "productPageUrl": "my_productPageUrl",

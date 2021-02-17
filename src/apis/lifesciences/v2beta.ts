@@ -145,6 +145,10 @@ export namespace lifesciences_v2beta {
      */
     alwaysRun?: boolean | null;
     /**
+     * Prevents the container from accessing the external network.
+     */
+    blockExternalNetwork?: boolean | null;
+    /**
      * If specified, overrides the `CMD` specified in the container. If the container also has an `ENTRYPOINT` the values are used as entrypoint arguments. Otherwise, they are used as a command and arguments to run inside the container.
      */
     commands?: string[] | null;
@@ -274,7 +278,7 @@ export namespace lifesciences_v2beta {
     metrics?: string[] | null;
   }
   /**
-   * Carries information about a disk that can be attached to a VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations.
+   * Carries information about a disk that can be attached to a VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations. Specify either `Volume` or `Disk`, but not both.
    */
   export interface Schema$Disk {
     /**
@@ -449,6 +453,10 @@ export namespace lifesciences_v2beta {
      */
     pipeline?: Schema$Pipeline;
     /**
+     * The name of the Cloud Pub/Sub topic where notifications of operation status changes are sent.
+     */
+    pubSubTopic?: string | null;
+    /**
      * The first time at which resources were allocated to execute the pipeline.
      */
     startTime?: string | null;
@@ -606,6 +614,10 @@ export namespace lifesciences_v2beta {
      * Required. The description of the pipeline to run.
      */
     pipeline?: Schema$Pipeline;
+    /**
+     * The name of an existing Pub/Sub topic. The server will publish messages to this topic whenever the status of the operation changes. The Life Sciences Service Agent account must have publisher permissions to the specified topic or notifications will not be sent.
+     */
+    pubSubTopic?: string | null;
   }
   /**
    * The response to the RunPipeline method, returned in the operation's result field on success.
@@ -688,11 +700,11 @@ export namespace lifesciences_v2beta {
      */
     cpuPlatform?: string | null;
     /**
-     * The list of disks to create and attach to the VM.
+     * The list of disks to create and attach to the VM. Specify either the `volumes[]` field or the `disks[]` field, but not both.
      */
     disks?: Schema$Disk[];
     /**
-     * The Compute Engine Disk Images to use as a Docker cache. The disks will be mounted into the Docker folder in a way that the images present in the cache will not need to be pulled. The digests of the cached images must match those of the tags used or the latest version will still be pulled. The root directory of the ext4 image must contain `image` and `overlay2` directories copied from the Docker directory of a VM where the desired Docker images have already been pulled. Only a single image is supported.
+     * The Compute Engine Disk Images to use as a Docker cache. The disks will be mounted into the Docker folder in a way that the images present in the cache will not need to be pulled. The digests of the cached images must match those of the tags used or the latest version will still be pulled. The root directory of the ext4 image must contain `image` and `overlay2` directories copied from the Docker directory of a VM where the desired Docker images have already been pulled. Any images pulled that are not cached will be stored on the first cache disk instead of the boot disk. Only a single image is supported.
      */
     dockerCacheImages?: string[] | null;
     /**
@@ -724,12 +736,12 @@ export namespace lifesciences_v2beta {
      */
     serviceAccount?: Schema$ServiceAccount;
     /**
-     * The list of disks and other storage to create or attach to the VM.
+     * The list of disks and other storage to create or attach to the VM. Specify either the `volumes[]` field or the `disks[]` field, but not both.
      */
     volumes?: Schema$Volume[];
   }
   /**
-   * Carries information about storage that can be attached to a VM.
+   * Carries information about storage that can be attached to a VM. Specify either `Volume` or `Disk`, but not both.
    */
   export interface Schema$Volume {
     /**
@@ -1591,7 +1603,8 @@ export namespace lifesciences_v2beta {
      *       // request body parameters
      *       // {
      *       //   "labels": {},
-     *       //   "pipeline": {}
+     *       //   "pipeline": {},
+     *       //   "pubSubTopic": "my_pubSubTopic"
      *       // }
      *     },
      *   });

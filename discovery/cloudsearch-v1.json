@@ -1870,7 +1870,7 @@
       }
     }
   },
-  "revision": "20201110",
+  "revision": "20210202",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "BooleanOperatorOptions": {
@@ -4824,7 +4824,7 @@
       "id": "SuggestRequest",
       "properties": {
         "dataSourceRestrictions": {
-          "description": "The sources to use for suggestions. If not specified, the data sources are taken from the current search application. NOTE: Suggestions are supported only for third party data sources and people (i.e. PredefinedSource.PERSON).",
+          "description": "The sources to use for suggestions. If not specified, the data sources are taken from the current search application. NOTE: Suggestions are only supported for the following sources: * Third-party data sources * PredefinedSource.PERSON * PredefinedSource.GOOGLE_DRIVE",
           "items": {
             "$ref": "DataSourceRestriction"
           },

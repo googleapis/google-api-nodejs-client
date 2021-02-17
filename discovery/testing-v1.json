@@ -282,7 +282,7 @@
       }
     }
   },
-  "revision": "20201019",
+  "revision": "20210215",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -754,6 +754,13 @@
           "description": "Specifies the API Level on which the application is designed to run.",
           "format": "int32",
           "type": "integer"
+        },
+        "usesPermission": {
+          "description": "Permissions declared to be used by the application",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1140,7 +1147,7 @@
       "type": "object"
     },
     "IosModel": {
-      "description": "A description of an iOS device tests may be run on. Next tag: 13",
+      "description": "A description of an iOS device tests may be run on.",
       "id": "IosModel",
       "properties": {
         "deviceCapabilities": {
@@ -1461,8 +1468,12 @@
       "description": "The currently provided software environment on the devices under test.",
       "id": "ProvidedSoftwareCatalog",
       "properties": {
+        "androidxOrchestratorVersion": {
+          "description": "A string representing the current version of AndroidX Test Orchestrator that is used in the environment. The package is available at https://maven.google.com/web/index.html#androidx.test:orchestrator.",
+          "type": "string"
+        },
         "orchestratorVersion": {
-          "description": "A string representing the current version of Android Test Orchestrator that is provided by TestExecutionService. Example: \"1.0.2 beta\".",
+          "description": "A string representing the current version of Android Test Orchestrator that is used in the environment. The package is available at https://maven.google.com/web/index.html#com.android.support.test:orchestrator.",
           "type": "string"
         }
       },

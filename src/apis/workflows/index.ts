@@ -14,25 +14,38 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {workflows_v1} from './v1';
 import {workflows_v1beta} from './v1beta';
 
 export const VERSIONS = {
+  v1: workflows_v1.Workflows,
   v1beta: workflows_v1beta.Workflows,
 };
 
+export function workflows(version: 'v1'): workflows_v1.Workflows;
+export function workflows(
+  options: workflows_v1.Options
+): workflows_v1.Workflows;
 export function workflows(version: 'v1beta'): workflows_v1beta.Workflows;
 export function workflows(
   options: workflows_v1beta.Options
 ): workflows_v1beta.Workflows;
-export function workflows<T = workflows_v1beta.Workflows>(
+export function workflows<
+  T = workflows_v1.Workflows | workflows_v1beta.Workflows
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta' | workflows_v1beta.Options
+  versionOrOptions:
+    | 'v1'
+    | workflows_v1.Options
+    | 'v1beta'
+    | workflows_v1beta.Options
 ) {
   return getAPI<T>('workflows', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {workflows_v1};
 export {workflows_v1beta};
 export {
   AuthPlus,

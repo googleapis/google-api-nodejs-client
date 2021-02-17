@@ -145,7 +145,7 @@
           "parameterOrder": [],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the Google Apps account.",
+              "description": "Immutable ID of the Google Workspace account.",
               "location": "query",
               "type": "string"
             },
@@ -227,7 +227,7 @@
           "parameterOrder": [],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the Google Apps account.",
+              "description": "Immutable ID of the Google Workspace account.",
               "location": "query",
               "type": "string"
             },
@@ -272,7 +272,7 @@
       }
     }
   },
-  "revision": "20201124",
+  "revision": "20210216",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Application": {

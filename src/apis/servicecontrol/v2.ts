@@ -101,7 +101,7 @@ export namespace servicecontrol_v2 {
   /**
    * Service Control API
    *
-   * Provides control plane functionality to managed services, such as logging, monitoring, and status checks.
+   * Provides admission control and telemetry reporting for services integrated with Service Infrastructure.
    *
    * @example
    * ```js
@@ -309,7 +309,7 @@ export namespace servicecontrol_v2 {
      */
     permission?: string | null;
     /**
-     * The resource being accessed, as a REST-style string. For example: bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID
+     * The resource being accessed, as a REST-style or cloud resource string. For example: bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID or projects/PROJECTID/datasets/DATASETID
      */
     resource?: string | null;
     /**
@@ -325,6 +325,10 @@ export namespace servicecontrol_v2 {
      * Describes attributes about the operation being executed by the service.
      */
     attributes?: Schema$AttributeContext;
+    /**
+     * Optional. Contains a comma-separated list of flags.
+     */
+    flags?: string | null;
     /**
      * Describes the resources and the policies applied to each resource.
      */
@@ -451,7 +455,7 @@ export namespace servicecontrol_v2 {
      */
     size?: string | null;
     /**
-     * The timestamp when the `destination` service receives the first byte of the request.
+     * The timestamp when the `destination` service receives the last byte of the request.
      */
     time?: string | null;
   }
@@ -485,7 +489,7 @@ export namespace servicecontrol_v2 {
    */
   export interface Schema$Resource {
     /**
-     * Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
+     * Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/user-guide/annotations
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -508,6 +512,10 @@ export namespace servicecontrol_v2 {
      * The labels or tags on the resource, such as AWS resource tags and Kubernetes resource labels.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. The location of the resource. The location encoding is specific to the service provider, and new encoding may be introduced as the service evolves. For Google Cloud products, the encoding is what is used by Google Cloud APIs, such as `us-east1`, `aws-us-east-1`, and `azure-eastus2`. The semantics of `location` is identical to the `cloud.googleapis.com/location` label used by some Google Cloud APIs.
+     */
+    location?: string | null;
     /**
      * The stable identifier (name) of a resource on the `service`. A resource can be logically identified as "//{resource.service\}/{resource.name\}". The differences between a resource name and a URI are: * Resource name is a logical identifier, independent of network protocol and API version. For example, `//pubsub.googleapis.com/projects/123/topics/news-feed`. * URI often includes protocol and version information, so it can be used directly by applications. For example, `https://pubsub.googleapis.com/v1/projects/123/topics/news-feed`. See https://cloud.google.com/apis/design/resource_names for details.
      */
@@ -564,6 +572,10 @@ export namespace servicecontrol_v2 {
    */
   export interface Schema$Response {
     /**
+     * The length of time it takes the backend service to fully respond to a request. Measured from when the destination service starts to send the request to the backend until when the destination service receives the complete response from the backend.
+     */
+    backendLatency?: string | null;
+    /**
      * The HTTP response status code, such as `200` and `404`.
      */
     code?: string | null;
@@ -576,7 +588,7 @@ export namespace servicecontrol_v2 {
      */
     size?: string | null;
     /**
-     * The timestamp when the `destination` service generates the first byte of the response.
+     * The timestamp when the `destination` service sends the last byte of the response.
      */
     time?: string | null;
   }
@@ -677,6 +689,7 @@ export namespace servicecontrol_v2 {
      *       // request body parameters
      *       // {
      *       //   "attributes": {},
+     *       //   "flags": "my_flags",
      *       //   "resources": [],
      *       //   "serviceConfigId": "my_serviceConfigId"
      *       // }

@@ -235,6 +235,10 @@ export namespace searchconsole_v1 {
      */
     aggregationType?: string | null;
     /**
+     * The data state to be fetched, can be full or all, the latter including full and partial data.
+     */
+    dataState?: string | null;
+    /**
      * [Optional] Zero or more filters to apply to the dimension grouping values; for example, 'query contains \"buy\"' to see only data where the query string contains the substring \"buy\" (not case-sensitive). You can filter by a dimension without grouping by it.
      */
     dimensionFilterGroups?: Schema$ApiDimensionFilterGroup[];
@@ -423,6 +427,7 @@ export namespace searchconsole_v1 {
      *       // request body parameters
      *       // {
      *       //   "aggregationType": "my_aggregationType",
+     *       //   "dataState": "my_dataState",
      *       //   "dimensionFilterGroups": [],
      *       //   "dimensions": [],
      *       //   "endDate": "my_endDate",

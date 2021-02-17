@@ -1670,7 +1670,7 @@
       }
     }
   },
-  "revision": "20201130",
+  "revision": "20210204",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2468,7 +2468,7 @@
       "id": "ClusteringMetrics",
       "properties": {
         "clusters": {
-          "description": "[Beta] Information for all clusters.",
+          "description": "Information for all clusters.",
           "items": {
             "$ref": "Cluster"
           },
@@ -2575,6 +2575,10 @@
           "description": "[Optional] An array of objects that define dataset access for one or more entities. You can set this property when inserting or updating a dataset in order to control who is allowed to access the data. If unspecified at dataset creation time, BigQuery adds default dataset access for the following entities: access.specialGroup: projectReaders; access.role: READER; access.specialGroup: projectWriters; access.role: WRITER; access.specialGroup: projectOwners; access.role: OWNER; access.userByEmail: [dataset creator email]; access.role: OWNER;",
           "items": {
             "properties": {
+              "dataset": {
+                "$ref": "DatasetAccessEntry",
+                "description": "[Pick one] A grant authorizing all resources of a particular type in a particular dataset access to this dataset. Only views are supported for now. The role field is not required when this field is set. If that dataset is deleted and re-created, its access needs to be granted again via an update operation."
+              },
               "domain": {
                 "description": "[Pick one] A domain to grant access to. Any users signed in with the domain specified will be granted the specified access. Example: \"example.com\". Maps to IAM policy member \"domain:DOMAIN\".",
                 "type": "string"
@@ -2682,6 +2686,28 @@
       },
       "type": "object"
     },
+    "DatasetAccessEntry": {
+      "id": "DatasetAccessEntry",
+      "properties": {
+        "dataset": {
+          "$ref": "DatasetReference",
+          "description": "[Required] The dataset this entry applies to."
+        },
+        "target_types": {
+          "items": {
+            "properties": {
+              "targetType": {
+                "description": "[Required] Which resources in the dataset this entry applies to. Currently, only views are supported, but additional target types may be added in the future. Possible values: VIEWS: This entry applies to all views in the dataset.",
+                "type": "string"
+              }
+            },
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "DatasetList": {
       "id": "DatasetList",
       "properties": {
@@ -2783,6 +2809,18 @@
       },
       "type": "object"
     },
+    "DimensionalityReductionMetrics": {
+      "description": "Model evaluation metrics for dimensionality reduction models.",
+      "id": "DimensionalityReductionMetrics",
+      "properties": {
+        "totalExplainedVarianceRatio": {
+          "description": "Total percentage of variance explained by the selected principal components.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "EncryptionConfiguration": {
       "id": "EncryptionConfiguration",
       "properties": {
@@ -2846,6 +2884,10 @@
         "clusteringMetrics": {
           "$ref": "ClusteringMetrics",
           "description": "Populated for clustering models."
+        },
+        "dimensionalityReductionMetrics": {
+          "$ref": "DimensionalityReductionMetrics",
+          "description": "Evaluation metrics when the model is a dimensionality reduction model, which currently includes PCA."
         },
         "multiClassClassificationMetrics": {
           "$ref": "MultiClassClassificationMetrics",
@@ -3106,7 +3148,7 @@
         },
         "hivePartitioningOptions": {
           "$ref": "HivePartitioningOptions",
-          "description": "[Optional, Trusted Tester] Options to configure hive partitioning support."
+          "description": "[Optional] Options to configure hive partitioning support."
         },
         "ignoreUnknownValues": {
           "description": "[Optional] Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don't match any column names Google Cloud Bigtable: This setting is ignored. Google Cloud Datastore backups: This setting is ignored. Avro: This setting is ignored.",
@@ -3342,6 +3384,13 @@
           "format": "double",
           "type": "number"
         },
+        "principalComponentInfos": {
+          "description": "The information of the principal components.",
+          "items": {
+            "$ref": "PrincipalComponentInfo"
+          },
+          "type": "array"
+        },
         "trainingLoss": {
           "description": "Loss computed on the training data at the end of iteration.",
           "format": "double",
@@ -3520,7 +3569,7 @@
           "type": "string"
         },
         "decimalTargetTypes": {
-          "description": "[Trusted Tester] Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. For example: suppose decimal_target_type = [\"NUMERIC\", \"BIGNUMERIC\"]. Then if (precision,scale) is: * (38,9) -> NUMERIC; * (39,9) -> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); * (38,10) -> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); * (76,38) -> BIGNUMERIC; * (77,38) -> BIGNUMERIC (error if value exeeds supported range). For duplicated types in this field, only one will be considered and the rest will be ignored. The order of the types in this field is ignored. For example, [\"BIGNUMERIC\", \"NUMERIC\"] is the same as [\"NUMERIC\", \"BIGNUMERIC\"] and NUMERIC always takes precedence over BIGNUMERIC.",
+          "description": "Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC ([Preview](/products/#product-launch-stages)), and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. Example: Suppose the value of this field is [\"NUMERIC\", \"BIGNUMERIC\"]. If (precision,scale) is: * (38,9) -> NUMERIC; * (39,9) -> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); * (38,10) -> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); * (76,38) -> BIGNUMERIC; * (77,38) -> BIGNUMERIC (error if value exeeds supported range). This field cannot contain duplicate types. The order of the types in this field is ignored. For example, [\"BIGNUMERIC\", \"NUMERIC\"] is the same as [\"NUMERIC\", \"BIGNUMERIC\"] and NUMERIC always takes precedence over BIGNUMERIC. Defaults to [\"NUMERIC\", \"STRING\"] for ORC and [\"NUMERIC\"] for the other file formats.",
           "items": {
             "type": "string"
           },
@@ -3548,7 +3597,7 @@
         },
         "hivePartitioningOptions": {
           "$ref": "HivePartitioningOptions",
-          "description": "[Optional, Trusted Tester] Options to configure hive partitioning support."
+          "description": "[Optional] Options to configure hive partitioning support."
         },
         "ignoreUnknownValues": {
           "description": "[Optional] Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don't match any column names",
@@ -4393,12 +4442,12 @@
             "Logistic regression based classification model.",
             "K-means clustering model.",
             "Matrix factorization model.",
-            "[Beta] DNN classifier model.",
-            "[Beta] An imported TensorFlow model.",
-            "[Beta] DNN regressor model.",
-            "[Beta] Boosted tree regressor model.",
-            "[Beta] Boosted tree classifier model.",
-            "[Beta] ARIMA model.",
+            "DNN classifier model.",
+            "An imported TensorFlow model.",
+            "DNN regressor model.",
+            "Boosted tree regressor model.",
+            "Boosted tree classifier model.",
+            "ARIMA model.",
             "[Beta] AutoML Tables regression model.",
             "[Beta] AutoML Tables classification model."
           ],
@@ -4510,6 +4559,33 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PrincipalComponentInfo": {
+      "description": "Principal component infos, used only for eigen decomposition based models, e.g., PCA. Ordered by explained_variance in the descending order.",
+      "id": "PrincipalComponentInfo",
+      "properties": {
+        "cumulativeExplainedVarianceRatio": {
+          "description": "The explained_variance is pre-ordered in the descending order to compute the cumulative explained variance ratio.",
+          "format": "double",
+          "type": "number"
+        },
+        "explainedVariance": {
+          "description": "Explained variance by this principal component, which is simply the eigenvalue.",
+          "format": "double",
+          "type": "number"
+        },
+        "explainedVarianceRatio": {
+          "description": "Explained_variance over the total explained variance.",
+          "format": "double",
+          "type": "number"
+        },
+        "principalComponentId": {
+          "description": "Id of the principal component.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4920,7 +4996,7 @@
           "type": "number"
         },
         "rSquared": {
-          "description": "R^2 score.",
+          "description": "R^2 score. This corresponds to r2_score in ML.EVALUATE.",
           "format": "double",
           "type": "number"
         }
@@ -5600,7 +5676,7 @@
           "type": "object"
         },
         "type": {
-          "description": "[Required] The field data type. Possible values include STRING, BYTES, INTEGER, INT64 (same as INTEGER), FLOAT, FLOAT64 (same as FLOAT), BOOLEAN, BOOL (same as BOOLEAN), TIMESTAMP, DATE, TIME, DATETIME, RECORD (where RECORD indicates that the field contains a nested schema) or STRUCT (same as RECORD).",
+          "description": "[Required] The field data type. Possible values include STRING, BYTES, INTEGER, INT64 (same as INTEGER), FLOAT, FLOAT64 (same as FLOAT), NUMERIC, BIGNUMERIC, BOOLEAN, BOOL (same as BOOLEAN), TIMESTAMP, DATE, TIME, DATETIME, RECORD (where RECORD indicates that the field contains a nested schema) or STRUCT (same as RECORD).",
           "type": "string"
         }
       },
@@ -5809,6 +5885,7 @@
       "type": "object"
     },
     "TrainingOptions": {
+      "description": "Options used in model training.",
       "id": "TrainingOptions",
       "properties": {
         "autoArima": {
@@ -5835,7 +5912,8 @@
             "MONTHLY",
             "WEEKLY",
             "DAILY",
-            "HOURLY"
+            "HOURLY",
+            "PER_MINUTE"
           ],
           "enumDescriptions": [
             "",
@@ -5845,7 +5923,8 @@
             "Monthly data.",
             "Weekly data.",
             "Daily data.",
-            "Hourly data."
+            "Hourly data.",
+            "Per-minute data."
           ],
           "type": "string"
         },
@@ -6107,7 +6186,7 @@
             "KMEANS_PLUS_PLUS"
           ],
           "enumDescriptions": [
-            "",
+            "Unspecified initialization method.",
             "Initializes the centroids randomly.",
             "Initializes the centroids using data specified in kmeans_initialization_column.",
             "Initializes with kmeans++."
@@ -6186,7 +6265,7 @@
           "type": "number"
         },
         "modelUri": {
-          "description": "[Beta] Google Cloud Storage URI from which the model was imported. Only applicable for imported models.",
+          "description": "Google Cloud Storage URI from which the model was imported. Only applicable for imported models.",
           "type": "string"
         },
         "nonSeasonalOrder": {

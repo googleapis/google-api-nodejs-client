@@ -1594,7 +1594,7 @@
       }
     }
   },
-  "revision": "20200928",
+  "revision": "20210129",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -2417,6 +2417,27 @@
         },
         "vmIp": {
           "description": "Output only. The IP address of this instance. Only applicable for instances in App Engine flexible environment.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "vmLiveness": {
+          "description": "Output only. The liveness health check of this instance. Only applicable for instances in App Engine flexible environment.",
+          "enum": [
+            "LIVENESS_STATE_UNSPECIFIED",
+            "UNKNOWN",
+            "HEALTHY",
+            "UNHEALTHY",
+            "DRAINING",
+            "TIMEOUT"
+          ],
+          "enumDescriptions": [
+            "There is no liveness health check for the instance. Only applicable for instances in App Engine standard environment.",
+            "The health checking system is aware of the instance but its health is not known at the moment.",
+            "The instance is reachable i.e. a connection to the application health checking endpoint can be established, and conforms to the requirements defined by the health check.",
+            "The instance is reachable, but does not conform to the requirements defined by the health check.",
+            "The instance is being drained. The existing connections to the instance have time to complete, but the new ones are being refused.",
+            "The instance is unreachable i.e. a connection to the application health checking endpoint cannot be established, or the server does not respond within the specified timeout."
+          ],
           "readOnly": true,
           "type": "string"
         },

@@ -449,7 +449,7 @@
       }
     }
   },
-  "revision": "20201023",
+  "revision": "20210212",
   "rootUrl": "https://vision.googleapis.com/",
   "schemas": {
     "AnnotateFileResponse": {
@@ -3458,6 +3458,10 @@
           "$ref": "GoogleCloudVisionV1p2beta1ProductSearchParams",
           "description": "Parameters for product search."
         },
+        "textDetectionParams": {
+          "$ref": "GoogleCloudVisionV1p2beta1TextDetectionParams",
+          "description": "Parameters for text detection and document text detection."
+        },
         "webDetectionParams": {
           "$ref": "GoogleCloudVisionV1p2beta1WebDetectionParams",
           "description": "Parameters for web detection."
@@ -4111,6 +4115,17 @@
             "$ref": "GoogleCloudVisionV1p2beta1TextAnnotationDetectedLanguage"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVisionV1p2beta1TextDetectionParams": {
+      "description": "Parameters for text detections. This is used to control TEXT_DETECTION and DOCUMENT_TEXT_DETECTION features.",
+      "id": "GoogleCloudVisionV1p2beta1TextDetectionParams",
+      "properties": {
+        "enableTextDetectionConfidenceScore": {
+          "description": "By default, Cloud Vision API only includes confidence score for DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence score for TEXT_DETECTION as well.",
+          "type": "boolean"
         }
       },
       "type": "object"

@@ -2250,7 +2250,7 @@ export namespace datalabeling_v1beta1 {
      */
     annotationSpecSet?: string | null;
     /**
-     * Optional. Configs for sentiment selection.
+     * Optional. Configs for sentiment selection. We deprecate sentiment analysis in data labeling side as it is incompatible with uCAIP.
      */
     sentimentConfig?: Schema$GoogleCloudDatalabelingV1beta1SentimentConfig;
   }

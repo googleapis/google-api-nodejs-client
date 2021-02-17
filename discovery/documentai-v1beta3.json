@@ -218,7 +218,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The processor resource name.",
+                      "description": "Required. The resource name of Processor or ProcessorVersion. Format: projects/{project}/locations/{location}/processors/{processor}, or projects/{project}/locations/{location}/processors/{processor}/processorVerions/{processorVersion}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+$",
                       "required": true,
@@ -246,7 +246,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The processor resource name.",
+                      "description": "Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: projects/{project}/locations/{location}/processors/{processor}, or projects/{project}/locations/{location}/processors/{processor}/processorVerions/{processorVersion}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+$",
                       "required": true,
@@ -297,6 +297,66 @@
                       ]
                     }
                   }
+                },
+                "processorVersions": {
+                  "methods": {
+                    "batchProcess": {
+                      "description": "LRO endpoint to batch process many documents. The output is written to Cloud Storage as JSON in the [Document] format.",
+                      "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}/processorVersions/{processorVersionsId}:batchProcess",
+                      "httpMethod": "POST",
+                      "id": "documentai.projects.locations.processors.processorVersions.batchProcess",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of Processor or ProcessorVersion. Format: projects/{project}/locations/{location}/processors/{processor}, or projects/{project}/locations/{location}/processors/{processor}/processorVerions/{processorVersion}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+/processorVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta3/{+name}:batchProcess",
+                      "request": {
+                        "$ref": "GoogleCloudDocumentaiV1beta3BatchProcessRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "process": {
+                      "description": "Processes a single document.",
+                      "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}/processorVersions/{processorVersionsId}:process",
+                      "httpMethod": "POST",
+                      "id": "documentai.projects.locations.processors.processorVersions.process",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: projects/{project}/locations/{location}/processors/{processor}, or projects/{project}/locations/{location}/processors/{processor}/processorVerions/{processorVersion}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+/processorVersions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1beta3/{+name}:process",
+                      "request": {
+                        "$ref": "GoogleCloudDocumentaiV1beta3ProcessRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDocumentaiV1beta3ProcessResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -305,12 +365,12 @@
       }
     }
   },
-  "revision": "20200828",
+  "revision": "20210211",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
-    "GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata": {
-      "description": "The long running operation metadata for CreateLabelerPool.",
-      "id": "GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata",
+    "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata": {
+      "description": "The common metadata for long running operations.",
+      "id": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
       "properties": {
         "createTime": {
           "description": "The creation time of the operation.",
@@ -318,7 +378,7 @@
           "type": "string"
         },
         "state": {
-          "description": "Used only when Operation.done is false.",
+          "description": "The state of the operation.",
           "enum": [
             "STATE_UNSPECIFIED",
             "RUNNING",
@@ -338,7 +398,7 @@
           "type": "string"
         },
         "stateMessage": {
-          "description": "A message providing more details about the current state of processing. For example, the error message if the operation is failed.",
+          "description": "A message providing more details about the current state of processing.",
           "type": "string"
         },
         "updateTime": {
@@ -349,43 +409,13 @@
       },
       "type": "object"
     },
-    "GoogleCloudDocumentaiUiv1beta3CreateProcessorVersionMetadata": {
-      "description": "The metadata that represents a processor version being created.",
-      "id": "GoogleCloudDocumentaiUiv1beta3CreateProcessorVersionMetadata",
+    "GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata": {
+      "description": "The long running operation metadata for CreateLabelerPool.",
+      "id": "GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata",
       "properties": {
-        "createTime": {
-          "description": "The creation time of the operation.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "state": {
-          "description": "The state of the current disable processor operation.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "QUEUED",
-            "PREPARING",
-            "RUNNING",
-            "SUCCEEDED",
-            "FAILED",
-            "CANCELLING",
-            "CANCELLED"
-          ],
-          "enumDescriptions": [
-            "The training state is unspecified.",
-            "The training request has been issued but processing has not yet begun.",
-            "The service is preparing to execute the training.",
-            "The training is in progress.",
-            "The training completed successfully.",
-            "The training failed. `error` should contain the details of the failure.",
-            "The training is being cancelled. `error` should describe the reason for the cancellation.",
-            "The training has been cancelled. `error` should describe the reason for the cancellation."
-          ],
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "The last update time of the operation.",
-          "format": "google-datetime",
-          "type": "string"
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
         }
       },
       "type": "object"
@@ -394,39 +424,9 @@
       "description": "The long running operation metadata for DeleteLabelerPool.",
       "id": "GoogleCloudDocumentaiUiv1beta3DeleteLabelerPoolOperationMetadata",
       "properties": {
-        "createTime": {
-          "description": "The creation time of the operation.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "state": {
-          "description": "Used only when Operation.done is false.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "RUNNING",
-            "CANCELLING",
-            "SUCCEEDED",
-            "FAILED",
-            "CANCELLED"
-          ],
-          "enumDescriptions": [
-            "Unspecified state.",
-            "Operation is still running.",
-            "Operation is being cancelled.",
-            "Operation succeeded.",
-            "Operation failed.",
-            "Operation is cancelled."
-          ],
-          "type": "string"
-        },
-        "stateMessage": {
-          "description": "A message providing more details about the current state of processing. For example, the error message if the operation is failed.",
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "The last update time of the operation.",
-          "format": "google-datetime",
-          "type": "string"
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
         }
       },
       "type": "object"
@@ -435,80 +435,48 @@
       "description": "The long running operation metadata for delete processor method.",
       "id": "GoogleCloudDocumentaiUiv1beta3DeleteProcessorMetadata",
       "properties": {
-        "createTime": {
-          "description": "The creation time of the operation.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "state": {
-          "description": "The state of the current delete processor operation.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "WAITING",
-            "RUNNING",
-            "SUCCEEDED",
-            "FAILED"
-          ],
-          "enumDescriptions": [
-            "The default value. This value is used if the state is omitted.",
-            "Request operation is waiting for scheduling.",
-            "Request is being processed.",
-            "The operation is completed successfully.",
-            "The operation has failed."
-          ],
-          "type": "string"
-        },
-        "stateMessage": {
-          "description": "A message providing more details about the current state of processing. For example, the error message if the operation is failed.",
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "The last update time of the operation.",
-          "format": "google-datetime",
-          "type": "string"
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3DeleteProcessorVersionMetadata": {
+      "description": "The long running operation metadata for delete processor version method.",
+      "id": "GoogleCloudDocumentaiUiv1beta3DeleteProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionMetadata": {
+      "description": "The long running operation metadata for deploy processor version method.",
+      "id": "GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionResponse": {
+      "description": "Response message for the deploy processor version method.",
+      "id": "GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDocumentaiUiv1beta3DisableProcessorMetadata": {
       "description": "The long running operation metadata for disable processor method.",
       "id": "GoogleCloudDocumentaiUiv1beta3DisableProcessorMetadata",
       "properties": {
-        "createTime": {
-          "description": "The creation time of the operation.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "state": {
-          "description": "The state of the current disable processor operation.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "WAITING",
-            "RUNNING",
-            "SUCCEEDED",
-            "CANCELLING",
-            "CANCELLED",
-            "FAILED"
-          ],
-          "enumDescriptions": [
-            "The default value. This value is used if the state is omitted.",
-            "Request operation is waiting for scheduling.",
-            "Request is being processed.",
-            "The operation is completed successfully.",
-            "The operation was being cancelled.",
-            "The operation was cancelled.",
-            "The operation has failed."
-          ],
-          "type": "string"
-        },
-        "stateMessage": {
-          "description": "A message providing more details about the current state of processing. For example, the error message if the operation is failed.",
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "The last update time of the operation.",
-          "format": "google-datetime",
-          "type": "string"
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
         }
       },
       "type": "object"
@@ -523,13 +491,149 @@
       "description": "The long running operation metadata for enable processor method.",
       "id": "GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata",
       "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3EnableProcessorResponse": {
+      "description": "Response message for the enable processor method. Intentionally empty proto for adding fields in future.",
+      "id": "GoogleCloudDocumentaiUiv1beta3EnableProcessorResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionMetadata": {
+      "description": "Metadata of the EvaluateProcessorVersion method.",
+      "id": "GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionResponse": {
+      "description": "Metadata of the EvaluateProcessorVersion method.",
+      "id": "GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionResponse",
+      "properties": {
+        "evaluation": {
+          "description": "The resource name of the created evaluation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadata": {
+      "description": "The metadata that represents a processor version being created.",
+      "id": "GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        },
+        "testDatasetValidation": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation",
+          "description": "The test dataset validation information."
+        },
+        "trainingDatasetValidation": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation",
+          "description": "The training dataset validation information."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation": {
+      "description": "The dataset validation information. This includes any and all errors with documents and the dataset.",
+      "id": "GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation",
+      "properties": {
+        "datasetErrors": {
+          "description": "Error information for the dataset as a whole. A maximum of 10 dataset errors will be returned. A single dataset error is terminal for training.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "documentErrors": {
+          "description": "Error information pertaining to specific documents. A maximum of 10 document errors will be returned. Any document with errors will not be used throughout training.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionResponse": {
+      "description": "The response for the TrainProcessorVersion method.",
+      "id": "GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionResponse",
+      "properties": {
+        "processorVersion": {
+          "description": "The resource name of the processor version produced by training.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionMetadata": {
+      "description": "The long running operation metadata for the undeploy processor version method.",
+      "id": "GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionResponse": {
+      "description": "Response message for the undeploy processor version method.",
+      "id": "GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3UpdateHumanReviewConfigMetadata": {
+      "description": "The long running operation metadata for updating the human review configuration.",
+      "id": "GoogleCloudDocumentaiUiv1beta3UpdateHumanReviewConfigMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiUiv1beta3UpdateLabelerPoolOperationMetadata": {
+      "description": "The long running operation metadata for UpdateLabelerPool.",
+      "id": "GoogleCloudDocumentaiUiv1beta3UpdateLabelerPoolOperationMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1BatchProcessMetadata": {
+      "description": "The long running operation metadata for batch process method.",
+      "id": "GoogleCloudDocumentaiV1BatchProcessMetadata",
+      "properties": {
         "createTime": {
           "description": "The creation time of the operation.",
           "format": "google-datetime",
           "type": "string"
         },
+        "individualProcessStatuses": {
+          "description": "The list of response details of each document.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1BatchProcessMetadataIndividualProcessStatus"
+          },
+          "type": "array"
+        },
         "state": {
-          "description": "The state of the current enable processor operation.",
+          "description": "The state of the current batch processing.",
           "enum": [
             "STATE_UNSPECIFIED",
             "WAITING",
@@ -543,10 +647,10 @@
             "The default value. This value is used if the state is omitted.",
             "Request operation is waiting for scheduling.",
             "Request is being processed.",
-            "The operation is completed successfully.",
-            "The operation was being cancelled.",
-            "The operation was cancelled.",
-            "The operation has failed."
+            "The batch processing completed successfully.",
+            "The batch processing was being cancelled.",
+            "The batch processing was cancelled.",
+            "The batch processing has failed."
           ],
           "type": "string"
         },
@@ -562,15 +666,38 @@
       },
       "type": "object"
     },
-    "GoogleCloudDocumentaiUiv1beta3EnableProcessorResponse": {
-      "description": "Response message for the enable processor method. Intentionally empty proto for adding fields in future.",
-      "id": "GoogleCloudDocumentaiUiv1beta3EnableProcessorResponse",
+    "GoogleCloudDocumentaiV1BatchProcessMetadataIndividualProcessStatus": {
+      "description": "The status of a each individual document in the batch process.",
+      "id": "GoogleCloudDocumentaiV1BatchProcessMetadataIndividualProcessStatus",
+      "properties": {
+        "humanReviewStatus": {
+          "$ref": "GoogleCloudDocumentaiV1HumanReviewStatus",
+          "description": "The status of human review on the processed document."
+        },
+        "inputGcsSource": {
+          "description": "The source of the document, same as the [input_gcs_source] field in the request when the batch process started. The batch process is started by take snapshot of that document, since a user can move or change that document during the process.",
+          "type": "string"
+        },
+        "outputGcsDestination": {
+          "description": "The output_gcs_destination (in the request as 'output_gcs_destination') of the processed document if it was successful, otherwise empty.",
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The status of the processing of the document."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1BatchProcessResponse": {
+      "description": "Response message for batch process document method.",
+      "id": "GoogleCloudDocumentaiV1BatchProcessResponse",
       "properties": {},
       "type": "object"
     },
-    "GoogleCloudDocumentaiUiv1beta3UpdateLabelerPoolOperationMetadata": {
-      "description": "The long running operation metadata for UpdateLabelerPool.",
-      "id": "GoogleCloudDocumentaiUiv1beta3UpdateLabelerPoolOperationMetadata",
+    "GoogleCloudDocumentaiV1CommonOperationMetadata": {
+      "description": "The common metadata for long running operations.",
+      "id": "GoogleCloudDocumentaiV1CommonOperationMetadata",
       "properties": {
         "createTime": {
           "description": "The creation time of the operation.",
@@ -578,7 +705,7 @@
           "type": "string"
         },
         "state": {
-          "description": "Used only when Operation.done is false.",
+          "description": "The state of the operation.",
           "enum": [
             "STATE_UNSPECIFIED",
             "RUNNING",
@@ -598,12 +725,67 @@
           "type": "string"
         },
         "stateMessage": {
-          "description": "A message providing more details about the current state of processing. For example, the error message if the operation is failed.",
+          "description": "A message providing more details about the current state of processing.",
           "type": "string"
         },
         "updateTime": {
           "description": "The last update time of the operation.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1HumanReviewStatus": {
+      "description": "The status of human review on a processed document.",
+      "id": "GoogleCloudDocumentaiV1HumanReviewStatus",
+      "properties": {
+        "humanReviewOperation": {
+          "description": "The name of the operation triggered by the processed document. This field is populated only when the [state] is [HUMAN_REVIEW_IN_PROGRESS]. It has the same response type and metadata as the long running operation returned by [ReviewDocument] method.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of human review on the processing request.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "HUMAN_REVIEW_SKIPPED",
+            "HUMAN_REVIEW_VALIDATION_PASSED",
+            "HUMAN_REVIEW_IN_PROGRESS",
+            "HUMAN_REVIEW_ERROR"
+          ],
+          "enumDescriptions": [
+            "Human review state is unspecified. Most likely due to an internal error.",
+            "Human review is skipped for the document. This can happen because human review is not enabled on the processor or the processing request has been set to skip this document.",
+            "Human review validation is triggered and passed, so no review is needed.",
+            "Human review validation is triggered and the document is under review.",
+            "Some error happened during triggering human review, see the [state_message] for details."
+          ],
+          "type": "string"
+        },
+        "stateMessage": {
+          "description": "A message providing more details about the human review state.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1ReviewDocumentOperationMetadata": {
+      "description": "The long running operation metadata for review document method.",
+      "id": "GoogleCloudDocumentaiV1ReviewDocumentOperationMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1ReviewDocumentResponse": {
+      "description": "Response message for review document method.",
+      "id": "GoogleCloudDocumentaiV1ReviewDocumentResponse",
+      "properties": {
+        "gcsDestination": {
+          "description": "The Cloud Storage uri for the human reviewed document.",
           "type": "string"
         }
       },
@@ -786,19 +968,19 @@
       "properties": {
         "addressValue": {
           "$ref": "GoogleTypePostalAddress",
-          "description": "Postal address. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/postal_address.proto"
+          "description": "Postal address. See also: https://github.com/googleapis/googleapis/blob/master/google/type/postal_address.proto"
         },
         "dateValue": {
           "$ref": "GoogleTypeDate",
-          "description": "Date value. Includes year, month, day. See also: https: //github.com/googleapis/googleapis/blob/master/google/type/date.proto"
+          "description": "Date value. Includes year, month, day. See also: https://github.com/googleapis/googleapis/blob/master/google/type/date.proto"
         },
         "datetimeValue": {
           "$ref": "GoogleTypeDateTime",
-          "description": "DateTime value. Includes date, time, and timezone. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/datetime.proto"
+          "description": "DateTime value. Includes date, time, and timezone. See also: https://github.com/googleapis/googleapis/blob/master/google/type/datetime.proto"
         },
         "moneyValue": {
           "$ref": "GoogleTypeMoney",
-          "description": "Money value. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/money.proto"
+          "description": "Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto"
         },
         "text": {
           "description": "Required. Normalized entity value stored as a string. This field is populated for supported document type (e.g. Invoice). For some entity types, one of respective 'structured_value' fields may also be populated. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
@@ -964,7 +1146,7 @@
           "type": "string"
         },
         "page": {
-          "description": "Required. Index into the Document.pages element",
+          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.",
           "format": "int64",
           "type": "string"
         }
@@ -1938,19 +2120,19 @@
       "properties": {
         "addressValue": {
           "$ref": "GoogleTypePostalAddress",
-          "description": "Postal address. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/postal_address.proto"
+          "description": "Postal address. See also: https://github.com/googleapis/googleapis/blob/master/google/type/postal_address.proto"
         },
         "dateValue": {
           "$ref": "GoogleTypeDate",
-          "description": "Date value. Includes year, month, day. See also: https: //github.com/googleapis/googleapis/blob/master/google/type/date.proto"
+          "description": "Date value. Includes year, month, day. See also: https://github.com/googleapis/googleapis/blob/master/google/type/date.proto"
         },
         "datetimeValue": {
           "$ref": "GoogleTypeDateTime",
-          "description": "DateTime value. Includes date, time, and timezone. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/datetime.proto"
+          "description": "DateTime value. Includes date, time, and timezone. See also: https://github.com/googleapis/googleapis/blob/master/google/type/datetime.proto"
         },
         "moneyValue": {
           "$ref": "GoogleTypeMoney",
-          "description": "Money value. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/money.proto"
+          "description": "Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto"
         },
         "text": {
           "description": "Required. Normalized entity value stored as a string. This field is populated for supported document type (e.g. Invoice). For some entity types, one of respective 'structured_value' fields may also be populated. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
@@ -2136,7 +2318,7 @@
           "type": "string"
         },
         "page": {
-          "description": "Required. Index into the Document.pages element",
+          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.",
           "format": "int64",
           "type": "string"
         }
@@ -2989,6 +3171,10 @@
           "description": "The name of the operation triggered by the processed document. If the human review process is not triggered, this field will be empty. It has the same response type and metadata as the long running operation returned by ReviewDocument method.",
           "type": "string"
         },
+        "humanReviewStatus": {
+          "$ref": "GoogleCloudDocumentaiV1beta3HumanReviewStatus",
+          "description": "The status of human review on the processed document."
+        },
         "inputGcsSource": {
           "description": "The source of the document, same as the [input_gcs_source] field in the request when the batch process started. The batch process is started by take snapshot of that document, since a user can move or change that document during the process.",
           "type": "string"
@@ -3008,6 +3194,10 @@
       "description": "Request message for batch process document method.",
       "id": "GoogleCloudDocumentaiV1beta3BatchProcessRequest",
       "properties": {
+        "documentOutputConfig": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentOutputConfig",
+          "description": "The overall output config for batch process."
+        },
         "inputConfigs": {
           "description": "The input config for each single document in the batch process.",
           "items": {
@@ -3015,9 +3205,17 @@
           },
           "type": "array"
         },
+        "inputDocuments": {
+          "$ref": "GoogleCloudDocumentaiV1beta3BatchProcessRequestBatchInputConfig",
+          "description": "The input documents for batch process."
+        },
         "outputConfig": {
           "$ref": "GoogleCloudDocumentaiV1beta3BatchProcessRequestBatchOutputConfig",
           "description": "The overall output config for batch process."
+        },
+        "skipHumanReview": {
+          "description": "Whether Human Review feature should be skipped for this request. Default to false.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3071,6 +3269,47 @@
             "$ref": "GoogleCloudDocumentaiV1beta3Vertex"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3CommonOperationMetadata": {
+      "description": "The common metadata for long running operations.",
+      "id": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The creation time of the operation.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the operation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "CANCELLING",
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Operation is still running.",
+            "Operation is being cancelled.",
+            "Operation succeeded.",
+            "Operation failed.",
+            "Operation is cancelled."
+          ],
+          "type": "string"
+        },
+        "stateMessage": {
+          "description": "A message providing more details about the current state of processing.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The last update time of the operation.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3217,19 +3456,19 @@
       "properties": {
         "addressValue": {
           "$ref": "GoogleTypePostalAddress",
-          "description": "Postal address. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/postal_address.proto"
+          "description": "Postal address. See also: https://github.com/googleapis/googleapis/blob/master/google/type/postal_address.proto"
         },
         "dateValue": {
           "$ref": "GoogleTypeDate",
-          "description": "Date value. Includes year, month, day. See also: https: //github.com/googleapis/googleapis/blob/master/google/type/date.proto"
+          "description": "Date value. Includes year, month, day. See also: https://github.com/googleapis/googleapis/blob/master/google/type/date.proto"
         },
         "datetimeValue": {
           "$ref": "GoogleTypeDateTime",
-          "description": "DateTime value. Includes date, time, and timezone. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/datetime.proto"
+          "description": "DateTime value. Includes date, time, and timezone. See also: https://github.com/googleapis/googleapis/blob/master/google/type/datetime.proto"
         },
         "moneyValue": {
           "$ref": "GoogleTypeMoney",
-          "description": "Money value. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/money.proto"
+          "description": "Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto"
         },
         "text": {
           "description": "Required. Normalized entity value stored as a string. This field is populated for supported document type (e.g. Invoice). For some entity types, one of respective 'structured_value' fields may also be populated. - Money/Currency type (`money_value`) is in the ISO 4217 text format. - Date type (`date_value`) is in the ISO 8601 text format. - Datetime type (`datetime_value`) is in the ISO 8601 text format.",
@@ -3252,6 +3491,28 @@
         },
         "subjectId": {
           "description": "Subject entity id.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentOutputConfig": {
+      "description": "Config that controls the output of documents. All documents will be written as a JSON file.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentOutputConfig",
+      "properties": {
+        "gcsOutputConfig": {
+          "$ref": "GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfig",
+          "description": "Output config to write the results to Cloud Storage."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfig": {
+      "description": "The configuration used when outputting documents.",
+      "id": "GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfig",
+      "properties": {
+        "gcsUri": {
+          "description": "The Cloud Storage uri (a directory) of the output.",
           "type": "string"
         }
       },
@@ -3395,7 +3656,7 @@
           "type": "string"
         },
         "page": {
-          "description": "Required. Index into the Document.pages element",
+          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.",
           "format": "int64",
           "type": "string"
         }
@@ -4042,6 +4303,39 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3HumanReviewStatus": {
+      "description": "The status of human review on a processed document.",
+      "id": "GoogleCloudDocumentaiV1beta3HumanReviewStatus",
+      "properties": {
+        "humanReviewOperation": {
+          "description": "The name of the operation triggered by the processed document. This field is populated only when the [state] is [HUMAN_REVIEW_IN_PROGRESS]. It has the same response type and metadata as the long running operation returned by [ReviewDocument] method.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of human review on the processing request.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "HUMAN_REVIEW_SKIPPED",
+            "HUMAN_REVIEW_VALIDATION_PASSED",
+            "HUMAN_REVIEW_IN_PROGRESS",
+            "HUMAN_REVIEW_ERROR"
+          ],
+          "enumDescriptions": [
+            "Human review state is unspecified. Most likely due to an internal error.",
+            "Human review is skipped for the document. This can happen because human review is not enabled on the processor or the processing request has been set to skip this document.",
+            "Human review validation is triggered and passed, so no review is needed.",
+            "Human review validation is triggered and the document is under review.",
+            "Some error happened during triggering human review, see the [state_message] for details."
+          ],
+          "type": "string"
+        },
+        "stateMessage": {
+          "description": "A message providing more details about the human review state.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3NormalizedVertex": {
       "description": "A vertex represents a 2D point in the image. NOTE: the normalized vertex coordinates are relative to the original image and range from 0 to 1.",
       "id": "GoogleCloudDocumentaiV1beta3NormalizedVertex",
@@ -4067,6 +4361,14 @@
           "$ref": "GoogleCloudDocumentaiV1beta3Document",
           "description": "The document payload, the [content] and [mime_type] fields must be set."
         },
+        "inlineDocument": {
+          "$ref": "GoogleCloudDocumentaiV1beta3Document",
+          "description": "An inline document proto."
+        },
+        "rawDocument": {
+          "$ref": "GoogleCloudDocumentaiV1beta3RawDocument",
+          "description": "A raw document content (bytes)."
+        },
         "skipHumanReview": {
           "description": "Whether Human Review feature should be skipped for this request. Default to false.",
           "type": "boolean"
@@ -4085,6 +4387,26 @@
         "humanReviewOperation": {
           "description": "The name of the operation triggered by the processed document. If the human review process is not triggered, this field will be empty. It has the same response type and metadata as the long running operation returned by ReviewDocument method.",
           "type": "string"
+        },
+        "humanReviewStatus": {
+          "$ref": "GoogleCloudDocumentaiV1beta3HumanReviewStatus",
+          "description": "The status of human review on the processed document."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3RawDocument": {
+      "description": "Payload message of raw document content (bytes).",
+      "id": "GoogleCloudDocumentaiV1beta3RawDocument",
+      "properties": {
+        "content": {
+          "description": "Inline document content.",
+          "format": "byte",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "An IANA MIME type (RFC6838) indicating the nature and format of the [content].",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4093,6 +4415,10 @@
       "description": "The long running operation metadata for review document method.",
       "id": "GoogleCloudDocumentaiV1beta3ReviewDocumentOperationMetadata",
       "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        },
         "createTime": {
           "description": "The creation time of the operation.",
           "format": "google-datetime",
@@ -4137,6 +4463,10 @@
         "document": {
           "$ref": "GoogleCloudDocumentaiV1beta3Document",
           "description": "The document that needs human review."
+        },
+        "inlineDocument": {
+          "$ref": "GoogleCloudDocumentaiV1beta3Document",
+          "description": "An inline document proto."
         }
       },
       "type": "object"
@@ -4317,21 +4647,21 @@
       "type": "object"
     },
     "GoogleTypeDate": {
-      "description": "Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
       "id": "GoogleTypeDate",
       "properties": {
         "day": {
-          "description": "Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.",
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
           "format": "int32",
           "type": "integer"
         },
         "month": {
-          "description": "Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.",
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
           "format": "int32",
           "type": "integer"
         },
         "year": {
-          "description": "Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.",
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
           "format": "int32",
           "type": "integer"
         }
@@ -4339,7 +4669,7 @@
       "type": "object"
     },
     "GoogleTypeDateTime": {
-      "description": "Represents civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year is 0, the DateTime is considered not to have a specific year. month and day must have valid, non-zero values. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.",
+      "description": "Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year is 0, the DateTime is considered not to have a specific year. month and day must have valid, non-zero values. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.",
       "id": "GoogleTypeDateTime",
       "properties": {
         "day": {
@@ -4394,7 +4724,7 @@
       "id": "GoogleTypeMoney",
       "properties": {
         "currencyCode": {
-          "description": "The 3-letter currency code defined in ISO 4217.",
+          "description": "The three-letter currency code defined in ISO 4217.",
           "type": "string"
         },
         "nanos": {

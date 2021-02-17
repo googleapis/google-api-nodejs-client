@@ -14,27 +14,44 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {servicedirectory_v1} from './v1';
 import {servicedirectory_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
+  v1: servicedirectory_v1.Servicedirectory,
   v1beta1: servicedirectory_v1beta1.Servicedirectory,
 };
 
+export function servicedirectory(
+  version: 'v1'
+): servicedirectory_v1.Servicedirectory;
+export function servicedirectory(
+  options: servicedirectory_v1.Options
+): servicedirectory_v1.Servicedirectory;
 export function servicedirectory(
   version: 'v1beta1'
 ): servicedirectory_v1beta1.Servicedirectory;
 export function servicedirectory(
   options: servicedirectory_v1beta1.Options
 ): servicedirectory_v1beta1.Servicedirectory;
-export function servicedirectory<T = servicedirectory_v1beta1.Servicedirectory>(
+export function servicedirectory<
+  T =
+    | servicedirectory_v1.Servicedirectory
+    | servicedirectory_v1beta1.Servicedirectory
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta1' | servicedirectory_v1beta1.Options
+  versionOrOptions:
+    | 'v1'
+    | servicedirectory_v1.Options
+    | 'v1beta1'
+    | servicedirectory_v1beta1.Options
 ) {
   return getAPI<T>('servicedirectory', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {servicedirectory_v1};
 export {servicedirectory_v1beta1};
 export {
   AuthPlus,

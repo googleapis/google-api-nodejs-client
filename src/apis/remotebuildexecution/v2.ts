@@ -848,6 +848,10 @@ export namespace remotebuildexecution_v2 {
    */
   export interface Schema$GoogleDevtoolsRemotebuildbotCommandDurations {
     /**
+     * The time spent waiting for Container Manager to assign an asynchronous container for execution.
+     */
+    cmWaitForAssignment?: string | null;
+    /**
      * The time spent preparing the command to be run in a Docker container (includes pulling the Docker image, if necessary).
      */
     dockerPrep?: string | null;
@@ -897,6 +901,10 @@ export namespace remotebuildexecution_v2 {
    */
   export interface Schema$GoogleDevtoolsRemotebuildbotCommandEvents {
     /**
+     * Indicates if and how Container Manager is being used for task execution.
+     */
+    cmUsage?: string | null;
+    /**
      * Indicates whether we are using a cached Docker image (true) or had to pull the Docker image (false) for this command.
      */
     dockerCacheHit?: boolean | null;
@@ -916,6 +924,10 @@ export namespace remotebuildexecution_v2 {
      * The number of warnings reported.
      */
     numWarnings?: string | null;
+    /**
+     * Indicates whether an asynchronous container was used for execution.
+     */
+    usedAsyncContainer?: boolean | null;
   }
   /**
    * The internal status of the command result.
@@ -1131,7 +1143,7 @@ export namespace remotebuildexecution_v2 {
   }
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsRequest {
     /**
-     * Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `\>`, `\>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count \> 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
+     * Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `\>`, `\>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count \> 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the e2-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: e2-standard`
      */
     filter?: string | null;
     /**
@@ -1200,7 +1212,7 @@ export namespace remotebuildexecution_v2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Machine type of the worker, such as `n1-standard-2`. See https://cloud.google.com/compute/docs/machine-types for a list of supported machine types. Note that `f1-micro` and `g1-small` are not yet supported.
+     * Required. Machine type of the worker, such as `e2-standard-2`. See https://cloud.google.com/compute/docs/machine-types for a list of supported machine types. Note that `f1-micro` and `g1-small` are not yet supported.
      */
     machineType?: string | null;
     /**

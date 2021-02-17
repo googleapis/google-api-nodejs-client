@@ -331,6 +331,10 @@ export namespace file_v1beta1 {
      */
     rolloutManagementPolicy?: string | null;
     /**
+     * schedule_deadline_time is the time deadline any schedule start time cannot go beyond, including reschedule. It's normally the initial schedule start time plus a week. If the reschedule type is next window, simply take this value as start time. If reschedule type is IMMEDIATELY or BY_TIME, current or selected time cannot go beyond this deadline.
+     */
+    scheduleDeadlineTime?: string | null;
+    /**
      * The scheduled start time for the maintenance.
      */
     startTime?: string | null;
@@ -2645,7 +2649,7 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * Restores an existing instance's file share from a backup. The instance's file share capacity will be set to the backup's capacity or the minimum capacity of the tier, whichever is larger.
+     * Restores an existing instance's file share from a backup. The capacity of the instance needs to be equal to or larger than the capacity of the backup (and also equal to or larger than the minimum capacity of the tier).
      * @example
      * ```js
      * // Before running the sample:

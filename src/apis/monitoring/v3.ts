@@ -111,6 +111,8 @@ export namespace monitoring_v3 {
    */
   export class Monitoring {
     context: APIRequestContext;
+    folders: Resource$Folders;
+    organizations: Resource$Organizations;
     projects: Resource$Projects;
     services: Resource$Services;
     uptimeCheckIps: Resource$Uptimecheckips;
@@ -121,6 +123,8 @@ export namespace monitoring_v3 {
         google,
       };
 
+      this.folders = new Resource$Folders(this.context);
+      this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
       this.services = new Resource$Services(this.context);
       this.uptimeCheckIps = new Resource$Uptimecheckips(this.context);
@@ -275,7 +279,7 @@ export namespace monitoring_v3 {
     service?: string | null;
   }
   /**
-   * Istio service scoped to a single Kubernetes cluster. Learn more at http://istio.io.
+   * Istio service scoped to a single Kubernetes cluster. Learn more at https://istio.io. Clusters running OSS Istio will have their services ingested as this type.
    */
   export interface Schema$ClusterIstio {
     /**
@@ -785,6 +789,23 @@ export namespace monitoring_v3 {
     state?: string | null;
   }
   /**
+   * Canonical service scoped to an Istio mesh. Anthos clusters running ASM \>= 1.6.8 will have their services ingested as this type.
+   */
+  export interface Schema$IstioCanonicalService {
+    /**
+     * The name of the canonical service underlying this service. Corresponds to the destination_canonical_service_name metric label in label in Istio metrics (https://cloud.google.com/monitoring/api/metrics_istio).
+     */
+    canonicalService?: string | null;
+    /**
+     * The namespace of the canonical service underlying this service. Corresponds to the destination_canonical_service_namespace metric label in Istio metrics (https://cloud.google.com/monitoring/api/metrics_istio).
+     */
+    canonicalServiceNamespace?: string | null;
+    /**
+     * Identifier for the Istio mesh in which this canonical service is defined. Corresponds to the mesh_uid metric label in Istio metrics (https://cloud.google.com/monitoring/api/metrics_istio).
+     */
+    meshUid?: string | null;
+  }
+  /**
    * A description of a label.
    */
   export interface Schema$LabelDescriptor {
@@ -1025,7 +1046,7 @@ export namespace monitoring_v3 {
     uptimeCheckIps?: Schema$UptimeCheckIp[];
   }
   /**
-   * Istio service scoped to an Istio mesh
+   * Istio service scoped to an Istio mesh. Anthos clusters running ASM < 1.6.8 will have their services ingested as this type.
    */
   export interface Schema$MeshIstio {
     /**
@@ -1063,7 +1084,7 @@ export namespace monitoring_v3 {
      */
     aggregations?: Schema$Aggregation[];
     /**
-     * The amount of time that a time series must fail to report new data to be considered failing. Currently, only values that are a multiple of a minute--e.g. 60, 120, or 300 seconds--are supported. If an invalid value is given, an error will be returned. The Duration.nanos field is ignored.
+     * The amount of time that a time series must fail to report new data to be considered failing. The minimum value of this field is 120 seconds. Larger values that are a multiple of a minute--for example, 240 or 300 seconds--are supported. If an invalid value is given, an error will be returned. The Duration.nanos field is ignored.
      */
     duration?: string | null;
     /**
@@ -1116,7 +1137,7 @@ export namespace monitoring_v3 {
      */
     type?: string | null;
     /**
-     * The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.Different systems may scale the values to be more easily displayed (so a value of 0.02KBy might be displayed as 20By, and a value of 3523KBy might be displayed as 3.5MBy). However, if the unit is KBy, then the value of the metric is always in thousands of bytes, no matter how it may be displayed..If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an INT64 CUMULATIVE metric whose unit is s{CPU\} (or equivalently 1s{CPU\} or just s). If the job uses 12,005 CPU-seconds, then the value is written as 12005.Alternatively, if you want a custom metric to record data in a more granular way, you can create a DOUBLE CUMULATIVE metric whose unit is ks{CPU\}, and then write the value 12.005 (which is 12005/1000), or use Kis{CPU\} and write 11.723 (which is 12005/1024).The supported units are a subset of The Unified Code for Units of Measure (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit By byte s second min minute h hour d day 1 dimensionlessPrefixes (PREFIX) k kilo (10^3) M mega (10^6) G giga (10^9) T tera (10^12) P peta (10^15) E exa (10^18) Z zetta (10^21) Y yotta (10^24) m milli (10^-3) u micro (10^-6) n nano (10^-9) p pico (10^-12) f femto (10^-15) a atto (10^-18) z zepto (10^-21) y yocto (10^-24) Ki kibi (2^10) Mi mebi (2^20) Gi gibi (2^30) Ti tebi (2^40) Pi pebi (2^50)GrammarThe grammar also includes these connectors: / division or ratio (as an infix operator). For examples, kBy/{email\} or MiBy/10ms (although you should almost never have /s in a metric unit; rates should always be computed at query time from the underlying cumulative or delta value). . multiplication or composition (as an infix operator). For examples, GBy.d or k{watt\}.h.The grammar for a unit is as follows: Expression = Component { "." Component \} { "/" Component \} ; Component = ( [ PREFIX ] UNIT | "%" ) [ Annotation ] | Annotation | "1" ; Annotation = "{" NAME "\}" ; Notes: Annotation is just a comment if it follows a UNIT. If the annotation is used alone, then the unit is equivalent to 1. For examples, {request\}/s == 1/s, By{transmitted\}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not containing { or \}. 1 represents a unitary dimensionless unit (https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such as in 1/s. It is typically used when none of the basic units are appropriate. For example, "new users per day" can be represented as 1/d or {new-users\}/d (and a metric value 5 would mean "5 new users). Alternatively, "thousands of page views per day" would be represented as 1000/d or k1/d or k{page_views\}/d (and a metric value of 5.3 would mean "5300 page views per day"). % represents dimensionless value of 1/100, and annotates values giving a percentage (so the metric values are typically in the range of 0..100, and a metric value 3 means "3 percent"). 10^2.% indicates a metric contains a ratio, typically in the range 0..1, that will be multiplied by 100 and displayed as a percentage (so a metric value 0.03 means "3 percent").
+     * The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.Different systems might scale the values to be more easily displayed (so a value of 0.02kBy might be displayed as 20By, and a value of 3523kBy might be displayed as 3.5MBy). However, if the unit is kBy, then the value of the metric is always in thousands of bytes, no matter how it might be displayed.If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an INT64 CUMULATIVE metric whose unit is s{CPU\} (or equivalently 1s{CPU\} or just s). If the job uses 12,005 CPU-seconds, then the value is written as 12005.Alternatively, if you want a custom metric to record data in a more granular way, you can create a DOUBLE CUMULATIVE metric whose unit is ks{CPU\}, and then write the value 12.005 (which is 12005/1000), or use Kis{CPU\} and write 11.723 (which is 12005/1024).The supported units are a subset of The Unified Code for Units of Measure (https://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit By byte s second min minute h hour d day 1 dimensionlessPrefixes (PREFIX) k kilo (10^3) M mega (10^6) G giga (10^9) T tera (10^12) P peta (10^15) E exa (10^18) Z zetta (10^21) Y yotta (10^24) m milli (10^-3) u micro (10^-6) n nano (10^-9) p pico (10^-12) f femto (10^-15) a atto (10^-18) z zepto (10^-21) y yocto (10^-24) Ki kibi (2^10) Mi mebi (2^20) Gi gibi (2^30) Ti tebi (2^40) Pi pebi (2^50)GrammarThe grammar also includes these connectors: / division or ratio (as an infix operator). For examples, kBy/{email\} or MiBy/10ms (although you should almost never have /s in a metric unit; rates should always be computed at query time from the underlying cumulative or delta value). . multiplication or composition (as an infix operator). For examples, GBy.d or k{watt\}.h.The grammar for a unit is as follows: Expression = Component { "." Component \} { "/" Component \} ; Component = ( [ PREFIX ] UNIT | "%" ) [ Annotation ] | Annotation | "1" ; Annotation = "{" NAME "\}" ; Notes: Annotation is just a comment if it follows a UNIT. If the annotation is used alone, then the unit is equivalent to 1. For examples, {request\}/s == 1/s, By{transmitted\}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not containing { or \}. 1 represents a unitary dimensionless unit (https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such as in 1/s. It is typically used when none of the basic units are appropriate. For example, "new users per day" can be represented as 1/d or {new-users\}/d (and a metric value 5 would mean "5 new users). Alternatively, "thousands of page views per day" would be represented as 1000/d or k1/d or k{page_views\}/d (and a metric value of 5.3 would mean "5300 page views per day"). % represents dimensionless value of 1/100, and annotates values giving a percentage (so the metric values are typically in the range of 0..100, and a metric value 3 means "3 percent"). 10^2.% indicates a metric contains a ratio, typically in the range 0..1, that will be multiplied by 100 and displayed as a percentage (so a metric value 0.03 means "3 percent").
      */
     unit?: string | null;
     /**
@@ -1281,6 +1302,10 @@ export namespace monitoring_v3 {
    */
   export interface Schema$NotificationChannel {
     /**
+     * Record of the creation of this channel.
+     */
+    creationRecord?: Schema$MutationRecord;
+    /**
      * An optional human-readable description of this notification channel. This description may provide additional details, beyond the display name, for the channel. This may not exceed 1024 Unicode characters.
      */
     description?: string | null;
@@ -1296,6 +1321,10 @@ export namespace monitoring_v3 {
      * Configuration fields that define the channel and its behavior. The permissible and required labels are specified in the NotificationChannelDescriptor.labels of the NotificationChannelDescriptor corresponding to the type field.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Records of the modification of this channel.
+     */
+    mutationRecords?: Schema$MutationRecord[];
     /**
      * The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
      */
@@ -1503,6 +1532,10 @@ export namespace monitoring_v3 {
      * Name used for UI elements listing this Service.
      */
     displayName?: string | null;
+    /**
+     * Type used for canonical services scoped to an Istio mesh. Metrics for Istio are documented here (https://istio.io/latest/docs/reference/config/metrics/)
+     */
+    istioCanonicalService?: Schema$IstioCanonicalService;
     /**
      * Type used for Istio services scoped to an Istio mesh.
      */
@@ -1895,6 +1928,516 @@ export namespace monitoring_v3 {
      * Duration over which window quality is evaluated. Must be an integer fraction of a day and at least 60s.
      */
     windowPeriod?: string | null;
+  }
+
+  export class Resource$Folders {
+    context: APIRequestContext;
+    timeSeries: Resource$Folders$Timeseries;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.timeSeries = new Resource$Folders$Timeseries(this.context);
+    }
+  }
+
+  export class Resource$Folders$Timeseries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists time series that match a filter. This method does not require a Workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await monitoring.folders.timeSeries.list({
+     *     // The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.
+     *     'aggregation.alignmentPeriod': 'placeholder-value',
+     *     // The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned.
+     *     'aggregation.crossSeriesReducer': 'placeholder-value',
+     *     // The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored.
+     *     'aggregation.groupByFields': 'placeholder-value',
+     *     // An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned.
+     *     'aggregation.perSeriesAligner': 'placeholder-value',
+     *     // Required. A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND metric.labels.instance_name = "my-instance-name"
+     *     filter: 'placeholder-value',
+     *     // Required. The end of the time interval.
+     *     'interval.endTime': 'placeholder-value',
+     *     // Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
+     *     'interval.startTime': 'placeholder-value',
+     *     // Required. The project, organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
+     *     name: 'folders/my-folder',
+     *     // Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest).
+     *     orderBy: 'placeholder-value',
+     *     // A positive number that is the maximum number of results to return. If page_size is empty or more than 100,000 results, the effective page_size is 100,000 results. If view is set to FULL, this is the maximum number of Points returned. If view is set to HEADERS, this is the maximum number of TimeSeries returned.
+     *     pageSize: 'placeholder-value',
+     *     // If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+     *     pageToken: 'placeholder-value',
+     *     // The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.
+     *     'secondaryAggregation.alignmentPeriod': 'placeholder-value',
+     *     // The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned.
+     *     'secondaryAggregation.crossSeriesReducer': 'placeholder-value',
+     *     // The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored.
+     *     'secondaryAggregation.groupByFields': 'placeholder-value',
+     *     // An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned.
+     *     'secondaryAggregation.perSeriesAligner': 'placeholder-value',
+     *     // Required. Specifies which information is returned about the time series.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionErrors": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "timeSeries": [],
+     *   //   "unit": "my_unit"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Folders$Timeseries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Folders$Timeseries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTimeSeriesResponse>;
+    list(
+      params: Params$Resource$Folders$Timeseries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Timeseries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTimeSeriesResponse>,
+      callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Folders$Timeseries$List,
+      callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Folders$Timeseries$List
+        | BodyResponseCallback<Schema$ListTimeSeriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTimeSeriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTimeSeriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTimeSeriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Folders$Timeseries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Folders$Timeseries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}/timeSeries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListTimeSeriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListTimeSeriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Folders$Timeseries$List
+    extends StandardParameters {
+    /**
+     * The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.
+     */
+    'aggregation.alignmentPeriod'?: string;
+    /**
+     * The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned.
+     */
+    'aggregation.crossSeriesReducer'?: string;
+    /**
+     * The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored.
+     */
+    'aggregation.groupByFields'?: string[];
+    /**
+     * An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned.
+     */
+    'aggregation.perSeriesAligner'?: string;
+    /**
+     * Required. A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND metric.labels.instance_name = "my-instance-name"
+     */
+    filter?: string;
+    /**
+     * Required. The end of the time interval.
+     */
+    'interval.endTime'?: string;
+    /**
+     * Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
+     */
+    'interval.startTime'?: string;
+    /**
+     * Required. The project, organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
+     */
+    name?: string;
+    /**
+     * Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest).
+     */
+    orderBy?: string;
+    /**
+     * A positive number that is the maximum number of results to return. If page_size is empty or more than 100,000 results, the effective page_size is 100,000 results. If view is set to FULL, this is the maximum number of Points returned. If view is set to HEADERS, this is the maximum number of TimeSeries returned.
+     */
+    pageSize?: number;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+     */
+    pageToken?: string;
+    /**
+     * The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.
+     */
+    'secondaryAggregation.alignmentPeriod'?: string;
+    /**
+     * The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned.
+     */
+    'secondaryAggregation.crossSeriesReducer'?: string;
+    /**
+     * The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored.
+     */
+    'secondaryAggregation.groupByFields'?: string[];
+    /**
+     * An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned.
+     */
+    'secondaryAggregation.perSeriesAligner'?: string;
+    /**
+     * Required. Specifies which information is returned about the time series.
+     */
+    view?: string;
+  }
+
+  export class Resource$Organizations {
+    context: APIRequestContext;
+    timeSeries: Resource$Organizations$Timeseries;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.timeSeries = new Resource$Organizations$Timeseries(this.context);
+    }
+  }
+
+  export class Resource$Organizations$Timeseries {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists time series that match a filter. This method does not require a Workspace.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const monitoring = google.monitoring('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/monitoring',
+     *       'https://www.googleapis.com/auth/monitoring.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await monitoring.organizations.timeSeries.list({
+     *     // The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.
+     *     'aggregation.alignmentPeriod': 'placeholder-value',
+     *     // The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned.
+     *     'aggregation.crossSeriesReducer': 'placeholder-value',
+     *     // The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored.
+     *     'aggregation.groupByFields': 'placeholder-value',
+     *     // An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned.
+     *     'aggregation.perSeriesAligner': 'placeholder-value',
+     *     // Required. A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND metric.labels.instance_name = "my-instance-name"
+     *     filter: 'placeholder-value',
+     *     // Required. The end of the time interval.
+     *     'interval.endTime': 'placeholder-value',
+     *     // Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
+     *     'interval.startTime': 'placeholder-value',
+     *     // Required. The project, organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
+     *     name: 'organizations/my-organization',
+     *     // Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest).
+     *     orderBy: 'placeholder-value',
+     *     // A positive number that is the maximum number of results to return. If page_size is empty or more than 100,000 results, the effective page_size is 100,000 results. If view is set to FULL, this is the maximum number of Points returned. If view is set to HEADERS, this is the maximum number of TimeSeries returned.
+     *     pageSize: 'placeholder-value',
+     *     // If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+     *     pageToken: 'placeholder-value',
+     *     // The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.
+     *     'secondaryAggregation.alignmentPeriod': 'placeholder-value',
+     *     // The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned.
+     *     'secondaryAggregation.crossSeriesReducer': 'placeholder-value',
+     *     // The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored.
+     *     'secondaryAggregation.groupByFields': 'placeholder-value',
+     *     // An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned.
+     *     'secondaryAggregation.perSeriesAligner': 'placeholder-value',
+     *     // Required. Specifies which information is returned about the time series.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "executionErrors": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "timeSeries": [],
+     *   //   "unit": "my_unit"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Timeseries$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Organizations$Timeseries$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListTimeSeriesResponse>;
+    list(
+      params: Params$Resource$Organizations$Timeseries$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Timeseries$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTimeSeriesResponse>,
+      callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Timeseries$List,
+      callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListTimeSeriesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Timeseries$List
+        | BodyResponseCallback<Schema$ListTimeSeriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTimeSeriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTimeSeriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListTimeSeriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Timeseries$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Timeseries$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://monitoring.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}/timeSeries').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListTimeSeriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListTimeSeriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Timeseries$List
+    extends StandardParameters {
+    /**
+     * The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.
+     */
+    'aggregation.alignmentPeriod'?: string;
+    /**
+     * The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned.
+     */
+    'aggregation.crossSeriesReducer'?: string;
+    /**
+     * The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored.
+     */
+    'aggregation.groupByFields'?: string[];
+    /**
+     * An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned.
+     */
+    'aggregation.perSeriesAligner'?: string;
+    /**
+     * Required. A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND metric.labels.instance_name = "my-instance-name"
+     */
+    filter?: string;
+    /**
+     * Required. The end of the time interval.
+     */
+    'interval.endTime'?: string;
+    /**
+     * Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
+     */
+    'interval.startTime'?: string;
+    /**
+     * Required. The project, organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
+     */
+    name?: string;
+    /**
+     * Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest).
+     */
+    orderBy?: string;
+    /**
+     * A positive number that is the maximum number of results to return. If page_size is empty or more than 100,000 results, the effective page_size is 100,000 results. If view is set to FULL, this is the maximum number of Points returned. If view is set to HEADERS, this is the maximum number of TimeSeries returned.
+     */
+    pageSize?: number;
+    /**
+     * If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
+     */
+    pageToken?: string;
+    /**
+     * The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.
+     */
+    'secondaryAggregation.alignmentPeriod'?: string;
+    /**
+     * The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned.
+     */
+    'secondaryAggregation.crossSeriesReducer'?: string;
+    /**
+     * The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored.
+     */
+    'secondaryAggregation.groupByFields'?: string[];
+    /**
+     * An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned.
+     */
+    'secondaryAggregation.perSeriesAligner'?: string;
+    /**
+     * Required. Specifies which information is returned about the time series.
+     */
+    view?: string;
   }
 
   export class Resource$Projects {
@@ -5232,10 +5775,12 @@ export namespace monitoring_v3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "creationRecord": {},
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "enabled": false,
      *       //   "labels": {},
+     *       //   "mutationRecords": [],
      *       //   "name": "my_name",
      *       //   "type": "my_type",
      *       //   "userLabels": {},
@@ -5247,10 +5792,12 @@ export namespace monitoring_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "creationRecord": {},
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "enabled": false,
      *   //   "labels": {},
+     *   //   "mutationRecords": [],
      *   //   "name": "my_name",
      *   //   "type": "my_type",
      *   //   "userLabels": {},
@@ -5519,10 +6066,12 @@ export namespace monitoring_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "creationRecord": {},
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "enabled": false,
      *   //   "labels": {},
+     *   //   "mutationRecords": [],
      *   //   "name": "my_name",
      *   //   "type": "my_type",
      *   //   "userLabels": {},
@@ -5978,10 +6527,12 @@ export namespace monitoring_v3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "creationRecord": {},
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "enabled": false,
      *       //   "labels": {},
+     *       //   "mutationRecords": [],
      *       //   "name": "my_name",
      *       //   "type": "my_type",
      *       //   "userLabels": {},
@@ -5993,10 +6544,12 @@ export namespace monitoring_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "creationRecord": {},
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "enabled": false,
      *   //   "labels": {},
+     *   //   "mutationRecords": [],
      *   //   "name": "my_name",
      *   //   "type": "my_type",
      *   //   "userLabels": {},
@@ -6278,10 +6831,12 @@ export namespace monitoring_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "creationRecord": {},
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "enabled": false,
      *   //   "labels": {},
+     *   //   "mutationRecords": [],
      *   //   "name": "my_name",
      *   //   "type": "my_type",
      *   //   "userLabels": {},
@@ -6677,7 +7232,7 @@ export namespace monitoring_v3 {
      *     'interval.endTime': 'placeholder-value',
      *     // Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
      *     'interval.startTime': 'placeholder-value',
-     *     // Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     *     // Required. The project, organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
      *     name: 'projects/my-project',
      *     // Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest).
      *     orderBy: 'placeholder-value',
@@ -6998,7 +7553,7 @@ export namespace monitoring_v3 {
      */
     'interval.startTime'?: string;
     /**
-     * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     * Required. The project, organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
      */
     name?: string;
     /**
@@ -7914,6 +8469,7 @@ export namespace monitoring_v3 {
      *       //   "clusterIstio": {},
      *       //   "custom": {},
      *       //   "displayName": "my_displayName",
+     *       //   "istioCanonicalService": {},
      *       //   "meshIstio": {},
      *       //   "name": "my_name",
      *       //   "telemetry": {}
@@ -7929,6 +8485,7 @@ export namespace monitoring_v3 {
      *   //   "clusterIstio": {},
      *   //   "custom": {},
      *   //   "displayName": "my_displayName",
+     *   //   "istioCanonicalService": {},
      *   //   "meshIstio": {},
      *   //   "name": "my_name",
      *   //   "telemetry": {}
@@ -8194,6 +8751,7 @@ export namespace monitoring_v3 {
      *   //   "clusterIstio": {},
      *   //   "custom": {},
      *   //   "displayName": "my_displayName",
+     *   //   "istioCanonicalService": {},
      *   //   "meshIstio": {},
      *   //   "name": "my_name",
      *   //   "telemetry": {}
@@ -8475,6 +9033,7 @@ export namespace monitoring_v3 {
      *       //   "clusterIstio": {},
      *       //   "custom": {},
      *       //   "displayName": "my_displayName",
+     *       //   "istioCanonicalService": {},
      *       //   "meshIstio": {},
      *       //   "name": "my_name",
      *       //   "telemetry": {}
@@ -8490,6 +9049,7 @@ export namespace monitoring_v3 {
      *   //   "clusterIstio": {},
      *   //   "custom": {},
      *   //   "displayName": "my_displayName",
+     *   //   "istioCanonicalService": {},
      *   //   "meshIstio": {},
      *   //   "name": "my_name",
      *   //   "telemetry": {}

@@ -781,6 +781,10 @@ export namespace dataflow_v1b3 {
      */
     serviceKmsKeyName?: string | null;
     /**
+     * Output only. The shuffle mode used for the job.
+     */
+    shuffleMode?: string | null;
+    /**
      * The prefix of the resources the system should use for temporary storage. The system will append the suffix "/temp-{JOBNAME\} to this resource prefix, where {JOBNAME\} is the value of the job_name field. The resulting bucket and object prefix is used as the prefix of the resources used to store temporary data needed during the job execution. NOTE: This will override the value in taskrunner_settings. The supported resource type is: Google Cloud Storage: storage.googleapis.com/{bucket\}/{object\} bucket.storage.googleapis.com/{object\}
      */
     tempStoragePrefix?: string | null;
@@ -902,6 +906,10 @@ export namespace dataflow_v1b3 {
      * Whether to enable Streaming Engine for the job.
      */
     enableStreamingEngine?: boolean | null;
+    /**
+     * Set FlexRS goal for the job. https://cloud.google.com/dataflow/docs/guides/flexrs
+     */
+    flexrsGoal?: string | null;
     /**
      * Configuration for VM IPs.
      */
@@ -1128,7 +1136,7 @@ export namespace dataflow_v1b3 {
     sum?: Schema$SplitInt64;
   }
   /**
-   * Defines a job to be run by the Cloud Dataflow service.
+   * Defines a job to be run by the Cloud Dataflow service. nextID: 26
    */
   export interface Schema$Job {
     /**
@@ -1199,6 +1207,10 @@ export namespace dataflow_v1b3 {
      * The job's requested state. `UpdateJob` may be used to switch between the `JOB_STATE_STOPPED` and `JOB_STATE_RUNNING` states, by setting requested_state. `UpdateJob` may also be used to directly set a job's requested state to `JOB_STATE_CANCELLED` or `JOB_STATE_DONE`, irrevocably terminating the job if it has not already reached a terminal state.
      */
     requestedState?: string | null;
+    /**
+     * Reserved for future use. This field is set only in responses from the server; it is ignored if it is set in any requests.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * This field may be mutated by the Cloud Dataflow service; callers cannot mutate it.
      */
@@ -1397,7 +1409,7 @@ export namespace dataflow_v1b3 {
      */
     parameters?: {[key: string]: string} | null;
     /**
-     * Users need to set transform_name_mappings Ex:{"oldTransformName":"newTransformName",...\}'
+     * Use this to pass transform_name_mappings for streaming update jobs. Ex:{"oldTransformName":"newTransformName",...\}'
      */
     transformNameMappings?: {[key: string]: string} | null;
     /**
@@ -2228,6 +2240,10 @@ export namespace dataflow_v1b3 {
      * A docker container image that resides in Google Container Registry.
      */
     containerImage?: string | null;
+    /**
+     * Environment ID for the Beam runner API proto Environment that corresponds to the current SDK Harness.
+     */
+    environmentId?: string | null;
     /**
      * If true, recommends the Dataflow service to use only one core per SDK container instance with this image. If false (or unset) recommends using more than one core per SDK container instance with this image for efficiency. Note that Dataflow service may choose to override this property if needed.
      */
@@ -4998,7 +5014,7 @@ export namespace dataflow_v1b3 {
      *     pageToken: 'placeholder-value',
      *     // The project which owns the jobs.
      *     projectId: 'placeholder-value',
-     *     // Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
+     *     // Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5163,6 +5179,7 @@ export namespace dataflow_v1b3 {
      *       //   "replaceJobId": "my_replaceJobId",
      *       //   "replacedByJobId": "my_replacedByJobId",
      *       //   "requestedState": "my_requestedState",
+     *       //   "satisfiesPzs": false,
      *       //   "stageStates": [],
      *       //   "startTime": "my_startTime",
      *       //   "steps": [],
@@ -5194,6 +5211,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",
      *   //   "steps": [],
@@ -5357,6 +5375,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",
      *   //   "steps": [],
@@ -5640,7 +5659,7 @@ export namespace dataflow_v1b3 {
      *     pageToken: 'placeholder-value',
      *     // The project which owns the jobs.
      *     projectId: 'placeholder-value',
-     *     // Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
+     *     // Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5958,6 +5977,7 @@ export namespace dataflow_v1b3 {
      *       //   "replaceJobId": "my_replaceJobId",
      *       //   "replacedByJobId": "my_replacedByJobId",
      *       //   "requestedState": "my_requestedState",
+     *       //   "satisfiesPzs": false,
      *       //   "stageStates": [],
      *       //   "startTime": "my_startTime",
      *       //   "steps": [],
@@ -5989,6 +6009,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",
      *   //   "steps": [],
@@ -6114,7 +6135,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
+     * Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      */
     view?: string;
   }
@@ -6203,7 +6224,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
+     * Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      */
     view?: string;
   }
@@ -7588,6 +7609,7 @@ export namespace dataflow_v1b3 {
      *       //   "replaceJobId": "my_replaceJobId",
      *       //   "replacedByJobId": "my_replacedByJobId",
      *       //   "requestedState": "my_requestedState",
+     *       //   "satisfiesPzs": false,
      *       //   "stageStates": [],
      *       //   "startTime": "my_startTime",
      *       //   "steps": [],
@@ -7619,6 +7641,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",
      *   //   "steps": [],
@@ -7781,6 +7804,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",
      *   //   "steps": [],
@@ -8213,7 +8237,7 @@ export namespace dataflow_v1b3 {
      *     pageToken: 'placeholder-value',
      *     // The project which owns the jobs.
      *     projectId: 'placeholder-value',
-     *     // Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
+     *     // Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8533,6 +8557,7 @@ export namespace dataflow_v1b3 {
      *       //   "replaceJobId": "my_replaceJobId",
      *       //   "replacedByJobId": "my_replacedByJobId",
      *       //   "requestedState": "my_requestedState",
+     *       //   "satisfiesPzs": false,
      *       //   "stageStates": [],
      *       //   "startTime": "my_startTime",
      *       //   "steps": [],
@@ -8564,6 +8589,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",
      *   //   "steps": [],
@@ -8774,7 +8800,7 @@ export namespace dataflow_v1b3 {
      */
     projectId?: string;
     /**
-     * Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.
+     * Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.
      */
     view?: string;
   }
@@ -10826,6 +10852,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",
      *   //   "steps": [],
@@ -11703,6 +11730,7 @@ export namespace dataflow_v1b3 {
      *   //   "replaceJobId": "my_replaceJobId",
      *   //   "replacedByJobId": "my_replacedByJobId",
      *   //   "requestedState": "my_requestedState",
+     *   //   "satisfiesPzs": false,
      *   //   "stageStates": [],
      *   //   "startTime": "my_startTime",
      *   //   "steps": [],

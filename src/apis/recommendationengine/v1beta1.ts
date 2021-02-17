@@ -99,9 +99,9 @@ export namespace recommendationengine_v1beta1 {
   }
 
   /**
-   * Recommendations AI
+   * Recommendations AI (Beta)
    *
-   * Recommendations AI service enables customers to build end-to-end personalized recommendation systems without requiring a high level of expertise in machine learning, recommendation system, or Google Cloud.
+   * Note that we now highly recommend new customers to use Retail API, which incorporates the GA version of the Recommendations AI funtionalities. To enable Retail API, please visit https://console.cloud.google.com/apis/library/retail.googleapis.com. The Recommendations AI service enables customers to build end-to-end personalized recommendation systems without requiring a high level of expertise in machine learning, recommendation system, or Google Cloud.
    *
    * @example
    * ```js
@@ -767,7 +767,7 @@ export namespace recommendationengine_v1beta1 {
      */
     listId?: string | null;
     /**
-     * Required for `category-page-view` events. Other event types should not set this field. The categories associated with a category page. Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: categories : ["Sales", "2017 Black Friday Deals"].
+     * Required for `category-page-view` events. At least one of search_query or page_categories is required for `search` events. Other event types should not set this field. The categories associated with a category page. Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: categories : ["Sales", "2017 Black Friday Deals"].
      */
     pageCategories?: Schema$GoogleCloudRecommendationengineV1beta1CatalogItemCategoryHierarchy[];
     /**
@@ -779,7 +779,7 @@ export namespace recommendationengine_v1beta1 {
      */
     purchaseTransaction?: Schema$GoogleCloudRecommendationengineV1beta1PurchaseTransaction;
     /**
-     * Required for `search` events. Other event types should not set this field. The user's search query as UTF-8 encoded text with a length limit of 5 KiB.
+     * At least one of search_query or page_categories is required for `search` events. Other event types should not set this field. The user's search query as UTF-8 encoded text with a length limit of 5 KiB.
      */
     searchQuery?: string | null;
   }
@@ -2808,7 +2808,7 @@ export namespace recommendationengine_v1beta1 {
     }
 
     /**
-     * Makes a recommendation prediction. If using API Key based authentication, the API Key must be registered using the PredictionApiKeyRegistry service. [Learn more](/recommendations-ai/docs/setting-up#register-key).
+     * Makes a recommendation prediction. If using API Key based authentication, the API Key must be registered using the PredictionApiKeyRegistry service. [Learn more](https://cloud.google.com/recommendations-ai/docs/setting-up#register-key).
      * @example
      * ```js
      * // Before running the sample:

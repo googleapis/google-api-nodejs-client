@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/documents": {
-          "description": "View and manage your Google Docs documents"
+          "description": "See, create, and edit all Google Docs documents you have access to"
         },
         "https://www.googleapis.com/auth/documents.readonly": {
           "description": "View your Google Docs documents"
@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20210211",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
     "AutoText": {

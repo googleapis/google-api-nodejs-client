@@ -260,7 +260,7 @@
       }
     }
   },
-  "revision": "20200927",
+  "revision": "20210208",
   "rootUrl": "https://safebrowsing.googleapis.com/",
   "schemas": {
     "Checksum": {
@@ -343,7 +343,7 @@
       "type": "object"
     },
     "FetchThreatListUpdatesRequest": {
-      "description": "Describes a Safe Browsing API update request. Clients can request updates for multiple lists in a single request. NOTE: Field index 2 is unused. NEXT: 5",
+      "description": "Describes a Safe Browsing API update request. Clients can request updates for multiple lists in a single request. The server may not respond to all requests, if the server has no updates for that list. NOTE: Field index 2 is unused. NEXT: 5",
       "id": "FetchThreatListUpdatesRequest",
       "properties": {
         "client": {
@@ -364,7 +364,7 @@
       "id": "FetchThreatListUpdatesResponse",
       "properties": {
         "listUpdateResponses": {
-          "description": "The list updates requested by the clients.",
+          "description": "The list updates requested by the clients. The number of responses here may be less than the number of requests sent by clients. This is the case, for example, if the server has no updates for a particular list.",
           "items": {
             "$ref": "ListUpdateResponse"
           },

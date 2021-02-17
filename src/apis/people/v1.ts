@@ -292,6 +292,10 @@ export namespace people_v1 {
    */
   export interface Schema$ContactGroup {
     /**
+     * The group's client data.
+     */
+    clientData?: Schema$GroupClientData[];
+    /**
      * The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the resource. Used for web cache validation.
      */
     etag?: string | null;
@@ -308,7 +312,7 @@ export namespace people_v1 {
      */
     memberCount?: number | null;
     /**
-     * Output only. The list of contact person resource names that are members of the contact group. The field is not populated for LIST requests and can only be updated through the [ModifyContactGroupMembers](/people/api/rest/v1/contactgroups/members/modify).
+     * Output only. The list of contact person resource names that are members of the contact group. The field is only populated for GET requests and will only return as many members as `maxMembers` in the get request.
      */
     memberResourceNames?: string[] | null;
     /**
@@ -409,6 +413,10 @@ export namespace people_v1 {
      * Required. The contact group to create.
      */
     contactGroup?: Schema$ContactGroup;
+    /**
+     * Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * metadata * name
+     */
+    readGroupFields?: string | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
@@ -575,6 +583,19 @@ export namespace people_v1 {
      * The response for each requested resource name.
      */
     responses?: Schema$PersonResponse[];
+  }
+  /**
+   * Arbitrary client data that is populated by clients. Duplicate keys and values are allowed. LINT.IfChange(GroupClientData)
+   */
+  export interface Schema$GroupClientData {
+    /**
+     * The client specified key of the client data.
+     */
+    key?: string | null;
+    /**
+     * The client specified value of the client data.
+     */
+    value?: string | null;
   }
   /**
    * A person's instant messaging client.
@@ -1412,6 +1433,14 @@ export namespace people_v1 {
      * Required. The contact group to update.
      */
     contactGroup?: Schema$ContactGroup;
+    /**
+     * Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
+     */
+    readGroupFields?: string | null;
+    /**
+     * Optional. A field mask to restrict which fields on the group are updated. Multiple fields can be specified by separating them with commas. Defaults to `name` if not set or set to empty. Updated fields are replaced. Valid values are: * clientData * name
+     */
+    updateGroupFields?: string | null;
   }
   /**
    * A request to update an existing contact's photo. All requests must have a valid photo format: JPEG or PNG.
@@ -1516,6 +1545,8 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.contactGroups.batchGet({
+     *     // Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
+     *     groupFields: 'placeholder-value',
      *     // Optional. Specifies the maximum number of members to return for each group. Defaults to 0 if not set, which will return zero members.
      *     maxMembers: 'placeholder-value',
      *     // Required. The resource names of the contact groups to get.
@@ -1660,7 +1691,8 @@ export namespace people_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "contactGroup": {}
+     *       //   "contactGroup": {},
+     *       //   "readGroupFields": "my_readGroupFields"
      *       // }
      *     },
      *   });
@@ -1668,6 +1700,7 @@ export namespace people_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "clientData": [],
      *   //   "etag": "my_etag",
      *   //   "formattedName": "my_formattedName",
      *   //   "groupType": "my_groupType",
@@ -1926,6 +1959,8 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.contactGroups.get({
+     *     // Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
+     *     groupFields: 'placeholder-value',
      *     // Optional. Specifies the maximum number of members to return. Defaults to 0 if not set, which will return zero members.
      *     maxMembers: 'placeholder-value',
      *     // Required. The resource name of the contact group to get.
@@ -1935,6 +1970,7 @@ export namespace people_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "clientData": [],
      *   //   "etag": "my_etag",
      *   //   "formattedName": "my_formattedName",
      *   //   "groupType": "my_groupType",
@@ -2067,6 +2103,8 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.contactGroups.list({
+     *     // Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
+     *     groupFields: 'placeholder-value',
      *     // Optional. The maximum number of resources to return. Valid values are between 1 and 1000, inclusive. Defaults to 30 if not set or set to 0.
      *     pageSize: 'placeholder-value',
      *     // Optional. The next_page_token value returned from a previous call to [ListContactGroups](/people/api/rest/v1/contactgroups/list). Requests the next page of resources.
@@ -2214,7 +2252,9 @@ export namespace people_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "contactGroup": {}
+     *       //   "contactGroup": {},
+     *       //   "readGroupFields": "my_readGroupFields",
+     *       //   "updateGroupFields": "my_updateGroupFields"
      *       // }
      *     },
      *   });
@@ -2222,6 +2262,7 @@ export namespace people_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "clientData": [],
      *   //   "etag": "my_etag",
      *   //   "formattedName": "my_formattedName",
      *   //   "groupType": "my_groupType",
@@ -2328,6 +2369,10 @@ export namespace people_v1 {
   export interface Params$Resource$Contactgroups$Batchget
     extends StandardParameters {
     /**
+     * Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
+     */
+    groupFields?: string;
+    /**
      * Optional. Specifies the maximum number of members to return for each group. Defaults to 0 if not set, which will return zero members.
      */
     maxMembers?: number;
@@ -2357,6 +2402,10 @@ export namespace people_v1 {
   export interface Params$Resource$Contactgroups$Get
     extends StandardParameters {
     /**
+     * Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
+     */
+    groupFields?: string;
+    /**
      * Optional. Specifies the maximum number of members to return. Defaults to 0 if not set, which will return zero members.
      */
     maxMembers?: number;
@@ -2367,6 +2416,10 @@ export namespace people_v1 {
   }
   export interface Params$Resource$Contactgroups$List
     extends StandardParameters {
+    /**
+     * Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
+     */
+    groupFields?: string;
     /**
      * Optional. The maximum number of resources to return. Valid values are between 1 and 1000, inclusive. Defaults to 30 if not set or set to 0.
      */
@@ -4589,7 +4642,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Provides a list of the authenticated user's contacts. The request returns a 400 error if `personFields` is not specified. The request returns a 410 error if `sync_token` is specified and is expired. Sync tokens expire after 7 days. A request without `sync_token` should be made and all contacts should be synced.
+     * Provides a list of the authenticated user's contacts. The request returns a 400 error if `personFields` is not specified. The request returns a 410 error if `sync_token` is specified and is expired. Sync tokens expire after 7 days to prevent data drift between clients and the server. To handle a sync token expired error, a request should be sent without `sync_token` to get all contacts.
      * @example
      * ```js
      * // Before running the sample:
@@ -4626,7 +4679,7 @@ export namespace people_v1 {
      *     personFields: 'placeholder-value',
      *     // Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      *     'requestMask.includeField': 'placeholder-value',
-     *     // Optional. Whether the response should include `next_sync_token` on the last page, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
+     *     // Optional. Whether the response should include `next_sync_token` on the last page, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial full sync requests that specify `request_sync_token` and do not specify `sync_token` have an additional rate limit per user. Each client should generally only be doing a full sync once every few days per user and so should not hit this limit.
      *     requestSyncToken: 'placeholder-value',
      *     // Required. The resource name to return connections for. Only `people/me` is valid.
      *     resourceName: 'people/[^/]+',
@@ -4634,7 +4687,7 @@ export namespace people_v1 {
      *     sortOrder: 'placeholder-value',
      *     // Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.
      *     sources: 'placeholder-value',
-     *     // Optional. A sync token, received from a previous `ListConnections` call. Provide this to retrieve only the resources changed since the last request. Sync requests that specify `sync_token` have an additional rate limit. When syncing, all other parameters provided to `ListConnections` must match the call that provided the sync token.
+     *     // Optional. A sync token, received from a previous `ListConnections` call. Provide this to retrieve only the resources changed since the last request. When syncing, all other parameters provided to `ListConnections` except `page_size` and `page_token` must match the initial call that provided the sync token. Sync tokens expire after seven days, after which a full sync request without a `sync_token` should be made.
      *     syncToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4765,7 +4818,7 @@ export namespace people_v1 {
      */
     'requestMask.includeField'?: string;
     /**
-     * Optional. Whether the response should include `next_sync_token` on the last page, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
+     * Optional. Whether the response should include `next_sync_token` on the last page, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial full sync requests that specify `request_sync_token` and do not specify `sync_token` have an additional rate limit per user. Each client should generally only be doing a full sync once every few days per user and so should not hit this limit.
      */
     requestSyncToken?: boolean;
     /**
@@ -4781,7 +4834,7 @@ export namespace people_v1 {
      */
     sources?: string[];
     /**
-     * Optional. A sync token, received from a previous `ListConnections` call. Provide this to retrieve only the resources changed since the last request. Sync requests that specify `sync_token` have an additional rate limit. When syncing, all other parameters provided to `ListConnections` must match the call that provided the sync token.
+     * Optional. A sync token, received from a previous `ListConnections` call. Provide this to retrieve only the resources changed since the last request. When syncing, all other parameters provided to `ListConnections` except `page_size` and `page_token` must match the initial call that provided the sync token. Sync tokens expire after seven days, after which a full sync request without a `sync_token` should be made.
      */
     syncToken?: string;
   }

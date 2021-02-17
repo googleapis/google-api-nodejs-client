@@ -276,7 +276,7 @@ export namespace vectortile_v1 {
      */
     areas?: Schema$Area[];
     /**
-     * The extruded areas present in this geometry.
+     * The extruded areas present in this geometry. Not populated if modeled_volumes are included in this geometry unless always_include_building_footprints is set in GetFeatureTileRequest, in which case the client should decide which (extruded areas or modeled volumes) should be used (they should not be rendered together).
      */
     extrudedAreas?: Schema$ExtrudedArea[];
     /**
@@ -284,7 +284,7 @@ export namespace vectortile_v1 {
      */
     lines?: Schema$Line[];
     /**
-     * The modeled volumes present in this geometry.
+     * The modeled volumes present in this geometry. Not populated unless enable_modeled_volumes has been set in GetFeatureTileRequest.
      */
     modeledVolumes?: Schema$ModeledVolume[];
   }
@@ -499,6 +499,8 @@ export namespace vectortile_v1 {
      *
      *   // Do the magic
      *   const res = await vectortile.featuretiles.get({
+     *     // Flag indicating whether the returned tile will always contain 2.5D footprints for structures. If enabled_modeled_volumes is set, this will mean that structures will have both their 3D models and 2.5D footprints returned.
+     *     alwaysIncludeBuildingFootprints: 'placeholder-value',
      *     // API client name and version. For example, the SDK calling the API. The exact format is up to the client.
      *     'clientInfo.apiClient': 'placeholder-value',
      *     // Application ID, such as the package name on Android and the bundle identifier on iOS platforms.
@@ -636,6 +638,10 @@ export namespace vectortile_v1 {
   }
 
   export interface Params$Resource$Featuretiles$Get extends StandardParameters {
+    /**
+     * Flag indicating whether the returned tile will always contain 2.5D footprints for structures. If enabled_modeled_volumes is set, this will mean that structures will have both their 3D models and 2.5D footprints returned.
+     */
+    alwaysIncludeBuildingFootprints?: boolean;
     /**
      * API client name and version. For example, the SDK calling the API. The exact format is up to the client.
      */

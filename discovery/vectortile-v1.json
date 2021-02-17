@@ -107,6 +107,11 @@
             "name"
           ],
           "parameters": {
+            "alwaysIncludeBuildingFootprints": {
+              "description": "Flag indicating whether the returned tile will always contain 2.5D footprints for structures. If enabled_modeled_volumes is set, this will mean that structures will have both their 3D models and 2.5D footprints returned.",
+              "location": "query",
+              "type": "boolean"
+            },
             "clientInfo.apiClient": {
               "description": "API client name and version. For example, the SDK calling the API. The exact format is up to the client.",
               "location": "query",
@@ -338,7 +343,7 @@
       }
     }
   },
-  "revision": "20201202",
+  "revision": "20210216",
   "rootUrl": "https://vectortile.googleapis.com/",
   "schemas": {
     "Area": {
@@ -618,7 +623,7 @@
           "type": "array"
         },
         "extrudedAreas": {
-          "description": "The extruded areas present in this geometry.",
+          "description": "The extruded areas present in this geometry. Not populated if modeled_volumes are included in this geometry unless always_include_building_footprints is set in GetFeatureTileRequest, in which case the client should decide which (extruded areas or modeled volumes) should be used (they should not be rendered together).",
           "items": {
             "$ref": "ExtrudedArea"
           },
@@ -632,7 +637,7 @@
           "type": "array"
         },
         "modeledVolumes": {
-          "description": "The modeled volumes present in this geometry.",
+          "description": "The modeled volumes present in this geometry. Not populated unless enable_modeled_volumes has been set in GetFeatureTileRequest.",
           "items": {
             "$ref": "ModeledVolume"
           },

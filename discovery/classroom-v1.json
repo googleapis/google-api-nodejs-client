@@ -9,13 +9,13 @@
           "description": "View announcements in Google Classroom"
         },
         "https://www.googleapis.com/auth/classroom.courses": {
-          "description": "Manage your Google Classroom classes"
+          "description": "See, edit, create, and permanently delete your Google Classroom classes"
         },
         "https://www.googleapis.com/auth/classroom.courses.readonly": {
           "description": "View your Google Classroom classes"
         },
         "https://www.googleapis.com/auth/classroom.coursework.me": {
-          "description": "Manage your course work and view your grades in Google Classroom"
+          "description": "See, create and edit coursework items including assignments, questions, and grades"
         },
         "https://www.googleapis.com/auth/classroom.coursework.me.readonly": {
           "description": "View your course work and grades in Google Classroom"
@@ -2400,7 +2400,7 @@
       }
     }
   },
-  "revision": "20201014",
+  "revision": "20210213",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "Announcement": {

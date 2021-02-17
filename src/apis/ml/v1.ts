@@ -356,7 +356,7 @@ export namespace ml_v1 {
      */
     metrics?: Schema$GoogleCloudMlV1__MetricSpec[];
     /**
-     * Optional. The minimum number of nodes to allocate for this model. These nodes are always up, starting from the time the model is deployed. Therefore, the cost of operating this model will be at least `rate` * `min_nodes` * number of hours since last billing cycle, where `rate` is the cost per node-hour as documented in the [pricing guide](/ml-engine/docs/pricing), even if no predictions are performed. There is additional cost for each prediction performed. Unlike manual scaling, if the load gets too heavy for the nodes that are up, the service will automatically add nodes to handle the increased load as well as scale back as traffic drops, always maintaining at least `min_nodes`. You will be charged for the time in which additional nodes are used. If `min_nodes` is not specified and AutoScaling is used with a [legacy (MLS1) machine type](/ml-engine/docs/machine-types-online-prediction), `min_nodes` defaults to 0, in which case, when traffic to a model stops (and after a cool-down period), nodes will be shut down and no charges will be incurred until traffic to the model resumes. If `min_nodes` is not specified and AutoScaling is used with a [Compute Engine (N1) machine type](/ml-engine/docs/machine-types-online-prediction), `min_nodes` defaults to 1. `min_nodes` must be at least 1 for use with a Compute Engine machine type. Note that you cannot use AutoScaling if your version uses [GPUs](#Version.FIELDS.accelerator_config). Instead, you must use ManualScaling. You can set `min_nodes` when creating the model version, and you can also update `min_nodes` for an existing version: update_body.json: { 'autoScaling': { 'minNodes': 5 \} \} HTTP request: PATCH https://ml.googleapis.com/v1/{name=projects/x/models/x/versions/x\}?update_mask=autoScaling.minNodes -d @./update_body.json
+     * Optional. The minimum number of nodes to allocate for this model. These nodes are always up, starting from the time the model is deployed. Therefore, the cost of operating this model will be at least `rate` * `min_nodes` * number of hours since last billing cycle, where `rate` is the cost per node-hour as documented in the [pricing guide](/ml-engine/docs/pricing), even if no predictions are performed. There is additional cost for each prediction performed. Unlike manual scaling, if the load gets too heavy for the nodes that are up, the service will automatically add nodes to handle the increased load as well as scale back as traffic drops, always maintaining at least `min_nodes`. You will be charged for the time in which additional nodes are used. If `min_nodes` is not specified and AutoScaling is used with a [legacy (MLS1) machine type](/ml-engine/docs/machine-types-online-prediction), `min_nodes` defaults to 0, in which case, when traffic to a model stops (and after a cool-down period), nodes will be shut down and no charges will be incurred until traffic to the model resumes. If `min_nodes` is not specified and AutoScaling is used with a [Compute Engine (N1) machine type](/ml-engine/docs/machine-types-online-prediction), `min_nodes` defaults to 1. `min_nodes` must be at least 1 for use with a Compute Engine machine type. You can set `min_nodes` when creating the model version, and you can also update `min_nodes` for an existing version: update_body.json: { 'autoScaling': { 'minNodes': 5 \} \} HTTP request: PATCH https://ml.googleapis.com/v1/{name=projects/x/models/x/versions/x\}?update_mask=autoScaling.minNodes -d @./update_body.json
      */
     minNodes?: number | null;
   }
@@ -486,6 +486,19 @@ export namespace ml_v1 {
      * Immutable. List of ports to expose from the container. AI Platform Prediction sends any prediction requests that it receives to the first port on this list. AI Platform Prediction also sends [liveness and health checks](/ai-platform/prediction/docs/custom-container-requirements#health) to this port. If you do not specify this field, it defaults to following value: ```json [ { "containerPort": 8080 \} ] ``` AI Platform Prediction does not use ports other than the first one listed. This field corresponds to the `ports` field of the [Kubernetes Containers v1 core API](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#container-v1-core).
      */
     ports?: Schema$GoogleCloudMlV1__ContainerPort[];
+  }
+  /**
+   * Represents the config of disk options.
+   */
+  export interface Schema$GoogleCloudMlV1__DiskConfig {
+    /**
+     * Size in GB of the boot disk (default is 100GB).
+     */
+    bootDiskSizeGb?: number | null;
+    /**
+     * Type of the boot disk (default is "pd-ssd"). Valid values: "pd-ssd" (Persistent Disk Solid State Drive) or "pd-standard" (Persistent Disk Hard Disk Drive).
+     */
+    bootDiskType?: string | null;
   }
   /**
    * Represents a custom encryption key configuration that can be applied to a resource.
@@ -1027,6 +1040,10 @@ export namespace ml_v1 {
      */
     containerCommand?: string[] | null;
     /**
+     * Represents the configuration of disk options.
+     */
+    diskConfig?: Schema$GoogleCloudMlV1__DiskConfig;
+    /**
      * The Docker image to run on the replica. This image must be in Container Registry. Learn more about [configuring custom containers](/ai-platform/training/docs/distributed-training-containers).
      */
     imageUri?: string | null;
@@ -1053,11 +1070,11 @@ export namespace ml_v1 {
    */
   export interface Schema$GoogleCloudMlV1__RouteMap {
     /**
-     * HTTP path on the container to send health checkss to. AI Platform Prediction intermittently sends GET requests to this path on the container's IP address and port to check that the container is healthy. Read more about [health checks](/ai-platform/prediction/docs/custom-container-requirements#checks). For example, if you set this field to `/bar`, then AI Platform Prediction intermittently sends a GET request to the following URL on the container: localhost:PORT/bar PORT refers to the first value of Version.container.ports. If you don't specify this field, it defaults to the following value: /v1/models/MODEL/versions/VERSION The placeholders in this value are replaced as follows: * MODEL: The name of the parent Model. This does not include the "projects/PROJECT_ID/models/" prefix that the API returns in output; it is the bare model name, as provided to projects.models.create. * VERSION: The name of the model version. This does not include the "projects/PROJECT_ID/models/MODEL/versions/" prefix that the API returns in output; it is the bare version name, as provided to projects.models.versions.create.
+     * HTTP path on the container to send health checkss to. AI Platform Prediction intermittently sends GET requests to this path on the container's IP address and port to check that the container is healthy. Read more about [health checks](/ai-platform/prediction/docs/custom-container-requirements#checks). For example, if you set this field to `/bar`, then AI Platform Prediction intermittently sends a GET request to the `/bar` path on the port of your container specified by the first value of Version.container.ports. If you don't specify this field, it defaults to the following value: /v1/models/ MODEL/versions/VERSION The placeholders in this value are replaced as follows: * MODEL: The name of the parent Model. This does not include the "projects/PROJECT_ID/models/" prefix that the API returns in output; it is the bare model name, as provided to projects.models.create. * VERSION: The name of the model version. This does not include the "projects/PROJECT_ID /models/MODEL/versions/" prefix that the API returns in output; it is the bare version name, as provided to projects.models.versions.create.
      */
     health?: string | null;
     /**
-     * HTTP path on the container to send prediction requests to. AI Platform Prediction forwards requests sent using projects.predict to this path on the container's IP address and port. AI Platform Prediction then returns the container's response in the API response. For example, if you set this field to `/foo`, then when AI Platform Prediction receives a prediction request, it forwards the request body in a POST request to the following URL on the container: localhost:PORT/foo PORT refers to the first value of Version.container.ports. If you don't specify this field, it defaults to the following value: /v1/models/MODEL/versions/VERSION:predict The placeholders in this value are replaced as follows: * MODEL: The name of the parent Model. This does not include the "projects/PROJECT_ID/models/" prefix that the API returns in output; it is the bare model name, as provided to projects.models.create. * VERSION: The name of the model version. This does not include the "projects/PROJECT_ID/models/MODEL/versions/" prefix that the API returns in output; it is the bare version name, as provided to projects.models.versions.create.
+     * HTTP path on the container to send prediction requests to. AI Platform Prediction forwards requests sent using projects.predict to this path on the container's IP address and port. AI Platform Prediction then returns the container's response in the API response. For example, if you set this field to `/foo`, then when AI Platform Prediction receives a prediction request, it forwards the request body in a POST request to the `/foo` path on the port of your container specified by the first value of Version.container.ports. If you don't specify this field, it defaults to the following value: /v1/models/MODEL/versions/VERSION:predict The placeholders in this value are replaced as follows: * MODEL: The name of the parent Model. This does not include the "projects/PROJECT_ID/models/" prefix that the API returns in output; it is the bare model name, as provided to projects.models.create. * VERSION: The name of the model version. This does not include the "projects/PROJECT_ID/models/MODEL/versions/" prefix that the API returns in output; it is the bare version name, as provided to projects.models.versions.create.
      */
     predict?: string | null;
   }
@@ -1226,7 +1243,7 @@ export namespace ml_v1 {
      */
     masterConfig?: Schema$GoogleCloudMlV1__ReplicaConfig;
     /**
-     * Optional. Specifies the type of virtual machine to use for your training job's master worker. You must specify this field when `scaleTier` is set to `CUSTOM`. You can use certain Compute Engine machine types directly in this field. The following types are supported: - `n1-standard-4` - `n1-standard-8` - `n1-standard-16` - `n1-standard-32` - `n1-standard-64` - `n1-standard-96` - `n1-highmem-2` - `n1-highmem-4` - `n1-highmem-8` - `n1-highmem-16` - `n1-highmem-32` - `n1-highmem-64` - `n1-highmem-96` - `n1-highcpu-16` - `n1-highcpu-32` - `n1-highcpu-64` - `n1-highcpu-96` Learn more about [using Compute Engine machine types](/ml-engine/docs/machine-types#compute-engine-machine-types). Alternatively, you can use the following legacy machine types: - `standard` - `large_model` - `complex_model_s` - `complex_model_m` - `complex_model_l` - `standard_gpu` - `complex_model_m_gpu` - `complex_model_l_gpu` - `standard_p100` - `complex_model_m_p100` - `standard_v100` - `large_model_v100` - `complex_model_m_v100` - `complex_model_l_v100` Learn more about [using legacy machine types](/ml-engine/docs/machine-types#legacy-machine-types). Finally, if you want to use a TPU for training, specify `cloud_tpu` in this field. Learn more about the [special configuration options for training with TPUs](/ml-engine/docs/tensorflow/using-tpus#configuring_a_custom_tpu_machine).
+     * Optional. Specifies the type of virtual machine to use for your training job's master worker. You must specify this field when `scaleTier` is set to `CUSTOM`. You can use certain Compute Engine machine types directly in this field. See the [list of compatible Compute Engine machine types](/ai-platform/training/docs/machine-types#compute-engine-machine-types). Alternatively, you can use the certain legacy machine types in this field. See the [list of legacy machine types](/ai-platform/training/docs/machine-types#legacy-machine-types). Finally, if you want to use a TPU for training, specify `cloud_tpu` in this field. Learn more about the [special configuration options for training with TPUs](/ai-platform/training/docs/using-tpus#configuring_a_custom_tpu_machine).
      */
     masterType?: string | null;
     /**
@@ -1381,7 +1398,7 @@ export namespace ml_v1 {
      */
     acceleratorConfig?: Schema$GoogleCloudMlV1__AcceleratorConfig;
     /**
-     * Automatically scale the number of nodes used to serve the model in response to increases and decreases in traffic. Care should be taken to ramp up traffic according to the model's ability to scale or you will start seeing increases in latency and 429 response codes. Note that you cannot use AutoScaling if your version uses [GPUs](#Version.FIELDS.accelerator_config). Instead, you must use specify `manual_scaling`.
+     * Automatically scale the number of nodes used to serve the model in response to increases and decreases in traffic. Care should be taken to ramp up traffic according to the model's ability to scale or you will start seeing increases in latency and 429 response codes.
      */
     autoScaling?: Schema$GoogleCloudMlV1__AutoScaling;
     /**
@@ -1425,11 +1442,19 @@ export namespace ml_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Output only. The [AI Platform (Unified) `Model`](https://cloud.google.com/ai-platform-unified/docs/reference/rest/v1beta1/projects.locations.models) ID for the last [model migration](https://cloud.google.com/ai-platform-unified/docs/start/migrating-to-ai-platform-unified).
+     */
+    lastMigrationModelId?: string | null;
+    /**
+     * Output only. The last time this version was successfully [migrated to AI Platform (Unified)](https://cloud.google.com/ai-platform-unified/docs/start/migrating-to-ai-platform-unified).
+     */
+    lastMigrationTime?: string | null;
+    /**
      * Output only. The time the version was last used for prediction.
      */
     lastUseTime?: string | null;
     /**
-     * Optional. The type of machine on which to serve the model. Currently only applies to online prediction service. If this field is not specified, it defaults to `mls1-c1-m2`. Online prediction supports the following machine types: * `mls1-c1-m2` * `mls1-c4-m2` * `n1-standard-2` * `n1-standard-4` * `n1-standard-8` * `n1-standard-16` * `n1-standard-32` * `n1-highmem-2` * `n1-highmem-4` * `n1-highmem-8` * `n1-highmem-16` * `n1-highmem-32` * `n1-highcpu-2` * `n1-highcpu-4` * `n1-highcpu-8` * `n1-highcpu-16` * `n1-highcpu-32` `mls1-c4-m2` is in beta. All other machine types are generally available. Learn more about the [differences between machine types](/ml-engine/docs/machine-types-online-prediction).
+     * Optional. The type of machine on which to serve the model. Currently only applies to online prediction service. To learn about valid values for this field, read [Choosing a machine type for online prediction](/ai-platform/prediction/docs/machine-types-online-prediction). If this field is not specified and you are using a [regional endpoint](/ai-platform/prediction/docs/regional-endpoints), then the machine type defaults to `n1-standard-2`. If this field is not specified and you are using the global endpoint (`ml.googleapis.com`), then the machine type defaults to `mls1-c1-m2`.
      */
     machineType?: string | null;
     /**
@@ -7576,6 +7601,8 @@ export namespace ml_v1 {
      *       //   "framework": "my_framework",
      *       //   "isDefault": false,
      *       //   "labels": {},
+     *       //   "lastMigrationModelId": "my_lastMigrationModelId",
+     *       //   "lastMigrationTime": "my_lastMigrationTime",
      *       //   "lastUseTime": "my_lastUseTime",
      *       //   "machineType": "my_machineType",
      *       //   "manualScaling": {},
@@ -7888,6 +7915,8 @@ export namespace ml_v1 {
      *   //   "framework": "my_framework",
      *   //   "isDefault": false,
      *   //   "labels": {},
+     *   //   "lastMigrationModelId": "my_lastMigrationModelId",
+     *   //   "lastMigrationTime": "my_lastMigrationTime",
      *   //   "lastUseTime": "my_lastUseTime",
      *   //   "machineType": "my_machineType",
      *   //   "manualScaling": {},
@@ -8198,6 +8227,8 @@ export namespace ml_v1 {
      *       //   "framework": "my_framework",
      *       //   "isDefault": false,
      *       //   "labels": {},
+     *       //   "lastMigrationModelId": "my_lastMigrationModelId",
+     *       //   "lastMigrationTime": "my_lastMigrationTime",
      *       //   "lastUseTime": "my_lastUseTime",
      *       //   "machineType": "my_machineType",
      *       //   "manualScaling": {},
@@ -8374,6 +8405,8 @@ export namespace ml_v1 {
      *   //   "framework": "my_framework",
      *   //   "isDefault": false,
      *   //   "labels": {},
+     *   //   "lastMigrationModelId": "my_lastMigrationModelId",
+     *   //   "lastMigrationTime": "my_lastMigrationTime",
      *   //   "lastUseTime": "my_lastUseTime",
      *   //   "machineType": "my_machineType",
      *   //   "manualScaling": {},

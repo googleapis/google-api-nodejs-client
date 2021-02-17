@@ -279,7 +279,7 @@ export namespace datacatalog_v1beta1 {
      */
     linkedResource?: string | null;
     /**
-     * The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\} Note that this Entry and its child resources may not actually be stored in the location in this name.
+     * Output only. The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\} Note that this Entry and its child resources may not actually be stored in the location in this name.
      */
     name?: string | null;
     /**
@@ -597,6 +597,10 @@ export namespace datacatalog_v1beta1 {
      * The full name of the cloud resource the entry belongs to. See: https://cloud.google.com/apis/design/resource_names#full_resource_name. Example: * `//bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId`
      */
     linkedResource?: string | null;
+    /**
+     * Last-modified timestamp of the entry from the managing system.
+     */
+    modifyTime?: string | null;
     /**
      * The relative resource name of the resource in URL format. Examples: * `projects/{project_id\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entries/{entry_id\}` * `projects/{project_id\}/tagTemplates/{tag_template_id\}`
      */
@@ -3331,7 +3335,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.patch({
-     *     // The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\} Note that this Entry and its child resources may not actually be stored in the location in this name.
+     *     // Output only. The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\} Note that this Entry and its child resources may not actually be stored in the location in this name.
      *     name:
      *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
      *     // The fields to update on the entry. If absent or empty, all modifiable fields are updated. The following fields are modifiable: * For entries with type `DATA_STREAM`: * `schema` * For entries with type `FILESET` * `schema` * `display_name` * `description` * `gcs_fileset_spec` * `gcs_fileset_spec.file_patterns` * For entries with `user_specified_type` * `schema` * `display_name` * `description` * user_specified_type * user_specified_system * linked_resource * source_system_timestamps
@@ -3686,7 +3690,7 @@ export namespace datacatalog_v1beta1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entries$Patch
     extends StandardParameters {
     /**
-     * The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\} Note that this Entry and its child resources may not actually be stored in the location in this name.
+     * Output only. The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\} Note that this Entry and its child resources may not actually be stored in the location in this name.
      */
     name?: string;
     /**

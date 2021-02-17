@@ -214,6 +214,19 @@ export namespace pubsub_v1 {
     title?: string | null;
   }
   /**
+   * Response for the `ListSchemas` method.
+   */
+  export interface Schema$ListSchemasResponse {
+    /**
+     * If not empty, indicates that there may be more schemas that match the request; this value should be passed in a new `ListSchemasRequest`.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The resulting schemas.
+     */
+    schemas?: Schema$Schema[];
+  }
+  /**
    * Response for the `ListSnapshots` method.
    */
   export interface Schema$ListSnapshotsResponse {
@@ -452,6 +465,36 @@ export namespace pubsub_v1 {
     minimumBackoff?: string | null;
   }
   /**
+   * A schema resource.
+   */
+  export interface Schema$Schema {
+    /**
+     * The definition of the schema. This should contain a string representing the full definition of the schema that is a valid schema definition of the type specified in `type`.
+     */
+    definition?: string | null;
+    /**
+     * Required. Name of the schema. Format is `projects/{project\}/schemas/{schema\}`.
+     */
+    name?: string | null;
+    /**
+     * The type of the schema definition.
+     */
+    type?: string | null;
+  }
+  /**
+   * Settings for validating messages published against a schema.
+   */
+  export interface Schema$SchemaSettings {
+    /**
+     * The encoding of messages validated against `schema`.
+     */
+    encoding?: string | null;
+    /**
+     * Required. The name of the schema that messages published should be validated against. Format is `projects/{project\}/schemas/{schema\}`. The value of this field will be `_deleted-schema_` if the schema has been deleted.
+     */
+    schema?: string | null;
+  }
+  /**
    * Request for the `Seek` method.
    */
   export interface Schema$SeekRequest {
@@ -593,6 +636,14 @@ export namespace pubsub_v1 {
      * Required. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string | null;
+    /**
+     * Reserved for future use. This field is set only in responses from the server; it is ignored if it is set in any requests.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
+     * Settings for validating messages published against a schema.
+     */
+    schemaSettings?: Schema$SchemaSettings;
   }
   /**
    * Request for the UpdateSnapshot method.
@@ -633,18 +684,984 @@ export namespace pubsub_v1 {
      */
     updateMask?: string | null;
   }
+  /**
+   * Request for the `ValidateMessage` method.
+   */
+  export interface Schema$ValidateMessageRequest {
+    /**
+     * The encoding expected for messages
+     */
+    encoding?: string | null;
+    /**
+     * Message to validate against the provided `schema_spec`.
+     */
+    message?: string | null;
+    /**
+     * Name of the schema against which to validate. Format is `projects/{project\}/schemas/{schema\}`.
+     */
+    name?: string | null;
+    /**
+     * Ad-hoc schema against which to validate
+     */
+    schema?: Schema$Schema;
+  }
+  /**
+   * Response for the `ValidateMessage` method. Empty for now.
+   */
+  export interface Schema$ValidateMessageResponse {}
+  /**
+   * Request for the `ValidateSchema` method.
+   */
+  export interface Schema$ValidateSchemaRequest {
+    /**
+     * Required. The schema object to validate.
+     */
+    schema?: Schema$Schema;
+  }
+  /**
+   * Response for the `ValidateSchema` method. Empty for now.
+   */
+  export interface Schema$ValidateSchemaResponse {}
 
   export class Resource$Projects {
     context: APIRequestContext;
+    schemas: Resource$Projects$Schemas;
     snapshots: Resource$Projects$Snapshots;
     subscriptions: Resource$Projects$Subscriptions;
     topics: Resource$Projects$Topics;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.schemas = new Resource$Projects$Schemas(this.context);
       this.snapshots = new Resource$Projects$Snapshots(this.context);
       this.subscriptions = new Resource$Projects$Subscriptions(this.context);
       this.topics = new Resource$Projects$Topics(this.context);
     }
+  }
+
+  export class Resource$Projects$Schemas {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsub = google.pubsub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/pubsub',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsub.projects.schemas.create({
+     *     // Required. The name of the project in which to create the schema. Format is `projects/{project-id\}`.
+     *     parent: 'projects/my-project',
+     *     // The ID to use for the schema, which will become the final component of the schema's resource name. See https://cloud.google.com/pubsub/docs/admin#resource_names for resource name constraints.
+     *     schemaId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "definition": "my_definition",
+     *       //   "name": "my_name",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "definition": "my_definition",
+     *   //   "name": "my_name",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Schemas$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Schemas$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Schema>;
+    create(
+      params: Params$Resource$Projects$Schemas$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Schemas$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Schema>,
+      callback: BodyResponseCallback<Schema$Schema>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Schemas$Create,
+      callback: BodyResponseCallback<Schema$Schema>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Schema>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Schemas$Create
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Schema> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Schemas$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Schemas$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/schemas').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Schema>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Schema>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsub = google.pubsub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/pubsub',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsub.projects.schemas.delete({
+     *     // Required. Name of the schema to delete. Format is `projects/{project\}/schemas/{schema\}`.
+     *     name: 'projects/my-project/schemas/my-schema',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Schemas$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Schemas$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Schemas$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Schemas$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Schemas$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Schemas$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Schemas$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Schemas$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsub = google.pubsub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/pubsub',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsub.projects.schemas.get({
+     *     // Required. The name of the schema to get. Format is `projects/{project\}/schemas/{schema\}`.
+     *     name: 'projects/my-project/schemas/my-schema',
+     *     // The set of fields to return in the response. If not set, returns a Schema with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all fields.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "definition": "my_definition",
+     *   //   "name": "my_name",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Schemas$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Schemas$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Schema>;
+    get(
+      params: Params$Resource$Projects$Schemas$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Schemas$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Schema>,
+      callback: BodyResponseCallback<Schema$Schema>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Schemas$Get,
+      callback: BodyResponseCallback<Schema$Schema>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Schema>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Schemas$Get
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Schema>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Schema> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Schemas$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Schemas$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Schema>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Schema>(parameters);
+      }
+    }
+
+    /**
+     * Lists schemas in a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsub = google.pubsub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/pubsub',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsub.projects.schemas.list({
+     *     // Maximum number of schemas to return.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListSchemasResponse`; indicates that this is a continuation of a prior `ListSchemas` call, and that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the project in which to list schemas. Format is `projects/{project-id\}`.
+     *     parent: 'projects/my-project',
+     *     // The set of Schema fields to return in the response. If not set, returns Schemas with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all fields.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "schemas": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Schemas$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Schemas$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSchemasResponse>;
+    list(
+      params: Params$Resource$Projects$Schemas$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Schemas$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSchemasResponse>,
+      callback: BodyResponseCallback<Schema$ListSchemasResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Schemas$List,
+      callback: BodyResponseCallback<Schema$ListSchemasResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSchemasResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Schemas$List
+        | BodyResponseCallback<Schema$ListSchemasResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSchemasResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSchemasResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSchemasResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Schemas$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Schemas$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/schemas').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSchemasResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSchemasResponse>(parameters);
+      }
+    }
+
+    /**
+     * Validates a schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsub = google.pubsub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/pubsub',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsub.projects.schemas.validate({
+     *     // Required. The name of the project in which to validate schemas. Format is `projects/{project-id\}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "schema": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    validate(
+      params: Params$Resource$Projects$Schemas$Validate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    validate(
+      params?: Params$Resource$Projects$Schemas$Validate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ValidateSchemaResponse>;
+    validate(
+      params: Params$Resource$Projects$Schemas$Validate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    validate(
+      params: Params$Resource$Projects$Schemas$Validate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ValidateSchemaResponse>,
+      callback: BodyResponseCallback<Schema$ValidateSchemaResponse>
+    ): void;
+    validate(
+      params: Params$Resource$Projects$Schemas$Validate,
+      callback: BodyResponseCallback<Schema$ValidateSchemaResponse>
+    ): void;
+    validate(
+      callback: BodyResponseCallback<Schema$ValidateSchemaResponse>
+    ): void;
+    validate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Schemas$Validate
+        | BodyResponseCallback<Schema$ValidateSchemaResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ValidateSchemaResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ValidateSchemaResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ValidateSchemaResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Schemas$Validate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Schemas$Validate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/schemas:validate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ValidateSchemaResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ValidateSchemaResponse>(parameters);
+      }
+    }
+
+    /**
+     * Validates a message against a schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsub = google.pubsub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/pubsub',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsub.projects.schemas.validateMessage({
+     *     // Required. The name of the project in which to validate schemas. Format is `projects/{project-id\}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "encoding": "my_encoding",
+     *       //   "message": "my_message",
+     *       //   "name": "my_name",
+     *       //   "schema": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    validateMessage(
+      params: Params$Resource$Projects$Schemas$Validatemessage,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    validateMessage(
+      params?: Params$Resource$Projects$Schemas$Validatemessage,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ValidateMessageResponse>;
+    validateMessage(
+      params: Params$Resource$Projects$Schemas$Validatemessage,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    validateMessage(
+      params: Params$Resource$Projects$Schemas$Validatemessage,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ValidateMessageResponse>,
+      callback: BodyResponseCallback<Schema$ValidateMessageResponse>
+    ): void;
+    validateMessage(
+      params: Params$Resource$Projects$Schemas$Validatemessage,
+      callback: BodyResponseCallback<Schema$ValidateMessageResponse>
+    ): void;
+    validateMessage(
+      callback: BodyResponseCallback<Schema$ValidateMessageResponse>
+    ): void;
+    validateMessage(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Schemas$Validatemessage
+        | BodyResponseCallback<Schema$ValidateMessageResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ValidateMessageResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ValidateMessageResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ValidateMessageResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Schemas$Validatemessage;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Schemas$Validatemessage;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/schemas:validateMessage').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ValidateMessageResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ValidateMessageResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Schemas$Create
+    extends StandardParameters {
+    /**
+     * Required. The name of the project in which to create the schema. Format is `projects/{project-id\}`.
+     */
+    parent?: string;
+    /**
+     * The ID to use for the schema, which will become the final component of the schema's resource name. See https://cloud.google.com/pubsub/docs/admin#resource_names for resource name constraints.
+     */
+    schemaId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Schema;
+  }
+  export interface Params$Resource$Projects$Schemas$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the schema to delete. Format is `projects/{project\}/schemas/{schema\}`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Schemas$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the schema to get. Format is `projects/{project\}/schemas/{schema\}`.
+     */
+    name?: string;
+    /**
+     * The set of fields to return in the response. If not set, returns a Schema with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all fields.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Schemas$List
+    extends StandardParameters {
+    /**
+     * Maximum number of schemas to return.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListSchemasResponse`; indicates that this is a continuation of a prior `ListSchemas` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the project in which to list schemas. Format is `projects/{project-id\}`.
+     */
+    parent?: string;
+    /**
+     * The set of Schema fields to return in the response. If not set, returns Schemas with `name` and `type`, but not `definition`. Set to `FULL` to retrieve all fields.
+     */
+    view?: string;
+  }
+  export interface Params$Resource$Projects$Schemas$Validate
+    extends StandardParameters {
+    /**
+     * Required. The name of the project in which to validate schemas. Format is `projects/{project-id\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ValidateSchemaRequest;
+  }
+  export interface Params$Resource$Projects$Schemas$Validatemessage
+    extends StandardParameters {
+    /**
+     * Required. The name of the project in which to validate schemas. Format is `projects/{project-id\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ValidateMessageRequest;
   }
 
   export class Resource$Projects$Snapshots {
@@ -4052,7 +5069,9 @@ export namespace pubsub_v1 {
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
      *       //   "messageStoragePolicy": {},
-     *       //   "name": "my_name"
+     *       //   "name": "my_name",
+     *       //   "satisfiesPzs": false,
+     *       //   "schemaSettings": {}
      *       // }
      *     },
      *   });
@@ -4063,7 +5082,9 @@ export namespace pubsub_v1 {
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "messageStoragePolicy": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "satisfiesPzs": false,
+     *   //   "schemaSettings": {}
      *   // }
      * }
      *
@@ -4322,7 +5343,9 @@ export namespace pubsub_v1 {
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "messageStoragePolicy": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "satisfiesPzs": false,
+     *   //   "schemaSettings": {}
      *   // }
      * }
      *
@@ -4739,7 +5762,9 @@ export namespace pubsub_v1 {
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
      *   //   "messageStoragePolicy": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "satisfiesPzs": false,
+     *   //   "schemaSettings": {}
      *   // }
      * }
      *

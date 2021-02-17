@@ -1918,6 +1918,10 @@ export namespace vision_v1p2beta1 {
      */
     productSearchParams?: Schema$GoogleCloudVisionV1p2beta1ProductSearchParams;
     /**
+     * Parameters for text detection and document text detection.
+     */
+    textDetectionParams?: Schema$GoogleCloudVisionV1p2beta1TextDetectionParams;
+    /**
      * Parameters for web detection.
      */
     webDetectionParams?: Schema$GoogleCloudVisionV1p2beta1WebDetectionParams;
@@ -2359,6 +2363,15 @@ export namespace vision_v1p2beta1 {
      * A list of detected languages together with confidence.
      */
     detectedLanguages?: Schema$GoogleCloudVisionV1p2beta1TextAnnotationDetectedLanguage[];
+  }
+  /**
+   * Parameters for text detections. This is used to control TEXT_DETECTION and DOCUMENT_TEXT_DETECTION features.
+   */
+  export interface Schema$GoogleCloudVisionV1p2beta1TextDetectionParams {
+    /**
+     * By default, Cloud Vision API only includes confidence score for DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence score for TEXT_DETECTION as well.
+     */
+    enableTextDetectionConfidenceScore?: boolean | null;
   }
   /**
    * A vertex represents a 2D point in the image. NOTE: the vertex coordinates are in the same scale as the original image.

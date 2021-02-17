@@ -911,7 +911,7 @@
                   "type": "string"
                 },
                 "id": {
-                  "description": "The ID of the message to retrieve.",
+                  "description": "The ID of the message to retrieve. This ID is usually retrieved using `messages.list`. The ID is also contained in the result when a message is inserted (`messages.insert`) or imported (`messages.import`).",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2682,7 +2682,7 @@
       }
     }
   },
-  "revision": "20200919",
+  "revision": "20210213",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {

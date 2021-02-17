@@ -124,19 +124,19 @@ export namespace documentai_v1beta3 {
   }
 
   /**
-   * The long running operation metadata for CreateLabelerPool.
+   * The common metadata for long running operations.
    */
-  export interface Schema$GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata {
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata {
     /**
      * The creation time of the operation.
      */
     createTime?: string | null;
     /**
-     * Used only when Operation.done is false.
+     * The state of the operation.
      */
     state?: string | null;
     /**
-     * A message providing more details about the current state of processing. For example, the error message if the operation is failed.
+     * A message providing more details about the current state of processing.
      */
     stateMessage?: string | null;
     /**
@@ -145,84 +145,62 @@ export namespace documentai_v1beta3 {
     updateTime?: string | null;
   }
   /**
-   * The metadata that represents a processor version being created.
+   * The long running operation metadata for CreateLabelerPool.
    */
-  export interface Schema$GoogleCloudDocumentaiUiv1beta3CreateProcessorVersionMetadata {
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3CreateLabelerPoolOperationMetadata {
     /**
-     * The creation time of the operation.
+     * The basic metadata of the long running operation.
      */
-    createTime?: string | null;
-    /**
-     * The state of the current disable processor operation.
-     */
-    state?: string | null;
-    /**
-     * The last update time of the operation.
-     */
-    updateTime?: string | null;
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
    * The long running operation metadata for DeleteLabelerPool.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DeleteLabelerPoolOperationMetadata {
     /**
-     * The creation time of the operation.
+     * The basic metadata of the long running operation.
      */
-    createTime?: string | null;
-    /**
-     * Used only when Operation.done is false.
-     */
-    state?: string | null;
-    /**
-     * A message providing more details about the current state of processing. For example, the error message if the operation is failed.
-     */
-    stateMessage?: string | null;
-    /**
-     * The last update time of the operation.
-     */
-    updateTime?: string | null;
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
    * The long running operation metadata for delete processor method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DeleteProcessorMetadata {
     /**
-     * The creation time of the operation.
+     * The basic metadata of the long running operation.
      */
-    createTime?: string | null;
-    /**
-     * The state of the current delete processor operation.
-     */
-    state?: string | null;
-    /**
-     * A message providing more details about the current state of processing. For example, the error message if the operation is failed.
-     */
-    stateMessage?: string | null;
-    /**
-     * The last update time of the operation.
-     */
-    updateTime?: string | null;
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
+  /**
+   * The long running operation metadata for delete processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DeleteProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for deploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
+  /**
+   * Response message for the deploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3DeployProcessorVersionResponse {}
   /**
    * The long running operation metadata for disable processor method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3DisableProcessorMetadata {
     /**
-     * The creation time of the operation.
+     * The basic metadata of the long running operation.
      */
-    createTime?: string | null;
-    /**
-     * The state of the current disable processor operation.
-     */
-    state?: string | null;
-    /**
-     * A message providing more details about the current state of processing. For example, the error message if the operation is failed.
-     */
-    stateMessage?: string | null;
-    /**
-     * The last update time of the operation.
-     */
-    updateTime?: string | null;
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
    * Response message for the disable processor method. Intentionally empty proto for adding fields in future.
@@ -233,36 +211,116 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3EnableProcessorMetadata {
     /**
-     * The creation time of the operation.
+     * The basic metadata of the long running operation.
      */
-    createTime?: string | null;
-    /**
-     * The state of the current enable processor operation.
-     */
-    state?: string | null;
-    /**
-     * A message providing more details about the current state of processing. For example, the error message if the operation is failed.
-     */
-    stateMessage?: string | null;
-    /**
-     * The last update time of the operation.
-     */
-    updateTime?: string | null;
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
   }
   /**
    * Response message for the enable processor method. Intentionally empty proto for adding fields in future.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3EnableProcessorResponse {}
   /**
+   * Metadata of the EvaluateProcessorVersion method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
+  /**
+   * Metadata of the EvaluateProcessorVersion method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3EvaluateProcessorVersionResponse {
+    /**
+     * The resource name of the created evaluation.
+     */
+    evaluation?: string | null;
+  }
+  /**
+   * The metadata that represents a processor version being created.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+    /**
+     * The test dataset validation information.
+     */
+    testDatasetValidation?: Schema$GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation;
+    /**
+     * The training dataset validation information.
+     */
+    trainingDatasetValidation?: Schema$GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation;
+  }
+  /**
+   * The dataset validation information. This includes any and all errors with documents and the dataset.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation {
+    /**
+     * Error information for the dataset as a whole. A maximum of 10 dataset errors will be returned. A single dataset error is terminal for training.
+     */
+    datasetErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * Error information pertaining to specific documents. A maximum of 10 document errors will be returned. Any document with errors will not be used throughout training.
+     */
+    documentErrors?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * The response for the TrainProcessorVersion method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionResponse {
+    /**
+     * The resource name of the processor version produced by training.
+     */
+    processorVersion?: string | null;
+  }
+  /**
+   * The long running operation metadata for the undeploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
+  /**
+   * Response message for the undeploy processor version method.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3UndeployProcessorVersionResponse {}
+  /**
+   * The long running operation metadata for updating the human review configuration.
+   */
+  export interface Schema$GoogleCloudDocumentaiUiv1beta3UpdateHumanReviewConfigMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
+  /**
    * The long running operation metadata for UpdateLabelerPool.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3UpdateLabelerPoolOperationMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for batch process method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1BatchProcessMetadata {
     /**
      * The creation time of the operation.
      */
     createTime?: string | null;
     /**
-     * Used only when Operation.done is false.
+     * The list of response details of each document.
+     */
+    individualProcessStatuses?: Schema$GoogleCloudDocumentaiV1BatchProcessMetadataIndividualProcessStatus[];
+    /**
+     * The state of the current batch processing.
      */
     state?: string | null;
     /**
@@ -274,6 +332,31 @@ export namespace documentai_v1beta3 {
      */
     updateTime?: string | null;
   }
+  /**
+   * The status of a each individual document in the batch process.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1BatchProcessMetadataIndividualProcessStatus {
+    /**
+     * The status of human review on the processed document.
+     */
+    humanReviewStatus?: Schema$GoogleCloudDocumentaiV1HumanReviewStatus;
+    /**
+     * The source of the document, same as the [input_gcs_source] field in the request when the batch process started. The batch process is started by take snapshot of that document, since a user can move or change that document during the process.
+     */
+    inputGcsSource?: string | null;
+    /**
+     * The output_gcs_destination (in the request as 'output_gcs_destination') of the processed document if it was successful, otherwise empty.
+     */
+    outputGcsDestination?: string | null;
+    /**
+     * The status of the processing of the document.
+     */
+    status?: Schema$GoogleRpcStatus;
+  }
+  /**
+   * Response message for batch process document method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1BatchProcessResponse {}
   /**
    * Response to an batch document processing request. This is returned in the LRO Operation after the operation is complete.
    */
@@ -407,19 +490,19 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1DocumentEntityNormalizedValue {
     /**
-     * Postal address. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/postal_address.proto
+     * Postal address. See also: https://github.com/googleapis/googleapis/blob/master/google/type/postal_address.proto
      */
     addressValue?: Schema$GoogleTypePostalAddress;
     /**
-     * DateTime value. Includes date, time, and timezone. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/datetime.proto
+     * DateTime value. Includes date, time, and timezone. See also: https://github.com/googleapis/googleapis/blob/master/google/type/datetime.proto
      */
     datetimeValue?: Schema$GoogleTypeDateTime;
     /**
-     * Date value. Includes year, month, day. See also: https: //github.com/googleapis/googleapis/blob/master/google/type/date.proto
+     * Date value. Includes year, month, day. See also: https://github.com/googleapis/googleapis/blob/master/google/type/date.proto
      */
     dateValue?: Schema$GoogleTypeDate;
     /**
-     * Money value. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/money.proto
+     * Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
@@ -527,7 +610,7 @@ export namespace documentai_v1beta3 {
      */
     layoutType?: string | null;
     /**
-     * Required. Index into the Document.pages element
+     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.
      */
     page?: string | null;
   }
@@ -1236,19 +1319,19 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2DocumentEntityNormalizedValue {
     /**
-     * Postal address. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/postal_address.proto
+     * Postal address. See also: https://github.com/googleapis/googleapis/blob/master/google/type/postal_address.proto
      */
     addressValue?: Schema$GoogleTypePostalAddress;
     /**
-     * DateTime value. Includes date, time, and timezone. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/datetime.proto
+     * DateTime value. Includes date, time, and timezone. See also: https://github.com/googleapis/googleapis/blob/master/google/type/datetime.proto
      */
     datetimeValue?: Schema$GoogleTypeDateTime;
     /**
-     * Date value. Includes year, month, day. See also: https: //github.com/googleapis/googleapis/blob/master/google/type/date.proto
+     * Date value. Includes year, month, day. See also: https://github.com/googleapis/googleapis/blob/master/google/type/date.proto
      */
     dateValue?: Schema$GoogleTypeDate;
     /**
-     * Money value. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/money.proto
+     * Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
@@ -1373,7 +1456,7 @@ export namespace documentai_v1beta3 {
      */
     layoutType?: string | null;
     /**
-     * Required. Index into the Document.pages element
+     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.
      */
     page?: string | null;
   }
@@ -1983,6 +2066,10 @@ export namespace documentai_v1beta3 {
      */
     humanReviewOperation?: string | null;
     /**
+     * The status of human review on the processed document.
+     */
+    humanReviewStatus?: Schema$GoogleCloudDocumentaiV1beta3HumanReviewStatus;
+    /**
      * The source of the document, same as the [input_gcs_source] field in the request when the batch process started. The batch process is started by take snapshot of that document, since a user can move or change that document during the process.
      */
     inputGcsSource?: string | null;
@@ -2000,13 +2087,25 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3BatchProcessRequest {
     /**
+     * The overall output config for batch process.
+     */
+    documentOutputConfig?: Schema$GoogleCloudDocumentaiV1beta3DocumentOutputConfig;
+    /**
      * The input config for each single document in the batch process.
      */
     inputConfigs?: Schema$GoogleCloudDocumentaiV1beta3BatchProcessRequestBatchInputConfig[];
     /**
+     * The input documents for batch process.
+     */
+    inputDocuments?: Schema$GoogleCloudDocumentaiV1beta3BatchProcessRequestBatchInputConfig;
+    /**
      * The overall output config for batch process.
      */
     outputConfig?: Schema$GoogleCloudDocumentaiV1beta3BatchProcessRequestBatchOutputConfig;
+    /**
+     * Whether Human Review feature should be skipped for this request. Default to false.
+     */
+    skipHumanReview?: boolean | null;
   }
   /**
    * The message for input config in batch process.
@@ -2046,6 +2145,27 @@ export namespace documentai_v1beta3 {
      * The bounding polygon vertices.
      */
     vertices?: Schema$GoogleCloudDocumentaiV1beta3Vertex[];
+  }
+  /**
+   * The common metadata for long running operations.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata {
+    /**
+     * The creation time of the operation.
+     */
+    createTime?: string | null;
+    /**
+     * The state of the operation.
+     */
+    state?: string | null;
+    /**
+     * A message providing more details about the current state of processing.
+     */
+    stateMessage?: string | null;
+    /**
+     * The last update time of the operation.
+     */
+    updateTime?: string | null;
   }
   /**
    * Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.
@@ -2158,19 +2278,19 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DocumentEntityNormalizedValue {
     /**
-     * Postal address. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/postal_address.proto
+     * Postal address. See also: https://github.com/googleapis/googleapis/blob/master/google/type/postal_address.proto
      */
     addressValue?: Schema$GoogleTypePostalAddress;
     /**
-     * DateTime value. Includes date, time, and timezone. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/datetime.proto
+     * DateTime value. Includes date, time, and timezone. See also: https://github.com/googleapis/googleapis/blob/master/google/type/datetime.proto
      */
     datetimeValue?: Schema$GoogleTypeDateTime;
     /**
-     * Date value. Includes year, month, day. See also: https: //github.com/googleapis/googleapis/blob/master/google/type/date.proto
+     * Date value. Includes year, month, day. See also: https://github.com/googleapis/googleapis/blob/master/google/type/date.proto
      */
     dateValue?: Schema$GoogleTypeDate;
     /**
-     * Money value. See also: https: //github.com/googleapis/googleapis/blob/ // master/google/type/money.proto
+     * Money value. See also: https://github.com/googleapis/googleapis/blob/master/google/type/money.proto
      */
     moneyValue?: Schema$GoogleTypeMoney;
     /**
@@ -2194,6 +2314,24 @@ export namespace documentai_v1beta3 {
      * Subject entity id.
      */
     subjectId?: string | null;
+  }
+  /**
+   * Config that controls the output of documents. All documents will be written as a JSON file.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentOutputConfig {
+    /**
+     * Output config to write the results to Cloud Storage.
+     */
+    gcsOutputConfig?: Schema$GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfig;
+  }
+  /**
+   * The configuration used when outputting documents.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DocumentOutputConfigGcsOutputConfig {
+    /**
+     * The Cloud Storage uri (a directory) of the output.
+     */
+    gcsUri?: string | null;
   }
   /**
    * A page in a Document.
@@ -2278,7 +2416,7 @@ export namespace documentai_v1beta3 {
      */
     layoutType?: string | null;
     /**
-     * Required. Index into the Document.pages element
+     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.
      */
     page?: string | null;
   }
@@ -2753,6 +2891,23 @@ export namespace documentai_v1beta3 {
     translatedText?: string | null;
   }
   /**
+   * The status of human review on a processed document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3HumanReviewStatus {
+    /**
+     * The name of the operation triggered by the processed document. This field is populated only when the [state] is [HUMAN_REVIEW_IN_PROGRESS]. It has the same response type and metadata as the long running operation returned by [ReviewDocument] method.
+     */
+    humanReviewOperation?: string | null;
+    /**
+     * The state of human review on the processing request.
+     */
+    state?: string | null;
+    /**
+     * A message providing more details about the human review state.
+     */
+    stateMessage?: string | null;
+  }
+  /**
    * A vertex represents a 2D point in the image. NOTE: the normalized vertex coordinates are relative to the original image and range from 0 to 1.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3NormalizedVertex {
@@ -2774,6 +2929,14 @@ export namespace documentai_v1beta3 {
      */
     document?: Schema$GoogleCloudDocumentaiV1beta3Document;
     /**
+     * An inline document proto.
+     */
+    inlineDocument?: Schema$GoogleCloudDocumentaiV1beta3Document;
+    /**
+     * A raw document content (bytes).
+     */
+    rawDocument?: Schema$GoogleCloudDocumentaiV1beta3RawDocument;
+    /**
      * Whether Human Review feature should be skipped for this request. Default to false.
      */
     skipHumanReview?: boolean | null;
@@ -2790,11 +2953,32 @@ export namespace documentai_v1beta3 {
      * The name of the operation triggered by the processed document. If the human review process is not triggered, this field will be empty. It has the same response type and metadata as the long running operation returned by ReviewDocument method.
      */
     humanReviewOperation?: string | null;
+    /**
+     * The status of human review on the processed document.
+     */
+    humanReviewStatus?: Schema$GoogleCloudDocumentaiV1beta3HumanReviewStatus;
+  }
+  /**
+   * Payload message of raw document content (bytes).
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3RawDocument {
+    /**
+     * Inline document content.
+     */
+    content?: string | null;
+    /**
+     * An IANA MIME type (RFC6838) indicating the nature and format of the [content].
+     */
+    mimeType?: string | null;
   }
   /**
    * The long running operation metadata for review document method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ReviewDocumentOperationMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
     /**
      * The creation time of the operation.
      */
@@ -2820,6 +3004,10 @@ export namespace documentai_v1beta3 {
      * The document that needs human review.
      */
     document?: Schema$GoogleCloudDocumentaiV1beta3Document;
+    /**
+     * An inline document proto.
+     */
+    inlineDocument?: Schema$GoogleCloudDocumentaiV1beta3Document;
   }
   /**
    * Response message for review document method.
@@ -2842,6 +3030,62 @@ export namespace documentai_v1beta3 {
      * Y coordinate.
      */
     y?: number | null;
+  }
+  /**
+   * The common metadata for long running operations.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1CommonOperationMetadata {
+    /**
+     * The creation time of the operation.
+     */
+    createTime?: string | null;
+    /**
+     * The state of the operation.
+     */
+    state?: string | null;
+    /**
+     * A message providing more details about the current state of processing.
+     */
+    stateMessage?: string | null;
+    /**
+     * The last update time of the operation.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The status of human review on a processed document.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1HumanReviewStatus {
+    /**
+     * The name of the operation triggered by the processed document. This field is populated only when the [state] is [HUMAN_REVIEW_IN_PROGRESS]. It has the same response type and metadata as the long running operation returned by [ReviewDocument] method.
+     */
+    humanReviewOperation?: string | null;
+    /**
+     * The state of human review on the processing request.
+     */
+    state?: string | null;
+    /**
+     * A message providing more details about the human review state.
+     */
+    stateMessage?: string | null;
+  }
+  /**
+   * The long running operation metadata for review document method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1ReviewDocumentOperationMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
+  }
+  /**
+   * Response message for review document method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1ReviewDocumentResponse {
+    /**
+     * The Cloud Storage uri for the human reviewed document.
+     */
+    gcsDestination?: string | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -2949,24 +3193,24 @@ export namespace documentai_v1beta3 {
     red?: number | null;
   }
   /**
-   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$GoogleTypeDate {
     /**
-     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
     day?: number | null;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      */
     month?: number | null;
     /**
-     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
   }
   /**
-   * Represents civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year is 0, the DateTime is considered not to have a specific year. month and day must have valid, non-zero values. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.
+   * Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year is 0, the DateTime is considered not to have a specific year. month and day must have valid, non-zero values. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.
    */
   export interface Schema$GoogleTypeDateTime {
     /**
@@ -3011,7 +3255,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleTypeMoney {
     /**
-     * The 3-letter currency code defined in ISO 4217.
+     * The three-letter currency code defined in ISO 4217.
      */
     currencyCode?: string | null;
     /**
@@ -3580,9 +3824,13 @@ export namespace documentai_v1beta3 {
   export class Resource$Projects$Locations$Processors {
     context: APIRequestContext;
     humanReviewConfig: Resource$Projects$Locations$Processors$Humanreviewconfig;
+    processorVersions: Resource$Projects$Locations$Processors$Processorversions;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.humanReviewConfig = new Resource$Projects$Locations$Processors$Humanreviewconfig(
+        this.context
+      );
+      this.processorVersions = new Resource$Projects$Locations$Processors$Processorversions(
         this.context
       );
     }
@@ -3614,15 +3862,18 @@ export namespace documentai_v1beta3 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.processors.batchProcess({
-     *     // Required. The processor resource name.
+     *     // Required. The resource name of Processor or ProcessorVersion. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVerions/{processorVersion\}
      *     name: 'projects/my-project/locations/my-location/processors/my-processor',
      *
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "documentOutputConfig": {},
      *       //   "inputConfigs": [],
-     *       //   "outputConfig": {}
+     *       //   "inputDocuments": {},
+     *       //   "outputConfig": {},
+     *       //   "skipHumanReview": false
      *       // }
      *     },
      *   });
@@ -3763,7 +4014,7 @@ export namespace documentai_v1beta3 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.processors.process({
-     *     // Required. The processor resource name.
+     *     // Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVerions/{processorVersion\}
      *     name: 'projects/my-project/locations/my-location/processors/my-processor',
      *
      *     // Request body metadata
@@ -3771,6 +4022,8 @@ export namespace documentai_v1beta3 {
      *       // request body parameters
      *       // {
      *       //   "document": {},
+     *       //   "inlineDocument": {},
+     *       //   "rawDocument": {},
      *       //   "skipHumanReview": false
      *       // }
      *     },
@@ -3780,7 +4033,8 @@ export namespace documentai_v1beta3 {
      *   // Example response
      *   // {
      *   //   "document": {},
-     *   //   "humanReviewOperation": "my_humanReviewOperation"
+     *   //   "humanReviewOperation": "my_humanReviewOperation",
+     *   //   "humanReviewStatus": {}
      *   // }
      * }
      *
@@ -3902,7 +4156,7 @@ export namespace documentai_v1beta3 {
   export interface Params$Resource$Projects$Locations$Processors$Batchprocess
     extends StandardParameters {
     /**
-     * Required. The processor resource name.
+     * Required. The resource name of Processor or ProcessorVersion. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVerions/{processorVersion\}
      */
     name?: string;
 
@@ -3914,7 +4168,7 @@ export namespace documentai_v1beta3 {
   export interface Params$Resource$Projects$Locations$Processors$Process
     extends StandardParameters {
     /**
-     * Required. The processor resource name.
+     * Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVerions/{processorVersion\}
      */
     name?: string;
 
@@ -3966,7 +4220,8 @@ export namespace documentai_v1beta3 {
      *       requestBody: {
      *         // request body parameters
      *         // {
-     *         //   "document": {}
+     *         //   "document": {},
+     *         //   "inlineDocument": {}
      *         // }
      *       },
      *     }
@@ -4092,5 +4347,360 @@ export namespace documentai_v1beta3 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDocumentaiV1beta3ReviewDocumentRequest;
+  }
+
+  export class Resource$Projects$Locations$Processors$Processorversions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * LRO endpoint to batch process many documents. The output is written to Cloud Storage as JSON in the [Document] format.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.processors.processorVersions.batchProcess(
+     *     {
+     *       // Required. The resource name of Processor or ProcessorVersion. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVerions/{processorVersion\}
+     *       name:
+     *         'projects/my-project/locations/my-location/processors/my-processor/processorVersions/my-processorVersion',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "documentOutputConfig": {},
+     *         //   "inputConfigs": [],
+     *         //   "inputDocuments": {},
+     *         //   "outputConfig": {},
+     *         //   "skipHumanReview": false
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchProcess(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchProcess(
+      params?: Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    batchProcess(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchProcess(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchProcess(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchProcess(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    batchProcess(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+name}:batchProcess').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Processes a single document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.processors.processorVersions.process(
+     *     {
+     *       // Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVerions/{processorVersion\}
+     *       name:
+     *         'projects/my-project/locations/my-location/processors/my-processor/processorVersions/my-processorVersion',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "document": {},
+     *         //   "inlineDocument": {},
+     *         //   "rawDocument": {},
+     *         //   "skipHumanReview": false
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "document": {},
+     *   //   "humanReviewOperation": "my_humanReviewOperation",
+     *   //   "humanReviewStatus": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    process(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Process,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    process(
+      params?: Params$Resource$Projects$Locations$Processors$Processorversions$Process,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>;
+    process(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Process,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    process(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Process,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
+      >
+    ): void;
+    process(
+      params: Params$Resource$Projects$Locations$Processors$Processorversions$Process,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
+      >
+    ): void;
+    process(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
+      >
+    ): void;
+    process(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Processors$Processorversions$Process
+        | BodyResponseCallback<
+            Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
+          >
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Processors$Processorversions$Process;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Processors$Processorversions$Process;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+name}:process').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<
+          Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
+        >(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess
+    extends StandardParameters {
+    /**
+     * Required. The resource name of Processor or ProcessorVersion. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVerions/{processorVersion\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDocumentaiV1beta3BatchProcessRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Processors$Processorversions$Process
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVerions/{processorVersion\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDocumentaiV1beta3ProcessRequest;
   }
 }

@@ -118,6 +118,8 @@ export namespace dns_v1beta2 {
     policies: Resource$Policies;
     projects: Resource$Projects;
     resourceRecordSets: Resource$Resourcerecordsets;
+    responsePolicies: Resource$Responsepolicies;
+    responsePolicyRules: Resource$Responsepolicyrules;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -134,6 +136,8 @@ export namespace dns_v1beta2 {
       this.policies = new Resource$Policies(this.context);
       this.projects = new Resource$Projects(this.context);
       this.resourceRecordSets = new Resource$Resourcerecordsets(this.context);
+      this.responsePolicies = new Resource$Responsepolicies(this.context);
+      this.responsePolicyRules = new Resource$Responsepolicyrules(this.context);
     }
   }
 
@@ -374,6 +378,10 @@ export namespace dns_v1beta2 {
      * IPv4 address of a target name server.
      */
     ipv4Address?: string | null;
+    /**
+     * IPv6 address of a target name server. Will not accept both fields (ipv4 & ipv6) being populated.
+     */
+    ipv6Address?: string | null;
     kind?: string | null;
   }
   export interface Schema$ManagedZoneOperationsListResponse {
@@ -586,6 +594,10 @@ export namespace dns_v1beta2 {
      * IPv4 address to forward to.
      */
     ipv4Address?: string | null;
+    /**
+     * IPv6 address to forward to. Will not accept both fields (ipv4 & ipv6) being populated.
+     */
+    ipv6Address?: string | null;
     kind?: string | null;
   }
   export interface Schema$PolicyNetwork {
@@ -621,10 +633,6 @@ export namespace dns_v1beta2 {
      * Maximum allowed number of DnsKeys per ManagedZone.
      */
     dnsKeysPerManagedZone?: number | null;
-    /**
-     * Maximum allowed number of GKE clusters per policy.
-     */
-    gkeClustersPerPolicy?: number | null;
     kind?: string | null;
     /**
      * Maximum allowed number of managed zones in the project.
@@ -650,6 +658,10 @@ export namespace dns_v1beta2 {
      * Maximum allowed number of ResourceRecords per ResourceRecordSet.
      */
     resourceRecordsPerRrset?: number | null;
+    /**
+     * Maximum allowed number of rules per response policy.
+     */
+    responsePolicyRulesPerResponsePolicy?: number | null;
     /**
      * Maximum allowed number of ResourceRecordSets to add per ChangesCreateRequest.
      */
@@ -689,10 +701,6 @@ export namespace dns_v1beta2 {
      */
     name?: string | null;
     /**
-     * Configures dynamic query responses based on geo location of querying user or a weighted round robin based routing policy. A ResourceRecordSet should only have either rrdata (static) or routing_policy(dynamic). An error is returned otherwise.
-     */
-    routingPolicy?: Schema$RRSetRoutingPolicy;
-    /**
      * As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) -- see examples.
      */
     rrdatas?: string[] | null;
@@ -709,9 +717,11 @@ export namespace dns_v1beta2 {
      */
     type?: string | null;
   }
-  export interface Schema$ResourceRecordSetsDeleteResponse {}
   export interface Schema$ResourceRecordSetsListResponse {
     header?: Schema$ResponseHeader;
+    /**
+     * Type of resource.
+     */
     kind?: string | null;
     /**
      * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
@@ -731,52 +741,100 @@ export namespace dns_v1beta2 {
      */
     operationId?: string | null;
   }
+  export interface Schema$ResponsePoliciesListResponse {
+    header?: Schema$ResponseHeader;
+    /**
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The Response Policy resources.
+     */
+    responsePolicies?: Schema$ResponsePolicy[];
+  }
+  export interface Schema$ResponsePoliciesPatchResponse {
+    header?: Schema$ResponseHeader;
+    responsePolicy?: Schema$ResponsePolicy;
+  }
+  export interface Schema$ResponsePoliciesUpdateResponse {
+    header?: Schema$ResponseHeader;
+    responsePolicy?: Schema$ResponsePolicy;
+  }
   /**
-   * A RRSetRoutingPolicy represents ResourceRecordSet data that will be returned dynamically with the response varying based on configured properties such as geolocation or by weighted random selection.
+   * A Response Policy is a collection of selectors that apply to queries made against one or more Virtual Private Cloud networks.
    */
-  export interface Schema$RRSetRoutingPolicy {
-    geoPolicy?: Schema$RRSetRoutingPolicyGeoPolicy;
+  export interface Schema$ResponsePolicy {
+    /**
+     * User-provided description for this Response Policy.
+     */
+    description?: string | null;
+    /**
+     * Unique identifier for the resource; defined by the server (output only).
+     */
+    id?: string | null;
     kind?: string | null;
-    wrrPolicy?: Schema$RRSetRoutingPolicyWrrPolicy;
+    /**
+     * List of network names specifying networks to which this policy is applied.
+     */
+    networks?: Schema$ResponsePolicyNetwork[];
+    /**
+     * User assigned name for this Response Policy.
+     */
+    responsePolicyName?: string | null;
   }
-  export interface Schema$RRSetRoutingPolicyGeoPolicy {
-    /**
-     * If the health check for the primary target for a geo location returns an unhealthy status, the failover target is returned instead. This failover configuration is not mandatory. If a failover is not provided, the primary target won't be healthchecked - we'll return the primarily configured rrdata irrespective of whether it is healthy or not.
-     */
-    failovers?: Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem[];
-    /**
-     * The primary geo routing configuration. If there are multiple items with the same location, an error is returned instead.
-     */
-    items?: Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem[];
+  export interface Schema$ResponsePolicyNetwork {
     kind?: string | null;
+    /**
+     * The fully qualified URL of the VPC network to bind to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\}
+     */
+    networkUrl?: string | null;
   }
-  export interface Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem {
+  /**
+   * A Response Policy Rule is a selector that applies its behavior to queries that match the selector. Selectors are DNS names, which may be wildcards or exact matches. Each DNS query subject to a Response Policy matches at most one ResponsePolicyRule, as identified by the dns_name field with the longest matching suffix.
+   */
+  export interface Schema$ResponsePolicyRule {
+    /**
+     * Answer this query with a behavior rather than DNS data.
+     */
+    behavior?: string | null;
+    /**
+     * The DNS name (wildcard or exact) to apply this rule to. Must be unique within the Response Policy Rule.
+     */
+    dnsName?: string | null;
     kind?: string | null;
     /**
-     * The geo-location granularity is a GCP region. This location string should correspond to a GCP region. e.g "us-east1", "southamerica-east1", "asia-east1", etc.
+     * Answer this query directly with DNS data. These ResourceRecordSets override any other DNS behavior for the matched name; in particular they override private zones, the public internet, and GCP internal DNS. No SOA nor NS types are allowed.
      */
-    location?: string | null;
-    rrdatas?: string[] | null;
+    localData?: Schema$ResponsePolicyRuleLocalData;
     /**
-     * DNSSEC generated signatures for the above geo_rrdata.
+     * An identifier for this rule. Must be unique with the ResponsePolicy.
      */
-    signatureRrdatas?: string[] | null;
+    ruleName?: string | null;
   }
-  export interface Schema$RRSetRoutingPolicyWrrPolicy {
-    items?: Schema$RRSetRoutingPolicyWrrPolicyWrrPolicyItem[];
-    kind?: string | null;
+  export interface Schema$ResponsePolicyRuleLocalData {
+    /**
+     * All resource record sets for this selector, one per resource record type. The name must match the dns_name.
+     */
+    localDatas?: Schema$ResourceRecordSet[];
   }
-  export interface Schema$RRSetRoutingPolicyWrrPolicyWrrPolicyItem {
-    kind?: string | null;
-    rrdatas?: string[] | null;
+  export interface Schema$ResponsePolicyRulesListResponse {
+    header?: Schema$ResponseHeader;
     /**
-     * DNSSEC generated signatures for the above wrr_rrdata.
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
-    signatureRrdatas?: string[] | null;
+    nextPageToken?: string | null;
     /**
-     * The weight corresponding to this subset of rrdata. When multiple WeightedRoundRobinPolicyItems are configured, the probability of returning an rrset is proportional to its weight relative to the sum of weights configured for all items. This weight should be a decimal in the range [0,1].
+     * The Response Policy Rule resources.
      */
-    weight?: number | null;
+    responsePolicyRules?: Schema$ResponsePolicyRule[];
+  }
+  export interface Schema$ResponsePolicyRulesPatchResponse {
+    header?: Schema$ResponseHeader;
+    responsePolicyRule?: Schema$ResponsePolicyRule;
+  }
+  export interface Schema$ResponsePolicyRulesUpdateResponse {
+    header?: Schema$ResponseHeader;
+    responsePolicyRule?: Schema$ResponsePolicyRule;
   }
 
   export class Resource$Changes {
@@ -4242,7 +4300,6 @@ export namespace dns_v1beta2 {
      *       // {
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
-     *       //   "routingPolicy": {},
      *       //   "rrdatas": [],
      *       //   "signatureRrdatas": [],
      *       //   "ttl": 0,
@@ -4256,7 +4313,6 @@ export namespace dns_v1beta2 {
      *   // {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "routingPolicy": {},
      *   //   "rrdatas": [],
      *   //   "signatureRrdatas": [],
      *   //   "ttl": 0,
@@ -4400,9 +4456,6 @@ export namespace dns_v1beta2 {
      *     type: 'placeholder-value',
      *   });
      *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
      * }
      *
      * main().catch(e => {
@@ -4424,7 +4477,7 @@ export namespace dns_v1beta2 {
     delete(
       params?: Params$Resource$Projects$Managedzones$Rrsets$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ResourceRecordSetsDeleteResponse>;
+    ): GaxiosPromise<void>;
     delete(
       params: Params$Resource$Projects$Managedzones$Rrsets$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4432,35 +4485,26 @@ export namespace dns_v1beta2 {
     ): void;
     delete(
       params: Params$Resource$Projects$Managedzones$Rrsets$Delete,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ResourceRecordSetsDeleteResponse>,
-      callback: BodyResponseCallback<Schema$ResourceRecordSetsDeleteResponse>
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
     ): void;
     delete(
       params: Params$Resource$Projects$Managedzones$Rrsets$Delete,
-      callback: BodyResponseCallback<Schema$ResourceRecordSetsDeleteResponse>
+      callback: BodyResponseCallback<void>
     ): void;
-    delete(
-      callback: BodyResponseCallback<Schema$ResourceRecordSetsDeleteResponse>
-    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Managedzones$Rrsets$Delete
-        | BodyResponseCallback<Schema$ResourceRecordSetsDeleteResponse>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ResourceRecordSetsDeleteResponse>
+        | BodyResponseCallback<void>
         | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ResourceRecordSetsDeleteResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ResourceRecordSetsDeleteResponse>
-      | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Managedzones$Rrsets$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -4494,14 +4538,12 @@ export namespace dns_v1beta2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ResourceRecordSetsDeleteResponse>(
+        createAPIRequest<void>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ResourceRecordSetsDeleteResponse>(
-          parameters
-        );
+        return createAPIRequest<void>(parameters);
       }
     }
 
@@ -4554,7 +4596,6 @@ export namespace dns_v1beta2 {
      *   // {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "routingPolicy": {},
      *   //   "rrdatas": [],
      *   //   "signatureRrdatas": [],
      *   //   "ttl": 0,
@@ -4703,7 +4744,6 @@ export namespace dns_v1beta2 {
      *       // {
      *       //   "kind": "my_kind",
      *       //   "name": "my_name",
-     *       //   "routingPolicy": {},
      *       //   "rrdatas": [],
      *       //   "signatureRrdatas": [],
      *       //   "ttl": 0,
@@ -4717,7 +4757,6 @@ export namespace dns_v1beta2 {
      *   // {
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "routingPolicy": {},
      *   //   "rrdatas": [],
      *   //   "signatureRrdatas": [],
      *   //   "ttl": 0,
@@ -5104,5 +5143,2035 @@ export namespace dns_v1beta2 {
      * Restricts the list to return only records of this type. If present, the "name" parameter must also be present.
      */
     type?: string;
+  }
+
+  export class Resource$Responsepolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a new Response Policy
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicies.create({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "networks": [],
+     *       //   "responsePolicyName": "my_responsePolicyName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "networks": [],
+     *   //   "responsePolicyName": "my_responsePolicyName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Responsepolicies$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Responsepolicies$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResponsePolicy>;
+    create(
+      params: Params$Resource$Responsepolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Responsepolicies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ResponsePolicy>,
+      callback: BodyResponseCallback<Schema$ResponsePolicy>
+    ): void;
+    create(
+      params: Params$Resource$Responsepolicies$Create,
+      callback: BodyResponseCallback<Schema$ResponsePolicy>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$ResponsePolicy>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Responsepolicies$Create
+        | BodyResponseCallback<Schema$ResponsePolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResponsePolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResponsePolicy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ResponsePolicy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Responsepolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Responsepolicies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/dns/v1beta2/projects/{project}/responsePolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResponsePolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResponsePolicy>(parameters);
+      }
+    }
+
+    /**
+     * Delete a previously created Response Policy. Will fail if the response policy is non-empty or still being referenced by a network.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicies.delete({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy addressed by this request.
+     *     responsePolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Responsepolicies$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Responsepolicies$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Responsepolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Responsepolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Responsepolicies$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Responsepolicies$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Responsepolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Responsepolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'responsePolicy'],
+        pathParams: ['project', 'responsePolicy'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Fetch the representation of an existing Response Policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicies.get({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy addressed by this request.
+     *     responsePolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "id": "my_id",
+     *   //   "kind": "my_kind",
+     *   //   "networks": [],
+     *   //   "responsePolicyName": "my_responsePolicyName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Responsepolicies$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Responsepolicies$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResponsePolicy>;
+    get(
+      params: Params$Resource$Responsepolicies$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Responsepolicies$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ResponsePolicy>,
+      callback: BodyResponseCallback<Schema$ResponsePolicy>
+    ): void;
+    get(
+      params: Params$Resource$Responsepolicies$Get,
+      callback: BodyResponseCallback<Schema$ResponsePolicy>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ResponsePolicy>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Responsepolicies$Get
+        | BodyResponseCallback<Schema$ResponsePolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResponsePolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResponsePolicy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ResponsePolicy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Responsepolicies$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Responsepolicies$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'responsePolicy'],
+        pathParams: ['project', 'responsePolicy'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResponsePolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResponsePolicy>(parameters);
+      }
+    }
+
+    /**
+     * Enumerate all Response Policies associated with a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicies.list({
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "header": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "responsePolicies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Responsepolicies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Responsepolicies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResponsePoliciesListResponse>;
+    list(
+      params: Params$Resource$Responsepolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Responsepolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResponsePoliciesListResponse>,
+      callback: BodyResponseCallback<Schema$ResponsePoliciesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Responsepolicies$List,
+      callback: BodyResponseCallback<Schema$ResponsePoliciesListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ResponsePoliciesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Responsepolicies$List
+        | BodyResponseCallback<Schema$ResponsePoliciesListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResponsePoliciesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResponsePoliciesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResponsePoliciesListResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Responsepolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Responsepolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/dns/v1beta2/projects/{project}/responsePolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project'],
+        pathParams: ['project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResponsePoliciesListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResponsePoliciesListResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Apply a partial update to an existing Response Policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicies.patch({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Respones Policy addressed by this request.
+     *     responsePolicy: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "networks": [],
+     *       //   "responsePolicyName": "my_responsePolicyName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "header": {},
+     *   //   "responsePolicy": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Responsepolicies$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Responsepolicies$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResponsePoliciesPatchResponse>;
+    patch(
+      params: Params$Resource$Responsepolicies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Responsepolicies$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResponsePoliciesPatchResponse>,
+      callback: BodyResponseCallback<Schema$ResponsePoliciesPatchResponse>
+    ): void;
+    patch(
+      params: Params$Resource$Responsepolicies$Patch,
+      callback: BodyResponseCallback<Schema$ResponsePoliciesPatchResponse>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$ResponsePoliciesPatchResponse>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Responsepolicies$Patch
+        | BodyResponseCallback<Schema$ResponsePoliciesPatchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResponsePoliciesPatchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResponsePoliciesPatchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResponsePoliciesPatchResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Responsepolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Responsepolicies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'responsePolicy'],
+        pathParams: ['project', 'responsePolicy'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResponsePoliciesPatchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResponsePoliciesPatchResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update an existing Response Policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicies.update({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy addressed by this request.
+     *     responsePolicy: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "id": "my_id",
+     *       //   "kind": "my_kind",
+     *       //   "networks": [],
+     *       //   "responsePolicyName": "my_responsePolicyName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "header": {},
+     *   //   "responsePolicy": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Responsepolicies$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Responsepolicies$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResponsePoliciesUpdateResponse>;
+    update(
+      params: Params$Resource$Responsepolicies$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Responsepolicies$Update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResponsePoliciesUpdateResponse>,
+      callback: BodyResponseCallback<Schema$ResponsePoliciesUpdateResponse>
+    ): void;
+    update(
+      params: Params$Resource$Responsepolicies$Update,
+      callback: BodyResponseCallback<Schema$ResponsePoliciesUpdateResponse>
+    ): void;
+    update(
+      callback: BodyResponseCallback<Schema$ResponsePoliciesUpdateResponse>
+    ): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Responsepolicies$Update
+        | BodyResponseCallback<Schema$ResponsePoliciesUpdateResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResponsePoliciesUpdateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResponsePoliciesUpdateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResponsePoliciesUpdateResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Responsepolicies$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Responsepolicies$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'responsePolicy'],
+        pathParams: ['project', 'responsePolicy'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResponsePoliciesUpdateResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResponsePoliciesUpdateResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Responsepolicies$Create
+    extends StandardParameters {
+    /**
+     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResponsePolicy;
+  }
+  export interface Params$Resource$Responsepolicies$Delete
+    extends StandardParameters {
+    /**
+     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * User assigned name of the Response Policy addressed by this request.
+     */
+    responsePolicy?: string;
+  }
+  export interface Params$Resource$Responsepolicies$Get
+    extends StandardParameters {
+    /**
+     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * User assigned name of the Response Policy addressed by this request.
+     */
+    responsePolicy?: string;
+  }
+  export interface Params$Resource$Responsepolicies$List
+    extends StandardParameters {
+    /**
+     * Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     */
+    maxResults?: number;
+    /**
+     * Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+  }
+  export interface Params$Resource$Responsepolicies$Patch
+    extends StandardParameters {
+    /**
+     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * User assigned name of the Respones Policy addressed by this request.
+     */
+    responsePolicy?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResponsePolicy;
+  }
+  export interface Params$Resource$Responsepolicies$Update
+    extends StandardParameters {
+    /**
+     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * User assigned name of the Response Policy addressed by this request.
+     */
+    responsePolicy?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResponsePolicy;
+  }
+
+  export class Resource$Responsepolicyrules {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a new Response Policy Rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicyRules.create({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy containing the Response Policy Rule.
+     *     responsePolicy: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "behavior": "my_behavior",
+     *       //   "dnsName": "my_dnsName",
+     *       //   "kind": "my_kind",
+     *       //   "localData": {},
+     *       //   "ruleName": "my_ruleName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "behavior": "my_behavior",
+     *   //   "dnsName": "my_dnsName",
+     *   //   "kind": "my_kind",
+     *   //   "localData": {},
+     *   //   "ruleName": "my_ruleName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Responsepolicyrules$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Responsepolicyrules$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResponsePolicyRule>;
+    create(
+      params: Params$Resource$Responsepolicyrules$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Responsepolicyrules$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ResponsePolicyRule>,
+      callback: BodyResponseCallback<Schema$ResponsePolicyRule>
+    ): void;
+    create(
+      params: Params$Resource$Responsepolicyrules$Create,
+      callback: BodyResponseCallback<Schema$ResponsePolicyRule>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$ResponsePolicyRule>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Responsepolicyrules$Create
+        | BodyResponseCallback<Schema$ResponsePolicyRule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResponsePolicyRule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResponsePolicyRule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResponsePolicyRule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Responsepolicyrules$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Responsepolicyrules$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'responsePolicy'],
+        pathParams: ['project', 'responsePolicy'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResponsePolicyRule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResponsePolicyRule>(parameters);
+      }
+    }
+
+    /**
+     * Delete a previously created Response Policy Rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicyRules.delete({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy containing the Response Policy Rule.
+     *     responsePolicy: 'placeholder-value',
+     *     // User assigned name of the Response Policy Rule addressed by this request.
+     *     responsePolicyRule: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Responsepolicyrules$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Responsepolicyrules$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Responsepolicyrules$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Responsepolicyrules$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Responsepolicyrules$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Responsepolicyrules$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Responsepolicyrules$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Responsepolicyrules$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'responsePolicy', 'responsePolicyRule'],
+        pathParams: ['project', 'responsePolicy', 'responsePolicyRule'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Fetch the representation of an existing Response Policy Rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicyRules.get({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy containing the Response Policy Rule.
+     *     responsePolicy: 'placeholder-value',
+     *     // User assigned name of the Response Policy Rule addressed by this request.
+     *     responsePolicyRule: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "behavior": "my_behavior",
+     *   //   "dnsName": "my_dnsName",
+     *   //   "kind": "my_kind",
+     *   //   "localData": {},
+     *   //   "ruleName": "my_ruleName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Responsepolicyrules$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Responsepolicyrules$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResponsePolicyRule>;
+    get(
+      params: Params$Resource$Responsepolicyrules$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Responsepolicyrules$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ResponsePolicyRule>,
+      callback: BodyResponseCallback<Schema$ResponsePolicyRule>
+    ): void;
+    get(
+      params: Params$Resource$Responsepolicyrules$Get,
+      callback: BodyResponseCallback<Schema$ResponsePolicyRule>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ResponsePolicyRule>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Responsepolicyrules$Get
+        | BodyResponseCallback<Schema$ResponsePolicyRule>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResponsePolicyRule>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResponsePolicyRule>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResponsePolicyRule>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Responsepolicyrules$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Responsepolicyrules$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'responsePolicy', 'responsePolicyRule'],
+        pathParams: ['project', 'responsePolicy', 'responsePolicyRule'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResponsePolicyRule>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResponsePolicyRule>(parameters);
+      }
+    }
+
+    /**
+     * Enumerate all Response Policy Rules associated with a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readonly',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicyRules.list({
+     *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     *     maxResults: 'placeholder-value',
+     *     // Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy to list.
+     *     responsePolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "header": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "responsePolicyRules": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Responsepolicyrules$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Responsepolicyrules$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResponsePolicyRulesListResponse>;
+    list(
+      params: Params$Resource$Responsepolicyrules$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Responsepolicyrules$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResponsePolicyRulesListResponse>,
+      callback: BodyResponseCallback<Schema$ResponsePolicyRulesListResponse>
+    ): void;
+    list(
+      params: Params$Resource$Responsepolicyrules$List,
+      callback: BodyResponseCallback<Schema$ResponsePolicyRulesListResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ResponsePolicyRulesListResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Responsepolicyrules$List
+        | BodyResponseCallback<Schema$ResponsePolicyRulesListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResponsePolicyRulesListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResponsePolicyRulesListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResponsePolicyRulesListResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Responsepolicyrules$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Responsepolicyrules$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'responsePolicy'],
+        pathParams: ['project', 'responsePolicy'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResponsePolicyRulesListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResponsePolicyRulesListResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Apply a partial update to an existing Response Policy Rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicyRules.patch({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy containing the Response Policy Rule.
+     *     responsePolicy: 'placeholder-value',
+     *     // User assigned name of the Response Policy Rule addressed by this request.
+     *     responsePolicyRule: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "behavior": "my_behavior",
+     *       //   "dnsName": "my_dnsName",
+     *       //   "kind": "my_kind",
+     *       //   "localData": {},
+     *       //   "ruleName": "my_ruleName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "header": {},
+     *   //   "responsePolicyRule": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Responsepolicyrules$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Responsepolicyrules$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResponsePolicyRulesPatchResponse>;
+    patch(
+      params: Params$Resource$Responsepolicyrules$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Responsepolicyrules$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResponsePolicyRulesPatchResponse>,
+      callback: BodyResponseCallback<Schema$ResponsePolicyRulesPatchResponse>
+    ): void;
+    patch(
+      params: Params$Resource$Responsepolicyrules$Patch,
+      callback: BodyResponseCallback<Schema$ResponsePolicyRulesPatchResponse>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$ResponsePolicyRulesPatchResponse>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Responsepolicyrules$Patch
+        | BodyResponseCallback<Schema$ResponsePolicyRulesPatchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResponsePolicyRulesPatchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResponsePolicyRulesPatchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResponsePolicyRulesPatchResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Responsepolicyrules$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Responsepolicyrules$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'responsePolicy', 'responsePolicyRule'],
+        pathParams: ['project', 'responsePolicy', 'responsePolicyRule'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResponsePolicyRulesPatchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResponsePolicyRulesPatchResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update an existing Response Policy Rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/ndev.clouddns.readwrite',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.responsePolicyRules.update({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // User assigned name of the Response Policy containing the Response Policy Rule.
+     *     responsePolicy: 'placeholder-value',
+     *     // User assigned name of the Response Policy Rule addressed by this request.
+     *     responsePolicyRule: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "behavior": "my_behavior",
+     *       //   "dnsName": "my_dnsName",
+     *       //   "kind": "my_kind",
+     *       //   "localData": {},
+     *       //   "ruleName": "my_ruleName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "header": {},
+     *   //   "responsePolicyRule": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Responsepolicyrules$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Responsepolicyrules$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResponsePolicyRulesUpdateResponse>;
+    update(
+      params: Params$Resource$Responsepolicyrules$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Responsepolicyrules$Update,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResponsePolicyRulesUpdateResponse>,
+      callback: BodyResponseCallback<Schema$ResponsePolicyRulesUpdateResponse>
+    ): void;
+    update(
+      params: Params$Resource$Responsepolicyrules$Update,
+      callback: BodyResponseCallback<Schema$ResponsePolicyRulesUpdateResponse>
+    ): void;
+    update(
+      callback: BodyResponseCallback<Schema$ResponsePolicyRulesUpdateResponse>
+    ): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Responsepolicyrules$Update
+        | BodyResponseCallback<Schema$ResponsePolicyRulesUpdateResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResponsePolicyRulesUpdateResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResponsePolicyRulesUpdateResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResponsePolicyRulesUpdateResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Responsepolicyrules$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Responsepolicyrules$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dns/v1beta2/projects/{project}/responsePolicies/{responsePolicy}/rules/{responsePolicyRule}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PUT',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'responsePolicy', 'responsePolicyRule'],
+        pathParams: ['project', 'responsePolicy', 'responsePolicyRule'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResponsePolicyRulesUpdateResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResponsePolicyRulesUpdateResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Responsepolicyrules$Create
+    extends StandardParameters {
+    /**
+     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * User assigned name of the Response Policy containing the Response Policy Rule.
+     */
+    responsePolicy?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResponsePolicyRule;
+  }
+  export interface Params$Resource$Responsepolicyrules$Delete
+    extends StandardParameters {
+    /**
+     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * User assigned name of the Response Policy containing the Response Policy Rule.
+     */
+    responsePolicy?: string;
+    /**
+     * User assigned name of the Response Policy Rule addressed by this request.
+     */
+    responsePolicyRule?: string;
+  }
+  export interface Params$Resource$Responsepolicyrules$Get
+    extends StandardParameters {
+    /**
+     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * User assigned name of the Response Policy containing the Response Policy Rule.
+     */
+    responsePolicy?: string;
+    /**
+     * User assigned name of the Response Policy Rule addressed by this request.
+     */
+    responsePolicyRule?: string;
+  }
+  export interface Params$Resource$Responsepolicyrules$List
+    extends StandardParameters {
+    /**
+     * Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
+     */
+    maxResults?: number;
+    /**
+     * Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * User assigned name of the Response Policy to list.
+     */
+    responsePolicy?: string;
+  }
+  export interface Params$Resource$Responsepolicyrules$Patch
+    extends StandardParameters {
+    /**
+     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * User assigned name of the Response Policy containing the Response Policy Rule.
+     */
+    responsePolicy?: string;
+    /**
+     * User assigned name of the Response Policy Rule addressed by this request.
+     */
+    responsePolicyRule?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResponsePolicyRule;
+  }
+  export interface Params$Resource$Responsepolicyrules$Update
+    extends StandardParameters {
+    /**
+     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * User assigned name of the Response Policy containing the Response Policy Rule.
+     */
+    responsePolicy?: string;
+    /**
+     * User assigned name of the Response Policy Rule addressed by this request.
+     */
+    responsePolicyRule?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResponsePolicyRule;
   }
 }

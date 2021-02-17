@@ -1064,6 +1064,77 @@ export namespace run_v1alpha1 {
     value?: string | null;
   }
   /**
+   * InstanceSpec is a description of an instance.
+   */
+  export interface Schema$InstanceSpec {
+    /**
+     * Optional. Optional duration in seconds the instance may be active relative to StartTime before the system will actively try to mark it failed and kill associated containers. If set to zero, the system will never attempt to kill an instance based on time. Otherwise, value must be a positive integer. +optional
+     */
+    activeDeadlineSeconds?: string | null;
+    /**
+     * Optional. List of containers belonging to the instance. We disallow a number of fields on this Container. Only a single container may be provided.
+     */
+    containers?: Schema$Container[];
+    /**
+     * Optional. Restart policy for all containers within the instance. Allowed values are: - OnFailure: Instances will always be restarted on failure if the backoffLimit has not been reached. - Never: Instances are never restarted and all failures are permanent. Cannot be used if backoffLimit is set. +optional
+     */
+    restartPolicy?: string | null;
+    /**
+     * Optional. Email address of the IAM service account associated with the instance of a Job. The service account represents the identity of the running instance, and determines what permissions the instance has. If not provided, the instance will use the project's default service account. +optional
+     */
+    serviceAccountName?: string | null;
+    /**
+     * Optional. Optional duration in seconds the instance needs to terminate gracefully. Value must be non-negative integer. The value zero indicates delete immediately. The grace period is the duration in seconds after the processes running in the instance are sent a termination signal and the time when the processes are forcibly halted with a kill signal. Set this value longer than the expected cleanup time for your process. +optional
+     */
+    terminationGracePeriodSeconds?: string | null;
+    /**
+     * Optional. List of volumes that can be mounted by containers belonging to the instance. More info: https://kubernetes.io/docs/concepts/storage/volumes +optional
+     */
+    volumes?: Schema$Volume[];
+  }
+  /**
+   * Instance represents the status of an instance of a Job.
+   */
+  export interface Schema$InstanceStatus {
+    /**
+     * Optional. Represents time when the instance was completed. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC. +optional
+     */
+    completionTime?: string | null;
+    /**
+     * Optional. The number of times this instance exited with code \> 0; +optional
+     */
+    failed?: number | null;
+    /**
+     * Required. Index of the instance, unique per Job, and beginning at 0.
+     */
+    index?: number | null;
+    /**
+     * Optional. Last exit code seen for this instance. +optional
+     */
+    lastExitCode?: number | null;
+    /**
+     * Optional. The number of times this instance was restarted. Instances are restarted according the restartPolicy configured in the Job template. +optional
+     */
+    restarted?: number | null;
+    /**
+     * Optional. Represents time when the instance was created by the job controller. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC. +optional
+     */
+    startTime?: string | null;
+    /**
+     * Optional. The number of times this instance exited with code == 0. +optional
+     */
+    succeeded?: number | null;
+  }
+  /**
+   * InstanceTemplateSpec describes the data an instance should have when created from a template.
+   */
+  export interface Schema$InstanceTemplateSpec {
+    /**
+     * Optional. Specification of the desired behavior of the instance. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status +optional
+     */
+    spec?: Schema$InstanceSpec;
+  }
+  /**
    * IntOrString is a type that can hold an int32 or a string. When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type. This allows you to have, for example, a JSON field that can accept a name or number.
    */
   export interface Schema$IntOrString {
@@ -1079,6 +1150,130 @@ export namespace run_v1alpha1 {
      * The type of the value.
      */
     type?: number | null;
+  }
+  /**
+   * Job represents the configuration of a single job. A job an immutable resource that references a container image which is run to completion.
+   */
+  export interface Schema$Job {
+    /**
+     * Optional. APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources +optional
+     */
+    apiVersion?: string | null;
+    /**
+     * Optional. Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds +optional
+     */
+    kind?: string | null;
+    /**
+     * Optional. Standard object's metadata. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#metadata +optional
+     */
+    metadata?: Schema$ObjectMeta;
+    /**
+     * Optional. Specification of the desired behavior of a job. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status +optional
+     */
+    spec?: Schema$JobSpec;
+    /**
+     * Optional. Current status of a job. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status +optional
+     */
+    status?: Schema$JobStatus;
+  }
+  /**
+   * JobCondition defines a readiness condition for a Revision.
+   */
+  export interface Schema$JobCondition {
+    /**
+     * Optional. Last time the condition transitioned from one status to another.
+     */
+    lastTransitionTime?: string | null;
+    /**
+     * Optional. Human readable message indicating details about the current status.
+     */
+    message?: string | null;
+    /**
+     * Optional. One-word CamelCase reason for the condition's last transition.
+     */
+    reason?: string | null;
+    /**
+     * Optional. How to interpret failures of this condition, one of Error, Warning, Info
+     */
+    severity?: string | null;
+    /**
+     * Required. Status of the condition, one of True, False, Unknown.
+     */
+    status?: string | null;
+    /**
+     * Required. Type is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types include: * "Completed": True when the Job has successfully completed. * "Started": True when the Job has successfully started running. * "ResourcesAvailable": True when underlying resources have been provisioned.
+     */
+    type?: string | null;
+  }
+  /**
+   * JobSpec describes how the job execution will look like.
+   */
+  export interface Schema$JobSpec {
+    /**
+     * Optional. Specifies the duration in seconds relative to the startTime that the job may be active before the system tries to terminate it. If set to zero, the system will never attempt to terminate the job based on time. Otherwise, the value must be positive integer. +optional
+     */
+    activeDeadlineSeconds?: string | null;
+    /**
+     * Optional. Specifies the number of retries per instance, before marking this job failed. If set to zero, instances will never retry on failure. +optional
+     */
+    backoffLimit?: number | null;
+    /**
+     * Optional. Specifies the desired number of successfully finished instances the job should be run with. Setting to 1 means that parallelism is limited to 1 and the success of that instance signals the success of the job. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ +optional
+     */
+    completions?: number | null;
+    /**
+     * Optional. Specifies the maximum desired number of instances the job should run at any given time. Must be <= completions. The actual number of instances running in steady state will be less than this number when ((.spec.completions - .status.successful) < .spec.parallelism), i.e. when the work left to do is less than max parallelism. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ +optional
+     */
+    parallelism?: number | null;
+    /**
+     * Optional. Describes the instance that will be created when executing a job.
+     */
+    template?: Schema$InstanceTemplateSpec;
+    /**
+     * Optional. ttlSecondsAfterFinished limits the lifetime of a Job that has finished execution (either Complete or Failed). If this field is set, ttlSecondsAfterFinished after the Job finishes, it is eligible to be automatically deleted. When the Job is being deleted, its lifecycle guarantees (e.g. finalizers) will be honored. If this field is set to zero, the Job won't be automatically deleted. +optional
+     */
+    ttlSecondsAfterFinished?: number | null;
+  }
+  /**
+   * JobStatus represents the current state of a Job.
+   */
+  export interface Schema$JobStatus {
+    /**
+     * Optional. The number of actively running instances. +optional
+     */
+    active?: number | null;
+    /**
+     * Optional. Represents time when the job was completed. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC. +optional
+     */
+    completionTime?: string | null;
+    /**
+     * Optional. The latest available observations of a job's current state. More info: https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/ +optional
+     */
+    conditions?: Schema$JobCondition[];
+    /**
+     * Optional. The number of instances which reached phase Failed. +optional
+     */
+    failed?: number | null;
+    /**
+     * Optional. ImageDigest holds the resolved digest for the image specified within .Spec.Template.Spec.Container.Image. The digest is resolved during the creation of the Job. This field holds the digest value regardless of whether a tag or digest was originally specified in the Container object.
+     */
+    imageDigest?: string | null;
+    /**
+     * Optional. Status of completed, failed, and running instances. +optional
+     */
+    instances?: Schema$InstanceStatus[];
+    /**
+     * Optional. The 'generation' of the job that was last processed by the controller.
+     */
+    observedGeneration?: number | null;
+    /**
+     * Optional. Represents time when the job was acknowledged by the job controller. It is not guaranteed to be set in happens-before order across separate operations. It is represented in RFC3339 form and is in UTC. +optional
+     */
+    startTime?: string | null;
+    /**
+     * Optional. The number of instances which reached phase Succeeded. +optional
+     */
+    succeeded?: number | null;
   }
   /**
    * Maps a string key to a path within a volume.
@@ -1268,6 +1463,35 @@ export namespace run_v1alpha1 {
      * Metadata associated with this DomainMapping list.
      */
     metadata?: Schema$ListMeta;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * ListJobsResponse is a list of Jobs resources.
+   */
+  export interface Schema$ListJobsResponse {
+    /**
+     * The API version for this call such as "run.googleapis.com/v1alpha1".
+     */
+    apiVersion?: string | null;
+    /**
+     * List of Jobs.
+     */
+    items?: Schema$Job[];
+    /**
+     * The kind of this resource, in this case "JobsList".
+     */
+    kind?: string | null;
+    /**
+     * Metadata associated with this jobs list.
+     */
+    metadata?: Schema$ListMeta;
+    /**
+     * This field is equivalent to the metadata.continue field and is provided as a convenience for compatibility with https://google.aip.dev/158. The value is opaque and may be used to issue another request to the endpoint that served this list to retrieve the next set of available objects. Continuing a list may not be possible if the server configuration has changed or more than a few minutes have passed. The metadata.resourceVersion field returned when using this field will be identical to the value in the first response.
+     */
+    nextPageToken?: string | null;
     /**
      * Locations that could not be reached.
      */
@@ -2402,6 +2626,7 @@ export namespace run_v1alpha1 {
     cloudstoragesources: Resource$Namespaces$Cloudstoragesources;
     configurations: Resource$Namespaces$Configurations;
     domainmappings: Resource$Namespaces$Domainmappings;
+    jobs: Resource$Namespaces$Jobs;
     revisions: Resource$Namespaces$Revisions;
     routes: Resource$Namespaces$Routes;
     services: Resource$Namespaces$Services;
@@ -2429,6 +2654,7 @@ export namespace run_v1alpha1 {
       this.domainmappings = new Resource$Namespaces$Domainmappings(
         this.context
       );
+      this.jobs = new Resource$Namespaces$Jobs(this.context);
       this.revisions = new Resource$Namespaces$Revisions(this.context);
       this.routes = new Resource$Namespaces$Routes(this.context);
       this.services = new Resource$Namespaces$Services(this.context);
@@ -6533,6 +6759,642 @@ export namespace run_v1alpha1 {
     resourceVersion?: string;
     /**
      * Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
+     */
+    watch?: boolean;
+  }
+
+  export class Resource$Namespaces$Jobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.jobs.create({
+     *     // Required. The namespace in which the job should be created. Replace {namespace_id\} with the project ID or number.
+     *     parent: 'namespaces/my-namespace',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "apiVersion": "my_apiVersion",
+     *       //   "kind": "my_kind",
+     *       //   "metadata": {},
+     *       //   "spec": {},
+     *       //   "status": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Namespaces$Jobs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Namespaces$Jobs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
+    create(
+      params: Params$Resource$Namespaces$Jobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Namespaces$Jobs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    create(
+      params: Params$Resource$Namespaces$Jobs$Create,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Job>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Jobs$Create
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Jobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Namespaces$Jobs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/apis/run.googleapis.com/v1alpha1/{+parent}/jobs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Job>(parameters);
+      }
+    }
+
+    /**
+     * Delete a job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.jobs.delete({
+     *     // Optional. Cloud Run currently ignores this parameter.
+     *     apiVersion: 'placeholder-value',
+     *     // Optional. Cloud Run currently ignores this parameter.
+     *     kind: 'placeholder-value',
+     *     // Required. The name of the job to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     name: 'namespaces/my-namespace/jobs/my-job',
+     *     // Optional. Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
+     *     propagationPolicy: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Namespaces$Jobs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Namespaces$Jobs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Namespaces$Jobs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Namespaces$Jobs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Namespaces$Jobs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Jobs$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Jobs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Namespaces$Jobs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/apis/run.googleapis.com/v1alpha1/{+name}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Get information about a job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.jobs.get({
+     *     // Required. The name of the job to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     *     name: 'namespaces/my-namespace/jobs/my-job',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "spec": {},
+     *   //   "status": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Namespaces$Jobs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Namespaces$Jobs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Job>;
+    get(
+      params: Params$Resource$Namespaces$Jobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Namespaces$Jobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Job>,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    get(
+      params: Params$Resource$Namespaces$Jobs$Get,
+      callback: BodyResponseCallback<Schema$Job>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Job>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Jobs$Get
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Job>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Job> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Jobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Namespaces$Jobs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/apis/run.googleapis.com/v1alpha1/{+name}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Job>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Job>(parameters);
+      }
+    }
+
+    /**
+     * List jobs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/run.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const run = google.run('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await run.namespaces.jobs.list({
+     *     // Optional. Optional encoded string to continue paging.
+     *     continue: 'placeholder-value',
+     *     // Optional. Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
+     *     fieldSelector: 'placeholder-value',
+     *     // Optional. Not currently used by Cloud Run.
+     *     includeUninitialized: 'placeholder-value',
+     *     // Optional. Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     *     labelSelector: 'placeholder-value',
+     *     // Optional. The maximum number of records that should be returned.
+     *     limit: 'placeholder-value',
+     *     // Required. The namespace from which the jobs should be listed. Replace {namespace_id\} with the project ID or number.
+     *     parent: 'namespaces/my-namespace',
+     *     // Optional. The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
+     *     resourceVersion: 'placeholder-value',
+     *     // Optional. Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
+     *     watch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiVersion": "my_apiVersion",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "metadata": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Namespaces$Jobs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Namespaces$Jobs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListJobsResponse>;
+    list(
+      params: Params$Resource$Namespaces$Jobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Namespaces$Jobs$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Namespaces$Jobs$List,
+      callback: BodyResponseCallback<Schema$ListJobsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListJobsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Namespaces$Jobs$List
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListJobsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListJobsResponse> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Namespaces$Jobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Namespaces$Jobs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://run.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/apis/run.googleapis.com/v1alpha1/{+parent}/jobs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListJobsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Namespaces$Jobs$Create
+    extends StandardParameters {
+    /**
+     * Required. The namespace in which the job should be created. Replace {namespace_id\} with the project ID or number.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Job;
+  }
+  export interface Params$Resource$Namespaces$Jobs$Delete
+    extends StandardParameters {
+    /**
+     * Optional. Cloud Run currently ignores this parameter.
+     */
+    apiVersion?: string;
+    /**
+     * Optional. Cloud Run currently ignores this parameter.
+     */
+    kind?: string;
+    /**
+     * Required. The name of the job to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     */
+    name?: string;
+    /**
+     * Optional. Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
+     */
+    propagationPolicy?: string;
+  }
+  export interface Params$Resource$Namespaces$Jobs$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the job to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Namespaces$Jobs$List
+    extends StandardParameters {
+    /**
+     * Optional. Optional encoded string to continue paging.
+     */
+    continue?: string;
+    /**
+     * Optional. Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
+     */
+    fieldSelector?: string;
+    /**
+     * Optional. Not currently used by Cloud Run.
+     */
+    includeUninitialized?: boolean;
+    /**
+     * Optional. Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
+     */
+    labelSelector?: string;
+    /**
+     * Optional. The maximum number of records that should be returned.
+     */
+    limit?: number;
+    /**
+     * Required. The namespace from which the jobs should be listed. Replace {namespace_id\} with the project ID or number.
+     */
+    parent?: string;
+    /**
+     * Optional. The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
+     */
+    resourceVersion?: string;
+    /**
+     * Optional. Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
      */
     watch?: boolean;
   }

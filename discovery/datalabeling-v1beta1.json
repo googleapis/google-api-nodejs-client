@@ -1596,7 +1596,7 @@
       }
     }
   },
-  "revision": "20201020",
+  "revision": "20210211",
   "rootUrl": "https://datalabeling.googleapis.com/",
   "schemas": {
     "GoogleCloudDatalabelingV1alpha1CreateInstructionMetadata": {
@@ -4457,7 +4457,7 @@
         },
         "sentimentConfig": {
           "$ref": "GoogleCloudDatalabelingV1beta1SentimentConfig",
-          "description": "Optional. Configs for sentiment selection."
+          "description": "Optional. Configs for sentiment selection. We deprecate sentiment analysis in data labeling side as it is incompatible with uCAIP."
         }
       },
       "type": "object"

@@ -300,6 +300,139 @@
                 }
               }
             },
+            "executions": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new Scheduled Notebook in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/executions",
+                  "httpMethod": "POST",
+                  "id": "notebooks.projects.locations.executions.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "executionId": {
+                      "description": "Required. User-defined unique ID of this execution.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Format: `parent=projects/{project_id}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/executions",
+                  "request": {
+                    "$ref": "Execution"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes execution",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/executions/{executionsId}",
+                  "httpMethod": "DELETE",
+                  "id": "notebooks.projects.locations.executions.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/executions/{execution_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/executions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of executions",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/executions/{executionsId}",
+                  "httpMethod": "GET",
+                  "id": "notebooks.projects.locations.executions.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/schedules/{execution_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/executions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Execution"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists executions in a given project and location",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/executions",
+                  "httpMethod": "GET",
+                  "id": "notebooks.projects.locations.executions.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Filter applied to resulting executions.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Sort by field.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Maximum return size of the list call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A previous returned page token that can be used to continue listing from the last result.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Format: `parent=projects/{project_id}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/executions",
+                  "response": {
+                    "$ref": "ListExecutionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "instances": {
               "methods": {
                 "create": {
@@ -411,6 +544,31 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "getInstanceHealth": {
+                  "description": "Check if a notebook instance is healthy.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:getInstanceHealth",
+                  "httpMethod": "GET",
+                  "id": "notebooks.projects.locations.instances.getInstanceHealth",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:getInstanceHealth",
+                  "response": {
+                    "$ref": "GetInstanceHealthResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -937,13 +1095,174 @@
                   ]
                 }
               }
+            },
+            "schedules": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new Scheduled Notebook in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schedules",
+                  "httpMethod": "POST",
+                  "id": "notebooks.projects.locations.schedules.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Format: `parent=projects/{project_id}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "scheduleId": {
+                      "description": "Required. User-defined unique ID of this schedule.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/schedules",
+                  "request": {
+                    "$ref": "Schedule"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes schedule and all underlying jobs",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schedules/{schedulesId}",
+                  "httpMethod": "DELETE",
+                  "id": "notebooks.projects.locations.schedules.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/schedules/{schedule_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/schedules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of schedule",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schedules/{schedulesId}",
+                  "httpMethod": "GET",
+                  "id": "notebooks.projects.locations.schedules.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/schedules/{schedule_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/schedules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Schedule"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists schedules in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schedules",
+                  "httpMethod": "GET",
+                  "id": "notebooks.projects.locations.schedules.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Filter applied to resulting schedules.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Field to order results by.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Maximum return size of the list call.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A previous returned page token that can be used to continue listing from the last result.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Format: `parent=projects/{project_id}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/schedules",
+                  "response": {
+                    "$ref": "ListSchedulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "trigger": {
+                  "description": "Triggers execution of an existing schedule.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schedules/{schedulesId}:trigger",
+                  "httpMethod": "POST",
+                  "id": "notebooks.projects.locations.schedules.trigger",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `parent=projects/{project_id}/locations/{location}/schedules/{schedule_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/schedules/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:trigger",
+                  "request": {
+                    "$ref": "TriggerScheduleRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20201110",
+  "revision": "20210122",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1140,6 +1459,132 @@
       },
       "type": "object"
     },
+    "Execution": {
+      "description": "The definition of a single executed notebook.",
+      "id": "Execution",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time the Execution was instantiated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "A brief description of this execution.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. Name used for UI purposes. Name can only contain alphanumeric characters and underscores '_'.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "executionTemplate": {
+          "$ref": "ExecutionTemplate",
+          "description": "execute metadata including name, hardware spec, region, labels, etc."
+        },
+        "name": {
+          "description": "Output only. The resource name of the execute. Format: `projects/{project_id}/locations/{location}/execution/{execution_id}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "outputNotebookFile": {
+          "description": "Output notebook file generated by this execution",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the underlying AI Platform job.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "QUEUED",
+            "PREPARING",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLING",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "The job state is unspecified.",
+            "The job has been just created and processing has not yet begun.",
+            "The service is preparing to execution the job.",
+            "The job is in progress.",
+            "The job completed successfully.",
+            "The job failed. `error_message` should contain the details of the failure.",
+            "The job is being cancelled. `error_message` should describe the reason for the cancellation.",
+            "The job has been cancelled. `error_message` should describe the reason for the cancellation."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Time the Execution was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExecutionTemplate": {
+      "description": "The description a notebook execution workload.",
+      "id": "ExecutionTemplate",
+      "properties": {
+        "acceleratorConfig": {
+          "$ref": "SchedulerAcceleratorConfig",
+          "description": "Configuration (count and accelerator type) for hardware running notebook execution."
+        },
+        "containerImageUri": {
+          "description": "Container Image URI to a DLVM Example: 'gcr.io/deeplearning-platform-release/base-cu100' More examples can be found at: https://cloud.google.com/ai-platform/deep-learning-containers/docs/choosing-container",
+          "type": "string"
+        },
+        "inputNotebookFile": {
+          "description": "Path to the notebook file to execute. Must be in a Google Cloud Storage bucket. Format: gs://{project_id}/{folder}/{notebook_file_name} Ex: gs://notebook_user/scheduled_notebooks/sentiment_notebook.ipynb",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels for execution. If execution is scheduled, a field included will be 'nbs-scheduled'. Otherwise, it is an immediate execution, and an included field will be 'nbs-immediate'. Use fields to efficiently index between various types of executions.",
+          "type": "object"
+        },
+        "masterType": {
+          "description": "Specifies the type of virtual machine to use for your training job's master worker. You must specify this field when `scaleTier` is set to `CUSTOM`. You can use certain Compute Engine machine types directly in this field. The following types are supported: - `n1-standard-4` - `n1-standard-8` - `n1-standard-16` - `n1-standard-32` - `n1-standard-64` - `n1-standard-96` - `n1-highmem-2` - `n1-highmem-4` - `n1-highmem-8` - `n1-highmem-16` - `n1-highmem-32` - `n1-highmem-64` - `n1-highmem-96` - `n1-highcpu-16` - `n1-highcpu-32` - `n1-highcpu-64` - `n1-highcpu-96` Alternatively, you can use the following legacy machine types: - `standard` - `large_model` - `complex_model_s` - `complex_model_m` - `complex_model_l` - `standard_gpu` - `complex_model_m_gpu` - `complex_model_l_gpu` - `standard_p100` - `complex_model_m_p100` - `standard_v100` - `large_model_v100` - `complex_model_m_v100` - `complex_model_l_v100` Finally, if you want to use a TPU for training, specify `cloud_tpu` in this field. Learn more about the [special configuration options for training with TPU.",
+          "type": "string"
+        },
+        "outputNotebookFolder": {
+          "description": "Path to the notebook folder to write to. Must be in a Google Cloud Storage bucket path. Format: gs://{project_id}/{folder} Ex: gs://notebook_user/scheduled_notebooks",
+          "type": "string"
+        },
+        "paramsYamlFile": {
+          "description": "Parameters to be overridden in the notebook during execution. Ref https://papermill.readthedocs.io/en/latest/usage-parameterize.html on how to specifying parameters in the input notebook and pass them here in an YAML file. Ex: gs://notebook_user/scheduled_notebooks/sentiment_notebook_params.yaml",
+          "type": "string"
+        },
+        "scaleTier": {
+          "description": "Required. Scale tier of the hardware used for notebook execution.",
+          "enum": [
+            "SCALE_TIER_UNSPECIFIED",
+            "BASIC",
+            "STANDARD_1",
+            "PREMIUM_1",
+            "BASIC_GPU",
+            "BASIC_TPU",
+            "CUSTOM"
+          ],
+          "enumDescriptions": [
+            "Unspecified Scale Tier.",
+            "A single worker instance. This tier is suitable for learning how to use Cloud ML, and for experimenting with new models using small datasets.",
+            "Many workers and a few parameter servers.",
+            "A large number of workers with many parameter servers.",
+            "A single worker instance with a K80 GPU.",
+            "A single worker instance with a Cloud TPU.",
+            "The CUSTOM tier is not a set tier, but rather enables you to use your own cluster specification. When you use this tier, set values to configure your processing cluster according to these guidelines: * You _must_ set `TrainingInput.masterType` to specify the type of machine to use for your master node. This is the only required setting. * You _may_ set `TrainingInput.workerCount` to specify the number of workers to use. If you specify one or more workers, you _must_ also set `TrainingInput.workerType` to specify the type of machine to use for your worker nodes. * You _may_ set `TrainingInput.parameterServerCount` to specify the number of parameter servers to use. If you specify one or more parameter servers, you _must_ also set `TrainingInput.parameterServerType` to specify the type of machine to use for your parameter servers. Note that all of your workers must use the same machine type, which can be different from your parameter server type and master type. Your parameter servers must likewise use the same machine type, which can be different from your worker type and master type."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Expr": {
       "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
@@ -1158,6 +1603,40 @@
         },
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GetInstanceHealthResponse": {
+      "description": "Response for checking if a notebook instance is healthy.",
+      "id": "GetInstanceHealthResponse",
+      "properties": {
+        "healthInfo": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. Additional information about instance health. Example: healthInfo\": { \"docker_proxy_agent_status\": \"1\", \"docker_status\": \"1\", \"jupyterlab_api_status\": \"-1\", \"jupyterlab_status\": \"-1\", \"updated\": \"2020-10-18 09:40:03.573409\" }",
+          "readOnly": true,
+          "type": "object"
+        },
+        "healthState": {
+          "description": "Output only. Runtime health_state.",
+          "enum": [
+            "HEALTH_STATE_UNSPECIFIED",
+            "HEALTHY",
+            "UNHEALTHY",
+            "AGENT_NOT_INSTALLED",
+            "AGENT_NOT_RUNNING"
+          ],
+          "enumDescriptions": [
+            "The instance substate is unknown.",
+            "The instance is known to be in an healthy state (for example, critical daemons are running) Applies to ACTIVE state.",
+            "The instance is known to be in an unhealthy state (for example, critical daemons are not running) Applies to ACTIVE state.",
+            "The instance has not installed health monitoring agent. Applies to ACTIVE state.",
+            "The instance health monitoring agent is not running. Applies to ACTIVE state."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1327,6 +1806,17 @@
           "description": "The service account on this instance, giving access to other Google Cloud services. You can use any service account within the same project, but you must have the service account user permission to use the instance. If not specified, the [Compute Engine default service account](https://cloud.google.com/compute/docs/access/service-accounts#default_service_account) is used.",
           "type": "string"
         },
+        "serviceAccountScopes": {
+          "description": "Optional. The URIs of service account scopes to be included in Compute Engine instances. If not specified, the following [scopes](https://cloud.google.com/compute/docs/access/service-accounts#accesscopesiam) are defined: - https://www.googleapis.com/auth/cloud-platform - https://www.googleapis.com/auth/userinfo.email If not using default scopes, you need at least: https://www.googleapis.com/auth/compute",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "shieldedInstanceConfig": {
+          "$ref": "ShieldedInstanceConfig",
+          "description": "Optional. Shielded VM configuration. [Images using supported Shielded VM features] (https://cloud.google.com/compute/docs/instances/modifying-shielded-vm)."
+        },
         "state": {
           "description": "Output only. The state of this instance.",
           "enum": [
@@ -1359,6 +1849,13 @@
         "subnet": {
           "description": "The name of the subnet that this instance is in. Format: `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`",
           "type": "string"
+        },
+        "tags": {
+          "description": "Optional. The Compute Engine tags to add to runtime (see [Tagging instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "updateTime": {
           "description": "Output only. Instance update time.",
@@ -1424,6 +1921,31 @@
       },
       "type": "object"
     },
+    "ListExecutionsResponse": {
+      "description": "Response for listing scheduled notebook executions",
+      "id": "ListExecutionsResponse",
+      "properties": {
+        "executions": {
+          "description": "A list of returned instances.",
+          "items": {
+            "$ref": "Execution"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token that can be used to continue listing from the last result in the next list call.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Executions IDs that could not be reached. For example, ['projects/{project_id}/location/{location}/executions/imagenet_test1', 'projects/{project_id}/location/{location}/executions/classifier_train1'].",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListInstancesResponse": {
       "description": "Response for listing notebook instances.",
       "id": "ListInstancesResponse",
@@ -1479,6 +2001,31 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListSchedulesResponse": {
+      "description": "Response for listing scheduled notebook job.",
+      "id": "ListSchedulesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Page token that can be used to continue listing from the last result in the next list call.",
+          "type": "string"
+        },
+        "schedules": {
+          "description": "A list of returned instances.",
+          "items": {
+            "$ref": "Schedule"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Schedules that could not be reached. For example, ['projects/{project_id}/location/{location}/schedules/monthly_digest', 'projects/{project_id}/location/{location}/schedules/weekly_sentiment'].",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -1654,6 +2201,104 @@
       "properties": {},
       "type": "object"
     },
+    "Schedule": {
+      "description": "The definition of a schedule.",
+      "id": "Schedule",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Time the schedule was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "cronSchedule": {
+          "description": "Cron-tab formatted schedule by which the job will execute Format: minute, hour, day of month, month, day of week e.g. 0 0 * * WED = every Wednesday More examples: https://crontab.guru/examples.html",
+          "type": "string"
+        },
+        "description": {
+          "description": "A brief description of this environment.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. Display name used for UI purposes. Name can only contain alphanumeric characters, hyphens ‘-’, and underscores ‘_’.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "executionTemplate": {
+          "$ref": "ExecutionTemplate",
+          "description": "Notebook Execution Template corresponding to this schedule."
+        },
+        "name": {
+          "description": "Output only. The name of this schedule. Format: `projects/{project_id}/locations/{location}/schedules/{schedule_id}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "PAUSED",
+            "DISABLED",
+            "UPDATE_FAILED"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The job is executing normally.",
+            "The job is paused by the user. It will not execute. A user can intentionally pause the job using PauseJobRequest.",
+            "The job is disabled by the system due to error. The user cannot directly set a job to be disabled.",
+            "The job state resulting from a failed CloudScheduler.UpdateJob operation. To recover a job from this state, retry CloudScheduler.UpdateJob until a successful response is received."
+          ],
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Timezone on which the cron_schedule. The value of this field must be a time zone name from the tz database. TZ Database: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones Note that some time zones include a provision for daylight savings time. The rules for daylight saving time are determined by the chosen tz. For UTC use the string \"utc\". If a time zone is not specified, the default will be in UTC (also known as GMT).",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. TIme the schedule was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SchedulerAcceleratorConfig": {
+      "description": "Definition of a hardware accelerator. Note that not all combinations of `type` and `core_count` are valid. Check GPUs on Compute Engine to find a valid combination. TPUs are not supported.",
+      "id": "SchedulerAcceleratorConfig",
+      "properties": {
+        "coreCount": {
+          "description": "Count of cores of this accelerator.",
+          "format": "int64",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of this accelerator.",
+          "enum": [
+            "SCHEDULER_ACCELERATOR_TYPE_UNSPECIFIED",
+            "NVIDIA_TESLA_K80",
+            "NVIDIA_TESLA_P100",
+            "NVIDIA_TESLA_V100",
+            "NVIDIA_TESLA_P4",
+            "NVIDIA_TESLA_T4",
+            "TPU_V2",
+            "TPU_V3"
+          ],
+          "enumDescriptions": [
+            "Unspecified accelerator type. Default to no GPU.",
+            "Nvidia Tesla K80 GPU.",
+            "Nvidia Tesla P100 GPU.",
+            "Nvidia Tesla V100 GPU.",
+            "Nvidia Tesla P4 GPU.",
+            "Nvidia Tesla T4 GPU.",
+            "TPU v2.",
+            "TPU v3."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SetIamPolicyRequest": {
       "description": "Request message for `SetIamPolicy` method.",
       "id": "SetIamPolicyRequest",
@@ -1734,6 +2379,25 @@
       },
       "type": "object"
     },
+    "ShieldedInstanceConfig": {
+      "description": "A set of Shielded Instance options. Check [Images using supported Shielded VM features] Not all combinations are valid.",
+      "id": "ShieldedInstanceConfig",
+      "properties": {
+        "enableIntegrityMonitoring": {
+          "description": "Defines whether the instance has integrity monitoring enabled. Enables monitoring and attestation of the boot integrity of the instance. The attestation is performed against the integrity policy baseline. This baseline is initially derived from the implicitly trusted boot image when the instance is created. Enabled by default.",
+          "type": "boolean"
+        },
+        "enableSecureBoot": {
+          "description": "Defines whether the instance has Secure Boot enabled. Secure Boot helps ensure that the system only runs authentic software by verifying the digital signature of all boot components, and halting the boot process if signature verification fails. Disabled by default.",
+          "type": "boolean"
+        },
+        "enableVtpm": {
+          "description": "Defines whether the instance has the vTPM enabled. Enabled by default.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "StartInstanceRequest": {
       "description": "Request for starting a notebook instance",
       "id": "StartInstanceRequest",
@@ -1801,9 +2465,30 @@
       },
       "type": "object"
     },
+    "TriggerScheduleRequest": {
+      "description": "Request for created scheduled notebooks",
+      "id": "TriggerScheduleRequest",
+      "properties": {},
+      "type": "object"
+    },
     "UpgradeHistoryEntry": {
+      "description": "The entry of VM image upgrade history.",
       "id": "UpgradeHistoryEntry",
       "properties": {
+        "action": {
+          "description": "Action. Rolloback or Upgrade.",
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "UPGRADE",
+            "ROLLBACK"
+          ],
+          "enumDescriptions": [
+            "Operation is not specified.",
+            "Upgrade.",
+            "Rollback."
+          ],
+          "type": "string"
+        },
         "containerImage": {
           "description": "The container image before this instance upgrade.",
           "type": "string"
@@ -1835,6 +2520,10 @@
             "The instance upgrade is succeeded.",
             "The instance upgrade is failed."
           ],
+          "type": "string"
+        },
+        "targetImage": {
+          "description": "Target VM Image. Format: ainotebooks-vm/project/image-name/name.",
           "type": "string"
         },
         "version": {
