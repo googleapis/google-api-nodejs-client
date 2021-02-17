@@ -125,8 +125,6 @@ pass_down_envvars=(
     "TRAMPOLINE_CI"
     # Indicates the version of the script.
     "TRAMPOLINE_VERSION"
-    # Contains path to build artifacts being executed.
-    "KOKORO_BUILD_ARTIFACTS_SUBDIR"
 )
 
 log_yellow "Building with Trampoline ${TRAMPOLINE_VERSION}"
@@ -162,7 +160,7 @@ if [[ -n "${KOKORO_BUILD_ID:-}" ]]; then
 	"KOKORO_GITHUB_COMMIT"
 	"KOKORO_GITHUB_PULL_REQUEST_NUMBER"
 	"KOKORO_GITHUB_PULL_REQUEST_COMMIT"
-	# For FlakyBot
+	# For Build Cop Bot
 	"KOKORO_GITHUB_COMMIT_URL"
 	"KOKORO_GITHUB_PULL_REQUEST_URL"
     )
