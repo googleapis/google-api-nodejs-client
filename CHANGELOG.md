@@ -4,6 +4,18 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [67.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v67.0.0...v67.1.0) (2021-02-17)
+
+
+### Features
+
+* **auth:** adds support workload identity federation ([#2517](https://www.github.com/googleapis/google-api-nodejs-client/issues/2517)) ([a10707c](https://www.github.com/googleapis/google-api-nodejs-client/commit/a10707c477759e7c9ef6360a2fe800856fb600c1))
+
+
+### Bug Fixes
+
+* **deps:** update dependency googleapis-common to v5 ([#2497](https://www.github.com/googleapis/google-api-nodejs-client/issues/2497)) ([fec087a](https://www.github.com/googleapis/google-api-nodejs-client/commit/fec087abcf3d994dd41c3ffa0a0c12b1f9f09dae))
+
 ## [67.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v66.0.0...v67.0.0) (2020-12-24)
 
 
