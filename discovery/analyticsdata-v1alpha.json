@@ -6,7 +6,7 @@
           "description": "View and manage your Google Analytics data"
         },
         "https://www.googleapis.com/auth/analytics.readonly": {
-          "description": "See and download your Google Analytics data"
+          "description": "View your Google Analytics data"
         }
       }
     }
@@ -248,7 +248,7 @@
       }
     }
   },
-  "revision": "20210213",
+  "revision": "20201201",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "BatchRunPivotReportsRequest": {
@@ -342,7 +342,7 @@
       "type": "object"
     },
     "Cohort": {
-      "description": "Defines a cohort selection criteria. A cohort is a group of users who share a common characteristic. For example, users with the same `firstSessionDate` belong to the same cohort.",
+      "description": "Defines a cohort selection criteria. A cohort is a group of users who share a common characteristic. For example, users with the same `firstTouchDate` belong to the same cohort.",
       "id": "Cohort",
       "properties": {
         "dateRange": {
@@ -350,7 +350,7 @@
           "description": "The cohort selects users whose first touch date is between start date and end date defined in the `dateRange`. This `dateRange` does not specify the full date range of event data that is present in a cohort report. In a cohort report, this `dateRange` is extended by the granularity and offset present in the `cohortsRange`; event data for the extended reporting date range is present in a cohort report. In a cohort request, this `dateRange` is required and the `dateRanges` in the `RunReportRequest` or `RunPivotReportRequest` must be unspecified. This `dateRange` should generally be aligned with the cohort's granularity. If `CohortsRange` uses daily granularity, this `dateRange` can be a single day. If `CohortsRange` uses weekly granularity, this `dateRange` can be aligned to a week boundary, starting at Sunday and ending Saturday. If `CohortsRange` uses monthly granularity, this `dateRange` can be aligned to a month, starting at the first and ending on the last day of the month."
         },
         "dimension": {
-          "description": "Dimension used by the cohort. Required and only supports `firstSessionDate`.",
+          "description": "Dimension used by the cohort. Required and only supports `firstTouchDate`.",
           "type": "string"
         },
         "name": {
@@ -372,7 +372,7 @@
       "type": "object"
     },
     "CohortSpec": {
-      "description": "The specification of cohorts for a cohort report. Cohort reports create a time series of user retention for the cohort. For example, you could select the cohort of users that were acquired in the first week of September and follow that cohort for the next six weeks. Selecting the users acquired in the first week of September cohort is specified in the `cohort` object. Following that cohort for the next six weeks is specified in the `cohortsRange` object. For examples, see [Cohort Report Examples](https://developers.google.com/analytics/devguides/reporting/data/v1/advanced#cohort_report_examples). The report response could show a weekly time series where say your app has retained 60% of this cohort after three weeks and 25% of this cohort after six weeks. These two percentages can be calculated by the metric `cohortActiveUsers/cohortTotalUsers` and will be separate rows in the report.",
+      "description": "Specification of cohorts for a cohort report. Cohort reports can be used for example to create a time series of user retention for the cohort. For example, you could select the cohort of users that were acquired in the first week of September and follow that cohort for the next six weeks. Selecting the users acquired in the first week of September cohort is specified in the `cohort` object. Following that cohort for the next six weeks is specified in the `cohortsRange` object. The report response could show a weekly time series where say your app has retained 60% of this cohort after three weeks and 25% of this cohort after six weeks. These two percentages can be calculated by the metric `cohortActiveUsers/cohortTotalUsers` and will be separate rows in the report.",
       "id": "CohortSpec",
       "properties": {
         "cohortReportSettings": {
@@ -398,12 +398,12 @@
       "id": "CohortsRange",
       "properties": {
         "endOffset": {
-          "description": "Required. `endOffset` specifies the end date of the extended reporting date range for a cohort report. `endOffset` can be any positive integer but is commonly set to 5 to 10 so that reports contain data on the cohort for the next several granularity time periods. If `granularity` is `DAILY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset` days. If `granularity` is `WEEKLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 7` days. If `granularity` is `MONTHLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 30` days.",
+          "description": "`endOffset` specifies the end date of the extended reporting date range for a cohort report. `endOffset` can be any positive integer but is commonly set to 5 to 10 so that reports contain data on the cohort for the next several granularity time periods. If `granularity` is `DAILY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset` days. If `granularity` is `WEEKLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 7` days. If `granularity` is `MONTHLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 30` days.",
           "format": "int32",
           "type": "integer"
         },
         "granularity": {
-          "description": "Required. The granularity used to interpret the `startOffset` and `endOffset` for the extended reporting date range for a cohort report.",
+          "description": "The granularity used to interpret the `startOffset` and `endOffset` for the extended reporting date range for a cohort report.",
           "enum": [
             "GRANULARITY_UNSPECIFIED",
             "DAILY",
@@ -602,6 +602,10 @@
         "inListFilter": {
           "$ref": "InListFilter",
           "description": "A filter for in list values."
+        },
+        "nullFilter": {
+          "description": "A filter for null values. If True, a null dimension value is matched by this filter. Null filter is commonly used inside a NOT filter expression. For example, a NOT expression of a null filter removes rows when a dimension is null.",
+          "type": "boolean"
         },
         "numericFilter": {
           "$ref": "NumericFilter",
@@ -931,7 +935,7 @@
           "type": "array"
         },
         "limit": {
-          "description": "The number of rows to return in this pivot. If the `limit` parameter is unspecified, up to 10,000 rows are returned. The product of the `limit` for each `pivot` in a `RunPivotReportRequest` must not exceed 100,000. For example, a two pivot request with `limit: 1000` in each pivot will fail because the product is `1,000,000`.",
+          "description": "The number of rows to return in this pivot. If unspecified, 10 rows are returned. If -1, all rows are returned.",
           "format": "int64",
           "type": "string"
         },
@@ -997,7 +1001,7 @@
           "type": "array"
         },
         "rowCount": {
-          "description": "The cardinality of the pivot. The total number of rows for this pivot's fields regardless of how the parameters `offset` and `limit` are specified in the request.",
+          "description": "The cardinality of the pivot as if offset = 0 and limit = -1. The total number of rows for this pivot's fields regardless of how the parameters offset and limit are specified in the request.",
           "format": "int32",
           "type": "integer"
         }
@@ -1055,7 +1059,7 @@
         },
         "tokensPerHour": {
           "$ref": "QuotaStatus",
-          "description": "Standard Analytics Properties can use up to 5,000 tokens per hour; Analytics 360 Properties can use 50,000 tokens per hour. An API request consumes a single number of tokens, and that number is deducted from both the hourly and daily quotas."
+          "description": "Standard Analytics Properties can use up to 5,000 tokens per day; Analytics 360 Properties can use 50,000 tokens per day. An API request consumes a single number of tokens, and that number is deducted from both the hourly and daily quotas."
         }
       },
       "type": "object"
@@ -1238,7 +1242,7 @@
           "type": "array"
         },
         "limit": {
-          "description": "The number of rows to return. If the `limit` parameter is unspecified, 10,000 rows are returned. The API returns a maximum of 100,000 rows per request, no matter how many you ask for.",
+          "description": "The number of rows to return. If unspecified, 10 rows are returned. If -1, all rows are returned.",
           "format": "int64",
           "type": "string"
         },
@@ -1385,7 +1389,7 @@
           "type": "boolean"
         },
         "limit": {
-          "description": "The number of rows to return. If the `limit` parameter is unspecified, 10,000 rows are returned. The API returns a maximum of 100,000 rows per request, no matter how many you ask for.",
+          "description": "The number of rows to return. If unspecified, 10 rows are returned. If -1, all rows are returned. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).",
           "format": "int64",
           "type": "string"
         },
@@ -1422,7 +1426,7 @@
           "type": "array"
         },
         "offset": {
-          "description": "The row count of the start row. The first row is counted as row 0.",
+          "description": "The row count of the start row. The first row is counted as row 0. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).",
           "format": "int64",
           "type": "string"
         },

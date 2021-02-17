@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace deploymentmanager_v2beta {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -529,14 +527,6 @@ export namespace deploymentmanager_v2beta {
      */
     layout?: string | null;
     /**
-     * Output only. The computed size of the fully expanded manifest.
-     */
-    manifestSizeBytes?: string | null;
-    /**
-     * Output only. The size limit for expanded manifests in the project.
-     */
-    manifestSizeLimitBytes?: string | null;
-    /**
      * Output only. The name of the manifest.
      */
     name?: string | null;
@@ -608,10 +598,6 @@ export namespace deploymentmanager_v2beta {
      * [Output Only] Name of the operation.
      */
     name?: string | null;
-    /**
-     * [Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.
-     */
-    operationGroupId?: string | null;
     /**
      * [Output Only] The type of operation, such as `insert`, `update`, or `delete`, and so on.
      */
@@ -1174,7 +1160,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "insertTime": "my_insertTime",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
      *   //   "progress": 0,
      *   //   "region": "my_region",
@@ -1493,7 +1478,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "insertTime": "my_insertTime",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
      *   //   "progress": 0,
      *   //   "region": "my_region",
@@ -1644,6 +1628,8 @@ export namespace deploymentmanager_v2beta {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -1820,7 +1806,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "insertTime": "my_insertTime",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
      *   //   "progress": 0,
      *   //   "region": "my_region",
@@ -1995,7 +1980,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "insertTime": "my_insertTime",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
      *   //   "progress": 0,
      *   //   "region": "my_region",
@@ -2160,6 +2144,10 @@ export namespace deploymentmanager_v2beta {
      * The project ID for this request.
      */
     project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Compositetypes$Patch
     extends StandardParameters {
@@ -2259,7 +2247,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "insertTime": "my_insertTime",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
      *   //   "progress": 0,
      *   //   "region": "my_region",
@@ -2420,7 +2407,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "insertTime": "my_insertTime",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
      *   //   "progress": 0,
      *   //   "region": "my_region",
@@ -2889,7 +2875,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "insertTime": "my_insertTime",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
      *   //   "progress": 0,
      *   //   "region": "my_region",
@@ -3040,6 +3025,8 @@ export namespace deploymentmanager_v2beta {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -3222,7 +3209,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "insertTime": "my_insertTime",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
      *   //   "progress": 0,
      *   //   "region": "my_region",
@@ -3538,7 +3524,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "insertTime": "my_insertTime",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
      *   //   "progress": 0,
      *   //   "region": "my_region",
@@ -3872,7 +3857,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "insertTime": "my_insertTime",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
      *   //   "progress": 0,
      *   //   "region": "my_region",
@@ -4078,6 +4062,10 @@ export namespace deploymentmanager_v2beta {
      * The project ID for this request.
      */
     project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Deployments$Patch
     extends StandardParameters {
@@ -4239,8 +4227,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "imports": [],
      *   //   "insertTime": "my_insertTime",
      *   //   "layout": "my_layout",
-     *   //   "manifestSizeBytes": "my_manifestSizeBytes",
-     *   //   "manifestSizeLimitBytes": "my_manifestSizeLimitBytes",
      *   //   "name": "my_name",
      *   //   "selfLink": "my_selfLink"
      *   // }
@@ -4382,6 +4368,8 @@ export namespace deploymentmanager_v2beta {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -4528,6 +4516,10 @@ export namespace deploymentmanager_v2beta {
      * The project ID for this request.
      */
     project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Operations {
@@ -4589,7 +4581,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "insertTime": "my_insertTime",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
      *   //   "progress": 0,
      *   //   "region": "my_region",
@@ -4739,6 +4730,8 @@ export namespace deploymentmanager_v2beta {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -4877,6 +4870,10 @@ export namespace deploymentmanager_v2beta {
      * The project ID for this request.
      */
     project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Resources {
@@ -5080,6 +5077,8 @@ export namespace deploymentmanager_v2beta {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -5226,6 +5225,10 @@ export namespace deploymentmanager_v2beta {
      * The project ID for this request.
      */
     project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     */
+    returnPartialSuccess?: boolean;
   }
 
   export class Resource$Typeproviders {
@@ -5285,7 +5288,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "insertTime": "my_insertTime",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
      *   //   "progress": 0,
      *   //   "region": "my_region",
@@ -5756,7 +5758,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "insertTime": "my_insertTime",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
      *   //   "progress": 0,
      *   //   "region": "my_region",
@@ -5907,6 +5908,8 @@ export namespace deploymentmanager_v2beta {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -6059,6 +6062,8 @@ export namespace deploymentmanager_v2beta {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *     returnPartialSuccess: 'placeholder-value',
      *     // The name of the type provider for this request.
      *     typeProvider: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
      *   });
@@ -6242,7 +6247,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "insertTime": "my_insertTime",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
      *   //   "progress": 0,
      *   //   "region": "my_region",
@@ -6420,7 +6424,6 @@ export namespace deploymentmanager_v2beta {
      *   //   "insertTime": "my_insertTime",
      *   //   "kind": "my_kind",
      *   //   "name": "my_name",
-     *   //   "operationGroupId": "my_operationGroupId",
      *   //   "operationType": "my_operationType",
      *   //   "progress": 0,
      *   //   "region": "my_region",
@@ -6600,6 +6603,10 @@ export namespace deploymentmanager_v2beta {
      * The project ID for this request.
      */
     project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     */
+    returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Typeproviders$Listtypes
     extends StandardParameters {
@@ -6623,6 +6630,10 @@ export namespace deploymentmanager_v2beta {
      * The project ID for this request.
      */
     project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     */
+    returnPartialSuccess?: boolean;
     /**
      * The name of the type provider for this request.
      */
@@ -6710,6 +6721,8 @@ export namespace deploymentmanager_v2beta {
      *     // The project ID for this request.
      *     project:
      *       '(?:(?:[-a-z0-9]{1,63}.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))',
+     *     // Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     *     returnPartialSuccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -6836,5 +6849,9 @@ export namespace deploymentmanager_v2beta {
      * The project ID for this request.
      */
     project?: string;
+    /**
+     * Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
+     */
+    returnPartialSuccess?: boolean;
   }
 }

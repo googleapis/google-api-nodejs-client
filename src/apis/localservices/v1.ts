@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace localservices_v1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -372,7 +370,7 @@ export namespace localservices_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/adwords'],
+     *     scopes: [],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -575,7 +573,7 @@ export namespace localservices_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/adwords'],
+     *     scopes: [],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls

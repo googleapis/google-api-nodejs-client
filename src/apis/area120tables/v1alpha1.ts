@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace area120tables_v1alpha1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -144,15 +142,6 @@ export namespace area120tables_v1alpha1 {
      * The created rows.
      */
     rows?: Schema$Row[];
-  }
-  /**
-   * Request message for TablesService.BatchDeleteRows
-   */
-  export interface Schema$BatchDeleteRowsRequest {
-    /**
-     * Required. The names of the rows to delete. All rows must belong to the parent table or else the entire batch will fail. A maximum of 500 rows can be deleted in a batch. Format: tables/{table\}/rows/{row\}
-     */
-    names?: string[] | null;
   }
   /**
    * Request message for TablesService.BatchUpdateRows.
@@ -818,147 +807,6 @@ export namespace area120tables_v1alpha1 {
     }
 
     /**
-     * Deletes multiple rows.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const area120tables = google.area120tables('v1alpha1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/spreadsheets',
-     *       'https://www.googleapis.com/auth/tables',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await area120tables.tables.rows.batchDelete({
-     *     // Required. The parent table shared by all rows being deleted. Format: tables/{table\}
-     *     parent: 'tables/my-table',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "names": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchDelete(
-      params: Params$Resource$Tables$Rows$Batchdelete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    batchDelete(
-      params?: Params$Resource$Tables$Rows$Batchdelete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
-    batchDelete(
-      params: Params$Resource$Tables$Rows$Batchdelete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchDelete(
-      params: Params$Resource$Tables$Rows$Batchdelete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    batchDelete(
-      params: Params$Resource$Tables$Rows$Batchdelete,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    batchDelete(callback: BodyResponseCallback<Schema$Empty>): void;
-    batchDelete(
-      paramsOrCallback?:
-        | Params$Resource$Tables$Rows$Batchdelete
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Tables$Rows$Batchdelete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Tables$Rows$Batchdelete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://area120tables.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha1/{+parent}/rows:batchDelete').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
      * Updates multiple rows.
      * @example
      * ```js
@@ -1555,8 +1403,6 @@ export namespace area120tables_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await area120tables.tables.rows.list({
-     *     // Optional. Raw text query to search for in rows of the table. Special characters must be escaped. Logical operators and field specific filtering not supported.
-     *     filter: 'placeholder-value',
      *     // The maximum number of rows to return. The service may return fewer than this value. If unspecified, at most 50 rows are returned. The maximum value is 1,000; values above 1,000 are coerced to 1,000.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListRows` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRows` must match the call that provided the page token.
@@ -1825,18 +1671,6 @@ export namespace area120tables_v1alpha1 {
      */
     requestBody?: Schema$BatchCreateRowsRequest;
   }
-  export interface Params$Resource$Tables$Rows$Batchdelete
-    extends StandardParameters {
-    /**
-     * Required. The parent table shared by all rows being deleted. Format: tables/{table\}
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$BatchDeleteRowsRequest;
-  }
   export interface Params$Resource$Tables$Rows$Batchupdate
     extends StandardParameters {
     /**
@@ -1883,10 +1717,6 @@ export namespace area120tables_v1alpha1 {
     view?: string;
   }
   export interface Params$Resource$Tables$Rows$List extends StandardParameters {
-    /**
-     * Optional. Raw text query to search for in rows of the table. Special characters must be escaped. Logical operators and field specific filtering not supported.
-     */
-    filter?: string;
     /**
      * The maximum number of rows to return. The service may return fewer than this value. If unspecified, at most 50 rows are returned. The maximum value is 1,000; values above 1,000 are coerced to 1,000.
      */

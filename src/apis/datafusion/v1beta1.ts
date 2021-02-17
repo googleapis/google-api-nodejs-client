@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace datafusion_v1beta1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -164,6 +162,10 @@ export namespace datafusion_v1beta1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
+    /**
+     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
+     */
+    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -307,7 +309,7 @@ export namespace datafusion_v1beta1 {
      */
     version?: string | null;
     /**
-     * Name of the zone in which the Data Fusion instance will be created. Only DEVELOPER instances use this field.
+     * Name of the zone in which the Data Fusion instance will be created.
      */
     zone?: string | null;
   }
@@ -484,14 +486,6 @@ export namespace datafusion_v1beta1 {
      */
     version?: number | null;
   }
-  /**
-   * Request message for RemoveIamPolicy method.
-   */
-  export interface Schema$RemoveIamPolicyRequest {}
-  /**
-   * Response message for RemoveIamPolicy method.
-   */
-  export interface Schema$RemoveIamPolicyResponse {}
   /**
    * Request message for restarting a Data Fusion instance.
    */
@@ -861,146 +855,6 @@ export namespace datafusion_v1beta1 {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
       }
     }
-
-    /**
-     * Remove IAM policy that is currently set on the given resource.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/datafusion.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const datafusion = google.datafusion('v1beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await datafusion.projects.locations.removeIamPolicy({
-     *     // The resource on which IAM policy to be removed is attached to.
-     *     resource: 'projects/my-project/locations/my-location/.*',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {}
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    removeIamPolicy(
-      params: Params$Resource$Projects$Locations$Removeiampolicy,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    removeIamPolicy(
-      params?: Params$Resource$Projects$Locations$Removeiampolicy,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$RemoveIamPolicyResponse>;
-    removeIamPolicy(
-      params: Params$Resource$Projects$Locations$Removeiampolicy,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    removeIamPolicy(
-      params: Params$Resource$Projects$Locations$Removeiampolicy,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>,
-      callback: BodyResponseCallback<Schema$RemoveIamPolicyResponse>
-    ): void;
-    removeIamPolicy(
-      params: Params$Resource$Projects$Locations$Removeiampolicy,
-      callback: BodyResponseCallback<Schema$RemoveIamPolicyResponse>
-    ): void;
-    removeIamPolicy(
-      callback: BodyResponseCallback<Schema$RemoveIamPolicyResponse>
-    ): void;
-    removeIamPolicy(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Removeiampolicy
-        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$RemoveIamPolicyResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$RemoveIamPolicyResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Removeiampolicy;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Removeiampolicy;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://datafusion.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta1/{+resource}:removeIamPolicy').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['resource'],
-        pathParams: ['resource'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$RemoveIamPolicyResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$RemoveIamPolicyResponse>(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Get
@@ -1032,18 +886,6 @@ export namespace datafusion_v1beta1 {
      * The standard list page token.
      */
     pageToken?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Removeiampolicy
-    extends StandardParameters {
-    /**
-     * The resource on which IAM policy to be removed is attached to.
-     */
-    resource?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$RemoveIamPolicyRequest;
   }
 
   export class Resource$Projects$Locations$Instances {
@@ -1220,7 +1062,7 @@ export namespace datafusion_v1beta1 {
     }
 
     /**
-     * Deletes a single Data Fusion instance.
+     * Deletes a single Date Fusion instance.
      * @example
      * ```js
      * // Before running the sample:

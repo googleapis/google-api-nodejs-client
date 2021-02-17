@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace containeranalysis_v1beta1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -520,10 +518,6 @@ export namespace containeranalysis_v1beta1 {
      * The severity (eg: distro assigned severity) for this vulnerability.
      */
     severityName?: string | null;
-    /**
-     * The source from which the information in this Detail was obtained.
-     */
-    source?: string | null;
     /**
      * The time this information was last changed at the source. This is an upstream timestamp from the underlying information source - e.g. Ubuntu security tracker.
      */
@@ -1450,10 +1444,6 @@ export namespace containeranalysis_v1beta1 {
      * Used to correct mistakes in the version numbering scheme.
      */
     epoch?: number | null;
-    /**
-     * Whether this version is specifying part of an inclusive range. Grafeas does not have the capability to specify version ranges; instead we have fields that specify start version and end versions. At times this is insufficient - we also need to specify whether the version is included in the range or is excluded from the range. This boolean is expected to be set to true when the version is included in a range.
-     */
-    inclusive?: boolean | null;
     /**
      * Required. Distinguishes between sentinel MIN/MAX versions and normal versions.
      */

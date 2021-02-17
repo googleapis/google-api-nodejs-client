@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace managedidentities_v1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -459,10 +457,6 @@ export namespace managedidentities_v1 {
      */
     rolloutManagementPolicy?: string | null;
     /**
-     * schedule_deadline_time is the time deadline any schedule start time cannot go beyond, including reschedule. It's normally the initial schedule start time plus maintenance window length (1 day or 1 week). Maintenance cannot be scheduled to start beyond this deadline.
-     */
-    scheduleDeadlineTime?: string | null;
-    /**
      * The scheduled start time for the maintenance.
      */
     startTime?: string | null;
@@ -475,10 +469,6 @@ export namespace managedidentities_v1 {
      * Optional. Exclude instance from maintenance. When true, rollout service will not attempt maintenance on the instance. Rollout service will include the instance in reported rollout progress as not attempted.
      */
     exclude?: boolean | null;
-    /**
-     * Optional. If the update call is triggered from rollback, set the value as true.
-     */
-    isRollback?: boolean | null;
     /**
      * Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the embedded policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug. If only the name is needed (like in the deprecated Instance.maintenance_policy_names field) then only populate MaintenancePolicy.name.
      */
@@ -500,19 +490,6 @@ export namespace managedidentities_v1 {
      * The id of the node. This should be equal to SaasInstanceNode.node_id.
      */
     nodeId?: string | null;
-  }
-  /**
-   * PerSliSloEligibility is a mapping from an SLI name to eligibility.
-   */
-  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility {
-    /**
-     * An entry in the eligibilities map specifies an eligibility for a particular SLI for the given instance. The SLI key in the name must be a valid SLI name specified in the Eligibility Exporter binary flags otherwise an error will be emitted by Eligibility Exporter and the oncaller will be alerted. If an SLI has been defined in the binary flags but the eligibilities map does not contain it, the corresponding SLI time series will not be emitted by the Eligibility Exporter. This ensures a smooth rollout and compatibility between the data produced by different versions of the Eligibility Exporters. If eligibilities map contains a key for an SLI which has not been declared in the binary flags, there will be an error message emitted in the Eligibility Exporter log and the metric for the SLI in question will not be emitted.
-     */
-    eligibilities?: {
-      [
-        key: string
-      ]: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility;
-    } | null;
   }
   /**
    * Describes provisioned dataplane resources.
@@ -553,7 +530,7 @@ export namespace managedidentities_v1 {
      */
     reason?: string | null;
     /**
-     * Name of an SLI that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLIs.
+     * Name of an SLI that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLIs defined in the service SLO configuration.
      */
     sliName?: string | null;
     /**
@@ -566,7 +543,7 @@ export namespace managedidentities_v1 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata {
     /**
-     * Optional. Global per-instance SLI eligibility which applies to all defined SLIs. Exactly one of 'eligibility' and 'per_sli_eligibility' fields must be used.
+     * Optional. User-defined instance eligibility.
      */
     eligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility;
     /**
@@ -577,10 +554,6 @@ export namespace managedidentities_v1 {
      * Optional. List of nodes. Some producers need to use per-node metadata to calculate SLO. This field allows such producers to publish per-node SLO meta data, which will be consumed by SSA Eligibility Exporter and published in the form of per node metric to Monarch.
      */
     nodes?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata[];
-    /**
-     * Optional. Multiple per-instance SLI eligibilities which apply for individual SLIs. Exactly one of 'eligibility' and 'per_sli_eligibility' fields must be used.
-     */
-    perSliEligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility;
     /**
      * Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration. Field is mandatory and must not be empty.
      */

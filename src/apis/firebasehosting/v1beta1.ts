@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace firebasehosting_v1beta1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -325,11 +323,11 @@ export namespace firebasehosting_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
-   * A [`Header`](https://firebase.google.com/docs/hosting/full-config#headers) specifies a URL pattern that, if matched to the request URL path, triggers Hosting to apply the specified custom response headers.
+   * A [`header`](/docs/hosting/full-config#headers) is an object that specifies a URL pattern that, if matched to the request URL path, triggers Hosting to apply the specified custom response headers.
    */
   export interface Schema$Header {
     /**
-     * The user-supplied [glob](https://firebase.google.com/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
+     * The user-supplied [glob](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string | null;
     /**
@@ -378,7 +376,7 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Schema$ListReleasesResponse {
     /**
-     * The pagination token, if more results exist beyond the ones in this response. Include this token in your next call to `ListReleases`. Page tokens are short-lived and should not be stored.
+     * If there are additional releases remaining beyond the ones in this response, then supply this token in the next [`list`](../sites.versions.files/list) call to continue with the next set of releases.
      */
     nextPageToken?: string | null;
     /**
@@ -388,11 +386,11 @@ export namespace firebasehosting_v1beta1 {
   }
   export interface Schema$ListVersionFilesResponse {
     /**
-     *  The list of paths to the hashes of the files in the specified version.
+     * The list path/hashes in the specified version.
      */
     files?: Schema$VersionFile[];
     /**
-     * The pagination token, if more results exist beyond the ones in this response. Include this token in your next call to `ListVersionFiles`. Page tokens are short-lived and should not be stored.
+     * The pagination token, if more results exist.
      */
     nextPageToken?: string | null;
   }
@@ -440,19 +438,22 @@ export namespace firebasehosting_v1beta1 {
      */
     regexes?: string[] | null;
   }
+  /**
+   * The request to populate a Version's Files.
+   */
   export interface Schema$PopulateVersionFilesRequest {
     /**
-     * A set of file paths to the hashes corresponding to assets that should be added to the version. A file path to an empty hash will remove the path from the version. Calculate a hash by Gzipping the file then taking the SHA256 hash of the newly compressed file.
+     * A set of file paths to the hashes corresponding to assets that should be added to the version. Note that a file path to an empty hash will remove the path from the version. Calculate a hash by Gzipping the file then taking the SHA256 hash of the newly compressed file.
      */
     files?: {[key: string]: string} | null;
   }
   export interface Schema$PopulateVersionFilesResponse {
     /**
-     * The content hashes of the specified files that need to be uploaded to the specified URL.
+     * The content hashes of the specified files that need to be uploaded to the specified endpoint.
      */
     uploadRequiredHashes?: string[] | null;
     /**
-     * The URL to which the files should be uploaded, in the format: "https://upload-firebasehosting.googleapis.com/upload/sites/SITE_NAME /versions/VERSION_ID/files" Perform a multipart `POST` of the Gzipped file contents to the URL using a forward slash and the hash of the file appended to the end.
+     * The URL to which the files should be uploaded, in the format: "https://upload-firebasehosting.googleapis.com/upload/sites/site-name /versions/versionID/files". Perform a multipart `POST` of the Gzipped file contents to the URL using a forward slash and the hash of the file appended to the end.
      */
     uploadUrl?: string | null;
   }
@@ -470,11 +471,11 @@ export namespace firebasehosting_v1beta1 {
     expireTime?: string | null;
   }
   /**
-   * A [`Redirect`](https://firebase.google.com/docs/hosting/full-config#redirects) specifies a URL pattern that, if matched to the request URL path, triggers Hosting to respond with a redirect to the specified destination path.
+   * A [`redirect`](/docs/hosting/full-config#redirects) object specifies a URL pattern that, if matched to the request URL path, triggers Hosting to respond with a redirect to the specified destination path.
    */
   export interface Schema$Redirect {
     /**
-     * The user-supplied [glob](https://firebase.google.com/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
+     * The user-supplied [glob](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string | null;
     /**
@@ -499,7 +500,7 @@ export namespace firebasehosting_v1beta1 {
      */
     message?: string | null;
     /**
-     * Output only. The unique identifier for the release, in the format: sites/ SITE_NAME/releases/RELEASE_ID This name is provided in the response body when you call [`CreateRelease`](sites.releases/create).
+     * Output only. The unique identifier for the release, in the format: sites/ site-name/releases/releaseID This name is provided in the response body when you call the [`CreateRelease`](sites.releases/create) endpoint.
      */
     name?: string | null;
     /**
@@ -520,7 +521,7 @@ export namespace firebasehosting_v1beta1 {
     version?: Schema$Version;
   }
   /**
-   * A [`Rewrite`](https://firebase.google.com/docs/hosting/full-config#rewrites) specifies a URL pattern that, if matched to the request URL path, triggers Hosting to respond as if the service were given the specified destination URL.
+   * A [`rewrite`](/docs/hosting/full-config#rewrites) object specifies a URL pattern that, if matched to the request URL path, triggers Hosting to respond as if the service were given the specified destination URL.
    */
   export interface Schema$Rewrite {
     /**
@@ -532,7 +533,7 @@ export namespace firebasehosting_v1beta1 {
      */
     function?: string | null;
     /**
-     * The user-supplied [glob](https://firebase.google.com/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
+     * The user-supplied [glob](/docs/hosting/full-config#glob_pattern_matching) to match against the request URL path.
      */
     glob?: string | null;
     /**
@@ -549,7 +550,7 @@ export namespace firebasehosting_v1beta1 {
     run?: Schema$CloudRunRewrite;
   }
   /**
-   * The configuration for how incoming requests to a site should be routed and processed before serving content. The URL request paths are matched against the specified URL patterns in the configuration, then Hosting applies the applicable configuration according to a specific [priority order](https://firebase.google.com/docs/hosting/full-config#hosting_priority_order).
+   * The configuration for how incoming requests to a site should be routed and processed before serving content. The URL request paths are matched against the specified URL patterns in the configuration, then Hosting applies the applicable configuration according to a specific [priority order](/docs/hosting/full-config#hosting_priority_order).
    */
   export interface Schema$ServingConfig {
     /**
@@ -612,11 +613,11 @@ export namespace firebasehosting_v1beta1 {
     message?: string | null;
   }
   /**
-   * A `Version` is a configuration and a collection of static files which determine how a site is displayed.
+   * A `Version` is the collection of configuration and [static files](sites.versions.files) that determine how a site is displayed.
    */
   export interface Schema$Version {
     /**
-     * The configuration for the behavior of the site. This configuration exists in the [`firebase.json`](https://firebase.google.com/docs/cli/#the_firebasejson_file) file.
+     * The configuration for the behavior of the site. This configuration exists in the [`firebase.json`](/docs/cli/#the_firebasejson_file) file.
      */
     config?: Schema$ServingConfig;
     /**
@@ -652,7 +653,7 @@ export namespace firebasehosting_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
+     * The unique identifier for a version, in the format: sites/site-name /versions/versionID This name is provided in the response body when you call the [`CreateVersion`](../sites.versions/create) endpoint.
      */
     name?: string | null;
     /**
@@ -660,7 +661,7 @@ export namespace firebasehosting_v1beta1 {
      */
     preview?: Schema$PreviewConfig;
     /**
-     * The deploy status of a version. For a successful deploy, call [`CreateVersion`](sites.versions/create) to make a new version (`CREATED` status), [upload all desired files](sites.versions/populateFiles) to the version, then [update](sites.versions/patch) the version to the `FINALIZED` status. Note that if you leave the version in the `CREATED` state for more than 12 hours, the system will automatically mark the version as `ABANDONED`. You can also change the status of a version to `DELETED` by calling [`DeleteVersion`](sites.versions/delete).
+     * The deploy status of a version. For a successful deploy, call the [`CreateVersion`](sites.versions/create) endpoint to make a new version (`CREATED` status), [upload all desired files](sites.versions/populateFiles) to the version, then [update](sites.versions/patch) the version to the `FINALIZED` status. Note that if you leave the version in the `CREATED` state for more than 12 hours, the system will automatically mark the version as `ABANDONED`. You can also change the status of a version to `DELETED` by calling the [`DeleteVersion`](sites.versions/delete) endpoint.
      */
     status?: string | null;
     /**
@@ -1970,7 +1971,7 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * Creates a new release, which makes the content of the specified version actively display on the appropriate URL(s).
+     * Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
      * @example
      * ```js
      * // Before running the sample:
@@ -1999,9 +2000,9 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.channels.releases.create({
-     *     // Required. The site to which the release belongs, in the format: sites/ SITE_NAME
+     *     // Required. The site that the release belongs to, in the format: sites/ site-name
      *     parent: 'projects/my-project/sites/my-site/channels/my-channel',
-     *     //  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     *     // The unique identifier for a version, in the format: /sites/site-name /versions/versionID The site-name in this version identifier must match the site-name in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      *     versionName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2154,11 +2155,11 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.channels.releases.list({
-     *     // The maximum number of releases to return. The service may return a lower number if fewer releases exist than this maximum number. If unspecified, defaults to 100.
+     *     // The page size to return. Defaults to 100.
      *     pageSize: 'placeholder-value',
-     *     // A token from a previous call to `ListReleases` that tells the server where to resume listing.
+     *     // The next_page_token from a previous request, if provided.
      *     pageToken: 'placeholder-value',
-     *     // Required. The site for which to list releases, in the format: sites/ SITE_NAME
+     *     // Required. The parent for which to list files, in the format: sites/site-name
      *     parent: 'projects/my-project/sites/my-site/channels/my-channel',
      *   });
      *   console.log(res.data);
@@ -2271,11 +2272,11 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Channels$Releases$Create
     extends StandardParameters {
     /**
-     * Required. The site to which the release belongs, in the format: sites/ SITE_NAME
+     * Required. The site that the release belongs to, in the format: sites/ site-name
      */
     parent?: string;
     /**
-     *  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     * The unique identifier for a version, in the format: /sites/site-name /versions/versionID The site-name in this version identifier must match the site-name in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      */
     versionName?: string;
 
@@ -2287,15 +2288,15 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Channels$Releases$List
     extends StandardParameters {
     /**
-     * The maximum number of releases to return. The service may return a lower number if fewer releases exist than this maximum number. If unspecified, defaults to 100.
+     * The page size to return. Defaults to 100.
      */
     pageSize?: number;
     /**
-     * A token from a previous call to `ListReleases` that tells the server where to resume listing.
+     * The next_page_token from a previous request, if provided.
      */
     pageToken?: string;
     /**
-     * Required. The site for which to list releases, in the format: sites/ SITE_NAME
+     * Required. The parent for which to list files, in the format: sites/site-name
      */
     parent?: string;
   }
@@ -3075,7 +3076,7 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * Creates a new release, which makes the content of the specified version actively display on the appropriate URL(s).
+     * Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
      * @example
      * ```js
      * // Before running the sample:
@@ -3104,9 +3105,9 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.releases.create({
-     *     // Required. The site to which the release belongs, in the format: sites/ SITE_NAME
+     *     // Required. The site that the release belongs to, in the format: sites/ site-name
      *     parent: 'projects/my-project/sites/my-site',
-     *     //  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     *     // The unique identifier for a version, in the format: /sites/site-name /versions/versionID The site-name in this version identifier must match the site-name in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      *     versionName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3259,11 +3260,11 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.releases.list({
-     *     // The maximum number of releases to return. The service may return a lower number if fewer releases exist than this maximum number. If unspecified, defaults to 100.
+     *     // The page size to return. Defaults to 100.
      *     pageSize: 'placeholder-value',
-     *     // A token from a previous call to `ListReleases` that tells the server where to resume listing.
+     *     // The next_page_token from a previous request, if provided.
      *     pageToken: 'placeholder-value',
-     *     // Required. The site for which to list releases, in the format: sites/ SITE_NAME
+     *     // Required. The parent for which to list files, in the format: sites/site-name
      *     parent: 'projects/my-project/sites/my-site',
      *   });
      *   console.log(res.data);
@@ -3376,11 +3377,11 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Releases$Create
     extends StandardParameters {
     /**
-     * Required. The site to which the release belongs, in the format: sites/ SITE_NAME
+     * Required. The site that the release belongs to, in the format: sites/ site-name
      */
     parent?: string;
     /**
-     *  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     * The unique identifier for a version, in the format: /sites/site-name /versions/versionID The site-name in this version identifier must match the site-name in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      */
     versionName?: string;
 
@@ -3392,15 +3393,15 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Releases$List
     extends StandardParameters {
     /**
-     * The maximum number of releases to return. The service may return a lower number if fewer releases exist than this maximum number. If unspecified, defaults to 100.
+     * The page size to return. Defaults to 100.
      */
     pageSize?: number;
     /**
-     * A token from a previous call to `ListReleases` that tells the server where to resume listing.
+     * The next_page_token from a previous request, if provided.
      */
     pageToken?: string;
     /**
-     * Required. The site for which to list releases, in the format: sites/ SITE_NAME
+     * Required. The parent for which to list files, in the format: sites/site-name
      */
     parent?: string;
   }
@@ -3562,7 +3563,7 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * Creates a new version for the specified site.
+     * Creates a new version for a site.
      * @example
      * ```js
      * // Before running the sample:
@@ -3591,7 +3592,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.create({
-     *     // Required. The site in which to create the version, in the format: sites/ SITE_NAME
+     *     // Required. The parent to create the version for, in the format: sites/ site-name
      *     parent: 'projects/my-project/sites/my-site',
      *     // The self-reported size of the version. This value is used for a pre-emptive quota check for legacy version uploads.
      *     sizeBytes: 'placeholder-value',
@@ -3760,7 +3761,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.delete({
-     *     // Required. The name of the version to be deleted, in the format: sites/ SITE_NAME/versions/VERSION_ID
+     *     // Required. The name of the version to be deleted, in the format: sites/ site-name/versions/versionID
      *     name: 'projects/my-project/sites/my-site/versions/my-version',
      *   });
      *   console.log(res.data);
@@ -4006,7 +4007,7 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * Updates the specified metadata for the specified version. This method will fail with `FAILED_PRECONDITION` in the event of an invalid state transition. The only valid transition for a version is currently from a `CREATED` status to a `FINALIZED` status. Use [`DeleteVersion`](delete) to set the status of a version to `DELETED`.
+     * Updates the specified metadata for a version. Note that this method will fail with `FAILED_PRECONDITION` in the event of an invalid state transition. The only valid transition for a version is currently from a `CREATED` status to a `FINALIZED` status. Use [`DeleteVersion`](../sites.versions/delete) to set the status of a version to `DELETED`.
      * @example
      * ```js
      * // Before running the sample:
@@ -4035,7 +4036,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.patch({
-     *     // The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
+     *     // The unique identifier for a version, in the format: sites/site-name /versions/versionID This name is provided in the response body when you call the [`CreateVersion`](../sites.versions/create) endpoint.
      *     name: 'projects/my-project/sites/my-site/versions/my-version',
      *     // A set of field names from your [version](../sites.versions) that you want to update. A field will be overwritten if, and only if, it's in the mask. If a mask is not provided then a default mask of only [`status`](../sites.versions#Version.FIELDS.status) will be used.
      *     updateMask: 'placeholder-value',
@@ -4170,7 +4171,7 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     *  Adds content files to the specified version. Each file must be under 2 GB.
+     * Adds content files to a version. Each file must be under 2 GB.
      * @example
      * ```js
      * // Before running the sample:
@@ -4199,7 +4200,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.populateFiles({
-     *     // Required. The version to which to add files, in the format: sites/SITE_NAME /versions/VERSION_ID
+     *     // Required. The version to add files to, in the format: sites/site-name /versions/versionID
      *     parent: 'projects/my-project/sites/my-site/versions/my-version',
      *
      *     // Request body metadata
@@ -4336,7 +4337,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Create
     extends StandardParameters {
     /**
-     * Required. The site in which to create the version, in the format: sites/ SITE_NAME
+     * Required. The parent to create the version for, in the format: sites/ site-name
      */
     parent?: string;
     /**
@@ -4356,7 +4357,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the version to be deleted, in the format: sites/ SITE_NAME/versions/VERSION_ID
+     * Required. The name of the version to be deleted, in the format: sites/ site-name/versions/versionID
      */
     name?: string;
   }
@@ -4382,7 +4383,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Patch
     extends StandardParameters {
     /**
-     * The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
+     * The unique identifier for a version, in the format: sites/site-name /versions/versionID This name is provided in the response body when you call the [`CreateVersion`](../sites.versions/create) endpoint.
      */
     name?: string;
     /**
@@ -4398,7 +4399,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Populatefiles
     extends StandardParameters {
     /**
-     * Required. The version to which to add files, in the format: sites/SITE_NAME /versions/VERSION_ID
+     * Required. The version to add files to, in the format: sites/site-name /versions/versionID
      */
     parent?: string;
 
@@ -4446,13 +4447,13 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.files.list({
-     *     // The maximum number of version files to return. The service may return a lower number if fewer version files exist than this maximum number. If unspecified, defaults to 1000.
+     *     // The page size to return. Defaults to 1000.
      *     pageSize: 'placeholder-value',
-     *     // A token from a previous call to `ListVersionFiles` that tells the server where to resume listing.
+     *     // The next_page_token from a previous request, if provided. This will be the encoded version of a firebase.hosting.proto.metadata.ListFilesPageToken.
      *     pageToken: 'placeholder-value',
-     *     // Required. The version for which to list files, in the format: sites/ SITE_NAME/versions/VERSION_ID
+     *     // Required. The parent to list files for, in the format: sites/site-name /versions/versionID
      *     parent: 'projects/my-project/sites/my-site/versions/my-version',
-     *     //  The type of files that should be listed for the specified version.
+     *     // The type of files in the version that should be listed.
      *     status: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4565,19 +4566,19 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Files$List
     extends StandardParameters {
     /**
-     * The maximum number of version files to return. The service may return a lower number if fewer version files exist than this maximum number. If unspecified, defaults to 1000.
+     * The page size to return. Defaults to 1000.
      */
     pageSize?: number;
     /**
-     * A token from a previous call to `ListVersionFiles` that tells the server where to resume listing.
+     * The next_page_token from a previous request, if provided. This will be the encoded version of a firebase.hosting.proto.metadata.ListFilesPageToken.
      */
     pageToken?: string;
     /**
-     * Required. The version for which to list files, in the format: sites/ SITE_NAME/versions/VERSION_ID
+     * Required. The parent to list files for, in the format: sites/site-name /versions/versionID
      */
     parent?: string;
     /**
-     *  The type of files that should be listed for the specified version.
+     * The type of files in the version that should be listed.
      */
     status?: string;
   }
@@ -5700,7 +5701,7 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * Creates a new release, which makes the content of the specified version actively display on the appropriate URL(s).
+     * Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
      * @example
      * ```js
      * // Before running the sample:
@@ -5729,9 +5730,9 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.channels.releases.create({
-     *     // Required. The site to which the release belongs, in the format: sites/ SITE_NAME
+     *     // Required. The site that the release belongs to, in the format: sites/ site-name
      *     parent: 'sites/my-site/channels/my-channel',
-     *     //  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     *     // The unique identifier for a version, in the format: /sites/site-name /versions/versionID The site-name in this version identifier must match the site-name in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      *     versionName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5884,11 +5885,11 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.channels.releases.list({
-     *     // The maximum number of releases to return. The service may return a lower number if fewer releases exist than this maximum number. If unspecified, defaults to 100.
+     *     // The page size to return. Defaults to 100.
      *     pageSize: 'placeholder-value',
-     *     // A token from a previous call to `ListReleases` that tells the server where to resume listing.
+     *     // The next_page_token from a previous request, if provided.
      *     pageToken: 'placeholder-value',
-     *     // Required. The site for which to list releases, in the format: sites/ SITE_NAME
+     *     // Required. The parent for which to list files, in the format: sites/site-name
      *     parent: 'sites/my-site/channels/my-channel',
      *   });
      *   console.log(res.data);
@@ -6001,11 +6002,11 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Channels$Releases$Create
     extends StandardParameters {
     /**
-     * Required. The site to which the release belongs, in the format: sites/ SITE_NAME
+     * Required. The site that the release belongs to, in the format: sites/ site-name
      */
     parent?: string;
     /**
-     *  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     * The unique identifier for a version, in the format: /sites/site-name /versions/versionID The site-name in this version identifier must match the site-name in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      */
     versionName?: string;
 
@@ -6017,15 +6018,15 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Channels$Releases$List
     extends StandardParameters {
     /**
-     * The maximum number of releases to return. The service may return a lower number if fewer releases exist than this maximum number. If unspecified, defaults to 100.
+     * The page size to return. Defaults to 100.
      */
     pageSize?: number;
     /**
-     * A token from a previous call to `ListReleases` that tells the server where to resume listing.
+     * The next_page_token from a previous request, if provided.
      */
     pageToken?: string;
     /**
-     * Required. The site for which to list releases, in the format: sites/ SITE_NAME
+     * Required. The parent for which to list files, in the format: sites/site-name
      */
     parent?: string;
   }
@@ -6805,7 +6806,7 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * Creates a new release, which makes the content of the specified version actively display on the appropriate URL(s).
+     * Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
      * @example
      * ```js
      * // Before running the sample:
@@ -6834,9 +6835,9 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.releases.create({
-     *     // Required. The site to which the release belongs, in the format: sites/ SITE_NAME
+     *     // Required. The site that the release belongs to, in the format: sites/ site-name
      *     parent: 'sites/my-site',
-     *     //  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     *     // The unique identifier for a version, in the format: /sites/site-name /versions/versionID The site-name in this version identifier must match the site-name in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      *     versionName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6989,11 +6990,11 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.releases.list({
-     *     // The maximum number of releases to return. The service may return a lower number if fewer releases exist than this maximum number. If unspecified, defaults to 100.
+     *     // The page size to return. Defaults to 100.
      *     pageSize: 'placeholder-value',
-     *     // A token from a previous call to `ListReleases` that tells the server where to resume listing.
+     *     // The next_page_token from a previous request, if provided.
      *     pageToken: 'placeholder-value',
-     *     // Required. The site for which to list releases, in the format: sites/ SITE_NAME
+     *     // Required. The parent for which to list files, in the format: sites/site-name
      *     parent: 'sites/my-site',
      *   });
      *   console.log(res.data);
@@ -7106,11 +7107,11 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Releases$Create
     extends StandardParameters {
     /**
-     * Required. The site to which the release belongs, in the format: sites/ SITE_NAME
+     * Required. The site that the release belongs to, in the format: sites/ site-name
      */
     parent?: string;
     /**
-     *  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     * The unique identifier for a version, in the format: /sites/site-name /versions/versionID The site-name in this version identifier must match the site-name in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      */
     versionName?: string;
 
@@ -7122,15 +7123,15 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Releases$List
     extends StandardParameters {
     /**
-     * The maximum number of releases to return. The service may return a lower number if fewer releases exist than this maximum number. If unspecified, defaults to 100.
+     * The page size to return. Defaults to 100.
      */
     pageSize?: number;
     /**
-     * A token from a previous call to `ListReleases` that tells the server where to resume listing.
+     * The next_page_token from a previous request, if provided.
      */
     pageToken?: string;
     /**
-     * Required. The site for which to list releases, in the format: sites/ SITE_NAME
+     * Required. The parent for which to list files, in the format: sites/site-name
      */
     parent?: string;
   }
@@ -7292,7 +7293,7 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * Creates a new version for the specified site.
+     * Creates a new version for a site.
      * @example
      * ```js
      * // Before running the sample:
@@ -7321,7 +7322,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.create({
-     *     // Required. The site in which to create the version, in the format: sites/ SITE_NAME
+     *     // Required. The parent to create the version for, in the format: sites/ site-name
      *     parent: 'sites/my-site',
      *     // The self-reported size of the version. This value is used for a pre-emptive quota check for legacy version uploads.
      *     sizeBytes: 'placeholder-value',
@@ -7490,7 +7491,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.delete({
-     *     // Required. The name of the version to be deleted, in the format: sites/ SITE_NAME/versions/VERSION_ID
+     *     // Required. The name of the version to be deleted, in the format: sites/ site-name/versions/versionID
      *     name: 'sites/my-site/versions/my-version',
      *   });
      *   console.log(res.data);
@@ -7736,7 +7737,7 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * Updates the specified metadata for the specified version. This method will fail with `FAILED_PRECONDITION` in the event of an invalid state transition. The only valid transition for a version is currently from a `CREATED` status to a `FINALIZED` status. Use [`DeleteVersion`](delete) to set the status of a version to `DELETED`.
+     * Updates the specified metadata for a version. Note that this method will fail with `FAILED_PRECONDITION` in the event of an invalid state transition. The only valid transition for a version is currently from a `CREATED` status to a `FINALIZED` status. Use [`DeleteVersion`](../sites.versions/delete) to set the status of a version to `DELETED`.
      * @example
      * ```js
      * // Before running the sample:
@@ -7765,7 +7766,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.patch({
-     *     // The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
+     *     // The unique identifier for a version, in the format: sites/site-name /versions/versionID This name is provided in the response body when you call the [`CreateVersion`](../sites.versions/create) endpoint.
      *     name: 'sites/my-site/versions/my-version',
      *     // A set of field names from your [version](../sites.versions) that you want to update. A field will be overwritten if, and only if, it's in the mask. If a mask is not provided then a default mask of only [`status`](../sites.versions#Version.FIELDS.status) will be used.
      *     updateMask: 'placeholder-value',
@@ -7900,7 +7901,7 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     *  Adds content files to the specified version. Each file must be under 2 GB.
+     * Adds content files to a version. Each file must be under 2 GB.
      * @example
      * ```js
      * // Before running the sample:
@@ -7929,7 +7930,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.populateFiles({
-     *     // Required. The version to which to add files, in the format: sites/SITE_NAME /versions/VERSION_ID
+     *     // Required. The version to add files to, in the format: sites/site-name /versions/versionID
      *     parent: 'sites/my-site/versions/my-version',
      *
      *     // Request body metadata
@@ -8066,7 +8067,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Create
     extends StandardParameters {
     /**
-     * Required. The site in which to create the version, in the format: sites/ SITE_NAME
+     * Required. The parent to create the version for, in the format: sites/ site-name
      */
     parent?: string;
     /**
@@ -8086,7 +8087,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the version to be deleted, in the format: sites/ SITE_NAME/versions/VERSION_ID
+     * Required. The name of the version to be deleted, in the format: sites/ site-name/versions/versionID
      */
     name?: string;
   }
@@ -8112,7 +8113,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Patch
     extends StandardParameters {
     /**
-     * The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
+     * The unique identifier for a version, in the format: sites/site-name /versions/versionID This name is provided in the response body when you call the [`CreateVersion`](../sites.versions/create) endpoint.
      */
     name?: string;
     /**
@@ -8128,7 +8129,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Populatefiles
     extends StandardParameters {
     /**
-     * Required. The version to which to add files, in the format: sites/SITE_NAME /versions/VERSION_ID
+     * Required. The version to add files to, in the format: sites/site-name /versions/versionID
      */
     parent?: string;
 
@@ -8176,13 +8177,13 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.files.list({
-     *     // The maximum number of version files to return. The service may return a lower number if fewer version files exist than this maximum number. If unspecified, defaults to 1000.
+     *     // The page size to return. Defaults to 1000.
      *     pageSize: 'placeholder-value',
-     *     // A token from a previous call to `ListVersionFiles` that tells the server where to resume listing.
+     *     // The next_page_token from a previous request, if provided. This will be the encoded version of a firebase.hosting.proto.metadata.ListFilesPageToken.
      *     pageToken: 'placeholder-value',
-     *     // Required. The version for which to list files, in the format: sites/ SITE_NAME/versions/VERSION_ID
+     *     // Required. The parent to list files for, in the format: sites/site-name /versions/versionID
      *     parent: 'sites/my-site/versions/my-version',
-     *     //  The type of files that should be listed for the specified version.
+     *     // The type of files in the version that should be listed.
      *     status: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8295,19 +8296,19 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Files$List
     extends StandardParameters {
     /**
-     * The maximum number of version files to return. The service may return a lower number if fewer version files exist than this maximum number. If unspecified, defaults to 1000.
+     * The page size to return. Defaults to 1000.
      */
     pageSize?: number;
     /**
-     * A token from a previous call to `ListVersionFiles` that tells the server where to resume listing.
+     * The next_page_token from a previous request, if provided. This will be the encoded version of a firebase.hosting.proto.metadata.ListFilesPageToken.
      */
     pageToken?: string;
     /**
-     * Required. The version for which to list files, in the format: sites/ SITE_NAME/versions/VERSION_ID
+     * Required. The parent to list files for, in the format: sites/site-name /versions/versionID
      */
     parent?: string;
     /**
-     *  The type of files that should be listed for the specified version.
+     * The type of files in the version that should be listed.
      */
     status?: string;
   }

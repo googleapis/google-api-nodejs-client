@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace servicedirectory_v1beta1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -151,19 +149,19 @@ export namespace servicedirectory_v1beta1 {
    */
   export interface Schema$Endpoint {
     /**
-     * Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses like: * `8.8.8` * `8.8.8.8:53` * `test:bad:address` * `[::1]` * `[::1]:8080` Limited to 45 characters.
+     * Optional. An IPv4 or IPv6 address. Service Directory will reject bad addresses like: "8.8.8" "8.8.8.8:53" "test:bad:address" "[::1]" "[::1]:8080" Limited to 45 characters.
      */
     address?: string | null;
     /**
-     * Optional. Metadata for the endpoint. This data can be consumed by service clients. Restrictions: * The entire metadata dictionary may contain up to 512 characters, spread accoss all key-value pairs. Metadata that goes beyond this limit are rejected * Valid metadata keys have two segments: an optional prefix and name, separated by a slash (/). The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (.), not longer than 253 characters in total, followed by a slash (/). Metadata that fails to meet these requirements are rejected * The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved for system metadata managed by Service Directory. If the user tries to write to these keyspaces, those entries are silently ignored by the system Note: This field is equivalent to the `annotations` field in the v1 API. They have the same syntax and read/write to the same location in Service Directory.
+     * Optional. Metadata for the endpoint. This data can be consumed by service clients. Restrictions: - The entire metadata dictionary may contain up to 512 characters, spread accoss all key-value pairs. Metadata that goes beyond any these limits will be rejected. - Valid metadata keys have two segments: an optional prefix and name, separated by a slash (/). The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (.), not longer than 253 characters in total, followed by a slash (/). Metadata that fails to meet these requirements will be rejected. - The '(*.)google.com/' and '(*.)googleapis.com/' prefixes are reserved for system metadata managed by Service Directory. If the user tries to write to these keyspaces, those entries will be silently ignored by the system.
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Immutable. The resource name for the endpoint in the format `projects/x/locations/x/namespaces/x/services/x/endpoints/x`.
+     * Immutable. The resource name for the endpoint in the format 'projects/x/locations/x/namespaces/x/services/x/endpoints/x'.
      */
     name?: string | null;
     /**
-     * Optional. Service Directory rejects values outside of `[0, 65535]`.
+     * Optional. Service Directory will reject values outside of [0, 65535].
      */
     port?: number | null;
   }
@@ -288,11 +286,11 @@ export namespace servicedirectory_v1beta1 {
    */
   export interface Schema$Namespace {
     /**
-     * Optional. Resource labels associated with this namespace. No more than 64 user labels can be associated with a given resource. Label keys and values can be no longer than 63 characters.
+     * Optional. Resource labels associated with this Namespace. No more than 64 user labels can be associated with a given resource. Label keys and values can be no longer than 63 characters.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Immutable. The resource name for the namespace in the format `projects/x/locations/x/namespaces/x`.
+     * Immutable. The resource name for the namespace in the format 'projects/x/locations/x/namespaces/x'.
      */
     name?: string | null;
   }
@@ -318,7 +316,7 @@ export namespace servicedirectory_v1beta1 {
    */
   export interface Schema$ResolveServiceRequest {
     /**
-     * Optional. The filter applied to the endpoints of the resolved service. General `filter` string syntax: ` ()` * `` can be `name`, `address`, `port`, or `metadata.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `metadata.owner` returns endpoints that have a annotation with the key `owner`, this is the same as `metadata:owner` * `metadata.protocol=gRPC` returns endpoints that have key/value `protocol=gRPC` * `address=192.108.1.105` returns endpoints that have this address * `port\>8080` returns endpoints that have port number larger than 8080 * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c` returns endpoints that have name that is alphabetically later than the string, so "endpoint-e" is returned but "endpoint-a" is not * `metadata.owner!=sd AND metadata.foo=bar` returns endpoints that have `owner` in annotation key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that endpoint doesn't have a field called "doesnotexist". Since the filter does not match any endpoint, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
+     * Optional. The filter applied to the endpoints of the resolved service. General filter string syntax: () can be "name" or "metadata." for map field. can be "<, \>, <=, \>=, !=, =, :". Of which ":" means HAS and is roughly the same as "=". must be the same data type as the field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Endpoints that have a label with the key "owner", this is the same as "metadata:owner" * "metadata.protocol=gRPC" returns Endpoints that have key/value "protocol=gRPC" * "metadata.owner!=sd AND metadata.foo=bar" returns Endpoints that have "owner" field in metadata with a value that is not "sd" AND have the key/value foo=bar.
      */
     endpointFilter?: string | null;
     /**
@@ -337,15 +335,15 @@ export namespace servicedirectory_v1beta1 {
    */
   export interface Schema$Service {
     /**
-     * Output only. Endpoints associated with this service. Returned on LookupService.ResolveService. Control plane clients should use RegistrationService.ListEndpoints.
+     * Output only. Endpoints associated with this service. Returned on LookupService.Resolve. Control plane clients should use RegistrationService.ListEndpoints.
      */
     endpoints?: Schema$Endpoint[];
     /**
-     * Optional. Metadata for the service. This data can be consumed by service clients. Restrictions: * The entire metadata dictionary may contain up to 512 characters, spread accoss all key-value pairs. Metadata that goes beyond this limit are rejected * Valid metadata keys have two segments: an optional prefix and name, separated by a slash (/). The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (.), not longer than 253 characters in total, followed by a slash (/). Metadata that fails to meet these requirements are rejected * The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved for system metadata managed by Service Directory. If the user tries to write to these keyspaces, those entries are silently ignored by the system Note: This field is equivalent to the `annotations` field in the v1 API. They have the same syntax and read/write to the same location in Service Directory.
+     * Optional. Metadata for the service. This data can be consumed by service clients. Restrictions: - The entire metadata dictionary may contain up to 2000 characters, spread accoss all key-value pairs. Metadata that goes beyond any these limits will be rejected. - Valid metadata keys have two segments: an optional prefix and name, separated by a slash (/). The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (.), not longer than 253 characters in total, followed by a slash (/). Metadata that fails to meet these requirements will be rejected. - The '(*.)google.com/' and '(*.)googleapis.com/' prefixes are reserved for system metadata managed by Service Directory. If the user tries to write to these keyspaces, those entries will be silently ignored by the system.
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Immutable. The resource name for the service in the format `projects/x/locations/x/namespaces/x/services/x`.
+     * Immutable. The resource name for the service in the format 'projects/x/locations/x/namespaces/x/services/x'.
      */
     name?: string | null;
   }
@@ -708,7 +706,7 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * Creates a namespace, and returns the new namespace.
+     * Creates a namespace, and returns the new Namespace.
      * @example
      * ```js
      * // Before running the sample:
@@ -1272,15 +1270,15 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.list({
-     *     // Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name` or `labels.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `labels.owner` returns namespaces that have a label with the key `owner`, this is the same as `labels:owner` * `labels.owner=sd` returns namespaces that have key/value `owner=sd` * `name\>projects/my-project/locations/us-east1/namespaces/namespace-c` returns namespaces that have name that is alphabetically later than the string, so "namespace-e" is returned but "namespace-a" is not * `labels.owner!=sd AND labels.foo=bar` returns namespaces that have `owner` in label key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that namespace doesn't have a field called "doesnotexist". Since the filter does not match any namespaces, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     // Optional. The filter to list result by. General filter string syntax: () can be "name", or "labels." for map field. can be "<, \>, <=, \>=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "labels.owner" returns Namespaces that have a label with the key "owner" this is the same as "labels:owner". * "labels.protocol=gRPC" returns Namespaces that have key/value "protocol=gRPC". * "name\>projects/my-project/locations/us-east/namespaces/namespace-c" returns Namespaces that have name that is alphabetically later than the string, so "namespace-e" will be returned but "namespace-a" will not be. * "labels.owner!=sd AND labels.foo=bar" returns Namespaces that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Namespace doesn't have a field called "doesnotexist". Since the filter does not match any Namespaces, it returns no results.
      *     filter: 'placeholder-value',
-     *     // Optional. The order to list results by. General `order_by` string syntax: ` () (,)` * `` allows value: `name` * `` ascending or descending order by ``. If this is left blank, `asc` is used Note that an empty `order_by` string results in default order, which is order by `name` in ascending order.
+     *     // Optional. The order to list result by. General order by string syntax: () (,) allows values {"name"\} ascending or descending order by . If this is left blank, "asc" is used. Note that an empty order_by string result in default order, which is order by name in ascending order.
      *     orderBy: 'placeholder-value',
      *     // Optional. The maximum number of items to return.
      *     pageSize: 'placeholder-value',
      *     // Optional. The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the project and location whose namespaces you'd like to list.
+     *     // Required. The resource name of the project and location whose namespaces we'd like to list.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1416,7 +1414,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.patch({
-     *     // Immutable. The resource name for the namespace in the format `projects/x/locations/x/namespaces/x`.
+     *     // Immutable. The resource name for the namespace in the format 'projects/x/locations/x/namespaces/x'.
      *     name: 'projects/my-project/locations/my-location/namespaces/my-namespace',
      *     // Required. List of fields to be updated in this request.
      *     updateMask: 'placeholder-value',
@@ -1865,11 +1863,11 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$List
     extends StandardParameters {
     /**
-     * Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name` or `labels.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `labels.owner` returns namespaces that have a label with the key `owner`, this is the same as `labels:owner` * `labels.owner=sd` returns namespaces that have key/value `owner=sd` * `name\>projects/my-project/locations/us-east1/namespaces/namespace-c` returns namespaces that have name that is alphabetically later than the string, so "namespace-e" is returned but "namespace-a" is not * `labels.owner!=sd AND labels.foo=bar` returns namespaces that have `owner` in label key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that namespace doesn't have a field called "doesnotexist". Since the filter does not match any namespaces, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
+     * Optional. The filter to list result by. General filter string syntax: () can be "name", or "labels." for map field. can be "<, \>, <=, \>=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "labels.owner" returns Namespaces that have a label with the key "owner" this is the same as "labels:owner". * "labels.protocol=gRPC" returns Namespaces that have key/value "protocol=gRPC". * "name\>projects/my-project/locations/us-east/namespaces/namespace-c" returns Namespaces that have name that is alphabetically later than the string, so "namespace-e" will be returned but "namespace-a" will not be. * "labels.owner!=sd AND labels.foo=bar" returns Namespaces that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Namespace doesn't have a field called "doesnotexist". Since the filter does not match any Namespaces, it returns no results.
      */
     filter?: string;
     /**
-     * Optional. The order to list results by. General `order_by` string syntax: ` () (,)` * `` allows value: `name` * `` ascending or descending order by ``. If this is left blank, `asc` is used Note that an empty `order_by` string results in default order, which is order by `name` in ascending order.
+     * Optional. The order to list result by. General order by string syntax: () (,) allows values {"name"\} ascending or descending order by . If this is left blank, "asc" is used. Note that an empty order_by string result in default order, which is order by name in ascending order.
      */
     orderBy?: string;
     /**
@@ -1881,14 +1879,14 @@ export namespace servicedirectory_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the project and location whose namespaces you'd like to list.
+     * Required. The resource name of the project and location whose namespaces we'd like to list.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Namespaces$Patch
     extends StandardParameters {
     /**
-     * Immutable. The resource name for the namespace in the format `projects/x/locations/x/namespaces/x`.
+     * Immutable. The resource name for the namespace in the format 'projects/x/locations/x/namespaces/x'.
      */
     name?: string;
     /**
@@ -1937,7 +1935,7 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * Creates a service, and returns the new service.
+     * Creates a service, and returns the new Service.
      * @example
      * ```js
      * // Before running the sample:
@@ -2514,15 +2512,15 @@ export namespace servicedirectory_v1beta1 {
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.list(
      *     {
-     *       // Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name` or `metadata.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `metadata.owner` returns services that have a metadata with the key `owner`, this is the same as `metadata:owner` * `metadata.protocol=gRPC` returns services that have key/value `protocol=gRPC` * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/service-c` returns services that have name that is alphabetically later than the string, so "service-e" is returned but "service-a" is not * `metadata.owner!=sd AND metadata.foo=bar` returns services that have `owner` in metadata key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that service doesn't have a field called "doesnotexist". Since the filter does not match any services, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *       // Optional. The filter to list result by. General filter string syntax: () can be "name", or "metadata." for map field. can be "<, \>, <=, \>=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Services that have a label with the key "owner" this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Services that have key/value "protocol=gRPC". * "name\>projects/my-project/locations/us-east/namespaces/my-namespace/services/service-c" returns Services that have name that is alphabetically later than the string, so "service-e" will be returned but "service-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Services that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Service doesn't have a field called "doesnotexist". Since the filter does not match any Services, it returns no results.
      *       filter: 'placeholder-value',
-     *       // Optional. The order to list results by. General `order_by` string syntax: ` () (,)` * `` allows value: `name` * `` ascending or descending order by ``. If this is left blank, `asc` is used Note that an empty `order_by` string results in default order, which is order by `name` in ascending order.
+     *       // Optional. The order to list result by.
      *       orderBy: 'placeholder-value',
      *       // Optional. The maximum number of items to return.
      *       pageSize: 'placeholder-value',
      *       // Optional. The next_page_token value returned from a previous List request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the namespace whose services you'd like to list.
+     *       // Required. The resource name of the namespace whose services we'd like to list.
      *       parent:
      *         'projects/my-project/locations/my-location/namespaces/my-namespace',
      *     }
@@ -2661,7 +2659,7 @@ export namespace servicedirectory_v1beta1 {
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.patch(
      *     {
-     *       // Immutable. The resource name for the service in the format `projects/x/locations/x/namespaces/x/services/x`.
+     *       // Immutable. The resource name for the service in the format 'projects/x/locations/x/namespaces/x/services/x'.
      *       name:
      *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
      *       // Required. List of fields to be updated in this request.
@@ -3263,11 +3261,11 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$List
     extends StandardParameters {
     /**
-     * Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name` or `metadata.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `metadata.owner` returns services that have a metadata with the key `owner`, this is the same as `metadata:owner` * `metadata.protocol=gRPC` returns services that have key/value `protocol=gRPC` * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/service-c` returns services that have name that is alphabetically later than the string, so "service-e" is returned but "service-a" is not * `metadata.owner!=sd AND metadata.foo=bar` returns services that have `owner` in metadata key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that service doesn't have a field called "doesnotexist". Since the filter does not match any services, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
+     * Optional. The filter to list result by. General filter string syntax: () can be "name", or "metadata." for map field. can be "<, \>, <=, \>=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Services that have a label with the key "owner" this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Services that have key/value "protocol=gRPC". * "name\>projects/my-project/locations/us-east/namespaces/my-namespace/services/service-c" returns Services that have name that is alphabetically later than the string, so "service-e" will be returned but "service-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Services that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Service doesn't have a field called "doesnotexist". Since the filter does not match any Services, it returns no results.
      */
     filter?: string;
     /**
-     * Optional. The order to list results by. General `order_by` string syntax: ` () (,)` * `` allows value: `name` * `` ascending or descending order by ``. If this is left blank, `asc` is used Note that an empty `order_by` string results in default order, which is order by `name` in ascending order.
+     * Optional. The order to list result by.
      */
     orderBy?: string;
     /**
@@ -3279,14 +3277,14 @@ export namespace servicedirectory_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the namespace whose services you'd like to list.
+     * Required. The resource name of the namespace whose services we'd like to list.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Patch
     extends StandardParameters {
     /**
-     * Immutable. The resource name for the service in the format `projects/x/locations/x/namespaces/x/services/x`.
+     * Immutable. The resource name for the service in the format 'projects/x/locations/x/namespaces/x/services/x'.
      */
     name?: string;
     /**
@@ -3343,7 +3341,7 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * Creates an endpoint, and returns the new endpoint.
+     * Creates a endpoint, and returns the new Endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -3492,7 +3490,7 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * Deletes an endpoint.
+     * Deletes a endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -3620,7 +3618,7 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * Gets an endpoint.
+     * Gets a endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -3780,15 +3778,15 @@ export namespace servicedirectory_v1beta1 {
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.list(
      *     {
-     *       // Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name`, `address`, `port`, or `metadata.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `metadata.owner` returns endpoints that have a metadata with the key `owner`, this is the same as `metadata:owner` * `metadata.protocol=gRPC` returns endpoints that have key/value `protocol=gRPC` * `address=192.108.1.105` returns endpoints that have this address * `port\>8080` returns endpoints that have port number larger than 8080 * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c` returns endpoints that have name that is alphabetically later than the string, so "endpoint-e" is returned but "endpoint-a" is not * `metadata.owner!=sd AND metadata.foo=bar` returns endpoints that have `owner` in metadata key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that endpoint doesn't have a field called "doesnotexist". Since the filter does not match any endpoints, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *       // Optional. The filter to list result by. General filter string syntax: () can be "name", "address", "port" or "metadata." for map field. can be "<, \>, <=, \>=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Endpoints that have a label with the key "owner" this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Endpoints that have key/value "protocol=gRPC". * "address=192.108.1.105" returns Endpoints that have this address. * "port\>8080" returns Endpoints that have port number larger than 8080. * "name\>projects/my-project/locations/us-east/namespaces/my-namespace/services/my-service/endpoints/endpoint-c" returns Endpoints that have name that is alphabetically later than the string, so "endpoint-e" will be returned but "endpoint-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Endpoints that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Endpoint doesn't have a field called "doesnotexist". Since the filter does not match any Endpoints, it returns no results.
      *       filter: 'placeholder-value',
-     *       // Optional. The order to list results by. General `order_by` string syntax: ` () (,)` * `` allows values: `name`, `address`, `port` * `` ascending or descending order by ``. If this is left blank, `asc` is used Note that an empty `order_by` string results in default order, which is order by `name` in ascending order.
+     *       // Optional. The order to list result by.
      *       orderBy: 'placeholder-value',
      *       // Optional. The maximum number of items to return.
      *       pageSize: 'placeholder-value',
      *       // Optional. The next_page_token value returned from a previous List request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the service whose endpoints you'd like to list.
+     *       // Required. The resource name of the service whose endpoints we'd like to list.
      *       parent:
      *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
      *     }
@@ -3900,7 +3898,7 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * Updates an endpoint.
+     * Updates a endpoint.
      * @example
      * ```js
      * // Before running the sample:
@@ -3927,7 +3925,7 @@ export namespace servicedirectory_v1beta1 {
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.patch(
      *     {
-     *       // Immutable. The resource name for the endpoint in the format `projects/x/locations/x/namespaces/x/services/x/endpoints/x`.
+     *       // Immutable. The resource name for the endpoint in the format 'projects/x/locations/x/namespaces/x/services/x/endpoints/x'.
      *       name:
      *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service/endpoints/my-endpoint',
      *       // Required. List of fields to be updated in this request.
@@ -4079,11 +4077,11 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$List
     extends StandardParameters {
     /**
-     * Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name`, `address`, `port`, or `metadata.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `metadata.owner` returns endpoints that have a metadata with the key `owner`, this is the same as `metadata:owner` * `metadata.protocol=gRPC` returns endpoints that have key/value `protocol=gRPC` * `address=192.108.1.105` returns endpoints that have this address * `port\>8080` returns endpoints that have port number larger than 8080 * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c` returns endpoints that have name that is alphabetically later than the string, so "endpoint-e" is returned but "endpoint-a" is not * `metadata.owner!=sd AND metadata.foo=bar` returns endpoints that have `owner` in metadata key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that endpoint doesn't have a field called "doesnotexist". Since the filter does not match any endpoints, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
+     * Optional. The filter to list result by. General filter string syntax: () can be "name", "address", "port" or "metadata." for map field. can be "<, \>, <=, \>=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Endpoints that have a label with the key "owner" this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Endpoints that have key/value "protocol=gRPC". * "address=192.108.1.105" returns Endpoints that have this address. * "port\>8080" returns Endpoints that have port number larger than 8080. * "name\>projects/my-project/locations/us-east/namespaces/my-namespace/services/my-service/endpoints/endpoint-c" returns Endpoints that have name that is alphabetically later than the string, so "endpoint-e" will be returned but "endpoint-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Endpoints that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Endpoint doesn't have a field called "doesnotexist". Since the filter does not match any Endpoints, it returns no results.
      */
     filter?: string;
     /**
-     * Optional. The order to list results by. General `order_by` string syntax: ` () (,)` * `` allows values: `name`, `address`, `port` * `` ascending or descending order by ``. If this is left blank, `asc` is used Note that an empty `order_by` string results in default order, which is order by `name` in ascending order.
+     * Optional. The order to list result by.
      */
     orderBy?: string;
     /**
@@ -4095,14 +4093,14 @@ export namespace servicedirectory_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the service whose endpoints you'd like to list.
+     * Required. The resource name of the service whose endpoints we'd like to list.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Patch
     extends StandardParameters {
     /**
-     * Immutable. The resource name for the endpoint in the format `projects/x/locations/x/namespaces/x/services/x/endpoints/x`.
+     * Immutable. The resource name for the endpoint in the format 'projects/x/locations/x/namespaces/x/services/x/endpoints/x'.
      */
     name?: string;
     /**

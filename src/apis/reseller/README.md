@@ -2,7 +2,7 @@
 
 # reseller
 
-> Perform common functions that are available on the Channel Services console at scale, like placing orders and viewing customer information
+> Perform common functions that are available on the Google Apps Reseller Console at scale like placing orders and viewing customer information
 
 ## Installation
 

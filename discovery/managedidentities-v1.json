@@ -703,7 +703,7 @@
       }
     }
   },
-  "revision": "20210209",
+  "revision": "20201118",
   "rootUrl": "https://managedidentities.googleapis.com/",
   "schemas": {
     "AttachTrustRequest": {
@@ -1182,11 +1182,6 @@
           "description": "The rollout management policy this maintenance schedule is associated with. When doing reschedule update request, the reschedule should be against this given policy.",
           "type": "string"
         },
-        "scheduleDeadlineTime": {
-          "description": "schedule_deadline_time is the time deadline any schedule start time cannot go beyond, including reschedule. It's normally the initial schedule start time plus maintenance window length (1 day or 1 week). Maintenance cannot be scheduled to start beyond this deadline.",
-          "format": "google-datetime",
-          "type": "string"
-        },
         "startTime": {
           "description": "The scheduled start time for the maintenance.",
           "format": "google-datetime",
@@ -1201,10 +1196,6 @@
       "properties": {
         "exclude": {
           "description": "Optional. Exclude instance from maintenance. When true, rollout service will not attempt maintenance on the instance. Rollout service will include the instance in reported rollout progress as not attempted.",
-          "type": "boolean"
-        },
-        "isRollback": {
-          "description": "Optional. If the update call is triggered from rollback, set the value as true.",
           "type": "boolean"
         },
         "maintenancePolicies": {
@@ -1235,20 +1226,6 @@
         "nodeId": {
           "description": "The id of the node. This should be equal to SaasInstanceNode.node_id.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility": {
-      "description": "PerSliSloEligibility is a mapping from an SLI name to eligibility.",
-      "id": "GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility",
-      "properties": {
-        "eligibilities": {
-          "additionalProperties": {
-            "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility"
-          },
-          "description": "An entry in the eligibilities map specifies an eligibility for a particular SLI for the given instance. The SLI key in the name must be a valid SLI name specified in the Eligibility Exporter binary flags otherwise an error will be emitted by Eligibility Exporter and the oncaller will be alerted. If an SLI has been defined in the binary flags but the eligibilities map does not contain it, the corresponding SLI time series will not be emitted by the Eligibility Exporter. This ensures a smooth rollout and compatibility between the data produced by different versions of the Eligibility Exporters. If eligibilities map contains a key for an SLI which has not been declared in the binary flags, there will be an error message emitted in the Eligibility Exporter log and the metric for the SLI in question will not be emitted.",
-          "type": "object"
         }
       },
       "type": "object"
@@ -1297,7 +1274,7 @@
           "type": "string"
         },
         "sliName": {
-          "description": "Name of an SLI that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLIs.",
+          "description": "Name of an SLI that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLIs defined in the service SLO configuration.",
           "type": "string"
         },
         "startTime": {
@@ -1314,7 +1291,7 @@
       "properties": {
         "eligibility": {
           "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility",
-          "description": "Optional. Global per-instance SLI eligibility which applies to all defined SLIs. Exactly one of 'eligibility' and 'per_sli_eligibility' fields must be used."
+          "description": "Optional. User-defined instance eligibility."
         },
         "exclusions": {
           "description": "List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published. It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state). This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, use of custom instance eligibility is recommended. See 'eligibility' field below.",
@@ -1329,10 +1306,6 @@
             "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata"
           },
           "type": "array"
-        },
-        "perSliEligibility": {
-          "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility",
-          "description": "Optional. Multiple per-instance SLI eligibilities which apply for individual SLIs. Exactly one of 'eligibility' and 'per_sli_eligibility' fields must be used."
         },
         "tier": {
           "description": "Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration. Field is mandatory and must not be empty.",

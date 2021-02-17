@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace redis_v1beta1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -320,7 +318,7 @@ export namespace redis_v1beta1 {
      */
     tier?: string | null;
     /**
-     * Optional. The TLS mode of the Redis instance. If not provided, TLS is disabled for the instance.
+     * Optional. The In-transit encryption mode of Redis instance. If not provided, in-transit encryption is disabled for instance.
      */
     transitEncryptionMode?: string | null;
   }

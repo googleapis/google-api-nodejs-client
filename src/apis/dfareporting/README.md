@@ -2,7 +2,7 @@
 
 # dfareporting
 
-> Build applications to efficiently manage large or complex trafficking, reporting, and attribution workflows for Campaign Manager 360.
+> Manage your DoubleClick Campaign Manager ad campaigns and reports.
 
 ## Installation
 

@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace searchconsole_v1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -236,10 +234,6 @@ export namespace searchconsole_v1 {
      * [Optional; Default is \"auto\"] How data is aggregated. If aggregated by property, all data for the same property is aggregated; if aggregated by page, all data is aggregated by canonical URI. If you filter or group by page, choose AUTO; otherwise you can aggregate either by property or by page, depending on how you want your data calculated; see the help documentation to learn how data is calculated differently by site versus by page. **Note:** If you group or filter by page, you cannot aggregate by property. If you specify any value other than AUTO, the aggregation type in the result will match the requested type, or if you request an invalid type, you will get an error. The API will never change your aggregation type if the requested type is invalid.
      */
     aggregationType?: string | null;
-    /**
-     * The data state to be fetched, can be full or all, the latter including full and partial data.
-     */
-    dataState?: string | null;
     /**
      * [Optional] Zero or more filters to apply to the dimension grouping values; for example, 'query contains \"buy\"' to see only data where the query string contains the substring \"buy\" (not case-sensitive). You can filter by a dimension without grouping by it.
      */
@@ -429,7 +423,6 @@ export namespace searchconsole_v1 {
      *       // request body parameters
      *       // {
      *       //   "aggregationType": "my_aggregationType",
-     *       //   "dataState": "my_dataState",
      *       //   "dimensionFilterGroups": [],
      *       //   "dimensions": [],
      *       //   "endDate": "my_endDate",

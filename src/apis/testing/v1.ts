@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace testing_v1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -472,10 +470,6 @@ export namespace testing_v1 {
      * Specifies the API Level on which the application is designed to run.
      */
     targetSdkVersion?: number | null;
-    /**
-     * Permissions declared to be used by the application
-     */
-    usesPermission?: string[] | null;
   }
   /**
    * An Android App Bundle file format, containing a BundleConfig.pb file, a base module directory, zero or more dynamic feature module directories. See https://developer.android.com/guide/app-bundle/build for guidance on building App Bundles.
@@ -750,7 +744,7 @@ export namespace testing_v1 {
     iosDevices?: Schema$IosDevice[];
   }
   /**
-   * A description of an iOS device tests may be run on.
+   * A description of an iOS device tests may be run on. Next tag: 13
    */
   export interface Schema$IosModel {
     /**
@@ -977,11 +971,7 @@ export namespace testing_v1 {
    */
   export interface Schema$ProvidedSoftwareCatalog {
     /**
-     * A string representing the current version of AndroidX Test Orchestrator that is used in the environment. The package is available at https://maven.google.com/web/index.html#androidx.test:orchestrator.
-     */
-    androidxOrchestratorVersion?: string | null;
-    /**
-     * A string representing the current version of Android Test Orchestrator that is used in the environment. The package is available at https://maven.google.com/web/index.html#com.android.support.test:orchestrator.
+     * A string representing the current version of Android Test Orchestrator that is provided by TestExecutionService. Example: "1.0.2 beta".
      */
     orchestratorVersion?: string | null;
   }

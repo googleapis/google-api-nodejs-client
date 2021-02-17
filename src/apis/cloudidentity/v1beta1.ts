@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace cloudidentity_v1beta1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -479,7 +477,7 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$DynamicGroupMetadata {
     /**
-     * Memberships will be the union of all queries. Only one entry with USER resource is currently supported. Customers can create up to 100 dynamic groups.
+     * Memberships will be the union of all queries. Only one entry with USER resource is currently supported.
      */
     queries?: Schema$DynamicGroupQuery[];
     /**
@@ -1240,27 +1238,6 @@ export namespace cloudidentity_v1beta1 {
     membershipRole?: Schema$MembershipRole;
   }
   /**
-   * The `UserInvitation` resource represents an email sent to an unmanaged user account (an email address that shares the domain of the Google Workspace customer but is not managed by it yet), inviting them to join the customer’s domain. If the user accepts the `UserInvitation`, the account will become a managed account.
-   */
-  export interface Schema$UserInvitation {
-    /**
-     * Number of invitation emails sent to the user.
-     */
-    mailsSentCount?: string | null;
-    /**
-     * Shall be of the form `customers/{customer\}/userinvitations/{user_email_address\}`.
-     */
-    name?: string | null;
-    /**
-     * State of the `UserInvitation`.
-     */
-    state?: string | null;
-    /**
-     * Time when the `UserInvitation` was last updated.
-     */
-    updateTime?: string | null;
-  }
-  /**
    * Request message for wiping all data on the device.
    */
   export interface Schema$WipeDeviceRequest {
@@ -1448,7 +1425,7 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
-     * Creates a device. Only company-owned device may be created. **Note**: This method is available only to customers who have one of the following SKUs: Enterprise Standard, Enterprise Plus, Enterprise for Education, and Cloud Identity Premium
+     * Creates a device. Only company-owned device may be created.
      * @example
      * ```js
      * // Before running the sample:
@@ -3648,7 +3625,7 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
-     * Updates the client state for the device user **Note**: This method is available only to customers who have one of the following SKUs: Enterprise Standard, Enterprise Plus, Enterprise for Education, and Cloud Identity Premium
+     * Updates the client state for the device user
      * @example
      * ```js
      * // Before running the sample:

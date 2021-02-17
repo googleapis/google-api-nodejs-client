@@ -520,42 +520,13 @@
           }
         }
       }
-    },
-    "systempolicy": {
-      "methods": {
-        "getPolicy": {
-          "description": "Gets the current system policy in the specified location.",
-          "flatPath": "v1/locations/{locationsId}/policy",
-          "httpMethod": "GET",
-          "id": "binaryauthorization.systempolicy.getPolicy",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The resource name, in the format `locations/*/policy`. Note that the system policy is not associated with a project.",
-              "location": "path",
-              "pattern": "^locations/[^/]+/policy$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1/{+name}",
-          "response": {
-            "$ref": "Policy"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
     }
   },
-  "revision": "20210212",
+  "revision": "20201113",
   "rootUrl": "https://binaryauthorization.googleapis.com/",
   "schemas": {
     "AdmissionRule": {
-      "description": "An admission rule specifies either that all container images used in a pod creation request must be attested to by one or more attestors, that all pod creations will be allowed, or that all pod creations will be denied. Images matching an admission allowlist pattern are exempted from admission rules and will never block a pod creation.",
+      "description": "An admission rule specifies either that all container images used in a pod creation request must be attested to by one or more attestors, that all pod creations will be allowed, or that all pod creations will be denied. Images matching an admission whitelist pattern are exempted from admission rules and will never block a pod creation.",
       "id": "AdmissionRule",
       "properties": {
         "enforcementMode": {
@@ -599,7 +570,7 @@
       "type": "object"
     },
     "AdmissionWhitelistPattern": {
-      "description": "An admission allowlist pattern exempts images from checks by admission rules.",
+      "description": "An admission whitelist pattern exempts images from checks by admission rules.",
       "id": "AdmissionWhitelistPattern",
       "properties": {
         "namePattern": {
@@ -874,27 +845,6 @@
             "Disables global policy evaluation."
           ],
           "type": "string"
-        },
-        "istioServiceIdentityAdmissionRules": {
-          "additionalProperties": {
-            "$ref": "AdmissionRule"
-          },
-          "description": "Optional. Per-istio-service-identity admission rules. Istio service identity spec format: spiffe:///ns//sa/ or /ns//sa/ e.g. spiffe://example.com/ns/test-ns/sa/default",
-          "type": "object"
-        },
-        "kubernetesNamespaceAdmissionRules": {
-          "additionalProperties": {
-            "$ref": "AdmissionRule"
-          },
-          "description": "Optional. Per-kubernetes-namespace admission rules. K8s namespace spec format: [a-z.-]+, e.g. 'some-namespace'",
-          "type": "object"
-        },
-        "kubernetesServiceAccountAdmissionRules": {
-          "additionalProperties": {
-            "$ref": "AdmissionRule"
-          },
-          "description": "Optional. Per-kubernetes-service-account admission rules. Service account spec format: `namespace:serviceaccount`. e.g. 'test-ns:default'",
-          "type": "object"
         },
         "name": {
           "description": "Output only. The resource name, in the format `projects/*/policy`. There is at most one policy per project.",

@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace slides_v1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -157,23 +155,6 @@ export namespace slides_v1 {
      * The units for translate elements.
      */
     unit?: string | null;
-  }
-  /**
-   * The autofit properties of a Shape.
-   */
-  export interface Schema$Autofit {
-    /**
-     * The autofit type of the shape. If unspecified, the autofit type is inherited from a parent placeholder if it exists. The field will be automatically set to NONE if a request is made that may affect text fitting within its bounding text box. In this case the font_scale will be applied to the font_size and the line_spacing_reduction will be applied to the line_spacing. Both properties would also be reset to default values.
-     */
-    autofitType?: string | null;
-    /**
-     * The font scale applied to the shape. For shapes with autofit_type NONE or SHAPE_AUTOFIT, this value will be the default value of 1. For TEXT_AUTOFIT, this value multiplied by the font_size will give the font size that is rendered in the editor. This property is read-only.
-     */
-    fontScale?: number | null;
-    /**
-     * The line spacing reduction applied to the shape. For shapes with autofit_type NONE or SHAPE_AUTOFIT, this value will be the default value of 0. For TEXT_AUTOFIT, this value subtracted from the line_spacing will give the line spacing that is rendered in the editor. This property is read-only.
-     */
-    lineSpacingReduction?: number | null;
   }
   /**
    * A TextElement kind that represents auto text.
@@ -1757,13 +1738,9 @@ export namespace slides_v1 {
     solidFill?: Schema$SolidFill;
   }
   /**
-   * The properties of a Shape. If the shape is a placeholder shape as determined by the placeholder field, then these properties may be inherited from a parent placeholder shape. Determining the rendered value of the property depends on the corresponding property_state field value. Any text autofit settings on the shape are automatically deactivated by requests that can impact how text fits in the shape.
+   * The properties of a Shape. If the shape is a placeholder shape as determined by the placeholder field, then these properties may be inherited from a parent placeholder shape. Determining the rendered value of the property depends on the corresponding property_state field value.
    */
   export interface Schema$ShapeProperties {
-    /**
-     * The autofit properties of the shape. This property is only set for shapes that allow text.
-     */
-    autofit?: Schema$Autofit;
     /**
      * The alignment of the content in the shape. If unspecified, the alignment is inherited from a parent placeholder if it exists. If the shape has no parent, the default alignment matches the alignment for new shapes created in the Slides editor.
      */

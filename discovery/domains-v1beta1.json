@@ -721,7 +721,7 @@
       }
     }
   },
-  "revision": "20210204",
+  "revision": "20201110",
   "rootUrl": "https://domains.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -810,7 +810,7 @@
       "id": "ConfigureContactSettingsRequest",
       "properties": {
         "contactNotices": {
-          "description": "The list of contact notices that the caller acknowledges. The notices needed here depend on the values specified in `contact_settings`.",
+          "description": "The list of contact notices that the caller acknowledges. The notices required here depend on the values specified in `contact_settings`.",
           "items": {
             "enum": [
               "CONTACT_NOTICE_UNSPECIFIED",
@@ -1443,7 +1443,7 @@
       "id": "RegisterDomainRequest",
       "properties": {
         "contactNotices": {
-          "description": "The list of contact notices that the caller acknowledges. The notices needed here depend on the values specified in `registration.contact_settings`.",
+          "description": "The list of contact notices that the caller acknowledges. The notices required here depend on the values specified in `registration.contact_settings`.",
           "items": {
             "enum": [
               "CONTACT_NOTICE_UNSPECIFIED",

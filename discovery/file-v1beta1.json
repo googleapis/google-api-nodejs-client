@@ -515,7 +515,7 @@
                   ]
                 },
                 "restore": {
-                  "description": "Restores an existing instance's file share from a backup. The capacity of the instance needs to be equal to or larger than the capacity of the backup (and also equal to or larger than the minimum capacity of the tier).",
+                  "description": "Restores an existing instance's file share from a backup. The instance's file share capacity will be set to the backup's capacity or the minimum capacity of the tier, whichever is larger.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:restore",
                   "httpMethod": "POST",
                   "id": "file.projects.locations.instances.restore",
@@ -672,7 +672,7 @@
       }
     }
   },
-  "revision": "20210120",
+  "revision": "20201029",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -992,11 +992,6 @@
         },
         "rolloutManagementPolicy": {
           "description": "The rollout management policy this maintenance schedule is associated with. When doing reschedule update request, the reschedule should be against this given policy.",
-          "type": "string"
-        },
-        "scheduleDeadlineTime": {
-          "description": "schedule_deadline_time is the time deadline any schedule start time cannot go beyond, including reschedule. It's normally the initial schedule start time plus a week. If the reschedule type is next window, simply take this value as start time. If reschedule type is IMMEDIATELY or BY_TIME, current or selected time cannot go beyond this deadline.",
-          "format": "google-datetime",
           "type": "string"
         },
         "startTime": {

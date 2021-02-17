@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace workflowexecutions_v1beta {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -134,24 +132,20 @@ export namespace workflowexecutions_v1beta {
    */
   export interface Schema$Error {
     /**
-     * Human readable stack trace string.
+     * Human readable error context, helpful for debugging purposes.
      */
     context?: string | null;
     /**
-     * Error message and data returned represented as a JSON string.
+     * Error payload returned by the execution, represented as a JSON string.
      */
     payload?: string | null;
-    /**
-     * Stack trace with detailed information of where error was generated.
-     */
-    stackTrace?: Schema$StackTrace;
   }
   /**
    * A running instance of a [Workflow](/workflows/docs/reference/rest/v1beta/projects.locations.workflows).
    */
   export interface Schema$Execution {
     /**
-     * Input parameters of the execution represented as a JSON string. The size limit is 32KB. *Note*: If you are using the REST API directly to run your workflow, you must escape any JSON string value of `argument`. Example: `'{"argument":"{\"firstName\":\"FIRST\",\"lastName\":\"LAST\"\}"\}'`
+     * Input parameters of the execution represented as a JSON string. The size limit is 32KB.
      */
     argument?: string | null;
     /**
@@ -195,36 +189,6 @@ export namespace workflowexecutions_v1beta {
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
-  }
-  /**
-   * A collection of stack elements (frames) where an error occurred.
-   */
-  export interface Schema$StackTrace {
-    /**
-     * An array of Stack elements.
-     */
-    elements?: Schema$StackTraceElement[];
-  }
-  /**
-   * A single stack element (frame) where an error occurred.
-   */
-  export interface Schema$StackTraceElement {
-    /**
-     * The source code column position (of the line) the current instruction was generated from.
-     */
-    column?: string | null;
-    /**
-     * The source code line number the current instruction was generated from.
-     */
-    line?: string | null;
-    /**
-     * The routine where the error occurred.
-     */
-    routine?: string | null;
-    /**
-     * The step the error occurred at.
-     */
-    step?: string | null;
   }
 
   export class Resource$Projects {

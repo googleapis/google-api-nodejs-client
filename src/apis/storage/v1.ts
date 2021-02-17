@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace storage_v1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -242,10 +240,6 @@ export namespace storage_v1 {
       isLocked?: boolean;
       retentionPeriod?: string;
     } | null;
-    /**
-     * Reserved for future use.
-     */
-    satisfiesPZS?: boolean | null;
     /**
      * The URI of this bucket.
      */
@@ -2189,7 +2183,6 @@ export namespace storage_v1 {
      *   //   "owner": {},
      *   //   "projectNumber": "my_projectNumber",
      *   //   "retentionPolicy": {},
-     *   //   "satisfiesPZS": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "storageClass": "my_storageClass",
      *   //   "timeCreated": "my_timeCreated",
@@ -2500,7 +2493,6 @@ export namespace storage_v1 {
      *       //   "owner": {},
      *       //   "projectNumber": "my_projectNumber",
      *       //   "retentionPolicy": {},
-     *       //   "satisfiesPZS": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "storageClass": "my_storageClass",
      *       //   "timeCreated": "my_timeCreated",
@@ -2535,7 +2527,6 @@ export namespace storage_v1 {
      *   //   "owner": {},
      *   //   "projectNumber": "my_projectNumber",
      *   //   "retentionPolicy": {},
-     *   //   "satisfiesPZS": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "storageClass": "my_storageClass",
      *   //   "timeCreated": "my_timeCreated",
@@ -2842,7 +2833,6 @@ export namespace storage_v1 {
      *   //   "owner": {},
      *   //   "projectNumber": "my_projectNumber",
      *   //   "retentionPolicy": {},
-     *   //   "satisfiesPZS": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "storageClass": "my_storageClass",
      *   //   "timeCreated": "my_timeCreated",
@@ -3014,7 +3004,6 @@ export namespace storage_v1 {
      *       //   "owner": {},
      *       //   "projectNumber": "my_projectNumber",
      *       //   "retentionPolicy": {},
-     *       //   "satisfiesPZS": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "storageClass": "my_storageClass",
      *       //   "timeCreated": "my_timeCreated",
@@ -3049,7 +3038,6 @@ export namespace storage_v1 {
      *   //   "owner": {},
      *   //   "projectNumber": "my_projectNumber",
      *   //   "retentionPolicy": {},
-     *   //   "satisfiesPZS": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "storageClass": "my_storageClass",
      *   //   "timeCreated": "my_timeCreated",
@@ -3521,7 +3509,6 @@ export namespace storage_v1 {
      *       //   "owner": {},
      *       //   "projectNumber": "my_projectNumber",
      *       //   "retentionPolicy": {},
-     *       //   "satisfiesPZS": false,
      *       //   "selfLink": "my_selfLink",
      *       //   "storageClass": "my_storageClass",
      *       //   "timeCreated": "my_timeCreated",
@@ -3556,7 +3543,6 @@ export namespace storage_v1 {
      *   //   "owner": {},
      *   //   "projectNumber": "my_projectNumber",
      *   //   "retentionPolicy": {},
-     *   //   "satisfiesPZS": false,
      *   //   "selfLink": "my_selfLink",
      *   //   "storageClass": "my_storageClass",
      *   //   "timeCreated": "my_timeCreated",

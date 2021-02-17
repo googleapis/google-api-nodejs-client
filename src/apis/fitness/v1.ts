@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace fitness_v1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -2104,7 +2102,7 @@ export namespace fitness_v1 {
     }
 
     /**
-     * Adds data points to a dataset. The dataset need not be previously created. All points within the given dataset will be returned with subsquent calls to retrieve this dataset. Data points can belong to more than one dataset. This method does not use patch semantics: the data points provided are merely inserted, with no existing data replaced.
+     * Adds data points to a dataset. The dataset need not be previously created. All points within the given dataset will be returned with subsquent calls to retrieve this dataset. Data points can belong to more than one dataset. This method does not use patch semantics.
      * @example
      * ```js
      * // Before running the sample:
@@ -2144,7 +2142,7 @@ export namespace fitness_v1 {
      *   const res = await fitness.users.dataSources.datasets.patch({
      *     // The client's current time in milliseconds since epoch. Note that the minStartTimeNs and maxEndTimeNs properties in the request body are in nanoseconds instead of milliseconds.
      *     currentTimeMillis: 'placeholder-value',
-     *     // This field is not used, and can be safely omitted.
+     *     // Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
      *     datasetId: 'placeholder-value',
      *     // The data stream ID of the data source that created the dataset.
      *     dataSourceId: 'placeholder-value',
@@ -2320,7 +2318,7 @@ export namespace fitness_v1 {
      */
     currentTimeMillis?: string;
     /**
-     * This field is not used, and can be safely omitted.
+     * Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
      */
     datasetId?: string;
     /**

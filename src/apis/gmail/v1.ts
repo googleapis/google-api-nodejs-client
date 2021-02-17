@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace gmail_v1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -3909,7 +3907,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.messages.get({
      *     // The format to return the message in.
      *     format: 'placeholder-value',
-     *     // The ID of the message to retrieve. This ID is usually retrieved using `messages.list`. The ID is also contained in the result when a message is inserted (`messages.insert`) or imported (`messages.import`).
+     *     // The ID of the message to retrieve.
      *     id: 'placeholder-value',
      *     // When given and format is `METADATA`, only include headers specified.
      *     metadataHeaders: 'placeholder-value',
@@ -5155,7 +5153,7 @@ export namespace gmail_v1 {
      */
     format?: string;
     /**
-     * The ID of the message to retrieve. This ID is usually retrieved using `messages.list`. The ID is also contained in the result when a message is inserted (`messages.insert`) or imported (`messages.import`).
+     * The ID of the message to retrieve.
      */
     id?: string;
     /**

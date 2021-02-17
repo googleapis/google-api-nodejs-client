@@ -19,7 +19,6 @@ import {cloudasset_v1beta1} from './v1beta1';
 import {cloudasset_v1p1beta1} from './v1p1beta1';
 import {cloudasset_v1p4beta1} from './v1p4beta1';
 import {cloudasset_v1p5beta1} from './v1p5beta1';
-import {cloudasset_v1p7beta1} from './v1p7beta1';
 
 export const VERSIONS = {
   v1: cloudasset_v1.Cloudasset,
@@ -27,7 +26,6 @@ export const VERSIONS = {
   v1p1beta1: cloudasset_v1p1beta1.Cloudasset,
   v1p4beta1: cloudasset_v1p4beta1.Cloudasset,
   v1p5beta1: cloudasset_v1p5beta1.Cloudasset,
-  v1p7beta1: cloudasset_v1p7beta1.Cloudasset,
 };
 
 export function cloudasset(version: 'v1'): cloudasset_v1.Cloudasset;
@@ -56,12 +54,6 @@ export function cloudasset(
 export function cloudasset(
   options: cloudasset_v1p5beta1.Options
 ): cloudasset_v1p5beta1.Cloudasset;
-export function cloudasset(
-  version: 'v1p7beta1'
-): cloudasset_v1p7beta1.Cloudasset;
-export function cloudasset(
-  options: cloudasset_v1p7beta1.Options
-): cloudasset_v1p7beta1.Cloudasset;
 export function cloudasset<
   T =
     | cloudasset_v1.Cloudasset
@@ -69,7 +61,6 @@ export function cloudasset<
     | cloudasset_v1p1beta1.Cloudasset
     | cloudasset_v1p4beta1.Cloudasset
     | cloudasset_v1p5beta1.Cloudasset
-    | cloudasset_v1p7beta1.Cloudasset
 >(
   this: GoogleConfigurable,
   versionOrOptions:
@@ -83,8 +74,6 @@ export function cloudasset<
     | cloudasset_v1p4beta1.Options
     | 'v1p5beta1'
     | cloudasset_v1p5beta1.Options
-    | 'v1p7beta1'
-    | cloudasset_v1p7beta1.Options
 ) {
   return getAPI<T>('cloudasset', versionOrOptions, VERSIONS, this);
 }
@@ -96,7 +85,6 @@ export {cloudasset_v1beta1};
 export {cloudasset_v1p1beta1};
 export {cloudasset_v1p4beta1};
 export {cloudasset_v1p5beta1};
-export {cloudasset_v1p7beta1};
 export {
   AuthPlus,
   GlobalOptions,

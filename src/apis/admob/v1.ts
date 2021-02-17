@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace admob_v1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -628,7 +626,7 @@ export namespace admob_v1 {
     }
 
     /**
-     * List the AdMob publisher account accessible with the client credential. Currently, all credentials have access to at most one AdMob account.
+     * Lists the AdMob publisher account accessible with the client credential. Currently, all credentials have access to at most one AdMob account.
      * @example
      * ```js
      * // Before running the sample:

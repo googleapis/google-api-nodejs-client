@@ -342,7 +342,7 @@
       }
     }
   },
-  "revision": "20210209",
+  "revision": "20201202",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -602,6 +602,7 @@
             "FILTER_VIDEO_RATING_TIER",
             "FILTER_VIDEO_FORMAT_SUPPORT",
             "FILTER_VIDEO_SKIPPABLE_SUPPORT",
+            "FILTER_VIDEO_VPAID_SUPPORT",
             "FILTER_VIDEO_CREATIVE_DURATION",
             "FILTER_PAGE_LAYOUT",
             "FILTER_VIDEO_AD_POSITION_IN_STREAM",
@@ -1076,6 +1077,7 @@
             "",
             "",
             "",
+            "",
             ""
           ],
           "type": "string"
@@ -1212,6 +1214,7 @@
               "FILTER_VIDEO_RATING_TIER",
               "FILTER_VIDEO_FORMAT_SUPPORT",
               "FILTER_VIDEO_SKIPPABLE_SUPPORT",
+              "FILTER_VIDEO_VPAID_SUPPORT",
               "FILTER_VIDEO_CREATIVE_DURATION",
               "FILTER_PAGE_LAYOUT",
               "FILTER_VIDEO_AD_POSITION_IN_STREAM",
@@ -1425,6 +1428,7 @@
               "FILTER_DATA_SOURCE"
             ],
             "enumDescriptions": [
+              "",
               "",
               "",
               "",
@@ -2142,23 +2146,9 @@
               "METRIC_VIRTUAL_PEOPLE_IMPRESSION_REACH_PERCENT",
               "METRIC_TARGET_RATING_POINTS",
               "METRIC_PROVISIONAL_IMPRESSIONS",
-              "METRIC_VENDOR_BLOCKED_ADS",
-              "METRIC_GRP_CORRECTED_VIEWABLE_IMPRESSIONS",
-              "METRIC_GRP_CORRECTED_VIEWABLE_IMPRESSIONS_SHARE_PERCENT",
-              "METRIC_VIEWABLE_GROSS_RATING_POINTS",
-              "METRIC_VIRTUAL_PEOPLE_AVERAGE_VIEWABLE_IMPRESSION_FREQUENCY_BY_DEMO",
-              "METRIC_VIRTUAL_PEOPLE_VIEWABLE_IMPRESSION_REACH_BY_DEMO",
-              "METRIC_VIRTUAL_PEOPLE_VIEWABLE_IMPRESSION_REACH_PERCENT",
-              "METRIC_VIRTUAL_PEOPLE_VIEWABLE_IMPRESSION_REACH_SHARE_PERCENT"
+              "METRIC_VENDOR_BLOCKED_ADS"
             ],
             "enumDescriptions": [
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
-              "",
               "",
               "",
               "",
@@ -2794,6 +2784,7 @@
             "FILTER_VIDEO_RATING_TIER",
             "FILTER_VIDEO_FORMAT_SUPPORT",
             "FILTER_VIDEO_SKIPPABLE_SUPPORT",
+            "FILTER_VIDEO_VPAID_SUPPORT",
             "FILTER_VIDEO_CREATIVE_DURATION",
             "FILTER_PAGE_LAYOUT",
             "FILTER_VIDEO_AD_POSITION_IN_STREAM",
@@ -3007,6 +2998,7 @@
             "FILTER_DATA_SOURCE"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",

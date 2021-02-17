@@ -179,34 +179,6 @@
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
-            },
-            "removeIamPolicy": {
-              "description": "Remove IAM policy that is currently set on the given resource.",
-              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/{locationsId1}:removeIamPolicy",
-              "httpMethod": "POST",
-              "id": "datafusion.projects.locations.removeIamPolicy",
-              "parameterOrder": [
-                "resource"
-              ],
-              "parameters": {
-                "resource": {
-                  "description": "The resource on which IAM policy to be removed is attached to.",
-                  "location": "path",
-                  "pattern": "^projects/[^/]+/locations/[^/]+/.*$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1beta1/{+resource}:removeIamPolicy",
-              "request": {
-                "$ref": "RemoveIamPolicyRequest"
-              },
-              "response": {
-                "$ref": "RemoveIamPolicyResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform"
-              ]
             }
           },
           "resources": {
@@ -246,7 +218,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single Data Fusion instance.",
+                  "description": "Deletes a single Date Fusion instance.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}",
                   "httpMethod": "DELETE",
                   "id": "datafusion.projects.locations.instances.delete",
@@ -693,7 +665,7 @@
       }
     }
   },
-  "revision": "20210121",
+  "revision": "20200928",
   "rootUrl": "https://datafusion.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -769,6 +741,10 @@
       "description": "Associates `members` with a `role`.",
       "id": "Binding",
       "properties": {
+        "bindingId": {
+          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
+          "type": "string"
+        },
         "condition": {
           "$ref": "Expr",
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
@@ -968,7 +944,7 @@
           "enumDescriptions": [
             "No type specified. The instance creation will fail.",
             "Basic Data Fusion instance. In Basic type, the user will be able to create data pipelines using point and click UI. However, there are certain limitations, such as fewer number of concurrent pipelines, no support for streaming pipelines, etc.",
-            "Enterprise Data Fusion instance. In Enterprise type, the user will have all features available, such as support for streaming pipelines, unlimited number of concurrent pipelines, etc.",
+            "Enterprise Data Fusion instance. In Enterprise type, the user will have all features available, such as support for streaming pipelines, higher number of concurrent pipelines, etc.",
             "Developer Data Fusion instance. In Developer type, the user will have all features available but with restrictive capabilities. This is to help enterprises design and develop their data ingestion and integration pipelines at low cost."
           ],
           "type": "string"
@@ -984,7 +960,7 @@
           "type": "string"
         },
         "zone": {
-          "description": "Name of the zone in which the Data Fusion instance will be created. Only DEVELOPER instances use this field.",
+          "description": "Name of the zone in which the Data Fusion instance will be created.",
           "type": "string"
         }
       },
@@ -1219,18 +1195,6 @@
           "type": "integer"
         }
       },
-      "type": "object"
-    },
-    "RemoveIamPolicyRequest": {
-      "description": "Request message for RemoveIamPolicy method.",
-      "id": "RemoveIamPolicyRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "RemoveIamPolicyResponse": {
-      "description": "Response message for RemoveIamPolicy method.",
-      "id": "RemoveIamPolicyResponse",
-      "properties": {},
       "type": "object"
     },
     "RestartInstanceRequest": {

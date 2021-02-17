@@ -159,7 +159,7 @@
               "type": "string"
             },
             "customerId": {
-              "description": "Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.",
+              "description": "Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.",
               "location": "query",
               "type": "string"
             }
@@ -188,7 +188,7 @@
               "type": "string"
             },
             "customerId": {
-              "description": "Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.",
+              "description": "Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.",
               "location": "query",
               "type": "string"
             }
@@ -217,7 +217,7 @@
               "type": "string"
             },
             "customerId": {
-              "description": "Optional. The unique identifier of the Google Workspace organization account of the customer the alert metadata is associated with. Inferred from the caller identity if not provided.",
+              "description": "Optional. The unique identifier of the G Suite organization account of the customer the alert metadata is associated with. Inferred from the caller identity if not provided.",
               "location": "query",
               "type": "string"
             }
@@ -238,7 +238,7 @@
           "parameterOrder": [],
           "parameters": {
             "customerId": {
-              "description": "Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.",
+              "description": "Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.",
               "location": "query",
               "type": "string"
             },
@@ -319,7 +319,7 @@
                   "type": "string"
                 },
                 "customerId": {
-                  "description": "Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.",
+                  "description": "Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.",
                   "location": "query",
                   "type": "string"
                 }
@@ -351,7 +351,7 @@
                   "type": "string"
                 },
                 "customerId": {
-                  "description": "Optional. The unique identifier of the Google Workspace organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.",
+                  "description": "Optional. The unique identifier of the G Suite organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.",
                   "location": "query",
                   "type": "string"
                 },
@@ -383,7 +383,7 @@
           "parameterOrder": [],
           "parameters": {
             "customerId": {
-              "description": "Optional. The unique identifier of the Google Workspace organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.",
+              "description": "Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.",
               "location": "query",
               "type": "string"
             }
@@ -404,7 +404,7 @@
           "parameterOrder": [],
           "parameters": {
             "customerId": {
-              "description": "Optional. The unique identifier of the Google Workspace organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.",
+              "description": "Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.",
               "location": "query",
               "type": "string"
             }
@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20210209",
+  "revision": "20200821",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AccountWarning": {
@@ -561,7 +561,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [Google Workspace Alert types](/admin-sdk/alertcenter/reference/alert-types).",
+          "description": "Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [G Suite Alert types](/admin-sdk/alertcenter/reference/alert-types).",
           "type": "string"
         },
         "updateTime": {
@@ -715,7 +715,7 @@
           "type": "array"
         },
         "customerId": {
-          "description": "Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with.",
+          "description": "Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with.",
           "type": "string"
         }
       },
@@ -754,7 +754,7 @@
           "type": "array"
         },
         "customerId": {
-          "description": "Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with.",
+          "description": "Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with.",
           "type": "string"
         }
       },
@@ -997,10 +997,6 @@
           "description": "A detailed, freeform incident description.",
           "type": "string"
         },
-        "header": {
-          "description": "A header to display above the incident message. Typcially used to attach a localized notice on the timeline for followup comms translations.",
-          "type": "string"
-        },
         "title": {
           "description": "A one-line incident description.",
           "type": "string"
@@ -1131,7 +1127,7 @@
       "type": "object"
     },
     "Notification": {
-      "description": "Settings for callback notifications. For more details see [Google Workspace Alert Notification](/admin-sdk/alertcenter/guides/notifications).",
+      "description": "Settings for callback notifications. For more details see [G Suite Alert Notification](/admin-sdk/alertcenter/guides/notifications).",
       "id": "Notification",
       "properties": {
         "cloudPubsubTopic": {
@@ -1276,17 +1272,13 @@
               "ACTION_TYPE_UNSPECIFIED",
               "DRIVE_BLOCK_EXTERNAL_SHARING",
               "DRIVE_WARN_ON_EXTERNAL_SHARING",
-              "ALERT",
-              "RULE_ACTIVATE",
-              "RULE_DEACTIVATE"
+              "ALERT"
             ],
             "enumDescriptions": [
               "Action type is unspecified.",
               "Block sharing a file externally.",
               "Show a warning message when sharing a file externally.",
-              "Send alert.",
-              "Activate Rule Action",
-              "Deactivate Rule Action"
+              "Send alert."
             ],
             "type": "string"
           },
@@ -1311,17 +1303,13 @@
               "ACTION_TYPE_UNSPECIFIED",
               "DRIVE_BLOCK_EXTERNAL_SHARING",
               "DRIVE_WARN_ON_EXTERNAL_SHARING",
-              "ALERT",
-              "RULE_ACTIVATE",
-              "RULE_DEACTIVATE"
+              "ALERT"
             ],
             "enumDescriptions": [
               "Action type is unspecified.",
               "Block sharing a file externally.",
               "Show a warning message when sharing a file externally.",
-              "Send alert.",
-              "Activate Rule Action",
-              "Deactivate Rule Action"
+              "Send alert."
             ],
             "type": "string"
           },
@@ -1452,7 +1440,7 @@
       "id": "UndeleteAlertRequest",
       "properties": {
         "customerId": {
-          "description": "Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.",
+          "description": "Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.",
           "type": "string"
         }
       },
@@ -1490,7 +1478,7 @@
     }
   },
   "servicePath": "",
-  "title": "Google Workspace Alert Center API",
+  "title": "G Suite Alert Center API",
   "version": "v1beta1",
   "version_module": true
 }

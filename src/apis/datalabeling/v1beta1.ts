@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace datalabeling_v1beta1 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -2252,7 +2250,7 @@ export namespace datalabeling_v1beta1 {
      */
     annotationSpecSet?: string | null;
     /**
-     * Optional. Configs for sentiment selection. We deprecate sentiment analysis in data labeling side as it is incompatible with uCAIP.
+     * Optional. Configs for sentiment selection.
      */
     sentimentConfig?: Schema$GoogleCloudDatalabelingV1beta1SentimentConfig;
   }

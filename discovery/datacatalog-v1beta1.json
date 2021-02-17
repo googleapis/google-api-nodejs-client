@@ -578,7 +578,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Entry and its child resources may not actually be stored in the location in this name.",
+                          "description": "The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Entry and its child resources may not actually be stored in the location in this name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+$",
                           "required": true,
@@ -1808,7 +1808,7 @@
       }
     }
   },
-  "revision": "20210205",
+  "revision": "20201107",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1999,12 +1999,14 @@
           "enum": [
             "INTEGRATED_SYSTEM_UNSPECIFIED",
             "BIGQUERY",
-            "CLOUD_PUBSUB"
+            "CLOUD_PUBSUB",
+            "DPMS"
           ],
           "enumDescriptions": [
             "Default unknown system.",
             "BigQuery.",
-            "Cloud Pub/Sub."
+            "Cloud Pub/Sub.",
+            "Dataproc Metastore - Managed Hive Metastore."
           ],
           "readOnly": true,
           "type": "string"
@@ -2014,8 +2016,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Entry and its child resources may not actually be stored in the location in this name.",
-          "readOnly": true,
+          "description": "The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Entry and its child resources may not actually be stored in the location in this name.",
           "type": "string"
         },
         "schema": {
@@ -2476,11 +2477,6 @@
       "properties": {
         "linkedResource": {
           "description": "The full name of the cloud resource the entry belongs to. See: https://cloud.google.com/apis/design/resource_names#full_resource_name. Example: * `//bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId`",
-          "type": "string"
-        },
-        "modifyTime": {
-          "description": "Last-modified timestamp of the entry from the managing system.",
-          "format": "google-datetime",
           "type": "string"
         },
         "relativeResourceName": {

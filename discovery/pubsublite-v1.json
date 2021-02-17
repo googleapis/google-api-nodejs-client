@@ -562,34 +562,6 @@
               "resources": {
                 "topics": {
                   "methods": {
-                    "computeHeadCursor": {
-                      "description": "Compute the head cursor for the partition. The head cursor’s offset is guaranteed to be before or equal to all messages which have not yet been acknowledged to be published, and greater than the offset of any message whose publish has already been acknowledged. It is 0 if there have never been messages on the partition.",
-                      "flatPath": "v1/topicStats/projects/{projectsId}/locations/{locationsId}/topics/{topicsId}:computeHeadCursor",
-                      "httpMethod": "POST",
-                      "id": "pubsublite.topicStats.projects.locations.topics.computeHeadCursor",
-                      "parameterOrder": [
-                        "topic"
-                      ],
-                      "parameters": {
-                        "topic": {
-                          "description": "Required. The topic for which we should compute the head cursor.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/topics/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/topicStats/{+topic}:computeHeadCursor",
-                      "request": {
-                        "$ref": "ComputeHeadCursorRequest"
-                      },
-                      "response": {
-                        "$ref": "ComputeHeadCursorResponse"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "computeMessageStats": {
                       "description": "Compute statistics about a range of messages in a given topic and partition.",
                       "flatPath": "v1/topicStats/projects/{projectsId}/locations/{locationsId}/topics/{topicsId}:computeMessageStats",
@@ -627,7 +599,7 @@
       }
     }
   },
-  "revision": "20210209",
+  "revision": "20200929",
   "rootUrl": "https://pubsublite.googleapis.com/",
   "schemas": {
     "Capacity": {
@@ -643,29 +615,6 @@
           "description": "Subscribe throughput capacity per partition in MiB/s. Must be >= 4 and <= 32.",
           "format": "int32",
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "ComputeHeadCursorRequest": {
-      "description": "Compute the current head cursor for a partition.",
-      "id": "ComputeHeadCursorRequest",
-      "properties": {
-        "partition": {
-          "description": "Required. The partition for which we should compute the head cursor.",
-          "format": "int64",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ComputeHeadCursorResponse": {
-      "description": "Response containing the head cursor for the requested topic and partition.",
-      "id": "ComputeHeadCursorResponse",
-      "properties": {
-        "headCursor": {
-          "$ref": "Cursor",
-          "description": "The head cursor."
         }
       },
       "type": "object"

@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace analytics_v3 {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -2762,7 +2760,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2987,7 +2985,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3187,7 +3185,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3431,7 +3429,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3591,7 +3589,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3733,7 +3731,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3880,7 +3878,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4022,7 +4020,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4171,7 +4169,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4382,7 +4380,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4545,7 +4543,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4719,7 +4717,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4880,7 +4878,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5025,7 +5023,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5190,7 +5188,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5355,7 +5353,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5611,7 +5609,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5778,7 +5776,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5923,7 +5921,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6094,7 +6092,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6265,7 +6263,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6502,7 +6500,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6673,7 +6671,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6876,7 +6874,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7024,7 +7022,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7224,7 +7222,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7429,7 +7427,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7716,7 +7714,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7864,7 +7862,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8029,7 +8027,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8171,7 +8169,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8337,7 +8335,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8504,7 +8502,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8748,7 +8746,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8923,7 +8921,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9071,7 +9069,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9248,7 +9246,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9425,7 +9423,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9671,7 +9669,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9817,7 +9815,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9971,7 +9969,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10121,7 +10119,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10277,7 +10275,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10433,7 +10431,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10696,7 +10694,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10857,7 +10855,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11046,7 +11044,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11192,7 +11190,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11383,7 +11381,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11574,7 +11572,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11815,7 +11813,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11966,7 +11964,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12112,7 +12110,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12265,7 +12263,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12485,7 +12483,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12637,7 +12635,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12805,7 +12803,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12957,7 +12955,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13127,7 +13125,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13297,7 +13295,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13556,7 +13554,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13703,7 +13701,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13870,7 +13868,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14060,7 +14058,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14208,7 +14206,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14434,7 +14432,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14579,7 +14577,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14736,7 +14734,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14886,7 +14884,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15147,7 +15145,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15320,7 +15318,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15464,7 +15462,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15639,7 +15637,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15814,7 +15812,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16018,7 +16016,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16167,7 +16165,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16325,7 +16323,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16472,7 +16470,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16628,7 +16626,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16788,7 +16786,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17031,7 +17029,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17180,7 +17178,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17324,7 +17322,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17475,7 +17473,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17699,7 +17697,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17859,7 +17857,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18005,7 +18003,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18184,7 +18182,7 @@ export namespace analytics_v3 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://analytics.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {

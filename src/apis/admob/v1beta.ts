@@ -23,7 +23,6 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
-  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -51,7 +50,6 @@ export namespace admob_v1beta {
       | JWT
       | Compute
       | UserRefreshClient
-      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -734,7 +732,7 @@ export namespace admob_v1beta {
     }
 
     /**
-     * List the AdMob publisher account accessible with the client credential. Currently, all credentials have access to at most one AdMob account.
+     * Lists the AdMob publisher account accessible with the client credential. Currently, all credentials have access to at most one AdMob account.
      * @example
      * ```js
      * // Before running the sample:
@@ -924,7 +922,7 @@ export namespace admob_v1beta {
      *
      *   // Do the magic
      *   const res = await admob.accounts.adUnits.list({
-     *     // The maximum number of ad units to return. If unspecified or 0, at most 1000 ad units will be returned. The maximum value is 10,000; values above 10,000 will be coerced to 10,000.
+     *     // The maximum number of ad units to return.
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListAdUnitsResponse`; indicates that this is a continuation of a prior `ListAdUnits` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
@@ -1038,7 +1036,7 @@ export namespace admob_v1beta {
   export interface Params$Resource$Accounts$Adunits$List
     extends StandardParameters {
     /**
-     * The maximum number of ad units to return. If unspecified or 0, at most 1000 ad units will be returned. The maximum value is 10,000; values above 10,000 will be coerced to 10,000.
+     * The maximum number of ad units to return.
      */
     pageSize?: number;
     /**
