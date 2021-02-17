@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [10, 12, 13]
+        node: [10, 12, 14, 15]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 14
       - run: npm install
       - run: npm test
       - name: coverage
@@ -47,7 +47,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 14
       - run: npm install
       - run: npm run lint
   docs:
@@ -56,6 +56,6 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 12
+          node-version: 14
       - run: npm install
       - run: npm run docs-test
