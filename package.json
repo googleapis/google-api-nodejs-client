@@ -27,7 +27,7 @@
     "system-test": "mocha build/system-test",
     "samples-test": "cd samples && npm install && npm link ../ && pwd && npm test",
     "lint": "gts check",
-    "compile": "tsc -p .",
+    "compile": "NODE_OPTIONS=--max-old-space-size=4096 tsc -p .",
     "build-tools": "tsc -p tsconfig.tools.json",
     "clean": "gts clean",
     "fix": "gts fix",
