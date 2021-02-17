@@ -19,7 +19,7 @@ const path = require('path');
 async function runSample() {
   // acquire an authentication client using a service account
   const auth = await google.auth.getClient({
-    keyFile: path.join(__dirname, '../jwt.keys.json'),
+    keyFile:'/Users/sofialeon/Downloads/coleleah-sofialeon-12d5dea7badc.json',
     scopes: [
       'https://www.googleapis.com/auth/admin.directory.group',
       'https://www.googleapis.com/auth/admin.directory.group.member',
@@ -33,8 +33,9 @@ async function runSample() {
   });
 
   // delete the group key
-  const res = await admin.groups.delete({
-    groupKey: 'some_group@example.com',
+  const res = await admin.groups.list({
+    customer: 'my_customer', 
+    userKey: 'sofialeon@google.com'
   });
 
   console.log(res.data);

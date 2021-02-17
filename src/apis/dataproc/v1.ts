@@ -209,6 +209,7 @@ export namespace dataproc_v1 {
    * Associates members with a role.
    */
   export interface Schema$Binding {
+    bindingId?: string | null;
     /**
      * The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -556,10 +557,6 @@ export namespace dataproc_v1 {
      */
     serviceAccountScopes?: string[] | null;
     /**
-     * Optional. Shielded Instance Config for clusters using shielded VMs.
-     */
-    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
-    /**
      * Optional. The Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0 projects/[project_id]/regions/us-east1/subnetworks/sub0 sub0
      */
     subnetworkUri?: string | null;
@@ -734,10 +731,6 @@ export namespace dataproc_v1 {
      * The user-friendly name of the Compute Engine instance.
      */
     instanceName?: string | null;
-    /**
-     * The public key used for sharing data with this instance.
-     */
-    publicKey?: string | null;
   }
   /**
    * A request to instantiate a workflow template.
@@ -1395,23 +1388,6 @@ export namespace dataproc_v1 {
     policy?: Schema$Policy;
   }
   /**
-   * Shielded Instance Config for clusters using shielded VMs.
-   */
-  export interface Schema$ShieldedInstanceConfig {
-    /**
-     * Optional. Defines whether instances have integrity monitoring enabled.
-     */
-    enableIntegrityMonitoring?: boolean | null;
-    /**
-     * Optional. Defines whether instances have Secure Boot enabled.
-     */
-    enableSecureBoot?: boolean | null;
-    /**
-     * Optional. Defines whether instances have the vTPM enabled.
-     */
-    enableVtpm?: boolean | null;
-  }
-  /**
    * Specifies the selection and config of software inside the cluster.
    */
   export interface Schema$SoftwareConfig {
@@ -1627,18 +1603,6 @@ export namespace dataproc_v1 {
      */
     createCluster?: Schema$ClusterOperation;
     /**
-     * Output only. DAG end time, only set for workflows with dag_timeout when DAG ends.
-     */
-    dagEndTime?: string | null;
-    /**
-     * Output only. DAG start time, only set for workflows with dag_timeout when DAG begins.
-     */
-    dagStartTime?: string | null;
-    /**
-     * Output only. The timeout duration for the DAG of jobs.
-     */
-    dagTimeout?: string | null;
-    /**
      * Output only. The delete cluster operation metadata.
      */
     deleteCluster?: Schema$ClusterOperation;
@@ -1704,10 +1668,6 @@ export namespace dataproc_v1 {
      * Output only. The time template was created.
      */
     createTime?: string | null;
-    /**
-     * Optional. Timeout duration for the DAG of jobs. You can use "s", "m", "h", and "d" suffixes for second, minute, hour, and day duration values, respectively. The timeout duration must be from 10 minutes ("10m") to 24 hours ("24h" or "1d"). The timer begins when the first job is submitted. If the workflow is running at the end of the timeout period, any remaining jobs are cancelled, the workflow is ended, and if the workflow was running on a managed cluster, the cluster is deleted.
-     */
-    dagTimeout?: string | null;
     id?: string | null;
     /**
      * Required. The Directed Acyclic Graph of Jobs to submit.
@@ -3064,7 +3024,6 @@ export namespace dataproc_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
-     *       //   "dagTimeout": "my_dagTimeout",
      *       //   "id": "my_id",
      *       //   "jobs": [],
      *       //   "labels": {},
@@ -3081,7 +3040,6 @@ export namespace dataproc_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
-     *   //   "dagTimeout": "my_dagTimeout",
      *   //   "id": "my_id",
      *   //   "jobs": [],
      *   //   "labels": {},
@@ -3349,7 +3307,6 @@ export namespace dataproc_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
-     *   //   "dagTimeout": "my_dagTimeout",
      *   //   "id": "my_id",
      *   //   "jobs": [],
      *   //   "labels": {},
@@ -3771,7 +3728,6 @@ export namespace dataproc_v1 {
      *         // request body parameters
      *         // {
      *         //   "createTime": "my_createTime",
-     *         //   "dagTimeout": "my_dagTimeout",
      *         //   "id": "my_id",
      *         //   "jobs": [],
      *         //   "labels": {},
@@ -4352,7 +4308,6 @@ export namespace dataproc_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
-     *       //   "dagTimeout": "my_dagTimeout",
      *       //   "id": "my_id",
      *       //   "jobs": [],
      *       //   "labels": {},
@@ -4369,7 +4324,6 @@ export namespace dataproc_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
-     *   //   "dagTimeout": "my_dagTimeout",
      *   //   "id": "my_id",
      *   //   "jobs": [],
      *   //   "labels": {},
@@ -10034,7 +9988,6 @@ export namespace dataproc_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
-     *       //   "dagTimeout": "my_dagTimeout",
      *       //   "id": "my_id",
      *       //   "jobs": [],
      *       //   "labels": {},
@@ -10051,7 +10004,6 @@ export namespace dataproc_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
-     *   //   "dagTimeout": "my_dagTimeout",
      *   //   "id": "my_id",
      *   //   "jobs": [],
      *   //   "labels": {},
@@ -10319,7 +10271,6 @@ export namespace dataproc_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
-     *   //   "dagTimeout": "my_dagTimeout",
      *   //   "id": "my_id",
      *   //   "jobs": [],
      *   //   "labels": {},
@@ -10741,7 +10692,6 @@ export namespace dataproc_v1 {
      *         // request body parameters
      *         // {
      *         //   "createTime": "my_createTime",
-     *         //   "dagTimeout": "my_dagTimeout",
      *         //   "id": "my_id",
      *         //   "jobs": [],
      *         //   "labels": {},
@@ -11322,7 +11272,6 @@ export namespace dataproc_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
-     *       //   "dagTimeout": "my_dagTimeout",
      *       //   "id": "my_id",
      *       //   "jobs": [],
      *       //   "labels": {},
@@ -11339,7 +11288,6 @@ export namespace dataproc_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
-     *   //   "dagTimeout": "my_dagTimeout",
      *   //   "id": "my_id",
      *   //   "jobs": [],
      *   //   "labels": {},
