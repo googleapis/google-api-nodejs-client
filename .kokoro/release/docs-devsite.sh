@@ -61,7 +61,7 @@ if [[ -z "$CREDENTIALS" ]]; then
   CREDENTIALS=${KOKORO_KEYSTORE_DIR}/73713_docuploader_service_account
 fi
 if [[ -z "$BUCKET" ]]; then
-  BUCKET=docs-staging-v2-staging
+  BUCKET=docs-staging-v2
 fi
 
 python3 -m docuploader upload ./_devsite --destination-prefix docfx --credentials $CREDENTIALS --staging-bucket $BUCKET
