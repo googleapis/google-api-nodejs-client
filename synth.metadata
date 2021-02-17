@@ -3,8 +3,8 @@
     {
       "git": {
         "name": ".",
-        "remote": "git@github.com:googleapis/google-api-nodejs-client.git",
-        "sha": "dd6b8f5f707cd716e6e1bbba3dd79ac5903032c7"
+        "remote": "https://github.com/googleapis/google-api-nodejs-client.git",
+        "sha": "5646a657bb6ed98b9ce0e503785ce64b124008b5"
       }
     },
     {
