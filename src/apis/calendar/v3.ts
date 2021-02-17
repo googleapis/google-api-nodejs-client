@@ -651,12 +651,6 @@ export namespace calendar_v3 {
      */
     etag?: string | null;
     /**
-     * Specific type of the event. Read-only. Possible values are:
-     * - "default" - A regular event or not further specified.
-     * - "outOfOffice" - An out-of-office event.
-     */
-    eventType?: string | null;
-    /**
      * Extended properties of the event.
      */
     extendedProperties?: {
@@ -4846,7 +4840,6 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
-     *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "gadget": {},
      *   //   "guestsCanInviteOthers": false,
@@ -5018,7 +5011,6 @@ export namespace calendar_v3 {
      *       //   "end": {},
      *       //   "endTimeUnspecified": false,
      *       //   "etag": "my_etag",
-     *       //   "eventType": "my_eventType",
      *       //   "extendedProperties": {},
      *       //   "gadget": {},
      *       //   "guestsCanInviteOthers": false,
@@ -5064,7 +5056,6 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
-     *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "gadget": {},
      *   //   "guestsCanInviteOthers": false,
@@ -5244,7 +5235,6 @@ export namespace calendar_v3 {
      *       //   "end": {},
      *       //   "endTimeUnspecified": false,
      *       //   "etag": "my_etag",
-     *       //   "eventType": "my_eventType",
      *       //   "extendedProperties": {},
      *       //   "gadget": {},
      *       //   "guestsCanInviteOthers": false,
@@ -5290,7 +5280,6 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
-     *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "gadget": {},
      *   //   "guestsCanInviteOthers": false,
@@ -5820,7 +5809,6 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
-     *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "gadget": {},
      *   //   "guestsCanInviteOthers": false,
@@ -6005,7 +5993,6 @@ export namespace calendar_v3 {
      *       //   "end": {},
      *       //   "endTimeUnspecified": false,
      *       //   "etag": "my_etag",
-     *       //   "eventType": "my_eventType",
      *       //   "extendedProperties": {},
      *       //   "gadget": {},
      *       //   "guestsCanInviteOthers": false,
@@ -6051,7 +6038,6 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
-     *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "gadget": {},
      *   //   "guestsCanInviteOthers": false,
@@ -6227,7 +6213,6 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
-     *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "gadget": {},
      *   //   "guestsCanInviteOthers": false,
@@ -6411,7 +6396,6 @@ export namespace calendar_v3 {
      *       //   "end": {},
      *       //   "endTimeUnspecified": false,
      *       //   "etag": "my_etag",
-     *       //   "eventType": "my_eventType",
      *       //   "extendedProperties": {},
      *       //   "gadget": {},
      *       //   "guestsCanInviteOthers": false,
@@ -6457,7 +6441,6 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
-     *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "gadget": {},
      *   //   "guestsCanInviteOthers": false,

@@ -180,7 +180,7 @@ export namespace admin_directory_v1 {
     kind?: string | null;
   }
   /**
-   * An application-specific password (ASP) is used with applications that do not accept a verification code when logging into the application on certain devices. The ASP access code is used instead of the login and password you commonly use when accessing an application through a browser. For more information about ASPs and how to create one, see the [help center](https://support.google.com/a/answer/2537800#asp).
+   * An application-specific password (ASP) is used with applications that do not accept a verification code when logging into the application on certain devices. The ASP access code is used instead of the login and password you commonly use when accessing an application through a browser. For more information about ASPs and how to create one, see the [help center](//http://support.google.com/a/bin/answer.py?amp;answer=1032419).
    */
   export interface Schema$Asp {
     /**
@@ -188,7 +188,7 @@ export namespace admin_directory_v1 {
      */
     codeId?: number | null;
     /**
-     * The time when the ASP was created. Expressed in [Unix time](https://en.wikipedia.org/wiki/Epoch_time) format.
+     * The time when the ASP was created. Expressed in [Unix time](http://en.wikipedia.org/wiki/Epoch_time) format.
      */
     creationTime?: string | null;
     /**
@@ -200,7 +200,7 @@ export namespace admin_directory_v1 {
      */
     kind?: string | null;
     /**
-     * The time when the ASP was last used. Expressed in [Unix time](https://en.wikipedia.org/wiki/Epoch_time) format.
+     * The time when the ASP was last used. Expressed in [Unix time](http://en.wikipedia.org/wiki/Epoch_time) format.
      */
     lastTimeUsed?: string | null;
     /**
@@ -462,7 +462,7 @@ export namespace admin_directory_v1 {
     type?: string | null;
   }
   /**
-   * Google Chrome devices run on the [Chrome OS](https://support.google.com/chromeos). For more information about common API tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-chrome-devices).
+   * Google Chrome devices run on the [Chrome OS](http://support.google.com/chromeos). For more information about common API tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-chrome-devices).
    */
   export interface Schema$ChromeOsDevice {
     /**
@@ -486,7 +486,7 @@ export namespace admin_directory_v1 {
      */
     autoUpdateExpiration?: string | null;
     /**
-     * The boot mode for the device. The possible values are: * `Verified`: The device is running a valid version of the Chrome OS. * `Dev`: The devices's developer hardware switch is enabled. When booted, the device has a command line shell. For an example of a developer switch, see the [Chromebook developer information](https://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/samsung-series-5-chromebook#TOC-Developer-switch).
+     * The boot mode for the device. The possible values are: * `Verified`: The device is running a valid version of the Chrome OS. * `Dev`: The devices's developer hardware switch is enabled. When booted, the device has a command line shell. For an example of a developer switch, see the [Chromebook developer information](http://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/samsung-series-5-chromebook#TOC-Developer-switch).
      */
     bootMode?: string | null;
     /**
@@ -576,7 +576,7 @@ export namespace admin_directory_v1 {
      */
     model?: string | null;
     /**
-     * Notes about this device added by the administrator. This property can be [searched](https://support.google.com/chrome/a/answer/1698333) with the [list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method's `query` parameter. Maximum length is 500 characters. Empty values are allowed.
+     * Notes about this device added by the administrator. This property can be [searched](http://support.google.com/chromeos/a/bin/answer.py?answer=1698333) with the [list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method's `query` parameter. Maximum length is 500 characters. Empty values are allowed.
      */
     notes?: string | null;
     /**
@@ -584,7 +584,7 @@ export namespace admin_directory_v1 {
      */
     orderNumber?: string | null;
     /**
-     * The full parent path with the organizational unit's name associated with the device. Path names are case insensitive. If the parent organizational unit is the top-level organization, it is represented as a forward slash, `/`. This property can be [updated](/admin-sdk/directory/v1/guides/manage-chrome-devices#update_chrome_device) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](https://support.google.com/a/answer/182433).
+     * The full parent path with the organizational unit's name associated with the device. Path names are case insensitive. If the parent organizational unit is the top-level organization, it is represented as a forward slash, `/`. This property can be [updated](/admin-sdk/directory/v1/guides/manage-chrome-devices#update_chrome_device) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=182433).
      */
     orgUnitPath?: string | null;
     /**
@@ -690,7 +690,7 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * The unique ID for the customer's Google Workspace account. (Readonly)
+     * The unique ID for the customer's G Suite account. (Readonly)
      */
     id?: string | null;
     /**
@@ -702,7 +702,7 @@ export namespace admin_directory_v1 {
      */
     language?: string | null;
     /**
-     * The customer's contact phone number in [E.164](https://en.wikipedia.org/wiki/E.164) format.
+     * The customer's contact phone number in [E.164](http://en.wikipedia.org/wiki/E.164) format.
      */
     phoneNumber?: string | null;
     /**
@@ -728,7 +728,7 @@ export namespace admin_directory_v1 {
      */
     contactName?: string | null;
     /**
-     * This is a required property. For `countryCode` information see the [ISO 3166 country code elements](https://www.iso.org/iso/country_codes.htm).
+     * This is a required property. For `countryCode` information see the [ISO 3166 country code elements](http://www.iso.org/iso/country_codes.htm).
      */
     countryCode?: string | null;
     /**
@@ -862,7 +862,7 @@ export namespace admin_directory_v1 {
   }
   export interface Schema$Domains {
     /**
-     * Creation time of the domain. Expressed in [Unix time](https://en.wikipedia.org/wiki/Epoch_time) format. (Read-only).
+     * Creation time of the domain. Expressed in [Unix time](http://en.wikipedia.org/wiki/Epoch_time) format. (Read-only).
      */
     creationTime?: string | null;
     /**
@@ -978,7 +978,7 @@ export namespace admin_directory_v1 {
      */
     directMembersCount?: string | null;
     /**
-     * The group's email address. If your account has multiple domains, select the appropriate domain for the email address. The `email` must be unique. This property is required when creating a group. Group email addresses are subject to the same character usage rules as usernames, see the [help center](https://support.google.com/a/answer/9193374) for details.
+     * The group's email address. If your account has multiple domains, select the appropriate domain for the email address. The `email` must be unique. This property is required when creating a group. Group email addresses are subject to the same character usage rules as usernames, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=33386) for the details.
      */
     email?: string | null;
     /**
@@ -1045,7 +1045,7 @@ export namespace admin_directory_v1 {
      */
     kind?: string | null;
     /**
-     * The member's role in a group. The API returns an error for cycles in group memberships. For example, if `group1` is a member of `group2`, `group2` cannot be a member of `group1`. For more information about a member's role, see the [administration help center](https://support.google.com/a/answer/167094).
+     * The member's role in a group. The API returns an error for cycles in group memberships. For example, if `group1` is a member of `group2`, `group2` cannot be a member of `group1`. For more information about a member's role, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=167094).
      */
     role?: string | null;
     /**
@@ -1085,7 +1085,7 @@ export namespace admin_directory_v1 {
     isMember?: boolean | null;
   }
   /**
-   * Google Workspace Mobile Management includes Android, [Google Sync](https://support.google.com/a/answer/135937), and iOS devices. For more information about common group mobile device API tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile-devices.html).
+   * G Suite Mobile Management includes Android, [Google Sync](http://support.google.com/a/bin/answer.py?answer=135937), and iOS devices. For more information about common group mobile device API tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile-devices.html).
    */
   export interface Schema$MobileDevice {
     /**
@@ -1093,7 +1093,7 @@ export namespace admin_directory_v1 {
      */
     adbStatus?: boolean | null;
     /**
-     * The list of applications installed on an Android mobile device. It is not applicable to Google Sync and iOS devices. The list includes any Android applications that access Google Workspace data. When updating an applications list, it is important to note that updates replace the existing list. If the Android device has two existing applications and the API updates the list with five applications, the is now the updated list of five applications.
+     * The list of applications installed on an Android mobile device. It is not applicable to Google Sync and iOS devices. The list includes any Android applications that access G Suite data. When updating an applications list, it is important to note that updates replace the existing list. If the Android device has two existing applications and the API updates the list with five applications, the is now the updated list of five applications.
      */
     applications?: Array<{
       displayName?: string;
@@ -1284,7 +1284,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$OrgUnit {
     /**
-     * Determines if a sub-organizational unit can inherit the settings of the parent organization. The default value is `false`, meaning a sub-organizational unit inherits the settings of the nearest parent organizational unit. For more information on inheritance and users in an organization structure, see the [administration help center](https://support.google.com/a/answer/4352075).
+     * Determines if a sub-organizational unit can inherit the settings of the parent organization. The default value is `false`, meaning a sub-organizational unit inherits the settings of the nearest parent organizational unit. For more information on inheritance and users in an organization structure, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=182442&topic=1227584&ctx=topic).
      */
     blockInheritance?: boolean | null;
     /**
@@ -1308,7 +1308,7 @@ export namespace admin_directory_v1 {
      */
     orgUnitId?: string | null;
     /**
-     * The full path to the organizational unit. The `orgUnitPath` is a derived property. When listed, it is derived from `parentOrgunitPath` and organizational unit's `name`. For example, for an organizational unit named 'apps' under parent organization '/engineering', the orgUnitPath is '/engineering/apps'. In order to edit an `orgUnitPath`, either update the name of the organization or the `parentOrgunitPath`. A user's organizational unit determines which Google Workspace services the user has access to. If the user is moved to a new organization, the user's access changes. For more information about organization structures, see the [administration help center](https://support.google.com/a/answer/4352075). For more information about moving a user to a different organization, see [Update a user](/admin-sdk/directory/v1/guides/manage-users.html#update_user).
+     * The full path to the organizational unit. The `orgUnitPath` is a derived property. When listed, it is derived from `parentOrgunitPath` and organizational unit's `name`. For example, for an organizational unit named 'apps' under parent organization '/engineering', the orgUnitPath is '/engineering/apps'. In order to edit an `orgUnitPath`, either update the name of the organization or the `parentOrgunitPath`. A user's organizational unit determines which G Suite services the user has access to. If the user is moved to a new organization, the user's access changes. For more information about organization structures, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=182433&topic=1227584&ctx=topic). For more information about moving a user to a different organization, see [Update a user](/admin-sdk/directory/v1/guides/manage-users.html#update_user).
      */
     orgUnitPath?: string | null;
     /**
@@ -1684,7 +1684,7 @@ export namespace admin_directory_v1 {
      */
     gender?: any | null;
     /**
-     * Stores the hash format of the password property. We recommend sending the `password` property value as a base 16 bit hexadecimal-encoded hash value. Set the `hashFunction` values as either the [SHA-1](https://wikipedia.org/wiki/SHA-1), [MD5](https://wikipedia.org/wiki/MD5), or [crypt](https://en.wikipedia.org/wiki/Crypt_\(C\)) hash format.
+     * Stores the hash format of the password property. We recommend sending the `password` property value as a base 16 bit hexadecimal-encoded hash value. Set the `hashFunction` values as either the [SHA-1](http://wikipedia.org/wiki/SHA-1), [MD5](http://wikipedia.org/wiki/MD5), or [crypt](https://en.wikipedia.org/wiki/Crypt_(C)) hash format.
      */
     hashFunction?: string | null;
     /**
@@ -1696,11 +1696,11 @@ export namespace admin_directory_v1 {
      */
     ims?: any | null;
     /**
-     * Indicates if the user's profile is visible in the Google Workspace global address list when the contact sharing feature is enabled for the domain. For more information about excluding user profiles, see the [administration help center](https://support.google.com/a/answer/1285988).
+     * Indicates if the user's profile is visible in the G Suite global address list when the contact sharing feature is enabled for the domain. For more information about excluding user profiles, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=1285988).
      */
     includeInGlobalAddressList?: boolean | null;
     /**
-     * If `true`, the user's IP address is [whitelisted](https://support.google.com/a/answer/60752).
+     * If `true`, the user's IP address is [white listed](http://support.google.com/a/bin/answer.py?answer=60752).
      */
     ipWhitelisted?: boolean | null;
     /**
@@ -1708,7 +1708,7 @@ export namespace admin_directory_v1 {
      */
     isAdmin?: boolean | null;
     /**
-     * Output only. Indicates if the user is a delegated administrator. Delegated administrators are supported by the API but cannot create or undelete users, or make users administrators. These requests are ignored by the API service. Roles and privileges for administrators are assigned using the [Admin console](https://support.google.com/a/answer/33325).
+     * Output only. Indicates if the user is a delegated administrator. Delegated administrators are supported by the API but cannot create or undelete users, or make users administrators. These requests are ignored by the API service. Roles and privileges for administrators are assigned using the [Admin console](http://support.google.com/a/bin/answer.py?answer=33325).
      */
     isDelegatedAdmin?: boolean | null;
     /**
@@ -1744,7 +1744,7 @@ export namespace admin_directory_v1 {
      */
     locations?: any | null;
     /**
-     * Holds the given and family names of the user, and the read-only `fullName` value. The maximum number of characters in the `givenName` and in the `familyName` values is 60. In addition, name values support unicode/UTF-8 characters, and can contain spaces, letters (a-z), numbers (0-9), dashes (-), forward slashes (/), and periods (.). For more information about character usage rules, see the [administration help center](https://support.google.com/a/answer/9193374). Maximum allowed data size for this field is 1Kb.
+     * Holds the given and family names of the user, and the read-only `fullName` value. The maximum number of characters in the `givenName` and in the `familyName` values is 60. In addition, name values support unicode/UTF-8 characters, and can contain spaces, letters (a-z), numbers (0-9), dashes (-), forward slashes (/), and periods (.). For more information about character usage rules, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=33386). Maximum allowed data size for this field is 1Kb.
      */
     name?: Schema$UserName;
     /**
@@ -1772,7 +1772,7 @@ export namespace admin_directory_v1 {
      */
     phones?: any | null;
     /**
-     * A list of [POSIX](https://www.opengroup.org/austin/papers/posix_faq.html) account information for the user.
+     * A list of [POSIX](http://www.opengroup.org/austin/papers/posix_faq.html) account information for the user.
      */
     posixAccounts?: any | null;
     /**
@@ -2150,7 +2150,7 @@ export namespace admin_directory_v1 {
      */
     mimeType?: string | null;
     /**
-     * The user photo's upload data in [web-safe Base64](https://en.wikipedia.org/wiki/Base64#URL_applications) format in bytes. This means: * The slash (/) character is replaced with the underscore (_) character. * The plus sign (+) character is replaced with the hyphen (-) character. * The equals sign (=) character is replaced with the asterisk (*). * For padding, the period (.) character is used instead of the RFC-4648 baseURL definition which uses the equals sign (=) for padding. This is done to simplify URL-parsing. * Whatever the size of the photo being uploaded, the API downsizes it to 96x96 pixels.
+     * The user photo's upload data in [web-safe Base64](https://code.google.com/p/stringencoders/wiki/WebSafeBase64) format in bytes. This means: * The slash (/) character is replaced with the underscore (_) character. * The plus sign (+) character is replaced with the hyphen (-) character. * The equals sign (=) character is replaced with the asterisk (*). * For padding, the period (.) character is used instead of the RFC-4648 baseURL definition which uses the equals sign (=) for padding. This is done to simplify URL-parsing. * Whatever the size of the photo being uploaded, the API downsizes it to 96x96 pixels.
      */
     photoData?: string | null;
     /**
@@ -2938,7 +2938,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.action({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The unique ID of the device. The `resourceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method.
      *     resourceId: 'placeholder-value',
@@ -3074,7 +3074,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.get({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method.
      *     deviceId: 'placeholder-value',
@@ -3245,7 +3245,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.list({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -3391,7 +3391,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.moveDevicesToOu({
-     *     // Immutable ID of the Google Workspace account
+     *     // Immutable ID of the G Suite account
      *     customerId: 'placeholder-value',
      *     // Full path of the target organizational unit or its ID
      *     orgUnitPath: 'placeholder-value',
@@ -3523,7 +3523,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.patch({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/v1/reference/chromeosdevices/list) method.
      *     deviceId: 'placeholder-value',
@@ -3734,7 +3734,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.update({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/v1/reference/chromeosdevices/list) method.
      *     deviceId: 'placeholder-value',
@@ -3922,7 +3922,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Action
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -3938,7 +3938,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Get
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -3953,7 +3953,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$List
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -3988,7 +3988,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Movedevicestoou
     extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account
+     * Immutable ID of the G Suite account
      */
     customerId?: string;
     /**
@@ -4004,7 +4004,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Patch
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -4024,7 +4024,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Update
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -4097,7 +4097,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await admin.customer.devices.chromeos.issueCommand({
-     *     // Immutable. Immutable ID of the Google Workspace account.
+     *     // Immutable. Immutable ID of the G Suite account.
      *     customerId: 'placeholder-value',
      *     // Immutable. Immutable ID of Chrome OS Device.
      *     deviceId: 'placeholder-value',
@@ -4237,7 +4237,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Customer$Devices$Chromeos$Issuecommand
     extends StandardParameters {
     /**
-     * Immutable. Immutable ID of the Google Workspace account.
+     * Immutable. Immutable ID of the G Suite account.
      */
     customerId?: string;
     /**
@@ -4289,7 +4289,7 @@ export namespace admin_directory_v1 {
      *   const res = await admin.customer.devices.chromeos.commands.get({
      *     // Immutable. Immutable ID of Chrome OS Device Command.
      *     commandId: 'placeholder-value',
-     *     // Immutable. Immutable ID of the Google Workspace account.
+     *     // Immutable. Immutable ID of the G Suite account.
      *     customerId: 'placeholder-value',
      *     // Immutable. Immutable ID of Chrome OS Device.
      *     deviceId: 'placeholder-value',
@@ -4416,7 +4416,7 @@ export namespace admin_directory_v1 {
      */
     commandId?: string;
     /**
-     * Immutable. Immutable ID of the Google Workspace account.
+     * Immutable. Immutable ID of the G Suite account.
      */
     customerId?: string;
     /**
@@ -4934,7 +4934,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domainAliases.delete({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *     // Name of domain alias to be retrieved.
      *     domainAliasName: 'placeholder-value',
@@ -5061,7 +5061,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domainAliases.get({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *     // Name of domain alias to be retrieved.
      *     domainAliasName: 'placeholder-value',
@@ -5197,7 +5197,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domainAliases.insert({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5346,7 +5346,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domainAliases.list({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *     // Name of the parent domain for which domain aliases are to be fetched.
      *     parentDomainName: 'placeholder-value',
@@ -5455,7 +5455,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Domainaliases$Delete
     extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
     /**
@@ -5466,7 +5466,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Domainaliases$Get
     extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
     /**
@@ -5477,7 +5477,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Domainaliases$Insert
     extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
 
@@ -5489,7 +5489,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Domainaliases$List
     extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
     /**
@@ -5531,7 +5531,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domains.delete({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *     // Name of domain to be deleted
      *     domainName: 'placeholder-value',
@@ -5657,7 +5657,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domains.get({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *     // Name of domain to be retrieved
      *     domainName: 'placeholder-value',
@@ -5793,7 +5793,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domains.insert({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5943,7 +5943,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domains.list({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6048,7 +6048,7 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Domains$Delete extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
     /**
@@ -6058,7 +6058,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Domains$Get extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
     /**
@@ -6068,7 +6068,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Domains$Insert extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
 
@@ -6079,7 +6079,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Domains$List extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
   }
@@ -6534,7 +6534,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.groups.list({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users)
+     *     // The unique ID for the customer's G Suite account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users)
      *     customer: 'placeholder-value',
      *     // The domain name. Use this field to get fields from only one domain. To return all domains for a customer account, use the `customer` query parameter instead.
      *     domain: 'placeholder-value',
@@ -6981,7 +6981,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Groups$List extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users)
+     * The unique ID for the customer's G Suite account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users)
      */
     customer?: string;
     /**
@@ -8621,7 +8621,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.mobiledevices.action({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The unique ID the API service uses to identify the mobile device.
      *     resourceId: 'placeholder-value',
@@ -8753,7 +8753,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.mobiledevices.delete({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The unique ID the API service uses to identify the mobile device.
      *     resourceId: 'placeholder-value',
@@ -8881,7 +8881,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.mobiledevices.get({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // Restrict information returned to a set of selected fields.
      *     projection: 'placeholder-value',
@@ -9057,7 +9057,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.mobiledevices.list({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // Maximum number of results to return. Max allowed value is 100.
      *     maxResults: 'placeholder-value',
@@ -9067,7 +9067,7 @@ export namespace admin_directory_v1 {
      *     pageToken: 'placeholder-value',
      *     // Restrict information returned to a set of selected fields.
      *     projection: 'placeholder-value',
-     *     // Search string in the format given at https://developers.google.com/admin-sdk/directory/v1/search-operators
+     *     // Search string in the format given at http://support.google.com/a/bin/answer.py?answer=1408863#search
      *     query: 'placeholder-value',
      *     // Whether to return results in ascending or descending order. Must be used with the `orderBy` parameter.
      *     sortOrder: 'placeholder-value',
@@ -9178,7 +9178,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Mobiledevices$Action
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -9194,7 +9194,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Mobiledevices$Delete
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -9205,7 +9205,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Mobiledevices$Get
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -9220,7 +9220,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Mobiledevices$List
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -9240,7 +9240,7 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Search string in the format given at https://developers.google.com/admin-sdk/directory/v1/search-operators
+     * Search string in the format given at http://support.google.com/a/bin/answer.py?answer=1408863#search
      */
     query?: string;
     /**
@@ -9282,9 +9282,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.delete({
-     *     // Parses org unit path without url decode to allow for plus in ou name
-     *     allowPlus: 'placeholder-value',
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The full path of the organizational unit or its unique ID.
      *     orgUnitPath: '.*',
@@ -9410,9 +9408,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.get({
-     *     // Parses org unit path without url decode to allow for plus in ou name
-     *     allowPlus: 'placeholder-value',
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The full path of the organizational unit or its unique ID.
      *     orgUnitPath: '.*',
@@ -9550,7 +9546,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.insert({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -9704,7 +9700,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.list({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The full path to the organizational unit or its unique ID. Returns the children of the specified organizational unit.
      *     orgUnitPath: 'placeholder-value',
@@ -9837,9 +9833,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.patch({
-     *     // Parses org unit path without url decode to allow for plus in ou name
-     *     allowPlus: 'placeholder-value',
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The full path of the organizational unit or its unique ID.
      *     orgUnitPath: '.*',
@@ -9993,9 +9987,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.update({
-     *     // Parses org unit path without url decode to allow for plus in ou name
-     *     allowPlus: 'placeholder-value',
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The full path of the organizational unit or its unique ID.
      *     orgUnitPath: '.*',
@@ -10125,11 +10117,7 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Orgunits$Delete extends StandardParameters {
     /**
-     * Parses org unit path without url decode to allow for plus in ou name
-     */
-    allowPlus?: boolean;
-    /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -10139,11 +10127,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Orgunits$Get extends StandardParameters {
     /**
-     * Parses org unit path without url decode to allow for plus in ou name
-     */
-    allowPlus?: boolean;
-    /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -10153,7 +10137,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Orgunits$Insert extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
 
@@ -10164,7 +10148,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Orgunits$List extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -10178,11 +10162,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Orgunits$Patch extends StandardParameters {
     /**
-     * Parses org unit path without url decode to allow for plus in ou name
-     */
-    allowPlus?: boolean;
-    /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -10197,11 +10177,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Orgunits$Update extends StandardParameters {
     /**
-     * Parses org unit path without url decode to allow for plus in ou name
-     */
-    allowPlus?: boolean;
-    /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -10251,7 +10227,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.privileges.list({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10357,7 +10333,7 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Privileges$List extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
   }
@@ -10412,7 +10388,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.resources.buildings.delete({
      *     // The id of the building to delete.
      *     buildingId: 'placeholder-value',
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10539,7 +10515,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.resources.buildings.get({
      *     // The unique ID of the building to retrieve.
      *     buildingId: 'placeholder-value',
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10679,7 +10655,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.resources.buildings.insert({
      *     // Source from which Building.coordinates are derived.
      *     coordinatesSource: 'placeholder-value',
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -10833,7 +10809,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.buildings.list({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -10975,7 +10951,7 @@ export namespace admin_directory_v1 {
      *     buildingId: 'placeholder-value',
      *     // Source from which Building.coordinates are derived.
      *     coordinatesSource: 'placeholder-value',
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -11132,7 +11108,7 @@ export namespace admin_directory_v1 {
      *     buildingId: 'placeholder-value',
      *     // Source from which Building.coordinates are derived.
      *     coordinatesSource: 'placeholder-value',
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -11264,7 +11240,7 @@ export namespace admin_directory_v1 {
      */
     buildingId?: string;
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
   }
@@ -11275,7 +11251,7 @@ export namespace admin_directory_v1 {
      */
     buildingId?: string;
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
   }
@@ -11286,7 +11262,7 @@ export namespace admin_directory_v1 {
      */
     coordinatesSource?: string;
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -11298,7 +11274,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Buildings$List
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -11321,7 +11297,7 @@ export namespace admin_directory_v1 {
      */
     coordinatesSource?: string;
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -11341,7 +11317,7 @@ export namespace admin_directory_v1 {
      */
     coordinatesSource?: string;
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -11388,7 +11364,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.resources.calendars.delete({
      *     // The unique ID of the calendar resource to delete.
      *     calendarResourceId: 'placeholder-value',
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -11515,7 +11491,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.resources.calendars.get({
      *     // The unique ID of the calendar resource to retrieve.
      *     calendarResourceId: 'placeholder-value',
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -11660,7 +11636,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.calendars.insert({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -11828,7 +11804,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.calendars.list({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -11975,7 +11951,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.resources.calendars.patch({
      *     // The unique ID of the calendar resource to update.
      *     calendarResourceId: 'placeholder-value',
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12144,7 +12120,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.resources.calendars.update({
      *     // The unique ID of the calendar resource to update.
      *     calendarResourceId: 'placeholder-value',
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12290,7 +12266,7 @@ export namespace admin_directory_v1 {
      */
     calendarResourceId?: string;
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
   }
@@ -12301,14 +12277,14 @@ export namespace admin_directory_v1 {
      */
     calendarResourceId?: string;
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
   }
   export interface Params$Resource$Resources$Calendars$Insert
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -12320,7 +12296,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Calendars$List
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -12347,7 +12323,7 @@ export namespace admin_directory_v1 {
      */
     calendarResourceId?: string;
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -12363,7 +12339,7 @@ export namespace admin_directory_v1 {
      */
     calendarResourceId?: string;
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -12408,7 +12384,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.features.delete({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // The unique ID of the feature to delete.
      *     featureKey: 'placeholder-value',
@@ -12535,7 +12511,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.features.get({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // The unique ID of the feature to retrieve.
      *     featureKey: 'placeholder-value',
@@ -12670,7 +12646,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.features.insert({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12814,7 +12790,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.features.list({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -12952,7 +12928,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.features.patch({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // The unique ID of the feature to update.
      *     featureKey: 'placeholder-value',
@@ -13097,7 +13073,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.features.rename({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // The unique ID of the feature to rename.
      *     oldName: 'placeholder-value',
@@ -13231,7 +13207,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.features.update({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // The unique ID of the feature to update.
      *     featureKey: 'placeholder-value',
@@ -13351,7 +13327,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$Delete
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -13362,7 +13338,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$Get
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -13373,7 +13349,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$Insert
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -13385,7 +13361,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$List
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -13400,7 +13376,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$Patch
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -13416,7 +13392,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$Rename
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -13432,7 +13408,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$Update
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -13479,7 +13455,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roleAssignments.delete({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *     // Immutable ID of the role assignment.
      *     roleAssignmentId: 'placeholder-value',
@@ -13606,7 +13582,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roleAssignments.get({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *     // Immutable ID of the role assignment.
      *     roleAssignmentId: 'placeholder-value',
@@ -13743,7 +13719,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roleAssignments.insert({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -13895,7 +13871,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roleAssignments.list({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -14012,7 +13988,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Roleassignments$Delete
     extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
     /**
@@ -14023,7 +13999,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Roleassignments$Get
     extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
     /**
@@ -14034,7 +14010,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Roleassignments$Insert
     extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
 
@@ -14046,7 +14022,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Roleassignments$List
     extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
     /**
@@ -14100,7 +14076,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roles.delete({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *     // Immutable ID of the role.
      *     roleId: 'placeholder-value',
@@ -14225,7 +14201,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roles.get({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *     // Immutable ID of the role.
      *     roleId: 'placeholder-value',
@@ -14361,7 +14337,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roles.insert({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -14513,7 +14489,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roles.list({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -14647,7 +14623,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roles.patch({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *     // Immutable ID of the role.
      *     roleId: 'placeholder-value',
@@ -14798,7 +14774,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roles.update({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customer: 'placeholder-value',
      *     // Immutable ID of the role.
      *     roleId: 'placeholder-value',
@@ -14925,7 +14901,7 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Roles$Delete extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
     /**
@@ -14935,7 +14911,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Roles$Get extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
     /**
@@ -14945,7 +14921,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Roles$Insert extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
 
@@ -14956,7 +14932,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Roles$List extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
     /**
@@ -14970,7 +14946,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Roles$Patch extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
     /**
@@ -14985,7 +14961,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Roles$Update extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customer?: string;
     /**
@@ -15032,7 +15008,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.delete({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customerId: 'placeholder-value',
      *     // Name or immutable ID of the schema.
      *     schemaKey: 'placeholder-value',
@@ -15158,7 +15134,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.get({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customerId: 'placeholder-value',
      *     // Name or immutable ID of the schema.
      *     schemaKey: 'placeholder-value',
@@ -15293,7 +15269,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.insert({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customerId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -15441,7 +15417,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.list({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -15570,7 +15546,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.patch({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customerId: 'placeholder-value',
      *     // Name or immutable ID of the schema.
      *     schemaKey: 'placeholder-value',
@@ -15718,7 +15694,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.update({
-     *     // Immutable ID of the Google Workspace account.
+     *     // Immutable ID of the G Suite account.
      *     customerId: 'placeholder-value',
      *     // Name or immutable ID of the schema.
      *     schemaKey: 'placeholder-value',
@@ -15842,7 +15818,7 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Schemas$Delete extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customerId?: string;
     /**
@@ -15852,7 +15828,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Schemas$Get extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customerId?: string;
     /**
@@ -15862,7 +15838,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Schemas$Insert extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customerId?: string;
 
@@ -15873,13 +15849,13 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Schemas$List extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customerId?: string;
   }
   export interface Params$Resource$Schemas$Patch extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customerId?: string;
     /**
@@ -15894,7 +15870,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Schemas$Update extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account.
+     * Immutable ID of the G Suite account.
      */
     customerId?: string;
     /**
@@ -17033,7 +17009,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.list({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users). Either the `customer` or the `domain` parameter must be provided.
+     *     // The unique ID for the customer's G Suite account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users). Either the `customer` or the `domain` parameter must be provided.
      *     customer: 'placeholder-value',
      *     // A comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when `projection=custom`.
      *     customFieldMask: 'placeholder-value',
@@ -18017,7 +17993,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.watch({
-     *     // Immutable ID of the Google Workspace account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
+     *     // Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
      *     customer: 'placeholder-value',
      *     // Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
      *     customFieldMask: 'placeholder-value',
@@ -18199,7 +18175,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$List extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users). Either the `customer` or the `domain` parameter must be provided.
+     * The unique ID for the customer's G Suite account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users). Either the `customer` or the `domain` parameter must be provided.
      */
     customer?: string;
     /**
@@ -18295,7 +18271,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$Watch extends StandardParameters {
     /**
-     * Immutable ID of the Google Workspace account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
+     * Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
      */
     customer?: string;
     /**

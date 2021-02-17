@@ -2583,7 +2583,7 @@ export namespace cloudiot_v1 {
      *
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.devices.get({
-     *     // The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned. Fields have to be provided in snake_case format, for example: `last_heartbeat_time`.
+     *     // The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned.
      *     fieldMask: 'placeholder-value',
      *     // Required. The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id\}`.
      *     name:
@@ -2735,7 +2735,7 @@ export namespace cloudiot_v1 {
      *     deviceIds: 'placeholder-value',
      *     // A list of device numeric IDs. If empty, this field is ignored. Maximum IDs: 10,000.
      *     deviceNumIds: 'placeholder-value',
-     *     // The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified in snake_case format, for example: `last_heartbeat_time`.
+     *     // The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified.
      *     fieldMask: 'placeholder-value',
      *     // If set, returns only the gateways with which the specified device is associated. The device ID can be numeric (`num_id`) or the user-defined string (`id`). For example, if `456` is specified, returns only the gateways to which the device with `num_id` 456 is bound.
      *     'gatewayListOptions.associationsDeviceId': 'placeholder-value',
@@ -3346,7 +3346,7 @@ export namespace cloudiot_v1 {
   export interface Params$Resource$Projects$Locations$Registries$Devices$Get
     extends StandardParameters {
     /**
-     * The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned. Fields have to be provided in snake_case format, for example: `last_heartbeat_time`.
+     * The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned.
      */
     fieldMask?: string;
     /**
@@ -3365,7 +3365,7 @@ export namespace cloudiot_v1 {
      */
     deviceNumIds?: string[];
     /**
-     * The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified in snake_case format, for example: `last_heartbeat_time`.
+     * The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified.
      */
     fieldMask?: string;
     /**
@@ -4279,7 +4279,7 @@ export namespace cloudiot_v1 {
      *     deviceIds: 'placeholder-value',
      *     // A list of device numeric IDs. If empty, this field is ignored. Maximum IDs: 10,000.
      *     deviceNumIds: 'placeholder-value',
-     *     // The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified in snake_case format, for example: `last_heartbeat_time`.
+     *     // The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified.
      *     fieldMask: 'placeholder-value',
      *     // If set, returns only the gateways with which the specified device is associated. The device ID can be numeric (`num_id`) or the user-defined string (`id`). For example, if `456` is specified, returns only the gateways to which the device with `num_id` 456 is bound.
      *     'gatewayListOptions.associationsDeviceId': 'placeholder-value',
@@ -4410,7 +4410,7 @@ export namespace cloudiot_v1 {
      */
     deviceNumIds?: string[];
     /**
-     * The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified in snake_case format, for example: `last_heartbeat_time`.
+     * The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified.
      */
     fieldMask?: string;
     /**
