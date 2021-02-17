@@ -132,10 +132,6 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAccount {
     /**
-     * Country of business. Must be a non-deprecated code for a UN M.49 region. https: //unicode.org/cldr/charts/latest/supplem // ental/territory_containment_un_m_49.html
-     */
-    countryCode?: string | null;
-    /**
      * Output only. Time when this account was originally created.
      */
     createTime?: string | null;
@@ -151,6 +147,10 @@ export namespace analyticsadmin_v1alpha {
      * Output only. Resource name of this account. Format: accounts/{account\} Example: "accounts/100"
      */
     name?: string | null;
+    /**
+     * Country of business. Must be a Unicode CLDR region code.
+     */
+    regionCode?: string | null;
     /**
      * Output only. Time when account payload fields were last updated.
      */
@@ -371,29 +371,9 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings {
     /**
-     * Capture events when your visitors view content on your site that has articles or blog posts.
-     */
-    articlesAndBlogsEnabled?: boolean | null;
-    /**
-     * Capture events when your visitors view content on your site that has structured data (eg, articles, blog posts, product details screens, etc.).
-     */
-    contentViewsEnabled?: boolean | null;
-    /**
-     * If enabled, capture a click event each time a visitor clicks a link or element that has data attributes beginning with "data-ga".
-     */
-    dataTaggedElementClicksEnabled?: boolean | null;
-    /**
-     * Domains to exclude from measurement. Max length is 1024 characters.
-     */
-    excludedDomains?: string | null;
-    /**
      * If enabled, capture a file download event each time a link is clicked with a common document, compressed file, application, video, or audio extension.
      */
     fileDownloadsEnabled?: boolean | null;
-    /**
-     * If enabled, capture a view search results event each time a visitor interacts with a form on your site.
-     */
-    formInteractionsEnabled?: boolean | null;
     /**
      * Output only. Resource name of this Data Stream. Format: properties/{property_id\}/webDataStreams/{stream_id\}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
      */
@@ -407,17 +387,13 @@ export namespace analyticsadmin_v1alpha {
      */
     pageChangesEnabled?: boolean | null;
     /**
-     * If enabled, capture a page view event each time a page loads.
+     * Output only. If enabled, capture a page view event each time a page loads.
      */
     pageLoadsEnabled?: boolean | null;
     /**
      * Output only. If enabled, capture a page view event each time a page loads or the website changes the browser history state.
      */
     pageViewsEnabled?: boolean | null;
-    /**
-     * Capture events when your visitors view content on your site that has product details screens, etc.
-     */
-    productsAndEcommerceEnabled?: boolean | null;
     /**
      * If enabled, capture scroll events each time a visitor gets to the bottom of a page.
      */
@@ -437,7 +413,7 @@ export namespace analyticsadmin_v1alpha {
     /**
      * Additional URL query parameters. Max length is 1024 characters.
      */
-    urlQueryParameter?: string | null;
+    uriQueryParameter?: string | null;
     /**
      * If enabled, capture video play, progress, and complete events as visitors view embedded videos on your site.
      */
@@ -468,6 +444,10 @@ export namespace analyticsadmin_v1alpha {
    * Read-only resource with the tag for sending data from a website to a WebDataStream.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag {
+    /**
+     * Output only. Resource name for this GlobalSiteTag resource. Format: properties/{propertyId\}/globalSiteTag
+     */
+    name?: string | null;
     /**
      * Immutable. JavaScript code snippet to be pasted as the first item into the head tag of every webpage to measure.
      */
@@ -501,10 +481,6 @@ export namespace analyticsadmin_v1alpha {
      * Output only. Format: properties/{propertyId\}/googleAdsLinks/{googleAdsLinkId\} Note: googleAdsLinkId is not the Google Ads customer ID.
      */
     name?: string | null;
-    /**
-     * Immutable. Format: properties/{propertyId\}
-     */
-    parent?: string | null;
     /**
      * Output only. Time when this link was last updated.
      */
@@ -586,6 +562,10 @@ export namespace analyticsadmin_v1alpha {
      * List of FirebaseLinks. This will have at most one value.
      */
     firebaseLinks?: Schema$GoogleAnalyticsAdminV1alphaFirebaseLink[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. Currently, Google Analytics supports only one FirebaseLink per property, so this will never be populated.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response message for ListGoogleAdsLinks RPC.
@@ -928,7 +908,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single Account. Throws "Target not found" if no such account found, or if caller does not have permissions to access it.
+     * Lookup for a single Account.
      * @example
      * ```js
      * // Before running the sample:
@@ -945,7 +925,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -961,11 +944,11 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
-     *   //   "countryCode": "my_countryCode",
      *   //   "createTime": "my_createTime",
      *   //   "deleted": false,
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
+     *   //   "regionCode": "my_regionCode",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1085,7 +1068,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1240,7 +1226,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1411,11 +1400,11 @@ export namespace analyticsadmin_v1alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "countryCode": "my_countryCode",
      *       //   "createTime": "my_createTime",
      *       //   "deleted": false,
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
+     *       //   "regionCode": "my_regionCode",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -1424,11 +1413,11 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
-     *   //   "countryCode": "my_countryCode",
      *   //   "createTime": "my_createTime",
      *   //   "deleted": false,
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
+     *   //   "regionCode": "my_regionCode",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1773,7 +1762,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2241,7 +2233,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2844,7 +2839,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2982,7 +2980,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3411,7 +3412,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3880,7 +3884,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single "GA4" Property. Throws "Target not found" if no such property found, if property is not of the type "GA4", or if caller does not have permissions to access it.
+     * Lookup for a single "GA4" Property.
      * @example
      * ```js
      * // Before running the sample:
@@ -3897,7 +3901,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4040,7 +4047,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4049,7 +4059,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.list({
-     *     // Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. |
+     *     // Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: ``` | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. | ```
      *     filter: 'placeholder-value',
      *     // The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
      *     pageSize: 'placeholder-value',
@@ -4364,7 +4374,7 @@ export namespace analyticsadmin_v1alpha {
   }
   export interface Params$Resource$Properties$List extends StandardParameters {
     /**
-     * Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. |
+     * Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: ``` | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. | ```
      */
     filter?: string;
     /**
@@ -4403,7 +4413,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Creates an android app stream with the specified location and attributes.
+     * Creates an Android app stream with the specified location and attributes. Note that an Android app stream must be linked to a Firebase app to receive traffic. To create a working app stream, make sure your property is linked to a Firebase project. Then, use the Firebase API to create a Firebase app, which will also create an appropriate data stream in Analytics (may take up to 24 hours).
      * @example
      * ```js
      * // Before running the sample:
@@ -4702,7 +4712,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single AndroidAppDataStream Throws "Target not found" if no such android app data stream found, or if the caller does not have permissions to access it.
+     * Lookup for a single AndroidAppDataStream
      * @example
      * ```js
      * // Before running the sample:
@@ -4719,7 +4729,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4874,7 +4887,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5557,7 +5573,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5566,6 +5585,10 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.firebaseLinks.list({
+     *     // The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
      *     // Required. Format: properties/{property_id\} Example: properties/1234
      *     parent: 'properties/my-propertie',
      *   });
@@ -5573,7 +5596,8 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
-     *   //   "firebaseLinks": []
+     *   //   "firebaseLinks": [],
+     *   //   "nextPageToken": "my_nextPageToken"
      *   // }
      * }
      *
@@ -5876,6 +5900,14 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Firebaselinks$List
     extends StandardParameters {
     /**
+     * The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
      * Required. Format: properties/{property_id\} Example: properties/1234
      */
     parent?: string;
@@ -5943,7 +5975,6 @@ export namespace analyticsadmin_v1alpha {
      *       //   "customerId": "my_customerId",
      *       //   "emailAddress": "my_emailAddress",
      *       //   "name": "my_name",
-     *       //   "parent": "my_parent",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -5958,7 +5989,6 @@ export namespace analyticsadmin_v1alpha {
      *   //   "customerId": "my_customerId",
      *   //   "emailAddress": "my_emailAddress",
      *   //   "name": "my_name",
-     *   //   "parent": "my_parent",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -6216,7 +6246,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6401,7 +6434,6 @@ export namespace analyticsadmin_v1alpha {
      *       //   "customerId": "my_customerId",
      *       //   "emailAddress": "my_emailAddress",
      *       //   "name": "my_name",
-     *       //   "parent": "my_parent",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -6416,7 +6448,6 @@ export namespace analyticsadmin_v1alpha {
      *   //   "customerId": "my_customerId",
      *   //   "emailAddress": "my_emailAddress",
      *   //   "name": "my_name",
-     *   //   "parent": "my_parent",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -6584,7 +6615,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Creates an iOS app data stream with the specified location and attributes.
+     * Creates an iOS app stream with the specified location and attributes. Note that an iOS app stream must be linked to a Firebase app to receive traffic. To create a working app stream, make sure your property is linked to a Firebase project. Then, use the Firebase API to create a Firebase app, which will also create an appropriate data stream in Analytics (may take up to 24 hours).
      * @example
      * ```js
      * // Before running the sample:
@@ -6883,7 +6914,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single IosAppDataStream Throws "Target not found" if no such iOS app data stream found, or if the caller does not have permissions to access it.
+     * Lookup for a single IosAppDataStream
      * @example
      * ```js
      * // Before running the sample:
@@ -6900,7 +6931,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7055,7 +7089,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7451,7 +7488,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7919,7 +7959,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8522,7 +8565,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8660,7 +8706,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.manage.users',
+     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9365,7 +9414,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single WebDataStream Throws "Target not found" if no such web data stream found, or if the caller does not have permissions to access it.
+     * Lookup for a single WebDataStream
      * @example
      * ```js
      * // Before running the sample:
@@ -9382,7 +9431,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9530,7 +9582,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9549,23 +9604,17 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
-     *   //   "articlesAndBlogsEnabled": false,
-     *   //   "contentViewsEnabled": false,
-     *   //   "dataTaggedElementClicksEnabled": false,
-     *   //   "excludedDomains": "my_excludedDomains",
      *   //   "fileDownloadsEnabled": false,
-     *   //   "formInteractionsEnabled": false,
      *   //   "name": "my_name",
      *   //   "outboundClicksEnabled": false,
      *   //   "pageChangesEnabled": false,
      *   //   "pageLoadsEnabled": false,
      *   //   "pageViewsEnabled": false,
-     *   //   "productsAndEcommerceEnabled": false,
      *   //   "scrollsEnabled": false,
      *   //   "searchQueryParameter": "my_searchQueryParameter",
      *   //   "siteSearchEnabled": false,
      *   //   "streamEnabled": false,
-     *   //   "urlQueryParameter": "my_urlQueryParameter",
+     *   //   "uriQueryParameter": "my_uriQueryParameter",
      *   //   "videoEngagementEnabled": false
      *   // }
      * }
@@ -9703,7 +9752,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9720,6 +9772,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "name": "my_name",
      *   //   "snippet": "my_snippet"
      *   // }
      * }
@@ -9846,7 +9899,10 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -10191,23 +10247,17 @@ export namespace analyticsadmin_v1alpha {
      *       requestBody: {
      *         // request body parameters
      *         // {
-     *         //   "articlesAndBlogsEnabled": false,
-     *         //   "contentViewsEnabled": false,
-     *         //   "dataTaggedElementClicksEnabled": false,
-     *         //   "excludedDomains": "my_excludedDomains",
      *         //   "fileDownloadsEnabled": false,
-     *         //   "formInteractionsEnabled": false,
      *         //   "name": "my_name",
      *         //   "outboundClicksEnabled": false,
      *         //   "pageChangesEnabled": false,
      *         //   "pageLoadsEnabled": false,
      *         //   "pageViewsEnabled": false,
-     *         //   "productsAndEcommerceEnabled": false,
      *         //   "scrollsEnabled": false,
      *         //   "searchQueryParameter": "my_searchQueryParameter",
      *         //   "siteSearchEnabled": false,
      *         //   "streamEnabled": false,
-     *         //   "urlQueryParameter": "my_urlQueryParameter",
+     *         //   "uriQueryParameter": "my_uriQueryParameter",
      *         //   "videoEngagementEnabled": false
      *         // }
      *       },
@@ -10217,23 +10267,17 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
-     *   //   "articlesAndBlogsEnabled": false,
-     *   //   "contentViewsEnabled": false,
-     *   //   "dataTaggedElementClicksEnabled": false,
-     *   //   "excludedDomains": "my_excludedDomains",
      *   //   "fileDownloadsEnabled": false,
-     *   //   "formInteractionsEnabled": false,
      *   //   "name": "my_name",
      *   //   "outboundClicksEnabled": false,
      *   //   "pageChangesEnabled": false,
      *   //   "pageLoadsEnabled": false,
      *   //   "pageViewsEnabled": false,
-     *   //   "productsAndEcommerceEnabled": false,
      *   //   "scrollsEnabled": false,
      *   //   "searchQueryParameter": "my_searchQueryParameter",
      *   //   "siteSearchEnabled": false,
      *   //   "streamEnabled": false,
-     *   //   "urlQueryParameter": "my_urlQueryParameter",
+     *   //   "uriQueryParameter": "my_uriQueryParameter",
      *   //   "videoEngagementEnabled": false
      *   // }
      * }

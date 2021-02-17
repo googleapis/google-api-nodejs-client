@@ -153,6 +153,10 @@ export namespace container_v1 {
      */
     dnsCacheConfig?: Schema$DnsCacheConfig;
     /**
+     * Configuration for the Compute Engine Persistent Disk CSI driver.
+     */
+    gcePersistentDiskCsiDriverConfig?: Schema$GcePersistentDiskCsiDriverConfig;
+    /**
      * Configuration for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
      */
     horizontalPodAutoscaling?: Schema$HorizontalPodAutoscaling;
@@ -195,7 +199,7 @@ export namespace container_v1 {
      */
     diskSizeGb?: number | null;
     /**
-     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'
+     * Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'
      */
     diskType?: string | null;
     /**
@@ -463,6 +467,10 @@ export namespace container_v1 {
      */
     nodePools?: Schema$NodePool[];
     /**
+     * Notification configuration of the cluster.
+     */
+    notificationConfig?: Schema$NotificationConfig;
+    /**
      * Configuration for private cluster.
      */
     privateClusterConfig?: Schema$PrivateClusterConfig;
@@ -495,7 +503,7 @@ export namespace container_v1 {
      */
     status?: string | null;
     /**
-     * [Output only] Additional information about the current status of this cluster, if available.
+     * [Output only] Deprecated. Use conditions instead. Additional information about the current status of this cluster, if available.
      */
     statusMessage?: string | null;
     /**
@@ -605,9 +613,17 @@ export namespace container_v1 {
      */
     desiredNodeVersion?: string | null;
     /**
+     * The desired notification configuration.
+     */
+    desiredNotificationConfig?: Schema$NotificationConfig;
+    /**
      * The desired private cluster configuration.
      */
     desiredPrivateClusterConfig?: Schema$PrivateClusterConfig;
+    /**
+     * The desired state of IPv6 connectivity to Google Services.
+     */
+    desiredPrivateIpv6GoogleAccess?: string | null;
     /**
      * The desired release channel configuration.
      */
@@ -762,6 +778,15 @@ export namespace container_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
+  /**
+   * Configuration for the Compute Engine PD CSI driver.
+   */
+  export interface Schema$GcePersistentDiskCsiDriverConfig {
+    /**
+     * Whether the Compute Engine PD CSI driver is enabled for this cluster.
+     */
+    enabled?: boolean | null;
+  }
   /**
    * GetJSONWebKeysResponse is a valid JSON Web Key Set as specififed in rfc 7517
    */
@@ -1139,6 +1164,10 @@ export namespace container_v1 {
      */
     network?: string | null;
     /**
+     * The desired state of IPv6 connectivity to Google Services. By default, no private IPv6 access to or from Google Services (all access will be via IPv4)
+     */
+    privateIpv6GoogleAccess?: string | null;
+    /**
      * Output only. The relative name of the Google Compute Engine [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the cluster is connected. Example: projects/my-project/regions/us-central1/subnetworks/my-subnet
      */
     subnetwork?: string | null;
@@ -1182,7 +1211,7 @@ export namespace container_v1 {
      */
     diskSizeGb?: number | null;
     /**
-     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'
+     * Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'
      */
     diskType?: string | null;
     /**
@@ -1320,7 +1349,7 @@ export namespace container_v1 {
      */
     status?: string | null;
     /**
-     * [Output only] Additional information about the current status of this node pool instance, if available.
+     * [Output only] Deprecated. Use conditions instead. Additional information about the current status of this node pool instance, if available.
      */
     statusMessage?: string | null;
     /**
@@ -1369,6 +1398,15 @@ export namespace container_v1 {
      * Value for taint.
      */
     value?: string | null;
+  }
+  /**
+   * NotificationConfig is the configuration of notifications.
+   */
+  export interface Schema$NotificationConfig {
+    /**
+     * Notification config for Pub/Sub.
+     */
+    pubsub?: Schema$PubSub;
   }
   /**
    * This operation resource represents operations that may have happened or are happening on the cluster. All fields are output only.
@@ -1493,6 +1531,19 @@ export namespace container_v1 {
      * Whenever master is accessible globally or not.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * Pub/Sub specific notification config.
+   */
+  export interface Schema$PubSub {
+    /**
+     * Enable notifications for Pub/Sub.
+     */
+    enabled?: boolean | null;
+    /**
+     * The desired Pub/Sub topic to which notifications will be sent by GKE. Format is `projects/{project\}/topics/{topic\}`.
+     */
+    topic?: string | null;
   }
   /**
    * Represents an arbitrary window of time that recurs.
@@ -1939,7 +1990,7 @@ export namespace container_v1 {
     zone?: string | null;
   }
   /**
-   * SetNodePoolSizeRequest sets the size a node pool.
+   * SetNodePoolSizeRequest sets the size of a node pool.
    */
   export interface Schema$SetNodePoolSizeRequest {
     /**
@@ -2140,27 +2191,27 @@ export namespace container_v1 {
    */
   export interface Schema$UpgradeEvent {
     /**
-     * Required. The current version before the upgrade.
+     * The current version before the upgrade.
      */
     currentVersion?: string | null;
     /**
-     * Required. The operation associated with this upgrade.
+     * The operation associated with this upgrade.
      */
     operation?: string | null;
     /**
-     * Required. The time when the operation was started.
+     * The time when the operation was started.
      */
     operationStartTime?: string | null;
     /**
-     * Optional. Optional relative path to the resource. For example in node pool upgrades, the relative path of the node pool.
+     * Optional relative path to the resource. For example in node pool upgrades, the relative path of the node pool.
      */
     resource?: string | null;
     /**
-     * Required. The resource type that is upgrading.
+     * The resource type that is upgrading.
      */
     resourceType?: string | null;
     /**
-     * Required. The target version for the upgrade.
+     * The target version for the upgrade.
      */
     targetVersion?: string | null;
   }
@@ -3151,6 +3202,7 @@ export namespace container_v1 {
      *   //   "nodeConfig": {},
      *   //   "nodeIpv4CidrSize": 0,
      *   //   "nodePools": [],
+     *   //   "notificationConfig": {},
      *   //   "privateClusterConfig": {},
      *   //   "releaseChannel": {},
      *   //   "resourceLabels": {},
@@ -6677,7 +6729,7 @@ export namespace container_v1 {
     }
 
     /**
-     * Sets the size for a specific node pool.
+     * Sets the size for a specific node pool. The new size will be used for all replicas, including future replicas created by modifying NodePool.locations.
      * @example
      * ```js
      * // Before running the sample:
@@ -8629,6 +8681,7 @@ export namespace container_v1 {
      *   //   "nodeConfig": {},
      *   //   "nodeIpv4CidrSize": 0,
      *   //   "nodePools": [],
+     *   //   "notificationConfig": {},
      *   //   "privateClusterConfig": {},
      *   //   "releaseChannel": {},
      *   //   "resourceLabels": {},
@@ -12036,7 +12089,7 @@ export namespace container_v1 {
     }
 
     /**
-     * Sets the size for a specific node pool.
+     * Sets the size for a specific node pool. The new size will be used for all replicas, including future replicas created by modifying NodePool.locations.
      * @example
      * ```js
      * // Before running the sample:

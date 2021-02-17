@@ -233,6 +233,10 @@ export namespace composer_v1beta1 {
      */
     gkeCluster?: string | null;
     /**
+     * Optional. The maintenance window is the period when Cloud Composer components may undergo maintenance. It is defined so that maintenance is not executed during peak hours or critical time periods. The system will not be under maintenance for every occurrence of this window, but when maintenance is planned, it will be scheduled during the window. The maintenance window period must encompass at least 12 hours per week. This may be split into multiple chunks, each with a size of at least 4 hours. If this value is omitted, Cloud Composer components may be subject to maintenance at any time.
+     */
+    maintenanceWindow?: Schema$MaintenanceWindow;
+    /**
      * The configuration used for the Kubernetes Engine cluster.
      */
     nodeConfig?: Schema$NodeConfig;
@@ -351,6 +355,23 @@ export namespace composer_v1beta1 {
     operations?: Schema$Operation[];
   }
   /**
+   * The configuration settings for Cloud Composer maintenance window. The following example: { "startTime":"2019-08-01T01:00:00Z" "endTime":"2019-08-01T07:00:00Z" "recurrence":"FREQ=WEEKLY;BYDAY=TU,WE" \} would define a maintenance window between 01 and 07 hours UTC during each Tuesday and Wednesday.
+   */
+  export interface Schema$MaintenanceWindow {
+    /**
+     * Required. Maintenance window end time. It is used only to calculate the duration of the maintenance window. The value for end_time must be in the future, relative to `start_time`.
+     */
+    endTime?: string | null;
+    /**
+     * Required. Maintenance window recurrence. Format is a subset of [RFC-5545](https://tools.ietf.org/html/rfc5545) `RRULE`. The only allowed values for `FREQ` field are `FREQ=DAILY` and `FREQ=WEEKLY;BYDAY=...` Example values: `FREQ=WEEKLY;BYDAY=TU,WE`, `FREQ=DAILY`.
+     */
+    recurrence?: string | null;
+    /**
+     * Required. Start time of the first recurrence of the maintenance window.
+     */
+    startTime?: string | null;
+  }
+  /**
    * The configuration information for the Kubernetes Engine nodes running the Apache Airflow software.
    */
   export interface Schema$NodeConfig {
@@ -370,6 +391,10 @@ export namespace composer_v1beta1 {
      * Optional. The Compute Engine [machine type](/compute/docs/machine-types) used for cluster instances, specified as a [relative resource name](/apis/design/resource_names#relative_resource_name). For example: "projects/{projectId\}/zones/{zoneId\}/machineTypes/{machineTypeId\}". The `machineType` must belong to the enclosing environment's project and location. If both this field and `nodeConfig.location` are specified, this `machineType` must belong to the `nodeConfig.location`; if both are unspecified, the service will pick a zone in the Compute Engine region corresponding to the Cloud Composer location, and propagate that choice to both fields. If exactly one of this field and `nodeConfig.location` is specified, the location information from the specified field will be propagated to the unspecified field. The `machineTypeId` must not be a [shared-core machine type](/compute/docs/machine-types#sharedcore). If this field is unspecified, the `machineTypeId` defaults to "n1-standard-1".
      */
     machineType?: string | null;
+    /**
+     * Optional. The maximum number of pods per node in the Cloud Composer GKE cluster. The value must be between 8 and 110 and it can be set only if the environment is VPC-native. The default value is 32. Values of this field will be propagated both to the `default-pool` node pool of the newly created GKE cluster, and to the default "Maximum Pods per Node" value which is used for newly created node pools if their value is not explicitly set during node pool creation. For more information, see [Optimizing IP address allocation] (https://cloud.google.com/kubernetes-engine/docs/how-to/flexible-pod-cidr). Cannot be updated.
+     */
+    maxPodsPerNode?: number | null;
     /**
      * Optional. The Compute Engine network to be used for machine communications, specified as a [relative resource name](/apis/design/resource_names#relative_resource_name). For example: "projects/{projectId\}/global/networks/{networkId\}". If unspecified, the default network in the environment's project is used. If a [Custom Subnet Network](/vpc/docs/vpc#vpc_networks_and_subnets) is provided, `nodeConfig.subnetwork` must also be provided. For [Shared VPC](/vpc/docs/shared-vpc) subnetwork requirements, see `nodeConfig.subnetwork`.
      */
