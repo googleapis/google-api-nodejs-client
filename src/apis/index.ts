@@ -119,10 +119,6 @@ import {VERSIONS as booksVersions, books} from './books';
 import {VERSIONS as calendarVersions, calendar} from './calendar';
 import {VERSIONS as chatVersions, chat} from './chat';
 import {
-  VERSIONS as chromemanagementVersions,
-  chromemanagement,
-} from './chromemanagement';
-import {
   VERSIONS as chromeuxreportVersions,
   chromeuxreport,
 } from './chromeuxreport';
@@ -131,7 +127,6 @@ import {VERSIONS as classroomVersions, classroom} from './classroom';
 import {VERSIONS as cloudassetVersions, cloudasset} from './cloudasset';
 import {VERSIONS as cloudbillingVersions, cloudbilling} from './cloudbilling';
 import {VERSIONS as cloudbuildVersions, cloudbuild} from './cloudbuild';
-import {VERSIONS as cloudchannelVersions, cloudchannel} from './cloudchannel';
 import {
   VERSIONS as clouddebuggerVersions,
   clouddebugger,
@@ -300,17 +295,8 @@ import {
   manufacturers,
 } from './manufacturers';
 import {VERSIONS as memcacheVersions, memcache} from './memcache';
-import {VERSIONS as metastoreVersions, metastore} from './metastore';
 import {VERSIONS as mlVersions, ml} from './ml';
 import {VERSIONS as monitoringVersions, monitoring} from './monitoring';
-import {
-  VERSIONS as mybusinessaccountmanagementVersions,
-  mybusinessaccountmanagement,
-} from './mybusinessaccountmanagement';
-import {
-  VERSIONS as networkconnectivityVersions,
-  networkconnectivity,
-} from './networkconnectivity';
 import {
   VERSIONS as networkmanagementVersions,
   networkmanagement,
@@ -360,7 +346,6 @@ import {
   remotebuildexecution,
 } from './remotebuildexecution';
 import {VERSIONS as resellerVersions, reseller} from './reseller';
-import {VERSIONS as retailVersions, retail} from './retail';
 import {VERSIONS as runVersions, run} from './run';
 import {
   VERSIONS as runtimeconfigVersions,
@@ -514,14 +499,12 @@ export const APIS: APIList = {
   books: booksVersions,
   calendar: calendarVersions,
   chat: chatVersions,
-  chromemanagement: chromemanagementVersions,
   chromeuxreport: chromeuxreportVersions,
   civicinfo: civicinfoVersions,
   classroom: classroomVersions,
   cloudasset: cloudassetVersions,
   cloudbilling: cloudbillingVersions,
   cloudbuild: cloudbuildVersions,
-  cloudchannel: cloudchannelVersions,
   clouddebugger: clouddebuggerVersions,
   clouderrorreporting: clouderrorreportingVersions,
   cloudfunctions: cloudfunctionsVersions,
@@ -603,11 +586,8 @@ export const APIS: APIList = {
   managedidentities: managedidentitiesVersions,
   manufacturers: manufacturersVersions,
   memcache: memcacheVersions,
-  metastore: metastoreVersions,
   ml: mlVersions,
   monitoring: monitoringVersions,
-  mybusinessaccountmanagement: mybusinessaccountmanagementVersions,
-  networkconnectivity: networkconnectivityVersions,
   networkmanagement: networkmanagementVersions,
   notebooks: notebooksVersions,
   oauth2: oauth2Versions,
@@ -630,7 +610,6 @@ export const APIS: APIList = {
   redis: redisVersions,
   remotebuildexecution: remotebuildexecutionVersions,
   reseller: resellerVersions,
-  retail: retailVersions,
   run: runVersions,
   runtimeconfig: runtimeconfigVersions,
   safebrowsing: safebrowsingVersions,
@@ -720,14 +699,12 @@ export class GeneratedAPIs {
   books = books;
   calendar = calendar;
   chat = chat;
-  chromemanagement = chromemanagement;
   chromeuxreport = chromeuxreport;
   civicinfo = civicinfo;
   classroom = classroom;
   cloudasset = cloudasset;
   cloudbilling = cloudbilling;
   cloudbuild = cloudbuild;
-  cloudchannel = cloudchannel;
   clouddebugger = clouddebugger;
   clouderrorreporting = clouderrorreporting;
   cloudfunctions = cloudfunctions;
@@ -809,11 +786,8 @@ export class GeneratedAPIs {
   managedidentities = managedidentities;
   manufacturers = manufacturers;
   memcache = memcache;
-  metastore = metastore;
   ml = ml;
   monitoring = monitoring;
-  mybusinessaccountmanagement = mybusinessaccountmanagement;
-  networkconnectivity = networkconnectivity;
   networkmanagement = networkmanagement;
   notebooks = notebooks;
   oauth2 = oauth2;
@@ -836,7 +810,6 @@ export class GeneratedAPIs {
   redis = redis;
   remotebuildexecution = remotebuildexecution;
   reseller = reseller;
-  retail = retail;
   run = run;
   runtimeconfig = runtimeconfig;
   safebrowsing = safebrowsing;

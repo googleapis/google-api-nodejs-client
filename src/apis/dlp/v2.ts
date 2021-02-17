@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace dlp_v2 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -444,11 +446,11 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2CloudStorageOptions {
     /**
-     * Max number of bytes to scan from a file. If a scanned file's size is bigger than this value then the rest of the bytes are omitted. Only one of bytes_limit_per_file and bytes_limit_per_file_percent can be specified. Cannot be set if de-identification is requested.
+     * Max number of bytes to scan from a file. If a scanned file's size is bigger than this value then the rest of the bytes are omitted. Only one of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
      */
     bytesLimitPerFile?: string | null;
     /**
-     * Max percentage of bytes to scan from a file. The rest are omitted. The number of bytes scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one of bytes_limit_per_file and bytes_limit_per_file_percent can be specified. Cannot be set if de-identification is requested.
+     * Max percentage of bytes to scan from a file. The rest are omitted. The number of bytes scanned is rounded down. Must be between 0 and 100, inclusively. Both 0 and 100 means no limit. Defaults to 0. Only one of bytes_limit_per_file and bytes_limit_per_file_percent can be specified.
      */
     bytesLimitPerFilePercent?: number | null;
     /**
@@ -639,7 +641,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2CreateDlpJobRequest {
     /**
-     * An inspection job scans a storage repository for InfoTypes.
+     * Set to control what and how to inspect.
      */
     inspectJob?: Schema$GooglePrivacyDlpV2InspectJobConfig;
     /**
@@ -651,7 +653,7 @@ export namespace dlp_v2 {
      */
     locationId?: string | null;
     /**
-     * A risk analysis job calculates re-identification risk metrics for a BigQuery table.
+     * Set to choose what metric to calculate.
      */
     riskJob?: Schema$GooglePrivacyDlpV2RiskAnalysisJobConfig;
   }
@@ -1273,7 +1275,7 @@ export namespace dlp_v2 {
     triggerName?: string | null;
   }
   /**
-   * Configuration to control the number of findings returned. Cannot be set if de-identification is requested.
+   * Configuration to control the number of findings returned.
    */
   export interface Schema$GooglePrivacyDlpV2FindingLimits {
     /**
@@ -1605,7 +1607,7 @@ export namespace dlp_v2 {
      */
     requestedOptions?: Schema$GooglePrivacyDlpV2RequestedOptions;
     /**
-     * A summary of the outcome of this inspection job.
+     * A summary of the outcome of this inspect job.
      */
     result?: Schema$GooglePrivacyDlpV2Result;
   }
@@ -2579,7 +2581,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Result {
     /**
-     * Statistics related to the processing of hybrid inspect.
+     * Statistics related to the processing of hybrid inspect. Early access feature is in a pre-release state and might change or have limited support. For more information, see https://cloud.google.com/products#product-launch-stages.
      */
     hybridStats?: Schema$GooglePrivacyDlpV2HybridInspectStatistics;
     /**
@@ -2631,7 +2633,7 @@ export namespace dlp_v2 {
     outputConfig?: Schema$GooglePrivacyDlpV2OutputStorageConfig;
   }
   /**
-   * Schedule for inspect job triggers.
+   * Schedule for triggeredJobs.
    */
   export interface Schema$GooglePrivacyDlpV2Schedule {
     /**
@@ -2673,7 +2675,7 @@ export namespace dlp_v2 {
      */
     datastoreOptions?: Schema$GooglePrivacyDlpV2DatastoreOptions;
     /**
-     * Hybrid inspection options.
+     * Hybrid inspection options. Early access feature is in a pre-release state and might change or have limited support. For more information, see https://cloud.google.com/products#product-launch-stages.
      */
     hybridOptions?: Schema$GooglePrivacyDlpV2HybridOptions;
     timespanConfig?: Schema$GooglePrivacyDlpV2TimespanConfig;
@@ -2962,7 +2964,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2Trigger {
     /**
-     * For use with hybrid jobs. Jobs must be manually created and finished.
+     * For use with hybrid jobs. Jobs must be manually created and finished. Early access feature is in a pre-release state and might change or have limited support. For more information, see https://cloud.google.com/products#product-launch-stages.
      */
     manual?: Schema$GooglePrivacyDlpV2Manual;
     /**
@@ -3230,20 +3232,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
     ): void;
     list(
       params: Params$Resource$Infotypes$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -3411,20 +3407,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
     ): void;
     list(
       params: Params$Resource$Locations$Infotypes$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInfoTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -3618,20 +3608,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     create(
       params: Params$Resource$Organizations$Deidentifytemplates$Create,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     create(
       paramsOrCallback?:
@@ -3896,20 +3880,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     get(
       params: Params$Resource$Organizations$Deidentifytemplates$Get,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     get(
       paramsOrCallback?:
@@ -4045,42 +4023,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Organizations$Deidentifytemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
     ): void;
     list(
       params: Params$Resource$Organizations$Deidentifytemplates$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Deidentifytemplates$List
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4119,13 +4083,14 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
+          parameters
+        );
       }
     }
 
@@ -4212,20 +4177,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     patch(
       params: Params$Resource$Organizations$Deidentifytemplates$Patch,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     patch(
       paramsOrCallback?:
@@ -4850,42 +4809,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Organizations$Inspecttemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
     ): void;
     list(
       params: Params$Resource$Organizations$Inspecttemplates$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Inspecttemplates$List
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4929,9 +4874,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
+          parameters
+        );
       }
     }
 
@@ -5150,20 +5095,14 @@ export namespace dlp_v2 {
   export class Resource$Organizations$Locations {
     context: APIRequestContext;
     deidentifyTemplates: Resource$Organizations$Locations$Deidentifytemplates;
-    dlpJobs: Resource$Organizations$Locations$Dlpjobs;
     inspectTemplates: Resource$Organizations$Locations$Inspecttemplates;
-    jobTriggers: Resource$Organizations$Locations$Jobtriggers;
     storedInfoTypes: Resource$Organizations$Locations$Storedinfotypes;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.deidentifyTemplates = new Resource$Organizations$Locations$Deidentifytemplates(
         this.context
       );
-      this.dlpJobs = new Resource$Organizations$Locations$Dlpjobs(this.context);
       this.inspectTemplates = new Resource$Organizations$Locations$Inspecttemplates(
-        this.context
-      );
-      this.jobTriggers = new Resource$Organizations$Locations$Jobtriggers(
         this.context
       );
       this.storedInfoTypes = new Resource$Organizations$Locations$Storedinfotypes(
@@ -5261,20 +5200,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     create(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Create,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     create(
       paramsOrCallback?:
@@ -5539,20 +5472,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     get(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Get,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     get(
       paramsOrCallback?:
@@ -5688,42 +5615,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
     ): void;
     list(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Deidentifytemplates$List
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -5762,13 +5675,14 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
+          parameters
+        );
       }
     }
 
@@ -5855,20 +5769,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     patch(
       params: Params$Resource$Organizations$Locations$Deidentifytemplates$Patch,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     patch(
       paramsOrCallback?:
@@ -5989,202 +5897,6 @@ export namespace dlp_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GooglePrivacyDlpV2UpdateDeidentifyTemplateRequest;
-  }
-
-  export class Resource$Organizations$Locations$Dlpjobs {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Lists DlpJobs that match the specified filter in the request. See https://cloud.google.com/dlp/docs/inspecting-storage and https://cloud.google.com/dlp/docs/compute-risk-analysis to learn more.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dlp.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dlp = google.dlp('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dlp.organizations.locations.dlpJobs.list({
-     *     // Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect jobs: - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - `trigger_name` - The resource name of the trigger that created job. - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs: - `state` - RUNNING|CANCELED|FINISHED|FAILED - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`. Examples: * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Deprecated. This field has no effect.
-     *     locationId: 'placeholder-value',
-     *     // Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, end_time asc, create_time desc` Supported fields are: - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
-     *     orderBy: 'placeholder-value',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
-     *     parent: 'organizations/my-organization/locations/my-location',
-     *     // The type of job. Defaults to `DlpJobType.INSPECT`
-     *     type: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "jobs": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Organizations$Locations$Dlpjobs$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Organizations$Locations$Dlpjobs$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>;
-    list(
-      params: Params$Resource$Organizations$Locations$Dlpjobs$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Organizations$Locations$Dlpjobs$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
-      >
-    ): void;
-    list(
-      params: Params$Resource$Organizations$Locations$Dlpjobs$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
-      >
-    ): void;
-    list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
-      >
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Dlpjobs$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Dlpjobs$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Dlpjobs$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+parent}/dlpJobs').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Organizations$Locations$Dlpjobs$List
-    extends StandardParameters {
-    /**
-     * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect jobs: - `state` - PENDING|RUNNING|CANCELED|FINISHED|FAILED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - `trigger_name` - The resource name of the trigger that created job. - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * Supported fields for risk analysis jobs: - `state` - RUNNING|CANCELED|FINISHED|FAILED - 'end_time` - Corresponds to time the job finished. - 'start_time` - Corresponds to time the job finished. * The operator must be `=` or `!=`. Examples: * inspected_storage = cloud_storage AND state = done * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = done OR state = canceled) * end_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
-     */
-    filter?: string;
-    /**
-     * Deprecated. This field has no effect.
-     */
-    locationId?: string;
-    /**
-     * Comma separated list of fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc, end_time asc, create_time desc` Supported fields are: - `create_time`: corresponds to time the job was created. - `end_time`: corresponds to time the job ended. - `name`: corresponds to job's name. - `state`: corresponds to `state`
-     */
-    orderBy?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
-    /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
-     */
-    parent?: string;
-    /**
-     * The type of job. Defaults to `DlpJobType.INSPECT`
-     */
-    type?: string;
   }
 
   export class Resource$Organizations$Locations$Inspecttemplates {
@@ -6691,42 +6403,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Organizations$Locations$Inspecttemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
     ): void;
     list(
       params: Params$Resource$Organizations$Locations$Inspecttemplates$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Inspecttemplates$List
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -6770,9 +6468,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
+          parameters
+        );
       }
     }
 
@@ -6987,820 +6685,6 @@ export namespace dlp_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GooglePrivacyDlpV2UpdateInspectTemplateRequest;
-  }
-
-  export class Resource$Organizations$Locations$Jobtriggers {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Creates a job trigger to run DLP actions such as scanning storage for sensitive information on a set schedule. See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dlp.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dlp = google.dlp('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dlp.organizations.locations.jobTriggers.create({
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
-     *     parent: 'organizations/my-organization/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "jobTrigger": {},
-     *       //   "locationId": "my_locationId",
-     *       //   "triggerId": "my_triggerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "errors": [],
-     *   //   "inspectJob": {},
-     *   //   "lastRunTime": "my_lastRunTime",
-     *   //   "name": "my_name",
-     *   //   "status": "my_status",
-     *   //   "triggers": [],
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Organizations$Locations$Jobtriggers$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
-    create(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-    ): void;
-    create(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Create,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-    ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Jobtriggers$Create
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Jobtriggers$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Jobtriggers$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+parent}/jobTriggers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Deletes a job trigger. See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dlp.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dlp = google.dlp('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dlp.organizations.locations.jobTriggers.delete({
-     *     // Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/jobTriggers/my-jobTrigger',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Organizations$Locations$Jobtriggers$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
-    delete(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Jobtriggers$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Jobtriggers$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Jobtriggers$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Gets a job trigger. See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dlp.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dlp = google.dlp('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dlp.organizations.locations.jobTriggers.get({
-     *     // Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/jobTriggers/my-jobTrigger',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "errors": [],
-     *   //   "inspectJob": {},
-     *   //   "lastRunTime": "my_lastRunTime",
-     *   //   "name": "my_name",
-     *   //   "status": "my_status",
-     *   //   "triggers": [],
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Organizations$Locations$Jobtriggers$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
-    get(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-    ): void;
-    get(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Get,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-    ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Jobtriggers$Get
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Jobtriggers$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Jobtriggers$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Lists job triggers. See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dlp.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dlp = google.dlp('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dlp.organizations.locations.jobTriggers.list({
-     *     // Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect triggers: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
-     *     filter: 'placeholder-value',
-     *     // Deprecated. This field has no effect.
-     *     locationId: 'placeholder-value',
-     *     // Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
-     *     orderBy: 'placeholder-value',
-     *     // Size of the page, can be limited by a server.
-     *     pageSize: 'placeholder-value',
-     *     // Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
-     *     parent: 'organizations/my-organization/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "jobTriggers": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Organizations$Locations$Jobtriggers$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>;
-    list(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-      >
-    ): void;
-    list(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-      >
-    ): void;
-    list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-      >
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Jobtriggers$List
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Jobtriggers$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Jobtriggers$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+parent}/jobTriggers').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-        >(parameters);
-      }
-    }
-
-    /**
-     * Updates a job trigger. See https://cloud.google.com/dlp/docs/creating-job-triggers to learn more.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dlp.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dlp = google.dlp('v2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dlp.organizations.locations.jobTriggers.patch({
-     *     // Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/jobTriggers/my-jobTrigger',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "jobTrigger": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "errors": [],
-     *   //   "inspectJob": {},
-     *   //   "lastRunTime": "my_lastRunTime",
-     *   //   "name": "my_name",
-     *   //   "status": "my_status",
-     *   //   "triggers": [],
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Organizations$Locations$Jobtriggers$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>;
-    patch(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-    ): void;
-    patch(
-      params: Params$Resource$Organizations$Locations$Jobtriggers$Patch,
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-    ): void;
-    patch(
-      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Organizations$Locations$Jobtriggers$Patch
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GooglePrivacyDlpV2JobTrigger>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GooglePrivacyDlpV2JobTrigger>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Organizations$Locations$Jobtriggers$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Jobtriggers$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dlp.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Organizations$Locations$Jobtriggers$Create
-    extends StandardParameters {
-    /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GooglePrivacyDlpV2CreateJobTriggerRequest;
-  }
-  export interface Params$Resource$Organizations$Locations$Jobtriggers$Delete
-    extends StandardParameters {
-    /**
-     * Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Organizations$Locations$Jobtriggers$Get
-    extends StandardParameters {
-    /**
-     * Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Organizations$Locations$Jobtriggers$List
-    extends StandardParameters {
-    /**
-     * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect triggers: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
-     */
-    filter?: string;
-    /**
-     * Deprecated. This field has no effect.
-     */
-    locationId?: string;
-    /**
-     * Comma separated list of triggeredJob fields to order by, followed by `asc` or `desc` postfix. This list is case-insensitive, default sorting order is ascending, redundant space characters are insignificant. Example: `name asc,update_time, create_time desc` Supported fields are: - `create_time`: corresponds to time the JobTrigger was created. - `update_time`: corresponds to time the JobTrigger was last updated. - `last_run_time`: corresponds to the last time the JobTrigger ran. - `name`: corresponds to JobTrigger's name. - `display_name`: corresponds to JobTrigger's display name. - `status`: corresponds to JobTrigger's status.
-     */
-    orderBy?: string;
-    /**
-     * Size of the page, can be limited by a server.
-     */
-    pageSize?: number;
-    /**
-     * Page token to continue retrieval. Comes from previous call to ListJobTriggers. `order_by` field must not change for subsequent calls.
-     */
-    pageToken?: string;
-    /**
-     * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Organizations$Locations$Jobtriggers$Patch
-    extends StandardParameters {
-    /**
-     * Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GooglePrivacyDlpV2UpdateJobTriggerRequest;
   }
 
   export class Resource$Organizations$Locations$Storedinfotypes {
@@ -8301,42 +7185,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Organizations$Locations$Storedinfotypes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
     ): void;
     list(
       params: Params$Resource$Organizations$Locations$Storedinfotypes$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Storedinfotypes$List
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -8380,9 +7250,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
+          parameters
+        );
       }
     }
 
@@ -9092,42 +7962,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Organizations$Storedinfotypes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
     ): void;
     list(
       params: Params$Resource$Organizations$Storedinfotypes$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Storedinfotypes$List
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -9171,9 +8027,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
+          parameters
+        );
       }
     }
 
@@ -9502,42 +8358,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Content$Deidentify,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
     ): void;
     deidentify(
       params: Params$Resource$Projects$Content$Deidentify,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
     ): void;
     deidentify(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
     ): void;
     deidentify(
       paramsOrCallback?:
         | Params$Resource$Projects$Content$Deidentify
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -9581,9 +8423,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(
+          parameters
+        );
       }
     }
 
@@ -9666,20 +8508,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2InspectContentResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
     ): void;
     inspect(
       params: Params$Resource$Projects$Content$Inspect,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2InspectContentResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
     ): void;
     inspect(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2InspectContentResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
     ): void;
     inspect(
       paramsOrCallback?:
@@ -9736,9 +8572,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2InspectContentResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
+          parameters
+        );
       }
     }
 
@@ -9823,42 +8659,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Content$Reidentify,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
     ): void;
     reidentify(
       params: Params$Resource$Projects$Content$Reidentify,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
     ): void;
     reidentify(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
     ): void;
     reidentify(
       paramsOrCallback?:
         | Params$Resource$Projects$Content$Reidentify
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -9902,9 +8724,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(
+          parameters
+        );
       }
     }
   }
@@ -10035,20 +8857,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     create(
       params: Params$Resource$Projects$Deidentifytemplates$Create,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     create(
       paramsOrCallback?:
@@ -10311,20 +9127,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     get(
       params: Params$Resource$Projects$Deidentifytemplates$Get,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     get(
       paramsOrCallback?:
@@ -10460,42 +9270,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Deidentifytemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Deidentifytemplates$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Deidentifytemplates$List
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -10534,13 +9330,14 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
+          parameters
+        );
       }
     }
 
@@ -10626,20 +9423,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     patch(
       params: Params$Resource$Projects$Deidentifytemplates$Patch,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     patch(
       paramsOrCallback?:
@@ -11405,20 +10196,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Dlpjobs$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -11640,20 +10425,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2RedactImageResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
     ): void;
     redact(
       params: Params$Resource$Projects$Image$Redact,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2RedactImageResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
     ): void;
     redact(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2RedactImageResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
     ): void;
     redact(
       paramsOrCallback?:
@@ -12232,42 +11011,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Inspecttemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Inspecttemplates$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Inspecttemplates$List
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -12311,9 +11076,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
+          parameters
+        );
       }
     }
 
@@ -13141,7 +11906,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.jobTriggers.list({
-     *     // Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect triggers: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
+     *     // Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect jobs: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
@@ -13192,23 +11957,15 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Jobtriggers$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Jobtriggers$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -13265,9 +12022,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
+          parameters
+        );
       }
     }
 
@@ -13466,7 +12223,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Jobtriggers$List
     extends StandardParameters {
     /**
-     * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect triggers: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
+     * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect jobs: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -13619,42 +12376,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Locations$Content$Deidentify,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
     ): void;
     deidentify(
       params: Params$Resource$Projects$Locations$Content$Deidentify,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
     ): void;
     deidentify(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
     ): void;
     deidentify(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Content$Deidentify
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -13698,9 +12441,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2DeidentifyContentResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(
+          parameters
+        );
       }
     }
 
@@ -13783,20 +12526,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2InspectContentResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
     ): void;
     inspect(
       params: Params$Resource$Projects$Locations$Content$Inspect,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2InspectContentResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
     ): void;
     inspect(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2InspectContentResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2InspectContentResponse>
     ): void;
     inspect(
       paramsOrCallback?:
@@ -13853,9 +12590,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2InspectContentResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
+          parameters
+        );
       }
     }
 
@@ -13940,42 +12677,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Locations$Content$Reidentify,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
     ): void;
     reidentify(
       params: Params$Resource$Projects$Locations$Content$Reidentify,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
     ): void;
     reidentify(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
     ): void;
     reidentify(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Content$Reidentify
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -14019,9 +12742,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ReidentifyContentResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(
+          parameters
+        );
       }
     }
   }
@@ -14152,20 +12875,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Create,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     create(
       paramsOrCallback?:
@@ -14430,20 +13147,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Get,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     get(
       paramsOrCallback?:
@@ -14579,42 +13290,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Locations$Deidentifytemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Deidentifytemplates$List
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -14653,13 +13350,14 @@ export namespace dlp_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse>(
+          parameters
+        );
       }
     }
 
@@ -14746,20 +13444,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Deidentifytemplates$Patch,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2DeidentifyTemplate
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2DeidentifyTemplate>
     ): void;
     patch(
       paramsOrCallback?:
@@ -15305,7 +13997,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Finish a running hybrid DlpJob. Triggers the finalization steps and running of any enabled actions that have not yet run.
+     * Finish a running hybrid DlpJob. Triggers the finalization steps and running of any enabled actions that have not yet run. Early access feature is in a pre-release state and might change or have limited support. For more information, see https://cloud.google.com/products#product-launch-stages.
      * @example
      * ```js
      * // Before running the sample:
@@ -15578,7 +14270,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Inspect hybrid content and store findings to a job. To review the findings, inspect the job. Inspection will occur asynchronously.
+     * Inspect hybrid content and store findings to a job. To review the findings inspect the job. Inspection will occur asynchronously. Early access feature is in a pre-release state and might change or have limited support. For more information, see https://cloud.google.com/products#product-launch-stages.
      * @example
      * ```js
      * // Before running the sample:
@@ -15651,20 +14343,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2HybridInspectResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
     ): void;
     hybridInspect(
       params: Params$Resource$Projects$Locations$Dlpjobs$Hybridinspect,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2HybridInspectResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
     ): void;
     hybridInspect(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2HybridInspectResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
     ): void;
     hybridInspect(
       paramsOrCallback?:
@@ -15808,20 +14494,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Dlpjobs$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListDlpJobsResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -16067,20 +14747,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2RedactImageResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
     ): void;
     redact(
       params: Params$Resource$Projects$Locations$Image$Redact,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2RedactImageResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
     ): void;
     redact(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2RedactImageResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2RedactImageResponse>
     ): void;
     redact(
       paramsOrCallback?:
@@ -16661,42 +15335,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Locations$Inspecttemplates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Inspecttemplates$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Inspecttemplates$List
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -16740,9 +15400,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
+          parameters
+        );
       }
     }
 
@@ -17545,7 +16205,7 @@ export namespace dlp_v2 {
     }
 
     /**
-     * Inspect hybrid content and store findings to a trigger. The inspection will be processed asynchronously. To review the findings monitor the jobs within the trigger.
+     * Inspect hybrid content and store findings to a trigger. The inspection will be processed asynchronously. To review the findings monitor the jobs within the trigger. Early access feature is in a pre-release state and might change or have limited support. For more information, see https://cloud.google.com/products#product-launch-stages.
      * @example
      * ```js
      * // Before running the sample:
@@ -17618,20 +16278,14 @@ export namespace dlp_v2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2HybridInspectResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
     ): void;
     hybridInspect(
       params: Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2HybridInspectResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
     ): void;
     hybridInspect(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2HybridInspectResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2HybridInspectResponse>
     ): void;
     hybridInspect(
       paramsOrCallback?:
@@ -17721,7 +16375,7 @@ export namespace dlp_v2 {
      *
      *   // Do the magic
      *   const res = await dlp.projects.locations.jobTriggers.list({
-     *     // Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect triggers: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
+     *     // Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect jobs: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Deprecated. This field has no effect.
      *     locationId: 'placeholder-value',
@@ -17772,23 +16426,15 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Locations$Jobtriggers$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Jobtriggers$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -17845,9 +16491,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListJobTriggersResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
+          parameters
+        );
       }
     }
 
@@ -18058,7 +16704,7 @@ export namespace dlp_v2 {
   export interface Params$Resource$Projects$Locations$Jobtriggers$List
     extends StandardParameters {
     /**
-     * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect triggers: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
+     * Allows filtering. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * Supported fields/values for inspect jobs: - `status` - HEALTHY|PAUSED|CANCELLED - `inspected_storage` - DATASTORE|CLOUD_STORAGE|BIGQUERY - 'last_run_time` - RFC 3339 formatted timestamp, surrounded by quotation marks. Nanoseconds are ignored. - 'error_count' - Number of errors that have occurred while running. * The operator must be `=` or `!=` for status and inspected_storage. Examples: * inspected_storage = cloud_storage AND status = HEALTHY * inspected_storage = cloud_storage OR inspected_storage = bigquery * inspected_storage = cloud_storage AND (state = PAUSED OR state = HEALTHY) * last_run_time \> \"2017-12-12T00:00:00+00:00\" The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -18593,42 +17239,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Locations$Storedinfotypes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Storedinfotypes$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Storedinfotypes$List
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -18672,9 +17304,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
+          parameters
+        );
       }
     }
 
@@ -19384,42 +18016,28 @@ export namespace dlp_v2 {
       params: Params$Resource$Projects$Storedinfotypes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>,
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Storedinfotypes$List,
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Storedinfotypes$List
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-          >
+        | BodyResponseCallback<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -19463,9 +18081,9 @@ export namespace dlp_v2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
+          parameters
+        );
       }
     }
 

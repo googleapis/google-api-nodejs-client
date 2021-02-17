@@ -361,6 +361,11 @@
               "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))",
               "required": true,
               "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.",
+              "location": "query",
+              "type": "boolean"
             }
           },
           "path": "deploymentmanager/v2/projects/{project}/global/deployments",
@@ -721,6 +726,11 @@
               "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))",
               "required": true,
               "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.",
+              "location": "query",
+              "type": "boolean"
             }
           },
           "path": "deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/manifests",
@@ -811,6 +821,11 @@
               "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))",
               "required": true,
               "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.",
+              "location": "query",
+              "type": "boolean"
             }
           },
           "path": "deploymentmanager/v2/projects/{project}/global/operations",
@@ -917,6 +932,11 @@
               "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))",
               "required": true,
               "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.",
+              "location": "query",
+              "type": "boolean"
             }
           },
           "path": "deploymentmanager/v2/projects/{project}/global/deployments/{deployment}/resources",
@@ -972,6 +992,11 @@
               "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?))",
               "required": true,
               "type": "string"
+            },
+            "returnPartialSuccess": {
+              "description": "Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.",
+              "location": "query",
+              "type": "boolean"
             }
           },
           "path": "deploymentmanager/v2/projects/{project}/global/types",
@@ -988,7 +1013,7 @@
       }
     }
   },
-  "revision": "20210204",
+  "revision": "20201119",
   "rootUrl": "https://deploymentmanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1309,16 +1334,6 @@
           "description": "Output only. The YAML layout for this manifest.",
           "type": "string"
         },
-        "manifestSizeBytes": {
-          "description": "Output only. The computed size of the fully expanded manifest.",
-          "format": "int64",
-          "type": "string"
-        },
-        "manifestSizeLimitBytes": {
-          "description": "Output only. The size limit for expanded manifests in the project.",
-          "format": "int64",
-          "type": "string"
-        },
         "name": {
           "description": "Output only. The name of the manifest.",
           "type": "string"
@@ -1420,10 +1435,6 @@
         },
         "name": {
           "description": "[Output Only] Name of the operation.",
-          "type": "string"
-        },
-        "operationGroupId": {
-          "description": "[Output Only] An ID that represents a group of operations, such as when a group of operations results from a `bulkInsert` API request.",
           "type": "string"
         },
         "operationType": {

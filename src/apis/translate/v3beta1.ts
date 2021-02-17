@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace translate_v3beta1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -132,7 +134,7 @@ export namespace translate_v3beta1 {
      */
     glossaries?: {[key: string]: Schema$TranslateTextGlossaryConfig} | null;
     /**
-     * Required. Input configurations. The total number of files matched should be <= 100. The total content size should be <= 100M Unicode codepoints. The files must use UTF-8 encoding.
+     * Required. Input configurations. The total number of files matched should be <= 1000. The total content size should be <= 100M Unicode codepoints. The files must use UTF-8 encoding.
      */
     inputConfigs?: Schema$InputConfig[];
     /**

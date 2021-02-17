@@ -312,12 +312,6 @@
                   "location": "query",
                   "type": "string"
                 },
-                "instanceDeadline": {
-                  "description": "Deadline used while retrieving metadata for instances. Instances whose metadata cannot be retrieved within this deadline will be added to unreachable in ListInstancesResponse.",
-                  "format": "google-datetime",
-                  "location": "query",
-                  "type": "string"
-                },
                 "pageSize": {
                   "description": "Number of instances to be returned in the response. If 0 or less, defaults to the server's maximum allowed page size.",
                   "format": "int32",
@@ -1901,7 +1895,7 @@
       }
     }
   },
-  "revision": "20210128",
+  "revision": "20201130",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1909,7 +1903,7 @@
       "id": "Backup",
       "properties": {
         "createTime": {
-          "description": "Output only. The time the CreateBackup request is received. If the request does not specify `version_time`, the `version_time` of the backup will be equivalent to the `create_time`.",
+          "description": "Output only. The backup will contain an externally consistent copy of the database at the timestamp specified by `create_time`. `create_time` is approximately the time the CreateBackup request is received.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -1955,11 +1949,6 @@
           ],
           "readOnly": true,
           "type": "string"
-        },
-        "versionTime": {
-          "description": "The backup will contain an externally consistent copy of the database at the timestamp specified by `version_time`. If `version_time` is not specified, the system will set `version_time` to the `create_time` of the backup.",
-          "format": "google-datetime",
-          "type": "string"
         }
       },
       "type": "object"
@@ -1973,17 +1962,12 @@
           "type": "string"
         },
         "createTime": {
-          "description": "The time the CreateBackup request was received.",
+          "description": "The backup contains an externally consistent copy of `source_database` at the timestamp specified by `create_time`.",
           "format": "google-datetime",
           "type": "string"
         },
         "sourceDatabase": {
           "description": "Name of the database the backup was created from.",
-          "type": "string"
-        },
-        "versionTime": {
-          "description": "The backup contains an externally consistent copy of `source_database` at the timestamp specified by `version_time`. If the CreateBackup request did not specify `version_time`, the `version_time` of the backup is equivalent to the `create_time`.",
-          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -2083,10 +2067,6 @@
           },
           "type": "array"
         },
-        "returnCommitStats": {
-          "description": "If `true`, then statistics related to the transaction will be included in the CommitResponse. Default value is `false`.",
-          "type": "boolean"
-        },
         "singleUseTransaction": {
           "$ref": "TransactionOptions",
           "description": "Execute mutations in a temporary transaction. Note that unlike commit of a previously-started transaction, commit with a temporary transaction is non-idempotent. That is, if the `CommitRequest` is sent to Cloud Spanner more than once (for instance, due to retries in the application, or in the transport library), it is possible that the mutations are executed more than once. If this is undesirable, use BeginTransaction and Commit instead."
@@ -2103,25 +2083,9 @@
       "description": "The response for Commit.",
       "id": "CommitResponse",
       "properties": {
-        "commitStats": {
-          "$ref": "CommitStats",
-          "description": "The statistics about this Commit. Not returned by default. For more information, see CommitRequest.return_commit_stats."
-        },
         "commitTimestamp": {
           "description": "The Cloud Spanner timestamp at which the transaction committed.",
           "format": "google-datetime",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "CommitStats": {
-      "description": "Additional statistics about a commit.",
-      "id": "CommitStats",
-      "properties": {
-        "mutationCount": {
-          "description": "The total number of mutations for the transaction. Knowing the `mutation_count` value can help you maximize the number of mutations in a transaction and minimize the number of API round trips. You can also monitor this value to prevent transactions from exceeding the system [limit](http://cloud.google.com/spanner/quotas#limits_for_creating_reading_updating_and_deleting_data). If the number of mutations exceeds the limit, the server returns [INVALID_ARGUMENT](http://cloud.google.com/spanner/docs/reference/rest/v1/Code#ENUM_VALUES.INVALID_ARGUMENT).",
-          "format": "int64",
           "type": "string"
         }
       },
@@ -2242,12 +2206,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "earliestVersionTime": {
-          "description": "Output only. Earliest timestamp at which older versions of the data can be read.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
         "name": {
           "description": "Required. The name of the database. Values are of the form `projects//instances//databases/`, where `` is as specified in the `CREATE DATABASE` statement. This name can be passed to other API methods to identify the database.",
           "type": "string"
@@ -2271,11 +2229,6 @@
             "The database is fully created and ready for use.",
             "The database is fully created and ready for use, but is still being optimized for performance and cannot handle full load. In this state, the database still references the backup it was restore from, preventing the backup from being deleted. When optimizations are complete, the full performance of the database will be restored, and the database will transition to `READY` state."
           ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "versionRetentionPeriod": {
-          "description": "Output only. The period in which Cloud Spanner retains all versions of data for the database. This is same as the value of version_retention_period database option set using UpdateDatabaseDdl. Defaults to 1 hour, if not set.",
           "readOnly": true,
           "type": "string"
         }
@@ -2724,13 +2677,6 @@
         "nextPageToken": {
           "description": "`next_page_token` can be sent in a subsequent ListInstances call to fetch more of the matching instances.",
           "type": "string"
-        },
-        "unreachable": {
-          "description": "The list of unreachable instances. It includes the names of instances whose metadata could not be retrieved within instance_deadline.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"

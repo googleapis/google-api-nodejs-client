@@ -576,25 +576,9 @@
                       ],
                       "parameters": {
                         "force": {
-                          "description": "Whether to force the creation of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
+                          "description": "Whether to force the creation of the quota override. If creating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.",
                           "location": "query",
                           "type": "boolean"
-                        },
-                        "forceOnly": {
-                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
-                          "enum": [
-                            "QUOTA_SAFETY_CHECK_UNSPECIFIED",
-                            "LIMIT_DECREASE_BELOW_USAGE",
-                            "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH"
-                          ],
-                          "enumDescriptions": [
-                            "Unspecified quota safety check.",
-                            "Validates that a quota mutation would not cause the consumer's effective limit to be lower than the consumer's quota usage.",
-                            "Validates that a quota mutation would not cause the consumer's effective limit to decrease by more than 10 percent."
-                          ],
-                          "location": "query",
-                          "repeated": true,
-                          "type": "string"
                         },
                         "parent": {
                           "description": "The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call. An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`",
@@ -626,25 +610,9 @@
                       ],
                       "parameters": {
                         "force": {
-                          "description": "Whether to force the deletion of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
+                          "description": "Whether to force the deletion of the quota override. If deleting an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.",
                           "location": "query",
                           "type": "boolean"
-                        },
-                        "forceOnly": {
-                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
-                          "enum": [
-                            "QUOTA_SAFETY_CHECK_UNSPECIFIED",
-                            "LIMIT_DECREASE_BELOW_USAGE",
-                            "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH"
-                          ],
-                          "enumDescriptions": [
-                            "Unspecified quota safety check.",
-                            "Validates that a quota mutation would not cause the consumer's effective limit to be lower than the consumer's quota usage.",
-                            "Validates that a quota mutation would not cause the consumer's effective limit to decrease by more than 10 percent."
-                          ],
-                          "location": "query",
-                          "repeated": true,
-                          "type": "string"
                         },
                         "name": {
                           "description": "The resource name of the override to delete. An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/adminOverrides/4a3f2c1d`",
@@ -710,25 +678,9 @@
                       ],
                       "parameters": {
                         "force": {
-                          "description": "Whether to force the update of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
+                          "description": "Whether to force the update of the quota override. If updating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.",
                           "location": "query",
                           "type": "boolean"
-                        },
-                        "forceOnly": {
-                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
-                          "enum": [
-                            "QUOTA_SAFETY_CHECK_UNSPECIFIED",
-                            "LIMIT_DECREASE_BELOW_USAGE",
-                            "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH"
-                          ],
-                          "enumDescriptions": [
-                            "Unspecified quota safety check.",
-                            "Validates that a quota mutation would not cause the consumer's effective limit to be lower than the consumer's quota usage.",
-                            "Validates that a quota mutation would not cause the consumer's effective limit to decrease by more than 10 percent."
-                          ],
-                          "location": "query",
-                          "repeated": true,
-                          "type": "string"
                         },
                         "name": {
                           "description": "The resource name of the override to update. An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/adminOverrides/4a3f2c1d`",
@@ -770,25 +722,9 @@
                       ],
                       "parameters": {
                         "force": {
-                          "description": "Whether to force the creation of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
+                          "description": "Whether to force the creation of the quota override. If creating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.",
                           "location": "query",
                           "type": "boolean"
-                        },
-                        "forceOnly": {
-                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
-                          "enum": [
-                            "QUOTA_SAFETY_CHECK_UNSPECIFIED",
-                            "LIMIT_DECREASE_BELOW_USAGE",
-                            "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH"
-                          ],
-                          "enumDescriptions": [
-                            "Unspecified quota safety check.",
-                            "Validates that a quota mutation would not cause the consumer's effective limit to be lower than the consumer's quota usage.",
-                            "Validates that a quota mutation would not cause the consumer's effective limit to decrease by more than 10 percent."
-                          ],
-                          "location": "query",
-                          "repeated": true,
-                          "type": "string"
                         },
                         "parent": {
                           "description": "The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call. An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`",
@@ -820,25 +756,9 @@
                       ],
                       "parameters": {
                         "force": {
-                          "description": "Whether to force the deletion of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
+                          "description": "Whether to force the deletion of the quota override. If deleting an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.",
                           "location": "query",
                           "type": "boolean"
-                        },
-                        "forceOnly": {
-                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
-                          "enum": [
-                            "QUOTA_SAFETY_CHECK_UNSPECIFIED",
-                            "LIMIT_DECREASE_BELOW_USAGE",
-                            "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH"
-                          ],
-                          "enumDescriptions": [
-                            "Unspecified quota safety check.",
-                            "Validates that a quota mutation would not cause the consumer's effective limit to be lower than the consumer's quota usage.",
-                            "Validates that a quota mutation would not cause the consumer's effective limit to decrease by more than 10 percent."
-                          ],
-                          "location": "query",
-                          "repeated": true,
-                          "type": "string"
                         },
                         "name": {
                           "description": "The resource name of the override to delete. An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/consumerOverrides/4a3f2c1d`",
@@ -904,25 +824,9 @@
                       ],
                       "parameters": {
                         "force": {
-                          "description": "Whether to force the update of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
+                          "description": "Whether to force the update of the quota override. If updating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.",
                           "location": "query",
                           "type": "boolean"
-                        },
-                        "forceOnly": {
-                          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
-                          "enum": [
-                            "QUOTA_SAFETY_CHECK_UNSPECIFIED",
-                            "LIMIT_DECREASE_BELOW_USAGE",
-                            "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH"
-                          ],
-                          "enumDescriptions": [
-                            "Unspecified quota safety check.",
-                            "Validates that a quota mutation would not cause the consumer's effective limit to be lower than the consumer's quota usage.",
-                            "Validates that a quota mutation would not cause the consumer's effective limit to decrease by more than 10 percent."
-                          ],
-                          "location": "query",
-                          "repeated": true,
-                          "type": "string"
                         },
                         "name": {
                           "description": "The resource name of the override to update. An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/consumerOverrides/4a3f2c1d`",
@@ -959,7 +863,7 @@
       }
     }
   },
-  "revision": "20210216",
+  "revision": "20201104",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AdminQuotaPolicy": {
@@ -1354,13 +1258,6 @@
           },
           "type": "array"
         },
-        "descendantConsumerQuotaLimits": {
-          "description": "The quota limits targeting the descendant containers of the consumer in request. If the consumer in request is of type `organizations` or `folders`, the field will list per-project limits in the metric; if the consumer in request is of type `project`, the field will be empty. The `quota_buckets` field of each descendant consumer quota limit will not be populated.",
-          "items": {
-            "$ref": "ConsumerQuotaLimit"
-          },
-          "type": "array"
-        },
         "displayName": {
           "description": "The display name of the metric. An example name would be: \"CPUs\"",
           "type": "string"
@@ -1607,7 +1504,7 @@
       "type": "object"
     },
     "Endpoint": {
-      "description": "`Endpoint` describes a network endpoint of a service that serves a set of APIs. It is commonly known as a service endpoint. A service may expose any number of service endpoints, and all service endpoints share the same service definition, such as quota limits and monitoring metrics. Example service configuration: name: library-example.googleapis.com endpoints: # Below entry makes 'google.example.library.v1.Library' # API be served from endpoint address library-example.googleapis.com. # It also allows HTTP OPTIONS calls to be passed to the backend, for # it to decide whether the subsequent cross-origin request is # allowed to proceed. - name: library-example.googleapis.com allow_cors: true",
+      "description": "`Endpoint` describes a network endpoint that serves a set of APIs. A service may expose any number of endpoints, and all endpoints share the same service configuration, such as quota configuration and monitoring configuration. Example service configuration: name: library-example.googleapis.com endpoints: # Below entry makes 'google.example.library.v1.Library' # API be served from endpoint address library-example.googleapis.com. # It also allows HTTP OPTIONS calls to be passed to the backend, for # it to decide whether the subsequent cross-origin request is # allowed to proceed. - name: library-example.googleapis.com allow_cors: true",
       "id": "Endpoint",
       "properties": {
         "aliases": {
@@ -1849,7 +1746,7 @@
           "description": "Billing configuration."
         },
         "configVersion": {
-          "description": "Deprecated. The service config compiler always sets this field to `3`.",
+          "description": "This field is obsolete. Its value must be set to `3`.",
           "format": "uint32",
           "type": "integer"
         },
@@ -2179,25 +2076,8 @@
       "id": "ImportAdminOverridesRequest",
       "properties": {
         "force": {
-          "description": "Whether to force the creation of the quota overrides. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
+          "description": "Whether to force the creation of the quota overrides. If creating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.",
           "type": "boolean"
-        },
-        "forceOnly": {
-          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
-          "items": {
-            "enum": [
-              "QUOTA_SAFETY_CHECK_UNSPECIFIED",
-              "LIMIT_DECREASE_BELOW_USAGE",
-              "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH"
-            ],
-            "enumDescriptions": [
-              "Unspecified quota safety check.",
-              "Validates that a quota mutation would not cause the consumer's effective limit to be lower than the consumer's quota usage.",
-              "Validates that a quota mutation would not cause the consumer's effective limit to decrease by more than 10 percent."
-            ],
-            "type": "string"
-          },
-          "type": "array"
         },
         "inlineSource": {
           "$ref": "OverrideInlineSource",
@@ -2239,25 +2119,8 @@
       "id": "ImportConsumerOverridesRequest",
       "properties": {
         "force": {
-          "description": "Whether to force the creation of the quota overrides. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.",
+          "description": "Whether to force the creation of the quota overrides. If creating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.",
           "type": "boolean"
-        },
-        "forceOnly": {
-          "description": "The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.",
-          "items": {
-            "enum": [
-              "QUOTA_SAFETY_CHECK_UNSPECIFIED",
-              "LIMIT_DECREASE_BELOW_USAGE",
-              "LIMIT_DECREASE_PERCENTAGE_TOO_HIGH"
-            ],
-            "enumDescriptions": [
-              "Unspecified quota safety check.",
-              "Validates that a quota mutation would not cause the consumer's effective limit to be lower than the consumer's quota usage.",
-              "Validates that a quota mutation would not cause the consumer's effective limit to decrease by more than 10 percent."
-            ],
-            "type": "string"
-          },
-          "type": "array"
         },
         "inlineSource": {
           "$ref": "OverrideInlineSource",
@@ -2608,7 +2471,7 @@
           "type": "string"
         },
         "unit": {
-          "description": "The units in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit` defines the representation of the stored metric values. Different systems might scale the values to be more easily displayed (so a value of `0.02kBy` _might_ be displayed as `20By`, and a value of `3523kBy` _might_ be displayed as `3.5MBy`). However, if the `unit` is `kBy`, then the value of the metric is always in thousands of bytes, no matter how it might be displayed. If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an `INT64 CUMULATIVE` metric whose `unit` is `s{CPU}` (or equivalently `1s{CPU}` or just `s`). If the job uses 12,005 CPU-seconds, then the value is written as `12005`. Alternatively, if you want a custom metric to record data in a more granular way, you can create a `DOUBLE CUMULATIVE` metric whose `unit` is `ks{CPU}`, and then write the value `12.005` (which is `12005/1000`), or use `Kis{CPU}` and write `11.723` (which is `12005/1024`). The supported units are a subset of [The Unified Code for Units of Measure](https://unitsofmeasure.org/ucum.html) standard: **Basic units (UNIT)** * `bit` bit * `By` byte * `s` second * `min` minute * `h` hour * `d` day * `1` dimensionless **Prefixes (PREFIX)** * `k` kilo (10^3) * `M` mega (10^6) * `G` giga (10^9) * `T` tera (10^12) * `P` peta (10^15) * `E` exa (10^18) * `Z` zetta (10^21) * `Y` yotta (10^24) * `m` milli (10^-3) * `u` micro (10^-6) * `n` nano (10^-9) * `p` pico (10^-12) * `f` femto (10^-15) * `a` atto (10^-18) * `z` zepto (10^-21) * `y` yocto (10^-24) * `Ki` kibi (2^10) * `Mi` mebi (2^20) * `Gi` gibi (2^30) * `Ti` tebi (2^40) * `Pi` pebi (2^50) **Grammar** The grammar also includes these connectors: * `/` division or ratio (as an infix operator). For examples, `kBy/{email}` or `MiBy/10ms` (although you should almost never have `/s` in a metric `unit`; rates should always be computed at query time from the underlying cumulative or delta value). * `.` multiplication or composition (as an infix operator). For examples, `GBy.d` or `k{watt}.h`. The grammar for a unit is as follows: Expression = Component { \".\" Component } { \"/\" Component } ; Component = ( [ PREFIX ] UNIT | \"%\" ) [ Annotation ] | Annotation | \"1\" ; Annotation = \"{\" NAME \"}\" ; Notes: * `Annotation` is just a comment if it follows a `UNIT`. If the annotation is used alone, then the unit is equivalent to `1`. For examples, `{request}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable ASCII characters not containing `{` or `}`. * `1` represents a unitary [dimensionless unit](https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such as in `1/s`. It is typically used when none of the basic units are appropriate. For example, \"new users per day\" can be represented as `1/d` or `{new-users}/d` (and a metric value `5` would mean \"5 new users). Alternatively, \"thousands of page views per day\" would be represented as `1000/d` or `k1/d` or `k{page_views}/d` (and a metric value of `5.3` would mean \"5300 page views per day\"). * `%` represents dimensionless value of 1/100, and annotates values giving a percentage (so the metric values are typically in the range of 0..100, and a metric value `3` means \"3 percent\"). * `10^2.%` indicates a metric contains a ratio, typically in the range 0..1, that will be multiplied by 100 and displayed as a percentage (so a metric value `0.03` means \"3 percent\").",
+          "description": "The units in which the metric value is reported. It is only applicable if the `value_type` is `INT64`, `DOUBLE`, or `DISTRIBUTION`. The `unit` defines the representation of the stored metric values. Different systems may scale the values to be more easily displayed (so a value of `0.02KBy` _might_ be displayed as `20By`, and a value of `3523KBy` _might_ be displayed as `3.5MBy`). However, if the `unit` is `KBy`, then the value of the metric is always in thousands of bytes, no matter how it may be displayed.. If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an `INT64 CUMULATIVE` metric whose `unit` is `s{CPU}` (or equivalently `1s{CPU}` or just `s`). If the job uses 12,005 CPU-seconds, then the value is written as `12005`. Alternatively, if you want a custom metric to record data in a more granular way, you can create a `DOUBLE CUMULATIVE` metric whose `unit` is `ks{CPU}`, and then write the value `12.005` (which is `12005/1000`), or use `Kis{CPU}` and write `11.723` (which is `12005/1024`). The supported units are a subset of [The Unified Code for Units of Measure](http://unitsofmeasure.org/ucum.html) standard: **Basic units (UNIT)** * `bit` bit * `By` byte * `s` second * `min` minute * `h` hour * `d` day * `1` dimensionless **Prefixes (PREFIX)** * `k` kilo (10^3) * `M` mega (10^6) * `G` giga (10^9) * `T` tera (10^12) * `P` peta (10^15) * `E` exa (10^18) * `Z` zetta (10^21) * `Y` yotta (10^24) * `m` milli (10^-3) * `u` micro (10^-6) * `n` nano (10^-9) * `p` pico (10^-12) * `f` femto (10^-15) * `a` atto (10^-18) * `z` zepto (10^-21) * `y` yocto (10^-24) * `Ki` kibi (2^10) * `Mi` mebi (2^20) * `Gi` gibi (2^30) * `Ti` tebi (2^40) * `Pi` pebi (2^50) **Grammar** The grammar also includes these connectors: * `/` division or ratio (as an infix operator). For examples, `kBy/{email}` or `MiBy/10ms` (although you should almost never have `/s` in a metric `unit`; rates should always be computed at query time from the underlying cumulative or delta value). * `.` multiplication or composition (as an infix operator). For examples, `GBy.d` or `k{watt}.h`. The grammar for a unit is as follows: Expression = Component { \".\" Component } { \"/\" Component } ; Component = ( [ PREFIX ] UNIT | \"%\" ) [ Annotation ] | Annotation | \"1\" ; Annotation = \"{\" NAME \"}\" ; Notes: * `Annotation` is just a comment if it follows a `UNIT`. If the annotation is used alone, then the unit is equivalent to `1`. For examples, `{request}/s == 1/s`, `By{transmitted}/s == By/s`. * `NAME` is a sequence of non-blank printable ASCII characters not containing `{` or `}`. * `1` represents a unitary [dimensionless unit](https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such as in `1/s`. It is typically used when none of the basic units are appropriate. For example, \"new users per day\" can be represented as `1/d` or `{new-users}/d` (and a metric value `5` would mean \"5 new users). Alternatively, \"thousands of page views per day\" would be represented as `1000/d` or `k1/d` or `k{page_views}/d` (and a metric value of `5.3` would mean \"5300 page views per day\"). * `%` represents dimensionless value of 1/100, and annotates values giving a percentage (so the metric values are typically in the range of 0..100, and a metric value `3` means \"3 percent\"). * `10^2.%` indicates a metric contains a ratio, typically in the range 0..1, that will be multiplied by 100 and displayed as a percentage (so a metric value `0.03` means \"3 percent\").",
           "type": "string"
         },
         "valueType": {
@@ -3333,7 +3196,7 @@
           "type": "string"
         },
         "requirements": {
-          "description": "Requirements that must be satisfied before a consumer project can use the service. Each requirement is of the form /; for example 'serviceusage.googleapis.com/billing-enabled'. For Google APIs, a Terms of Service requirement must be included here. Google Cloud APIs must include \"serviceusage.googleapis.com/tos/cloud\". Other Google APIs should include \"serviceusage.googleapis.com/tos/universal\". Additional ToS can be included based on the business needs.",
+          "description": "Requirements that must be satisfied before a consumer project can use the service. Each requirement is of the form /; for example 'serviceusage.googleapis.com/billing-enabled'.",
           "items": {
             "type": "string"
           },

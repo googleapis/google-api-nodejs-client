@@ -18,14 +18,12 @@ import {cloudresourcemanager_v1} from './v1';
 import {cloudresourcemanager_v1beta1} from './v1beta1';
 import {cloudresourcemanager_v2} from './v2';
 import {cloudresourcemanager_v2beta1} from './v2beta1';
-import {cloudresourcemanager_v3} from './v3';
 
 export const VERSIONS = {
   v1: cloudresourcemanager_v1.Cloudresourcemanager,
   v1beta1: cloudresourcemanager_v1beta1.Cloudresourcemanager,
   v2: cloudresourcemanager_v2.Cloudresourcemanager,
   v2beta1: cloudresourcemanager_v2beta1.Cloudresourcemanager,
-  v3: cloudresourcemanager_v3.Cloudresourcemanager,
 };
 
 export function cloudresourcemanager(
@@ -52,19 +50,12 @@ export function cloudresourcemanager(
 export function cloudresourcemanager(
   options: cloudresourcemanager_v2beta1.Options
 ): cloudresourcemanager_v2beta1.Cloudresourcemanager;
-export function cloudresourcemanager(
-  version: 'v3'
-): cloudresourcemanager_v3.Cloudresourcemanager;
-export function cloudresourcemanager(
-  options: cloudresourcemanager_v3.Options
-): cloudresourcemanager_v3.Cloudresourcemanager;
 export function cloudresourcemanager<
   T =
     | cloudresourcemanager_v1.Cloudresourcemanager
     | cloudresourcemanager_v1beta1.Cloudresourcemanager
     | cloudresourcemanager_v2.Cloudresourcemanager
     | cloudresourcemanager_v2beta1.Cloudresourcemanager
-    | cloudresourcemanager_v3.Cloudresourcemanager
 >(
   this: GoogleConfigurable,
   versionOrOptions:
@@ -76,8 +67,6 @@ export function cloudresourcemanager<
     | cloudresourcemanager_v2.Options
     | 'v2beta1'
     | cloudresourcemanager_v2beta1.Options
-    | 'v3'
-    | cloudresourcemanager_v3.Options
 ) {
   return getAPI<T>('cloudresourcemanager', versionOrOptions, VERSIONS, this);
 }
@@ -88,7 +77,6 @@ export {cloudresourcemanager_v1};
 export {cloudresourcemanager_v1beta1};
 export {cloudresourcemanager_v2};
 export {cloudresourcemanager_v2beta1};
-export {cloudresourcemanager_v3};
 export {
   AuthPlus,
   GlobalOptions,

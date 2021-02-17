@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace containeranalysis_v1alpha1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -446,10 +448,6 @@ export namespace containeranalysis_v1alpha1 {
      * The severity (eg: distro assigned severity) for this vulnerability.
      */
     severityName?: string | null;
-    /**
-     * The source from which the information in this Detail was obtained.
-     */
-    source?: string | null;
   }
   /**
    * Provides information about the scan status of a discovered resource.
@@ -1307,10 +1305,6 @@ export namespace containeranalysis_v1alpha1 {
      * Used to correct mistakes in the version numbering scheme.
      */
     epoch?: number | null;
-    /**
-     * Whether this version is vulnerable, when defining the version bounds. For example, if the minimum version is 2.0, inclusive=true would say 2.0 is vulnerable, while inclusive=false would say it's not
-     */
-    inclusive?: boolean | null;
     /**
      * Distinguish between sentinel MIN/MAX versions and normal versions. If kind is not NORMAL, then the other fields are ignored.
      */

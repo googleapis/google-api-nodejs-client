@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace firestore_v1beta2 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -1045,42 +1047,28 @@ export namespace firestore_v1beta2 {
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Databases$Collectiongroups$Fields$List
-        | BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1124,9 +1112,9 @@ export namespace firestore_v1beta2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>(
+          parameters
+        );
       }
     }
 
@@ -1839,42 +1827,28 @@ export namespace firestore_v1beta2 {
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Databases$Collectiongroups$Indexes$List
-        | BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1918,9 +1892,9 @@ export namespace firestore_v1beta2 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>(
+          parameters
+        );
       }
     }
   }

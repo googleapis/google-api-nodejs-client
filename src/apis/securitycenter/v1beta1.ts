@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace securitycenter_v1beta1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -273,10 +275,6 @@ export namespace securitycenter_v1beta1 {
      * Output only. User specified security marks. These marks are entirely managed by the user and come from the SecurityMarks resource that belongs to the finding.
      */
     securityMarks?: Schema$SecurityMarks;
-    /**
-     * The severity of the finding. This field is managed by the source that writes the finding.
-     */
-    severity?: string | null;
     /**
      * Source specific properties. These properties are managed by the source that writes the finding. The key names in the source_properties map must be between 1 and 255 characters, and must start with a letter and contain alphanumeric characters or underscores only.
      */
@@ -1793,42 +1791,28 @@ export namespace securitycenter_v1beta1 {
       params: Params$Resource$Organizations$Assets$Updatesecuritymarks,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-      >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
     ): void;
     updateSecurityMarks(
       params: Params$Resource$Organizations$Assets$Updatesecuritymarks,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
     ): void;
     updateSecurityMarks(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
     ): void;
     updateSecurityMarks(
       paramsOrCallback?:
         | Params$Resource$Organizations$Assets$Updatesecuritymarks
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1870,9 +1854,9 @@ export namespace securitycenter_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>(
+          parameters
+        );
       }
     }
   }
@@ -3715,20 +3699,14 @@ export namespace securitycenter_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     create(
       params: Params$Resource$Organizations$Sources$Findings$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     create(
       paramsOrCallback?:
@@ -4187,20 +4165,14 @@ export namespace securitycenter_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     patch(
       params: Params$Resource$Organizations$Sources$Findings$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     patch(
       paramsOrCallback?:
@@ -4347,20 +4319,14 @@ export namespace securitycenter_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     setState(
       params: Params$Resource$Organizations$Sources$Findings$Setstate,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     setState(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     setState(
       paramsOrCallback?:
@@ -4508,42 +4474,28 @@ export namespace securitycenter_v1beta1 {
       params: Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-      >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
     ): void;
     updateSecurityMarks(
       params: Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
     ): void;
     updateSecurityMarks(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
     ): void;
     updateSecurityMarks(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4585,9 +4537,9 @@ export namespace securitycenter_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>(
+          parameters
+        );
       }
     }
   }

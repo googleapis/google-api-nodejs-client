@@ -853,7 +853,7 @@
       }
     }
   },
-  "revision": "20210205",
+  "revision": "20201112",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1508,10 +1508,6 @@
           "description": "The severity (eg: distro assigned severity) for this vulnerability.",
           "type": "string"
         },
-        "source": {
-          "description": "The source from which the information in this Detail was obtained.",
-          "type": "string"
-        },
         "sourceUpdateTime": {
           "description": "The time this information was last changed at the source. This is an upstream timestamp from the underlying information source - e.g. Ubuntu security tracker.",
           "format": "google-datetime",
@@ -1599,7 +1595,7 @@
             "INTOTO"
           ],
           "enumDescriptions": [
-            "Default value. This value is unused.",
+            "Unknown.",
             "The note and occurrence represent a package vulnerability.",
             "The note and occurrence assert build provenance.",
             "This represents an image basis relationship.",
@@ -2405,7 +2401,7 @@
             "INTOTO"
           ],
           "enumDescriptions": [
-            "Default value. This value is unused.",
+            "Unknown.",
             "The note and occurrence represent a package vulnerability.",
             "The note and occurrence assert build provenance.",
             "This represents an image basis relationship.",
@@ -2510,7 +2506,7 @@
             "INTOTO"
           ],
           "enumDescriptions": [
-            "Default value. This value is unused.",
+            "Unknown.",
             "The note and occurrence represent a package vulnerability.",
             "The note and occurrence assert build provenance.",
             "This represents an image basis relationship.",
@@ -2899,10 +2895,6 @@
           "description": "Used to correct mistakes in the version numbering scheme.",
           "format": "int32",
           "type": "integer"
-        },
-        "inclusive": {
-          "description": "Whether this version is specifying part of an inclusive range. Grafeas does not have the capability to specify version ranges; instead we have fields that specify start version and end versions. At times this is insufficient - we also need to specify whether the version is included in the range or is excluded from the range. This boolean is expected to be set to true when the version is included in a range.",
-          "type": "boolean"
         },
         "kind": {
           "description": "Required. Distinguishes between sentinel MIN/MAX versions and normal versions.",

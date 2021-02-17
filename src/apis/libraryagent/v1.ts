@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace libraryagent_v1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -397,42 +399,28 @@ export namespace libraryagent_v1 {
       params: Params$Resource$Shelves$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>
     ): void;
     list(
       params: Params$Resource$Shelves$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Shelves$List
-        | BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -472,9 +460,9 @@ export namespace libraryagent_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleExampleLibraryagentV1ListShelvesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleExampleLibraryagentV1ListShelvesResponse>(
+          parameters
+        );
       }
     }
   }
@@ -850,42 +838,28 @@ export namespace libraryagent_v1 {
       params: Params$Resource$Shelves$Books$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListBooksResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleExampleLibraryagentV1ListBooksResponse
-      >
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1ListBooksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1ListBooksResponse>
     ): void;
     list(
       params: Params$Resource$Shelves$Books$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleExampleLibraryagentV1ListBooksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1ListBooksResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleExampleLibraryagentV1ListBooksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleExampleLibraryagentV1ListBooksResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Shelves$Books$List
-        | BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListBooksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1ListBooksResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListBooksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1ListBooksResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleExampleLibraryagentV1ListBooksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleExampleLibraryagentV1ListBooksResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -929,9 +903,9 @@ export namespace libraryagent_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleExampleLibraryagentV1ListBooksResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleExampleLibraryagentV1ListBooksResponse>(
+          parameters
+        );
       }
     }
 

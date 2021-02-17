@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace assuredworkloads_v1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -676,20 +678,14 @@ export namespace assuredworkloads_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       params: Params$Resource$Organizations$Locations$Operations$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -1156,20 +1152,14 @@ export namespace assuredworkloads_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudAssuredworkloadsV1Workload
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
     ): void;
     get(
       params: Params$Resource$Organizations$Locations$Workloads$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudAssuredworkloadsV1Workload
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudAssuredworkloadsV1Workload
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
     ): void;
     get(
       paramsOrCallback?:
@@ -1304,42 +1294,28 @@ export namespace assuredworkloads_v1 {
       params: Params$Resource$Organizations$Locations$Workloads$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse>
     ): void;
     list(
       params: Params$Resource$Organizations$Locations$Workloads$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Organizations$Locations$Workloads$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1379,13 +1355,14 @@ export namespace assuredworkloads_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1ListWorkloadsResponse>(
+          parameters
+        );
       }
     }
 
@@ -1486,20 +1463,14 @@ export namespace assuredworkloads_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudAssuredworkloadsV1Workload
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
     ): void;
     patch(
       params: Params$Resource$Organizations$Locations$Workloads$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudAssuredworkloadsV1Workload
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudAssuredworkloadsV1Workload
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudAssuredworkloadsV1Workload>
     ): void;
     patch(
       paramsOrCallback?:

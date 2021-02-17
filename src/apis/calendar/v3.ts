@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace calendar_v3 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -650,12 +652,6 @@ export namespace calendar_v3 {
      * ETag of the resource.
      */
     etag?: string | null;
-    /**
-     * Specific type of the event. Read-only. Possible values are:
-     * - "default" - A regular event or not further specified.
-     * - "outOfOffice" - An out-of-office event.
-     */
-    eventType?: string | null;
     /**
      * Extended properties of the event.
      */
@@ -4846,7 +4842,6 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
-     *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "gadget": {},
      *   //   "guestsCanInviteOthers": false,
@@ -5018,7 +5013,6 @@ export namespace calendar_v3 {
      *       //   "end": {},
      *       //   "endTimeUnspecified": false,
      *       //   "etag": "my_etag",
-     *       //   "eventType": "my_eventType",
      *       //   "extendedProperties": {},
      *       //   "gadget": {},
      *       //   "guestsCanInviteOthers": false,
@@ -5064,7 +5058,6 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
-     *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "gadget": {},
      *   //   "guestsCanInviteOthers": false,
@@ -5244,7 +5237,6 @@ export namespace calendar_v3 {
      *       //   "end": {},
      *       //   "endTimeUnspecified": false,
      *       //   "etag": "my_etag",
-     *       //   "eventType": "my_eventType",
      *       //   "extendedProperties": {},
      *       //   "gadget": {},
      *       //   "guestsCanInviteOthers": false,
@@ -5290,7 +5282,6 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
-     *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "gadget": {},
      *   //   "guestsCanInviteOthers": false,
@@ -5820,7 +5811,6 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
-     *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "gadget": {},
      *   //   "guestsCanInviteOthers": false,
@@ -6005,7 +5995,6 @@ export namespace calendar_v3 {
      *       //   "end": {},
      *       //   "endTimeUnspecified": false,
      *       //   "etag": "my_etag",
-     *       //   "eventType": "my_eventType",
      *       //   "extendedProperties": {},
      *       //   "gadget": {},
      *       //   "guestsCanInviteOthers": false,
@@ -6051,7 +6040,6 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
-     *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "gadget": {},
      *   //   "guestsCanInviteOthers": false,
@@ -6227,7 +6215,6 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
-     *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "gadget": {},
      *   //   "guestsCanInviteOthers": false,
@@ -6411,7 +6398,6 @@ export namespace calendar_v3 {
      *       //   "end": {},
      *       //   "endTimeUnspecified": false,
      *       //   "etag": "my_etag",
-     *       //   "eventType": "my_eventType",
      *       //   "extendedProperties": {},
      *       //   "gadget": {},
      *       //   "guestsCanInviteOthers": false,
@@ -6457,7 +6443,6 @@ export namespace calendar_v3 {
      *   //   "end": {},
      *   //   "endTimeUnspecified": false,
      *   //   "etag": "my_etag",
-     *   //   "eventType": "my_eventType",
      *   //   "extendedProperties": {},
      *   //   "gadget": {},
      *   //   "guestsCanInviteOthers": false,

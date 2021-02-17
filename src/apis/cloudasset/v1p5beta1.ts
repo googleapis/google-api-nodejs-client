@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace cloudasset_v1p5beta1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -346,19 +348,6 @@ export namespace cloudasset_v1p5beta1 {
     title?: string | null;
   }
   /**
-   * Identification for an API Operation.
-   */
-  export interface Schema$GoogleIdentityAccesscontextmanagerV1ApiOperation {
-    /**
-     * API methods or permissions to allow. Method or permission must belong to the service specified by `service_name` field. A single MethodSelector entry with `*` specified for the `method` field will allow all methods AND permissions for the service specified in `service_name`.
-     */
-    methodSelectors?: Schema$GoogleIdentityAccesscontextmanagerV1MethodSelector[];
-    /**
-     * The name of the API whose methods or permissions the IngressPolicy or EgressPolicy want to allow. A single ApiOperation with `service_name` field set to `*` will allow all methods AND permissions for all services.
-     */
-    serviceName?: string | null;
-  }
-  /**
    * `BasicLevel` is an `AccessLevel` using a set of recommended features.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1BasicLevel {
@@ -439,114 +428,6 @@ export namespace cloudasset_v1p5beta1 {
     requireScreenlock?: boolean | null;
   }
   /**
-   * Defines the conditions under which an EgressPolicy matches a request. Conditions based on information about the source of the request. Note that if the destination of the request is protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed.
-   */
-  export interface Schema$GoogleIdentityAccesscontextmanagerV1EgressFrom {
-    /**
-     * A list of identities that are allowed access through this [EgressPolicy]. Should be in the format of email address. The email address should represent individual user or service account only.
-     */
-    identities?: string[] | null;
-    /**
-     * Specifies the type of identities that are allowed access to outside the perimeter. If left unspecified, then members of `identities` field will be allowed access.
-     */
-    identityType?: string | null;
-  }
-  /**
-   * Policy for egress from perimeter. EgressPolicies match requests based on `egress_from` and `egress_to` stanzas. For an EgressPolicy to match, both `egress_from` and `egress_to` stanzas must be matched. If an EgressPolicy matches a request, the request is allowed to span the ServicePerimeter boundary. For example, an EgressPolicy can be used to allow VMs on networks within the ServicePerimeter to access a defined set of projects outside the perimeter in certain contexts (e.g. to read data from a Cloud Storage bucket or query against a BigQuery dataset). EgressPolicies are concerned with the *resources* that a request relates as well as the API services and API actions being used. They do not related to the direction of data movement. More detailed documentation for this concept can be found in the descriptions of EgressFrom and EgressTo.
-   */
-  export interface Schema$GoogleIdentityAccesscontextmanagerV1EgressPolicy {
-    /**
-     * Defines conditions on the source of a request causing this EgressPolicy to apply.
-     */
-    egressFrom?: Schema$GoogleIdentityAccesscontextmanagerV1EgressFrom;
-    /**
-     * Defines the conditions on the ApiOperation and destination resources that cause this EgressPolicy to apply.
-     */
-    egressTo?: Schema$GoogleIdentityAccesscontextmanagerV1EgressTo;
-  }
-  /**
-   * Defines the conditions under which an EgressPolicy matches a request. Conditions are based on information about the ApiOperation intended to be performed on the `resources` specified. Note that if the destination of the request is protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed.
-   */
-  export interface Schema$GoogleIdentityAccesscontextmanagerV1EgressTo {
-    /**
-     * A list of ApiOperations that this egress rule applies to. A request matches if it contains an operation/service in this list.
-     */
-    operations?: Schema$GoogleIdentityAccesscontextmanagerV1ApiOperation[];
-    /**
-     * A list of resources, currently only projects in the form `projects/`, that match this to stanza. A request matches if it contains a resource in this list. If `*` is specified for resources, then this EgressTo rule will authorize access to all resources outside the perimeter.
-     */
-    resources?: string[] | null;
-  }
-  /**
-   * Defines the conditions under which an IngressPolicy matches a request. Conditions are based on information about the source of the request.
-   */
-  export interface Schema$GoogleIdentityAccesscontextmanagerV1IngressFrom {
-    /**
-     * A list of identities that are allowed access through this ingress policy. Should be in the format of email address. The email address should represent individual user or service account only.
-     */
-    identities?: string[] | null;
-    /**
-     * Specifies the type of identities that are allowed access from outside the perimeter. If left unspecified, then members of `identities` field will be allowed access.
-     */
-    identityType?: string | null;
-    /**
-     * Sources that this IngressPolicy authorizes access from.
-     */
-    sources?: Schema$GoogleIdentityAccesscontextmanagerV1IngressSource[];
-  }
-  /**
-   * Policy for ingress into ServicePerimeter. IngressPolicies match requests based on `ingress_from` and `ingress_to` stanzas. For an ingress policy to match, both the `ingress_from` and `ingress_to` stanzas must be matched. If an IngressPolicy matches a request, the request is allowed through the perimeter boundary from outside the perimeter. For example, access from the internet can be allowed either based on an AccessLevel or, for traffic hosted on Google Cloud, the project of the source network. For access from private networks, using the project of the hosting network is required. Individual ingress policies can be limited by restricting which services and/or actions they match using the `ingress_to` field.
-   */
-  export interface Schema$GoogleIdentityAccesscontextmanagerV1IngressPolicy {
-    /**
-     * Defines the conditions on the source of a request causing this IngressPolicy to apply.
-     */
-    ingressFrom?: Schema$GoogleIdentityAccesscontextmanagerV1IngressFrom;
-    /**
-     * Defines the conditions on the ApiOperation and request destination that cause this IngressPolicy to apply.
-     */
-    ingressTo?: Schema$GoogleIdentityAccesscontextmanagerV1IngressTo;
-  }
-  /**
-   * The source that IngressPolicy authorizes access from.
-   */
-  export interface Schema$GoogleIdentityAccesscontextmanagerV1IngressSource {
-    /**
-     * An AccessLevel resource name that allow resources within the ServicePerimeters to be accessed from the internet. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If no AccessLevel names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If `*` is specified, then all IngressSources will be allowed.
-     */
-    accessLevel?: string | null;
-    /**
-     * A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects are allowed. Format: `projects/{project_number\}` The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. `*` is not allowed, the case of allowing all Google Cloud resources only is not supported.
-     */
-    resource?: string | null;
-  }
-  /**
-   * Defines the conditions under which an IngressPolicy matches a request. Conditions are based on information about the ApiOperation intended to be performed on the destination of the request.
-   */
-  export interface Schema$GoogleIdentityAccesscontextmanagerV1IngressTo {
-    /**
-     * A list of ApiOperations the sources specified in corresponding IngressFrom are allowed to perform in this ServicePerimeter.
-     */
-    operations?: Schema$GoogleIdentityAccesscontextmanagerV1ApiOperation[];
-    /**
-     * A list of resources, currently only projects in the form `projects/`, protected by this ServicePerimeter that are allowed to be accessed by sources defined in the corresponding IngressFrom. A request matches if it contains a resource in this list. If `*` is specified for resources, then this IngressTo rule will authorize access to all resources inside the perimeter, provided that the request also matches the `operations` field.
-     */
-    resources?: string[] | null;
-  }
-  /**
-   * An allowed method or permission of a service specified in ApiOperation.
-   */
-  export interface Schema$GoogleIdentityAccesscontextmanagerV1MethodSelector {
-    /**
-     * Value for `method` should be a valid method name for the corresponding `service_name` in ApiOperation. If `*` used as value for `method`, then ALL methods and permissions are allowed.
-     */
-    method?: string | null;
-    /**
-     * Value for `permission` should be a valid Cloud IAM permission for the corresponding `service_name` in ApiOperation.
-     */
-    permission?: string | null;
-  }
-  /**
    * A restriction on the OS type and version of devices making requests.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1OsConstraint {
@@ -605,14 +486,6 @@ export namespace cloudasset_v1p5beta1 {
      */
     accessLevels?: string[] | null;
     /**
-     * List of EgressPolicies to apply to the perimeter. A perimeter may have multiple EgressPolicies, each of which is evaluated separately. Access is granted if any EgressPolicy grants it. Must be empty for a perimeter bridge.
-     */
-    egressPolicies?: Schema$GoogleIdentityAccesscontextmanagerV1EgressPolicy[];
-    /**
-     * List of IngressPolicies to apply to the perimeter. A perimeter may have multiple IngressPolicies, each of which is evaluated separately. Access is granted if any Ingress Policy grants it. Must be empty for a perimeter bridge.
-     */
-    ingressPolicies?: Schema$GoogleIdentityAccesscontextmanagerV1IngressPolicy[];
-    /**
      * A list of Google Cloud resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number\}`
      */
     resources?: string[] | null;
@@ -647,7 +520,7 @@ export namespace cloudasset_v1p5beta1 {
      */
     assets?: Schema$Asset[];
     /**
-     * Token to retrieve the next page of results. It expires 72 hours after the page token for the first page is generated. Set to empty if there are no remaining results.
+     * Token to retrieve the next page of results. Set to empty if there are no remaining results.
      */
     nextPageToken?: string | null;
     /**

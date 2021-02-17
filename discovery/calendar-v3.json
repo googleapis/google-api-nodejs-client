@@ -12,7 +12,7 @@
           "description": "View events on all your calendars"
         },
         "https://www.googleapis.com/auth/calendar.readonly": {
-          "description": "See and download any calendar you can access using your Google Calendar"
+          "description": "View your calendars"
         },
         "https://www.googleapis.com/auth/calendar.settings.readonly": {
           "description": "View your Calendar settings"
@@ -1723,7 +1723,7 @@
       }
     }
   },
-  "revision": "20210202",
+  "revision": "20201028",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2376,11 +2376,6 @@
         },
         "etag": {
           "description": "ETag of the resource.",
-          "type": "string"
-        },
-        "eventType": {
-          "default": "default",
-          "description": "Specific type of the event. Read-only. Possible values are:  \n- \"default\" - A regular event or not further specified. \n- \"outOfOffice\" - An out-of-office event.",
           "type": "string"
         },
         "extendedProperties": {

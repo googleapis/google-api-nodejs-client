@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace cloudkms_v1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -149,10 +151,6 @@ export namespace cloudkms_v1 {
      */
     plaintextCrc32c?: string | null;
     /**
-     * The ProtectionLevel of the CryptoKeyVersion used in decryption.
-     */
-    protectionLevel?: string | null;
-    /**
      * Integrity verification field. A flag indicating whether AsymmetricDecryptRequest.ciphertext_crc32c was received by KeyManagementService and used for the integrity verification of the ciphertext. A false value of this field indicates either that AsymmetricDecryptRequest.ciphertext_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set AsymmetricDecryptRequest.ciphertext_crc32c but this field is still false, discard the response and perform a limited number of retries. NOTE: This field is in Beta.
      */
     verifiedCiphertextCrc32c?: boolean | null;
@@ -162,7 +160,7 @@ export namespace cloudkms_v1 {
    */
   export interface Schema$AsymmetricSignRequest {
     /**
-     * Optional. The digest of the data to sign. The digest must be produced with the same digest algorithm as specified by the key version's algorithm.
+     * Required. The digest of the data to sign. The digest must be produced with the same digest algorithm as specified by the key version's algorithm.
      */
     digest?: Schema$Digest;
     /**
@@ -178,10 +176,6 @@ export namespace cloudkms_v1 {
      * The resource name of the CryptoKeyVersion used for signing. Check this field to verify that the intended resource was used for signing. NOTE: This field is in Beta.
      */
     name?: string | null;
-    /**
-     * The ProtectionLevel of the CryptoKeyVersion used for signing.
-     */
-    protectionLevel?: string | null;
     /**
      * The created signature.
      */
@@ -225,6 +219,7 @@ export namespace cloudkms_v1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
+    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -395,14 +390,6 @@ export namespace cloudkms_v1 {
      * Integrity verification field. A CRC32C checksum of the returned DecryptResponse.plaintext. An integrity check of DecryptResponse.plaintext can be performed by computing the CRC32C checksum of DecryptResponse.plaintext and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: receiving this response message indicates that KeyManagementService is able to successfully decrypt the ciphertext. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
      */
     plaintextCrc32c?: string | null;
-    /**
-     * The ProtectionLevel of the CryptoKeyVersion used in decryption.
-     */
-    protectionLevel?: string | null;
-    /**
-     * Whether the Decryption was performed using the primary key version.
-     */
-    usedPrimary?: boolean | null;
   }
   /**
    * Request message for KeyManagementService.DestroyCryptoKeyVersion.
@@ -462,10 +449,6 @@ export namespace cloudkms_v1 {
      * The resource name of the CryptoKeyVersion used in encryption. Check this field to verify that the intended resource was used for encryption.
      */
     name?: string | null;
-    /**
-     * The ProtectionLevel of the CryptoKeyVersion used in encryption.
-     */
-    protectionLevel?: string | null;
     /**
      * Integrity verification field. A flag indicating whether EncryptRequest.additional_authenticated_data_crc32c was received by KeyManagementService and used for the integrity verification of the AAD. A false value of this field indicates either that EncryptRequest.additional_authenticated_data_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set EncryptRequest.additional_authenticated_data_crc32c but this field is still false, discard the response and perform a limited number of retries. NOTE: This field is in Beta.
      */
@@ -757,10 +740,6 @@ export namespace cloudkms_v1 {
      * Integrity verification field. A CRC32C checksum of the returned PublicKey.pem. An integrity check of PublicKey.pem can be performed by computing the CRC32C checksum of PublicKey.pem and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type. NOTE: This field is in Beta.
      */
     pemCrc32c?: string | null;
-    /**
-     * The ProtectionLevel of the CryptoKeyVersion public key.
-     */
-    protectionLevel?: string | null;
   }
   /**
    * Request message for KeyManagementService.RestoreCryptoKeyVersion.
@@ -2302,9 +2281,7 @@ export namespace cloudkms_v1 {
      *   // Example response
      *   // {
      *   //   "plaintext": "my_plaintext",
-     *   //   "plaintextCrc32c": "my_plaintextCrc32c",
-     *   //   "protectionLevel": "my_protectionLevel",
-     *   //   "usedPrimary": false
+     *   //   "plaintextCrc32c": "my_plaintextCrc32c"
      *   // }
      * }
      *
@@ -2451,7 +2428,6 @@ export namespace cloudkms_v1 {
      *   //   "ciphertext": "my_ciphertext",
      *   //   "ciphertextCrc32c": "my_ciphertextCrc32c",
      *   //   "name": "my_name",
-     *   //   "protectionLevel": "my_protectionLevel",
      *   //   "verifiedAdditionalAuthenticatedDataCrc32c": false,
      *   //   "verifiedPlaintextCrc32c": false
      *   // }
@@ -3777,7 +3753,6 @@ export namespace cloudkms_v1 {
      *   // {
      *   //   "plaintext": "my_plaintext",
      *   //   "plaintextCrc32c": "my_plaintextCrc32c",
-     *   //   "protectionLevel": "my_protectionLevel",
      *   //   "verifiedCiphertextCrc32c": false
      *   // }
      * }
@@ -3930,7 +3905,6 @@ export namespace cloudkms_v1 {
      *   // Example response
      *   // {
      *   //   "name": "my_name",
-     *   //   "protectionLevel": "my_protectionLevel",
      *   //   "signature": "my_signature",
      *   //   "signatureCrc32c": "my_signatureCrc32c",
      *   //   "verifiedDigestCrc32c": false
@@ -4542,8 +4516,7 @@ export namespace cloudkms_v1 {
      *   //   "algorithm": "my_algorithm",
      *   //   "name": "my_name",
      *   //   "pem": "my_pem",
-     *   //   "pemCrc32c": "my_pemCrc32c",
-     *   //   "protectionLevel": "my_protectionLevel"
+     *   //   "pemCrc32c": "my_pemCrc32c"
      *   // }
      * }
      *

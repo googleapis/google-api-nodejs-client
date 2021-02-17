@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace secretmanager_v1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -415,10 +417,6 @@ export namespace secretmanager_v1 {
      */
     createTime?: string | null;
     /**
-     * Optional. Timestamp in UTC when the Secret is scheduled to expire. This is always provided on output, regardless of what was sent on input.
-     */
-    expireTime?: string | null;
-    /**
      * The labels assigned to this Secret. Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: `\p{Ll\}\p{Lo\}{0,62\}` Label values must be between 0 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: `[\p{Ll\}\p{Lo\}\p{N\}_-]{0,63\}` No more than 64 labels can be assigned to a given resource.
      */
     labels?: {[key: string]: string} | null;
@@ -430,14 +428,6 @@ export namespace secretmanager_v1 {
      * Required. Immutable. The replication policy of the secret data attached to the Secret. The replication policy cannot be changed after the Secret has been created.
      */
     replication?: Schema$Replication;
-    /**
-     * Optional. A list of up to 10 Pub/Sub topics to which messages are published when control plane operations are called on the secret or its versions.
-     */
-    topics?: Schema$Topic[];
-    /**
-     * Input only. The TTL for the Secret.
-     */
-    ttl?: string | null;
   }
   /**
    * A secret payload resource in the Secret Manager API. This contains the sensitive secret payload that is associated with a SecretVersion.
@@ -503,15 +493,6 @@ export namespace secretmanager_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
-  }
-  /**
-   * A Pub/Sub topic which SM will publish to when control plane events occur on this secret.
-   */
-  export interface Schema$Topic {
-    /**
-     * Required. The resource name of the Pub/Sub topic that will be published to, in the following format: `projects/x/topics/x`. For publication to succeed, the Secret Manager P4SA must have `pubsub.publisher` permissions on the topic.
-     */
-    name?: string | null;
   }
   /**
    * A replication policy that replicates the Secret payload into the locations specified in Secret.replication.user_managed.replicas
@@ -1037,12 +1018,9 @@ export namespace secretmanager_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
-     *       //   "expireTime": "my_expireTime",
      *       //   "labels": {},
      *       //   "name": "my_name",
-     *       //   "replication": {},
-     *       //   "topics": [],
-     *       //   "ttl": "my_ttl"
+     *       //   "replication": {}
      *       // }
      *     },
      *   });
@@ -1051,12 +1029,9 @@ export namespace secretmanager_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
-     *   //   "expireTime": "my_expireTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
-     *   //   "replication": {},
-     *   //   "topics": [],
-     *   //   "ttl": "my_ttl"
+     *   //   "replication": {}
      *   // }
      * }
      *
@@ -1312,12 +1287,9 @@ export namespace secretmanager_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
-     *   //   "expireTime": "my_expireTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
-     *   //   "replication": {},
-     *   //   "topics": [],
-     *   //   "ttl": "my_ttl"
+     *   //   "replication": {}
      *   // }
      * }
      *
@@ -1721,12 +1693,9 @@ export namespace secretmanager_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
-     *       //   "expireTime": "my_expireTime",
      *       //   "labels": {},
      *       //   "name": "my_name",
-     *       //   "replication": {},
-     *       //   "topics": [],
-     *       //   "ttl": "my_ttl"
+     *       //   "replication": {}
      *       // }
      *     },
      *   });
@@ -1735,12 +1704,9 @@ export namespace secretmanager_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
-     *   //   "expireTime": "my_expireTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
-     *   //   "replication": {},
-     *   //   "topics": [],
-     *   //   "ttl": "my_ttl"
+     *   //   "replication": {}
      *   // }
      * }
      *

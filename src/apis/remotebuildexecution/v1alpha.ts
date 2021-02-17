@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace remotebuildexecution_v1alpha {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -576,10 +578,6 @@ export namespace remotebuildexecution_v1alpha {
    */
   export interface Schema$GoogleDevtoolsRemotebuildbotCommandDurations {
     /**
-     * The time spent waiting for Container Manager to assign an asynchronous container for execution.
-     */
-    cmWaitForAssignment?: string | null;
-    /**
      * The time spent preparing the command to be run in a Docker container (includes pulling the Docker image, if necessary).
      */
     dockerPrep?: string | null;
@@ -629,10 +627,6 @@ export namespace remotebuildexecution_v1alpha {
    */
   export interface Schema$GoogleDevtoolsRemotebuildbotCommandEvents {
     /**
-     * Indicates if and how Container Manager is being used for task execution.
-     */
-    cmUsage?: string | null;
-    /**
      * Indicates whether we are using a cached Docker image (true) or had to pull the Docker image (false) for this command.
      */
     dockerCacheHit?: boolean | null;
@@ -652,10 +646,6 @@ export namespace remotebuildexecution_v1alpha {
      * The number of warnings reported.
      */
     numWarnings?: string | null;
-    /**
-     * Indicates whether an asynchronous container was used for execution.
-     */
-    usedAsyncContainer?: boolean | null;
   }
   /**
    * The internal status of the command result.
@@ -871,7 +861,7 @@ export namespace remotebuildexecution_v1alpha {
   }
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsRequest {
     /**
-     * Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `\>`, `\>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count \> 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the e2-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: e2-standard`
+     * Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `\>`, `\>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count \> 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
      */
     filter?: string | null;
     /**
@@ -940,7 +930,7 @@ export namespace remotebuildexecution_v1alpha {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Machine type of the worker, such as `e2-standard-2`. See https://cloud.google.com/compute/docs/machine-types for a list of supported machine types. Note that `f1-micro` and `g1-small` are not yet supported.
+     * Required. Machine type of the worker, such as `n1-standard-2`. See https://cloud.google.com/compute/docs/machine-types for a list of supported machine types. Note that `f1-micro` and `g1-small` are not yet supported.
      */
     machineType?: string | null;
     /**
@@ -1645,9 +1635,7 @@ export namespace remotebuildexecution_v1alpha {
     get(
       params?: Params$Resource$Projects$Instances$Get,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
-    >;
+    ): GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>;
     get(
       params: Params$Resource$Projects$Instances$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1657,48 +1645,32 @@ export namespace remotebuildexecution_v1alpha {
       params: Params$Resource$Projects$Instances$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
-      >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>,
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>
     ): void;
     get(
       params: Params$Resource$Projects$Instances$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
-      >
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
-      >
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Get
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
-          >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
-          >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
-          >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
-        >
+      | GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Get;
@@ -1731,13 +1703,14 @@ export namespace remotebuildexecution_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance
-        >(parameters);
+        return createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaInstance>(
+          parameters
+        );
       }
     }
 
@@ -1798,9 +1771,7 @@ export namespace remotebuildexecution_v1alpha {
     list(
       params?: Params$Resource$Projects$Instances$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>;
     list(
       params: Params$Resource$Projects$Instances$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1810,48 +1781,32 @@ export namespace remotebuildexecution_v1alpha {
       params: Params$Resource$Projects$Instances$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Instances$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$List
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
-        >
+      | GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$List;
@@ -1887,13 +1842,14 @@ export namespace remotebuildexecution_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListInstancesResponse>(
+          parameters
+        );
       }
     }
 
@@ -2469,9 +2425,7 @@ export namespace remotebuildexecution_v1alpha {
     get(
       params?: Params$Resource$Projects$Instances$Workerpools$Get,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
-    >;
+    ): GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>;
     get(
       params: Params$Resource$Projects$Instances$Workerpools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2481,48 +2435,32 @@ export namespace remotebuildexecution_v1alpha {
       params: Params$Resource$Projects$Instances$Workerpools$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
-      >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>,
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>
     ): void;
     get(
       params: Params$Resource$Projects$Instances$Workerpools$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
-      >
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
-      >
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Workerpools$Get
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
-          >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
-          >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
-          >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
-        >
+      | GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Workerpools$Get;
@@ -2555,13 +2493,14 @@ export namespace remotebuildexecution_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool
-        >(parameters);
+        return createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool>(
+          parameters
+        );
       }
     }
 
@@ -2592,7 +2531,7 @@ export namespace remotebuildexecution_v1alpha {
      *
      *   // Do the magic
      *   const res = await remotebuildexecution.projects.instances.workerpools.list({
-     *     // Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `\>`, `\>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count \> 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the e2-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: e2-standard`
+     *     // Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `\>`, `\>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count \> 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
      *     filter: 'placeholder-value',
      *     // Resource name of the instance. Format: `projects/[PROJECT_ID]/instances/[INSTANCE_ID]`.
      *     parent: 'projects/my-project/instances/my-instance',
@@ -2624,9 +2563,7 @@ export namespace remotebuildexecution_v1alpha {
     list(
       params?: Params$Resource$Projects$Instances$Workerpools$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>;
     list(
       params: Params$Resource$Projects$Instances$Workerpools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2636,48 +2573,32 @@ export namespace remotebuildexecution_v1alpha {
       params: Params$Resource$Projects$Instances$Workerpools$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Instances$Workerpools$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Workerpools$List
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
-        >
+      | GaxiosPromise<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instances$Workerpools$List;
@@ -2713,13 +2634,14 @@ export namespace remotebuildexecution_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsResponse>(
+          parameters
+        );
       }
     }
 
@@ -2900,7 +2822,7 @@ export namespace remotebuildexecution_v1alpha {
   export interface Params$Resource$Projects$Instances$Workerpools$List
     extends StandardParameters {
     /**
-     * Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `\>`, `\>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count \> 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the e2-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: e2-standard`
+     * Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `\>`, `\>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count \> 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
      */
     filter?: string;
     /**

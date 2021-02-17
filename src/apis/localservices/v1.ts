@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace localservices_v1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -370,7 +372,7 @@ export namespace localservices_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/adwords'],
+     *     scopes: [],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -426,9 +428,7 @@ export namespace localservices_v1 {
     search(
       params?: Params$Resource$Accountreports$Search,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>;
     search(
       params: Params$Resource$Accountreports$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -438,48 +438,32 @@ export namespace localservices_v1 {
       params: Params$Resource$Accountreports$Search,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>
     ): void;
     search(
       params: Params$Resource$Accountreports$Search,
-      callback: BodyResponseCallback<
-        Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>
     ): void;
     search(
-      callback: BodyResponseCallback<
-        Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>
     ): void;
     search(
       paramsOrCallback?:
         | Params$Resource$Accountreports$Search
-        | BodyResponseCallback<
-            Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse
-        >
+      | GaxiosPromise<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountreports$Search;
@@ -515,13 +499,14 @@ export namespace localservices_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAdsHomeservicesLocalservicesV1SearchAccountReportsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -590,7 +575,7 @@ export namespace localservices_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/adwords'],
+     *     scopes: [],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -646,9 +631,7 @@ export namespace localservices_v1 {
     search(
       params?: Params$Resource$Detailedleadreports$Search,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>;
     search(
       params: Params$Resource$Detailedleadreports$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -658,48 +641,32 @@ export namespace localservices_v1 {
       params: Params$Resource$Detailedleadreports$Search,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>
     ): void;
     search(
       params: Params$Resource$Detailedleadreports$Search,
-      callback: BodyResponseCallback<
-        Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>
     ): void;
     search(
-      callback: BodyResponseCallback<
-        Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>
     ): void;
     search(
       paramsOrCallback?:
         | Params$Resource$Detailedleadreports$Search
-        | BodyResponseCallback<
-            Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse
-        >
+      | GaxiosPromise<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Detailedleadreports$Search;
@@ -735,13 +702,14 @@ export namespace localservices_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAdsHomeservicesLocalservicesV1SearchDetailedLeadReportsResponse>(
+          parameters
+        );
       }
     }
   }

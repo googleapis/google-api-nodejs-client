@@ -481,7 +481,7 @@
                       ],
                       "parameters": {
                         "fieldMask": {
-                          "description": "The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned. Fields have to be provided in snake_case format, for example: `last_heartbeat_time`.",
+                          "description": "The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -526,7 +526,7 @@
                           "type": "string"
                         },
                         "fieldMask": {
-                          "description": "The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified in snake_case format, for example: `last_heartbeat_time`.",
+                          "description": "The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -869,7 +869,7 @@
                               "type": "string"
                             },
                             "fieldMask": {
-                              "description": "The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified in snake_case format, for example: `last_heartbeat_time`.",
+                              "description": "The fields of the `Device` resource to be returned in the response. The fields `id` and `num_id` are always returned, along with any other fields specified.",
                               "format": "google-fieldmask",
                               "location": "query",
                               "type": "string"
@@ -938,7 +938,7 @@
       }
     }
   },
-  "revision": "20210209",
+  "revision": "20201110",
   "rootUrl": "https://cloudiot.googleapis.com/",
   "schemas": {
     "BindDeviceToGatewayRequest": {

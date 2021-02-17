@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace datalabeling_v1beta1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -2250,7 +2252,7 @@ export namespace datalabeling_v1beta1 {
      */
     annotationSpecSet?: string | null;
     /**
-     * Optional. Configs for sentiment selection. We deprecate sentiment analysis in data labeling side as it is incompatible with uCAIP.
+     * Optional. Configs for sentiment selection.
      */
     sentimentConfig?: Schema$GoogleCloudDatalabelingV1beta1SentimentConfig;
   }
@@ -3327,42 +3329,28 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Annotationspecsets$Create,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
     ): void;
     create(
       params: Params$Resource$Projects$Annotationspecsets$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
     ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Annotationspecsets$Create
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -3401,13 +3389,14 @@ export namespace datalabeling_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>(
+          parameters
+        );
       }
     }
 
@@ -3609,42 +3598,28 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Annotationspecsets$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
     ): void;
     get(
       params: Params$Resource$Projects$Annotationspecsets$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Annotationspecsets$Get
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -3680,13 +3655,14 @@ export namespace datalabeling_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1AnnotationSpecSet>(
+          parameters
+        );
       }
     }
 
@@ -3754,9 +3730,7 @@ export namespace datalabeling_v1beta1 {
     list(
       params?: Params$Resource$Projects$Annotationspecsets$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse>;
     list(
       params: Params$Resource$Projects$Annotationspecsets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3766,48 +3740,32 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Annotationspecsets$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Annotationspecsets$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Annotationspecsets$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Annotationspecsets$List;
@@ -3842,13 +3800,14 @@ export namespace datalabeling_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListAnnotationSpecSetsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -4004,20 +3963,14 @@ export namespace datalabeling_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Dataset>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1Dataset
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Dataset>
     ): void;
     create(
       params: Params$Resource$Projects$Datasets$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1Dataset
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Dataset>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1Dataset
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Dataset>
     ): void;
     create(
       paramsOrCallback?:
@@ -4433,20 +4386,14 @@ export namespace datalabeling_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Dataset>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1Dataset
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Dataset>
     ): void;
     get(
       params: Params$Resource$Projects$Datasets$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1Dataset
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Dataset>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1Dataset
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Dataset>
     ): void;
     get(
       paramsOrCallback?:
@@ -4729,42 +4676,28 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Datasets$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Datasets$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Datasets$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4803,13 +4736,14 @@ export namespace datalabeling_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListDatasetsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -5108,42 +5042,28 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset>
     ): void;
     get(
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Datasets$Annotateddatasets$Get
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -5184,9 +5104,9 @@ export namespace datalabeling_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1AnnotatedDataset>(
+          parameters
+        );
       }
     }
 
@@ -5254,9 +5174,7 @@ export namespace datalabeling_v1beta1 {
     list(
       params?: Params$Resource$Projects$Datasets$Annotateddatasets$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse>;
     list(
       params: Params$Resource$Projects$Datasets$Annotateddatasets$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5266,48 +5184,32 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Datasets$Annotateddatasets$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Datasets$Annotateddatasets$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Datasets$Annotateddatasets$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$List;
@@ -5342,13 +5244,14 @@ export namespace datalabeling_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListAnnotatedDatasetsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -5467,20 +5370,14 @@ export namespace datalabeling_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1DataItem>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1DataItem
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1DataItem>
     ): void;
     get(
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Dataitems$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1DataItem
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1DataItem>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1DataItem
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1DataItem>
     ): void;
     get(
       paramsOrCallback?:
@@ -5607,9 +5504,7 @@ export namespace datalabeling_v1beta1 {
     list(
       params?: Params$Resource$Projects$Datasets$Annotateddatasets$Dataitems$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>;
     list(
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Dataitems$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5619,48 +5514,32 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Dataitems$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Dataitems$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Datasets$Annotateddatasets$Dataitems$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Dataitems$List;
@@ -5695,13 +5574,14 @@ export namespace datalabeling_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -5816,20 +5696,14 @@ export namespace datalabeling_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Example>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1Example
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Example>
     ): void;
     get(
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Examples$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1Example
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Example>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1Example
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Example>
     ): void;
     get(
       paramsOrCallback?:
@@ -5966,42 +5840,28 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Examples$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Examples$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Datasets$Annotateddatasets$Examples$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -6040,13 +5900,14 @@ export namespace datalabeling_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListExamplesResponse>(
+          parameters
+        );
       }
     }
   }
@@ -6293,42 +6154,28 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1FeedbackThread
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1FeedbackThread
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1FeedbackThread>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1FeedbackThread>
     ): void;
     get(
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1FeedbackThread
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1FeedbackThread>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1FeedbackThread
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1FeedbackThread>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Get
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1FeedbackThread
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1FeedbackThread>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1FeedbackThread
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1FeedbackThread>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1FeedbackThread
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1FeedbackThread>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -6369,9 +6216,9 @@ export namespace datalabeling_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1FeedbackThread
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1FeedbackThread>(
+          parameters
+        );
       }
     }
 
@@ -6440,9 +6287,7 @@ export namespace datalabeling_v1beta1 {
     list(
       params?: Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse>;
     list(
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6452,48 +6297,32 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$List;
@@ -6528,13 +6357,14 @@ export namespace datalabeling_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackThreadsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -6936,42 +6766,28 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage>
     ): void;
     get(
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$Get
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -7012,9 +6828,9 @@ export namespace datalabeling_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1FeedbackMessage>(
+          parameters
+        );
       }
     }
 
@@ -7083,9 +6899,7 @@ export namespace datalabeling_v1beta1 {
     list(
       params?: Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse>;
     list(
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7095,48 +6909,32 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Annotateddatasets$Feedbackthreads$Feedbackmessages$List;
@@ -7171,13 +6969,14 @@ export namespace datalabeling_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListFeedbackMessagesResponse>(
+          parameters
+        );
       }
     }
   }
@@ -7301,20 +7100,14 @@ export namespace datalabeling_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1DataItem>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1DataItem
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1DataItem>
     ): void;
     get(
       params: Params$Resource$Projects$Datasets$Dataitems$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1DataItem
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1DataItem>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1DataItem
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1DataItem>
     ): void;
     get(
       paramsOrCallback?:
@@ -7438,9 +7231,7 @@ export namespace datalabeling_v1beta1 {
     list(
       params?: Params$Resource$Projects$Datasets$Dataitems$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>;
     list(
       params: Params$Resource$Projects$Datasets$Dataitems$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7450,48 +7241,32 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Datasets$Dataitems$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Datasets$Dataitems$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Datasets$Dataitems$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Dataitems$List;
@@ -7526,13 +7301,14 @@ export namespace datalabeling_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListDataItemsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -7648,20 +7424,14 @@ export namespace datalabeling_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Evaluation>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1Evaluation
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Evaluation>
     ): void;
     get(
       params: Params$Resource$Projects$Datasets$Evaluations$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1Evaluation
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Evaluation>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1Evaluation
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Evaluation>
     ): void;
     get(
       paramsOrCallback?:
@@ -7715,9 +7485,9 @@ export namespace datalabeling_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1Evaluation
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1Evaluation>(
+          parameters
+        );
       }
     }
   }
@@ -7806,9 +7576,7 @@ export namespace datalabeling_v1beta1 {
     search(
       params?: Params$Resource$Projects$Datasets$Evaluations$Examplecomparisons$Search,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse>;
     search(
       params: Params$Resource$Projects$Datasets$Evaluations$Examplecomparisons$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7818,48 +7586,32 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Datasets$Evaluations$Examplecomparisons$Search,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse>
     ): void;
     search(
       params: Params$Resource$Projects$Datasets$Evaluations$Examplecomparisons$Search,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse>
     ): void;
     search(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse>
     ): void;
     search(
       paramsOrCallback?:
         | Params$Resource$Projects$Datasets$Evaluations$Examplecomparisons$Search
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Datasets$Evaluations$Examplecomparisons$Search;
@@ -7893,13 +7645,14 @@ export namespace datalabeling_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1SearchExampleComparisonsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -8524,42 +8277,28 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Evaluationjobs$Create,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
     ): void;
     create(
       params: Params$Resource$Projects$Evaluationjobs$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
     ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Evaluationjobs$Create
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -8603,9 +8342,9 @@ export namespace datalabeling_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>(
+          parameters
+        );
       }
     }
 
@@ -8812,42 +8551,28 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Evaluationjobs$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
     ): void;
     get(
       params: Params$Resource$Projects$Evaluationjobs$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Evaluationjobs$Get
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -8888,9 +8613,9 @@ export namespace datalabeling_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>(
+          parameters
+        );
       }
     }
 
@@ -8958,9 +8683,7 @@ export namespace datalabeling_v1beta1 {
     list(
       params?: Params$Resource$Projects$Evaluationjobs$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse>;
     list(
       params: Params$Resource$Projects$Evaluationjobs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8970,48 +8693,32 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Evaluationjobs$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Evaluationjobs$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Evaluationjobs$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Evaluationjobs$List;
@@ -9046,13 +8753,14 @@ export namespace datalabeling_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListEvaluationJobsResponse>(
+          parameters
+        );
       }
     }
 
@@ -9151,42 +8859,28 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Evaluationjobs$Patch,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
     ): void;
     patch(
       params: Params$Resource$Projects$Evaluationjobs$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
     ): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Evaluationjobs$Patch
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -9227,9 +8921,9 @@ export namespace datalabeling_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1EvaluationJob
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1EvaluationJob>(
+          parameters
+        );
       }
     }
 
@@ -9662,9 +9356,7 @@ export namespace datalabeling_v1beta1 {
     search(
       params?: Params$Resource$Projects$Evaluations$Search,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse>;
     search(
       params: Params$Resource$Projects$Evaluations$Search,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9674,48 +9366,32 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Evaluations$Search,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse>
     ): void;
     search(
       params: Params$Resource$Projects$Evaluations$Search,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse>
     ): void;
     search(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse>
     ): void;
     search(
       paramsOrCallback?:
         | Params$Resource$Projects$Evaluations$Search
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Evaluations$Search;
@@ -9750,13 +9426,14 @@ export namespace datalabeling_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1SearchEvaluationsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -10137,23 +9814,15 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Instructions$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1Instruction
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1Instruction
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Instruction>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Instruction>
     ): void;
     get(
       params: Params$Resource$Projects$Instructions$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1Instruction
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Instruction>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1Instruction
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1Instruction>
     ): void;
     get(
       paramsOrCallback?:
@@ -10207,9 +9876,9 @@ export namespace datalabeling_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1Instruction
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1Instruction>(
+          parameters
+        );
       }
     }
 
@@ -10277,9 +9946,7 @@ export namespace datalabeling_v1beta1 {
     list(
       params?: Params$Resource$Projects$Instructions$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse>;
     list(
       params: Params$Resource$Projects$Instructions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10289,48 +9956,32 @@ export namespace datalabeling_v1beta1 {
       params: Params$Resource$Projects$Instructions$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Instructions$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Instructions$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Instructions$List;
@@ -10365,13 +10016,14 @@ export namespace datalabeling_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDatalabelingV1beta1ListInstructionsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -10897,20 +10549,14 @@ export namespace datalabeling_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Operations$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       paramsOrCallback?:

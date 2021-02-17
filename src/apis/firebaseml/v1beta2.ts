@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace firebaseml_v1beta2 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -123,27 +125,6 @@ export namespace firebaseml_v1beta2 {
     }
   }
 
-  /**
-   * The response for downloading a model to device.
-   */
-  export interface Schema$DownloadModelResponse {
-    /**
-     * Output only. A download URI for the model/zip file.
-     */
-    downloadUri?: string | null;
-    /**
-     * Output only. The time that the download URI link expires. If the link has expired, the REST call must be repeated.
-     */
-    expireTime?: string | null;
-    /**
-     * Output only. The format of the model being downloaded.
-     */
-    modelFormat?: string | null;
-    /**
-     * Output only. The size of the file(s), if this information is available.
-     */
-    sizeBytes?: string | null;
-  }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
@@ -577,145 +558,6 @@ export namespace firebaseml_v1beta2 {
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
-     * Gets Download information for a model. This is meant for downloading model resources onto devices. It gives very limited information about the model.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/firebaseml.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const firebaseml = google.firebaseml('v1beta2');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await firebaseml.projects.models.download({
-     *     // Required. The name of the model to download. The name must have the form `projects/{project\}/models/{model\}`
-     *     name: 'projects/my-project/models/my-model',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "downloadUri": "my_downloadUri",
-     *   //   "expireTime": "my_expireTime",
-     *   //   "modelFormat": "my_modelFormat",
-     *   //   "sizeBytes": "my_sizeBytes"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    download(
-      params: Params$Resource$Projects$Models$Download,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    download(
-      params?: Params$Resource$Projects$Models$Download,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$DownloadModelResponse>;
-    download(
-      params: Params$Resource$Projects$Models$Download,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    download(
-      params: Params$Resource$Projects$Models$Download,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DownloadModelResponse>,
-      callback: BodyResponseCallback<Schema$DownloadModelResponse>
-    ): void;
-    download(
-      params: Params$Resource$Projects$Models$Download,
-      callback: BodyResponseCallback<Schema$DownloadModelResponse>
-    ): void;
-    download(
-      callback: BodyResponseCallback<Schema$DownloadModelResponse>
-    ): void;
-    download(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Models$Download
-        | BodyResponseCallback<Schema$DownloadModelResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$DownloadModelResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$DownloadModelResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$DownloadModelResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Models$Download;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Models$Download;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://firebaseml.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1beta2/{+name}:download').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$DownloadModelResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$DownloadModelResponse>(parameters);
       }
     }
 
@@ -1159,13 +1001,6 @@ export namespace firebaseml_v1beta2 {
     extends StandardParameters {
     /**
      * Required. The name of the model to delete. The name must have the form `projects/{project_id\}/models/{model_id\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Models$Download
-    extends StandardParameters {
-    /**
-     * Required. The name of the model to download. The name must have the form `projects/{project\}/models/{model\}`
      */
     name?: string;
   }

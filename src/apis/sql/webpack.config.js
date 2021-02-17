@@ -20,26 +20,17 @@ module.exports = {
   entry: './index.ts',
   resolve: {
     extensions: ['.ts', '.js', '.json'],
-    fallback: {
-      crypto: false,
-      child_process: false,
-      fs: false,
-      http2: false,
-      buffer: 'browserify',
-      process: false,
-      os: false,
-      querystring: false,
-      path: false,
-      stream: 'stream-browserify',
-      url: false,
-      util: false,
-      zlib: false,
-    },
   },
   output: {
     library: 'Sql',
     filename: 'sql.min.js',
     path: path.resolve(__dirname, 'dist'),
+  },
+  node: {
+    child_process: 'empty',
+    fs: 'empty',
+    crypto: 'empty',
+    http2: 'empty',
   },
   module: {
     rules: [

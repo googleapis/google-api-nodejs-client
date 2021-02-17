@@ -29,7 +29,7 @@
   "canonicalName": "Area120 Tables",
   "description": "",
   "discoveryVersion": "v1",
-  "documentationLink": "https://support.google.com/area120-tables/answer/10011390",
+  "documentationLink": "https://tables.area120.google.com",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -219,37 +219,6 @@
                 "https://www.googleapis.com/auth/tables"
               ]
             },
-            "batchDelete": {
-              "description": "Deletes multiple rows.",
-              "flatPath": "v1alpha1/tables/{tablesId}/rows:batchDelete",
-              "httpMethod": "POST",
-              "id": "area120tables.tables.rows.batchDelete",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. The parent table shared by all rows being deleted. Format: tables/{table}",
-                  "location": "path",
-                  "pattern": "^tables/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha1/{+parent}/rows:batchDelete",
-              "request": {
-                "$ref": "BatchDeleteRowsRequest"
-              },
-              "response": {
-                "$ref": "Empty"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/drive",
-                "https://www.googleapis.com/auth/drive.file",
-                "https://www.googleapis.com/auth/spreadsheets",
-                "https://www.googleapis.com/auth/tables"
-              ]
-            },
             "batchUpdate": {
               "description": "Updates multiple rows.",
               "flatPath": "v1alpha1/tables/{tablesId}/rows:batchUpdate",
@@ -405,11 +374,6 @@
                 "parent"
               ],
               "parameters": {
-                "filter": {
-                  "description": "Optional. Raw text query to search for in rows of the table. Special characters must be escaped. Logical operators and field specific filtering not supported.",
-                  "location": "query",
-                  "type": "string"
-                },
                 "pageSize": {
                   "description": "The maximum number of rows to return. The service may return fewer than this value. If unspecified, at most 50 rows are returned. The maximum value is 1,000; values above 1,000 are coerced to 1,000.",
                   "format": "int32",
@@ -576,7 +540,7 @@
       }
     }
   },
-  "revision": "20210216",
+  "revision": "20201201",
   "rootUrl": "https://area120tables.googleapis.com/",
   "schemas": {
     "BatchCreateRowsRequest": {
@@ -601,20 +565,6 @@
           "description": "The created rows.",
           "items": {
             "$ref": "Row"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "BatchDeleteRowsRequest": {
-      "description": "Request message for TablesService.BatchDeleteRows",
-      "id": "BatchDeleteRowsRequest",
-      "properties": {
-        "names": {
-          "description": "Required. The names of the rows to delete. All rows must belong to the parent table or else the entire batch will fail. A maximum of 500 rows can be deleted in a batch. Format: tables/{table}/rows/{row}",
-          "items": {
-            "type": "string"
           },
           "type": "array"
         }

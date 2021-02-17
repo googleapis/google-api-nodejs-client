@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace dfareporting_v3_3 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -101,7 +103,7 @@ export namespace dfareporting_v3_3 {
   /**
    * Campaign Manager 360 API
    *
-   * Build applications to efficiently manage large or complex trafficking, reporting, and attribution workflows for Campaign Manager 360.
+   * Manage your DoubleClick Campaign Manager ad campaigns and reports.
    *
    * @example
    * ```js
@@ -2587,7 +2589,7 @@ export namespace dfareporting_v3_3 {
      */
     type?: string | null;
     /**
-     * The value of the custom floodlight variable. The length of string must not exceed 100 characters.
+     * The value of the custom floodlight variable. The length of string must not exceed 50 characters.
      */
     value?: string | null;
   }
@@ -13051,20 +13053,14 @@ export namespace dfareporting_v3_3 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>,
-      callback: BodyResponseCallback<
-        Schema$CampaignCreativeAssociationsListResponse
-      >
+      callback: BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>
     ): void;
     list(
       params: Params$Resource$Campaigncreativeassociations$List,
-      callback: BodyResponseCallback<
-        Schema$CampaignCreativeAssociationsListResponse
-      >
+      callback: BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$CampaignCreativeAssociationsListResponse
-      >
+      callback: BodyResponseCallback<Schema$CampaignCreativeAssociationsListResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -13121,9 +13117,9 @@ export namespace dfareporting_v3_3 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$CampaignCreativeAssociationsListResponse
-        >(parameters);
+        return createAPIRequest<Schema$CampaignCreativeAssociationsListResponse>(
+          parameters
+        );
       }
     }
   }
@@ -23588,20 +23584,14 @@ export namespace dfareporting_v3_3 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>,
-      callback: BodyResponseCallback<
-        Schema$FloodlightActivitiesGenerateTagResponse
-      >
+      callback: BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>
     ): void;
     generatetag(
       params: Params$Resource$Floodlightactivities$Generatetag,
-      callback: BodyResponseCallback<
-        Schema$FloodlightActivitiesGenerateTagResponse
-      >
+      callback: BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>
     ): void;
     generatetag(
-      callback: BodyResponseCallback<
-        Schema$FloodlightActivitiesGenerateTagResponse
-      >
+      callback: BodyResponseCallback<Schema$FloodlightActivitiesGenerateTagResponse>
     ): void;
     generatetag(
       paramsOrCallback?:
@@ -25116,20 +25106,14 @@ export namespace dfareporting_v3_3 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>,
-      callback: BodyResponseCallback<
-        Schema$FloodlightActivityGroupsListResponse
-      >
+      callback: BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>
     ): void;
     list(
       params: Params$Resource$Floodlightactivitygroups$List,
-      callback: BodyResponseCallback<
-        Schema$FloodlightActivityGroupsListResponse
-      >
+      callback: BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$FloodlightActivityGroupsListResponse
-      >
+      callback: BodyResponseCallback<Schema$FloodlightActivityGroupsListResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -25850,20 +25834,14 @@ export namespace dfareporting_v3_3 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>,
-      callback: BodyResponseCallback<
-        Schema$FloodlightConfigurationsListResponse
-      >
+      callback: BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>
     ): void;
     list(
       params: Params$Resource$Floodlightconfigurations$List,
-      callback: BodyResponseCallback<
-        Schema$FloodlightConfigurationsListResponse
-      >
+      callback: BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$FloodlightConfigurationsListResponse
-      >
+      callback: BodyResponseCallback<Schema$FloodlightConfigurationsListResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -38826,20 +38804,14 @@ export namespace dfareporting_v3_3 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>,
-      callback: BodyResponseCallback<
-        Schema$TargetableRemarketingListsListResponse
-      >
+      callback: BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>
     ): void;
     list(
       params: Params$Resource$Targetableremarketinglists$List,
-      callback: BodyResponseCallback<
-        Schema$TargetableRemarketingListsListResponse
-      >
+      callback: BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$TargetableRemarketingListsListResponse
-      >
+      callback: BodyResponseCallback<Schema$TargetableRemarketingListsListResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -40337,20 +40309,14 @@ export namespace dfareporting_v3_3 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>,
-      callback: BodyResponseCallback<
-        Schema$UserRolePermissionGroupsListResponse
-      >
+      callback: BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>
     ): void;
     list(
       params: Params$Resource$Userrolepermissiongroups$List,
-      callback: BodyResponseCallback<
-        Schema$UserRolePermissionGroupsListResponse
-      >
+      callback: BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$UserRolePermissionGroupsListResponse
-      >
+      callback: BodyResponseCallback<Schema$UserRolePermissionGroupsListResponse>
     ): void;
     list(
       paramsOrCallback?:

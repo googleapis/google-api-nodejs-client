@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace pagespeedonline_v5 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -204,13 +206,9 @@ export namespace pagespeedonline_v5 {
      */
     channel?: string | null;
     /**
-     * The form factor the emulation should use. This field is deprecated, form_factor should be used instead.
+     * The form factor the emulation should use.
      */
     emulatedFormFactor?: string | null;
-    /**
-     * How Lighthouse should interpret this run in regards to scoring performance metrics and skipping mobile-only tests in desktop.
-     */
-    formFactor?: string | null;
     /**
      * The locale setting.
      */

@@ -14,20 +14,12 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
-import {gmailpostmastertools_v1} from './v1';
 import {gmailpostmastertools_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
-  v1: gmailpostmastertools_v1.Gmailpostmastertools,
   v1beta1: gmailpostmastertools_v1beta1.Gmailpostmastertools,
 };
 
-export function gmailpostmastertools(
-  version: 'v1'
-): gmailpostmastertools_v1.Gmailpostmastertools;
-export function gmailpostmastertools(
-  options: gmailpostmastertools_v1.Options
-): gmailpostmastertools_v1.Gmailpostmastertools;
 export function gmailpostmastertools(
   version: 'v1beta1'
 ): gmailpostmastertools_v1beta1.Gmailpostmastertools;
@@ -35,23 +27,16 @@ export function gmailpostmastertools(
   options: gmailpostmastertools_v1beta1.Options
 ): gmailpostmastertools_v1beta1.Gmailpostmastertools;
 export function gmailpostmastertools<
-  T =
-    | gmailpostmastertools_v1.Gmailpostmastertools
-    | gmailpostmastertools_v1beta1.Gmailpostmastertools
+  T = gmailpostmastertools_v1beta1.Gmailpostmastertools
 >(
   this: GoogleConfigurable,
-  versionOrOptions:
-    | 'v1'
-    | gmailpostmastertools_v1.Options
-    | 'v1beta1'
-    | gmailpostmastertools_v1beta1.Options
+  versionOrOptions: 'v1beta1' | gmailpostmastertools_v1beta1.Options
 ) {
   return getAPI<T>('gmailpostmastertools', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
-export {gmailpostmastertools_v1};
 export {gmailpostmastertools_v1beta1};
 export {
   AuthPlus,

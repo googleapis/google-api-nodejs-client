@@ -3806,7 +3806,7 @@
     }
   },
   "revision": "20190807",
-  "rootUrl": "https://analytics.googleapis.com/",
+  "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
       "description": "JSON template for Analytics account entry.",

@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace dialogflow_v3beta1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -124,37 +126,6 @@ export namespace dialogflow_v3beta1 {
   }
 
   /**
-   * Represents the natural speech audio to be processed.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3AudioInput {
-    /**
-     * The natural language speech audio to be processed. A single request can contain up to 1 minute of speech audio data. The transcribed text cannot contain more than 256 bytes. For non-streaming audio detect intent, both `config` and `audio` must be provided. For streaming audio detect intent, `config` must be provided in the first request and `audio` must be provided in all following requests.
-     */
-    audio?: string | null;
-    /**
-     * Required. Instructs the speech recognizer how to process the speech audio.
-     */
-    config?: Schema$GoogleCloudDialogflowCxV3InputAudioConfig;
-  }
-  /**
-   * Metadata returned for the TestCases.BatchRunTestCases long running operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3BatchRunTestCasesMetadata {
-    /**
-     * The test errors.
-     */
-    errors?: Schema$GoogleCloudDialogflowCxV3TestError[];
-  }
-  /**
-   * The response message for TestCases.BatchRunTestCases.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3BatchRunTestCasesResponse {
-    /**
-     * The test case results. The detailed conversation turns are empty in this response.
-     */
-    results?: Schema$GoogleCloudDialogflowCxV3TestCaseResult[];
-  }
-  /**
    * Agents are best described as Natural Language Understanding (NLU) modules that transform user requests into actionable data. You can include agents in your app, product, or service to determine user intent and respond to the user in a natural way. After you create an agent, you can add Intents, Entity Types, Flows, Fulfillments, Webhooks, and so on to manage the conversation flows..
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Agent {
@@ -187,10 +158,6 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string | null;
     /**
-     * Name of the SecuritySettings reference for the agent. Format: `projects//locations//securitySettings/`.
-     */
-    securitySettings?: string | null;
-    /**
      * Speech recognition related settings.
      */
     speechToTextSettings?: Schema$GoogleCloudDialogflowCxV3beta1SpeechToTextSettings;
@@ -202,19 +169,6 @@ export namespace dialogflow_v3beta1 {
      * Required. The time zone of the agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.
      */
     timeZone?: string | null;
-  }
-  /**
-   * The response message for Agents.GetAgentValidationResult.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult {
-    /**
-     * Contains all flow validation results.
-     */
-    flowValidationResults?: Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult[];
-    /**
-     * The unique identifier of the agent validation result. Format: `projects//locations//agents//validationResult`.
-     */
-    name?: string | null;
   }
   /**
    * Represents the natural speech audio to be processed.
@@ -230,139 +184,6 @@ export namespace dialogflow_v3beta1 {
     config?: Schema$GoogleCloudDialogflowCxV3beta1InputAudioConfig;
   }
   /**
-   * The request message for TestCases.BatchDeleteTestCases.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1BatchDeleteTestCasesRequest {
-    /**
-     * Required. Format of test case names: `projects//locations/ /agents//testCases/`.
-     */
-    names?: string[] | null;
-  }
-  /**
-   * Metadata returned for the TestCases.BatchRunTestCases long running operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1BatchRunTestCasesMetadata {
-    /**
-     * The test errors.
-     */
-    errors?: Schema$GoogleCloudDialogflowCxV3beta1TestError[];
-  }
-  /**
-   * The request message for TestCases.BatchRunTestCases.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1BatchRunTestCasesRequest {
-    /**
-     * Optional. If not set, draft environment is assumed. Format: `projects//locations//agents//environments/`.
-     */
-    environment?: string | null;
-    /**
-     * Required. Format: `projects//locations//agents//testCases/`.
-     */
-    testCases?: string[] | null;
-  }
-  /**
-   * The response message for TestCases.BatchRunTestCases.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1BatchRunTestCasesResponse {
-    /**
-     * The test case results. The detailed conversation turns are empty in this response.
-     */
-    results?: Schema$GoogleCloudDialogflowCxV3beta1TestCaseResult[];
-  }
-  /**
-   * The response message for TestCases.CalculateCoverage.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1CalculateCoverageResponse {
-    /**
-     * The agent to calculate coverage for. Format: `projects//locations//agents/`.
-     */
-    agent?: string | null;
-    /**
-     * Intent coverage.
-     */
-    intentCoverage?: Schema$GoogleCloudDialogflowCxV3beta1IntentCoverage;
-    /**
-     * Transition route group coverage.
-     */
-    routeGroupCoverage?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroupCoverage;
-    /**
-     * Transition (excluding transition route groups) coverage.
-     */
-    transitionCoverage?: Schema$GoogleCloudDialogflowCxV3beta1TransitionCoverage;
-  }
-  /**
-   * One interaction between a human and virtual agent. The human provides some input and the virtual agent provides a response.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationTurn {
-    /**
-     * The user input.
-     */
-    userInput?: Schema$GoogleCloudDialogflowCxV3beta1ConversationTurnUserInput;
-    /**
-     * The virtual agent output.
-     */
-    virtualAgentOutput?: Schema$GoogleCloudDialogflowCxV3beta1ConversationTurnVirtualAgentOutput;
-  }
-  /**
-   * The input from the human user.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationTurnUserInput {
-    /**
-     * Parameters that need to be injected into the conversation during intent detection.
-     */
-    injectedParameters?: {[key: string]: any} | null;
-    /**
-     * Supports text input, event input, dtmf input in the test case.
-     */
-    input?: Schema$GoogleCloudDialogflowCxV3beta1QueryInput;
-    /**
-     * If webhooks should be allowed to trigger in response to the user utterance. Often if parameters are injected, webhooks should not be enabled.
-     */
-    isWebhookEnabled?: boolean | null;
-  }
-  /**
-   * The output from the virtual agent.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationTurnVirtualAgentOutput {
-    /**
-     * The Page on which the utterance was spoken. Only name and displayName will be set.
-     */
-    currentPage?: Schema$GoogleCloudDialogflowCxV3beta1Page;
-    /**
-     * Required. Input only. The diagnostic info output for the turn.
-     */
-    diagnosticInfo?: {[key: string]: any} | null;
-    /**
-     * Output only. If this is part of a result conversation turn, the list of differences between the original run and the replay for this output, if any.
-     */
-    differences?: Schema$GoogleCloudDialogflowCxV3beta1TestRunDifference[];
-    /**
-     * The session parameters available to the bot at this point.
-     */
-    sessionParameters?: {[key: string]: any} | null;
-    /**
-     * Response error from the agent in the test result. If set, other output is empty.
-     */
-    status?: Schema$GoogleRpcStatus;
-    /**
-     * The text responses from the agent for the turn.
-     */
-    textResponses?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageText[];
-    /**
-     * The Intent that triggered the response. Only name and displayName will be set.
-     */
-    triggeredIntent?: Schema$GoogleCloudDialogflowCxV3beta1Intent;
-  }
-  /**
-   * Metadata for CreateDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1CreateDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata;
-  }
-  /**
    * Metadata associated with the long running operation for Versions.CreateVersion.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1CreateVersionOperationMetadata {
@@ -370,15 +191,6 @@ export namespace dialogflow_v3beta1 {
      * Name of the created version. Format: `projects//locations//agents//flows//versions/`.
      */
     version?: string | null;
-  }
-  /**
-   * Metadata for DeleteDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1DeleteDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata;
   }
   /**
    * The request to detect user's intent.
@@ -463,13 +275,9 @@ export namespace dialogflow_v3beta1 {
      * The unique identifier of the entity type. Required for EntityTypes.UpdateEntityType. Format: `projects//locations//agents//entityTypes/`.
      */
     name?: string | null;
-    /**
-     * Indicates whether parameters of the entity type should be redacted in log. If redaction is enabled, page parameters and intent parameters referring to the entity type will be replaced by parameter name during logging.
-     */
-    redact?: boolean | null;
   }
   /**
-   * An **entity entry** for an associated entity type.
+   * An **entity entry** for an associated entity type. Next Id = 8
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1EntityTypeEntity {
     /**
@@ -559,148 +367,6 @@ export namespace dialogflow_v3beta1 {
     event?: string | null;
   }
   /**
-   * Represents an experiment in an environment.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1Experiment {
-    /**
-     * Creation time of this experiment.
-     */
-    createTime?: string | null;
-    /**
-     * The definition of the experiment.
-     */
-    definition?: Schema$GoogleCloudDialogflowCxV3beta1ExperimentDefinition;
-    /**
-     * The human-readable description of the experiment.
-     */
-    description?: string | null;
-    /**
-     * Required. The human-readable name of the experiment (unique in an environment). Limit of 64 characters.
-     */
-    displayName?: string | null;
-    /**
-     * End time of this experiment.
-     */
-    endTime?: string | null;
-    /**
-     * Maximum number of days to run the experiment.
-     */
-    experimentLength?: string | null;
-    /**
-     * Last update time of this experiment.
-     */
-    lastUpdateTime?: string | null;
-    /**
-     * The name of the experiment. Format: projects//locations//agents//environments//experiments/..
-     */
-    name?: string | null;
-    /**
-     * Inference result of the experiment.
-     */
-    result?: Schema$GoogleCloudDialogflowCxV3beta1ExperimentResult;
-    /**
-     * Start time of this experiment.
-     */
-    startTime?: string | null;
-    /**
-     * The current state of the experiment. Transition triggered by Expriments.StartExperiment: PENDING-\>RUNNING. Transition triggered by Expriments.CancelExperiment: PENDING-\>CANCELLED or RUNNING-\>CANCELLED.
-     */
-    state?: string | null;
-    /**
-     * The history of updates to the experiment variants.
-     */
-    variantsHistory?: Schema$GoogleCloudDialogflowCxV3beta1VariantsHistory[];
-  }
-  /**
-   * Definition of the experiment.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ExperimentDefinition {
-    /**
-     * The condition defines which subset of sessions are selected for this experiment. If not specified, all sessions are eligible. E.g. "query_input.language_code=en" See the [conditions reference](https://cloud.google.com/dialogflow/cx/docs/reference/condition).
-     */
-    condition?: string | null;
-    /**
-     * The flow versions as the variants of this experiment.
-     */
-    versionVariants?: Schema$GoogleCloudDialogflowCxV3beta1VersionVariants;
-  }
-  /**
-   * The inference result which includes an objective metric to optimize and the confidence interval.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ExperimentResult {
-    /**
-     * The last time the experiment's stats data was updated. Will have default value if stats have never been computed for this experiment.
-     */
-    lastUpdateTime?: string | null;
-    /**
-     * Version variants and metrics.
-     */
-    versionMetrics?: Schema$GoogleCloudDialogflowCxV3beta1ExperimentResultVersionMetrics[];
-  }
-  /**
-   * A confidence interval is a range of possible values for the experiment objective you are trying to measure.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ExperimentResultConfidenceInterval {
-    /**
-     * The confidence level used to construct the interval, i.e. there is X% chance that the true value is within this interval.
-     */
-    confidenceLevel?: number | null;
-    /**
-     * Lower bound of the interval.
-     */
-    lowerBound?: number | null;
-    /**
-     * The percent change between an experiment metric's value and the value for its control.
-     */
-    ratio?: number | null;
-    /**
-     * Upper bound of the interval.
-     */
-    upperBound?: number | null;
-  }
-  /**
-   * Metric and corresponding confidence intervals.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ExperimentResultMetric {
-    /**
-     * The probability that the treatment is better than all other treatments in the experiment
-     */
-    confidenceInterval?: Schema$GoogleCloudDialogflowCxV3beta1ExperimentResultConfidenceInterval;
-    /**
-     * Count value of a metric.
-     */
-    count?: number | null;
-    /**
-     * Count-based metric type. Only one of type or count_type is specified in each Metric.
-     */
-    countType?: string | null;
-    /**
-     * Ratio value of a metric.
-     */
-    ratio?: number | null;
-    /**
-     * Ratio-based metric type. Only one of type or count_type is specified in each Metric.
-     */
-    type?: string | null;
-  }
-  /**
-   * Version variant and associated metrics.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ExperimentResultVersionMetrics {
-    /**
-     * The metrics and corresponding confidence intervals in the inference result.
-     */
-    metrics?: Schema$GoogleCloudDialogflowCxV3beta1ExperimentResultMetric[];
-    /**
-     * Number of sessions that were allocated to this version.
-     */
-    sessionCount?: number | null;
-    /**
-     * The name of the flow Version. Format: `projects//locations//agents//flows//versions/`.
-     */
-    version?: string | null;
-  }
-  /**
    * The request message for Agents.ExportAgent.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ExportAgentRequest {
@@ -721,40 +387,6 @@ export namespace dialogflow_v3beta1 {
      * The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in ExportAgentRequest.
      */
     agentUri?: string | null;
-  }
-  /**
-   * Metadata returned for the TestCases.ExportTestCases long running operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata {}
-  /**
-   * The request message for TestCases.ExportTestCases.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportTestCasesRequest {
-    /**
-     * The data format of the exported test cases. If not specified, `BLOB` is assumed.
-     */
-    dataFormat?: string | null;
-    /**
-     * The filter expression used to filter exported test cases, see [API Filtering](https://aip.dev/160). The expression is case insensitive and supports the following syntax: name = [OR name = ] ... For example: * "name = t1 OR name = t2" matches the test case with the exact resource name "t1" or "t2".
-     */
-    filter?: string | null;
-    /**
-     * The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to export the test cases to. The format of this URI must be `gs:///`. If unspecified, the serialized test cases is returned inline.
-     */
-    gcsUri?: string | null;
-  }
-  /**
-   * The response message for TestCases.ExportTestCases.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportTestCasesResponse {
-    /**
-     * Uncompressed raw byte content for test cases.
-     */
-    content?: string | null;
-    /**
-     * The URI to a file containing the exported test cases. This field is populated only if `gcs_uri` is specified in ExportTestCasesRequest.
-     */
-    gcsUri?: string | null;
   }
   /**
    * Flows represents the conversation flows when you build your chatbot agent. A flow consists of many pages connected by the transition routes. Conversations always start with the built-in Start Flow (with an all-0 ID). Transition routes can direct the conversation session from the current flow (parent flow) to another flow (sub flow). When the sub flow is finished, Dialogflow will bring the session back to the parent flow, where the sub flow is started. Usually, when a transition route is followed by a matched intent, the intent will be "consumed". This means the intent won't activate more transition routes. However, when the followed transition route moves the conversation session into a different flow, the matched intent can be carried over and to be consumed in the target flow.
@@ -784,23 +416,6 @@ export namespace dialogflow_v3beta1 {
      * A flow's transition routes serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition routes and can support use cases such as the user saying "help" or "can I talk to a human?", which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evalauted in the following order: * TransitionRoutes with intent specified.. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.
      */
     transitionRoutes?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRoute[];
-  }
-  /**
-   * The response message for Flows.GetFlowValidationResult.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult {
-    /**
-     * The unique identifier of the flow validation result. Format: `projects//locations//agents//flows//validationResult`.
-     */
-    name?: string | null;
-    /**
-     * Last time the flow was validated.
-     */
-    updateTime?: string | null;
-    /**
-     * Contains all validation messages.
-     */
-    validationMessages?: Schema$GoogleCloudDialogflowCxV3beta1ValidationMessage[];
   }
   /**
    * A form is a data model that groups related parameters that can be collected from the user. The process in which the agent prompts the user and collects parameter values from the user is called form filling. A form can be added to a page. When form filling is done, the filled parameters will be written to the session.
@@ -836,7 +451,7 @@ export namespace dialogflow_v3beta1 {
      */
     isList?: boolean | null;
     /**
-     * Indicates whether the parameter content should be redacted in log. If redaction is enabled, the parameter content will be replaced by parameter name during logging. Note: the parameter content is subject to redaction if either parameter level redaction or entity type level redaction is enabled.
+     * Indicates whether the parameter content is logged in text and audio. If it is set to true, the parameter content will be replaced to parameter name in both request and response. The default value is false.
      */
     redact?: boolean | null;
     /**
@@ -969,64 +584,6 @@ export namespace dialogflow_v3beta1 {
     value?: any | null;
   }
   /**
-   * Metadata in google::longrunning::Operation for Knowledge operations.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata {
-    /**
-     * Required. Output only. The current state of this operation.
-     */
-    state?: string | null;
-  }
-  /**
-   * Metadata for ImportDocuments operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportDocumentsOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * Response message for Documents.ImportDocuments.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportDocumentsResponse {
-    /**
-     * Includes details about skipped documents or any other warnings.
-     */
-    warnings?: Schema$GoogleRpcStatus[];
-  }
-  /**
-   * Metadata returned for the TestCases.ImportTestCases long running operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportTestCasesMetadata {
-    /**
-     * Errors for failed test cases.
-     */
-    errors?: Schema$GoogleCloudDialogflowCxV3beta1TestCaseError[];
-  }
-  /**
-   * The request message for TestCases.ImportTestCases.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportTestCasesRequest {
-    /**
-     * Uncompressed raw byte content for test cases.
-     */
-    content?: string | null;
-    /**
-     * The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to import test cases from. The format of this URI must be `gs:///`.
-     */
-    gcsUri?: string | null;
-  }
-  /**
-   * The response message for TestCases.ImportTestCases.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportTestCasesResponse {
-    /**
-     * The unique identifiers of the new test cases. Format: `projects//locations//agents//testCases/`.
-     */
-    names?: string[] | null;
-  }
-  /**
    * Instructs the speech recognizer on how to process the audio content.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1InputAudioConfig {
@@ -1097,32 +654,6 @@ export namespace dialogflow_v3beta1 {
     trainingPhrases?: Schema$GoogleCloudDialogflowCxV3beta1IntentTrainingPhrase[];
   }
   /**
-   * Intent coverage represents the percentage of all possible intents in the agent that are triggered in any of a parent's test cases.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1IntentCoverage {
-    /**
-     * The percent of intents in the agent that are covered.
-     */
-    coverageScore?: number | null;
-    /**
-     * The list of Intents present in the agent
-     */
-    intents?: Schema$GoogleCloudDialogflowCxV3beta1IntentCoverageIntent[];
-  }
-  /**
-   * The agent's intent.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1IntentCoverageIntent {
-    /**
-     * Whether or not the intent is covered by at least one of the agent's test cases.
-     */
-    covered?: boolean | null;
-    /**
-     * The intent full resource name
-     */
-    intent?: string | null;
-  }
-  /**
    * Represents the intent to trigger programmatically rather than as a result of natural language processing.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1IntentInput {
@@ -1148,7 +679,7 @@ export namespace dialogflow_v3beta1 {
      */
     isList?: boolean | null;
     /**
-     * Indicates whether the parameter content should be redacted in log. If redaction is enabled, the parameter content will be replaced by parameter name during logging. Note: the parameter content is subject to redaction if either parameter level redaction or entity type level redaction is enabled.
+     * Indicates whether the parameter content is logged in text and audio. If it is set to true, the parameter content will be replaced to parameter id in both request and response. The default value is false.
      */
     redact?: boolean | null;
   }
@@ -1222,19 +753,6 @@ export namespace dialogflow_v3beta1 {
     nextPageToken?: string | null;
   }
   /**
-   * The response message for Experiments.ListExperiments.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ListExperimentsResponse {
-    /**
-     * The list of experiments. There will be a maximum number of items returned based on the page_size field in the request. The list may in some cases be empty or contain fewer entries than page_size even if this isn't the last page.
-     */
-    experiments?: Schema$GoogleCloudDialogflowCxV3beta1Experiment[];
-    /**
-     * Token to retrieve the next page of results, or empty if there are no more results in the list.
-     */
-    nextPageToken?: string | null;
-  }
-  /**
    * The response message for Flows.ListFlows.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse {
@@ -1274,19 +792,6 @@ export namespace dialogflow_v3beta1 {
     pages?: Schema$GoogleCloudDialogflowCxV3beta1Page[];
   }
   /**
-   * The response message for SecuritySettings.ListSecuritySettings.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ListSecuritySettingsResponse {
-    /**
-     * Token to retrieve the next page of results, or empty if there are no more results in the list.
-     */
-    nextPageToken?: string | null;
-    /**
-     * The list of security settings.
-     */
-    securitySettings?: Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings[];
-  }
-  /**
    * The response message for SessionEntityTypes.ListSessionEntityTypes.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse {
@@ -1298,32 +803,6 @@ export namespace dialogflow_v3beta1 {
      * The list of session entity types. There will be a maximum number of items returned based on the page_size field in the request.
      */
     sessionEntityTypes?: Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType[];
-  }
-  /**
-   * The response message for TestCases.ListTestCaseResults.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ListTestCaseResultsResponse {
-    /**
-     * Token to retrieve the next page of results, or empty if there are no more results in the list.
-     */
-    nextPageToken?: string | null;
-    /**
-     * The list of test case results.
-     */
-    testCaseResults?: Schema$GoogleCloudDialogflowCxV3beta1TestCaseResult[];
-  }
-  /**
-   * The response message for TestCases.ListTestCases.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ListTestCasesResponse {
-    /**
-     * Token to retrieve the next page of results, or empty if there are no more results in the list.
-     */
-    nextPageToken?: string | null;
-    /**
-     * The list of test cases. There will be a maximum number of items returned based on the page_size field in the request.
-     */
-    testCases?: Schema$GoogleCloudDialogflowCxV3beta1TestCase[];
   }
   /**
    * The response message for TransitionRouteGroups.ListTransitionRouteGroups.
@@ -1407,7 +886,7 @@ export namespace dialogflow_v3beta1 {
      */
     matchType?: string | null;
     /**
-     * The collection of parameters extracted from the query. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * The collection of parameters extracted from the query. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -1520,7 +999,7 @@ export namespace dialogflow_v3beta1 {
      */
     transitionRouteGroups?: string[] | null;
     /**
-     * A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evalauted in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.
+     * A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evalauted in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the page with only condition specified.
      */
     transitionRoutes?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRoute[];
   }
@@ -1613,7 +1092,7 @@ export namespace dialogflow_v3beta1 {
      */
     geoLocation?: Schema$GoogleTypeLatLng;
     /**
-     * Additional parameters to be put into session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * Additional parameters to be put into session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -1662,7 +1141,7 @@ export namespace dialogflow_v3beta1 {
      */
     match?: Schema$GoogleCloudDialogflowCxV3beta1Match;
     /**
-     * The collected session parameters. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * The collected session parameters. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -1697,28 +1176,6 @@ export namespace dialogflow_v3beta1 {
      * The list of webhook call status in the order of call sequence.
      */
     webhookStatuses?: Schema$GoogleRpcStatus[];
-  }
-  /**
-   * Metadata for ReloadDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ReloadDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * Resource name and display name.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ResourceName {
-    /**
-     * Display name.
-     */
-    displayName?: string | null;
-    /**
-     * Name.
-     */
-    name?: string | null;
   }
   /**
    * Represents a response message that can be returned by a conversational agent. Response messages are also used for output audio synthesis. The approach is as follows: * If at least one OutputAudioText response is present, then all OutputAudioText responses are linearly concatenated, and the result is used for output audio synthesis. * If the OutputAudioText responses are a mixture of text and SSML, then the concatenated result is treated as SSML; otherwise, the result is treated as either text or SSML as appropriate. The agent designer should ideally use either text or SSML consistently throughout the bot design. * Otherwise, all Text responses are linearly concatenated, and the result is used for output audio synthesis. This approach allows for more sophisticated user experience scenarios, where the text displayed to the user may differ from what is heard.
@@ -1862,61 +1319,6 @@ export namespace dialogflow_v3beta1 {
     agentUri?: string | null;
   }
   /**
-   * Metadata returned for the TestCases.RunTestCase long running operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1RunTestCaseMetadata {}
-  /**
-   * The request message for TestCases.RunTestCase.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1RunTestCaseRequest {
-    /**
-     * Optional. Environment name. If not set, draft environment is assumed. Format: `projects//locations//agents//environments/`.
-     */
-    environment?: string | null;
-  }
-  /**
-   * The response message for TestCases.RunTestCase.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1RunTestCaseResponse {
-    /**
-     * The result.
-     */
-    result?: Schema$GoogleCloudDialogflowCxV3beta1TestCaseResult;
-  }
-  /**
-   * Represents the settings related to security issues, such as data redaction and data retention. It may take hours for updates on the settings to propagate to all the related components and take effect.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings {
-    /**
-     * Required. The human-readable name of the security settings, unique within the location.
-     */
-    displayName?: string | null;
-    /**
-     * DLP inspect template name. Use this template to define inspect base settings. If empty, we use the default DLP inspect config. The template name will have one of the following formats: `projects/PROJECT_ID/inspectTemplates/TEMPLATE_ID` OR `organizations/ORGANIZATION_ID/inspectTemplates/TEMPLATE_ID`
-     */
-    inspectTemplate?: string | null;
-    /**
-     * Required. Resource name of the settings. Format: `projects//locations//securitySettings/`.
-     */
-    name?: string | null;
-    /**
-     * List of types of data to remove when retention settings triggers purge.
-     */
-    purgeDataTypes?: string[] | null;
-    /**
-     * Defines on what data we apply redaction. Note that we don't redact data to which we don't have access, e.g., Stackdriver logs.
-     */
-    redactionScope?: string | null;
-    /**
-     * Strategy that defines how we do redaction.
-     */
-    redactionStrategy?: string | null;
-    /**
-     * Retains the data for the specified number of days. User must Set a value lower than Dialogflow's default 30d TTL. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use Dialogflow's default TTL.
-     */
-    retentionWindowDays?: number | null;
-  }
-  /**
    * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1SentimentAnalysisResult {
@@ -1955,7 +1357,7 @@ export namespace dialogflow_v3beta1 {
      */
     parameters?: {[key: string]: any} | null;
     /**
-     * Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the session. This field can be used by the webhook to identify a session. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/` if environment is specified.
+     * Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the session. This field can be used by the webhook to identify a user. Format: `projects//locations//agents//sessions/`.
      */
     session?: string | null;
   }
@@ -1968,14 +1370,6 @@ export namespace dialogflow_v3beta1 {
      */
     enableSpeechAdaptation?: boolean | null;
   }
-  /**
-   * The request message for Experiments.StartExperiment.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1StartExperimentRequest {}
-  /**
-   * The request message for Experiments.StopExperiment.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1StopExperimentRequest {}
   /**
    * Configuration of how speech should be synthesized.
    */
@@ -2002,124 +1396,6 @@ export namespace dialogflow_v3beta1 {
     volumeGainDb?: number | null;
   }
   /**
-   * Represents a test case.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1TestCase {
-    /**
-     * Output only. When the test was created.
-     */
-    creationTime?: string | null;
-    /**
-     * Required. The human-readable name of the test case, unique within the agent. Limit of 200 characters.
-     */
-    displayName?: string | null;
-    /**
-     * The latest test result.
-     */
-    lastTestResult?: Schema$GoogleCloudDialogflowCxV3beta1TestCaseResult;
-    /**
-     * The unique identifier of the test case. TestCases.CreateTestCase will populate the name automatically. Otherwise use format: `projects//locations//agents/ /testCases/`.
-     */
-    name?: string | null;
-    /**
-     * Additional freeform notes about the test case. Limit of 400 characters.
-     */
-    notes?: string | null;
-    /**
-     * Tags are short descriptions that users may apply to test cases for organizational and filtering purposes. Each tag should start with "#" and has a limit of 30 characters.
-     */
-    tags?: string[] | null;
-    /**
-     * The conversation turns uttered when the test case was created, in chronological order. These include the canonical set of agent utterances that should occur when the agent is working properly.
-     */
-    testCaseConversationTurns?: Schema$GoogleCloudDialogflowCxV3beta1ConversationTurn[];
-    /**
-     * Config for the test case.
-     */
-    testConfig?: Schema$GoogleCloudDialogflowCxV3beta1TestConfig;
-  }
-  /**
-   * Error info for importing a test.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1TestCaseError {
-    /**
-     * The status associated with the test case.
-     */
-    status?: Schema$GoogleRpcStatus;
-    /**
-     * The test case.
-     */
-    testCase?: Schema$GoogleCloudDialogflowCxV3beta1TestCase;
-  }
-  /**
-   * Represents a result from running a test case in an agent environment.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1TestCaseResult {
-    /**
-     * The conversation turns uttered during the test case replay in chronological order.
-     */
-    conversationTurns?: Schema$GoogleCloudDialogflowCxV3beta1ConversationTurn[];
-    /**
-     * Environment where the test was run. If not set, it indicates the draft environment.
-     */
-    environment?: string | null;
-    /**
-     * The resource name for the test case result. Format: `projects//locations//agents//testCases/ /results/`.
-     */
-    name?: string | null;
-    /**
-     * Whether the test case passed in the agent environment.
-     */
-    testResult?: string | null;
-    /**
-     * The time that the test was run.
-     */
-    testTime?: string | null;
-  }
-  /**
-   * Represents configurations for a test case.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1TestConfig {
-    /**
-     * Flow name. If not set, default start flow is assumed. Format: `projects//locations//agents//flows/`.
-     */
-    flow?: string | null;
-    /**
-     * Session parameters to be compared when calculating differences.
-     */
-    trackingParameters?: string[] | null;
-  }
-  /**
-   * Error info for running a test.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1TestError {
-    /**
-     * The status associated with the test.
-     */
-    status?: Schema$GoogleRpcStatus;
-    /**
-     * The test case resource name.
-     */
-    testCase?: string | null;
-    /**
-     * The timestamp when the test was completed.
-     */
-    testTime?: string | null;
-  }
-  /**
-   * The description of differences between original and replayed agent output.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1TestRunDifference {
-    /**
-     * A description of the diff, showing the actual output vs expected output.
-     */
-    description?: string | null;
-    /**
-     * The type of diff.
-     */
-    type?: string | null;
-  }
-  /**
    * Represents the natural language text to be processed.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1TextInput {
@@ -2132,61 +1408,6 @@ export namespace dialogflow_v3beta1 {
    * The request message for Flows.TrainFlow.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1TrainFlowRequest {}
-  /**
-   * Transition coverage represents the percentage of all possible page transitions (page-level transition routes and event handlers, excluding transition route groups) present within any of a parent's test cases.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1TransitionCoverage {
-    /**
-     * The percent of transitions in the agent that are covered.
-     */
-    coverageScore?: number | null;
-    /**
-     * The list of Transitions present in the agent.
-     */
-    transitions?: Schema$GoogleCloudDialogflowCxV3beta1TransitionCoverageTransition[];
-  }
-  /**
-   * A transition in a page.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1TransitionCoverageTransition {
-    /**
-     * Whether or not the transition is covered by at least one of the agent's test cases.
-     */
-    covered?: boolean | null;
-    /**
-     * Event handler.
-     */
-    eventHandler?: Schema$GoogleCloudDialogflowCxV3beta1EventHandler;
-    /**
-     * The index of a transition in the transition list. Starting from 0.
-     */
-    index?: number | null;
-    /**
-     * The start node of a transition.
-     */
-    source?: Schema$GoogleCloudDialogflowCxV3beta1TransitionCoverageTransitionNode;
-    /**
-     * The end node of a transition.
-     */
-    target?: Schema$GoogleCloudDialogflowCxV3beta1TransitionCoverageTransitionNode;
-    /**
-     * Intent route or condition route.
-     */
-    transitionRoute?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRoute;
-  }
-  /**
-   * The source or target of a transition.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1TransitionCoverageTransitionNode {
-    /**
-     * Indicates a transition to a Flow. Only some fields such as name and displayname will be set.
-     */
-    flow?: Schema$GoogleCloudDialogflowCxV3beta1Flow;
-    /**
-     * Indicates a transition to a Page. Only some fields such as name and displayname will be set.
-     */
-    page?: Schema$GoogleCloudDialogflowCxV3beta1Page;
-  }
   /**
    * A transition route specifies a intent that can be matched and/or a data condition that can be evaluated during a session. When a specified transition is matched, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the transition, it will be called. * If there is a `target_page` associated with the transition, the session will transition into the specified page. * If there is a `target_flow` associated with the transition, the session will transition into the specified flow.
    */
@@ -2229,117 +1450,9 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string | null;
     /**
-     * Transition routes associated with the TransitionRouteGroup.
+     * Transition routes associated with the TransitionRouteGroup. Duplicate transition routes (i.e. using the same `intent`) are not allowed. Note that the `name` field is not used in the transition route group scope.
      */
     transitionRoutes?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRoute[];
-  }
-  /**
-   * Transition route group coverage represents the percentage of all possible transition routes present within any of a parent's test cases. The results are grouped by the transition route group.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroupCoverage {
-    /**
-     * Transition route group coverages.
-     */
-    coverages?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroupCoverageCoverage[];
-    /**
-     * The percent of transition routes in all the transition route groups that are covered.
-     */
-    coverageScore?: number | null;
-  }
-  /**
-   * Coverage result message for one transition route group.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroupCoverageCoverage {
-    /**
-     * The percent of transition routes in the transition route group that are covered.
-     */
-    coverageScore?: number | null;
-    /**
-     * Transition route group metadata. Only name and displayName will be set.
-     */
-    routeGroup?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup;
-    /**
-     * The list of transition routes and coverage in the transition route group.
-     */
-    transitions?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroupCoverageCoverageTransition[];
-  }
-  /**
-   * A transition coverage in a transition route group.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroupCoverageCoverageTransition {
-    /**
-     * Whether or not the transition route is covered by at least one of the agent's test cases.
-     */
-    covered?: boolean | null;
-    /**
-     * Intent route or condition route.
-     */
-    transitionRoute?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRoute;
-  }
-  /**
-   * Metadata for UpdateDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1UpdateDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * The request message for Agents.ValidateAgent.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ValidateAgentRequest {
-    /**
-     * If not specified, the agent's default language is used.
-     */
-    languageCode?: string | null;
-  }
-  /**
-   * The request message for Flows.ValidateFlow.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ValidateFlowRequest {
-    /**
-     * If not specified, the agent's default language is used.
-     */
-    languageCode?: string | null;
-  }
-  /**
-   * Agent/flow validation message.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ValidationMessage {
-    /**
-     * The message detail.
-     */
-    detail?: string | null;
-    /**
-     * The resource names of the resources where the message is found.
-     */
-    resourceNames?: Schema$GoogleCloudDialogflowCxV3beta1ResourceName[];
-    /**
-     * The names of the resources where the message is found.
-     */
-    resources?: string[] | null;
-    /**
-     * The type of the resources where the message is found.
-     */
-    resourceType?: string | null;
-    /**
-     * Indicates the severity of the message.
-     */
-    severity?: string | null;
-  }
-  /**
-   * The history of variants update.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1VariantsHistory {
-    /**
-     * Update time of the variants.
-     */
-    updateTime?: string | null;
-    /**
-     * The flow versions as the variants.
-     */
-    versionVariants?: Schema$GoogleCloudDialogflowCxV3beta1VersionVariants;
   }
   /**
    * Represents a version of a flow.
@@ -2371,37 +1484,11 @@ export namespace dialogflow_v3beta1 {
     state?: string | null;
   }
   /**
-   * A list of flow version variants.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1VersionVariants {
-    /**
-     * A list of flow version variants.
-     */
-    variants?: Schema$GoogleCloudDialogflowCxV3beta1VersionVariantsVariant[];
-  }
-  /**
-   * A single flow version with specified traffic allocation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1VersionVariantsVariant {
-    /**
-     * Whether the variant is for the control group.
-     */
-    isControlGroup?: boolean | null;
-    /**
-     * Percentage of the traffic which should be routed to this version of flow. Traffic allocation for a single flow must sum up to 1.0.
-     */
-    trafficAllocation?: number | null;
-    /**
-     * The name of the flow version. Format: `projects//locations//agents//flows//versions/`.
-     */
-    version?: string | null;
-  }
-  /**
    * Description of which voice to use for speech synthesis.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1VoiceSelectionParams {
     /**
-     * Optional. The name of the voice. If not set, the service will choose a voice based on the other parameters such as language_code and ssml_gender. For the list of available voices, please refer to [Supported voices and languages](https://cloud.google.com/text-to-speech/docs/voices).
+     * Optional. The name of the voice. If not set, the service will choose a voice based on the other parameters such as language_code and ssml_gender.
      */
     name?: string | null;
     /**
@@ -2484,10 +1571,6 @@ export namespace dialogflow_v3beta1 {
      */
     payload?: {[key: string]: any} | null;
     /**
-     * The sentiment analysis result of the current user request. The field is filled when sentiment analysis is configured to be enabled for the request.
-     */
-    sentimentAnalysisResult?: Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestSentimentAnalysisResult;
-    /**
      * Information about session status.
      */
     sessionInfo?: Schema$GoogleCloudDialogflowCxV3beta1SessionInfo;
@@ -2505,14 +1588,6 @@ export namespace dialogflow_v3beta1 {
    * Represents intent information communicated to the webhook.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo {
-    /**
-     * The confidence of the matched intent. Values range from 0.0 (completely uncertain) to 1.0 (completely certain).
-     */
-    confidence?: number | null;
-    /**
-     * Always present. The display name of the last matched intent.
-     */
-    displayName?: string | null;
     /**
      * Always present. The unique identifier of the last matched intent. Format: `projects//locations//agents//intents/`.
      */
@@ -2538,19 +1613,6 @@ export namespace dialogflow_v3beta1 {
      * Always present. Structured value for the parameter extracted from user utterance.
      */
     resolvedValue?: any | null;
-  }
-  /**
-   * Represents the result of sentiment analysis.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestSentimentAnalysisResult {
-    /**
-     * A non-negative number in the [0, +inf) range, which represents the absolute magnitude of sentiment, regardless of score (positive or negative).
-     */
-    magnitude?: number | null;
-    /**
-     * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive sentiment).
-     */
-    score?: number | null;
   }
   /**
    * The response message for a webhook call.
@@ -2593,1052 +1655,6 @@ export namespace dialogflow_v3beta1 {
      * The list of rich message responses to present to the user.
      */
     messages?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
-  }
-  /**
-   * One interaction between a human and virtual agent. The human provides some input and the virtual agent provides a response.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ConversationTurn {
-    /**
-     * The user input.
-     */
-    userInput?: Schema$GoogleCloudDialogflowCxV3ConversationTurnUserInput;
-    /**
-     * The virtual agent output.
-     */
-    virtualAgentOutput?: Schema$GoogleCloudDialogflowCxV3ConversationTurnVirtualAgentOutput;
-  }
-  /**
-   * The input from the human user.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ConversationTurnUserInput {
-    /**
-     * Parameters that need to be injected into the conversation during intent detection.
-     */
-    injectedParameters?: {[key: string]: any} | null;
-    /**
-     * Supports text input, event input, dtmf input in the test case.
-     */
-    input?: Schema$GoogleCloudDialogflowCxV3QueryInput;
-    /**
-     * If webhooks should be allowed to trigger in response to the user utterance. Often if parameters are injected, webhooks should not be enabled.
-     */
-    isWebhookEnabled?: boolean | null;
-  }
-  /**
-   * The output from the virtual agent.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ConversationTurnVirtualAgentOutput {
-    /**
-     * The Page on which the utterance was spoken. Only name and displayName will be set.
-     */
-    currentPage?: Schema$GoogleCloudDialogflowCxV3Page;
-    /**
-     * Required. Input only. The diagnostic info output for the turn.
-     */
-    diagnosticInfo?: {[key: string]: any} | null;
-    /**
-     * Output only. If this is part of a result conversation turn, the list of differences between the original run and the replay for this output, if any.
-     */
-    differences?: Schema$GoogleCloudDialogflowCxV3TestRunDifference[];
-    /**
-     * The session parameters available to the bot at this point.
-     */
-    sessionParameters?: {[key: string]: any} | null;
-    /**
-     * Response error from the agent in the test result. If set, other output is empty.
-     */
-    status?: Schema$GoogleRpcStatus;
-    /**
-     * The text responses from the agent for the turn.
-     */
-    textResponses?: Schema$GoogleCloudDialogflowCxV3ResponseMessageText[];
-    /**
-     * The Intent that triggered the response. Only name and displayName will be set.
-     */
-    triggeredIntent?: Schema$GoogleCloudDialogflowCxV3Intent;
-  }
-  /**
-   * Metadata for CreateDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3CreateDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * Metadata associated with the long running operation for Versions.CreateVersion.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3CreateVersionOperationMetadata {
-    /**
-     * Name of the created version. Format: `projects//locations//agents//flows//versions/`.
-     */
-    version?: string | null;
-  }
-  /**
-   * Metadata for DeleteDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3DeleteDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * Represents the input for dtmf event.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3DtmfInput {
-    /**
-     * The dtmf digits.
-     */
-    digits?: string | null;
-    /**
-     * The finish digit (if any).
-     */
-    finishDigit?: string | null;
-  }
-  /**
-   * An event handler specifies an event that can be handled during a session. When the specified event happens, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the event, it will be called. * If there is a `target_page` associated with the event, the session will transition into the specified page. * If there is a `target_flow` associated with the event, the session will transition into the specified flow.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3EventHandler {
-    /**
-     * Required. The name of the event to handle.
-     */
-    event?: string | null;
-    /**
-     * Output only. The unique identifier of this event handler.
-     */
-    name?: string | null;
-    /**
-     * The target flow to transition to. Format: `projects//locations//agents//flows/`.
-     */
-    targetFlow?: string | null;
-    /**
-     * The target page to transition to. Format: `projects//locations//agents//flows//pages/`.
-     */
-    targetPage?: string | null;
-    /**
-     * The fulfillment to call when the event occurs. Handling webhook errors with a fulfillment enabled with webhook could cause infinite loop. It is invalid to specify such fulfillment for a handler handling webhooks.
-     */
-    triggerFulfillment?: Schema$GoogleCloudDialogflowCxV3Fulfillment;
-  }
-  /**
-   * Represents the event to trigger.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3EventInput {
-    /**
-     * Name of the event.
-     */
-    event?: string | null;
-  }
-  /**
-   * The response message for Agents.ExportAgent.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ExportAgentResponse {
-    /**
-     * Uncompressed raw byte content for agent.
-     */
-    agentContent?: string | null;
-    /**
-     * The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in ExportAgentRequest.
-     */
-    agentUri?: string | null;
-  }
-  /**
-   * Metadata returned for the TestCases.ExportTestCases long running operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ExportTestCasesMetadata {}
-  /**
-   * The response message for TestCases.ExportTestCases.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ExportTestCasesResponse {
-    /**
-     * Uncompressed raw byte content for test cases.
-     */
-    content?: string | null;
-    /**
-     * The URI to a file containing the exported test cases. This field is populated only if `gcs_uri` is specified in ExportTestCasesRequest.
-     */
-    gcsUri?: string | null;
-  }
-  /**
-   * A form is a data model that groups related parameters that can be collected from the user. The process in which the agent prompts the user and collects parameter values from the user is called form filling. A form can be added to a page. When form filling is done, the filled parameters will be written to the session.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3Form {
-    /**
-     * Parameters to collect from the user.
-     */
-    parameters?: Schema$GoogleCloudDialogflowCxV3FormParameter[];
-  }
-  /**
-   * Represents a form parameter.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3FormParameter {
-    /**
-     * The default value of an optional parameter. If the parameter is required, the default value will be ignored.
-     */
-    defaultValue?: any | null;
-    /**
-     * Required. The human-readable name of the parameter, unique within the form.
-     */
-    displayName?: string | null;
-    /**
-     * Required. The entity type of the parameter. Format: `projects/-/locations/-/agents/-/entityTypes/` for system entity types (for example, `projects/-/locations/-/agents/-/entityTypes/sys.date`), or `projects//locations//agents//entityTypes/` for developer entity types.
-     */
-    entityType?: string | null;
-    /**
-     * Required. Defines fill behavior for the parameter.
-     */
-    fillBehavior?: Schema$GoogleCloudDialogflowCxV3FormParameterFillBehavior;
-    /**
-     * Indicates whether the parameter represents a list of values.
-     */
-    isList?: boolean | null;
-    /**
-     * Indicates whether the parameter content should be redacted in log. If redaction is enabled, the parameter content will be replaced by parameter name during logging. Note: the parameter content is subject to redaction if either parameter level redaction or entity type level redaction is enabled.
-     */
-    redact?: boolean | null;
-    /**
-     * Indicates whether the parameter is required. Optional parameters will not trigger prompts; however, they are filled if the user specifies them. Required parameters must be filled before form filling concludes.
-     */
-    required?: boolean | null;
-  }
-  /**
-   * Configuration for how the filling of a parameter should be handled.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3FormParameterFillBehavior {
-    /**
-     * Required. The fulfillment to provide the initial prompt that the agent can present to the user in order to fill the parameter.
-     */
-    initialPromptFulfillment?: Schema$GoogleCloudDialogflowCxV3Fulfillment;
-    /**
-     * The handlers for parameter-level events, used to provide reprompt for the parameter or transition to a different page/flow. The supported events are: * `sys.no-match-`, where N can be from 1 to 6 * `sys.no-match-default` * `sys.no-input-`, where N can be from 1 to 6 * `sys.no-input-default` * `sys.invalid-parameter` `initial_prompt_fulfillment` provides the first prompt for the parameter. If the user's response does not fill the parameter, a no-match/no-input event will be triggered, and the fulfillment associated with the `sys.no-match-1`/`sys.no-input-1` handler (if defined) will be called to provide a prompt. The `sys.no-match-2`/`sys.no-input-2` handler (if defined) will respond to the next no-match/no-input event, and so on. A `sys.no-match-default` or `sys.no-input-default` handler will be used to handle all following no-match/no-input events after all numbered no-match/no-input handlers for the parameter are consumed. A `sys.invalid-parameter` handler can be defined to handle the case where the parameter values have been `invalidated` by webhook. For example, if the user's response fill the parameter, however the parameter was invalidated by webhook, the fulfillment associated with the `sys.invalid-parameter` handler (if defined) will be called to provide a prompt. If the event handler for the corresponding event can't be found on the parameter, `initial_prompt_fulfillment` will be re-prompted.
-     */
-    repromptEventHandlers?: Schema$GoogleCloudDialogflowCxV3EventHandler[];
-  }
-  /**
-   * A fulfillment can do one or more of the following actions at the same time: * Generate rich message responses. * Set parameter values. * Call the webhook. Fulfillments can be called at various stages in the Page or Form lifecycle. For example, when a DetectIntentRequest drives a session to enter a new page, the page's entry fulfillment can add a static response to the QueryResult in the returning DetectIntentResponse, call the webhook (for example, to load user data from a database), or both.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3Fulfillment {
-    /**
-     * Conditional cases for this fulfillment.
-     */
-    conditionalCases?: Schema$GoogleCloudDialogflowCxV3FulfillmentConditionalCases[];
-    /**
-     * The list of rich message responses to present to the user.
-     */
-    messages?: Schema$GoogleCloudDialogflowCxV3ResponseMessage[];
-    /**
-     * Set parameter values before executing the webhook.
-     */
-    setParameterActions?: Schema$GoogleCloudDialogflowCxV3FulfillmentSetParameterAction[];
-    /**
-     * The tag used by the webhook to identify which fulfillment is being called. This field is required if `webhook` is specified.
-     */
-    tag?: string | null;
-    /**
-     * The webhook to call. Format: `projects//locations//agents//webhooks/`.
-     */
-    webhook?: string | null;
-  }
-  /**
-   * A list of cascading if-else conditions. Cases are mutually exclusive. The first one with a matching condition is selected, all the rest ignored.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3FulfillmentConditionalCases {
-    /**
-     * A list of cascading if-else conditions.
-     */
-    cases?: Schema$GoogleCloudDialogflowCxV3FulfillmentConditionalCasesCase[];
-  }
-  /**
-   * Each case has a Boolean condition. When it is evaluated to be True, the corresponding messages will be selected and evaluated recursively.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3FulfillmentConditionalCasesCase {
-    /**
-     * A list of case content.
-     */
-    caseContent?: Schema$GoogleCloudDialogflowCxV3FulfillmentConditionalCasesCaseCaseContent[];
-    /**
-     * The condition to activate and select this case. Empty means the condition is always true. The condition is evaluated against form parameters or session parameters. See the [conditions reference](https://cloud.google.com/dialogflow/cx/docs/reference/condition).
-     */
-    condition?: string | null;
-  }
-  /**
-   * The list of messages or conditional cases to activate for this case.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3FulfillmentConditionalCasesCaseCaseContent {
-    /**
-     * Additional cases to be evaluated.
-     */
-    additionalCases?: Schema$GoogleCloudDialogflowCxV3FulfillmentConditionalCases;
-    /**
-     * Returned message.
-     */
-    message?: Schema$GoogleCloudDialogflowCxV3ResponseMessage;
-  }
-  /**
-   * Setting a parameter value.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3FulfillmentSetParameterAction {
-    /**
-     * Display name of the parameter.
-     */
-    parameter?: string | null;
-    /**
-     * The new value of the parameter. A null value clears the parameter.
-     */
-    value?: any | null;
-  }
-  /**
-   * Metadata in google::longrunning::Operation for Knowledge operations.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata {
-    /**
-     * Required. Output only. The current state of this operation.
-     */
-    state?: string | null;
-  }
-  /**
-   * Metadata for ImportDocuments operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ImportDocumentsOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * Response message for Documents.ImportDocuments.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ImportDocumentsResponse {
-    /**
-     * Includes details about skipped documents or any other warnings.
-     */
-    warnings?: Schema$GoogleRpcStatus[];
-  }
-  /**
-   * Metadata returned for the TestCases.ImportTestCases long running operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ImportTestCasesMetadata {
-    /**
-     * Errors for failed test cases.
-     */
-    errors?: Schema$GoogleCloudDialogflowCxV3TestCaseError[];
-  }
-  /**
-   * The response message for TestCases.ImportTestCases.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ImportTestCasesResponse {
-    /**
-     * The unique identifiers of the new test cases. Format: `projects//locations//agents//testCases/`.
-     */
-    names?: string[] | null;
-  }
-  /**
-   * Instructs the speech recognizer on how to process the audio content.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3InputAudioConfig {
-    /**
-     * Required. Audio encoding of the audio content to process.
-     */
-    audioEncoding?: string | null;
-    /**
-     * Optional. If `true`, Dialogflow returns SpeechWordInfo in StreamingRecognitionResult with information about the recognized speech words, e.g. start and end time offsets. If false or unspecified, Speech doesn't return any word-level information.
-     */
-    enableWordInfo?: boolean | null;
-    /**
-     * Optional. Which Speech model to select for the given request. Select the model best suited to your domain to get best results. If a model is not explicitly specified, then we auto-select a model based on the parameters in the InputAudioConfig. If enhanced speech model is enabled for the agent and an enhanced version of the specified model for the language does not exist, then the speech is recognized using the standard version of the specified model. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics#select-model) for more details.
-     */
-    model?: string | null;
-    /**
-     * Optional. Which variant of the Speech model to use.
-     */
-    modelVariant?: string | null;
-    /**
-     * Optional. A list of strings containing words and phrases that the speech recognizer should recognize with higher likelihood. See [the Cloud Speech documentation](https://cloud.google.com/speech-to-text/docs/basics#phrase-hints) for more details.
-     */
-    phraseHints?: string[] | null;
-    /**
-     * Sample rate (in Hertz) of the audio content sent in the query. Refer to [Cloud Speech API documentation](https://cloud.google.com/speech-to-text/docs/basics) for more details.
-     */
-    sampleRateHertz?: number | null;
-    /**
-     * Optional. If `false` (default), recognition does not cease until the client closes the stream. If `true`, the recognizer will detect a single spoken utterance in input audio. Recognition ceases when it detects the audio's voice has stopped or paused. In this case, once a detected intent is received, the client should close the stream and start a new request with a new stream as needed. Note: This setting is relevant only for streaming methods.
-     */
-    singleUtterance?: boolean | null;
-  }
-  /**
-   * An intent represents a user's intent to interact with a conversational agent. You can provide information for the Dialogflow API to use to match user input to an intent by adding training phrases (i.e., examples of user input) to your intent.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3Intent {
-    /**
-     * Optional. Human readable description for better understanding an intent like its scope, content, result etc. Maximum character limit: 140 characters.
-     */
-    description?: string | null;
-    /**
-     * Required. The human-readable name of the intent, unique within the agent.
-     */
-    displayName?: string | null;
-    /**
-     * Indicates whether this is a fallback intent. Currently only default fallback intent is allowed in the agent, which is added upon agent creation. Adding training phrases to fallback intent is useful in the case of requests that are mistakenly matched, since training phrases assigned to fallback intents act as negative examples that triggers no-match event.
-     */
-    isFallback?: boolean | null;
-    /**
-     * Optional. The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix "sys." is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys.head * sys.contextual The above labels do not require value. "sys.head" means the intent is a head intent. "sys.contextual" means the intent is a contextual intent.
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * The unique identifier of the intent. Required for the Intents.UpdateIntent method. Intents.CreateIntent populates the name automatically. Format: `projects//locations//agents//intents/`.
-     */
-    name?: string | null;
-    /**
-     * The collection of parameters associated with the intent.
-     */
-    parameters?: Schema$GoogleCloudDialogflowCxV3IntentParameter[];
-    /**
-     * The priority of this intent. Higher numbers represent higher priorities. - If the supplied value is unspecified or 0, the service translates the value to 500,000, which corresponds to the `Normal` priority in the console. - If the supplied value is negative, the intent is ignored in runtime detect intent requests.
-     */
-    priority?: number | null;
-    /**
-     * The collection of training phrases the agent is trained on to identify the intent.
-     */
-    trainingPhrases?: Schema$GoogleCloudDialogflowCxV3IntentTrainingPhrase[];
-  }
-  /**
-   * Represents the intent to trigger programmatically rather than as a result of natural language processing.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3IntentInput {
-    /**
-     * Required. The unique identifier of the intent. Format: `projects//locations//agents//intents/`.
-     */
-    intent?: string | null;
-  }
-  /**
-   * Represents an intent parameter.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3IntentParameter {
-    /**
-     * Required. The entity type of the parameter. Format: `projects/-/locations/-/agents/-/entityTypes/` for system entity types (for example, `projects/-/locations/-/agents/-/entityTypes/sys.date`), or `projects//locations//agents//entityTypes/` for developer entity types.
-     */
-    entityType?: string | null;
-    /**
-     * Required. The unique identifier of the parameter. This field is used by training phrases to annotate their parts.
-     */
-    id?: string | null;
-    /**
-     * Indicates whether the parameter represents a list of values.
-     */
-    isList?: boolean | null;
-    /**
-     * Indicates whether the parameter content should be redacted in log. If redaction is enabled, the parameter content will be replaced by parameter name during logging. Note: the parameter content is subject to redaction if either parameter level redaction or entity type level redaction is enabled.
-     */
-    redact?: boolean | null;
-  }
-  /**
-   * Represents an example that the agent is trained on to identify the intent.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3IntentTrainingPhrase {
-    /**
-     * Output only. The unique identifier of the training phrase.
-     */
-    id?: string | null;
-    /**
-     * Required. The ordered list of training phrase parts. The parts are concatenated in order to form the training phrase. Note: The API does not automatically annotate training phrases like the Dialogflow Console does. Note: Do not forget to include whitespace at part boundaries, so the training phrase is well formatted when the parts are concatenated. If the training phrase does not need to be annotated with parameters, you just need a single part with only the Part.text field set. If you want to annotate the training phrase, you must create multiple parts, where the fields of each part are populated in one of two ways: - `Part.text` is set to a part of the phrase that has no parameters. - `Part.text` is set to a part of the phrase that you want to annotate, and the `parameter_id` field is set.
-     */
-    parts?: Schema$GoogleCloudDialogflowCxV3IntentTrainingPhrasePart[];
-    /**
-     * Indicates how many times this example was added to the intent.
-     */
-    repeatCount?: number | null;
-  }
-  /**
-   * Represents a part of a training phrase.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3IntentTrainingPhrasePart {
-    /**
-     * The parameter used to annotate this part of the training phrase. This field is required for annotated parts of the training phrase.
-     */
-    parameterId?: string | null;
-    /**
-     * Required. The text for this part.
-     */
-    text?: string | null;
-  }
-  /**
-   * A Dialogflow CX conversation (session) can be described and visualized as a state machine. The states of a CX session are represented by pages. For each flow, you define many pages, where your combined pages can handle a complete conversation on the topics the flow is designed for. At any given moment, exactly one page is the current page, the current page is considered active, and the flow associated with that page is considered active. Every flow has a special start page. When a flow initially becomes active, the start page page becomes the current page. For each conversational turn, the current page will either stay the same or transition to another page. You configure each page to collect information from the end-user that is relevant for the conversational state represented by the page. For more information, see the [Page guide](https://cloud.google.com/dialogflow/cx/docs/concept/page).
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3Page {
-    /**
-     * Required. The human-readable name of the page, unique within the agent.
-     */
-    displayName?: string | null;
-    /**
-     * The fulfillment to call when the session is entering the page.
-     */
-    entryFulfillment?: Schema$GoogleCloudDialogflowCxV3Fulfillment;
-    /**
-     * Handlers associated with the page to handle events such as webhook errors, no match or no input.
-     */
-    eventHandlers?: Schema$GoogleCloudDialogflowCxV3EventHandler[];
-    /**
-     * The form associated with the page, used for collecting parameters relevant to the page.
-     */
-    form?: Schema$GoogleCloudDialogflowCxV3Form;
-    /**
-     * The unique identifier of the page. Required for the Pages.UpdatePage method. Pages.CreatePage populates the name automatically. Format: `projects//locations//agents//flows//pages/`.
-     */
-    name?: string | null;
-    /**
-     * Ordered list of `TransitionRouteGroups` associated with the page. Transition route groups must be unique within a page. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -\> page's transition route group -\> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/`.
-     */
-    transitionRouteGroups?: string[] | null;
-    /**
-     * A list of transitions for the transition rules of this page. They route the conversation to another page in the same flow, or another flow. When we are in a certain page, the TransitionRoutes are evalauted in the following order: * TransitionRoutes defined in the page with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in flow with intent specified. * TransitionRoutes defined in the transition route groups with intent specified. * TransitionRoutes defined in the page with only condition specified. * TransitionRoutes defined in the transition route groups with only condition specified.
-     */
-    transitionRoutes?: Schema$GoogleCloudDialogflowCxV3TransitionRoute[];
-  }
-  /**
-   * Represents page information communicated to and from the webhook.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3PageInfo {
-    /**
-     * Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the current page. Format: `projects//locations//agents//flows//pages/`.
-     */
-    currentPage?: string | null;
-    /**
-     * Optional for both WebhookRequest and WebhookResponse. Information about the form.
-     */
-    formInfo?: Schema$GoogleCloudDialogflowCxV3PageInfoFormInfo;
-  }
-  /**
-   * Represents form information.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3PageInfoFormInfo {
-    /**
-     * Optional for both WebhookRequest and WebhookResponse. The parameters contained in the form. Note that the webhook cannot add or remove any form parameter.
-     */
-    parameterInfo?: Schema$GoogleCloudDialogflowCxV3PageInfoFormInfoParameterInfo[];
-  }
-  /**
-   * Represents parameter information.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3PageInfoFormInfoParameterInfo {
-    /**
-     * Always present for WebhookRequest. Required for WebhookResponse. The human-readable name of the parameter, unique within the form. This field cannot be modified by the webhook.
-     */
-    displayName?: string | null;
-    /**
-     * Optional for WebhookRequest. Ignored for WebhookResponse. Indicates if the parameter value was just collected on the last conversation turn.
-     */
-    justCollected?: boolean | null;
-    /**
-     * Optional for both WebhookRequest and WebhookResponse. Indicates whether the parameter is required. Optional parameters will not trigger prompts; however, they are filled if the user specifies them. Required parameters must be filled before form filling concludes.
-     */
-    required?: boolean | null;
-    /**
-     * Always present for WebhookRequest. Required for WebhookResponse. The state of the parameter. This field can be set to INVALID by the webhook to invalidate the parameter; other values set by the webhook will be ignored.
-     */
-    state?: string | null;
-    /**
-     * Optional for both WebhookRequest and WebhookResponse. The value of the parameter. This field can be set by the webhook to change the parameter value.
-     */
-    value?: any | null;
-  }
-  /**
-   * Represents the query input. It can contain one of: 1. A conversational query in the form of text. 2. An intent query that specifies which intent to trigger. 3. Natural language speech audio to be processed. 4. An event to be triggered.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3QueryInput {
-    /**
-     * The natural language speech audio to be processed.
-     */
-    audio?: Schema$GoogleCloudDialogflowCxV3AudioInput;
-    /**
-     * The DTMF event to be handled.
-     */
-    dtmf?: Schema$GoogleCloudDialogflowCxV3DtmfInput;
-    /**
-     * The event to be triggered.
-     */
-    event?: Schema$GoogleCloudDialogflowCxV3EventInput;
-    /**
-     * The intent to be triggered.
-     */
-    intent?: Schema$GoogleCloudDialogflowCxV3IntentInput;
-    /**
-     * Required. The language of the input. See [Language Support](https://cloud.google.com/dialogflow/docs/reference/language) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language.
-     */
-    languageCode?: string | null;
-    /**
-     * The natural language text to be processed.
-     */
-    text?: Schema$GoogleCloudDialogflowCxV3TextInput;
-  }
-  /**
-   * Metadata for ReloadDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ReloadDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * Represents a response message that can be returned by a conversational agent. Response messages are also used for output audio synthesis. The approach is as follows: * If at least one OutputAudioText response is present, then all OutputAudioText responses are linearly concatenated, and the result is used for output audio synthesis. * If the OutputAudioText responses are a mixture of text and SSML, then the concatenated result is treated as SSML; otherwise, the result is treated as either text or SSML as appropriate. The agent designer should ideally use either text or SSML consistently throughout the bot design. * Otherwise, all Text responses are linearly concatenated, and the result is used for output audio synthesis. This approach allows for more sophisticated user experience scenarios, where the text displayed to the user may differ from what is heard.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessage {
-    /**
-     * Indicates that the conversation succeeded.
-     */
-    conversationSuccess?: Schema$GoogleCloudDialogflowCxV3ResponseMessageConversationSuccess;
-    /**
-     * Output only. A signal that indicates the interaction with the Dialogflow agent has ended. This message is generated by Dialogflow only when the conversation reaches `END_SESSION` or `END_PAGE` page. It is not supposed to be defined by the user. It's guaranteed that there is at most one such message in each response.
-     */
-    endInteraction?: Schema$GoogleCloudDialogflowCxV3ResponseMessageEndInteraction;
-    /**
-     * Hands off conversation to a human agent.
-     */
-    liveAgentHandoff?: Schema$GoogleCloudDialogflowCxV3ResponseMessageLiveAgentHandoff;
-    /**
-     * Output only. An audio response message composed of both the synthesized Dialogflow agent responses and responses defined via play_audio. This message is generated by Dialogflow only and not supposed to be defined by the user.
-     */
-    mixedAudio?: Schema$GoogleCloudDialogflowCxV3ResponseMessageMixedAudio;
-    /**
-     * A text or ssml response that is preferentially used for TTS output audio synthesis, as described in the comment on the ResponseMessage message.
-     */
-    outputAudioText?: Schema$GoogleCloudDialogflowCxV3ResponseMessageOutputAudioText;
-    /**
-     * Returns a response containing a custom, platform-specific payload.
-     */
-    payload?: {[key: string]: any} | null;
-    /**
-     * Signal that the client should play an audio clip hosted at a client-specific URI. Dialogflow uses this to construct mixed_audio. However, Dialogflow itself does not try to read or process the URI in any way.
-     */
-    playAudio?: Schema$GoogleCloudDialogflowCxV3ResponseMessagePlayAudio;
-    /**
-     * Returns a text response.
-     */
-    text?: Schema$GoogleCloudDialogflowCxV3ResponseMessageText;
-  }
-  /**
-   * Indicates that the conversation succeeded, i.e., the bot handled the issue that the customer talked to it about. Dialogflow only uses this to determine which conversations should be counted as successful and doesn't process the metadata in this message in any way. Note that Dialogflow also considers conversations that get to the conversation end page as successful even if they don't return ConversationSuccess. You may set this, for example: * In the entry_fulfillment of a Page if entering the page indicates that the conversation succeeded. * In a webhook response when you determine that you handled the customer issue.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageConversationSuccess {
-    /**
-     * Custom metadata. Dialogflow doesn't impose any structure on this.
-     */
-    metadata?: {[key: string]: any} | null;
-  }
-  /**
-   * Indicates that interaction with the Dialogflow agent has ended. This message is generated by Dialogflow only and not supposed to be defined by the user.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageEndInteraction {}
-  /**
-   * Indicates that the conversation should be handed off to a live agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry_fulfillment of a Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageLiveAgentHandoff {
-    /**
-     * Custom metadata for your handoff procedure. Dialogflow doesn't impose any structure on this.
-     */
-    metadata?: {[key: string]: any} | null;
-  }
-  /**
-   * Represents an audio message that is composed of both segments synthesized from the Dialogflow agent prompts and ones hosted externally at the specified URIs. The external URIs are specified via play_audio. This message is generated by Dialogflow only and not supposed to be defined by the user.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageMixedAudio {
-    /**
-     * Segments this audio response is composed of.
-     */
-    segments?: Schema$GoogleCloudDialogflowCxV3ResponseMessageMixedAudioSegment[];
-  }
-  /**
-   * Represents one segment of audio.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageMixedAudioSegment {
-    /**
-     * Output only. Whether the playback of this segment can be interrupted by the end user's speech and the client should then start the next Dialogflow request.
-     */
-    allowPlaybackInterruption?: boolean | null;
-    /**
-     * Raw audio synthesized from the Dialogflow agent's response using the output config specified in the request.
-     */
-    audio?: string | null;
-    /**
-     * Client-specific URI that points to an audio clip accessible to the client. Dialogflow does not impose any validation on it.
-     */
-    uri?: string | null;
-  }
-  /**
-   * A text or ssml response that is preferentially used for TTS output audio synthesis, as described in the comment on the ResponseMessage message.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageOutputAudioText {
-    /**
-     * Output only. Whether the playback of this message can be interrupted by the end user's speech and the client can then starts the next Dialogflow request.
-     */
-    allowPlaybackInterruption?: boolean | null;
-    /**
-     * The SSML text to be synthesized. For more information, see [SSML](/speech/text-to-speech/docs/ssml).
-     */
-    ssml?: string | null;
-    /**
-     * The raw text to be synthesized.
-     */
-    text?: string | null;
-  }
-  /**
-   * Specifies an audio clip to be played by the client as part of the response.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessagePlayAudio {
-    /**
-     * Output only. Whether the playback of this message can be interrupted by the end user's speech and the client can then starts the next Dialogflow request.
-     */
-    allowPlaybackInterruption?: boolean | null;
-    /**
-     * Required. URI of the audio clip. Dialogflow does not impose any validation on this value. It is specific to the client that reads it.
-     */
-    audioUri?: string | null;
-  }
-  /**
-   * The text response message.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageText {
-    /**
-     * Output only. Whether the playback of this message can be interrupted by the end user's speech and the client can then starts the next Dialogflow request.
-     */
-    allowPlaybackInterruption?: boolean | null;
-    /**
-     * Required. A collection of text responses.
-     */
-    text?: string[] | null;
-  }
-  /**
-   * Metadata returned for the TestCases.RunTestCase long running operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3RunTestCaseMetadata {}
-  /**
-   * The response message for TestCases.RunTestCase.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3RunTestCaseResponse {
-    /**
-     * The result.
-     */
-    result?: Schema$GoogleCloudDialogflowCxV3TestCaseResult;
-  }
-  /**
-   * Represents session information communicated to and from the webhook.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3SessionInfo {
-    /**
-     * Optional for WebhookRequest. Optional for WebhookResponse. All parameters collected from forms and intents during the session. Parameters can be created, updated, or removed by the webhook. To remove a parameter from the session, the webhook should explicitly set the parameter value to null in WebhookResponse. The map is keyed by parameters' display names.
-     */
-    parameters?: {[key: string]: any} | null;
-    /**
-     * Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the session. This field can be used by the webhook to identify a session. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/` if environment is specified.
-     */
-    session?: string | null;
-  }
-  /**
-   * Represents a test case.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3TestCase {
-    /**
-     * Output only. When the test was created.
-     */
-    creationTime?: string | null;
-    /**
-     * Required. The human-readable name of the test case, unique within the agent. Limit of 200 characters.
-     */
-    displayName?: string | null;
-    /**
-     * The latest test result.
-     */
-    lastTestResult?: Schema$GoogleCloudDialogflowCxV3TestCaseResult;
-    /**
-     * The unique identifier of the test case. TestCases.CreateTestCase will populate the name automatically. Otherwise use format: `projects//locations//agents/ /testCases/`.
-     */
-    name?: string | null;
-    /**
-     * Additional freeform notes about the test case. Limit of 400 characters.
-     */
-    notes?: string | null;
-    /**
-     * Tags are short descriptions that users may apply to test cases for organizational and filtering purposes. Each tag should start with "#" and has a limit of 30 characters.
-     */
-    tags?: string[] | null;
-    /**
-     * The conversation turns uttered when the test case was created, in chronological order. These include the canonical set of agent utterances that should occur when the agent is working properly.
-     */
-    testCaseConversationTurns?: Schema$GoogleCloudDialogflowCxV3ConversationTurn[];
-    /**
-     * Config for the test case.
-     */
-    testConfig?: Schema$GoogleCloudDialogflowCxV3TestConfig;
-  }
-  /**
-   * Error info for importing a test.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3TestCaseError {
-    /**
-     * The status associated with the test case.
-     */
-    status?: Schema$GoogleRpcStatus;
-    /**
-     * The test case.
-     */
-    testCase?: Schema$GoogleCloudDialogflowCxV3TestCase;
-  }
-  /**
-   * Represents a result from running a test case in an agent environment.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3TestCaseResult {
-    /**
-     * The conversation turns uttered during the test case replay in chronological order.
-     */
-    conversationTurns?: Schema$GoogleCloudDialogflowCxV3ConversationTurn[];
-    /**
-     * Environment where the test was run. If not set, it indicates the draft environment.
-     */
-    environment?: string | null;
-    /**
-     * The resource name for the test case result. Format: `projects//locations//agents//testCases/ /results/`.
-     */
-    name?: string | null;
-    /**
-     * Whether the test case passed in the agent environment.
-     */
-    testResult?: string | null;
-    /**
-     * The time that the test was run.
-     */
-    testTime?: string | null;
-  }
-  /**
-   * Represents configurations for a test case.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3TestConfig {
-    /**
-     * Flow name. If not set, default start flow is assumed. Format: `projects//locations//agents//flows/`.
-     */
-    flow?: string | null;
-    /**
-     * Session parameters to be compared when calculating differences.
-     */
-    trackingParameters?: string[] | null;
-  }
-  /**
-   * Error info for running a test.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3TestError {
-    /**
-     * The status associated with the test.
-     */
-    status?: Schema$GoogleRpcStatus;
-    /**
-     * The test case resource name.
-     */
-    testCase?: string | null;
-    /**
-     * The timestamp when the test was completed.
-     */
-    testTime?: string | null;
-  }
-  /**
-   * The description of differences between original and replayed agent output.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3TestRunDifference {
-    /**
-     * A description of the diff, showing the actual output vs expected output.
-     */
-    description?: string | null;
-    /**
-     * The type of diff.
-     */
-    type?: string | null;
-  }
-  /**
-   * Represents the natural language text to be processed.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3TextInput {
-    /**
-     * Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 characters.
-     */
-    text?: string | null;
-  }
-  /**
-   * A transition route specifies a intent that can be matched and/or a data condition that can be evaluated during a session. When a specified transition is matched, the following actions are taken in order: * If there is a `trigger_fulfillment` associated with the transition, it will be called. * If there is a `target_page` associated with the transition, the session will transition into the specified page. * If there is a `target_flow` associated with the transition, the session will transition into the specified flow.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3TransitionRoute {
-    /**
-     * The condition to evaluate against form parameters or session parameters. See the [conditions reference](https://cloud.google.com/dialogflow/cx/docs/reference/condition). At least one of `intent` or `condition` must be specified. When both `intent` and `condition` are specified, the transition can only happen when both are fulfilled.
-     */
-    condition?: string | null;
-    /**
-     * The unique identifier of an Intent. Format: `projects//locations//agents//intents/`. Indicates that the transition can only happen when the given intent is matched. At least one of `intent` or `condition` must be specified. When both `intent` and `condition` are specified, the transition can only happen when both are fulfilled.
-     */
-    intent?: string | null;
-    /**
-     * Output only. The unique identifier of this transition route.
-     */
-    name?: string | null;
-    /**
-     * The target flow to transition to. Format: `projects//locations//agents//flows/`.
-     */
-    targetFlow?: string | null;
-    /**
-     * The target page to transition to. Format: `projects//locations//agents//flows//pages/`.
-     */
-    targetPage?: string | null;
-    /**
-     * The fulfillment to call when the condition is satisfied. At least one of `trigger_fulfillment` and `target` must be specified. When both are defined, `trigger_fulfillment` is executed first.
-     */
-    triggerFulfillment?: Schema$GoogleCloudDialogflowCxV3Fulfillment;
-  }
-  /**
-   * Metadata for UpdateDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3UpdateDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * The request message for a webhook call.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3WebhookRequest {
-    /**
-     * Always present. The unique identifier of the DetectIntentResponse that will be returned to the API caller.
-     */
-    detectIntentResponseId?: string | null;
-    /**
-     * Always present. Information about the fulfillment that triggered this webhook call.
-     */
-    fulfillmentInfo?: Schema$GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo;
-    /**
-     * Information about the last matched intent.
-     */
-    intentInfo?: Schema$GoogleCloudDialogflowCxV3WebhookRequestIntentInfo;
-    /**
-     * The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;
-     */
-    messages?: Schema$GoogleCloudDialogflowCxV3ResponseMessage[];
-    /**
-     * Information about page status.
-     */
-    pageInfo?: Schema$GoogleCloudDialogflowCxV3PageInfo;
-    /**
-     * Custom data set in QueryParameters.payload.
-     */
-    payload?: {[key: string]: any} | null;
-    /**
-     * The sentiment analysis result of the current user request. The field is filled when sentiment analysis is configured to be enabled for the request.
-     */
-    sentimentAnalysisResult?: Schema$GoogleCloudDialogflowCxV3WebhookRequestSentimentAnalysisResult;
-    /**
-     * Information about session status.
-     */
-    sessionInfo?: Schema$GoogleCloudDialogflowCxV3SessionInfo;
-  }
-  /**
-   * Represents fulfillment information communicated to the webhook.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo {
-    /**
-     * Always present. The tag used to identify which fulfillment is being called.
-     */
-    tag?: string | null;
-  }
-  /**
-   * Represents intent information communicated to the webhook.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3WebhookRequestIntentInfo {
-    /**
-     * The confidence of the matched intent. Values range from 0.0 (completely uncertain) to 1.0 (completely certain).
-     */
-    confidence?: number | null;
-    /**
-     * Always present. The display name of the last matched intent.
-     */
-    displayName?: string | null;
-    /**
-     * Always present. The unique identifier of the last matched intent. Format: `projects//locations//agents//intents/`.
-     */
-    lastMatchedIntent?: string | null;
-    /**
-     * Parameters identified as a result of intent matching. This is a map of the name of the identified parameter to the value of the parameter identified from the user's utterance. All parameters defined in the matched intent that are identified will be surfaced here.
-     */
-    parameters?: {
-      [
-        key: string
-      ]: Schema$GoogleCloudDialogflowCxV3WebhookRequestIntentInfoIntentParameterValue;
-    } | null;
-  }
-  /**
-   * Represents a value for an intent parameter.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3WebhookRequestIntentInfoIntentParameterValue {
-    /**
-     * Always present. Original text value extracted from user utterance.
-     */
-    originalValue?: string | null;
-    /**
-     * Always present. Structured value for the parameter extracted from user utterance.
-     */
-    resolvedValue?: any | null;
-  }
-  /**
-   * Represents the result of sentiment analysis.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3WebhookRequestSentimentAnalysisResult {
-    /**
-     * A non-negative number in the [0, +inf) range, which represents the absolute magnitude of sentiment, regardless of score (positive or negative).
-     */
-    magnitude?: number | null;
-    /**
-     * Sentiment score between -1.0 (negative sentiment) and 1.0 (positive sentiment).
-     */
-    score?: number | null;
-  }
-  /**
-   * The response message for a webhook call.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3WebhookResponse {
-    /**
-     * The fulfillment response to send to the user. This field can be omitted by the webhook if it does not intend to send any response to the user.
-     */
-    fulfillmentResponse?: Schema$GoogleCloudDialogflowCxV3WebhookResponseFulfillmentResponse;
-    /**
-     * Information about page status. This field can be omitted by the webhook if it does not intend to modify page status.
-     */
-    pageInfo?: Schema$GoogleCloudDialogflowCxV3PageInfo;
-    /**
-     * Value to append directly to QueryResult.webhook_payloads.
-     */
-    payload?: {[key: string]: any} | null;
-    /**
-     * Information about session status. This field can be omitted by the webhook if it does not intend to modify session status.
-     */
-    sessionInfo?: Schema$GoogleCloudDialogflowCxV3SessionInfo;
-    /**
-     * The target flow to transition to. Format: `projects//locations//agents//flows/`.
-     */
-    targetFlow?: string | null;
-    /**
-     * The target page to transition to. Format: `projects//locations//agents//flows//pages/`.
-     */
-    targetPage?: string | null;
-  }
-  /**
-   * Represents a fulfillment response to the user.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3WebhookResponseFulfillmentResponse {
-    /**
-     * Merge behavior for `messages`.
-     */
-    mergeBehavior?: string | null;
-    /**
-     * The list of rich message responses to present to the user.
-     */
-    messages?: Schema$GoogleCloudDialogflowCxV3ResponseMessage[];
   }
   /**
    * Represents a part of a message possibly annotated with an entity. The part can be an entity or purely a part of the message between two entities or message start/end.
@@ -3706,7 +1722,7 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string | null;
     /**
-     * Optional. The collection of parameters associated with this context. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * Optional. The collection of parameters associated with this context. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
   }
@@ -3765,7 +1781,7 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string | null;
     /**
-     * The collection of parameters associated with the event. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * The collection of parameters associated with the event. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
   }
@@ -4745,7 +2761,7 @@ export namespace dialogflow_v3beta1 {
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2beta1Context[];
     /**
-     * The collection of extracted parameters. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * The collection of extracted parameters. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -4883,7 +2899,7 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string | null;
     /**
-     * Optional. The collection of parameters associated with this context. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * Optional. The collection of parameters associated with this context. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
   }
@@ -4963,7 +2979,7 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string | null;
     /**
-     * The collection of parameters associated with the event. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * The collection of parameters associated with the event. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
   }
@@ -5725,7 +3741,7 @@ export namespace dialogflow_v3beta1 {
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2Context[];
     /**
-     * The collection of extracted parameters. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * The collection of extracted parameters. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -5843,69 +3859,6 @@ export namespace dialogflow_v3beta1 {
     source?: string | null;
   }
   /**
-   * Metadata for CreateDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1CreateDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * Metadata for DeleteDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1DeleteDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * Metadata in google::longrunning::Operation for Knowledge operations.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata {
-    /**
-     * Required. Output only. The current state of this operation.
-     */
-    state?: string | null;
-  }
-  /**
-   * Metadata for ImportDocuments operation.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1ImportDocumentsOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * Response message for Documents.ImportDocuments.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1ImportDocumentsResponse {
-    /**
-     * Includes details about skipped documents or any other warnings.
-     */
-    warnings?: Schema$GoogleRpcStatus[];
-  }
-  /**
-   * Metadata for ReloadDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1ReloadDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata;
-  }
-  /**
-   * Metadata for UpdateDocument operation.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1UpdateDocumentOperationMetadata {
-    /**
-     * The generic information of the operation.
-     */
-    genericMetadata?: Schema$GoogleCloudDialogflowV3alpha1GenericKnowledgeOperationMetadata;
-  }
-  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$GoogleLongrunningListOperationsResponse {
@@ -5993,14 +3946,10 @@ export namespace dialogflow_v3beta1 {
     context: APIRequestContext;
     agents: Resource$Projects$Locations$Agents;
     operations: Resource$Projects$Locations$Operations;
-    securitySettings: Resource$Projects$Locations$Securitysettings;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.agents = new Resource$Projects$Locations$Agents(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
-        this.context
-      );
-      this.securitySettings = new Resource$Projects$Locations$Securitysettings(
         this.context
       );
     }
@@ -6013,7 +3962,6 @@ export namespace dialogflow_v3beta1 {
     flows: Resource$Projects$Locations$Agents$Flows;
     intents: Resource$Projects$Locations$Agents$Intents;
     sessions: Resource$Projects$Locations$Agents$Sessions;
-    testCases: Resource$Projects$Locations$Agents$Testcases;
     webhooks: Resource$Projects$Locations$Agents$Webhooks;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -6028,9 +3976,6 @@ export namespace dialogflow_v3beta1 {
         this.context
       );
       this.sessions = new Resource$Projects$Locations$Agents$Sessions(
-        this.context
-      );
-      this.testCases = new Resource$Projects$Locations$Agents$Testcases(
         this.context
       );
       this.webhooks = new Resource$Projects$Locations$Agents$Webhooks(
@@ -6082,7 +4027,6 @@ export namespace dialogflow_v3beta1 {
      *       //   "enableSpellCorrection": false,
      *       //   "enableStackdriverLogging": false,
      *       //   "name": "my_name",
-     *       //   "securitySettings": "my_securitySettings",
      *       //   "speechToTextSettings": {},
      *       //   "startFlow": "my_startFlow",
      *       //   "timeZone": "my_timeZone"
@@ -6100,7 +4044,6 @@ export namespace dialogflow_v3beta1 {
      *   //   "enableSpellCorrection": false,
      *   //   "enableStackdriverLogging": false,
      *   //   "name": "my_name",
-     *   //   "securitySettings": "my_securitySettings",
      *   //   "speechToTextSettings": {},
      *   //   "startFlow": "my_startFlow",
      *   //   "timeZone": "my_timeZone"
@@ -6532,7 +4475,6 @@ export namespace dialogflow_v3beta1 {
      *   //   "enableSpellCorrection": false,
      *   //   "enableStackdriverLogging": false,
      *   //   "name": "my_name",
-     *   //   "securitySettings": "my_securitySettings",
      *   //   "speechToTextSettings": {},
      *   //   "startFlow": "my_startFlow",
      *   //   "timeZone": "my_timeZone"
@@ -6637,165 +4579,6 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * Gets the latest agent validation result. Agent validation is performed when ValidateAgent is called.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.getValidationResult({
-     *     // If not specified, the agent's default language is used.
-     *     languageCode: 'placeholder-value',
-     *     // Required. The agent name. Format: `projects//locations//agents//validationResult`.
-     *     name:
-     *       'projects/my-project/locations/my-location/agents/my-agent/validationResult',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "flowValidationResults": [],
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getValidationResult(
-      params: Params$Resource$Projects$Locations$Agents$Getvalidationresult,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getValidationResult(
-      params?: Params$Resource$Projects$Locations$Agents$Getvalidationresult,
-      options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-    >;
-    getValidationResult(
-      params: Params$Resource$Projects$Locations$Agents$Getvalidationresult,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getValidationResult(
-      params: Params$Resource$Projects$Locations$Agents$Getvalidationresult,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-      >
-    ): void;
-    getValidationResult(
-      params: Params$Resource$Projects$Locations$Agents$Getvalidationresult,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-      >
-    ): void;
-    getValidationResult(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-      >
-    ): void;
-    getValidationResult(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Getvalidationresult
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-          >
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-          >
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-          >
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-        >
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Getvalidationresult;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Getvalidationresult;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-        >(parameters, callback as BodyResponseCallback<unknown>);
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-        >(parameters);
-      }
-    }
-
-    /**
      * Returns the list of all agents in the specified location.
      * @example
      * ```js
@@ -6870,42 +4653,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -6944,13 +4713,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse>(
+          parameters
+        );
       }
     }
 
@@ -7000,7 +4770,6 @@ export namespace dialogflow_v3beta1 {
      *       //   "enableSpellCorrection": false,
      *       //   "enableStackdriverLogging": false,
      *       //   "name": "my_name",
-     *       //   "securitySettings": "my_securitySettings",
      *       //   "speechToTextSettings": {},
      *       //   "startFlow": "my_startFlow",
      *       //   "timeZone": "my_timeZone"
@@ -7018,7 +4787,6 @@ export namespace dialogflow_v3beta1 {
      *   //   "enableSpellCorrection": false,
      *   //   "enableStackdriverLogging": false,
      *   //   "name": "my_name",
-     *   //   "securitySettings": "my_securitySettings",
      *   //   "speechToTextSettings": {},
      *   //   "startFlow": "my_startFlow",
      *   //   "timeZone": "my_timeZone"
@@ -7273,173 +5041,6 @@ export namespace dialogflow_v3beta1 {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
-
-    /**
-     * Validates the specified agent and creates or updates validation results. The agent in draft version is validated. Please call this API after the training is completed to get the complete validation results.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.validate({
-     *     // Required. The agent to validate. Format: `projects//locations//agents/`.
-     *     name: 'projects/my-project/locations/my-location/agents/my-agent',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "languageCode": "my_languageCode"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "flowValidationResults": [],
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    validate(
-      params: Params$Resource$Projects$Locations$Agents$Validate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    validate(
-      params?: Params$Resource$Projects$Locations$Agents$Validate,
-      options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-    >;
-    validate(
-      params: Params$Resource$Projects$Locations$Agents$Validate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    validate(
-      params: Params$Resource$Projects$Locations$Agents$Validate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-      >
-    ): void;
-    validate(
-      params: Params$Resource$Projects$Locations$Agents$Validate,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-      >
-    ): void;
-    validate(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-      >
-    ): void;
-    validate(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Validate
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-          >
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-          >
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-          >
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-        >
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Validate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Validate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+name}:validate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-        >(parameters, callback as BodyResponseCallback<unknown>);
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1AgentValidationResult
-        >(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Agents$Create
@@ -7477,17 +5078,6 @@ export namespace dialogflow_v3beta1 {
     extends StandardParameters {
     /**
      * Required. The name of the agent. Format: `projects//locations//agents/`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Getvalidationresult
-    extends StandardParameters {
-    /**
-     * If not specified, the agent's default language is used.
-     */
-    languageCode?: string;
-    /**
-     * Required. The agent name. Format: `projects//locations//agents//validationResult`.
      */
     name?: string;
   }
@@ -7533,18 +5123,6 @@ export namespace dialogflow_v3beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3beta1RestoreAgentRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Validate
-    extends StandardParameters {
-    /**
-     * Required. The agent to validate. Format: `projects//locations//agents/`.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1ValidateAgentRequest;
   }
 
   export class Resource$Projects$Locations$Agents$Entitytypes {
@@ -7598,8 +5176,7 @@ export namespace dialogflow_v3beta1 {
      *       //   "entities": [],
      *       //   "excludedPhrases": [],
      *       //   "kind": "my_kind",
-     *       //   "name": "my_name",
-     *       //   "redact": false
+     *       //   "name": "my_name"
      *       // }
      *     },
      *   });
@@ -7613,8 +5190,7 @@ export namespace dialogflow_v3beta1 {
      *   //   "entities": [],
      *   //   "excludedPhrases": [],
      *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "redact": false
+     *   //   "name": "my_name"
      *   // }
      * }
      *
@@ -7648,20 +5224,14 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1EntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1EntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1EntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
     ): void;
     create(
       paramsOrCallback?:
@@ -7718,9 +5288,9 @@ export namespace dialogflow_v3beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1EntityType
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1EntityType>(
+          parameters
+        );
       }
     }
 
@@ -7903,8 +5473,7 @@ export namespace dialogflow_v3beta1 {
      *   //   "entities": [],
      *   //   "excludedPhrases": [],
      *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "redact": false
+     *   //   "name": "my_name"
      *   // }
      * }
      *
@@ -7938,20 +5507,14 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1EntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1EntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1EntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
     ): void;
     get(
       paramsOrCallback?:
@@ -8005,9 +5568,9 @@ export namespace dialogflow_v3beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1EntityType
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1EntityType>(
+          parameters
+        );
       }
     }
 
@@ -8078,9 +5641,7 @@ export namespace dialogflow_v3beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Agents$Entitytypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8090,48 +5651,32 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Entitytypes$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Entitytypes$List;
@@ -8166,13 +5711,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse>(
+          parameters
+        );
       }
     }
 
@@ -8224,8 +5770,7 @@ export namespace dialogflow_v3beta1 {
      *       //   "entities": [],
      *       //   "excludedPhrases": [],
      *       //   "kind": "my_kind",
-     *       //   "name": "my_name",
-     *       //   "redact": false
+     *       //   "name": "my_name"
      *       // }
      *     },
      *   });
@@ -8239,8 +5784,7 @@ export namespace dialogflow_v3beta1 {
      *   //   "entities": [],
      *   //   "excludedPhrases": [],
      *   //   "kind": "my_kind",
-     *   //   "name": "my_name",
-     *   //   "redact": false
+     *   //   "name": "my_name"
      *   // }
      * }
      *
@@ -8274,20 +5818,14 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1EntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1EntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1EntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1EntityType>
     ): void;
     patch(
       paramsOrCallback?:
@@ -8341,9 +5879,9 @@ export namespace dialogflow_v3beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1EntityType
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1EntityType>(
+          parameters
+        );
       }
     }
   }
@@ -8428,13 +5966,9 @@ export namespace dialogflow_v3beta1 {
 
   export class Resource$Projects$Locations$Agents$Environments {
     context: APIRequestContext;
-    experiments: Resource$Projects$Locations$Agents$Environments$Experiments;
     sessions: Resource$Projects$Locations$Agents$Environments$Sessions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.experiments = new Resource$Projects$Locations$Agents$Environments$Experiments(
-        this.context
-      );
       this.sessions = new Resource$Projects$Locations$Agents$Environments$Sessions(
         this.context
       );
@@ -8801,23 +6335,15 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1Environment
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Environment
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Environment>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Environment>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Environments$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Environment
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Environment>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Environment
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Environment>
     ): void;
     get(
       paramsOrCallback?:
@@ -8871,9 +6397,9 @@ export namespace dialogflow_v3beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1Environment
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Environment>(
+          parameters
+        );
       }
     }
 
@@ -8942,9 +6468,7 @@ export namespace dialogflow_v3beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Agents$Environments$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Agents$Environments$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8954,48 +6478,32 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Environments$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$List;
@@ -9030,13 +6538,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse>(
+          parameters
+        );
       }
     }
 
@@ -9108,9 +6617,7 @@ export namespace dialogflow_v3beta1 {
     lookupEnvironmentHistory(
       params?: Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>;
     lookupEnvironmentHistory(
       params: Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9120,48 +6627,32 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
     ): void;
     lookupEnvironmentHistory(
       params: Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
     ): void;
     lookupEnvironmentHistory(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
     ): void;
     lookupEnvironmentHistory(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory;
@@ -9195,13 +6686,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse>(
+          parameters
+        );
       }
     }
 
@@ -9434,1245 +6926,6 @@ export namespace dialogflow_v3beta1 {
     requestBody?: Schema$GoogleCloudDialogflowCxV3beta1Environment;
   }
 
-  export class Resource$Projects$Locations$Agents$Environments$Experiments {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Creates an Experiment in the specified Environment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.environments.experiments.create(
-     *     {
-     *       // Required. The Agent to create an Environment for. Format: `projects//locations//agents//environments/`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/agents/my-agent/environments/my-environment',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "createTime": "my_createTime",
-     *         //   "definition": {},
-     *         //   "description": "my_description",
-     *         //   "displayName": "my_displayName",
-     *         //   "endTime": "my_endTime",
-     *         //   "experimentLength": "my_experimentLength",
-     *         //   "lastUpdateTime": "my_lastUpdateTime",
-     *         //   "name": "my_name",
-     *         //   "result": {},
-     *         //   "startTime": "my_startTime",
-     *         //   "state": "my_state",
-     *         //   "variantsHistory": []
-     *         // }
-     *       },
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "definition": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "endTime": "my_endTime",
-     *   //   "experimentLength": "my_experimentLength",
-     *   //   "lastUpdateTime": "my_lastUpdateTime",
-     *   //   "name": "my_name",
-     *   //   "result": {},
-     *   //   "startTime": "my_startTime",
-     *   //   "state": "my_state",
-     *   //   "variantsHistory": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Experiment>;
-    create(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Experiment
-      >
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Experiment
-      >
-    ): void;
-    create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Experiment
-      >
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Environments$Experiments$Create
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+parent}/experiments').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Experiment>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1Experiment
-        >(parameters);
-      }
-    }
-
-    /**
-     * Deletes the specified Experiment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.environments.experiments.delete(
-     *     {
-     *       // Required. The name of the Environment to delete. Format: `projects//locations//agents//environments//experiments/`.
-     *       name:
-     *         'projects/my-project/locations/my-location/agents/my-agent/environments/my-environment/experiments/my-experiment',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
-    delete(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Environments$Experiments$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Retrieves the specified Experiment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.environments.experiments.get(
-     *     {
-     *       // Required. The name of the Environment. Format: `projects//locations//agents//environments//experiments/`.
-     *       name:
-     *         'projects/my-project/locations/my-location/agents/my-agent/environments/my-environment/experiments/my-experiment',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "definition": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "endTime": "my_endTime",
-     *   //   "experimentLength": "my_experimentLength",
-     *   //   "lastUpdateTime": "my_lastUpdateTime",
-     *   //   "name": "my_name",
-     *   //   "result": {},
-     *   //   "startTime": "my_startTime",
-     *   //   "state": "my_state",
-     *   //   "variantsHistory": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Experiment>;
-    get(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Experiment
-      >
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Experiment
-      >
-    ): void;
-    get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Experiment
-      >
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Environments$Experiments$Get
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Experiment>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1Experiment
-        >(parameters);
-      }
-    }
-
-    /**
-     * Returns the list of all experiments in the specified Environment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.environments.experiments.list(
-     *     {
-     *       // The maximum number of items to return in a single page. By default 20 and at most 100.
-     *       pageSize: 'placeholder-value',
-     *       // The next_page_token value returned from a previous list request.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The Environment to list all environments for. Format: `projects//locations//agents//environments/`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/agents/my-agent/environments/my-environment',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "experiments": [],
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Agents$Environments$Experiments$List,
-      options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDialogflowCxV3beta1ListExperimentsResponse
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListExperimentsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListExperimentsResponse
-      >
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListExperimentsResponse
-      >
-    ): void;
-    list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListExperimentsResponse
-      >
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Environments$Experiments$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListExperimentsResponse
-          >
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListExperimentsResponse
-          >
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListExperimentsResponse
-          >
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDialogflowCxV3beta1ListExperimentsResponse
-        >
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Environments$Experiments$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Environments$Experiments$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+parent}/experiments').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListExperimentsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListExperimentsResponse
-        >(parameters);
-      }
-    }
-
-    /**
-     * Updates the specified Experiment.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.environments.experiments.patch(
-     *     {
-     *       // The name of the experiment. Format: projects//locations//agents//environments//experiments/..
-     *       name:
-     *         'projects/my-project/locations/my-location/agents/my-agent/environments/my-environment/experiments/my-experiment',
-     *       // Required. The mask to control which fields get updated.
-     *       updateMask: 'placeholder-value',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "createTime": "my_createTime",
-     *         //   "definition": {},
-     *         //   "description": "my_description",
-     *         //   "displayName": "my_displayName",
-     *         //   "endTime": "my_endTime",
-     *         //   "experimentLength": "my_experimentLength",
-     *         //   "lastUpdateTime": "my_lastUpdateTime",
-     *         //   "name": "my_name",
-     *         //   "result": {},
-     *         //   "startTime": "my_startTime",
-     *         //   "state": "my_state",
-     *         //   "variantsHistory": []
-     *         // }
-     *       },
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "definition": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "endTime": "my_endTime",
-     *   //   "experimentLength": "my_experimentLength",
-     *   //   "lastUpdateTime": "my_lastUpdateTime",
-     *   //   "name": "my_name",
-     *   //   "result": {},
-     *   //   "startTime": "my_startTime",
-     *   //   "state": "my_state",
-     *   //   "variantsHistory": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Experiment>;
-    patch(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Experiment
-      >
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Experiment
-      >
-    ): void;
-    patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Experiment
-      >
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Environments$Experiments$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Experiment>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1Experiment
-        >(parameters);
-      }
-    }
-
-    /**
-     * Starts the specified Experiment. This rpc only changes the state of experiment from PENDING to RUNNING.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.environments.experiments.start(
-     *     {
-     *       // Required. Resource name of the experiment to start. Format: `projects//locations//agents//environments//experiments/`.
-     *       name:
-     *         'projects/my-project/locations/my-location/agents/my-agent/environments/my-environment/experiments/my-experiment',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "definition": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "endTime": "my_endTime",
-     *   //   "experimentLength": "my_experimentLength",
-     *   //   "lastUpdateTime": "my_lastUpdateTime",
-     *   //   "name": "my_name",
-     *   //   "result": {},
-     *   //   "startTime": "my_startTime",
-     *   //   "state": "my_state",
-     *   //   "variantsHistory": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    start(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Start,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    start(
-      params?: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Start,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Experiment>;
-    start(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Start,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    start(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Start,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Experiment
-      >
-    ): void;
-    start(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Start,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Experiment
-      >
-    ): void;
-    start(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Experiment
-      >
-    ): void;
-    start(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Environments$Experiments$Start
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Start;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Start;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+name}:start').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Experiment>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1Experiment
-        >(parameters);
-      }
-    }
-
-    /**
-     * Stops the specified Experiment. This rpc only changes the state of experiment from RUNNING to DONE.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.environments.experiments.stop(
-     *     {
-     *       // Required. Resource name of the experiment to stop. Format: `projects//locations//agents//environments//experiments/`.
-     *       name:
-     *         'projects/my-project/locations/my-location/agents/my-agent/environments/my-environment/experiments/my-experiment',
-     *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "definition": {},
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "endTime": "my_endTime",
-     *   //   "experimentLength": "my_experimentLength",
-     *   //   "lastUpdateTime": "my_lastUpdateTime",
-     *   //   "name": "my_name",
-     *   //   "result": {},
-     *   //   "startTime": "my_startTime",
-     *   //   "state": "my_state",
-     *   //   "variantsHistory": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    stop(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Stop,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    stop(
-      params?: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Stop,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Experiment>;
-    stop(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Stop,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    stop(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Stop,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Experiment
-      >
-    ): void;
-    stop(
-      params: Params$Resource$Projects$Locations$Agents$Environments$Experiments$Stop,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Experiment
-      >
-    ): void;
-    stop(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Experiment
-      >
-    ): void;
-    stop(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Environments$Experiments$Stop
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1Experiment>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Stop;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Environments$Experiments$Stop;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+name}:stop').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Experiment>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1Experiment
-        >(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Create
-    extends StandardParameters {
-    /**
-     * Required. The Agent to create an Environment for. Format: `projects//locations//agents//environments/`.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1Experiment;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Delete
-    extends StandardParameters {
-    /**
-     * Required. The name of the Environment to delete. Format: `projects//locations//agents//environments//experiments/`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Get
-    extends StandardParameters {
-    /**
-     * Required. The name of the Environment. Format: `projects//locations//agents//environments//experiments/`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$List
-    extends StandardParameters {
-    /**
-     * The maximum number of items to return in a single page. By default 20 and at most 100.
-     */
-    pageSize?: number;
-    /**
-     * The next_page_token value returned from a previous list request.
-     */
-    pageToken?: string;
-    /**
-     * Required. The Environment to list all environments for. Format: `projects//locations//agents//environments/`.
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Patch
-    extends StandardParameters {
-    /**
-     * The name of the experiment. Format: projects//locations//agents//environments//experiments/..
-     */
-    name?: string;
-    /**
-     * Required. The mask to control which fields get updated.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1Experiment;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Start
-    extends StandardParameters {
-    /**
-     * Required. Resource name of the experiment to start. Format: `projects//locations//agents//environments//experiments/`.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1StartExperimentRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Environments$Experiments$Stop
-    extends StandardParameters {
-    /**
-     * Required. Resource name of the experiment to stop. Format: `projects//locations//agents//environments//experiments/`.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1StopExperimentRequest;
-  }
-
   export class Resource$Projects$Locations$Agents$Environments$Sessions {
     context: APIRequestContext;
     entityTypes: Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes;
@@ -10769,42 +7022,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Detectintent,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
     ): void;
     detectIntent(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Detectintent,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
     ): void;
     detectIntent(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
     ): void;
     detectIntent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Sessions$Detectintent
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -10843,13 +7082,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>(
+          parameters
+        );
       }
     }
 
@@ -10929,9 +7169,7 @@ export namespace dialogflow_v3beta1 {
     fulfillIntent(
       params?: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>;
     fulfillIntent(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10941,48 +7179,32 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
     ): void;
     fulfillIntent(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
     ): void;
     fulfillIntent(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
     ): void;
     fulfillIntent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent;
@@ -11017,13 +7239,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>(
+          parameters
+        );
       }
     }
 
@@ -11114,42 +7337,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Matchintent,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
     ): void;
     matchIntent(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Matchintent,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
     ): void;
     matchIntent(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
     ): void;
     matchIntent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Sessions$Matchintent
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -11188,13 +7397,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>(
+          parameters
+        );
       }
     }
   }
@@ -11327,42 +7537,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Create,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Create
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -11401,13 +7597,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
+          parameters
+        );
       }
     }
 
@@ -11619,42 +7816,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Get
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -11690,13 +7873,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
+          parameters
+        );
       }
     }
 
@@ -11768,9 +7952,7 @@ export namespace dialogflow_v3beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -11780,48 +7962,32 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List;
@@ -11856,13 +8022,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>(
+          parameters
+        );
       }
     }
 
@@ -11953,42 +8120,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Patch,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Patch
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -12024,13 +8177,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
+          parameters
+        );
       }
     }
   }
@@ -12552,164 +8706,6 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * Gets the latest flow validation result. Flow validation is performed when ValidateFlow is called.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.flows.getValidationResult(
-     *     {
-     *       // If not specified, the agent's default language is used.
-     *       languageCode: 'placeholder-value',
-     *       // Required. The flow name. Format: `projects//locations//agents//flows//validationResult`.
-     *       name:
-     *         'projects/my-project/locations/my-location/agents/my-agent/flows/my-flow/validationResult',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "validationMessages": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getValidationResult(
-      params: Params$Resource$Projects$Locations$Agents$Flows$Getvalidationresult,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getValidationResult(
-      params?: Params$Resource$Projects$Locations$Agents$Flows$Getvalidationresult,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult>;
-    getValidationResult(
-      params: Params$Resource$Projects$Locations$Agents$Flows$Getvalidationresult,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getValidationResult(
-      params: Params$Resource$Projects$Locations$Agents$Flows$Getvalidationresult,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-      >
-    ): void;
-    getValidationResult(
-      params: Params$Resource$Projects$Locations$Agents$Flows$Getvalidationresult,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-      >
-    ): void;
-    getValidationResult(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-      >
-    ): void;
-    getValidationResult(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Flows$Getvalidationresult
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-          >
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-          >
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-          >
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Flows$Getvalidationresult;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Flows$Getvalidationresult;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-        >(parameters, callback as BodyResponseCallback<unknown>);
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-        >(parameters);
-      }
-    }
-
-    /**
      * Returns the list of all flows in the specified agent.
      * @example
      * ```js
@@ -12786,42 +8782,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Flows$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Flows$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Flows$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -12860,13 +8842,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse>(
+          parameters
+        );
       }
     }
 
@@ -13180,171 +9163,6 @@ export namespace dialogflow_v3beta1 {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
-
-    /**
-     * Validates the specified flow and creates or updates validation results. Please call this API after the training is completed to get the complete validation results.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.flows.validate({
-     *     // Required. The flow to validate. Format: `projects//locations//agents//flows/`.
-     *     name:
-     *       'projects/my-project/locations/my-location/agents/my-agent/flows/my-flow',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "languageCode": "my_languageCode"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "validationMessages": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    validate(
-      params: Params$Resource$Projects$Locations$Agents$Flows$Validate,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    validate(
-      params?: Params$Resource$Projects$Locations$Agents$Flows$Validate,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult>;
-    validate(
-      params: Params$Resource$Projects$Locations$Agents$Flows$Validate,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    validate(
-      params: Params$Resource$Projects$Locations$Agents$Flows$Validate,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-      >
-    ): void;
-    validate(
-      params: Params$Resource$Projects$Locations$Agents$Flows$Validate,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-      >
-    ): void;
-    validate(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-      >
-    ): void;
-    validate(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Flows$Validate
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-          >
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-          >
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-          >
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Flows$Validate;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Flows$Validate;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+name}:validate').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-        >(parameters, callback as BodyResponseCallback<unknown>);
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1FlowValidationResult
-        >(parameters);
-      }
-    }
   }
 
   export interface Params$Resource$Projects$Locations$Agents$Flows$Create
@@ -13382,17 +9200,6 @@ export namespace dialogflow_v3beta1 {
     languageCode?: string;
     /**
      * Required. The name of the flow to get. Format: `projects//locations//agents//flows/`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Getvalidationresult
-    extends StandardParameters {
-    /**
-     * If not specified, the agent's default language is used.
-     */
-    languageCode?: string;
-    /**
-     * Required. The flow name. Format: `projects//locations//agents//flows//validationResult`.
      */
     name?: string;
   }
@@ -13446,18 +9253,6 @@ export namespace dialogflow_v3beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3beta1TrainFlowRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Flows$Validate
-    extends StandardParameters {
-    /**
-     * Required. The flow to validate. Format: `projects//locations//agents//flows/`.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1ValidateFlowRequest;
   }
 
   export class Resource$Projects$Locations$Agents$Flows$Pages {
@@ -13988,42 +9783,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Flows$Pages$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Flows$Pages$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Flows$Pages$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -14062,13 +9843,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse>(
+          parameters
+        );
       }
     }
 
@@ -14407,42 +10189,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Create,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
     ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Create
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -14481,13 +10249,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>(
+          parameters
+        );
       }
     }
 
@@ -14703,42 +10472,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Get
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -14774,13 +10529,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>(
+          parameters
+        );
       }
     }
 
@@ -14854,9 +10610,7 @@ export namespace dialogflow_v3beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -14866,48 +10620,32 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List;
@@ -14942,13 +10680,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse>(
+          parameters
+        );
       }
     }
 
@@ -15041,42 +10780,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Patch,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
     ): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Patch
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -15112,13 +10837,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup>(
+          parameters
+        );
       }
     }
   }
@@ -15572,20 +11298,14 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Version
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Version
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Version
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>
     ): void;
     get(
       paramsOrCallback?:
@@ -15721,42 +11441,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Flows$Versions$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -15795,13 +11501,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse>(
+          parameters
+        );
       }
     }
 
@@ -16049,20 +11756,14 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Version
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Version
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Version
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Version>
     ): void;
     patch(
       paramsOrCallback?:
@@ -16294,20 +11995,14 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Intent
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Agents$Intents$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Intent
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Intent
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
     ): void;
     create(
       paramsOrCallback?:
@@ -16582,20 +12277,14 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Intent
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Intents$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Intent
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Intent
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
     ): void;
     get(
       paramsOrCallback?:
@@ -16734,42 +12423,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Intents$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Intents$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Intents$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -16808,13 +12483,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse>(
+          parameters
+        );
       }
     }
 
@@ -16916,20 +12592,14 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Intent
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agents$Intents$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Intent
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Intent
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Intent>
     ): void;
     patch(
       paramsOrCallback?:
@@ -17162,42 +12832,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Sessions$Detectintent,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
     ): void;
     detectIntent(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Detectintent,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
     ): void;
     detectIntent(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
     ): void;
     detectIntent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Sessions$Detectintent
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -17236,13 +12892,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse>(
+          parameters
+        );
       }
     }
 
@@ -17322,9 +12979,7 @@ export namespace dialogflow_v3beta1 {
     fulfillIntent(
       params?: Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>;
     fulfillIntent(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -17334,48 +12989,32 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
     ): void;
     fulfillIntent(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
     ): void;
     fulfillIntent(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
     ): void;
     fulfillIntent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent;
@@ -17410,13 +13049,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse>(
+          parameters
+        );
       }
     }
 
@@ -17505,42 +13145,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Sessions$Matchintent,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
     ): void;
     matchIntent(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Matchintent,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
     ): void;
     matchIntent(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
     ): void;
     matchIntent(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Sessions$Matchintent
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -17579,13 +13205,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse>(
+          parameters
+        );
       }
     }
   }
@@ -17718,42 +13345,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Create,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Create
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -17792,13 +13405,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
+          parameters
+        );
       }
     }
 
@@ -18010,42 +13624,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Get
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -18081,13 +13681,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
+          parameters
+        );
       }
     }
 
@@ -18159,9 +13760,7 @@ export namespace dialogflow_v3beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>;
     list(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -18171,48 +13770,32 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List;
@@ -18247,13 +13830,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse>(
+          parameters
+        );
       }
     }
 
@@ -18344,42 +13928,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Patch,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
     ): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Patch
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -18415,13 +13985,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType>(
+          parameters
+        );
       }
     }
   }
@@ -18482,1909 +14053,6 @@ export namespace dialogflow_v3beta1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType;
-  }
-
-  export class Resource$Projects$Locations$Agents$Testcases {
-    context: APIRequestContext;
-    results: Resource$Projects$Locations$Agents$Testcases$Results;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.results = new Resource$Projects$Locations$Agents$Testcases$Results(
-        this.context
-      );
-    }
-
-    /**
-     * Batch deletes test cases.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.testCases.batchDelete({
-     *     // Required. The agent to delete test cases from. Format: `projects//locations//agents/`.
-     *     parent: 'projects/my-project/locations/my-location/agents/my-agent',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "names": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchDelete(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Batchdelete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    batchDelete(
-      params?: Params$Resource$Projects$Locations$Agents$Testcases$Batchdelete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
-    batchDelete(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Batchdelete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchDelete(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Batchdelete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    batchDelete(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Batchdelete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    batchDelete(
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    batchDelete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Testcases$Batchdelete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Testcases$Batchdelete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Testcases$Batchdelete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+parent}/testCases:batchDelete').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Kicks off a batch run of test cases.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.testCases.batchRun({
-     *     // Required. Agent name. Format: `projects//locations//agents/ `.
-     *     parent: 'projects/my-project/locations/my-location/agents/my-agent',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "environment": "my_environment",
-     *       //   "testCases": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    batchRun(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Batchrun,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    batchRun(
-      params?: Params$Resource$Projects$Locations$Agents$Testcases$Batchrun,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    batchRun(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Batchrun,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    batchRun(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Batchrun,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    batchRun(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Batchrun,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    batchRun(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    batchRun(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Testcases$Batchrun
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Testcases$Batchrun;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Testcases$Batchrun;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+parent}/testCases:batchRun').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Calculates the test coverage for an agent.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.testCases.calculateCoverage(
-     *     {
-     *       // Required. The agent to calculate coverage for. Format: `projects//locations//agents/`.
-     *       agent: 'projects/my-project/locations/my-location/agents/my-agent',
-     *       // Required. The type of coverage requested.
-     *       type: 'placeholder-value',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "agent": "my_agent",
-     *   //   "intentCoverage": {},
-     *   //   "routeGroupCoverage": {},
-     *   //   "transitionCoverage": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    calculateCoverage(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Calculatecoverage,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    calculateCoverage(
-      params?: Params$Resource$Projects$Locations$Agents$Testcases$Calculatecoverage,
-      options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDialogflowCxV3beta1CalculateCoverageResponse
-    >;
-    calculateCoverage(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Calculatecoverage,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    calculateCoverage(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Calculatecoverage,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1CalculateCoverageResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1CalculateCoverageResponse
-      >
-    ): void;
-    calculateCoverage(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Calculatecoverage,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1CalculateCoverageResponse
-      >
-    ): void;
-    calculateCoverage(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1CalculateCoverageResponse
-      >
-    ): void;
-    calculateCoverage(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Testcases$Calculatecoverage
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1CalculateCoverageResponse
-          >
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1CalculateCoverageResponse
-          >
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1CalculateCoverageResponse
-          >
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDialogflowCxV3beta1CalculateCoverageResponse
-        >
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Testcases$Calculatecoverage;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Testcases$Calculatecoverage;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/v3beta1/{+agent}/testCases:calculateCoverage'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['agent'],
-        pathParams: ['agent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1CalculateCoverageResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1CalculateCoverageResponse
-        >(parameters);
-      }
-    }
-
-    /**
-     * Creates a test case for the given agent.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.testCases.create({
-     *     // Required. The agent to create the test case for. Format: `projects//locations//agents/`.
-     *     parent: 'projects/my-project/locations/my-location/agents/my-agent',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "creationTime": "my_creationTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "lastTestResult": {},
-     *       //   "name": "my_name",
-     *       //   "notes": "my_notes",
-     *       //   "tags": [],
-     *       //   "testCaseConversationTurns": [],
-     *       //   "testConfig": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "creationTime": "my_creationTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "lastTestResult": {},
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "tags": [],
-     *   //   "testCaseConversationTurns": [],
-     *   //   "testConfig": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Projects$Locations$Agents$Testcases$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TestCase>;
-    create(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TestCase>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TestCase
-      >
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TestCase
-      >
-    ): void;
-    create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TestCase
-      >
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Testcases$Create
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Testcases$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Testcases$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+parent}/testCases').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TestCase>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TestCase>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Exports the test cases under the agent to a Cloud Storage bucket or a local file. Filter can be applied to export a subset of test cases.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.testCases.export({
-     *     // Required. The agent where to export test cases from. Format: `projects//locations//agents/`.
-     *     parent: 'projects/my-project/locations/my-location/agents/my-agent',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "dataFormat": "my_dataFormat",
-     *       //   "filter": "my_filter",
-     *       //   "gcsUri": "my_gcsUri"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    export(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Export,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    export(
-      params?: Params$Resource$Projects$Locations$Agents$Testcases$Export,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    export(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Export,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    export(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Export,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    export(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Export,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    export(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    export(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Testcases$Export
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Testcases$Export;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Testcases$Export;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+parent}/testCases:export').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Gets a test case.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.testCases.get({
-     *     // Required. The name of the testcase. Format: `projects//locations//agents//testCases/`.
-     *     name:
-     *       'projects/my-project/locations/my-location/agents/my-agent/testCases/my-testCase',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "creationTime": "my_creationTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "lastTestResult": {},
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "tags": [],
-     *   //   "testCaseConversationTurns": [],
-     *   //   "testConfig": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Agents$Testcases$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TestCase>;
-    get(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TestCase>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TestCase
-      >
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TestCase
-      >
-    ): void;
-    get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TestCase
-      >
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Testcases$Get
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Testcases$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Testcases$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TestCase>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TestCase>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Imports the test cases from a Cloud Storage bucket or a local file. It always creates new test cases and won't overwite any existing ones. The provided ID in the imported test case is neglected.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.testCases.import({
-     *     // Required. The agent to import test cases to. Format: `projects//locations//agents/`.
-     *     parent: 'projects/my-project/locations/my-location/agents/my-agent',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "content": "my_content",
-     *       //   "gcsUri": "my_gcsUri"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    import(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Import,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    import(
-      params?: Params$Resource$Projects$Locations$Agents$Testcases$Import,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    import(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Import,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    import(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Import,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    import(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Import,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    import(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    import(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Testcases$Import
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Testcases$Import;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Testcases$Import;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+parent}/testCases:import').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-
-    /**
-     * Fetches a list of test cases for a given agent.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.testCases.list({
-     *     // The maximum number of items to return in a single page. By default 20. Note that when TestCaseView = FULL, the maximum page size allowed is 20. When TestCaseView = BASIC, the maximum page size allowed is 500.
-     *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous list request.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The agent to list all pages for. Format: `projects//locations//agents/`.
-     *     parent: 'projects/my-project/locations/my-location/agents/my-agent',
-     *     // Specifies whether response should include all fields or just the metadata.
-     *     view: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "testCases": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Agents$Testcases$List,
-      options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDialogflowCxV3beta1ListTestCasesResponse
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListTestCasesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListTestCasesResponse
-      >
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListTestCasesResponse
-      >
-    ): void;
-    list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListTestCasesResponse
-      >
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Testcases$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListTestCasesResponse
-          >
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListTestCasesResponse
-          >
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListTestCasesResponse
-          >
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDialogflowCxV3beta1ListTestCasesResponse
-        >
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Testcases$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Testcases$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+parent}/testCases').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListTestCasesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListTestCasesResponse
-        >(parameters);
-      }
-    }
-
-    /**
-     * Updates the specified test case.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.testCases.patch({
-     *     // The unique identifier of the test case. TestCases.CreateTestCase will populate the name automatically. Otherwise use format: `projects//locations//agents/ /testCases/`.
-     *     name:
-     *       'projects/my-project/locations/my-location/agents/my-agent/testCases/my-testCase',
-     *     // Required. The mask to specify which fields should be updated. The `creationTime` and `lastTestResult` cannot be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "creationTime": "my_creationTime",
-     *       //   "displayName": "my_displayName",
-     *       //   "lastTestResult": {},
-     *       //   "name": "my_name",
-     *       //   "notes": "my_notes",
-     *       //   "tags": [],
-     *       //   "testCaseConversationTurns": [],
-     *       //   "testConfig": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "creationTime": "my_creationTime",
-     *   //   "displayName": "my_displayName",
-     *   //   "lastTestResult": {},
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "tags": [],
-     *   //   "testCaseConversationTurns": [],
-     *   //   "testConfig": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Agents$Testcases$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TestCase>;
-    patch(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TestCase>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TestCase
-      >
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TestCase
-      >
-    ): void;
-    patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1TestCase
-      >
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Testcases$Patch
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1TestCase>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Testcases$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Testcases$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TestCase>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1TestCase>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Kicks off a test case run.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.testCases.run({
-     *     // Required. Format of test case name to run: `projects//locations/ /agents//testCases/`.
-     *     name:
-     *       'projects/my-project/locations/my-location/agents/my-agent/testCases/my-testCase',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "environment": "my_environment"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    run(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Run,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    run(
-      params?: Params$Resource$Projects$Locations$Agents$Testcases$Run,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
-    run(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Run,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    run(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Run,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    run(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Run,
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    run(
-      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
-    ): void;
-    run(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Testcases$Run
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleLongrunningOperation>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Testcases$Run;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Testcases$Run;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+name}:run').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleLongrunningOperation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Batchdelete
-    extends StandardParameters {
-    /**
-     * Required. The agent to delete test cases from. Format: `projects//locations//agents/`.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1BatchDeleteTestCasesRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Batchrun
-    extends StandardParameters {
-    /**
-     * Required. Agent name. Format: `projects//locations//agents/ `.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1BatchRunTestCasesRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Calculatecoverage
-    extends StandardParameters {
-    /**
-     * Required. The agent to calculate coverage for. Format: `projects//locations//agents/`.
-     */
-    agent?: string;
-    /**
-     * Required. The type of coverage requested.
-     */
-    type?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Create
-    extends StandardParameters {
-    /**
-     * Required. The agent to create the test case for. Format: `projects//locations//agents/`.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1TestCase;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Export
-    extends StandardParameters {
-    /**
-     * Required. The agent where to export test cases from. Format: `projects//locations//agents/`.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1ExportTestCasesRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Get
-    extends StandardParameters {
-    /**
-     * Required. The name of the testcase. Format: `projects//locations//agents//testCases/`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Import
-    extends StandardParameters {
-    /**
-     * Required. The agent to import test cases to. Format: `projects//locations//agents/`.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1ImportTestCasesRequest;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$List
-    extends StandardParameters {
-    /**
-     * The maximum number of items to return in a single page. By default 20. Note that when TestCaseView = FULL, the maximum page size allowed is 20. When TestCaseView = BASIC, the maximum page size allowed is 500.
-     */
-    pageSize?: number;
-    /**
-     * The next_page_token value returned from a previous list request.
-     */
-    pageToken?: string;
-    /**
-     * Required. The agent to list all pages for. Format: `projects//locations//agents/`.
-     */
-    parent?: string;
-    /**
-     * Specifies whether response should include all fields or just the metadata.
-     */
-    view?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Patch
-    extends StandardParameters {
-    /**
-     * The unique identifier of the test case. TestCases.CreateTestCase will populate the name automatically. Otherwise use format: `projects//locations//agents/ /testCases/`.
-     */
-    name?: string;
-    /**
-     * Required. The mask to specify which fields should be updated. The `creationTime` and `lastTestResult` cannot be updated.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1TestCase;
-  }
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Run
-    extends StandardParameters {
-    /**
-     * Required. Format of test case name to run: `projects//locations/ /agents//testCases/`.
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1RunTestCaseRequest;
-  }
-
-  export class Resource$Projects$Locations$Agents$Testcases$Results {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Fetches a list of results for a given test case.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.agents.testCases.results.list(
-     *     {
-     *       // The filter expression used to filter test case results. See [API Filtering](https://aip.dev/160). The expression is case insensitive. Only 'AND' is supported for logical operators. The supported syntax is listed below in detail: [AND ] ... [AND latest] The supported fields and operators are: field operator `environment` `=`, `IN` (Use value `draft` for draft environment) `test_time` `\>`, `<` `latest` only returns the latest test result in all results for each test case. Examples: * "environment=draft AND latest" matches the latest test result for each test case in the draft environment. * "environment IN (e1,e2)" matches any test case results with an environment resource name of either "e1" or "e2". * "test_time \> 1602540713" matches any test case results with test time later than a unix timestamp in seconds 1602540713.
-     *       filter: 'placeholder-value',
-     *       // The maximum number of items to return in a single page. By default 100 and at most 1000.
-     *       pageSize: 'placeholder-value',
-     *       // The next_page_token value returned from a previous list request.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The test case to list results for. Format: `projects//locations//agents// testCases/`. Specify a `-` as a wildcard for TestCase ID to list results across multiple test cases.
-     *       parent:
-     *         'projects/my-project/locations/my-location/agents/my-agent/testCases/my-testCase',
-     *     }
-     *   );
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "testCaseResults": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Results$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Agents$Testcases$Results$List,
-      options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDialogflowCxV3beta1ListTestCaseResultsResponse
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Results$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Results$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListTestCaseResultsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListTestCaseResultsResponse
-      >
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Agents$Testcases$Results$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListTestCaseResultsResponse
-      >
-    ): void;
-    list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListTestCaseResultsResponse
-      >
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Agents$Testcases$Results$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListTestCaseResultsResponse
-          >
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListTestCaseResultsResponse
-          >
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListTestCaseResultsResponse
-          >
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDialogflowCxV3beta1ListTestCaseResultsResponse
-        >
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Agents$Testcases$Results$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Agents$Testcases$Results$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+parent}/results').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListTestCaseResultsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListTestCaseResultsResponse
-        >(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Agents$Testcases$Results$List
-    extends StandardParameters {
-    /**
-     * The filter expression used to filter test case results. See [API Filtering](https://aip.dev/160). The expression is case insensitive. Only 'AND' is supported for logical operators. The supported syntax is listed below in detail: [AND ] ... [AND latest] The supported fields and operators are: field operator `environment` `=`, `IN` (Use value `draft` for draft environment) `test_time` `\>`, `<` `latest` only returns the latest test result in all results for each test case. Examples: * "environment=draft AND latest" matches the latest test result for each test case in the draft environment. * "environment IN (e1,e2)" matches any test case results with an environment resource name of either "e1" or "e2". * "test_time \> 1602540713" matches any test case results with test time later than a unix timestamp in seconds 1602540713.
-     */
-    filter?: string;
-    /**
-     * The maximum number of items to return in a single page. By default 100 and at most 1000.
-     */
-    pageSize?: number;
-    /**
-     * The next_page_token value returned from a previous list request.
-     */
-    pageToken?: string;
-    /**
-     * Required. The test case to list results for. Format: `projects//locations//agents// testCases/`. Specify a `-` as a wildcard for TestCase ID to list results across multiple test cases.
-     */
-    parent?: string;
   }
 
   export class Resource$Projects$Locations$Agents$Webhooks {
@@ -20480,20 +14148,14 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Webhook
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Agents$Webhooks$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Webhook
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Webhook
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
     ): void;
     create(
       paramsOrCallback?:
@@ -20765,20 +14427,14 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Webhook
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Agents$Webhooks$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Webhook
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Webhook
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
     ): void;
     get(
       paramsOrCallback?:
@@ -20913,42 +14569,28 @@ export namespace dialogflow_v3beta1 {
       params: Params$Resource$Projects$Locations$Agents$Webhooks$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Agents$Webhooks$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Agents$Webhooks$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -20987,13 +14629,14 @@ export namespace dialogflow_v3beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse>(
+          parameters
+        );
       }
     }
 
@@ -21087,20 +14730,14 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Webhook
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Agents$Webhooks$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Webhook
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1Webhook
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3beta1Webhook>
     ): void;
     patch(
       paramsOrCallback?:
@@ -21580,20 +15217,14 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -21689,874 +15320,6 @@ export namespace dialogflow_v3beta1 {
      * The standard list page token.
      */
     pageToken?: string;
-  }
-
-  export class Resource$Projects$Locations$Securitysettings {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Create security settings in the specified location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.securitySettings.create({
-     *     // Required. The location to create an SecuritySettings for. Format: `projects//locations/`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "inspectTemplate": "my_inspectTemplate",
-     *       //   "name": "my_name",
-     *       //   "purgeDataTypes": [],
-     *       //   "redactionScope": "my_redactionScope",
-     *       //   "redactionStrategy": "my_redactionStrategy",
-     *       //   "retentionWindowDays": 0
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "inspectTemplate": "my_inspectTemplate",
-     *   //   "name": "my_name",
-     *   //   "purgeDataTypes": [],
-     *   //   "redactionScope": "my_redactionScope",
-     *   //   "redactionStrategy": "my_redactionStrategy",
-     *   //   "retentionWindowDays": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Securitysettings$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Projects$Locations$Securitysettings$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings>;
-    create(
-      params: Params$Resource$Projects$Locations$Securitysettings$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Securitysettings$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-      >
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Securitysettings$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-      >
-    ): void;
-    create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-      >
-    ): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Securitysettings$Create
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-          >
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-          >
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-          >
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Securitysettings$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Securitysettings$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+parent}/securitySettings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-        >(parameters);
-      }
-    }
-
-    /**
-     * Deletes the specified SecuritySettings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.securitySettings.delete({
-     *     // Required. The name of the SecuritySettings to delete. Format: `projects//locations//securitySettings/`.
-     *     name:
-     *       'projects/my-project/locations/my-location/securitySettings/my-securitySetting',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Securitysettings$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Securitysettings$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
-    delete(
-      params: Params$Resource$Projects$Locations$Securitysettings$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Securitysettings$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Securitysettings$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Securitysettings$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Securitysettings$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Securitysettings$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
-      }
-    }
-
-    /**
-     * Retrieves the specified SecuritySettings. The returned settings may be stale by up to 1 minute.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.securitySettings.get({
-     *     // Required. Resource name of the settings. Format: `projects//locations//securitySettings/`.
-     *     name:
-     *       'projects/my-project/locations/my-location/securitySettings/my-securitySetting',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "inspectTemplate": "my_inspectTemplate",
-     *   //   "name": "my_name",
-     *   //   "purgeDataTypes": [],
-     *   //   "redactionScope": "my_redactionScope",
-     *   //   "redactionStrategy": "my_redactionStrategy",
-     *   //   "retentionWindowDays": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Securitysettings$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Securitysettings$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings>;
-    get(
-      params: Params$Resource$Projects$Locations$Securitysettings$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Securitysettings$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-      >
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Securitysettings$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-      >
-    ): void;
-    get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-      >
-    ): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Securitysettings$Get
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-          >
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-          >
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-          >
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Securitysettings$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Securitysettings$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-        >(parameters);
-      }
-    }
-
-    /**
-     * Returns the list of all security settings in the specified location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.securitySettings.list({
-     *     // The maximum number of items to return in a single page. By default 20 and at most 100.
-     *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous list request.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The location to list all security settings for. Format: `projects//locations/`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "securitySettings": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Securitysettings$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Securitysettings$List,
-      options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudDialogflowCxV3beta1ListSecuritySettingsResponse
-    >;
-    list(
-      params: Params$Resource$Projects$Locations$Securitysettings$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Securitysettings$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListSecuritySettingsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListSecuritySettingsResponse
-      >
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Securitysettings$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListSecuritySettingsResponse
-      >
-    ): void;
-    list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1ListSecuritySettingsResponse
-      >
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Securitysettings$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListSecuritySettingsResponse
-          >
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListSecuritySettingsResponse
-          >
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1ListSecuritySettingsResponse
-          >
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<
-          Schema$GoogleCloudDialogflowCxV3beta1ListSecuritySettingsResponse
-        >
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Securitysettings$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Securitysettings$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+parent}/securitySettings').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListSecuritySettingsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1ListSecuritySettingsResponse
-        >(parameters);
-      }
-    }
-
-    /**
-     * Updates the specified SecuritySettings.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dialogflow = google.dialogflow('v3beta1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/dialogflow',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dialogflow.projects.locations.securitySettings.patch({
-     *     // Required. Resource name of the settings. Format: `projects//locations//securitySettings/`.
-     *     name:
-     *       'projects/my-project/locations/my-location/securitySettings/my-securitySetting',
-     *     // Required. The mask to control which fields get updated. If the mask is not present, all fields will be updated.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "displayName": "my_displayName",
-     *       //   "inspectTemplate": "my_inspectTemplate",
-     *       //   "name": "my_name",
-     *       //   "purgeDataTypes": [],
-     *       //   "redactionScope": "my_redactionScope",
-     *       //   "redactionStrategy": "my_redactionStrategy",
-     *       //   "retentionWindowDays": 0
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "displayName": "my_displayName",
-     *   //   "inspectTemplate": "my_inspectTemplate",
-     *   //   "name": "my_name",
-     *   //   "purgeDataTypes": [],
-     *   //   "redactionScope": "my_redactionScope",
-     *   //   "redactionStrategy": "my_redactionStrategy",
-     *   //   "retentionWindowDays": 0
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Securitysettings$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Securitysettings$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings>;
-    patch(
-      params: Params$Resource$Projects$Locations$Securitysettings$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Securitysettings$Patch,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-      >
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Securitysettings$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-      >
-    ): void;
-    patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-      >
-    ): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Securitysettings$Patch
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-          >
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-          >
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-          >
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Securitysettings$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Securitysettings$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v3beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings
-        >(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Securitysettings$Create
-    extends StandardParameters {
-    /**
-     * Required. The location to create an SecuritySettings for. Format: `projects//locations/`.
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings;
-  }
-  export interface Params$Resource$Projects$Locations$Securitysettings$Delete
-    extends StandardParameters {
-    /**
-     * Required. The name of the SecuritySettings to delete. Format: `projects//locations//securitySettings/`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Securitysettings$Get
-    extends StandardParameters {
-    /**
-     * Required. Resource name of the settings. Format: `projects//locations//securitySettings/`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Securitysettings$List
-    extends StandardParameters {
-    /**
-     * The maximum number of items to return in a single page. By default 20 and at most 100.
-     */
-    pageSize?: number;
-    /**
-     * The next_page_token value returned from a previous list request.
-     */
-    pageToken?: string;
-    /**
-     * Required. The location to list all security settings for. Format: `projects//locations/`.
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Securitysettings$Patch
-    extends StandardParameters {
-    /**
-     * Required. Resource name of the settings. Format: `projects//locations//securitySettings/`.
-     */
-    name?: string;
-    /**
-     * Required. The mask to control which fields get updated. If the mask is not present, all fields will be updated.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GoogleCloudDialogflowCxV3beta1SecuritySettings;
   }
 
   export class Resource$Projects$Operations {
@@ -22916,20 +15679,14 @@ export namespace dialogflow_v3beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Operations$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       paramsOrCallback?:

@@ -915,7 +915,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A unique id used to identify the request. If the server receives two CreateClusterRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#google.cloud.dataproc.v1beta2.CreateClusterRequest)s with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+                      "description": "Optional. A unique id used to identify the request. If the server receives two CreateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
                       "location": "query",
                       "type": "string"
                     }
@@ -966,7 +966,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A unique id used to identify the request. If the server receives two DeleteClusterRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#google.cloud.dataproc.v1beta2.DeleteClusterRequest)s with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+                      "description": "Optional. A unique id used to identify the request. If the server receives two DeleteClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1089,50 +1089,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
-                "injectCredentials": {
-                  "description": "Inject encrypted credentials into all of the VMs in a cluster.The target cluster must be a personal auth cluster assigned to the user who is issuing the RPC.",
-                  "flatPath": "v1beta2/projects/{projectsId}/regions/{regionsId}/clusters/{clustersId}:injectCredentials",
-                  "httpMethod": "POST",
-                  "id": "dataproc.projects.regions.clusters.injectCredentials",
-                  "parameterOrder": [
-                    "project",
-                    "region",
-                    "cluster"
-                  ],
-                  "parameters": {
-                    "cluster": {
-                      "description": "Required. The cluster, in the form clusters/.",
-                      "location": "path",
-                      "pattern": "^clusters/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "project": {
-                      "description": "Required. The ID of the Google Cloud Platform project the cluster belongs to, of the form projects/.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "region": {
-                      "description": "Required. The region containing the cluster, of the form regions/.",
-                      "location": "path",
-                      "pattern": "^regions/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta2/{+project}/{+region}/{+cluster}:injectCredentials",
-                  "request": {
-                    "$ref": "InjectCredentialsRequest"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "list": {
                   "description": "Lists all regions/{region}/clusters in a project alphabetically.",
                   "flatPath": "v1beta2/projects/{projectId}/regions/{region}/clusters",
@@ -1216,7 +1172,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. A unique id used to identify the request. If the server receives two UpdateClusterRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#google.cloud.dataproc.v1beta2.UpdateClusterRequest)s with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+                      "description": "Optional. A unique id used to identify the request. If the server receives two UpdateClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2291,7 +2247,7 @@
       }
     }
   },
-  "revision": "20210205",
+  "revision": "20201029",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2400,6 +2356,9 @@
       "description": "Associates members with a role.",
       "id": "Binding",
       "properties": {
+        "bindingId": {
+          "type": "string"
+        },
         "condition": {
           "$ref": "Expr",
           "description": "The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies)."
@@ -2482,7 +2441,7 @@
           "description": "Optional. Autoscaling config for the policy associated with the cluster. Cluster does not autoscale if this field is unset."
         },
         "configBucket": {
-          "description": "Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging bucket (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)). This field requires a Cloud Storage bucket name, not a URI to a Cloud Storage bucket.",
+          "description": "Optional. A Cloud Storage bucket used to stage job dependencies, config files, and job driver console output. If you do not specify a staging bucket, Cloud Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's staging bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket (see Dataproc staging bucket (https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/staging-bucket)).",
           "type": "string"
         },
         "encryptionConfig": {
@@ -2533,7 +2492,7 @@
           "description": "Optional. The config settings for software inside the cluster."
         },
         "tempBucket": {
-          "description": "Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data, such as Spark and MapReduce history files. If you do not specify a temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's temp bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket. The default bucket has a TTL of 90 days, but you can use any TTL (or none) if you specify a bucket. This field requires a Cloud Storage bucket name, not a URI to a Cloud Storage bucket.",
+          "description": "Optional. A Cloud Storage bucket used to store ephemeral cluster and jobs data, such as Spark and MapReduce history files. If you do not specify a temp bucket, Dataproc will determine a Cloud Storage location (US, ASIA, or EU) for your cluster's temp bucket according to the Compute Engine zone where your cluster is deployed, and then create and manage this project-level, per-location bucket. The default bucket has a TTL of 90 days, but you can use any TTL (or none) if you specify a bucket.",
           "type": "string"
         },
         "workerConfig": {
@@ -2778,7 +2737,7 @@
           "type": "integer"
         },
         "bootDiskType": {
-          "description": "Optional. Type of the boot disk (default is \"pd-standard\"). Valid values: \"pd-balanced\" (Persistent Disk Balanced Solid State Drive), \"pd-ssd\" (Persistent Disk Solid State Drive), or \"pd-standard\" (Persistent Disk Hard Disk Drive). See Disk types (https://cloud.google.com/compute/docs/disks#disk-types).",
+          "description": "Optional. Type of the boot disk (default is \"pd-standard\"). Valid values: \"pd-ssd\" (Persistent Disk Solid State Drive) or \"pd-standard\" (Persistent Disk Hard Disk Drive).",
           "type": "string"
         },
         "numLocalSsds": {
@@ -2901,10 +2860,6 @@
             "type": "string"
           },
           "type": "array"
-        },
-        "shieldedInstanceConfig": {
-          "$ref": "ShieldedInstanceConfig",
-          "description": "Optional. Shielded Instance Config for clusters using Compute Engine Shielded VMs (https://cloud.google.com/security/shielded-cloud/shielded-vm)."
         },
         "subnetworkUri": {
           "description": "Optional. The Compute Engine subnetwork to be used for machine communications. Cannot be specified with network_uri.A full URL, partial URI, or short name are valid. Examples: https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0 projects/[project_id]/regions/us-east1/subnetworks/sub0 sub0",
@@ -3052,21 +3007,6 @@
       },
       "type": "object"
     },
-    "InjectCredentialsRequest": {
-      "description": "A request to inject credentials into a cluster.",
-      "id": "InjectCredentialsRequest",
-      "properties": {
-        "clusterUuid": {
-          "description": "Required. The cluster UUID.",
-          "type": "string"
-        },
-        "credentialsCiphertext": {
-          "description": "Required. The encrypted credentials being injected in to the cluster.The client is responsible for encrypting the credentials in a way that is supported by the cluster.A wrapped value is used here so that the actual contents of the encrypted credentials are not written to audit logs.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "InstanceGroupAutoscalingPolicyConfig": {
       "description": "Configuration for the size bounds of an instance group, including its proportional size to other groups.",
       "id": "InstanceGroupAutoscalingPolicyConfig",
@@ -3174,10 +3114,6 @@
         },
         "instanceName": {
           "description": "The user-friendly name of the Compute Engine instance.",
-          "type": "string"
-        },
-        "publicKey": {
-          "description": "The public key used for sharing data with this instance.",
           "type": "string"
         }
       },
@@ -3346,13 +3282,6 @@
       "description": "Dataproc job config.",
       "id": "JobPlacement",
       "properties": {
-        "clusterLabels": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Optional. Cluster labels to identify a cluster where the job will be submitted.",
-          "type": "object"
-        },
         "clusterName": {
           "description": "Required. The name of the cluster where the job will be submitted.",
           "type": "string"
@@ -3390,7 +3319,7 @@
           "type": "integer"
         },
         "maxFailuresTotal": {
-          "description": "Optional. Maximum number of times in total a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed. Maximum value is 240.",
+          "description": "Optional. Maximum number of times in total a driver may be restarted as a result of driver exiting with non-zero code before job is reported failed. Maximum value is 240",
           "format": "int32",
           "type": "integer"
         }
@@ -3544,7 +3473,7 @@
           "type": "string"
         },
         "idleDeleteTtl": {
-          "description": "Optional. The duration to keep the cluster alive while idling (when no jobs are running). Passing this threshold will cause the cluster to be deleted. Minimum value is 5 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).",
+          "description": "Optional. The duration to keep the cluster alive while idling (when no jobs are running). Passing this threshold will cause the cluster to be deleted. Minimum value is 5 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json).",
           "format": "google-duration",
           "type": "string"
         },
@@ -4127,7 +4056,7 @@
       "properties": {
         "kerberosConfig": {
           "$ref": "KerberosConfig",
-          "description": "Optional. Kerberos related configuration."
+          "description": "Kerberos related configuration."
         }
       },
       "type": "object"
@@ -4139,25 +4068,6 @@
         "policy": {
           "$ref": "Policy",
           "description": "REQUIRED: The complete policy to be applied to the resource. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Cloud Platform services (such as Projects) might reject them."
-        }
-      },
-      "type": "object"
-    },
-    "ShieldedInstanceConfig": {
-      "description": "Shielded Instance Config for clusters using Compute Engine Shielded VMs (https://cloud.google.com/security/shielded-cloud/shielded-vm).",
-      "id": "ShieldedInstanceConfig",
-      "properties": {
-        "enableIntegrityMonitoring": {
-          "description": "Optional. Defines whether instances have integrity monitoring enabled.",
-          "type": "boolean"
-        },
-        "enableSecureBoot": {
-          "description": "Optional. Defines whether instances have Secure Boot enabled.",
-          "type": "boolean"
-        },
-        "enableVtpm": {
-          "description": "Optional. Defines whether instances have the vTPM enabled.",
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -4191,7 +4101,7 @@
             ],
             "enumDescriptions": [
               "Unspecified component. Specifying this will cause Cluster creation to fail.",
-              "The Anaconda python distribution. The Anaconda component is not supported in the Dataproc 2.0 image. The 2.0 image is pre-installed with Miniconda.",
+              "The Anaconda python distribution. The Anaconda component is not supported in the Dataproc preview 2.0 image. The 2.0 preview image is pre-installed with Miniconda.",
               "Docker",
               "The Druid query engine.",
               "Flink",
@@ -4361,11 +4271,11 @@
       "id": "StartClusterRequest",
       "properties": {
         "clusterUuid": {
-          "description": "Optional. Specifying the cluster_uuid means the RPC will fail (with error NOT_FOUND) if a cluster with the specified UUID does not exist.",
+          "description": "Optional. Specifying the cluster_uuid means the RPC should fail (with error NOT_FOUND) if cluster with specified UUID does not exist.",
           "type": "string"
         },
         "requestId": {
-          "description": "Optional. A unique id used to identify the request. If the server receives two StartClusterRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#google.cloud.dataproc.v1beta2.StartClusterRequest)s with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+          "description": "Optional. A unique id used to identify the request. If the server receives two StartClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
           "type": "string"
         }
       },
@@ -4403,11 +4313,11 @@
       "id": "StopClusterRequest",
       "properties": {
         "clusterUuid": {
-          "description": "Optional. Specifying the cluster_uuid means the RPC will fail (with error NOT_FOUND) if a cluster with the specified UUID does not exist.",
+          "description": "Optional. Specifying the cluster_uuid means the RPC should fail (with error NOT_FOUND) if cluster with specified UUID does not exist.",
           "type": "string"
         },
         "requestId": {
-          "description": "Optional. A unique id used to identify the request. If the server receives two StopClusterRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#google.cloud.dataproc.v1beta2.StopClusterRequest)s with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+          "description": "Optional. A unique id used to identify the request. If the server receives two StopClusterRequest requests with the same id, then the second request will be ignored and the first google.longrunning.Operation created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
           "type": "string"
         }
       },
@@ -4422,7 +4332,7 @@
           "description": "Required. The job resource."
         },
         "requestId": {
-          "description": "Optional. A unique id used to identify the request. If the server receives two SubmitJobRequest (https://cloud.google.com/dataproc/docs/reference/rpc/google.cloud.dataproc.v1beta2#google.cloud.dataproc.v1.SubmitJobRequest)s with the same id, then the second request will be ignored and the first Job created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+          "description": "Optional. A unique id used to identify the request. If the server receives two SubmitJobRequest requests with the same id, then the second request will be ignored and the first Job created and stored in the backend is returned.It is recommended to always set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
           "type": "string"
         }
       },
@@ -4543,7 +4453,7 @@
           "type": "string"
         },
         "dagTimeout": {
-          "description": "Output only. The timeout duration for the DAG of jobs, expressed in seconds (see JSON representation of duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).",
+          "description": "Output only. The timeout duration for the DAG of jobs. Minimum timeout duration is 10 minutes and maximum is 24 hours, expressed as a google.protobuf.Duration. For example, \"1800\" = 1800 seconds/30 minutes duration.",
           "format": "google-duration",
           "readOnly": true,
           "type": "string"
@@ -4670,7 +4580,7 @@
           "type": "string"
         },
         "dagTimeout": {
-          "description": "Optional. Timeout duration for the DAG of jobs, expressed in seconds (see JSON representation of duration (https://developers.google.com/protocol-buffers/docs/proto3#json)). The timeout duration must be from 10 minutes (\"600s\") to 24 hours (\"86400s\"). The timer begins when the first job is submitted. If the workflow is running at the end of the timeout period, any remaining jobs are cancelled, the workflow is ended, and if the workflow was running on a managed cluster, the cluster is deleted.",
+          "description": "Optional. Timeout duration for the DAG of jobs. You can use \"s\", \"m\", \"h\", and \"d\" suffixes for second, minute, hour, and day duration values, respectively. The timeout duration must be from 10 minutes (\"10m\") to 24 hours (\"24h\" or \"1d\"). The timer begins when the first job is submitted. If the workflow is running at the end of the timeout period, any remaining jobs are cancelled, the workflow is ended, and if the workflow was running on a managed cluster, the cluster is deleted.",
           "format": "google-duration",
           "type": "string"
         },

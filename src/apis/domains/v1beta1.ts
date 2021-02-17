@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace domains_v1beta1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -180,7 +182,7 @@ export namespace domains_v1beta1 {
    */
   export interface Schema$ConfigureContactSettingsRequest {
     /**
-     * The list of contact notices that the caller acknowledges. The notices needed here depend on the values specified in `contact_settings`.
+     * The list of contact notices that the caller acknowledges. The notices required here depend on the values specified in `contact_settings`.
      */
     contactNotices?: string[] | null;
     /**
@@ -601,7 +603,7 @@ export namespace domains_v1beta1 {
    */
   export interface Schema$RegisterDomainRequest {
     /**
-     * The list of contact notices that the caller acknowledges. The notices needed here depend on the values specified in `registration.contact_settings`.
+     * The list of contact notices that the caller acknowledges. The notices required here depend on the values specified in `registration.contact_settings`.
      */
     contactNotices?: string[] | null;
     /**

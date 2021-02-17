@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace safebrowsing_v4 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -191,7 +193,7 @@ export namespace safebrowsing_v4 {
    */
   export interface Schema$Empty {}
   /**
-   * Describes a Safe Browsing API update request. Clients can request updates for multiple lists in a single request. The server may not respond to all requests, if the server has no updates for that list. NOTE: Field index 2 is unused. NEXT: 5
+   * Describes a Safe Browsing API update request. Clients can request updates for multiple lists in a single request. NOTE: Field index 2 is unused. NEXT: 5
    */
   export interface Schema$FetchThreatListUpdatesRequest {
     /**
@@ -205,7 +207,7 @@ export namespace safebrowsing_v4 {
   }
   export interface Schema$FetchThreatListUpdatesResponse {
     /**
-     * The list updates requested by the clients. The number of responses here may be less than the number of requests sent by clients. This is the case, for example, if the server has no updates for a particular list.
+     * The list updates requested by the clients.
      */
     listUpdateResponses?: Schema$ListUpdateResponse[];
     /**

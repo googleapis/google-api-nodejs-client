@@ -193,7 +193,7 @@
       }
     }
   },
-  "revision": "20210119",
+  "revision": "20201130",
   "rootUrl": "https://pagespeedonline.googleapis.com/",
   "schemas": {
     "AuditRefs": {
@@ -289,11 +289,7 @@
           "type": "string"
         },
         "emulatedFormFactor": {
-          "description": "The form factor the emulation should use. This field is deprecated, form_factor should be used instead.",
-          "type": "string"
-        },
-        "formFactor": {
-          "description": "How Lighthouse should interpret this run in regards to scoring performance metrics and skipping mobile-only tests in desktop.",
+          "description": "The form factor the emulation should use.",
           "type": "string"
         },
         "locale": {

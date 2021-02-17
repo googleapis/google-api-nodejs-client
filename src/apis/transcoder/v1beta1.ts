@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace transcoder_v1beta1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -184,7 +186,7 @@ export namespace transcoder_v1beta1 {
      */
     startTimeOffset?: string | null;
     /**
-     * Normalized coordinates based on output video resolution. Valid values: `0.0`–`1.0`. `xy` is the upper-left coordinate of the overlay object. For example, use the x and y coordinates {0,0\} to position the top-left corner of the overlay animation in the top-left corner of the output video.
+     * Normalized coordinates based on output video resolution. Valid values: `0.0`–`1.0`. `xy` is the upper-left coordinate of the overlay object.
      */
     xy?: Schema$NormalizedCoordinate;
   }
@@ -197,7 +199,7 @@ export namespace transcoder_v1beta1 {
      */
     startTimeOffset?: string | null;
     /**
-     * Normalized coordinates based on output video resolution. Valid values: `0.0`–`1.0`. `xy` is the upper-left coordinate of the overlay object. For example, use the x and y coordinates {0,0\} to position the top-left corner of the overlay animation in the top-left corner of the output video.
+     * Normalized coordinates based on output video resolution. Valid values: `0.0`–`1.0`. `xy` is the upper-left coordinate of the overlay object.
      */
     xy?: Schema$NormalizedCoordinate;
   }
@@ -308,7 +310,7 @@ export namespace transcoder_v1beta1 {
     saturation?: number | null;
   }
   /**
-   * Video cropping configuration for the input video. The cropped input video is scaled to match the output resolution.
+   * Video cropping configuration.
    */
   export interface Schema$Crop {
     /**
@@ -439,7 +441,7 @@ export namespace transcoder_v1beta1 {
    */
   export interface Schema$Image {
     /**
-     * Target image opacity. Valid values: `1.0` (solid, default) to `0.0` (transparent).
+     * Target image opacity. Valid values: `1` (solid, default), `0` (transparent).
      */
     alpha?: number | null;
     /**
@@ -464,7 +466,7 @@ export namespace transcoder_v1beta1 {
      */
     preprocessingConfig?: Schema$PreprocessingConfig;
     /**
-     * URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value will be populated from `Job.input_uri`.
+     * URI of the media. It must be stored in Cloud Storage. Example `gs://bucket/inputs/file.mp4`. If empty the value will be populated from `Job.input_uri`.
      */
     uri?: string | null;
   }
@@ -493,7 +495,7 @@ export namespace transcoder_v1beta1 {
      */
     failureReason?: string | null;
     /**
-     * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of `Job.config.inputs` or `JobTemplate.config.inputs` when using template. URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`).
+     * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of `Job.config.inputs` or `JobTemplate.config.inputs` when using template. URI of the media. It must be stored in Cloud Storage. For example, `gs://bucket/inputs/file.mp4`.
      */
     inputUri?: string | null;
     /**
@@ -528,10 +530,6 @@ export namespace transcoder_v1beta1 {
      * Input only. Specify the `template_id` to use for populating `Job.config`. The default is `preset/web-hd`. Preset Transcoder templates: - `preset/{preset_id\}` - User defined JobTemplate: `{job_template_id\}`
      */
     templateId?: string | null;
-    /**
-     * Job time to live value in days, which will be effective after job completion. Job should be deleted automatically after the given TTL. Enter a value between 1 and 90. The default is 30.
-     */
-    ttlAfterCompletionDays?: number | null;
   }
   /**
    * Job configuration
@@ -690,39 +688,6 @@ export namespace transcoder_v1beta1 {
     y?: number | null;
   }
   /**
-   * Represents the metadata of the long-running operation.
-   */
-  export interface Schema$OperationMetadata {
-    /**
-     * [Output only] API version used to start the operation.
-     */
-    apiVersion?: string | null;
-    /**
-     * [Output only] Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     */
-    cancelRequested?: boolean | null;
-    /**
-     * [Output only] The time the operation was created.
-     */
-    createTime?: string | null;
-    /**
-     * [Output only] The time the operation finished running.
-     */
-    endTime?: string | null;
-    /**
-     * [Output only] Human-readable status of the operation, if any.
-     */
-    statusDetail?: string | null;
-    /**
-     * [Output only] Server-defined resource path for the target of the operation.
-     */
-    target?: string | null;
-    /**
-     * [Output only] Name of the verb executed by the operation.
-     */
-    verb?: string | null;
-  }
-  /**
    * The origin URI.
    */
   export interface Schema$OriginUri {
@@ -830,7 +795,7 @@ export namespace transcoder_v1beta1 {
      */
     individualSegments?: boolean | null;
     /**
-     * Duration of the segments in seconds. The default is `"6.0s"`. Note that `segmentDuration` must be greater than or equal to [`gopDuration`](#videostream), and `segmentDuration` must be divisible by [`gopDuration`](#videostream).
+     * Duration of the segments in seconds. The default is `"6.0s"`.
      */
     segmentDuration?: string | null;
   }
@@ -963,11 +928,11 @@ export namespace transcoder_v1beta1 {
      */
     entropyCoder?: string | null;
     /**
-     * Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120. Will default to the input frame rate if larger than the input frame rate. The API will generate an output FPS that is divisible by the input FPS, and smaller or equal to the target FPS. The following table shows the computed video FPS given the target FPS (in parenthesis) and input FPS (in the first column): ``` | | (30) | (60) | (25) | (50) | |--------|--------|--------|------|------| | 240 | Fail | Fail | Fail | Fail | | 120 | 30 | 60 | 20 | 30 | | 100 | 25 | 50 | 20 | 30 | | 50 | 25 | 50 | 20 | 30 | | 60 | 30 | 60 | 20 | 30 | | 59.94 | 29.97 | 59.94 | 20 | 30 | | 48 | 24 | 48 | 20 | 30 | | 30 | 30 | 30 | 20 | 30 | | 25 | 25 | 25 | 20 | 30 | | 24 | 24 | 24 | 20 | 30 | | 23.976 | 23.976 | 23.976 | 20 | 30 | | 15 | 15 | 15 | 20 | 30 | | 12 | 12 | 12 | 20 | 30 | | 10 | 10 | 10 | 20 | 30 | ```
+     * Required. The target video frame rate in frames per second (FPS). Must be less than or equal to 120. Will default to the input frame rate if larger than the input frame rate. The API will generate an output FPS that is divisible by the input FPS, and smaller or equal to the target FPS. The following table shows the computed video FPS given the target FPS (in parenthesis) and input FPS (in the first column): | | (30) | (60) | (25) | (50) | |--------|--------|--------|------|------| | 240 | Fail | Fail | Fail | Fail | | 120 | 30 | 60 | 20 | 30 | | 100 | 25 | 50 | 20 | 30 | | 50 | 25 | 50 | 20 | 30 | | 60 | 30 | 60 | 20 | 30 | | 59.94 | 29.97 | 59.94 | 20 | 30 | | 48 | 24 | 48 | 20 | 30 | | 30 | 30 | 30 | 20 | 30 | | 25 | 25 | 25 | 20 | 30 | | 24 | 24 | 24 | 20 | 30 | | 23.976 | 23.976 | 23.976 | 20 | 30 | | 15 | 15 | 15 | 20 | 30 | | 12 | 12 | 12 | 20 | 30 | | 10 | 10 | 10 | 20 | 30 |
      */
     frameRate?: number | null;
     /**
-     * Select the GOP size based on the specified duration. The default is `"3s"`. Note that `gopDuration` must be less than or equal to [`segmentDuration`](#SegmentSettings), and [`segmentDuration`](#SegmentSettings) must be divisible by `gopDuration`.
+     * Select the GOP size based on the specified duration. The default is `"3s"`.
      */
     gopDuration?: string | null;
     /**
@@ -1087,8 +1052,7 @@ export namespace transcoder_v1beta1 {
      *       //   "progress": {},
      *       //   "startTime": "my_startTime",
      *       //   "state": "my_state",
-     *       //   "templateId": "my_templateId",
-     *       //   "ttlAfterCompletionDays": 0
+     *       //   "templateId": "my_templateId"
      *       // }
      *     },
      *   });
@@ -1109,8 +1073,7 @@ export namespace transcoder_v1beta1 {
      *   //   "progress": {},
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
-     *   //   "templateId": "my_templateId",
-     *   //   "ttlAfterCompletionDays": 0
+     *   //   "templateId": "my_templateId"
      *   // }
      * }
      *
@@ -1376,8 +1339,7 @@ export namespace transcoder_v1beta1 {
      *   //   "progress": {},
      *   //   "startTime": "my_startTime",
      *   //   "state": "my_state",
-     *   //   "templateId": "my_templateId",
-     *   //   "ttlAfterCompletionDays": 0
+     *   //   "templateId": "my_templateId"
      *   // }
      * }
      *

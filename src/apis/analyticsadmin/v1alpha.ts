@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace analyticsadmin_v1alpha {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -132,6 +134,10 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAccount {
     /**
+     * Country of business. Must be a non-deprecated code for a UN M.49 region. https: //unicode.org/cldr/charts/latest/supplem // ental/territory_containment_un_m_49.html
+     */
+    countryCode?: string | null;
+    /**
      * Output only. Time when this account was originally created.
      */
     createTime?: string | null;
@@ -147,10 +153,6 @@ export namespace analyticsadmin_v1alpha {
      * Output only. Resource name of this account. Format: accounts/{account\} Example: "accounts/100"
      */
     name?: string | null;
-    /**
-     * Country of business. Must be a Unicode CLDR region code.
-     */
-    regionCode?: string | null;
     /**
      * Output only. Time when account payload fields were last updated.
      */
@@ -371,9 +373,29 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings {
     /**
+     * Capture events when your visitors view content on your site that has articles or blog posts.
+     */
+    articlesAndBlogsEnabled?: boolean | null;
+    /**
+     * Capture events when your visitors view content on your site that has structured data (eg, articles, blog posts, product details screens, etc.).
+     */
+    contentViewsEnabled?: boolean | null;
+    /**
+     * If enabled, capture a click event each time a visitor clicks a link or element that has data attributes beginning with "data-ga".
+     */
+    dataTaggedElementClicksEnabled?: boolean | null;
+    /**
+     * Domains to exclude from measurement. Max length is 1024 characters.
+     */
+    excludedDomains?: string | null;
+    /**
      * If enabled, capture a file download event each time a link is clicked with a common document, compressed file, application, video, or audio extension.
      */
     fileDownloadsEnabled?: boolean | null;
+    /**
+     * If enabled, capture a view search results event each time a visitor interacts with a form on your site.
+     */
+    formInteractionsEnabled?: boolean | null;
     /**
      * Output only. Resource name of this Data Stream. Format: properties/{property_id\}/webDataStreams/{stream_id\}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
      */
@@ -387,13 +409,17 @@ export namespace analyticsadmin_v1alpha {
      */
     pageChangesEnabled?: boolean | null;
     /**
-     * Output only. If enabled, capture a page view event each time a page loads.
+     * If enabled, capture a page view event each time a page loads.
      */
     pageLoadsEnabled?: boolean | null;
     /**
      * Output only. If enabled, capture a page view event each time a page loads or the website changes the browser history state.
      */
     pageViewsEnabled?: boolean | null;
+    /**
+     * Capture events when your visitors view content on your site that has product details screens, etc.
+     */
+    productsAndEcommerceEnabled?: boolean | null;
     /**
      * If enabled, capture scroll events each time a visitor gets to the bottom of a page.
      */
@@ -413,7 +439,7 @@ export namespace analyticsadmin_v1alpha {
     /**
      * Additional URL query parameters. Max length is 1024 characters.
      */
-    uriQueryParameter?: string | null;
+    urlQueryParameter?: string | null;
     /**
      * If enabled, capture video play, progress, and complete events as visitors view embedded videos on your site.
      */
@@ -444,10 +470,6 @@ export namespace analyticsadmin_v1alpha {
    * Read-only resource with the tag for sending data from a website to a WebDataStream.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag {
-    /**
-     * Output only. Resource name for this GlobalSiteTag resource. Format: properties/{propertyId\}/globalSiteTag
-     */
-    name?: string | null;
     /**
      * Immutable. JavaScript code snippet to be pasted as the first item into the head tag of every webpage to measure.
      */
@@ -481,6 +503,10 @@ export namespace analyticsadmin_v1alpha {
      * Output only. Format: properties/{propertyId\}/googleAdsLinks/{googleAdsLinkId\} Note: googleAdsLinkId is not the Google Ads customer ID.
      */
     name?: string | null;
+    /**
+     * Immutable. Format: properties/{propertyId\}
+     */
+    parent?: string | null;
     /**
      * Output only. Time when this link was last updated.
      */
@@ -562,10 +588,6 @@ export namespace analyticsadmin_v1alpha {
      * List of FirebaseLinks. This will have at most one value.
      */
     firebaseLinks?: Schema$GoogleAnalyticsAdminV1alphaFirebaseLink[];
-    /**
-     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages. Currently, Google Analytics supports only one FirebaseLink per property, so this will never be populated.
-     */
-    nextPageToken?: string | null;
   }
   /**
    * Response message for ListGoogleAdsLinks RPC.
@@ -908,7 +930,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single Account.
+     * Lookup for a single Account. Throws "Target not found" if no such account found, or if caller does not have permissions to access it.
      * @example
      * ```js
      * // Before running the sample:
@@ -925,10 +947,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -944,11 +963,11 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "countryCode": "my_countryCode",
      *   //   "createTime": "my_createTime",
      *   //   "deleted": false,
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "regionCode": "my_regionCode",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1068,10 +1087,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1125,42 +1141,28 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Accounts$Getdatasharingsettings,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings>
     ): void;
     getDataSharingSettings(
       params: Params$Resource$Accounts$Getdatasharingsettings,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings>
     ): void;
     getDataSharingSettings(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings>
     ): void;
     getDataSharingSettings(
       paramsOrCallback?:
         | Params$Resource$Accounts$Getdatasharingsettings
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1202,9 +1204,9 @@ export namespace analyticsadmin_v1alpha {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings>(
+          parameters
+        );
       }
     }
 
@@ -1226,10 +1228,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1283,42 +1282,28 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Accounts$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse>
     ): void;
     list(
       params: Params$Resource$Accounts$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$List
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1354,13 +1339,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse>(
+          parameters
+        );
       }
     }
 
@@ -1400,11 +1386,11 @@ export namespace analyticsadmin_v1alpha {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "countryCode": "my_countryCode",
      *       //   "createTime": "my_createTime",
      *       //   "deleted": false,
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
-     *       //   "regionCode": "my_regionCode",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -1413,11 +1399,11 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "countryCode": "my_countryCode",
      *   //   "createTime": "my_createTime",
      *   //   "deleted": false,
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "regionCode": "my_regionCode",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1582,9 +1568,7 @@ export namespace analyticsadmin_v1alpha {
     provisionAccountTicket(
       params?: Params$Resource$Accounts$Provisionaccountticket,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse>;
     provisionAccountTicket(
       params: Params$Resource$Accounts$Provisionaccountticket,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1594,48 +1578,32 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Accounts$Provisionaccountticket,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse>
     ): void;
     provisionAccountTicket(
       params: Params$Resource$Accounts$Provisionaccountticket,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse>
     ): void;
     provisionAccountTicket(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse>
     ): void;
     provisionAccountTicket(
       paramsOrCallback?:
         | Params$Resource$Accounts$Provisionaccountticket
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse
-        >
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Provisionaccountticket;
@@ -1671,13 +1639,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse>(
+          parameters
+        );
       }
     }
   }
@@ -1762,10 +1731,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1824,42 +1790,28 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Accounts$Userlinks$Audit,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
     ): void;
     audit(
       params: Params$Resource$Accounts$Userlinks$Audit,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
     ): void;
     audit(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
     ): void;
     audit(
       paramsOrCallback?:
         | Params$Resource$Accounts$Userlinks$Audit
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1899,13 +1851,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>(
+          parameters
+        );
       }
     }
 
@@ -1975,9 +1928,7 @@ export namespace analyticsadmin_v1alpha {
     batchCreate(
       params?: Params$Resource$Accounts$Userlinks$Batchcreate,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>;
     batchCreate(
       params: Params$Resource$Accounts$Userlinks$Batchcreate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1987,48 +1938,32 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Accounts$Userlinks$Batchcreate,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
     ): void;
     batchCreate(
       params: Params$Resource$Accounts$Userlinks$Batchcreate,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
     ): void;
     batchCreate(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
     ): void;
     batchCreate(
       paramsOrCallback?:
         | Params$Resource$Accounts$Userlinks$Batchcreate
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-        >
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Userlinks$Batchcreate;
@@ -2064,13 +1999,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>(
+          parameters
+        );
       }
     }
 
@@ -2233,10 +2169,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2277,9 +2210,7 @@ export namespace analyticsadmin_v1alpha {
     batchGet(
       params?: Params$Resource$Accounts$Userlinks$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>;
     batchGet(
       params: Params$Resource$Accounts$Userlinks$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2289,48 +2220,32 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Accounts$Userlinks$Batchget,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
     ): void;
     batchGet(
       params: Params$Resource$Accounts$Userlinks$Batchget,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
     ): void;
     batchGet(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
     ): void;
     batchGet(
       paramsOrCallback?:
         | Params$Resource$Accounts$Userlinks$Batchget
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-        >
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Userlinks$Batchget;
@@ -2366,13 +2281,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>(
+          parameters
+        );
       }
     }
 
@@ -2441,9 +2357,7 @@ export namespace analyticsadmin_v1alpha {
     batchUpdate(
       params?: Params$Resource$Accounts$Userlinks$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>;
     batchUpdate(
       params: Params$Resource$Accounts$Userlinks$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2453,48 +2367,32 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Accounts$Userlinks$Batchupdate,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
     ): void;
     batchUpdate(
       params: Params$Resource$Accounts$Userlinks$Batchupdate,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
     ): void;
     batchUpdate(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
     ): void;
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Accounts$Userlinks$Batchupdate
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-        >
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accounts$Userlinks$Batchupdate;
@@ -2530,13 +2428,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>(
+          parameters
+        );
       }
     }
 
@@ -2839,10 +2738,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2980,10 +2876,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3037,42 +2930,28 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Accounts$Userlinks$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
     ): void;
     list(
       params: Params$Resource$Accounts$Userlinks$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Accounts$Userlinks$List
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -3112,13 +2991,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>(
+          parameters
+        );
       }
     }
 
@@ -3412,10 +3292,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -3457,9 +3334,7 @@ export namespace analyticsadmin_v1alpha {
     list(
       params?: Params$Resource$Accountsummaries$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse>;
     list(
       params: Params$Resource$Accountsummaries$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3469,48 +3344,32 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Accountsummaries$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse>
     ): void;
     list(
       params: Params$Resource$Accountsummaries$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Accountsummaries$List
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse
-        >
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Accountsummaries$List;
@@ -3546,13 +3405,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse>(
+          parameters
+        );
       }
     }
   }
@@ -3884,7 +3744,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single "GA4" Property.
+     * Lookup for a single "GA4" Property. Throws "Target not found" if no such property found, if property is not of the type "GA4", or if caller does not have permissions to access it.
      * @example
      * ```js
      * // Before running the sample:
@@ -3901,10 +3761,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4047,10 +3904,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4059,7 +3913,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.list({
-     *     // Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: ``` | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. | ```
+     *     // Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. |
      *     filter: 'placeholder-value',
      *     // The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
      *     pageSize: 'placeholder-value',
@@ -4106,42 +3960,28 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse>
     ): void;
     list(
       params: Params$Resource$Properties$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Properties$List
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4180,13 +4020,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse>(
+          parameters
+        );
       }
     }
 
@@ -4374,7 +4215,7 @@ export namespace analyticsadmin_v1alpha {
   }
   export interface Params$Resource$Properties$List extends StandardParameters {
     /**
-     * Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: ``` | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. | ```
+     * Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. |
      */
     filter?: string;
     /**
@@ -4413,7 +4254,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Creates an Android app stream with the specified location and attributes. Note that an Android app stream must be linked to a Firebase app to receive traffic. To create a working app stream, make sure your property is linked to a Firebase project. Then, use the Firebase API to create a Firebase app, which will also create an appropriate data stream in Analytics (may take up to 24 hours).
+     * Creates an android app stream with the specified location and attributes.
      * @example
      * ```js
      * // Before running the sample:
@@ -4497,42 +4338,28 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Androidappdatastreams$Create,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
     ): void;
     create(
       params: Params$Resource$Properties$Androidappdatastreams$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
     ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Properties$Androidappdatastreams$Create
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4572,13 +4399,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>(
+          parameters
+        );
       }
     }
 
@@ -4712,7 +4540,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single AndroidAppDataStream
+     * Lookup for a single AndroidAppDataStream Throws "Target not found" if no such android app data stream found, or if the caller does not have permissions to access it.
      * @example
      * ```js
      * // Before running the sample:
@@ -4729,10 +4557,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4787,42 +4612,28 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Androidappdatastreams$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
     ): void;
     get(
       params: Params$Resource$Properties$Androidappdatastreams$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Properties$Androidappdatastreams$Get
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4859,13 +4670,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>(
+          parameters
+        );
       }
     }
 
@@ -4887,10 +4699,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -4934,9 +4743,7 @@ export namespace analyticsadmin_v1alpha {
     list(
       params?: Params$Resource$Properties$Androidappdatastreams$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse>;
     list(
       params: Params$Resource$Properties$Androidappdatastreams$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4946,48 +4753,32 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Androidappdatastreams$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse>
     ): void;
     list(
       params: Params$Resource$Properties$Androidappdatastreams$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Properties$Androidappdatastreams$List
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse
-        >
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Androidappdatastreams$List;
@@ -5023,13 +4814,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse>(
+          parameters
+        );
       }
     }
 
@@ -5121,42 +4913,28 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Androidappdatastreams$Patch,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
     ): void;
     patch(
       params: Params$Resource$Properties$Androidappdatastreams$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
     ): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Properties$Androidappdatastreams$Patch
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -5193,13 +4971,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream>(
+          parameters
+        );
       }
     }
   }
@@ -5350,20 +5129,14 @@ export namespace analyticsadmin_v1alpha {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaFirebaseLink
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>
     ): void;
     create(
       params: Params$Resource$Properties$Firebaselinks$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaFirebaseLink
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaFirebaseLink
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>
     ): void;
     create(
       paramsOrCallback?:
@@ -5573,10 +5346,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -5585,10 +5355,6 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.firebaseLinks.list({
-     *     // The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
-     *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.
-     *     pageToken: 'placeholder-value',
      *     // Required. Format: properties/{property_id\} Example: properties/1234
      *     parent: 'properties/my-propertie',
      *   });
@@ -5596,8 +5362,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
-     *   //   "firebaseLinks": [],
-     *   //   "nextPageToken": "my_nextPageToken"
+     *   //   "firebaseLinks": []
      *   // }
      * }
      *
@@ -5620,9 +5385,7 @@ export namespace analyticsadmin_v1alpha {
     list(
       params?: Params$Resource$Properties$Firebaselinks$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse>;
     list(
       params: Params$Resource$Properties$Firebaselinks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5632,48 +5395,32 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Firebaselinks$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse>
     ): void;
     list(
       params: Params$Resource$Properties$Firebaselinks$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Properties$Firebaselinks$List
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse
-        >
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Firebaselinks$List;
@@ -5709,13 +5456,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse>(
+          parameters
+        );
       }
     }
 
@@ -5803,20 +5551,14 @@ export namespace analyticsadmin_v1alpha {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaFirebaseLink
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>
     ): void;
     patch(
       params: Params$Resource$Properties$Firebaselinks$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaFirebaseLink
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaFirebaseLink
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>
     ): void;
     patch(
       paramsOrCallback?:
@@ -5900,14 +5642,6 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Firebaselinks$List
     extends StandardParameters {
     /**
-     * The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
-     */
-    pageSize?: number;
-    /**
-     * A page token, received from a previous `ListFirebaseLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.
-     */
-    pageToken?: string;
-    /**
      * Required. Format: properties/{property_id\} Example: properties/1234
      */
     parent?: string;
@@ -5975,6 +5709,7 @@ export namespace analyticsadmin_v1alpha {
      *       //   "customerId": "my_customerId",
      *       //   "emailAddress": "my_emailAddress",
      *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -5989,6 +5724,7 @@ export namespace analyticsadmin_v1alpha {
      *   //   "customerId": "my_customerId",
      *   //   "emailAddress": "my_emailAddress",
      *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -6023,20 +5759,14 @@ export namespace analyticsadmin_v1alpha {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>
     ): void;
     create(
       params: Params$Resource$Properties$Googleadslinks$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>
     ): void;
     create(
       paramsOrCallback?:
@@ -6094,9 +5824,9 @@ export namespace analyticsadmin_v1alpha {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>(
+          parameters
+        );
       }
     }
 
@@ -6246,10 +5976,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6293,9 +6020,7 @@ export namespace analyticsadmin_v1alpha {
     list(
       params?: Params$Resource$Properties$Googleadslinks$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse>;
     list(
       params: Params$Resource$Properties$Googleadslinks$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6305,48 +6030,32 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Googleadslinks$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse>
     ): void;
     list(
       params: Params$Resource$Properties$Googleadslinks$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Properties$Googleadslinks$List
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse
-        >
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Googleadslinks$List;
@@ -6382,13 +6091,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse>(
+          parameters
+        );
       }
     }
 
@@ -6434,6 +6144,7 @@ export namespace analyticsadmin_v1alpha {
      *       //   "customerId": "my_customerId",
      *       //   "emailAddress": "my_emailAddress",
      *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -6448,6 +6159,7 @@ export namespace analyticsadmin_v1alpha {
      *   //   "customerId": "my_customerId",
      *   //   "emailAddress": "my_emailAddress",
      *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -6482,20 +6194,14 @@ export namespace analyticsadmin_v1alpha {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>
     ): void;
     patch(
       params: Params$Resource$Properties$Googleadslinks$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>
     ): void;
     patch(
       paramsOrCallback?:
@@ -6550,9 +6256,9 @@ export namespace analyticsadmin_v1alpha {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>(
+          parameters
+        );
       }
     }
   }
@@ -6615,7 +6321,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Creates an iOS app stream with the specified location and attributes. Note that an iOS app stream must be linked to a Firebase app to receive traffic. To create a working app stream, make sure your property is linked to a Firebase project. Then, use the Firebase API to create a Firebase app, which will also create an appropriate data stream in Analytics (may take up to 24 hours).
+     * Creates an iOS app data stream with the specified location and attributes.
      * @example
      * ```js
      * // Before running the sample:
@@ -6699,42 +6405,28 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Iosappdatastreams$Create,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
     ): void;
     create(
       params: Params$Resource$Properties$Iosappdatastreams$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
     ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Properties$Iosappdatastreams$Create
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -6779,9 +6471,9 @@ export namespace analyticsadmin_v1alpha {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>(
+          parameters
+        );
       }
     }
 
@@ -6914,7 +6606,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single IosAppDataStream
+     * Lookup for a single IosAppDataStream Throws "Target not found" if no such iOS app data stream found, or if the caller does not have permissions to access it.
      * @example
      * ```js
      * // Before running the sample:
@@ -6931,10 +6623,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -6988,42 +6677,28 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Iosappdatastreams$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
     ): void;
     get(
       params: Params$Resource$Properties$Iosappdatastreams$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Properties$Iosappdatastreams$Get
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -7065,9 +6740,9 @@ export namespace analyticsadmin_v1alpha {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>(
+          parameters
+        );
       }
     }
 
@@ -7089,10 +6764,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7136,9 +6808,7 @@ export namespace analyticsadmin_v1alpha {
     list(
       params?: Params$Resource$Properties$Iosappdatastreams$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse>;
     list(
       params: Params$Resource$Properties$Iosappdatastreams$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7148,48 +6818,32 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Iosappdatastreams$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse>
     ): void;
     list(
       params: Params$Resource$Properties$Iosappdatastreams$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Properties$Iosappdatastreams$List
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse
-        >
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Iosappdatastreams$List;
@@ -7225,13 +6879,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse>(
+          parameters
+        );
       }
     }
 
@@ -7322,42 +6977,28 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Iosappdatastreams$Patch,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
     ): void;
     patch(
       params: Params$Resource$Properties$Iosappdatastreams$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
     ): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Properties$Iosappdatastreams$Patch
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -7399,9 +7040,9 @@ export namespace analyticsadmin_v1alpha {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>(
+          parameters
+        );
       }
     }
   }
@@ -7488,10 +7129,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -7550,42 +7188,28 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Userlinks$Audit,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
     ): void;
     audit(
       params: Params$Resource$Properties$Userlinks$Audit,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
     ): void;
     audit(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
     ): void;
     audit(
       paramsOrCallback?:
         | Params$Resource$Properties$Userlinks$Audit
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -7625,13 +7249,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse>(
+          parameters
+        );
       }
     }
 
@@ -7701,9 +7326,7 @@ export namespace analyticsadmin_v1alpha {
     batchCreate(
       params?: Params$Resource$Properties$Userlinks$Batchcreate,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>;
     batchCreate(
       params: Params$Resource$Properties$Userlinks$Batchcreate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -7713,48 +7336,32 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Userlinks$Batchcreate,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
     ): void;
     batchCreate(
       params: Params$Resource$Properties$Userlinks$Batchcreate,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
     ): void;
     batchCreate(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
     ): void;
     batchCreate(
       paramsOrCallback?:
         | Params$Resource$Properties$Userlinks$Batchcreate
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-        >
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Userlinks$Batchcreate;
@@ -7790,13 +7397,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse>(
+          parameters
+        );
       }
     }
 
@@ -7959,10 +7567,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8003,9 +7608,7 @@ export namespace analyticsadmin_v1alpha {
     batchGet(
       params?: Params$Resource$Properties$Userlinks$Batchget,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>;
     batchGet(
       params: Params$Resource$Properties$Userlinks$Batchget,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8015,48 +7618,32 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Userlinks$Batchget,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
     ): void;
     batchGet(
       params: Params$Resource$Properties$Userlinks$Batchget,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
     ): void;
     batchGet(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
     ): void;
     batchGet(
       paramsOrCallback?:
         | Params$Resource$Properties$Userlinks$Batchget
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-        >
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Userlinks$Batchget;
@@ -8092,13 +7679,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse>(
+          parameters
+        );
       }
     }
 
@@ -8167,9 +7755,7 @@ export namespace analyticsadmin_v1alpha {
     batchUpdate(
       params?: Params$Resource$Properties$Userlinks$Batchupdate,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>;
     batchUpdate(
       params: Params$Resource$Properties$Userlinks$Batchupdate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -8179,48 +7765,32 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Userlinks$Batchupdate,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
     ): void;
     batchUpdate(
       params: Params$Resource$Properties$Userlinks$Batchupdate,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
     ): void;
     batchUpdate(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
     ): void;
     batchUpdate(
       paramsOrCallback?:
         | Params$Resource$Properties$Userlinks$Batchupdate
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-        >
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Userlinks$Batchupdate;
@@ -8256,13 +7826,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse>(
+          parameters
+        );
       }
     }
 
@@ -8565,10 +8136,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8706,10 +8274,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.manage.users',
-     *       'https://www.googleapis.com/auth/analytics.manage.users.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.manage.users.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -8763,42 +8328,28 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Userlinks$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
     ): void;
     list(
       params: Params$Resource$Properties$Userlinks$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Properties$Userlinks$List
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -8838,13 +8389,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse>(
+          parameters
+        );
       }
     }
 
@@ -9208,20 +8760,14 @@ export namespace analyticsadmin_v1alpha {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaWebDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>
     ): void;
     create(
       params: Params$Resource$Properties$Webdatastreams$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaWebDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaWebDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>
     ): void;
     create(
       paramsOrCallback?:
@@ -9279,9 +8825,9 @@ export namespace analyticsadmin_v1alpha {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaWebDataStream
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>(
+          parameters
+        );
       }
     }
 
@@ -9414,7 +8960,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Lookup for a single WebDataStream
+     * Lookup for a single WebDataStream Throws "Target not found" if no such web data stream found, or if the caller does not have permissions to access it.
      * @example
      * ```js
      * // Before running the sample:
@@ -9431,10 +8977,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9490,20 +9033,14 @@ export namespace analyticsadmin_v1alpha {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaWebDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>
     ): void;
     get(
       params: Params$Resource$Properties$Webdatastreams$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaWebDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaWebDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>
     ): void;
     get(
       paramsOrCallback?:
@@ -9558,9 +9095,9 @@ export namespace analyticsadmin_v1alpha {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaWebDataStream
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>(
+          parameters
+        );
       }
     }
 
@@ -9582,10 +9119,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9604,17 +9138,23 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "articlesAndBlogsEnabled": false,
+     *   //   "contentViewsEnabled": false,
+     *   //   "dataTaggedElementClicksEnabled": false,
+     *   //   "excludedDomains": "my_excludedDomains",
      *   //   "fileDownloadsEnabled": false,
+     *   //   "formInteractionsEnabled": false,
      *   //   "name": "my_name",
      *   //   "outboundClicksEnabled": false,
      *   //   "pageChangesEnabled": false,
      *   //   "pageLoadsEnabled": false,
      *   //   "pageViewsEnabled": false,
+     *   //   "productsAndEcommerceEnabled": false,
      *   //   "scrollsEnabled": false,
      *   //   "searchQueryParameter": "my_searchQueryParameter",
      *   //   "siteSearchEnabled": false,
      *   //   "streamEnabled": false,
-     *   //   "uriQueryParameter": "my_uriQueryParameter",
+     *   //   "urlQueryParameter": "my_urlQueryParameter",
      *   //   "videoEngagementEnabled": false
      *   // }
      * }
@@ -9638,9 +9178,7 @@ export namespace analyticsadmin_v1alpha {
     getEnhancedMeasurementSettings(
       params?: Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-    >;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>;
     getEnhancedMeasurementSettings(
       params: Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9650,48 +9188,32 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
     ): void;
     getEnhancedMeasurementSettings(
       params: Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
     ): void;
     getEnhancedMeasurementSettings(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
     ): void;
     getEnhancedMeasurementSettings(
       paramsOrCallback?:
         | Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-        >
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings;
@@ -9724,13 +9246,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
+          parameters
+        );
       }
     }
 
@@ -9752,10 +9275,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9772,7 +9292,6 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
-     *   //   "name": "my_name",
      *   //   "snippet": "my_snippet"
      *   // }
      * }
@@ -9807,20 +9326,14 @@ export namespace analyticsadmin_v1alpha {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
     ): void;
     getGlobalSiteTag(
       params: Params$Resource$Properties$Webdatastreams$Getglobalsitetag,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
     ): void;
     getGlobalSiteTag(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>
     ): void;
     getGlobalSiteTag(
       paramsOrCallback?:
@@ -9875,9 +9388,9 @@ export namespace analyticsadmin_v1alpha {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>(
+          parameters
+        );
       }
     }
 
@@ -9899,10 +9412,7 @@ export namespace analyticsadmin_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics.edit',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
+     *     scopes: ['https://www.googleapis.com/auth/analytics.readonly'],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -9946,9 +9456,7 @@ export namespace analyticsadmin_v1alpha {
     list(
       params?: Params$Resource$Properties$Webdatastreams$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse>;
     list(
       params: Params$Resource$Properties$Webdatastreams$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -9958,48 +9466,32 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Webdatastreams$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse>
     ): void;
     list(
       params: Params$Resource$Properties$Webdatastreams$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Properties$Webdatastreams$List
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse
-        >
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Webdatastreams$List;
@@ -10035,13 +9527,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse>(
+          parameters
+        );
       }
     }
 
@@ -10135,20 +9628,14 @@ export namespace analyticsadmin_v1alpha {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaWebDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>
     ): void;
     patch(
       params: Params$Resource$Properties$Webdatastreams$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaWebDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaWebDataStream
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>
     ): void;
     patch(
       paramsOrCallback?:
@@ -10203,9 +9690,9 @@ export namespace analyticsadmin_v1alpha {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaWebDataStream
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>(
+          parameters
+        );
       }
     }
 
@@ -10247,17 +9734,23 @@ export namespace analyticsadmin_v1alpha {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "articlesAndBlogsEnabled": false,
+     *         //   "contentViewsEnabled": false,
+     *         //   "dataTaggedElementClicksEnabled": false,
+     *         //   "excludedDomains": "my_excludedDomains",
      *         //   "fileDownloadsEnabled": false,
+     *         //   "formInteractionsEnabled": false,
      *         //   "name": "my_name",
      *         //   "outboundClicksEnabled": false,
      *         //   "pageChangesEnabled": false,
      *         //   "pageLoadsEnabled": false,
      *         //   "pageViewsEnabled": false,
+     *         //   "productsAndEcommerceEnabled": false,
      *         //   "scrollsEnabled": false,
      *         //   "searchQueryParameter": "my_searchQueryParameter",
      *         //   "siteSearchEnabled": false,
      *         //   "streamEnabled": false,
-     *         //   "uriQueryParameter": "my_uriQueryParameter",
+     *         //   "urlQueryParameter": "my_urlQueryParameter",
      *         //   "videoEngagementEnabled": false
      *         // }
      *       },
@@ -10267,17 +9760,23 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "articlesAndBlogsEnabled": false,
+     *   //   "contentViewsEnabled": false,
+     *   //   "dataTaggedElementClicksEnabled": false,
+     *   //   "excludedDomains": "my_excludedDomains",
      *   //   "fileDownloadsEnabled": false,
+     *   //   "formInteractionsEnabled": false,
      *   //   "name": "my_name",
      *   //   "outboundClicksEnabled": false,
      *   //   "pageChangesEnabled": false,
      *   //   "pageLoadsEnabled": false,
      *   //   "pageViewsEnabled": false,
+     *   //   "productsAndEcommerceEnabled": false,
      *   //   "scrollsEnabled": false,
      *   //   "searchQueryParameter": "my_searchQueryParameter",
      *   //   "siteSearchEnabled": false,
      *   //   "streamEnabled": false,
-     *   //   "uriQueryParameter": "my_uriQueryParameter",
+     *   //   "urlQueryParameter": "my_urlQueryParameter",
      *   //   "videoEngagementEnabled": false
      *   // }
      * }
@@ -10301,9 +9800,7 @@ export namespace analyticsadmin_v1alpha {
     updateEnhancedMeasurementSettings(
       params?: Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-    >;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>;
     updateEnhancedMeasurementSettings(
       params: Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -10313,48 +9810,32 @@ export namespace analyticsadmin_v1alpha {
       params: Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-      >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
     ): void;
     updateEnhancedMeasurementSettings(
       params: Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings,
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
     ): void;
     updateEnhancedMeasurementSettings(
-      callback: BodyResponseCallback<
-        Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-      >
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
     ): void;
     updateEnhancedMeasurementSettings(
       paramsOrCallback?:
         | Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-          >
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-        >
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings;
@@ -10387,13 +9868,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings>(
+          parameters
+        );
       }
     }
   }

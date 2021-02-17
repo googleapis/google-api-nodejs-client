@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace firestore_v1beta1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -4519,42 +4521,28 @@ export namespace firestore_v1beta1 {
       params: Params$Resource$Projects$Databases$Indexes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Databases$Indexes$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Databases$Indexes$List
-        | BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4598,9 +4586,9 @@ export namespace firestore_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>(
+          parameters
+        );
       }
     }
   }

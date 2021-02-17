@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace homegraph_v1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -148,7 +150,7 @@ export namespace homegraph_v1 {
     deviceId?: string | null;
   }
   /**
-   * Third-party device definition. Next ID = 14
+   * Third-party device definition.
    */
   export interface Schema$Device {
     /**
@@ -156,7 +158,7 @@ export namespace homegraph_v1 {
      */
     attributes?: {[key: string]: any} | null;
     /**
-     * Custom device attributes stored in Home Graph and provided to your smart home Action in each [QUERY](https://developers.google.com/assistant/smarthome/reference/intent/query) and [EXECUTE](https://developers.google.com/assistant/smarthome/reference/intent/execute) intent. Data in this object has a few constraints: No sensitive information, including but not limited to Personally Identifiable Information.
+     * Custom device attributes stored in Home Graph and provided to your smart home Action in each [QUERY](https://developers.google.com/assistant/smarthome/reference/intent/query) and [EXECUTE](https://developers.google.com/assistant/smarthome/reference/intent/execute) intent.
      */
     customData?: {[key: string]: any} | null;
     /**
@@ -171,10 +173,6 @@ export namespace homegraph_v1 {
      * Names given to this device by your smart home Action.
      */
     name?: Schema$DeviceNames;
-    /**
-     * See description for "traits". For Smart Home Entertainment Devices (SHED) devices, some traits can only be executed on 3P cloud, e.g. "non_local_traits": [ { "trait": "action.devices.traits.MediaInitiation" \}, { "trait": "action.devices.traits.Channel" \} ] go/shed-per-trait-routing.
-     */
-    nonLocalTraits?: Schema$NonLocalTrait[];
     /**
      * Indicates whether your smart home Action will report notifications to Google for this device via ReportStateAndNotification. If your smart home Action enables users to control device notifications, you should update this field and call RequestSyncDevices.
      */
@@ -246,15 +244,6 @@ export namespace homegraph_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
-  /**
-   * LINT.IfChange go/shed-per-trait-routing. Making it object to allow for extendible design, where we can add attributes in future.
-   */
-  export interface Schema$NonLocalTrait {
-    /**
-     * Trait name, e.g., "action.devices.traits.MediaInitiation". See [device traits](https://developers.google.com/assistant/smarthome/traits).
-     */
-    trait?: string | null;
-  }
   /**
    * Request type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call.
    */

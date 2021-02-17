@@ -2500,7 +2500,7 @@
       }
     }
   },
-  "revision": "20210217",
+  "revision": "20201202",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -4611,20 +4611,16 @@
             "SENSITIVE_CATEGORY",
             "PRODUCT_CATEGORY",
             "DISAPPROVAL_REASON",
-            "POLICY_TOPIC",
-            "ATP_VENDOR",
-            "VENDOR_DOMAIN"
+            "POLICY_TOPIC"
           ],
           "enumDescriptions": [
             "A placeholder for an undefined status. This value will never be returned in responses.",
             "Indicates that the detail ID refers to a creative attribute; see [publisher-excludable-creative-attributes](https://developers.google.com/authorized-buyers/rtb/downloads/publisher-excludable-creative-attributes).",
-            "Indicates that the detail ID refers to a vendor; see [vendors](https://developers.google.com/authorized-buyers/rtb/downloads/vendors). This namespace is different from that of the `ATP_VENDOR` detail type.",
+            "Indicates that the detail ID refers to a vendor; see [vendors](https://developers.google.com/authorized-buyers/rtb/downloads/vendors).",
             "Indicates that the detail ID refers to a sensitive category; see [ad-sensitive-categories](https://developers.google.com/authorized-buyers/rtb/downloads/ad-sensitive-categories).",
             "Indicates that the detail ID refers to a product category; see [ad-product-categories](https://developers.google.com/authorized-buyers/rtb/downloads/ad-product-categories).",
             "Indicates that the detail ID refers to a disapproval reason; see DisapprovalReason enum in [snippet-status-report-proto](https://developers.google.com/authorized-buyers/rtb/downloads/snippet-status-report-proto).",
-            "Indicates that the detail ID refers to a policy topic.",
-            "Indicates that the detail ID refers to an ad technology provider (ATP); see [providers] (https://storage.googleapis.com/adx-rtb-dictionaries/providers.csv). This namespace is different from the `VENDOR` detail type; see [ad technology providers](https://support.google.com/admanager/answer/9012903) for more information.",
-            "Indicates that the detail string refers the domain of an unknown vendor."
+            "Indicates that the detail ID refers to a policy topic."
           ],
           "type": "string"
         },

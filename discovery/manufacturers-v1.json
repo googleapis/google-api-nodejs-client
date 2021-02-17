@@ -287,7 +287,7 @@
       }
     }
   },
-  "revision": "20210211",
+  "revision": "20200805",
   "rootUrl": "https://manufacturers.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -393,13 +393,6 @@
           "description": "The details of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productdetail.",
           "items": {
             "$ref": "ProductDetail"
-          },
-          "type": "array"
-        },
-        "productHighlight": {
-          "description": "The product highlights. For more information, see https://support.google.com/manufacturers/answer/10066942",
-          "items": {
-            "type": "string"
           },
           "type": "array"
         },

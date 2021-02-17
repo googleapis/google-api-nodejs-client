@@ -3298,7 +3298,7 @@
       }
     }
   },
-  "revision": "20210211",
+  "revision": "20201113",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5587,7 +5587,7 @@
         },
         "gmbAccounts": {
           "$ref": "GmbAccounts",
-          "description": "The list of accessible GMB accounts."
+          "description": "The the list of accessible GMB accounts."
         },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"`content#liasettingsCustomBatchResponseEntry`\"",
@@ -7788,7 +7788,7 @@
           "type": "string"
         },
         "quantity": {
-          "description": "The quantity to return and refund. Quantity is required.",
+          "description": "The quantity to return and refund.",
           "format": "uint32",
           "type": "integer"
         },
@@ -8612,7 +8612,7 @@
           "type": "string"
         },
         "condition": {
-          "description": "Condition or state of the item. Acceptable values are: - \"`new`\" - \"`refurbished`\" - \"`used`\" ",
+          "description": "Condition or state of the item. Acceptable values are: - \"`local`\" - \"`online`\" ",
           "type": "string"
         },
         "contentLanguage": {
@@ -8705,7 +8705,7 @@
           "type": "string"
         },
         "googleProductCategory": {
-          "description": "Google's category of the item (see [Google product taxonomy](https://support.google.com/merchants/answer/1705911)). When querying products, this field will contain the user provided value. There is currently no way to get back the auto assigned google product categories through the API.",
+          "description": "Google's category of the item (see Google product taxonomy).",
           "type": "string"
         },
         "gtin": {

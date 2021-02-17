@@ -207,34 +207,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
-                "applySoftwareUpdate": {
-                  "description": "Updates software on the selected nodes of the Instance.",
-                  "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:applySoftwareUpdate",
-                  "httpMethod": "POST",
-                  "id": "memcache.projects.locations.instances.applySoftwareUpdate",
-                  "parameterOrder": [
-                    "instance"
-                  ],
-                  "parameters": {
-                    "instance": {
-                      "description": "Required. Resource name of the Memcached instance for which software update should be applied.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1beta2/{+instance}:applySoftwareUpdate",
-                  "request": {
-                    "$ref": "ApplySoftwareUpdateRequest"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "create": {
                   "description": "Creates a new Instance in a given location.",
                   "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances",
@@ -556,7 +528,7 @@
       }
     }
   },
-  "revision": "20210209",
+  "revision": "20201109",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -569,24 +541,6 @@
         },
         "nodeIds": {
           "description": "Nodes to which we should apply the instance-level parameter group.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "ApplySoftwareUpdateRequest": {
-      "description": "Request for ApplySoftwareUpdate.",
-      "id": "ApplySoftwareUpdateRequest",
-      "properties": {
-        "applyAll": {
-          "description": "Whether to apply the update to all nodes. If set to true, will explicitly restrict users from specifying any nodes, and apply software update to all nodes (where applicable) within the instance.",
-          "type": "boolean"
-        },
-        "nodeIds": {
-          "description": "Nodes to which we should apply the update to. Note all the selected nodes are updated in parallel.",
           "items": {
             "type": "string"
           },
@@ -851,11 +805,6 @@
           "description": "The rollout management policy this maintenance schedule is associated with. When doing reschedule update request, the reschedule should be against this given policy.",
           "type": "string"
         },
-        "scheduleDeadlineTime": {
-          "description": "schedule_deadline_time is the time deadline any schedule start time cannot go beyond, including reschedule. It's normally the initial schedule start time plus a week. If the reschedule type is next window, simply take this value as start time. If reschedule type is IMMEDIATELY or BY_TIME, current or selected time cannot go beyond this deadline.",
-          "format": "google-datetime",
-          "type": "string"
-        },
         "startTime": {
           "description": "The scheduled start time for the maintenance.",
           "format": "google-datetime",
@@ -870,10 +819,6 @@
       "properties": {
         "exclude": {
           "description": "Optional. Exclude instance from maintenance. When true, rollout service will not attempt maintenance on the instance. Rollout service will include the instance in reported rollout progress as not attempted.",
-          "type": "boolean"
-        },
-        "isRollback": {
-          "description": "Optional. If the update call is triggered from rollback, set the value as true.",
           "type": "boolean"
         },
         "maintenancePolicies": {
@@ -1088,11 +1033,6 @@
           ],
           "readOnly": true,
           "type": "string"
-        },
-        "updateAvailable": {
-          "description": "Output only. Returns true if there is an update waiting to be applied",
-          "readOnly": true,
-          "type": "boolean"
         },
         "updateTime": {
           "description": "Output only. The time the instance was updated.",
@@ -1352,11 +1292,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "updateAvailable": {
-          "description": "Output only. Returns true if there is an update waiting to be applied",
-          "readOnly": true,
-          "type": "boolean"
-        },
         "zone": {
           "description": "Output only. Location (GCP Zone) for the Memcached node.",
           "readOnly": true,
@@ -1413,50 +1348,6 @@
           },
           "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "OperationMetadata": {
-      "description": "Represents the metadata of a long-running operation.",
-      "id": "OperationMetadata",
-      "properties": {
-        "apiVersion": {
-          "description": "Output only. API version used to start the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "cancelRequested": {
-          "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "createTime": {
-          "description": "Output only. Time when the operation was created.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "endTime": {
-          "description": "Output only. Time when the operation finished running.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "statusDetail": {
-          "description": "Output only. Human-readable status of the operation, if any.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "target": {
-          "description": "Output only. Server-defined resource path for the target of the operation.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "verb": {
-          "description": "Output only. Name of the verb executed by the operation.",
-          "readOnly": true,
-          "type": "string"
         }
       },
       "type": "object"

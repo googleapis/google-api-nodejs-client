@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace siteVerification_v1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -492,42 +494,28 @@ export namespace siteVerification_v1 {
       params: Params$Resource$Webresource$Gettoken,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$SiteVerificationWebResourceGettokenResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$SiteVerificationWebResourceGettokenResponse
-      >
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceGettokenResponse>,
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceGettokenResponse>
     ): void;
     getToken(
       params: Params$Resource$Webresource$Gettoken,
-      callback: BodyResponseCallback<
-        Schema$SiteVerificationWebResourceGettokenResponse
-      >
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceGettokenResponse>
     ): void;
     getToken(
-      callback: BodyResponseCallback<
-        Schema$SiteVerificationWebResourceGettokenResponse
-      >
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceGettokenResponse>
     ): void;
     getToken(
       paramsOrCallback?:
         | Params$Resource$Webresource$Gettoken
-        | BodyResponseCallback<
-            Schema$SiteVerificationWebResourceGettokenResponse
-          >
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceGettokenResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$SiteVerificationWebResourceGettokenResponse
-          >
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceGettokenResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$SiteVerificationWebResourceGettokenResponse
-          >
+        | BodyResponseCallback<Schema$SiteVerificationWebResourceGettokenResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -571,9 +559,9 @@ export namespace siteVerification_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$SiteVerificationWebResourceGettokenResponse
-        >(parameters);
+        return createAPIRequest<Schema$SiteVerificationWebResourceGettokenResponse>(
+          parameters
+        );
       }
     }
 
@@ -795,20 +783,14 @@ export namespace siteVerification_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>,
-      callback: BodyResponseCallback<
-        Schema$SiteVerificationWebResourceListResponse
-      >
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>
     ): void;
     list(
       params: Params$Resource$Webresource$List,
-      callback: BodyResponseCallback<
-        Schema$SiteVerificationWebResourceListResponse
-      >
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$SiteVerificationWebResourceListResponse
-      >
+      callback: BodyResponseCallback<Schema$SiteVerificationWebResourceListResponse>
     ): void;
     list(
       paramsOrCallback?:

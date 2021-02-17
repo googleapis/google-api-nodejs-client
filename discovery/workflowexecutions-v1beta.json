@@ -269,7 +269,7 @@
       }
     }
   },
-  "revision": "20210118",
+  "revision": "20200922",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "CancelExecutionRequest": {
@@ -283,16 +283,12 @@
       "id": "Error",
       "properties": {
         "context": {
-          "description": "Human readable stack trace string.",
+          "description": "Human readable error context, helpful for debugging purposes.",
           "type": "string"
         },
         "payload": {
-          "description": "Error message and data returned represented as a JSON string.",
+          "description": "Error payload returned by the execution, represented as a JSON string.",
           "type": "string"
-        },
-        "stackTrace": {
-          "$ref": "StackTrace",
-          "description": "Stack trace with detailed information of where error was generated."
         }
       },
       "type": "object"
@@ -302,7 +298,7 @@
       "id": "Execution",
       "properties": {
         "argument": {
-          "description": "Input parameters of the execution represented as a JSON string. The size limit is 32KB. *Note*: If you are using the REST API directly to run your workflow, you must escape any JSON string value of `argument`. Example: `'{\"argument\":\"{\\\"firstName\\\":\\\"FIRST\\\",\\\"lastName\\\":\\\"LAST\\\"}\"}'`",
+          "description": "Input parameters of the execution represented as a JSON string. The size limit is 32KB.",
           "type": "string"
         },
         "endTime": {
@@ -372,45 +368,6 @@
         },
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "StackTrace": {
-      "description": "A collection of stack elements (frames) where an error occurred.",
-      "id": "StackTrace",
-      "properties": {
-        "elements": {
-          "description": "An array of Stack elements.",
-          "items": {
-            "$ref": "StackTraceElement"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "StackTraceElement": {
-      "description": "A single stack element (frame) where an error occurred.",
-      "id": "StackTraceElement",
-      "properties": {
-        "column": {
-          "description": "The source code column position (of the line) the current instruction was generated from.",
-          "format": "int64",
-          "type": "string"
-        },
-        "line": {
-          "description": "The source code line number the current instruction was generated from.",
-          "format": "int64",
-          "type": "string"
-        },
-        "routine": {
-          "description": "The routine where the error occurred.",
-          "type": "string"
-        },
-        "step": {
-          "description": "The step the error occurred at.",
           "type": "string"
         }
       },

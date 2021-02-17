@@ -24,7 +24,6 @@
   "description": "Manages Google Cloud Dataflow projects on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/dataflow",
-  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -414,7 +413,7 @@
                   "type": "string"
                 },
                 "view": {
-                  "description": "Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.",
+                  "description": "Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.",
                   "enum": [
                     "JOB_VIEW_UNKNOWN",
                     "JOB_VIEW_SUMMARY",
@@ -649,7 +648,7 @@
                   "type": "string"
                 },
                 "view": {
-                  "description": "Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.",
+                  "description": "Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.",
                   "enum": [
                     "JOB_VIEW_UNKNOWN",
                     "JOB_VIEW_SUMMARY",
@@ -1354,7 +1353,7 @@
                       "type": "string"
                     },
                     "view": {
-                      "description": "Deprecated. ListJobs always returns summaries now. Use GetJob for other JobViews.",
+                      "description": "Level of information requested in response. Default is `JOB_VIEW_SUMMARY`.",
                       "enum": [
                         "JOB_VIEW_UNKNOWN",
                         "JOB_VIEW_SUMMARY",
@@ -2444,7 +2443,7 @@
       }
     }
   },
-  "revision": "20210203",
+  "revision": "20201117",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3325,21 +3324,6 @@
           "description": "If set, contains the Cloud KMS key identifier used to encrypt data at rest, AKA a Customer Managed Encryption Key (CMEK). Format: projects/PROJECT_ID/locations/LOCATION/keyRings/KEY_RING/cryptoKeys/KEY",
           "type": "string"
         },
-        "shuffleMode": {
-          "description": "Output only. The shuffle mode used for the job.",
-          "enum": [
-            "SHUFFLE_MODE_UNSPECIFIED",
-            "VM_BASED",
-            "SERVICE_BASED"
-          ],
-          "enumDescriptions": [
-            "Shuffle mode information is not available.",
-            "Shuffle is done on the worker VMs.",
-            "Shuffle is done on the service side."
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
         "tempStoragePrefix": {
           "description": "The prefix of the resources the system should use for temporary storage. The system will append the suffix \"/temp-{JOBNAME} to this resource prefix, where {JOBNAME} is the value of the job_name field. The resulting bucket and object prefix is used as the prefix of the resources used to store temporary data needed during the job execution. NOTE: This will override the value in taskrunner_settings. The supported resource type is: Google Cloud Storage: storage.googleapis.com/{bucket}/{object} bucket.storage.googleapis.com/{object}",
           "type": "string"
@@ -3405,8 +3389,7 @@
             "JOB_STATE_DRAINED",
             "JOB_STATE_PENDING",
             "JOB_STATE_CANCELLING",
-            "JOB_STATE_QUEUED",
-            "JOB_STATE_RESOURCE_CLEANING_UP"
+            "JOB_STATE_QUEUED"
           ],
           "enumDescriptions": [
             "The job's run state isn't specified.",
@@ -3420,8 +3403,7 @@
             "`JOB_STATE_DRAINED` indicates that the job has been drained. A drained job terminated by stopping pulling from its input sources and processing any data that remained in-flight when draining was requested. This state is a terminal state, may only be set by the Cloud Dataflow service, and only as a transition from `JOB_STATE_DRAINING`.",
             "`JOB_STATE_PENDING` indicates that the job has been created but is not yet running. Jobs that are pending may only transition to `JOB_STATE_RUNNING`, or `JOB_STATE_FAILED`.",
             "`JOB_STATE_CANCELLING` indicates that the job has been explicitly cancelled and is in the process of stopping. Jobs that are cancelling may only transition to `JOB_STATE_CANCELLED` or `JOB_STATE_FAILED`.",
-            "`JOB_STATE_QUEUED` indicates that the job has been created but is being delayed until launch. Jobs that are queued may only transition to `JOB_STATE_PENDING` or `JOB_STATE_CANCELLED`.",
-            "`JOB_STATE_RESOURCE_CLEANING_UP` indicates that the batch job's associated resources are currently being cleaned up after a successful run. Currently, this is an opt-in feature, please reach out to Cloud support team if you are intersted."
+            "`JOB_STATE_QUEUED` indicates that the job has been created but is being delayed until launch. Jobs that are queued may only transition to `JOB_STATE_PENDING` or `JOB_STATE_CANCELLED`."
           ],
           "type": "string"
         }
@@ -3561,20 +3543,6 @@
         "enableStreamingEngine": {
           "description": "Whether to enable Streaming Engine for the job.",
           "type": "boolean"
-        },
-        "flexrsGoal": {
-          "description": "Set FlexRS goal for the job. https://cloud.google.com/dataflow/docs/guides/flexrs",
-          "enum": [
-            "FLEXRS_UNSPECIFIED",
-            "FLEXRS_SPEED_OPTIMIZED",
-            "FLEXRS_COST_OPTIMIZED"
-          ],
-          "enumDescriptions": [
-            "Run in the default mode.",
-            "Optimize for lower execution time.",
-            "Optimize for lower cost."
-          ],
-          "type": "string"
         },
         "ipConfiguration": {
           "description": "Configuration for VM IPs.",
@@ -3871,7 +3839,7 @@
       "type": "object"
     },
     "Job": {
-      "description": "Defines a job to be run by the Cloud Dataflow service. nextID: 26",
+      "description": "Defines a job to be run by the Cloud Dataflow service.",
       "id": "Job",
       "properties": {
         "clientRequestId": {
@@ -3901,8 +3869,7 @@
             "JOB_STATE_DRAINED",
             "JOB_STATE_PENDING",
             "JOB_STATE_CANCELLING",
-            "JOB_STATE_QUEUED",
-            "JOB_STATE_RESOURCE_CLEANING_UP"
+            "JOB_STATE_QUEUED"
           ],
           "enumDescriptions": [
             "The job's run state isn't specified.",
@@ -3916,8 +3883,7 @@
             "`JOB_STATE_DRAINED` indicates that the job has been drained. A drained job terminated by stopping pulling from its input sources and processing any data that remained in-flight when draining was requested. This state is a terminal state, may only be set by the Cloud Dataflow service, and only as a transition from `JOB_STATE_DRAINING`.",
             "`JOB_STATE_PENDING` indicates that the job has been created but is not yet running. Jobs that are pending may only transition to `JOB_STATE_RUNNING`, or `JOB_STATE_FAILED`.",
             "`JOB_STATE_CANCELLING` indicates that the job has been explicitly cancelled and is in the process of stopping. Jobs that are cancelling may only transition to `JOB_STATE_CANCELLED` or `JOB_STATE_FAILED`.",
-            "`JOB_STATE_QUEUED` indicates that the job has been created but is being delayed until launch. Jobs that are queued may only transition to `JOB_STATE_PENDING` or `JOB_STATE_CANCELLED`.",
-            "`JOB_STATE_RESOURCE_CLEANING_UP` indicates that the batch job's associated resources are currently being cleaned up after a successful run. Currently, this is an opt-in feature, please reach out to Cloud support team if you are intersted."
+            "`JOB_STATE_QUEUED` indicates that the job has been created but is being delayed until launch. Jobs that are queued may only transition to `JOB_STATE_PENDING` or `JOB_STATE_CANCELLED`."
           ],
           "type": "string"
         },
@@ -3987,8 +3953,7 @@
             "JOB_STATE_DRAINED",
             "JOB_STATE_PENDING",
             "JOB_STATE_CANCELLING",
-            "JOB_STATE_QUEUED",
-            "JOB_STATE_RESOURCE_CLEANING_UP"
+            "JOB_STATE_QUEUED"
           ],
           "enumDescriptions": [
             "The job's run state isn't specified.",
@@ -4002,14 +3967,9 @@
             "`JOB_STATE_DRAINED` indicates that the job has been drained. A drained job terminated by stopping pulling from its input sources and processing any data that remained in-flight when draining was requested. This state is a terminal state, may only be set by the Cloud Dataflow service, and only as a transition from `JOB_STATE_DRAINING`.",
             "`JOB_STATE_PENDING` indicates that the job has been created but is not yet running. Jobs that are pending may only transition to `JOB_STATE_RUNNING`, or `JOB_STATE_FAILED`.",
             "`JOB_STATE_CANCELLING` indicates that the job has been explicitly cancelled and is in the process of stopping. Jobs that are cancelling may only transition to `JOB_STATE_CANCELLED` or `JOB_STATE_FAILED`.",
-            "`JOB_STATE_QUEUED` indicates that the job has been created but is being delayed until launch. Jobs that are queued may only transition to `JOB_STATE_PENDING` or `JOB_STATE_CANCELLED`.",
-            "`JOB_STATE_RESOURCE_CLEANING_UP` indicates that the batch job's associated resources are currently being cleaned up after a successful run. Currently, this is an opt-in feature, please reach out to Cloud support team if you are intersted."
+            "`JOB_STATE_QUEUED` indicates that the job has been created but is being delayed until launch. Jobs that are queued may only transition to `JOB_STATE_PENDING` or `JOB_STATE_CANCELLED`."
           ],
           "type": "string"
-        },
-        "satisfiesPzs": {
-          "description": "Reserved for future use. This field is set only in responses from the server; it is ignored if it is set in any requests.",
-          "type": "boolean"
         },
         "stageStates": {
           "description": "This field may be mutated by the Cloud Dataflow service; callers cannot mutate it.",
@@ -4307,7 +4267,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Use this to pass transform_name_mappings for streaming update jobs. Ex:{\"oldTransformName\":\"newTransformName\",...}'",
+          "description": "Users need to set transform_name_mappings Ex:{\"oldTransformName\":\"newTransformName\",...}'",
           "type": "object"
         },
         "update": {
@@ -5474,10 +5434,6 @@
       "properties": {
         "containerImage": {
           "description": "A docker container image that resides in Google Container Registry.",
-          "type": "string"
-        },
-        "environmentId": {
-          "description": "Environment ID for the Beam runner API proto Environment that corresponds to the current SDK Harness.",
           "type": "string"
         },
         "useSingleCorePerContainer": {
