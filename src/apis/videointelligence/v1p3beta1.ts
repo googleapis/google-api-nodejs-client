@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace videointelligence_v1p3beta1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**

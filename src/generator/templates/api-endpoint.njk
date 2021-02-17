@@ -16,6 +16,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -44,7 +45,7 @@ interface StandardParameters {
   /**
    * Auth client or API Key for the request
    */
-  auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient|GoogleAuth;
+  auth?: string|OAuth2Client|JWT|Compute|UserRefreshClient|BaseExternalAccountClient|GoogleAuth;
 
   {% for pname, p in api.parameters|dictsort %}
   /**

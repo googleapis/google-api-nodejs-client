@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace jobs_v4 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
