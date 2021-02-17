@@ -174,6 +174,19 @@ export namespace accesscontextmanager_v1 {
     title?: string | null;
   }
   /**
+   * Identification for an API Operation.
+   */
+  export interface Schema$ApiOperation {
+    /**
+     * API methods or permissions to allow. Method or permission must belong to the service specified by `service_name` field. A single MethodSelector entry with `*` specified for the `method` field will allow all methods AND permissions for the service specified in `service_name`.
+     */
+    methodSelectors?: Schema$MethodSelector[];
+    /**
+     * The name of the API whose methods or permissions the IngressPolicy or EgressPolicy want to allow. A single ApiOperation with `service_name` field set to `*` will allow all methods AND permissions for all services.
+     */
+    serviceName?: string | null;
+  }
+  /**
    * `BasicLevel` is an `AccessLevel` using a set of recommended features.
    */
   export interface Schema$BasicLevel {
@@ -276,6 +289,45 @@ export namespace accesscontextmanager_v1 {
     requireScreenlock?: boolean | null;
   }
   /**
+   * Defines the conditions under which an EgressPolicy matches a request. Conditions based on information about the source of the request. Note that if the destination of the request is protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed.
+   */
+  export interface Schema$EgressFrom {
+    /**
+     * A list of identities that are allowed access through this [EgressPolicy]. Should be in the format of email address. The email address should represent individual user or service account only.
+     */
+    identities?: string[] | null;
+    /**
+     * Specifies the type of identities that are allowed access to outside the perimeter. If left unspecified, then members of `identities` field will be allowed access.
+     */
+    identityType?: string | null;
+  }
+  /**
+   * Policy for egress from perimeter. EgressPolicies match requests based on `egress_from` and `egress_to` stanzas. For an EgressPolicy to match, both `egress_from` and `egress_to` stanzas must be matched. If an EgressPolicy matches a request, the request is allowed to span the ServicePerimeter boundary. For example, an EgressPolicy can be used to allow VMs on networks within the ServicePerimeter to access a defined set of projects outside the perimeter in certain contexts (e.g. to read data from a Cloud Storage bucket or query against a BigQuery dataset). EgressPolicies are concerned with the *resources* that a request relates as well as the API services and API actions being used. They do not related to the direction of data movement. More detailed documentation for this concept can be found in the descriptions of EgressFrom and EgressTo.
+   */
+  export interface Schema$EgressPolicy {
+    /**
+     * Defines conditions on the source of a request causing this EgressPolicy to apply.
+     */
+    egressFrom?: Schema$EgressFrom;
+    /**
+     * Defines the conditions on the ApiOperation and destination resources that cause this EgressPolicy to apply.
+     */
+    egressTo?: Schema$EgressTo;
+  }
+  /**
+   * Defines the conditions under which an EgressPolicy matches a request. Conditions are based on information about the ApiOperation intended to be performed on the `resources` specified. Note that if the destination of the request is protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed.
+   */
+  export interface Schema$EgressTo {
+    /**
+     * A list of ApiOperations that this egress rule applies to. A request matches if it contains an operation/service in this list.
+     */
+    operations?: Schema$ApiOperation[];
+    /**
+     * A list of resources, currently only projects in the form `projects/`, that match this to stanza. A request matches if it contains a resource in this list. If `*` is specified for resources, then this EgressTo rule will authorize access to all resources outside the perimeter.
+     */
+    resources?: string[] | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -316,6 +368,62 @@ export namespace accesscontextmanager_v1 {
      * Immutable. Assigned by the server during creation. The last segment has an arbitrary length and has only URI unreserved characters (as defined by [RFC 3986 Section 2.3](https://tools.ietf.org/html/rfc3986#section-2.3)). Should not be specified by the client during creation. Example: "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
      */
     name?: string | null;
+  }
+  /**
+   * Defines the conditions under which an IngressPolicy matches a request. Conditions are based on information about the source of the request.
+   */
+  export interface Schema$IngressFrom {
+    /**
+     * A list of identities that are allowed access through this ingress policy. Should be in the format of email address. The email address should represent individual user or service account only.
+     */
+    identities?: string[] | null;
+    /**
+     * Specifies the type of identities that are allowed access from outside the perimeter. If left unspecified, then members of `identities` field will be allowed access.
+     */
+    identityType?: string | null;
+    /**
+     * Sources that this IngressPolicy authorizes access from.
+     */
+    sources?: Schema$IngressSource[];
+  }
+  /**
+   * Policy for ingress into ServicePerimeter. IngressPolicies match requests based on `ingress_from` and `ingress_to` stanzas. For an ingress policy to match, both the `ingress_from` and `ingress_to` stanzas must be matched. If an IngressPolicy matches a request, the request is allowed through the perimeter boundary from outside the perimeter. For example, access from the internet can be allowed either based on an AccessLevel or, for traffic hosted on Google Cloud, the project of the source network. For access from private networks, using the project of the hosting network is required. Individual ingress policies can be limited by restricting which services and/or actions they match using the `ingress_to` field.
+   */
+  export interface Schema$IngressPolicy {
+    /**
+     * Defines the conditions on the source of a request causing this IngressPolicy to apply.
+     */
+    ingressFrom?: Schema$IngressFrom;
+    /**
+     * Defines the conditions on the ApiOperation and request destination that cause this IngressPolicy to apply.
+     */
+    ingressTo?: Schema$IngressTo;
+  }
+  /**
+   * The source that IngressPolicy authorizes access from.
+   */
+  export interface Schema$IngressSource {
+    /**
+     * An AccessLevel resource name that allow resources within the ServicePerimeters to be accessed from the internet. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If no AccessLevel names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If `*` is specified, then all IngressSources will be allowed.
+     */
+    accessLevel?: string | null;
+    /**
+     * A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects are allowed. Format: `projects/{project_number\}` The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. `*` is not allowed, the case of allowing all Google Cloud resources only is not supported.
+     */
+    resource?: string | null;
+  }
+  /**
+   * Defines the conditions under which an IngressPolicy matches a request. Conditions are based on information about the ApiOperation intended to be performed on the destination of the request.
+   */
+  export interface Schema$IngressTo {
+    /**
+     * A list of ApiOperations the sources specified in corresponding IngressFrom are allowed to perform in this ServicePerimeter.
+     */
+    operations?: Schema$ApiOperation[];
+    /**
+     * A list of resources, currently only projects in the form `projects/`, protected by this ServicePerimeter that are allowed to be accessed by sources defined in the corresponding IngressFrom. A request matches if it contains a resource in this list. If `*` is specified for resources, then this IngressTo rule will authorize access to all resources inside the perimeter, provided that the request also matches the `operations` field.
+     */
+    resources?: string[] | null;
   }
   /**
    * A response to `ListAccessLevelsRequest`.
@@ -381,6 +489,19 @@ export namespace accesscontextmanager_v1 {
      * List of the Service Perimeter instances.
      */
     servicePerimeters?: Schema$ServicePerimeter[];
+  }
+  /**
+   * An allowed method or permission of a service specified in ApiOperation.
+   */
+  export interface Schema$MethodSelector {
+    /**
+     * Value for `method` should be a valid method name for the corresponding `service_name` in ApiOperation. If `*` used as value for `method`, then ALL methods and permissions are allowed.
+     */
+    method?: string | null;
+    /**
+     * Value for `permission` should be a valid Cloud IAM permission for the corresponding `service_name` in ApiOperation.
+     */
+    permission?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -509,6 +630,14 @@ export namespace accesscontextmanager_v1 {
      * A list of `AccessLevel` resource names that allow resources within the `ServicePerimeter` to be accessed from the internet. `AccessLevels` listed must be in the same policy as this `ServicePerimeter`. Referencing a nonexistent `AccessLevel` is a syntax error. If no `AccessLevel` names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example: `"accessPolicies/MY_POLICY/accessLevels/MY_LEVEL"`. For Service Perimeter Bridge, must be empty.
      */
     accessLevels?: string[] | null;
+    /**
+     * List of EgressPolicies to apply to the perimeter. A perimeter may have multiple EgressPolicies, each of which is evaluated separately. Access is granted if any EgressPolicy grants it. Must be empty for a perimeter bridge.
+     */
+    egressPolicies?: Schema$EgressPolicy[];
+    /**
+     * List of IngressPolicies to apply to the perimeter. A perimeter may have multiple IngressPolicies, each of which is evaluated separately. Access is granted if any Ingress Policy grants it. Must be empty for a perimeter bridge.
+     */
+    ingressPolicies?: Schema$IngressPolicy[];
     /**
      * A list of Google Cloud resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number\}`
      */

@@ -207,7 +207,7 @@ export namespace container_v1beta1 {
      */
     diskSizeGb?: number | null;
     /**
-     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'
+     * Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'
      */
     diskType?: string | null;
     /**
@@ -548,7 +548,7 @@ export namespace container_v1beta1 {
      */
     status?: string | null;
     /**
-     * [Output only] Additional information about the current status of this cluster, if available.
+     * [Output only] Deprecated. Use conditions instead. Additional information about the current status of this cluster, if available.
      */
     statusMessage?: string | null;
     /**
@@ -698,6 +698,10 @@ export namespace container_v1beta1 {
      * The desired private cluster configuration.
      */
     desiredPrivateClusterConfig?: Schema$PrivateClusterConfig;
+    /**
+     * The desired state of IPv6 connectivity to Google Services.
+     */
+    desiredPrivateIpv6GoogleAccess?: string | null;
     /**
      * The desired release channel configuration.
      */
@@ -875,7 +879,7 @@ export namespace container_v1beta1 {
     localSsdCount?: number | null;
   }
   /**
-   * Configuration for the Compute Engine PD CSI driver. This option can only be enabled at cluster creation time.
+   * Configuration for the Compute Engine PD CSI driver.
    */
   export interface Schema$GcePersistentDiskCsiDriverConfig {
     /**
@@ -1330,6 +1334,10 @@ export namespace container_v1beta1 {
      */
     network?: string | null;
     /**
+     * The desired state of IPv6 connectivity to Google Services. By default, no private IPv6 access to or from Google Services (all access will be via IPv4)
+     */
+    privateIpv6GoogleAccess?: string | null;
+    /**
      * Output only. The relative name of the Google Compute Engine [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the cluster is connected. Example: projects/my-project/regions/us-central1/subnetworks/my-subnet
      */
     subnetwork?: string | null;
@@ -1373,7 +1381,7 @@ export namespace container_v1beta1 {
      */
     diskSizeGb?: number | null;
     /**
-     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'
+     * Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'
      */
     diskType?: string | null;
     /**
@@ -1540,7 +1548,7 @@ export namespace container_v1beta1 {
      */
     status?: string | null;
     /**
-     * [Output only] Additional information about the current status of this node pool instance, if available.
+     * [Output only] Deprecated. Use conditions instead. Additional information about the current status of this node pool instance, if available.
      */
     statusMessage?: string | null;
     /**
@@ -2202,7 +2210,7 @@ export namespace container_v1beta1 {
     zone?: string | null;
   }
   /**
-   * SetNodePoolSizeRequest sets the size a node pool.
+   * SetNodePoolSizeRequest sets the size of a node pool.
    */
   export interface Schema$SetNodePoolSizeRequest {
     /**
@@ -2445,31 +2453,52 @@ export namespace container_v1beta1 {
     zone?: string | null;
   }
   /**
+   * UpgradeAvailableEvent is a notification sent to customers when a new available version is released.
+   */
+  export interface Schema$UpgradeAvailableEvent {
+    /**
+     * The release channel of the version. If empty, it means a non-channel release.
+     */
+    releaseChannel?: Schema$ReleaseChannel;
+    /**
+     * Optional. Optional relative path to the resource. For example, the relative path of the node pool.
+     */
+    resource?: string | null;
+    /**
+     * The resource type of the release version.
+     */
+    resourceType?: string | null;
+    /**
+     * The release version available for upgrade.
+     */
+    version?: string | null;
+  }
+  /**
    * UpgradeEvent is a notification sent to customers by the cluster server when a resource is upgrading.
    */
   export interface Schema$UpgradeEvent {
     /**
-     * Required. The current version before the upgrade.
+     * The current version before the upgrade.
      */
     currentVersion?: string | null;
     /**
-     * Required. The operation associated with this upgrade.
+     * The operation associated with this upgrade.
      */
     operation?: string | null;
     /**
-     * Required. The time when the operation was started.
+     * The time when the operation was started.
      */
     operationStartTime?: string | null;
     /**
-     * Optional. Optional relative path to the resource. For example in node pool upgrades, the relative path of the node pool.
+     * Optional relative path to the resource. For example in node pool upgrades, the relative path of the node pool.
      */
     resource?: string | null;
     /**
-     * Required. The resource type that is upgrading.
+     * The resource type that is upgrading.
      */
     resourceType?: string | null;
     /**
-     * Required. The target version for the upgrade.
+     * The target version for the upgrade.
      */
     targetVersion?: string | null;
   }
@@ -7171,7 +7200,7 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * Sets the size for a specific node pool.
+     * SetNodePoolSizeRequest sets the size of a node pool. The new size will be used for all replicas, including future replicas created by modifying NodePool.locations.
      * @example
      * ```js
      * // Before running the sample:
@@ -12567,7 +12596,7 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * Sets the size for a specific node pool.
+     * SetNodePoolSizeRequest sets the size of a node pool. The new size will be used for all replicas, including future replicas created by modifying NodePool.locations.
      * @example
      * ```js
      * // Before running the sample:
