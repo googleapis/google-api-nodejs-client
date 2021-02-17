@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace analyticsdata_v1alpha {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -192,7 +194,7 @@ export namespace analyticsdata_v1alpha {
     dimensionName?: string | null;
   }
   /**
-   * Defines a cohort selection criteria. A cohort is a group of users who share a common characteristic. For example, users with the same `firstTouchDate` belong to the same cohort.
+   * Defines a cohort selection criteria. A cohort is a group of users who share a common characteristic. For example, users with the same `firstSessionDate` belong to the same cohort.
    */
   export interface Schema$Cohort {
     /**
@@ -200,7 +202,7 @@ export namespace analyticsdata_v1alpha {
      */
     dateRange?: Schema$DateRange;
     /**
-     * Dimension used by the cohort. Required and only supports `firstTouchDate`.
+     * Dimension used by the cohort. Required and only supports `firstSessionDate`.
      */
     dimension?: string | null;
     /**
@@ -218,7 +220,7 @@ export namespace analyticsdata_v1alpha {
     accumulate?: boolean | null;
   }
   /**
-   * Specification of cohorts for a cohort report. Cohort reports can be used for example to create a time series of user retention for the cohort. For example, you could select the cohort of users that were acquired in the first week of September and follow that cohort for the next six weeks. Selecting the users acquired in the first week of September cohort is specified in the `cohort` object. Following that cohort for the next six weeks is specified in the `cohortsRange` object. The report response could show a weekly time series where say your app has retained 60% of this cohort after three weeks and 25% of this cohort after six weeks. These two percentages can be calculated by the metric `cohortActiveUsers/cohortTotalUsers` and will be separate rows in the report.
+   * The specification of cohorts for a cohort report. Cohort reports create a time series of user retention for the cohort. For example, you could select the cohort of users that were acquired in the first week of September and follow that cohort for the next six weeks. Selecting the users acquired in the first week of September cohort is specified in the `cohort` object. Following that cohort for the next six weeks is specified in the `cohortsRange` object. For examples, see [Cohort Report Examples](https://developers.google.com/analytics/devguides/reporting/data/v1/advanced#cohort_report_examples). The report response could show a weekly time series where say your app has retained 60% of this cohort after three weeks and 25% of this cohort after six weeks. These two percentages can be calculated by the metric `cohortActiveUsers/cohortTotalUsers` and will be separate rows in the report.
    */
   export interface Schema$CohortSpec {
     /**
@@ -239,11 +241,11 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$CohortsRange {
     /**
-     * `endOffset` specifies the end date of the extended reporting date range for a cohort report. `endOffset` can be any positive integer but is commonly set to 5 to 10 so that reports contain data on the cohort for the next several granularity time periods. If `granularity` is `DAILY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset` days. If `granularity` is `WEEKLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 7` days. If `granularity` is `MONTHLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 30` days.
+     * Required. `endOffset` specifies the end date of the extended reporting date range for a cohort report. `endOffset` can be any positive integer but is commonly set to 5 to 10 so that reports contain data on the cohort for the next several granularity time periods. If `granularity` is `DAILY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset` days. If `granularity` is `WEEKLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 7` days. If `granularity` is `MONTHLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 30` days.
      */
     endOffset?: number | null;
     /**
-     * The granularity used to interpret the `startOffset` and `endOffset` for the extended reporting date range for a cohort report.
+     * Required. The granularity used to interpret the `startOffset` and `endOffset` for the extended reporting date range for a cohort report.
      */
     granularity?: string | null;
     /**
@@ -392,10 +394,6 @@ export namespace analyticsdata_v1alpha {
      * A filter for in list values.
      */
     inListFilter?: Schema$InListFilter;
-    /**
-     * A filter for null values. If True, a null dimension value is matched by this filter. Null filter is commonly used inside a NOT filter expression. For example, a NOT expression of a null filter removes rows when a dimension is null.
-     */
-    nullFilter?: boolean | null;
     /**
      * A filter for numeric or date values.
      */
@@ -602,7 +600,7 @@ export namespace analyticsdata_v1alpha {
      */
     fieldNames?: string[] | null;
     /**
-     * The number of rows to return in this pivot. If unspecified, 10 rows are returned. If -1, all rows are returned.
+     * The number of rows to return in this pivot. If the `limit` parameter is unspecified, up to 10,000 rows are returned. The product of the `limit` for each `pivot` in a `RunPivotReportRequest` must not exceed 100,000. For example, a two pivot request with `limit: 1000` in each pivot will fail because the product is `1,000,000`.
      */
     limit?: string | null;
     /**
@@ -636,7 +634,7 @@ export namespace analyticsdata_v1alpha {
      */
     pivotDimensionHeaders?: Schema$PivotDimensionHeader[];
     /**
-     * The cardinality of the pivot as if offset = 0 and limit = -1. The total number of rows for this pivot's fields regardless of how the parameters offset and limit are specified in the request.
+     * The cardinality of the pivot. The total number of rows for this pivot's fields regardless of how the parameters `offset` and `limit` are specified in the request.
      */
     rowCount?: number | null;
   }
@@ -683,7 +681,7 @@ export namespace analyticsdata_v1alpha {
      */
     tokensPerDay?: Schema$QuotaStatus;
     /**
-     * Standard Analytics Properties can use up to 5,000 tokens per day; Analytics 360 Properties can use 50,000 tokens per day. An API request consumes a single number of tokens, and that number is deducted from both the hourly and daily quotas.
+     * Standard Analytics Properties can use up to 5,000 tokens per hour; Analytics 360 Properties can use 50,000 tokens per hour. An API request consumes a single number of tokens, and that number is deducted from both the hourly and daily quotas.
      */
     tokensPerHour?: Schema$QuotaStatus;
   }
@@ -817,7 +815,7 @@ export namespace analyticsdata_v1alpha {
      */
     dimensions?: Schema$Dimension[];
     /**
-     * The number of rows to return. If unspecified, 10 rows are returned. If -1, all rows are returned.
+     * The number of rows to return. If the `limit` parameter is unspecified, 10,000 rows are returned. The API returns a maximum of 100,000 rows per request, no matter how many you ask for.
      */
     limit?: string | null;
     /**
@@ -911,7 +909,7 @@ export namespace analyticsdata_v1alpha {
      */
     keepEmptyRows?: boolean | null;
     /**
-     * The number of rows to return. If unspecified, 10 rows are returned. If -1, all rows are returned. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+     * The number of rows to return. If the `limit` parameter is unspecified, 10,000 rows are returned. The API returns a maximum of 100,000 rows per request, no matter how many you ask for.
      */
     limit?: string | null;
     /**
@@ -927,7 +925,7 @@ export namespace analyticsdata_v1alpha {
      */
     metrics?: Schema$Metric[];
     /**
-     * The row count of the start row. The first row is counted as row 0. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).
+     * The row count of the start row. The first row is counted as row 0.
      */
     offset?: string | null;
     /**

@@ -414,7 +414,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask",
+                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -454,7 +454,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask",
+                      "description": "Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -544,7 +544,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask",
+                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -969,7 +969,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask",
+                      "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1009,7 +1009,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask",
+                      "description": "Required. The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1176,7 +1176,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask",
+                          "description": "Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -1286,7 +1286,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask",
+                          "description": "Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -1312,7 +1312,7 @@
       }
     }
   },
-  "revision": "20201029",
+  "revision": "20210126",
   "rootUrl": "https://gameservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1765,6 +1765,24 @@
       "description": "A game server cluster resource.",
       "id": "GameServerCluster",
       "properties": {
+        "allocationPriority": {
+          "description": "Optional. The allocation priority assigned to the game server cluster. Game server clusters receive new game server allocations based on the relative allocation priorites set for each cluster, if the realm is configured for multicluster allocation.",
+          "enum": [
+            "PRIORITY_UNSPECIFIED",
+            "P1",
+            "P2",
+            "P3",
+            "P4"
+          ],
+          "enumDescriptions": [
+            "The default allocation priority. `PRIORITY_UNSPECIFIED` is the lowest possible priority.",
+            "Priority 1, the highest priority.",
+            "Priority 2.",
+            "Priority 3.",
+            "Priority 4."
+          ],
+          "type": "string"
+        },
         "connectionInfo": {
           "$ref": "GameServerClusterConnectionInfo",
           "description": "The game server cluster connection information. This information is used to manage game server clusters."
@@ -1810,6 +1828,10 @@
         "gkeClusterReference": {
           "$ref": "GkeClusterReference",
           "description": "Reference to the GKE cluster where the game servers are installed."
+        },
+        "gkeHubClusterReference": {
+          "$ref": "GkeHubClusterReference",
+          "description": "Reference to a Kubernetes cluster registered through GKE Hub. See https://cloud.google.com/anthos/multicluster-management/ for more information about registering Kubernetes clusters."
         },
         "namespace": {
           "description": "Namespace designated on the game server cluster where the Agones game server instances will be created. Existence of the namespace will be validated during creation.",
@@ -1963,6 +1985,17 @@
       "properties": {
         "cluster": {
           "description": "The full or partial name of a GKE cluster, using one of the following forms: * `projects/{project}/locations/{location}/clusters/{cluster}` * `locations/{location}/clusters/{cluster}` * `{cluster}` If project and location are not specified, the project and location of the GameServerCluster resource are used to generate the full name of the GKE cluster.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GkeHubClusterReference": {
+      "description": "GkeHubClusterReference represents a reference to a Kubernetes cluster registered through GKE Hub.",
+      "id": "GkeHubClusterReference",
+      "properties": {
+        "membership": {
+          "description": "The full or partial name of a GKE Hub membership, using one of the following forms: * `https://gkehub.googleapis.com/v1beta1/projects/{project_id}/locations/global/memberships/{membership_id}` * `projects/{project_id}/locations/global/memberships/{membership_id}` * `{membership_id}` If project is not specified, the project of the GameServerCluster resource is used to generate the full name of the GKE Hub membership.",
           "type": "string"
         }
       },

@@ -12,7 +12,7 @@
   "baseUrl": "https://recommendationengine.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Recommendations AI",
-  "description": "Recommendations AI service enables customers to build end-to-end personalized recommendation systems without requiring a high level of expertise in machine learning, recommendation system, or Google Cloud.",
+  "description": "Note that we now highly recommend new customers to use Retail API, which incorporates the GA version of the Recommendations AI funtionalities. To enable Retail API, please visit https://console.cloud.google.com/apis/library/retail.googleapis.com. The Recommendations AI service enables customers to build end-to-end personalized recommendation systems without requiring a high level of expertise in machine learning, recommendation system, or Google Cloud.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/recommendations-ai/docs",
   "fullyEncodeReservedExpansion": true,
@@ -443,7 +443,7 @@
                     "placements": {
                       "methods": {
                         "predict": {
-                          "description": "Makes a recommendation prediction. If using API Key based authentication, the API Key must be registered using the PredictionApiKeyRegistry service. [Learn more](/recommendations-ai/docs/setting-up#register-key).",
+                          "description": "Makes a recommendation prediction. If using API Key based authentication, the API Key must be registered using the PredictionApiKeyRegistry service. [Learn more](https://cloud.google.com/recommendations-ai/docs/setting-up#register-key).",
                           "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/catalogs/{catalogsId}/eventStores/{eventStoresId}/placements/{placementsId}:predict",
                           "httpMethod": "POST",
                           "id": "recommendationengine.projects.locations.catalogs.eventStores.placements.predict",
@@ -842,7 +842,7 @@
       }
     }
   },
-  "revision": "20201027",
+  "revision": "20210205",
   "rootUrl": "https://recommendationengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1704,7 +1704,7 @@
           "type": "string"
         },
         "pageCategories": {
-          "description": "Required for `category-page-view` events. Other event types should not set this field. The categories associated with a category page. Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: categories : [\"Sales\", \"2017 Black Friday Deals\"].",
+          "description": "Required for `category-page-view` events. At least one of search_query or page_categories is required for `search` events. Other event types should not set this field. The categories associated with a category page. Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: categories : [\"Sales\", \"2017 Black Friday Deals\"].",
           "items": {
             "$ref": "GoogleCloudRecommendationengineV1beta1CatalogItemCategoryHierarchy"
           },
@@ -1722,7 +1722,7 @@
           "description": "Optional. A transaction represents the entire purchase transaction. Required for `purchase-complete` events. Optional for `checkout-start` events. Other event types should not set this field."
         },
         "searchQuery": {
-          "description": "Required for `search` events. Other event types should not set this field. The user's search query as UTF-8 encoded text with a length limit of 5 KiB.",
+          "description": "At least one of search_query or page_categories is required for `search` events. Other event types should not set this field. The user's search query as UTF-8 encoded text with a length limit of 5 KiB.",
           "type": "string"
         }
       },
@@ -2043,7 +2043,7 @@
     }
   },
   "servicePath": "",
-  "title": "Recommendations AI",
+  "title": "Recommendations AI (Beta)",
   "version": "v1beta1",
   "version_module": true
 }

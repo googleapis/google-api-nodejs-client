@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace cloudtasks_v2beta2 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -462,6 +464,43 @@ export namespace cloudtasks_v2beta2 {
      * Output only. The state of the queue. `state` can only be changed by called PauseQueue, ResumeQueue, or uploading [queue.yaml/xml](https://cloud.google.com/appengine/docs/python/config/queueref). UpdateQueue cannot be used to change `state`.
      */
     state?: string | null;
+    /**
+     * Output only. The realtime, informational statistics for a queue. In order to receive the statistics the caller should include this field in the FieldMask.
+     */
+    stats?: Schema$QueueStats;
+    /**
+     * The maximum amount of time that a task will be retained in this queue. Queues created by Cloud Tasks have a default `task_ttl` of 31 days. After a task has lived for `task_ttl`, the task will be deleted regardless of whether it was dispatched or not. The `task_ttl` for queues created via queue.yaml/xml is equal to the maximum duration because there is a [storage quota](https://cloud.google.com/appengine/quotas#Task_Queue) for these queues. To view the maximum valid duration, see the documentation for Duration.
+     */
+    taskTtl?: string | null;
+    /**
+     * The task tombstone time to live (TTL). After a task is deleted or completed, the task's tombstone is retained for the length of time specified by `tombstone_ttl`. The tombstone is used by task de-duplication; another task with the same name can't be created until the tombstone has expired. For more information about task de-duplication, see the documentation for CreateTaskRequest. Queues created by Cloud Tasks have a default `tombstone_ttl` of 1 hour.
+     */
+    tombstoneTtl?: string | null;
+  }
+  /**
+   * Statistics for a queue.
+   */
+  export interface Schema$QueueStats {
+    /**
+     * Output only. The number of requests that the queue has dispatched but has not received a reply for yet.
+     */
+    concurrentDispatchesCount?: string | null;
+    /**
+     * Output only. The current maximum number of tasks per second executed by the queue. The maximum value of this variable is controlled by the RateLimits of the Queue. However, this value could be less to avoid overloading the endpoints tasks in the queue are targeting.
+     */
+    effectiveExecutionRate?: number | null;
+    /**
+     * Output only. The number of tasks that the queue has dispatched and received a reply for during the last minute. This variable counts both successful and non-successful executions.
+     */
+    executedLastMinuteCount?: string | null;
+    /**
+     * Output only. An estimation of the nearest time in the future where a task in the queue is scheduled to be executed.
+     */
+    oldestEstimatedArrivalTime?: string | null;
+    /**
+     * Output only. An estimation of the number of tasks in the queue, that is, the tasks in the queue that haven't been executed, the tasks in the queue which the queue has dispatched but has not yet received a reply for, and the failed tasks that the queue is retrying.
+     */
+    tasksCount?: string | null;
   }
   /**
    * Rate limits. This message determines the maximum rate that tasks can be dispatched by a queue, regardless of whether the dispatch is a first task attempt or a retry. Note: The debugging command, RunTask, will run a task even if the queue has reached its RateLimits.
@@ -1002,7 +1041,10 @@ export namespace cloudtasks_v2beta2 {
      *       //   "purgeTime": "my_purgeTime",
      *       //   "rateLimits": {},
      *       //   "retryConfig": {},
-     *       //   "state": "my_state"
+     *       //   "state": "my_state",
+     *       //   "stats": {},
+     *       //   "taskTtl": "my_taskTtl",
+     *       //   "tombstoneTtl": "my_tombstoneTtl"
      *       // }
      *     },
      *   });
@@ -1016,7 +1058,10 @@ export namespace cloudtasks_v2beta2 {
      *   //   "purgeTime": "my_purgeTime",
      *   //   "rateLimits": {},
      *   //   "retryConfig": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "stats": {},
+     *   //   "taskTtl": "my_taskTtl",
+     *   //   "tombstoneTtl": "my_tombstoneTtl"
      *   // }
      * }
      *
@@ -1264,7 +1309,7 @@ export namespace cloudtasks_v2beta2 {
      *   const res = await cloudtasks.projects.locations.queues.get({
      *     // Required. The resource name of the queue. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      *     name: 'projects/my-project/locations/my-location/queues/my-queue',
-     *     // Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats], if the mask is set to "*" all fields including [Queue.stats] will be returned, otherwise only the fields explicitly specified in the mask will be returned.
+     *     // Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats]. [Queue.stats] will be returned only if it was explicitly specified in the mask.
      *     readMask: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1277,7 +1322,10 @@ export namespace cloudtasks_v2beta2 {
      *   //   "purgeTime": "my_purgeTime",
      *   //   "rateLimits": {},
      *   //   "retryConfig": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "stats": {},
+     *   //   "taskTtl": "my_taskTtl",
+     *   //   "tombstoneTtl": "my_tombstoneTtl"
      *   // }
      * }
      *
@@ -1543,7 +1591,7 @@ export namespace cloudtasks_v2beta2 {
      *     pageToken: 'placeholder-value',
      *     // Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats], if the mask is set to "*" all fields including [Queue.stats] will be returned, otherwise only the fields explicitly specified in the mask will be returned.
+     *     // Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats]. [Queue.stats] will be returned only if it was explicitly specified in the mask.
      *     readMask: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1691,7 +1739,10 @@ export namespace cloudtasks_v2beta2 {
      *       //   "purgeTime": "my_purgeTime",
      *       //   "rateLimits": {},
      *       //   "retryConfig": {},
-     *       //   "state": "my_state"
+     *       //   "state": "my_state",
+     *       //   "stats": {},
+     *       //   "taskTtl": "my_taskTtl",
+     *       //   "tombstoneTtl": "my_tombstoneTtl"
      *       // }
      *     },
      *   });
@@ -1705,7 +1756,10 @@ export namespace cloudtasks_v2beta2 {
      *   //   "purgeTime": "my_purgeTime",
      *   //   "rateLimits": {},
      *   //   "retryConfig": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "stats": {},
+     *   //   "taskTtl": "my_taskTtl",
+     *   //   "tombstoneTtl": "my_tombstoneTtl"
      *   // }
      * }
      *
@@ -1843,7 +1897,10 @@ export namespace cloudtasks_v2beta2 {
      *   //   "purgeTime": "my_purgeTime",
      *   //   "rateLimits": {},
      *   //   "retryConfig": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "stats": {},
+     *   //   "taskTtl": "my_taskTtl",
+     *   //   "tombstoneTtl": "my_tombstoneTtl"
      *   // }
      * }
      *
@@ -1984,7 +2041,10 @@ export namespace cloudtasks_v2beta2 {
      *   //   "purgeTime": "my_purgeTime",
      *   //   "rateLimits": {},
      *   //   "retryConfig": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "stats": {},
+     *   //   "taskTtl": "my_taskTtl",
+     *   //   "tombstoneTtl": "my_tombstoneTtl"
      *   // }
      * }
      *
@@ -2125,7 +2185,10 @@ export namespace cloudtasks_v2beta2 {
      *   //   "purgeTime": "my_purgeTime",
      *   //   "rateLimits": {},
      *   //   "retryConfig": {},
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "stats": {},
+     *   //   "taskTtl": "my_taskTtl",
+     *   //   "tombstoneTtl": "my_tombstoneTtl"
      *   // }
      * }
      *
@@ -2530,7 +2593,7 @@ export namespace cloudtasks_v2beta2 {
      */
     name?: string;
     /**
-     * Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats], if the mask is set to "*" all fields including [Queue.stats] will be returned, otherwise only the fields explicitly specified in the mask will be returned.
+     * Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats]. [Queue.stats] will be returned only if it was explicitly specified in the mask.
      */
     readMask?: string;
   }
@@ -2565,7 +2628,7 @@ export namespace cloudtasks_v2beta2 {
      */
     parent?: string;
     /**
-     * Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats], if the mask is set to "*" all fields including [Queue.stats] will be returned, otherwise only the fields explicitly specified in the mask will be returned.
+     * Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats]. [Queue.stats] will be returned only if it was explicitly specified in the mask.
      */
     readMask?: string;
   }

@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace webmasters_v3 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -136,6 +138,10 @@ export namespace webmasters_v3 {
      * If you specify any value other than AUTO, the aggregation type in the result will match the requested type, or if you request an invalid type, you will get an error. The API will never change your aggregation type if the requested type is invalid.
      */
     aggregationType?: string | null;
+    /**
+     * [Optional] If "all" (case-insensitive), data will include fresh data. If "final" (case-insensitive) or if this parameter is omitted, the returned data will include only finalized data.
+     */
+    dataState?: string | null;
     /**
      * [Optional] Zero or more filters to apply to the dimension grouping values; for example, 'query contains "buy"' to see only data where the query string contains the substring "buy" (not case-sensitive). You can filter by a dimension without grouping by it.
      */
@@ -314,6 +320,7 @@ export namespace webmasters_v3 {
      *       // request body parameters
      *       // {
      *       //   "aggregationType": "my_aggregationType",
+     *       //   "dataState": "my_dataState",
      *       //   "dimensionFilterGroups": [],
      *       //   "dimensions": [],
      *       //   "endDate": "my_endDate",

@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace file_v1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -240,6 +242,10 @@ export namespace file_v1 {
      */
     name?: string | null;
     /**
+     * Nfs Export Options. There is a limit of 10 export options per file share.
+     */
+    nfsExportOptions?: Schema$NfsExportOptions[];
+    /**
      * The resource name of the backup, in the format projects/{project_number\}/locations/{location_id\}/backups/{backup_id\}, that this file share has been restored from.
      */
     sourceBackup?: string | null;
@@ -326,6 +332,10 @@ export namespace file_v1 {
      * The rollout management policy this maintenance schedule is associated with. When doing reschedule update request, the reschedule should be against this given policy.
      */
     rolloutManagementPolicy?: string | null;
+    /**
+     * schedule_deadline_time is the time deadline any schedule start time cannot go beyond, including reschedule. It's normally the initial schedule start time plus a week. If the reschedule type is next window, simply take this value as start time. If reschedule type is IMMEDIATELY or BY_TIME, current or selected time cannot go beyond this deadline.
+     */
+    scheduleDeadlineTime?: string | null;
     /**
      * The scheduled start time for the maintenance.
      */
@@ -625,6 +635,31 @@ export namespace file_v1 {
      * A /29 CIDR block in one of the [internal IP address ranges](https://www.arin.net/knowledge/address_filters.html) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29 or 192.168.0.0/29. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Cloud Filestore instances in the selected VPC network.
      */
     reservedIpRange?: string | null;
+  }
+  /**
+   * NFS export options specifications.
+   */
+  export interface Schema$NfsExportOptions {
+    /**
+     * Either READ_ONLY, for allowing only read requests on the exported directory, or READ_WRITE, for allowing both read and write requests. The default is READ_WRITE.
+     */
+    accessMode?: string | null;
+    /**
+     * An integer representing the anonymous group id with a default value of 65534. Anon_gid may only be set with squash_mode of ROOT_SQUASH. An error will be returned if this field is specified for other squash_mode settings.
+     */
+    anonGid?: string | null;
+    /**
+     * An integer representing the anonymous user id with a default value of 65534. Anon_uid may only be set with squash_mode of ROOT_SQUASH. An error will be returned if this field is specified for other squash_mode settings.
+     */
+    anonUid?: string | null;
+    /**
+     * List of either an IPv4 addresses in the format {octet 1\}.{octet 2\}.{octet 3\}.{octet 4\} or CIDR ranges in the format {octet 1\}.{octet 2\}.{octet 3\}.{octet 4\}/{mask size\} which may mount the file share. Overlapping IP ranges are not allowed, both within and across NfsExportOptions. An error will be returned. The limit is 64 IP ranges/addresses for each FileShareConfig among all NfsExportOptions.
+     */
+    ipRanges?: string[] | null;
+    /**
+     * Either NO_ROOT_SQUASH, for allowing root access on the exported directory, or ROOT_SQUASH, for not allowing root access. The default is NO_ROOT_SQUASH.
+     */
+    squashMode?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -2612,7 +2647,7 @@ export namespace file_v1 {
     }
 
     /**
-     * Restores an existing instance's file share from a backup. The instance's file share capacity will be set to the backup's capacity or the minimum capacity of the tier, whichever is larger.
+     * Restores an existing instance's file share from a backup. The capacity of the instance needs to be equal to or larger than the capacity of the backup (and also equal to or larger than the minimum capacity of the tier).
      * @example
      * ```js
      * // Before running the sample:

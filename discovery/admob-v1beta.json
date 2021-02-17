@@ -138,7 +138,7 @@
           "streamingType": "NONE"
         },
         "list": {
-          "description": "Lists the AdMob publisher account accessible with the client credential. Currently, all credentials have access to at most one AdMob account.",
+          "description": "List the AdMob publisher account accessible with the client credential. Currently, all credentials have access to at most one AdMob account.",
           "flatPath": "v1beta/accounts",
           "httpMethod": "GET",
           "id": "admob.accounts.list",
@@ -180,7 +180,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "The maximum number of ad units to return.",
+                  "description": "The maximum number of ad units to return. If unspecified or 0, at most 1000 ad units will be returned. The maximum value is 10,000; values above 10,000 will be coerced to 10,000.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20201114",
+  "revision": "20210210",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "AdUnit": {

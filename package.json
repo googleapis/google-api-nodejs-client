@@ -53,8 +53,8 @@
     "client library"
   ],
   "dependencies": {
-    "google-auth-library": "^6.0.0",
-    "googleapis-common": "^5.0.0"
+    "google-auth-library": "^7.0.2",
+    "googleapis-common": "^5.0.1"
   },
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.10",

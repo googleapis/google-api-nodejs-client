@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace genomics_v2alpha1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -177,7 +179,7 @@ export namespace genomics_v2alpha1 {
      */
     mounts?: Schema$Mount[];
     /**
-     * An optional name for the container. The container hostname will be set to this name, making it useful for inter-container communication. The name must contain only upper and lowercase alphanumeric characters and hypens and cannot start with a hyphen.
+     * An optional name for the container. The container hostname will be set to this name, making it useful for inter-container communication. The name must contain only upper and lowercase alphanumeric characters and hyphens and cannot start with a hyphen.
      */
     name?: string | null;
     /**
@@ -234,6 +236,10 @@ export namespace genomics_v2alpha1 {
      * The deadline by which the worker must request an extension. The backend will allow for network transmission time and other delays, but the worker must attempt to transmit the extension request no later than the deadline.
      */
     deadline?: string | null;
+    /**
+     * Feature configuration for the operation.
+     */
+    features?: {[key: string]: any} | null;
     /**
      * The metadata that describes the operation assigned to the worker.
      */
@@ -317,11 +323,11 @@ export namespace genomics_v2alpha1 {
     metrics?: string[] | null;
   }
   /**
-   * Carries information about a disk that can be attached to a VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations.
+   * Carries information about a disk that can be attached to a VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations. Specify either `Volume` or `Disk`, but not both.
    */
   export interface Schema$Disk {
     /**
-     * A user-supplied name for the disk. Used when mounting the disk into actions. The name must contain only upper and lowercase alphanumeric characters and hypens and cannot start with a hyphen.
+     * A user-supplied name for the disk. Used when mounting the disk into actions. The name must contain only upper and lowercase alphanumeric characters and hyphens and cannot start with a hyphen.
      */
     name?: string | null;
     /**
@@ -650,6 +656,10 @@ export namespace genomics_v2alpha1 {
      * Required. The description of the pipeline to run.
      */
     pipeline?: Schema$Pipeline;
+    /**
+     * The name of an existing Pub/Sub topic. The server will publish messages to this topic whenever the status of the operation changes. The Genomics Service Agent account must have publisher permissions to the specified topic or notifications will not be sent.
+     */
+    pubSubTopic?: string | null;
   }
   /**
    * The response to the RunPipeline method, returned in the operation's result field on success.
@@ -754,11 +764,11 @@ export namespace genomics_v2alpha1 {
      */
     cpuPlatform?: string | null;
     /**
-     * The list of disks to create and attach to the VM.
+     * The list of disks to create and attach to the VM. Specify either the `volumes[]` field or the `disks[]` field, but not both.
      */
     disks?: Schema$Disk[];
     /**
-     * The Compute Engine Disk Images to use as a Docker cache. The disks will be mounted into the Docker folder in a way that the images present in the cache will not need to be pulled. The digests of the cached images must match those of the tags used or the latest version will still be pulled. The root directory of the ext4 image must contain `image` and `overlay2` directories copied from the Docker directory of a VM where the desired Docker images have already been pulled. Only a single image is supported.
+     * The Compute Engine Disk Images to use as a Docker cache. The disks will be mounted into the Docker folder in a way that the images present in the cache will not need to be pulled. The digests of the cached images must match those of the tags used or the latest version will still be pulled. The root directory of the ext4 image must contain `image` and `overlay2` directories copied from the Docker directory of a VM where the desired Docker images have already been pulled. Any images pulled that are not cached will be stored on the first cache disk instead of the boot disk. Only a single image is supported.
      */
     dockerCacheImages?: string[] | null;
     /**
@@ -790,12 +800,12 @@ export namespace genomics_v2alpha1 {
      */
     serviceAccount?: Schema$ServiceAccount;
     /**
-     * The list of disks and other storage to create or attach to the VM.
+     * The list of disks and other storage to create or attach to the VM. Specify either the `volumes[]` field or the `disks[]` field, but not both.
      */
     volumes?: Schema$Volume[];
   }
   /**
-   * Carries information about storage that can be attached to a VM.
+   * Carries information about storage that can be attached to a VM. Specify either `Volume` or `Disk`, but not both.
    */
   export interface Schema$Volume {
     /**
@@ -912,7 +922,8 @@ export namespace genomics_v2alpha1 {
      *       // request body parameters
      *       // {
      *       //   "labels": {},
-     *       //   "pipeline": {}
+     *       //   "pipeline": {},
+     *       //   "pubSubTopic": "my_pubSubTopic"
      *       // }
      *     },
      *   });
@@ -1550,6 +1561,7 @@ export namespace genomics_v2alpha1 {
      *   // Example response
      *   // {
      *   //   "deadline": "my_deadline",
+     *   //   "features": {},
      *   //   "metadata": {}
      *   // }
      * }
@@ -1716,6 +1728,7 @@ export namespace genomics_v2alpha1 {
      *   // Example response
      *   // {
      *   //   "deadline": "my_deadline",
+     *   //   "features": {},
      *   //   "metadata": {}
      *   // }
      * }

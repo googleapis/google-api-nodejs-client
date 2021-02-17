@@ -302,12 +302,12 @@
           "parameterOrder": [],
           "parameters": {
             "filter": {
-              "description": "Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` Examples: * All active advertisers under a partner: `entityStatus=\"ENTITY_STATUS_ACTIVE\"` The length of this field should be no more than 500 characters.",
+              "description": "Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All active advertisers under a partner: `entityStatus=\"ENTITY_STATUS_ACTIVE\"` * All advertisers with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<=\"2020-11-04T18:54:47Z\"` * All advertisers with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime>=\"2020-11-04T18:54:47Z\"` The length of this field should be no more than 500 characters.",
               "location": "query",
               "type": "string"
             },
             "orderBy": {
-              "description": "Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. For example, `displayName desc`.",
+              "description": "Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. For example, `displayName desc`.",
               "location": "query",
               "type": "string"
             },
@@ -6249,7 +6249,7 @@
       }
     }
   },
-  "revision": "20201201",
+  "revision": "20210209",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -8313,7 +8313,8 @@
             "SDF_VERSION_4_2",
             "SDF_VERSION_5",
             "SDF_VERSION_5_1",
-            "SDF_VERSION_5_2"
+            "SDF_VERSION_5_2",
+            "SDF_VERSION_5_3"
           ],
           "enumDescriptions": [
             "SDF version value is not specified or is unknown in this version.",
@@ -8323,7 +8324,8 @@
             "SDF version 4.2",
             "SDF version 5.",
             "SDF version 5.1",
-            "SDF version 5.2;"
+            "SDF version 5.2",
+            "SDF version 5.3"
           ],
           "type": "string"
         }
@@ -8543,7 +8545,7 @@
           "enumDescriptions": [
             "Hosting source is not specified or is unknown in this version.",
             "A creative synced from Campaign Manager 360. Create and update methods are **not** supported for this hosting type.",
-            "A creative hosted by a third-party ad server (3PAS). Create and update methods are supported for this hosting type if the creative_type is one of the following: * `CREATIVE_TYPE_EXPANDABLE` * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_VIDEO`",
+            "A creative hosted by a third-party ad server (3PAS). Create and update methods are supported for this hosting type if the creative_type is one of the following: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_EXPANDABLE` * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_VIDEO`",
             "A creative created in DV360 and hosted by Campaign Manager 360. Create and update methods are supported for this hosting type if the creative_type is one of the following: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO` * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_VIDEO`",
             "A rich media creative created in Studio and hosted by Campaign Manager 360. Create and update methods are **not** supported for this hosting type."
           ],
@@ -8607,7 +8609,7 @@
           "type": "boolean"
         },
         "requirePingForAttribution": {
-          "description": "Optional. Indicates that the creative will wait for a return ping for attribution. Only valid when using a Campaign Manager 360 tracking ad with a third-party ad server parameter and the ${DC_DBM_TOKEN} macro. Optional and only valid for third-party tag creatives or third-party VAST tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`",
+          "description": "Optional. Indicates that the creative will wait for a return ping for attribution. Only valid when using a Campaign Manager 360 tracking ad with a third-party ad server parameter and the ${DC_DBM_TOKEN} macro. Optional and only valid for third-party tag creatives or third-party VAST tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO`",
           "type": "boolean"
         },
         "reviewStatus": {
@@ -8667,7 +8669,7 @@
           "type": "string"
         },
         "vastTagUrl": {
-          "description": "Optional. The URL of the VAST tag for a third-party VAST tag creative. Required and only valid for third-party VAST tag creatives. Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`",
+          "description": "Optional. The URL of the VAST tag for a third-party VAST tag creative. Required and only valid for third-party VAST tag creatives. Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO`",
           "type": "string"
         },
         "vpaid": {
@@ -9703,7 +9705,9 @@
             "EXCHANGE_AJA",
             "EXCHANGE_SUPERSHIP",
             "EXCHANGE_NEXSTAR_DIGITAL",
-            "EXCHANGE_WAZE"
+            "EXCHANGE_WAZE",
+            "EXCHANGE_SOUNDCAST",
+            "EXCHANGE_SHARETHROUGH"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -9756,17 +9760,19 @@
             "United.",
             "Yieldlab.",
             "Yieldmo.",
-            "UnrulyX",
-            "Open8",
+            "UnrulyX.",
+            "Open8.",
             "Triton.",
-            "TripleLift",
-            "Taboola",
+            "TripleLift.",
+            "Taboola.",
             "InMobi.",
-            "Smaato",
+            "Smaato.",
             "Aja.",
             "Supership.",
             "Nexstar Digital.",
-            "Waze."
+            "Waze.",
+            "SoundCast.",
+            "Sharethrough."
           ],
           "type": "string"
         },
@@ -9855,7 +9861,9 @@
             "EXCHANGE_AJA",
             "EXCHANGE_SUPERSHIP",
             "EXCHANGE_NEXSTAR_DIGITAL",
-            "EXCHANGE_WAZE"
+            "EXCHANGE_WAZE",
+            "EXCHANGE_SOUNDCAST",
+            "EXCHANGE_SHARETHROUGH"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -9908,17 +9916,19 @@
             "United.",
             "Yieldlab.",
             "Yieldmo.",
-            "UnrulyX",
-            "Open8",
+            "UnrulyX.",
+            "Open8.",
             "Triton.",
-            "TripleLift",
-            "Taboola",
+            "TripleLift.",
+            "Taboola.",
             "InMobi.",
-            "Smaato",
+            "Smaato.",
             "Aja.",
             "Supership.",
             "Nexstar Digital.",
-            "Waze."
+            "Waze.",
+            "SoundCast.",
+            "Sharethrough."
           ],
           "type": "string"
         },
@@ -10008,7 +10018,9 @@
             "EXCHANGE_AJA",
             "EXCHANGE_SUPERSHIP",
             "EXCHANGE_NEXSTAR_DIGITAL",
-            "EXCHANGE_WAZE"
+            "EXCHANGE_WAZE",
+            "EXCHANGE_SOUNDCAST",
+            "EXCHANGE_SHARETHROUGH"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -10061,17 +10073,19 @@
             "United.",
             "Yieldlab.",
             "Yieldmo.",
-            "UnrulyX",
-            "Open8",
+            "UnrulyX.",
+            "Open8.",
             "Triton.",
-            "TripleLift",
-            "Taboola",
+            "TripleLift.",
+            "Taboola.",
             "InMobi.",
-            "Smaato",
+            "Smaato.",
             "Aja.",
             "Supership.",
             "Nexstar Digital.",
-            "Waze."
+            "Waze.",
+            "SoundCast.",
+            "Sharethrough."
           ],
           "readOnly": true,
           "type": "string"
@@ -10702,14 +10716,18 @@
             "GOOGLE_AUDIENCE_TYPE_AFFINITY",
             "GOOGLE_AUDIENCE_TYPE_IN_MARKET",
             "GOOGLE_AUDIENCE_TYPE_INSTALLED_APPS",
-            "GOOGLE_AUDIENCE_TYPE_NEW_MOBILE_DEVICES"
+            "GOOGLE_AUDIENCE_TYPE_NEW_MOBILE_DEVICES",
+            "GOOGLE_AUDIENCE_TYPE_LIFE_EVENT",
+            "GOOGLE_AUDIENCE_TYPE_EXTENDED_DEMOGRAPHIC"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown.",
             "Affinity type Google audience.",
             "In-Market type Google audience.",
-            "Installed-apps type Google audience.",
-            "New-mobile-devices type Google audience."
+            "Installed-Apps type Google audience.",
+            "New-Mobile-Devices type Google audience.",
+            "Life-Event type Google audience.",
+            "Extended-Demographic type Google audience."
           ],
           "readOnly": true,
           "type": "string"
@@ -10948,8 +10966,8 @@
           ],
           "enumDescriptions": [
             "Insertion order type is not specified or is unknown.",
-            "RTB Video type IO.",
-            "Video Over the top type IO."
+            "Real-time bidding.",
+            "Over-the-top."
           ],
           "type": "string"
         },
@@ -11385,7 +11403,9 @@
             "EXCHANGE_AJA",
             "EXCHANGE_SUPERSHIP",
             "EXCHANGE_NEXSTAR_DIGITAL",
-            "EXCHANGE_WAZE"
+            "EXCHANGE_WAZE",
+            "EXCHANGE_SOUNDCAST",
+            "EXCHANGE_SHARETHROUGH"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -11438,17 +11458,19 @@
             "United.",
             "Yieldlab.",
             "Yieldmo.",
-            "UnrulyX",
-            "Open8",
+            "UnrulyX.",
+            "Open8.",
             "Triton.",
-            "TripleLift",
-            "Taboola",
+            "TripleLift.",
+            "Taboola.",
             "InMobi.",
-            "Smaato",
+            "Smaato.",
             "Aja.",
             "Supership.",
             "Nexstar Digital.",
-            "Waze."
+            "Waze.",
+            "SoundCast.",
+            "Sharethrough."
           ],
           "type": "string"
         },
@@ -11817,10 +11839,14 @@
             "Video ads that drive installs of an app.",
             "Display ads served on mobile app inventory.",
             "Video ads served on mobile app inventory.",
-            "Rtb Audio ads sold for a variety of environments.",
-            "Over the top ads present in OTT IOs. This type is only applicable to line items with an insertion order of insertion_order_type `OVER_THE_TOP`"
+            "RTB Audio ads sold for a variety of environments.",
+            "Over-the-top ads present in OTT insertion orders. This type is only applicable to line items with an insertion order of insertion_order_type `OVER_THE_TOP`."
           ],
           "type": "string"
+        },
+        "mobileApp": {
+          "$ref": "MobileApp",
+          "description": "The mobile app promoted by the line item. This is applicable only when line_item_type is either `LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INSTALL` or `LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INSTALL`."
         },
         "name": {
           "description": "Output only. The resource name of the line item.",
@@ -12592,6 +12618,42 @@
         "dv360ToCmDataSharingEnabled": {
           "description": "Whether or not to include DV360 data in CM360 data transfer reports.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "MobileApp": {
+      "description": "A mobile app promoted by a mobile app install line item.",
+      "id": "MobileApp",
+      "properties": {
+        "appId": {
+          "description": "Required. The ID of the app provided by the platform store. Android apps are identified by the bundle ID used by Android's Play store, such as `com.google.android.gm`. iOS apps are identified by a nine-digit app ID used by Apple's App store, such as `422689480`.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. The app name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "platform": {
+          "description": "Output only. The app platform.",
+          "enum": [
+            "PLATFORM_UNSPECIFIED",
+            "IOS",
+            "ANDROID"
+          ],
+          "enumDescriptions": [
+            "Platform is not specified.",
+            "iOS platform.",
+            "Android platform."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "publisher": {
+          "description": "Output only. The app publisher.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -13541,7 +13603,8 @@
             "SDF_VERSION_4_2",
             "SDF_VERSION_5",
             "SDF_VERSION_5_1",
-            "SDF_VERSION_5_2"
+            "SDF_VERSION_5_2",
+            "SDF_VERSION_5_3"
           ],
           "enumDescriptions": [
             "SDF version value is not specified or is unknown in this version.",
@@ -13551,7 +13614,8 @@
             "SDF version 4.2",
             "SDF version 5.",
             "SDF version 5.1",
-            "SDF version 5.2;"
+            "SDF version 5.2",
+            "SDF version 5.3"
           ],
           "type": "string"
         }
@@ -13593,7 +13657,8 @@
             "SDF_VERSION_4_2",
             "SDF_VERSION_5",
             "SDF_VERSION_5_1",
-            "SDF_VERSION_5_2"
+            "SDF_VERSION_5_2",
+            "SDF_VERSION_5_3"
           ],
           "enumDescriptions": [
             "SDF version value is not specified or is unknown in this version.",
@@ -13603,7 +13668,8 @@
             "SDF version 4.2",
             "SDF version 5.",
             "SDF version 5.1",
-            "SDF version 5.2;"
+            "SDF version 5.2",
+            "SDF version 5.3"
           ],
           "type": "string"
         }

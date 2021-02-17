@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace sqladmin_v1beta4 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -172,6 +174,10 @@ export namespace sqladmin_v1beta4 {
      * The warning message.
      */
     message?: string | null;
+    /**
+     * The region name for REGION_UNREACHABLE warning.
+     */
+    region?: string | null;
   }
   /**
    * Database instance backup configuration.
@@ -301,7 +307,7 @@ export namespace sqladmin_v1beta4 {
      */
     status?: string | null;
     /**
-     * The type of this run; can be either "AUTOMATED" or "ON_DEMAND".
+     * The type of this run; can be either "AUTOMATED" or "ON_DEMAND". This field defaults to "ON_DEMAND" and is ignored, when specified for insert requests.
      */
     type?: string | null;
     /**
@@ -540,7 +546,7 @@ export namespace sqladmin_v1beta4 {
      */
     settings?: Schema$Settings;
     /**
-     * The current serving state of the Cloud SQL instance. This can be one of the following. *SQL_INSTANCE_STATE_UNSPECIFIED*: The state of the instance is unknown. *RUNNABLE*: The instance has been stopped by owner. It is not currently running, but it's ready to be restarted. *SUSPENDED*: The instance is not available, for example due to problems with billing. for example due to problems with billing. *PENDING_DELETE*: The instance is being deleted. *PENDING_CREATE*: The instance is being created. *MAINTENANCE*: The instance is down for maintenance. *FAILED*: The instance creation failed.
+     * The current serving state of the Cloud SQL instance. This can be one of the following. *SQL_INSTANCE_STATE_UNSPECIFIED*: The state of the instance is unknown. *RUNNABLE*: The instance is running, or has been stopped by owner. *SUSPENDED*: The instance is not available, for example due to problems with billing. for example due to problems with billing. *PENDING_DELETE*: The instance is being deleted. *PENDING_CREATE*: The instance is being created. *MAINTENANCE*: The instance is down for maintenance. *FAILED*: The instance creation failed.
      */
     state?: string | null;
     /**
@@ -700,7 +706,7 @@ export namespace sqladmin_v1beta4 {
       tables?: string[];
     } | null;
     /**
-     * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form *gs: //bucketName/fileName*. If the file already exists, the requests // succeeds, but the operation fails. If *fileType* is // *SQL* and the filename ends with .gz, the contents are // compressed.
+     * The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form *gs://bucketName/fileName*. If the file already exists, the request succeeds, but the operation fails. If *fileType* is *SQL* and the filename ends with .gz, the contents are compressed.
      */
     uri?: string | null;
   }
@@ -810,7 +816,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string | null;
     /**
-     * Path to the import file in Cloud Storage, in the form *gs: //bucketName/fileName*. Compressed gzip files (.gz) are supported // when *fileType* is *SQL*. The instance must have // write permissions to the bucket and read access to the file.
+     * Path to the import file in Cloud Storage, in the form *gs://bucketName/fileName*. Compressed gzip files (.gz) are supported when *fileType* is *SQL*. The instance must have write permissions to the bucket and read access to the file.
      */
     uri?: string | null;
   }
@@ -1533,6 +1539,10 @@ export namespace sqladmin_v1beta4 {
    * SslCerts create ephemeral certificate request.
    */
   export interface Schema$SslCertsCreateEphemeralRequest {
+    /**
+     * Access token to include in the signed certificate.
+     */
+    access_token?: string | null;
     /**
      * PEM encoded public key to include in the signed certificate.
      */
@@ -7664,6 +7674,8 @@ export namespace sqladmin_v1beta4 {
      *     instance: 'placeholder-value',
      *     // ID of the project that contains the instance.
      *     project: 'placeholder-value',
+     *     // Whether to skip the verification step (VESS).
+     *     skipVerification: 'placeholder-value',
      *     // External sync mode.
      *     syncMode: 'placeholder-value',
      *   });
@@ -7957,6 +7969,10 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
     /**
+     * Whether to skip the verification step (VESS).
+     */
+    skipVerification?: boolean;
+    /**
      * External sync mode.
      */
     syncMode?: string;
@@ -8026,6 +8042,7 @@ export namespace sqladmin_v1beta4 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "access_token": "my_access_token",
      *       //   "public_key": "my_public_key"
      *       // }
      *     },

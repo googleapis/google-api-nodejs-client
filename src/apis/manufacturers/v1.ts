@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace manufacturers_v1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -211,6 +213,10 @@ export namespace manufacturers_v1 {
      * The details of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productdetail.
      */
     productDetail?: Schema$ProductDetail[];
+    /**
+     * The product highlights. For more information, see https://support.google.com/manufacturers/answer/10066942
+     */
+    productHighlight?: string[] | null;
     /**
      * The name of the group of products related to the product. For more information, see https://support.google.com/manufacturers/answer/6124116#productline.
      */
@@ -949,6 +955,7 @@ export namespace manufacturers_v1 {
      *       //   "mpn": "my_mpn",
      *       //   "pattern": "my_pattern",
      *       //   "productDetail": [],
+     *       //   "productHighlight": [],
      *       //   "productLine": "my_productLine",
      *       //   "productName": "my_productName",
      *       //   "productPageUrl": "my_productPageUrl",

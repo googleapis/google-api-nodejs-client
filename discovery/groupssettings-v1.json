@@ -152,7 +152,7 @@
       }
     }
   },
-  "revision": "20200702",
+  "revision": "20210204",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Groups": {
@@ -294,7 +294,7 @@
           "type": "string"
         },
         "whoCanContactOwner": {
-          "description": "Permission to contact owner of the group via web UI. Possible values are:  \n- ALL_IN_DOMAIN_CAN_CONTACT \n- ALL_MANAGERS_CAN_CONTACT \n- ALL_MEMBERS_CAN_CONTACT \n- ANYONE_CAN_CONTACT",
+          "description": "Permission to contact owner of the group via web UI. Possible values are:  \n- ALL_IN_DOMAIN_CAN_CONTACT \n- ALL_MANAGERS_CAN_CONTACT \n- ALL_MEMBERS_CAN_CONTACT \n- ANYONE_CAN_CONTACT \n- ALL_OWNERS_CAN_CONTACT",
           "type": "string"
         },
         "whoCanDeleteAnyPost": {

@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace cloudresourcemanager_v2 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -562,14 +564,6 @@ export namespace cloudresourcemanager_v2 {
    * A status object which is used as the `metadata` field for the Operation returned by UndeleteProject.
    */
   export interface Schema$UndeleteProjectMetadata {}
-  /**
-   * Runtime operation information for undeleting a TagKey.
-   */
-  export interface Schema$UndeleteTagKeyMetadata {}
-  /**
-   * Runtime operation information for deleting a TagValue.
-   */
-  export interface Schema$UndeleteTagValueMetadata {}
   /**
    * A status object which is used as the `metadata` field for the Operation returned by UpdateFolder.
    */

@@ -13,7 +13,7 @@
   "batchPath": "batch",
   "description": "",
   "discoveryVersion": "v1",
-  "documentationLink": " https://cloud.google.com/api-gateway/docs",
+  "documentationLink": "https://cloud.google.com/api-gateway/docs",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1083,11 +1083,11 @@
       }
     }
   },
-  "revision": "20201029",
+  "revision": "20210126",
   "rootUrl": "https://apigateway.googleapis.com/",
   "schemas": {
     "ApigatewayApi": {
-      "description": "A consumable API that can be used by multiple Gateways.",
+      "description": "An API that can be served by one or more Gateways.",
       "id": "ApigatewayApi",
       "properties": {
         "createTime": {
@@ -1162,7 +1162,11 @@
         },
         "gatewayConfig": {
           "$ref": "ApigatewayGatewayConfig",
-          "description": "Immutable. Gateway specific configuration. If not specified, backend authentication will be set to use OIDC authentication using the default compute service account."
+          "description": "Immutable. Gateway specific configuration."
+        },
+        "gatewayServiceAccount": {
+          "description": "Immutable. The Google Cloud IAM Service Account that Gateways serving this config should use to authenticate to other services. This may either be the Service Account's email (`{ACCOUNT_ID}@{PROJECT}.iam.gserviceaccount.com`) or its full resource name (`projects/{PROJECT}/accounts/{UNIQUE_ID}`). This is most often used when the service is a GCP resource such as a Cloud Run Service or an IAP-secured service.",
+          "type": "string"
         },
         "grpcServices": {
           "description": "Optional. gRPC service definition files. If specified, openapi_documents must not be included.",
@@ -1179,7 +1183,7 @@
           "type": "object"
         },
         "managedServiceConfigs": {
-          "description": "Optional. Service Configuration files. At least one must be included when using gRPC service definitions. See https: //cloud.google.com/endpoints/docs/grpc/g // rpc-service-config#service_configuration_overview for the expected file contents. If multiple files are specified, the files are merged with the following rules: * All singular scalar fields are merged using \"last one wins\" semantics in the order of the files uploaded. * Repeated fields are concatenated. * Singular embedded messages are merged using these rules for nested fields.",
+          "description": "Optional. Service Configuration files. At least one must be included when using gRPC service definitions. See https://cloud.google.com/endpoints/docs/grpc/grpc-service-config#service_configuration_overview for the expected file contents. If multiple files are specified, the files are merged with the following rules: * All singular scalar fields are merged using \"last one wins\" semantics in the order of the files uploaded. * Repeated fields are concatenated. * Singular embedded messages are merged using these rules for nested fields.",
           "items": {
             "$ref": "ApigatewayApiConfigFile"
           },
@@ -1191,7 +1195,7 @@
           "type": "string"
         },
         "openapiDocuments": {
-          "description": "Optional. OpenAPI specification documents. If specified, grpc_services and managed_service_config must not be included.",
+          "description": "Optional. OpenAPI specification documents. If specified, grpc_services and managed_service_configs must not be included.",
           "items": {
             "$ref": "ApigatewayApiConfigOpenApiDocument"
           },
@@ -1220,7 +1224,7 @@
             "API Config creation failed.",
             "API Config is being deleted.",
             "API Config is being updated.",
-            "API Config settings are being activated in downstream systems. API Configs in this state cannot be used by Gateways.."
+            "API Config settings are being activated in downstream systems. API Configs in this state cannot be used by Gateways."
           ],
           "readOnly": true,
           "type": "string"
@@ -1328,11 +1332,11 @@
       "type": "object"
     },
     "ApigatewayBackendConfig": {
-      "description": "Configuration for a backend.",
+      "description": "Configuration for all backends.",
       "id": "ApigatewayBackendConfig",
       "properties": {
         "googleServiceAccount": {
-          "description": "Google Cloud IAM service account used to sign OIDC tokens for backends that have authentication configured (https: //cloud.google.com/service-infrastructur // e/docs/service-management/reference/rest/v1/services.configs#backend). This may either be the Service Account's email (i.e. \"{ACCOUNT_ID}@{PROJECT}.iam.gserviceaccount.com\") or its full resource name (i.e. \"projects/{PROJECT}/accounts/{UNIQUE_ID}\"). This is most often used when the backend is a GCP resource such as a Cloud Run Service or an IAP-secured service. Note that this token is always sent as an authorization header bearer token. The audience of the OIDC token is configured in the associated Service Config in the BackendRule option (https: //github.com/googleapis/googleapis/blob/ // master/google/api/backend.proto#L125).",
+          "description": "Google Cloud IAM service account used to sign OIDC tokens for backends that have authentication configured (https://cloud.google.com/service-infrastructure/docs/service-management/reference/rest/v1/services.configs#backend). This may either be the Service Account's email (i.e. \"{ACCOUNT_ID}@{PROJECT}.iam.gserviceaccount.com\") or its full resource name (i.e. \"projects/{PROJECT}/accounts/{UNIQUE_ID}\"). This is most often used when the backend is a GCP resource such as a Cloud Run Service or an IAP-secured service. Note that this token is always sent as an authorization header bearer token. The audience of the OIDC token is configured in the associated Service Config in the BackendRule option (https://github.com/googleapis/googleapis/blob/master/google/api/backend.proto#L125).",
           "type": "string"
         }
       },
@@ -1342,9 +1346,6 @@
       "description": "Associates `members` with a `role`.",
       "id": "ApigatewayBinding",
       "properties": {
-        "bindingId": {
-          "type": "string"
-        },
         "condition": {
           "$ref": "ApigatewayExpr",
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."

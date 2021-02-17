@@ -1193,7 +1193,7 @@
       }
     }
   },
-  "revision": "20201125",
+  "revision": "20210129",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -2316,7 +2316,7 @@
             "Will search all accounts provided in account_info.",
             "Will search all accounts in the OU specified in org_unit_info.",
             "Will search for all accounts in the Team Drive specified in team_drive_info.",
-            "Will search for all accounts in the organization. No need to set account_info or org_unit_info.",
+            "Will search for all accounts in the organization. No need to set account_info or org_unit_info. Not all CORPUS_TYPE support this scope. Supported by MAIL.",
             "Will search in the Room specified in hangout_chats_info. (read-only)",
             "Will search for all accounts in the shared drive specified in shared_drive_info."
           ],
@@ -2342,7 +2342,7 @@
             "Will search all accounts provided in account_info.",
             "Will search all accounts in the OU specified in org_unit_info.",
             "Will search for all accounts in the Team Drive specified in team_drive_info.",
-            "Will search for all accounts in the organization. No need to set account_info or org_unit_info.",
+            "Will search for all accounts in the organization. No need to set account_info or org_unit_info. Not all CORPUS_TYPE support this scope. Supported by MAIL.",
             "Will search in the Room specified in hangout_chats_info. (read-only)",
             "Will search for all accounts in the shared drive specified in shared_drive_info."
           ],

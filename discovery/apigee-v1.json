@@ -164,6 +164,31 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "delete": {
+          "description": "Delete an Apigee organization. Only supported for SubscriptionType TRIAL.",
+          "flatPath": "v1/organizations/{organizationsId}",
+          "httpMethod": "DELETE",
+          "id": "apigee.organizations.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Name of the organization. Use the following structure in your request: `organizations/{org}`",
+              "location": "path",
+              "pattern": "^organizations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "GoogleLongrunningOperation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "get": {
           "description": "Gets the profile for an Apigee organization. See [Understanding organizations](https://cloud.google.com/apigee/docs/api-platform/fundamentals/organization-structure).",
           "flatPath": "v1/organizations/{organizationsId}",
@@ -3614,7 +3639,7 @@
             "keystores": {
               "methods": {
                 "create": {
-                  "description": "Creates a keystore or truststore: * Keystore: Contains certificates and their associated keys. * Truststore: Contains trusted certificates used to validate a server's certificate. These certificates are typically self-signed certificates or certificates that are not signed by a trusted CA.",
+                  "description": "Creates a keystore or truststore. - Keystore: Contains certificates and their associated keys. - Truststore: Contains trusted certificates used to validate a server's certificate. These certificates are typically self-signed certificates or certificates that are not signed by a trusted CA.",
                   "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keystores",
                   "httpMethod": "POST",
                   "id": "apigee.organizations.environments.keystores.create",
@@ -3623,12 +3648,12 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Optional. Overrides the value in Keystore.",
+                      "description": "Optional. Name of the keystore. Overrides the value in Keystore.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The name of the environment in which to create the keystore. Must be of the form `organizations/{organization}/environments/{environment}`.",
+                      "description": "Required. Name of the environment in which to create the keystore. Use the following format in your request: `organizations/{org}/environments/{env}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/environments/[^/]+$",
                       "required": true,
@@ -3656,7 +3681,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of keystore to delete. Must be of the form `organizations/{organization}/environments/{environment}/keystores/{keystore}`.",
+                      "description": "Required. Name of the keystore. Use the following format in your request: `organizations/{org}/environments/{env}/keystores/{keystore}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/environments/[^/]+/keystores/[^/]+$",
                       "required": true,
@@ -3681,7 +3706,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of keystore. Must be of the form `organizations/{organization}/environments/{environment}/keystores/{keystore}`.",
+                      "description": "Required. Name of the keystore. Use the following format in your request: `organizations/{org}/environments/{env}/keystores/{keystore}`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/environments/[^/]+/keystores/[^/]+$",
                       "required": true,
@@ -3701,7 +3726,7 @@
                 "aliases": {
                   "methods": {
                     "create": {
-                      "description": "Creates an alias from a key, certificate pair. The structure of the request is controlled by the `format` query parameter: * `keycertfile` - Separate PEM-encoded key and certificate files are uploaded. The request must have `Content-Type: multipart/form-data` and include fields `keyFile` and `certFile`. If uploading to a truststore, omit `keyFile`. A `password` field should be provided for encrypted keys. * `pkcs12` - A PKCS12 file is uploaded. The request must have `Content-Type: multipart/form-data` with the file provided in the `file` field and a `password` field if the file is encrypted. * `selfsignedcert` - A new private key and certificate are generated. The request must have `Content-Type: application/json` and a body of CertificateGenerationSpec.",
+                      "description": "Creates an alias from a key/certificate pair. The structure of the request is controlled by the `format` query parameter: - `keycertfile` - Separate PEM-encoded key and certificate files are uploaded. Set `Content-Type: multipart/form-data` and include the `keyFile`, `certFile`, and `password` (if keys are encrypted) fields in the request body. If uploading to a truststore, omit `keyFile`. - `pkcs12` - A PKCS12 file is uploaded. Set `Content-Type: multipart/form-data`, provide the file in the `file` field, and include the `password` field if the file is encrypted in the request body. - `selfsignedcert` - A new private key and certificate are generated. Set `Content-Type: application/json` and include CertificateGenerationSpec in the request body.",
                       "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keystores/{keystoresId}/aliases",
                       "httpMethod": "POST",
                       "id": "apigee.organizations.environments.keystores.aliases.create",
@@ -3710,32 +3735,32 @@
                       ],
                       "parameters": {
                         "_password": {
-                          "description": "DEPRECATED: For improved security, send the password in the body instead of using this query param. To send it in the body, use a multipart/form-data part with name \"password\". The password for the private key file, if it exists.",
+                          "description": "DEPRECATED: For improved security, specify the password in the request body instead of using the query parameter. To specify the password in the request body, set `Content-type: multipart/form-data` part with name `password`. Password for the private key file, if required.",
                           "location": "query",
                           "type": "string"
                         },
                         "alias": {
-                          "description": "The alias for the key, certificate pair. Values must match regular expression `[\\w\\s-.]{1,255}`. This must be provided for all formats except 'selfsignedcert'; self-signed certs may specify the alias in either this parameter or the JSON body.",
+                          "description": "Alias for the key/certificate pair. Values must match the regular expression `[\\w\\s-.]{1,255}`. This must be provided for all formats except `selfsignedcert`; self-signed certs may specify the alias in either this parameter or the JSON body.",
                           "location": "query",
                           "type": "string"
                         },
                         "format": {
-                          "description": "Required. The format of the data. Must be either `selfsignedcert`, `keycertfile`, or `pkcs12`.",
+                          "description": "Required. Format of the data. Valid values include: `selfsignedcert`, `keycertfile`, or `pkcs12`",
                           "location": "query",
                           "type": "string"
                         },
                         "ignoreExpiryValidation": {
-                          "description": "If `true`, no expiry validation will be performed.",
+                          "description": "Flag that specifies whether to ignore expiry validation. If set to `true`, no expiry validation will be performed.",
                           "location": "query",
                           "type": "boolean"
                         },
                         "ignoreNewlineValidation": {
-                          "description": "If `true`, do not throw an error when the file contains a chain with no newline between each certificate. By default, a newline is needed between each certificate in a chain.",
+                          "description": "Flag that specifies whether to ignore newline validation. If set to `true`, no error is thrown when the file contains a certificate chain with no newline between each certificate. Defaults to `false`.",
                           "location": "query",
                           "type": "boolean"
                         },
                         "parent": {
-                          "description": "Required. The name of the keystore. Must be of the form `organizations/{organization}/environments/{environment}/keystores/{keystore}`.",
+                          "description": "Required. Name of the keystore. Use the following format in your request: `organizations/{org}/environments/{env}/keystores/{keystore}`.",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/keystores/[^/]+$",
                           "required": true,
@@ -3763,7 +3788,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the alias. Must be of the form `organizations/{organization}/environments/{environment}/keystores/{keystore}/aliases/{alias}`.",
+                          "description": "Required. Name of the alias. Use the following format in your request: `organizations/{org}/environments/{env}/keystores/{keystore}/aliases/{alias}`.",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/keystores/[^/]+/aliases/[^/]+$",
                           "required": true,
@@ -3788,7 +3813,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the alias. Must be of the form `organizations/{organization}/environments/{environment}/keystores/{keystore}/aliases/{alias}`.",
+                          "description": "Required. Name of the alias. Use the following format in your request: `organizations/{org}/environments/{env}/keystores/{keystore}/aliases/{alias}`.",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/keystores/[^/]+/aliases/[^/]+$",
                           "required": true,
@@ -3813,7 +3838,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the alias. Must be of the form `organizations/{organization}/environments/{environment}/keystores/{keystore}/aliases/{alias}`.",
+                          "description": "Required. Name of the alias. Use the following format in your request: `organizations/{org}/environments/{env}/keystores/{keystore}/aliases/{alias}`.",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/keystores/[^/]+/aliases/[^/]+$",
                           "required": true,
@@ -3838,7 +3863,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the alias. Must be of the form `organizations/{organization}/environments/{environment}/keystores/{keystore}/aliases/{alias}`.",
+                          "description": "Required. Name of the alias. Use the following format in your request: `organizations/{org}/environments/{env}/keystores/{keystore}/aliases/{alias}`.",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/keystores/[^/]+/aliases/[^/]+$",
                           "required": true,
@@ -3863,17 +3888,17 @@
                       ],
                       "parameters": {
                         "ignoreExpiryValidation": {
-                          "description": "Required. If `true`, no expiry validation will be performed.",
+                          "description": "Required. Flag that specifies whether to ignore expiry validation. If set to `true`, no expiry validation will be performed.",
                           "location": "query",
                           "type": "boolean"
                         },
                         "ignoreNewlineValidation": {
-                          "description": "If `true`, do not throw an error when the file contains a chain with no newline between each certificate. By default, a newline is needed between each certificate in a chain.",
+                          "description": "Flag that specifies whether to ignore newline validation. If set to `true`, no error is thrown when the file contains a certificate chain with no newline between each certificate. Defaults to `false`.",
                           "location": "query",
                           "type": "boolean"
                         },
                         "name": {
-                          "description": "Required. The name of the alias. Must be of the form `organizations/{organization}/environments/{environment}/keystores/{keystore}/aliases/{alias}`.",
+                          "description": "Required. Name of the alias. Use the following format in your request: `organizations/{org}/environments/{env}/keystores/{keystore}/aliases/{alias}`",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/keystores/[^/]+/aliases/[^/]+$",
                           "required": true,
@@ -3984,7 +4009,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The resource name for which the interactive query will be executed. Must be of the form `organizations/{organization_id}/environments/{environment_id/stats/{dimensions}` Dimensions let you view metrics in meaningful groupings. E.g. apiproxy, target_host. The value of dimensions should be comma separated list as shown below `organizations/{org}/environments/{env}/stats/apiproxy,request_verb`",
+                      "description": "Required. The resource name for which the interactive query will be executed. Must be of the form `organizations/{organization_id}/environments/{environment_id/optimizedStats/{dimensions}` Dimensions let you view metrics in meaningful groupings. E.g. apiproxy, target_host. The value of dimensions should be comma separated list as shown below `organizations/{org}/environments/{env}/optimizedStats/apiproxy,request_verb`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/environments/[^/]+/optimizedStats/.*$",
                       "required": true,
@@ -5064,7 +5089,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The resource name for which the interactive query will be executed. Must be of the form `organizations/{organization_id}/stats/{dimensions}`. Dimensions let you view metrics in meaningful groupings. E.g. apiproxy, target_host. The value of dimensions should be comma separated list as shown below `organizations/{org}/stats/apiproxy,request_verb`",
+                  "description": "Required. The resource name for which the interactive query will be executed. Must be of the form `organizations/{organization_id}/hostStats/{dimensions}`. Dimensions let you view metrics in meaningful groupings. E.g. apiproxy, target_host. The value of dimensions should be comma separated list as shown below `organizations/{org}/hostStats/apiproxy,request_verb`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/hostStats/.*$",
                   "required": true,
@@ -5451,6 +5476,152 @@
                   ]
                 }
               }
+            },
+            "natAddresses": {
+              "methods": {
+                "activate": {
+                  "description": "Activates the NAT address. The Apigee instance can now use this for Internet egress traffic. **Note:** Not supported for Apigee hybrid.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/natAddresses/{natAddressesId}:activate",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.instances.natAddresses.activate",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the nat address. Use the following structure in your request: `organizations/{org}/instances/{instances}/natAddresses/{nataddress}``",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+/natAddresses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:activate",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1ActivateNatAddressRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "create": {
+                  "description": "Creates a NAT address. The address is created in the RESERVED state and a static external IP address will be provisioned. At this time, the instance will not use this IP address for Internet egress traffic. The address can be activated for use once any required firewall IP whitelisting has been completed. **Note:** Not supported for Apigee hybrid.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/natAddresses",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.instances.natAddresses.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Name of the instance. Use the following structure in your request: `organizations/{org}/instances/{instance}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/natAddresses",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1NatAddress"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the NAT address. Connections that are actively using the address are drained before it is removed. **Note:** Not supported for Apigee hybrid.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/natAddresses/{natAddressesId}",
+                  "httpMethod": "DELETE",
+                  "id": "apigee.organizations.instances.natAddresses.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the nat address. Use the following structure in your request: `organizations/{org}/instances/{instances}/natAddresses/{nataddress}``",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+/natAddresses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the details of a NAT address. **Note:** Not supported for Apigee hybrid.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/natAddresses/{natAddressesId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.instances.natAddresses.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the nat address. Use the following structure in your request: `organizations/{org}/instances/{instances}/natAddresses/{nataddress}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+/natAddresses/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1NatAddress"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists the NAT addresses for an Apigee instance. **Note:** Not supported for Apigee hybrid.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/natAddresses",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.instances.natAddresses.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Maximum number of natAddresses to return. Defaults to 25.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Page token, returned from a previous ListNatAddresses call, that you can use to retrieve the next page of content.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of the instance. Use the following structure in your request: `organizations/{org}/instances/{instance}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/natAddresses",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListNatAddressesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         },
@@ -5613,7 +5784,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The resource name for which the interactive query will be executed. Must be of the form `organizations/{organization_id}/stats/{dimensions}`. Dimensions let you view metrics in meaningful groupings. E.g. apiproxy, target_host. The value of dimensions should be comma separated list as shown below `organizations/{org}/stats/apiproxy,request_verb`",
+                  "description": "Required. The resource name for which the interactive query will be executed. Must be of the form `organizations/{organization_id}/optimizedHostStats/{dimensions}`. Dimensions let you view metrics in meaningful groupings. E.g. apiproxy, target_host. The value of dimensions should be comma separated list as shown below `organizations/{org}/optimizedHostStats/apiproxy,request_verb`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/optimizedHostStats/.*$",
                   "required": true,
@@ -6275,7 +6446,7 @@
       }
     }
   },
-  "revision": "20201117",
+  "revision": "20210211",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -6362,29 +6533,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ActivateNatAddressRequest": {
+      "description": "Request for ActivateNatAddressRequest. Activate the nat address request.",
+      "id": "GoogleCloudApigeeV1ActivateNatAddressRequest",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudApigeeV1Alias": {
-      "description": "A reference to a certificate or key, certificate pair.",
+      "description": "Reference to a certificate or key/certificate pair.",
       "id": "GoogleCloudApigeeV1Alias",
       "properties": {
         "alias": {
-          "description": "The resource ID for this alias. Values must match regular expression `[^/]{1,255}`.",
+          "description": "Resource ID for this alias. Values must match the regular expression `[^/]{1,255}`.",
           "type": "string"
         },
         "certsInfo": {
           "$ref": "GoogleCloudApigeeV1Certificate",
-          "description": "The chain of certificates under this alias."
+          "description": "Chain of certificates under this alias."
         },
         "type": {
-          "description": "The type of alias.",
+          "description": "Type of alias.",
           "enum": [
             "ALIAS_TYPE_UNSPECIFIED",
             "CERT",
             "KEY_CERT"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            ""
+            "Alias type is not specified.",
+            "Certificate.",
+            "Key/certificate pair."
           ],
           "type": "string"
         }
@@ -6409,9 +6586,9 @@
             "KEY_CERT"
           ],
           "enumDescriptions": [
-            "",
-            "",
-            ""
+            "Alias type is not specified.",
+            "Certificate.",
+            "Key/certificate pair."
           ],
           "type": "string"
         }
@@ -7042,56 +7219,56 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1CertInfo": {
-      "description": "An X.509 certificate as defined in RFC 5280.",
+      "description": "X.509 certificate as defined in RFC 5280.",
       "id": "GoogleCloudApigeeV1CertInfo",
       "properties": {
         "basicConstraints": {
-          "description": "The X.509 basic constraints extension.",
+          "description": "X.509 basic constraints extension.",
           "type": "string"
         },
         "expiryDate": {
-          "description": "The X.509 validity / notAfter in milliseconds since the epoch.",
+          "description": "X.509 `notAfter` validity period in milliseconds since epoch.",
           "format": "int64",
           "type": "string"
         },
         "isValid": {
-          "description": "\"Yes\" if certificate is valid, \"No\" if expired and \"Not yet\" if not yet valid.",
+          "description": "Flag that specifies whether the certificate is valid. Flag is set to `Yes` if the certificate is valid, `No` if expired, or `Not yet` if not yet valid.",
           "type": "string"
         },
         "issuer": {
-          "description": "The X.509 issuer.",
+          "description": "X.509 issuer.",
           "type": "string"
         },
         "publicKey": {
-          "description": "The public key component of the X.509 subject public key info.",
+          "description": "Public key component of the X.509 subject public key info.",
           "type": "string"
         },
         "serialNumber": {
-          "description": "The X.509 serial number.",
+          "description": "X.509 serial number.",
           "type": "string"
         },
         "sigAlgName": {
-          "description": "The X.509 signatureAlgorithm.",
+          "description": "X.509 signatureAlgorithm.",
           "type": "string"
         },
         "subject": {
-          "description": "The X.509 subject.",
+          "description": "X.509 subject.",
           "type": "string"
         },
         "subjectAlternativeNames": {
-          "description": "The X.509 subject alternative names (SANs) extension.",
+          "description": "X.509 subject alternative names (SANs) extension.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "validFrom": {
-          "description": "The X.509 validity / notBefore in milliseconds since the epoch.",
+          "description": "X.509 `notBefore` validity period in milliseconds since epoch.",
           "format": "int64",
           "type": "string"
         },
         "version": {
-          "description": "The X.509 version.",
+          "description": "X.509 version.",
           "format": "int32",
           "type": "integer"
         }
@@ -7102,7 +7279,7 @@
       "id": "GoogleCloudApigeeV1Certificate",
       "properties": {
         "certInfo": {
-          "description": "The chain of certificates under this name.",
+          "description": "Chain of certificates under this name.",
           "items": {
             "$ref": "GoogleCloudApigeeV1CertInfo"
           },
@@ -7850,7 +8027,7 @@
           "type": "string"
         },
         "email": {
-          "description": "Required. Email address of the developer. This value is used to uniquely identify the developer in Apigee hybrid.",
+          "description": "Required. Email address of the developer. This value is used to uniquely identify the developer in Apigee hybrid. Note that the email address has to be in lowercase only.",
           "type": "string"
         },
         "firstName": {
@@ -7990,6 +8167,11 @@
           "format": "int64",
           "type": "string"
         },
+        "expiresInSeconds": {
+          "description": "Input only. Expiration time, in seconds, for the consumer key. If not set or left to the default value of `-1`, the API key never expires. The expiration time can't be updated after it is set.",
+          "format": "int64",
+          "type": "string"
+        },
         "issuedAt": {
           "description": "Time the developer app was created in milliseconds since epoch.",
           "format": "int64",
@@ -8078,6 +8260,23 @@
         "properties": {
           "$ref": "GoogleCloudApigeeV1Properties",
           "description": "Optional. Key-value pairs that may be used for customizing the environment."
+        },
+        "state": {
+          "description": "Output only. State of the environment. Values other than ACTIVE means the resource is not ready to use.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Resource is in an unspecified state.",
+            "Resource is being created.",
+            "Resource is provisioned and ready to use.",
+            "The resource is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -8208,6 +8407,23 @@
         },
         "name": {
           "description": "ID of the environment group.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the environment group. Values other than ACTIVE means the resource is not ready to use.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Resource is in an unspecified state.",
+            "Resource is being created.",
+            "Resource is provisioned and ready to use.",
+            "The resource is being deleted."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -8441,7 +8657,7 @@
           "type": "string"
         },
         "diskEncryptionKeyName": {
-          "description": "Optional. Customer Managed Encryption Key (CMEK) used for disk & volume encryption.",
+          "description": "Customer Managed Encryption Key (CMEK) used for disk and volume encryption. Required for Apigee paid subscriptions only. Use the following format: `projects/([^/]+)/locations/([^/]+)/keyRings/([^/]+)/cryptoKeys/([^/]+)`",
           "type": "string"
         },
         "displayName": {
@@ -8465,6 +8681,20 @@
         },
         "name": {
           "description": "Required. Resource ID of the instance. Values must match the regular expression `^a-z{0,30}[a-z\\d]$`.",
+          "type": "string"
+        },
+        "peeringCidrRange": {
+          "description": "Optional. The size of the CIDR block range that will be reserved by the instance. If not specified, default to SLASH_16.",
+          "enum": [
+            "CIDR_RANGE_UNSPECIFIED",
+            "SLASH_16",
+            "SLASH_20"
+          ],
+          "enumDescriptions": [
+            "Range not specified.",
+            "The \"/16\" CIDR range.",
+            "The \"/20\" CIDR range."
+          ],
           "type": "string"
         },
         "port": {
@@ -8609,11 +8839,11 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1Keystore": {
-      "description": "A datastore for Certificates and Aliases",
+      "description": "Datastore for Certificates and Aliases.",
       "id": "GoogleCloudApigeeV1Keystore",
       "properties": {
         "aliases": {
-          "description": "Output only. The aliases in this keystore.",
+          "description": "Output only. Aliases in this keystore.",
           "items": {
             "type": "string"
           },
@@ -8621,7 +8851,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Required. The resource ID for this keystore. Values must match the regular expression `[\\w[:space:]-.]{1,255}`.",
+          "description": "Required. Resource ID for this keystore. Values must match the regular expression `[\\w[:space:]-.]{1,255}`.",
           "type": "string"
         }
       },
@@ -8926,6 +9156,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ListNatAddressesResponse": {
+      "description": "Response for ListNatAddresses.",
+      "id": "GoogleCloudApigeeV1ListNatAddressesResponse",
+      "properties": {
+        "natAddresses": {
+          "description": "List of NAT Addresses for the instance.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1NatAddress"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token that you can include in a ListNatAddresses request to retrieve the next page of content. If omitted, no subsequent pages exist.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ListOfDevelopersResponse": {
       "id": "GoogleCloudApigeeV1ListOfDevelopersResponse",
       "properties": {
@@ -8999,6 +9247,39 @@
             "type": "any"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1NatAddress": {
+      "description": "Apigee NAT(network address translation) address. A NAT address is a static external IP address used for Internet egress traffic.",
+      "id": "GoogleCloudApigeeV1NatAddress",
+      "properties": {
+        "ipAddress": {
+          "description": "Required. The static IPV4 address.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Resource ID of the NAT address.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Required. State of the nat address.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "RESERVED",
+            "ACTIVE",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "The resource is in an unspecified state.",
+            "The NAT address is being created.",
+            "The NAT address is reserved but not yet used for Internet egress.",
+            "The NAT address is active and used for Internet egress.",
+            "The NAT address is being deleted."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -9174,11 +9455,26 @@
           "type": "array"
         },
         "authorizedNetwork": {
-          "description": "Compute Engine network used for Service Networking to be peered with Apigee runtime instances. See [Getting started with the Service Networking API](https://cloud.google.com/service-infrastructure/docs/service-networking/getting-started). Valid only when [RuntimeType] is set to CLOUD. The value can be updated only when there are no runtime instances. For example: \"default\". **Note:** Not supported for Apigee hybrid.",
+          "description": "Compute Engine network used for Service Networking to be peered with Apigee runtime instances. See [Getting started with the Service Networking API](https://cloud.google.com/service-infrastructure/docs/service-networking/getting-started). Valid only when [RuntimeType](#RuntimeType) is set to `CLOUD`. The value can be updated only when there are no runtime instances. For example: `default`. Apigee also supports shared VPC (that is, the host network project is not the same as the one that is peering with Apigee). See [Shared VPC overview](https://cloud.google.com/vpc/docs/shared-vpc). To use a shared VPC network, use the following format: `projects/{host-project-id}/{region}/networks/{network-name}`. For example: `projects/my-sharedvpc-host/global/networks/mynetwork` **Note:** Not supported for Apigee hybrid.",
+          "type": "string"
+        },
+        "billingType": {
+          "description": "Output only. Billing type of the Apigee organization. See [Apigee pricing](https://cloud.google.com/apigee/pricing).",
+          "enum": [
+            "BILLING_TYPE_UNSPECIFIED",
+            "SUBSCRIPTION",
+            "EVALUATION"
+          ],
+          "enumDescriptions": [
+            "Billing type not specified.",
+            "A pre-paid subscription to Apigee.",
+            "Free and limited access to Apigee for evaluation purposes only. only."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "caCertificate": {
-          "description": "Output only. Base64-encoded public certificate for the root CA of the Apigee organization. Valid only when [RuntimeType] is CLOUD.",
+          "description": "Output only. Base64-encoded public certificate for the root CA of the Apigee organization. Valid only when [RuntimeType](#RuntimeType) is `CLOUD`.",
           "format": "byte",
           "readOnly": true,
           "type": "string"
@@ -9220,7 +9516,7 @@
           "type": "string"
         },
         "projectId": {
-          "description": "The project ID associated with the Apigee organization.",
+          "description": "Project ID associated with the Apigee organization.",
           "type": "string"
         },
         "properties": {
@@ -9228,7 +9524,7 @@
           "description": "Properties defined in the Apigee organization profile."
         },
         "runtimeDatabaseEncryptionKeyName": {
-          "description": "Cloud KMS key name used for encrypting the data that is stored and replicated across runtime instances. Update is not allowed after the organization is created. If not specified, a Google-Managed encryption key will be used. Valid only when [RuntimeType] is CLOUD. For example: \"projects/foo/locations/us/keyRings/bar/cryptoKeys/baz\". **Note:** Not supported for Apigee hybrid.",
+          "description": "Cloud KMS key name used for encrypting the data that is stored and replicated across runtime instances. Update is not allowed after the organization is created. If not specified, a Google-Managed encryption key will be used. Valid only when [RuntimeType](#RuntimeType) is `CLOUD`. For example: \"projects/foo/locations/us/keyRings/bar/cryptoKeys/baz\". **Note:** Not supported for Apigee hybrid.",
           "type": "string"
         },
         "runtimeType": {
@@ -9245,8 +9541,25 @@
           ],
           "type": "string"
         },
+        "state": {
+          "description": "Output only. State of the organization. Values other than ACTIVE means the resource is not ready to use.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Resource is in an unspecified state.",
+            "Resource is being created.",
+            "Resource is provisioned and ready to use.",
+            "The resource is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "subscriptionType": {
-          "description": "Output only. Subscription type of the Apigee organization. Valid values include trial (free, limited, and for evaluation purposes only) or paid (full subscription has been purchased). See [Apigee pricing](https://cloud.google.com/apigee/pricing/).",
+          "description": "Output only. DEPRECATED: This will eventually be replaced by BillingType. Subscription type of the Apigee organization. Valid values include trial (free, limited, and for evaluation purposes only) or paid (full subscription has been purchased). See [Apigee pricing](https://cloud.google.com/apigee/pricing/).",
           "enum": [
             "SUBSCRIPTION_TYPE_UNSPECIFIED",
             "PAID",
@@ -9393,7 +9706,7 @@
       "id": "GoogleCloudApigeeV1ProvisionOrganizationRequest",
       "properties": {
         "analyticsRegion": {
-          "description": "Primary Cloud Platform region for analytics data storage. For valid values, see [Create an organization](https://docs.apigee.com/hybrid/latest/precog-provision). Defaults to us-west1.",
+          "description": "Primary Cloud Platform region for analytics data storage. For valid values, see [Create an organization](https://cloud.google.com/apigee/docs/hybrid/latest/precog-provision). Defaults to `us-west1`.",
           "type": "string"
         },
         "authorizedNetwork": {
@@ -9401,7 +9714,7 @@
           "type": "string"
         },
         "runtimeLocation": {
-          "description": "Cloud Platform location for the runtime instance. Defaults to us-west1-a.",
+          "description": "Cloud Platform location for the runtime instance. Defaults to `us-west1-a`.",
           "type": "string"
         }
       },

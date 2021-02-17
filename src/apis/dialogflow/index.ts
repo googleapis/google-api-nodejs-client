@@ -16,11 +16,13 @@
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {dialogflow_v2} from './v2';
 import {dialogflow_v2beta1} from './v2beta1';
+import {dialogflow_v3} from './v3';
 import {dialogflow_v3beta1} from './v3beta1';
 
 export const VERSIONS = {
   v2: dialogflow_v2.Dialogflow,
   v2beta1: dialogflow_v2beta1.Dialogflow,
+  v3: dialogflow_v3.Dialogflow,
   v3beta1: dialogflow_v3beta1.Dialogflow,
 };
 
@@ -32,6 +34,10 @@ export function dialogflow(version: 'v2beta1'): dialogflow_v2beta1.Dialogflow;
 export function dialogflow(
   options: dialogflow_v2beta1.Options
 ): dialogflow_v2beta1.Dialogflow;
+export function dialogflow(version: 'v3'): dialogflow_v3.Dialogflow;
+export function dialogflow(
+  options: dialogflow_v3.Options
+): dialogflow_v3.Dialogflow;
 export function dialogflow(version: 'v3beta1'): dialogflow_v3beta1.Dialogflow;
 export function dialogflow(
   options: dialogflow_v3beta1.Options
@@ -40,6 +46,7 @@ export function dialogflow<
   T =
     | dialogflow_v2.Dialogflow
     | dialogflow_v2beta1.Dialogflow
+    | dialogflow_v3.Dialogflow
     | dialogflow_v3beta1.Dialogflow
 >(
   this: GoogleConfigurable,
@@ -48,6 +55,8 @@ export function dialogflow<
     | dialogflow_v2.Options
     | 'v2beta1'
     | dialogflow_v2beta1.Options
+    | 'v3'
+    | dialogflow_v3.Options
     | 'v3beta1'
     | dialogflow_v3beta1.Options
 ) {
@@ -58,6 +67,7 @@ const auth = new AuthPlus();
 export {auth};
 export {dialogflow_v2};
 export {dialogflow_v2beta1};
+export {dialogflow_v3};
 export {dialogflow_v3beta1};
 export {
   AuthPlus,

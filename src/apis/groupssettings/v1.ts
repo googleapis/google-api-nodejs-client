@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace groupssettings_v1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -326,6 +328,7 @@ export namespace groupssettings_v1 {
      * - ALL_MANAGERS_CAN_CONTACT
      * - ALL_MEMBERS_CAN_CONTACT
      * - ANYONE_CAN_CONTACT
+     * - ALL_OWNERS_CAN_CONTACT
      */
     whoCanContactOwner?: string | null;
     /**

@@ -912,6 +912,11 @@
                             "parent"
                           ],
                           "parameters": {
+                            "orderBy": {
+                              "description": "Optional. Sorting field and order",
+                              "location": "query",
+                              "type": "string"
+                            },
                             "pageSize": {
                               "description": "The maximum number of versions to return. Maximum page size is 10,000.",
                               "format": "int32",
@@ -966,7 +971,7 @@
       }
     }
   },
-  "revision": "20201107",
+  "revision": "20210205",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1051,85 +1056,6 @@
         },
         "updateTime": {
           "description": "The time when the File was last updated.",
-          "format": "google-datetime",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleDevtoolsArtifactregistryV1alpha1ErrorInfo": {
-      "description": "Error information explaining why a package was not imported.",
-      "id": "GoogleDevtoolsArtifactregistryV1alpha1ErrorInfo",
-      "properties": {
-        "error": {
-          "$ref": "Status",
-          "description": "The detailed error status."
-        },
-        "gcsSource": {
-          "$ref": "GoogleDevtoolsArtifactregistryV1alpha1GcsSource",
-          "description": "Google Cloud Storage location requested."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleDevtoolsArtifactregistryV1alpha1GcsSource": {
-      "description": "Google Cloud Storage location for the input content.",
-      "id": "GoogleDevtoolsArtifactregistryV1alpha1GcsSource",
-      "properties": {
-        "uris": {
-          "description": "Cloud Storage paths URI (e.g., gs://my_bucket//my_object).",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "useWildcards": {
-          "description": "Supports URI wildcards for matching multiple objects from a single URI.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleDevtoolsArtifactregistryV1alpha1ImportArtifactsResponse": {
-      "description": "The response message from importing artifacts.",
-      "id": "GoogleDevtoolsArtifactregistryV1alpha1ImportArtifactsResponse",
-      "properties": {
-        "errors": {
-          "description": "Detailed error info for packages that were not imported.",
-          "items": {
-            "$ref": "GoogleDevtoolsArtifactregistryV1alpha1ErrorInfo"
-          },
-          "type": "array"
-        },
-        "packages": {
-          "description": "The packages updated.",
-          "items": {
-            "$ref": "GoogleDevtoolsArtifactregistryV1alpha1Package"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleDevtoolsArtifactregistryV1alpha1Package": {
-      "description": "Packages are named collections of versions.",
-      "id": "GoogleDevtoolsArtifactregistryV1alpha1Package",
-      "properties": {
-        "createTime": {
-          "description": "The time when the package was created.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "displayName": {
-          "description": "The display name of the package.",
-          "type": "string"
-        },
-        "name": {
-          "description": "The name of the package, for example: \"projects/p1/locations/us-central1/repositories/repo1/packages/pkg1\".",
-          "type": "string"
-        },
-        "updateTime": {
-          "description": "The time when the package was last updated. This includes publishing a new version of the package.",
           "format": "google-datetime",
           "type": "string"
         }

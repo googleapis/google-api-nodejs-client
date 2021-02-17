@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         },
         "https://www.googleapis.com/auth/sqlservice.admin": {
           "description": "Manage your Google SQL Service instances"
@@ -1376,6 +1376,11 @@
                   "required": true,
                   "type": "string"
                 },
+                "skipVerification": {
+                  "description": "Whether to skip the verification step (VESS).",
+                  "location": "query",
+                  "type": "boolean"
+                },
                 "syncMode": {
                   "description": "External sync mode.",
                   "enum": [
@@ -1829,7 +1834,7 @@
       }
     }
   },
-  "revision": "20201112",
+  "revision": "20210130",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -1874,6 +1879,10 @@
         },
         "message": {
           "description": "The warning message.",
+          "type": "string"
+        },
+        "region": {
+          "description": "The region name for REGION_UNREACHABLE warning.",
           "type": "string"
         }
       },
@@ -2062,7 +2071,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The type of this run; can be either \"AUTOMATED\" or \"ON_DEMAND\".",
+          "description": "The type of this run; can be either \"AUTOMATED\" or \"ON_DEMAND\". This field defaults to \"ON_DEMAND\" and is ignored, when specified for insert requests.",
           "enum": [
             "SQL_BACKUP_RUN_TYPE_UNSPECIFIED",
             "AUTOMATED",
@@ -2408,7 +2417,7 @@
           "description": "The user settings."
         },
         "state": {
-          "description": "The current serving state of the Cloud SQL instance. This can be one of the following. *SQL_INSTANCE_STATE_UNSPECIFIED*: The state of the instance is unknown. *RUNNABLE*: The instance has been stopped by owner. It is not currently running, but it's ready to be restarted. *SUSPENDED*: The instance is not available, for example due to problems with billing. for example due to problems with billing. *PENDING_DELETE*: The instance is being deleted. *PENDING_CREATE*: The instance is being created. *MAINTENANCE*: The instance is down for maintenance. *FAILED*: The instance creation failed.",
+          "description": "The current serving state of the Cloud SQL instance. This can be one of the following. *SQL_INSTANCE_STATE_UNSPECIFIED*: The state of the instance is unknown. *RUNNABLE*: The instance is running, or has been stopped by owner. *SUSPENDED*: The instance is not available, for example due to problems with billing. for example due to problems with billing. *PENDING_DELETE*: The instance is being deleted. *PENDING_CREATE*: The instance is being created. *MAINTENANCE*: The instance is down for maintenance. *FAILED*: The instance creation failed.",
           "enum": [
             "SQL_INSTANCE_STATE_UNSPECIFIED",
             "RUNNABLE",
@@ -2420,7 +2429,7 @@
           ],
           "enumDescriptions": [
             "The state of the instance is unknown.",
-            "The instance has been stopped by owner. It is not currently running, but it's ready to be restarted.",
+            "The instance is running, or has been stopped by owner.",
             "The instance is not available, for example due to problems with billing.",
             "The instance is being deleted.",
             "The instance is being created.",
@@ -2663,7 +2672,7 @@
           "type": "object"
         },
         "uri": {
-          "description": "The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form *gs: //bucketName/fileName*. If the file already exists, the requests // succeeds, but the operation fails. If *fileType* is // *SQL* and the filename ends with .gz, the contents are // compressed.",
+          "description": "The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form *gs://bucketName/fileName*. If the file already exists, the request succeeds, but the operation fails. If *fileType* is *SQL* and the filename ends with .gz, the contents are compressed.",
           "type": "string"
         }
       },
@@ -2889,7 +2898,7 @@
           "type": "string"
         },
         "uri": {
-          "description": "Path to the import file in Cloud Storage, in the form *gs: //bucketName/fileName*. Compressed gzip files (.gz) are supported // when *fileType* is *SQL*. The instance must have // write permissions to the bucket and read access to the file.",
+          "description": "Path to the import file in Cloud Storage, in the form *gs://bucketName/fileName*. Compressed gzip files (.gz) are supported when *fileType* is *SQL*. The instance must have write permissions to the bucket and read access to the file.",
           "type": "string"
         }
       },
@@ -3970,6 +3979,10 @@
       "description": "SslCerts create ephemeral certificate request.",
       "id": "SslCertsCreateEphemeralRequest",
       "properties": {
+        "access_token": {
+          "description": "Access token to include in the signed certificate.",
+          "type": "string"
+        },
         "public_key": {
           "description": "PEM encoded public key to include in the signed certificate.",
           "type": "string"

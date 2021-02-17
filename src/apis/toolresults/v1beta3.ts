@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace toolresults_v1beta3 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -838,6 +840,10 @@ export namespace toolresults_v1beta3 {
      */
     testCases?: Schema$TestCase[];
   }
+  /**
+   * A warning that there were issues in logcat collection.
+   */
+  export interface Schema$LogcatCollectionError {}
   /**
    * One dimension of the matrix of different runs of a step.
    */

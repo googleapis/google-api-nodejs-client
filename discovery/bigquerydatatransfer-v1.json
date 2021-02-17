@@ -23,7 +23,7 @@
   "canonicalName": "BigQuery Data Transfer",
   "description": "Schedule queries or transfer external data from SaaS applications to Google BigQuery on a regular basis.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://cloud.google.com/bigquery/",
+  "documentationLink": "https://cloud.google.com/bigquery-transfer/",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -1301,7 +1301,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20210206",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {

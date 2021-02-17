@@ -145,7 +145,7 @@
               "type": "integer"
             },
             "pageToken": {
-              "description": "A pagination token returned from a previous call to ListCustomers method that indicates where this listing should continue from.",
+              "description": "A pagination token returned from a previous call to ListCustomers that indicates where this listing should continue from.",
               "location": "query",
               "type": "string"
             }
@@ -196,6 +196,125 @@
       "resources": {
         "deployments": {
           "methods": {
+            "create": {
+              "description": "Creates a new deployment.",
+              "flatPath": "v1alpha1/customers/{customersId}/deployments",
+              "httpMethod": "POST",
+              "id": "sasportal.customers.deployments.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent resource name where the deployment is to be created.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+parent}/deployments",
+              "request": {
+                "$ref": "SasPortalDeployment"
+              },
+              "response": {
+                "$ref": "SasPortalDeployment"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a deployment.",
+              "flatPath": "v1alpha1/customers/{customersId}/deployments/{deploymentsId}",
+              "httpMethod": "DELETE",
+              "id": "sasportal.customers.deployments.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the deployment.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/deployments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+name}",
+              "response": {
+                "$ref": "SasPortalEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            },
+            "get": {
+              "description": "Returns a requested deployment.",
+              "flatPath": "v1alpha1/customers/{customersId}/deployments/{deploymentsId}",
+              "httpMethod": "GET",
+              "id": "sasportal.customers.deployments.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the deployment.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/deployments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+name}",
+              "response": {
+                "$ref": "SasPortalDeployment"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            },
+            "list": {
+              "description": "Lists deployments.",
+              "flatPath": "v1alpha1/customers/{customersId}/deployments",
+              "httpMethod": "GET",
+              "id": "sasportal.customers.deployments.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no deployments are filtered.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of deployments to return in the response.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A pagination token returned from a previous call to ListDeployments that indicates where this listing should continue from.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent resource name, for example, \"nodes/1\", customer/1/nodes/2.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+parent}/deployments",
+              "response": {
+                "$ref": "SasPortalListDeploymentsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            },
             "move": {
               "description": "Moves a deployment under another node or customer.",
               "flatPath": "v1alpha1/customers/{customersId}/deployments/{deploymentsId}:move",
@@ -219,6 +338,40 @@
               },
               "response": {
                 "$ref": "SasPortalOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            },
+            "patch": {
+              "description": "Updates an existing deployment.",
+              "flatPath": "v1alpha1/customers/{customersId}/deployments/{deploymentsId}",
+              "httpMethod": "PATCH",
+              "id": "sasportal.customers.deployments.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/deployments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Fields to be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+name}",
+              "request": {
+                "$ref": "SasPortalDeployment"
+              },
+              "response": {
+                "$ref": "SasPortalDeployment"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/userinfo.email"
@@ -294,7 +447,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial_number of the device. The filter is case insensitive.",
+                      "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial number of the device. The filter is case insensitive.",
                       "location": "query",
                       "type": "string"
                     },
@@ -331,34 +484,6 @@
         },
         "devices": {
           "methods": {
-            "bulk": {
-              "description": "Creates a device under a node or customer. Returned devices are unordered.",
-              "flatPath": "v1alpha1/customers/{customersId}/devices:bulk",
-              "httpMethod": "POST",
-              "id": "sasportal.customers.devices.bulk",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. The name of the parent resource.",
-                  "location": "path",
-                  "pattern": "^customers/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha1/{+parent}/devices:bulk",
-              "request": {
-                "$ref": "SasPortalBulkCreateDeviceRequest"
-              },
-              "response": {
-                "$ref": "SasPortalBulkCreateDeviceResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/userinfo.email"
-              ]
-            },
             "create": {
               "description": "Creates a device under a node or customer.",
               "flatPath": "v1alpha1/customers/{customersId}/devices",
@@ -475,7 +600,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial_number of the device. The filter is case insensitive.",
+                  "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial number of the device. The filter is case insensitive.",
                   "location": "query",
                   "type": "string"
                 },
@@ -715,6 +840,11 @@
                 "parent"
               ],
               "parameters": {
+                "filter": {
+                  "description": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no nodes are filtered.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "pageSize": {
                   "description": "The maximum number of nodes to return in the response.",
                   "format": "int32",
@@ -722,7 +852,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.",
+                  "description": "A pagination token returned from a previous call to ListNodes that indicates where this listing should continue from.",
                   "location": "query",
                   "type": "string"
                 },
@@ -806,6 +936,79 @@
             }
           },
           "resources": {
+            "deployments": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new deployment.",
+                  "flatPath": "v1alpha1/customers/{customersId}/nodes/{nodesId}/deployments",
+                  "httpMethod": "POST",
+                  "id": "sasportal.customers.nodes.deployments.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource name where the deployment is to be created.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/nodes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/deployments",
+                  "request": {
+                    "$ref": "SasPortalDeployment"
+                  },
+                  "response": {
+                    "$ref": "SasPortalDeployment"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/userinfo.email"
+                  ]
+                },
+                "list": {
+                  "description": "Lists deployments.",
+                  "flatPath": "v1alpha1/customers/{customersId}/nodes/{nodesId}/deployments",
+                  "httpMethod": "GET",
+                  "id": "sasportal.customers.nodes.deployments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no deployments are filtered.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of deployments to return in the response.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A pagination token returned from a previous call to ListDeployments that indicates where this listing should continue from.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource name, for example, \"nodes/1\", customer/1/nodes/2.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/nodes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/deployments",
+                  "response": {
+                    "$ref": "SasPortalListDeploymentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/userinfo.email"
+                  ]
+                }
+              }
+            },
             "devices": {
               "methods": {
                 "create": {
@@ -874,7 +1077,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial_number of the device. The filter is case insensitive.",
+                      "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial number of the device. The filter is case insensitive.",
                       "location": "query",
                       "type": "string"
                     },
@@ -946,6 +1149,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no nodes are filtered.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "The maximum number of nodes to return in the response.",
                       "format": "int32",
@@ -953,7 +1161,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.",
+                      "description": "A pagination token returned from a previous call to ListNodes that indicates where this listing should continue from.",
                       "location": "query",
                       "type": "string"
                     },
@@ -980,6 +1188,33 @@
       }
     },
     "deployments": {
+      "methods": {
+        "get": {
+          "description": "Returns a requested deployment.",
+          "flatPath": "v1alpha1/deployments/{deploymentsId}",
+          "httpMethod": "GET",
+          "id": "sasportal.deployments.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the deployment.",
+              "location": "path",
+              "pattern": "^deployments/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha1/{+name}",
+          "response": {
+            "$ref": "SasPortalDeployment"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/userinfo.email"
+          ]
+        }
+      },
       "resources": {
         "devices": {
           "methods": {
@@ -1158,7 +1393,7 @@
     "installer": {
       "methods": {
         "generateSecret": {
-          "description": "Generates a secret to be used with the ValidateInstaller method",
+          "description": "Generates a secret to be used with the ValidateInstaller.",
           "flatPath": "v1alpha1/installer:generateSecret",
           "httpMethod": "POST",
           "id": "sasportal.installer.generateSecret",
@@ -1226,6 +1461,97 @@
       "resources": {
         "deployments": {
           "methods": {
+            "delete": {
+              "description": "Deletes a deployment.",
+              "flatPath": "v1alpha1/nodes/{nodesId}/deployments/{deploymentsId}",
+              "httpMethod": "DELETE",
+              "id": "sasportal.nodes.deployments.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the deployment.",
+                  "location": "path",
+                  "pattern": "^nodes/[^/]+/deployments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+name}",
+              "response": {
+                "$ref": "SasPortalEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            },
+            "get": {
+              "description": "Returns a requested deployment.",
+              "flatPath": "v1alpha1/nodes/{nodesId}/deployments/{deploymentsId}",
+              "httpMethod": "GET",
+              "id": "sasportal.nodes.deployments.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the deployment.",
+                  "location": "path",
+                  "pattern": "^nodes/[^/]+/deployments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+name}",
+              "response": {
+                "$ref": "SasPortalDeployment"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            },
+            "list": {
+              "description": "Lists deployments.",
+              "flatPath": "v1alpha1/nodes/{nodesId}/deployments",
+              "httpMethod": "GET",
+              "id": "sasportal.nodes.deployments.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no deployments are filtered.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "The maximum number of deployments to return in the response.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A pagination token returned from a previous call to ListDeployments that indicates where this listing should continue from.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent resource name, for example, \"nodes/1\", customer/1/nodes/2.",
+                  "location": "path",
+                  "pattern": "^nodes/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+parent}/deployments",
+              "response": {
+                "$ref": "SasPortalListDeploymentsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            },
             "move": {
               "description": "Moves a deployment under another node or customer.",
               "flatPath": "v1alpha1/nodes/{nodesId}/deployments/{deploymentsId}:move",
@@ -1249,6 +1575,40 @@
               },
               "response": {
                 "$ref": "SasPortalOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/userinfo.email"
+              ]
+            },
+            "patch": {
+              "description": "Updates an existing deployment.",
+              "flatPath": "v1alpha1/nodes/{nodesId}/deployments/{deploymentsId}",
+              "httpMethod": "PATCH",
+              "id": "sasportal.nodes.deployments.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Resource name.",
+                  "location": "path",
+                  "pattern": "^nodes/[^/]+/deployments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Fields to be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha1/{+name}",
+              "request": {
+                "$ref": "SasPortalDeployment"
+              },
+              "response": {
+                "$ref": "SasPortalDeployment"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/userinfo.email"
@@ -1324,7 +1684,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial_number of the device. The filter is case insensitive.",
+                      "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial number of the device. The filter is case insensitive.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1361,34 +1721,6 @@
         },
         "devices": {
           "methods": {
-            "bulk": {
-              "description": "Creates a device under a node or customer. Returned devices are unordered.",
-              "flatPath": "v1alpha1/nodes/{nodesId}/devices:bulk",
-              "httpMethod": "POST",
-              "id": "sasportal.nodes.devices.bulk",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. The name of the parent resource.",
-                  "location": "path",
-                  "pattern": "^nodes/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha1/{+parent}/devices:bulk",
-              "request": {
-                "$ref": "SasPortalBulkCreateDeviceRequest"
-              },
-              "response": {
-                "$ref": "SasPortalBulkCreateDeviceResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/userinfo.email"
-              ]
-            },
             "create": {
               "description": "Creates a device under a node or customer.",
               "flatPath": "v1alpha1/nodes/{nodesId}/devices",
@@ -1505,7 +1837,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial_number of the device. The filter is case insensitive.",
+                  "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial number of the device. The filter is case insensitive.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1745,6 +2077,11 @@
                 "parent"
               ],
               "parameters": {
+                "filter": {
+                  "description": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no nodes are filtered.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "pageSize": {
                   "description": "The maximum number of nodes to return in the response.",
                   "format": "int32",
@@ -1752,7 +2089,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.",
+                  "description": "A pagination token returned from a previous call to ListNodes that indicates where this listing should continue from.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1836,36 +2173,81 @@
             }
           },
           "resources": {
-            "devices": {
+            "deployments": {
               "methods": {
-                "bulk": {
-                  "description": "Creates a device under a node or customer. Returned devices are unordered.",
-                  "flatPath": "v1alpha1/nodes/{nodesId}/nodes/{nodesId1}/devices:bulk",
+                "create": {
+                  "description": "Creates a new deployment.",
+                  "flatPath": "v1alpha1/nodes/{nodesId}/nodes/{nodesId1}/deployments",
                   "httpMethod": "POST",
-                  "id": "sasportal.nodes.nodes.devices.bulk",
+                  "id": "sasportal.nodes.nodes.deployments.create",
                   "parameterOrder": [
                     "parent"
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The name of the parent resource.",
+                      "description": "Required. The parent resource name where the deployment is to be created.",
                       "location": "path",
                       "pattern": "^nodes/[^/]+/nodes/[^/]+$",
                       "required": true,
                       "type": "string"
                     }
                   },
-                  "path": "v1alpha1/{+parent}/devices:bulk",
+                  "path": "v1alpha1/{+parent}/deployments",
                   "request": {
-                    "$ref": "SasPortalBulkCreateDeviceRequest"
+                    "$ref": "SasPortalDeployment"
                   },
                   "response": {
-                    "$ref": "SasPortalBulkCreateDeviceResponse"
+                    "$ref": "SasPortalDeployment"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/userinfo.email"
                   ]
                 },
+                "list": {
+                  "description": "Lists deployments.",
+                  "flatPath": "v1alpha1/nodes/{nodesId}/nodes/{nodesId1}/deployments",
+                  "httpMethod": "GET",
+                  "id": "sasportal.nodes.nodes.deployments.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no deployments are filtered.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of deployments to return in the response.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A pagination token returned from a previous call to ListDeployments that indicates where this listing should continue from.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource name, for example, \"nodes/1\", customer/1/nodes/2.",
+                      "location": "path",
+                      "pattern": "^nodes/[^/]+/nodes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/deployments",
+                  "response": {
+                    "$ref": "SasPortalListDeploymentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/userinfo.email"
+                  ]
+                }
+              }
+            },
+            "devices": {
+              "methods": {
                 "create": {
                   "description": "Creates a device under a node or customer.",
                   "flatPath": "v1alpha1/nodes/{nodesId}/nodes/{nodesId1}/devices",
@@ -1932,7 +2314,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial_number of the device. The filter is case insensitive.",
+                      "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial number of the device. The filter is case insensitive.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2004,6 +2386,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "The filter expression. The filter should have the following format: \"DIRECT_CHILDREN\" or format: \"direct_children\". The filter is case insensitive. If empty, then no nodes are filtered.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "The maximum number of nodes to return in the response.",
                       "format": "int32",
@@ -2011,7 +2398,7 @@
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "A pagination token returned from a previous call to ListNodes method that indicates where this listing should continue from.",
+                      "description": "A pagination token returned from a previous call to ListNodes that indicates where this listing should continue from.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2096,7 +2483,7 @@
       }
     }
   },
-  "revision": "20201023",
+  "revision": "20210206",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -2117,42 +2504,17 @@
       },
       "type": "object"
     },
-    "SasPortalBulkCreateDeviceRequest": {
-      "description": "Request for BulkCreateDevice method.",
-      "id": "SasPortalBulkCreateDeviceRequest",
-      "properties": {
-        "csv": {
-          "description": "Required. A csv with each row representing a [device]. Each row must conform to the regulations described on CreateDeviceRequest's device field.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SasPortalBulkCreateDeviceResponse": {
-      "description": "Response for BulkCreateDevice method.",
-      "id": "SasPortalBulkCreateDeviceResponse",
-      "properties": {
-        "devices": {
-          "description": "Required. The devices that were imported.",
-          "items": {
-            "$ref": "SasPortalDevice"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "SasPortalCreateSignedDeviceRequest": {
-      "description": "Request for CreateSignedDevice method.",
+      "description": "Request for CreateSignedDevice.",
       "id": "SasPortalCreateSignedDeviceRequest",
       "properties": {
         "encodedDevice": {
-          "description": "Required. JSON Web Token signed using a CPI private key. Payload must be the JSON encoding of the [Device]. The user_id field must be set.",
+          "description": "Required. JSON Web Token signed using a CPI private key. Payload must be the JSON encoding of the device. The user_id field must be set.",
           "format": "byte",
           "type": "string"
         },
         "installerId": {
-          "description": "Required. Unique installer id (cpiId) from the Certified Professional Installers database.",
+          "description": "Required. Unique installer id (CPI ID) from the Certified Professional Installers database.",
           "type": "string"
         }
       },
@@ -2172,6 +2534,60 @@
         },
         "sasUserIds": {
           "description": "User IDs used by the devices belonging to this customer.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SasPortalDeployment": {
+      "description": "The Deployment.",
+      "id": "SasPortalDeployment",
+      "properties": {
+        "allowedBillingModes": {
+          "description": "The allowed billing modes under this deployment.",
+          "items": {
+            "enum": [
+              "BILLING_MODE_UNSPECIFIED",
+              "MOBILE",
+              "FIXED_WIRELESS"
+            ],
+            "enumDescriptions": [
+              "Billing mode has not been specified.",
+              "Price is based on category of CBSD: Category A, Category B registered with SAS.",
+              "Price is based on type of CBSD: Base station or CPE."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "defaultBillingMode": {
+          "description": "Default billing mode for the deployment and devices under it.",
+          "enum": [
+            "BILLING_MODE_UNSPECIFIED",
+            "MOBILE",
+            "FIXED_WIRELESS"
+          ],
+          "enumDescriptions": [
+            "Billing mode has not been specified.",
+            "Price is based on category of CBSD: Category A, Category B registered with SAS.",
+            "Price is based on type of CBSD: Base station or CPE."
+          ],
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The deployment's display name.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Resource name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sasUserIds": {
+          "description": "User ID used by the devices belonging to this deployment. Each deployment should be associated with one unique user ID.",
           "items": {
             "type": "string"
           },
@@ -2242,7 +2658,7 @@
       "id": "SasPortalDeviceAirInterface",
       "properties": {
         "radioTechnology": {
-          "description": "This field specifies the radio access technology that is used for the CBSD. Conditional",
+          "description": "Conditional. This field specifies the radio access technology that is used for the CBSD.",
           "enum": [
             "RADIO_TECHNOLOGY_UNSPECIFIED",
             "E_UTRA",
@@ -2268,7 +2684,7 @@
           "type": "string"
         },
         "supportedSpec": {
-          "description": "This field is related to the radioTechnology field and provides the air interface specification that the CBSD is compliant with at the time of registration. Optional",
+          "description": "Optional. This field is related to the `radioTechnology` and provides the air interface specification that the CBSD is compliant with at the time of registration.",
           "type": "string"
         }
       },
@@ -2305,7 +2721,7 @@
           "description": "Installation parameters for the device."
         },
         "isSigned": {
-          "description": "Output-only. Whether the configuration has been signed by a CPI.",
+          "description": "Output only. Whether the configuration has been signed by a CPI.",
           "type": "boolean"
         },
         "measurementCapabilities": {
@@ -2344,7 +2760,7 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "Output-only. The last time the device configuration was edited.",
+          "description": "Output only. The last time the device configuration was edited.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2387,7 +2803,7 @@
           "type": "string"
         },
         "maxEirp": {
-          "description": "Maximum Equivalent Isotropically Radiated Power (EIRP) permitted by the grant. The maximum EIRP is in units of dBm/MHz. The value of maxEirp represents the average (RMS) EIRP that would be measured by the procedure defined in FCC part 96.41(e)(3).",
+          "description": "Maximum Equivalent Isotropically Radiated Power (EIRP) permitted by the grant. The maximum EIRP is in units of dBm/MHz. The value of `maxEirp` represents the average (RMS) EIRP that would be measured by the procedure defined in FCC part 96.41(e)(3).",
           "format": "double",
           "type": "number"
         },
@@ -2500,17 +2916,17 @@
       "type": "object"
     },
     "SasPortalGenerateSecretRequest": {
-      "description": "Request for GenerateSecret method] [spectrum.sas.portal.v1alpha1.DeviceManager.GenerateSecret].",
+      "description": "Request for GenerateSecret.",
       "id": "SasPortalGenerateSecretRequest",
       "properties": {},
       "type": "object"
     },
     "SasPortalGenerateSecretResponse": {
-      "description": "Response for GenerateSecret method.",
+      "description": "Response for GenerateSecret.",
       "id": "SasPortalGenerateSecretResponse",
       "properties": {
         "secret": {
-          "description": "The secret generated by the string and used by [ValidateInstaller] method.",
+          "description": "The secret generated by the string and used by ValidateInstaller.",
           "type": "string"
         }
       },
@@ -2565,7 +2981,7 @@
           "type": "integer"
         },
         "height": {
-          "description": "Device antenna height in meters. When the heightType parameter value is \"AGL\", the antenna height should be given relative to ground level. When the heightType parameter value is \"AMSL\", it is given with respect to WGS84 datum.",
+          "description": "Device antenna height in meters. When the `heightType` parameter value is \"AGL\", the antenna height should be given relative to ground level. When the `heightType` parameter value is \"AMSL\", it is given with respect to WGS84 datum.",
           "format": "double",
           "type": "number"
         },
@@ -2589,7 +3005,7 @@
           "type": "number"
         },
         "indoorDeployment": {
-          "description": "Whether the device antenna is indoor or not. True: indoor. False: outdoor.",
+          "description": "Whether the device antenna is indoor or not. `true`: indoor. `false`: outdoor.",
           "type": "boolean"
         },
         "latitude": {
@@ -2598,7 +3014,7 @@
           "type": "number"
         },
         "longitude": {
-          "description": "Longitude of the device antenna location. in degrees relative to the WGS 84 datum. The allowed range is from -180.000000 to +180.000000. Positive values represent longitudes east of the prime meridian; negative values west of the prime meridian.",
+          "description": "Longitude of the device antenna location in degrees relative to the WGS 84 datum. The allowed range is from -180.000000 to +180.000000. Positive values represent longitudes east of the prime meridian; negative values west of the prime meridian.",
           "format": "double",
           "type": "number"
         },
@@ -2622,14 +3038,32 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A pagination token returned from a previous call to ListCustomers method that indicates from where listing should continue. If the field is missing or empty, it means there are no more customers.",
+          "description": "A pagination token returned from a previous call to ListCustomers that indicates from where listing should continue. If the field is missing or empty, it means there are no more customers.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SasPortalListDeploymentsResponse": {
+      "description": "Response for ListDeployments.",
+      "id": "SasPortalListDeploymentsResponse",
+      "properties": {
+        "deployments": {
+          "description": "The deployments that match the request.",
+          "items": {
+            "$ref": "SasPortalDeployment"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A pagination token returned from a previous call to ListDeployments that indicates from where listing should continue. If the field is missing or empty, it means there are no more deployments.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "SasPortalListDevicesResponse": {
-      "description": "Response for ListDevices method.",
+      "description": "Response for ListDevices.",
       "id": "SasPortalListDevicesResponse",
       "properties": {
         "devices": {
@@ -2640,18 +3074,18 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A pagination token returned from a previous call to ListDevices method that indicates from where listing should continue. If the field is missing or empty, it means there is no more devices.",
+          "description": "A pagination token returned from a previous call to ListDevices that indicates from where listing should continue. If the field is missing or empty, it means there is no more devices.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "SasPortalListNodesResponse": {
-      "description": "Response for ListNodes method.",
+      "description": "Response for ListNodes.",
       "id": "SasPortalListNodesResponse",
       "properties": {
         "nextPageToken": {
-          "description": "A pagination token returned from a previous call to ListNodes method that indicates from where listing should continue. If the field is missing or empty, it means there is no more nodes.",
+          "description": "A pagination token returned from a previous call to ListNodes that indicates from where listing should continue. If the field is missing or empty, it means there is no more nodes.",
           "type": "string"
         },
         "nodes": {
@@ -2665,33 +3099,33 @@
       "type": "object"
     },
     "SasPortalMoveDeploymentRequest": {
-      "description": "Request for MoveDeployment method.",
+      "description": "Request for MoveDeployment.",
       "id": "SasPortalMoveDeploymentRequest",
       "properties": {
         "destination": {
-          "description": "Required. The name of the new parent resource Node or Customer to reparent the deployment under.",
+          "description": "Required. The name of the new parent resource node or customer to reparent the deployment under.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "SasPortalMoveDeviceRequest": {
-      "description": "Request for MoveDevice method.",
+      "description": "Request for MoveDevice.",
       "id": "SasPortalMoveDeviceRequest",
       "properties": {
         "destination": {
-          "description": "Required. The name of the new parent resource (Node or Customer) to reparent the device under.",
+          "description": "Required. The name of the new parent resource node or customer to reparent the device under.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "SasPortalMoveNodeRequest": {
-      "description": "Request for MoveNode method.",
+      "description": "Request for MoveNode.",
       "id": "SasPortalMoveNodeRequest",
       "properties": {
         "destination": {
-          "description": "Required. The name of the new parent resource node or Customer) to reparent the node under.",
+          "description": "Required. The name of the new parent resource node or customer to reparent the node under.",
           "type": "string"
         }
       },
@@ -2759,13 +3193,14 @@
       "id": "SasPortalPolicy",
       "properties": {
         "assignments": {
+          "description": "List of assignments",
           "items": {
             "$ref": "SasPortalAssignment"
           },
           "type": "array"
         },
         "etag": {
-          "description": "The [etag] is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the [etag] in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An [etag] is returned in the response to [GetPolicy], and systems are expected to put that etag in the request to [SetPolicy] to ensure that their change will be applied to the same version of the policy. If no [etag] is provided in the call to [SetPolicy], then the existing policy is overwritten blindly.",
+          "description": "The etag is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the etag in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An etag is returned in the response to GetPolicy, and systems are expected to put that etag in the request to SetPolicy to ensure that their change will be applied to the same version of the policy. If no etag is provided in the call to GetPolicy, then the existing policy is overwritten blindly.",
           "format": "byte",
           "type": "string"
         }
@@ -2788,7 +3223,7 @@
       "type": "object"
     },
     "SasPortalSignDeviceRequest": {
-      "description": "Request for SignDevice method.",
+      "description": "Request for SignDevice.",
       "id": "SasPortalSignDeviceRequest",
       "properties": {
         "device": {
@@ -2858,7 +3293,7 @@
       "type": "object"
     },
     "SasPortalUpdateSignedDeviceRequest": {
-      "description": "Request for UpdateSignedDevice method.",
+      "description": "Request for UpdateSignedDevice.",
       "id": "SasPortalUpdateSignedDeviceRequest",
       "properties": {
         "encodedDevice": {
@@ -2874,7 +3309,7 @@
       "type": "object"
     },
     "SasPortalValidateInstallerRequest": {
-      "description": "Request for ValidateInstaller method.",
+      "description": "Request for ValidateInstaller.",
       "id": "SasPortalValidateInstallerRequest",
       "properties": {
         "encodedSecret": {
@@ -2882,18 +3317,18 @@
           "type": "string"
         },
         "installerId": {
-          "description": "Required. Unique installer id (cpiId) from the Certified Professional Installers database.",
+          "description": "Required. Unique installer id (CPI ID) from the Certified Professional Installers database.",
           "type": "string"
         },
         "secret": {
-          "description": "Required. Secret returned by the GenerateSecret method.",
+          "description": "Required. Secret returned by the GenerateSecret.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "SasPortalValidateInstallerResponse": {
-      "description": "Response for ValidateInstaller method] [spectrum.sas.portal.v1alpha1.DeviceManager.ValidateInstaller].",
+      "description": "Response for ValidateInstaller.",
       "id": "SasPortalValidateInstallerResponse",
       "properties": {},
       "type": "object"

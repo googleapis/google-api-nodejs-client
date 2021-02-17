@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace memcache_v1beta2 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -133,6 +135,19 @@ export namespace memcache_v1beta2 {
     applyAll?: boolean | null;
     /**
      * Nodes to which we should apply the instance-level parameter group.
+     */
+    nodeIds?: string[] | null;
+  }
+  /**
+   * Request for ApplySoftwareUpdate.
+   */
+  export interface Schema$ApplySoftwareUpdateRequest {
+    /**
+     * Whether to apply the update to all nodes. If set to true, will explicitly restrict users from specifying any nodes, and apply software update to all nodes (where applicable) within the instance.
+     */
+    applyAll?: boolean | null;
+    /**
+     * Nodes to which we should apply the update to. Note all the selected nodes are updated in parallel.
      */
     nodeIds?: string[] | null;
   }
@@ -316,6 +331,10 @@ export namespace memcache_v1beta2 {
      */
     rolloutManagementPolicy?: string | null;
     /**
+     * schedule_deadline_time is the time deadline any schedule start time cannot go beyond, including reschedule. It's normally the initial schedule start time plus a week. If the reschedule type is next window, simply take this value as start time. If reschedule type is IMMEDIATELY or BY_TIME, current or selected time cannot go beyond this deadline.
+     */
+    scheduleDeadlineTime?: string | null;
+    /**
      * The scheduled start time for the maintenance.
      */
     startTime?: string | null;
@@ -328,6 +347,10 @@ export namespace memcache_v1beta2 {
      * Optional. Exclude instance from maintenance. When true, rollout service will not attempt maintenance on the instance. Rollout service will include the instance in reported rollout progress as not attempted.
      */
     exclude?: boolean | null;
+    /**
+     * Optional. If the update call is triggered from rollback, set the value as true.
+     */
+    isRollback?: boolean | null;
     /**
      * Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the embedded policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug. If only the name is needed (like in the deprecated Instance.maintenance_policy_names field) then only populate MaintenancePolicy.name.
      */
@@ -475,6 +498,10 @@ export namespace memcache_v1beta2 {
      * Output only. The state of this Memcached instance.
      */
     state?: string | null;
+    /**
+     * Output only. Returns true if there is an update waiting to be applied
+     */
+    updateAvailable?: boolean | null;
     /**
      * Output only. The time the instance was updated.
      */
@@ -640,6 +667,10 @@ export namespace memcache_v1beta2 {
      */
     state?: string | null;
     /**
+     * Output only. Returns true if there is an update waiting to be applied
+     */
+    updateAvailable?: boolean | null;
+    /**
      * Output only. Location (GCP Zone) for the Memcached node.
      */
     zone?: string | null;
@@ -681,6 +712,39 @@ export namespace memcache_v1beta2 {
      * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * Represents the metadata of a long-running operation.
+   */
+  export interface Schema$OperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    cancelRequested?: boolean | null;
+    /**
+     * Output only. Time when the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Time when the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusDetail?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
   }
   /**
    * Configure the schedule.
@@ -1247,6 +1311,148 @@ export namespace memcache_v1beta2 {
     }
 
     /**
+     * Updates software on the selected nodes of the Instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const memcache = google.memcache('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await memcache.projects.locations.instances.applySoftwareUpdate({
+     *     // Required. Resource name of the Memcached instance for which software update should be applied.
+     *     instance: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "applyAll": false,
+     *       //   "nodeIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    applySoftwareUpdate(
+      params: Params$Resource$Projects$Locations$Instances$Applysoftwareupdate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    applySoftwareUpdate(
+      params?: Params$Resource$Projects$Locations$Instances$Applysoftwareupdate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    applySoftwareUpdate(
+      params: Params$Resource$Projects$Locations$Instances$Applysoftwareupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    applySoftwareUpdate(
+      params: Params$Resource$Projects$Locations$Instances$Applysoftwareupdate,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    applySoftwareUpdate(
+      params: Params$Resource$Projects$Locations$Instances$Applysoftwareupdate,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    applySoftwareUpdate(callback: BodyResponseCallback<Schema$Operation>): void;
+    applySoftwareUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Applysoftwareupdate
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Applysoftwareupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Applysoftwareupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://memcache.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta2/{+instance}:applySoftwareUpdate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['instance'],
+        pathParams: ['instance'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Creates a new Instance in a given location.
      * @example
      * ```js
@@ -1296,6 +1502,7 @@ export namespace memcache_v1beta2 {
      *       //   "nodeCount": 0,
      *       //   "parameters": {},
      *       //   "state": "my_state",
+     *       //   "updateAvailable": false,
      *       //   "updateTime": "my_updateTime",
      *       //   "zones": []
      *       // }
@@ -1582,6 +1789,7 @@ export namespace memcache_v1beta2 {
      *   //   "nodeCount": 0,
      *   //   "parameters": {},
      *   //   "state": "my_state",
+     *   //   "updateAvailable": false,
      *   //   "updateTime": "my_updateTime",
      *   //   "zones": []
      *   // }
@@ -1869,6 +2077,7 @@ export namespace memcache_v1beta2 {
      *       //   "nodeCount": 0,
      *       //   "parameters": {},
      *       //   "state": "my_state",
+     *       //   "updateAvailable": false,
      *       //   "updateTime": "my_updateTime",
      *       //   "zones": []
      *       // }
@@ -2128,6 +2337,18 @@ export namespace memcache_v1beta2 {
      * Request body metadata
      */
     requestBody?: Schema$ApplyParametersRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Applysoftwareupdate
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the Memcached instance for which software update should be applied.
+     */
+    instance?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ApplySoftwareUpdateRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Create
     extends StandardParameters {

@@ -23,6 +23,7 @@ import {
   JWT,
   Compute,
   UserRefreshClient,
+  BaseExternalAccountClient,
   GaxiosPromise,
   GoogleConfigurable,
   createAPIRequest,
@@ -50,6 +51,7 @@ export namespace appengine_v1 {
       | JWT
       | Compute
       | UserRefreshClient
+      | BaseExternalAccountClient
       | GoogleAuth;
 
     /**
@@ -716,6 +718,10 @@ export namespace appengine_v1 {
      * Output only. The IP address of this instance. Only applicable for instances in App Engine flexible environment.
      */
     vmIp?: string | null;
+    /**
+     * Output only. The liveness health check of this instance. Only applicable for instances in App Engine flexible environment.
+     */
+    vmLiveness?: string | null;
     /**
      * Output only. Name of the virtual machine where this instance lives. Only applicable for instances in App Engine flexible environment.
      */
@@ -7552,6 +7558,7 @@ export namespace appengine_v1 {
      *   //   "vmDebugEnabled": false,
      *   //   "vmId": "my_vmId",
      *   //   "vmIp": "my_vmIp",
+     *   //   "vmLiveness": "my_vmLiveness",
      *   //   "vmName": "my_vmName",
      *   //   "vmStatus": "my_vmStatus",
      *   //   "vmZoneName": "my_vmZoneName"
