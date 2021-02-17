@@ -58,6 +58,23 @@ describe(__filename, () => {
     });
   });
 
+  describe('ExternalAccount client', () => {
+    it('should create a BaseExternalAccountClient through googleapis', () => {
+      const config = {
+        type: 'external_account',
+        audience:
+          '//iam.googleapis.com/projects/123//locations/global/' +
+          'workloadIdentityPools/456',
+        subject_token_type: 'urn:ietf:params:oauth:token-type:jwt',
+        token_url: 'https://sts.googleapis.com/v1/token',
+        credential_source: {
+          file: 'external-subject-token.txt',
+        },
+      };
+      new googleapis.auth.IdentityPoolClient(config);
+    });
+  });
+
   async function testNoTokens(blogger: APIEndpoint, client: OAuth2Client) {
     await assert.rejects(
       blogger.pages.get({blogId: '123', pageId: '123', auth: client}),
