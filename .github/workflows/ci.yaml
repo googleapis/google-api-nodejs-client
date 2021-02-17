@@ -19,7 +19,7 @@ jobs:
       # The first installation step ensures that all of our production
       # dependencies work on the given Node.js version, this helps us find
       # dependencies that don't match our engines field:
-      - run: npm install --production --engine-strict
+      - run: npm install --production --engine-strict --ignore-scripts
       - run: npm install
       - run: npm test
       - name: coverage
