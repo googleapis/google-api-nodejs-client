@@ -20,8 +20,8 @@ set -eo pipefail
 if [[ -z "$CREDENTIALS" ]]; then
   # if CREDENTIALS are explicitly set, assume we're testing locally
   # and don't set NPM_CONFIG_PREFIX.
-  export NPM_CONFIG_PREFIX=${HOME}/.npm-global
-  export PATH="$PATH:${NPM_CONFIG_PREFIX}/bin"
+  export NPM_CONFIG_PREFIX=/home/node/.npm-global
+  export PATH="$PATH:/home/node/.npm-global/bin"
   cd $(dirname $0)/../..
 fi
 
@@ -37,13 +37,9 @@ NAME=$(cat .repo-metadata.json | json name)
 mkdir ./_devsite
 cp ./yaml/$NAME/* ./_devsite
 
-# Clean up TOC
 # Delete SharePoint item, see https://github.com/microsoft/rushstack/issues/1229
 sed -i -e '1,3d' ./yaml/toc.yml
 sed -i -e 's/^    //' ./yaml/toc.yml
-# Delete interfaces from TOC (name and uid)
-sed -i -e '/name: I[A-Z]/{N;d;}' ./yaml/toc.yml
-sed -i -e '/^ *\@google-cloud.*:interface/d' ./yaml/toc.yml
 
 cp ./yaml/toc.yml ./_devsite/toc.yml
 
@@ -65,7 +61,7 @@ if [[ -z "$CREDENTIALS" ]]; then
   CREDENTIALS=${KOKORO_KEYSTORE_DIR}/73713_docuploader_service_account
 fi
 if [[ -z "$BUCKET" ]]; then
-  BUCKET=docs-staging-v2
+  BUCKET=docs-staging-v2-staging
 fi
 
 python3 -m docuploader upload ./_devsite --destination-prefix docfx --credentials $CREDENTIALS --staging-bucket $BUCKET
