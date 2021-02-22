@@ -21,7 +21,7 @@ const opn = require('open');
 const destroyer = require('server-destroy');
 
 const {google} = require('googleapis');
-const plus = google.plus('v1');
+const people = google.people('v1');
 
 /**
  * To use OAuth2 authentication, we need access to a a CLIENT_ID, CLIENT_SECRET, AND REDIRECT_URI.  To get these credentials for your application, visit https://console.cloud.google.com/apis/credentials.
@@ -82,11 +82,18 @@ async function authenticate(scopes) {
 
 async function runSample() {
   // retrieve user profile
-  const res = await plus.people.get({userId: 'me'});
+  const res = await people.people.get({
+    resourceName: 'people/me',
+    personFields: 'emailAddresses',
+  });
   console.log(res.data);
 }
 
-const scopes = ['https://www.googleapis.com/auth/plus.me'];
+const scopes = [
+  'https://www.googleapis.com/auth/contacts.readonly',
+  'https://www.googleapis.com/auth/user.emails.read',
+  'profile',
+];
 authenticate(scopes)
   .then(client => runSample(client))
   .catch(console.error);
