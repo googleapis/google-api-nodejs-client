@@ -4,6 +4,14 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+### [67.1.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/v67.1.0...v67.1.1) (2021-03-02)
+
+
+### Bug Fixes
+
+* **samples:** use people API for sample ([#2528](https://www.github.com/googleapis/google-api-nodejs-client/issues/2528)) ([5b2f669](https://www.github.com/googleapis/google-api-nodejs-client/commit/5b2f6697acd10851a49bb2fdf2040043dc15b039))
+* upgrade webpack from 4 to 5  ([#2524](https://www.github.com/googleapis/google-api-nodejs-client/issues/2524)) ([ecfd8bf](https://www.github.com/googleapis/google-api-nodejs-client/commit/ecfd8bfcd06e1beabff7ec9a8c4000222379eb8d))
+
 ## [67.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v67.0.0...v67.1.0) (2021-02-17)
 
 
