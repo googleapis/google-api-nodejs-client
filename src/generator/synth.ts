@@ -87,6 +87,7 @@ export async function synth(options: SynthOptions = {}) {
     const message = changelog ? `${title}\n\n${changelog}` : title;
     fs.writeFileSync('message.txt', message, 'utf8');
     const commitParams = ['commit', '-F', 'message.txt'];
+    fs.unlinkSync('message.txt');
     if (changelog) {
       commitParams.push('-m', changelog);
     }
