@@ -82,11 +82,13 @@ export async function synth(options: SynthOptions = {}) {
     if (statusFiles.filter(x => x.startsWith(`discovery/${dir}-`)).length > 0) {
       await execa('git', ['add', `discovery/${dir}-*`]);
     }
-    const commitParams = ['commit', '-m', title];
-    if (changelog) {
-      commitParams.push('-m', changelog);
-    }
+    // Write commit message to file, since it might be large enough to
+    // cause spawn E2BIG in CI/CD:
+    const message = changelog ? `${title}\n\n${changelog}` : title;
+    fs.writeFileSync('message.txt', message, 'utf8');
+    const commitParams = ['commit', '-F', 'message.txt'];
     await execa('git', commitParams);
+    fs.unlinkSync('message.txt');
   }
   await execa('git', ['add', '-A']);
   await execa('git', ['commit', '-m', 'feat: regenerate index files']);
