@@ -1676,7 +1676,7 @@
       }
     }
   },
-  "revision": "20201113",
+  "revision": "20210301",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -2006,7 +2006,7 @@
           "type": "integer"
         },
         "name": {
-          "description": "(Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported If specified, used to specify which protocol to use. Allowed values are \"http1\" and \"h2c\".",
+          "description": "(Optional) If specified, used to specify which protocol to use. Allowed values are \"http1\" and \"h2c\".",
           "type": "string"
         },
         "protocol": {
