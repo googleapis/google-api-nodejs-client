@@ -294,6 +294,10 @@ export namespace people_v1 {
    */
   export interface Schema$ContactGroup {
     /**
+     * The group's client data.
+     */
+    clientData?: Schema$GroupClientData[];
+    /**
      * The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the resource. Used for web cache validation.
      */
     etag?: string | null;
@@ -310,7 +314,7 @@ export namespace people_v1 {
      */
     memberCount?: number | null;
     /**
-     * Output only. The list of contact person resource names that are members of the contact group. The field is not populated for LIST requests and can only be updated through the [ModifyContactGroupMembers](/people/api/rest/v1/contactgroups/members/modify).
+     * Output only. The list of contact person resource names that are members of the contact group. The field is only populated for GET requests and will only return as many members as `maxMembers` in the get request.
      */
     memberResourceNames?: string[] | null;
     /**
@@ -411,6 +415,10 @@ export namespace people_v1 {
      * Required. The contact group to create.
      */
     contactGroup?: Schema$ContactGroup;
+    /**
+     * Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * metadata * name
+     */
+    readGroupFields?: string | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
@@ -430,7 +438,7 @@ export namespace people_v1 {
     year?: number | null;
   }
   /**
-   * The response for deleteing a contact's photo.
+   * The response for deleting a contact's photo.
    */
   export interface Schema$DeleteContactPhotoResponse {
     /**
@@ -577,6 +585,19 @@ export namespace people_v1 {
      * The response for each requested resource name.
      */
     responses?: Schema$PersonResponse[];
+  }
+  /**
+   * Arbitrary client data that is populated by clients. Duplicate keys and values are allowed.
+   */
+  export interface Schema$GroupClientData {
+    /**
+     * The client specified key of the client data.
+     */
+    key?: string | null;
+    /**
+     * The client specified value of the client data.
+     */
+    value?: string | null;
   }
   /**
    * A person's instant messaging client.
@@ -1318,6 +1339,24 @@ export namespace people_v1 {
     totalSize?: number | null;
   }
   /**
+   * The response to a search request for the authenticated user, given a query.
+   */
+  export interface Schema$SearchResponse {
+    /**
+     * The results of the request.
+     */
+    results?: Schema$SearchResult[];
+  }
+  /**
+   * A result of a search query.
+   */
+  export interface Schema$SearchResult {
+    /**
+     * The matched Person.
+     */
+    person?: Schema$Person;
+  }
+  /**
    * A person's SIP address. Session Initial Protocol addresses are used for VoIP communications to make voice or video calls over the internet.
    */
   export interface Schema$SipAddress {
@@ -1414,6 +1453,14 @@ export namespace people_v1 {
      * Required. The contact group to update.
      */
     contactGroup?: Schema$ContactGroup;
+    /**
+     * Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
+     */
+    readGroupFields?: string | null;
+    /**
+     * Optional. A field mask to restrict which fields on the group are updated. Multiple fields can be specified by separating them with commas. Defaults to `name` if not set or set to empty. Updated fields are replaced. Valid values are: * clientData * name
+     */
+    updateGroupFields?: string | null;
   }
   /**
    * A request to update an existing contact's photo. All requests must have a valid photo format: JPEG or PNG.
@@ -1518,6 +1565,8 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.contactGroups.batchGet({
+     *     // Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
+     *     groupFields: 'placeholder-value',
      *     // Optional. Specifies the maximum number of members to return for each group. Defaults to 0 if not set, which will return zero members.
      *     maxMembers: 'placeholder-value',
      *     // Required. The resource names of the contact groups to get.
@@ -1662,7 +1711,8 @@ export namespace people_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "contactGroup": {}
+     *       //   "contactGroup": {},
+     *       //   "readGroupFields": "my_readGroupFields"
      *       // }
      *     },
      *   });
@@ -1670,6 +1720,7 @@ export namespace people_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "clientData": [],
      *   //   "etag": "my_etag",
      *   //   "formattedName": "my_formattedName",
      *   //   "groupType": "my_groupType",
@@ -1928,6 +1979,8 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.contactGroups.get({
+     *     // Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
+     *     groupFields: 'placeholder-value',
      *     // Optional. Specifies the maximum number of members to return. Defaults to 0 if not set, which will return zero members.
      *     maxMembers: 'placeholder-value',
      *     // Required. The resource name of the contact group to get.
@@ -1937,6 +1990,7 @@ export namespace people_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "clientData": [],
      *   //   "etag": "my_etag",
      *   //   "formattedName": "my_formattedName",
      *   //   "groupType": "my_groupType",
@@ -2069,6 +2123,8 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.contactGroups.list({
+     *     // Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
+     *     groupFields: 'placeholder-value',
      *     // Optional. The maximum number of resources to return. Valid values are between 1 and 1000, inclusive. Defaults to 30 if not set or set to 0.
      *     pageSize: 'placeholder-value',
      *     // Optional. The next_page_token value returned from a previous call to [ListContactGroups](/people/api/rest/v1/contactgroups/list). Requests the next page of resources.
@@ -2216,7 +2272,9 @@ export namespace people_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "contactGroup": {}
+     *       //   "contactGroup": {},
+     *       //   "readGroupFields": "my_readGroupFields",
+     *       //   "updateGroupFields": "my_updateGroupFields"
      *       // }
      *     },
      *   });
@@ -2224,6 +2282,7 @@ export namespace people_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "clientData": [],
      *   //   "etag": "my_etag",
      *   //   "formattedName": "my_formattedName",
      *   //   "groupType": "my_groupType",
@@ -2330,6 +2389,10 @@ export namespace people_v1 {
   export interface Params$Resource$Contactgroups$Batchget
     extends StandardParameters {
     /**
+     * Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
+     */
+    groupFields?: string;
+    /**
      * Optional. Specifies the maximum number of members to return for each group. Defaults to 0 if not set, which will return zero members.
      */
     maxMembers?: number;
@@ -2359,6 +2422,10 @@ export namespace people_v1 {
   export interface Params$Resource$Contactgroups$Get
     extends StandardParameters {
     /**
+     * Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
+     */
+    groupFields?: string;
+    /**
      * Optional. Specifies the maximum number of members to return. Defaults to 0 if not set, which will return zero members.
      */
     maxMembers?: number;
@@ -2369,6 +2436,10 @@ export namespace people_v1 {
   }
   export interface Params$Resource$Contactgroups$List
     extends StandardParameters {
+    /**
+     * Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name
+     */
+    groupFields?: string;
     /**
      * Optional. The maximum number of resources to return. Valid values are between 1 and 1000, inclusive. Defaults to 30 if not set or set to 0.
      */
@@ -2891,6 +2962,139 @@ export namespace people_v1 {
         return createAPIRequest<Schema$ListOtherContactsResponse>(parameters);
       }
     }
+
+    /**
+     * Provides a list of contacts in the authenticated user's other contacts that matches the search query.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/people.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/contacts.other.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await people.otherContacts.search({
+     *     // Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0.
+     *     pageSize: 'placeholder-value',
+     *     // Required. The plain-text query for the request. The query is used to match prefix phrases of the fields on a person. For example, a person with name "foo name" matches queries such as "f", "fo", "foo", "foo n", "nam", etc., but not "oo n".
+     *     query: 'placeholder-value',
+     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * emailAddresses * names * phoneNumbers
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Othercontacts$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
+      params?: Params$Resource$Othercontacts$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchResponse>;
+    search(
+      params: Params$Resource$Othercontacts$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Othercontacts$Search,
+      options: MethodOptions | BodyResponseCallback<Schema$SearchResponse>,
+      callback: BodyResponseCallback<Schema$SearchResponse>
+    ): void;
+    search(
+      params: Params$Resource$Othercontacts$Search,
+      callback: BodyResponseCallback<Schema$SearchResponse>
+    ): void;
+    search(callback: BodyResponseCallback<Schema$SearchResponse>): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Othercontacts$Search
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SearchResponse> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Othercontacts$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Othercontacts$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/otherContacts:search').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Othercontacts$Copyothercontacttomycontactsgroup
@@ -2927,6 +3131,21 @@ export namespace people_v1 {
      * Optional. A sync token, received from a previous `ListOtherContacts` call. Provide this to retrieve only the resources changed since the last request. Sync requests that specify `sync_token` have an additional rate limit. When syncing, all other parameters provided to `ListOtherContacts` must match the call that provided the sync token.
      */
     syncToken?: string;
+  }
+  export interface Params$Resource$Othercontacts$Search
+    extends StandardParameters {
+    /**
+     * Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0.
+     */
+    pageSize?: number;
+    /**
+     * Required. The plain-text query for the request. The query is used to match prefix phrases of the fields on a person. For example, a person with name "foo name" matches queries such as "f", "fo", "foo", "foo n", "nam", etc., but not "oo n".
+     */
+    query?: string;
+    /**
+     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * emailAddresses * names * phoneNumbers
+     */
+    readMask?: string;
   }
 
   export class Resource$People {
@@ -3901,6 +4120,142 @@ export namespace people_v1 {
     }
 
     /**
+     * Provides a list of contacts in the authenticated user's grouped contacts that matches the search query.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/people.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/contacts',
+     *       'https://www.googleapis.com/auth/contacts.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await people.people.searchContacts({
+     *     // Optional. The number of results to return.
+     *     pageSize: 'placeholder-value',
+     *     // Required. The plain-text query for the request. The query is used to match prefix phrases of the fields on a person. For example, a person with name "foo name" matches queries such as "f", "fo", "foo", "foo n", "nam", etc., but not "oo n".
+     *     query: 'placeholder-value',
+     *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchContacts(
+      params: Params$Resource$People$Searchcontacts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchContacts(
+      params?: Params$Resource$People$Searchcontacts,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchResponse>;
+    searchContacts(
+      params: Params$Resource$People$Searchcontacts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchContacts(
+      params: Params$Resource$People$Searchcontacts,
+      options: MethodOptions | BodyResponseCallback<Schema$SearchResponse>,
+      callback: BodyResponseCallback<Schema$SearchResponse>
+    ): void;
+    searchContacts(
+      params: Params$Resource$People$Searchcontacts,
+      callback: BodyResponseCallback<Schema$SearchResponse>
+    ): void;
+    searchContacts(callback: BodyResponseCallback<Schema$SearchResponse>): void;
+    searchContacts(
+      paramsOrCallback?:
+        | Params$Resource$People$Searchcontacts
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SearchResponse> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Searchcontacts;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$People$Searchcontacts;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/people:searchContacts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchResponse>(parameters);
+      }
+    }
+
+    /**
      * Provides a list of domain profiles and domain contacts in the authenticated user's domain directory that match the search query.
      * @example
      * ```js
@@ -4520,6 +4875,21 @@ export namespace people_v1 {
      */
     syncToken?: string;
   }
+  export interface Params$Resource$People$Searchcontacts
+    extends StandardParameters {
+    /**
+     * Optional. The number of results to return.
+     */
+    pageSize?: number;
+    /**
+     * Required. The plain-text query for the request. The query is used to match prefix phrases of the fields on a person. For example, a person with name "foo name" matches queries such as "f", "fo", "foo", "foo n", "nam", etc., but not "oo n".
+     */
+    query?: string;
+    /**
+     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
+     */
+    readMask?: string;
+  }
   export interface Params$Resource$People$Searchdirectorypeople
     extends StandardParameters {
     /**
@@ -4591,7 +4961,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Provides a list of the authenticated user's contacts. The request returns a 400 error if `personFields` is not specified. The request returns a 410 error if `sync_token` is specified and is expired. Sync tokens expire after 7 days. A request without `sync_token` should be made and all contacts should be synced.
+     * Provides a list of the authenticated user's contacts. The request returns a 400 error if `personFields` is not specified. The request returns a 410 error if `sync_token` is specified and is expired. Sync tokens expire after 7 days to prevent data drift between clients and the server. To handle a sync token expired error, a request should be sent without `sync_token` to get all contacts.
      * @example
      * ```js
      * // Before running the sample:
@@ -4628,7 +4998,7 @@ export namespace people_v1 {
      *     personFields: 'placeholder-value',
      *     // Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      *     'requestMask.includeField': 'placeholder-value',
-     *     // Optional. Whether the response should include `next_sync_token` on the last page, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
+     *     // Optional. Whether the response should include `next_sync_token` on the last page, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial full sync requests that specify `request_sync_token` and do not specify `sync_token` have an additional rate limit per user. Each client should generally only be doing a full sync once every few days per user and so should not hit this limit.
      *     requestSyncToken: 'placeholder-value',
      *     // Required. The resource name to return connections for. Only `people/me` is valid.
      *     resourceName: 'people/[^/]+',
@@ -4636,7 +5006,7 @@ export namespace people_v1 {
      *     sortOrder: 'placeholder-value',
      *     // Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.
      *     sources: 'placeholder-value',
-     *     // Optional. A sync token, received from a previous `ListConnections` call. Provide this to retrieve only the resources changed since the last request. Sync requests that specify `sync_token` have an additional rate limit. When syncing, all other parameters provided to `ListConnections` must match the call that provided the sync token.
+     *     // Optional. A sync token, received from a previous `ListConnections` call. Provide this to retrieve only the resources changed since the last request. When syncing, all other parameters provided to `ListConnections` except `page_size` and `page_token` must match the initial call that provided the sync token. Sync tokens expire after seven days, after which a full sync request without a `sync_token` should be made.
      *     syncToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4767,7 +5137,7 @@ export namespace people_v1 {
      */
     'requestMask.includeField'?: string;
     /**
-     * Optional. Whether the response should include `next_sync_token` on the last page, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.
+     * Optional. Whether the response should include `next_sync_token` on the last page, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial full sync requests that specify `request_sync_token` and do not specify `sync_token` have an additional rate limit per user. Each client should generally only be doing a full sync once every few days per user and so should not hit this limit.
      */
     requestSyncToken?: boolean;
     /**
@@ -4783,7 +5153,7 @@ export namespace people_v1 {
      */
     sources?: string[];
     /**
-     * Optional. A sync token, received from a previous `ListConnections` call. Provide this to retrieve only the resources changed since the last request. Sync requests that specify `sync_token` have an additional rate limit. When syncing, all other parameters provided to `ListConnections` must match the call that provided the sync token.
+     * Optional. A sync token, received from a previous `ListConnections` call. Provide this to retrieve only the resources changed since the last request. When syncing, all other parameters provided to `ListConnections` except `page_size` and `page_token` must match the initial call that provided the sync token. Sync tokens expire after seven days, after which a full sync request without a `sync_token` should be made.
      */
     syncToken?: string;
   }
