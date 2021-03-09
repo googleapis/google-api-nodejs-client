@@ -142,7 +142,7 @@
           }
         },
         "create": {
-          "description": "Creates a device. Only company-owned device may be created.",
+          "description": "Creates a device. Only company-owned device may be created. **Note**: This method is available only to customers who have one of the following SKUs: Enterprise Standard, Enterprise Plus, Enterprise for Education, and Cloud Identity Premium",
           "flatPath": "v1beta1/devices",
           "httpMethod": "POST",
           "id": "cloudidentity.devices.create",
@@ -578,7 +578,7 @@
                   }
                 },
                 "patch": {
-                  "description": "Updates the client state for the device user",
+                  "description": "Updates the client state for the device user **Note**: This method is available only to customers who have one of the following SKUs: Enterprise Standard, Enterprise Plus, Enterprise for Education, and Cloud Identity Premium",
                   "flatPath": "v1beta1/devices/{devicesId}/deviceUsers/{deviceUsersId}/clientStates/{clientStatesId}",
                   "httpMethod": "PATCH",
                   "id": "cloudidentity.devices.deviceUsers.clientStates.patch",
@@ -1221,7 +1221,7 @@
       }
     }
   },
-  "revision": "20201121",
+  "revision": "20210204",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -1827,7 +1827,7 @@
       "id": "DynamicGroupMetadata",
       "properties": {
         "queries": {
-          "description": "Memberships will be the union of all queries. Only one entry with USER resource is currently supported.",
+          "description": "Memberships will be the union of all queries. Only one entry with USER resource is currently supported. Customers can create up to 100 dynamic groups.",
           "items": {
             "$ref": "DynamicGroupQuery"
           },
@@ -3039,6 +3039,45 @@
         "membershipRole": {
           "$ref": "MembershipRole",
           "description": "The `MembershipRole`s to be updated. Only `MEMBER` `MembershipRoles` can currently be updated. May only contain a `MembershipRole` with `name` `MEMBER`."
+        }
+      },
+      "type": "object"
+    },
+    "UserInvitation": {
+      "description": "The `UserInvitation` resource represents an email sent to an unmanaged user account (an email address that shares the domain of the Google Workspace customer but is not managed by it yet), inviting them to join the customer’s domain. If the user accepts the `UserInvitation`, the account will become a managed account.",
+      "id": "UserInvitation",
+      "properties": {
+        "mailsSentCount": {
+          "description": "Number of invitation emails sent to the user.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Shall be of the form `customers/{customer}/userinvitations/{user_email_address}`.",
+          "type": "string"
+        },
+        "state": {
+          "description": "State of the `UserInvitation`.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "NOT_YET_SENT",
+            "INVITED",
+            "ACCEPTED",
+            "DECLINED"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is used if the state is omitted.",
+            "The `UserInvitation` has been created and is ready for sending as an email.",
+            "The user has been invited by email.",
+            "The user has accepted the invitation and is part of the organization.",
+            "The user declined the invitation."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Time when the `UserInvitation` was last updated.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
