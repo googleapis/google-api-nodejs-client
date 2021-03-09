@@ -296,7 +296,7 @@ export namespace redis_v1 {
      */
     redisConfigs?: {[key: string]: string} | null;
     /**
-     * Optional. The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are: * `REDIS_3_2` for Redis 3.2 compatibility * `REDIS_4_0` for Redis 4.0 compatibility (default) * `REDIS_5_0` for Redis 5.0 compatibility
+     * Optional. The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are: * `REDIS_3_2` for Redis 3.2 compatibility * `REDIS_4_0` for Redis 4.0 compatibility (default) * `REDIS_5_0` for Redis 5.0 compatibility * `REDIS_6_0` for Redis 6.0 compatibility
      */
     redisVersion?: string | null;
     /**
@@ -320,7 +320,7 @@ export namespace redis_v1 {
      */
     tier?: string | null;
     /**
-     * Optional. The In-transit encryption mode of Redis instance. If not provided, in-transit encryption is disabled for instance.
+     * Optional. The TLS mode of the Redis instance. If not provided, TLS is disabled for the instance.
      */
     transitEncryptionMode?: string | null;
   }
