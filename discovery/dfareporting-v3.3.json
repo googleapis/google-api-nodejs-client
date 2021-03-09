@@ -18,7 +18,7 @@
   "baseUrl": "https://dfareporting.googleapis.com/dfareporting/v3.3/",
   "batchPath": "batch",
   "canonicalName": "Dfareporting",
-  "description": "Manage your DoubleClick Campaign Manager ad campaigns and reports.",
+  "description": "Build applications to efficiently manage large or complex trafficking, reporting, and attribution workflows for Campaign Manager 360.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/doubleclick-advertisers/",
   "icons": {
@@ -9638,7 +9638,7 @@
       }
     }
   },
-  "revision": "20201102",
+  "revision": "20210210",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -13621,7 +13621,7 @@
           "type": "string"
         },
         "value": {
-          "description": "The value of the custom floodlight variable. The length of string must not exceed 50 characters.",
+          "description": "The value of the custom floodlight variable. The length of string must not exceed 100 characters.",
           "type": "string"
         }
       },
@@ -18111,12 +18111,12 @@
               "description": "The properties of the report.",
               "properties": {
                 "clicksLookbackWindow": {
-                  "description": "DFA checks to see if a click interaction occurred within the specified period of time before a conversion. By default the value is pulled from Floodlight or you can manually enter a custom value. Valid values: 1-90.",
+                  "description": "CM360 checks to see if a click interaction occurred within the specified period of time before a conversion. By default the value is pulled from Floodlight or you can manually enter a custom value. Valid values: 1-90.",
                   "format": "int32",
                   "type": "integer"
                 },
                 "impressionsLookbackWindow": {
-                  "description": "DFA checks to see if an impression interaction occurred within the specified period of time before a conversion. By default the value is pulled from Floodlight or you can manually enter a custom value. Valid values: 1-90.",
+                  "description": "CM360 checks to see if an impression interaction occurred within the specified period of time before a conversion. By default the value is pulled from Floodlight or you can manually enter a custom value. Valid values: 1-90.",
                   "format": "int32",
                   "type": "integer"
                 },
