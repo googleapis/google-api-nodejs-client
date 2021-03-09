@@ -841,6 +841,10 @@ export namespace toolresults_v1beta3 {
     testCases?: Schema$TestCase[];
   }
   /**
+   * A warning that there were issues in logcat collection.
+   */
+  export interface Schema$LogcatCollectionError {}
+  /**
    * One dimension of the matrix of different runs of a step.
    */
   export interface Schema$MatrixDimensionDefinition {}
