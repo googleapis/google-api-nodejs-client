@@ -151,7 +151,7 @@ export namespace bigqueryreservation_v1beta1 {
    */
   export interface Schema$BiReservation {
     /**
-     * The resource name of the singleton BI reservation. Reservation names have the form `projects/{project_id\}/locations/{location_id\}/bireservation`.
+     * The resource name of the singleton BI reservation. Reservation names have the form `projects/{project_id\}/locations/{location_id\}/biReservation`.
      */
     name?: string | null;
     /**
@@ -283,6 +283,10 @@ export namespace bigqueryreservation_v1beta1 {
      */
     ignoreIdleSlots?: boolean | null;
     /**
+     * Maximum number of queries that are allowed to run concurrently in this reservation. Default value is 0 which means that maximum concurrency will be automatically set based on the reservation size.
+     */
+    maxConcurrency?: string | null;
+    /**
      * The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`.
      */
     name?: string | null;
@@ -401,7 +405,7 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.getBiReservation({
-     *     // Required. Name of the requested reservation, for example: `projects/{project_id\}/locations/{location_id\}/bireservation`
+     *     // Required. Name of the requested reservation, for example: `projects/{project_id\}/locations/{location_id\}/biReservation`
      *     name: 'projects/my-project/locations/my-location/biReservation',
      *   });
      *   console.log(res.data);
@@ -682,7 +686,7 @@ export namespace bigqueryreservation_v1beta1 {
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.updateBiReservation({
-     *     // The resource name of the singleton BI reservation. Reservation names have the form `projects/{project_id\}/locations/{location_id\}/bireservation`.
+     *     // The resource name of the singleton BI reservation. Reservation names have the form `projects/{project_id\}/locations/{location_id\}/biReservation`.
      *     name: 'projects/my-project/locations/my-location/biReservation',
      *     // A list of fields to be updated in this request.
      *     updateMask: 'placeholder-value',
@@ -802,7 +806,7 @@ export namespace bigqueryreservation_v1beta1 {
   export interface Params$Resource$Projects$Locations$Getbireservation
     extends StandardParameters {
     /**
-     * Required. Name of the requested reservation, for example: `projects/{project_id\}/locations/{location_id\}/bireservation`
+     * Required. Name of the requested reservation, for example: `projects/{project_id\}/locations/{location_id\}/biReservation`
      */
     name?: string;
   }
@@ -828,7 +832,7 @@ export namespace bigqueryreservation_v1beta1 {
   export interface Params$Resource$Projects$Locations$Updatebireservation
     extends StandardParameters {
     /**
-     * The resource name of the singleton BI reservation. Reservation names have the form `projects/{project_id\}/locations/{location_id\}/bireservation`.
+     * The resource name of the singleton BI reservation. Reservation names have the form `projects/{project_id\}/locations/{location_id\}/biReservation`.
      */
     name?: string;
     /**
@@ -2037,6 +2041,7 @@ export namespace bigqueryreservation_v1beta1 {
      *       // {
      *       //   "creationTime": "my_creationTime",
      *       //   "ignoreIdleSlots": false,
+     *       //   "maxConcurrency": "my_maxConcurrency",
      *       //   "name": "my_name",
      *       //   "slotCapacity": "my_slotCapacity",
      *       //   "updateTime": "my_updateTime"
@@ -2049,6 +2054,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // {
      *   //   "creationTime": "my_creationTime",
      *   //   "ignoreIdleSlots": false,
+     *   //   "maxConcurrency": "my_maxConcurrency",
      *   //   "name": "my_name",
      *   //   "slotCapacity": "my_slotCapacity",
      *   //   "updateTime": "my_updateTime"
@@ -2316,6 +2322,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // {
      *   //   "creationTime": "my_creationTime",
      *   //   "ignoreIdleSlots": false,
+     *   //   "maxConcurrency": "my_maxConcurrency",
      *   //   "name": "my_name",
      *   //   "slotCapacity": "my_slotCapacity",
      *   //   "updateTime": "my_updateTime"
@@ -2598,6 +2605,7 @@ export namespace bigqueryreservation_v1beta1 {
      *       // {
      *       //   "creationTime": "my_creationTime",
      *       //   "ignoreIdleSlots": false,
+     *       //   "maxConcurrency": "my_maxConcurrency",
      *       //   "name": "my_name",
      *       //   "slotCapacity": "my_slotCapacity",
      *       //   "updateTime": "my_updateTime"
@@ -2610,6 +2618,7 @@ export namespace bigqueryreservation_v1beta1 {
      *   // {
      *   //   "creationTime": "my_creationTime",
      *   //   "ignoreIdleSlots": false,
+     *   //   "maxConcurrency": "my_maxConcurrency",
      *   //   "name": "my_name",
      *   //   "slotCapacity": "my_slotCapacity",
      *   //   "updateTime": "my_updateTime"
@@ -2779,7 +2788,7 @@ export namespace bigqueryreservation_v1beta1 {
     }
 
     /**
-     * Creates an assignment object which allows the given project to submit jobs of a certain type using slots from the specified reservation. Currently a resource (project, folder, organization) can only have one assignment per each (job_type, location) combination, and that reservation will be used for all jobs of the matching type. Different assignments can be created on different levels of the projects, folders or organization hierarchy. During query execution, the assignment is looked up at the project, folder and organization levels in that order. The first assignment found is applied to the query. When creating assignments, it does not matter if other assignments exist at higher levels. Example: * The organization `organizationA` contains two projects, `project1` and `project2`. * Assignments for all three entities (`organizationA`, `project1`, and `project2`) could all be created and mapped to the same or different reservations. Returns `google.rpc.Code.PERMISSION_DENIED` if user does not have 'bigquery.admin' permissions on the project using the reservation and the project that owns this reservation. Returns `google.rpc.Code.INVALID_ARGUMENT` when location of the assignment does not match location of the reservation.
+     * Creates an assignment object which allows the given project to submit jobs of a certain type using slots from the specified reservation. Currently a resource (project, folder, organization) can only have one assignment per each (job_type, location) combination, and that reservation will be used for all jobs of the matching type. Different assignments can be created on different levels of the projects, folders or organization hierarchy. During query execution, the assignment is looked up at the project, folder and organization levels in that order. The first assignment found is applied to the query. When creating assignments, it does not matter if other assignments exist at higher levels. Example: * The organization `organizationA` contains two projects, `project1` and `project2`. * Assignments for all three entities (`organizationA`, `project1`, and `project2`) could all be created and mapped to the same or different reservations. "None" assignments represent an absence of the assignment. Projects assigned to None use on-demand pricing. To create a "None" assignment, use "none" as a reservation_id in the parent. Example parent: `projects/myproject/locations/US/reservations/none`. Returns `google.rpc.Code.PERMISSION_DENIED` if user does not have 'bigquery.admin' permissions on the project using the reservation and the project that owns this reservation. Returns `google.rpc.Code.INVALID_ARGUMENT` when location of the assignment does not match location of the reservation.
      * @example
      * ```js
      * // Before running the sample:
