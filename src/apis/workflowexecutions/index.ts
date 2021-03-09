@@ -14,12 +14,20 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {workflowexecutions_v1} from './v1';
 import {workflowexecutions_v1beta} from './v1beta';
 
 export const VERSIONS = {
+  v1: workflowexecutions_v1.Workflowexecutions,
   v1beta: workflowexecutions_v1beta.Workflowexecutions,
 };
 
+export function workflowexecutions(
+  version: 'v1'
+): workflowexecutions_v1.Workflowexecutions;
+export function workflowexecutions(
+  options: workflowexecutions_v1.Options
+): workflowexecutions_v1.Workflowexecutions;
 export function workflowexecutions(
   version: 'v1beta'
 ): workflowexecutions_v1beta.Workflowexecutions;
@@ -27,16 +35,23 @@ export function workflowexecutions(
   options: workflowexecutions_v1beta.Options
 ): workflowexecutions_v1beta.Workflowexecutions;
 export function workflowexecutions<
-  T = workflowexecutions_v1beta.Workflowexecutions
+  T =
+    | workflowexecutions_v1.Workflowexecutions
+    | workflowexecutions_v1beta.Workflowexecutions
 >(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta' | workflowexecutions_v1beta.Options
+  versionOrOptions:
+    | 'v1'
+    | workflowexecutions_v1.Options
+    | 'v1beta'
+    | workflowexecutions_v1beta.Options
 ) {
   return getAPI<T>('workflowexecutions', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {workflowexecutions_v1};
 export {workflowexecutions_v1beta};
 export {
   AuthPlus,
