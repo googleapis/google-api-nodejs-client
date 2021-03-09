@@ -146,16 +146,20 @@ export namespace remotebuildexecution_v1 {
      */
     inputRootDigest?: Schema$BuildBazelRemoteExecutionV2Digest;
     /**
-     * List of required supported NodeProperty keys. In order to ensure that equivalent `Action`s always hash to the same value, the supported node properties MUST be lexicographically sorted by name. Sorting of strings is done by code point, equivalently, by the UTF-8 bytes. The interpretation of these properties is server-dependent. If a property is not recognized by the server, the server will return an `INVALID_ARGUMENT` error.
+     * The optional platform requirements for the execution environment. The server MAY choose to execute the action on any worker satisfying the requirements, so the client SHOULD ensure that running the action on any such worker will have the same result. A detailed lexicon for this can be found in the accompanying platform.md. New in version 2.2: clients SHOULD set these platform properties as well as those in the Command. Servers SHOULD prefer those set here.
      */
-    outputNodeProperties?: string[] | null;
+    platform?: Schema$BuildBazelRemoteExecutionV2Platform;
+    /**
+     * An optional additional salt value used to place this `Action` into a separate cache namespace from other instances having the same field contents. This salt typically comes from operational configuration specific to sources such as repo and service configuration, and allows disowning an entire set of ActionResults that might have been poisoned by buggy software or tool failures.
+     */
+    salt?: string | null;
     /**
      * A timeout after which the execution should be killed. If the timeout is absent, then the client is specifying that the execution should continue as long as the server will let it. The server SHOULD impose a timeout if the client does not specify one, however, if the client does specify a timeout that is longer than the server's maximum timeout, the server MUST reject the request. The timeout is a part of the Action message, and therefore two `Actions` with different timeouts are different, even if they are otherwise identical. This is because, if they were not, running an `Action` with a lower timeout than is required might result in a cache hit from an execution run with a longer timeout, hiding the fact that the timeout is too short. By encoding it directly in the `Action`, a lower timeout will result in a cache miss and the execution timeout will fail immediately, rather than whenever the cache entry gets evicted.
      */
     timeout?: string | null;
   }
   /**
-   * An ActionResult represents the result of an Action being run.
+   * An ActionResult represents the result of an Action being run. It is advised that at least one field (for example `ActionResult.execution_metadata.Worker`) have a non-default value, to ensure that the serialized value is non-empty, which can then be used as a basic data sanity check.
    */
   export interface Schema$BuildBazelRemoteExecutionV2ActionResult {
     /**
@@ -224,11 +228,15 @@ export namespace remotebuildexecution_v1 {
      */
     outputFiles?: string[] | null;
     /**
+     * A list of keys for node properties the client expects to retrieve for output files and directories. Keys are either names of string-based NodeProperty or names of fields in NodeProperties. In order to ensure that equivalent `Action`s always hash to the same value, the node properties MUST be lexicographically sorted by name. Sorting of strings is done by code point, equivalently, by the UTF-8 bytes. The interpretation of string-based properties is server-dependent. If a property is not recognized by the server, the server will return an `INVALID_ARGUMENT`.
+     */
+    outputNodeProperties?: string[] | null;
+    /**
      * A list of the output paths that the client expects to retrieve from the action. Only the listed paths will be returned to the client as output. The type of the output (file or directory) is not specified, and will be determined by the server after action execution. If the resulting path is a file, it will be returned in an OutputFile) typed field. If the path is a directory, the entire directory structure will be returned as a Tree message digest, see OutputDirectory) Other files or directories that may be created during command execution are discarded. The paths are relative to the working directory of the action execution. The paths are specified using a single forward slash (`/`) as a path separator, even if the execution platform natively uses a different separator. The path MUST NOT include a trailing slash, nor a leading slash, being a relative path. In order to ensure consistent hashing of the same Action, the output paths MUST be deduplicated and sorted lexicographically by code point (or, equivalently, by UTF-8 bytes). Directories leading up to the output paths are created by the worker prior to execution, even if they are not explicitly part of the input root. New in v2.1: this field supersedes the DEPRECATED `output_files` and `output_directories` fields. If `output_paths` is used, `output_files` and `output_directories` will be ignored!
      */
     outputPaths?: string[] | null;
     /**
-     * The platform requirements for the execution environment. The server MAY choose to execute the action on any worker satisfying the requirements, so the client SHOULD ensure that running the action on any such worker will have the same result. A detailed lexicon for this can be found in the accompanying platform.md.
+     * The platform requirements for the execution environment. The server MAY choose to execute the action on any worker satisfying the requirements, so the client SHOULD ensure that running the action on any such worker will have the same result. A detailed lexicon for this can be found in the accompanying platform.md. DEPRECATED as of v2.2: platform properties are now specified directly in the action. See documentation note in the Action for migration.
      */
     platform?: Schema$BuildBazelRemoteExecutionV2Platform;
     /**
@@ -274,10 +282,7 @@ export namespace remotebuildexecution_v1 {
      * The files in the directory.
      */
     files?: Schema$BuildBazelRemoteExecutionV2FileNode[];
-    /**
-     * The node properties of the Directory.
-     */
-    nodeProperties?: Schema$BuildBazelRemoteExecutionV2NodeProperty[];
+    nodeProperties?: Schema$BuildBazelRemoteExecutionV2NodeProperties;
     /**
      * The symlinks in the directory.
      */
@@ -300,6 +305,10 @@ export namespace remotebuildexecution_v1 {
    * ExecutedActionMetadata contains details about a completed execution.
    */
   export interface Schema$BuildBazelRemoteExecutionV2ExecutedActionMetadata {
+    /**
+     * Details that are specific to the kind of worker used. For example, on POSIX-like systems this could contain a message with getrusage(2) statistics.
+     */
+    auxiliaryMetadata?: Array<{[key: string]: any}> | null;
     /**
      * When the worker completed executing the action command.
      */
@@ -354,11 +363,11 @@ export namespace remotebuildexecution_v1 {
      */
     stage?: string | null;
     /**
-     * If set, the client can use this name with ByteStream.Read to stream the standard error.
+     * If set, the client can use this resource name with ByteStream.Read to stream the standard error from the endpoint hosting streamed responses.
      */
     stderrStreamName?: string | null;
     /**
-     * If set, the client can use this name with ByteStream.Read to stream the standard output.
+     * If set, the client can use this resource name with ByteStream.Read to stream the standard output from the endpoint hosting streamed responses.
      */
     stdoutStreamName?: string | null;
   }
@@ -405,10 +414,7 @@ export namespace remotebuildexecution_v1 {
      * The name of the file.
      */
     name?: string | null;
-    /**
-     * The node properties of the FileNode.
-     */
-    nodeProperties?: Schema$BuildBazelRemoteExecutionV2NodeProperty[];
+    nodeProperties?: Schema$BuildBazelRemoteExecutionV2NodeProperties;
   }
   /**
    * A `LogFile` is a log stored in the CAS.
@@ -422,6 +428,23 @@ export namespace remotebuildexecution_v1 {
      * This is a hint as to the purpose of the log, and is set to true if the log is human-readable text that can be usefully displayed to a user, and false otherwise. For instance, if a command-line client wishes to print the server logs to the terminal for a failed action, this allows it to avoid displaying a binary file.
      */
     humanReadable?: boolean | null;
+  }
+  /**
+   * Node properties for FileNodes, DirectoryNodes, and SymlinkNodes. The server is responsible for specifying the properties that it accepts.
+   */
+  export interface Schema$BuildBazelRemoteExecutionV2NodeProperties {
+    /**
+     * The file's last modification timestamp.
+     */
+    mtime?: string | null;
+    /**
+     * A list of string-based NodeProperties.
+     */
+    properties?: Schema$BuildBazelRemoteExecutionV2NodeProperty[];
+    /**
+     * The UNIX file mode, e.g., 0755.
+     */
+    unixMode?: number | null;
   }
   /**
    * A single property for FileNodes, DirectoryNodes, and SymlinkNodes. The server is responsible for specifying the property `name`s that it accepts. If permitted by the server, the same `name` may occur multiple times.
@@ -465,10 +488,7 @@ export namespace remotebuildexecution_v1 {
      * True if file is executable, false otherwise.
      */
     isExecutable?: boolean | null;
-    /**
-     * The supported node properties of the OutputFile, if requested by the Action.
-     */
-    nodeProperties?: Schema$BuildBazelRemoteExecutionV2NodeProperty[];
+    nodeProperties?: Schema$BuildBazelRemoteExecutionV2NodeProperties;
     /**
      * The full path of the file relative to the working directory, including the filename. The path separator is a forward slash `/`. Since this is a relative path, it MUST NOT begin with a leading forward slash.
      */
@@ -478,16 +498,13 @@ export namespace remotebuildexecution_v1 {
    * An `OutputSymlink` is similar to a Symlink, but it is used as an output in an `ActionResult`. `OutputSymlink` is binary-compatible with `SymlinkNode`.
    */
   export interface Schema$BuildBazelRemoteExecutionV2OutputSymlink {
-    /**
-     * The supported node properties of the OutputSymlink, if requested by the Action.
-     */
-    nodeProperties?: Schema$BuildBazelRemoteExecutionV2NodeProperty[];
+    nodeProperties?: Schema$BuildBazelRemoteExecutionV2NodeProperties;
     /**
      * The full path of the symlink relative to the working directory, including the filename. The path separator is a forward slash `/`. Since this is a relative path, it MUST NOT begin with a leading forward slash.
      */
     path?: string | null;
     /**
-     * The target path of the symlink. The path separator is a forward slash `/`. The target path can be relative to the parent directory of the symlink or it can be an absolute path starting with `/`. Support for absolute paths can be checked using the Capabilities API. The canonical form forbids the substrings `/./` and `//` in the target path. `..` components are allowed anywhere in the target path.
+     * The target path of the symlink. The path separator is a forward slash `/`. The target path can be relative to the parent directory of the symlink or it can be an absolute path starting with `/`. Support for absolute paths can be checked using the Capabilities API. `..` components are allowed anywhere in the target path.
      */
     target?: string | null;
   }
@@ -501,7 +518,7 @@ export namespace remotebuildexecution_v1 {
     properties?: Schema$BuildBazelRemoteExecutionV2PlatformProperty[];
   }
   /**
-   * A single property for the environment. The server is responsible for specifying the property `name`s that it accepts. If an unknown `name` is provided in the requirements for an Action, the server SHOULD reject the execution request. If permitted by the server, the same `name` may occur multiple times. The server is also responsible for specifying the interpretation of property `value`s. For instance, a property describing how much RAM must be available may be interpreted as allowing a worker with 16GB to fulfill a request for 8GB, while a property describing the OS environment on which the action must be performed may require an exact match with the worker's OS. The server MAY use the `value` of one or more properties to determine how it sets up the execution environment, such as by making specific system files available to the worker.
+   * A single property for the environment. The server is responsible for specifying the property `name`s that it accepts. If an unknown `name` is provided in the requirements for an Action, the server SHOULD reject the execution request. If permitted by the server, the same `name` may occur multiple times. The server is also responsible for specifying the interpretation of property `value`s. For instance, a property describing how much RAM must be available may be interpreted as allowing a worker with 16GB to fulfill a request for 8GB, while a property describing the OS environment on which the action must be performed may require an exact match with the worker's OS. The server MAY use the `value` of one or more properties to determine how it sets up the execution environment, such as by making specific system files available to the worker. Both names and values are typically case-sensitive. Note that the platform is implicitly part of the action digest, so even tiny changes in the names or values (like changing case) may result in different action cache entries.
    */
   export interface Schema$BuildBazelRemoteExecutionV2PlatformProperty {
     /**
@@ -542,12 +559,9 @@ export namespace remotebuildexecution_v1 {
      * The name of the symlink.
      */
     name?: string | null;
+    nodeProperties?: Schema$BuildBazelRemoteExecutionV2NodeProperties;
     /**
-     * The node properties of the SymlinkNode.
-     */
-    nodeProperties?: Schema$BuildBazelRemoteExecutionV2NodeProperty[];
-    /**
-     * The target path of the symlink. The path separator is a forward slash `/`. The target path can be relative to the parent directory of the symlink or it can be an absolute path starting with `/`. Support for absolute paths can be checked using the Capabilities API. The canonical form forbids the substrings `/./` and `//` in the target path. `..` components are allowed anywhere in the target path.
+     * The target path of the symlink. The path separator is a forward slash `/`. The target path can be relative to the parent directory of the symlink or it can be an absolute path starting with `/`. Support for absolute paths can be checked using the Capabilities API. `..` components are allowed anywhere in the target path as logical canonicalization may lead to different behavior in the presence of directory symlinks (e.g. `foo/../bar` may not be the same as `bar`). To reduce potential cache misses, canonicalization is still recommended where this is possible without impacting correctness.
      */
     target?: string | null;
   }
@@ -590,6 +604,14 @@ export namespace remotebuildexecution_v1 {
    * CommandDuration contains the various duration metrics tracked when a bot performs a command.
    */
   export interface Schema$GoogleDevtoolsRemotebuildbotCommandDurations {
+    /**
+     * The time spent to release the CAS blobs used by the task.
+     */
+    casRelease?: string | null;
+    /**
+     * The time spent waiting for Container Manager to assign an asynchronous container for execution.
+     */
+    cmWaitForAssignment?: string | null;
     /**
      * The time spent preparing the command to be run in a Docker container (includes pulling the Docker image, if necessary).
      */
@@ -640,6 +662,10 @@ export namespace remotebuildexecution_v1 {
    */
   export interface Schema$GoogleDevtoolsRemotebuildbotCommandEvents {
     /**
+     * Indicates if and how Container Manager is being used for task execution.
+     */
+    cmUsage?: string | null;
+    /**
      * Indicates whether we are using a cached Docker image (true) or had to pull the Docker image (false) for this command.
      */
     dockerCacheHit?: boolean | null;
@@ -659,6 +685,14 @@ export namespace remotebuildexecution_v1 {
      * The number of warnings reported.
      */
     numWarnings?: string | null;
+    /**
+     * Indicates whether output files and/or output directories were found relative to the execution root or to the user provided work directory or both or none.
+     */
+    outputLocation?: string | null;
+    /**
+     * Indicates whether an asynchronous container was used for execution.
+     */
+    usedAsyncContainer?: boolean | null;
   }
   /**
    * The internal status of the command result.
@@ -874,7 +908,7 @@ export namespace remotebuildexecution_v1 {
   }
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaListWorkerPoolsRequest {
     /**
-     * Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `\>`, `\>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count \> 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the n1-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: n1-standard`
+     * Optional. A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. String values are case-insensitive. The comparison operator must be either `:`, `=`, `!=`, `\>`, `\>=`, `<=` or `<`. The `:` operator can be used with string fields to match substrings. For non-string fields it is equivalent to the `=` operator. The `:*` comparison can be used to test whether a key has been defined. You can also filter on nested fields. To filter on multiple expressions, you can separate expression using `AND` and `OR` operators, using parentheses to specify precedence. If neither operator is specified, `AND` is assumed. Examples: Include only pools with more than 100 reserved workers: `(worker_count \> 100) (worker_config.reserved = true)` Include only pools with a certain label or machines of the e2-standard family: `worker_config.labels.key1 : * OR worker_config.machine_type: e2-standard`
      */
     filter?: string | null;
     /**
@@ -943,7 +977,7 @@ export namespace remotebuildexecution_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Machine type of the worker, such as `n1-standard-2`. See https://cloud.google.com/compute/docs/machine-types for a list of supported machine types. Note that `f1-micro` and `g1-small` are not yet supported.
+     * Required. Machine type of the worker, such as `e2-standard-2`. See https://cloud.google.com/compute/docs/machine-types for a list of supported machine types. Note that `f1-micro` and `g1-small` are not yet supported.
      */
     machineType?: string | null;
     /**
