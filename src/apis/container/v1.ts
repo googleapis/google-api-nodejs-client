@@ -155,6 +155,10 @@ export namespace container_v1 {
      */
     dnsCacheConfig?: Schema$DnsCacheConfig;
     /**
+     * Configuration for the Compute Engine Persistent Disk CSI driver.
+     */
+    gcePersistentDiskCsiDriverConfig?: Schema$GcePersistentDiskCsiDriverConfig;
+    /**
      * Configuration for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
      */
     horizontalPodAutoscaling?: Schema$HorizontalPodAutoscaling;
@@ -185,6 +189,15 @@ export namespace container_v1 {
     securityGroup?: string | null;
   }
   /**
+   * Autopilot is the configuration for Autopilot settings on the cluster. It is the official product name of what is previously known as AutoGKE
+   */
+  export interface Schema$Autopilot {
+    /**
+     * Enable Autopilot
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * AutoprovisioningNodePoolDefaults contains defaults for a node pool created by NAP.
    */
   export interface Schema$AutoprovisioningNodePoolDefaults {
@@ -197,7 +210,7 @@ export namespace container_v1 {
      */
     diskSizeGb?: number | null;
     /**
-     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'
+     * Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'
      */
     diskType?: string | null;
     /**
@@ -324,6 +337,10 @@ export namespace container_v1 {
      * Configuration controlling RBAC group membership information.
      */
     authenticatorGroupsConfig?: Schema$AuthenticatorGroupsConfig;
+    /**
+     * Autopilot configuration for the cluster. It has the same semantics as AutoGKE and overrides the setting in autogke.
+     */
+    autopilot?: Schema$Autopilot;
     /**
      * Cluster-level autoscaling configuration.
      */
@@ -465,6 +482,10 @@ export namespace container_v1 {
      */
     nodePools?: Schema$NodePool[];
     /**
+     * Notification configuration of the cluster.
+     */
+    notificationConfig?: Schema$NotificationConfig;
+    /**
      * Configuration for private cluster.
      */
     privateClusterConfig?: Schema$PrivateClusterConfig;
@@ -497,7 +518,7 @@ export namespace container_v1 {
      */
     status?: string | null;
     /**
-     * [Output only] Additional information about the current status of this cluster, if available.
+     * [Output only] Deprecated. Use conditions instead. Additional information about the current status of this cluster, if available.
      */
     statusMessage?: string | null;
     /**
@@ -607,9 +628,17 @@ export namespace container_v1 {
      */
     desiredNodeVersion?: string | null;
     /**
+     * The desired notification configuration.
+     */
+    desiredNotificationConfig?: Schema$NotificationConfig;
+    /**
      * The desired private cluster configuration.
      */
     desiredPrivateClusterConfig?: Schema$PrivateClusterConfig;
+    /**
+     * The desired state of IPv6 connectivity to Google Services.
+     */
+    desiredPrivateIpv6GoogleAccess?: string | null;
     /**
      * The desired release channel configuration.
      */
@@ -764,6 +793,15 @@ export namespace container_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
+  /**
+   * Configuration for the Compute Engine PD CSI driver.
+   */
+  export interface Schema$GcePersistentDiskCsiDriverConfig {
+    /**
+     * Whether the Compute Engine PD CSI driver is enabled for this cluster.
+     */
+    enabled?: boolean | null;
+  }
   /**
    * GetJSONWebKeysResponse is a valid JSON Web Key Set as specififed in rfc 7517
    */
@@ -975,6 +1013,15 @@ export namespace container_v1 {
     enabled?: boolean | null;
   }
   /**
+   * Parameters that can be configured on Linux nodes.
+   */
+  export interface Schema$LinuxNodeConfig {
+    /**
+     * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.netdev_max_backlog net.core.rmem_max net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse
+     */
+    sysctls?: {[key: string]: string} | null;
+  }
+  /**
    * ListClustersResponse is the result of ListClustersRequest.
    */
   export interface Schema$ListClustersResponse {
@@ -1141,6 +1188,10 @@ export namespace container_v1 {
      */
     network?: string | null;
     /**
+     * The desired state of IPv6 connectivity to Google Services. By default, no private IPv6 access to or from Google Services (all access will be via IPv4)
+     */
+    privateIpv6GoogleAccess?: string | null;
+    /**
      * Output only. The relative name of the Google Compute Engine [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the cluster is connected. Example: projects/my-project/regions/us-central1/subnetworks/my-subnet
      */
     subnetwork?: string | null;
@@ -1184,7 +1235,7 @@ export namespace container_v1 {
      */
     diskSizeGb?: number | null;
     /**
-     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'
+     * Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'
      */
     diskType?: string | null;
     /**
@@ -1192,9 +1243,17 @@ export namespace container_v1 {
      */
     imageType?: string | null;
     /**
+     * Node kubelet configs.
+     */
+    kubeletConfig?: Schema$NodeKubeletConfig;
+    /**
      * The map of Kubernetes labels (key/value pairs) to be applied to each node. These will added in addition to any default label(s) that Kubernetes may apply to the node. In case of conflict in label keys, the applied set may differ depending on the Kubernetes version -- it's best to assume the behavior is undefined and conflicts should be avoided. For more information, including usage and the valid values, see: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Parameters that can be configured on Linux nodes.
+     */
+    linuxNodeConfig?: Schema$LinuxNodeConfig;
     /**
      * The number of local SSD disks to be attached to the node. The limit for this value is dependent upon the maximum number of disks available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information.
      */
@@ -1251,6 +1310,23 @@ export namespace container_v1 {
      * The workload metadata configuration for this node.
      */
     workloadMetadataConfig?: Schema$WorkloadMetadataConfig;
+  }
+  /**
+   * Node kubelet configs.
+   */
+  export interface Schema$NodeKubeletConfig {
+    /**
+     * Enable CPU CFS quota enforcement for containers that specify CPU limits. This option is enabled by default which makes kubelet use CFS quota (https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt) to enforce container CPU limits. Otherwise, CPU limits will not be enforced at all. Disable this option to mitigate CPU throttling problems while still having your pods to be in Guaranteed QoS class by specifying the CPU limits. The default value is 'true' if unspecified.
+     */
+    cpuCfsQuota?: boolean | null;
+    /**
+     * Set the CPU CFS quota period value 'cpu.cfs_period_us'. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". The value must be a positive duration.
+     */
+    cpuCfsQuotaPeriod?: string | null;
+    /**
+     * Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. - "none": the default, which represents the existing scheduling behavior. - "static": allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is 'none' if unspecified.
+     */
+    cpuManagerPolicy?: string | null;
   }
   /**
    * NodeManagement defines the set of node management services turned on for the node pool.
@@ -1322,7 +1398,7 @@ export namespace container_v1 {
      */
     status?: string | null;
     /**
-     * [Output only] Additional information about the current status of this node pool instance, if available.
+     * [Output only] Deprecated. Use conditions instead. Additional information about the current status of this node pool instance, if available.
      */
     statusMessage?: string | null;
     /**
@@ -1371,6 +1447,15 @@ export namespace container_v1 {
      * Value for taint.
      */
     value?: string | null;
+  }
+  /**
+   * NotificationConfig is the configuration of notifications.
+   */
+  export interface Schema$NotificationConfig {
+    /**
+     * Notification config for Pub/Sub.
+     */
+    pubsub?: Schema$PubSub;
   }
   /**
    * This operation resource represents operations that may have happened or are happening on the cluster. All fields are output only.
@@ -1495,6 +1580,19 @@ export namespace container_v1 {
      * Whenever master is accessible globally or not.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * Pub/Sub specific notification config.
+   */
+  export interface Schema$PubSub {
+    /**
+     * Enable notifications for Pub/Sub.
+     */
+    enabled?: boolean | null;
+    /**
+     * The desired Pub/Sub topic to which notifications will be sent by GKE. Format is `projects/{project\}/topics/{topic\}`.
+     */
+    topic?: string | null;
   }
   /**
    * Represents an arbitrary window of time that recurs.
@@ -1941,7 +2039,7 @@ export namespace container_v1 {
     zone?: string | null;
   }
   /**
-   * SetNodePoolSizeRequest sets the size a node pool.
+   * SetNodePoolSizeRequest sets the size of a node pool.
    */
   export interface Schema$SetNodePoolSizeRequest {
     /**
@@ -2105,6 +2203,14 @@ export namespace container_v1 {
      */
     imageType?: string | null;
     /**
+     * Node kubelet configs.
+     */
+    kubeletConfig?: Schema$NodeKubeletConfig;
+    /**
+     * Parameters that can be configured on Linux nodes.
+     */
+    linuxNodeConfig?: Schema$LinuxNodeConfig;
+    /**
      * The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the node pool's nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed.
      */
     locations?: string[] | null;
@@ -2142,27 +2248,27 @@ export namespace container_v1 {
    */
   export interface Schema$UpgradeEvent {
     /**
-     * Required. The current version before the upgrade.
+     * The current version before the upgrade.
      */
     currentVersion?: string | null;
     /**
-     * Required. The operation associated with this upgrade.
+     * The operation associated with this upgrade.
      */
     operation?: string | null;
     /**
-     * Required. The time when the operation was started.
+     * The time when the operation was started.
      */
     operationStartTime?: string | null;
     /**
-     * Optional. Optional relative path to the resource. For example in node pool upgrades, the relative path of the node pool.
+     * Optional relative path to the resource. For example in node pool upgrades, the relative path of the node pool.
      */
     resource?: string | null;
     /**
-     * Required. The resource type that is upgrading.
+     * The resource type that is upgrading.
      */
     resourceType?: string | null;
     /**
-     * Required. The target version for the upgrade.
+     * The target version for the upgrade.
      */
     targetVersion?: string | null;
   }
@@ -3118,6 +3224,7 @@ export namespace container_v1 {
      *   // {
      *   //   "addonsConfig": {},
      *   //   "authenticatorGroupsConfig": {},
+     *   //   "autopilot": {},
      *   //   "autoscaling": {},
      *   //   "binaryAuthorization": {},
      *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
@@ -3153,6 +3260,7 @@ export namespace container_v1 {
      *   //   "nodeConfig": {},
      *   //   "nodeIpv4CidrSize": 0,
      *   //   "nodePools": [],
+     *   //   "notificationConfig": {},
      *   //   "privateClusterConfig": {},
      *   //   "releaseChannel": {},
      *   //   "resourceLabels": {},
@@ -6679,7 +6787,7 @@ export namespace container_v1 {
     }
 
     /**
-     * Sets the size for a specific node pool.
+     * Sets the size for a specific node pool. The new size will be used for all replicas, including future replicas created by modifying NodePool.locations.
      * @example
      * ```js
      * // Before running the sample:
@@ -6871,6 +6979,8 @@ export namespace container_v1 {
      *       // {
      *       //   "clusterId": "my_clusterId",
      *       //   "imageType": "my_imageType",
+     *       //   "kubeletConfig": {},
+     *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
      *       //   "name": "my_name",
      *       //   "nodePoolId": "my_nodePoolId",
@@ -8596,6 +8706,7 @@ export namespace container_v1 {
      *   // {
      *   //   "addonsConfig": {},
      *   //   "authenticatorGroupsConfig": {},
+     *   //   "autopilot": {},
      *   //   "autoscaling": {},
      *   //   "binaryAuthorization": {},
      *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
@@ -8631,6 +8742,7 @@ export namespace container_v1 {
      *   //   "nodeConfig": {},
      *   //   "nodeIpv4CidrSize": 0,
      *   //   "nodePools": [],
+     *   //   "notificationConfig": {},
      *   //   "privateClusterConfig": {},
      *   //   "releaseChannel": {},
      *   //   "resourceLabels": {},
@@ -12038,7 +12150,7 @@ export namespace container_v1 {
     }
 
     /**
-     * Sets the size for a specific node pool.
+     * Sets the size for a specific node pool. The new size will be used for all replicas, including future replicas created by modifying NodePool.locations.
      * @example
      * ```js
      * // Before running the sample:
@@ -12240,6 +12352,8 @@ export namespace container_v1 {
      *       // {
      *       //   "clusterId": "my_clusterId",
      *       //   "imageType": "my_imageType",
+     *       //   "kubeletConfig": {},
+     *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
      *       //   "name": "my_name",
      *       //   "nodePoolId": "my_nodePoolId",

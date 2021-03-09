@@ -973,7 +973,7 @@
                       ]
                     },
                     "setSize": {
-                      "description": "Sets the size for a specific node pool.",
+                      "description": "Sets the size for a specific node pool. The new size will be used for all replicas, including future replicas created by modifying NodePool.locations.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clusters/{clustersId}/nodePools/{nodePoolsId}:setSize",
                       "httpMethod": "POST",
                       "id": "container.projects.locations.clusters.nodePools.setSize",
@@ -2231,7 +2231,7 @@
                       ]
                     },
                     "setSize": {
-                      "description": "Sets the size for a specific node pool.",
+                      "description": "Sets the size for a specific node pool. The new size will be used for all replicas, including future replicas created by modifying NodePool.locations.",
                       "flatPath": "v1/projects/{projectId}/zones/{zone}/clusters/{clusterId}/nodePools/{nodePoolId}/setSize",
                       "httpMethod": "POST",
                       "id": "container.projects.zones.clusters.nodePools.setSize",
@@ -2459,7 +2459,7 @@
       }
     }
   },
-  "revision": "20201007",
+  "revision": "20210224",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2493,6 +2493,10 @@
         "dnsCacheConfig": {
           "$ref": "DnsCacheConfig",
           "description": "Configuration for NodeLocalDNS, a dns cache running on cluster nodes"
+        },
+        "gcePersistentDiskCsiDriverConfig": {
+          "$ref": "GcePersistentDiskCsiDriverConfig",
+          "description": "Configuration for the Compute Engine Persistent Disk CSI driver."
         },
         "horizontalPodAutoscaling": {
           "$ref": "HorizontalPodAutoscaling",
@@ -2543,6 +2547,17 @@
       },
       "type": "object"
     },
+    "Autopilot": {
+      "description": "Autopilot is the configuration for Autopilot settings on the cluster. It is the official product name of what is previously known as AutoGKE",
+      "id": "Autopilot",
+      "properties": {
+        "enabled": {
+          "description": "Enable Autopilot",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "AutoprovisioningNodePoolDefaults": {
       "description": "AutoprovisioningNodePoolDefaults contains defaults for a node pool created by NAP.",
       "id": "AutoprovisioningNodePoolDefaults",
@@ -2557,7 +2572,7 @@
           "type": "integer"
         },
         "diskType": {
-          "description": "Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'",
+          "description": "Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'",
           "type": "string"
         },
         "management": {
@@ -2697,6 +2712,10 @@
         "authenticatorGroupsConfig": {
           "$ref": "AuthenticatorGroupsConfig",
           "description": "Configuration controlling RBAC group membership information."
+        },
+        "autopilot": {
+          "$ref": "Autopilot",
+          "description": "Autopilot configuration for the cluster. It has the same semantics as AutoGKE and overrides the setting in autogke."
         },
         "autoscaling": {
           "$ref": "ClusterAutoscaling",
@@ -2853,6 +2872,10 @@
           },
           "type": "array"
         },
+        "notificationConfig": {
+          "$ref": "NotificationConfig",
+          "description": "Notification configuration of the cluster."
+        },
         "privateClusterConfig": {
           "$ref": "PrivateClusterConfig",
           "description": "Configuration for private cluster."
@@ -2907,7 +2930,7 @@
           "type": "string"
         },
         "statusMessage": {
-          "description": "[Output only] Additional information about the current status of this cluster, if available.",
+          "description": "[Output only] Deprecated. Use conditions instead. Additional information about the current status of this cluster, if available.",
           "type": "string"
         },
         "subnetwork": {
@@ -3029,9 +3052,29 @@
           "description": "The Kubernetes version to change the nodes to (typically an upgrade). Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - \"latest\": picks the highest valid Kubernetes version - \"1.X\": picks the highest valid patch+gke.N patch in the 1.X version - \"1.X.Y\": picks the highest valid gke.N patch in the 1.X.Y version - \"1.X.Y-gke.N\": picks an explicit Kubernetes version - \"-\": picks the Kubernetes master version",
           "type": "string"
         },
+        "desiredNotificationConfig": {
+          "$ref": "NotificationConfig",
+          "description": "The desired notification configuration."
+        },
         "desiredPrivateClusterConfig": {
           "$ref": "PrivateClusterConfig",
           "description": "The desired private cluster configuration."
+        },
+        "desiredPrivateIpv6GoogleAccess": {
+          "description": "The desired state of IPv6 connectivity to Google Services.",
+          "enum": [
+            "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
+            "PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED",
+            "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE",
+            "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL"
+          ],
+          "enumDescriptions": [
+            "Default value. Same as DISABLED",
+            "No private access to or from Google Services",
+            "Enables private IPv6 access to Google Services from GKE",
+            "Enables priate IPv6 access to and from Google Services"
+          ],
+          "type": "string"
         },
         "desiredReleaseChannel": {
           "$ref": "ReleaseChannel",
@@ -3217,6 +3260,17 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "GcePersistentDiskCsiDriverConfig": {
+      "description": "Configuration for the Compute Engine PD CSI driver.",
+      "id": "GcePersistentDiskCsiDriverConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether the Compute Engine PD CSI driver is enabled for this cluster.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GetJSONWebKeysResponse": {
@@ -3468,6 +3522,20 @@
       },
       "type": "object"
     },
+    "LinuxNodeConfig": {
+      "description": "Parameters that can be configured on Linux nodes.",
+      "id": "LinuxNodeConfig",
+      "properties": {
+        "sysctls": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.netdev_max_backlog net.core.rmem_max net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "ListClustersResponse": {
       "description": "ListClustersResponse is the result of ListClustersRequest.",
       "id": "ListClustersResponse",
@@ -3681,6 +3749,22 @@
           "description": "Output only. The relative name of the Google Compute Engine network(https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network",
           "type": "string"
         },
+        "privateIpv6GoogleAccess": {
+          "description": "The desired state of IPv6 connectivity to Google Services. By default, no private IPv6 access to or from Google Services (all access will be via IPv4)",
+          "enum": [
+            "PRIVATE_IPV6_GOOGLE_ACCESS_UNSPECIFIED",
+            "PRIVATE_IPV6_GOOGLE_ACCESS_DISABLED",
+            "PRIVATE_IPV6_GOOGLE_ACCESS_TO_GOOGLE",
+            "PRIVATE_IPV6_GOOGLE_ACCESS_BIDIRECTIONAL"
+          ],
+          "enumDescriptions": [
+            "Default value. Same as DISABLED",
+            "No private access to or from Google Services",
+            "Enables private IPv6 access to Google Services from GKE",
+            "Enables priate IPv6 access to and from Google Services"
+          ],
+          "type": "string"
+        },
         "subnetwork": {
           "description": "Output only. The relative name of the Google Compute Engine [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the cluster is connected. Example: projects/my-project/regions/us-central1/subnetworks/my-subnet",
           "type": "string"
@@ -3743,12 +3827,16 @@
           "type": "integer"
         },
         "diskType": {
-          "description": "Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'",
+          "description": "Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'",
           "type": "string"
         },
         "imageType": {
           "description": "The image type to use for this node. Note that for a given image type, the latest version of it will be used.",
           "type": "string"
+        },
+        "kubeletConfig": {
+          "$ref": "NodeKubeletConfig",
+          "description": "Node kubelet configs."
         },
         "labels": {
           "additionalProperties": {
@@ -3756,6 +3844,10 @@
           },
           "description": "The map of Kubernetes labels (key/value pairs) to be applied to each node. These will added in addition to any default label(s) that Kubernetes may apply to the node. In case of conflict in label keys, the applied set may differ depending on the Kubernetes version -- it's best to assume the behavior is undefined and conflicts should be avoided. For more information, including usage and the valid values, see: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/",
           "type": "object"
+        },
+        "linuxNodeConfig": {
+          "$ref": "LinuxNodeConfig",
+          "description": "Parameters that can be configured on Linux nodes."
         },
         "localSsdCount": {
           "description": "The number of local SSD disks to be attached to the node. The limit for this value is dependent upon the maximum number of disks available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information.",
@@ -3825,6 +3917,25 @@
         "workloadMetadataConfig": {
           "$ref": "WorkloadMetadataConfig",
           "description": "The workload metadata configuration for this node."
+        }
+      },
+      "type": "object"
+    },
+    "NodeKubeletConfig": {
+      "description": "Node kubelet configs.",
+      "id": "NodeKubeletConfig",
+      "properties": {
+        "cpuCfsQuota": {
+          "description": "Enable CPU CFS quota enforcement for containers that specify CPU limits. This option is enabled by default which makes kubelet use CFS quota (https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt) to enforce container CPU limits. Otherwise, CPU limits will not be enforced at all. Disable this option to mitigate CPU throttling problems while still having your pods to be in Guaranteed QoS class by specifying the CPU limits. The default value is 'true' if unspecified.",
+          "type": "boolean"
+        },
+        "cpuCfsQuotaPeriod": {
+          "description": "Set the CPU CFS quota period value 'cpu.cfs_period_us'. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as \"300ms\". Valid time units are \"ns\", \"us\" (or \"µs\"), \"ms\", \"s\", \"m\", \"h\". The value must be a positive duration.",
+          "type": "string"
+        },
+        "cpuManagerPolicy": {
+          "description": "Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. - \"none\": the default, which represents the existing scheduling behavior. - \"static\": allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is 'none' if unspecified.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3930,7 +4041,7 @@
           "type": "string"
         },
         "statusMessage": {
-          "description": "[Output only] Additional information about the current status of this node pool instance, if available.",
+          "description": "[Output only] Deprecated. Use conditions instead. Additional information about the current status of this node pool instance, if available.",
           "type": "string"
         },
         "upgradeSettings": {
@@ -3996,6 +4107,17 @@
         "value": {
           "description": "Value for taint.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NotificationConfig": {
+      "description": "NotificationConfig is the configuration of notifications.",
+      "id": "NotificationConfig",
+      "properties": {
+        "pubsub": {
+          "$ref": "PubSub",
+          "description": "Notification config for Pub/Sub."
         }
       },
       "type": "object"
@@ -4208,6 +4330,21 @@
         "enabled": {
           "description": "Whenever master is accessible globally or not.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "PubSub": {
+      "description": "Pub/Sub specific notification config.",
+      "id": "PubSub",
+      "properties": {
+        "enabled": {
+          "description": "Enable notifications for Pub/Sub.",
+          "type": "boolean"
+        },
+        "topic": {
+          "description": "The desired Pub/Sub topic to which notifications will be sent by GKE. Format is `projects/{project}/topics/{topic}`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4779,7 +4916,7 @@
       "type": "object"
     },
     "SetNodePoolSizeRequest": {
-      "description": "SetNodePoolSizeRequest sets the size a node pool.",
+      "description": "SetNodePoolSizeRequest sets the size of a node pool.",
       "id": "SetNodePoolSizeRequest",
       "properties": {
         "clusterId": {
@@ -4977,6 +5114,14 @@
           "description": "Required. The desired image type for the node pool.",
           "type": "string"
         },
+        "kubeletConfig": {
+          "$ref": "NodeKubeletConfig",
+          "description": "Node kubelet configs."
+        },
+        "linuxNodeConfig": {
+          "$ref": "LinuxNodeConfig",
+          "description": "Parameters that can be configured on Linux nodes."
+        },
         "locations": {
           "description": "The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the node pool's nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed.",
           "items": {
@@ -5020,24 +5165,24 @@
       "id": "UpgradeEvent",
       "properties": {
         "currentVersion": {
-          "description": "Required. The current version before the upgrade.",
+          "description": "The current version before the upgrade.",
           "type": "string"
         },
         "operation": {
-          "description": "Required. The operation associated with this upgrade.",
+          "description": "The operation associated with this upgrade.",
           "type": "string"
         },
         "operationStartTime": {
-          "description": "Required. The time when the operation was started.",
+          "description": "The time when the operation was started.",
           "format": "google-datetime",
           "type": "string"
         },
         "resource": {
-          "description": "Optional. Optional relative path to the resource. For example in node pool upgrades, the relative path of the node pool.",
+          "description": "Optional relative path to the resource. For example in node pool upgrades, the relative path of the node pool.",
           "type": "string"
         },
         "resourceType": {
-          "description": "Required. The resource type that is upgrading.",
+          "description": "The resource type that is upgrading.",
           "enum": [
             "UPGRADE_RESOURCE_TYPE_UNSPECIFIED",
             "MASTER",
@@ -5051,7 +5196,7 @@
           "type": "string"
         },
         "targetVersion": {
-          "description": "Required. The target version for the upgrade.",
+          "description": "The target version for the upgrade.",
           "type": "string"
         }
       },
