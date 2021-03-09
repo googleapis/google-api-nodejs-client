@@ -23,7 +23,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "cloudresourcemanager:v2",
+  "id": "cloudresourcemanager:v3",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://cloudresourcemanager.mtls.googleapis.com/",
   "name": "cloudresourcemanager",
@@ -108,106 +108,73 @@
   },
   "protocol": "rest",
   "resources": {
-    "folders": {
+    "liens": {
       "methods": {
         "create": {
-          "description": "Creates a Folder in the resource hierarchy. Returns an Operation which can be used to track the progress of the folder creation workflow. Upon success the Operation.response field will be populated with the created Folder. In order to succeed, the addition of this new Folder must not violate the Folder naming, height or fanout constraints. + The Folder's display_name must be distinct from all other Folders that share its parent. + The addition of the Folder must not cause the active Folder hierarchy to exceed a height of 10. Note, the full active + deleted Folder hierarchy is allowed to reach a height of 20; this provides additional headroom when moving folders that contain deleted folders. + The addition of the Folder must not cause the total number of Folders under its parent to exceed 300. If the operation fails due to a folder constraint violation, some errors may be returned by the CreateFolder request, with status code FAILED_PRECONDITION and an error description. Other folder constraint violations will be communicated in the Operation, with the specific PreconditionFailure returned via the details list in the Operation.error field. The caller must have `resourcemanager.folders.create` permission on the identified parent.",
-          "flatPath": "v2/folders",
+          "description": "Create a Lien which applies to the resource denoted by the `parent` field. Callers of this method will require permission on the `parent` resource. For example, applying to `projects/1234` requires permission `resourcemanager.projects.updateLiens`. NOTE: Some resources may limit the number of Liens which may be applied.",
+          "flatPath": "v3/liens",
           "httpMethod": "POST",
-          "id": "cloudresourcemanager.folders.create",
+          "id": "cloudresourcemanager.liens.create",
           "parameterOrder": [],
-          "parameters": {
-            "parent": {
-              "description": "Required. The resource name of the new Folder's parent. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "v2/folders",
+          "parameters": {},
+          "path": "v3/liens",
           "request": {
-            "$ref": "Folder"
+            "$ref": "Lien"
           },
           "response": {
-            "$ref": "Operation"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "delete": {
-          "description": "Requests deletion of a Folder. The Folder is moved into the DELETE_REQUESTED state immediately, and is deleted approximately 30 days later. This method may only be called on an empty Folder in the ACTIVE state, where a Folder is empty if it doesn't contain any Folders or Projects in the ACTIVE state. The caller must have `resourcemanager.folders.delete` permission on the identified folder.",
-          "flatPath": "v2/folders/{foldersId}",
-          "httpMethod": "DELETE",
-          "id": "cloudresourcemanager.folders.delete",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. the resource name of the Folder to be deleted. Must be of the form `folders/{folder_id}`.",
-              "location": "path",
-              "pattern": "^folders/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v2/{+name}",
-          "response": {
-            "$ref": "Folder"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "get": {
-          "description": "Retrieves a Folder identified by the supplied resource name. Valid Folder resource names have the format `folders/{folder_id}` (for example, `folders/1234`). The caller must have `resourcemanager.folders.get` permission on the identified folder.",
-          "flatPath": "v2/folders/{foldersId}",
-          "httpMethod": "GET",
-          "id": "cloudresourcemanager.folders.get",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The resource name of the Folder to retrieve. Must be of the form `folders/{folder_id}`.",
-              "location": "path",
-              "pattern": "^folders/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v2/{+name}",
-          "response": {
-            "$ref": "Folder"
+            "$ref": "Lien"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/cloud-platform.read-only"
           ]
         },
-        "getIamPolicy": {
-          "description": "Gets the access control policy for a Folder. The returned policy may be empty if no such policy or resource exists. The `resource` field should be the Folder's resource name, e.g. \"folders/1234\". The caller must have `resourcemanager.folders.getIamPolicy` permission on the identified folder.",
-          "flatPath": "v2/folders/{foldersId}:getIamPolicy",
-          "httpMethod": "POST",
-          "id": "cloudresourcemanager.folders.getIamPolicy",
+        "delete": {
+          "description": "Delete a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.updateLiens`.",
+          "flatPath": "v3/liens/{liensId}",
+          "httpMethod": "DELETE",
+          "id": "cloudresourcemanager.liens.delete",
           "parameterOrder": [
-            "resource"
+            "name"
           ],
           "parameters": {
-            "resource": {
-              "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+            "name": {
+              "description": "Required. The name/identifier of the Lien to delete.",
               "location": "path",
-              "pattern": "^folders/[^/]+$",
+              "pattern": "^liens/.*$",
               "required": true,
               "type": "string"
             }
           },
-          "path": "v2/{+resource}:getIamPolicy",
-          "request": {
-            "$ref": "GetIamPolicyRequest"
-          },
+          "path": "v3/{+name}",
           "response": {
-            "$ref": "Policy"
+            "$ref": "Empty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "get": {
+          "description": "Retrieve a Lien by `name`. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`",
+          "flatPath": "v3/liens/{liensId}",
+          "httpMethod": "GET",
+          "id": "cloudresourcemanager.liens.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name/identifier of the Lien.",
+              "location": "path",
+              "pattern": "^liens/.*$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v3/{+name}",
+          "response": {
+            "$ref": "Lien"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -215,206 +182,36 @@
           ]
         },
         "list": {
-          "description": "Lists the Folders that are direct descendants of supplied parent resource. List provides a strongly consistent view of the Folders underneath the specified parent resource. List returns Folders sorted based upon the (ascending) lexical ordering of their display_name. The caller must have `resourcemanager.folders.list` permission on the identified parent.",
-          "flatPath": "v2/folders",
+          "description": "List all Liens applied to the `parent` resource. Callers of this method will require permission on the `parent` resource. For example, a Lien with a `parent` of `projects/1234` requires permission `resourcemanager.projects.get`.",
+          "flatPath": "v3/liens",
           "httpMethod": "GET",
-          "id": "cloudresourcemanager.folders.list",
+          "id": "cloudresourcemanager.liens.list",
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "Optional. The maximum number of Folders to return in the response.",
+              "description": "The maximum number of items to return. This is a suggestion for the server.",
               "format": "int32",
               "location": "query",
               "type": "integer"
             },
             "pageToken": {
-              "description": "Optional. A pagination token returned from a previous call to `ListFolders` that indicates where this listing should continue from.",
+              "description": "The `next_page_token` value returned from a previous List request, if any.",
               "location": "query",
               "type": "string"
             },
             "parent": {
-              "description": "Required. The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.",
+              "description": "Required. The name of the resource to list all attached Liens. For example, `projects/1234`. (google.api.field_policy).resource_type annotation is not set since the parent depends on the meta api implementation. This field could be a project or other sub project resources.",
               "location": "query",
               "type": "string"
-            },
-            "showDeleted": {
-              "description": "Optional. Controls whether Folders in the DELETE_REQUESTED state should be returned. Defaults to false.",
-              "location": "query",
-              "type": "boolean"
             }
           },
-          "path": "v2/folders",
+          "path": "v3/liens",
           "response": {
-            "$ref": "ListFoldersResponse"
+            "$ref": "ListLiensResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/cloud-platform.read-only"
-          ]
-        },
-        "move": {
-          "description": "Moves a Folder under a new resource parent. Returns an Operation which can be used to track the progress of the folder move workflow. Upon success the Operation.response field will be populated with the moved Folder. Upon failure, a FolderOperationError categorizing the failure cause will be returned - if the failure occurs synchronously then the FolderOperationError will be returned via the Status.details field and if it occurs asynchronously then the FolderOperation will be returned via the Operation.error field. In addition, the Operation.metadata field will be populated with a FolderOperation message as an aid to stateless clients. Folder moves will be rejected if they violate either the naming, height or fanout constraints described in the CreateFolder documentation. The caller must have `resourcemanager.folders.move` permission on the folder's current and proposed new parent.",
-          "flatPath": "v2/folders/{foldersId}:move",
-          "httpMethod": "POST",
-          "id": "cloudresourcemanager.folders.move",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The resource name of the Folder to move. Must be of the form folders/{folder_id}",
-              "location": "path",
-              "pattern": "^folders/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v2/{+name}:move",
-          "request": {
-            "$ref": "MoveFolderRequest"
-          },
-          "response": {
-            "$ref": "Operation"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "patch": {
-          "description": "Updates a Folder, changing its display_name. Changes to the folder display_name will be rejected if they violate either the display_name formatting rules or naming constraints described in the CreateFolder documentation. The Folder's display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be between 3 and 30 characters. This is captured by the regular expression: `\\p{L}\\p{N}{1,28}[\\p{L}\\p{N}]`. The caller must have `resourcemanager.folders.update` permission on the identified folder. If the update fails due to the unique name constraint then a PreconditionFailure explaining this violation will be returned in the Status.details field.",
-          "flatPath": "v2/folders/{foldersId}",
-          "httpMethod": "PATCH",
-          "id": "cloudresourcemanager.folders.patch",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Output only. The resource name of the Folder. Its format is `folders/{folder_id}`, for example: \"folders/1234\".",
-              "location": "path",
-              "pattern": "^folders/[^/]+$",
-              "required": true,
-              "type": "string"
-            },
-            "updateMask": {
-              "description": "Required. Fields to be updated. Only the `display_name` can be updated.",
-              "format": "google-fieldmask",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "v2/{+name}",
-          "request": {
-            "$ref": "Folder"
-          },
-          "response": {
-            "$ref": "Folder"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "search": {
-          "description": "Search for folders that match specific filter criteria. Search provides an eventually consistent view of the folders a user has access to which meet the specified filter criteria. This will only return folders on which the caller has the permission `resourcemanager.folders.get`.",
-          "flatPath": "v2/folders:search",
-          "httpMethod": "POST",
-          "id": "cloudresourcemanager.folders.search",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v2/folders:search",
-          "request": {
-            "$ref": "SearchFoldersRequest"
-          },
-          "response": {
-            "$ref": "SearchFoldersResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-platform.read-only"
-          ]
-        },
-        "setIamPolicy": {
-          "description": "Sets the access control policy on a Folder, replacing any existing policy. The `resource` field should be the Folder's resource name, e.g. \"folders/1234\". The caller must have `resourcemanager.folders.setIamPolicy` permission on the identified folder.",
-          "flatPath": "v2/folders/{foldersId}:setIamPolicy",
-          "httpMethod": "POST",
-          "id": "cloudresourcemanager.folders.setIamPolicy",
-          "parameterOrder": [
-            "resource"
-          ],
-          "parameters": {
-            "resource": {
-              "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
-              "location": "path",
-              "pattern": "^folders/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v2/{+resource}:setIamPolicy",
-          "request": {
-            "$ref": "SetIamPolicyRequest"
-          },
-          "response": {
-            "$ref": "Policy"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "testIamPermissions": {
-          "description": "Returns permissions that a caller has on the specified Folder. The `resource` field should be the Folder's resource name, e.g. \"folders/1234\". There are no permissions required for making this API call.",
-          "flatPath": "v2/folders/{foldersId}:testIamPermissions",
-          "httpMethod": "POST",
-          "id": "cloudresourcemanager.folders.testIamPermissions",
-          "parameterOrder": [
-            "resource"
-          ],
-          "parameters": {
-            "resource": {
-              "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
-              "location": "path",
-              "pattern": "^folders/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v2/{+resource}:testIamPermissions",
-          "request": {
-            "$ref": "TestIamPermissionsRequest"
-          },
-          "response": {
-            "$ref": "TestIamPermissionsResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "undelete": {
-          "description": "Cancels the deletion request for a Folder. This method may only be called on a Folder in the DELETE_REQUESTED state. In order to succeed, the Folder's parent must be in the ACTIVE state. In addition, reintroducing the folder into the tree must not violate folder naming, height and fanout constraints described in the CreateFolder documentation. The caller must have `resourcemanager.folders.undelete` permission on the identified folder.",
-          "flatPath": "v2/folders/{foldersId}:undelete",
-          "httpMethod": "POST",
-          "id": "cloudresourcemanager.folders.undelete",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The resource name of the Folder to undelete. Must be of the form `folders/{folder_id}`.",
-              "location": "path",
-              "pattern": "^folders/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v2/{+name}:undelete",
-          "request": {
-            "$ref": "UndeleteFolderRequest"
-          },
-          "response": {
-            "$ref": "Folder"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
           ]
         }
       }
@@ -423,7 +220,7 @@
       "methods": {
         "get": {
           "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-          "flatPath": "v1/operations/{operationsId}",
+          "flatPath": "v3/operations/{operationsId}",
           "httpMethod": "GET",
           "id": "cloudresourcemanager.operations.get",
           "parameterOrder": [
@@ -438,13 +235,591 @@
               "type": "string"
             }
           },
-          "path": "v1/{+name}",
+          "path": "v3/{+name}",
           "response": {
             "$ref": "Operation"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        }
+      }
+    },
+    "tagBindings": {
+      "methods": {
+        "create": {
+          "description": "Creates a TagBinding between a TagValue and a cloud resource (currently project, folder, or organization).",
+          "flatPath": "v3/tagBindings",
+          "httpMethod": "POST",
+          "id": "cloudresourcemanager.tagBindings.create",
+          "parameterOrder": [],
+          "parameters": {
+            "validateOnly": {
+              "description": "Optional. Set to true to perform the validations necessary for creating the resource, but not actually perform the action.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "v3/tagBindings",
+          "request": {
+            "$ref": "TagBinding"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "delete": {
+          "description": "Deletes a TagBinding.",
+          "flatPath": "v3/tagBindings/{tagBindingsId}",
+          "httpMethod": "DELETE",
+          "id": "cloudresourcemanager.tagBindings.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the TagBinding. This is a String of the form: `tagBindings/{id}` (e.g. `tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Fprojects%2F123/tagValues/456`).",
+              "location": "path",
+              "pattern": "^tagBindings/.*$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v3/{+name}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "list": {
+          "description": "Lists the TagBindings for the given cloud resource, as specified with `parent`. NOTE: The `parent` field is expected to be a full resource name: https://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "flatPath": "v3/tagBindings",
+          "httpMethod": "GET",
+          "id": "cloudresourcemanager.tagBindings.list",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "Optional. The maximum number of TagBindings to return in the response. This is currently not used by the server and will return the full page even if a size is specified.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A pagination token returned from a previous call to `ListTagBindings` that indicates where this listing should continue from.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. The full resource name of a resource for which you want to list existing TagBindings. E.g. \"//cloudresourcemanager.googleapis.com/projects/123\"",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v3/tagBindings",
+          "response": {
+            "$ref": "ListTagBindingsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        }
+      }
+    },
+    "tagKeys": {
+      "methods": {
+        "create": {
+          "description": "Creates a new TagKey. If another request with the same parameters is sent while the original request is in process, the second request will receive an error. A maximum of 300 TagKeys can exist under a parent at any given time.",
+          "flatPath": "v3/tagKeys",
+          "httpMethod": "POST",
+          "id": "cloudresourcemanager.tagKeys.create",
+          "parameterOrder": [],
+          "parameters": {
+            "validateOnly": {
+              "description": "Optional. Set to true to perform validations necessary for creating the resource, but not actually perform the action.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "v3/tagKeys",
+          "request": {
+            "$ref": "TagKey"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "delete": {
+          "description": "Deletes a TagKey. The TagKey cannot be deleted if it has any child TagValues.",
+          "flatPath": "v3/tagKeys/{tagKeysId}",
+          "httpMethod": "DELETE",
+          "id": "cloudresourcemanager.tagKeys.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "etag": {
+              "description": "Optional. The etag known to the client for the expected state of the TagKey. This is to be used for optimistic concurrency.",
+              "location": "query",
+              "type": "string"
+            },
+            "name": {
+              "description": "Required. The resource name of a TagKey to be deleted in the format `tagKeys/123`. The TagKey cannot be a parent of any existing TagValues or it will not be deleted successfully.",
+              "location": "path",
+              "pattern": "^tagKeys/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "validateOnly": {
+              "description": "Optional. Set as true to perform validations necessary for deletion, but not actually perform the action.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "v3/{+name}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "get": {
+          "description": "Retrieves a TagKey. This method will return `PERMISSION_DENIED` if the key does not exist or the user does not have permission to view it.",
+          "flatPath": "v3/tagKeys/{tagKeysId}",
+          "httpMethod": "GET",
+          "id": "cloudresourcemanager.tagKeys.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. A resource name in the format `tagKeys/{id}`, such as `tagKeys/123`.",
+              "location": "path",
+              "pattern": "^tagKeys/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v3/{+name}",
+          "response": {
+            "$ref": "TagKey"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "getIamPolicy": {
+          "description": "Gets the access control policy for a TagKey. The returned policy may be empty if no such policy or resource exists. The `resource` field should be the TagKey's resource name. For example, \"tagKeys/1234\". The caller must have `cloudresourcemanager.googleapis.com/tagKeys.getIamPolicy` permission on the specified TagKey.",
+          "flatPath": "v3/tagKeys/{tagKeysId}:getIamPolicy",
+          "httpMethod": "POST",
+          "id": "cloudresourcemanager.tagKeys.getIamPolicy",
+          "parameterOrder": [
+            "resource"
+          ],
+          "parameters": {
+            "resource": {
+              "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+              "location": "path",
+              "pattern": "^tagKeys/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v3/{+resource}:getIamPolicy",
+          "request": {
+            "$ref": "GetIamPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "list": {
+          "description": "Lists all TagKeys for a parent resource.",
+          "flatPath": "v3/tagKeys",
+          "httpMethod": "GET",
+          "id": "cloudresourcemanager.tagKeys.list",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "Optional. The maximum number of TagKeys to return in the response. This is currently not used by the server and will return the full page even if a size is specified currently.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A pagination token returned from a previous call to `ListTagKey` that indicates where this listing should continue from. This is currently not used by the server.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. The resource name of the new TagKey's parent. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v3/tagKeys",
+          "response": {
+            "$ref": "ListTagKeysResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "patch": {
+          "description": "Updates the attributes of the TagKey resource.",
+          "flatPath": "v3/tagKeys/{tagKeysId}",
+          "httpMethod": "PATCH",
+          "id": "cloudresourcemanager.tagKeys.patch",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Immutable. The resource name for a TagKey. Must be in the format `tagKeys/{tag_key_id}`, where `tag_key_id` is the generated numeric id for the TagKey.",
+              "location": "path",
+              "pattern": "^tagKeys/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Fields to be updated. The mask may only contain `description` or `etag`. If omitted entirely, both `description` and `etag` are assumed to be significant.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            },
+            "validateOnly": {
+              "description": "Set as true to perform validations necessary for updating the resource, but not actually perform the action.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "v3/{+name}",
+          "request": {
+            "$ref": "TagKey"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "setIamPolicy": {
+          "description": "Sets the access control policy on a TagKey, replacing any existing policy. The `resource` field should be the TagKey's resource name. For example, \"tagKeys/1234\". The caller must have `resourcemanager.tagKeys.setIamPolicy` permission on the identified tagValue.",
+          "flatPath": "v3/tagKeys/{tagKeysId}:setIamPolicy",
+          "httpMethod": "POST",
+          "id": "cloudresourcemanager.tagKeys.setIamPolicy",
+          "parameterOrder": [
+            "resource"
+          ],
+          "parameters": {
+            "resource": {
+              "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+              "location": "path",
+              "pattern": "^tagKeys/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v3/{+resource}:setIamPolicy",
+          "request": {
+            "$ref": "SetIamPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified TagKey. The `resource` field should be the TagKey's resource name. For example, \"tagKeys/1234\". There are no permissions required for making this API call.",
+          "flatPath": "v3/tagKeys/{tagKeysId}:testIamPermissions",
+          "httpMethod": "POST",
+          "id": "cloudresourcemanager.tagKeys.testIamPermissions",
+          "parameterOrder": [
+            "resource"
+          ],
+          "parameters": {
+            "resource": {
+              "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+              "location": "path",
+              "pattern": "^tagKeys/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v3/{+resource}:testIamPermissions",
+          "request": {
+            "$ref": "TestIamPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestIamPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        }
+      }
+    },
+    "tagValues": {
+      "methods": {
+        "create": {
+          "description": "Creates a TagValue as a child of the specified TagKey. If a another request with the same parameters is sent while the original request is in process the second request will receive an error. A maximum of 300 TagValues can exist under a TagKey at any given time.",
+          "flatPath": "v3/tagValues",
+          "httpMethod": "POST",
+          "id": "cloudresourcemanager.tagValues.create",
+          "parameterOrder": [],
+          "parameters": {
+            "validateOnly": {
+              "description": "Optional. Set as true to perform the validations necessary for creating the resource, but not actually perform the action.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "v3/tagValues",
+          "request": {
+            "$ref": "TagValue"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "delete": {
+          "description": "Deletes a TagValue. The TagValue cannot have any bindings when it is deleted.",
+          "flatPath": "v3/tagValues/{tagValuesId}",
+          "httpMethod": "DELETE",
+          "id": "cloudresourcemanager.tagValues.delete",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "etag": {
+              "description": "Optional. The etag known to the client for the expected state of the TagValue. This is to be used for optimistic concurrency.",
+              "location": "query",
+              "type": "string"
+            },
+            "name": {
+              "description": "Required. Resource name for TagValue to be deleted in the format tagValues/456.",
+              "location": "path",
+              "pattern": "^tagValues/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "validateOnly": {
+              "description": "Optional. Set as true to perform the validations necessary for deletion, but not actually perform the action.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "v3/{+name}",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "get": {
+          "description": "Retrieves TagValue. If the TagValue or namespaced name does not exist, or if the user does not have permission to view it, this method will return `PERMISSION_DENIED`.",
+          "flatPath": "v3/tagValues/{tagValuesId}",
+          "httpMethod": "GET",
+          "id": "cloudresourcemanager.tagValues.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Resource name for TagValue to be fetched in the format `tagValues/456`.",
+              "location": "path",
+              "pattern": "^tagValues/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v3/{+name}",
+          "response": {
+            "$ref": "TagValue"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "getIamPolicy": {
+          "description": "Gets the access control policy for a TagValue. The returned policy may be empty if no such policy or resource exists. The `resource` field should be the TagValue's resource name. For example: `tagValues/1234`. The caller must have the `cloudresourcemanager.googleapis.com/tagValues.getIamPolicy` permission on the identified TagValue to get the access control policy.",
+          "flatPath": "v3/tagValues/{tagValuesId}:getIamPolicy",
+          "httpMethod": "POST",
+          "id": "cloudresourcemanager.tagValues.getIamPolicy",
+          "parameterOrder": [
+            "resource"
+          ],
+          "parameters": {
+            "resource": {
+              "description": "REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.",
+              "location": "path",
+              "pattern": "^tagValues/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v3/{+resource}:getIamPolicy",
+          "request": {
+            "$ref": "GetIamPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "list": {
+          "description": "Lists all TagValues for a specific TagKey.",
+          "flatPath": "v3/tagValues",
+          "httpMethod": "GET",
+          "id": "cloudresourcemanager.tagValues.list",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "Optional. The maximum number of TagValues to return in the response. This is currently not used by the server and will return the full page even if a size is specified currently.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "Optional. A pagination token returned from a previous call to `ListTagValues` that indicates where this listing should continue from. This is currently not used by the server.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. Resource name for TagKey, parent of the TagValues to be listed, in the format `tagKeys/123`.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v3/tagValues",
+          "response": {
+            "$ref": "ListTagValuesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
+        "patch": {
+          "description": "Updates the attributes of the TagValue resource.",
+          "flatPath": "v3/tagValues/{tagValuesId}",
+          "httpMethod": "PATCH",
+          "id": "cloudresourcemanager.tagValues.patch",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Immutable. Resource name for TagValue in the format `tagValues/456`.",
+              "location": "path",
+              "pattern": "^tagValues/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Optional. Fields to be updated.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            },
+            "validateOnly": {
+              "description": "Optional. True to perform validations necessary for updating the resource, but not actually perform the action.",
+              "location": "query",
+              "type": "boolean"
+            }
+          },
+          "path": "v3/{+name}",
+          "request": {
+            "$ref": "TagValue"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "setIamPolicy": {
+          "description": "Sets the access control policy on a TagValue, replacing any existing policy. The `resource` field should be the TagValue's resource name. For example: `tagValues/1234`. The caller must have `resourcemanager.tagValues.setIamPolicy` permission on the identified tagValue.",
+          "flatPath": "v3/tagValues/{tagValuesId}:setIamPolicy",
+          "httpMethod": "POST",
+          "id": "cloudresourcemanager.tagValues.setIamPolicy",
+          "parameterOrder": [
+            "resource"
+          ],
+          "parameters": {
+            "resource": {
+              "description": "REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.",
+              "location": "path",
+              "pattern": "^tagValues/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v3/{+resource}:setIamPolicy",
+          "request": {
+            "$ref": "SetIamPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified TagValue. The `resource` field should be the TagValue's resource name. For example: `tagValues/1234`. There are no permissions required for making this API call.",
+          "flatPath": "v3/tagValues/{tagValuesId}:testIamPermissions",
+          "httpMethod": "POST",
+          "id": "cloudresourcemanager.tagValues.testIamPermissions",
+          "parameterOrder": [
+            "resource"
+          ],
+          "parameters": {
+            "resource": {
+              "description": "REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.",
+              "location": "path",
+              "pattern": "^tagValues/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v3/{+resource}:testIamPermissions",
+          "request": {
+            "$ref": "TestIamPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestIamPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         }
       }
@@ -613,6 +988,12 @@
       "properties": {},
       "type": "object"
     },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
     "Expr": {
       "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
@@ -631,47 +1012,6 @@
         },
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Folder": {
-      "description": "A Folder in an Organization's resource hierarchy, used to organize that Organization's resources.",
-      "id": "Folder",
-      "properties": {
-        "createTime": {
-          "description": "Output only. Timestamp when the Folder was created. Assigned by the server.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
-        },
-        "displayName": {
-          "description": "The folder's display name. A folder's display name must be unique amongst its siblings, e.g. no two folders with the same parent can share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters. This is captured by the regular expression: `[\\p{L}\\p{N}]([\\p{L}\\p{N}_- ]{0,28}[\\p{L}\\p{N}])?`.",
-          "type": "string"
-        },
-        "lifecycleState": {
-          "description": "Output only. The lifecycle state of the folder. Updates to the lifecycle_state must be performed via DeleteFolder and UndeleteFolder.",
-          "enum": [
-            "LIFECYCLE_STATE_UNSPECIFIED",
-            "ACTIVE",
-            "DELETE_REQUESTED"
-          ],
-          "enumDescriptions": [
-            "Unspecified state.",
-            "The normal and active state.",
-            "The folder has been marked for deletion by the user."
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "name": {
-          "description": "Output only. The resource name of the Folder. Its format is `folders/{folder_id}`, for example: \"folders/1234\".",
-          "readOnly": true,
-          "type": "string"
-        },
-        "parent": {
-          "description": "Required. The Folder's parent's resource name. Updates to the folder's parent must be performed via MoveFolder.",
           "type": "string"
         }
       },
@@ -768,31 +1108,109 @@
       },
       "type": "object"
     },
-    "ListFoldersResponse": {
-      "description": "The ListFolders response message.",
-      "id": "ListFoldersResponse",
+    "Lien": {
+      "description": "A Lien represents an encumbrance on the actions that can be performed on a resource.",
+      "id": "Lien",
       "properties": {
-        "folders": {
-          "description": "A possibly paginated list of Folders that are direct descendants of the specified parent resource.",
+        "createTime": {
+          "description": "The creation time of this Lien.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "A system-generated unique identifier for this Lien. Example: `liens/1234abcd`",
+          "type": "string"
+        },
+        "origin": {
+          "description": "A stable, user-visible/meaningful string identifying the origin of the Lien, intended to be inspected programmatically. Maximum length of 200 characters. Example: 'compute.googleapis.com'",
+          "type": "string"
+        },
+        "parent": {
+          "description": "A reference to the resource this Lien is attached to. The server will validate the parent against those for which Liens are supported. Example: `projects/1234`",
+          "type": "string"
+        },
+        "reason": {
+          "description": "Concise user-visible strings indicating why an action cannot be performed on a resource. Maximum length of 200 characters. Example: 'Holds production API key'",
+          "type": "string"
+        },
+        "restrictions": {
+          "description": "The types of operations which should be blocked as a result of this Lien. Each value should correspond to an IAM permission. The server will validate the permissions against those for which Liens are supported. An empty list is meaningless and will be rejected. Example: ['resourcemanager.projects.delete']",
           "items": {
-            "$ref": "Folder"
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListLiensResponse": {
+      "description": "The response message for Liens.ListLiens.",
+      "id": "ListLiensResponse",
+      "properties": {
+        "liens": {
+          "description": "A list of Liens.",
+          "items": {
+            "$ref": "Lien"
           },
           "type": "array"
         },
         "nextPageToken": {
-          "description": "A pagination token returned from a previous call to `ListFolders` that indicates from where listing should continue.",
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
           "type": "string"
         }
       },
       "type": "object"
     },
-    "MoveFolderRequest": {
-      "description": "The MoveFolder request message.",
-      "id": "MoveFolderRequest",
+    "ListTagBindingsResponse": {
+      "description": "The ListTagBindings response.",
+      "id": "ListTagBindingsResponse",
       "properties": {
-        "destinationParent": {
-          "description": "Required. The resource name of the Folder or Organization to reparent the folder under. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.",
+        "nextPageToken": {
+          "description": "A pagination token returned from a previous call to `ListTagBindings` that indicates from where listing should continue. This is currently not used, but the server may at any point start supplying a valid token.",
           "type": "string"
+        },
+        "tagBindings": {
+          "description": "A possibly paginated list of TagBindings for the specified TagValue or resource.",
+          "items": {
+            "$ref": "TagBinding"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListTagKeysResponse": {
+      "description": "The ListTagKeys response message.",
+      "id": "ListTagKeysResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A pagination token returned from a previous call to `ListTagKeys` that indicates from where listing should continue. This is currently not used, but the server may at any point start supplying a valid token.",
+          "type": "string"
+        },
+        "tagKeys": {
+          "description": "List of TagKeys that live under the specified parent in the request.",
+          "items": {
+            "$ref": "TagKey"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListTagValuesResponse": {
+      "description": "The ListTagValues response.",
+      "id": "ListTagValuesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A pagination token returned from a previous call to `ListTagValues` that indicates from where listing should continue. This is currently not used, but the server may at any point start supplying a valid token.",
+          "type": "string"
+        },
+        "tagValues": {
+          "description": "A possibly paginated list of TagValues that are direct descendants of the specified parent TagKey.",
+          "items": {
+            "$ref": "TagValue"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -883,44 +1301,6 @@
       },
       "type": "object"
     },
-    "SearchFoldersRequest": {
-      "description": "The request message for searching folders.",
-      "id": "SearchFoldersRequest",
-      "properties": {
-        "pageSize": {
-          "description": "Optional. The maximum number of folders to return in the response.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "pageToken": {
-          "description": "Optional. A pagination token returned from a previous call to `SearchFolders` that indicates from where search should continue.",
-          "type": "string"
-        },
-        "query": {
-          "description": "Search criteria used to select the Folders to return. If no search criteria is specified then all accessible folders will be returned. Query expressions can be used to restrict results based upon displayName, lifecycleState and parent, where the operators `=`, `NOT`, `AND` and `OR` can be used along with the suffix wildcard symbol `*`. The displayName field in a query expression should use escaped quotes for values that include whitespace to prevent unexpected behavior. Some example queries are: * Query `displayName=Test*` returns Folder resources whose display name starts with \"Test\". * Query `lifecycleState=ACTIVE` returns Folder resources with `lifecycleState` set to `ACTIVE`. * Query `parent=folders/123` returns Folder resources that have `folders/123` as a parent resource. * Query `parent=folders/123 AND lifecycleState=ACTIVE` returns active Folder resources that have `folders/123` as a parent resource. * Query `displayName=\\\\\"Test String\\\\\"` returns Folder resources with display names that include both \"Test\" and \"String\".",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SearchFoldersResponse": {
-      "description": "The response message for searching folders.",
-      "id": "SearchFoldersResponse",
-      "properties": {
-        "folders": {
-          "description": "A possibly paginated folder search results. the specified parent resource.",
-          "items": {
-            "$ref": "Folder"
-          },
-          "type": "array"
-        },
-        "nextPageToken": {
-          "description": "A pagination token returned from a previous call to `SearchFolders` that indicates from where searching should continue.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "SetIamPolicyRequest": {
       "description": "Request message for `SetIamPolicy` method.",
       "id": "SetIamPolicyRequest",
@@ -964,6 +1344,114 @@
       },
       "type": "object"
     },
+    "TagBinding": {
+      "description": "A TagBinding represents a connection between a TagValue and a cloud resource (currently project, folder, or organization). Once a TagBinding is created, the TagValue is applied to all the descendants of the cloud resource.",
+      "id": "TagBinding",
+      "properties": {
+        "name": {
+          "description": "Output only. The name of the TagBinding. This is a String of the form: `tagBindings/{full-resource-name}/{tag-value-name}` (e.g. `tagBindings/%2F%2Fcloudresourcemanager.googleapis.com%2Fprojects%2F123/tagValues/456`).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "parent": {
+          "description": "The full resource name of the resource the TagValue is bound to. E.g. `//cloudresourcemanager.googleapis.com/projects/123`",
+          "type": "string"
+        },
+        "tagValue": {
+          "description": "The TagValue of the TagBinding. Must be of the form `tagValues/456`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TagKey": {
+      "description": "A TagKey, used to group a set of TagValues.",
+      "id": "TagKey",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Creation time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-assigned description of the TagKey. Must not exceed 256 characters. Read-write.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. Entity tag which users can pass to prevent race conditions. This field is always set in server responses. See UpdateTagKeyRequest for details.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The resource name for a TagKey. Must be in the format `tagKeys/{tag_key_id}`, where `tag_key_id` is the generated numeric id for the TagKey.",
+          "type": "string"
+        },
+        "namespacedName": {
+          "description": "Output only. Immutable. Namespaced name of the TagKey.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "parent": {
+          "description": "Immutable. The resource name of the new TagKey's parent. Must be of the form `organizations/{org_id}`.",
+          "type": "string"
+        },
+        "shortName": {
+          "description": "Required. Immutable. The user friendly name for a TagKey. The short name should be unique for TagKeys within the same tag namespace. The short name must be 1-63 characters, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TagValue": {
+      "description": "A TagValue is a child of a particular TagKey. This is used to group cloud resources for the purpose of controlling them using policies.",
+      "id": "TagValue",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Creation time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. User-assigned description of the TagValue. Must not exceed 256 characters. Read-write.",
+          "type": "string"
+        },
+        "etag": {
+          "description": "Optional. Entity tag which users can pass to prevent race conditions. This field is always set in server responses. See UpdateTagValueRequest for details.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. Resource name for TagValue in the format `tagValues/456`.",
+          "type": "string"
+        },
+        "namespacedName": {
+          "description": "Output only. Namespaced name of the TagValue. Must be in the format `{organization_id}/{tag_key_short_name}/{short_name}`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "parent": {
+          "description": "Immutable. The resource name of the new TagValue's parent TagKey. Must be of the form `tagKeys/{tag_key_id}`.",
+          "type": "string"
+        },
+        "shortName": {
+          "description": "Required. Immutable. User-assigned short name for TagValue. The short name should be unique for TagValues within the same parent TagKey. The short name must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update time.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TestIamPermissionsRequest": {
       "description": "Request message for `TestIamPermissions` method.",
       "id": "TestIamPermissionsRequest",
@@ -992,12 +1480,6 @@
       },
       "type": "object"
     },
-    "UndeleteFolderRequest": {
-      "description": "The UndeleteFolder request message.",
-      "id": "UndeleteFolderRequest",
-      "properties": {},
-      "type": "object"
-    },
     "UpdateTagKeyMetadata": {
       "description": "Runtime operation information for updating a TagKey.",
       "id": "UpdateTagKeyMetadata",
@@ -1013,5 +1495,6 @@
   },
   "servicePath": "",
   "title": "Cloud Resource Manager API",
-  "version": "v2"
+  "version": "v3",
+  "version_module": true
 }
