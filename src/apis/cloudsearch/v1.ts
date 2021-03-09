@@ -1998,7 +1998,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$SuggestRequest {
     /**
-     * The sources to use for suggestions. If not specified, the data sources are taken from the current search application. NOTE: Suggestions are supported only for third party data sources and people (i.e. PredefinedSource.PERSON).
+     * The sources to use for suggestions. If not specified, the data sources are taken from the current search application. NOTE: Suggestions are only supported for the following sources: * Third-party data sources * PredefinedSource.PERSON * PredefinedSource.GOOGLE_DRIVE
      */
     dataSourceRestrictions?: Schema$DataSourceRestriction[];
     /**
