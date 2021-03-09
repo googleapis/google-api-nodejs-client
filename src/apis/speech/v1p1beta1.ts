@@ -139,6 +139,32 @@ export namespace speech_v1p1beta1 {
     value?: string | null;
   }
   /**
+   * Message sent by the client for the `CreateCustomClass` method.
+   */
+  export interface Schema$CreateCustomClassRequest {
+    /**
+     * Required. The custom class to create.
+     */
+    customClass?: Schema$CustomClass;
+    /**
+     * The ID to use for the custom class, which will become the final component of the custom class' resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
+     */
+    customClassId?: string | null;
+  }
+  /**
+   * Message sent by the client for the `CreatePhraseSet` method.
+   */
+  export interface Schema$CreatePhraseSetRequest {
+    /**
+     * Required. The phrase set to create.
+     */
+    phraseSet?: Schema$PhraseSet;
+    /**
+     * The ID to use for the phrase set, which will become the final component of the phrase set's resource name. This value should be 4-63 characters, and valid characters are /a-z-/.
+     */
+    phraseSetId?: string | null;
+  }
+  /**
    * A set of words or phrases that represents a common concept likely to appear in your audio, for example a list of passenger ship names. CustomClass items can be substituted into placeholders that you set in PhraseSet phrases.
    */
   export interface Schema$CustomClass {
@@ -156,6 +182,23 @@ export namespace speech_v1p1beta1 {
     name?: string | null;
   }
   /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   */
+  export interface Schema$Empty {}
+  /**
+   * Message returned to the client by the `ListCustomClasses` method.
+   */
+  export interface Schema$ListCustomClassesResponse {
+    /**
+     * The custom classes.
+     */
+    customClasses?: Schema$CustomClass[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -167,6 +210,19 @@ export namespace speech_v1p1beta1 {
      * A list of operations that matches the specified filter in the request.
      */
     operations?: Schema$Operation[];
+  }
+  /**
+   * Message returned to the client by the `ListPhraseSet` method.
+   */
+  export interface Schema$ListPhraseSetResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The phrase set.
+     */
+    phraseSets?: Schema$PhraseSet[];
   }
   /**
    * Describes the progress of a long-running `LongRunningRecognize` call. It is included in the `metadata` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service.
@@ -316,14 +372,6 @@ export namespace speech_v1p1beta1 {
      */
     enableSpeakerDiarization?: boolean | null;
     /**
-     * The spoken emoji behavior for the call If not set, uses default behavior based on model of choice If 'true', adds spoken emoji formatting for the request. This will replace spoken emojis with the corresponding Unicode symbols in the final transcript. If 'false', spoken emojis are not replaced.
-     */
-    enableSpokenEmojis?: boolean | null;
-    /**
-     * The spoken punctuation behavior for the call If not set, uses default behavior based on model of choice e.g. command_and_search will enable spoken punctuation by default If 'true', replaces spoken punctuation with the corresponding symbols in the request. For example, "how are you question mark" becomes "how are you?". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation for support. If 'false', spoken punctuation is not replaced.
-     */
-    enableSpokenPunctuation?: boolean | null;
-    /**
      * If `true`, the top result includes a list of words and the confidence for those words. If `false`, no word-level confidence information is returned. The default is `false`.
      */
     enableWordConfidence?: boolean | null;
@@ -460,6 +508,10 @@ export namespace speech_v1p1beta1 {
      * A collection of custom classes. To specify the classes inline, leave the class' `name` blank and fill in the rest of its fields, giving it a unique `custom_class_id`. Refer to the inline defined class in phrase hints by its `custom_class_id`.
      */
     customClasses?: Schema$CustomClass[];
+    /**
+     * A collection of phrase set resource names to use.
+     */
+    phraseSetReferences?: string[] | null;
     /**
      * A collection of phrase sets. To specify the hints inline, leave the phrase set's `name` blank and fill in the rest of its fields. Any phrase set can use any custom class.
      */
@@ -870,23 +922,27 @@ export namespace speech_v1p1beta1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
-    operations: Resource$Projects$Locations$Operations;
+    customClasses: Resource$Projects$Locations$Customclasses;
+    phraseSets: Resource$Projects$Locations$Phrasesets;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.operations = new Resource$Projects$Locations$Operations(
+      this.customClasses = new Resource$Projects$Locations$Customclasses(
+        this.context
+      );
+      this.phraseSets = new Resource$Projects$Locations$Phrasesets(
         this.context
       );
     }
   }
 
-  export class Resource$Projects$Locations$Operations {
+  export class Resource$Projects$Locations$Customclasses {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
     /**
-     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Create a custom class.
      * @example
      * ```js
      * // Before running the sample:
@@ -911,19 +967,283 @@ export namespace speech_v1p1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await speech.projects.locations.operations.get({
-     *     // The name of the operation resource.
-     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   const res = await speech.projects.locations.customClasses.create({
+     *     // Required. The parent resource where this custom class will be created. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customClass": {},
+     *       //   "customClassId": "my_customClassId"
+     *       // }
+     *     },
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
+     *   //   "customClassId": "my_customClassId",
+     *   //   "items": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Customclasses$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Customclasses$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomClass>;
+    create(
+      params: Params$Resource$Projects$Locations$Customclasses$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Customclasses$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomClass>,
+      callback: BodyResponseCallback<Schema$CustomClass>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Customclasses$Create,
+      callback: BodyResponseCallback<Schema$CustomClass>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$CustomClass>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Customclasses$Create
+        | BodyResponseCallback<Schema$CustomClass>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomClass>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomClass>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomClass> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Customclasses$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Customclasses$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1p1beta1/{+parent}/customClasses').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomClass>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CustomClass>(parameters);
+      }
+    }
+
+    /**
+     * Delete a custom class.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/speech.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const speech = google.speech('v1p1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await speech.projects.locations.customClasses.delete({
+     *     // Required. The name of the custom class to delete. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses/{custom_class\}
+     *     name:
+     *       'projects/my-project/locations/my-location/customClasses/my-customClasse',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Customclasses$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Customclasses$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Customclasses$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Customclasses$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Customclasses$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Customclasses$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Customclasses$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Customclasses$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1p1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Get a custom class.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/speech.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const speech = google.speech('v1p1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await speech.projects.locations.customClasses.get({
+     *     // Required. The name of the custom class to retrieve. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses/{custom_class\}
+     *     name:
+     *       'projects/my-project/locations/my-location/customClasses/my-customClasse',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customClassId": "my_customClassId",
+     *   //   "items": [],
+     *   //   "name": "my_name"
      *   // }
      * }
      *
@@ -940,49 +1260,49 @@ export namespace speech_v1p1beta1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
-      params: Params$Resource$Projects$Locations$Operations$Get,
+      params: Params$Resource$Projects$Locations$Customclasses$Get,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     get(
-      params?: Params$Resource$Projects$Locations$Operations$Get,
+      params?: Params$Resource$Projects$Locations$Customclasses$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosPromise<Schema$CustomClass>;
     get(
-      params: Params$Resource$Projects$Locations$Operations$Get,
+      params: Params$Resource$Projects$Locations$Customclasses$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     get(
-      params: Params$Resource$Projects$Locations$Operations$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
+      params: Params$Resource$Projects$Locations$Customclasses$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomClass>,
+      callback: BodyResponseCallback<Schema$CustomClass>
     ): void;
     get(
-      params: Params$Resource$Projects$Locations$Operations$Get,
-      callback: BodyResponseCallback<Schema$Operation>
+      params: Params$Resource$Projects$Locations$Customclasses$Get,
+      callback: BodyResponseCallback<Schema$CustomClass>
     ): void;
-    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(callback: BodyResponseCallback<Schema$CustomClass>): void;
     get(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Operations$Get
-        | BodyResponseCallback<Schema$Operation>
+        | Params$Resource$Projects$Locations$Customclasses$Get
+        | BodyResponseCallback<Schema$CustomClass>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Schema$CustomClass>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Schema$CustomClass>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ): void | GaxiosPromise<Schema$CustomClass> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Operations$Get;
+        {}) as Params$Resource$Projects$Locations$Customclasses$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Operations$Get;
+        params = {} as Params$Resource$Projects$Locations$Customclasses$Get;
         options = {};
       }
 
@@ -1006,17 +1326,17 @@ export namespace speech_v1p1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(
+        createAPIRequest<Schema$CustomClass>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Operation>(parameters);
+        return createAPIRequest<Schema$CustomClass>(parameters);
       }
     }
 
     /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * List custom classes.
      * @example
      * ```js
      * // Before running the sample:
@@ -1041,22 +1361,20 @@ export namespace speech_v1p1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await speech.projects.locations.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'projects/my-project/locations/my-location',
-     *     // The standard list page size.
+     *   const res = await speech.projects.locations.customClasses.list({
+     *     // The maximum number of custom classes to return. The service may return fewer than this value. If unspecified, at most 50 custom classes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
+     *     // A page token, received from a previous `ListCustomClass` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCustomClass` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of custom classes. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses
+     *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
+     *   //   "customClasses": [],
+     *   //   "nextPageToken": "my_nextPageToken"
      *   // }
      * }
      *
@@ -1073,54 +1391,56 @@ export namespace speech_v1p1beta1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
-      params: Params$Resource$Projects$Locations$Operations$List,
+      params: Params$Resource$Projects$Locations$Customclasses$List,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     list(
-      params?: Params$Resource$Projects$Locations$Operations$List,
+      params?: Params$Resource$Projects$Locations$Customclasses$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosPromise<Schema$ListCustomClassesResponse>;
     list(
-      params: Params$Resource$Projects$Locations$Operations$List,
+      params: Params$Resource$Projects$Locations$Customclasses$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     list(
-      params: Params$Resource$Projects$Locations$Operations$List,
+      params: Params$Resource$Projects$Locations$Customclasses$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Schema$ListCustomClassesResponse>,
+      callback: BodyResponseCallback<Schema$ListCustomClassesResponse>
     ): void;
     list(
-      params: Params$Resource$Projects$Locations$Operations$List,
-      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+      params: Params$Resource$Projects$Locations$Customclasses$List,
+      callback: BodyResponseCallback<Schema$ListCustomClassesResponse>
     ): void;
-    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListCustomClassesResponse>
+    ): void;
     list(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | Params$Resource$Projects$Locations$Customclasses$List
+        | BodyResponseCallback<Schema$ListCustomClassesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Schema$ListCustomClassesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Schema$ListCustomClassesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Schema$ListCustomClassesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Operations$List;
+        {}) as Params$Resource$Projects$Locations$Customclasses$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Operations$List;
+        params = {} as Params$Resource$Projects$Locations$Customclasses$List;
         options = {};
       }
 
@@ -1133,10 +1453,608 @@ export namespace speech_v1p1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1p1beta1/{+name}/operations').replace(
+            url: (rootUrl + '/v1p1beta1/{+parent}/customClasses').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCustomClassesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCustomClassesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Update a custom class.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/speech.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const speech = google.speech('v1p1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await speech.projects.locations.customClasses.patch({
+     *     // The resource name of the custom class.
+     *     name:
+     *       'projects/my-project/locations/my-location/customClasses/my-customClasse',
+     *     // The list of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customClassId": "my_customClassId",
+     *       //   "items": [],
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customClassId": "my_customClassId",
+     *   //   "items": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Customclasses$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Customclasses$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomClass>;
+    patch(
+      params: Params$Resource$Projects$Locations$Customclasses$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Customclasses$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomClass>,
+      callback: BodyResponseCallback<Schema$CustomClass>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Customclasses$Patch,
+      callback: BodyResponseCallback<Schema$CustomClass>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$CustomClass>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Customclasses$Patch
+        | BodyResponseCallback<Schema$CustomClass>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomClass>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomClass>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomClass> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Customclasses$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Customclasses$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1p1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomClass>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CustomClass>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Customclasses$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where this custom class will be created. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CreateCustomClassRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Customclasses$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the custom class to delete. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses/{custom_class\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Customclasses$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the custom class to retrieve. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses/{custom_class\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Customclasses$List
+    extends StandardParameters {
+    /**
+     * The maximum number of custom classes to return. The service may return fewer than this value. If unspecified, at most 50 custom classes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListCustomClass` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCustomClass` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of custom classes. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Customclasses$Patch
+    extends StandardParameters {
+    /**
+     * The resource name of the custom class.
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CustomClass;
+  }
+
+  export class Resource$Projects$Locations$Phrasesets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a set of phrase hints. Each item in the set can be a single word or a multi-word phrase. The items in the PhraseSet are favored by the recognition model when you send a call that includes the PhraseSet.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/speech.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const speech = google.speech('v1p1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await speech.projects.locations.phraseSets.create({
+     *     // Required. The parent resource where this phrase set will be created. Format: {api_version\}/projects/{project\}/locations/{location\}/phraseSets
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "phraseSet": {},
+     *       //   "phraseSetId": "my_phraseSetId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boost": {},
+     *   //   "name": "my_name",
+     *   //   "phrases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Phrasesets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Phrasesets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PhraseSet>;
+    create(
+      params: Params$Resource$Projects$Locations$Phrasesets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Phrasesets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$PhraseSet>,
+      callback: BodyResponseCallback<Schema$PhraseSet>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Phrasesets$Create,
+      callback: BodyResponseCallback<Schema$PhraseSet>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$PhraseSet>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Phrasesets$Create
+        | BodyResponseCallback<Schema$PhraseSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PhraseSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PhraseSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PhraseSet> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Phrasesets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Phrasesets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1p1beta1/{+parent}/phraseSets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PhraseSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PhraseSet>(parameters);
+      }
+    }
+
+    /**
+     * Delete a phrase set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/speech.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const speech = google.speech('v1p1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await speech.projects.locations.phraseSets.delete({
+     *     // Required. The name of the phrase set to delete. Format: {api_version\}/projects/{project\}/locations/{location\}/phraseSets/{phrase_set\}
+     *     name: 'projects/my-project/locations/my-location/phraseSets/my-phraseSet',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Phrasesets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Phrasesets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Phrasesets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Phrasesets$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Phrasesets$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Phrasesets$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Phrasesets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Phrasesets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1p1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Get a phrase set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/speech.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const speech = google.speech('v1p1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await speech.projects.locations.phraseSets.get({
+     *     // Required. The name of the phrase set to retrieve. Format: {api_version\}/projects/{project\}/locations/{location\}/phraseSets/{phrase_set\}
+     *     name: 'projects/my-project/locations/my-location/phraseSets/my-phraseSet',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boost": {},
+     *   //   "name": "my_name",
+     *   //   "phrases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Phrasesets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Phrasesets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PhraseSet>;
+    get(
+      params: Params$Resource$Projects$Locations$Phrasesets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Phrasesets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PhraseSet>,
+      callback: BodyResponseCallback<Schema$PhraseSet>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Phrasesets$Get,
+      callback: BodyResponseCallback<Schema$PhraseSet>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$PhraseSet>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Phrasesets$Get
+        | BodyResponseCallback<Schema$PhraseSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PhraseSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PhraseSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PhraseSet> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Phrasesets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Phrasesets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1p1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1147,41 +2065,351 @@ export namespace speech_v1p1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(
+        createAPIRequest<Schema$PhraseSet>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+        return createAPIRequest<Schema$PhraseSet>(parameters);
+      }
+    }
+
+    /**
+     * List phrase sets.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/speech.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const speech = google.speech('v1p1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await speech.projects.locations.phraseSets.list({
+     *     // The maximum number of phrase sets to return. The service may return fewer than this value. If unspecified, at most 50 phrase sets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListPhraseSet` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPhraseSet` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of phrase set. Format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "phraseSets": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Phrasesets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Phrasesets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPhraseSetResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Phrasesets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Phrasesets$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPhraseSetResponse>,
+      callback: BodyResponseCallback<Schema$ListPhraseSetResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Phrasesets$List,
+      callback: BodyResponseCallback<Schema$ListPhraseSetResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListPhraseSetResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Phrasesets$List
+        | BodyResponseCallback<Schema$ListPhraseSetResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPhraseSetResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPhraseSetResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPhraseSetResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Phrasesets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Phrasesets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1p1beta1/{+parent}/phraseSets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPhraseSetResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPhraseSetResponse>(parameters);
+      }
+    }
+
+    /**
+     * Update a phrase set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/speech.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const speech = google.speech('v1p1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await speech.projects.locations.phraseSets.patch({
+     *     // The resource name of the phrase set.
+     *     name: 'projects/my-project/locations/my-location/phraseSets/my-phraseSet',
+     *     // The list of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "boost": {},
+     *       //   "name": "my_name",
+     *       //   "phrases": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "boost": {},
+     *   //   "name": "my_name",
+     *   //   "phrases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Phrasesets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Phrasesets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PhraseSet>;
+    patch(
+      params: Params$Resource$Projects$Locations$Phrasesets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Phrasesets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$PhraseSet>,
+      callback: BodyResponseCallback<Schema$PhraseSet>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Phrasesets$Patch,
+      callback: BodyResponseCallback<Schema$PhraseSet>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$PhraseSet>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Phrasesets$Patch
+        | BodyResponseCallback<Schema$PhraseSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PhraseSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PhraseSet>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$PhraseSet> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Phrasesets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Phrasesets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://speech.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1p1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PhraseSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PhraseSet>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Operations$Get
+  export interface Params$Resource$Projects$Locations$Phrasesets$Create
     extends StandardParameters {
     /**
-     * The name of the operation resource.
+     * Required. The parent resource where this phrase set will be created. Format: {api_version\}/projects/{project\}/locations/{location\}/phraseSets
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CreatePhraseSetRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Phrasesets$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the phrase set to delete. Format: {api_version\}/projects/{project\}/locations/{location\}/phraseSets/{phrase_set\}
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Locations$Operations$List
+  export interface Params$Resource$Projects$Locations$Phrasesets$Get
     extends StandardParameters {
     /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The name of the operation's parent resource.
+     * Required. The name of the phrase set to retrieve. Format: {api_version\}/projects/{project\}/locations/{location\}/phraseSets/{phrase_set\}
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Phrasesets$List
+    extends StandardParameters {
     /**
-     * The standard list page size.
+     * The maximum number of phrase sets to return. The service may return fewer than this value. If unspecified, at most 50 phrase sets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
-     * The standard list page token.
+     * A page token, received from a previous `ListPhraseSet` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPhraseSet` must match the call that provided the page token.
      */
     pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of phrase set. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Phrasesets$Patch
+    extends StandardParameters {
+    /**
+     * The resource name of the phrase set.
+     */
+    name?: string;
+    /**
+     * The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PhraseSet;
   }
 
   export class Resource$Speech {
