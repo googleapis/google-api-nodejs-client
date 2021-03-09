@@ -226,7 +226,7 @@ export namespace androidmanagement_v1 {
      */
     accessibleTrackIds?: string[] | null;
     /**
-     * This feature is not generally available.
+     * This feature is not generally available yet.
      */
     autoUpdateMode?: string | null;
     /**
@@ -437,6 +437,39 @@ export namespace androidmanagement_v1 {
      * If set, the rule includes a mitigating action to disable apps specified in the list, but app data is preserved.
      */
     packageNamesToDisable?: string[] | null;
+  }
+  /**
+   * Contact details for LaForge enterprises.
+   */
+  export interface Schema$ContactInfo {
+    /**
+     * Email address for a point of contact, which will be used to send important announcements related to managed Google Play.
+     */
+    contactEmail?: string | null;
+    /**
+     * The email of the data protection officer. The email is validated but not verified.
+     */
+    dataProtectionOfficerEmail?: string | null;
+    /**
+     * The name of the data protection officer.
+     */
+    dataProtectionOfficerName?: string | null;
+    /**
+     * The phone number of the data protection officer The phone number is validated but not verified.
+     */
+    dataProtectionOfficerPhone?: string | null;
+    /**
+     * The email of the EU representative. The email is validated but not verified.
+     */
+    euRepresentativeEmail?: string | null;
+    /**
+     * The name of the EU representative.
+     */
+    euRepresentativeName?: string | null;
+    /**
+     * The phone number of the EU representative. The phone number is validated but not verified.
+     */
+    euRepresentativePhone?: string | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: A full date, with non-zero year, month, and day values A month and day value, with a zero year, such as an anniversary A year on its own, with zero month and day values A year and month value, with a zero day, such as a credit card expiration dateRelated types are google.type.TimeOfDay and google.protobuf.Timestamp.
@@ -679,7 +712,7 @@ export namespace androidmanagement_v1 {
      */
     allowPersonalUsage?: string | null;
     /**
-     * The length of time the enrollment token is valid, ranging from 1 minute to 30 days. If not specified, the default duration is 1 hour.
+     * The length of time the enrollment token is valid, ranging from 1 minute to 90 days. If not specified, the default duration is 1 hour.
      */
     duration?: string | null;
     /**
@@ -719,6 +752,10 @@ export namespace androidmanagement_v1 {
      * Deprecated and unused.
      */
     appAutoApprovalEnabled?: boolean | null;
+    /**
+     * This feature is not generally available yet. The enterprise contact info of an EMM owned enterprise
+     */
+    contactInfo?: Schema$ContactInfo;
     /**
      * The types of Google Pub/Sub notifications enabled for the enterprise.
      */
@@ -949,6 +986,19 @@ export namespace androidmanagement_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * This feature is not generally available yet. Response to a request to list enterprises.
+   */
+  export interface Schema$ListEnterprisesResponse {
+    /**
+     * This feature is not generally available yet. The list of enterprises.
+     */
+    enterprises?: Schema$Enterprise[];
+    /**
+     * This feature is not generally available yet. If there are more results, a token to retrieve next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$ListOperationsResponse {
@@ -1092,6 +1142,10 @@ export namespace androidmanagement_v1 {
      * Alphabetic name of current registered operator. For example, Vodafone.
      */
     networkOperatorName?: string | null;
+    /**
+     * Provides telephony information associated with each SIM card on the device. Only supported on fully managed devices starting from Android API level 23.
+     */
+    telephonyInfos?: Schema$TelephonyInfo[];
     /**
      * Wi-Fi MAC address of the device. For example, 7c:11:11:11:11:11.
      */
@@ -1290,7 +1344,7 @@ export namespace androidmanagement_v1 {
      */
     cameraDisabled?: boolean | null;
     /**
-     * Controls how long the work profile can stay off.
+     * Controls how long the work profile can stay off. The duration must be at least 3 days.
      */
     maxDaysWithWorkOff?: number | null;
     /**
@@ -1319,7 +1373,7 @@ export namespace androidmanagement_v1 {
      */
     addUserDisabled?: boolean | null;
     /**
-     * Whether adjusting the master volume is disabled.
+     * Whether adjusting the master volume is disabled. Also mutes the device.
      */
     adjustVolumeDisabled?: boolean | null;
     /**
@@ -1921,6 +1975,19 @@ export namespace androidmanagement_v1 {
     updateStatus?: string | null;
   }
   /**
+   * Telephony information associated with a given SIM card on the device. Only supported on fully managed devices starting from Android API level 23.
+   */
+  export interface Schema$TelephonyInfo {
+    /**
+     * The carrier name associated with this SIM card.
+     */
+    carrierName?: string | null;
+    /**
+     * The phone number associated with this SIM card.
+     */
+    phoneNumber?: string | null;
+  }
+  /**
    * A terms and conditions page to be accepted during provisioning.
    */
   export interface Schema$TermsAndConditions {
@@ -2079,6 +2146,8 @@ export namespace androidmanagement_v1 {
      *
      *   // Do the magic
      *   const res = await androidmanagement.enterprises.create({
+     *     // This feature is not generally available yet. Whether the managed Google Play Agreement is presented and agreed.
+     *     agreementAccepted: 'placeholder-value',
      *     // The enterprise token appended to the callback URL.
      *     enterpriseToken: 'placeholder-value',
      *     // The ID of the Google Cloud Platform project which will own the enterprise.
@@ -2091,6 +2160,7 @@ export namespace androidmanagement_v1 {
      *       // request body parameters
      *       // {
      *       //   "appAutoApprovalEnabled": false,
+     *       //   "contactInfo": {},
      *       //   "enabledNotificationTypes": [],
      *       //   "enterpriseDisplayName": "my_enterpriseDisplayName",
      *       //   "logo": {},
@@ -2107,6 +2177,7 @@ export namespace androidmanagement_v1 {
      *   // Example response
      *   // {
      *   //   "appAutoApprovalEnabled": false,
+     *   //   "contactInfo": {},
      *   //   "enabledNotificationTypes": [],
      *   //   "enterpriseDisplayName": "my_enterpriseDisplayName",
      *   //   "logo": {},
@@ -2208,6 +2279,131 @@ export namespace androidmanagement_v1 {
     }
 
     /**
+     * This feature is not generally available yet. Deletes an enterprise.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.delete({
+     *     // This feature is not generally available yet. The name of the enterprise in the form enterprises/{enterpriseId\}.
+     *     name: 'enterprises/my-enterprise',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Enterprises$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Enterprises$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Enterprises$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Enterprises$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Enterprises$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Enterprises$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Enterprises$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Gets an enterprise.
      * @example
      * ```js
@@ -2242,6 +2438,7 @@ export namespace androidmanagement_v1 {
      *   // Example response
      *   // {
      *   //   "appAutoApprovalEnabled": false,
+     *   //   "contactInfo": {},
      *   //   "enabledNotificationTypes": [],
      *   //   "enterpriseDisplayName": "my_enterpriseDisplayName",
      *   //   "logo": {},
@@ -2342,6 +2539,144 @@ export namespace androidmanagement_v1 {
     }
 
     /**
+     * This feature is not generally available yet. Lists enterprises that are managed by an EMM. Only partial views are returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const androidmanagement = google.androidmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidmanagement'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidmanagement.enterprises.list({
+     *     // This feature is not generally available yet. The requested page size. The actual page size may be fixed to a min or max value.
+     *     pageSize: 'placeholder-value',
+     *     // This feature is not generally available yet. A token identifying a page of results returned by the server.
+     *     pageToken: 'placeholder-value',
+     *     // Required. This feature is not generally available yet. The ID of the Cloud project of the EMM the enterprises belongs to.
+     *     projectId: 'placeholder-value',
+     *     // This feature is not generally available yet. View that specify that partial response should be returned.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "enterprises": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Enterprises$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Enterprises$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEnterprisesResponse>;
+    list(
+      params: Params$Resource$Enterprises$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Enterprises$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEnterprisesResponse>,
+      callback: BodyResponseCallback<Schema$ListEnterprisesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Enterprises$List,
+      callback: BodyResponseCallback<Schema$ListEnterprisesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListEnterprisesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Enterprises$List
+        | BodyResponseCallback<Schema$ListEnterprisesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEnterprisesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEnterprisesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEnterprisesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Enterprises$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Enterprises$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/enterprises').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEnterprisesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEnterprisesResponse>(parameters);
+      }
+    }
+
+    /**
      * Updates an enterprise.
      * @example
      * ```js
@@ -2378,6 +2713,7 @@ export namespace androidmanagement_v1 {
      *       // request body parameters
      *       // {
      *       //   "appAutoApprovalEnabled": false,
+     *       //   "contactInfo": {},
      *       //   "enabledNotificationTypes": [],
      *       //   "enterpriseDisplayName": "my_enterpriseDisplayName",
      *       //   "logo": {},
@@ -2394,6 +2730,7 @@ export namespace androidmanagement_v1 {
      *   // Example response
      *   // {
      *   //   "appAutoApprovalEnabled": false,
+     *   //   "contactInfo": {},
      *   //   "enabledNotificationTypes": [],
      *   //   "enterpriseDisplayName": "my_enterpriseDisplayName",
      *   //   "logo": {},
@@ -2498,6 +2835,10 @@ export namespace androidmanagement_v1 {
   export interface Params$Resource$Enterprises$Create
     extends StandardParameters {
     /**
+     * This feature is not generally available yet. Whether the managed Google Play Agreement is presented and agreed.
+     */
+    agreementAccepted?: boolean;
+    /**
      * The enterprise token appended to the callback URL.
      */
     enterpriseToken?: string;
@@ -2515,11 +2856,36 @@ export namespace androidmanagement_v1 {
      */
     requestBody?: Schema$Enterprise;
   }
+  export interface Params$Resource$Enterprises$Delete
+    extends StandardParameters {
+    /**
+     * This feature is not generally available yet. The name of the enterprise in the form enterprises/{enterpriseId\}.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Enterprises$Get extends StandardParameters {
     /**
      * The name of the enterprise in the form enterprises/{enterpriseId\}.
      */
     name?: string;
+  }
+  export interface Params$Resource$Enterprises$List extends StandardParameters {
+    /**
+     * This feature is not generally available yet. The requested page size. The actual page size may be fixed to a min or max value.
+     */
+    pageSize?: number;
+    /**
+     * This feature is not generally available yet. A token identifying a page of results returned by the server.
+     */
+    pageToken?: string;
+    /**
+     * Required. This feature is not generally available yet. The ID of the Cloud project of the EMM the enterprises belongs to.
+     */
+    projectId?: string;
+    /**
+     * This feature is not generally available yet. View that specify that partial response should be returned.
+     */
+    view?: string;
   }
   export interface Params$Resource$Enterprises$Patch
     extends StandardParameters {
