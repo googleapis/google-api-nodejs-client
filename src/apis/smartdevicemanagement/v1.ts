@@ -208,7 +208,7 @@ export namespace smartdevicemanagement_v1 {
     structures?: Schema$GoogleHomeEnterpriseSdmV1Structure[];
   }
   /**
-   * Represents device relationships, for instance, structure/room to which the device is assigned to. For now this is only filled in the enterprise flow.
+   * Represents device relationships, for instance, structure/room to which the device is assigned to.
    */
   export interface Schema$GoogleHomeEnterpriseSdmV1ParentRelation {
     /**
