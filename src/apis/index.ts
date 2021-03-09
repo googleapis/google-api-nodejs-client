@@ -119,6 +119,11 @@ import {VERSIONS as booksVersions, books} from './books';
 import {VERSIONS as calendarVersions, calendar} from './calendar';
 import {VERSIONS as chatVersions, chat} from './chat';
 import {
+  VERSIONS as chromemanagementVersions,
+  chromemanagement,
+} from './chromemanagement';
+import {VERSIONS as chromepolicyVersions, chromepolicy} from './chromepolicy';
+import {
   VERSIONS as chromeuxreportVersions,
   chromeuxreport,
 } from './chromeuxreport';
@@ -127,6 +132,7 @@ import {VERSIONS as classroomVersions, classroom} from './classroom';
 import {VERSIONS as cloudassetVersions, cloudasset} from './cloudasset';
 import {VERSIONS as cloudbillingVersions, cloudbilling} from './cloudbilling';
 import {VERSIONS as cloudbuildVersions, cloudbuild} from './cloudbuild';
+import {VERSIONS as cloudchannelVersions, cloudchannel} from './cloudchannel';
 import {
   VERSIONS as clouddebuggerVersions,
   clouddebugger,
@@ -295,14 +301,27 @@ import {
   manufacturers,
 } from './manufacturers';
 import {VERSIONS as memcacheVersions, memcache} from './memcache';
+import {VERSIONS as metastoreVersions, metastore} from './metastore';
 import {VERSIONS as mlVersions, ml} from './ml';
 import {VERSIONS as monitoringVersions, monitoring} from './monitoring';
+import {
+  VERSIONS as mybusinessaccountmanagementVersions,
+  mybusinessaccountmanagement,
+} from './mybusinessaccountmanagement';
+import {
+  VERSIONS as networkconnectivityVersions,
+  networkconnectivity,
+} from './networkconnectivity';
 import {
   VERSIONS as networkmanagementVersions,
   networkmanagement,
 } from './networkmanagement';
 import {VERSIONS as notebooksVersions, notebooks} from './notebooks';
 import {VERSIONS as oauth2Versions, oauth2} from './oauth2';
+import {
+  VERSIONS as ondemandscanningVersions,
+  ondemandscanning,
+} from './ondemandscanning';
 import {VERSIONS as osconfigVersions, osconfig} from './osconfig';
 import {VERSIONS as osloginVersions, oslogin} from './oslogin';
 import {
@@ -319,6 +338,10 @@ import {
   playcustomapp,
 } from './playcustomapp';
 import {VERSIONS as plusVersions, plus} from './plus';
+import {
+  VERSIONS as policysimulatorVersions,
+  policysimulator,
+} from './policysimulator';
 import {
   VERSIONS as policytroubleshooterVersions,
   policytroubleshooter,
@@ -346,6 +369,7 @@ import {
   remotebuildexecution,
 } from './remotebuildexecution';
 import {VERSIONS as resellerVersions, reseller} from './reseller';
+import {VERSIONS as retailVersions, retail} from './retail';
 import {VERSIONS as runVersions, run} from './run';
 import {
   VERSIONS as runtimeconfigVersions,
@@ -437,6 +461,7 @@ import {
 import {VERSIONS as visionVersions, vision} from './vision';
 import {VERSIONS as webfontsVersions, webfonts} from './webfonts';
 import {VERSIONS as webmastersVersions, webmasters} from './webmasters';
+import {VERSIONS as webriskVersions, webrisk} from './webrisk';
 import {
   VERSIONS as websecurityscannerVersions,
   websecurityscanner,
@@ -499,12 +524,15 @@ export const APIS: APIList = {
   books: booksVersions,
   calendar: calendarVersions,
   chat: chatVersions,
+  chromemanagement: chromemanagementVersions,
+  chromepolicy: chromepolicyVersions,
   chromeuxreport: chromeuxreportVersions,
   civicinfo: civicinfoVersions,
   classroom: classroomVersions,
   cloudasset: cloudassetVersions,
   cloudbilling: cloudbillingVersions,
   cloudbuild: cloudbuildVersions,
+  cloudchannel: cloudchannelVersions,
   clouddebugger: clouddebuggerVersions,
   clouderrorreporting: clouderrorreportingVersions,
   cloudfunctions: cloudfunctionsVersions,
@@ -586,11 +614,15 @@ export const APIS: APIList = {
   managedidentities: managedidentitiesVersions,
   manufacturers: manufacturersVersions,
   memcache: memcacheVersions,
+  metastore: metastoreVersions,
   ml: mlVersions,
   monitoring: monitoringVersions,
+  mybusinessaccountmanagement: mybusinessaccountmanagementVersions,
+  networkconnectivity: networkconnectivityVersions,
   networkmanagement: networkmanagementVersions,
   notebooks: notebooksVersions,
   oauth2: oauth2Versions,
+  ondemandscanning: ondemandscanningVersions,
   osconfig: osconfigVersions,
   oslogin: osloginVersions,
   pagespeedonline: pagespeedonlineVersions,
@@ -598,6 +630,7 @@ export const APIS: APIList = {
   playablelocations: playablelocationsVersions,
   playcustomapp: playcustomappVersions,
   plus: plusVersions,
+  policysimulator: policysimulatorVersions,
   policytroubleshooter: policytroubleshooterVersions,
   poly: polyVersions,
   privateca: privatecaVersions,
@@ -610,6 +643,7 @@ export const APIS: APIList = {
   redis: redisVersions,
   remotebuildexecution: remotebuildexecutionVersions,
   reseller: resellerVersions,
+  retail: retailVersions,
   run: runVersions,
   runtimeconfig: runtimeconfigVersions,
   safebrowsing: safebrowsingVersions,
@@ -653,6 +687,7 @@ export const APIS: APIList = {
   vision: visionVersions,
   webfonts: webfontsVersions,
   webmasters: webmastersVersions,
+  webrisk: webriskVersions,
   websecurityscanner: websecurityscannerVersions,
   workflowexecutions: workflowexecutionsVersions,
   workflows: workflowsVersions,
@@ -699,12 +734,15 @@ export class GeneratedAPIs {
   books = books;
   calendar = calendar;
   chat = chat;
+  chromemanagement = chromemanagement;
+  chromepolicy = chromepolicy;
   chromeuxreport = chromeuxreport;
   civicinfo = civicinfo;
   classroom = classroom;
   cloudasset = cloudasset;
   cloudbilling = cloudbilling;
   cloudbuild = cloudbuild;
+  cloudchannel = cloudchannel;
   clouddebugger = clouddebugger;
   clouderrorreporting = clouderrorreporting;
   cloudfunctions = cloudfunctions;
@@ -786,11 +824,15 @@ export class GeneratedAPIs {
   managedidentities = managedidentities;
   manufacturers = manufacturers;
   memcache = memcache;
+  metastore = metastore;
   ml = ml;
   monitoring = monitoring;
+  mybusinessaccountmanagement = mybusinessaccountmanagement;
+  networkconnectivity = networkconnectivity;
   networkmanagement = networkmanagement;
   notebooks = notebooks;
   oauth2 = oauth2;
+  ondemandscanning = ondemandscanning;
   osconfig = osconfig;
   oslogin = oslogin;
   pagespeedonline = pagespeedonline;
@@ -798,6 +840,7 @@ export class GeneratedAPIs {
   playablelocations = playablelocations;
   playcustomapp = playcustomapp;
   plus = plus;
+  policysimulator = policysimulator;
   policytroubleshooter = policytroubleshooter;
   poly = poly;
   privateca = privateca;
@@ -810,6 +853,7 @@ export class GeneratedAPIs {
   redis = redis;
   remotebuildexecution = remotebuildexecution;
   reseller = reseller;
+  retail = retail;
   run = run;
   runtimeconfig = runtimeconfig;
   safebrowsing = safebrowsing;
@@ -853,6 +897,7 @@ export class GeneratedAPIs {
   vision = vision;
   webfonts = webfonts;
   webmasters = webmasters;
+  webrisk = webrisk;
   websecurityscanner = websecurityscanner;
   workflowexecutions = workflowexecutions;
   workflows = workflows;
