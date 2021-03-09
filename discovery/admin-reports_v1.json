@@ -153,11 +153,11 @@
               ],
               "enumDescriptions": [
                 "",
-                "The G Suite Access Transparency activity reports return information about different types of Access Transparency activity events.",
+                "The Google Workspace Access Transparency activity reports return information about different types of Access Transparency activity events.",
                 "The Admin console application's activity reports return account information about different types of administrator activity events.",
-                "The G Suite Calendar application's activity reports return information about various Calendar activity events.",
+                "The Google Calendar application's activity reports return information about various Calendar activity events.",
                 "The Chat activity reports return information about various Chat activity events.",
-                "The Google Drive application's activity reports return information about various Google Drive activity events. The Drive activity report is only available for G Suite Business customers.",
+                "The Google Drive application's activity reports return information about various Google Drive activity events. The Drive activity report is only available for Google Workspace Business and Enterprise customers.",
                 "The Google Cloud Platform application's activity reports return information about various GCP activity events.",
                 "The Google+ application's activity reports return information about various Google+ activity events.",
                 "The Google Groups application's activity reports return information about various Groups activity events.",
@@ -175,14 +175,14 @@
                 "The Data Studio activity reports return information about various types of Data Studio activity events."
               ],
               "location": "path",
-              "pattern": "(admin)|(calendar)|(drive)|(login)|(mobile)|(token)|(groups)|(saml)|(chat)|(gplus)|(rules)|(jamboard)|(meet)|(user_accounts)|(access_transparency)|(groups_enterprise)|(gcp)|(context_aware_access)|(data_studio)|(chrome)",
+              "pattern": "(access_transparency)|(admin)|(calendar)|(chat)|(chrome)|(context_aware_access)|(data_studio)|(drive)|(gcp)|(gplus)|(groups)|(groups_enterprise)|(jamboard)|(login)|(meet)|(mobile)|(rules)|(saml)|(token)|(user_accounts)",
               "required": true,
               "type": "string"
             },
             "customerId": {
               "description": "The unique ID of the customer to retrieve data for.",
               "location": "query",
-              "pattern": "C.+",
+              "pattern": "C.+|my_customer",
               "type": "string"
             },
             "endTime": {
@@ -192,7 +192,7 @@
               "type": "string"
             },
             "eventName": {
-              "description": "The name of the event being queried by the API. Each `eventName` is related to a specific G Suite service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings `type` structure has all of the Calendar `eventName` activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings `type` and `eventName` parameters. For more information about `eventName` query strings and parameters, see the list of event names for various applications above in `applicationName`.",
+              "description": "The name of the event being queried by the API. Each `eventName` is related to a specific Google Workspace service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings `type` structure has all of the Calendar `eventName` activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings `type` and `eventName` parameters. For more information about `eventName` query strings and parameters, see the list of event names for various applications above in `applicationName`.",
               "location": "query",
               "type": "string"
             },
@@ -236,7 +236,7 @@
               "type": "string"
             },
             "userKey": {
-              "description": "Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique G Suite profile ID or their primary email address.",
+              "description": "Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique Google Workspace profile ID or their primary email address.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -292,11 +292,11 @@
               ],
               "enumDescriptions": [
                 "",
-                "The G Suite Access Transparency activity reports return information about different types of Access Transparency activity events.",
+                "The Google Workspace Access Transparency activity reports return information about different types of Access Transparency activity events.",
                 "The Admin console application's activity reports return account information about different types of administrator activity events.",
-                "The G Suite Calendar application's activity reports return information about various Calendar activity events.",
+                "The Google Calendar application's activity reports return information about various Calendar activity events.",
                 "The Chat activity reports return information about various Chat activity events.",
-                "The Google Drive application's activity reports return information about various Google Drive activity events. The Drive activity report is only available for G Suite Business customers.",
+                "The Google Drive application's activity reports return information about various Google Drive activity events. The Drive activity report is only available for Google Workspace Business and Google Workspace Enterprise customers.",
                 "The Google Cloud Platform application's activity reports return information about various GCP activity events.",
                 "The Google+ application's activity reports return information about various Google+ activity events.",
                 "The Google Groups application's activity reports return information about various Groups activity events.",
@@ -314,14 +314,14 @@
                 "The Data Studio activity reports return information about various types of Data Studio activity events."
               ],
               "location": "path",
-              "pattern": "(admin)|(calendar)|(drive)|(login)|(mobile)|(token)|(groups)|(saml)|(chat)|(gplus)|(rules)|(jamboard)|(meet)|(user_accounts)|(access_transparency)|(groups_enterprise)|(gcp)|(context_aware_access)|(data_studio)|(chrome)",
+              "pattern": "(access_transparency)|(admin)|(calendar)|(chat)|(chrome)|(context_aware_access)|(data_studio)|(drive)|(gcp)|(gplus)|(groups)|(groups_enterprise)|(jamboard)|(login)|(meet)|(mobile)|(rules)|(saml)|(token)|(user_accounts)",
               "required": true,
               "type": "string"
             },
             "customerId": {
               "description": "The unique ID of the customer to retrieve data for.",
               "location": "query",
-              "pattern": "C.+",
+              "pattern": "C.+|my_customer",
               "type": "string"
             },
             "endTime": {
@@ -331,7 +331,7 @@
               "type": "string"
             },
             "eventName": {
-              "description": "The name of the event being queried by the API. Each `eventName` is related to a specific G Suite service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings `type` structure has all of the Calendar `eventName` activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings `type` and `eventName` parameters. For more information about `eventName` query strings and parameters, see the list of event names for various applications above in `applicationName`.",
+              "description": "The name of the event being queried by the API. Each `eventName` is related to a specific Google Workspace service or feature which the API organizes into types of events. An example is the Google Calendar events in the Admin console application's reports. The Calendar Settings `type` structure has all of the Calendar `eventName` activities reported by the API. When an administrator changes a Calendar setting, the API reports this activity in the Calendar Settings `type` and `eventName` parameters. For more information about `eventName` query strings and parameters, see the list of event names for various applications above in `applicationName`.",
               "location": "query",
               "type": "string"
             },
@@ -375,7 +375,7 @@
               "type": "string"
             },
             "userKey": {
-              "description": "Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique G Suite profile ID or their primary email address.",
+              "description": "Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique Google Workspace profile ID or their primary email address.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -427,7 +427,7 @@
             "customerId": {
               "description": "The unique ID of the customer to retrieve data for.",
               "location": "query",
-              "pattern": "C.+",
+              "pattern": "C.+|my_customer",
               "type": "string"
             },
             "date": {
@@ -475,7 +475,7 @@
             "customerId": {
               "description": "The unique ID of the customer to retrieve data for.",
               "location": "query",
-              "pattern": "C.+",
+              "pattern": "C.+|my_customer",
               "type": "string"
             },
             "date": {
@@ -568,7 +568,7 @@
             "customerId": {
               "description": "The unique ID of the customer to retrieve data for.",
               "location": "query",
-              "pattern": "C.+",
+              "pattern": "C.+|my_customer",
               "type": "string"
             },
             "date": {
@@ -618,7 +618,7 @@
               "type": "string"
             },
             "userKey": {
-              "description": "Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique G Suite profile ID or their primary email address.",
+              "description": "Represents the profile ID or the user email for which the data should be filtered. Can be `all` for all information, or `userKey` for a user's unique Google Workspace profile ID or their primary email address.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -635,7 +635,7 @@
       }
     }
   },
-  "revision": "20201124",
+  "revision": "20210302",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {
@@ -685,7 +685,7 @@
               "type": "string"
             },
             "profileId": {
-              "description": "The unique G Suite profile ID of the actor. May be absent if the actor is not a G Suite user.",
+              "description": "The unique Google Workspace profile ID of the actor. May be absent if the actor is not a Google Workspace user.",
               "type": "string"
             }
           },
@@ -700,7 +700,7 @@
           "items": {
             "properties": {
               "name": {
-                "description": "Name of the event. This is the specific name of the activity reported by the API. And each `eventName` is related to a specific G Suite service or feature which the API organizes into types of events. For `eventName` request parameters in general: - If no `eventName` is given, the report returns all possible instances of an `eventName`. - When you request an `eventName`, the API's response returns all activities which contain that `eventName`. It is possible that the returned activities will have other `eventName` properties in addition to the one requested. For more information about `eventName` properties, see the list of event names for various applications above in `applicationName`.",
+                "description": "Name of the event. This is the specific name of the activity reported by the API. And each `eventName` is related to a specific Google Workspace service or feature which the API organizes into types of events. For `eventName` request parameters in general: - If no `eventName` is given, the report returns all possible instances of an `eventName`. - When you request an `eventName`, the API's response returns all activities which contain that `eventName`. It is possible that the returned activities will have other `eventName` properties in addition to the one requested. For more information about `eventName` properties, see the list of event names for various applications above in `applicationName`.",
                 "type": "string"
               },
               "parameters": {
@@ -774,7 +774,7 @@
                 "type": "array"
               },
               "type": {
-                "description": "Type of event. The G Suite service or feature that an administrator changes is identified in the `type` property which identifies an event using the `eventName` property. For a full list of the API's `type` categories, see the list of event names for various applications above in `applicationName`.",
+                "description": "Type of event. The Google Workspace service or feature that an administrator changes is identified in the `type` property which identifies an event using the `eventName` property. For a full list of the API's `type` categories, see the list of event names for various applications above in `applicationName`.",
                 "type": "string"
               }
             },
@@ -790,7 +790,7 @@
               "type": "string"
             },
             "customerId": {
-              "description": "The unique identifier for a G suite account.",
+              "description": "The unique identifier for a Google Workspace account.",
               "type": "string"
             },
             "time": {
@@ -807,7 +807,7 @@
           "type": "object"
         },
         "ipAddress": {
-          "description": "IP address of the user doing the action. This is the Internet Protocol (IP) address of the user when logging into G Suite which may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. The API supports IPv4 and IPv6.",
+          "description": "IP address of the user doing the action. This is the Internet Protocol (IP) address of the user when logging into Google Workspace, which may or may not reflect the user's physical location. For example, the IP address can be the user's proxy server's address or a virtual private network (VPN) address. The API supports IPv4 and IPv6.",
           "type": "string"
         },
         "kind": {
@@ -943,7 +943,7 @@
               "type": "string"
             },
             "profileId": {
-              "description": "Output only. The user's immutable G Suite profile identifier.",
+              "description": "Output only. The user's immutable Google Workspace profile identifier.",
               "readOnly": true,
               "type": "string"
             },
