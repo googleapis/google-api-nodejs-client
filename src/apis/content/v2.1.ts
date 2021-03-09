@@ -116,6 +116,9 @@ export namespace content_v2_1 {
     accounts: Resource$Accounts;
     accountstatuses: Resource$Accountstatuses;
     accounttax: Resource$Accounttax;
+    buyongoogleprograms: Resource$Buyongoogleprograms;
+    collections: Resource$Collections;
+    collectionstatuses: Resource$Collectionstatuses;
     csses: Resource$Csses;
     datafeeds: Resource$Datafeeds;
     datafeedstatuses: Resource$Datafeedstatuses;
@@ -132,9 +135,11 @@ export namespace content_v2_1 {
     pubsubnotificationsettings: Resource$Pubsubnotificationsettings;
     regionalinventory: Resource$Regionalinventory;
     regions: Resource$Regions;
+    reports: Resource$Reports;
     repricingrules: Resource$Repricingrules;
     returnaddress: Resource$Returnaddress;
     returnpolicy: Resource$Returnpolicy;
+    returnpolicyonline: Resource$Returnpolicyonline;
     settlementreports: Resource$Settlementreports;
     settlementtransactions: Resource$Settlementtransactions;
     shippingsettings: Resource$Shippingsettings;
@@ -148,6 +153,9 @@ export namespace content_v2_1 {
       this.accounts = new Resource$Accounts(this.context);
       this.accountstatuses = new Resource$Accountstatuses(this.context);
       this.accounttax = new Resource$Accounttax(this.context);
+      this.buyongoogleprograms = new Resource$Buyongoogleprograms(this.context);
+      this.collections = new Resource$Collections(this.context);
+      this.collectionstatuses = new Resource$Collectionstatuses(this.context);
       this.csses = new Resource$Csses(this.context);
       this.datafeeds = new Resource$Datafeeds(this.context);
       this.datafeedstatuses = new Resource$Datafeedstatuses(this.context);
@@ -168,9 +176,11 @@ export namespace content_v2_1 {
       );
       this.regionalinventory = new Resource$Regionalinventory(this.context);
       this.regions = new Resource$Regions(this.context);
+      this.reports = new Resource$Reports(this.context);
       this.repricingrules = new Resource$Repricingrules(this.context);
       this.returnaddress = new Resource$Returnaddress(this.context);
       this.returnpolicy = new Resource$Returnpolicy(this.context);
+      this.returnpolicyonline = new Resource$Returnpolicyonline(this.context);
       this.settlementreports = new Resource$Settlementreports(this.context);
       this.settlementtransactions = new Resource$Settlementtransactions(
         this.context
@@ -184,13 +194,17 @@ export namespace content_v2_1 {
    */
   export interface Schema$Account {
     /**
-     * List of linked Ads accounts that are active or pending approval. To create a new link request, add a new link with status `active` to the list. It will remain in a `pending` state until approved or rejected either in the Ads interface or through the AdWords API. To delete an active link, or to cancel a link request, remove it from the list.
+     * Linked Ads accounts that are active or pending approval. To create a new link request, add a new link with status `active` to the list. It will remain in a `pending` state until approved or rejected either in the Ads interface or through the AdWords API. To delete an active link, or to cancel a link request, remove it from the list.
      */
     adsLinks?: Schema$AccountAdsLink[];
     /**
      * Indicates whether the merchant sells adult content.
      */
     adultContent?: boolean | null;
+    /**
+     * Automatically created label IDs that are assigned to the account by CSS Center.
+     */
+    automaticLabelIds?: string[] | null;
     /**
      * The business information of the account.
      */
@@ -212,7 +226,7 @@ export namespace content_v2_1 {
      */
     kind?: string | null;
     /**
-     * List of label IDs that are assigned to the account by CSS.
+     * Manually created label IDs that are assigned to the account by CSS.
      */
     labelIds?: string[] | null;
     /**
@@ -232,7 +246,7 @@ export namespace content_v2_1 {
      */
     websiteUrl?: string | null;
     /**
-     * List of linked YouTube channels that are active or pending approval. To create a new link request, add a new link with status `active` to the list. It will remain in a `pending` state until approved or rejected in the YT Creator Studio interface. To delete an active link, or to cancel a link request, remove it from the list.
+     * Linked YouTube channels that are active or pending approval. To create a new link request, add a new link with status `active` to the list. It will remain in a `pending` state until approved or rejected in the YT Creator Studio interface. To delete an active link, or to cancel a link request, remove it from the list.
      */
     youtubeChannelLinks?: Schema$AccountYouTubeChannelLink[];
   }
@@ -282,6 +296,23 @@ export namespace content_v2_1 {
      */
     phoneNumber?: string | null;
   }
+  /**
+   * Credentials allowing Google to call a partner's API on behalf of a merchant.
+   */
+  export interface Schema$AccountCredentials {
+    /**
+     * An OAuth access token.
+     */
+    accessToken?: string | null;
+    /**
+     * The amount of time, in seconds, after which the access token is no longer valid.
+     */
+    expiresIn?: string | null;
+    /**
+     * Indicates to Google how Google should use these OAuth tokens.
+     */
+    purpose?: string | null;
+  }
   export interface Schema$AccountCustomerService {
     /**
      * Customer service email.
@@ -325,21 +356,46 @@ export namespace content_v2_1 {
    */
   export interface Schema$AccountLabel {
     /**
-     * Output only. Immutable. The ID of account this label belongs to.
+     * Immutable. The ID of account this label belongs to.
      */
     accountId?: string | null;
     /**
-     * Description for this label.
+     * The description of this label.
      */
     description?: string | null;
     /**
-     * Output only. Immutable. The ID of the label.
+     * Output only. The ID of the label.
      */
     labelId?: string | null;
+    /**
+     * Output only. The type of this label.
+     */
+    labelType?: string | null;
     /**
      * The display name of this label.
      */
     name?: string | null;
+  }
+  /**
+   *  The return carrier information. This service is designed for merchants enrolled in the Buy on Google program.
+   */
+  export interface Schema$AccountReturnCarrier {
+    /**
+     * Output only. Immutable. The Google-provided unique carrier ID, used to update the resource.
+     */
+    carrierAccountId?: string | null;
+    /**
+     * Name of the carrier account.
+     */
+    carrierAccountName?: string | null;
+    /**
+     * Number of the carrier account.
+     */
+    carrierAccountNumber?: string | null;
+    /**
+     * The carrier code enum. Accepts the values FEDEX or UPS.
+     */
+    carrierCode?: string | null;
   }
   export interface Schema$AccountsAuthInfoResponse {
     /**
@@ -422,7 +478,7 @@ export namespace content_v2_1 {
      */
     linkType?: string | null;
     /**
-     * List of provided services.
+     * Provided services. Acceptable values are: - "`shoppingAdsProductManagement`" - "`shoppingActionsProductManagement`" - "`shoppingActionsOrderManagement`"
      */
     services?: string[] | null;
   }
@@ -471,7 +527,7 @@ export namespace content_v2_1 {
      */
     linkType?: string | null;
     /**
-     * List of provided services.
+     *  Acceptable values are: - "`shoppingAdsProductManagement`" - "`shoppingAdsOther`" - "`shoppingActionsProductManagement`" - "`shoppingActionsOrderManagement`" - "`shoppingActionsOther`"
      */
     services?: string[] | null;
   }
@@ -879,6 +935,23 @@ export namespace content_v2_1 {
      */
     businessDays?: string[] | null;
   }
+  /**
+   * Response message for the GetProgramStatus method.
+   */
+  export interface Schema$BuyOnGoogleProgramStatus {
+    /**
+     * The customer service pending email.
+     */
+    customerServicePendingEmail?: string | null;
+    /**
+     * The customer service verified email.
+     */
+    customerServiceVerifiedEmail?: string | null;
+    /**
+     * The current participation stage for the program.
+     */
+    participationStage?: string | null;
+  }
   export interface Schema$CarrierRate {
     /**
      * Carrier service, such as `"UPS"` or `"Fedex"`. The list of supported carriers can be retrieved via the `getSupportedCarriers` method. Required.
@@ -918,6 +991,155 @@ export namespace content_v2_1 {
      * A list of supported services (e.g., `"ground"`) for that carrier. Contains at least one service.
      */
     services?: string[] | null;
+  }
+  /**
+   * The collection message.
+   */
+  export interface Schema$Collection {
+    /**
+     * Label that you assign to a collection to help organize bidding and reporting in Shopping campaigns. [Custom label](https://support.google.com/merchants/answer/9674217)
+     */
+    customLabel0?: string | null;
+    /**
+     * Label that you assign to a collection to help organize bidding and reporting in Shopping campaigns.
+     */
+    customLabel1?: string | null;
+    /**
+     * Label that you assign to a collection to help organize bidding and reporting in Shopping campaigns.
+     */
+    customLabel2?: string | null;
+    /**
+     * Label that you assign to a collection to help organize bidding and reporting in Shopping campaigns.
+     */
+    customLabel3?: string | null;
+    /**
+     * Label that you assign to a collection to help organize bidding and reporting in Shopping campaigns.
+     */
+    customLabel4?: string | null;
+    /**
+     * This identifies one or more products associated with the collection. Used as a lookup to the corresponding product ID in your product feeds. Provide a maximum of 100 featuredProduct (for collections). Provide up to 10 featuredProduct (for Shoppable Images only) with ID and X and Y coordinates. [featured_product attribute](https://support.google.com/merchants/answer/9703736)
+     */
+    featuredProduct?: Schema$CollectionFeaturedProduct[];
+    /**
+     * Your collection's name. [headline attribute](https://support.google.com/merchants/answer/9673580)
+     */
+    headline?: string[] | null;
+    /**
+     * Required. The REST ID of the collection. Content API methods that operate on collections take this as their collectionId parameter. The REST ID for a collection is of the form collectionId. [id attribute](https://support.google.com/merchants/answer/9649290)
+     */
+    id?: string | null;
+    /**
+     * The URL of a collection’s image. [image_link attribute](https://support.google.com/merchants/answer/9703236)
+     */
+    imageLink?: string[] | null;
+    /**
+     * The language of a collection and the language of any featured products linked to the collection. [language attribute](https://support.google.com/merchants/answer/9673781)
+     */
+    language?: string | null;
+    /**
+     * A collection’s landing page. URL directly linking to your collection's page on your website. [link attribute](https://support.google.com/merchants/answer/9673983)
+     */
+    link?: string | null;
+    /**
+     * A collection’s mobile-optimized landing page when you have a different URL for mobile and desktop traffic. [mobile_link attribute](https://support.google.com/merchants/answer/9646123)
+     */
+    mobileLink?: string | null;
+    /**
+     * [product_country attribute](https://support.google.com/merchants/answer/9674155)
+     */
+    productCountry?: string | null;
+  }
+  /**
+   * The message for FeaturedProduct. [FeaturedProduct](https://support.google.com/merchants/answer/9703736)
+   */
+  export interface Schema$CollectionFeaturedProduct {
+    /**
+     * The unique identifier for the product item.
+     */
+    offerId?: string | null;
+    /**
+     * Required. X-coordinate of the product callout on the Shoppable Image.
+     */
+    x?: number | null;
+    /**
+     * Required. Y-coordinate of the product callout on the Shoppable Image.
+     */
+    y?: number | null;
+  }
+  /**
+   * The collectionstatus message.
+   */
+  export interface Schema$CollectionStatus {
+    /**
+     * A list of all issues associated with the collection.
+     */
+    collectionLevelIssuses?: Schema$CollectionStatusItemLevelIssue[];
+    /**
+     * Date on which the collection has been created in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, e.g. "2020-01-02T09:00:00+01:00" or "2020-01-02T09:00:00Z"
+     */
+    creationDate?: string | null;
+    /**
+     * The intended destinations for the collection.
+     */
+    destinationStatuses?: Schema$CollectionStatusDestinationStatus[];
+    /**
+     * Required. The ID of the collection for which status is reported.
+     */
+    id?: string | null;
+    /**
+     * Date on which the collection has been last updated in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format: Date, time, and offset, e.g. "2020-01-02T09:00:00+01:00" or "2020-01-02T09:00:00Z"
+     */
+    lastUpdateDate?: string | null;
+  }
+  /**
+   * Destination status message.
+   */
+  export interface Schema$CollectionStatusDestinationStatus {
+    /**
+     * The name of the destination
+     */
+    destination?: string | null;
+    /**
+     * The status for the specified destination.
+     */
+    status?: string | null;
+  }
+  /**
+   * Issue associated with the collection.
+   */
+  export interface Schema$CollectionStatusItemLevelIssue {
+    /**
+     * The attribute's name, if the issue is caused by a single attribute.
+     */
+    attributeName?: string | null;
+    /**
+     * The error code of the issue.
+     */
+    code?: string | null;
+    /**
+     * A short issue description in English.
+     */
+    description?: string | null;
+    /**
+     * The destination the issue applies to.
+     */
+    destination?: string | null;
+    /**
+     * A detailed issue description in English.
+     */
+    detail?: string | null;
+    /**
+     * The URL of a web page to help with resolving this issue.
+     */
+    documentation?: string | null;
+    /**
+     * Whether the issue can be resolved by the merchant.
+     */
+    resolution?: string | null;
+    /**
+     * How this issue affects the serving of the collection.
+     */
+    servability?: string | null;
   }
   /**
    * Information about CSS domain.
@@ -1332,6 +1554,23 @@ export namespace content_v2_1 {
     language?: string | null;
   }
   /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
    * Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year is 0, the DateTime is considered not to have a specific year. month and day must have valid, non-zero values. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.
    */
   export interface Schema$DateTime {
@@ -1545,6 +1784,19 @@ export namespace content_v2_1 {
      */
     type?: string | null;
   }
+  /**
+   * Map of inapplicability details.
+   */
+  export interface Schema$InapplicabilityDetails {
+    /**
+     * Count of this inapplicable reason code.
+     */
+    inapplicableCount?: string | null;
+    /**
+     * Reason code this rule was not applicable.
+     */
+    inapplicableReason?: string | null;
+  }
   export interface Schema$Installment {
     /**
      * The amount the buyer has to pay per month.
@@ -1751,7 +2003,7 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * The the list of accessible GMB accounts.
+     * The list of accessible GMB accounts.
      */
     gmbAccounts?: Schema$GmbAccounts;
     /**
@@ -1860,6 +2112,41 @@ export namespace content_v2_1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response for listing account return carriers.
+   */
+  export interface Schema$ListAccountReturnCarrierResponse {
+    /**
+     * List of all available account return carriers for the merchant.
+     */
+    accountReturnCarriers?: Schema$AccountReturnCarrier[];
+  }
+  /**
+   * Response message for the ListCollections method.
+   */
+  export interface Schema$ListCollectionsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The collections listed.
+     */
+    resources?: Schema$Collection[];
+  }
+  /**
+   * Response message for the ListCollectionStatuses method.
+   */
+  export interface Schema$ListCollectionStatusesResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The collectionstatuses listed.
+     */
+    resources?: Schema$CollectionStatus[];
+  }
+  /**
    * The response message for the `ListCsses` method
    */
   export interface Schema$ListCssesResponse {
@@ -1886,6 +2173,32 @@ export namespace content_v2_1 {
     regions?: Schema$Region[];
   }
   /**
+   * Response message for the ListRepricingProductReports method.
+   */
+  export interface Schema$ListRepricingProductReportsResponse {
+    /**
+     * A token for retrieving the next page. Its absence means there is no subsequent page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Periodic reports for the given Repricing product.
+     */
+    repricingProductReports?: Schema$RepricingProductReport[];
+  }
+  /**
+   * Response message for the ListRepricingRuleReports method.
+   */
+  export interface Schema$ListRepricingRuleReportsResponse {
+    /**
+     * A token for retrieving the next page. Its absence means there is no subsequent page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Daily reports for the given Repricing rule.
+     */
+    repricingRuleReports?: Schema$RepricingRuleReport[];
+  }
+  /**
    * Response message for the `ListRepricingRules` method.
    */
   export interface Schema$ListRepricingRulesResponse {
@@ -1897,6 +2210,15 @@ export namespace content_v2_1 {
      * The rules from the specified merchant.
      */
     repricingRules?: Schema$RepricingRule[];
+  }
+  /**
+   * Response message for the `ListReturnPolicyOnline` method.
+   */
+  export interface Schema$ListReturnPolicyOnlineResponse {
+    /**
+     * The retrieved return policies.
+     */
+    returnPolicies?: Schema$ReturnPolicyOnline[];
   }
   /**
    * Local inventory resource. For accepted attribute values, see the local product inventory feed specification.
@@ -2110,6 +2432,23 @@ export namespace content_v2_1 {
      */
     reasonCode?: string | null;
   }
+  /**
+   * Performance metrics. Values are only set for metrics requested explicitly in the request's search query.
+   */
+  export interface Schema$Metrics {
+    /**
+     * Number of clicks.
+     */
+    clicks?: string | null;
+    /**
+     * Number of clicks merchant's products receive (clicks) divided by the number of times the products are shown (impressions).
+     */
+    ctr?: number | null;
+    /**
+     * Number of times merchant's products are shown.
+     */
+    impressions?: string | null;
+  }
   export interface Schema$MinimumOrderValueTable {
     storeCodeSetWithMovs?: Schema$MinimumOrderValueTableStoreCodeSetWithMov[];
   }
@@ -2135,6 +2474,15 @@ export namespace content_v2_1 {
      * Tax value, present only for countries where price attribute excludes tax (e.g. US). No tax is referenced as 0 value with the corresponding `currency`.
      */
     taxAmount?: Schema$Price;
+  }
+  /**
+   * Request message for the OnboardProgram method.
+   */
+  export interface Schema$OnboardBuyOnGoogleProgramRequest {
+    /**
+     * The customer service email.
+     */
+    customerServiceEmail?: string | null;
   }
   /**
    * Order. Production access (all methods) requires the order manager role. Sandbox access does not.
@@ -3218,7 +3566,7 @@ export namespace content_v2_1 {
      */
     amount?: Schema$Price;
     /**
-     * If set to true, all shipping costs for the order will be refunded. If this is true, amount should not be provided and will be ignored.
+     * If set to true, all shipping costs for the order will be refunded. If this is true, amount should not be provided and will be ignored. If set to false, submit the amount of the partial shipping refund, excluding the shipping tax. The shipping tax is calculated and handled on Google's side.
      */
     fullRefund?: boolean | null;
   }
@@ -3235,6 +3583,19 @@ export namespace content_v2_1 {
      * The tracking ID for the shipment.
      */
     trackingId?: string | null;
+  }
+  /**
+   * ScheduledDeliveryDetails used to update the scheduled delivery order.
+   */
+  export interface Schema$OrdersCustomBatchRequestEntryUpdateShipmentScheduledDeliveryDetails {
+    /**
+     * The phone number of the carrier fulfilling the delivery. The phone number should be formatted as the international notation in
+     */
+    carrierPhoneNumber?: string | null;
+    /**
+     * The date a shipment is scheduled for delivery, in ISO 8601 format.
+     */
+    scheduledDate?: string | null;
   }
   export interface Schema$OrdersGetByMerchantOrderIdResponse {
     /**
@@ -3491,7 +3852,7 @@ export namespace content_v2_1 {
      */
     productId?: string | null;
     /**
-     * The quantity to return and refund.
+     * The quantity to return and refund. Quantity is required.
      */
     quantity?: number | null;
     /**
@@ -3643,6 +4004,10 @@ export namespace content_v2_1 {
      * Date on which the shipment has been ready for pickup, in ISO 8601 format. Optional and can be provided only if `status` is `ready for pickup`.
      */
     readyPickupDate?: string | null;
+    /**
+     * Delivery details of the shipment if scheduling is needed.
+     */
+    scheduledDeliveryDetails?: Schema$OrdersCustomBatchRequestEntryUpdateShipmentScheduledDeliveryDetails;
     /**
      * The ID of the shipment.
      */
@@ -4368,7 +4733,7 @@ export namespace content_v2_1 {
      */
     gender?: string | null;
     /**
-     * Google's category of the item (see Google product taxonomy).
+     * Google's category of the item (see [Google product taxonomy](https://support.google.com/merchants/answer/1705911)). When querying products, this field will contain the user provided value. There is currently no way to get back the auto assigned google product categories through the API.
      */
     googleProductCategory?: string | null;
     /**
@@ -5171,11 +5536,82 @@ export namespace content_v2_1 {
     end?: string | null;
   }
   /**
+   * Result row returned from the search query.
+   */
+  export interface Schema$ReportRow {
+    /**
+     * Metrics requested by the merchant in the query. Metric values are only set for metrics requested explicitly in the query.
+     */
+    metrics?: Schema$Metrics;
+    /**
+     * Segmentation dimensions requested by the merchant in the query. Dimension values are only set for dimensions requested explicitly in the query.
+     */
+    segments?: Schema$Segments;
+  }
+  /**
+   * Resource that represents a daily Repricing product report. Each report contains stats for a single type of Repricing rule for a single product on a given day. If there are multiple rules of the same type for the product on that day, the report lists all the rules by rule ids, combines the stats, and paginates the results by date. To retrieve the stats of a particular rule, provide the rule_id in the request.
+   */
+  export interface Schema$RepricingProductReport {
+    /**
+     * Total count of Repricer applications. This value captures how many times the rule of this type was applied to this product during this reporting period.
+     */
+    applicationCount?: string | null;
+    /**
+     * Stats specific to buybox winning rules for product report.
+     */
+    buyboxWinningProductStats?: Schema$RepricingProductReportBuyboxWinningProductStats;
+    /**
+     * Date of the stats in this report. The report starts and ends according to the merchant's timezone.
+     */
+    date?: Schema$Date;
+    /**
+     * Maximum displayed price after repriced during this reporting period.
+     */
+    highWatermark?: Schema$PriceAmount;
+    /**
+     * List of all reasons the rule did not apply to the product during the specified reporting period.
+     */
+    inapplicabilityDetails?: Schema$InapplicabilityDetails[];
+    /**
+     * Minimum displayed price after repriced during this reporting period.
+     */
+    lowWatermark?: Schema$PriceAmount;
+    /**
+     * Total unit count of impacted products ordered while the rule was active on the date of the report. This count includes all orders that were started while the rule was active, even if the rule was no longer active when the order was completed.
+     */
+    orderItemCount?: number | null;
+    /**
+     * Ids of the Repricing rule for this report.
+     */
+    ruleIds?: string[] | null;
+    /**
+     * Total GMV generated by impacted products while the rule was active on the date of the report. This value includes all orders that were started while the rule was active, even if the rule was no longer active when the order was completed.
+     */
+    totalGmv?: Schema$PriceAmount;
+    /**
+     * Type of the rule.
+     */
+    type?: string | null;
+  }
+  /**
+   * Stats specific to buybox winning rules for product report.
+   */
+  export interface Schema$RepricingProductReportBuyboxWinningProductStats {
+    /**
+     * Number of times this product won the buybox with these rules during this time period.
+     */
+    buyboxWinsCount?: number | null;
+  }
+  /**
    * Represents a repricing rule. A repricing rule is used by shopping serving to adjust transactable offer prices if conditions are met. Next ID: 24
    */
   export interface Schema$RepricingRule {
     /**
-     * Required. Immutable. CLDR country code (e.g. "US").
+     * The rule definition for TYPE_COGS_BASED. Required when the rule type is TYPE_COGS_BASED.
+     */
+    cogsBasedRule?: Schema$RepricingRuleCostOfGoodsSaleRule;
+    /**
+     * Required. Immutable. [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (e.g. "US").
      */
     countryCode?: string | null;
     /**
@@ -5207,6 +5643,10 @@ export namespace content_v2_1 {
      */
     ruleId?: string | null;
     /**
+     * The rule definition for TYPE_STATS_BASED. Required when the rule type is TYPE_STATS_BASED.
+     */
+    statsBasedRule?: Schema$RepricingRuleStatsBasedRule;
+    /**
      * The title for the rule.
      */
     title?: string | null;
@@ -5214,6 +5654,19 @@ export namespace content_v2_1 {
      * Required. Immutable. The type of the rule.
      */
     type?: string | null;
+  }
+  /**
+   * A repricing rule that changes the sale price based on cost of goods sale.
+   */
+  export interface Schema$RepricingRuleCostOfGoodsSaleRule {
+    /**
+     * The percent change against the COGS. Ex: 20 would mean to set the adjusted price 1.2X of the COGS data.
+     */
+    percentageDelta?: number | null;
+    /**
+     * The price delta against the COGS. E.g. 2 means $2 more of the COGS.
+     */
+    priceDelta?: string | null;
   }
   export interface Schema$RepricingRuleEffectiveTime {
     /**
@@ -5254,6 +5707,10 @@ export namespace content_v2_1 {
      * Filter by the offer id.
      */
     offerIdMatcher?: Schema$RepricingRuleEligibleOfferMatcherStringMatcher;
+    /**
+     * When true, the rule won't be applied to offers with active promotions.
+     */
+    skipWhenOnPromotion?: boolean | null;
   }
   /**
    * Matcher by string attributes.
@@ -5263,6 +5720,56 @@ export namespace content_v2_1 {
      * String attributes, as long as such attribute of an offer is one of the string attribute values, the offer is considered as passing the matcher. The string matcher checks an offer for inclusivity in the string attributes, not equality. Only literal string matching is supported, no regex.
      */
     strAttributes?: string[] | null;
+  }
+  /**
+   * Resource that represents a daily Repricing rule report. Next ID: 11
+   */
+  export interface Schema$RepricingRuleReport {
+    /**
+     * Stats specific to buybox winning rules for rule report.
+     */
+    buyboxWinningRuleStats?: Schema$RepricingRuleReportBuyboxWinningRuleStats;
+    /**
+     * Date of the stats in this report. The report starts and ends according to the merchant's timezone.
+     */
+    date?: Schema$Date;
+    /**
+     * List of product ids that are impacted by this rule during this reporting period. Out of stock products and products not searched for by customers are examples of non-impacted products.
+     */
+    impactedProducts?: string[] | null;
+    /**
+     * List of all reasons the rule did not apply to the inapplicable products during the specified reporting period.
+     */
+    inapplicabilityDetails?: Schema$InapplicabilityDetails[];
+    /**
+     * List of product ids that are inapplicable to this rule during this reporting period. To get the inapplicable reason for a specific product, see RepricingProductReport.
+     */
+    inapplicableProducts?: string[] | null;
+    /**
+     * Total unit count of impacted products ordered while the rule was active on the date of the report. This count includes all orders that were started while the rule was active, even if the rule was no longer active when the order was completed.
+     */
+    orderItemCount?: number | null;
+    /**
+     * Id of the Repricing rule for this report.
+     */
+    ruleId?: string | null;
+    /**
+     * Total GMV generated by impacted products while the rule was active on the date of the report. This value includes all orders that were started while the rule was active, even if the rule was no longer active when the order was completed.
+     */
+    totalGmv?: Schema$PriceAmount;
+    /**
+     * Type of the rule.
+     */
+    type?: string | null;
+  }
+  /**
+   * Stats specific to buybox winning rules for rule report.
+   */
+  export interface Schema$RepricingRuleReportBuyboxWinningRuleStats {
+    /**
+     * Number of unique products that won the buybox with this rule during this period of time.
+     */
+    buyboxWonProductCount?: number | null;
   }
   /**
    * Definition of a rule restriction. At least one of the following needs to be true: (1) use_auto_pricing_min_price is true (2) floor.price_delta exists (3) floor.percentage_delta exists If floor.price_delta and floor.percentage_delta are both set on a rule, the highest value will be chosen by the Repricer. In other words, for a product with a price of $50, if the `floor.percentage_delta` is "-10" and the floor.price_delta is "-12", the offer price will only be lowered $5 (10% lower than the original offer price).
@@ -5287,6 +5794,19 @@ export namespace content_v2_1 {
     percentageDelta?: number | null;
     /**
      * The price micros relative to the offer selling price. This field is signed. It must be negative in floor. For example, if an offer is selling at $10 and this field is -$2 in floor, the repricing rule only applies if the calculated new price is \>= $8.
+     */
+    priceDelta?: string | null;
+  }
+  /**
+   * Definition of stats based rule.
+   */
+  export interface Schema$RepricingRuleStatsBasedRule {
+    /**
+     * The percent change against the price target. Valid from 0 to 100 inclusively.
+     */
+    percentageDelta?: number | null;
+    /**
+     * The price delta against the above price target. A positive value means the price should be adjusted to be above statistical measure, and a negative value means below. Currency code must not be included.
      */
     priceDelta?: string | null;
   }
@@ -5445,6 +5965,10 @@ export namespace content_v2_1 {
      */
     returnPolicyId?: string | null;
     /**
+     * The return shipping fee that will apply to non free return reasons.
+     */
+    returnShippingFee?: Schema$Price;
+    /**
      * An optional list of seasonal overrides.
      */
     seasonalOverrides?: Schema$ReturnPolicySeasonalOverride[];
@@ -5512,6 +6036,107 @@ export namespace content_v2_1 {
     kind?: string | null;
     resources?: Schema$ReturnPolicy[];
   }
+  /**
+   * Return policy online object. This is currently used to represent return policies for ads and free listings programs.
+   */
+  export interface Schema$ReturnPolicyOnline {
+    /**
+     * The countries of sale where the return policy is applicable. The values must be a valid 2 letter ISO 3166 code, e.g. "US".
+     */
+    countries?: string[] | null;
+    /**
+     * The item conditions that are accepted for returns. This is required to not be empty unless the type of return policy is noReturns.
+     */
+    itemConditions?: string[] | null;
+    /**
+     * The unique user-defined label of the return policy. The same label cannot be used in different return policies for the same country. Policies with the label 'default' will apply to all products, unless a product specifies a return_policy_label attribute.
+     */
+    label?: string | null;
+    /**
+     * The name of the policy as shown in Merchant Center.
+     */
+    name?: string | null;
+    /**
+     * The return policy.
+     */
+    policy?: Schema$ReturnPolicyOnlinePolicy;
+    /**
+     * The restocking fee that applies to all return reason categories. This would be treated as a free restocking fee if the value is not set.
+     */
+    restockingFee?: Schema$ReturnPolicyOnlineRestockingFee;
+    /**
+     * The return methods of how customers can return an item. This value is required to not be empty unless the type of return policy is noReturns.
+     */
+    returnMethods?: string[] | null;
+    /**
+     * Output only. Return policy ID generated by Google.
+     */
+    returnPolicyId?: string | null;
+    /**
+     * The return policy uri. This can used by Google to do a sanity check for the policy.
+     */
+    returnPolicyUri?: string | null;
+    /**
+     * The return reason category information. This required to not be empty unless the type of return policy is noReturns.
+     */
+    returnReasonCategoryInfo?: Schema$ReturnPolicyOnlineReturnReasonCategoryInfo[];
+  }
+  /**
+   * The available policies.
+   */
+  export interface Schema$ReturnPolicyOnlinePolicy {
+    /**
+     * The number of days items can be returned after delivery, where one day is defined to be 24 hours after the delivery timestamp. Required for `numberOfDaysAfterDelivery` returns.
+     */
+    days?: string | null;
+    /**
+     * Policy type.
+     */
+    type?: string | null;
+  }
+  /**
+   * The restocking fee. This can either be a fixed fee or a micro percent.
+   */
+  export interface Schema$ReturnPolicyOnlineRestockingFee {
+    /**
+     * Fixed restocking fee.
+     */
+    fixedFee?: Schema$PriceAmount;
+    /**
+     * Percent of total price in micros. 15,000,000 means 15% of the total price would be charged.
+     */
+    microPercent?: number | null;
+  }
+  /**
+   * The return reason category info wrapper.
+   */
+  export interface Schema$ReturnPolicyOnlineReturnReasonCategoryInfo {
+    /**
+     * The corresponding return label source.
+     */
+    returnLabelSource?: string | null;
+    /**
+     * The return reason category.
+     */
+    returnReasonCategory?: string | null;
+    /**
+     * The corresponding return shipping fee. This is only applicable when returnLabelSource is not the customer's responsibility.
+     */
+    returnShippingFee?: Schema$ReturnPolicyOnlineReturnShippingFee;
+  }
+  /**
+   * The return shipping fee. This can either be a fixed fee or a boolean to indicate that the customer pays the actual shipping cost.
+   */
+  export interface Schema$ReturnPolicyOnlineReturnShippingFee {
+    /**
+     * Fixed return shipping fee amount. This value is only applicable when type is FIXED. We will treat the return shipping fee as free if type is FIXED and this value is not set.
+     */
+    fixedFee?: Schema$PriceAmount;
+    /**
+     * Type of return shipping fee.
+     */
+    type?: string | null;
+  }
   export interface Schema$ReturnPolicyPolicy {
     /**
      * Required. Last day for returning the items. In ISO 8601 format. When specifying the return window like this, set the policy type to "lastReturnDate". Use this for seasonal overrides only.
@@ -5576,7 +6201,7 @@ export namespace content_v2_1 {
      */
     deliveryDate?: string | null;
     /**
-     * Type of the return method. Acceptable values are: - "`byMail`" - "`contactCustomerSupport`" - "`returnless`"
+     * Type of the return method. Acceptable values are: - "`byMail`" - "`contactCustomerSupport`" - "`returnless`" - "`inStore`"
      */
     returnMethodType?: string | null;
     /**
@@ -5601,6 +6226,53 @@ export namespace content_v2_1 {
      * The list of cells that constitute the row. Must have the same length as `columnHeaders` for two-dimensional tables, a length of 1 for one-dimensional tables. Required.
      */
     cells?: Schema$Value[];
+  }
+  /**
+   * Request message for the ReportService.Search method.
+   */
+  export interface Schema$SearchRequest {
+    /**
+     * Number of ReportRows to retrieve in a single page. Defaults to the maximum of 1000. Values above 1000 are coerced to 1000.
+     */
+    pageSize?: number | null;
+    /**
+     * Token of the page to retrieve. If not specified, the first page of results is returned. In order to request the next page of results, the value obtained from `next_page_token` in the previous response should be used.
+     */
+    pageToken?: string | null;
+    /**
+     * Required. Query that defines performance metrics to retrieve and dimensions according to which the metrics are to be segmented.
+     */
+    query?: string | null;
+  }
+  /**
+   * Response message for the ReportService.Search method.
+   */
+  export interface Schema$SearchResponse {
+    /**
+     * Token which can be sent as `page_token` to retrieve the next page. If omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Rows that matched the search query.
+     */
+    results?: Schema$ReportRow[];
+  }
+  /**
+   * Dimensions according to which metrics are segmented in the response. Values of product dimensions, e.g., offer id, reflect the state of a product at the time of the corresponding event, e.g., impression or order. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for dimensions requested explicitly in the request's search query.
+   */
+  export interface Schema$Segments {
+    /**
+     * Date in the merchant timezone to which metrics apply.
+     */
+    date?: Schema$Date;
+    /**
+     * Merchant-provided id of the product.
+     */
+    offerId?: string | null;
+    /**
+     * Program to which metrics apply, e.g., Free Product Listing.
+     */
+    program?: string | null;
   }
   export interface Schema$Service {
     /**
@@ -5720,7 +6392,7 @@ export namespace content_v2_1 {
   export interface Schema$SettlementTransactionAmount {
     commission?: Schema$SettlementTransactionAmountCommission;
     /**
-     * The description of the event. Acceptable values are: - "`taxWithhold`" - "`principal`" - "`principalAdjustment`" - "`shippingFee`" - "`merchantRemittedSalesTax`" - "`googleRemittedSalesTax`" - "`merchantCoupon`" - "`merchantCouponTax`" - "`merchantRemittedDisposalTax`" - "`googleRemittedDisposalTax`" - "`merchantRemittedRedemptionFee`" - "`googleRemittedRedemptionFee`" - "`eeeEcoFee`" - "`furnitureEcoFee`" - "`copyPrivateFee`" - "`eeeEcoFeeCommission`" - "`furnitureEcoFeeCommission`" - "`copyPrivateFeeCommission`" - "`principalRefund`" - "`principalRefundTax`" - "`itemCommission`" - "`adjustmentCommission`" - "`shippingFeeCommission`" - "`commissionRefund`" - "`damaged`" - "`damagedOrDefectiveItem`" - "`expiredItem`" - "`faultyItem`" - "`incorrectItemReceived`" - "`itemMissing`" - "`qualityNotExpected`" - "`receivedTooLate`" - "`storePackageMissing`" - "`transitPackageMissing`" - "`unsuccessfulDeliveryUndeliverable`" - "`wrongChargeInStore`" - "`wrongItem`" - "`returns`" - "`undeliverable`" - "`refundFromMerchant`" - "`returnLabelShippingFee`"
+     * The description of the event. Acceptable values are: - "`taxWithhold`" - "`principal`" - "`principalAdjustment`" - "`shippingFee`" - "`merchantRemittedSalesTax`" - "`googleRemittedSalesTax`" - "`merchantCoupon`" - "`merchantCouponTax`" - "`merchantRemittedDisposalTax`" - "`googleRemittedDisposalTax`" - "`merchantRemittedRedemptionFee`" - "`googleRemittedRedemptionFee`" - "`eeeEcoFee`" - "`furnitureEcoFee`" - "`copyPrivateFee`" - "`eeeEcoFeeCommission`" - "`furnitureEcoFeeCommission`" - "`copyPrivateFeeCommission`" - "`principalRefund`" - "`principalRefundTax`" - "`itemCommission`" - "`adjustmentCommission`" - "`shippingFeeCommission`" - "`commissionRefund`" - "`damaged`" - "`damagedOrDefectiveItem`" - "`expiredItem`" - "`faultyItem`" - "`incorrectItemReceived`" - "`itemMissing`" - "`qualityNotExpected`" - "`receivedTooLate`" - "`storePackageMissing`" - "`transitPackageMissing`" - "`unsuccessfulDeliveryUndeliverable`" - "`wrongChargeInStore`" - "`wrongItem`" - "`returns`" - "`undeliverable`" - "`refundFromMerchant`" - "`returnLabelShippingFee`" - "`pspFee`"
      */
     description?: string | null;
     /**
@@ -5785,7 +6457,7 @@ export namespace content_v2_1 {
      */
     postDate?: string | null;
     /**
-     * The type of the transaction that occurred. Acceptable values are: - "`order`" - "`reversal`" - "`orderRefund`" - "`reversalRefund`" - "`issueRelatedRefundAndReplacement`" - "`returnLabelShippingFeeTransaction`" - "`reversalIssueRelatedRefundAndReplacement`" - "`reversalReturnLabelShippingFeeTransaction`"
+     * The type of the transaction that occurred. Acceptable values are: - "`order`" - "`reversal`" - "`orderRefund`" - "`reversalRefund`" - "`issueRelatedRefundAndReplacement`" - "`returnLabelShippingFeeTransaction`" - "`reversalIssueRelatedRefundAndReplacement`" - "`reversalReturnLabelShippingFeeTransaction`" - "`lumpSumCorrectionTransaction`"
      */
     type?: string | null;
   }
@@ -6063,6 +6735,10 @@ export namespace content_v2_1 {
      */
     address?: Schema$TestOrderAddress;
     /**
+     * Whether the order is scheduled delivery order.
+     */
+    isScheduledDelivery?: boolean | null;
+    /**
      * The phone number of the person receiving the delivery.
      */
     phoneNumber?: string | null;
@@ -6280,10 +6956,14 @@ export namespace content_v2_1 {
 
   export class Resource$Accounts {
     context: APIRequestContext;
+    credentials: Resource$Accounts$Credentials;
     labels: Resource$Accounts$Labels;
+    returncarrier: Resource$Accounts$Returncarrier;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.credentials = new Resource$Accounts$Credentials(this.context);
       this.labels = new Resource$Accounts$Labels(this.context);
+      this.returncarrier = new Resource$Accounts$Returncarrier(this.context);
     }
 
     /**
@@ -6872,6 +7552,7 @@ export namespace content_v2_1 {
      *   // {
      *   //   "adsLinks": [],
      *   //   "adultContent": false,
+     *   //   "automaticLabelIds": [],
      *   //   "businessInformation": {},
      *   //   "cssId": "my_cssId",
      *   //   "googleMyBusinessLink": {},
@@ -7012,6 +7693,7 @@ export namespace content_v2_1 {
      *       // {
      *       //   "adsLinks": [],
      *       //   "adultContent": false,
+     *       //   "automaticLabelIds": [],
      *       //   "businessInformation": {},
      *       //   "cssId": "my_cssId",
      *       //   "googleMyBusinessLink": {},
@@ -7032,6 +7714,7 @@ export namespace content_v2_1 {
      *   // {
      *   //   "adsLinks": [],
      *   //   "adultContent": false,
+     *   //   "automaticLabelIds": [],
      *   //   "businessInformation": {},
      *   //   "cssId": "my_cssId",
      *   //   "googleMyBusinessLink": {},
@@ -7610,6 +8293,7 @@ export namespace content_v2_1 {
      *       // {
      *       //   "adsLinks": [],
      *       //   "adultContent": false,
+     *       //   "automaticLabelIds": [],
      *       //   "businessInformation": {},
      *       //   "cssId": "my_cssId",
      *       //   "googleMyBusinessLink": {},
@@ -7630,6 +8314,7 @@ export namespace content_v2_1 {
      *   // {
      *   //   "adsLinks": [],
      *   //   "adultContent": false,
+     *   //   "automaticLabelIds": [],
      *   //   "businessInformation": {},
      *   //   "cssId": "my_cssId",
      *   //   "googleMyBusinessLink": {},
@@ -8035,6 +8720,170 @@ export namespace content_v2_1 {
     requestBody?: Schema$AccountsUpdateLabelsRequest;
   }
 
+  export class Resource$Accounts$Credentials {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Uploads credentials for the Merchant Center account. If credentials already exist for this Merchant Center account and purpose, this method updates them.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.credentials.create({
+     *     // Required. The merchant id of the account these credentials belong to.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessToken": "my_accessToken",
+     *       //   "expiresIn": "my_expiresIn",
+     *       //   "purpose": "my_purpose"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessToken": "my_accessToken",
+     *   //   "expiresIn": "my_expiresIn",
+     *   //   "purpose": "my_purpose"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Accounts$Credentials$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Accounts$Credentials$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountCredentials>;
+    create(
+      params: Params$Resource$Accounts$Credentials$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Credentials$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$AccountCredentials>,
+      callback: BodyResponseCallback<Schema$AccountCredentials>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Credentials$Create,
+      callback: BodyResponseCallback<Schema$AccountCredentials>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AccountCredentials>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Credentials$Create
+        | BodyResponseCallback<Schema$AccountCredentials>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountCredentials>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountCredentials>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccountCredentials>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Credentials$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Credentials$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/accounts/{accountId}/credentials'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['accountId'],
+        pathParams: ['accountId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccountCredentials>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccountCredentials>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Credentials$Create
+    extends StandardParameters {
+    /**
+     * Required. The merchant id of the account these credentials belong to.
+     */
+    accountId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AccountCredentials;
+  }
+
   export class Resource$Accounts$Labels {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -8078,6 +8927,7 @@ export namespace content_v2_1 {
      *       //   "accountId": "my_accountId",
      *       //   "description": "my_description",
      *       //   "labelId": "my_labelId",
+     *       //   "labelType": "my_labelType",
      *       //   "name": "my_name"
      *       // }
      *     },
@@ -8089,6 +8939,7 @@ export namespace content_v2_1 {
      *   //   "accountId": "my_accountId",
      *   //   "description": "my_description",
      *   //   "labelId": "my_labelId",
+     *   //   "labelType": "my_labelType",
      *   //   "name": "my_name"
      *   // }
      * }
@@ -8488,6 +9339,7 @@ export namespace content_v2_1 {
      *       //   "accountId": "my_accountId",
      *       //   "description": "my_description",
      *       //   "labelId": "my_labelId",
+     *       //   "labelType": "my_labelType",
      *       //   "name": "my_name"
      *       // }
      *     },
@@ -8499,6 +9351,7 @@ export namespace content_v2_1 {
      *   //   "accountId": "my_accountId",
      *   //   "description": "my_description",
      *   //   "labelId": "my_labelId",
+     *   //   "labelType": "my_labelType",
      *   //   "name": "my_name"
      *   // }
      * }
@@ -8648,6 +9501,622 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$AccountLabel;
+  }
+
+  export class Resource$Accounts$Returncarrier {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Links return carrier to a merchant account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.returncarrier.create({
+     *     // Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
+     *     accountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "carrierAccountId": "my_carrierAccountId",
+     *       //   "carrierAccountName": "my_carrierAccountName",
+     *       //   "carrierAccountNumber": "my_carrierAccountNumber",
+     *       //   "carrierCode": "my_carrierCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "carrierAccountId": "my_carrierAccountId",
+     *   //   "carrierAccountName": "my_carrierAccountName",
+     *   //   "carrierAccountNumber": "my_carrierAccountNumber",
+     *   //   "carrierCode": "my_carrierCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Accounts$Returncarrier$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Accounts$Returncarrier$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountReturnCarrier>;
+    create(
+      params: Params$Resource$Accounts$Returncarrier$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Returncarrier$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountReturnCarrier>,
+      callback: BodyResponseCallback<Schema$AccountReturnCarrier>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Returncarrier$Create,
+      callback: BodyResponseCallback<Schema$AccountReturnCarrier>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$AccountReturnCarrier>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Returncarrier$Create
+        | BodyResponseCallback<Schema$AccountReturnCarrier>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountReturnCarrier>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountReturnCarrier>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccountReturnCarrier>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Returncarrier$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Returncarrier$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/accounts/{accountId}/returncarrier'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['accountId'],
+        pathParams: ['accountId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccountReturnCarrier>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccountReturnCarrier>(parameters);
+      }
+    }
+
+    /**
+     * Delete a return carrier in the merchant account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.returncarrier.delete({
+     *     // Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
+     *     accountId: 'placeholder-value',
+     *     // Required. The Google-provided unique carrier ID, used to update the resource.
+     *     carrierAccountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Accounts$Returncarrier$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Accounts$Returncarrier$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Accounts$Returncarrier$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Returncarrier$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Returncarrier$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Returncarrier$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Returncarrier$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Returncarrier$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/accounts/{accountId}/returncarrier/{carrierAccountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['accountId', 'carrierAccountId'],
+        pathParams: ['accountId', 'carrierAccountId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Lists available return carriers in the merchant account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.returncarrier.list({
+     *     // Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
+     *     accountId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountReturnCarriers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Returncarrier$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Returncarrier$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAccountReturnCarrierResponse>;
+    list(
+      params: Params$Resource$Accounts$Returncarrier$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Returncarrier$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListAccountReturnCarrierResponse>,
+      callback: BodyResponseCallback<Schema$ListAccountReturnCarrierResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Returncarrier$List,
+      callback: BodyResponseCallback<Schema$ListAccountReturnCarrierResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListAccountReturnCarrierResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Returncarrier$List
+        | BodyResponseCallback<Schema$ListAccountReturnCarrierResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAccountReturnCarrierResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAccountReturnCarrierResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAccountReturnCarrierResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Returncarrier$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Returncarrier$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/accounts/{accountId}/returncarrier'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['accountId'],
+        pathParams: ['accountId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAccountReturnCarrierResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAccountReturnCarrierResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a return carrier in the merchant account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.accounts.returncarrier.patch({
+     *     // Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
+     *     accountId: 'placeholder-value',
+     *     // Required. The Google-provided unique carrier ID, used to update the resource.
+     *     carrierAccountId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "carrierAccountId": "my_carrierAccountId",
+     *       //   "carrierAccountName": "my_carrierAccountName",
+     *       //   "carrierAccountNumber": "my_carrierAccountNumber",
+     *       //   "carrierCode": "my_carrierCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "carrierAccountId": "my_carrierAccountId",
+     *   //   "carrierAccountName": "my_carrierAccountName",
+     *   //   "carrierAccountNumber": "my_carrierAccountNumber",
+     *   //   "carrierCode": "my_carrierCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Accounts$Returncarrier$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Accounts$Returncarrier$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AccountReturnCarrier>;
+    patch(
+      params: Params$Resource$Accounts$Returncarrier$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Returncarrier$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AccountReturnCarrier>,
+      callback: BodyResponseCallback<Schema$AccountReturnCarrier>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Returncarrier$Patch,
+      callback: BodyResponseCallback<Schema$AccountReturnCarrier>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$AccountReturnCarrier>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Returncarrier$Patch
+        | BodyResponseCallback<Schema$AccountReturnCarrier>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AccountReturnCarrier>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AccountReturnCarrier>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AccountReturnCarrier>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Returncarrier$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Returncarrier$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/accounts/{accountId}/returncarrier/{carrierAccountId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['accountId', 'carrierAccountId'],
+        pathParams: ['accountId', 'carrierAccountId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AccountReturnCarrier>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AccountReturnCarrier>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Returncarrier$Create
+    extends StandardParameters {
+    /**
+     * Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
+     */
+    accountId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AccountReturnCarrier;
+  }
+  export interface Params$Resource$Accounts$Returncarrier$Delete
+    extends StandardParameters {
+    /**
+     * Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
+     */
+    accountId?: string;
+    /**
+     * Required. The Google-provided unique carrier ID, used to update the resource.
+     */
+    carrierAccountId?: string;
+  }
+  export interface Params$Resource$Accounts$Returncarrier$List
+    extends StandardParameters {
+    /**
+     * Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
+     */
+    accountId?: string;
+  }
+  export interface Params$Resource$Accounts$Returncarrier$Patch
+    extends StandardParameters {
+    /**
+     * Required. The Merchant Center Account Id under which the Return Carrier is to be linked.
+     */
+    accountId?: string;
+    /**
+     * Required. The Google-provided unique carrier ID, used to update the resource.
+     */
+    carrierAccountId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AccountReturnCarrier;
   }
 
   export class Resource$Accountstatuses {
@@ -9738,6 +11207,1248 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$AccountTax;
+  }
+
+  export class Resource$Buyongoogleprograms {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Retrieves a status of BoG program for your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.buyongoogleprograms.get({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *     // The Program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     *     regionCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customerServicePendingEmail": "my_customerServicePendingEmail",
+     *   //   "customerServiceVerifiedEmail": "my_customerServiceVerifiedEmail",
+     *   //   "participationStage": "my_participationStage"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Buyongoogleprograms$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Buyongoogleprograms$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BuyOnGoogleProgramStatus>;
+    get(
+      params: Params$Resource$Buyongoogleprograms$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Buyongoogleprograms$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BuyOnGoogleProgramStatus>,
+      callback: BodyResponseCallback<Schema$BuyOnGoogleProgramStatus>
+    ): void;
+    get(
+      params: Params$Resource$Buyongoogleprograms$Get,
+      callback: BodyResponseCallback<Schema$BuyOnGoogleProgramStatus>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$BuyOnGoogleProgramStatus>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Buyongoogleprograms$Get
+        | BodyResponseCallback<Schema$BuyOnGoogleProgramStatus>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BuyOnGoogleProgramStatus>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BuyOnGoogleProgramStatus>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BuyOnGoogleProgramStatus>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyongoogleprograms$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyongoogleprograms$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/buyongoogleprograms/{regionCode}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'regionCode'],
+        pathParams: ['merchantId', 'regionCode'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BuyOnGoogleProgramStatus>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BuyOnGoogleProgramStatus>(parameters);
+      }
+    }
+
+    /**
+     * Onboards BoG in your Merchant Center account. By using this method, you agree to the [Terms of Service](https://merchants.google.com/mc/termsofservice/transactions/US/latest). Calling this method is only possible if the authenticated account is the same as the merchant id in the request. Calling this method multiple times will only accept Terms of Service if the latest version is not currently signed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.buyongoogleprograms.onboard({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *     // The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     *     regionCode: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customerServiceEmail": "my_customerServiceEmail"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    onboard(
+      params: Params$Resource$Buyongoogleprograms$Onboard,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    onboard(
+      params?: Params$Resource$Buyongoogleprograms$Onboard,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    onboard(
+      params: Params$Resource$Buyongoogleprograms$Onboard,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    onboard(
+      params: Params$Resource$Buyongoogleprograms$Onboard,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    onboard(
+      params: Params$Resource$Buyongoogleprograms$Onboard,
+      callback: BodyResponseCallback<void>
+    ): void;
+    onboard(callback: BodyResponseCallback<void>): void;
+    onboard(
+      paramsOrCallback?:
+        | Params$Resource$Buyongoogleprograms$Onboard
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyongoogleprograms$Onboard;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyongoogleprograms$Onboard;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/buyongoogleprograms/{regionCode}/onboard'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'regionCode'],
+        pathParams: ['merchantId', 'regionCode'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Buyongoogleprograms$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+    /**
+     * The Program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     */
+    regionCode?: string;
+  }
+  export interface Params$Resource$Buyongoogleprograms$Onboard
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+    /**
+     * The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     */
+    regionCode?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OnboardBuyOnGoogleProgramRequest;
+  }
+
+  export class Resource$Collections {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Uploads a collection to your Merchant Center account. If a collection with the same collectionId already exists, this method updates that entry. In each update, the collection is completely replaced by the fields in the body of the update request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.collections.create({
+     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customLabel0": "my_customLabel0",
+     *       //   "customLabel1": "my_customLabel1",
+     *       //   "customLabel2": "my_customLabel2",
+     *       //   "customLabel3": "my_customLabel3",
+     *       //   "customLabel4": "my_customLabel4",
+     *       //   "featuredProduct": [],
+     *       //   "headline": [],
+     *       //   "id": "my_id",
+     *       //   "imageLink": [],
+     *       //   "language": "my_language",
+     *       //   "link": "my_link",
+     *       //   "mobileLink": "my_mobileLink",
+     *       //   "productCountry": "my_productCountry"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customLabel0": "my_customLabel0",
+     *   //   "customLabel1": "my_customLabel1",
+     *   //   "customLabel2": "my_customLabel2",
+     *   //   "customLabel3": "my_customLabel3",
+     *   //   "customLabel4": "my_customLabel4",
+     *   //   "featuredProduct": [],
+     *   //   "headline": [],
+     *   //   "id": "my_id",
+     *   //   "imageLink": [],
+     *   //   "language": "my_language",
+     *   //   "link": "my_link",
+     *   //   "mobileLink": "my_mobileLink",
+     *   //   "productCountry": "my_productCountry"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Collections$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Collections$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Collection>;
+    create(
+      params: Params$Resource$Collections$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Collections$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Collection>,
+      callback: BodyResponseCallback<Schema$Collection>
+    ): void;
+    create(
+      params: Params$Resource$Collections$Create,
+      callback: BodyResponseCallback<Schema$Collection>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Collection>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Collections$Create
+        | BodyResponseCallback<Schema$Collection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Collection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Collection>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Collection> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Collections$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Collections$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/collections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Collection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Collection>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a collection from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.collections.delete({
+     *     // Required. The collectionId of the collection. CollectionId is the same as the REST ID of the collection.
+     *     collectionId: 'placeholder-value',
+     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Collections$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Collections$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Collections$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Collections$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Collections$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Collections$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Collections$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Collections$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/collections/{collectionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'collectionId'],
+        pathParams: ['collectionId', 'merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a collection from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.collections.get({
+     *     // Required. The REST ID of the collection.
+     *     collectionId: 'placeholder-value',
+     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customLabel0": "my_customLabel0",
+     *   //   "customLabel1": "my_customLabel1",
+     *   //   "customLabel2": "my_customLabel2",
+     *   //   "customLabel3": "my_customLabel3",
+     *   //   "customLabel4": "my_customLabel4",
+     *   //   "featuredProduct": [],
+     *   //   "headline": [],
+     *   //   "id": "my_id",
+     *   //   "imageLink": [],
+     *   //   "language": "my_language",
+     *   //   "link": "my_link",
+     *   //   "mobileLink": "my_mobileLink",
+     *   //   "productCountry": "my_productCountry"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Collections$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Collections$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Collection>;
+    get(
+      params: Params$Resource$Collections$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Collections$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Collection>,
+      callback: BodyResponseCallback<Schema$Collection>
+    ): void;
+    get(
+      params: Params$Resource$Collections$Get,
+      callback: BodyResponseCallback<Schema$Collection>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Collection>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Collections$Get
+        | BodyResponseCallback<Schema$Collection>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Collection>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Collection>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Collection> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Collections$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Collections$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/collections/{collectionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'collectionId'],
+        pathParams: ['collectionId', 'merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Collection>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Collection>(parameters);
+      }
+    }
+
+    /**
+     * Lists the collections in your Merchant Center account. The response might contain fewer items than specified by page_size. Rely on next_page_token to determine if there are more items to be requested.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.collections.list({
+     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The maximum number of collections to return in the response, used for paging. Defaults to 50; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Collections$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Collections$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCollectionsResponse>;
+    list(
+      params: Params$Resource$Collections$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Collections$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCollectionsResponse>,
+      callback: BodyResponseCallback<Schema$ListCollectionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Collections$List,
+      callback: BodyResponseCallback<Schema$ListCollectionsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListCollectionsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Collections$List
+        | BodyResponseCallback<Schema$ListCollectionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCollectionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCollectionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCollectionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Collections$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Collections$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/collections').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCollectionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCollectionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Collections$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Collection;
+  }
+  export interface Params$Resource$Collections$Delete
+    extends StandardParameters {
+    /**
+     * Required. The collectionId of the collection. CollectionId is the same as the REST ID of the collection.
+     */
+    collectionId?: string;
+    /**
+     * Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     */
+    merchantId?: string;
+  }
+  export interface Params$Resource$Collections$Get extends StandardParameters {
+    /**
+     * Required. The REST ID of the collection.
+     */
+    collectionId?: string;
+    /**
+     * Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     */
+    merchantId?: string;
+  }
+  export interface Params$Resource$Collections$List extends StandardParameters {
+    /**
+     * Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The maximum number of collections to return in the response, used for paging. Defaults to 50; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Collectionstatuses {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the status of a collection from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.collectionstatuses.get({
+     *     // Required. The collectionId of the collection. CollectionId is the same as the REST ID of the collection.
+     *     collectionId: 'placeholder-value',
+     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "collectionLevelIssuses": [],
+     *   //   "creationDate": "my_creationDate",
+     *   //   "destinationStatuses": [],
+     *   //   "id": "my_id",
+     *   //   "lastUpdateDate": "my_lastUpdateDate"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Collectionstatuses$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Collectionstatuses$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CollectionStatus>;
+    get(
+      params: Params$Resource$Collectionstatuses$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Collectionstatuses$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$CollectionStatus>,
+      callback: BodyResponseCallback<Schema$CollectionStatus>
+    ): void;
+    get(
+      params: Params$Resource$Collectionstatuses$Get,
+      callback: BodyResponseCallback<Schema$CollectionStatus>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$CollectionStatus>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Collectionstatuses$Get
+        | BodyResponseCallback<Schema$CollectionStatus>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CollectionStatus>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CollectionStatus>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CollectionStatus> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Collectionstatuses$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Collectionstatuses$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/collectionstatuses/{collectionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'collectionId'],
+        pathParams: ['collectionId', 'merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CollectionStatus>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CollectionStatus>(parameters);
+      }
+    }
+
+    /**
+     * Lists the statuses of the collections in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.collectionstatuses.list({
+     *     // Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The maximum number of collection statuses to return in the response, used for paging. Defaults to 50; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Collectionstatuses$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Collectionstatuses$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCollectionStatusesResponse>;
+    list(
+      params: Params$Resource$Collectionstatuses$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Collectionstatuses$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCollectionStatusesResponse>,
+      callback: BodyResponseCallback<Schema$ListCollectionStatusesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Collectionstatuses$List,
+      callback: BodyResponseCallback<Schema$ListCollectionStatusesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListCollectionStatusesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Collectionstatuses$List
+        | BodyResponseCallback<Schema$ListCollectionStatusesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCollectionStatusesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCollectionStatusesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCollectionStatusesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Collectionstatuses$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Collectionstatuses$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/collectionstatuses'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCollectionStatusesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCollectionStatusesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Collectionstatuses$Get
+    extends StandardParameters {
+    /**
+     * Required. The collectionId of the collection. CollectionId is the same as the REST ID of the collection.
+     */
+    collectionId?: string;
+    /**
+     * Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     */
+    merchantId?: string;
+  }
+  export interface Params$Resource$Collectionstatuses$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account that contains the collection. This account cannot be a multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The maximum number of collection statuses to return in the response, used for paging. Defaults to 50; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Csses {
@@ -18296,6 +21007,7 @@ export namespace content_v2_1 {
      *       //   "lastPickupDate": "my_lastPickupDate",
      *       //   "operationId": "my_operationId",
      *       //   "readyPickupDate": "my_readyPickupDate",
+     *       //   "scheduledDeliveryDetails": {},
      *       //   "shipmentId": "my_shipmentId",
      *       //   "status": "my_status",
      *       //   "trackingId": "my_trackingId",
@@ -21000,8 +23712,12 @@ export namespace content_v2_1 {
 
   export class Resource$Productstatuses {
     context: APIRequestContext;
+    repricingreports: Resource$Productstatuses$Repricingreports;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.repricingreports = new Resource$Productstatuses$Repricingreports(
+        this.context
+      );
     }
 
     /**
@@ -21475,6 +24191,197 @@ export namespace content_v2_1 {
      * The token returned by the previous request.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Productstatuses$Repricingreports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the metrics report for a given Repricing product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.productstatuses.repricingreports.list({
+     *     // Gets Repricing reports on and before this date in the merchant's timezone. You can only retrieve data up to 7 days ago (default) or earlier. Format is YYYY-MM-DD.
+     *     endDate: 'placeholder-value',
+     *     // Required. Id of the merchant who owns the Repricing rule.
+     *     merchantId: 'placeholder-value',
+     *     // Maximum number of days of reports to return. There can be more than one rule report returned per day. For example, if 3 rule types got applied to the same product within a 24-hour period, then a page_size of 1 will return 3 rule reports. The page size defaults to 50 and values above 1000 are coerced to 1000. This service may return fewer days of reports than this value, for example, if the time between your start and end date is less than the page size.
+     *     pageSize: 'placeholder-value',
+     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Id of the Repricing product. Also known as the [REST_ID](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.id)
+     *     productId: 'placeholder-value',
+     *     // Id of the Repricing rule. If specified, only gets this rule's reports.
+     *     ruleId: 'placeholder-value',
+     *     // Gets Repricing reports on and after this date in the merchant's timezone, up to one year ago. Do not use a start date later than 7 days ago (default). Format is YYYY-MM-DD.
+     *     startDate: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "repricingProductReports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Productstatuses$Repricingreports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Productstatuses$Repricingreports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRepricingProductReportsResponse>;
+    list(
+      params: Params$Resource$Productstatuses$Repricingreports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Productstatuses$Repricingreports$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRepricingProductReportsResponse>,
+      callback: BodyResponseCallback<Schema$ListRepricingProductReportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Productstatuses$Repricingreports$List,
+      callback: BodyResponseCallback<Schema$ListRepricingProductReportsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRepricingProductReportsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Productstatuses$Repricingreports$List
+        | BodyResponseCallback<Schema$ListRepricingProductReportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRepricingProductReportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRepricingProductReportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRepricingProductReportsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Productstatuses$Repricingreports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Productstatuses$Repricingreports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/productstatuses/{productId}/repricingreports'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'productId'],
+        pathParams: ['merchantId', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRepricingProductReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRepricingProductReportsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Productstatuses$Repricingreports$List
+    extends StandardParameters {
+    /**
+     * Gets Repricing reports on and before this date in the merchant's timezone. You can only retrieve data up to 7 days ago (default) or earlier. Format is YYYY-MM-DD.
+     */
+    endDate?: string;
+    /**
+     * Required. Id of the merchant who owns the Repricing rule.
+     */
+    merchantId?: string;
+    /**
+     * Maximum number of days of reports to return. There can be more than one rule report returned per day. For example, if 3 rule types got applied to the same product within a 24-hour period, then a page_size of 1 will return 3 rule reports. The page size defaults to 50 and values above 1000 are coerced to 1000. This service may return fewer days of reports than this value, for example, if the time between your start and end date is less than the page size.
+     */
+    pageSize?: number;
+    /**
+     * Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Id of the Repricing product. Also known as the [REST_ID](https://developers.google.com/shopping-content/reference/rest/v2.1/products#Product.FIELDS.id)
+     */
+    productId?: string;
+    /**
+     * Id of the Repricing rule. If specified, only gets this rule's reports.
+     */
+    ruleId?: string;
+    /**
+     * Gets Repricing reports on and after this date in the merchant's timezone, up to one year ago. Do not use a start date later than 7 days ago (default). Format is YYYY-MM-DD.
+     */
+    startDate?: string;
   }
 
   export class Resource$Pubsubnotificationsettings {
@@ -22896,10 +25803,172 @@ export namespace content_v2_1 {
     requestBody?: Schema$Region;
   }
 
-  export class Resource$Repricingrules {
+  export class Resource$Reports {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Retrieves merchant performance mertrics matching the search query and optionally segmented by selected dimensions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.reports.search({
+     *     // Required. Id of the merchant making the call. Must be a standalone account or an MCA subaccount.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "query": "my_query"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Reports$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
+      params?: Params$Resource$Reports$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchResponse>;
+    search(
+      params: Params$Resource$Reports$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Reports$Search,
+      options: MethodOptions | BodyResponseCallback<Schema$SearchResponse>,
+      callback: BodyResponseCallback<Schema$SearchResponse>
+    ): void;
+    search(
+      params: Params$Resource$Reports$Search,
+      callback: BodyResponseCallback<Schema$SearchResponse>
+    ): void;
+    search(callback: BodyResponseCallback<Schema$SearchResponse>): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Reports$Search
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$SearchResponse> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Reports$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Reports$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/reports/search'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Reports$Search extends StandardParameters {
+    /**
+     * Required. Id of the merchant making the call. Must be a standalone account or an MCA subaccount.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SearchRequest;
+  }
+
+  export class Resource$Repricingrules {
+    context: APIRequestContext;
+    repricingreports: Resource$Repricingrules$Repricingreports;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.repricingreports = new Resource$Repricingrules$Repricingreports(
+        this.context
+      );
     }
 
     /**
@@ -22938,6 +26007,7 @@ export namespace content_v2_1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cogsBasedRule": {},
      *       //   "countryCode": "my_countryCode",
      *       //   "effectiveTimePeriod": {},
      *       //   "eligibleOfferMatcher": {},
@@ -22946,6 +26016,7 @@ export namespace content_v2_1 {
      *       //   "paused": false,
      *       //   "restriction": {},
      *       //   "ruleId": "my_ruleId",
+     *       //   "statsBasedRule": {},
      *       //   "title": "my_title",
      *       //   "type": "my_type"
      *       // }
@@ -22955,6 +26026,7 @@ export namespace content_v2_1 {
      *
      *   // Example response
      *   // {
+     *   //   "cogsBasedRule": {},
      *   //   "countryCode": "my_countryCode",
      *   //   "effectiveTimePeriod": {},
      *   //   "eligibleOfferMatcher": {},
@@ -22963,6 +26035,7 @@ export namespace content_v2_1 {
      *   //   "paused": false,
      *   //   "restriction": {},
      *   //   "ruleId": "my_ruleId",
+     *   //   "statsBasedRule": {},
      *   //   "title": "my_title",
      *   //   "type": "my_type"
      *   // }
@@ -23219,6 +26292,7 @@ export namespace content_v2_1 {
      *
      *   // Example response
      *   // {
+     *   //   "cogsBasedRule": {},
      *   //   "countryCode": "my_countryCode",
      *   //   "effectiveTimePeriod": {},
      *   //   "eligibleOfferMatcher": {},
@@ -23227,6 +26301,7 @@ export namespace content_v2_1 {
      *   //   "paused": false,
      *   //   "restriction": {},
      *   //   "ruleId": "my_ruleId",
+     *   //   "statsBasedRule": {},
      *   //   "title": "my_title",
      *   //   "type": "my_type"
      *   // }
@@ -23350,7 +26425,7 @@ export namespace content_v2_1 {
      *
      *   // Do the magic
      *   const res = await content.repricingrules.list({
-     *     // CLDR country code (e.g. "US"), used as a filter on repricing rules.
+     *     // [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (e.g. "US"), used as a filter on repricing rules.
      *     countryCode: 'placeholder-value',
      *     // The two-letter ISO 639-1 language code associated with the repricing rule, used as a filter.
      *     languageCode: 'placeholder-value',
@@ -23504,6 +26579,7 @@ export namespace content_v2_1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cogsBasedRule": {},
      *       //   "countryCode": "my_countryCode",
      *       //   "effectiveTimePeriod": {},
      *       //   "eligibleOfferMatcher": {},
@@ -23512,6 +26588,7 @@ export namespace content_v2_1 {
      *       //   "paused": false,
      *       //   "restriction": {},
      *       //   "ruleId": "my_ruleId",
+     *       //   "statsBasedRule": {},
      *       //   "title": "my_title",
      *       //   "type": "my_type"
      *       // }
@@ -23521,6 +26598,7 @@ export namespace content_v2_1 {
      *
      *   // Example response
      *   // {
+     *   //   "cogsBasedRule": {},
      *   //   "countryCode": "my_countryCode",
      *   //   "effectiveTimePeriod": {},
      *   //   "eligibleOfferMatcher": {},
@@ -23529,6 +26607,7 @@ export namespace content_v2_1 {
      *   //   "paused": false,
      *   //   "restriction": {},
      *   //   "ruleId": "my_ruleId",
+     *   //   "statsBasedRule": {},
      *   //   "title": "my_title",
      *   //   "type": "my_type"
      *   // }
@@ -23667,7 +26746,7 @@ export namespace content_v2_1 {
   export interface Params$Resource$Repricingrules$List
     extends StandardParameters {
     /**
-     * CLDR country code (e.g. "US"), used as a filter on repricing rules.
+     * [CLDR country code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) (e.g. "US"), used as a filter on repricing rules.
      */
     countryCode?: string;
     /**
@@ -23702,6 +26781,191 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$RepricingRule;
+  }
+
+  export class Resource$Repricingrules$Repricingreports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists the metrics report for a given Repricing rule.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.repricingrules.repricingreports.list({
+     *     // Gets Repricing reports on and before this date in the merchant's timezone. You can only retrieve data up to 7 days ago (default) or earlier. Format: YYYY-MM-DD.
+     *     endDate: 'placeholder-value',
+     *     // Required. Id of the merchant who owns the Repricing rule.
+     *     merchantId: 'placeholder-value',
+     *     // Maximum number of daily reports to return. Each report includes data from a single 24-hour period. The page size defaults to 50 and values above 1000 are coerced to 1000. This service may return fewer days than this value, for example, if the time between your start and end date is less than page size.
+     *     pageSize: 'placeholder-value',
+     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Id of the Repricing rule.
+     *     ruleId: 'placeholder-value',
+     *     // Gets Repricing reports on and after this date in the merchant's timezone, up to one year ago. Do not use a start date later than 7 days ago (default). Format: YYYY-MM-DD.
+     *     startDate: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "repricingRuleReports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Repricingrules$Repricingreports$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Repricingrules$Repricingreports$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRepricingRuleReportsResponse>;
+    list(
+      params: Params$Resource$Repricingrules$Repricingreports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Repricingrules$Repricingreports$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRepricingRuleReportsResponse>,
+      callback: BodyResponseCallback<Schema$ListRepricingRuleReportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Repricingrules$Repricingreports$List,
+      callback: BodyResponseCallback<Schema$ListRepricingRuleReportsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRepricingRuleReportsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Repricingrules$Repricingreports$List
+        | BodyResponseCallback<Schema$ListRepricingRuleReportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRepricingRuleReportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRepricingRuleReportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRepricingRuleReportsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Repricingrules$Repricingreports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Repricingrules$Repricingreports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/repricingrules/{ruleId}/repricingreports'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'ruleId'],
+        pathParams: ['merchantId', 'ruleId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRepricingRuleReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRepricingRuleReportsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Repricingrules$Repricingreports$List
+    extends StandardParameters {
+    /**
+     * Gets Repricing reports on and before this date in the merchant's timezone. You can only retrieve data up to 7 days ago (default) or earlier. Format: YYYY-MM-DD.
+     */
+    endDate?: string;
+    /**
+     * Required. Id of the merchant who owns the Repricing rule.
+     */
+    merchantId?: string;
+    /**
+     * Maximum number of daily reports to return. Each report includes data from a single 24-hour period. The page size defaults to 50 and values above 1000 are coerced to 1000. This service may return fewer days than this value, for example, if the time between your start and end date is less than page size.
+     */
+    pageSize?: number;
+    /**
+     * Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Id of the Repricing rule.
+     */
+    ruleId?: string;
+    /**
+     * Gets Repricing reports on and after this date in the merchant's timezone, up to one year ago. Do not use a start date later than 7 days ago (default). Format: YYYY-MM-DD.
+     */
+    startDate?: string;
   }
 
   export class Resource$Returnaddress {
@@ -24791,6 +28055,7 @@ export namespace content_v2_1 {
      *   //   "nonFreeReturnReasons": [],
      *   //   "policy": {},
      *   //   "returnPolicyId": "my_returnPolicyId",
+     *   //   "returnShippingFee": {},
      *   //   "seasonalOverrides": []
      *   // }
      * }
@@ -24927,6 +28192,7 @@ export namespace content_v2_1 {
      *       //   "nonFreeReturnReasons": [],
      *       //   "policy": {},
      *       //   "returnPolicyId": "my_returnPolicyId",
+     *       //   "returnShippingFee": {},
      *       //   "seasonalOverrides": []
      *       // }
      *     },
@@ -24942,6 +28208,7 @@ export namespace content_v2_1 {
      *   //   "nonFreeReturnReasons": [],
      *   //   "policy": {},
      *   //   "returnPolicyId": "my_returnPolicyId",
+     *   //   "returnShippingFee": {},
      *   //   "seasonalOverrides": []
      *   // }
      * }
@@ -25221,6 +28488,797 @@ export namespace content_v2_1 {
      * The Merchant Center account to list return policies for.
      */
     merchantId?: string;
+  }
+
+  export class Resource$Returnpolicyonline {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new return policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicyonline.create({
+     *     // Required. The id of the merchant for which to retrieve the return policy online object.
+     *     merchantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "countries": [],
+     *       //   "itemConditions": [],
+     *       //   "label": "my_label",
+     *       //   "name": "my_name",
+     *       //   "policy": {},
+     *       //   "restockingFee": {},
+     *       //   "returnMethods": [],
+     *       //   "returnPolicyId": "my_returnPolicyId",
+     *       //   "returnPolicyUri": "my_returnPolicyUri",
+     *       //   "returnReasonCategoryInfo": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countries": [],
+     *   //   "itemConditions": [],
+     *   //   "label": "my_label",
+     *   //   "name": "my_name",
+     *   //   "policy": {},
+     *   //   "restockingFee": {},
+     *   //   "returnMethods": [],
+     *   //   "returnPolicyId": "my_returnPolicyId",
+     *   //   "returnPolicyUri": "my_returnPolicyUri",
+     *   //   "returnReasonCategoryInfo": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Returnpolicyonline$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Returnpolicyonline$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReturnPolicyOnline>;
+    create(
+      params: Params$Resource$Returnpolicyonline$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Returnpolicyonline$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ReturnPolicyOnline>,
+      callback: BodyResponseCallback<Schema$ReturnPolicyOnline>
+    ): void;
+    create(
+      params: Params$Resource$Returnpolicyonline$Create,
+      callback: BodyResponseCallback<Schema$ReturnPolicyOnline>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$ReturnPolicyOnline>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Returnpolicyonline$Create
+        | BodyResponseCallback<Schema$ReturnPolicyOnline>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReturnPolicyOnline>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReturnPolicyOnline>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReturnPolicyOnline>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Returnpolicyonline$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Returnpolicyonline$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/returnpolicyonline'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReturnPolicyOnline>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReturnPolicyOnline>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an existing return policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicyonline.delete({
+     *     // Required. The id of the merchant for which to retrieve the return policy online object.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the return policy to delete.
+     *     returnPolicyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Returnpolicyonline$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Returnpolicyonline$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Returnpolicyonline$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Returnpolicyonline$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Returnpolicyonline$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Returnpolicyonline$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Returnpolicyonline$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Returnpolicyonline$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/returnpolicyonline/{returnPolicyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'returnPolicyId'],
+        pathParams: ['merchantId', 'returnPolicyId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Gets an existing return policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicyonline.get({
+     *     // Required. The id of the merchant for which to retrieve the return policy online object.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the return policy to retrieve.
+     *     returnPolicyId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countries": [],
+     *   //   "itemConditions": [],
+     *   //   "label": "my_label",
+     *   //   "name": "my_name",
+     *   //   "policy": {},
+     *   //   "restockingFee": {},
+     *   //   "returnMethods": [],
+     *   //   "returnPolicyId": "my_returnPolicyId",
+     *   //   "returnPolicyUri": "my_returnPolicyUri",
+     *   //   "returnReasonCategoryInfo": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Returnpolicyonline$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Returnpolicyonline$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReturnPolicyOnline>;
+    get(
+      params: Params$Resource$Returnpolicyonline$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Returnpolicyonline$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ReturnPolicyOnline>,
+      callback: BodyResponseCallback<Schema$ReturnPolicyOnline>
+    ): void;
+    get(
+      params: Params$Resource$Returnpolicyonline$Get,
+      callback: BodyResponseCallback<Schema$ReturnPolicyOnline>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ReturnPolicyOnline>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Returnpolicyonline$Get
+        | BodyResponseCallback<Schema$ReturnPolicyOnline>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReturnPolicyOnline>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReturnPolicyOnline>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReturnPolicyOnline>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Returnpolicyonline$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Returnpolicyonline$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/returnpolicyonline/{returnPolicyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'returnPolicyId'],
+        pathParams: ['merchantId', 'returnPolicyId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReturnPolicyOnline>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReturnPolicyOnline>(parameters);
+      }
+    }
+
+    /**
+     * Lists all existing return policies.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicyonline.list({
+     *     // Required. The id of the merchant for which to retrieve the return policy online object.
+     *     merchantId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "returnPolicies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Returnpolicyonline$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Returnpolicyonline$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListReturnPolicyOnlineResponse>;
+    list(
+      params: Params$Resource$Returnpolicyonline$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Returnpolicyonline$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListReturnPolicyOnlineResponse>,
+      callback: BodyResponseCallback<Schema$ListReturnPolicyOnlineResponse>
+    ): void;
+    list(
+      params: Params$Resource$Returnpolicyonline$List,
+      callback: BodyResponseCallback<Schema$ListReturnPolicyOnlineResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListReturnPolicyOnlineResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Returnpolicyonline$List
+        | BodyResponseCallback<Schema$ListReturnPolicyOnlineResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListReturnPolicyOnlineResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListReturnPolicyOnlineResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListReturnPolicyOnlineResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Returnpolicyonline$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Returnpolicyonline$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/returnpolicyonline'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListReturnPolicyOnlineResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListReturnPolicyOnlineResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an existing return policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.returnpolicyonline.patch({
+     *     // Required. The id of the merchant for which to retrieve the return policy online object.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the return policy to update.
+     *     returnPolicyId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "countries": [],
+     *       //   "itemConditions": [],
+     *       //   "label": "my_label",
+     *       //   "name": "my_name",
+     *       //   "policy": {},
+     *       //   "restockingFee": {},
+     *       //   "returnMethods": [],
+     *       //   "returnPolicyId": "my_returnPolicyId",
+     *       //   "returnPolicyUri": "my_returnPolicyUri",
+     *       //   "returnReasonCategoryInfo": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "countries": [],
+     *   //   "itemConditions": [],
+     *   //   "label": "my_label",
+     *   //   "name": "my_name",
+     *   //   "policy": {},
+     *   //   "restockingFee": {},
+     *   //   "returnMethods": [],
+     *   //   "returnPolicyId": "my_returnPolicyId",
+     *   //   "returnPolicyUri": "my_returnPolicyUri",
+     *   //   "returnReasonCategoryInfo": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Returnpolicyonline$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Returnpolicyonline$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReturnPolicyOnline>;
+    patch(
+      params: Params$Resource$Returnpolicyonline$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Returnpolicyonline$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ReturnPolicyOnline>,
+      callback: BodyResponseCallback<Schema$ReturnPolicyOnline>
+    ): void;
+    patch(
+      params: Params$Resource$Returnpolicyonline$Patch,
+      callback: BodyResponseCallback<Schema$ReturnPolicyOnline>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$ReturnPolicyOnline>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Returnpolicyonline$Patch
+        | BodyResponseCallback<Schema$ReturnPolicyOnline>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReturnPolicyOnline>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReturnPolicyOnline>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReturnPolicyOnline>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Returnpolicyonline$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Returnpolicyonline$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/returnpolicyonline/{returnPolicyId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'returnPolicyId'],
+        pathParams: ['merchantId', 'returnPolicyId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReturnPolicyOnline>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReturnPolicyOnline>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Returnpolicyonline$Create
+    extends StandardParameters {
+    /**
+     * Required. The id of the merchant for which to retrieve the return policy online object.
+     */
+    merchantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReturnPolicyOnline;
+  }
+  export interface Params$Resource$Returnpolicyonline$Delete
+    extends StandardParameters {
+    /**
+     * Required. The id of the merchant for which to retrieve the return policy online object.
+     */
+    merchantId?: string;
+    /**
+     * Required. The id of the return policy to delete.
+     */
+    returnPolicyId?: string;
+  }
+  export interface Params$Resource$Returnpolicyonline$Get
+    extends StandardParameters {
+    /**
+     * Required. The id of the merchant for which to retrieve the return policy online object.
+     */
+    merchantId?: string;
+    /**
+     * Required. The id of the return policy to retrieve.
+     */
+    returnPolicyId?: string;
+  }
+  export interface Params$Resource$Returnpolicyonline$List
+    extends StandardParameters {
+    /**
+     * Required. The id of the merchant for which to retrieve the return policy online object.
+     */
+    merchantId?: string;
+  }
+  export interface Params$Resource$Returnpolicyonline$Patch
+    extends StandardParameters {
+    /**
+     * Required. The id of the merchant for which to retrieve the return policy online object.
+     */
+    merchantId?: string;
+    /**
+     * Required. The id of the return policy to update.
+     */
+    returnPolicyId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReturnPolicyOnline;
   }
 
   export class Resource$Settlementreports {
