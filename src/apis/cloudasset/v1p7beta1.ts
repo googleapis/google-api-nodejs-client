@@ -36,9 +36,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace cloudasset_v1p5beta1 {
+export namespace cloudasset_v1p7beta1 {
   export interface Options extends GlobalOptions {
-    version: 'v1p5beta1';
+    version: 'v1p7beta1';
   }
 
   interface StandardParameters {
@@ -108,12 +108,12 @@ export namespace cloudasset_v1p5beta1 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const cloudasset = google.cloudasset('v1p5beta1');
+   * const cloudasset = google.cloudasset('v1p7beta1');
    * ```
    */
   export class Cloudasset {
     context: APIRequestContext;
-    assets: Resource$Assets;
+    v1p7beta1: Resource$V1p7beta1;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -121,51 +121,10 @@ export namespace cloudasset_v1p5beta1 {
         google,
       };
 
-      this.assets = new Resource$Assets(this.context);
+      this.v1p7beta1 = new Resource$V1p7beta1(this.context);
     }
   }
 
-  /**
-   * An asset in Google Cloud. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
-   */
-  export interface Schema$Asset {
-    /**
-     * Please also refer to the [access level user guide](https://cloud.google.com/access-context-manager/docs/overview#access-levels).
-     */
-    accessLevel?: Schema$GoogleIdentityAccesscontextmanagerV1AccessLevel;
-    /**
-     * Please also refer to the [access policy user guide](https://cloud.google.com/access-context-manager/docs/overview#access-policies).
-     */
-    accessPolicy?: Schema$GoogleIdentityAccesscontextmanagerV1AccessPolicy;
-    /**
-     * The ancestry path of an asset in Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), represented as a list of relative resource names. An ancestry path starts with the closest ancestor in the hierarchy and ends at root. If the asset is a project, folder, or organization, the ancestry path starts from the asset itself. Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
-     */
-    ancestors?: string[] | null;
-    /**
-     * The type of the asset. Example: `compute.googleapis.com/Disk` See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
-     */
-    assetType?: string | null;
-    /**
-     * A representation of the Cloud IAM policy set on a Google Cloud resource. There can be a maximum of one Cloud IAM policy set on any given resource. In addition, Cloud IAM policies inherit their granted access scope from any policies set on parent resources in the resource hierarchy. Therefore, the effectively policy is the union of both the policy set on this resource and each policy set on all of the resource's ancestry resource levels in the hierarchy. See [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for more information.
-     */
-    iamPolicy?: Schema$Policy;
-    /**
-     * The full name of the asset. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1` See [Resource names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.
-     */
-    name?: string | null;
-    /**
-     * A representation of an [organization policy](https://cloud.google.com/resource-manager/docs/organization-policy/overview#organization_policy). There can be more than one organization policy with different constraints set on a given resource.
-     */
-    orgPolicy?: Schema$GoogleCloudOrgpolicyV1Policy[];
-    /**
-     * A representation of the resource.
-     */
-    resource?: Schema$Resource;
-    /**
-     * Please also refer to the [service perimeter user guide](https://cloud.google.com/vpc-service-controls/docs/overview).
-     */
-    servicePerimeter?: Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeter;
-  }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
@@ -278,6 +237,91 @@ export namespace cloudasset_v1p5beta1 {
      * The last update timestamp of an asset. update_time is updated when create/update/delete operation is performed.
      */
     updateTime?: string | null;
+  }
+  /**
+   * A BigQuery destination for exporting assets to.
+   */
+  export interface Schema$GoogleCloudAssetV1p7beta1BigQueryDestination {
+    /**
+     * Required. The BigQuery dataset in format "projects/projectId/datasets/datasetId", to which the snapshot result should be exported. If this dataset does not exist, the export call returns an INVALID_ARGUMENT error.
+     */
+    dataset?: string | null;
+    /**
+     * If the destination table already exists and this flag is `TRUE`, the table will be overwritten by the contents of assets snapshot. If the flag is `FALSE` or unset and the destination table already exists, the export call returns an INVALID_ARGUMEMT error.
+     */
+    force?: boolean | null;
+    /**
+     * [partition_spec] determines whether to export to partitioned table(s) and how to partition the data. If [partition_spec] is unset or [partition_spec.partition_key] is unset or `PARTITION_KEY_UNSPECIFIED`, the snapshot results will be exported to non-partitioned table(s). [force] will decide whether to overwrite existing table(s). If [partition_spec] is specified. First, the snapshot results will be written to partitioned table(s) with two additional timestamp columns, readTime and requestTime, one of which will be the partition key. Secondly, in the case when any destination table already exists, it will first try to update existing table's schema as necessary by appending additional columns. Then, if [force] is `TRUE`, the corresponding partition will be overwritten by the snapshot results (data in different partitions will remain intact); if [force] is unset or `FALSE`, it will append the data. An error will be returned if the schema update or data appension fails.
+     */
+    partitionSpec?: Schema$GoogleCloudAssetV1p7beta1PartitionSpec;
+    /**
+     * If this flag is `TRUE`, the snapshot results will be written to one or multiple tables, each of which contains results of one asset type. The [force] and [partition_spec] fields will apply to each of them. Field [table] will be concatenated with "_" and the asset type names (see https://cloud.google.com/asset-inventory/docs/supported-asset-types for supported asset types) to construct per-asset-type table names, in which all non-alphanumeric characters like "." and "/" will be substituted by "_". Example: if field [table] is "mytable" and snapshot results contain "storage.googleapis.com/Bucket" assets, the corresponding table name will be "mytable_storage_googleapis_com_Bucket". If any of these tables does not exist, a new table with the concatenated name will be created. When [content_type] in the ExportAssetsRequest is `RESOURCE`, the schema of each table will include RECORD-type columns mapped to the nested fields in the Asset.resource.data field of that asset type (up to the 15 nested level BigQuery supports (https://cloud.google.com/bigquery/docs/nested-repeated#limitations)). The fields in \>15 nested levels will be stored in JSON format string as a child column of its parent RECORD column. If error occurs when exporting to any table, the whole export call will return an error but the export results that already succeed will persist. Example: if exporting to table_type_A succeeds when exporting to table_type_B fails during one export call, the results in table_type_A will persist and there will not be partial results persisting in a table.
+     */
+    separateTablesPerAssetType?: boolean | null;
+    /**
+     * Required. The BigQuery table to which the snapshot result should be written. If this table does not exist, a new table with the given name will be created.
+     */
+    table?: string | null;
+  }
+  /**
+   * Export asset request.
+   */
+  export interface Schema$GoogleCloudAssetV1p7beta1ExportAssetsRequest {
+    /**
+     * A list of asset types to take a snapshot for. For example: "compute.googleapis.com/Disk". Regular expressions are also supported. For example: * "compute.googleapis.com.*" snapshots resources whose asset type starts with "compute.googleapis.com". * ".*Instance" snapshots resources whose asset type ends with "Instance". * ".*Instance.*" snapshots resources whose asset type contains "Instance". See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported asset type, an INVALID_ARGUMENT error will be returned. If specified, only matching assets will be returned, otherwise, it will snapshot all asset types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types.
+     */
+    assetTypes?: string[] | null;
+    /**
+     * Asset content type. If not specified, no content but the asset name will be returned.
+     */
+    contentType?: string | null;
+    /**
+     * Required. Output configuration indicating where the results will be output to.
+     */
+    outputConfig?: Schema$GoogleCloudAssetV1p7beta1OutputConfig;
+    /**
+     * Timestamp to take an asset snapshot. This can only be set to a timestamp between the current time and the current time minus 35 days (inclusive). If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.
+     */
+    readTime?: string | null;
+    /**
+     * A list of relationship types to export, for example: `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if content_type=RELATIONSHIP. If specified, it will snapshot [asset_types]' specified relationships, or give errors if any relationship_types' supported types are not in [asset_types]. If not specified, it will snapshot all [asset_types]' supported relationships. An unspecified [asset_types] field means all supported asset_types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types and relationship types.
+     */
+    relationshipTypes?: string[] | null;
+  }
+  /**
+   * A Cloud Storage location.
+   */
+  export interface Schema$GoogleCloudAssetV1p7beta1GcsDestination {
+    /**
+     * The uri of the Cloud Storage object. It's the same uri that is used by gsutil. Example: "gs://bucket_name/object_name". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata) for more information.
+     */
+    uri?: string | null;
+    /**
+     * The uri prefix of all generated Cloud Storage objects. Example: "gs://bucket_name/object_name_prefix". Each object uri is in format: "gs://bucket_name/object_name_prefix/{ASSET_TYPE\}/{SHARD_NUMBER\} and only contains assets for that type. starts from 0. Example: "gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0" is the first shard of output objects containing all compute.googleapis.com/Disk assets. An INVALID_ARGUMENT error will be returned if file with the same name "gs://bucket_name/object_name_prefix" already exists.
+     */
+    uriPrefix?: string | null;
+  }
+  /**
+   * Output configuration for export assets destination.
+   */
+  export interface Schema$GoogleCloudAssetV1p7beta1OutputConfig {
+    /**
+     * Destination on BigQuery. The output table stores the fields in asset proto as columns in BigQuery.
+     */
+    bigqueryDestination?: Schema$GoogleCloudAssetV1p7beta1BigQueryDestination;
+    /**
+     * Destination on Cloud Storage.
+     */
+    gcsDestination?: Schema$GoogleCloudAssetV1p7beta1GcsDestination;
+  }
+  /**
+   * Specifications of BigQuery partitioned table as export destination.
+   */
+  export interface Schema$GoogleCloudAssetV1p7beta1PartitionSpec {
+    /**
+     * The partition key for BigQuery partitioned table.
+     */
+    partitionKey?: string | null;
   }
   /**
    * An asset identify in Google Cloud which contains its name, type and ancestors. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
@@ -774,21 +818,29 @@ export namespace cloudasset_v1p5beta1 {
     enableRestriction?: boolean | null;
   }
   /**
-   * ListAssets response.
+   * This resource represents a long-running operation that is the result of a network API call.
    */
-  export interface Schema$ListAssetsResponse {
+  export interface Schema$Operation {
     /**
-     * Assets.
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
      */
-    assets?: Schema$Asset[];
+    done?: boolean | null;
     /**
-     * Token to retrieve the next page of results. It expires 72 hours after the page token for the first page is generated. Set to empty if there are no remaining results.
+     * The error result of the operation in case of failure or cancellation.
      */
-    nextPageToken?: string | null;
+    error?: Schema$Status;
     /**
-     * Time the snapshot was taken.
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
-    readTime?: string | null;
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
+     */
+    name?: string | null;
+    /**
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     */
+    response?: {[key: string]: any} | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -812,43 +864,31 @@ export namespace cloudasset_v1p5beta1 {
     version?: number | null;
   }
   /**
-   * A representation of a Google Cloud resource.
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
-  export interface Schema$Resource {
+  export interface Schema$Status {
     /**
-     * The content of the resource, in which some sensitive fields are removed and may not be present.
+     * The status code, which should be an enum value of google.rpc.Code.
      */
-    data?: {[key: string]: any} | null;
+    code?: number | null;
     /**
-     * The URL of the discovery document containing the resource's JSON schema. Example: `https://www.googleapis.com/discovery/v1/apis/compute/v1/rest` This value is unspecified for resources that do not have an API based on a discovery document, such as Cloud Bigtable.
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
      */
-    discoveryDocumentUri?: string | null;
+    details?: Array<{[key: string]: any}> | null;
     /**
-     * The JSON schema name listed in the discovery document. Example: `Project` This value is unspecified for resources that do not have an API based on a discovery document, such as Cloud Bigtable.
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
-    discoveryName?: string | null;
-    /**
-     * The full name of the immediate parent of this resource. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information. For Google Cloud assets, this value is the parent resource defined in the [Cloud IAM policy hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy). Example: `//cloudresourcemanager.googleapis.com/projects/my_project_123` For third-party assets, this field may be set differently.
-     */
-    parent?: string | null;
-    /**
-     * The REST URL for accessing the resource. An HTTP `GET` request using this URL returns the resource itself. Example: `https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123` This value is unspecified for resources without a REST API.
-     */
-    resourceUrl?: string | null;
-    /**
-     * The API version. Example: "v1".
-     */
-    version?: string | null;
+    message?: string | null;
   }
 
-  export class Resource$Assets {
+  export class Resource$V1p7beta1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
     /**
-     * Lists assets with time and resource types and returns paged results in response.
+     * Exports assets with time and resource types to a given Cloud Storage location/BigQuery table. For Cloud Storage location destinations, the output format is newline-delimited JSON. Each line represents a google.cloud.asset.v1p7beta1.Asset in the JSON format; for BigQuery table destinations, the output table stores the fields in asset proto as columns. This API implements the google.longrunning.Operation API , which allows you to keep track of the export. We recommend intervals of at least 2 seconds with exponential retry to poll the export operation result. For regular-size resource parent, the export operation usually finishes within 5 minutes.
      * @example
      * ```js
      * // Before running the sample:
@@ -860,7 +900,7 @@ export namespace cloudasset_v1p5beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const cloudasset = google.cloudasset('v1p5beta1');
+     * const cloudasset = google.cloudasset('v1p7beta1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -873,27 +913,31 @@ export namespace cloudasset_v1p5beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudasset.assets.list({
-     *     // A list of asset types to take a snapshot for. For example: "compute.googleapis.com/Disk". Regular expression is also supported. For example: * "compute.googleapis.com.*" snapshots resources whose asset type starts with "compute.googleapis.com". * ".*Instance" snapshots resources whose asset type ends with "Instance". * ".*Instance.*" snapshots resources whose asset type contains "Instance". See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported asset type, an INVALID_ARGUMENT error will be returned. If specified, only matching assets will be returned, otherwise, it will snapshot all asset types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types.
-     *     assetTypes: 'placeholder-value',
-     *     // Asset content type. If not specified, no content but the asset name will be returned.
-     *     contentType: 'placeholder-value',
-     *     // The maximum number of assets to be returned in a single response. Default is 100, minimum is 1, and maximum is 1000.
-     *     pageSize: 'placeholder-value',
-     *     // The `next_page_token` returned from the previous `ListAssetsResponse`, or unspecified for the first `ListAssetsRequest`. It is a continuation of a prior `ListAssets` call, and the API should return the next page of assets.
-     *     pageToken: 'placeholder-value',
-     *     // Required. Name of the organization or project the assets belong to. Format: "organizations/[organization-number]" (such as "organizations/123"), "projects/[project-number]" (such as "projects/my-project-id"), or "projects/[project-id]" (such as "projects/12345").
+     *   const res = await cloudasset.exportAssets({
+     *     // Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"), or a folder number (such as "folders/123").
      *     parent: '[^/]+/[^/]+',
-     *     // Timestamp to take an asset snapshot. This can only be set to a timestamp between the current time and the current time minus 35 days (inclusive). If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.
-     *     readTime: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assetTypes": [],
+     *       //   "contentType": "my_contentType",
+     *       //   "outputConfig": {},
+     *       //   "readTime": "my_readTime",
+     *       //   "relationshipTypes": []
+     *       // }
+     *     },
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
-     *   //   "assets": [],
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "readTime": "my_readTime"
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
      *   // }
      * }
      *
@@ -909,52 +953,50 @@ export namespace cloudasset_v1p5beta1 {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    list(
-      params: Params$Resource$Assets$List,
+    exportAssets(
+      params: Params$Resource$V1p7beta1$Exportassets,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Assets$List,
+    exportAssets(
+      params?: Params$Resource$V1p7beta1$Exportassets,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListAssetsResponse>;
-    list(
-      params: Params$Resource$Assets$List,
+    ): GaxiosPromise<Schema$Operation>;
+    exportAssets(
+      params: Params$Resource$V1p7beta1$Exportassets,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    list(
-      params: Params$Resource$Assets$List,
-      options: MethodOptions | BodyResponseCallback<Schema$ListAssetsResponse>,
-      callback: BodyResponseCallback<Schema$ListAssetsResponse>
+    exportAssets(
+      params: Params$Resource$V1p7beta1$Exportassets,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
-    list(
-      params: Params$Resource$Assets$List,
-      callback: BodyResponseCallback<Schema$ListAssetsResponse>
+    exportAssets(
+      params: Params$Resource$V1p7beta1$Exportassets,
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
-    list(callback: BodyResponseCallback<Schema$ListAssetsResponse>): void;
-    list(
+    exportAssets(callback: BodyResponseCallback<Schema$Operation>): void;
+    exportAssets(
       paramsOrCallback?:
-        | Params$Resource$Assets$List
-        | BodyResponseCallback<Schema$ListAssetsResponse>
+        | Params$Resource$V1p7beta1$Exportassets
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListAssetsResponse>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ListAssetsResponse>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListAssetsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Assets$List;
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1p7beta1$Exportassets;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Assets$List;
+        params = {} as Params$Resource$V1p7beta1$Exportassets;
         options = {};
       }
 
@@ -967,11 +1009,11 @@ export namespace cloudasset_v1p5beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1p5beta1/{+parent}/assets').replace(
+            url: (rootUrl + '/v1p7beta1/{+parent}:exportAssets').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
-            method: 'GET',
+            method: 'POST',
           },
           options
         ),
@@ -981,40 +1023,26 @@ export namespace cloudasset_v1p5beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListAssetsResponse>(
+        createAPIRequest<Schema$Operation>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ListAssetsResponse>(parameters);
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Assets$List extends StandardParameters {
+  export interface Params$Resource$V1p7beta1$Exportassets
+    extends StandardParameters {
     /**
-     * A list of asset types to take a snapshot for. For example: "compute.googleapis.com/Disk". Regular expression is also supported. For example: * "compute.googleapis.com.*" snapshots resources whose asset type starts with "compute.googleapis.com". * ".*Instance" snapshots resources whose asset type ends with "Instance". * ".*Instance.*" snapshots resources whose asset type contains "Instance". See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported asset type, an INVALID_ARGUMENT error will be returned. If specified, only matching assets will be returned, otherwise, it will snapshot all asset types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types.
-     */
-    assetTypes?: string[];
-    /**
-     * Asset content type. If not specified, no content but the asset name will be returned.
-     */
-    contentType?: string;
-    /**
-     * The maximum number of assets to be returned in a single response. Default is 100, minimum is 1, and maximum is 1000.
-     */
-    pageSize?: number;
-    /**
-     * The `next_page_token` returned from the previous `ListAssetsResponse`, or unspecified for the first `ListAssetsRequest`. It is a continuation of a prior `ListAssets` call, and the API should return the next page of assets.
-     */
-    pageToken?: string;
-    /**
-     * Required. Name of the organization or project the assets belong to. Format: "organizations/[organization-number]" (such as "organizations/123"), "projects/[project-number]" (such as "projects/my-project-id"), or "projects/[project-id]" (such as "projects/12345").
+     * Required. The relative name of the root asset. This can only be an organization number (such as "organizations/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"), or a folder number (such as "folders/123").
      */
     parent?: string;
+
     /**
-     * Timestamp to take an asset snapshot. This can only be set to a timestamp between the current time and the current time minus 35 days (inclusive). If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.
+     * Request body metadata
      */
-    readTime?: string;
+    requestBody?: Schema$GoogleCloudAssetV1p7beta1ExportAssetsRequest;
   }
 }

@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "cloudasset:v1p1beta1",
+  "id": "cloudasset:v1p7beta1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://cloudasset.mtls.googleapis.com/",
   "name": "cloudasset",
@@ -105,100 +105,31 @@
   },
   "protocol": "rest",
   "resources": {
-    "iamPolicies": {
+    "v1p7beta1": {
       "methods": {
-        "searchAll": {
-          "description": "Searches all the IAM policies within a given accessible CRM scope (project/folder/organization). This RPC gives callers especially administrators the ability to search all the IAM policies within a scope, even if they don't have `.getIamPolicy` permission of all the IAM policies. Callers should have `cloud.assets.SearchAllIamPolicies` permission on the requested scope, otherwise the request will be rejected.",
-          "flatPath": "v1p1beta1/{v1p1beta1Id}/{v1p1beta1Id1}/iamPolicies:searchAll",
-          "httpMethod": "GET",
-          "id": "cloudasset.iamPolicies.searchAll",
+        "exportAssets": {
+          "description": "Exports assets with time and resource types to a given Cloud Storage location/BigQuery table. For Cloud Storage location destinations, the output format is newline-delimited JSON. Each line represents a google.cloud.asset.v1p7beta1.Asset in the JSON format; for BigQuery table destinations, the output table stores the fields in asset proto as columns. This API implements the google.longrunning.Operation API , which allows you to keep track of the export. We recommend intervals of at least 2 seconds with exponential retry to poll the export operation result. For regular-size resource parent, the export operation usually finishes within 5 minutes.",
+          "flatPath": "v1p7beta1/{v1p7beta1Id}/{v1p7beta1Id1}:exportAssets",
+          "httpMethod": "POST",
+          "id": "cloudasset.exportAssets",
           "parameterOrder": [
-            "scope"
+            "parent"
           ],
           "parameters": {
-            "pageSize": {
-              "description": "Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "Optional. If present, retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters must be identical to those in the previous call.",
-              "location": "query",
-              "type": "string"
-            },
-            "query": {
-              "description": "Optional. The query statement. Examples: * \"policy:myuser@mydomain.com\" * \"policy:(myuser@mydomain.com viewer)\"",
-              "location": "query",
-              "type": "string"
-            },
-            "scope": {
-              "description": "Required. The relative name of an asset. The search is limited to the resources within the `scope`. The allowed value must be: * Organization number (such as \"organizations/123\") * Folder number(such as \"folders/1234\") * Project number (such as \"projects/12345\") * Project id (such as \"projects/abc\")",
+            "parent": {
+              "description": "Required. The relative name of the root asset. This can only be an organization number (such as \"organizations/123\"), a project ID (such as \"projects/my-project-id\"), or a project number (such as \"projects/12345\"), or a folder number (such as \"folders/123\").",
               "location": "path",
               "pattern": "^[^/]+/[^/]+$",
               "required": true,
               "type": "string"
             }
           },
-          "path": "v1p1beta1/{+scope}/iamPolicies:searchAll",
-          "response": {
-            "$ref": "SearchAllIamPoliciesResponse"
+          "path": "v1p7beta1/{+parent}:exportAssets",
+          "request": {
+            "$ref": "GoogleCloudAssetV1p7beta1ExportAssetsRequest"
           },
-          "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        }
-      }
-    },
-    "resources": {
-      "methods": {
-        "searchAll": {
-          "description": "Searches all the resources within a given accessible CRM scope (project/folder/organization). This RPC gives callers especially administrators the ability to search all the resources within a scope, even if they don't have `.get` permission of all the resources. Callers should have `cloud.assets.SearchAllResources` permission on the requested scope, otherwise the request will be rejected.",
-          "flatPath": "v1p1beta1/{v1p1beta1Id}/{v1p1beta1Id1}/resources:searchAll",
-          "httpMethod": "GET",
-          "id": "cloudasset.resources.searchAll",
-          "parameterOrder": [
-            "scope"
-          ],
-          "parameters": {
-            "assetTypes": {
-              "description": "Optional. A list of asset types that this request searches for. If empty, it will search all the supported asset types.",
-              "location": "query",
-              "repeated": true,
-              "type": "string"
-            },
-            "orderBy": {
-              "description": "Optional. A comma separated list of fields specifying the sorting order of the results. The default order is ascending. Add ` DESC` after the field name to indicate descending order. Redundant space characters are ignored. For example, ` location DESC , name `.",
-              "location": "query",
-              "type": "string"
-            },
-            "pageSize": {
-              "description": "Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of all other method parameters, must be identical to those in the previous call.",
-              "location": "query",
-              "type": "string"
-            },
-            "query": {
-              "description": "Optional. The query statement.",
-              "location": "query",
-              "type": "string"
-            },
-            "scope": {
-              "description": "Required. The relative name of an asset. The search is limited to the resources within the `scope`. The allowed value must be: * Organization number (such as \"organizations/123\") * Folder number(such as \"folders/1234\") * Project number (such as \"projects/12345\") * Project id (such as \"projects/abc\")",
-              "location": "path",
-              "pattern": "^[^/]+/[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v1p1beta1/{+scope}/resources:searchAll",
           "response": {
-            "$ref": "SearchAllResourcesResponse"
+            "$ref": "Operation"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -280,20 +211,6 @@
       },
       "type": "object"
     },
-    "Explanation": {
-      "description": "Explanation about the IAM policy search result.",
-      "id": "Explanation",
-      "properties": {
-        "matchedPermissions": {
-          "additionalProperties": {
-            "$ref": "Permissions"
-          },
-          "description": "The map from roles to their included permission matching the permission query (e.g. containing `policy.role.permissions:`). A sample role string: \"roles/compute.instanceAdmin\". The roles can also be found in the returned `policy` bindings. Note that the map is populated only if requesting with a permission query.",
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
     "Expr": {
       "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
@@ -370,6 +287,134 @@
         "updateTime": {
           "description": "The last update timestamp of an asset. update_time is updated when create/update/delete operation is performed.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssetV1p7beta1BigQueryDestination": {
+      "description": "A BigQuery destination for exporting assets to.",
+      "id": "GoogleCloudAssetV1p7beta1BigQueryDestination",
+      "properties": {
+        "dataset": {
+          "description": "Required. The BigQuery dataset in format \"projects/projectId/datasets/datasetId\", to which the snapshot result should be exported. If this dataset does not exist, the export call returns an INVALID_ARGUMENT error.",
+          "type": "string"
+        },
+        "force": {
+          "description": "If the destination table already exists and this flag is `TRUE`, the table will be overwritten by the contents of assets snapshot. If the flag is `FALSE` or unset and the destination table already exists, the export call returns an INVALID_ARGUMEMT error.",
+          "type": "boolean"
+        },
+        "partitionSpec": {
+          "$ref": "GoogleCloudAssetV1p7beta1PartitionSpec",
+          "description": "[partition_spec] determines whether to export to partitioned table(s) and how to partition the data. If [partition_spec] is unset or [partition_spec.partition_key] is unset or `PARTITION_KEY_UNSPECIFIED`, the snapshot results will be exported to non-partitioned table(s). [force] will decide whether to overwrite existing table(s). If [partition_spec] is specified. First, the snapshot results will be written to partitioned table(s) with two additional timestamp columns, readTime and requestTime, one of which will be the partition key. Secondly, in the case when any destination table already exists, it will first try to update existing table's schema as necessary by appending additional columns. Then, if [force] is `TRUE`, the corresponding partition will be overwritten by the snapshot results (data in different partitions will remain intact); if [force] is unset or `FALSE`, it will append the data. An error will be returned if the schema update or data appension fails."
+        },
+        "separateTablesPerAssetType": {
+          "description": "If this flag is `TRUE`, the snapshot results will be written to one or multiple tables, each of which contains results of one asset type. The [force] and [partition_spec] fields will apply to each of them. Field [table] will be concatenated with \"_\" and the asset type names (see https://cloud.google.com/asset-inventory/docs/supported-asset-types for supported asset types) to construct per-asset-type table names, in which all non-alphanumeric characters like \".\" and \"/\" will be substituted by \"_\". Example: if field [table] is \"mytable\" and snapshot results contain \"storage.googleapis.com/Bucket\" assets, the corresponding table name will be \"mytable_storage_googleapis_com_Bucket\". If any of these tables does not exist, a new table with the concatenated name will be created. When [content_type] in the ExportAssetsRequest is `RESOURCE`, the schema of each table will include RECORD-type columns mapped to the nested fields in the Asset.resource.data field of that asset type (up to the 15 nested level BigQuery supports (https://cloud.google.com/bigquery/docs/nested-repeated#limitations)). The fields in >15 nested levels will be stored in JSON format string as a child column of its parent RECORD column. If error occurs when exporting to any table, the whole export call will return an error but the export results that already succeed will persist. Example: if exporting to table_type_A succeeds when exporting to table_type_B fails during one export call, the results in table_type_A will persist and there will not be partial results persisting in a table.",
+          "type": "boolean"
+        },
+        "table": {
+          "description": "Required. The BigQuery table to which the snapshot result should be written. If this table does not exist, a new table with the given name will be created.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssetV1p7beta1ExportAssetsRequest": {
+      "description": "Export asset request.",
+      "id": "GoogleCloudAssetV1p7beta1ExportAssetsRequest",
+      "properties": {
+        "assetTypes": {
+          "description": "A list of asset types to take a snapshot for. For example: \"compute.googleapis.com/Disk\". Regular expressions are also supported. For example: * \"compute.googleapis.com.*\" snapshots resources whose asset type starts with \"compute.googleapis.com\". * \".*Instance\" snapshots resources whose asset type ends with \"Instance\". * \".*Instance.*\" snapshots resources whose asset type contains \"Instance\". See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported asset type, an INVALID_ARGUMENT error will be returned. If specified, only matching assets will be returned, otherwise, it will snapshot all asset types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "contentType": {
+          "description": "Asset content type. If not specified, no content but the asset name will be returned.",
+          "enum": [
+            "CONTENT_TYPE_UNSPECIFIED",
+            "RESOURCE",
+            "IAM_POLICY",
+            "ORG_POLICY",
+            "ACCESS_POLICY",
+            "RELATIONSHIP"
+          ],
+          "enumDescriptions": [
+            "Unspecified content type.",
+            "Resource metadata.",
+            "The actual IAM policy set on a resource.",
+            "The Cloud Organization Policy set on an asset.",
+            "The Cloud Access context manager Policy set on an asset.",
+            "The related resources."
+          ],
+          "type": "string"
+        },
+        "outputConfig": {
+          "$ref": "GoogleCloudAssetV1p7beta1OutputConfig",
+          "description": "Required. Output configuration indicating where the results will be output to."
+        },
+        "readTime": {
+          "description": "Timestamp to take an asset snapshot. This can only be set to a timestamp between the current time and the current time minus 35 days (inclusive). If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "relationshipTypes": {
+          "description": "A list of relationship types to export, for example: `INSTANCE_TO_INSTANCEGROUP`. This field should only be specified if content_type=RELATIONSHIP. If specified, it will snapshot [asset_types]' specified relationships, or give errors if any relationship_types' supported types are not in [asset_types]. If not specified, it will snapshot all [asset_types]' supported relationships. An unspecified [asset_types] field means all supported asset_types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types and relationship types.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssetV1p7beta1GcsDestination": {
+      "description": "A Cloud Storage location.",
+      "id": "GoogleCloudAssetV1p7beta1GcsDestination",
+      "properties": {
+        "uri": {
+          "description": "The uri of the Cloud Storage object. It's the same uri that is used by gsutil. Example: \"gs://bucket_name/object_name\". See [Viewing and Editing Object Metadata](https://cloud.google.com/storage/docs/viewing-editing-metadata) for more information.",
+          "type": "string"
+        },
+        "uriPrefix": {
+          "description": "The uri prefix of all generated Cloud Storage objects. Example: \"gs://bucket_name/object_name_prefix\". Each object uri is in format: \"gs://bucket_name/object_name_prefix/{ASSET_TYPE}/{SHARD_NUMBER} and only contains assets for that type. starts from 0. Example: \"gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0\" is the first shard of output objects containing all compute.googleapis.com/Disk assets. An INVALID_ARGUMENT error will be returned if file with the same name \"gs://bucket_name/object_name_prefix\" already exists.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssetV1p7beta1OutputConfig": {
+      "description": "Output configuration for export assets destination.",
+      "id": "GoogleCloudAssetV1p7beta1OutputConfig",
+      "properties": {
+        "bigqueryDestination": {
+          "$ref": "GoogleCloudAssetV1p7beta1BigQueryDestination",
+          "description": "Destination on BigQuery. The output table stores the fields in asset proto as columns in BigQuery."
+        },
+        "gcsDestination": {
+          "$ref": "GoogleCloudAssetV1p7beta1GcsDestination",
+          "description": "Destination on Cloud Storage."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAssetV1p7beta1PartitionSpec": {
+      "description": "Specifications of BigQuery partitioned table as export destination.",
+      "id": "GoogleCloudAssetV1p7beta1PartitionSpec",
+      "properties": {
+        "partitionKey": {
+          "description": "The partition key for BigQuery partitioned table.",
+          "enum": [
+            "PARTITION_KEY_UNSPECIFIED",
+            "READ_TIME",
+            "REQUEST_TIME"
+          ],
+          "enumDescriptions": [
+            "Unspecified partition key. If used, it means using non-partitioned table.",
+            "The time when the snapshot is taken. If specified as partition key, the result table(s) is partitoned by the additional timestamp column, readTime. If [read_time] in ExportAssetsRequest is specified, the readTime column's value will be the same as it. Otherwise, its value will be the current time that is used to take the snapshot.",
+            "The time when the request is received and started to be processed. If specified as partition key, the result table(s) is partitoned by the requestTime column, an additional timestamp column representing when the request was received."
+          ],
           "type": "string"
         }
       },
@@ -1100,39 +1145,37 @@
       },
       "type": "object"
     },
-    "IamPolicySearchResult": {
-      "description": "The result for a IAM Policy search.",
-      "id": "IamPolicySearchResult",
+    "Operation": {
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
+      "id": "Operation",
       "properties": {
-        "explanation": {
-          "$ref": "Explanation",
-          "description": "Explanation about the IAM policy search result. It contains additional information to explain why the search result matches the query."
+        "done": {
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
+          "type": "boolean"
         },
-        "policy": {
-          "$ref": "Policy",
-          "description": "The IAM policy directly set on the given resource. Note that the original IAM policy can contain multiple bindings. This only contains the bindings that match the given query. For queries that don't contain a constrain on policies (e.g. an empty query), this contains all the bindings."
+        "error": {
+          "$ref": "Status",
+          "description": "The error result of the operation in case of failure or cancellation."
         },
-        "project": {
-          "description": "The project that the associated GCP resource belongs to, in the form of `projects/{project_number}`. If an IAM policy is set on a resource (like VM instance, Cloud Storage bucket), the project field will indicate the project that contains the resource. If an IAM policy is set on a folder or orgnization, the project field will be empty.",
-          "type": "string"
-        },
-        "resource": {
-          "description": "The [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) of the resource associated with this IAM policy.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Permissions": {
-      "description": "IAM permissions",
-      "id": "Permissions",
-      "properties": {
-        "permissions": {
-          "description": "A list of permissions. A sample permission string: \"compute.disk.get\".",
-          "items": {
-            "type": "string"
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
           },
-          "type": "array"
+          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
+          "type": "string"
+        },
+        "response": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -1168,89 +1211,28 @@
       },
       "type": "object"
     },
-    "SearchAllIamPoliciesResponse": {
-      "description": "Search all IAM policies response.",
-      "id": "SearchAllIamPoliciesResponse",
+    "Status": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "Status",
       "properties": {
-        "nextPageToken": {
-          "description": "Set if there are more results than those appearing in this response; to get the next set of results, call this method again, using this value as the `page_token`.",
-          "type": "string"
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
         },
-        "results": {
-          "description": "A list of IamPolicy that match the search query. Related information such as the associated resource is returned along with the policy.",
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
           "items": {
-            "$ref": "IamPolicySearchResult"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "SearchAllResourcesResponse": {
-      "description": "Search all resources response.",
-      "id": "SearchAllResourcesResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "If there are more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
-          "type": "string"
-        },
-        "results": {
-          "description": "A list of resource that match the search query.",
-          "items": {
-            "$ref": "StandardResourceMetadata"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "StandardResourceMetadata": {
-      "description": "The standard metadata of a cloud resource.",
-      "id": "StandardResourceMetadata",
-      "properties": {
-        "additionalAttributes": {
-          "description": "Additional searchable attributes of this resource. Informational only. The exact set of attributes is subject to change. For example: project id, DNS name etc.",
-          "items": {
-            "type": "string"
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
           },
           "type": "array"
         },
-        "assetType": {
-          "description": "The type of this resource. For example: \"compute.googleapis.com/Disk\".",
-          "type": "string"
-        },
-        "description": {
-          "description": "One or more paragraphs of text description of this resource. Maximum length could be up to 1M bytes.",
-          "type": "string"
-        },
-        "displayName": {
-          "description": "The display name of this resource.",
-          "type": "string"
-        },
-        "labels": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Labels associated with this resource. See [Labelling and grouping GCP resources](https://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources) for more information.",
-          "type": "object"
-        },
-        "location": {
-          "description": "Location can be \"global\", regional like \"us-east1\", or zonal like \"us-west1-b\".",
-          "type": "string"
-        },
-        "name": {
-          "description": "The full resource name. For example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.",
-          "type": "string"
-        },
-        "networkTags": {
-          "description": "Network tags associated with this resource. Like labels, network tags are a type of annotations used to group GCP resources. See [Labelling GCP resources](lhttps://cloud.google.com/blog/products/gcp/labelling-and-grouping-your-google-cloud-platform-resources) for more information.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "project": {
-          "description": "The project that this resource belongs to, in the form of `projects/{project_number}`.",
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
         }
       },
@@ -1259,6 +1241,6 @@
   },
   "servicePath": "",
   "title": "Cloud Asset API",
-  "version": "v1p1beta1",
+  "version": "v1p7beta1",
   "version_module": true
 }
