@@ -974,6 +974,10 @@ export namespace appengine_v1beta {
      */
     flexibleEnvironmentAvailable?: boolean | null;
     /**
+     * Output only. Search API (https://cloud.google.com/appengine/docs/standard/python/search) is available in the given location.
+     */
+    searchApiAvailable?: boolean | null;
+    /**
      * App Engine standard environment is available in the given location.@OutputOnly
      */
     standardEnvironmentAvailable?: boolean | null;
