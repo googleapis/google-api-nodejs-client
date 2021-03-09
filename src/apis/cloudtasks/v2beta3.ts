@@ -415,6 +415,19 @@ export namespace cloudtasks_v2beta3 {
     version?: number | null;
   }
   /**
+   * Pull Message. This proto can only be used for tasks in a queue which has PULL type. It currently exists for backwards compatibility with the App Engine Task Queue SDK. This message type maybe returned with methods list and get, when the response view is FULL.
+   */
+  export interface Schema$PullMessage {
+    /**
+     * A data payload consumed by the worker to execute the task.
+     */
+    payload?: string | null;
+    /**
+     * The tasks's tag. The tag is less than 500 characters. SDK compatibility: Although the SDK allows tags to be either string or [bytes](https://cloud.google.com/appengine/docs/standard/java/javadoc/com/google/appengine/api/taskqueue/TaskOptions.html#tag-byte:A-), only UTF-8 encoded tags can be used in Cloud Tasks. If a tag isn't UTF-8 encoded, the tag will be empty when the task is returned by Cloud Tasks.
+     */
+    tag?: string | null;
+  }
+  /**
    * Request message for PurgeQueue.
    */
   export interface Schema$PurgeQueueRequest {}
@@ -451,9 +464,46 @@ export namespace cloudtasks_v2beta3 {
      */
     state?: string | null;
     /**
+     * Output only. The realtime, informational statistics for a queue. In order to receive the statistics the caller should include this field in the FieldMask.
+     */
+    stats?: Schema$QueueStats;
+    /**
+     * The maximum amount of time that a task will be retained in this queue. Queues created by Cloud Tasks have a default `task_ttl` of 31 days. After a task has lived for `task_ttl`, the task will be deleted regardless of whether it was dispatched or not. The `task_ttl` for queues created via queue.yaml/xml is equal to the maximum duration because there is a [storage quota](https://cloud.google.com/appengine/quotas#Task_Queue) for these queues. To view the maximum valid duration, see the documentation for Duration.
+     */
+    taskTtl?: string | null;
+    /**
+     * The task tombstone time to live (TTL). After a task is deleted or executed, the task's tombstone is retained for the length of time specified by `tombstone_ttl`. The tombstone is used by task de-duplication; another task with the same name can't be created until the tombstone has expired. For more information about task de-duplication, see the documentation for CreateTaskRequest. Queues created by Cloud Tasks have a default `tombstone_ttl` of 1 hour.
+     */
+    tombstoneTtl?: string | null;
+    /**
      * Immutable. The type of a queue (push or pull). `Queue.type` is an immutable property of the queue that is set at the queue creation time. When left unspecified, the default value of `PUSH` is selected.
      */
     type?: string | null;
+  }
+  /**
+   * Statistics for a queue.
+   */
+  export interface Schema$QueueStats {
+    /**
+     * Output only. The number of requests that the queue has dispatched but has not received a reply for yet.
+     */
+    concurrentDispatchesCount?: string | null;
+    /**
+     * Output only. The current maximum number of tasks per second executed by the queue. The maximum value of this variable is controlled by the RateLimits of the Queue. However, this value could be less to avoid overloading the endpoints tasks in the queue are targeting.
+     */
+    effectiveExecutionRate?: number | null;
+    /**
+     * Output only. The number of tasks that the queue has dispatched and received a reply for during the last minute. This variable counts both successful and non-successful executions.
+     */
+    executedLastMinuteCount?: string | null;
+    /**
+     * Output only. An estimation of the nearest time in the future where a task in the queue is scheduled to be executed.
+     */
+    oldestEstimatedArrivalTime?: string | null;
+    /**
+     * Output only. An estimation of the number of tasks in the queue, that is, the tasks in the queue that haven't been executed, the tasks in the queue which the queue has dispatched but has not yet received a reply for, and the failed tasks that the queue is retrying.
+     */
+    tasksCount?: string | null;
   }
   /**
    * Rate limits. This message determines the maximum rate that tasks can be dispatched by a queue, regardless of whether the dispatch is a first task attempt or a retry. Note: The debugging command, RunTask, will run a task even if the queue has reached its RateLimits.
@@ -581,6 +631,10 @@ export namespace cloudtasks_v2beta3 {
      * Optionally caller-specified in CreateTask. The task name. The task name must have the following format: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID` * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), or periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the task's location. The list of available locations can be obtained by calling ListLocations. For more information, see https://cloud.google.com/about/locations/. * `QUEUE_ID` can contain letters ([A-Za-z]), numbers ([0-9]), or hyphens (-). The maximum length is 100 characters. * `TASK_ID` can contain only letters ([A-Za-z]), numbers ([0-9]), hyphens (-), or underscores (_). The maximum length is 500 characters.
      */
     name?: string | null;
+    /**
+     * Pull Message contained in a task in a PULL queue type. This payload type cannot be explicitly set through Cloud Tasks API. Its purpose, currently is to provide backward compatibility with App Engine Task Queue [pull](https://cloud.google.com/appengine/docs/standard/java/taskqueue/pull/) queues to provide a way to inspect contents of pull tasks through the CloudTasks.GetTask.
+     */
+    pullMessage?: Schema$PullMessage;
     /**
      * Output only. The number of attempts which have received a response.
      */
@@ -978,6 +1032,9 @@ export namespace cloudtasks_v2beta3 {
      *       //   "retryConfig": {},
      *       //   "stackdriverLoggingConfig": {},
      *       //   "state": "my_state",
+     *       //   "stats": {},
+     *       //   "taskTtl": "my_taskTtl",
+     *       //   "tombstoneTtl": "my_tombstoneTtl",
      *       //   "type": "my_type"
      *       // }
      *     },
@@ -993,6 +1050,9 @@ export namespace cloudtasks_v2beta3 {
      *   //   "retryConfig": {},
      *   //   "stackdriverLoggingConfig": {},
      *   //   "state": "my_state",
+     *   //   "stats": {},
+     *   //   "taskTtl": "my_taskTtl",
+     *   //   "tombstoneTtl": "my_tombstoneTtl",
      *   //   "type": "my_type"
      *   // }
      * }
@@ -1241,6 +1301,8 @@ export namespace cloudtasks_v2beta3 {
      *   const res = await cloudtasks.projects.locations.queues.get({
      *     // Required. The resource name of the queue. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      *     name: 'projects/my-project/locations/my-location/queues/my-queue',
+     *     // Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats]. [Queue.stats] will be returned only if it was explicitly specified in the mask.
+     *     readMask: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -1253,6 +1315,9 @@ export namespace cloudtasks_v2beta3 {
      *   //   "retryConfig": {},
      *   //   "stackdriverLoggingConfig": {},
      *   //   "state": "my_state",
+     *   //   "stats": {},
+     *   //   "taskTtl": "my_taskTtl",
+     *   //   "tombstoneTtl": "my_tombstoneTtl",
      *   //   "type": "my_type"
      *   // }
      * }
@@ -1519,6 +1584,8 @@ export namespace cloudtasks_v2beta3 {
      *     pageToken: 'placeholder-value',
      *     // Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`
      *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats]. [Queue.stats] will be returned only if it was explicitly specified in the mask.
+     *     readMask: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -1666,6 +1733,9 @@ export namespace cloudtasks_v2beta3 {
      *       //   "retryConfig": {},
      *       //   "stackdriverLoggingConfig": {},
      *       //   "state": "my_state",
+     *       //   "stats": {},
+     *       //   "taskTtl": "my_taskTtl",
+     *       //   "tombstoneTtl": "my_tombstoneTtl",
      *       //   "type": "my_type"
      *       // }
      *     },
@@ -1681,6 +1751,9 @@ export namespace cloudtasks_v2beta3 {
      *   //   "retryConfig": {},
      *   //   "stackdriverLoggingConfig": {},
      *   //   "state": "my_state",
+     *   //   "stats": {},
+     *   //   "taskTtl": "my_taskTtl",
+     *   //   "tombstoneTtl": "my_tombstoneTtl",
      *   //   "type": "my_type"
      *   // }
      * }
@@ -1820,6 +1893,9 @@ export namespace cloudtasks_v2beta3 {
      *   //   "retryConfig": {},
      *   //   "stackdriverLoggingConfig": {},
      *   //   "state": "my_state",
+     *   //   "stats": {},
+     *   //   "taskTtl": "my_taskTtl",
+     *   //   "tombstoneTtl": "my_tombstoneTtl",
      *   //   "type": "my_type"
      *   // }
      * }
@@ -1962,6 +2038,9 @@ export namespace cloudtasks_v2beta3 {
      *   //   "retryConfig": {},
      *   //   "stackdriverLoggingConfig": {},
      *   //   "state": "my_state",
+     *   //   "stats": {},
+     *   //   "taskTtl": "my_taskTtl",
+     *   //   "tombstoneTtl": "my_tombstoneTtl",
      *   //   "type": "my_type"
      *   // }
      * }
@@ -2104,6 +2183,9 @@ export namespace cloudtasks_v2beta3 {
      *   //   "retryConfig": {},
      *   //   "stackdriverLoggingConfig": {},
      *   //   "state": "my_state",
+     *   //   "stats": {},
+     *   //   "taskTtl": "my_taskTtl",
+     *   //   "tombstoneTtl": "my_tombstoneTtl",
      *   //   "type": "my_type"
      *   // }
      * }
@@ -2508,6 +2590,10 @@ export namespace cloudtasks_v2beta3 {
      * Required. The resource name of the queue. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      */
     name?: string;
+    /**
+     * Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats]. [Queue.stats] will be returned only if it was explicitly specified in the mask.
+     */
+    readMask?: string;
   }
   export interface Params$Resource$Projects$Locations$Queues$Getiampolicy
     extends StandardParameters {
@@ -2539,6 +2625,10 @@ export namespace cloudtasks_v2beta3 {
      * Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`
      */
     parent?: string;
+    /**
+     * Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats]. [Queue.stats] will be returned only if it was explicitly specified in the mask.
+     */
+    readMask?: string;
   }
   export interface Params$Resource$Projects$Locations$Queues$Patch
     extends StandardParameters {
@@ -2674,6 +2764,7 @@ export namespace cloudtasks_v2beta3 {
      *   //   "httpRequest": {},
      *   //   "lastAttempt": {},
      *   //   "name": "my_name",
+     *   //   "pullMessage": {},
      *   //   "responseCount": 0,
      *   //   "scheduleTime": "my_scheduleTime",
      *   //   "view": "my_view"
@@ -2941,6 +3032,7 @@ export namespace cloudtasks_v2beta3 {
      *   //   "httpRequest": {},
      *   //   "lastAttempt": {},
      *   //   "name": "my_name",
+     *   //   "pullMessage": {},
      *   //   "responseCount": 0,
      *   //   "scheduleTime": "my_scheduleTime",
      *   //   "view": "my_view"
@@ -3225,6 +3317,7 @@ export namespace cloudtasks_v2beta3 {
      *   //   "httpRequest": {},
      *   //   "lastAttempt": {},
      *   //   "name": "my_name",
+     *   //   "pullMessage": {},
      *   //   "responseCount": 0,
      *   //   "scheduleTime": "my_scheduleTime",
      *   //   "view": "my_view"
