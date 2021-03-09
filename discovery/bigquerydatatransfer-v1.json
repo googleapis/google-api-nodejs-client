@@ -23,7 +23,7 @@
   "canonicalName": "BigQuery Data Transfer",
   "description": "Schedule queries or transfer external data from SaaS applications to Google BigQuery on a regular basis.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://cloud.google.com/bigquery/",
+  "documentationLink": "https://cloud.google.com/bigquery-transfer/",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -555,7 +555,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.",
+                      "description": "The resource name of the transfer config. Transfer config names have the form `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer config.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/transferConfigs/[^/]+$",
                       "required": true,
@@ -756,12 +756,12 @@
                             "CANCELLED"
                           ],
                           "enumDescriptions": [
-                            "State placeholder.",
-                            "Data transfer is scheduled and is waiting to be picked up by data transfer backend.",
-                            "Data transfer is in progress.",
-                            "Data transfer completed successfully.",
-                            "Data transfer failed.",
-                            "Data transfer is cancelled."
+                            "State placeholder (0).",
+                            "Data transfer is scheduled and is waiting to be picked up by data transfer backend (2).",
+                            "Data transfer is in progress (3).",
+                            "Data transfer completed successfully (4).",
+                            "Data transfer failed (5).",
+                            "Data transfer is cancelled (6)."
                           ],
                           "location": "query",
                           "repeated": true,
@@ -1007,7 +1007,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.",
+                  "description": "The resource name of the transfer config. Transfer config names have the form `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer config.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/transferConfigs/[^/]+$",
                   "required": true,
@@ -1208,12 +1208,12 @@
                         "CANCELLED"
                       ],
                       "enumDescriptions": [
-                        "State placeholder.",
-                        "Data transfer is scheduled and is waiting to be picked up by data transfer backend.",
-                        "Data transfer is in progress.",
-                        "Data transfer completed successfully.",
-                        "Data transfer failed.",
-                        "Data transfer is cancelled."
+                        "State placeholder (0).",
+                        "Data transfer is scheduled and is waiting to be picked up by data transfer backend (2).",
+                        "Data transfer is in progress (3).",
+                        "Data transfer completed successfully (4).",
+                        "Data transfer failed (5).",
+                        "Data transfer is cancelled (6)."
                       ],
                       "location": "query",
                       "repeated": true,
@@ -1301,7 +1301,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20210226",
   "rootUrl": "https://bigquerydatatransfer.googleapis.com/",
   "schemas": {
     "CheckValidCredsRequest": {
@@ -1848,7 +1848,7 @@
           "description": "Email notifications will be sent according to these preferences to the email address of the user who owns this transfer config."
         },
         "name": {
-          "description": "The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.",
+          "description": "The resource name of the transfer config. Transfer config names have the form `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer config.",
           "type": "string"
         },
         "nextRunTime": {
@@ -1866,7 +1866,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Data transfer specific parameters.",
+          "description": "Parameters specific to each data source. For more information see the bq tab in the 'Setting up a data transfer' section for each data source. For example the parameters for Cloud Storage transfers are listed here: https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq",
           "type": "object"
         },
         "schedule": {
@@ -1888,12 +1888,12 @@
             "CANCELLED"
           ],
           "enumDescriptions": [
-            "State placeholder.",
-            "Data transfer is scheduled and is waiting to be picked up by data transfer backend.",
-            "Data transfer is in progress.",
-            "Data transfer completed successfully.",
-            "Data transfer failed.",
-            "Data transfer is cancelled."
+            "State placeholder (0).",
+            "Data transfer is scheduled and is waiting to be picked up by data transfer backend (2).",
+            "Data transfer is in progress (3).",
+            "Data transfer completed successfully (4).",
+            "Data transfer failed (5).",
+            "Data transfer is cancelled (6)."
           ],
           "readOnly": true,
           "type": "string"
@@ -1987,7 +1987,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Output only. Data transfer specific parameters.",
+          "description": "Output only. Parameters specific to each data source. For more information see the bq tab in the 'Setting up a data transfer' section for each data source. For example the parameters for Cloud Storage transfers are listed here: https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq",
           "readOnly": true,
           "type": "object"
         },
@@ -2023,12 +2023,12 @@
             "CANCELLED"
           ],
           "enumDescriptions": [
-            "State placeholder.",
-            "Data transfer is scheduled and is waiting to be picked up by data transfer backend.",
-            "Data transfer is in progress.",
-            "Data transfer completed successfully.",
-            "Data transfer failed.",
-            "Data transfer is cancelled."
+            "State placeholder (0).",
+            "Data transfer is scheduled and is waiting to be picked up by data transfer backend (2).",
+            "Data transfer is in progress (3).",
+            "Data transfer completed successfully (4).",
+            "Data transfer failed (5).",
+            "Data transfer is cancelled (6)."
           ],
           "type": "string"
         },
