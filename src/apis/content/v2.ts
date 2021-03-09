@@ -1854,7 +1854,7 @@ export namespace content_v2 {
      */
     errors?: Schema$Errors;
     /**
-     * The the list of accessible GMB accounts.
+     * The list of accessible GMB accounts.
      */
     gmbAccounts?: Schema$GmbAccounts;
     /**
@@ -3545,7 +3545,7 @@ export namespace content_v2 {
      */
     productId?: string | null;
     /**
-     * The quantity to return and refund.
+     * The quantity to return and refund. Quantity is required.
      */
     quantity?: number | null;
     /**
@@ -4201,7 +4201,7 @@ export namespace content_v2 {
      */
     color?: string | null;
     /**
-     * Condition or state of the item. Acceptable values are: - "`local`" - "`online`"
+     * Condition or state of the item. Acceptable values are: - "`new`" - "`refurbished`" - "`used`"
      */
     condition?: string | null;
     /**
@@ -4281,7 +4281,7 @@ export namespace content_v2 {
      */
     gender?: string | null;
     /**
-     * Google's category of the item (see Google product taxonomy).
+     * Google's category of the item (see [Google product taxonomy](https://support.google.com/merchants/answer/1705911)). When querying products, this field will contain the user provided value. There is currently no way to get back the auto assigned google product categories through the API.
      */
     googleProductCategory?: string | null;
     /**
