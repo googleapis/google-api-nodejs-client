@@ -4354,6 +4354,10 @@ export namespace vision_v1 {
      */
     productSearchParams?: Schema$ProductSearchParams;
     /**
+     * Parameters for text detection and document text detection.
+     */
+    textDetectionParams?: Schema$TextDetectionParams;
+    /**
      * Parameters for web detection.
      */
     webDetectionParams?: Schema$WebDetectionParams;
@@ -4989,6 +4993,15 @@ export namespace vision_v1 {
      * UTF-8 text detected on the pages.
      */
     text?: string | null;
+  }
+  /**
+   * Parameters for text detections. This is used to control TEXT_DETECTION and DOCUMENT_TEXT_DETECTION features.
+   */
+  export interface Schema$TextDetectionParams {
+    /**
+     * By default, Cloud Vision API only includes confidence score for DOCUMENT_TEXT_DETECTION result. Set the flag to true to include confidence score for TEXT_DETECTION as well.
+     */
+    enableTextDetectionConfidenceScore?: boolean | null;
   }
   /**
    * Additional information detected on the structural component.
