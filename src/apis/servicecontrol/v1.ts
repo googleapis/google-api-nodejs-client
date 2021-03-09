@@ -103,7 +103,7 @@ export namespace servicecontrol_v1 {
   /**
    * Service Control API
    *
-   * Provides control plane functionality to managed services, such as logging, monitoring, and status checks.
+   * Provides admission control and telemetry reporting for services integrated with Service Infrastructure.
    *
    * @example
    * ```js
@@ -327,7 +327,7 @@ export namespace servicecontrol_v1 {
      */
     permission?: string | null;
     /**
-     * The resource being accessed, as a REST-style string. For example: bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID
+     * The resource being accessed, as a REST-style or cloud resource string. For example: bigquery.googleapis.com/projects/PROJECTID/datasets/DATASETID or projects/PROJECTID/datasets/DATASETID
      */
     resource?: string | null;
     /**
@@ -838,7 +838,7 @@ export namespace servicecontrol_v1 {
      */
     traceSpans?: Schema$TraceSpan[];
     /**
-     * User defined labels for the resource that this operation is associated with. Only a combination of 1000 user labels per consumer project are allowed.
+     * Private Preview. This feature is only available for approved services. User defined labels for the resource that this operation is associated with.
      */
     userLabels?: {[key: string]: string} | null;
   }
@@ -957,19 +957,6 @@ export namespace servicecontrol_v1 {
     status?: Schema$Status;
   }
   /**
-   * Contains additional info about the report operation.
-   */
-  export interface Schema$ReportInfo {
-    /**
-     * The Operation.operation_id value from the request.
-     */
-    operationId?: string | null;
-    /**
-     * Quota usage info when processing the `Operation`.
-     */
-    quotaInfo?: Schema$QuotaInfo;
-  }
-  /**
    * Request message for the Report method.
    */
   export interface Schema$ReportRequest {
@@ -990,10 +977,6 @@ export namespace servicecontrol_v1 {
      * Partial failures, one for each `Operation` in the request that failed processing. There are three possible combinations of the RPC status: 1. The combination of a successful RPC status and an empty `report_errors` list indicates a complete success where all `Operations` in the request are processed successfully. 2. The combination of a successful RPC status and a non-empty `report_errors` list indicates a partial success where some `Operations` in the request succeeded. Each `Operation` that failed processing has a corresponding item in this list. 3. A failed RPC status indicates a general non-deterministic failure. When this happens, it's impossible to know which of the 'Operations' in the request succeeded or failed.
      */
     reportErrors?: Schema$ReportError[];
-    /**
-     * Quota usage for each quota release `Operation` request. Fully or partially failed quota release request may or may not be present in `report_quota_info`. For example, a failed quota release request will have the current quota usage info when precise quota library returns the info. A deadline exceeded quota request will not have quota usage info. If there is no quota release request, report_quota_info will be empty.
-     */
-    reportInfos?: Schema$ReportInfo[];
     /**
      * The actual config id used to process the request.
      */
@@ -1052,7 +1035,7 @@ export namespace servicecontrol_v1 {
      */
     size?: string | null;
     /**
-     * The timestamp when the `destination` service receives the first byte of the request.
+     * The timestamp when the `destination` service receives the last byte of the request.
      */
     time?: string | null;
   }
@@ -1086,7 +1069,7 @@ export namespace servicecontrol_v1 {
    */
   export interface Schema$Resource {
     /**
-     * Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: http://kubernetes.io/docs/user-guide/annotations
+     * Annotations is an unstructured key-value map stored with a resource that may be set by external tools to store and retrieve arbitrary metadata. They are not queryable and should be preserved when modifying objects. More info: https://kubernetes.io/docs/user-guide/annotations
      */
     annotations?: {[key: string]: string} | null;
     /**
@@ -1109,6 +1092,10 @@ export namespace servicecontrol_v1 {
      * The labels or tags on the resource, such as AWS resource tags and Kubernetes resource labels.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Immutable. The location of the resource. The location encoding is specific to the service provider, and new encoding may be introduced as the service evolves. For Google Cloud products, the encoding is what is used by Google Cloud APIs, such as `us-east1`, `aws-us-east-1`, and `azure-eastus2`. The semantics of `location` is identical to the `cloud.googleapis.com/location` label used by some Google Cloud APIs.
+     */
+    location?: string | null;
     /**
      * The stable identifier (name) of a resource on the `service`. A resource can be logically identified as "//{resource.service\}/{resource.name\}". The differences between a resource name and a URI are: * Resource name is a logical identifier, independent of network protocol and API version. For example, `//pubsub.googleapis.com/projects/123/topics/news-feed`. * URI often includes protocol and version information, so it can be used directly by applications. For example, `https://pubsub.googleapis.com/v1/projects/123/topics/news-feed`. See https://cloud.google.com/apis/design/resource_names for details.
      */
@@ -1629,7 +1616,6 @@ export namespace servicecontrol_v1 {
      *   // Example response
      *   // {
      *   //   "reportErrors": [],
-     *   //   "reportInfos": [],
      *   //   "serviceConfigId": "my_serviceConfigId",
      *   //   "serviceRolloutId": "my_serviceRolloutId"
      *   // }
