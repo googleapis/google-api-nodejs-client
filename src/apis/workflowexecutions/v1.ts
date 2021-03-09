@@ -36,9 +36,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace workflowexecutions_v1beta {
+export namespace workflowexecutions_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -108,7 +108,7 @@ export namespace workflowexecutions_v1beta {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const workflowexecutions = google.workflowexecutions('v1beta');
+   * const workflowexecutions = google.workflowexecutions('v1');
    * ```
    */
   export class Workflowexecutions {
@@ -134,20 +134,16 @@ export namespace workflowexecutions_v1beta {
    */
   export interface Schema$Error {
     /**
-     * Human readable stack trace string.
+     * Human readable error context, helpful for debugging purposes.
      */
     context?: string | null;
     /**
-     * Error message and data returned represented as a JSON string.
+     * Error payload returned by the execution, represented as a JSON string.
      */
     payload?: string | null;
-    /**
-     * Stack trace with detailed information of where error was generated.
-     */
-    stackTrace?: Schema$StackTrace;
   }
   /**
-   * A running instance of a [Workflow](/workflows/docs/reference/rest/v1beta/projects.locations.workflows).
+   * A running instance of a [Workflow](/workflows/docs/reference/rest/v1/projects.locations.workflows).
    */
   export interface Schema$Execution {
     /**
@@ -195,49 +191,6 @@ export namespace workflowexecutions_v1beta {
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
-  }
-  /**
-   * Position contains source position information about the stack trace element such as line number, column number and length of the code block in bytes.
-   */
-  export interface Schema$Position {
-    /**
-     * The source code column position (of the line) the current instruction was generated from.
-     */
-    column?: string | null;
-    /**
-     * The length in bytes of text in this character group, e.g. digits of a number, string length, or AST (abstract syntax tree) node.
-     */
-    length?: string | null;
-    /**
-     * The source code line number the current instruction was generated from.
-     */
-    line?: string | null;
-  }
-  /**
-   * A collection of stack elements (frames) where an error occurred.
-   */
-  export interface Schema$StackTrace {
-    /**
-     * An array of Stack elements.
-     */
-    elements?: Schema$StackTraceElement[];
-  }
-  /**
-   * A single stack element (frame) where an error occurred. This field currently only exists in v1Beta. We will need to roll this change out to V1 after the feature is thoroughly tested. TODO(b/178540475)
-   */
-  export interface Schema$StackTraceElement {
-    /**
-     * The source position information of the stacktrace element.
-     */
-    position?: Schema$Position;
-    /**
-     * The routine where the error occurred.
-     */
-    routine?: string | null;
-    /**
-     * The step the error occurred at.
-     */
-    step?: string | null;
   }
 
   export class Resource$Projects {
@@ -288,7 +241,7 @@ export namespace workflowexecutions_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const workflowexecutions = google.workflowexecutions('v1beta');
+     * const workflowexecutions = google.workflowexecutions('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -398,10 +351,7 @@ export namespace workflowexecutions_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -434,7 +384,7 @@ export namespace workflowexecutions_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const workflowexecutions = google.workflowexecutions('v1beta');
+     * const workflowexecutions = google.workflowexecutions('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -552,7 +502,7 @@ export namespace workflowexecutions_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/executions').replace(
+            url: (rootUrl + '/v1/{+parent}/executions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -588,7 +538,7 @@ export namespace workflowexecutions_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const workflowexecutions = google.workflowexecutions('v1beta');
+     * const workflowexecutions = google.workflowexecutions('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -694,7 +644,7 @@ export namespace workflowexecutions_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -727,7 +677,7 @@ export namespace workflowexecutions_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const workflowexecutions = google.workflowexecutions('v1beta');
+     * const workflowexecutions = google.workflowexecutions('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -835,7 +785,7 @@ export namespace workflowexecutions_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/executions').replace(
+            url: (rootUrl + '/v1/{+parent}/executions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
