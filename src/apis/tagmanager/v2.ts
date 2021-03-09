@@ -214,6 +214,10 @@ export namespace tagmanager_v2 {
      */
     name?: string | null;
     /**
+     * User notes on how to apply this tag in the container. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update
+     */
+    notes?: string | null;
+    /**
      * The client's parameters. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update
      */
     parameter?: Schema$Parameter[];
