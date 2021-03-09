@@ -511,7 +511,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     emailPreferences?: Schema$EmailPreferences;
     /**
-     * The resource name of the transfer config. Transfer config names have the form of `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
+     * The resource name of the transfer config. Transfer config names have the form `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
      */
     name?: string | null;
     /**
@@ -523,7 +523,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     notificationPubsubTopic?: string | null;
     /**
-     * Data transfer specific parameters.
+     * Parameters specific to each data source. For more information see the bq tab in the 'Setting up a data transfer' section for each data source. For example the parameters for Cloud Storage transfers are listed here: https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      */
     params?: {[key: string]: any} | null;
     /**
@@ -597,7 +597,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     notificationPubsubTopic?: string | null;
     /**
-     * Output only. Data transfer specific parameters.
+     * Output only. Parameters specific to each data source. For more information see the bq tab in the 'Setting up a data transfer' section for each data source. For example the parameters for Cloud Storage transfers are listed here: https://cloud.google.com/bigquery-transfer/docs/cloud-storage-transfer#bq
      */
     params?: {[key: string]: any} | null;
     /**
@@ -2589,7 +2589,7 @@ export namespace bigquerydatatransfer_v1 {
      *     {
      *       // Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      *       authorizationCode: 'placeholder-value',
-     *       // The resource name of the transfer config. Transfer config names have the form of `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
+     *       // The resource name of the transfer config. Transfer config names have the form `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
      *       name:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
      *       // Optional service account name. If this field is set and "service_account_name" is set in update_mask, transfer config will be updated to use this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
@@ -3108,7 +3108,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     authorizationCode?: string;
     /**
-     * The resource name of the transfer config. Transfer config names have the form of `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
+     * The resource name of the transfer config. Transfer config names have the form `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
      */
     name?: string;
     /**
@@ -4444,7 +4444,7 @@ export namespace bigquerydatatransfer_v1 {
      *   const res = await bigquerydatatransfer.projects.transferConfigs.patch({
      *     // Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      *     authorizationCode: 'placeholder-value',
-     *     // The resource name of the transfer config. Transfer config names have the form of `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
+     *     // The resource name of the transfer config. Transfer config names have the form `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
      *     name: 'projects/my-project/transferConfigs/my-transferConfig',
      *     // Optional service account name. If this field is set and "service_account_name" is set in update_mask, transfer config will be updated to use this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
      *     serviceAccountName: 'placeholder-value',
@@ -4957,7 +4957,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     authorizationCode?: string;
     /**
-     * The resource name of the transfer config. Transfer config names have the form of `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
+     * The resource name of the transfer config. Transfer config names have the form `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
      */
     name?: string;
     /**
