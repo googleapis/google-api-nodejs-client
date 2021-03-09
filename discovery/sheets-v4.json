@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20201130",
+  "revision": "20210302",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -2607,7 +2607,7 @@
       "id": "ChartData",
       "properties": {
         "aggregateType": {
-          "description": "The aggregation type for the series of a data source chart. Not supported for regular charts.",
+          "description": "The aggregation type for the series of a data source chart. Only supported for data source charts.",
           "enum": [
             "CHART_AGGREGATE_TYPE_UNSPECIFIED",
             "AVERAGE",
@@ -2634,7 +2634,7 @@
         },
         "groupRule": {
           "$ref": "ChartGroupRule",
-          "description": "The rule to group the data by if the ChartData backs the domain of a data source chart. Not supported for regular charts."
+          "description": "The rule to group the data by if the ChartData backs the domain of a data source chart. Only supported for data source charts."
         },
         "sourceRange": {
           "$ref": "ChartSourceRange",

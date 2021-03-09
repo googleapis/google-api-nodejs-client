@@ -1252,7 +1252,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$ChartData {
     /**
-     * The aggregation type for the series of a data source chart. Not supported for regular charts.
+     * The aggregation type for the series of a data source chart. Only supported for data source charts.
      */
     aggregateType?: string | null;
     /**
@@ -1260,7 +1260,7 @@ export namespace sheets_v4 {
      */
     columnReference?: Schema$DataSourceColumnReference;
     /**
-     * The rule to group the data by if the ChartData backs the domain of a data source chart. Not supported for regular charts.
+     * The rule to group the data by if the ChartData backs the domain of a data source chart. Only supported for data source charts.
      */
     groupRule?: Schema$ChartGroupRule;
     /**
