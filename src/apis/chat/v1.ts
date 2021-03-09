@@ -101,9 +101,9 @@ export namespace chat_v1 {
   }
 
   /**
-   * Hangouts Chat API
+   * Google Chat API
    *
-   * Enables bots to fetch information and perform actions in Hangouts Chat.
+   * Enables bots to fetch information and perform actions in Google Chat.
    *
    * @example
    * ```js
@@ -896,9 +896,188 @@ export namespace chat_v1 {
         return createAPIRequest<Schema$Message>(parameters);
       }
     }
+
+    /**
+     * Legacy path for creating message. Calling these will result in a BadRequest response.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.dms.webhooks({
+     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     *     parent: 'dms/my-dm',
+     *     // Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     threadKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actionResponse": {},
+     *       //   "annotations": [],
+     *       //   "argumentText": "my_argumentText",
+     *       //   "attachment": [],
+     *       //   "cards": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "fallbackText": "my_fallbackText",
+     *       //   "name": "my_name",
+     *       //   "previewText": "my_previewText",
+     *       //   "sender": {},
+     *       //   "slashCommand": {},
+     *       //   "space": {},
+     *       //   "text": "my_text",
+     *       //   "thread": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actionResponse": {},
+     *   //   "annotations": [],
+     *   //   "argumentText": "my_argumentText",
+     *   //   "attachment": [],
+     *   //   "cards": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "fallbackText": "my_fallbackText",
+     *   //   "name": "my_name",
+     *   //   "previewText": "my_previewText",
+     *   //   "sender": {},
+     *   //   "slashCommand": {},
+     *   //   "space": {},
+     *   //   "text": "my_text",
+     *   //   "thread": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    webhooks(
+      params: Params$Resource$Dms$Webhooks,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    webhooks(
+      params?: Params$Resource$Dms$Webhooks,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
+    webhooks(
+      params: Params$Resource$Dms$Webhooks,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    webhooks(
+      params: Params$Resource$Dms$Webhooks,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    webhooks(
+      params: Params$Resource$Dms$Webhooks,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    webhooks(callback: BodyResponseCallback<Schema$Message>): void;
+    webhooks(
+      paramsOrCallback?:
+        | Params$Resource$Dms$Webhooks
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Dms$Webhooks;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dms$Webhooks;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/webhooks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Message>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Dms$Messages extends StandardParameters {
+    /**
+     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     */
+    parent?: string;
+    /**
+     * Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     */
+    threadKey?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Message;
+  }
+  export interface Params$Resource$Dms$Webhooks extends StandardParameters {
     /**
      * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      */
@@ -1416,9 +1595,188 @@ export namespace chat_v1 {
         return createAPIRequest<Schema$Message>(parameters);
       }
     }
+
+    /**
+     * Legacy path for creating message. Calling these will result in a BadRequest response.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.rooms.webhooks({
+     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     *     parent: 'rooms/my-room',
+     *     // Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     threadKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actionResponse": {},
+     *       //   "annotations": [],
+     *       //   "argumentText": "my_argumentText",
+     *       //   "attachment": [],
+     *       //   "cards": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "fallbackText": "my_fallbackText",
+     *       //   "name": "my_name",
+     *       //   "previewText": "my_previewText",
+     *       //   "sender": {},
+     *       //   "slashCommand": {},
+     *       //   "space": {},
+     *       //   "text": "my_text",
+     *       //   "thread": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actionResponse": {},
+     *   //   "annotations": [],
+     *   //   "argumentText": "my_argumentText",
+     *   //   "attachment": [],
+     *   //   "cards": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "fallbackText": "my_fallbackText",
+     *   //   "name": "my_name",
+     *   //   "previewText": "my_previewText",
+     *   //   "sender": {},
+     *   //   "slashCommand": {},
+     *   //   "space": {},
+     *   //   "text": "my_text",
+     *   //   "thread": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    webhooks(
+      params: Params$Resource$Rooms$Webhooks,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    webhooks(
+      params?: Params$Resource$Rooms$Webhooks,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
+    webhooks(
+      params: Params$Resource$Rooms$Webhooks,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    webhooks(
+      params: Params$Resource$Rooms$Webhooks,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    webhooks(
+      params: Params$Resource$Rooms$Webhooks,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    webhooks(callback: BodyResponseCallback<Schema$Message>): void;
+    webhooks(
+      paramsOrCallback?:
+        | Params$Resource$Rooms$Webhooks
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Rooms$Webhooks;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rooms$Webhooks;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/webhooks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Message>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Rooms$Messages extends StandardParameters {
+    /**
+     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     */
+    parent?: string;
+    /**
+     * Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     */
+    threadKey?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Message;
+  }
+  export interface Params$Resource$Rooms$Webhooks extends StandardParameters {
     /**
      * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
      */
@@ -1892,6 +2250,170 @@ export namespace chat_v1 {
         return createAPIRequest<Schema$ListSpacesResponse>(parameters);
       }
     }
+
+    /**
+     * Legacy path for creating message. Calling these will result in a BadRequest response.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chat.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chat = google.chat('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chat.spaces.webhooks({
+     *     // Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     *     parent: 'spaces/my-space',
+     *     // Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     *     threadKey: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actionResponse": {},
+     *       //   "annotations": [],
+     *       //   "argumentText": "my_argumentText",
+     *       //   "attachment": [],
+     *       //   "cards": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "fallbackText": "my_fallbackText",
+     *       //   "name": "my_name",
+     *       //   "previewText": "my_previewText",
+     *       //   "sender": {},
+     *       //   "slashCommand": {},
+     *       //   "space": {},
+     *       //   "text": "my_text",
+     *       //   "thread": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actionResponse": {},
+     *   //   "annotations": [],
+     *   //   "argumentText": "my_argumentText",
+     *   //   "attachment": [],
+     *   //   "cards": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "fallbackText": "my_fallbackText",
+     *   //   "name": "my_name",
+     *   //   "previewText": "my_previewText",
+     *   //   "sender": {},
+     *   //   "slashCommand": {},
+     *   //   "space": {},
+     *   //   "text": "my_text",
+     *   //   "thread": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    webhooks(
+      params: Params$Resource$Spaces$Webhooks,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    webhooks(
+      params?: Params$Resource$Spaces$Webhooks,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Message>;
+    webhooks(
+      params: Params$Resource$Spaces$Webhooks,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    webhooks(
+      params: Params$Resource$Spaces$Webhooks,
+      options: MethodOptions | BodyResponseCallback<Schema$Message>,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    webhooks(
+      params: Params$Resource$Spaces$Webhooks,
+      callback: BodyResponseCallback<Schema$Message>
+    ): void;
+    webhooks(callback: BodyResponseCallback<Schema$Message>): void;
+    webhooks(
+      paramsOrCallback?:
+        | Params$Resource$Spaces$Webhooks
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Message>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Message> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Spaces$Webhooks;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Spaces$Webhooks;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chat.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/webhooks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Message>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Message>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Spaces$Get extends StandardParameters {
@@ -1909,6 +2431,21 @@ export namespace chat_v1 {
      * A token identifying a page of results the server should return.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Spaces$Webhooks extends StandardParameters {
+    /**
+     * Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
+     */
+    parent?: string;
+    /**
+     * Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
+     */
+    threadKey?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Message;
   }
 
   export class Resource$Spaces$Members {
