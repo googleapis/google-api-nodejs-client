@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "eventarc:v1beta1",
+  "id": "eventarc:v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://eventarc.mtls.googleapis.com/",
   "name": "eventarc",
@@ -111,7 +111,7 @@
           "methods": {
             "get": {
               "description": "Gets information about a location.",
-              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
               "httpMethod": "GET",
               "id": "eventarc.projects.locations.get",
               "parameterOrder": [
@@ -126,7 +126,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta1/{+name}",
+              "path": "v1/{+name}",
               "response": {
                 "$ref": "Location"
               },
@@ -136,7 +136,7 @@
             },
             "list": {
               "description": "Lists information about the supported locations for this service.",
-              "flatPath": "v1beta1/projects/{projectsId}/locations",
+              "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "eventarc.projects.locations.list",
               "parameterOrder": [
@@ -167,7 +167,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta1/{+name}/locations",
+              "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
               },
@@ -181,7 +181,7 @@
               "methods": {
                 "cancel": {
                   "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "eventarc.projects.locations.operations.cancel",
                   "parameterOrder": [
@@ -196,9 +196,9 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}:cancel",
+                  "path": "v1/{+name}:cancel",
                   "request": {
-                    "$ref": "CancelOperationRequest"
+                    "$ref": "GoogleLongrunningCancelOperationRequest"
                   },
                   "response": {
                     "$ref": "Empty"
@@ -209,7 +209,7 @@
                 },
                 "delete": {
                   "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "eventarc.projects.locations.operations.delete",
                   "parameterOrder": [
@@ -224,7 +224,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -234,7 +234,7 @@
                 },
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "eventarc.projects.locations.operations.get",
                   "parameterOrder": [
@@ -249,9 +249,9 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
-                    "$ref": "Operation"
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -259,7 +259,7 @@
                 },
                 "list": {
                   "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "eventarc.projects.locations.operations.list",
                   "parameterOrder": [
@@ -290,9 +290,9 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}/operations",
+                  "path": "v1/{+name}/operations",
                   "response": {
-                    "$ref": "ListOperationsResponse"
+                    "$ref": "GoogleLongrunningListOperationsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -304,7 +304,7 @@
               "methods": {
                 "create": {
                   "description": "Create a new trigger in a particular project and location.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/triggers",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers",
                   "httpMethod": "POST",
                   "id": "eventarc.projects.locations.triggers.create",
                   "parameterOrder": [
@@ -329,12 +329,12 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+parent}/triggers",
+                  "path": "v1/{+parent}/triggers",
                   "request": {
                     "$ref": "Trigger"
                   },
                   "response": {
-                    "$ref": "Operation"
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -342,7 +342,7 @@
                 },
                 "delete": {
                   "description": "Delete a single trigger.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}",
                   "httpMethod": "DELETE",
                   "id": "eventarc.projects.locations.triggers.delete",
                   "parameterOrder": [
@@ -372,9 +372,9 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
-                    "$ref": "Operation"
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -382,7 +382,7 @@
                 },
                 "get": {
                   "description": "Get a single trigger.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}",
                   "httpMethod": "GET",
                   "id": "eventarc.projects.locations.triggers.get",
                   "parameterOrder": [
@@ -397,7 +397,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Trigger"
                   },
@@ -407,7 +407,7 @@
                 },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}:getIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}:getIamPolicy",
                   "httpMethod": "GET",
                   "id": "eventarc.projects.locations.triggers.getIamPolicy",
                   "parameterOrder": [
@@ -428,7 +428,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:getIamPolicy",
+                  "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "Policy"
                   },
@@ -438,7 +438,7 @@
                 },
                 "list": {
                   "description": "List triggers.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/triggers",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers",
                   "httpMethod": "GET",
                   "id": "eventarc.projects.locations.triggers.list",
                   "parameterOrder": [
@@ -469,7 +469,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/triggers",
+                  "path": "v1/{+parent}/triggers",
                   "response": {
                     "$ref": "ListTriggersResponse"
                   },
@@ -479,7 +479,7 @@
                 },
                 "patch": {
                   "description": "Update a single trigger.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}",
                   "httpMethod": "PATCH",
                   "id": "eventarc.projects.locations.triggers.patch",
                   "parameterOrder": [
@@ -492,7 +492,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "Required. The resource name of the trigger. Must be unique within the location on the project and must in `projects/{project}/locations/{location}/triggers/{trigger}` format.",
+                      "description": "Required. The resource name of the trigger. Must be unique within the location on the project and must be in `projects/{project}/locations/{location}/triggers/{trigger}` format.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/triggers/[^/]+$",
                       "required": true,
@@ -510,12 +510,12 @@
                       "type": "boolean"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Trigger"
                   },
                   "response": {
-                    "$ref": "Operation"
+                    "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -523,7 +523,7 @@
                 },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}:setIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "eventarc.projects.locations.triggers.setIamPolicy",
                   "parameterOrder": [
@@ -538,7 +538,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:setIamPolicy",
+                  "path": "v1/{+resource}:setIamPolicy",
                   "request": {
                     "$ref": "SetIamPolicyRequest"
                   },
@@ -551,7 +551,7 @@
                 },
                 "testIamPermissions": {
                   "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}:testIamPermissions",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/triggers/{triggersId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "eventarc.projects.locations.triggers.testIamPermissions",
                   "parameterOrder": [
@@ -566,7 +566,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+resource}:testIamPermissions",
+                  "path": "v1/{+resource}:testIamPermissions",
                   "request": {
                     "$ref": "TestIamPermissionsRequest"
                   },
@@ -657,15 +657,9 @@
       },
       "type": "object"
     },
-    "CancelOperationRequest": {
-      "description": "The request message for Operations.CancelOperation.",
-      "id": "CancelOperationRequest",
-      "properties": {},
-      "type": "object"
-    },
-    "CloudRunService": {
-      "description": "Represents a Cloud Run service destination.",
-      "id": "CloudRunService",
+    "CloudRun": {
+      "description": "Represents a Cloud Run destination.",
+      "id": "CloudRun",
       "properties": {
         "path": {
           "description": "Optional. The relative path on the Cloud Run service the events should be sent to. The value must conform to the definition of URI path segment (section 3.3 of RFC2396). Examples: \"/route\", \"route\", \"route/subroute\".",
@@ -686,9 +680,9 @@
       "description": "Represents a target of an invocation over HTTP.",
       "id": "Destination",
       "properties": {
-        "cloudRunService": {
-          "$ref": "CloudRunService",
-          "description": "Cloud Run fully-managed service that receives the events. The service should be running in the same project as the trigger."
+        "cloudRun": {
+          "$ref": "CloudRun",
+          "description": "Cloud Run fully-managed service that receives the events. The service should be running in the same project of the trigger."
         }
       },
       "type": "object"
@@ -697,6 +691,21 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "EventFilter": {
+      "description": "Filters events based on exact matches on the CloudEvents attributes.",
+      "id": "EventFilter",
+      "properties": {
+        "attribute": {
+          "description": "Required. The name of a CloudEvents attribute. Currently, only a subset of attributes are supported for filtering. All triggers MUST provide a filter for the 'type' attribute.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The value for the attribute.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Expr": {
@@ -722,6 +731,92 @@
       },
       "type": "object"
     },
+    "GoogleLongrunningCancelOperationRequest": {
+      "description": "The request message for Operations.CancelOperation.",
+      "id": "GoogleLongrunningCancelOperationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleLongrunningListOperationsResponse": {
+      "description": "The response message for Operations.ListOperations.",
+      "id": "GoogleLongrunningListOperationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The standard List next-page token.",
+          "type": "string"
+        },
+        "operations": {
+          "description": "A list of operations that matches the specified filter in the request.",
+          "items": {
+            "$ref": "GoogleLongrunningOperation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleLongrunningOperation": {
+      "description": "This resource represents a long-running operation that is the result of a network API call.",
+      "id": "GoogleLongrunningOperation",
+      "properties": {
+        "done": {
+          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
+          "type": "boolean"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "The error result of the operation in case of failure or cancellation."
+        },
+        "metadata": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
+          "type": "string"
+        },
+        "response": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleRpcStatus": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "GoogleRpcStatus",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListLocationsResponse": {
       "description": "The response message for Locations.ListLocations.",
       "id": "ListLocationsResponse",
@@ -736,24 +831,6 @@
         "nextPageToken": {
           "description": "The standard List next-page token.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ListOperationsResponse": {
-      "description": "The response message for Operations.ListOperations.",
-      "id": "ListOperationsResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "The standard List next-page token.",
-          "type": "string"
-        },
-        "operations": {
-          "description": "A list of operations that matches the specified filter in the request.",
-          "items": {
-            "$ref": "Operation"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -813,56 +890,6 @@
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "MatchingCriteria": {
-      "description": "Matches events based on exact matches on the CloudEvents attributes.",
-      "id": "MatchingCriteria",
-      "properties": {
-        "attribute": {
-          "description": "Required. The name of a CloudEvents attribute. Currently, only a subset of attributes can be specified. All triggers MUST provide a matching criteria for the 'type' attribute.",
-          "type": "string"
-        },
-        "value": {
-          "description": "Required. The value for the attribute.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Operation": {
-      "description": "This resource represents a long-running operation that is the result of a network API call.",
-      "id": "Operation",
-      "properties": {
-        "done": {
-          "description": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.",
-          "type": "boolean"
-        },
-        "error": {
-          "$ref": "Status",
-          "description": "The error result of the operation in case of failure or cancellation."
-        },
-        "metadata": {
-          "additionalProperties": {
-            "description": "Properties of the object. Contains field @type with type URL.",
-            "type": "any"
-          },
-          "description": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.",
-          "type": "object"
-        },
-        "name": {
-          "description": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.",
-          "type": "string"
-        },
-        "response": {
-          "additionalProperties": {
-            "description": "Properties of the object. Contains field @type with type URL.",
-            "type": "any"
-          },
-          "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
-          "type": "object"
         }
       },
       "type": "object"
@@ -974,33 +1001,6 @@
       },
       "type": "object"
     },
-    "Status": {
-      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
-      "id": "Status",
-      "properties": {
-        "code": {
-          "description": "The status code, which should be an enum value of google.rpc.Code.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "details": {
-          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
-          "items": {
-            "additionalProperties": {
-              "description": "Properties of the object. Contains field @type with type URL.",
-              "type": "any"
-            },
-            "type": "object"
-          },
-          "type": "array"
-        },
-        "message": {
-          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "TestIamPermissionsRequest": {
       "description": "Request message for `TestIamPermissions` method.",
       "id": "TestIamPermissionsRequest",
@@ -1059,6 +1059,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "eventFilters": {
+          "description": "Required. null The list of filters that applies to event attributes. Only events that match all the provided filters will be sent to the destination.",
+          "items": {
+            "$ref": "EventFilter"
+          },
+          "type": "array"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -1066,25 +1073,22 @@
           "description": "Optional. User labels attached to the triggers that can be used to group resources.",
           "type": "object"
         },
-        "matchingCriteria": {
-          "description": "Required. null The criteria by which events are filtered. Only events that match with this criteria will be sent to the destination.",
-          "items": {
-            "$ref": "MatchingCriteria"
-          },
-          "type": "array"
-        },
         "name": {
-          "description": "Required. The resource name of the trigger. Must be unique within the location on the project and must in `projects/{project}/locations/{location}/triggers/{trigger}` format.",
+          "description": "Required. The resource name of the trigger. Must be unique within the location on the project and must be in `projects/{project}/locations/{location}/triggers/{trigger}` format.",
           "type": "string"
         },
         "serviceAccount": {
-          "description": "Optional. The IAM service account email associated with the trigger. The service account represents the identity of the trigger. The principal who calls this API must have `iam.serviceAccounts.actAs` permission in the service account. See https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common for more information. For Cloud Run destinations, this service account is used to generate identity tokens when invoking the service. See https://cloud.google.com/run/docs/triggering/pubsub-push#create-service-account for information on how to invoke authenticated Cloud Run services. In order to create Audit Log triggers, the service account should also have 'eventarc.events.receiveAuditLogV1Written' permission.",
+          "description": "Optional. The IAM service account email associated with the trigger. The service account represents the identity of the trigger. The principal who calls this API must have `iam.serviceAccounts.actAs` permission in the service account. See https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common for more information. For Cloud Run destinations, this service account is used to generate identity tokens when invoking the service. See https://cloud.google.com/run/docs/triggering/pubsub-push#create-service-account for information on how to invoke authenticated Cloud Run services. In order to create Audit Log triggers, the service account should also have `roles/eventarc.eventReceiver` IAM role.",
           "type": "string"
         },
         "transport": {
           "$ref": "Transport",
-          "description": "Output only. In order to deliver messages, Eventarc may use other GCP products as transport intermediary. This field contains a reference to that transport intermediary. This information can be used for debugging purposes.",
-          "readOnly": true
+          "description": "Optional. In order to deliver messages, Eventarc may use other GCP products as transport intermediary. This field contains a reference to that transport intermediary. This information can be used for debugging purposes."
+        },
+        "uid": {
+          "description": "Output only. Server assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.",
+          "readOnly": true,
+          "type": "string"
         },
         "updateTime": {
           "description": "Output only. The last-modified time.",
@@ -1098,6 +1102,6 @@
   },
   "servicePath": "",
   "title": "Eventarc API",
-  "version": "v1beta1",
+  "version": "v1",
   "version_module": true
 }

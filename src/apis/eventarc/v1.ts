@@ -36,9 +36,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace eventarc_v1beta1 {
+export namespace eventarc_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta1';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -108,7 +108,7 @@ export namespace eventarc_v1beta1 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const eventarc = google.eventarc('v1beta1');
+   * const eventarc = google.eventarc('v1');
    * ```
    */
   export class Eventarc {
@@ -169,13 +169,9 @@ export namespace eventarc_v1beta1 {
     role?: string | null;
   }
   /**
-   * The request message for Operations.CancelOperation.
+   * Represents a Cloud Run destination.
    */
-  export interface Schema$CancelOperationRequest {}
-  /**
-   * Represents a Cloud Run service destination.
-   */
-  export interface Schema$CloudRunService {
+  export interface Schema$CloudRun {
     /**
      * Optional. The relative path on the Cloud Run service the events should be sent to. The value must conform to the definition of URI path segment (section 3.3 of RFC2396). Examples: "/route", "route", "route/subroute".
      */
@@ -194,14 +190,27 @@ export namespace eventarc_v1beta1 {
    */
   export interface Schema$Destination {
     /**
-     * Cloud Run fully-managed service that receives the events. The service should be running in the same project as the trigger.
+     * Cloud Run fully-managed service that receives the events. The service should be running in the same project of the trigger.
      */
-    cloudRunService?: Schema$CloudRunService;
+    cloudRun?: Schema$CloudRun;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
+  /**
+   * Filters events based on exact matches on the CloudEvents attributes.
+   */
+  export interface Schema$EventFilter {
+    /**
+     * Required. The name of a CloudEvents attribute. Currently, only a subset of attributes are supported for filtering. All triggers MUST provide a filter for the 'type' attribute.
+     */
+    attribute?: string | null;
+    /**
+     * Required. The value for the attribute.
+     */
+    value?: string | null;
+  }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -224,6 +233,65 @@ export namespace eventarc_v1beta1 {
     title?: string | null;
   }
   /**
+   * The request message for Operations.CancelOperation.
+   */
+  export interface Schema$GoogleLongrunningCancelOperationRequest {}
+  /**
+   * The response message for Operations.ListOperations.
+   */
+  export interface Schema$GoogleLongrunningListOperationsResponse {
+    /**
+     * The standard List next-page token.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of operations that matches the specified filter in the request.
+     */
+    operations?: Schema$GoogleLongrunningOperation[];
+  }
+  /**
+   * This resource represents a long-running operation that is the result of a network API call.
+   */
+  export interface Schema$GoogleLongrunningOperation {
+    /**
+     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
+     */
+    done?: boolean | null;
+    /**
+     * The error result of the operation in case of failure or cancellation.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
+     */
+    name?: string | null;
+    /**
+     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
+     */
+    response?: {[key: string]: any} | null;
+  }
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$GoogleRpcStatus {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
+  }
+  /**
    * The response message for Locations.ListLocations.
    */
   export interface Schema$ListLocationsResponse {
@@ -235,19 +303,6 @@ export namespace eventarc_v1beta1 {
      * The standard List next-page token.
      */
     nextPageToken?: string | null;
-  }
-  /**
-   * The response message for Operations.ListOperations.
-   */
-  export interface Schema$ListOperationsResponse {
-    /**
-     * The standard List next-page token.
-     */
-    nextPageToken?: string | null;
-    /**
-     * A list of operations that matches the specified filter in the request.
-     */
-    operations?: Schema$Operation[];
   }
   /**
    * The response message for the ListTriggers method.
@@ -290,44 +345,6 @@ export namespace eventarc_v1beta1 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
-  }
-  /**
-   * Matches events based on exact matches on the CloudEvents attributes.
-   */
-  export interface Schema$MatchingCriteria {
-    /**
-     * Required. The name of a CloudEvents attribute. Currently, only a subset of attributes can be specified. All triggers MUST provide a matching criteria for the 'type' attribute.
-     */
-    attribute?: string | null;
-    /**
-     * Required. The value for the attribute.
-     */
-    value?: string | null;
-  }
-  /**
-   * This resource represents a long-running operation that is the result of a network API call.
-   */
-  export interface Schema$Operation {
-    /**
-     * If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available.
-     */
-    done?: boolean | null;
-    /**
-     * The error result of the operation in case of failure or cancellation.
-     */
-    error?: Schema$Status;
-    /**
-     * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
-     */
-    metadata?: {[key: string]: any} | null;
-    /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
-     */
-    name?: string | null;
-    /**
-     * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
-     */
-    response?: {[key: string]: any} | null;
   }
   /**
    * Represents the metadata of the long-running operation.
@@ -410,23 +427,6 @@ export namespace eventarc_v1beta1 {
     updateMask?: string | null;
   }
   /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
-   */
-  export interface Schema$Status {
-    /**
-     * The status code, which should be an enum value of google.rpc.Code.
-     */
-    code?: number | null;
-    /**
-     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
-     */
-    details?: Array<{[key: string]: any}> | null;
-    /**
-     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
-     */
-    message?: string | null;
-  }
-  /**
    * Request message for `TestIamPermissions` method.
    */
   export interface Schema$TestIamPermissionsRequest {
@@ -470,25 +470,29 @@ export namespace eventarc_v1beta1 {
      */
     etag?: string | null;
     /**
+     * Required. null The list of filters that applies to event attributes. Only events that match all the provided filters will be sent to the destination.
+     */
+    eventFilters?: Schema$EventFilter[];
+    /**
      * Optional. User labels attached to the triggers that can be used to group resources.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. null The criteria by which events are filtered. Only events that match with this criteria will be sent to the destination.
-     */
-    matchingCriteria?: Schema$MatchingCriteria[];
-    /**
-     * Required. The resource name of the trigger. Must be unique within the location on the project and must in `projects/{project\}/locations/{location\}/triggers/{trigger\}` format.
+     * Required. The resource name of the trigger. Must be unique within the location on the project and must be in `projects/{project\}/locations/{location\}/triggers/{trigger\}` format.
      */
     name?: string | null;
     /**
-     * Optional. The IAM service account email associated with the trigger. The service account represents the identity of the trigger. The principal who calls this API must have `iam.serviceAccounts.actAs` permission in the service account. See https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common for more information. For Cloud Run destinations, this service account is used to generate identity tokens when invoking the service. See https://cloud.google.com/run/docs/triggering/pubsub-push#create-service-account for information on how to invoke authenticated Cloud Run services. In order to create Audit Log triggers, the service account should also have 'eventarc.events.receiveAuditLogV1Written' permission.
+     * Optional. The IAM service account email associated with the trigger. The service account represents the identity of the trigger. The principal who calls this API must have `iam.serviceAccounts.actAs` permission in the service account. See https://cloud.google.com/iam/docs/understanding-service-accounts?hl=en#sa_common for more information. For Cloud Run destinations, this service account is used to generate identity tokens when invoking the service. See https://cloud.google.com/run/docs/triggering/pubsub-push#create-service-account for information on how to invoke authenticated Cloud Run services. In order to create Audit Log triggers, the service account should also have `roles/eventarc.eventReceiver` IAM role.
      */
     serviceAccount?: string | null;
     /**
-     * Output only. In order to deliver messages, Eventarc may use other GCP products as transport intermediary. This field contains a reference to that transport intermediary. This information can be used for debugging purposes.
+     * Optional. In order to deliver messages, Eventarc may use other GCP products as transport intermediary. This field contains a reference to that transport intermediary. This information can be used for debugging purposes.
      */
     transport?: Schema$Transport;
+    /**
+     * Output only. Server assigned unique identifier for the trigger. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.
+     */
+    uid?: string | null;
     /**
      * Output only. The last-modified time.
      */
@@ -529,7 +533,7 @@ export namespace eventarc_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const eventarc = google.eventarc('v1beta1');
+     * const eventarc = google.eventarc('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -626,7 +630,7 @@ export namespace eventarc_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -659,7 +663,7 @@ export namespace eventarc_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const eventarc = google.eventarc('v1beta1');
+     * const eventarc = google.eventarc('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -764,7 +768,7 @@ export namespace eventarc_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -834,7 +838,7 @@ export namespace eventarc_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const eventarc = google.eventarc('v1beta1');
+     * const eventarc = google.eventarc('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -931,10 +935,7 @@ export namespace eventarc_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -967,7 +968,7 @@ export namespace eventarc_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const eventarc = google.eventarc('v1beta1');
+     * const eventarc = google.eventarc('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1058,7 +1059,7 @@ export namespace eventarc_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -1091,7 +1092,7 @@ export namespace eventarc_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const eventarc = google.eventarc('v1beta1');
+     * const eventarc = google.eventarc('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1139,7 +1140,7 @@ export namespace eventarc_v1beta1 {
     get(
       params?: Params$Resource$Projects$Locations$Operations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1147,28 +1148,35 @@ export namespace eventarc_v1beta1 {
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
-      callback: BodyResponseCallback<Schema$Operation>
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$Get
-        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1188,7 +1196,7 @@ export namespace eventarc_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1199,12 +1207,12 @@ export namespace eventarc_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Operation>(parameters);
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -1221,7 +1229,7 @@ export namespace eventarc_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const eventarc = google.eventarc('v1beta1');
+     * const eventarc = google.eventarc('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1272,7 +1280,7 @@ export namespace eventarc_v1beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Operations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListOperationsResponse>;
+    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1282,30 +1290,32 @@ export namespace eventarc_v1beta1 {
       params: Params$Resource$Projects$Locations$Operations$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
-      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
-    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListOperationsResponse>
+      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Operations$List;
@@ -1326,7 +1336,7 @@ export namespace eventarc_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/operations').replace(
+            url: (rootUrl + '/v1/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1340,12 +1350,14 @@ export namespace eventarc_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(
+        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -1360,7 +1372,7 @@ export namespace eventarc_v1beta1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$CancelOperationRequest;
+    requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
   export interface Params$Resource$Projects$Locations$Operations$Delete
     extends StandardParameters {
@@ -1415,7 +1427,7 @@ export namespace eventarc_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const eventarc = google.eventarc('v1beta1');
+     * const eventarc = google.eventarc('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1443,11 +1455,12 @@ export namespace eventarc_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "destination": {},
      *       //   "etag": "my_etag",
+     *       //   "eventFilters": [],
      *       //   "labels": {},
-     *       //   "matchingCriteria": [],
      *       //   "name": "my_name",
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "transport": {},
+     *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -1483,7 +1496,7 @@ export namespace eventarc_v1beta1 {
     create(
       params?: Params$Resource$Projects$Locations$Triggers$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     create(
       params: Params$Resource$Projects$Locations$Triggers$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1491,28 +1504,35 @@ export namespace eventarc_v1beta1 {
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Triggers$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Triggers$Create,
-      callback: BodyResponseCallback<Schema$Operation>
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Triggers$Create
-        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Triggers$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1532,7 +1552,7 @@ export namespace eventarc_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/triggers').replace(
+            url: (rootUrl + '/v1/{+parent}/triggers').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1546,12 +1566,12 @@ export namespace eventarc_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Operation>(parameters);
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -1568,7 +1588,7 @@ export namespace eventarc_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const eventarc = google.eventarc('v1beta1');
+     * const eventarc = google.eventarc('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1622,7 +1642,7 @@ export namespace eventarc_v1beta1 {
     delete(
       params?: Params$Resource$Projects$Locations$Triggers$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     delete(
       params: Params$Resource$Projects$Locations$Triggers$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1630,28 +1650,35 @@ export namespace eventarc_v1beta1 {
     ): void;
     delete(
       params: Params$Resource$Projects$Locations$Triggers$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     delete(
       params: Params$Resource$Projects$Locations$Triggers$Delete,
-      callback: BodyResponseCallback<Schema$Operation>
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     delete(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Triggers$Delete
-        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Triggers$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1671,7 +1698,7 @@ export namespace eventarc_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -1682,12 +1709,12 @@ export namespace eventarc_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Operation>(parameters);
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -1704,7 +1731,7 @@ export namespace eventarc_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const eventarc = google.eventarc('v1beta1');
+     * const eventarc = google.eventarc('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1728,11 +1755,12 @@ export namespace eventarc_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "destination": {},
      *   //   "etag": "my_etag",
+     *   //   "eventFilters": [],
      *   //   "labels": {},
-     *   //   "matchingCriteria": [],
      *   //   "name": "my_name",
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "transport": {},
+     *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -1805,7 +1833,7 @@ export namespace eventarc_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1838,7 +1866,7 @@ export namespace eventarc_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const eventarc = google.eventarc('v1beta1');
+     * const eventarc = google.eventarc('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1936,7 +1964,7 @@ export namespace eventarc_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1972,7 +2000,7 @@ export namespace eventarc_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const eventarc = google.eventarc('v1beta1');
+     * const eventarc = google.eventarc('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2078,7 +2106,7 @@ export namespace eventarc_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/triggers').replace(
+            url: (rootUrl + '/v1/{+parent}/triggers').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2114,7 +2142,7 @@ export namespace eventarc_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const eventarc = google.eventarc('v1beta1');
+     * const eventarc = google.eventarc('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2130,7 +2158,7 @@ export namespace eventarc_v1beta1 {
      *   const res = await eventarc.projects.locations.triggers.patch({
      *     // If set to true, and the trigger is not found, a new trigger will be created. In this situation, `update_mask` is ignored.
      *     allowMissing: 'placeholder-value',
-     *     // Required. The resource name of the trigger. Must be unique within the location on the project and must in `projects/{project\}/locations/{location\}/triggers/{trigger\}` format.
+     *     // Required. The resource name of the trigger. Must be unique within the location on the project and must be in `projects/{project\}/locations/{location\}/triggers/{trigger\}` format.
      *     name: 'projects/my-project/locations/my-location/triggers/my-trigger',
      *     // The fields to be updated; only fields explicitly provided will be updated. If no field mask is provided, all provided fields in the request will be updated. To update all fields, provide a field mask of "*".
      *     updateMask: 'placeholder-value',
@@ -2144,11 +2172,12 @@ export namespace eventarc_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "destination": {},
      *       //   "etag": "my_etag",
+     *       //   "eventFilters": [],
      *       //   "labels": {},
-     *       //   "matchingCriteria": [],
      *       //   "name": "my_name",
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "transport": {},
+     *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -2184,7 +2213,7 @@ export namespace eventarc_v1beta1 {
     patch(
       params?: Params$Resource$Projects$Locations$Triggers$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     patch(
       params: Params$Resource$Projects$Locations$Triggers$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2192,28 +2221,35 @@ export namespace eventarc_v1beta1 {
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Triggers$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Triggers$Patch,
-      callback: BodyResponseCallback<Schema$Operation>
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
-    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Triggers$Patch
-        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Triggers$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -2233,7 +2269,7 @@ export namespace eventarc_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -2244,12 +2280,12 @@ export namespace eventarc_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Operation>(
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Operation>(parameters);
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -2266,7 +2302,7 @@ export namespace eventarc_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const eventarc = google.eventarc('v1beta1');
+     * const eventarc = google.eventarc('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2371,7 +2407,7 @@ export namespace eventarc_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2407,7 +2443,7 @@ export namespace eventarc_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const eventarc = google.eventarc('v1beta1');
+     * const eventarc = google.eventarc('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2515,7 +2551,7 @@ export namespace eventarc_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2622,7 +2658,7 @@ export namespace eventarc_v1beta1 {
      */
     allowMissing?: boolean;
     /**
-     * Required. The resource name of the trigger. Must be unique within the location on the project and must in `projects/{project\}/locations/{location\}/triggers/{trigger\}` format.
+     * Required. The resource name of the trigger. Must be unique within the location on the project and must be in `projects/{project\}/locations/{location\}/triggers/{trigger\}` format.
      */
     name?: string;
     /**
