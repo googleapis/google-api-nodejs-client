@@ -143,6 +143,24 @@ export namespace pubsublite_v1 {
     subscribeMibPerSec?: number | null;
   }
   /**
+   * Compute the current head cursor for a partition.
+   */
+  export interface Schema$ComputeHeadCursorRequest {
+    /**
+     * Required. The partition for which we should compute the head cursor.
+     */
+    partition?: string | null;
+  }
+  /**
+   * Response containing the head cursor for the requested topic and partition.
+   */
+  export interface Schema$ComputeHeadCursorResponse {
+    /**
+     * The head cursor.
+     */
+    headCursor?: Schema$Cursor;
+  }
+  /**
    * Compute statistics about a range of messages in a given topic and partition.
    */
   export interface Schema$ComputeMessageStatsRequest {
@@ -263,7 +281,7 @@ export namespace pubsublite_v1 {
      */
     capacity?: Schema$Capacity;
     /**
-     * The number of partitions in the topic. Must be at least 1.
+     * The number of partitions in the topic. Must be at least 1. Once a topic has been created the number of partitions can be increased but not decreased. Message ordering is not guaranteed across a topic resize. For more information see https://cloud.google.com/pubsub/lite/docs/topics#scaling_capacity
      */
     count?: string | null;
     /**
@@ -2414,6 +2432,151 @@ export namespace pubsublite_v1 {
     }
 
     /**
+     * Compute the head cursor for the partition. The head cursor's offset is guaranteed to be less than or equal to all messages which have not yet been acknowledged as published, and greater than the offset of any message whose publish has already been acknowledged. It is zero if there have never been messages in the partition.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsublite = google.pubsublite('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await pubsublite.topicStats.projects.locations.topics.computeHeadCursor(
+     *     {
+     *       // Required. The topic for which we should compute the head cursor.
+     *       topic: 'projects/my-project/locations/my-location/topics/my-topic',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "partition": "my_partition"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "headCursor": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    computeHeadCursor(
+      params: Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    computeHeadCursor(
+      params?: Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ComputeHeadCursorResponse>;
+    computeHeadCursor(
+      params: Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    computeHeadCursor(
+      params: Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ComputeHeadCursorResponse>,
+      callback: BodyResponseCallback<Schema$ComputeHeadCursorResponse>
+    ): void;
+    computeHeadCursor(
+      params: Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor,
+      callback: BodyResponseCallback<Schema$ComputeHeadCursorResponse>
+    ): void;
+    computeHeadCursor(
+      callback: BodyResponseCallback<Schema$ComputeHeadCursorResponse>
+    ): void;
+    computeHeadCursor(
+      paramsOrCallback?:
+        | Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor
+        | BodyResponseCallback<Schema$ComputeHeadCursorResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ComputeHeadCursorResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ComputeHeadCursorResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ComputeHeadCursorResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsublite.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/topicStats/{+topic}:computeHeadCursor'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['topic'],
+        pathParams: ['topic'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ComputeHeadCursorResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ComputeHeadCursorResponse>(parameters);
+      }
+    }
+
+    /**
      * Compute statistics about a range of messages in a given topic and partition.
      * @example
      * ```js
@@ -2564,6 +2727,18 @@ export namespace pubsublite_v1 {
     }
   }
 
+  export interface Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor
+    extends StandardParameters {
+    /**
+     * Required. The topic for which we should compute the head cursor.
+     */
+    topic?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ComputeHeadCursorRequest;
+  }
   export interface Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats
     extends StandardParameters {
     /**
