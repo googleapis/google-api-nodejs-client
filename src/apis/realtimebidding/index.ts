@@ -15,9 +15,11 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {realtimebidding_v1} from './v1';
+import {realtimebidding_v1alpha} from './v1alpha';
 
 export const VERSIONS = {
   v1: realtimebidding_v1.Realtimebidding,
+  v1alpha: realtimebidding_v1alpha.Realtimebidding,
 };
 
 export function realtimebidding(
@@ -26,9 +28,23 @@ export function realtimebidding(
 export function realtimebidding(
   options: realtimebidding_v1.Options
 ): realtimebidding_v1.Realtimebidding;
-export function realtimebidding<T = realtimebidding_v1.Realtimebidding>(
+export function realtimebidding(
+  version: 'v1alpha'
+): realtimebidding_v1alpha.Realtimebidding;
+export function realtimebidding(
+  options: realtimebidding_v1alpha.Options
+): realtimebidding_v1alpha.Realtimebidding;
+export function realtimebidding<
+  T =
+    | realtimebidding_v1.Realtimebidding
+    | realtimebidding_v1alpha.Realtimebidding
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | realtimebidding_v1.Options
+  versionOrOptions:
+    | 'v1'
+    | realtimebidding_v1.Options
+    | 'v1alpha'
+    | realtimebidding_v1alpha.Options
 ) {
   return getAPI<T>('realtimebidding', versionOrOptions, VERSIONS, this);
 }
@@ -36,6 +52,7 @@ export function realtimebidding<T = realtimebidding_v1.Realtimebidding>(
 const auth = new AuthPlus();
 export {auth};
 export {realtimebidding_v1};
+export {realtimebidding_v1alpha};
 export {
   AuthPlus,
   GlobalOptions,
