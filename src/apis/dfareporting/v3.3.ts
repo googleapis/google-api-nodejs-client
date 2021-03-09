@@ -103,7 +103,7 @@ export namespace dfareporting_v3_3 {
   /**
    * Campaign Manager 360 API
    *
-   * Manage your DoubleClick Campaign Manager ad campaigns and reports.
+   * Build applications to efficiently manage large or complex trafficking, reporting, and attribution workflows for Campaign Manager 360.
    *
    * @example
    * ```js
@@ -2589,7 +2589,7 @@ export namespace dfareporting_v3_3 {
      */
     type?: string | null;
     /**
-     * The value of the custom floodlight variable. The length of string must not exceed 50 characters.
+     * The value of the custom floodlight variable. The length of string must not exceed 100 characters.
      */
     value?: string | null;
   }
