@@ -36,9 +36,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace apigateway_v1beta {
+export namespace apigateway_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -108,7 +108,7 @@ export namespace apigateway_v1beta {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const apigateway = google.apigateway('v1beta');
+   * const apigateway = google.apigateway('v1');
    * ```
    */
   export class Apigateway {
@@ -170,10 +170,6 @@ export namespace apigateway_v1beta {
      * Optional. Display name.
      */
     displayName?: string | null;
-    /**
-     * Immutable. Gateway specific configuration.
-     */
-    gatewayConfig?: Schema$ApigatewayGatewayConfig;
     /**
      * Immutable. The Google Cloud IAM Service Account that Gateways serving this config should use to authenticate to other services. This may either be the Service Account's email (`{ACCOUNT_ID\}@{PROJECT\}.iam.gserviceaccount.com`) or its full resource name (`projects/{PROJECT\}/accounts/{UNIQUE_ID\}`). This is most often used when the service is a GCP resource such as a Cloud Run Service or an IAP-secured service.
      */
@@ -273,15 +269,6 @@ export namespace apigateway_v1beta {
     logType?: string | null;
   }
   /**
-   * Configuration for all backends.
-   */
-  export interface Schema$ApigatewayBackendConfig {
-    /**
-     * Google Cloud IAM service account used to sign OIDC tokens for backends that have authentication configured (https://cloud.google.com/service-infrastructure/docs/service-management/reference/rest/v1/services.configs#backend). This may either be the Service Account's email (i.e. "{ACCOUNT_ID\}@{PROJECT\}.iam.gserviceaccount.com") or its full resource name (i.e. "projects/{PROJECT\}/accounts/{UNIQUE_ID\}"). This is most often used when the backend is a GCP resource such as a Cloud Run Service or an IAP-secured service. Note that this token is always sent as an authorization header bearer token. The audience of the OIDC token is configured in the associated Service Config in the BackendRule option (https://github.com/googleapis/googleapis/blob/master/google/api/backend.proto#L125).
-     */
-    googleServiceAccount?: string | null;
-  }
-  /**
    * Associates `members` with a `role`.
    */
   export interface Schema$ApigatewayBinding {
@@ -359,15 +346,6 @@ export namespace apigateway_v1beta {
      * Output only. Updated time.
      */
     updateTime?: string | null;
-  }
-  /**
-   * Configuration settings for Gateways.
-   */
-  export interface Schema$ApigatewayGatewayConfig {
-    /**
-     * Required. Backend settings that are applied to all backends of the Gateway.
-     */
-    backendConfig?: Schema$ApigatewayBackendConfig;
   }
   /**
    * Response message for ApiGatewayService.ListApiConfigs
@@ -656,7 +634,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -756,7 +734,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -789,7 +767,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -896,7 +874,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -970,7 +948,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1086,10 +1064,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/apis').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/apis').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -1122,7 +1097,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1222,7 +1197,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -1255,7 +1230,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1354,7 +1329,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1387,7 +1362,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1485,7 +1460,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1521,7 +1496,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1631,10 +1606,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/apis').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+parent}/apis').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1667,7 +1639,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1783,7 +1755,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -1816,7 +1788,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1921,7 +1893,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1957,7 +1929,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2065,7 +2037,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2215,7 +2187,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2240,7 +2212,6 @@ export namespace apigateway_v1beta {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
-     *       //   "gatewayConfig": {},
      *       //   "gatewayServiceAccount": "my_gatewayServiceAccount",
      *       //   "grpcServices": [],
      *       //   "labels": {},
@@ -2336,7 +2307,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/configs').replace(
+            url: (rootUrl + '/v1/{+parent}/configs').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2372,7 +2343,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2473,7 +2444,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -2506,7 +2477,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2532,7 +2503,6 @@ export namespace apigateway_v1beta {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
-     *   //   "gatewayConfig": {},
      *   //   "gatewayServiceAccount": "my_gatewayServiceAccount",
      *   //   "grpcServices": [],
      *   //   "labels": {},
@@ -2616,7 +2586,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -2649,7 +2619,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2748,7 +2718,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2784,7 +2754,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2894,7 +2864,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/configs').replace(
+            url: (rootUrl + '/v1/{+parent}/configs').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2932,7 +2902,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2958,7 +2928,6 @@ export namespace apigateway_v1beta {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
-     *       //   "gatewayConfig": {},
      *       //   "gatewayServiceAccount": "my_gatewayServiceAccount",
      *       //   "grpcServices": [],
      *       //   "labels": {},
@@ -3054,7 +3023,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -3087,7 +3056,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3193,7 +3162,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3229,7 +3198,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3340,7 +3309,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3494,7 +3463,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3611,7 +3580,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/gateways').replace(
+            url: (rootUrl + '/v1/{+parent}/gateways').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3647,7 +3616,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3747,7 +3716,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -3780,7 +3749,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3883,7 +3852,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -3916,7 +3885,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4014,7 +3983,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4050,7 +4019,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4160,7 +4129,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/gateways').replace(
+            url: (rootUrl + '/v1/{+parent}/gateways').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4198,7 +4167,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4315,7 +4284,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -4348,7 +4317,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4453,7 +4422,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4489,7 +4458,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4597,7 +4566,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4747,7 +4716,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4844,10 +4813,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -4880,7 +4846,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4971,7 +4937,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -5004,7 +4970,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5104,7 +5070,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -5137,7 +5103,7 @@ export namespace apigateway_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const apigateway = google.apigateway('v1beta');
+     * const apigateway = google.apigateway('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5244,7 +5210,7 @@ export namespace apigateway_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}/operations').replace(
+            url: (rootUrl + '/v1/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),

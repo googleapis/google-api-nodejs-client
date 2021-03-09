@@ -19,7 +19,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "apigateway:v1beta",
+  "id": "apigateway:v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://apigateway.mtls.googleapis.com/",
   "name": "apigateway",
@@ -110,7 +110,7 @@
           "methods": {
             "get": {
               "description": "Gets information about a location.",
-              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
               "httpMethod": "GET",
               "id": "apigateway.projects.locations.get",
               "parameterOrder": [
@@ -125,7 +125,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta/{+name}",
+              "path": "v1/{+name}",
               "response": {
                 "$ref": "ApigatewayLocation"
               },
@@ -135,7 +135,7 @@
             },
             "list": {
               "description": "Lists information about the supported locations for this service.",
-              "flatPath": "v1beta/projects/{projectsId}/locations",
+              "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "apigateway.projects.locations.list",
               "parameterOrder": [
@@ -166,7 +166,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta/{+name}/locations",
+              "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ApigatewayListLocationsResponse"
               },
@@ -180,7 +180,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a new Api in a given project and location.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis",
                   "httpMethod": "POST",
                   "id": "apigateway.projects.locations.apis.create",
                   "parameterOrder": [
@@ -200,7 +200,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+parent}/apis",
+                  "path": "v1/{+parent}/apis",
                   "request": {
                     "$ref": "ApigatewayApi"
                   },
@@ -213,7 +213,7 @@
                 },
                 "delete": {
                   "description": "Deletes a single Api.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis/{apisId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis/{apisId}",
                   "httpMethod": "DELETE",
                   "id": "apigateway.projects.locations.apis.delete",
                   "parameterOrder": [
@@ -228,7 +228,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "ApigatewayOperation"
                   },
@@ -238,7 +238,7 @@
                 },
                 "get": {
                   "description": "Gets details of a single Api.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis/{apisId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis/{apisId}",
                   "httpMethod": "GET",
                   "id": "apigateway.projects.locations.apis.get",
                   "parameterOrder": [
@@ -253,7 +253,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "ApigatewayApi"
                   },
@@ -263,7 +263,7 @@
                 },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis/{apisId}:getIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis/{apisId}:getIamPolicy",
                   "httpMethod": "GET",
                   "id": "apigateway.projects.locations.apis.getIamPolicy",
                   "parameterOrder": [
@@ -284,7 +284,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+resource}:getIamPolicy",
+                  "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "ApigatewayPolicy"
                   },
@@ -294,7 +294,7 @@
                 },
                 "list": {
                   "description": "Lists Apis in a given project and location.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis",
                   "httpMethod": "GET",
                   "id": "apigateway.projects.locations.apis.list",
                   "parameterOrder": [
@@ -330,7 +330,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+parent}/apis",
+                  "path": "v1/{+parent}/apis",
                   "response": {
                     "$ref": "ApigatewayListApisResponse"
                   },
@@ -340,7 +340,7 @@
                 },
                 "patch": {
                   "description": "Updates the parameters of a single Api.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis/{apisId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis/{apisId}",
                   "httpMethod": "PATCH",
                   "id": "apigateway.projects.locations.apis.patch",
                   "parameterOrder": [
@@ -361,7 +361,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "ApigatewayApi"
                   },
@@ -374,7 +374,7 @@
                 },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis/{apisId}:setIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis/{apisId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "apigateway.projects.locations.apis.setIamPolicy",
                   "parameterOrder": [
@@ -389,7 +389,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+resource}:setIamPolicy",
+                  "path": "v1/{+resource}:setIamPolicy",
                   "request": {
                     "$ref": "ApigatewaySetIamPolicyRequest"
                   },
@@ -402,7 +402,7 @@
                 },
                 "testIamPermissions": {
                   "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis/{apisId}:testIamPermissions",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis/{apisId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "apigateway.projects.locations.apis.testIamPermissions",
                   "parameterOrder": [
@@ -417,7 +417,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+resource}:testIamPermissions",
+                  "path": "v1/{+resource}:testIamPermissions",
                   "request": {
                     "$ref": "ApigatewayTestIamPermissionsRequest"
                   },
@@ -434,7 +434,7 @@
                   "methods": {
                     "create": {
                       "description": "Creates a new ApiConfig in a given project and location.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs",
                       "httpMethod": "POST",
                       "id": "apigateway.projects.locations.apis.configs.create",
                       "parameterOrder": [
@@ -454,7 +454,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+parent}/configs",
+                      "path": "v1/{+parent}/configs",
                       "request": {
                         "$ref": "ApigatewayApiConfig"
                       },
@@ -467,7 +467,7 @@
                     },
                     "delete": {
                       "description": "Deletes a single ApiConfig.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs/{configsId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs/{configsId}",
                       "httpMethod": "DELETE",
                       "id": "apigateway.projects.locations.apis.configs.delete",
                       "parameterOrder": [
@@ -482,7 +482,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "ApigatewayOperation"
                       },
@@ -492,7 +492,7 @@
                     },
                     "get": {
                       "description": "Gets details of a single ApiConfig.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs/{configsId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs/{configsId}",
                       "httpMethod": "GET",
                       "id": "apigateway.projects.locations.apis.configs.get",
                       "parameterOrder": [
@@ -522,7 +522,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+name}",
+                      "path": "v1/{+name}",
                       "response": {
                         "$ref": "ApigatewayApiConfig"
                       },
@@ -532,7 +532,7 @@
                     },
                     "getIamPolicy": {
                       "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs/{configsId}:getIamPolicy",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs/{configsId}:getIamPolicy",
                       "httpMethod": "GET",
                       "id": "apigateway.projects.locations.apis.configs.getIamPolicy",
                       "parameterOrder": [
@@ -553,7 +553,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+resource}:getIamPolicy",
+                      "path": "v1/{+resource}:getIamPolicy",
                       "response": {
                         "$ref": "ApigatewayPolicy"
                       },
@@ -563,7 +563,7 @@
                     },
                     "list": {
                       "description": "Lists ApiConfigs in a given project and location.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs",
                       "httpMethod": "GET",
                       "id": "apigateway.projects.locations.apis.configs.list",
                       "parameterOrder": [
@@ -599,7 +599,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+parent}/configs",
+                      "path": "v1/{+parent}/configs",
                       "response": {
                         "$ref": "ApigatewayListApiConfigsResponse"
                       },
@@ -609,7 +609,7 @@
                     },
                     "patch": {
                       "description": "Updates the parameters of a single ApiConfig.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs/{configsId}",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs/{configsId}",
                       "httpMethod": "PATCH",
                       "id": "apigateway.projects.locations.apis.configs.patch",
                       "parameterOrder": [
@@ -630,7 +630,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+name}",
+                      "path": "v1/{+name}",
                       "request": {
                         "$ref": "ApigatewayApiConfig"
                       },
@@ -643,7 +643,7 @@
                     },
                     "setIamPolicy": {
                       "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs/{configsId}:setIamPolicy",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs/{configsId}:setIamPolicy",
                       "httpMethod": "POST",
                       "id": "apigateway.projects.locations.apis.configs.setIamPolicy",
                       "parameterOrder": [
@@ -658,7 +658,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+resource}:setIamPolicy",
+                      "path": "v1/{+resource}:setIamPolicy",
                       "request": {
                         "$ref": "ApigatewaySetIamPolicyRequest"
                       },
@@ -671,7 +671,7 @@
                     },
                     "testIamPermissions": {
                       "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                      "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs/{configsId}:testIamPermissions",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apis/{apisId}/configs/{configsId}:testIamPermissions",
                       "httpMethod": "POST",
                       "id": "apigateway.projects.locations.apis.configs.testIamPermissions",
                       "parameterOrder": [
@@ -686,7 +686,7 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta/{+resource}:testIamPermissions",
+                      "path": "v1/{+resource}:testIamPermissions",
                       "request": {
                         "$ref": "ApigatewayTestIamPermissionsRequest"
                       },
@@ -705,7 +705,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a new Gateway in a given project and location.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gateways",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gateways",
                   "httpMethod": "POST",
                   "id": "apigateway.projects.locations.gateways.create",
                   "parameterOrder": [
@@ -725,7 +725,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+parent}/gateways",
+                  "path": "v1/{+parent}/gateways",
                   "request": {
                     "$ref": "ApigatewayGateway"
                   },
@@ -738,7 +738,7 @@
                 },
                 "delete": {
                   "description": "Deletes a single Gateway.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gateways/{gatewaysId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gateways/{gatewaysId}",
                   "httpMethod": "DELETE",
                   "id": "apigateway.projects.locations.gateways.delete",
                   "parameterOrder": [
@@ -753,7 +753,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "ApigatewayOperation"
                   },
@@ -763,7 +763,7 @@
                 },
                 "get": {
                   "description": "Gets details of a single Gateway.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gateways/{gatewaysId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gateways/{gatewaysId}",
                   "httpMethod": "GET",
                   "id": "apigateway.projects.locations.gateways.get",
                   "parameterOrder": [
@@ -778,7 +778,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "ApigatewayGateway"
                   },
@@ -788,7 +788,7 @@
                 },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gateways/{gatewaysId}:getIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gateways/{gatewaysId}:getIamPolicy",
                   "httpMethod": "GET",
                   "id": "apigateway.projects.locations.gateways.getIamPolicy",
                   "parameterOrder": [
@@ -809,7 +809,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+resource}:getIamPolicy",
+                  "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "ApigatewayPolicy"
                   },
@@ -819,7 +819,7 @@
                 },
                 "list": {
                   "description": "Lists Gateways in a given project and location.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gateways",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gateways",
                   "httpMethod": "GET",
                   "id": "apigateway.projects.locations.gateways.list",
                   "parameterOrder": [
@@ -855,7 +855,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+parent}/gateways",
+                  "path": "v1/{+parent}/gateways",
                   "response": {
                     "$ref": "ApigatewayListGatewaysResponse"
                   },
@@ -865,7 +865,7 @@
                 },
                 "patch": {
                   "description": "Updates the parameters of a single Gateway.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gateways/{gatewaysId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gateways/{gatewaysId}",
                   "httpMethod": "PATCH",
                   "id": "apigateway.projects.locations.gateways.patch",
                   "parameterOrder": [
@@ -886,7 +886,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "ApigatewayGateway"
                   },
@@ -899,7 +899,7 @@
                 },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gateways/{gatewaysId}:setIamPolicy",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gateways/{gatewaysId}:setIamPolicy",
                   "httpMethod": "POST",
                   "id": "apigateway.projects.locations.gateways.setIamPolicy",
                   "parameterOrder": [
@@ -914,7 +914,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+resource}:setIamPolicy",
+                  "path": "v1/{+resource}:setIamPolicy",
                   "request": {
                     "$ref": "ApigatewaySetIamPolicyRequest"
                   },
@@ -927,7 +927,7 @@
                 },
                 "testIamPermissions": {
                   "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/gateways/{gatewaysId}:testIamPermissions",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/gateways/{gatewaysId}:testIamPermissions",
                   "httpMethod": "POST",
                   "id": "apigateway.projects.locations.gateways.testIamPermissions",
                   "parameterOrder": [
@@ -942,7 +942,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+resource}:testIamPermissions",
+                  "path": "v1/{+resource}:testIamPermissions",
                   "request": {
                     "$ref": "ApigatewayTestIamPermissionsRequest"
                   },
@@ -959,7 +959,7 @@
               "methods": {
                 "cancel": {
                   "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "apigateway.projects.locations.operations.cancel",
                   "parameterOrder": [
@@ -974,7 +974,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}:cancel",
+                  "path": "v1/{+name}:cancel",
                   "request": {
                     "$ref": "ApigatewayCancelOperationRequest"
                   },
@@ -987,7 +987,7 @@
                 },
                 "delete": {
                   "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "apigateway.projects.locations.operations.delete",
                   "parameterOrder": [
@@ -1002,7 +1002,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -1012,7 +1012,7 @@
                 },
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "apigateway.projects.locations.operations.get",
                   "parameterOrder": [
@@ -1027,7 +1027,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "ApigatewayOperation"
                   },
@@ -1037,7 +1037,7 @@
                 },
                 "list": {
                   "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "apigateway.projects.locations.operations.list",
                   "parameterOrder": [
@@ -1068,7 +1068,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}/operations",
+                  "path": "v1/{+name}/operations",
                   "response": {
                     "$ref": "ApigatewayListOperationsResponse"
                   },
@@ -1159,10 +1159,6 @@
         "displayName": {
           "description": "Optional. Display name.",
           "type": "string"
-        },
-        "gatewayConfig": {
-          "$ref": "ApigatewayGatewayConfig",
-          "description": "Immutable. Gateway specific configuration."
         },
         "gatewayServiceAccount": {
           "description": "Immutable. The Google Cloud IAM Service Account that Gateways serving this config should use to authenticate to other services. This may either be the Service Account's email (`{ACCOUNT_ID}@{PROJECT}.iam.gserviceaccount.com`) or its full resource name (`projects/{PROJECT}/accounts/{UNIQUE_ID}`). This is most often used when the service is a GCP resource such as a Cloud Run Service or an IAP-secured service.",
@@ -1331,17 +1327,6 @@
       },
       "type": "object"
     },
-    "ApigatewayBackendConfig": {
-      "description": "Configuration for all backends.",
-      "id": "ApigatewayBackendConfig",
-      "properties": {
-        "googleServiceAccount": {
-          "description": "Google Cloud IAM service account used to sign OIDC tokens for backends that have authentication configured (https://cloud.google.com/service-infrastructure/docs/service-management/reference/rest/v1/services.configs#backend). This may either be the Service Account's email (i.e. \"{ACCOUNT_ID}@{PROJECT}.iam.gserviceaccount.com\") or its full resource name (i.e. \"projects/{PROJECT}/accounts/{UNIQUE_ID}\"). This is most often used when the backend is a GCP resource such as a Cloud Run Service or an IAP-secured service. Note that this token is always sent as an authorization header bearer token. The audience of the OIDC token is configured in the associated Service Config in the BackendRule option (https://github.com/googleapis/googleapis/blob/master/google/api/backend.proto#L125).",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ApigatewayBinding": {
       "description": "Associates `members` with a `role`.",
       "id": "ApigatewayBinding",
@@ -1454,17 +1439,6 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ApigatewayGatewayConfig": {
-      "description": "Configuration settings for Gateways.",
-      "id": "ApigatewayGatewayConfig",
-      "properties": {
-        "backendConfig": {
-          "$ref": "ApigatewayBackendConfig",
-          "description": "Required. Backend settings that are applied to all backends of the Gateway."
         }
       },
       "type": "object"
@@ -1827,6 +1801,6 @@
   },
   "servicePath": "",
   "title": "API Gateway API",
-  "version": "v1beta",
+  "version": "v1",
   "version_module": true
 }
