@@ -308,7 +308,7 @@ export namespace drive_v3 {
      */
     token?: string | null;
     /**
-     * The type of delivery mechanism used for this channel.
+     * The type of delivery mechanism used for this channel. Valid values are "web_hook" (or "webhook"). Both values refer to a channel where Http requests are used to deliver messages.
      */
     type?: string | null;
   }
