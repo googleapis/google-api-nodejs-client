@@ -126,19 +126,19 @@ export namespace healthcare_v1beta1 {
   }
 
   /**
-   * Activates the latest revision of the specified Consent by committing a new revision with `state` updated to `ACTIVE`. If the latest revision of the given consent is in the `ACTIVE` state, no new revision is committed.
+   * Activates the latest revision of the specified Consent by committing a new revision with `state` updated to `ACTIVE`. If the latest revision of the given Consent is in the `ACTIVE` state, no new revision is committed. A FAILED_PRECONDITION error occurs if the latest revision of the given consent is in the `REJECTED` or `REVOKED` state.
    */
   export interface Schema$ActivateConsentRequest {
     /**
-     * Required. The resource name of the consent artifact that contains proof of the end user's consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consentArtifacts/{consent_artifact_id\}`. If the draft consent had a consent artifact, this consent artifact overwrites it.
+     * Required. The resource name of the Consent artifact that contains documentation of the user's consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consentArtifacts/{consent_artifact_id\}`. If the draft Consent had a Consent artifact, this Consent artifact overwrites it.
      */
     consentArtifact?: string | null;
     /**
-     * Timestamp in UTC of when this consent is considered expired.
+     * Timestamp in UTC of when this Consent is considered expired.
      */
     expireTime?: string | null;
     /**
-     * The time to live for this consent from when it is marked as active.
+     * The time to live for this Consent from when it is marked as active.
      */
     ttl?: string | null;
   }
@@ -160,7 +160,7 @@ export namespace healthcare_v1beta1 {
      */
     entities?: Schema$Entity[];
     /**
-     * entity_mentions contains all the annotated medical entities that were were mentioned in the provided document.
+     * entity_mentions contains all the annotated medical entities that were mentioned in the provided document.
      */
     entityMentions?: Schema$EntityMention[];
     /**
@@ -241,11 +241,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$ArchiveUserDataMappingResponse {}
   /**
-   * An attribute value for a consent or data mapping. Each Attribute must have a corresponding AttributeDefinition in the consent store that defines the default and allowed values.
+   * An attribute value for a Consent or User data mapping. Each Attribute must have a corresponding AttributeDefinition in the consent store that defines the default and allowed values.
    */
   export interface Schema$Attribute {
     /**
-     * Indicates the name of an attribute defined at the consent store.
+     * Indicates the name of an attribute defined in the consent store.
      */
     attributeDefinitionId?: string | null;
     /**
@@ -266,19 +266,19 @@ export namespace healthcare_v1beta1 {
      */
     category?: string | null;
     /**
-     * Default values of the attribute in consents. If no default values are specified, it defaults to an empty value.
+     * Optional. Default values of the attribute in Consents. If no default values are specified, it defaults to an empty value.
      */
     consentDefaultValues?: string[] | null;
     /**
-     * Default value of the attribute in user data mappings. If no default value is specified, it defaults to an empty value. This field is only applicable to attributes of the category `RESOURCE`.
+     * Optional. Default value of the attribute in User data mappings. If no default value is specified, it defaults to an empty value. This field is only applicable to attributes of the category `RESOURCE`.
      */
     dataMappingDefaultValue?: string | null;
     /**
-     * A description of the attribute.
+     * Optional. A description of the attribute.
      */
     description?: string | null;
     /**
-     * Resource name of the attribute definition, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/attributeDefinitions/{attribute_definition_id\}`.
+     * Resource name of the Attribute definition, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/attributeDefinitions/{attribute_definition_id\}`. Cannot be changed after creation.
      */
     name?: string | null;
   }
@@ -309,10 +309,18 @@ export namespace healthcare_v1beta1 {
     logType?: string | null;
   }
   /**
+   * Gets multiple messages in a specified HL7v2 store.
+   */
+  export interface Schema$BatchGetMessagesResponse {
+    /**
+     * The returned Messages. See `MessageView` for populated fields.
+     */
+    messages?: Schema$Message[];
+  }
+  /**
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
-    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -353,15 +361,15 @@ export namespace healthcare_v1beta1 {
     maskingCharacter?: string | null;
   }
   /**
-   * Checks if a particular data_id of a User data mapping in the given Consent store is consented for a given use.
+   * Checks if a particular data_id of a User data mapping in the given consent store is consented for a given use.
    */
   export interface Schema$CheckDataAccessRequest {
     /**
-     * The Consents to evaluate the access request against. They must have the same `user_id` as the data to check access for, exist in the current `consent_store`, and can have a `state` of either `ACTIVE` or `DRAFT`. A maximum of 100 consents can be provided here.
+     * Optional. Specific Consents to evaluate the access request against. These Consents must have the same `user_id` as the evaluated User data mapping, must exist in the current `consent_store`, and have a `state` of either `ACTIVE` or `DRAFT`. A maximum of 100 Consents can be provided here. If no selection is specified, the access request is evaluated against all `ACTIVE` unexpired Consents with the same `user_id` as the evaluated User data mapping.
      */
     consentList?: Schema$ConsentList;
     /**
-     * The unique identifier of the data to check access for. It must exist in the given `consent_store`.
+     * Required. The unique identifier of the resource to check access for. This identifier must correspond to a User data mapping in the given consent store.
      */
     dataId?: string | null;
     /**
@@ -369,12 +377,12 @@ export namespace healthcare_v1beta1 {
      */
     requestAttributes?: {[key: string]: string} | null;
     /**
-     * The view for CheckDataAccessResponse.
+     * Optional. The view for CheckDataAccessResponse. If unspecified, defaults to `BASIC` and returns `consented` as `TRUE` or `FALSE`.
      */
     responseView?: string | null;
   }
   /**
-   * Checks if a particular data_id of a User data mapping in the given Consent store is consented for a given use.
+   * Checks if a particular data_id of a User data mapping in the given consent store is consented for a given use.
    */
   export interface Schema$CheckDataAccessResponse {
     /**
@@ -382,7 +390,7 @@ export namespace healthcare_v1beta1 {
      */
     consentDetails?: {[key: string]: Schema$ConsentEvaluation} | null;
     /**
-     * Whether the requested data is consented for the given use.
+     * Whether the requested resource is consented for the given use.
      */
     consented?: boolean | null;
   }
@@ -396,23 +404,27 @@ export namespace healthcare_v1beta1 {
     name?: string | null;
   }
   /**
-   * Represents an end user's consent.
+   * Represents a user's consent.
    */
   export interface Schema$Consent {
     /**
-     * Required. The resource name of the consent artifact that contains proof of the end user's consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consentArtifacts/{consent_artifact_id\}`.
+     * Required. The resource name of the Consent artifact that contains proof of the end user's consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consentArtifacts/{consent_artifact_id\}`.
      */
     consentArtifact?: string | null;
     /**
-     * Timestamp in UTC of when this consent is considered expired.
+     * Timestamp in UTC of when this Consent is considered expired.
      */
     expireTime?: string | null;
     /**
-     * Resource name of the Consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`.
+     * Optional. User-supplied key-value pairs used to organize Consent resources. Metadata keys must: - be between 1 and 63 characters long - have a UTF-8 encoding of maximum 128 bytes - begin with a letter - consist of up to 63 characters including lowercase letters, numeric characters, underscores, and dashes Metadata values must be: - be between 1 and 63 characters long - have a UTF-8 encoding of maximum 128 bytes - consist of up to 63 characters including lowercase letters, numeric characters, underscores, and dashes No more than 64 metadata entries can be associated with a given consent.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * Resource name of the Consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. Cannot be changed after creation.
      */
     name?: string | null;
     /**
-     * Represents an end user's consent in terms of the resources that can be accessed and under what conditions.
+     * Optional. Represents a user's consent in terms of the resources that can be accessed and under what conditions.
      */
     policies?: Schema$GoogleCloudHealthcareV1beta1ConsentPolicy[];
     /**
@@ -420,15 +432,15 @@ export namespace healthcare_v1beta1 {
      */
     revisionCreateTime?: string | null;
     /**
-     * Output only. The revision ID of the consent. The format is an 8-character hexadecimal string. Refer to a specific revision of a Consent by appending `@{revision_id\}` to the Consent's resource name.
+     * Output only. The revision ID of the Consent. The format is an 8-character hexadecimal string. Refer to a specific revision of a Consent by appending `@{revision_id\}` to the Consent's resource name.
      */
     revisionId?: string | null;
     /**
-     * Indicates the current state of this consent.
+     * Required. Indicates the current state of this Consent.
      */
     state?: string | null;
     /**
-     * Input only. The time to live for this consent from when it is created.
+     * Input only. The time to live for this Consent from when it is created.
      */
     ttl?: string | null;
     /**
@@ -437,27 +449,27 @@ export namespace healthcare_v1beta1 {
     userId?: string | null;
   }
   /**
-   * Proof of an end user's consent.
+   * Documentation of a user's consent.
    */
   export interface Schema$ConsentArtifact {
     /**
-     * Screenshots of the consent content.
+     * Optional. Screenshots, PDFs, or other binary information documenting the user's consent.
      */
     consentContentScreenshots?: Schema$Image[];
     /**
-     * An string indicating the version of the consent content.
+     * Optional. An string indicating the version of the consent information shown to the user.
      */
     consentContentVersion?: string | null;
     /**
-     * A signature from guardian.
+     * Optional. A signature from a guardian.
      */
     guardianSignature?: Schema$Signature;
     /**
-     * Metadata associated with the consent artifact. For example, the consent locale or user agent version.
+     * Optional. Metadata associated with the Consent artifact. For example, the consent locale or user agent version.
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Resource name of the Consent artifact, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consentArtifacts/{consent_artifact_id\}`.
+     * Resource name of the Consent artifact, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consentArtifacts/{consent_artifact_id\}`. Cannot be changed after creation.
      */
     name?: string | null;
     /**
@@ -465,11 +477,11 @@ export namespace healthcare_v1beta1 {
      */
     userId?: string | null;
     /**
-     * User's signature.
+     * Optional. User's signature.
      */
     userSignature?: Schema$Signature;
     /**
-     * A signature from a witness.
+     * Optional. A signature from a witness.
      */
     witnessSignature?: Schema$Signature;
   }
@@ -492,23 +504,23 @@ export namespace healthcare_v1beta1 {
     consents?: string[] | null;
   }
   /**
-   * Represents a Consent store.
+   * Represents a consent store.
    */
   export interface Schema$ConsentStore {
     /**
-     * Default time to live for consents in this store. Must be at least 24 hours. Updating this field will not affect the expiration time of existing consents.
+     * Optional. Default time to live for Consents created in this store. Must be at least 24 hours. Updating this field will not affect the expiration time of existing consents.
      */
     defaultConsentTtl?: string | null;
     /**
-     * If true, UpdateConsent creates the consent if it does not already exist.
+     * Optional. If `true`, UpdateConsent creates the Consent if it does not already exist. If unspecified, defaults to `false`.
      */
     enableConsentCreateOnUpdate?: boolean | null;
     /**
-     * User-supplied key-value pairs used to organize Consent stores. Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll\}\p{Lo\}{0,62\} Label values must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll\}\p{Lo\}\p{N\}_-]{0,63\} No more than 64 labels can be associated with a given store.
+     * Optional. User-supplied key-value pairs used to organize consent stores. Label keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: \p{Ll\}\p{Lo\}{0,62\}. Label values must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes, and must conform to the following PCRE regular expression: [\p{Ll\}\p{Lo\}\p{N\}_-]{0,63\}. No more than 64 labels can be associated with a given store. For more information: https://cloud.google.com/healthcare/docs/how-tos/labeling-resources
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Resource name of the Consent store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`.
+     * Resource name of the consent store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`. Cannot be changed after creation.
      */
     name?: string | null;
   }
@@ -787,31 +799,31 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$EvaluateAnnotationStoreResponse {}
   /**
-   * Evaluate an end user's Consents for all matching User data mappings.
+   * Evaluate a user's Consents for all matching User data mappings. Note: User data mappings are indexed asynchronously, causing slight delays between the time mappings are created or updated and when they are included in EvaluateUserConsents results.
    */
   export interface Schema$EvaluateUserConsentsRequest {
     /**
-     * The resource names of the consents to evaluate against. Consents must be in the current `consent_store` and belong to the current `user_id`. Consents can be either active or draft. If this field is empty, the default behavior is to use all active consents that belong to `user_id`. A maximum of 100 consents can be provided here.
+     * Optional. Specific Consents to evaluate the access request against. These Consents must have the same `user_id` as the User data mappings being evalauted, must exist in the current `consent_store`, and must have a `state` of either `ACTIVE` or `DRAFT`. A maximum of 100 Consents can be provided here. If unspecified, all `ACTIVE` unexpired Consents in the current `consent_store` will be evaluated.
      */
     consentList?: Schema$ConsentList;
     /**
-     * Limit on the number of user data mappings to return in a single response. If zero the default page size of 100 is used.
+     * Optional. Limit on the number of User data mappings to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number | null;
     /**
-     * Token to retrieve the next page of results to get the first page.
+     * Optional. Token to retrieve the next page of results, or empty to get the first page.
      */
     pageToken?: string | null;
     /**
-     * The values of request attributes associated with this access request.
+     * Required. The values of request attributes associated with this access request.
      */
     requestAttributes?: {[key: string]: string} | null;
     /**
-     * The values of resources attributes associated with the type of data being requested. If no values are specified, then all data types are queried.
+     * Optional. The values of resource attributes associated with the resources being requested. If no values are specified, then all resources are queried.
      */
     resourceAttributes?: {[key: string]: string} | null;
     /**
-     * The view for EvaluateUserConsentsResponse.
+     * Optional. The view for EvaluateUserConsentsResponse. If unspecified, defaults to `BASIC` and returns `consented` as `TRUE` or `FALSE`.
      */
     responseView?: string | null;
     /**
@@ -819,12 +831,9 @@ export namespace healthcare_v1beta1 {
      */
     userId?: string | null;
   }
-  /**
-   * Evaluate an end user's Consents for all matching User data mappings.
-   */
   export interface Schema$EvaluateUserConsentsResponse {
     /**
-     * Token to retrieve the next page of results or empty if there are no more results in the list. This token is valid for 72 hours after it is created.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list. This token is valid for 72 hours after it is created.
      */
     nextPageToken?: string | null;
     /**
@@ -899,6 +908,14 @@ export namespace healthcare_v1beta1 {
      * The Cloud Storage output destination. The Cloud Healthcare Service Agent requires the `roles/storage.objectAdmin` Cloud IAM roles on the Cloud Storage location. The exported outputs are organized by FHIR resource types. The server creates one object per resource type. Each object contains newline delimited JSON, and each line is a FHIR resource.
      */
     gcsDestination?: Schema$GoogleCloudHealthcareV1beta1FhirGcsDestination;
+    /**
+     * If provided, only resources updated after this time are exported. The time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz. For example, `2015-02-07T13:28:17.239+02:00` or `2017-01-01T00:00:00Z`. The time must be specified to the second and include a time zone.
+     */
+    _since?: string | null;
+    /**
+     * String of comma-delimited FHIR resource types. If provided, only resources of the specified resource type(s) are exported.
+     */
+    _type?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -969,7 +986,7 @@ export namespace healthcare_v1beta1 {
      */
     disableResourceVersioning?: boolean | null;
     /**
-     * Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. Be careful with the audit logs if client-specified resource IDs contain sensitive data such as patient identifiers, those IDs are part of the FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub notifications.
+     * Whether this FHIR store has the [updateCreate capability](https://www.hl7.org/fhir/capabilitystatement-definitions.html#CapabilityStatement.rest.resource.updateCreate). This determines if the client can use an Update operation to create a new resource with a client-specified ID. If false, all IDs are server-assigned through the Create operation and attempts to update a non-existent resource return errors. It is strongly advised not to include or encode any sensitive data such as patient identifiers in client-specified resource IDs. Those IDs are part of the FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub notifications. Those IDs can also be contained in reference fields within other resources.
      */
     enableUpdateCreate?: boolean | null;
     /**
@@ -988,6 +1005,10 @@ export namespace healthcare_v1beta1 {
      * A list of streaming configs that configure the destinations of streaming export for every resource mutation in this FHIR store. Each store is allowed to have up to 10 streaming configs. After a new config is added, the next resource mutation is streamed to the new location in addition to the existing ones. When a location is removed from the list, the server stops streaming to that location. Before adding a new config, you must add the required [`bigquery.dataEditor`](https://cloud.google.com/bigquery/docs/access-control#bigquery.dataEditor) role to your project's **Cloud Healthcare Service Agent** [service account](https://cloud.google.com/iam/docs/service-accounts). Some lag (typically on the order of dozens of seconds) is expected before the results show up in the streaming destination.
      */
     streamConfigs?: Schema$StreamConfig[];
+    /**
+     * Configuration for how to validate incoming FHIR resources against configured profiles.
+     */
+    validationConfig?: Schema$ValidationConfig;
     /**
      * Immutable. The FHIR specification version that this FHIR store supports natively. This field is immutable after store creation. Requests are rejected if they contain FHIR resources of a different version. Version is required for every FHIR store.
      */
@@ -1133,15 +1154,15 @@ export namespace healthcare_v1beta1 {
     uriPrefix?: string | null;
   }
   /**
-   * Represents an end user's consent in terms of the resources that can be accessed and under what conditions.
+   * Represents a user's consent in terms of the resources that can be accessed and under what conditions.
    */
   export interface Schema$GoogleCloudHealthcareV1beta1ConsentPolicy {
     /**
-     * The request conditions to meet to grant access. In addition to any supported comparison operators, authorization rules may have `IN` operator as well as at most 10 logical operators that are limited to `AND` (`&&`), `OR` (`||`).
+     * Required. The request conditions to meet to grant access. In addition to any supported comparison operators, authorization rules may have `IN` operator as well as at most 10 logical operators that are limited to `AND` (`&&`), `OR` (`||`).
      */
     authorizationRule?: Schema$Expr;
     /**
-     * The data resources that this policy applies to. A data resource is a match if it matches all the attributes listed here.
+     * The resources that this policy applies to. A resource is a match if it matches all the attributes listed here. If empty, this policy applies to all User data mappings for the given user.
      */
     resourceAttributes?: Schema$Attribute[];
   }
@@ -1249,74 +1270,6 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$GoogleCloudHealthcareV1beta1FhirImportResourcesResponse {}
   /**
-   *  Response when errors occur while exporting resources. This structure is included in the error details to describe the detailed outcome. It is only included when the operation finishes with errors.
-   */
-  export interface Schema$GoogleCloudHealthcareV1beta1FhirRestExportResourcesErrorDetails {
-    /**
-     * The number of resources that had errors.
-     */
-    errorCount?: string | null;
-    /**
-     * The name of the FHIR store where resources have been exported, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
-     */
-    fhirStore?: string | null;
-    /**
-     * The total number of resources included in the export operation. This is the sum of the success and error counts.
-     */
-    resourceCount?: string | null;
-    /**
-     * The number of resources that were exported.
-     */
-    successCount?: string | null;
-  }
-  /**
-   *  Response when all resources export successfully. This structure is included in the response to describe the detailed outcome after the operation finishes successfully.
-   */
-  export interface Schema$GoogleCloudHealthcareV1beta1FhirRestExportResourcesResponse {
-    /**
-     * The name of the FHIR store where resources have been exported, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
-     */
-    fhirStore?: string | null;
-    /**
-     * The total number of resources exported from the requested FHIR store.
-     */
-    resourceCount?: string | null;
-  }
-  /**
-   *  Error response of importing resources. This structure is included in the error details to describe the detailed error after the operation finishes with some failure.
-   */
-  export interface Schema$GoogleCloudHealthcareV1beta1FhirRestImportResourcesErrorDetails {
-    /**
-     * The number of resources that had errors.
-     */
-    errorCount?: string | null;
-    /**
-     * The name of the FHIR store where resources have been imported, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
-     */
-    fhirStore?: string | null;
-    /**
-     * The total number of resources included in the source data. This is the sum of the success and error counts.
-     */
-    inputSize?: string | null;
-    /**
-     * The number of resources that have been imported.
-     */
-    successCount?: string | null;
-  }
-  /**
-   *  Final response of importing resources. This structure is included in the response to describe the detailed outcome after the operation finishes successfully.
-   */
-  export interface Schema$GoogleCloudHealthcareV1beta1FhirRestImportResourcesResponse {
-    /**
-     * The name of the FHIR store where the resources have been imported, in the format `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
-     */
-    fhirStore?: string | null;
-    /**
-     * The total number of resources included in the source data.
-     */
-    inputSize?: string | null;
-  }
-  /**
    * Construct representing a logical group or a segment.
    */
   export interface Schema$GroupOrSegment {
@@ -1354,7 +1307,7 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$Hl7V2NotificationConfig {
     /**
-     * Restricts notifications sent for messages matching a filter. If this is empty, all messages are matched. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The following fields and functions are available for filtering: * `message_type`, from the MSH-9.1 field. For example, `NOT message_type = "ADT"`. * `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. * `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. * `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. * `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. * `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.
+     * Restricts notifications sent for messages matching a filter. If this is empty, all messages are matched. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Fields/functions available for filtering are: * `message_type`, from the MSH-9.1 field. For example, `NOT message_type = "ADT"`. * `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. * `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. * `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. * `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. * `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.
      */
     filter?: string | null;
     /**
@@ -1409,15 +1362,15 @@ export namespace healthcare_v1beta1 {
     extensions?: Array<{[key: string]: any}> | null;
   }
   /**
-   * An image.
+   * Raw bytes representing consent artifact content.
    */
   export interface Schema$Image {
     /**
-     * Input only. Points to a Cloud Storage URI containing the image. The URI must be in the following format: `gs://{bucket_id\}/{object_id\}`. The Cloud Healthcare API service account must have the `roles/storage.objectViewer` Cloud IAM role for this Cloud Storage location. The image at this URI is copied to a Cloud Storage location managed by the Cloud Healthcare API. Responses to image fetching requests return the image in raw_bytes.
+     * Input only. Points to a Cloud Storage URI containing the consent artifact content. The URI must be in the following format: `gs://{bucket_id\}/{object_id\}`. The Cloud Healthcare API service account must have the `roles/storage.objectViewer` Cloud IAM role for this Cloud Storage location. The consent artifact content at this URI is copied to a Cloud Storage location managed by the Cloud Healthcare API. Responses to fetching requests return the consent artifact content in raw_bytes.
      */
     gcsUri?: string | null;
     /**
-     * Image content represented as a stream of bytes. This field is populated when returned in GetConsentArtifact response, but not included in CreateConsentArtifact and ListConsentArtifact response.
+     * Consent artifact content represented as a stream of bytes. This field is populated when returned in GetConsentArtifact response, but not included in CreateConsentArtifact and ListConsentArtifact response.
      */
     rawBytes?: string | null;
   }
@@ -1589,68 +1542,53 @@ export namespace healthcare_v1beta1 {
      */
     nextPageToken?: string | null;
   }
-  /**
-   * Lists the Attribute definitions in the given Consent store.
-   */
   export interface Schema$ListAttributeDefinitionsResponse {
     /**
-     * The returned attribute definitions. The maximum number of attributes returned is determined by the value of page_size in the ListAttributeDefinitionsRequest.
+     * The returned Attribute definitions. The maximum number of attributes returned is determined by the value of page_size in the ListAttributeDefinitionsRequest.
      */
     attributeDefinitions?: Schema$AttributeDefinition[];
     /**
-     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
   }
-  /**
-   * Lists the Consent artifacts in the given Consent store.
-   */
   export interface Schema$ListConsentArtifactsResponse {
     /**
-     * The returned consent artifacts. The maximum number of artifacts returned is determined by the value of page_size in the ListConsentArtifactsRequest.
+     * The returned Consent artifacts. The maximum number of artifacts returned is determined by the value of page_size in the ListConsentArtifactsRequest.
      */
     consentArtifacts?: Schema$ConsentArtifact[];
     /**
-     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
   }
-  /**
-   * Lists the revisions of the given Consent in reverse chronological order.
-   */
   export interface Schema$ListConsentRevisionsResponse {
     /**
-     * The returned consent revisions. The maximum number of revisions returned is determined by the value of `page_size` in the ListConsentRevisionsRequest.
+     * The returned Consent revisions. The maximum number of revisions returned is determined by the value of `page_size` in the ListConsentRevisionsRequest.
      */
     consents?: Schema$Consent[];
     /**
-     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
   }
-  /**
-   * Lists the Consents in the given Consent store.
-   */
   export interface Schema$ListConsentsResponse {
     /**
-     * The returned consents. The maximum number of consents returned is determined by the value of page_size in the ListConsentsRequest.
+     * The returned Consents. The maximum number of Consents returned is determined by the value of page_size in the ListConsentsRequest.
      */
     consents?: Schema$Consent[];
     /**
-     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
   }
-  /**
-   * Lists the Consent stores in the given dataset.
-   */
   export interface Schema$ListConsentStoresResponse {
     /**
-     * The returned Consent stores. The maximum number of stores returned is determined by the value of page_size in the ListConsentStoresRequest.
+     * The returned consent stores. The maximum number of stores returned is determined by the value of page_size in the ListConsentStoresRequest.
      */
     consentStores?: Schema$ConsentStore[];
     /**
-     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
   }
@@ -1745,16 +1683,13 @@ export namespace healthcare_v1beta1 {
      */
     operations?: Schema$Operation[];
   }
-  /**
-   * Lists the User data mappings in the given Consent store.
-   */
   export interface Schema$ListUserDataMappingsResponse {
     /**
-     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
     /**
-     * The returned user data mappings. The maximum number of user data mappings returned is determined by the value of page_size in the ListUserDataMappingsRequest.
+     * The returned User data mappings. The maximum number of User data mappings returned is determined by the value of page_size in the ListUserDataMappingsRequest.
      */
     userDataMappings?: Schema$UserDataMapping[];
   }
@@ -1967,7 +1902,7 @@ export namespace healthcare_v1beta1 {
     success?: string | null;
   }
   /**
-   * Queries all data_ids that are consented for a given use in the given Consent store and writes them to a specified destination. The returned Operation includes a progress counter for the number of User data mappings processed. Errors are logged to Cloud Logging (see [Viewing logs] (/healthcare/docs/how-tos/logging) and [QueryAccessibleData] for a sample log entry).
+   * Queries all data_ids that are consented for a given use in the given consent store and writes them to a specified destination. The returned Operation includes a progress counter for the number of User data mappings processed. Errors are logged to Cloud Logging (see [Viewing logs] (/healthcare/docs/how-tos/logging) and [QueryAccessibleData] for a sample log entry).
    */
   export interface Schema$QueryAccessibleDataRequest {
     /**
@@ -1979,7 +1914,7 @@ export namespace healthcare_v1beta1 {
      */
     requestAttributes?: {[key: string]: string} | null;
     /**
-     * The values of resources attributes associated with the type of data being requested. If no values are specified, then all data types are included in the output.
+     * Optional. The values of resource attributes associated with the type of resources being requested. If no values are specified, then all resource types are included in the output.
      */
     resourceAttributes?: {[key: string]: string} | null;
   }
@@ -1988,11 +1923,11 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$RedactConfig {}
   /**
-   * Rejects the latest revision of the specified Consent by committing a new revision with `state` updated to `REJECTED`. If the latest revision of the given consent is in the `REJECTED` state, no new revision is committed.
+   * Rejects the latest revision of the specified Consent by committing a new revision with `state` updated to `REJECTED`. If the latest revision of the given Consent is in the `REJECTED` state, no new revision is committed.
    */
   export interface Schema$RejectConsentRequest {
     /**
-     * The resource name of the consent artifact that contains proof of the end user's rejection of the draft consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consentArtifacts/{consent_artifact_id\}`. If the draft consent had a consent artifact, this consent artifact overwrites it.
+     * Optional. The resource name of the Consent artifact that contains documentation of the user's rejection of the draft Consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consentArtifacts/{consent_artifact_id\}`. If the draft Consent had a Consent artifact, this Consent artifact overwrites it.
      */
     consentArtifact?: string | null;
   }
@@ -2027,20 +1962,20 @@ export namespace healthcare_v1beta1 {
      */
     consentDetails?: {[key: string]: Schema$ConsentEvaluation} | null;
     /**
-     * Whether the requested data is consented for the given use.
+     * Whether the resource is consented for the given use.
      */
     consented?: boolean | null;
     /**
-     * The unique identifier of the data the consents were checked for.
+     * The unique identifier of the evaluated resource.
      */
     dataId?: string | null;
   }
   /**
-   * Revokes the latest revision of the specified Consent by committing a new revision with `state` updated to `REVOKED`. If the latest revision of the given consent is in the `REVOKED` state, no new revision is committed.
+   * Revokes the latest revision of the specified Consent by committing a new revision with `state` updated to `REVOKED`. If the latest revision of the given Consent is in the `REVOKED` state, no new revision is committed.
    */
   export interface Schema$RevokeConsentRequest {
     /**
-     * The resource name of the consent artifact that contains proof of the end user's revocation of the consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consentArtifacts/{consent_artifact_id\}`.
+     * Optional. The resource name of the Consent artifact that contains proof of the user's revocation of the Consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consentArtifacts/{consent_artifact_id\}`.
      */
     consentArtifact?: string | null;
   }
@@ -2190,19 +2125,19 @@ export namespace healthcare_v1beta1 {
    */
   export interface Schema$Signature {
     /**
-     * An image of the user's signature.
+     * Optional. An image of the user's signature.
      */
     image?: Schema$Image;
     /**
-     * Metadata associated with the user's signature. For example, the user's name or the user's title.
+     * Optional. Metadata associated with the user's signature. For example, the user's name or the user's title.
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Timestamp of the signature.
+     * Optional. Timestamp of the signature.
      */
     signatureTime?: string | null;
     /**
-     * User's UUID provided by the client.
+     * Required. User's UUID provided by the client.
      */
     userId?: string | null;
   }
@@ -2300,19 +2235,19 @@ export namespace healthcare_v1beta1 {
     primitive?: string | null;
   }
   /**
-   * Maps a user data entry to its end user and Attributes.
+   * Maps a resource to the associated user and Attributes.
    */
   export interface Schema$UserDataMapping {
     /**
-     * Output only. Indicates whether this data mapping is archived.
+     * Output only. Indicates whether this mapping is archived.
      */
     archived?: boolean | null;
     /**
-     * Output only. Indicates the time when this data mapping was archived.
+     * Output only. Indicates the time when this mapping was archived.
      */
     archiveTime?: string | null;
     /**
-     * Required. A unique identifier for the mapped data.
+     * Required. A unique identifier for the mapped resource.
      */
     dataId?: string | null;
     /**
@@ -2320,13 +2255,26 @@ export namespace healthcare_v1beta1 {
      */
     name?: string | null;
     /**
-     * Attributes of end user data. Each attribute can have exactly one value specified. Only explicitly set attributes are displayed here. Attribute definitions with defaults set implicitly apply to these User data mappings. Attributes listed here must be single valued, that is, exactly one value is specified for the field "values" in each Attribute.
+     * Attributes of the resource. Only explicitly set attributes are displayed here. Attribute definitions with defaults set implicitly apply to these User data mappings. Attributes listed here must be single valued, that is, exactly one value is specified for the field "values" in each Attribute.
      */
     resourceAttributes?: Schema$Attribute[];
     /**
      * Required. User's UUID provided by the client.
      */
     userId?: string | null;
+  }
+  /**
+   * Contains the configuration for FHIR profiles and validation.
+   */
+  export interface Schema$ValidationConfig {
+    /**
+     * Whether to disable profile validation for this FHIR store. Set this to true to disable checking incoming resources for conformance against StructureDefinitions in this FHIR store.
+     */
+    disableProfileValidation?: boolean | null;
+    /**
+     * A list of ImplementationGuide URLs in this FHIR store that are used to configure the profiles to use for validation. For example, to use the US Core profiles for validation, set `enabled_implementation_guides` to `["http://hl7.org/fhir/us/core/ImplementationGuide/ig"]`. If `enabled_implementation_guides` is empty or omitted, then incoming resources are only required to conform to the base FHIR profiles. Otherwise, a resource must conform to at least one profile listed in the `global` property of one of the enabled ImplementationGuides. The Cloud Healthcare API does not currently enforce all of the rules in a StructureDefinition. The following rules are supported: - min/max - minValue/maxValue - maxLength - type - fixed[x] - pattern[x] on simple types - slicing, when using "value" as the discriminator type When a URL cannot be resolved (for example, in a type assertion), the server does not return an error.
+     */
+    enabledImplementationGuides?: string[] | null;
   }
   /**
    * Describes a selector for extracting and matching an MSH field to a value.
@@ -3402,7 +3350,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.list({
-     *     // The maximum number of items to return. Capped to 100 if not specified. May not be larger than 1000.
+     *     // The maximum number of items to return. If not specified, 100 is used. May not be larger than 1000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -3994,7 +3942,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$List
     extends StandardParameters {
     /**
-     * The maximum number of items to return. Capped to 100 if not specified. May not be larger than 1000.
+     * The maximum number of items to return. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -5059,9 +5007,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.annotationStores.list(
      *     {
-     *       // Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
+     *       // Restricts stores returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Only filtering on labels is supported, for example `labels.key=value`.
      *       filter: 'placeholder-value',
-     *       // Limit on the number of Annotation stores to return in a single response. If zero the default page size of 100 is used.
+     *       // Limit on the number of Annotation stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from the previous List request, if any.
      *       pageToken: 'placeholder-value',
@@ -5691,11 +5639,11 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Annotationstores$List
     extends StandardParameters {
     /**
-     * Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
+     * Restricts stores returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Only filtering on labels is supported, for example `labels.key=value`.
      */
     filter?: string;
     /**
-     * Limit on the number of Annotation stores to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of Annotation stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -6195,7 +6143,7 @@ export namespace healthcare_v1beta1 {
      *     {
      *       // Restricts Annotations returned to those matching a filter. Functions available for filtering are: - `matches("annotation_source.cloud_healthcare_source.name", substring)`. Filter on `cloud_healthcare_source.name`. For example: `matches("annotation_source.cloud_healthcare_source.name", "some source")`. - `matches("annotation", substring)`. Filter on all fields of annotation. For example: `matches("annotation", "some-content")`. - `type("text")`, `type("image")`, `type("resource")`. Filter on the type of annotation `data`.
      *       filter: 'placeholder-value',
-     *       // Limit on the number of Annotations to return in a single response. If zero the default page size of 100 is used.
+     *       // Limit on the number of Annotations to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from the previous List request, if any.
      *       pageToken: 'placeholder-value',
@@ -6494,7 +6442,7 @@ export namespace healthcare_v1beta1 {
      */
     filter?: string;
     /**
-     * Limit on the number of Annotations to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of Annotations to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -6550,7 +6498,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Checks if a particular data_id of a User data mapping in the given Consent store is consented for a given use.
+     * Checks if a particular data_id of a User data mapping in the specified consent store is consented for the specified use.
      * @example
      * ```js
      * // Before running the sample:
@@ -6577,7 +6525,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.checkDataAccess(
      *     {
-     *       // Name of the Consent store where the requested data_id is stored, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`.
+     *       // Required. Name of the consent store where the requested data_id is stored, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`.
      *       consentStore:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *
@@ -6701,7 +6649,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Creates a new Consent store in the parent dataset. Attempting to create a consent store with the same ID as an existing store fails with an ALREADY_EXISTS error.
+     * Creates a new consent store in the parent dataset. Attempting to create a consent store with the same ID as an existing store fails with an ALREADY_EXISTS error.
      * @example
      * ```js
      * // Before running the sample:
@@ -6728,9 +6676,9 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.create(
      *     {
-     *       // The ID of the consent store to create. The string must match the following regex: `[\p{L\}\p{N\}_\-\.]{1,256\}`.
+     *       // Required. The ID of the consent store to create. The string must match the following regex: `[\p{L\}\p{N\}_\-\.]{1,256\}`. Cannot be changed after creation.
      *       consentStoreId: 'placeholder-value',
-     *       // Required. The name of the dataset this Consent store belongs to.
+     *       // Required. The name of the dataset this consent store belongs to.
      *       parent: 'projects/my-project/locations/my-location/datasets/my-dataset',
      *
      *       // Request body metadata
@@ -6848,7 +6796,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Deletes the specified Consent store and removes all consent data in the specified consent store.
+     * Deletes the specified consent store and removes all the consent store's data.
      * @example
      * ```js
      * // Before running the sample:
@@ -6875,7 +6823,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.delete(
      *     {
-     *       // Required. The resource name of the Consent store to delete.
+     *       // Required. The resource name of the consent store to delete.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *     }
@@ -6975,7 +6923,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Evaluates the end user's Consents for all matching User data mappings. Note: User data mappings are indexed asynchronously, so there might be a slight delay between the time a mapping is created or updated and when it is included in the results of EvaluateUserConsents.
+     * Evaluates the user's Consents for all matching User data mappings. Note: User data mappings are indexed asynchronously, which can cause a slight delay between the time mappings are created or updated and when they are included in EvaluateUserConsents results.
      * @example
      * ```js
      * // Before running the sample:
@@ -7002,7 +6950,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.evaluateUserConsents(
      *     {
-     *       // Name of the Consent store to retrieve user data mappings from.
+     *       // Required. Name of the consent store to retrieve User data mappings from.
      *       consentStore:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *
@@ -7130,7 +7078,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Gets the specified Consent store.
+     * Gets the specified consent store.
      * @example
      * ```js
      * // Before running the sample:
@@ -7156,7 +7104,7 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.get({
-     *     // Required. The resource name of the Consent store to get.
+     *     // Required. The resource name of the consent store to get.
      *     name:
      *       'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *   });
@@ -7397,7 +7345,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Lists the Consent stores in the given dataset.
+     * Lists the consent stores in the specified dataset.
      * @example
      * ```js
      * // Before running the sample:
@@ -7423,11 +7371,11 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.list({
-     *     // Restricts the stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. Only filtering on labels is supported. For example, `labels.key=value`.
+     *     // Optional. Restricts the stores returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Only filtering on labels is supported. For example, `filter=labels.key=value`.
      *     filter: 'placeholder-value',
-     *     // Limit on the number of Consent stores to return in a single response. If zero the default page size of 100 is used.
+     *     // Optional. Limit on the number of consent stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *     pageSize: 'placeholder-value',
-     *     // Token to retrieve the next page of results or empty to get the first page.
+     *     // Optional. Token to retrieve the next page of results, or empty to get the first page.
      *     pageToken: 'placeholder-value',
      *     // Required. Name of the dataset.
      *     parent: 'projects/my-project/locations/my-location/datasets/my-dataset',
@@ -7540,7 +7488,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Updates the specified Consent store.
+     * Updates the specified consent store.
      * @example
      * ```js
      * // Before running the sample:
@@ -7566,10 +7514,10 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.patch({
-     *     // Resource name of the Consent store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`.
+     *     // Resource name of the consent store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`. Cannot be changed after creation.
      *     name:
      *       'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
-     *     // The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. The `labels` field is allowed to be updated.
+     *     // Required. The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Only the `labels`, `default_consent_ttl`, and `enable_consent_create_on_update` fields are allowed to be updated.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7683,7 +7631,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Queries all data_ids that are consented for a given use in the given Consent store and writes them to a specified destination. The returned Operation includes a progress counter for the number of User data mappings processed. Errors are logged to Cloud Logging (see [Viewing logs] (/healthcare/docs/how-tos/logging)). For example, the following sample log entry shows a `failed to evaluate consent policy` error that occurred during a QueryAccessibleData call to consent store `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`. ```json jsonPayload: { @type: "type.googleapis.com/google.cloud.healthcare.logging.QueryAccessibleDataLogEntry" error: { code: 9 message: "failed to evaluate consent policy" \} resourceName: "projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}" \} logName: "projects/{project_id\}/logs/healthcare.googleapis.com%2Fquery_accessible_data" operation: { id: "projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/operations/{operation_id\}" producer: "healthcare.googleapis.com/QueryAccessibleData" \} receiveTimestamp: "TIMESTAMP" resource: { labels: { consent_store_id: "{consent_store_id\}" dataset_id: "{dataset_id\}" location: "{location_id\}" project_id: "{project_id\}" \} type: "healthcare_consent_store" \} severity: "ERROR" timestamp: "TIMESTAMP" ```
+     * Queries all data_ids that are consented for a specified use in the given consent store and writes them to a specified destination. The returned Operation includes a progress counter for the number of User data mappings processed. Errors are logged to Cloud Logging (see [Viewing logs] (cloud.google.com/healthcare/docs/how-tos/logging)). For example, the following sample log entry shows a `failed to evaluate consent policy` error that occurred during a QueryAccessibleData call to consent store `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`. ```json jsonPayload: { @type: "type.googleapis.com/google.cloud.healthcare.logging.QueryAccessibleDataLogEntry" error: { code: 9 message: "failed to evaluate consent policy" \} resourceName: "projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}" \} logName: "projects/{project_id\}/logs/healthcare.googleapis.com%2Fquery_accessible_data" operation: { id: "projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/operations/{operation_id\}" producer: "healthcare.googleapis.com/QueryAccessibleData" \} receiveTimestamp: "TIMESTAMP" resource: { labels: { consent_store_id: "{consent_store_id\}" dataset_id: "{dataset_id\}" location: "{location_id\}" project_id: "{project_id\}" \} type: "healthcare_consent_store" \} severity: "ERROR" timestamp: "TIMESTAMP" ```
      * @example
      * ```js
      * // Before running the sample:
@@ -7710,7 +7658,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.queryAccessibleData(
      *     {
-     *       // Name of the Consent store to retrieve user data mappings from.
+     *       // Required. Name of the consent store to retrieve User data mappings from.
      *       consentStore:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *
@@ -8122,7 +8070,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess
     extends StandardParameters {
     /**
-     * Name of the Consent store where the requested data_id is stored, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`.
+     * Required. Name of the consent store where the requested data_id is stored, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`.
      */
     consentStore?: string;
 
@@ -8134,11 +8082,11 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Create
     extends StandardParameters {
     /**
-     * The ID of the consent store to create. The string must match the following regex: `[\p{L\}\p{N\}_\-\.]{1,256\}`.
+     * Required. The ID of the consent store to create. The string must match the following regex: `[\p{L\}\p{N\}_\-\.]{1,256\}`. Cannot be changed after creation.
      */
     consentStoreId?: string;
     /**
-     * Required. The name of the dataset this Consent store belongs to.
+     * Required. The name of the dataset this consent store belongs to.
      */
     parent?: string;
 
@@ -8150,14 +8098,14 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the Consent store to delete.
+     * Required. The resource name of the consent store to delete.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents
     extends StandardParameters {
     /**
-     * Name of the Consent store to retrieve user data mappings from.
+     * Required. Name of the consent store to retrieve User data mappings from.
      */
     consentStore?: string;
 
@@ -8169,7 +8117,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Consent store to get.
+     * Required. The resource name of the consent store to get.
      */
     name?: string;
   }
@@ -8187,15 +8135,15 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$List
     extends StandardParameters {
     /**
-     * Restricts the stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. Only filtering on labels is supported. For example, `labels.key=value`.
+     * Optional. Restricts the stores returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Only filtering on labels is supported. For example, `filter=labels.key=value`.
      */
     filter?: string;
     /**
-     * Limit on the number of Consent stores to return in a single response. If zero the default page size of 100 is used.
+     * Optional. Limit on the number of consent stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
-     * Token to retrieve the next page of results or empty to get the first page.
+     * Optional. Token to retrieve the next page of results, or empty to get the first page.
      */
     pageToken?: string;
     /**
@@ -8206,11 +8154,11 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Patch
     extends StandardParameters {
     /**
-     * Resource name of the Consent store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`.
+     * Resource name of the consent store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`. Cannot be changed after creation.
      */
     name?: string;
     /**
-     * The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. The `labels` field is allowed to be updated.
+     * Required. The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Only the `labels`, `default_consent_ttl`, and `enable_consent_create_on_update` fields are allowed to be updated.
      */
     updateMask?: string;
 
@@ -8222,7 +8170,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata
     extends StandardParameters {
     /**
-     * Name of the Consent store to retrieve user data mappings from.
+     * Required. Name of the consent store to retrieve User data mappings from.
      */
     consentStore?: string;
 
@@ -8263,7 +8211,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Creates a new Attribute definition in the parent Consent store.
+     * Creates a new Attribute definition in the parent consent store.
      * @example
      * ```js
      * // Before running the sample:
@@ -8418,7 +8366,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Deletes the specified Attribute definition. Fails if it is referenced by any User data mapping, or the latest revision of any Consent.
+     * Deletes the specified Attribute definition. Fails if the Attribute definition is referenced by any User data mapping, or the latest revision of any Consent.
      * @example
      * ```js
      * // Before running the sample:
@@ -8445,7 +8393,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.delete(
      *     {
-     *       // Required. The resource name of the Attribute definition to delete.
+     *       // Required. The resource name of the Attribute definition to delete. To preserve referential integrity, Attribute definitions referenced by a User data mapping or the latest revision of a Consent cannot be deleted.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/attributeDefinitions/my-attributeDefinition',
      *     }
@@ -8682,7 +8630,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Lists the Attribute definitions in the given Consent store.
+     * Lists the Attribute definitions in the specified consent store.
      * @example
      * ```js
      * // Before running the sample:
@@ -8709,13 +8657,13 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.list(
      *     {
-     *       // Restricts the attributes returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. The only field available for filtering is `category`.
+     *       // Optional. Restricts the attributes returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. The only field available for filtering is `category`. For example, `filter=category=\"REQUEST\"`.
      *       filter: 'placeholder-value',
-     *       // Limit on the number of attribute definitions to return in a single response. If zero the default page size of 100 is used.
+     *       // Optional. Limit on the number of Attribute definitions to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
-     *       // Token to retrieve the next page of results or empty to get the first page.
+     *       // Optional. Token to retrieve the next page of results or empty to get the first page.
      *       pageToken: 'placeholder-value',
-     *       // Required. Name of the Consent store to retrieve attribute definitions from.
+     *       // Required. Name of the consent store to retrieve Attribute definitions from.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *     }
@@ -8857,10 +8805,10 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.patch(
      *     {
-     *       // Resource name of the attribute definition, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/attributeDefinitions/{attribute_definition_id\}`.
+     *       // Resource name of the Attribute definition, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/attributeDefinitions/{attribute_definition_id\}`. Cannot be changed after creation.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/attributeDefinitions/my-attributeDefinition',
-     *       // The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. The `description`, `allowed_values`, `consent_default_values`, and `data_mapping_default_value` fields are allowed to be updated. The updated `allowed_values` must contain all values from the previous `allowed_values`.
+     *       // Required. The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Only the `description`, `allowed_values`, `consent_default_values` and `data_mapping_default_value` fields can be updated. The updated `allowed_values` must contain all values from the previous `allowed_values`.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -9001,7 +8949,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the Attribute definition to delete.
+     * Required. The resource name of the Attribute definition to delete. To preserve referential integrity, Attribute definitions referenced by a User data mapping or the latest revision of a Consent cannot be deleted.
      */
     name?: string;
   }
@@ -9015,30 +8963,30 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List
     extends StandardParameters {
     /**
-     * Restricts the attributes returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. The only field available for filtering is `category`.
+     * Optional. Restricts the attributes returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. The only field available for filtering is `category`. For example, `filter=category=\"REQUEST\"`.
      */
     filter?: string;
     /**
-     * Limit on the number of attribute definitions to return in a single response. If zero the default page size of 100 is used.
+     * Optional. Limit on the number of Attribute definitions to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
-     * Token to retrieve the next page of results or empty to get the first page.
+     * Optional. Token to retrieve the next page of results or empty to get the first page.
      */
     pageToken?: string;
     /**
-     * Required. Name of the Consent store to retrieve attribute definitions from.
+     * Required. Name of the consent store to retrieve Attribute definitions from.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch
     extends StandardParameters {
     /**
-     * Resource name of the attribute definition, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/attributeDefinitions/{attribute_definition_id\}`.
+     * Resource name of the Attribute definition, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/attributeDefinitions/{attribute_definition_id\}`. Cannot be changed after creation.
      */
     name?: string;
     /**
-     * The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. The `description`, `allowed_values`, `consent_default_values`, and `data_mapping_default_value` fields are allowed to be updated. The updated `allowed_values` must contain all values from the previous `allowed_values`.
+     * Required. The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Only the `description`, `allowed_values`, `consent_default_values` and `data_mapping_default_value` fields can be updated. The updated `allowed_values` must contain all values from the previous `allowed_values`.
      */
     updateMask?: string;
 
@@ -9055,7 +9003,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Creates a new Consent artifact in the parent Consent store.
+     * Creates a new Consent artifact in the parent consent store.
      * @example
      * ```js
      * // Before running the sample:
@@ -9082,7 +9030,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.consentArtifacts.create(
      *     {
-     *       // Required. The name of the Consent store this consent artifact belongs to.
+     *       // Required. The name of the consent store this Consent artifact belongs to.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *
@@ -9209,7 +9157,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Deletes the specified Consent artifact. Fails if it is referenced by the latest revision of any Consent.
+     * Deletes the specified Consent artifact. Fails if the artifact is referenced by the latest revision of any Consent.
      * @example
      * ```js
      * // Before running the sample:
@@ -9236,7 +9184,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.consentArtifacts.delete(
      *     {
-     *       // Required. The resource name of the consent artifact to delete.
+     *       // Required. The resource name of the Consent artifact to delete. To preserve referential integrity, Consent artifacts referenced by the latest revision of a Consent cannot be deleted.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consentArtifacts/my-consentArtifact',
      *     }
@@ -9363,7 +9311,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.consentArtifacts.get(
      *     {
-     *       // Required. The resource name of the consent artifact to retrieve.
+     *       // Required. The resource name of the Consent artifact to retrieve.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consentArtifacts/my-consentArtifact',
      *     }
@@ -9472,7 +9420,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Lists the Consent artifacts in the given Consent store.
+     * Lists the Consent artifacts in the specified consent store.
      * @example
      * ```js
      * // Before running the sample:
@@ -9499,13 +9447,13 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.consentArtifacts.list(
      *     {
-     *       // Restricts the artifacts returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_content_version
+     *       // Optional. Restricts the artifacts returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. The fields available for filtering are: - user_id. For example, `filter=user_id=\"user123\"`. - consent_content_version - metadata. For example, `filter=Metadata(\"testkey\")=\"value\"` or `filter=HasMetadata(\"testkey\")`.
      *       filter: 'placeholder-value',
-     *       // Limit on the number of consent artifacts to return in a single response. If zero the default page size of 100 is used.
+     *       // Optional. Limit on the number of consent artifacts to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
-     *       // The next_page_token value returned from the previous List request, if any.
+     *       // Optional. The next_page_token value returned from the previous List request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. Name of the Consent store to retrieve consent artifacts from.
+     *       // Required. Name of the consent store to retrieve consent artifacts from.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *     }
@@ -9623,7 +9571,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create
     extends StandardParameters {
     /**
-     * Required. The name of the Consent store this consent artifact belongs to.
+     * Required. The name of the consent store this Consent artifact belongs to.
      */
     parent?: string;
 
@@ -9635,33 +9583,33 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the consent artifact to delete.
+     * Required. The resource name of the Consent artifact to delete. To preserve referential integrity, Consent artifacts referenced by the latest revision of a Consent cannot be deleted.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the consent artifact to retrieve.
+     * Required. The resource name of the Consent artifact to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List
     extends StandardParameters {
     /**
-     * Restricts the artifacts returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_content_version
+     * Optional. Restricts the artifacts returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. The fields available for filtering are: - user_id. For example, `filter=user_id=\"user123\"`. - consent_content_version - metadata. For example, `filter=Metadata(\"testkey\")=\"value\"` or `filter=HasMetadata(\"testkey\")`.
      */
     filter?: string;
     /**
-     * Limit on the number of consent artifacts to return in a single response. If zero the default page size of 100 is used.
+     * Optional. Limit on the number of consent artifacts to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
-     * The next_page_token value returned from the previous List request, if any.
+     * Optional. The next_page_token value returned from the previous List request, if any.
      */
     pageToken?: string;
     /**
-     * Required. Name of the Consent store to retrieve consent artifacts from.
+     * Required. Name of the consent store to retrieve consent artifacts from.
      */
     parent?: string;
   }
@@ -9673,7 +9621,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Activates the latest revision of the specified Consent by committing a new revision with `state` updated to `ACTIVE`. If the latest revision of the given consent is in the `ACTIVE` state, no new revision is committed. A FAILED_PRECONDITION error occurs if the latest revision of the given consent is in the `REJECTED` or `REVOKED` state.
+     * Activates the latest revision of the specified Consent by committing a new revision with `state` updated to `ACTIVE`. If the latest revision of the specified Consent is in the `ACTIVE` state, no new revision is committed. A FAILED_PRECONDITION error occurs if the latest revision of the specified consent is in the `REJECTED` or `REVOKED` state.
      * @example
      * ```js
      * // Before running the sample:
@@ -9700,7 +9648,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.consents.activate(
      *     {
-     *       // Required. The resource name of the consent to activate, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     *       // Required. The resource name of the Consent to activate, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
      *
@@ -9721,6 +9669,7 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "consentArtifact": "my_consentArtifact",
      *   //   "expireTime": "my_expireTime",
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "policies": [],
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -9823,7 +9772,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Creates a new Consent in the parent Consent store.
+     * Creates a new Consent in the parent consent store.
      * @example
      * ```js
      * // Before running the sample:
@@ -9860,6 +9809,7 @@ export namespace healthcare_v1beta1 {
      *         // {
      *         //   "consentArtifact": "my_consentArtifact",
      *         //   "expireTime": "my_expireTime",
+     *         //   "metadata": {},
      *         //   "name": "my_name",
      *         //   "policies": [],
      *         //   "revisionCreateTime": "my_revisionCreateTime",
@@ -9877,6 +9827,7 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "consentArtifact": "my_consentArtifact",
      *   //   "expireTime": "my_expireTime",
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "policies": [],
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -9979,7 +9930,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Deletes the Consent and its revisions. To keep a record of the Consent but mark it inactive, see [RevokeConsent]. To delete a revision of a Consent, see [DeleteConsentRevision]. This operation does not delete the related consent artifact.
+     * Deletes the Consent and its revisions. To keep a record of the Consent but mark it inactive, see [RevokeConsent]. To delete a revision of a Consent, see [DeleteConsentRevision]. This operation does not delete the related Consent artifact.
      * @example
      * ```js
      * // Before running the sample:
@@ -10006,7 +9957,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.consents.delete(
      *     {
-     *       // Required. The resource name of the consent to delete, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     *       // Required. The resource name of the Consent to delete, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
      *     }
@@ -10133,7 +10084,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.consents.deleteRevision(
      *     {
-     *       // Required. The resource name of the consent revision to delete, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}@{revision_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is not specified in the name.
+     *       // Required. The resource name of the Consent revision to delete, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}@{revision_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is not specified in the name.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
      *     }
@@ -10263,7 +10214,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.consents.get(
      *     {
-     *       // Required. The resource name of the consent to retrieve, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. In order to retrieve a previous revision of the consent, also provide the revision ID: `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}@{revision_id\}`
+     *       // Required. The resource name of the Consent to retrieve, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. In order to retrieve a previous revision of the Consent, also provide the revision ID: `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}@{revision_id\}`
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
      *     }
@@ -10274,6 +10225,7 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "consentArtifact": "my_consentArtifact",
      *   //   "expireTime": "my_expireTime",
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "policies": [],
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -10373,7 +10325,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Lists the Consent in the given Consent store, returning each consent's latest revision.
+     * Lists the Consent in the given consent store, returning each Consent's latest revision.
      * @example
      * ```js
      * // Before running the sample:
@@ -10400,13 +10352,13 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.consents.list(
      *     {
-     *       // Restricts the consents returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_artifact - state - revision_create_time
+     *       // Optional. Restricts the consents returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. The fields available for filtering are: - user_id. For example, `filter='user_id="user123"'`. - consent_artifact - state - revision_create_time - metadata. For example, `filter=Metadata(\"testkey\")=\"value\"` or `filter=HasMetadata(\"testkey\")`.
      *       filter: 'placeholder-value',
-     *       // Limit on the number of consents to return in a single response. If zero the default page size of 100 is used.
+     *       // Optional. Limit on the number of Consents to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
-     *       // The next_page_token value returned from the previous List request, if any.
+     *       // Optional. The next_page_token value returned from the previous List request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. Name of the Consent store to retrieve consents from.
+     *       // Required. Name of the consent store to retrieve Consents from.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *     }
@@ -10517,7 +10469,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Lists the revisions of the given Consent in reverse chronological order.
+     * Lists the revisions of the specified Consent in reverse chronological order.
      * @example
      * ```js
      * // Before running the sample:
@@ -10544,14 +10496,14 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.consents.listRevisions(
      *     {
-     *       // Restricts the revisions returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. Fields/functions available for filtering are: - user_id - consent_artifact - state - revision_create_time
+     *       // Optional. Restricts the revisions returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Fields/functions available for filtering are: - user_id. For example, `filter='user_id="user123"'`. - consent_artifact - state - revision_create_time - metadata. For example, `filter=Metadata(\"testkey\")=\"value\"` or `filter=HasMetadata(\"testkey\")`.
      *       filter: 'placeholder-value',
-     *       // Required. The resource name of the consent to retrieve revisions for.
+     *       // Required. The resource name of the Consent to retrieve revisions for.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
-     *       // Limit on the number of revisions to return in a single response. If zero the default page size of 100 is used.
+     *       // Optional. Limit on the number of revisions to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
-     *       // Token to retrieve the next page of results or empty if there are no more results in the list.
+     *       // Optional. Token to retrieve the next page of results or empty if there are no more results in the list.
      *       pageToken: 'placeholder-value',
      *     }
      *   );
@@ -10665,7 +10617,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Updates the latest revision of the specified Consent by committing a new revision with the changes. A FAILED_PRECONDITION error occurs if the latest revision of the given consent is in the `REJECTED` or `REVOKED` state.
+     * Updates the latest revision of the specified Consent by committing a new revision with the changes. A FAILED_PRECONDITION error occurs if the latest revision of the specified Consent is in the `REJECTED` or `REVOKED` state.
      * @example
      * ```js
      * // Before running the sample:
@@ -10692,10 +10644,10 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.consents.patch(
      *     {
-     *       // Resource name of the Consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`.
+     *       // Resource name of the Consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. Cannot be changed after creation.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
-     *       // The update mask to apply to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. The `user_id`, `policies`, and `consent_artifact` fields can be updated.
+     *       // Required. The update mask to apply to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Only the `user_id`, `policies`, `consent_artifact`, and `metadata` fields can be updated.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -10704,6 +10656,7 @@ export namespace healthcare_v1beta1 {
      *         // {
      *         //   "consentArtifact": "my_consentArtifact",
      *         //   "expireTime": "my_expireTime",
+     *         //   "metadata": {},
      *         //   "name": "my_name",
      *         //   "policies": [],
      *         //   "revisionCreateTime": "my_revisionCreateTime",
@@ -10721,6 +10674,7 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "consentArtifact": "my_consentArtifact",
      *   //   "expireTime": "my_expireTime",
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "policies": [],
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -10820,7 +10774,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Rejects the latest revision of the specified Consent by committing a new revision with `state` updated to `REJECTED`. If the latest revision of the given consent is in the `REJECTED` state, no new revision is committed. A FAILED_PRECONDITION error occurs if the latest revision of the given consent is in the `ACTIVE` or `REVOKED` state.
+     * Rejects the latest revision of the specified Consent by committing a new revision with `state` updated to `REJECTED`. If the latest revision of the specified Consent is in the `REJECTED` state, no new revision is committed. A FAILED_PRECONDITION error occurs if the latest revision of the specified Consent is in the `ACTIVE` or `REVOKED` state.
      * @example
      * ```js
      * // Before running the sample:
@@ -10847,7 +10801,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.consents.reject(
      *     {
-     *       // Required. The resource name of the consent to reject, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     *       // Required. The resource name of the Consent to reject, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
      *
@@ -10866,6 +10820,7 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "consentArtifact": "my_consentArtifact",
      *   //   "expireTime": "my_expireTime",
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "policies": [],
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -10968,7 +10923,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Revokes the latest revision of the specified Consent by committing a new revision with `state` updated to `REVOKED`. If the latest revision of the given consent is in the `REVOKED` state, no new revision is committed. A FAILED_PRECONDITION error occurs if the latest revision of the given consent is in `DRAFT` or `REJECTED` state.
+     * Revokes the latest revision of the specified Consent by committing a new revision with `state` updated to `REVOKED`. If the latest revision of the specified Consent is in the `REVOKED` state, no new revision is committed. A FAILED_PRECONDITION error occurs if the latest revision of the given consent is in `DRAFT` or `REJECTED` state.
      * @example
      * ```js
      * // Before running the sample:
@@ -10995,7 +10950,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.consents.revoke(
      *     {
-     *       // Required. The resource name of the consent to revoke, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     *       // Required. The resource name of the Consent to revoke, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
      *
@@ -11014,6 +10969,7 @@ export namespace healthcare_v1beta1 {
      *   // {
      *   //   "consentArtifact": "my_consentArtifact",
      *   //   "expireTime": "my_expireTime",
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "policies": [],
      *   //   "revisionCreateTime": "my_revisionCreateTime",
@@ -11119,7 +11075,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate
     extends StandardParameters {
     /**
-     * Required. The resource name of the consent to activate, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     * Required. The resource name of the Consent to activate, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
      */
     name?: string;
 
@@ -11143,70 +11099,70 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the consent to delete, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     * Required. The resource name of the Consent to delete, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision
     extends StandardParameters {
     /**
-     * Required. The resource name of the consent revision to delete, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}@{revision_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is not specified in the name.
+     * Required. The resource name of the Consent revision to delete, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}@{revision_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is not specified in the name.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the consent to retrieve, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. In order to retrieve a previous revision of the consent, also provide the revision ID: `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}@{revision_id\}`
+     * Required. The resource name of the Consent to retrieve, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. In order to retrieve a previous revision of the Consent, also provide the revision ID: `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}@{revision_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List
     extends StandardParameters {
     /**
-     * Restricts the consents returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - user_id - consent_artifact - state - revision_create_time
+     * Optional. Restricts the consents returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. The fields available for filtering are: - user_id. For example, `filter='user_id="user123"'`. - consent_artifact - state - revision_create_time - metadata. For example, `filter=Metadata(\"testkey\")=\"value\"` or `filter=HasMetadata(\"testkey\")`.
      */
     filter?: string;
     /**
-     * Limit on the number of consents to return in a single response. If zero the default page size of 100 is used.
+     * Optional. Limit on the number of Consents to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
-     * The next_page_token value returned from the previous List request, if any.
+     * Optional. The next_page_token value returned from the previous List request, if any.
      */
     pageToken?: string;
     /**
-     * Required. Name of the Consent store to retrieve consents from.
+     * Required. Name of the consent store to retrieve Consents from.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions
     extends StandardParameters {
     /**
-     * Restricts the revisions returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings. Fields/functions available for filtering are: - user_id - consent_artifact - state - revision_create_time
+     * Optional. Restricts the revisions returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Fields/functions available for filtering are: - user_id. For example, `filter='user_id="user123"'`. - consent_artifact - state - revision_create_time - metadata. For example, `filter=Metadata(\"testkey\")=\"value\"` or `filter=HasMetadata(\"testkey\")`.
      */
     filter?: string;
     /**
-     * Required. The resource name of the consent to retrieve revisions for.
+     * Required. The resource name of the Consent to retrieve revisions for.
      */
     name?: string;
     /**
-     * Limit on the number of revisions to return in a single response. If zero the default page size of 100 is used.
+     * Optional. Limit on the number of revisions to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
-     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     * Optional. Token to retrieve the next page of results or empty if there are no more results in the list.
      */
     pageToken?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch
     extends StandardParameters {
     /**
-     * Resource name of the Consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`.
+     * Resource name of the Consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. Cannot be changed after creation.
      */
     name?: string;
     /**
-     * The update mask to apply to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. The `user_id`, `policies`, and `consent_artifact` fields can be updated.
+     * Required. The update mask to apply to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Only the `user_id`, `policies`, `consent_artifact`, and `metadata` fields can be updated.
      */
     updateMask?: string;
 
@@ -11218,7 +11174,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject
     extends StandardParameters {
     /**
-     * Required. The resource name of the consent to reject, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     * Required. The resource name of the Consent to reject, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
      */
     name?: string;
 
@@ -11230,7 +11186,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke
     extends StandardParameters {
     /**
-     * Required. The resource name of the consent to revoke, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     * Required. The resource name of the Consent to revoke, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
      */
     name?: string;
 
@@ -11274,7 +11230,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.archive(
      *     {
-     *       // The resource name of the user data mapping to archive.
+     *       // Required. The resource name of the User data mapping to archive.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
      *
@@ -11392,7 +11348,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Creates a new User data mapping in the parent Consent store.
+     * Creates a new User data mapping in the parent consent store.
      * @example
      * ```js
      * // Before running the sample:
@@ -11569,7 +11525,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.delete(
      *     {
-     *       // Required. The resource name of the user data mapping to delete.
+     *       // Required. The resource name of the User data mapping to delete.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
      *     }
@@ -11696,7 +11652,7 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.get(
      *     {
-     *       // Required. The resource name of the user data mapping to retrieve.
+     *       // Required. The resource name of the User data mapping to retrieve.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
      *     }
@@ -11803,7 +11759,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Lists the User data mappings in the given Consent store.
+     * Lists the User data mappings in the specified consent store.
      * @example
      * ```js
      * // Before running the sample:
@@ -11830,13 +11786,13 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.list(
      *     {
-     *       // Restricts the user data mappings returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - data_id - user_id - archived - archive_time
+     *       // Optional. Restricts the user data mappings returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. The fields available for filtering are: - data_id - user_id. For example, `filter=user_id=\"user123\"`. - archived - archive_time
      *       filter: 'placeholder-value',
-     *       // Limit on the number of user data mappings to return in a single response. If zero the default page size of 100 is used.
+     *       // Optional. Limit on the number of User data mappings to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
-     *       // Token to retrieve the next page of results or empty to get the first page.
+     *       // Optional. Token to retrieve the next page of results, or empty to get the first page.
      *       pageToken: 'placeholder-value',
-     *       // Required. Name of the Consent store to retrieve user data mappings from.
+     *       // Required. Name of the consent store to retrieve User data mappings from.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *     }
@@ -11981,7 +11937,7 @@ export namespace healthcare_v1beta1 {
      *       // Resource name of the User data mapping, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/userDataMappings/{user_data_mapping_id\}`.
      *       name:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
-     *       // The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
+     *       // Required. The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Only the `data_id`, `user_id` and `resource_attributes` fields can be updated.
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -12103,7 +12059,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive
     extends StandardParameters {
     /**
-     * The resource name of the user data mapping to archive.
+     * Required. The resource name of the User data mapping to archive.
      */
     name?: string;
 
@@ -12127,33 +12083,33 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the user data mapping to delete.
+     * Required. The resource name of the User data mapping to delete.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the user data mapping to retrieve.
+     * Required. The resource name of the User data mapping to retrieve.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List
     extends StandardParameters {
     /**
-     * Restricts the user data mappings returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The fields available for filtering are: - data_id - user_id - archived - archive_time
+     * Optional. Restricts the user data mappings returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. The fields available for filtering are: - data_id - user_id. For example, `filter=user_id=\"user123\"`. - archived - archive_time
      */
     filter?: string;
     /**
-     * Limit on the number of user data mappings to return in a single response. If zero the default page size of 100 is used.
+     * Optional. Limit on the number of User data mappings to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
-     * Token to retrieve the next page of results or empty to get the first page.
+     * Optional. Token to retrieve the next page of results, or empty to get the first page.
      */
     pageToken?: string;
     /**
-     * Required. Name of the Consent store to retrieve user data mappings from.
+     * Required. Name of the consent store to retrieve User data mappings from.
      */
     parent?: string;
   }
@@ -12164,7 +12120,7 @@ export namespace healthcare_v1beta1 {
      */
     name?: string;
     /**
-     * The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask.
+     * Required. The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Only the `data_id`, `user_id` and `resource_attributes` fields can be updated.
      */
     updateMask?: string;
 
@@ -13180,9 +13136,9 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.list({
-     *     // Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported. For example, `labels.key=value`.
+     *     // Restricts stores returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Only filtering on labels is supported. For example, `labels.key=value`.
      *     filter: 'placeholder-value',
-     *     // Limit on the number of DICOM stores to return in a single response. If zero the default page size of 100 is used.
+     *     // Limit on the number of DICOM stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from the previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -14359,11 +14315,11 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Dicomstores$List
     extends StandardParameters {
     /**
-     * Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported. For example, `labels.key=value`.
+     * Restricts stores returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Only filtering on labels is supported. For example, `labels.key=value`.
      */
     filter?: string;
     /**
-     * Limit on the number of DICOM stores to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of DICOM stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -14476,7 +14432,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * DeleteStudyAsync deletes all instances within the given study using an operation. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. The method returns an Operation which will be marked successful when the deletion is complete. Warning: Inserting instances into a study while a delete operation is running for that study could result in the new instances not appearing in search results until the deletion operation finishes.
+     * DeleteStudy deletes all instances within the given study using a long running operation. The method returns an Operation which will be marked successful when the deletion is complete. Warning: If you insert instances into a study while a delete operation is running for that study, the instances you insert might not appear in search results until after the deletion operation finishes. For samples that show how to call DeleteStudy, see [Deleting a study, series, or instance](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#deleting_a_study_series_or_instance).
      * @example
      * ```js
      * // Before running the sample:
@@ -15381,7 +15337,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * DeleteSeriesAsync deletes all instances within the given study and series using an operation. Delete requests are equivalent to the GET requests specified in the Retrieve transaction. The method returns an Operation which will be marked successful when the deletion is complete. Warning: Inserting instances into a series while a delete operation is running for that series could result in the new instances not appearing in search results until the deletion operation finishes.
+     * DeleteSeries deletes all instances within the given study and series using a long running operation. The method returns an Operation which will be marked successful when the deletion is complete. Warning: If you insert instances into a series while a delete operation is running for that series, the instances you insert might not appear in search results until after the deletion operation finishes. For samples that show how to call DeleteSeries, see [Deleting a study, series, or instance](https://cloud.google.com/healthcare/docs/how-tos/dicomweb#deleting_a_study_series_or_instance).
      * @example
      * ```js
      * // Before running the sample:
@@ -16918,6 +16874,7 @@ export namespace healthcare_v1beta1 {
      *       //   "name": "my_name",
      *       //   "notificationConfig": {},
      *       //   "streamConfigs": [],
+     *       //   "validationConfig": {},
      *       //   "version": "my_version"
      *       // }
      *     },
@@ -16934,6 +16891,7 @@ export namespace healthcare_v1beta1 {
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
      *   //   "streamConfigs": [],
+     *   //   "validationConfig": {},
      *   //   "version": "my_version"
      *   // }
      * }
@@ -17335,6 +17293,8 @@ export namespace healthcare_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "_since": "my__since",
+     *       //   "_type": "my__type",
      *       //   "bigqueryDestination": {},
      *       //   "gcsDestination": {}
      *       // }
@@ -17486,6 +17446,7 @@ export namespace healthcare_v1beta1 {
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
      *   //   "streamConfigs": [],
+     *   //   "validationConfig": {},
      *   //   "version": "my_version"
      *   // }
      * }
@@ -17716,7 +17677,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Import resources to the FHIR store by loading data from the specified sources. This method is optimized to load large quantities of data using import semantics that ignore some FHIR store configuration options and are not suitable for all use cases. It is primarily intended to load data into an empty FHIR store that is not being used by other clients. In cases where this method is not appropriate, consider using ExecuteBundle to load data. Every resource in the input must contain a client-supplied ID. Each resource is stored using the supplied ID regardless of the enable_update_create setting on the FHIR store. The import process does not enforce referential integrity, regardless of the disable_referential_integrity setting on the FHIR store. This allows the import of resources with arbitrary interdependencies without considering grouping or ordering, but if the input data contains invalid references or if some resources fail to be imported, the FHIR store might be left in a state that violates referential integrity. The import process does not trigger Pub/Sub notification or BigQuery streaming update, regardless of how those are configured on the FHIR store. If a resource with the specified ID already exists, the most recent version of the resource is overwritten without creating a new historical version, regardless of the disable_resource_versioning setting on the FHIR store. If transient failures occur during the import, it is possible that successfully imported resources will be overwritten more than once. The import operation is idempotent unless the input data contains multiple valid resources with the same ID but different contents. In that case, after the import completes, the store contains exactly one resource with that ID but there is no ordering guarantee on which version of the contents it will have. The operation result counters do not count duplicate IDs as an error and count one success for each resource in the input, which might result in a success count larger than the number of resources in the FHIR store. This often occurs when importing data organized in bundles produced by Patient-everything where each bundle contains its own copy of a resource such as Practitioner that might be referred to by many patients. If some resources fail to import, for example due to parsing errors, successfully imported resources are not rolled back. The location and format of the input data are specified by the parameters in ImportResourcesRequest. Note that if no format is specified, this method assumes the `BUNDLE` format. When using the `BUNDLE` format this method ignores the `Bundle.type` field, except that `history` bundles are rejected, and does not apply any of the bundle processing semantics for batch or transaction bundles. Unlike in ExecuteBundle, transaction bundles are not executed as a single transaction and bundle-internal references are not rewritten. The bundle is treated as a collection of resources to be written as provided in `Bundle.entry.resource`, ignoring `Bundle.entry.request`. As an example, this allows the import of `searchset` bundles produced by a FHIR search or Patient-everything operation. This method returns an Operation that can be used to track the status of the import by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type ImportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
+     * Import resources to the FHIR store by loading data from the specified sources. This method is optimized to load large quantities of data using import semantics that ignore some FHIR store configuration options and are not suitable for all use cases. It is primarily intended to load data into an empty FHIR store that is not being used by other clients. In cases where this method is not appropriate, consider using ExecuteBundle to load data. Every resource in the input must contain a client-supplied ID. Each resource is stored using the supplied ID regardless of the enable_update_create setting on the FHIR store. It is strongly advised not to include or encode any sensitive data such as patient identifiers in client-specified resource IDs. Those IDs are part of the FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub notifications. Those IDs can also be contained in reference fields within other resources. The import process does not enforce referential integrity, regardless of the disable_referential_integrity setting on the FHIR store. This allows the import of resources with arbitrary interdependencies without considering grouping or ordering, but if the input data contains invalid references or if some resources fail to be imported, the FHIR store might be left in a state that violates referential integrity. The import process does not trigger Pub/Sub notification or BigQuery streaming update, regardless of how those are configured on the FHIR store. If a resource with the specified ID already exists, the most recent version of the resource is overwritten without creating a new historical version, regardless of the disable_resource_versioning setting on the FHIR store. If transient failures occur during the import, it is possible that successfully imported resources will be overwritten more than once. The import operation is idempotent unless the input data contains multiple valid resources with the same ID but different contents. In that case, after the import completes, the store contains exactly one resource with that ID but there is no ordering guarantee on which version of the contents it will have. The operation result counters do not count duplicate IDs as an error and count one success for each resource in the input, which might result in a success count larger than the number of resources in the FHIR store. This often occurs when importing data organized in bundles produced by Patient-everything where each bundle contains its own copy of a resource such as Practitioner that might be referred to by many patients. If some resources fail to import, for example due to parsing errors, successfully imported resources are not rolled back. The location and format of the input data are specified by the parameters in ImportResourcesRequest. Note that if no format is specified, this method assumes the `BUNDLE` format. When using the `BUNDLE` format this method ignores the `Bundle.type` field, except that `history` bundles are rejected, and does not apply any of the bundle processing semantics for batch or transaction bundles. Unlike in ExecuteBundle, transaction bundles are not executed as a single transaction and bundle-internal references are not rewritten. The bundle is treated as a collection of resources to be written as provided in `Bundle.entry.resource`, ignoring `Bundle.entry.request`. As an example, this allows the import of `searchset` bundles produced by a FHIR search or Patient-everything operation. This method returns an Operation that can be used to track the status of the import by calling GetOperation. Immediate fatal errors appear in the error field, errors are also logged to Cloud Logging (see [Viewing logs](/healthcare/docs/how-tos/logging)). Otherwise, when the operation finishes, a detailed response of type ImportResourcesResponse is returned in the response field. The metadata field type for this operation is OperationMetadata.
      * @example
      * ```js
      * // Before running the sample:
@@ -17885,9 +17846,9 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.list({
-     *     // Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
+     *     // Restricts stores returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Only filtering on labels is supported, for example `labels.key=value`.
      *     filter: 'placeholder-value',
-     *     // Limit on the number of FHIR stores to return in a single response. If zero the default page size of 100 is used.
+     *     // Limit on the number of FHIR stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from the previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -18044,6 +18005,7 @@ export namespace healthcare_v1beta1 {
      *       //   "name": "my_name",
      *       //   "notificationConfig": {},
      *       //   "streamConfigs": [],
+     *       //   "validationConfig": {},
      *       //   "version": "my_version"
      *       // }
      *     },
@@ -18060,6 +18022,7 @@ export namespace healthcare_v1beta1 {
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
      *   //   "streamConfigs": [],
+     *   //   "validationConfig": {},
      *   //   "version": "my_version"
      *   // }
      * }
@@ -18524,11 +18487,11 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$List
     extends StandardParameters {
     /**
-     * Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported, for example `labels.key=value`.
+     * Restricts stores returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Only filtering on labels is supported, for example `labels.key=value`.
      */
     filter?: string;
     /**
-     * Limit on the number of FHIR stores to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of FHIR stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -19288,7 +19251,7 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * If a resource is found based on the search criteria specified in the query parameters, updates the entire contents of that resource. Implements the FHIR standard conditional update interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#2.1.0.10.2), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#cond-update), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#cond-update)). Search terms are provided as query parameters following the same pattern as the search method. If the search criteria identify more than one match, the request returns a `412 Precondition Failed` error. If the search criteria identify zero matches, and the supplied resource body contains an `id`, and the FHIR store has enable_update_create set, creates the resource with the client-specified ID. If the search criteria identify zero matches, and the supplied resource body does not contain an `id`, the resource is created with a server-assigned ID as per the create method. The request body must contain a JSON-encoded FHIR resource, and the request headers must contain `Content-Type: application/fhir+json`. On success, the response body contains a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. This method requires the`healthcare.fhirStores.searchResources` and `healthcare.fhirResources.update` permissions on the parent FHIR store. For samples that show how to call `conditionalUpdate`, see [Conditionally updating a FHIR resource](/healthcare/docs/how-tos/fhir-resources#conditionally_updating_a_fhir_resource).
+     * If a resource is found based on the search criteria specified in the query parameters, updates the entire contents of that resource. Implements the FHIR standard conditional update interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#2.1.0.10.2), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#cond-update), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#cond-update)). Search terms are provided as query parameters following the same pattern as the search method. If the search criteria identify more than one match, the request returns a `412 Precondition Failed` error. If the search criteria identify zero matches, and the supplied resource body contains an `id`, and the FHIR store has enable_update_create set, creates the resource with the client-specified ID. It is strongly advised not to include or encode any sensitive data such as patient identifiers in client-specified resource IDs. Those IDs are part of the FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub notifications. Those IDs can also be contained in reference fields within other resources. If the search criteria identify zero matches, and the supplied resource body does not contain an `id`, the resource is created with a server-assigned ID as per the create method. The request body must contain a JSON-encoded FHIR resource, and the request headers must contain `Content-Type: application/fhir+json`. On success, the response body contains a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. This method requires the`healthcare.fhirStores.searchResources` and `healthcare.fhirResources.update` permissions on the parent FHIR store. For samples that show how to call `conditionalUpdate`, see [Conditionally updating a FHIR resource](/healthcare/docs/how-tos/fhir-resources#conditionally_updating_a_fhir_resource).
      * @example
      * ```js
      * // Before running the sample:
@@ -19887,7 +19850,7 @@ export namespace healthcare_v1beta1 {
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
      *       // Only include resource versions that were current at some point during the time period specified in the date time value. The date parameter format is yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm] Clients may specify any of the following: * An entire year: `_at=2019` * An entire month: `_at=2019-01` * A specific day: `_at=2019-01-20` * A specific second: `_at=2018-12-31T23:59:58Z`
      *       _at: 'placeholder-value',
-     *       // The maximum number of search results on a page. Default value is 100. Maximum value is 1,000.
+     *       // The maximum number of search results on a page. If not specified, 100 is used. May not be larger than 1000.
      *       _count: 'placeholder-value',
      *       // Used to retrieve the first, previous, next, or last page of resource versions when using pagination. Value should be set to the value of `_page_token` set in next or previous page links' URLs. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next". Omit `_page_token` if no previous request has been made.
      *       _page_token: 'placeholder-value',
@@ -20306,7 +20269,7 @@ export namespace healthcare_v1beta1 {
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/Patient/[^/]+',
      *       // The response includes records subsequent to the start date. If no start date is provided, all records prior to the end date are in scope.
      *       start: 'placeholder-value',
-     *       // Maximum number of resources in a page. Defaults to 100.
+     *       // Maximum number of resources in a page. If not specified, 100 is used. May not be larger than 1000.
      *       _count: 'placeholder-value',
      *       // Used to retrieve the next or previous page of results when using pagination. Set `_page_token` to the value of _page_token set in next or previous page links' url. Next and previous page are returned in the response bundle's links field, where `link.relation` is "previous" or "next". Omit `_page_token` if no previous request has been made.
      *       _page_token: 'placeholder-value',
@@ -20678,7 +20641,154 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Searches for resources in the given FHIR store according to criteria specified as query parameters. Implements the FHIR standard search interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#search), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#search), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#search)) using the search semantics described in the FHIR Search specification ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/search.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/search.html), [R4](https://hl7.org/implement/standards/fhir/R4/search.html)). Supports three methods of search defined by the specification: * `GET [base]?[parameters]` to search across all resources. * `GET [base]/[type]?[parameters]` to search resources of a specified type. * `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method. The `GET` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters. On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the FHIR Search Parameter Registry ([STU3](https://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html), [R4](https://hl7.org/implement/standards/fhir/R4/searchparameter-registry.html)). FHIR search parameters for DSTU2 can be found on each resource's definition page. Supported search modifiers: `:missing`, `:exact`, `:contains`, `:text`, `:in`, `:not-in`, `:above`, `:below`, `:[type]`, `:not`, and `:recurse`. Supported search result parameters: `_sort`, `_count`, `_include`, `_revinclude`, `_summary=text`, `_summary=data`, and `_elements`. The maximum number of search results returned defaults to 100, which can be overridden by the `_count` parameter up to a maximum limit of 1000. If there are additional results, the returned `Bundle` contains pagination links. Resources with a total size larger than 5MB or a field count larger than 50,000 might not be fully searchable as the server might trim its generated search index in those cases. Note: FHIR resources are indexed asynchronously, so there might be a slight delay between the time a resource is created or changes and when the change is reflected in search results. For samples and detailed information, see [Searching for FHIR resources](/healthcare/docs/how-tos/fhir-search) and [Advanced FHIR search features](/healthcare/docs/how-tos/fhir-advanced-search).
+     * Validates an input FHIR resource's conformance to its profiles and the profiles configured on the FHIR store. Implements the FHIR extended operation $validate ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resource-operations.html#validate), [STU3](http://hl7.org/implement/standards/fhir/STU3/resource-operations.html#validate), or [R4](http://hl7.org/implement/standards/fhir/R4/resource-operation-validate.html)). The request body must contain a JSON-encoded FHIR resource, and the request headers must contain `Content-Type: application/fhir+json`. The `Parameters` input syntax is not supported. The `profile` query parameter can be used to request that the resource only be validated against a specific profile. If a profile with the given URL cannot be found in the FHIR store then an error is returned. Errors generated by validation contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     (await healthcare.projects.locations.datasets.fhirStores.fhir.Resource) -
+     *     validate({
+     *       // The name of the FHIR store that holds the profiles being used for validation.
+     *       parent:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
+     *       // A profile that this resource should be validated against.
+     *       profile: 'placeholder-value',
+     *       // The FHIR resource type of the resource being validated. For a complete list, see the FHIR Resource Index ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html), or [R4](http://hl7.org/implement/standards/fhir/R4/resourcelist.html)). Must match the resource type in the provided content.
+     *       type: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "contentType": "my_contentType",
+     *         //   "data": "my_data",
+     *         //   "extensions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    ResourceValidate(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcevalidate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    ResourceValidate(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcevalidate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    ResourceValidate(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcevalidate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    ResourceValidate(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcevalidate,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    ResourceValidate(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcevalidate,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    ResourceValidate(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    ResourceValidate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcevalidate
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcevalidate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcevalidate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/fhir/{+type}/$validate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent', 'type'],
+        pathParams: ['parent', 'type'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * Searches for resources in the given FHIR store according to criteria specified as query parameters. Implements the FHIR standard search interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#search), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#search), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#search)) using the search semantics described in the FHIR Search specification ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/search.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/search.html), [R4](https://hl7.org/implement/standards/fhir/R4/search.html)). Supports four methods of search defined by the specification: * `GET [base]?[parameters]` to search across all resources. * `GET [base]/[type]?[parameters]` to search resources of a specified type. * `POST [base]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method across all resources. * `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method for the specified type. The `GET` and `POST` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters. On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the FHIR Search Parameter Registry ([STU3](https://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html), [R4](https://hl7.org/implement/standards/fhir/R4/searchparameter-registry.html)). FHIR search parameters for DSTU2 can be found on each resource's definition page. Supported search modifiers: `:missing`, `:exact`, `:contains`, `:text`, `:in`, `:not-in`, `:above`, `:below`, `:[type]`, `:not`, and `:recurse`. Supported search result parameters: `_sort`, `_count`, `_include`, `_revinclude`, `_summary=text`, `_summary=data`, and `_elements`. The maximum number of search results returned defaults to 100, which can be overridden by the `_count` parameter up to a maximum limit of 1000. If there are additional results, the returned `Bundle` contains pagination links. Resources with a total size larger than 5MB or a field count larger than 50,000 might not be fully searchable as the server might trim its generated search index in those cases. Note: FHIR resources are indexed asynchronously, so there might be a slight delay between the time a resource is created or changes and when the change is reflected in search results. For samples and detailed information, see [Searching for FHIR resources](/healthcare/docs/how-tos/fhir-search) and [Advanced FHIR search features](/healthcare/docs/how-tos/fhir-advanced-search).
      * @example
      * ```js
      * // Before running the sample:
@@ -20820,7 +20930,150 @@ export namespace healthcare_v1beta1 {
     }
 
     /**
-     * Updates the entire contents of a resource. Implements the FHIR standard update interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#update), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#update), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#update)). If the specified resource does not exist and the FHIR store has enable_update_create set, creates the resource with the client-specified ID. The request body must contain a JSON-encoded FHIR resource, and the request headers must contain `Content-Type: application/fhir+json`. The resource must contain an `id` element having an identical value to the ID in the REST path of the request. On success, the response body contains a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. For samples that show how to call `update`, see [Updating a FHIR resource](/healthcare/docs/how-tos/fhir-resources#updating_a_fhir_resource).
+     * Searches for resources in the given FHIR store according to criteria specified as query parameters. Implements the FHIR standard search interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#search), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#search), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#search)) using the search semantics described in the FHIR Search specification ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/search.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/search.html), [R4](https://hl7.org/implement/standards/fhir/R4/search.html)). Supports four methods of search defined by the specification: * `GET [base]?[parameters]` to search across all resources. * `GET [base]/[type]?[parameters]` to search resources of a specified type. * `POST [base]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method across all resources. * `POST [base]/[type]/_search?[parameters]` as an alternate form having the same semantics as the `GET` method for the specified type. The `GET` and `POST` methods do not support compartment searches. The `POST` method does not support `application/x-www-form-urlencoded` search parameters. On success, the response body contains a JSON-encoded representation of a `Bundle` resource of type `searchset`, containing the results of the search. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. The server's capability statement, retrieved through capabilities, indicates what search parameters are supported on each FHIR resource. A list of all search parameters defined by the specification can be found in the FHIR Search Parameter Registry ([STU3](https://hl7.org/implement/standards/fhir/STU3/searchparameter-registry.html), [R4](https://hl7.org/implement/standards/fhir/R4/searchparameter-registry.html)). FHIR search parameters for DSTU2 can be found on each resource's definition page. Supported search modifiers: `:missing`, `:exact`, `:contains`, `:text`, `:in`, `:not-in`, `:above`, `:below`, `:[type]`, `:not`, and `:recurse`. Supported search result parameters: `_sort`, `_count`, `_include`, `_revinclude`, `_summary=text`, `_summary=data`, and `_elements`. The maximum number of search results returned defaults to 100, which can be overridden by the `_count` parameter up to a maximum limit of 1000. If there are additional results, the returned `Bundle` contains pagination links. Resources with a total size larger than 5MB or a field count larger than 50,000 might not be fully searchable as the server might trim its generated search index in those cases. Note: FHIR resources are indexed asynchronously, so there might be a slight delay between the time a resource is created or changes and when the change is reflected in search results. For samples and detailed information, see [Searching for FHIR resources](/healthcare/docs/how-tos/fhir-search) and [Advanced FHIR search features](/healthcare/docs/how-tos/fhir-advanced-search).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     (await healthcare.projects.locations.datasets.fhirStores.fhir.search) -
+     *     type({
+     *       // Name of the FHIR store to retrieve resources from.
+     *       parent:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
+     *       // The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
+     *       resourceType: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "resourceType": "my_resourceType"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    searchType(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    searchType(
+      params?: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$HttpBody>;
+    searchType(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    searchType(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype,
+      options: MethodOptions | BodyResponseCallback<Schema$HttpBody>,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    searchType(
+      params: Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype,
+      callback: BodyResponseCallback<Schema$HttpBody>
+    ): void;
+    searchType(callback: BodyResponseCallback<Schema$HttpBody>): void;
+    searchType(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$HttpBody>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$HttpBody> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1beta1/{+parent}/fhir/{resourceType}/_search'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent', 'resourceType'],
+        pathParams: ['parent', 'resourceType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$HttpBody>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$HttpBody>(parameters);
+      }
+    }
+
+    /**
+     * Updates the entire contents of a resource. Implements the FHIR standard update interaction ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/http.html#update), [STU3](https://hl7.org/implement/standards/fhir/STU3/http.html#update), [R4](https://hl7.org/implement/standards/fhir/R4/http.html#update)). If the specified resource does not exist and the FHIR store has enable_update_create set, creates the resource with the client-specified ID. It is strongly advised not to include or encode any sensitive data such as patient identifiers in client-specified resource IDs. Those IDs are part of the FHIR resource path recorded in Cloud audit logs and Cloud Pub/Sub notifications. Those IDs can also be contained in reference fields within other resources. The request body must contain a JSON-encoded FHIR resource, and the request headers must contain `Content-Type: application/fhir+json`. The resource must contain an `id` element having an identical value to the ID in the REST path of the request. On success, the response body contains a JSON-encoded representation of the updated resource, including the server-assigned version ID. Errors generated by the FHIR store contain a JSON-encoded `OperationOutcome` resource describing the reason for the error. If the request cannot be mapped to a valid API method on a FHIR store, a generic GCP error might be returned instead. For samples that show how to call `update`, see [Updating a FHIR resource](/healthcare/docs/how-tos/fhir-resources#updating_a_fhir_resource).
      * @example
      * ```js
      * // Before running the sample:
@@ -21238,7 +21491,7 @@ export namespace healthcare_v1beta1 {
      */
     _at?: string;
     /**
-     * The maximum number of search results on a page. Default value is 100. Maximum value is 1,000.
+     * The maximum number of search results on a page. If not specified, 100 is used. May not be larger than 1000.
      */
     _count?: number;
     /**
@@ -21284,7 +21537,7 @@ export namespace healthcare_v1beta1 {
      */
     start?: string;
     /**
-     * Maximum number of resources in a page. Defaults to 100.
+     * Maximum number of resources in a page. If not specified, 100 is used. May not be larger than 1000.
      */
     _count?: number;
     /**
@@ -21314,12 +21567,48 @@ export namespace healthcare_v1beta1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcevalidate
+    extends StandardParameters {
+    /**
+     * The name of the FHIR store that holds the profiles being used for validation.
+     */
+    parent?: string;
+    /**
+     * A profile that this resource should be validated against.
+     */
+    profile?: string;
+    /**
+     * The FHIR resource type of the resource being validated. For a complete list, see the FHIR Resource Index ([DSTU2](http://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](http://hl7.org/implement/standards/fhir/STU3/resourcelist.html), or [R4](http://hl7.org/implement/standards/fhir/R4/resourcelist.html)). Must match the resource type in the provided content.
+     */
+    type?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$HttpBody;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Search
     extends StandardParameters {
     /**
      * Name of the FHIR store to retrieve resources from.
      */
     parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SearchResourcesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype
+    extends StandardParameters {
+    /**
+     * Name of the FHIR store to retrieve resources from.
+     */
+    parent?: string;
+    /**
+     * The FHIR resource type to search, such as Patient or Observation. For a complete list, see the FHIR Resource Index ([DSTU2](https://hl7.org/implement/standards/fhir/DSTU2/resourcelist.html), [STU3](https://hl7.org/implement/standards/fhir/STU3/resourcelist.html), [R4](https://hl7.org/implement/standards/fhir/R4/resourcelist.html)).
+     */
+    resourceType?: string;
 
     /**
      * Request body metadata
@@ -22212,9 +22501,9 @@ export namespace healthcare_v1beta1 {
      *
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.list({
-     *     // Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported. For example, `labels.key=value`.
+     *     // Restricts stores returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Only filtering on labels is supported. For example, `labels.key=value`.
      *     filter: 'placeholder-value',
-     *     // Limit on the number of HL7v2 stores to return in a single response. If zero the default page size of 100 is used.
+     *     // Limit on the number of HL7v2 stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from the previous List request, if any.
      *     pageToken: 'placeholder-value',
@@ -22833,11 +23122,11 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List
     extends StandardParameters {
     /**
-     * Restricts stores returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings Only filtering on labels is supported. For example, `labels.key=value`.
+     * Restricts stores returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Only filtering on labels is supported. For example, `labels.key=value`.
      */
     filter?: string;
     /**
-     * Limit on the number of HL7v2 stores to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of HL7v2 stores to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
@@ -22894,6 +23183,149 @@ export namespace healthcare_v1beta1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Gets multiple messages in the given HL7v2 store.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/healthcare.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const healthcare = google.healthcare('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.batchGet(
+     *     {
+     *       // The resource id of the HL7v2 messages to retrieve in the format: `{message_id\}`, where the full resource name is `{parent\}/messages/{message_id\}` A maximum of 100 messages can be retrieved in a batch. All 'ids' have to be under parent.
+     *       ids: 'placeholder-value',
+     *       // Name of the HL7v2 store to retrieve messages from, in the format: `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7v2Stores/{hl7v2_store_id\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
+     *       // Specifies the parts of the Messages resource to return in the response. When unspecified, equivalent to BASIC.
+     *       view: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "messages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchGet(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Batchget,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchGet(
+      params?: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Batchget,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchGetMessagesResponse>;
+    batchGet(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchGet(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetMessagesResponse>,
+      callback: BodyResponseCallback<Schema$BatchGetMessagesResponse>
+    ): void;
+    batchGet(
+      params: Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Batchget,
+      callback: BodyResponseCallback<Schema$BatchGetMessagesResponse>
+    ): void;
+    batchGet(
+      callback: BodyResponseCallback<Schema$BatchGetMessagesResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Batchget
+        | BodyResponseCallback<Schema$BatchGetMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetMessagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchGetMessagesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Batchget;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://healthcare.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/messages:batchGet').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchGetMessagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchGetMessagesResponse>(parameters);
+      }
     }
 
     /**
@@ -23486,11 +23918,11 @@ export namespace healthcare_v1beta1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.list(
      *     {
-     *       // Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The following fields and functions are available for filtering: * `message_type`, from the MSH-9.1 field. For example, `NOT message_type = "ADT"`. * `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. * `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. * `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. * `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. * `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.
+     *       // Restricts messages returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Fields/functions available for filtering are: * `message_type`, from the MSH-9.1 field. For example, `NOT message_type = "ADT"`. * `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. * `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. * `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. * `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. * `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.
      *       filter: 'placeholder-value',
      *       // Orders messages returned by the specified order_by clause. Syntax: https://cloud.google.com/apis/design/design_patterns#sorting_order Fields available for ordering are: * `send_time`
      *       orderBy: 'placeholder-value',
-     *       // Limit on the number of messages to return in a single response. If zero the default page size of 100 is used.
+     *       // Limit on the number of messages to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from the previous List request, if any.
      *       pageToken: 'placeholder-value',
@@ -23764,6 +24196,21 @@ export namespace healthcare_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Batchget
+    extends StandardParameters {
+    /**
+     * The resource id of the HL7v2 messages to retrieve in the format: `{message_id\}`, where the full resource name is `{parent\}/messages/{message_id\}` A maximum of 100 messages can be retrieved in a batch. All 'ids' have to be under parent.
+     */
+    ids?: string[];
+    /**
+     * Name of the HL7v2 store to retrieve messages from, in the format: `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/hl7v2Stores/{hl7v2_store_id\}`.
+     */
+    parent?: string;
+    /**
+     * Specifies the parts of the Messages resource to return in the response. When unspecified, equivalent to BASIC.
+     */
+    view?: string;
+  }
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create
     extends StandardParameters {
     /**
@@ -23809,7 +24256,7 @@ export namespace healthcare_v1beta1 {
   export interface Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List
     extends StandardParameters {
     /**
-     * Restricts messages returned to those matching a filter. Syntax: https://cloud.google.com/appengine/docs/standard/python/search/query_strings The following fields and functions are available for filtering: * `message_type`, from the MSH-9.1 field. For example, `NOT message_type = "ADT"`. * `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. * `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. * `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. * `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. * `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.
+     * Restricts messages returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Fields/functions available for filtering are: * `message_type`, from the MSH-9.1 field. For example, `NOT message_type = "ADT"`. * `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. * `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. * `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. * `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. * `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.
      */
     filter?: string;
     /**
@@ -23817,7 +24264,7 @@ export namespace healthcare_v1beta1 {
      */
     orderBy?: string;
     /**
-     * Limit on the number of messages to return in a single response. If zero the default page size of 100 is used.
+     * Limit on the number of messages to return in a single response. If not specified, 100 is used. May not be larger than 1000.
      */
     pageSize?: number;
     /**
