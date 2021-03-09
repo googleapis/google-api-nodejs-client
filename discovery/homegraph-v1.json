@@ -177,6 +177,24 @@
             "https://www.googleapis.com/auth/homegraph"
           ]
         },
+        "requestLink": {
+          "description": "Sends an account linking suggestion to users associated with any potential Cast devices detected by third-party devices. This request must be authorized using service account credentials from your Actions console project.",
+          "flatPath": "v1/devices:requestLink",
+          "httpMethod": "POST",
+          "id": "homegraph.devices.requestLink",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/devices:requestLink",
+          "request": {
+            "$ref": "RequestLinkRequest"
+          },
+          "response": {
+            "$ref": "Empty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/homegraph"
+          ]
+        },
         "requestSync": {
           "description": "Requests Google to send an `action.devices.SYNC` [intent](https://developers.google.com/assistant/smarthome/reference/intent/sync) to your smart home Action to update device metadata for the given user. The third-party user's identity is passed via the `agent_user_id` (see RequestSyncDevicesRequest). This request must be authorized using service account credentials from your Actions console project.",
           "flatPath": "v1/devices:requestSync",
@@ -216,7 +234,7 @@
       }
     }
   },
-  "revision": "20200924",
+  "revision": "20210226",
   "rootUrl": "https://homegraph.googleapis.com/",
   "schemas": {
     "AgentDeviceId": {
@@ -246,7 +264,7 @@
       "type": "object"
     },
     "Device": {
-      "description": "Third-party device definition.",
+      "description": "Third-party device definition. Next ID = 14",
       "id": "Device",
       "properties": {
         "attributes": {
@@ -262,7 +280,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Custom device attributes stored in Home Graph and provided to your smart home Action in each [QUERY](https://developers.google.com/assistant/smarthome/reference/intent/query) and [EXECUTE](https://developers.google.com/assistant/smarthome/reference/intent/execute) intent.",
+          "description": "Custom device attributes stored in Home Graph and provided to your smart home Action in each [QUERY](https://developers.google.com/assistant/smarthome/reference/intent/query) and [EXECUTE](https://developers.google.com/assistant/smarthome/reference/intent/execute) intent. Data in this object has a few constraints: No sensitive information, including but not limited to Personally Identifiable Information.",
           "type": "object"
         },
         "deviceInfo": {
@@ -276,6 +294,13 @@
         "name": {
           "$ref": "DeviceNames",
           "description": "Names given to this device by your smart home Action."
+        },
+        "nonLocalTraits": {
+          "description": "See description for \"traits\". For Smart Home Entertainment Devices (SHED) devices, some traits can only be executed on 3P cloud, e.g. \"non_local_traits\": [ { \"trait\": \"action.devices.traits.MediaInitiation\" }, { \"trait\": \"action.devices.traits.Channel\" } ] go/shed-per-trait-routing.",
+          "items": {
+            "$ref": "NonLocalTrait"
+          },
+          "type": "array"
         },
         "notificationSupportedByAgent": {
           "description": "Indicates whether your smart home Action will report notifications to Google for this device via ReportStateAndNotification. If your smart home Action enables users to control device notifications, you should update this field and call RequestSyncDevices.",
@@ -366,6 +391,17 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "NonLocalTrait": {
+      "description": "LINT.IfChange go/shed-per-trait-routing. Making it object to allow for extendible design, where we can add attributes in future.",
+      "id": "NonLocalTrait",
+      "properties": {
+        "trait": {
+          "description": "Trait name, e.g., \"action.devices.traits.MediaInitiation\". See [device traits](https://developers.google.com/assistant/smarthome/traits).",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "QueryRequest": {
@@ -505,6 +541,40 @@
         "requestId": {
           "description": "Request ID copied from ReportStateAndNotificationRequest.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RequestLinkRequest": {
+      "description": "Request type for the [`RequestLink`](#google.home.graph.v1.HomeGraphApiService.RequestLink) call.",
+      "id": "RequestLinkRequest",
+      "properties": {
+        "payload": {
+          "$ref": "RequestLinkRequestPayload",
+          "description": "Required. ID(s) and detection time of potential Cast devices."
+        },
+        "requestId": {
+          "description": "Required. Request ID used for debugging.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RequestLinkRequestPayload": {
+      "description": "Payload containing potential devices detected and when they were detected.",
+      "id": "RequestLinkRequestPayload",
+      "properties": {
+        "detectionTime": {
+          "description": "Required. Time at which devices represented in `potential_cast_device_ids` were detected.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "potentialCastDeviceIds": {
+          "description": "Required. List of device IDs detected that may potentially be for Cast devices.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
