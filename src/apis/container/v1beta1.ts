@@ -197,6 +197,15 @@ export namespace container_v1beta1 {
     securityGroup?: string | null;
   }
   /**
+   * Autopilot is the configuration for Autopilot settings on the cluster. It is the official product name of what is previously known as AutoGKE
+   */
+  export interface Schema$Autopilot {
+    /**
+     * Enable Autopilot
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * AutoprovisioningNodePoolDefaults contains defaults for a node pool created by NAP.
    */
   export interface Schema$AutoprovisioningNodePoolDefaults {
@@ -209,7 +218,7 @@ export namespace container_v1beta1 {
      */
     diskSizeGb?: number | null;
     /**
-     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'
+     * Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'
      */
     diskType?: string | null;
     /**
@@ -349,6 +358,10 @@ export namespace container_v1beta1 {
      * Configuration controlling RBAC group membership information.
      */
     authenticatorGroupsConfig?: Schema$AuthenticatorGroupsConfig;
+    /**
+     * Autopilot configuration for the cluster. It has the same semantics as AutoGKE and overrides the setting in autogke.
+     */
+    autopilot?: Schema$Autopilot;
     /**
      * Cluster-level autoscaling configuration.
      */
@@ -550,7 +563,7 @@ export namespace container_v1beta1 {
      */
     status?: string | null;
     /**
-     * [Output only] Additional information about the current status of this cluster, if available.
+     * [Output only] Deprecated. Use conditions instead. Additional information about the current status of this cluster, if available.
      */
     statusMessage?: string | null;
     /**
@@ -700,6 +713,10 @@ export namespace container_v1beta1 {
      * The desired private cluster configuration.
      */
     desiredPrivateClusterConfig?: Schema$PrivateClusterConfig;
+    /**
+     * The desired state of IPv6 connectivity to Google Services.
+     */
+    desiredPrivateIpv6GoogleAccess?: string | null;
     /**
      * The desired release channel configuration.
      */
@@ -877,7 +894,7 @@ export namespace container_v1beta1 {
     localSsdCount?: number | null;
   }
   /**
-   * Configuration for the Compute Engine PD CSI driver. This option can only be enabled at cluster creation time.
+   * Configuration for the Compute Engine PD CSI driver.
    */
   export interface Schema$GcePersistentDiskCsiDriverConfig {
     /**
@@ -1332,6 +1349,10 @@ export namespace container_v1beta1 {
      */
     network?: string | null;
     /**
+     * The desired state of IPv6 connectivity to Google Services. By default, no private IPv6 access to or from Google Services (all access will be via IPv4)
+     */
+    privateIpv6GoogleAccess?: string | null;
+    /**
      * Output only. The relative name of the Google Compute Engine [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the cluster is connected. Example: projects/my-project/regions/us-central1/subnetworks/my-subnet
      */
     subnetwork?: string | null;
@@ -1375,7 +1396,7 @@ export namespace container_v1beta1 {
      */
     diskSizeGb?: number | null;
     /**
-     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'
+     * Type of the disk attached to each node (e.g. 'pd-standard', 'pd-ssd' or 'pd-balanced') If unspecified, the default disk type is 'pd-standard'
      */
     diskType?: string | null;
     /**
@@ -1490,6 +1511,23 @@ export namespace container_v1beta1 {
     upgradeOptions?: Schema$AutoUpgradeOptions;
   }
   /**
+   * Parameters for node pool-level network config. Only applicable if `ip_allocation_policy.use_ip_aliases` is true.
+   */
+  export interface Schema$NodeNetworkConfig {
+    /**
+     * Input only. [Input only] Whether to create a new range for pod IPs in this node pool. Defaults are provided for `pod_range` and `pod_ipv4_cidr_block` if they are not specified. If neither `create_pod_range` or `pod_range` are specified, the cluster-level default (`ip_allocation_policy.cluster_ipv4_cidr_block`) is used.
+     */
+    createPodRange?: boolean | null;
+    /**
+     * The IP address range for pod IPs in this node pool. Only applicable if `create_pod_range` is true. Set to blank to have a range chosen with the default size. Set to /netmask (e.g. `/14`) to have a range chosen with a specific netmask. Set to a [CIDR](http://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation (e.g. `10.96.0.0/14`) to pick a specific range to use.
+     */
+    podIpv4CidrBlock?: string | null;
+    /**
+     * The ID of the secondary range for pod IPs. If `create_pod_range` is true, this ID is used for the new range.
+     */
+    podRange?: string | null;
+  }
+  /**
    * NodePool contains the name and configuration for a cluster's node pool. Node pools are a set of nodes (i.e. VM's), with a common configuration and specification, under the control of the cluster master. They may have a set of Kubernetes labels applied to them, which may be used to reference them during pod scheduling. They may also be resized up or down, to accommodate the workload.
    */
   export interface Schema$NodePool {
@@ -1530,6 +1568,10 @@ export namespace container_v1beta1 {
      */
     name?: string | null;
     /**
+     * Networking configuration for this NodePool. If specified, it overrides the cluster-level defaults.
+     */
+    networkConfig?: Schema$NodeNetworkConfig;
+    /**
      * [Output only] The pod CIDR block size per node in this node pool.
      */
     podIpv4CidrSize?: number | null;
@@ -1542,7 +1584,7 @@ export namespace container_v1beta1 {
      */
     status?: string | null;
     /**
-     * [Output only] Additional information about the current status of this node pool instance, if available.
+     * [Output only] Deprecated. Use conditions instead. Additional information about the current status of this node pool instance, if available.
      */
     statusMessage?: string | null;
     /**
@@ -2204,7 +2246,7 @@ export namespace container_v1beta1 {
     zone?: string | null;
   }
   /**
-   * SetNodePoolSizeRequest sets the size a node pool.
+   * SetNodePoolSizeRequest sets the size of a node pool.
    */
   export interface Schema$SetNodePoolSizeRequest {
     /**
@@ -2447,31 +2489,52 @@ export namespace container_v1beta1 {
     zone?: string | null;
   }
   /**
+   * UpgradeAvailableEvent is a notification sent to customers when a new available version is released.
+   */
+  export interface Schema$UpgradeAvailableEvent {
+    /**
+     * The release channel of the version. If empty, it means a non-channel release.
+     */
+    releaseChannel?: Schema$ReleaseChannel;
+    /**
+     * Optional. Optional relative path to the resource. For example, the relative path of the node pool.
+     */
+    resource?: string | null;
+    /**
+     * The resource type of the release version.
+     */
+    resourceType?: string | null;
+    /**
+     * The release version available for upgrade.
+     */
+    version?: string | null;
+  }
+  /**
    * UpgradeEvent is a notification sent to customers by the cluster server when a resource is upgrading.
    */
   export interface Schema$UpgradeEvent {
     /**
-     * Required. The current version before the upgrade.
+     * The current version before the upgrade.
      */
     currentVersion?: string | null;
     /**
-     * Required. The operation associated with this upgrade.
+     * The operation associated with this upgrade.
      */
     operation?: string | null;
     /**
-     * Required. The time when the operation was started.
+     * The time when the operation was started.
      */
     operationStartTime?: string | null;
     /**
-     * Optional. Optional relative path to the resource. For example in node pool upgrades, the relative path of the node pool.
+     * Optional relative path to the resource. For example in node pool upgrades, the relative path of the node pool.
      */
     resource?: string | null;
     /**
-     * Required. The resource type that is upgrading.
+     * The resource type that is upgrading.
      */
     resourceType?: string | null;
     /**
-     * Required. The target version for the upgrade.
+     * The target version for the upgrade.
      */
     targetVersion?: string | null;
   }
@@ -3584,6 +3647,7 @@ export namespace container_v1beta1 {
      *   // {
      *   //   "addonsConfig": {},
      *   //   "authenticatorGroupsConfig": {},
+     *   //   "autopilot": {},
      *   //   "autoscaling": {},
      *   //   "binaryAuthorization": {},
      *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
@@ -6461,6 +6525,7 @@ export namespace container_v1beta1 {
      *   //   "management": {},
      *   //   "maxPodsConstraint": {},
      *   //   "name": "my_name",
+     *   //   "networkConfig": {},
      *   //   "podIpv4CidrSize": 0,
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
@@ -7173,7 +7238,7 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * Sets the size for a specific node pool.
+     * SetNodePoolSizeRequest sets the size of a node pool. The new size will be used for all replicas, including future replicas created by modifying NodePool.locations.
      * @example
      * ```js
      * // Before running the sample:
@@ -9103,6 +9168,7 @@ export namespace container_v1beta1 {
      *   // {
      *   //   "addonsConfig": {},
      *   //   "authenticatorGroupsConfig": {},
+     *   //   "autopilot": {},
      *   //   "autoscaling": {},
      *   //   "binaryAuthorization": {},
      *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
@@ -12005,6 +12071,7 @@ export namespace container_v1beta1 {
      *   //   "management": {},
      *   //   "maxPodsConstraint": {},
      *   //   "name": "my_name",
+     *   //   "networkConfig": {},
      *   //   "podIpv4CidrSize": 0,
      *   //   "selfLink": "my_selfLink",
      *   //   "status": "my_status",
@@ -12569,7 +12636,7 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * Sets the size for a specific node pool.
+     * SetNodePoolSizeRequest sets the size of a node pool. The new size will be used for all replicas, including future replicas created by modifying NodePool.locations.
      * @example
      * ```js
      * // Before running the sample:
