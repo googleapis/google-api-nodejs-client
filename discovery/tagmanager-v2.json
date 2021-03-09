@@ -3125,7 +3125,7 @@
       }
     }
   },
-  "revision": "20201024",
+  "revision": "20210303",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -3458,6 +3458,10 @@
         },
         "name": {
           "description": "Client display name. @mutable tagmanager.accounts.containers.workspaces.clients.create @mutable tagmanager.accounts.containers.workspaces.clients.update",
+          "type": "string"
+        },
+        "notes": {
+          "description": "User notes on how to apply this tag in the container. @mutable tagmanager.accounts.containers.workspaces.tags.create @mutable tagmanager.accounts.containers.workspaces.tags.update",
           "type": "string"
         },
         "parameter": {
