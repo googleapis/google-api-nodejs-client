@@ -312,7 +312,7 @@
       }
     }
   },
-  "revision": "20201105",
+  "revision": "20210213",
   "rootUrl": "https://lifesciences.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -337,6 +337,10 @@
       "properties": {
         "alwaysRun": {
           "description": "By default, after an action fails, no further actions are run. This flag indicates that this action must be run even if the pipeline has already failed. This is useful for actions that copy output files off of the VM or for debugging. Note that no actions will be run if image prefetching fails.",
+          "type": "boolean"
+        },
+        "blockExternalNetwork": {
+          "description": "Prevents the container from accessing the external network.",
           "type": "boolean"
         },
         "commands": {
@@ -509,7 +513,7 @@
       "type": "object"
     },
     "Disk": {
-      "description": "Carries information about a disk that can be attached to a VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations.",
+      "description": "Carries information about a disk that can be attached to a VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations. Specify either `Volume` or `Disk`, but not both.",
       "id": "Disk",
       "properties": {
         "name": {
@@ -760,6 +764,10 @@
           "$ref": "Pipeline",
           "description": "The pipeline this operation represents."
         },
+        "pubSubTopic": {
+          "description": "The name of the Cloud Pub/Sub topic where notifications of operation status changes are sent.",
+          "type": "string"
+        },
         "startTime": {
           "description": "The first time at which resources were allocated to execute the pipeline.",
           "format": "google-datetime",
@@ -963,6 +971,10 @@
         "pipeline": {
           "$ref": "Pipeline",
           "description": "Required. The description of the pipeline to run."
+        },
+        "pubSubTopic": {
+          "description": "The name of an existing Pub/Sub topic. The server will publish messages to this topic whenever the status of the operation changes. The Life Sciences Service Agent account must have publisher permissions to the specified topic or notifications will not be sent.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1075,14 +1087,14 @@
           "type": "string"
         },
         "disks": {
-          "description": "The list of disks to create and attach to the VM.",
+          "description": "The list of disks to create and attach to the VM. Specify either the `volumes[]` field or the `disks[]` field, but not both.",
           "items": {
             "$ref": "Disk"
           },
           "type": "array"
         },
         "dockerCacheImages": {
-          "description": "The Compute Engine Disk Images to use as a Docker cache. The disks will be mounted into the Docker folder in a way that the images present in the cache will not need to be pulled. The digests of the cached images must match those of the tags used or the latest version will still be pulled. The root directory of the ext4 image must contain `image` and `overlay2` directories copied from the Docker directory of a VM where the desired Docker images have already been pulled. Only a single image is supported.",
+          "description": "The Compute Engine Disk Images to use as a Docker cache. The disks will be mounted into the Docker folder in a way that the images present in the cache will not need to be pulled. The digests of the cached images must match those of the tags used or the latest version will still be pulled. The root directory of the ext4 image must contain `image` and `overlay2` directories copied from the Docker directory of a VM where the desired Docker images have already been pulled. Any images pulled that are not cached will be stored on the first cache disk instead of the boot disk. Only a single image is supported.",
           "items": {
             "type": "string"
           },
@@ -1120,7 +1132,7 @@
           "description": "The service account to install on the VM. This account does not need any permissions other than those required by the pipeline."
         },
         "volumes": {
-          "description": "The list of disks and other storage to create or attach to the VM.",
+          "description": "The list of disks and other storage to create or attach to the VM. Specify either the `volumes[]` field or the `disks[]` field, but not both.",
           "items": {
             "$ref": "Volume"
           },
@@ -1130,7 +1142,7 @@
       "type": "object"
     },
     "Volume": {
-      "description": "Carries information about storage that can be attached to a VM.",
+      "description": "Carries information about storage that can be attached to a VM. Specify either `Volume` or `Disk`, but not both.",
       "id": "Volume",
       "properties": {
         "existingDisk": {
