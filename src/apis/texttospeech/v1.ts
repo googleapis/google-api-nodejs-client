@@ -432,7 +432,7 @@ export namespace texttospeech_v1 {
      *
      *   // Do the magic
      *   const res = await texttospeech.voices.list({
-     *     // Optional. Recommended. [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If specified, the ListVoices call will only return voices that can be used to synthesize this language_code. E.g. when specifying "en-NZ", you will get supported "en-\*" voices; when specifying "no", you will get supported "no-\*" (Norwegian) and "nb-\*" (Norwegian Bokmal) voices; specifying "zh" will also get supported "cmn-\*" voices; specifying "zh-hk" will also get supported "yue-\*" voices.
+     *     // Optional. Recommended. [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If not specified, the API will return all supported voices. If specified, the ListVoices call will only return voices that can be used to synthesize this language_code. E.g. when specifying "en-NZ", you will get supported "en-NZ" voices; when specifying "no", you will get supported "no-\*" (Norwegian) and "nb-\*" (Norwegian Bokmal) voices; specifying "zh" will also get supported "cmn-\*" voices; specifying "zh-hk" will also get supported "yue-hk" voices.
      *     languageCode: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -536,7 +536,7 @@ export namespace texttospeech_v1 {
 
   export interface Params$Resource$Voices$List extends StandardParameters {
     /**
-     * Optional. Recommended. [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If specified, the ListVoices call will only return voices that can be used to synthesize this language_code. E.g. when specifying "en-NZ", you will get supported "en-\*" voices; when specifying "no", you will get supported "no-\*" (Norwegian) and "nb-\*" (Norwegian Bokmal) voices; specifying "zh" will also get supported "cmn-\*" voices; specifying "zh-hk" will also get supported "yue-\*" voices.
+     * Optional. Recommended. [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If not specified, the API will return all supported voices. If specified, the ListVoices call will only return voices that can be used to synthesize this language_code. E.g. when specifying "en-NZ", you will get supported "en-NZ" voices; when specifying "no", you will get supported "no-\*" (Norwegian) and "nb-\*" (Norwegian Bokmal) voices; specifying "zh" will also get supported "cmn-\*" voices; specifying "zh-hk" will also get supported "yue-hk" voices.
      */
     languageCode?: string;
   }
