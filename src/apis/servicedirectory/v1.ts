@@ -36,9 +36,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace servicedirectory_v1beta1 {
+export namespace servicedirectory_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta1';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -108,7 +108,7 @@ export namespace servicedirectory_v1beta1 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const servicedirectory = google.servicedirectory('v1beta1');
+   * const servicedirectory = google.servicedirectory('v1');
    * ```
    */
   export class Servicedirectory {
@@ -155,9 +155,9 @@ export namespace servicedirectory_v1beta1 {
      */
     address?: string | null;
     /**
-     * Optional. Metadata for the endpoint. This data can be consumed by service clients. Restrictions: * The entire metadata dictionary may contain up to 512 characters, spread accoss all key-value pairs. Metadata that goes beyond this limit are rejected * Valid metadata keys have two segments: an optional prefix and name, separated by a slash (/). The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (.), not longer than 253 characters in total, followed by a slash (/). Metadata that fails to meet these requirements are rejected * The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved for system metadata managed by Service Directory. If the user tries to write to these keyspaces, those entries are silently ignored by the system Note: This field is equivalent to the `annotations` field in the v1 API. They have the same syntax and read/write to the same location in Service Directory.
+     * Optional. Annotations for the endpoint. This data can be consumed by service clients. Restrictions: * The entire annotations dictionary may contain up to 512 characters, spread accoss all key-value pairs. Annotations that go beyond this limit are rejected * Valid annotation keys have two segments: an optional prefix and name, separated by a slash (/). The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (.), not longer than 253 characters in total, followed by a slash (/) Annotations that fails to meet these requirements are rejected. * The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved for system annotations managed by Service Directory. If the user tries to write to these keyspaces, those entries are silently ignored by the system Note: This field is equivalent to the `metadata` field in the v1beta1 API. They have the same syntax and read/write to the same location in Service Directory.
      */
-    metadata?: {[key: string]: string} | null;
+    annotations?: {[key: string]: string} | null;
     /**
      * Immutable. The resource name for the endpoint in the format `projects/x/locations/x/namespaces/x/services/x/endpoints/x`.
      */
@@ -318,7 +318,7 @@ export namespace servicedirectory_v1beta1 {
    */
   export interface Schema$ResolveServiceRequest {
     /**
-     * Optional. The filter applied to the endpoints of the resolved service. General `filter` string syntax: ` ()` * `` can be `name`, `address`, `port`, or `metadata.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `metadata.owner` returns endpoints that have a annotation with the key `owner`, this is the same as `metadata:owner` * `metadata.protocol=gRPC` returns endpoints that have key/value `protocol=gRPC` * `address=192.108.1.105` returns endpoints that have this address * `port\>8080` returns endpoints that have port number larger than 8080 * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c` returns endpoints that have name that is alphabetically later than the string, so "endpoint-e" is returned but "endpoint-a" is not * `metadata.owner!=sd AND metadata.foo=bar` returns endpoints that have `owner` in annotation key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that endpoint doesn't have a field called "doesnotexist". Since the filter does not match any endpoint, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
+     * Optional. The filter applied to the endpoints of the resolved service. General `filter` string syntax: ` ()` * `` can be `name`, `address`, `port`, or `annotations.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `annotations.owner` returns endpoints that have a annotation with the key `owner`, this is the same as `annotations:owner` * `annotations.protocol=gRPC` returns endpoints that have key/value `protocol=gRPC` * `address=192.108.1.105` returns endpoints that have this address * `port\>8080` returns endpoints that have port number larger than 8080 * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c` returns endpoints that have name that is alphabetically later than the string, so "endpoint-e" is returned but "endpoint-a" is not * `annotations.owner!=sd AND annotations.foo=bar` returns endpoints that have `owner` in annotation key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that endpoint doesn't have a field called "doesnotexist". Since the filter does not match any endpoint, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
     endpointFilter?: string | null;
     /**
@@ -337,13 +337,13 @@ export namespace servicedirectory_v1beta1 {
    */
   export interface Schema$Service {
     /**
+     * Optional. Annotations for the service. This data can be consumed by service clients. Restrictions: * The entire annotations dictionary may contain up to 512 characters, spread accoss all key-value pairs. Annotations that go beyond this limit are rejected * Valid annotation keys have two segments: an optional prefix and name, separated by a slash (/). The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (.), not longer than 253 characters in total, followed by a slash (/). Annotations that fails to meet these requirements are rejected * The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved for system annotations managed by Service Directory. If the user tries to write to these keyspaces, those entries are silently ignored by the system Note: This field is equivalent to the `metadata` field in the v1beta1 API. They have the same syntax and read/write to the same location in Service Directory.
+     */
+    annotations?: {[key: string]: string} | null;
+    /**
      * Output only. Endpoints associated with this service. Returned on LookupService.ResolveService. Control plane clients should use RegistrationService.ListEndpoints.
      */
     endpoints?: Schema$Endpoint[];
-    /**
-     * Optional. Metadata for the service. This data can be consumed by service clients. Restrictions: * The entire metadata dictionary may contain up to 512 characters, spread accoss all key-value pairs. Metadata that goes beyond this limit are rejected * Valid metadata keys have two segments: an optional prefix and name, separated by a slash (/). The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (.), not longer than 253 characters in total, followed by a slash (/). Metadata that fails to meet these requirements are rejected * The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved for system metadata managed by Service Directory. If the user tries to write to these keyspaces, those entries are silently ignored by the system Note: This field is equivalent to the `annotations` field in the v1 API. They have the same syntax and read/write to the same location in Service Directory.
-     */
-    metadata?: {[key: string]: string} | null;
     /**
      * Immutable. The resource name for the service in the format `projects/x/locations/x/namespaces/x/services/x`.
      */
@@ -409,7 +409,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -507,7 +507,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -540,7 +540,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -646,7 +646,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -720,7 +720,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -826,7 +826,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/namespaces').replace(
+            url: (rootUrl + '/v1/{+parent}/namespaces').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -862,7 +862,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -954,7 +954,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -987,7 +987,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1082,7 +1082,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1115,7 +1115,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1222,7 +1222,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1258,7 +1258,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1366,7 +1366,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/namespaces').replace(
+            url: (rootUrl + '/v1/{+parent}/namespaces').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1402,7 +1402,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1508,7 +1508,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -1541,7 +1541,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1648,7 +1648,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1684,7 +1684,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1796,7 +1796,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1949,7 +1949,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1974,8 +1974,8 @@ export namespace servicedirectory_v1beta1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "annotations": {},
      *         //   "endpoints": [],
-     *         //   "metadata": {},
      *         //   "name": "my_name"
      *         // }
      *       },
@@ -1985,8 +1985,8 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "endpoints": [],
-     *   //   "metadata": {},
      *   //   "name": "my_name"
      *   // }
      * }
@@ -2060,7 +2060,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/services').replace(
+            url: (rootUrl + '/v1/{+parent}/services').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2096,7 +2096,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2191,7 +2191,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -2224,7 +2224,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2248,8 +2248,8 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "endpoints": [],
-     *   //   "metadata": {},
      *   //   "name": "my_name"
      *   // }
      * }
@@ -2323,7 +2323,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -2356,7 +2356,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2463,7 +2463,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2499,7 +2499,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2514,7 +2514,7 @@ export namespace servicedirectory_v1beta1 {
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.list(
      *     {
-     *       // Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name` or `metadata.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `metadata.owner` returns services that have a metadata with the key `owner`, this is the same as `metadata:owner` * `metadata.protocol=gRPC` returns services that have key/value `protocol=gRPC` * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/service-c` returns services that have name that is alphabetically later than the string, so "service-e" is returned but "service-a" is not * `metadata.owner!=sd AND metadata.foo=bar` returns services that have `owner` in metadata key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that service doesn't have a field called "doesnotexist". Since the filter does not match any services, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *       // Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name` or `annotations.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `annotations.owner` returns services that have a annotation with the key `owner`, this is the same as `annotations:owner` * `annotations.protocol=gRPC` returns services that have key/value `protocol=gRPC` * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/service-c` returns services that have name that is alphabetically later than the string, so "service-e" is returned but "service-a" is not * `annotations.owner!=sd AND annotations.foo=bar` returns services that have `owner` in annotation key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that service doesn't have a field called "doesnotexist". Since the filter does not match any services, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
      *       filter: 'placeholder-value',
      *       // Optional. The order to list results by. General `order_by` string syntax: ` () (,)` * `` allows value: `name` * `` ascending or descending order by ``. If this is left blank, `asc` is used Note that an empty `order_by` string results in default order, which is order by `name` in ascending order.
      *       orderBy: 'placeholder-value',
@@ -2610,7 +2610,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/services').replace(
+            url: (rootUrl + '/v1/{+parent}/services').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2646,7 +2646,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2671,8 +2671,8 @@ export namespace servicedirectory_v1beta1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "annotations": {},
      *         //   "endpoints": [],
-     *         //   "metadata": {},
      *         //   "name": "my_name"
      *         // }
      *       },
@@ -2682,8 +2682,8 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "annotations": {},
      *   //   "endpoints": [],
-     *   //   "metadata": {},
      *   //   "name": "my_name"
      *   // }
      * }
@@ -2757,7 +2757,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -2790,7 +2790,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2903,7 +2903,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:resolve').replace(
+            url: (rootUrl + '/v1/{+name}:resolve').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2939,7 +2939,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3046,7 +3046,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3082,7 +3082,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3194,7 +3194,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3263,7 +3263,7 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$List
     extends StandardParameters {
     /**
-     * Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name` or `metadata.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `metadata.owner` returns services that have a metadata with the key `owner`, this is the same as `metadata:owner` * `metadata.protocol=gRPC` returns services that have key/value `protocol=gRPC` * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/service-c` returns services that have name that is alphabetically later than the string, so "service-e" is returned but "service-a" is not * `metadata.owner!=sd AND metadata.foo=bar` returns services that have `owner` in metadata key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that service doesn't have a field called "doesnotexist". Since the filter does not match any services, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
+     * Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name` or `annotations.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `annotations.owner` returns services that have a annotation with the key `owner`, this is the same as `annotations:owner` * `annotations.protocol=gRPC` returns services that have key/value `protocol=gRPC` * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/service-c` returns services that have name that is alphabetically later than the string, so "service-e" is returned but "service-a" is not * `annotations.owner!=sd AND annotations.foo=bar` returns services that have `owner` in annotation key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that service doesn't have a field called "doesnotexist". Since the filter does not match any services, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
     filter?: string;
     /**
@@ -3355,7 +3355,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3381,7 +3381,7 @@ export namespace servicedirectory_v1beta1 {
      *         // request body parameters
      *         // {
      *         //   "address": "my_address",
-     *         //   "metadata": {},
+     *         //   "annotations": {},
      *         //   "name": "my_name",
      *         //   "port": 0
      *         // }
@@ -3393,7 +3393,7 @@ export namespace servicedirectory_v1beta1 {
      *   // Example response
      *   // {
      *   //   "address": "my_address",
-     *   //   "metadata": {},
+     *   //   "annotations": {},
      *   //   "name": "my_name",
      *   //   "port": 0
      *   // }
@@ -3468,7 +3468,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/endpoints').replace(
+            url: (rootUrl + '/v1/{+parent}/endpoints').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3504,7 +3504,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3599,7 +3599,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -3632,7 +3632,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3657,7 +3657,7 @@ export namespace servicedirectory_v1beta1 {
      *   // Example response
      *   // {
      *   //   "address": "my_address",
-     *   //   "metadata": {},
+     *   //   "annotations": {},
      *   //   "name": "my_name",
      *   //   "port": 0
      *   // }
@@ -3732,7 +3732,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -3765,7 +3765,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3780,7 +3780,7 @@ export namespace servicedirectory_v1beta1 {
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.list(
      *     {
-     *       // Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name`, `address`, `port`, or `metadata.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `metadata.owner` returns endpoints that have a metadata with the key `owner`, this is the same as `metadata:owner` * `metadata.protocol=gRPC` returns endpoints that have key/value `protocol=gRPC` * `address=192.108.1.105` returns endpoints that have this address * `port\>8080` returns endpoints that have port number larger than 8080 * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c` returns endpoints that have name that is alphabetically later than the string, so "endpoint-e" is returned but "endpoint-a" is not * `metadata.owner!=sd AND metadata.foo=bar` returns endpoints that have `owner` in metadata key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that endpoint doesn't have a field called "doesnotexist". Since the filter does not match any endpoints, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *       // Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name`, `address`, `port`, or `annotations.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `annotations.owner` returns endpoints that have a annotation with the key `owner`, this is the same as `annotations:owner` * `annotations.protocol=gRPC` returns endpoints that have key/value `protocol=gRPC` * `address=192.108.1.105` returns endpoints that have this address * `port\>8080` returns endpoints that have port number larger than 8080 * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c` returns endpoints that have name that is alphabetically later than the string, so "endpoint-e" is returned but "endpoint-a" is not * `annotations.owner!=sd AND annotations.foo=bar` returns endpoints that have `owner` in annotation key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that endpoint doesn't have a field called "doesnotexist". Since the filter does not match any endpoints, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
      *       filter: 'placeholder-value',
      *       // Optional. The order to list results by. General `order_by` string syntax: ` () (,)` * `` allows values: `name`, `address`, `port` * `` ascending or descending order by ``. If this is left blank, `asc` is used Note that an empty `order_by` string results in default order, which is order by `name` in ascending order.
      *       orderBy: 'placeholder-value',
@@ -3876,7 +3876,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/endpoints').replace(
+            url: (rootUrl + '/v1/{+parent}/endpoints').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3912,7 +3912,7 @@ export namespace servicedirectory_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const servicedirectory = google.servicedirectory('v1beta1');
+     * const servicedirectory = google.servicedirectory('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3938,7 +3938,7 @@ export namespace servicedirectory_v1beta1 {
      *         // request body parameters
      *         // {
      *         //   "address": "my_address",
-     *         //   "metadata": {},
+     *         //   "annotations": {},
      *         //   "name": "my_name",
      *         //   "port": 0
      *         // }
@@ -3950,7 +3950,7 @@ export namespace servicedirectory_v1beta1 {
      *   // Example response
      *   // {
      *   //   "address": "my_address",
-     *   //   "metadata": {},
+     *   //   "annotations": {},
      *   //   "name": "my_name",
      *   //   "port": 0
      *   // }
@@ -4025,7 +4025,7 @@ export namespace servicedirectory_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -4079,7 +4079,7 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$List
     extends StandardParameters {
     /**
-     * Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name`, `address`, `port`, or `metadata.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `metadata.owner` returns endpoints that have a metadata with the key `owner`, this is the same as `metadata:owner` * `metadata.protocol=gRPC` returns endpoints that have key/value `protocol=gRPC` * `address=192.108.1.105` returns endpoints that have this address * `port\>8080` returns endpoints that have port number larger than 8080 * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c` returns endpoints that have name that is alphabetically later than the string, so "endpoint-e" is returned but "endpoint-a" is not * `metadata.owner!=sd AND metadata.foo=bar` returns endpoints that have `owner` in metadata key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that endpoint doesn't have a field called "doesnotexist". Since the filter does not match any endpoints, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
+     * Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name`, `address`, `port`, or `annotations.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `annotations.owner` returns endpoints that have a annotation with the key `owner`, this is the same as `annotations:owner` * `annotations.protocol=gRPC` returns endpoints that have key/value `protocol=gRPC` * `address=192.108.1.105` returns endpoints that have this address * `port\>8080` returns endpoints that have port number larger than 8080 * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c` returns endpoints that have name that is alphabetically later than the string, so "endpoint-e" is returned but "endpoint-a" is not * `annotations.owner!=sd AND annotations.foo=bar` returns endpoints that have `owner` in annotation key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that endpoint doesn't have a field called "doesnotexist". Since the filter does not match any endpoints, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
      */
     filter?: string;
     /**
