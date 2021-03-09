@@ -81,7 +81,7 @@
   },
   {
     "api": "metastore",
-    "package": ""
+    "package": "@google-cloud/dataproc-metastore"
   },
   {
     "api": "datastore",
@@ -226,6 +226,14 @@
   {
     "api": "language",
     "package": "@google-cloud/language"
+  },
+  {
+    "api": "networkconnectivity",
+    "package": "@google-cloud/network-connectivity"
+  },
+  {
+    "api": "orgpolicy",
+    "package": "@google-cloud/org-policy"
   },
   {
     "api": "osconfig",
