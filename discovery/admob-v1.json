@@ -138,7 +138,7 @@
           "streamingType": "NONE"
         },
         "list": {
-          "description": "Lists the AdMob publisher account accessible with the client credential. Currently, all credentials have access to at most one AdMob account.",
+          "description": "Lists the AdMob publisher account that was most recently signed in to from the AdMob UI. For more information, see https://support.google.com/admob/answer/10243672.",
           "flatPath": "v1/accounts",
           "httpMethod": "GET",
           "id": "admob.accounts.list",
@@ -239,7 +239,7 @@
       }
     }
   },
-  "revision": "20201114",
+  "revision": "20210308",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "Date": {
