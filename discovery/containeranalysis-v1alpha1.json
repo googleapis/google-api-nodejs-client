@@ -1217,7 +1217,7 @@
       }
     }
   },
-  "revision": "20201112",
+  "revision": "20210226",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "Artifact": {
@@ -1634,6 +1634,10 @@
         },
         "severityName": {
           "description": "The severity (eg: distro assigned severity) for this vulnerability.",
+          "type": "string"
+        },
+        "source": {
+          "description": "The source from which the information in this Detail was obtained.",
           "type": "string"
         }
       },
@@ -2865,6 +2869,10 @@
           "description": "Used to correct mistakes in the version numbering scheme.",
           "format": "int32",
           "type": "integer"
+        },
+        "inclusive": {
+          "description": "Whether this version is vulnerable, when defining the version bounds. For example, if the minimum version is 2.0, inclusive=true would say 2.0 is vulnerable, while inclusive=false would say it's not",
+          "type": "boolean"
         },
         "kind": {
           "description": "Distinguish between sentinel MIN/MAX versions and normal versions. If kind is not NORMAL, then the other fields are ignored.",
