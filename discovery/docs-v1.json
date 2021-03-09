@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/documents": {
-          "description": "View and manage your Google Docs documents"
+          "description": "See, create, and edit all Google Docs documents you have access to"
         },
         "https://www.googleapis.com/auth/documents.readonly": {
           "description": "View your Google Docs documents"
@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20210302",
   "rootUrl": "https://docs.googleapis.com/",
   "schemas": {
     "AutoText": {
@@ -2273,6 +2273,10 @@
           "$ref": "PageBreak",
           "description": "A page break paragraph element."
         },
+        "person": {
+          "$ref": "Person",
+          "description": "A paragraph element that links to a person or email address."
+        },
         "startIndex": {
           "description": "The zero-based start index of this paragraph element, in UTF-16 code units.",
           "format": "int32",
@@ -2521,6 +2525,65 @@
         "spacingModeSuggested": {
           "description": "Indicates if there was a suggested change to spacing_mode.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "Person": {
+      "description": "A person or email address mentioned in a document. These mentions behave as a single, immutable element containing the person's name or email address.",
+      "id": "Person",
+      "properties": {
+        "personId": {
+          "description": "Output only. The unique ID of this link.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "personProperties": {
+          "$ref": "PersonProperties",
+          "description": "Output only. The properties of this Person. This field is always present.",
+          "readOnly": true
+        },
+        "suggestedDeletionIds": {
+          "description": "IDs for suggestions that remove this person link from the document. A Person might have multiple deletion IDs if, for example, multiple users suggest to delete it. If empty, then this person link isn't suggested for deletion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "suggestedInsertionIds": {
+          "description": "IDs for suggestions that insert this person link into the document. A Person might have multiple insertion IDs if it is a nested suggested change (a suggestion within a suggestion made by a different user, for example). If empty, then this person link isn't a suggested insertion.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "suggestedTextStyleChanges": {
+          "additionalProperties": {
+            "$ref": "SuggestedTextStyle"
+          },
+          "description": "The suggested text style changes to this Person, keyed by suggestion ID.",
+          "type": "object"
+        },
+        "textStyle": {
+          "$ref": "TextStyle",
+          "description": "The text style of this Person."
+        }
+      },
+      "type": "object"
+    },
+    "PersonProperties": {
+      "description": "Properties specific to a linked Person.",
+      "id": "PersonProperties",
+      "properties": {
+        "email": {
+          "description": "Output only. The email address linked to this Person. This field is always present.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The name of the person if it is displayed in the link text instead of the person's email address.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
