@@ -1666,6 +1666,10 @@ export namespace docs_v1 {
      */
     pageBreak?: Schema$PageBreak;
     /**
+     * A paragraph element that links to a person or email address.
+     */
+    person?: Schema$Person;
+    /**
      * The zero-based start index of this paragraph element, in UTF-16 code units.
      */
     startIndex?: number | null;
@@ -1847,6 +1851,50 @@ export namespace docs_v1 {
      * Indicates if there was a suggested change to spacing_mode.
      */
     spacingModeSuggested?: boolean | null;
+  }
+  /**
+   * A person or email address mentioned in a document. These mentions behave as a single, immutable element containing the person's name or email address.
+   */
+  export interface Schema$Person {
+    /**
+     * Output only. The unique ID of this link.
+     */
+    personId?: string | null;
+    /**
+     * Output only. The properties of this Person. This field is always present.
+     */
+    personProperties?: Schema$PersonProperties;
+    /**
+     * IDs for suggestions that remove this person link from the document. A Person might have multiple deletion IDs if, for example, multiple users suggest to delete it. If empty, then this person link isn't suggested for deletion.
+     */
+    suggestedDeletionIds?: string[] | null;
+    /**
+     * IDs for suggestions that insert this person link into the document. A Person might have multiple insertion IDs if it is a nested suggested change (a suggestion within a suggestion made by a different user, for example). If empty, then this person link isn't a suggested insertion.
+     */
+    suggestedInsertionIds?: string[] | null;
+    /**
+     * The suggested text style changes to this Person, keyed by suggestion ID.
+     */
+    suggestedTextStyleChanges?: {
+      [key: string]: Schema$SuggestedTextStyle;
+    } | null;
+    /**
+     * The text style of this Person.
+     */
+    textStyle?: Schema$TextStyle;
+  }
+  /**
+   * Properties specific to a linked Person.
+   */
+  export interface Schema$PersonProperties {
+    /**
+     * Output only. The email address linked to this Person. This field is always present.
+     */
+    email?: string | null;
+    /**
+     * Output only. The name of the person if it is displayed in the link text instead of the person's email address.
+     */
+    name?: string | null;
   }
   /**
    * An object that is tethered to a Paragraph and positioned relative to the beginning of the paragraph. A PositionedObject contains an EmbeddedObject such as an image.
