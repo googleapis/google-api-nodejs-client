@@ -220,6 +220,10 @@ export namespace managedidentities_v1beta1 {
      */
     admin?: string | null;
     /**
+     * Optional. Configuration for audit logs. True if audit logs are enabled, else false. Default is audit logs disabled.
+     */
+    auditLogsEnabled?: boolean | null;
+    /**
      * Optional. The full names of the Google Compute Engine [networks](/compute/docs/networks-and-firewalls#networks) the domain instance is connected to. Networks can be added using UpdateDomain. The domain is only available on networks listed in `authorized_networks`. If CIDR subnets overlap between networks, domain creation will fail.
      */
     authorizedNetworks?: string[] | null;
@@ -459,6 +463,10 @@ export namespace managedidentities_v1beta1 {
      */
     rolloutManagementPolicy?: string | null;
     /**
+     * schedule_deadline_time is the time deadline any schedule start time cannot go beyond, including reschedule. It's normally the initial schedule start time plus maintenance window length (1 day or 1 week). Maintenance cannot be scheduled to start beyond this deadline.
+     */
+    scheduleDeadlineTime?: string | null;
+    /**
      * The scheduled start time for the maintenance.
      */
     startTime?: string | null;
@@ -471,6 +479,10 @@ export namespace managedidentities_v1beta1 {
      * Optional. Exclude instance from maintenance. When true, rollout service will not attempt maintenance on the instance. Rollout service will include the instance in reported rollout progress as not attempted.
      */
     exclude?: boolean | null;
+    /**
+     * Optional. If the update call is triggered from rollback, set the value as true.
+     */
+    isRollback?: boolean | null;
     /**
      * Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the embedded policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug. If only the name is needed (like in the deprecated Instance.maintenance_policy_names field) then only populate MaintenancePolicy.name.
      */
@@ -492,6 +504,19 @@ export namespace managedidentities_v1beta1 {
      * The id of the node. This should be equal to SaasInstanceNode.node_id.
      */
     nodeId?: string | null;
+  }
+  /**
+   * PerSliSloEligibility is a mapping from an SLI name to eligibility.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility {
+    /**
+     * An entry in the eligibilities map specifies an eligibility for a particular SLI for the given instance. The SLI key in the name must be a valid SLI name specified in the Eligibility Exporter binary flags otherwise an error will be emitted by Eligibility Exporter and the oncaller will be alerted. If an SLI has been defined in the binary flags but the eligibilities map does not contain it, the corresponding SLI time series will not be emitted by the Eligibility Exporter. This ensures a smooth rollout and compatibility between the data produced by different versions of the Eligibility Exporters. If eligibilities map contains a key for an SLI which has not been declared in the binary flags, there will be an error message emitted in the Eligibility Exporter log and the metric for the SLI in question will not be emitted.
+     */
+    eligibilities?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility;
+    } | null;
   }
   /**
    * Describes provisioned dataplane resources.
@@ -532,7 +557,7 @@ export namespace managedidentities_v1beta1 {
      */
     reason?: string | null;
     /**
-     * Name of an SLI that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLIs defined in the service SLO configuration.
+     * Name of an SLI that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLIs.
      */
     sliName?: string | null;
     /**
@@ -545,7 +570,7 @@ export namespace managedidentities_v1beta1 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata {
     /**
-     * Optional. User-defined instance eligibility.
+     * Optional. Global per-instance SLI eligibility which applies to all defined SLIs. Exactly one of 'eligibility' and 'per_sli_eligibility' fields must be used.
      */
     eligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility;
     /**
@@ -556,6 +581,10 @@ export namespace managedidentities_v1beta1 {
      * Optional. List of nodes. Some producers need to use per-node metadata to calculate SLO. This field allows such producers to publish per-node SLO meta data, which will be consumed by SSA Eligibility Exporter and published in the form of per node metric to Monarch.
      */
     nodes?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata[];
+    /**
+     * Optional. Multiple per-instance SLI eligibilities which apply for individual SLIs. Exactly one of 'eligibility' and 'per_sli_eligibility' fields must be used.
+     */
+    perSliEligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility;
     /**
      * Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration. Field is mandatory and must not be empty.
      */
@@ -605,17 +634,17 @@ export namespace managedidentities_v1beta1 {
     operations?: Schema$Operation[];
   }
   /**
-   * ListSQLIntegrationsResponse is the response message for ListSQLIntegrations method.
+   * ListSqlIntegrationsResponse is the response message for ListSqlIntegrations method.
    */
-  export interface Schema$ListSQLIntegrationsResponse {
+  export interface Schema$ListSqlIntegrationsResponse {
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
     nextPageToken?: string | null;
     /**
-     * A list of SQLIntegrations of a domain.
+     * A list of SqlIntegrations of a domain.
      */
-    sqlIntegrations?: Schema$SQLIntegration[];
+    sqlIntegrations?: Schema$SqlIntegration[];
     /**
      * A list of locations that could not be reached.
      */
@@ -820,9 +849,9 @@ export namespace managedidentities_v1beta1 {
     policy?: Schema$Policy;
   }
   /**
-   * Represents the SQL instance integrated with AD.
+   * Represents the Sql instance integrated with AD.
    */
-  export interface Schema$SQLIntegration {
+  export interface Schema$SqlIntegration {
     /**
      * Output only. The time sql integration was created. Synthetic field is populated automatically by CCFE.
      */
@@ -832,7 +861,7 @@ export namespace managedidentities_v1beta1 {
      */
     name?: string | null;
     /**
-     * The full resource name of an integrated sql instance TODO(b/161918255) Add resource type annotation post CloudSQL API fix.
+     * The full resource name of an integrated sql instance Reference to: http://google3/google/cloud/sql/v1/cloud_sql_resources.proto?l=351&rcl=354416019
      */
     sqlInstance?: string | null;
     /**
@@ -1509,6 +1538,7 @@ export namespace managedidentities_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "admin": "my_admin",
+     *       //   "auditLogsEnabled": false,
      *       //   "authorizedNetworks": [],
      *       //   "createTime": "my_createTime",
      *       //   "fqdn": "my_fqdn",
@@ -1937,6 +1967,7 @@ export namespace managedidentities_v1beta1 {
      *   // Example response
      *   // {
      *   //   "admin": "my_admin",
+     *   //   "auditLogsEnabled": false,
      *   //   "authorizedNetworks": [],
      *   //   "createTime": "my_createTime",
      *   //   "fqdn": "my_fqdn",
@@ -2356,6 +2387,7 @@ export namespace managedidentities_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "admin": "my_admin",
+     *       //   "auditLogsEnabled": false,
      *       //   "authorizedNetworks": [],
      *       //   "createTime": "my_createTime",
      *       //   "fqdn": "my_fqdn",
@@ -3394,7 +3426,7 @@ export namespace managedidentities_v1beta1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.sqlIntegrations.get(
      *     {
-     *       // Required. SQLIntegration resource name using the form: `projects/{project_id\}/locations/global/domains/x/sqlIntegrations/{name\}`
+     *       // Required. SqlIntegration resource name using the form: `projects/{project_id\}/locations/global/domains/x/sqlIntegrations/{name\}`
      *       name:
      *         'projects/my-project/locations/global/domains/my-domain/sqlIntegrations/my-sqlIntegration',
      *     }
@@ -3430,7 +3462,7 @@ export namespace managedidentities_v1beta1 {
     get(
       params?: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$SQLIntegration>;
+    ): GaxiosPromise<Schema$SqlIntegration>;
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3438,28 +3470,28 @@ export namespace managedidentities_v1beta1 {
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$SQLIntegration>,
-      callback: BodyResponseCallback<Schema$SQLIntegration>
+      options: MethodOptions | BodyResponseCallback<Schema$SqlIntegration>,
+      callback: BodyResponseCallback<Schema$SqlIntegration>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
-      callback: BodyResponseCallback<Schema$SQLIntegration>
+      callback: BodyResponseCallback<Schema$SqlIntegration>
     ): void;
-    get(callback: BodyResponseCallback<Schema$SQLIntegration>): void;
+    get(callback: BodyResponseCallback<Schema$SqlIntegration>): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get
-        | BodyResponseCallback<Schema$SQLIntegration>
+        | BodyResponseCallback<Schema$SqlIntegration>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$SQLIntegration>
+        | BodyResponseCallback<Schema$SqlIntegration>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$SQLIntegration>
+        | BodyResponseCallback<Schema$SqlIntegration>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$SQLIntegration> | GaxiosPromise<Readable> {
+    ): void | GaxiosPromise<Schema$SqlIntegration> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -3491,17 +3523,17 @@ export namespace managedidentities_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$SQLIntegration>(
+        createAPIRequest<Schema$SqlIntegration>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$SQLIntegration>(parameters);
+        return createAPIRequest<Schema$SqlIntegration>(parameters);
       }
     }
 
     /**
-     * Lists SQLIntegrations in a given domain.
+     * Lists SqlIntegrations in a given domain.
      * @example
      * ```js
      * // Before running the sample:
@@ -3528,7 +3560,7 @@ export namespace managedidentities_v1beta1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.sqlIntegrations.list(
      *     {
-     *       // Optional. Filter specifying constraints of a list operation. For example, `SQLIntegration.name="sql"`.
+     *       // Optional. Filter specifying constraints of a list operation. For example, `SqlIntegration.name="sql"`.
      *       filter: 'placeholder-value',
      *       // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
      *       orderBy: 'placeholder-value',
@@ -3536,7 +3568,7 @@ export namespace managedidentities_v1beta1 {
      *       pageSize: 'placeholder-value',
      *       // Optional. The next_page_token value returned from a previous List request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the SQLIntegrations using the form: `projects/{project_id\}/locations/global/domains/x`
+     *       // Required. The resource name of the SqlIntegrations using the form: `projects/{project_id\}/locations/global/domains/x`
      *       parent: 'projects/my-project/locations/global/domains/my-domain',
      *     }
      *   );
@@ -3569,7 +3601,7 @@ export namespace managedidentities_v1beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListSQLIntegrationsResponse>;
+    ): GaxiosPromise<Schema$ListSqlIntegrationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3579,32 +3611,32 @@ export namespace managedidentities_v1beta1 {
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListSQLIntegrationsResponse>,
-      callback: BodyResponseCallback<Schema$ListSQLIntegrationsResponse>
+        | BodyResponseCallback<Schema$ListSqlIntegrationsResponse>,
+      callback: BodyResponseCallback<Schema$ListSqlIntegrationsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
-      callback: BodyResponseCallback<Schema$ListSQLIntegrationsResponse>
+      callback: BodyResponseCallback<Schema$ListSqlIntegrationsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$ListSQLIntegrationsResponse>
+      callback: BodyResponseCallback<Schema$ListSqlIntegrationsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List
-        | BodyResponseCallback<Schema$ListSQLIntegrationsResponse>
+        | BodyResponseCallback<Schema$ListSqlIntegrationsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListSQLIntegrationsResponse>
+        | BodyResponseCallback<Schema$ListSqlIntegrationsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ListSQLIntegrationsResponse>
+        | BodyResponseCallback<Schema$ListSqlIntegrationsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListSQLIntegrationsResponse>
+      | GaxiosPromise<Schema$ListSqlIntegrationsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List;
@@ -3640,12 +3672,12 @@ export namespace managedidentities_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListSQLIntegrationsResponse>(
+        createAPIRequest<Schema$ListSqlIntegrationsResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ListSQLIntegrationsResponse>(parameters);
+        return createAPIRequest<Schema$ListSqlIntegrationsResponse>(parameters);
       }
     }
   }
@@ -3653,14 +3685,14 @@ export namespace managedidentities_v1beta1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get
     extends StandardParameters {
     /**
-     * Required. SQLIntegration resource name using the form: `projects/{project_id\}/locations/global/domains/x/sqlIntegrations/{name\}`
+     * Required. SqlIntegration resource name using the form: `projects/{project_id\}/locations/global/domains/x/sqlIntegrations/{name\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List
     extends StandardParameters {
     /**
-     * Optional. Filter specifying constraints of a list operation. For example, `SQLIntegration.name="sql"`.
+     * Optional. Filter specifying constraints of a list operation. For example, `SqlIntegration.name="sql"`.
      */
     filter?: string;
     /**
@@ -3676,7 +3708,7 @@ export namespace managedidentities_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the SQLIntegrations using the form: `projects/{project_id\}/locations/global/domains/x`
+     * Required. The resource name of the SqlIntegrations using the form: `projects/{project_id\}/locations/global/domains/x`
      */
     parent?: string;
   }
