@@ -460,87 +460,87 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$AssignedTargetingOption {
     /**
-     * Age range details. This field will be populated when the TargetingType is `TARGETING_TYPE_AGE_RANGE`.
+     * Age range details. This field will be populated when the targeting_type is `TARGETING_TYPE_AGE_RANGE`.
      */
     ageRangeDetails?: Schema$AgeRangeAssignedTargetingOptionDetails;
     /**
-     * App category details. This field will be populated when the TargetingType is `TARGETING_TYPE_APP_CATEGORY`.
+     * App category details. This field will be populated when the targeting_type is `TARGETING_TYPE_APP_CATEGORY`.
      */
     appCategoryDetails?: Schema$AppCategoryAssignedTargetingOptionDetails;
     /**
-     * App details. This field will be populated when the TargetingType is `TARGETING_TYPE_APP`.
+     * App details. This field will be populated when the targeting_type is `TARGETING_TYPE_APP`.
      */
     appDetails?: Schema$AppAssignedTargetingOptionDetails;
     /**
-     * Output only. The unique ID of the assigned targeting option. The ID is only unique within a given line item and targeting type. It may be reused in other contexts.
+     * Output only. The unique ID of the assigned targeting option. The ID is only unique within a given resource and targeting type. It may be reused in other contexts.
      */
     assignedTargetingOptionId?: string | null;
     /**
-     * Audience targeting details. This field will be populated when the TargetingType is `TARGETING_TYPE_AUDIENCE_GROUP`. You can only target one audience group option per line item.
+     * Audience targeting details. This field will be populated when the targeting_type is `TARGETING_TYPE_AUDIENCE_GROUP`. You can only target one audience group option per resource.
      */
     audienceGroupDetails?: Schema$AudienceGroupAssignedTargetingOptionDetails;
     /**
-     * Authorized seller status details. This field will be populated when the TargetingType is `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS`. You can only target one authorized seller status option per line item. If a line item doesn't have an authorized seller status option, all authorized sellers indicated as DIRECT or RESELLER in the ads.txt file are targeted by default.
+     * Authorized seller status details. This field will be populated when the targeting_type is `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS`. You can only target one authorized seller status option per resource. If a resource doesn't have an authorized seller status option, all authorized sellers indicated as DIRECT or RESELLER in the ads.txt file are targeted by default.
      */
     authorizedSellerStatusDetails?: Schema$AuthorizedSellerStatusAssignedTargetingOptionDetails;
     /**
-     * Browser details. This field will be populated when the TargetingType is `TARGETING_TYPE_BROWSER`.
+     * Browser details. This field will be populated when the targeting_type is `TARGETING_TYPE_BROWSER`.
      */
     browserDetails?: Schema$BrowserAssignedTargetingOptionDetails;
     /**
-     * Carrier and ISP details. This field will be populated when the TargetingType is `TARGETING_TYPE_CARRIER_AND_ISP`.
+     * Carrier and ISP details. This field will be populated when the targeting_type is `TARGETING_TYPE_CARRIER_AND_ISP`.
      */
     carrierAndIspDetails?: Schema$CarrierAndIspAssignedTargetingOptionDetails;
     /**
-     * Category details. This field will be populated when the TargetingType is `TARGETING_TYPE_CATEGORY`. Targeting a category will also target its subcategories. If a category is excluded from targeting and a subcategory is included, the exclusion will take precedence.
+     * Category details. This field will be populated when the targeting_type is `TARGETING_TYPE_CATEGORY`. Targeting a category will also target its subcategories. If a category is excluded from targeting and a subcategory is included, the exclusion will take precedence.
      */
     categoryDetails?: Schema$CategoryAssignedTargetingOptionDetails;
     /**
-     * Channel details. This field will be populated when the TargetingType is `TARGETING_TYPE_CHANNEL`.
+     * Channel details. This field will be populated when the targeting_type is `TARGETING_TYPE_CHANNEL`.
      */
     channelDetails?: Schema$ChannelAssignedTargetingOptionDetails;
     /**
-     * Content instream position details. This field will be populated when the TargetingType is `TARGETING_TYPE_CONTENT_INSTREAM_POSITION`.
+     * Content instream position details. This field will be populated when the targeting_type is `TARGETING_TYPE_CONTENT_INSTREAM_POSITION`.
      */
     contentInstreamPositionDetails?: Schema$ContentInstreamPositionAssignedTargetingOptionDetails;
     /**
-     * Content outstream position details. This field will be populated when the TargetingType is `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION`.
+     * Content outstream position details. This field will be populated when the targeting_type is `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION`.
      */
     contentOutstreamPositionDetails?: Schema$ContentOutstreamPositionAssignedTargetingOptionDetails;
     /**
-     * Day and time details. This field will be populated when the TargetingType is `TARGETING_TYPE_DAY_AND_TIME`.
+     * Day and time details. This field will be populated when the targeting_type is `TARGETING_TYPE_DAY_AND_TIME`.
      */
     dayAndTimeDetails?: Schema$DayAndTimeAssignedTargetingOptionDetails;
     /**
-     * Device make and model details. This field will be populated when the TargetingType is `TARGETING_TYPE_DEVICE_MAKE_MODEL`.
+     * Device make and model details. This field will be populated when the targeting_type is `TARGETING_TYPE_DEVICE_MAKE_MODEL`.
      */
     deviceMakeModelDetails?: Schema$DeviceMakeModelAssignedTargetingOptionDetails;
     /**
-     * Device Type details. This field will be populated when the TargetingType is `TARGETING_TYPE_DEVICE_TYPE`.
+     * Device Type details. This field will be populated when the targeting_type is `TARGETING_TYPE_DEVICE_TYPE`.
      */
     deviceTypeDetails?: Schema$DeviceTypeAssignedTargetingOptionDetails;
     /**
-     * Digital content label details. This field will be populated when the TargetingType is `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION`. Digital content labels are targeting exclusions. Advertiser level digital content label exclusions, if set, are always applied in serving (even though they aren't visible in line item settings). Line item settings can exclude content labels in addition to advertiser exclusions, but can't override them. A line item won't serve if all the digital content labels are excluded.
+     * Digital content label details. This field will be populated when the targeting_type is `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION`. Digital content labels are targeting exclusions. Advertiser level digital content label exclusions, if set, are always applied in serving (even though they aren't visible in resource settings). Resource settings can exclude content labels in addition to advertiser exclusions, but can't override them. A line item won't serve if all the digital content labels are excluded.
      */
     digitalContentLabelExclusionDetails?: Schema$DigitalContentLabelAssignedTargetingOptionDetails;
     /**
-     * Environment details. This field will be populated when the TargetingType is `TARGETING_TYPE_ENVIRONMENT`.
+     * Environment details. This field will be populated when the targeting_type is `TARGETING_TYPE_ENVIRONMENT`.
      */
     environmentDetails?: Schema$EnvironmentAssignedTargetingOptionDetails;
     /**
-     * Exchange details. This field will be populated when the TargetingType is `TARGETING_TYPE_EXCHANGE`.
+     * Exchange details. This field will be populated when the targeting_type is `TARGETING_TYPE_EXCHANGE`.
      */
     exchangeDetails?: Schema$ExchangeAssignedTargetingOptionDetails;
     /**
-     * Gender details. This field will be populated when the TargetingType is `TARGETING_TYPE_GENDER`.
+     * Gender details. This field will be populated when the targeting_type is `TARGETING_TYPE_GENDER`.
      */
     genderDetails?: Schema$GenderAssignedTargetingOptionDetails;
     /**
-     * Geographic region details. This field will be populated when the TargetingType is `TARGETING_TYPE_GEO_REGION`.
+     * Geographic region details. This field will be populated when the targeting_type is `TARGETING_TYPE_GEO_REGION`.
      */
     geoRegionDetails?: Schema$GeoRegionAssignedTargetingOptionDetails;
     /**
-     * Household income details. This field will be populated when the TargetingType is `TARGETING_TYPE_HOUSEHOLD_INCOME`.
+     * Household income details. This field will be populated when the targeting_type is `TARGETING_TYPE_HOUSEHOLD_INCOME`.
      */
     householdIncomeDetails?: Schema$HouseholdIncomeAssignedTargetingOptionDetails;
     /**
@@ -548,19 +548,19 @@ export namespace displayvideo_v1 {
      */
     inheritance?: string | null;
     /**
-     * Inventory source details. This field will be populated when the TargetingType is `TARGETING_TYPE_INVENTORY_SOURCE`.
+     * Inventory source details. This field will be populated when the targeting_type is `TARGETING_TYPE_INVENTORY_SOURCE`.
      */
     inventorySourceDetails?: Schema$InventorySourceAssignedTargetingOptionDetails;
     /**
-     * Inventory source group details. This field will be populated when the TargetingType is `TARGETING_TYPE_INVENTORY_SOURCE_GROUP`.
+     * Inventory source group details. This field will be populated when the targeting_type is `TARGETING_TYPE_INVENTORY_SOURCE_GROUP`.
      */
     inventorySourceGroupDetails?: Schema$InventorySourceGroupAssignedTargetingOptionDetails;
     /**
-     * Keyword details. This field will be populated when the TargetingType is `TARGETING_TYPE_KEYWORD`. A maximum of 5000 direct negative keywords can be assigned to a line item. No limit on number of positive keywords that can be assigned.
+     * Keyword details. This field will be populated when the targeting_type is `TARGETING_TYPE_KEYWORD`. A maximum of 5000 direct negative keywords can be assigned to a resource. No limit on number of positive keywords that can be assigned.
      */
     keywordDetails?: Schema$KeywordAssignedTargetingOptionDetails;
     /**
-     * Language details. This field will be populated when the TargetingType is `TARGETING_TYPE_LANGUAGE`.
+     * Language details. This field will be populated when the targeting_type is `TARGETING_TYPE_LANGUAGE`.
      */
     languageDetails?: Schema$LanguageAssignedTargetingOptionDetails;
     /**
@@ -568,35 +568,35 @@ export namespace displayvideo_v1 {
      */
     name?: string | null;
     /**
-     * Keyword details. This field will be populated when the TargetingType is `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST`. A maximum of 4 negative keyword lists can be assigned to a line item.
+     * Keyword details. This field will be populated when the targeting_type is `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST`. A maximum of 4 negative keyword lists can be assigned to a resource.
      */
     negativeKeywordListDetails?: Schema$NegativeKeywordListAssignedTargetingOptionDetails;
     /**
-     * On screen position details. This field will be populated when the TargetingType is `TARGETING_TYPE_ON_SCREEN_POSITION`.
+     * On screen position details. This field will be populated when the targeting_type is `TARGETING_TYPE_ON_SCREEN_POSITION`.
      */
     onScreenPositionDetails?: Schema$OnScreenPositionAssignedTargetingOptionDetails;
     /**
-     * Operating system details. This field will be populated when the TargetingType is `TARGETING_TYPE_OPERATING_SYSTEM`.
+     * Operating system details. This field will be populated when the targeting_type is `TARGETING_TYPE_OPERATING_SYSTEM`.
      */
     operatingSystemDetails?: Schema$OperatingSystemAssignedTargetingOptionDetails;
     /**
-     * Parental status details. This field will be populated when the TargetingType is `TARGETING_TYPE_PARENTAL_STATUS`.
+     * Parental status details. This field will be populated when the targeting_type is `TARGETING_TYPE_PARENTAL_STATUS`.
      */
     parentalStatusDetails?: Schema$ParentalStatusAssignedTargetingOptionDetails;
     /**
-     * Proximity location list details. This field will be populated when the TargetingType is `TARGETING_TYPE_PROXIMITY_LOCATION_LIST`.
+     * Proximity location list details. This field will be populated when the targeting_type is `TARGETING_TYPE_PROXIMITY_LOCATION_LIST`.
      */
     proximityLocationListDetails?: Schema$ProximityLocationListAssignedTargetingOptionDetails;
     /**
-     * Regional location list details. This field will be populated when the TargetingType is `TARGETING_TYPE_REGIONAL_LOCATION_LIST`.
+     * Regional location list details. This field will be populated when the targeting_type is `TARGETING_TYPE_REGIONAL_LOCATION_LIST`.
      */
     regionalLocationListDetails?: Schema$RegionalLocationListAssignedTargetingOptionDetails;
     /**
-     * Sensitive category details. This field will be populated when the TargetingType is `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`. Sensitive categories are targeting exclusions. Advertiser level sensitive category exclusions, if set, are always applied in serving (even though they aren't visible in line item settings). Line item settings can exclude sensitive categories in addition to advertiser exclusions, but can't override them.
+     * Sensitive category details. This field will be populated when the targeting_type is `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`. Sensitive categories are targeting exclusions. Advertiser level sensitive category exclusions, if set, are always applied in serving (even though they aren't visible in resource settings). Resource settings can exclude sensitive categories in addition to advertiser exclusions, but can't override them.
      */
     sensitiveCategoryExclusionDetails?: Schema$SensitiveCategoryAssignedTargetingOptionDetails;
     /**
-     * Sub-exchange details. This field will be populated when the TargetingType is `TARGETING_TYPE_SUB_EXCHANGE`.
+     * Sub-exchange details. This field will be populated when the targeting_type is `TARGETING_TYPE_SUB_EXCHANGE`.
      */
     subExchangeDetails?: Schema$SubExchangeAssignedTargetingOptionDetails;
     /**
@@ -604,23 +604,23 @@ export namespace displayvideo_v1 {
      */
     targetingType?: string | null;
     /**
-     * Third party verification details. This field will be populated when the TargetingType is `TARGETING_TYPE_THIRD_PARTY_VERIFIER`.
+     * Third party verification details. This field will be populated when the targeting_type is `TARGETING_TYPE_THIRD_PARTY_VERIFIER`.
      */
     thirdPartyVerifierDetails?: Schema$ThirdPartyVerifierAssignedTargetingOptionDetails;
     /**
-     * URL details. This field will be populated when the TargetingType is `TARGETING_TYPE_URL`.
+     * URL details. This field will be populated when the targeting_type is `TARGETING_TYPE_URL`.
      */
     urlDetails?: Schema$UrlAssignedTargetingOptionDetails;
     /**
-     * User rewarded content details. This field will be populated when the TargetingType is `TARGETING_TYPE_USER_REWARDED_CONTENT`.
+     * User rewarded content details. This field will be populated when the targeting_type is `TARGETING_TYPE_USER_REWARDED_CONTENT`.
      */
     userRewardedContentDetails?: Schema$UserRewardedContentAssignedTargetingOptionDetails;
     /**
-     * Video player size details. This field will be populated when the TargetingType is `TARGETING_TYPE_VIDEO_PLAYER_SIZE`.
+     * Video player size details. This field will be populated when the targeting_type is `TARGETING_TYPE_VIDEO_PLAYER_SIZE`.
      */
     videoPlayerSizeDetails?: Schema$VideoPlayerSizeAssignedTargetingOptionDetails;
     /**
-     * Viewability details. This field will be populated when the TargetingType is `TARGETING_TYPE_VIEWABILITY`. You can only target one viewability option per line item.
+     * Viewability details. This field will be populated when the targeting_type is `TARGETING_TYPE_VIEWABILITY`. You can only target one viewability option per resource.
      */
     viewabilityDetails?: Schema$ViewabilityAssignedTargetingOptionDetails;
   }
@@ -772,7 +772,7 @@ export namespace displayvideo_v1 {
      */
     displayName?: string | null;
     /**
-     * Indicates if this option is being negatively targeted. All assigned browser targeting options on the same line item must have the same value for this field.
+     * Indicates if this option is being negatively targeted. All assigned browser targeting options on the same resource must have the same value for this field.
      */
     negative?: boolean | null;
     /**
@@ -979,6 +979,19 @@ export namespace displayvideo_v1 {
      */
     nextPageToken?: string | null;
   }
+  /**
+   * Response message for BulkListInsertionOrderAssignedTargetingOptions.
+   */
+  export interface Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse {
+    /**
+     * The list of assigned targeting options. This list will be absent if empty.
+     */
+    assignedTargetingOptions?: Schema$AssignedTargetingOption[];
+    /**
+     * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent BulkListInsertionOrderAssignedTargetingOptionsRequest to fetch the next page of results. This token will be absent if there are no more assigned_targeting_options to return.
+     */
+    nextPageToken?: string | null;
+  }
   export interface Schema$BulkListLineItemAssignedTargetingOptionsResponse {
     /**
      * The list of assigned targeting options. This list will be absent if empty.
@@ -1065,7 +1078,7 @@ export namespace displayvideo_v1 {
      */
     displayName?: string | null;
     /**
-     * Indicates if this option is being negatively targeted. All assigned carrier and ISP targeting options on the same line item must have the same value for this field.
+     * Indicates if this option is being negatively targeted. All assigned carrier and ISP targeting options on the same resource must have the same value for this field.
      */
     negative?: boolean | null;
     /**
@@ -1236,6 +1249,10 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$ContentInstreamPositionAssignedTargetingOptionDetails {
     /**
+     * Output only. The ad type to target. Only applicable to insertion order targeting and new line items supporting the specified ad type will inherit this targeting option by default. Possible values are: * `AD_TYPE_VIDEO`, the setting will be inherited by new line item when line_item_type is `LINE_ITEM_TYPE_VIDEO_DEFAULT`. * `AD_TYPE_AUDIO`, the setting will be inherited by new line item when line_item_type is `LINE_ITEM_TYPE_AUDIO_DEFAULT`.
+     */
+    adType?: string | null;
+    /**
      * Output only. The content instream position for video or audio ads.
      */
     contentInstreamPosition?: string | null;
@@ -1257,6 +1274,10 @@ export namespace displayvideo_v1 {
    * Assigned content outstream position targeting option details. This will be populated in the content_outstream_position_details field when targeting_type is `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION`.
    */
   export interface Schema$ContentOutstreamPositionAssignedTargetingOptionDetails {
+    /**
+     * Output only. The ad type to target. Only applicable to insertion order targeting and new line items supporting the specified ad type will inherit this targeting option by default. Possible values are: * `AD_TYPE_DISPLAY`, the setting will be inherited by new line item when line_item_type is `LINE_ITEM_TYPE_DISPLAY_DEFAULT`. * `AD_TYPE_VIDEO`, the setting will be inherited by new line item when line_item_type is `LINE_ITEM_TYPE_VIDEO_DEFAULT`.
+     */
+    adType?: string | null;
     /**
      * Output only. The content outstream position.
      */
@@ -1470,6 +1491,10 @@ export namespace displayvideo_v1 {
      */
     mediaDuration?: string | null;
     /**
+     * Output only. Indicates the third-party audio creative supports MP3. Output only and only valid for third-party audio creatives. Third-party audio creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_AUDIO`
+     */
+    mp3Audio?: boolean | null;
+    /**
      * Output only. The resource name of the creative.
      */
     name?: string | null;
@@ -1481,6 +1506,10 @@ export namespace displayvideo_v1 {
      * Specifies the OBA icon for a video creative. This field is only supported in following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     obaIcon?: Schema$ObaIcon;
+    /**
+     * Output only. Indicates the third-party audio creative supports OGG. Output only and only valid for third-party audio creatives. Third-party audio creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_AUDIO`
+     */
+    oggAudio?: boolean | null;
     /**
      * Amount of time to play the video before counting a view. This field is required when skippable is true. This field is only supported for the following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
@@ -1494,7 +1523,7 @@ export namespace displayvideo_v1 {
      */
     requireMraid?: boolean | null;
     /**
-     * Optional. Indicates that the creative will wait for a return ping for attribution. Only valid when using a Campaign Manager 360 tracking ad with a third-party ad server parameter and the ${DC_DBM_TOKEN\} macro. Optional and only valid for third-party tag creatives or third-party VAST tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`
+     * Optional. Indicates that the creative will wait for a return ping for attribution. Only valid when using a Campaign Manager 360 tracking ad with a third-party ad server parameter and the ${DC_DBM_TOKEN\} macro. Optional and only valid for third-party tag creatives or third-party VAST tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO`
      */
     requirePingForAttribution?: boolean | null;
     /**
@@ -1538,7 +1567,7 @@ export namespace displayvideo_v1 {
      */
     updateTime?: string | null;
     /**
-     * Optional. The URL of the VAST tag for a third-party VAST tag creative. Required and only valid for third-party VAST tag creatives. Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`
+     * Optional. The URL of the VAST tag for a third-party VAST tag creative. Required and only valid for third-party VAST tag creatives. Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO`
      */
     vastTagUrl?: string | null;
     /**
@@ -2130,15 +2159,15 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$FrequencyCap {
     /**
-     * The maximum number of times a user may be shown with the same ad during this period. Must be greater than 0. Applicable when unlimited is `false`.
+     * The maximum number of times a user may be shown with the same ad during this period. Must be greater than 0. Required when unlimited is `false`.
      */
     maxImpressions?: number | null;
     /**
-     * The time unit in which the frequency cap will be applied. Applicable when unlimited is `false`.
+     * The time unit in which the frequency cap will be applied. Required when unlimited is `false`.
      */
     timeUnit?: string | null;
     /**
-     * The number of time_unit the frequency cap will last. Applicable when unlimited is `false`. The following restrictions apply based on the value of time_unit: * `TIME_UNIT_LIFETIME` - this field is output only and will default to 1 * `TIME_UNIT_MONTHS` - must be between 1 and 2 * `TIME_UNIT_WEEKS` - must be between 1 and 4 * `TIME_UNIT_DAYS` - must be between 1 and 6 * `TIME_UNIT_HOURS` - must be between 1 and 23 * `TIME_UNIT_MINUTES` - must be between 1 and 59
+     * The number of time_unit the frequency cap will last. Required when unlimited is `false`. The following restrictions apply based on the value of time_unit: * `TIME_UNIT_LIFETIME` - this field is output only and will default to 1 * `TIME_UNIT_MONTHS` - must be between 1 and 2 * `TIME_UNIT_WEEKS` - must be between 1 and 4 * `TIME_UNIT_DAYS` - must be between 1 and 6 * `TIME_UNIT_HOURS` - must be between 1 and 23 * `TIME_UNIT_MINUTES` - must be between 1 and 59
      */
     timeUnitCount?: number | null;
     /**
@@ -2657,7 +2686,7 @@ export namespace displayvideo_v1 {
      */
     displayName?: string | null;
     /**
-     * Indicates if this option is being negatively targeted. All assigned language targeting options on the same line item must have the same value for this field.
+     * Indicates if this option is being negatively targeted. All assigned language targeting options on the same resource must have the same value for this field.
      */
     negative?: boolean | null;
     /**
@@ -2738,6 +2767,10 @@ export namespace displayvideo_v1 {
      * Required. Immutable. The type of the line item.
      */
     lineItemType?: string | null;
+    /**
+     * The mobile app promoted by the line item. This is applicable only when line_item_type is either `LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INSTALL` or `LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INSTALL`.
+     */
+    mobileApp?: Schema$MobileApp;
     /**
      * Output only. The resource name of the line item.
      */
@@ -2927,6 +2960,19 @@ export namespace displayvideo_v1 {
     googleAudiences?: Schema$GoogleAudience[];
     /**
      * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListGoogleAudiences` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListInsertionOrderAssignedTargetingOptions.
+   */
+  export interface Schema$ListInsertionOrderAssignedTargetingOptionsResponse {
+    /**
+     * The list of assigned targeting options. This list will be absent if empty.
+     */
+    assignedTargetingOptions?: Schema$AssignedTargetingOption[];
+    /**
+     * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent ListInsertionOrderAssignedTargetingOptionsRequest to fetch the next page of results. This token will be absent if there are no more assigned_targeting_options to return.
      */
     nextPageToken?: string | null;
   }
@@ -3190,6 +3236,27 @@ export namespace displayvideo_v1 {
     dv360ToCmDataSharingEnabled?: boolean | null;
   }
   /**
+   * A mobile app promoted by a mobile app install line item.
+   */
+  export interface Schema$MobileApp {
+    /**
+     * Required. The ID of the app provided by the platform store. Android apps are identified by the bundle ID used by Android's Play store, such as `com.google.android.gm`. iOS apps are identified by a nine-digit app ID used by Apple's App store, such as `422689480`.
+     */
+    appId?: string | null;
+    /**
+     * Output only. The app name.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The app platform.
+     */
+    platform?: string | null;
+    /**
+     * Output only. The app publisher.
+     */
+    publisher?: string | null;
+  }
+  /**
    * Represents an amount of money with its currency type.
    */
   export interface Schema$Money {
@@ -3290,6 +3357,10 @@ export namespace displayvideo_v1 {
    * On screen position targeting option details. This will be populated in the on_screen_position_details field when targeting_type is `TARGETING_TYPE_ON_SCREEN_POSITION`.
    */
   export interface Schema$OnScreenPositionAssignedTargetingOptionDetails {
+    /**
+     * Output only. The ad type to target. Only applicable to insertion order targeting and new line items supporting the specified ad type will inherit this targeting option by default. Possible values are: * `AD_TYPE_DISPLAY`, the setting will be inherited by new line item when line_item_type is `LINE_ITEM_TYPE_DISPLAY_DEFAULT`. * `AD_TYPE_VIDEO`, the setting will be inherited by new line item when line_item_type is `LINE_ITEM_TYPE_VIDEO_DEFAULT`.
+     */
+    adType?: string | null;
     /**
      * Output only. The on screen position.
      */
@@ -3534,11 +3605,11 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$PerformanceGoal {
     /**
-     * The goal amount, in micros of the advertiser's currency. Applicable when performance_goal_type is one of: * `PERFORMANCE_GOAL_TYPE_CPM` * `PERFORMANCE_GOAL_TYPE_CPC` * `PERFORMANCE_GOAL_TYPE_CPA` * `PERFORMANCE_GOAL_TYPE_CPIAVC` For example 1500000 represents 1.5 standard units of the currency.
+     * The goal amount, in micros of the advertiser's currency. Applicable when performance_goal_type is one of: * `PERFORMANCE_GOAL_TYPE_CPM` * `PERFORMANCE_GOAL_TYPE_CPC` * `PERFORMANCE_GOAL_TYPE_CPA` * `PERFORMANCE_GOAL_TYPE_CPIAVC` * `PERFORMANCE_GOAL_TYPE_VCPM` For example 1500000 represents 1.5 standard units of the currency.
      */
     performanceGoalAmountMicros?: string | null;
     /**
-     * The decimal representation of the goal percentage in micros. Applicable when performance_goal_type is one of: * `PERFORMANCE_GOAL_TYPE_CTR` * `PERFORMANCE_GOAL_TYPE_VIEWABILITY` For example, 70000 represents 7% (decimal 0.07).
+     * The decimal representation of the goal percentage in micros. Applicable when performance_goal_type is one of: * `PERFORMANCE_GOAL_TYPE_CTR` * `PERFORMANCE_GOAL_TYPE_VIEWABILITY` * `PERFORMANCE_GOAL_TYPE_CLICK_CVR` * `PERFORMANCE_GOAL_TYPE_IMPRESSION_CVR` * `PERFORMANCE_GOAL_TYPE_VTR` * `PERFORMANCE_GOAL_TYPE_AUDIO_COMPLETION_RATE` * `PERFORMANCE_GOAL_TYPE_VIDEO_COMPLETION_RATE` For example, 70000 represents 7% (decimal 0.07).
      */
     performanceGoalPercentageMicros?: string | null;
     /**
@@ -3580,7 +3651,7 @@ export namespace displayvideo_v1 {
      */
     proximityLocationListId?: string | null;
     /**
-     * Required. Radius range for proximity location list. This represents the size of the area around a chosen location that will be targeted. `All` proximity location targeting under a single line item must have the same radius range value. Set this value to match any existing targeting. If updated, this field will change the radius range for all proximity targeting under the line item.
+     * Required. Radius range for proximity location list. This represents the size of the area around a chosen location that will be targeted. `All` proximity location targeting under a single resource must have the same radius range value. Set this value to match any existing targeting. If updated, this field will change the radius range for all proximity targeting under the resource.
      */
     proximityRadiusRange?: string | null;
   }
@@ -3760,7 +3831,7 @@ export namespace displayvideo_v1 {
      */
     name?: string | null;
     /**
-     * Required. The URL or app ID of the site. Must be UTF-8 encoded with a maximum length of 240 bytes.
+     * Required. The app ID or URL of the site. Must be UTF-8 encoded with a maximum length of 240 bytes.
      */
     urlOrAppId?: string | null;
   }
@@ -5091,9 +5162,9 @@ export namespace displayvideo_v1 {
      *
      *   // Do the magic
      *   const res = await displayvideo.advertisers.list({
-     *     // Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` * All advertisers with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All advertisers with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      *     orderBy: 'placeholder-value',
      *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
      *     pageSize: 'placeholder-value',
@@ -5433,11 +5504,11 @@ export namespace displayvideo_v1 {
   }
   export interface Params$Resource$Advertisers$List extends StandardParameters {
     /**
-     * Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` The length of this field should be no more than 500 characters.
+     * Allows filtering by advertiser properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator must be `EQUALS (=)`. * Supported fields: - `advertiserId` - `displayName` - `entityStatus` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All active advertisers under a partner: `entityStatus="ENTITY_STATUS_ACTIVE"` * All advertisers with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All advertisers with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -7871,9 +7942,11 @@ export namespace displayvideo_v1 {
      *       //   "jsTrackerUrl": "my_jsTrackerUrl",
      *       //   "lineItemIds": [],
      *       //   "mediaDuration": "my_mediaDuration",
+     *       //   "mp3Audio": false,
      *       //   "name": "my_name",
      *       //   "notes": "my_notes",
      *       //   "obaIcon": {},
+     *       //   "oggAudio": false,
      *       //   "progressOffset": {},
      *       //   "requireHtml5": false,
      *       //   "requireMraid": false,
@@ -7923,9 +7996,11 @@ export namespace displayvideo_v1 {
      *   //   "jsTrackerUrl": "my_jsTrackerUrl",
      *   //   "lineItemIds": [],
      *   //   "mediaDuration": "my_mediaDuration",
+     *   //   "mp3Audio": false,
      *   //   "name": "my_name",
      *   //   "notes": "my_notes",
      *   //   "obaIcon": {},
+     *   //   "oggAudio": false,
      *   //   "progressOffset": {},
      *   //   "requireHtml5": false,
      *   //   "requireMraid": false,
@@ -8226,9 +8301,11 @@ export namespace displayvideo_v1 {
      *   //   "jsTrackerUrl": "my_jsTrackerUrl",
      *   //   "lineItemIds": [],
      *   //   "mediaDuration": "my_mediaDuration",
+     *   //   "mp3Audio": false,
      *   //   "name": "my_name",
      *   //   "notes": "my_notes",
      *   //   "obaIcon": {},
+     *   //   "oggAudio": false,
      *   //   "progressOffset": {},
      *   //   "requireHtml5": false,
      *   //   "requireMraid": false,
@@ -8545,9 +8622,11 @@ export namespace displayvideo_v1 {
      *       //   "jsTrackerUrl": "my_jsTrackerUrl",
      *       //   "lineItemIds": [],
      *       //   "mediaDuration": "my_mediaDuration",
+     *       //   "mp3Audio": false,
      *       //   "name": "my_name",
      *       //   "notes": "my_notes",
      *       //   "obaIcon": {},
+     *       //   "oggAudio": false,
      *       //   "progressOffset": {},
      *       //   "requireHtml5": false,
      *       //   "requireMraid": false,
@@ -8597,9 +8676,11 @@ export namespace displayvideo_v1 {
      *   //   "jsTrackerUrl": "my_jsTrackerUrl",
      *   //   "lineItemIds": [],
      *   //   "mediaDuration": "my_mediaDuration",
+     *   //   "mp3Audio": false,
      *   //   "name": "my_name",
      *   //   "notes": "my_notes",
      *   //   "obaIcon": {},
+     *   //   "oggAudio": false,
      *   //   "progressOffset": {},
      *   //   "requireHtml5": false,
      *   //   "requireMraid": false,
@@ -8791,8 +8872,163 @@ export namespace displayvideo_v1 {
 
   export class Resource$Advertisers$Insertionorders {
     context: APIRequestContext;
+    targetingTypes: Resource$Advertisers$Insertionorders$Targetingtypes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.targetingTypes = new Resource$Advertisers$Insertionorders$Targetingtypes(
+        this.context
+      );
+    }
+
+    /**
+     * Lists assigned targeting options of an insertion order across targeting types.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.insertionOrders.bulkListInsertionOrderAssignedTargetingOptions(
+     *     {
+     *       // Required. The ID of the advertiser the insertion order belongs to.
+     *       advertiserId: '[^/]+',
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     *       filter: 'placeholder-value',
+     *       // Required. The ID of the insertion order to list assigned targeting options for.
+     *       insertionOrderId: '[^/]+',
+     *       // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListInsertionOrderAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkListInsertionOrderAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkListInsertionOrderAssignedTargetingOptions(
+      params?: Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>;
+    bulkListInsertionOrderAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkListInsertionOrderAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>,
+      callback: BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
+    ): void;
+    bulkListInsertionOrderAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions,
+      callback: BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
+    ): void;
+    bulkListInsertionOrderAssignedTargetingOptions(
+      callback: BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
+    ): void;
+    bulkListInsertionOrderAssignedTargetingOptions(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions
+        | BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}:bulkListInsertionOrderAssignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'insertionOrderId'],
+        pathParams: ['advertiserId', 'insertionOrderId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkListInsertionOrderAssignedTargetingOptionsResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -9547,6 +9783,33 @@ export namespace displayvideo_v1 {
     }
   }
 
+  export interface Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the insertion order belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Required. The ID of the insertion order to list assigned targeting options for.
+     */
+    insertionOrderId?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListInsertionOrderAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
   export interface Params$Resource$Advertisers$Insertionorders$Create
     extends StandardParameters {
     /**
@@ -9623,6 +9886,420 @@ export namespace displayvideo_v1 {
      * Request body metadata
      */
     requestBody?: Schema$InsertionOrder;
+  }
+
+  export class Resource$Advertisers$Insertionorders$Targetingtypes {
+    context: APIRequestContext;
+    assignedTargetingOptions: Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.assignedTargetingOptions = new Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a single targeting option assigned to an insertion order.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.insertionOrders.targetingTypes.assignedTargetingOptions.get(
+     *     {
+     *       // Required. The ID of the advertiser the insertion order belongs to.
+     *       advertiserId: '[^/]+',
+     *       // Required. An identifier unique to the targeting type in this insertion order that identifies the assigned targeting option being requested.
+     *       assignedTargetingOptionId: '[^/]+',
+     *       // Required. The ID of the insertion order the assigned targeting option belongs to.
+     *       insertionOrderId: '[^/]+',
+     *       // Required. Identifies the type of this assigned targeting option.
+     *       targetingType: '[^/]+',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageRangeDetails": {},
+     *   //   "appCategoryDetails": {},
+     *   //   "appDetails": {},
+     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "audienceGroupDetails": {},
+     *   //   "authorizedSellerStatusDetails": {},
+     *   //   "browserDetails": {},
+     *   //   "carrierAndIspDetails": {},
+     *   //   "categoryDetails": {},
+     *   //   "channelDetails": {},
+     *   //   "contentInstreamPositionDetails": {},
+     *   //   "contentOutstreamPositionDetails": {},
+     *   //   "dayAndTimeDetails": {},
+     *   //   "deviceMakeModelDetails": {},
+     *   //   "deviceTypeDetails": {},
+     *   //   "digitalContentLabelExclusionDetails": {},
+     *   //   "environmentDetails": {},
+     *   //   "exchangeDetails": {},
+     *   //   "genderDetails": {},
+     *   //   "geoRegionDetails": {},
+     *   //   "householdIncomeDetails": {},
+     *   //   "inheritance": "my_inheritance",
+     *   //   "inventorySourceDetails": {},
+     *   //   "inventorySourceGroupDetails": {},
+     *   //   "keywordDetails": {},
+     *   //   "languageDetails": {},
+     *   //   "name": "my_name",
+     *   //   "negativeKeywordListDetails": {},
+     *   //   "onScreenPositionDetails": {},
+     *   //   "operatingSystemDetails": {},
+     *   //   "parentalStatusDetails": {},
+     *   //   "proximityLocationListDetails": {},
+     *   //   "regionalLocationListDetails": {},
+     *   //   "sensitiveCategoryExclusionDetails": {},
+     *   //   "subExchangeDetails": {},
+     *   //   "targetingType": "my_targetingType",
+     *   //   "thirdPartyVerifierDetails": {},
+     *   //   "urlDetails": {},
+     *   //   "userRewardedContentDetails": {},
+     *   //   "videoPlayerSizeDetails": {},
+     *   //   "viewabilityDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    get(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Get,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AssignedTargetingOption>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Get
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AssignedTargetingOption>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'advertiserId',
+          'insertionOrderId',
+          'targetingType',
+          'assignedTargetingOptionId',
+        ],
+        pathParams: [
+          'advertiserId',
+          'assignedTargetingOptionId',
+          'insertionOrderId',
+          'targetingType',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AssignedTargetingOption>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
+      }
+    }
+
+    /**
+     * Lists the targeting options assigned to an insertion order.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.insertionOrders.targetingTypes.assignedTargetingOptions.list(
+     *     {
+     *       // Required. The ID of the advertiser the insertion order belongs to.
+     *       advertiserId: '[^/]+',
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     *       filter: 'placeholder-value',
+     *       // Required. The ID of the insertion order to list assigned targeting options for.
+     *       insertionOrderId: '[^/]+',
+     *       // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInsertionOrderAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Identifies the type of assigned targeting options to list.
+     *       targetingType: '[^/]+',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInsertionOrderAssignedTargetingOptionsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInsertionOrderAssignedTargetingOptionsResponse>,
+      callback: BodyResponseCallback<Schema$ListInsertionOrderAssignedTargetingOptionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$List,
+      callback: BodyResponseCallback<Schema$ListInsertionOrderAssignedTargetingOptionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListInsertionOrderAssignedTargetingOptionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$List
+        | BodyResponseCallback<Schema$ListInsertionOrderAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInsertionOrderAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInsertionOrderAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInsertionOrderAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/insertionOrders/{+insertionOrderId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'insertionOrderId', 'targetingType'],
+        pathParams: ['advertiserId', 'insertionOrderId', 'targetingType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListInsertionOrderAssignedTargetingOptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListInsertionOrderAssignedTargetingOptionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the insertion order belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Required. An identifier unique to the targeting type in this insertion order that identifies the assigned targeting option being requested.
+     */
+    assignedTargetingOptionId?: string;
+    /**
+     * Required. The ID of the insertion order the assigned targeting option belongs to.
+     */
+    insertionOrderId?: string;
+    /**
+     * Required. Identifies the type of this assigned targeting option.
+     */
+    targetingType?: string;
+  }
+  export interface Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the insertion order belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Required. The ID of the insertion order to list assigned targeting options for.
+     */
+    insertionOrderId?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInsertionOrderAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. Identifies the type of assigned targeting options to list.
+     */
+    targetingType?: string;
   }
 
   export class Resource$Advertisers$Lineitems {
@@ -9986,6 +10663,7 @@ export namespace displayvideo_v1 {
      *       //   "inventorySourceIds": [],
      *       //   "lineItemId": "my_lineItemId",
      *       //   "lineItemType": "my_lineItemType",
+     *       //   "mobileApp": {},
      *       //   "name": "my_name",
      *       //   "pacing": {},
      *       //   "partnerCosts": [],
@@ -10015,6 +10693,7 @@ export namespace displayvideo_v1 {
      *   //   "inventorySourceIds": [],
      *   //   "lineItemId": "my_lineItemId",
      *   //   "lineItemType": "my_lineItemType",
+     *   //   "mobileApp": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
      *   //   "partnerCosts": [],
@@ -10295,6 +10974,7 @@ export namespace displayvideo_v1 {
      *   //   "inventorySourceIds": [],
      *   //   "lineItemId": "my_lineItemId",
      *   //   "lineItemType": "my_lineItemType",
+     *   //   "mobileApp": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
      *   //   "partnerCosts": [],
@@ -10591,6 +11271,7 @@ export namespace displayvideo_v1 {
      *       //   "inventorySourceIds": [],
      *       //   "lineItemId": "my_lineItemId",
      *       //   "lineItemType": "my_lineItemType",
+     *       //   "mobileApp": {},
      *       //   "name": "my_name",
      *       //   "pacing": {},
      *       //   "partnerCosts": [],
@@ -10620,6 +11301,7 @@ export namespace displayvideo_v1 {
      *   //   "inventorySourceIds": [],
      *   //   "lineItemId": "my_lineItemId",
      *   //   "lineItemType": "my_lineItemType",
+     *   //   "mobileApp": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
      *   //   "partnerCosts": [],
