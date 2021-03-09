@@ -264,7 +264,7 @@
       }
     }
   },
-  "revision": "20201107",
+  "revision": "20210302",
   "rootUrl": "https://billingbudgets.googleapis.com/",
   "schemas": {
     "GoogleCloudBillingBudgetsV1beta1AllUpdatesRule": {
@@ -283,18 +283,18 @@
           "type": "array"
         },
         "pubsubTopic": {
-          "description": "Optional. The name of the Pub/Sub topic where budget related messages will be published, in the form `projects/{project_id}/topics/{topic_id}`. Updates are sent at regular intervals to the topic. The topic needs to be created before the budget is created; see https://cloud.google.com/billing/docs/how-to/budgets#manage-notifications for more details. Caller is expected to have `pubsub.topics.setIamPolicy` permission on the topic when it's set for a budget, otherwise, the API call will fail with PERMISSION_DENIED. See https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications for more details on Pub/Sub roles and permissions.",
+          "description": "Optional. The name of the Pub/Sub topic where budget related messages will be published, in the form `projects/{project_id}/topics/{topic_id}`. Updates are sent at regular intervals to the topic. The topic needs to be created before the budget is created; see https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications for more details. Caller is expected to have `pubsub.topics.setIamPolicy` permission on the topic when it's set for a budget, otherwise, the API call will fail with PERMISSION_DENIED. See https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#permissions_required_for_this_task for more details on Pub/Sub roles and permissions.",
           "type": "string"
         },
         "schemaVersion": {
-          "description": "Optional. The schema version of the notification sent to `pubsub_topic`. Only \"1.0\" is accepted. It represents the JSON schema as defined in https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format",
+          "description": "Optional. Required when AllUpdatesRule.pubsub_topic is set. The schema version of the notification sent to AllUpdatesRule.pubsub_topic. Only \"1.0\" is accepted. It represents the JSON schema as defined in https://cloud.google.com/billing/docs/how-to/budgets-programmatic-notifications#notification_format.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudBillingBudgetsV1beta1Budget": {
-      "description": "A budget is a plan that describes what you expect to spend on Cloud projects, plus the rules to execute as spend is tracked against that plan, (for example, send an alert when 90% of the target spend is met). Currently all plans are monthly budgets so the usage period(s) tracked are implied (calendar months of usage back-to-back).",
+      "description": "A budget is a plan that describes what you expect to spend on Cloud projects, plus the rules to execute as spend is tracked against that plan, (for example, send an alert when 90% of the target spend is met). The budget time period is configurable, with options such as month (default), quarter, year, or custom time period.",
       "id": "GoogleCloudBillingBudgetsV1beta1Budget",
       "properties": {
         "allUpdatesRule": {
@@ -338,11 +338,11 @@
       "properties": {
         "lastPeriodAmount": {
           "$ref": "GoogleCloudBillingBudgetsV1beta1LastPeriodAmount",
-          "description": "Use the last period's actual spend as the budget for the present period."
+          "description": "Use the last period's actual spend as the budget for the present period. Cannot be set in combination with Filter.custom_period."
         },
         "specifiedAmount": {
           "$ref": "GoogleTypeMoney",
-          "description": "A specified amount to use as the budget. `currency_code` is optional. If specified, it must match the currency of the billing account. The `currency_code` is provided on output."
+          "description": "A specified amount to use as the budget. `currency_code` is optional. If specified when creating a budget, it must match the currency of the billing account. If specified when updating a budget, it must match the currency_code of the existing budget. The `currency_code` is provided on output."
         }
       },
       "type": "object"
@@ -358,10 +358,41 @@
       },
       "type": "object"
     },
+    "GoogleCloudBillingBudgetsV1beta1CustomPeriod": {
+      "description": "All date times begin at 12 AM US and Canadian Pacific Time (UTC-8).",
+      "id": "GoogleCloudBillingBudgetsV1beta1CustomPeriod",
+      "properties": {
+        "endDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Optional. The end date of the time period. Budgets with elapsed end date won't be processed. If unset, specifies to track all usage incurred since the start_date."
+        },
+        "startDate": {
+          "$ref": "GoogleTypeDate",
+          "description": "Required. The start date must be after January 1, 2017."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudBillingBudgetsV1beta1Filter": {
       "description": "A filter for a budget, limiting the scope of the cost to calculate.",
       "id": "GoogleCloudBillingBudgetsV1beta1Filter",
       "properties": {
+        "calendarPeriod": {
+          "description": "Optional. Specifies to track usage for recurring calendar period. E.g. Assume that CalendarPeriod.QUARTER is set. The budget will track usage from April 1 to June 30, when current calendar month is April, May, June. After that, it will track usage from July 1 to September 30 when current calendar month is July, August, September, and so on.",
+          "enum": [
+            "CALENDAR_PERIOD_UNSPECIFIED",
+            "MONTH",
+            "QUARTER",
+            "YEAR"
+          ],
+          "enumDescriptions": [
+            "",
+            "A month. Month starts on the first day of each month, such as January 1, February 1, March 1, and so on.",
+            "A quarter. Quarters start on dates January 1, April 1, July 1, and October 1 of each year.",
+            "A year. Year starts on January 1."
+          ],
+          "type": "string"
+        },
         "creditTypes": {
           "description": "Optional. If Filter.credit_types_treatment is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be subtracted from gross cost to determine the spend for threshold calculations. If Filter.credit_types_treatment is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty. See [a list of acceptable credit type values](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type).",
           "items": {
@@ -384,6 +415,10 @@
             "Credit types specified in the credit_types field are subtracted from the gross cost to determine the spend for threshold calculations."
           ],
           "type": "string"
+        },
+        "customPeriod": {
+          "$ref": "GoogleCloudBillingBudgetsV1beta1CustomPeriod",
+          "description": "Optional. Specifies to track usage from any start date (required) to any end date (optional)."
         },
         "labels": {
           "additionalProperties": {
@@ -457,7 +492,7 @@
           "enumDescriptions": [
             "Unspecified threshold basis.",
             "Use current spend as the basis for comparison against the threshold.",
-            "Use forecasted spend for the period as the basis for comparison against the threshold."
+            "Use forecasted spend for the period as the basis for comparison against the threshold. Cannot be set in combination with Filter.custom_period."
           ],
           "type": "string"
         },
@@ -489,6 +524,28 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "GoogleProtobufEmpty",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleTypeDate": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "id": "GoogleTypeDate",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "GoogleTypeMoney": {
