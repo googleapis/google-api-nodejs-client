@@ -432,7 +432,7 @@ export namespace admin_datatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await datatransfer.applications.list({
-     *     // Immutable ID of the Google Apps account.
+     *     // Immutable ID of the Google Workspace account.
      *     customerId: 'placeholder-value',
      *     // Maximum number of results to return. Default is 100.
      *     maxResults: 'placeholder-value',
@@ -556,7 +556,7 @@ export namespace admin_datatransfer_v1 {
   export interface Params$Resource$Applications$List
     extends StandardParameters {
     /**
-     * Immutable ID of the Google Apps account.
+     * Immutable ID of the Google Workspace account.
      */
     customerId?: string;
     /**
@@ -889,7 +889,7 @@ export namespace admin_datatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await datatransfer.transfers.list({
-     *     // Immutable ID of the Google Apps account.
+     *     // Immutable ID of the Google Workspace account.
      *     customerId: 'placeholder-value',
      *     // Maximum number of results to return. Default is 100.
      *     maxResults: 'placeholder-value',
@@ -1025,7 +1025,7 @@ export namespace admin_datatransfer_v1 {
   }
   export interface Params$Resource$Transfers$List extends StandardParameters {
     /**
-     * Immutable ID of the Google Apps account.
+     * Immutable ID of the Google Workspace account.
      */
     customerId?: string;
     /**
