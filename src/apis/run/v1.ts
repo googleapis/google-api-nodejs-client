@@ -378,7 +378,7 @@ export namespace run_v1 {
      */
     containerPort?: number | null;
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported If specified, used to specify which protocol to use. Allowed values are "http1" and "h2c".
+     * (Optional) If specified, used to specify which protocol to use. Allowed values are "http1" and "h2c".
      */
     name?: string | null;
     /**
