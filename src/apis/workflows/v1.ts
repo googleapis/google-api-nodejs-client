@@ -36,9 +36,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace workflows_v1beta {
+export namespace workflows_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -108,7 +108,7 @@ export namespace workflows_v1beta {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const workflows = google.workflows('v1beta');
+   * const workflows = google.workflows('v1');
    * ```
    */
   export class Workflows {
@@ -344,7 +344,7 @@ export namespace workflows_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const workflows = google.workflows('v1beta');
+     * const workflows = google.workflows('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -441,7 +441,7 @@ export namespace workflows_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -474,7 +474,7 @@ export namespace workflows_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const workflows = google.workflows('v1beta');
+     * const workflows = google.workflows('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -579,7 +579,7 @@ export namespace workflows_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -649,7 +649,7 @@ export namespace workflows_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const workflows = google.workflows('v1beta');
+     * const workflows = google.workflows('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -740,7 +740,7 @@ export namespace workflows_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -773,7 +773,7 @@ export namespace workflows_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const workflows = google.workflows('v1beta');
+     * const workflows = google.workflows('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -870,7 +870,7 @@ export namespace workflows_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -903,7 +903,7 @@ export namespace workflows_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const workflows = google.workflows('v1beta');
+     * const workflows = google.workflows('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1008,7 +1008,7 @@ export namespace workflows_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}/operations').replace(
+            url: (rootUrl + '/v1/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1085,7 +1085,7 @@ export namespace workflows_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const workflows = google.workflows('v1beta');
+     * const workflows = google.workflows('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1201,7 +1201,7 @@ export namespace workflows_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/workflows').replace(
+            url: (rootUrl + '/v1/{+parent}/workflows').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1237,7 +1237,7 @@ export namespace workflows_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const workflows = google.workflows('v1beta');
+     * const workflows = google.workflows('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1334,7 +1334,7 @@ export namespace workflows_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -1367,7 +1367,7 @@ export namespace workflows_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const workflows = google.workflows('v1beta');
+     * const workflows = google.workflows('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1469,7 +1469,7 @@ export namespace workflows_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1502,7 +1502,7 @@ export namespace workflows_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const workflows = google.workflows('v1beta');
+     * const workflows = google.workflows('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1610,7 +1610,7 @@ export namespace workflows_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+parent}/workflows').replace(
+            url: (rootUrl + '/v1/{+parent}/workflows').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1646,7 +1646,7 @@ export namespace workflows_v1beta {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const workflows = google.workflows('v1beta');
+     * const workflows = google.workflows('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1762,7 +1762,7 @@ export namespace workflows_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options

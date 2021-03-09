@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "workflows:v1beta",
+  "id": "workflows:v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://workflows.mtls.googleapis.com/",
   "name": "workflows",
@@ -111,7 +111,7 @@
           "methods": {
             "get": {
               "description": "Gets information about a location.",
-              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
               "httpMethod": "GET",
               "id": "workflows.projects.locations.get",
               "parameterOrder": [
@@ -126,7 +126,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta/{+name}",
+              "path": "v1/{+name}",
               "response": {
                 "$ref": "Location"
               },
@@ -136,7 +136,7 @@
             },
             "list": {
               "description": "Lists information about the supported locations for this service.",
-              "flatPath": "v1beta/projects/{projectsId}/locations",
+              "flatPath": "v1/projects/{projectsId}/locations",
               "httpMethod": "GET",
               "id": "workflows.projects.locations.list",
               "parameterOrder": [
@@ -167,7 +167,7 @@
                   "type": "string"
                 }
               },
-              "path": "v1beta/{+name}/locations",
+              "path": "v1/{+name}/locations",
               "response": {
                 "$ref": "ListLocationsResponse"
               },
@@ -181,7 +181,7 @@
               "methods": {
                 "delete": {
                   "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "workflows.projects.locations.operations.delete",
                   "parameterOrder": [
@@ -196,7 +196,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -206,7 +206,7 @@
                 },
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "workflows.projects.locations.operations.get",
                   "parameterOrder": [
@@ -221,7 +221,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -231,7 +231,7 @@
                 },
                 "list": {
                   "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/operations",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "workflows.projects.locations.operations.list",
                   "parameterOrder": [
@@ -262,7 +262,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}/operations",
+                  "path": "v1/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
                   },
@@ -276,7 +276,7 @@
               "methods": {
                 "create": {
                   "description": "Creates a new workflow. If a workflow with the specified name already exists in the specified project and location, the long running operation will return ALREADY_EXISTS error.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/workflows",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows",
                   "httpMethod": "POST",
                   "id": "workflows.projects.locations.workflows.create",
                   "parameterOrder": [
@@ -296,7 +296,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+parent}/workflows",
+                  "path": "v1/{+parent}/workflows",
                   "request": {
                     "$ref": "Workflow"
                   },
@@ -309,7 +309,7 @@
                 },
                 "delete": {
                   "description": "Deletes a workflow with the specified name. This method also cancels and deletes all running executions of the workflow.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}",
                   "httpMethod": "DELETE",
                   "id": "workflows.projects.locations.workflows.delete",
                   "parameterOrder": [
@@ -324,7 +324,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -334,7 +334,7 @@
                 },
                 "get": {
                   "description": "Gets details of a single Workflow.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}",
                   "httpMethod": "GET",
                   "id": "workflows.projects.locations.workflows.get",
                   "parameterOrder": [
@@ -349,7 +349,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Workflow"
                   },
@@ -359,7 +359,7 @@
                 },
                 "list": {
                   "description": "Lists Workflows in a given project and location. The default order is not specified.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/workflows",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows",
                   "httpMethod": "GET",
                   "id": "workflows.projects.locations.workflows.list",
                   "parameterOrder": [
@@ -395,7 +395,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+parent}/workflows",
+                  "path": "v1/{+parent}/workflows",
                   "response": {
                     "$ref": "ListWorkflowsResponse"
                   },
@@ -405,7 +405,7 @@
                 },
                 "patch": {
                   "description": "Updates an existing workflow. Running this method has no impact on already running executions of the workflow. A new revision of the workflow may be created as a result of a successful update operation. In that case, such revision will be used in new workflow executions.",
-                  "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workflows/{workflowsId}",
                   "httpMethod": "PATCH",
                   "id": "workflows.projects.locations.workflows.patch",
                   "parameterOrder": [
@@ -426,7 +426,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta/{+name}",
+                  "path": "v1/{+name}",
                   "request": {
                     "$ref": "Workflow"
                   },
@@ -708,6 +708,6 @@
   },
   "servicePath": "",
   "title": "Workflows API",
-  "version": "v1beta",
+  "version": "v1",
   "version_module": true
 }
