@@ -690,7 +690,7 @@ export namespace gmail_v1 {
      */
     sendAsEmail?: string | null;
     /**
-     * An optional HTML signature that is included in messages composed with this alias in the Gmail web UI.
+     * An optional HTML signature that is included in messages composed with this alias in the Gmail web UI. This signature is added to new emails only.
      */
     signature?: string | null;
     /**
@@ -3909,7 +3909,7 @@ export namespace gmail_v1 {
      *   const res = await gmail.users.messages.get({
      *     // The format to return the message in.
      *     format: 'placeholder-value',
-     *     // The ID of the message to retrieve.
+     *     // The ID of the message to retrieve. This ID is usually retrieved using `messages.list`. The ID is also contained in the result when a message is inserted (`messages.insert`) or imported (`messages.import`).
      *     id: 'placeholder-value',
      *     // When given and format is `METADATA`, only include headers specified.
      *     metadataHeaders: 'placeholder-value',
@@ -5155,7 +5155,7 @@ export namespace gmail_v1 {
      */
     format?: string;
     /**
-     * The ID of the message to retrieve.
+     * The ID of the message to retrieve. This ID is usually retrieved using `messages.list`. The ID is also contained in the result when a message is inserted (`messages.insert`) or imported (`messages.import`).
      */
     id?: string;
     /**
