@@ -345,7 +345,7 @@
       }
     }
   },
-  "revision": "20201022",
+  "revision": "20210224",
   "rootUrl": "https://smartdevicemanagement.googleapis.com/",
   "schemas": {
     "GoogleHomeEnterpriseSdmV1Device": {
@@ -469,7 +469,7 @@
       "type": "object"
     },
     "GoogleHomeEnterpriseSdmV1ParentRelation": {
-      "description": "Represents device relationships, for instance, structure/room to which the device is assigned to. For now this is only filled in the enterprise flow.",
+      "description": "Represents device relationships, for instance, structure/room to which the device is assigned to.",
       "id": "GoogleHomeEnterpriseSdmV1ParentRelation",
       "properties": {
         "displayName": {
