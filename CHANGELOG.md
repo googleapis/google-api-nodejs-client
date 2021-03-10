@@ -4,6 +4,15 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+### [67.1.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/v67.1.1...v67.1.2) (2021-03-10)
+
+
+### Bug Fixes
+
+* add comment ([e949ef2](https://www.github.com/googleapis/google-api-nodejs-client/commit/e949ef26c565fe4b5df83d91c2fc136240652769))
+* **deps:** update dependency open to v8 ([#2532](https://www.github.com/googleapis/google-api-nodejs-client/issues/2532)) ([9b495b6](https://www.github.com/googleapis/google-api-nodejs-client/commit/9b495b68ae6ab0b5a9260c49c452037a5b6f4080))
+* temporary fix for flaky test related to mocha bug; ([28e203d](https://www.github.com/googleapis/google-api-nodejs-client/commit/28e203d771938e44b2a12d250492e99a32f2403d))
+
 ### [67.1.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/v67.1.0...v67.1.1) (2021-03-02)
 
 
