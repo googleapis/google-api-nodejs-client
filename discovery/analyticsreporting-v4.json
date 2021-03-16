@@ -6,7 +6,7 @@
           "description": "View and manage your Google Analytics data"
         },
         "https://www.googleapis.com/auth/analytics.readonly": {
-          "description": "View your Google Analytics data"
+          "description": "See and download your Google Analytics data"
         }
       }
     }
@@ -155,7 +155,7 @@
       }
     }
   },
-  "revision": "20200929",
+  "revision": "20210227",
   "rootUrl": "https://analyticsreporting.googleapis.com/",
   "schemas": {
     "Activity": {

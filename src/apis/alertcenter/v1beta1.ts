@@ -101,7 +101,7 @@ export namespace alertcenter_v1beta1 {
   }
 
   /**
-   * G Suite Alert Center API
+   * Google Workspace Alert Center API
    *
    * Manages alerts on issues affecting your domain.
    *
@@ -141,7 +141,11 @@ export namespace alertcenter_v1beta1 {
     loginDetails?: Schema$LoginDetails;
   }
   /**
-   * Alerts from G Suite Security Center rules service configured by admin.
+   * Metadata related to the action.
+   */
+  export interface Schema$ActionInfo {}
+  /**
+   * Alerts from Google Workspace Security Center rules service configured by an admin.
    */
   export interface Schema$ActivityRule {
     /**
@@ -242,7 +246,7 @@ export namespace alertcenter_v1beta1 {
      */
     startTime?: string | null;
     /**
-     * Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [G Suite Alert types](/admin-sdk/alertcenter/reference/alert-types).
+     * Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [Google Workspace Alert types](/admin-sdk/alertcenter/reference/alert-types).
      */
     type?: string | null;
     /**
@@ -360,7 +364,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string[] | null;
     /**
-     * Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with.
+     * Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with.
      */
     customerId?: string | null;
   }
@@ -386,7 +390,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string[] | null;
     /**
-     * Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with.
+     * Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with.
      */
     customerId?: string | null;
   }
@@ -557,7 +561,7 @@ export namespace alertcenter_v1beta1 {
     subjectText?: string | null;
   }
   /**
-   * An incident reported by Google Operations for a G Suite application.
+   * An incident reported by Google Operations for a Google Workspace application.
    */
   export interface Schema$GoogleOperations {
     /**
@@ -565,13 +569,17 @@ export namespace alertcenter_v1beta1 {
      */
     affectedUserEmails?: string[] | null;
     /**
-     * Optional. Application-specific data for an incident, provided when the G Suite application which reported the incident cannot be completely restored to a valid state.
+     * Optional. Application-specific data for an incident, provided when the Google Workspace application which reported the incident cannot be completely restored to a valid state.
      */
     attachmentData?: Schema$Attachment;
     /**
      * A detailed, freeform incident description.
      */
     description?: string | null;
+    /**
+     * A header to display above the incident message. Typically used to attach a localized notice on the timeline for followup comms translations.
+     */
+    header?: string | null;
     /**
      * A one-line incident description.
      */
@@ -668,7 +676,7 @@ export namespace alertcenter_v1beta1 {
     userDefinedDetector?: Schema$UserDefinedDetectorInfo;
   }
   /**
-   * Settings for callback notifications. For more details see [G Suite Alert Notification](/admin-sdk/alertcenter/guides/notifications).
+   * Settings for callback notifications. For more details see [Google Workspace Alert Notification](/admin-sdk/alertcenter/guides/notifications).
    */
   export interface Schema$Notification {
     /**
@@ -750,7 +758,7 @@ export namespace alertcenter_v1beta1 {
     resourceName?: string | null;
   }
   /**
-   * Common alert information about violated rules that are configured by G Suite administrators.
+   * Common alert information about violated rules that are configured by Google Workspace administrators.
    */
   export interface Schema$RuleViolationInfo {
     /**
@@ -781,6 +789,10 @@ export namespace alertcenter_v1beta1 {
      * Trigger of the rule.
      */
     trigger?: string | null;
+    /**
+     * Metadata related to the triggered actions.
+     */
+    triggeredActionInfo?: Schema$ActionInfo[];
     /**
      * Actions applied as a consequence of the rule being triggered.
      */
@@ -884,7 +896,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$UndeleteAlertRequest {
     /**
-     * Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string | null;
   }
@@ -1238,7 +1250,7 @@ export namespace alertcenter_v1beta1 {
      *   const res = await alertcenter.alerts.delete({
      *     // Required. The identifier of the alert to delete.
      *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1366,7 +1378,7 @@ export namespace alertcenter_v1beta1 {
      *   const res = await alertcenter.alerts.get({
      *     // Required. The identifier of the alert to retrieve.
      *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1508,7 +1520,7 @@ export namespace alertcenter_v1beta1 {
      *   const res = await alertcenter.alerts.getMetadata({
      *     // Required. The identifier of the alert this metadata belongs to.
      *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the G Suite organization account of the customer the alert metadata is associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert metadata is associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1643,7 +1655,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await alertcenter.alerts.list({
-     *     // Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
      *     // Optional. A query string for filtering alert results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
      *     filter: 'placeholder-value',
@@ -1922,7 +1934,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
   }
@@ -1932,7 +1944,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
   }
@@ -1943,13 +1955,13 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the G Suite organization account of the customer the alert metadata is associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert metadata is associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
   }
   export interface Params$Resource$Alerts$List extends StandardParameters {
     /**
-     * Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
     /**
@@ -2016,7 +2028,7 @@ export namespace alertcenter_v1beta1 {
      *   const res = await alertcenter.alerts.feedback.create({
      *     // Required. The identifier of the alert this feedback belongs to.
      *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2165,7 +2177,7 @@ export namespace alertcenter_v1beta1 {
      *   const res = await alertcenter.alerts.feedback.list({
      *     // Required. The alert identifier. The "-" wildcard could be used to represent all alerts.
      *     alertId: 'placeholder-value',
-     *     // Optional. The unique identifier of the G Suite organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
      *     // Optional. A query string for filtering alert feedback results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
      *     filter: 'placeholder-value',
@@ -2284,7 +2296,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
 
@@ -2300,7 +2312,7 @@ export namespace alertcenter_v1beta1 {
      */
     alertId?: string;
     /**
-     * Optional. The unique identifier of the G Suite organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
     /**
@@ -2342,7 +2354,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await alertcenter.getSettings({
-     *     // Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2468,7 +2480,7 @@ export namespace alertcenter_v1beta1 {
      *
      *   // Do the magic
      *   const res = await alertcenter.updateSettings({
-     *     // Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
+     *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2579,14 +2591,14 @@ export namespace alertcenter_v1beta1 {
   export interface Params$Resource$V1beta1$Getsettings
     extends StandardParameters {
     /**
-     * Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
   }
   export interface Params$Resource$V1beta1$Updatesettings
     extends StandardParameters {
     /**
-     * Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
+     * Optional. The unique identifier of the Google Workspace organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
      */
     customerId?: string;
 

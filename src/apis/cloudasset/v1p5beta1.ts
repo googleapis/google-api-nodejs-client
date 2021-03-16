@@ -231,6 +231,139 @@ export namespace cloudasset_v1p5beta1 {
     title?: string | null;
   }
   /**
+   * An asset in Google Cloud. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
+   */
+  export interface Schema$GoogleCloudAssetV1p7beta1Asset {
+    /**
+     * Please also refer to the [access level user guide](https://cloud.google.com/access-context-manager/docs/overview#access-levels).
+     */
+    accessLevel?: Schema$GoogleIdentityAccesscontextmanagerV1AccessLevel;
+    /**
+     * Please also refer to the [access policy user guide](https://cloud.google.com/access-context-manager/docs/overview#access-policies).
+     */
+    accessPolicy?: Schema$GoogleIdentityAccesscontextmanagerV1AccessPolicy;
+    /**
+     * The ancestry path of an asset in Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), represented as a list of relative resource names. An ancestry path starts with the closest ancestor in the hierarchy and ends at root. If the asset is a project, folder, or organization, the ancestry path starts from the asset itself. Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
+     */
+    ancestors?: string[] | null;
+    /**
+     * The type of the asset. Example: `compute.googleapis.com/Disk` See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
+     */
+    assetType?: string | null;
+    /**
+     * A representation of the Cloud IAM policy set on a Google Cloud resource. There can be a maximum of one Cloud IAM policy set on any given resource. In addition, Cloud IAM policies inherit their granted access scope from any policies set on parent resources in the resource hierarchy. Therefore, the effectively policy is the union of both the policy set on this resource and each policy set on all of the resource's ancestry resource levels in the hierarchy. See [this topic](https://cloud.google.com/iam/docs/policies#inheritance) for more information.
+     */
+    iamPolicy?: Schema$Policy;
+    /**
+     * The full name of the asset. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1` See [Resource names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.
+     */
+    name?: string | null;
+    /**
+     * A representation of an [organization policy](https://cloud.google.com/resource-manager/docs/organization-policy/overview#organization_policy). There can be more than one organization policy with different constraints set on a given resource.
+     */
+    orgPolicy?: Schema$GoogleCloudOrgpolicyV1Policy[];
+    /**
+     * The related assets of the asset of one relationship type. One asset only represents one type of relationship.
+     */
+    relatedAssets?: Schema$GoogleCloudAssetV1p7beta1RelatedAssets;
+    /**
+     * A representation of the resource.
+     */
+    resource?: Schema$GoogleCloudAssetV1p7beta1Resource;
+    /**
+     * Please also refer to the [service perimeter user guide](https://cloud.google.com/vpc-service-controls/docs/overview).
+     */
+    servicePerimeter?: Schema$GoogleIdentityAccesscontextmanagerV1ServicePerimeter;
+    /**
+     * The last update timestamp of an asset. update_time is updated when create/update/delete operation is performed.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * An asset identify in Google Cloud which contains its name, type and ancestors. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
+   */
+  export interface Schema$GoogleCloudAssetV1p7beta1RelatedAsset {
+    /**
+     * The ancestors of an asset in Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), represented as a list of relative resource names. An ancestry path starts with the closest ancestor in the hierarchy and ends at root. Example: `["projects/123456789", "folders/5432", "organizations/1234"]`
+     */
+    ancestors?: string[] | null;
+    /**
+     * The full name of the asset. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1` See [Resource names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information.
+     */
+    asset?: string | null;
+    /**
+     * The type of the asset. Example: `compute.googleapis.com/Disk` See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
+     */
+    assetType?: string | null;
+  }
+  /**
+   * The detailed related assets with the `relationship_type`.
+   */
+  export interface Schema$GoogleCloudAssetV1p7beta1RelatedAssets {
+    /**
+     * The peer resources of the relationship.
+     */
+    assets?: Schema$GoogleCloudAssetV1p7beta1RelatedAsset[];
+    /**
+     * The detailed relation attributes.
+     */
+    relationshipAttributes?: Schema$GoogleCloudAssetV1p7beta1RelationshipAttributes;
+  }
+  /**
+   * The relationship attributes which include `type`, `source_resource_type`, `target_resource_type` and `action`.
+   */
+  export interface Schema$GoogleCloudAssetV1p7beta1RelationshipAttributes {
+    /**
+     * The detail of the relationship, e.g. `contains`, `attaches`
+     */
+    action?: string | null;
+    /**
+     * The source asset type. Example: `compute.googleapis.com/Instance`
+     */
+    sourceResourceType?: string | null;
+    /**
+     * The target asset type. Example: `compute.googleapis.com/Disk`
+     */
+    targetResourceType?: string | null;
+    /**
+     * The unique identifier of the relationship type. Example: `INSTANCE_TO_INSTANCEGROUP`
+     */
+    type?: string | null;
+  }
+  /**
+   * A representation of a Google Cloud resource.
+   */
+  export interface Schema$GoogleCloudAssetV1p7beta1Resource {
+    /**
+     * The content of the resource, in which some sensitive fields are removed and may not be present.
+     */
+    data?: {[key: string]: any} | null;
+    /**
+     * The URL of the discovery document containing the resource's JSON schema. Example: `https://www.googleapis.com/discovery/v1/apis/compute/v1/rest` This value is unspecified for resources that do not have an API based on a discovery document, such as Cloud Bigtable.
+     */
+    discoveryDocumentUri?: string | null;
+    /**
+     * The JSON schema name listed in the discovery document. Example: `Project` This value is unspecified for resources that do not have an API based on a discovery document, such as Cloud Bigtable.
+     */
+    discoveryName?: string | null;
+    /**
+     * The location of the resource in Google Cloud, such as its zone and region. For more information, see https://cloud.google.com/about/locations/.
+     */
+    location?: string | null;
+    /**
+     * The full name of the immediate parent of this resource. See [Resource Names](https://cloud.google.com/apis/design/resource_names#full_resource_name) for more information. For Google Cloud assets, this value is the parent resource defined in the [Cloud IAM policy hierarchy](https://cloud.google.com/iam/docs/overview#policy_hierarchy). Example: `//cloudresourcemanager.googleapis.com/projects/my_project_123` For third-party assets, this field may be set differently.
+     */
+    parent?: string | null;
+    /**
+     * The REST URL for accessing the resource. An HTTP `GET` request using this URL returns the resource itself. Example: `https://cloudresourcemanager.googleapis.com/v1/projects/my-project-123` This value is unspecified for resources without a REST API.
+     */
+    resourceUrl?: string | null;
+    /**
+     * The API version. Example: `v1`
+     */
+    version?: string | null;
+  }
+  /**
    * Used in `policy_type` to specify how `boolean_policy` will behave at this resource.
    */
   export interface Schema$GoogleCloudOrgpolicyV1BooleanPolicy {
@@ -348,6 +481,19 @@ export namespace cloudasset_v1p5beta1 {
     title?: string | null;
   }
   /**
+   * Identification for an API Operation.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1ApiOperation {
+    /**
+     * API methods or permissions to allow. Method or permission must belong to the service specified by `service_name` field. A single MethodSelector entry with `*` specified for the `method` field will allow all methods AND permissions for the service specified in `service_name`.
+     */
+    methodSelectors?: Schema$GoogleIdentityAccesscontextmanagerV1MethodSelector[];
+    /**
+     * The name of the API whose methods or permissions the IngressPolicy or EgressPolicy want to allow. A single ApiOperation with `service_name` field set to `*` will allow all methods AND permissions for all services.
+     */
+    serviceName?: string | null;
+  }
+  /**
    * `BasicLevel` is an `AccessLevel` using a set of recommended features.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1BasicLevel {
@@ -428,6 +574,114 @@ export namespace cloudasset_v1p5beta1 {
     requireScreenlock?: boolean | null;
   }
   /**
+   * Defines the conditions under which an EgressPolicy matches a request. Conditions based on information about the source of the request. Note that if the destination of the request is protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1EgressFrom {
+    /**
+     * A list of identities that are allowed access through this [EgressPolicy]. Should be in the format of email address. The email address should represent individual user or service account only.
+     */
+    identities?: string[] | null;
+    /**
+     * Specifies the type of identities that are allowed access to outside the perimeter. If left unspecified, then members of `identities` field will be allowed access.
+     */
+    identityType?: string | null;
+  }
+  /**
+   * Policy for egress from perimeter. EgressPolicies match requests based on `egress_from` and `egress_to` stanzas. For an EgressPolicy to match, both `egress_from` and `egress_to` stanzas must be matched. If an EgressPolicy matches a request, the request is allowed to span the ServicePerimeter boundary. For example, an EgressPolicy can be used to allow VMs on networks within the ServicePerimeter to access a defined set of projects outside the perimeter in certain contexts (e.g. to read data from a Cloud Storage bucket or query against a BigQuery dataset). EgressPolicies are concerned with the *resources* that a request relates as well as the API services and API actions being used. They do not related to the direction of data movement. More detailed documentation for this concept can be found in the descriptions of EgressFrom and EgressTo.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1EgressPolicy {
+    /**
+     * Defines conditions on the source of a request causing this EgressPolicy to apply.
+     */
+    egressFrom?: Schema$GoogleIdentityAccesscontextmanagerV1EgressFrom;
+    /**
+     * Defines the conditions on the ApiOperation and destination resources that cause this EgressPolicy to apply.
+     */
+    egressTo?: Schema$GoogleIdentityAccesscontextmanagerV1EgressTo;
+  }
+  /**
+   * Defines the conditions under which an EgressPolicy matches a request. Conditions are based on information about the ApiOperation intended to be performed on the `resources` specified. Note that if the destination of the request is protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1EgressTo {
+    /**
+     * A list of ApiOperations that this egress rule applies to. A request matches if it contains an operation/service in this list.
+     */
+    operations?: Schema$GoogleIdentityAccesscontextmanagerV1ApiOperation[];
+    /**
+     * A list of resources, currently only projects in the form `projects/`, that match this to stanza. A request matches if it contains a resource in this list. If `*` is specified for resources, then this EgressTo rule will authorize access to all resources outside the perimeter.
+     */
+    resources?: string[] | null;
+  }
+  /**
+   * Defines the conditions under which an IngressPolicy matches a request. Conditions are based on information about the source of the request.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1IngressFrom {
+    /**
+     * A list of identities that are allowed access through this ingress policy. Should be in the format of email address. The email address should represent individual user or service account only.
+     */
+    identities?: string[] | null;
+    /**
+     * Specifies the type of identities that are allowed access from outside the perimeter. If left unspecified, then members of `identities` field will be allowed access.
+     */
+    identityType?: string | null;
+    /**
+     * Sources that this IngressPolicy authorizes access from.
+     */
+    sources?: Schema$GoogleIdentityAccesscontextmanagerV1IngressSource[];
+  }
+  /**
+   * Policy for ingress into ServicePerimeter. IngressPolicies match requests based on `ingress_from` and `ingress_to` stanzas. For an ingress policy to match, both the `ingress_from` and `ingress_to` stanzas must be matched. If an IngressPolicy matches a request, the request is allowed through the perimeter boundary from outside the perimeter. For example, access from the internet can be allowed either based on an AccessLevel or, for traffic hosted on Google Cloud, the project of the source network. For access from private networks, using the project of the hosting network is required. Individual ingress policies can be limited by restricting which services and/or actions they match using the `ingress_to` field.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1IngressPolicy {
+    /**
+     * Defines the conditions on the source of a request causing this IngressPolicy to apply.
+     */
+    ingressFrom?: Schema$GoogleIdentityAccesscontextmanagerV1IngressFrom;
+    /**
+     * Defines the conditions on the ApiOperation and request destination that cause this IngressPolicy to apply.
+     */
+    ingressTo?: Schema$GoogleIdentityAccesscontextmanagerV1IngressTo;
+  }
+  /**
+   * The source that IngressPolicy authorizes access from.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1IngressSource {
+    /**
+     * An AccessLevel resource name that allow resources within the ServicePerimeters to be accessed from the internet. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If no AccessLevel names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If `*` is specified, then all IngressSources will be allowed.
+     */
+    accessLevel?: string | null;
+    /**
+     * A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be allowed to access perimeter data. Currently only projects are allowed. Format: `projects/{project_number\}` The project may be in any Google Cloud organization, not just the organization that the perimeter is defined in. `*` is not allowed, the case of allowing all Google Cloud resources only is not supported.
+     */
+    resource?: string | null;
+  }
+  /**
+   * Defines the conditions under which an IngressPolicy matches a request. Conditions are based on information about the ApiOperation intended to be performed on the destination of the request.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1IngressTo {
+    /**
+     * A list of ApiOperations the sources specified in corresponding IngressFrom are allowed to perform in this ServicePerimeter.
+     */
+    operations?: Schema$GoogleIdentityAccesscontextmanagerV1ApiOperation[];
+    /**
+     * A list of resources, currently only projects in the form `projects/`, protected by this ServicePerimeter that are allowed to be accessed by sources defined in the corresponding IngressFrom. A request matches if it contains a resource in this list. If `*` is specified for resources, then this IngressTo rule will authorize access to all resources inside the perimeter, provided that the request also matches the `operations` field.
+     */
+    resources?: string[] | null;
+  }
+  /**
+   * An allowed method or permission of a service specified in ApiOperation.
+   */
+  export interface Schema$GoogleIdentityAccesscontextmanagerV1MethodSelector {
+    /**
+     * Value for `method` should be a valid method name for the corresponding `service_name` in ApiOperation. If `*` used as value for `method`, then ALL methods and permissions are allowed.
+     */
+    method?: string | null;
+    /**
+     * Value for `permission` should be a valid Cloud IAM permission for the corresponding `service_name` in ApiOperation.
+     */
+    permission?: string | null;
+  }
+  /**
    * A restriction on the OS type and version of devices making requests.
    */
   export interface Schema$GoogleIdentityAccesscontextmanagerV1OsConstraint {
@@ -486,6 +740,14 @@ export namespace cloudasset_v1p5beta1 {
      */
     accessLevels?: string[] | null;
     /**
+     * List of EgressPolicies to apply to the perimeter. A perimeter may have multiple EgressPolicies, each of which is evaluated separately. Access is granted if any EgressPolicy grants it. Must be empty for a perimeter bridge.
+     */
+    egressPolicies?: Schema$GoogleIdentityAccesscontextmanagerV1EgressPolicy[];
+    /**
+     * List of IngressPolicies to apply to the perimeter. A perimeter may have multiple IngressPolicies, each of which is evaluated separately. Access is granted if any Ingress Policy grants it. Must be empty for a perimeter bridge.
+     */
+    ingressPolicies?: Schema$GoogleIdentityAccesscontextmanagerV1IngressPolicy[];
+    /**
      * A list of Google Cloud resources that are inside of the service perimeter. Currently only projects are allowed. Format: `projects/{project_number\}`
      */
     resources?: string[] | null;
@@ -520,7 +782,7 @@ export namespace cloudasset_v1p5beta1 {
      */
     assets?: Schema$Asset[];
     /**
-     * Token to retrieve the next page of results. Set to empty if there are no remaining results.
+     * Token to retrieve the next page of results. It expires 72 hours after the page token for the first page is generated. Set to empty if there are no remaining results.
      */
     nextPageToken?: string | null;
     /**

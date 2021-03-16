@@ -351,7 +351,7 @@
       }
     }
   },
-  "revision": "20201112",
+  "revision": "20210304",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata": {
@@ -365,14 +365,16 @@
             "IL4",
             "CJIS",
             "FEDRAMP_HIGH",
-            "FEDRAMP_MODERATE"
+            "FEDRAMP_MODERATE",
+            "US_REGIONAL_ACCESS"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
             "Information protection as per DoD IL4 requirements.",
             "Criminal Justice Information Services (CJIS) Security policies.",
             "FedRAMP High data protection controls",
-            "FedRAMP Moderate data protection controls"
+            "FedRAMP Moderate data protection controls",
+            "Assured Workloads For US Regions data protection controls"
           ],
           "type": "string"
         },
@@ -425,14 +427,16 @@
             "IL4",
             "CJIS",
             "FEDRAMP_HIGH",
-            "FEDRAMP_MODERATE"
+            "FEDRAMP_MODERATE",
+            "US_REGIONAL_ACCESS"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
             "Information protection as per DoD IL4 requirements.",
             "Criminal Justice Information Services (CJIS) Security policies.",
             "FedRAMP High data protection controls",
-            "FedRAMP Moderate data protection controls"
+            "FedRAMP Moderate data protection controls",
+            "Assured Workloads For US Regions data protection controls"
           ],
           "type": "string"
         },
@@ -534,14 +538,16 @@
             "IL4",
             "CJIS",
             "FEDRAMP_HIGH",
-            "FEDRAMP_MODERATE"
+            "FEDRAMP_MODERATE",
+            "US_REGIONAL_ACCESS"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
             "Information protection as per DoD IL4 requirements.",
             "Criminal Justice Information Services (CJIS) Security policies.",
             "FedRAMP High data protection controls",
-            "FedRAMP Moderate data protection controls"
+            "FedRAMP Moderate data protection controls",
+            "Assured Workloads For US Regions data protection controls"
           ],
           "type": "string"
         },
@@ -580,14 +586,16 @@
             "IL4",
             "CJIS",
             "FEDRAMP_HIGH",
-            "FEDRAMP_MODERATE"
+            "FEDRAMP_MODERATE",
+            "US_REGIONAL_ACCESS"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
             "Information protection as per DoD IL4 requirements.",
             "Criminal Justice Information Services (CJIS) Security policies.",
             "FedRAMP High data protection controls",
-            "FedRAMP Moderate data protection controls"
+            "FedRAMP Moderate data protection controls",
+            "Assured Workloads For US Regions data protection controls"
           ],
           "type": "string"
         },

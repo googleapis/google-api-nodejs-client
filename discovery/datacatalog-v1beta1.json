@@ -108,7 +108,7 @@
     "catalog": {
       "methods": {
         "search": {
-          "description": "Searches Data Catalog for multiple resources like entries, tags that match a query. This is a custom method (https://cloud.google.com/apis/design/custom_methods) and does not return the complete resource, only the resource identifier and high level fields. Clients can subsequentally call `Get` methods. Note that Data Catalog search queries do not guarantee full recall. Query results that match your query may not be returned, even in subsequent result pages. Also note that results returned (and not returned) can vary across repeated search queries. See [Data Catalog Search Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference) for more information.",
+          "description": "Searches Data Catalog for multiple resources like entries, tags that match a query. This is a custom method (https://cloud.google.com/apis/design/custom_methods) and does not return the complete resource, only the resource identifier and high level fields. Clients can subsequently call `Get` methods. Note that Data Catalog search queries do not guarantee full recall. Query results that match your query may not be returned, even in subsequent result pages. Also note that results returned (and not returned) can vary across repeated search queries. See [Data Catalog Search Syntax](https://cloud.google.com/data-catalog/docs/how-to/search-reference) for more information.",
           "flatPath": "v1beta1/catalog:search",
           "httpMethod": "POST",
           "id": "datacatalog.catalog.search",
@@ -338,7 +338,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The fields to update on the entry group. If absent or empty, all modifiable fields are updated.",
+                      "description": "Names of fields whose values to overwrite on an entry group. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -578,14 +578,14 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Entry and its child resources may not actually be stored in the location in this name.",
+                          "description": "Output only. The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Entry and its child resources may not actually be stored in the location in this name.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entries/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "The fields to update on the entry. If absent or empty, all modifiable fields are updated. The following fields are modifiable: * For entries with type `DATA_STREAM`: * `schema` * For entries with type `FILESET` * `schema` * `display_name` * `description` * `gcs_fileset_spec` * `gcs_fileset_spec.file_patterns` * For entries with `user_specified_type` * `schema` * `display_name` * `description` * user_specified_type * user_specified_system * linked_resource * source_system_timestamps",
+                          "description": "Names of fields whose values to overwrite on an entry. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied. The following fields are modifiable: * For entries with type `DATA_STREAM`: * `schema` * For entries with type `FILESET`: * `schema` * `display_name` * `description` * `gcs_fileset_spec` * `gcs_fileset_spec.file_patterns` * For entries with `user_specified_type`: * `schema` * `display_name` * `description` * `user_specified_type` * `user_specified_system` * `linked_resource` * `source_system_timestamps`",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -740,7 +740,7 @@
                               "type": "string"
                             },
                             "updateMask": {
-                              "description": "The fields to update on the Tag. If absent or empty, all modifiable fields are updated. Currently the only modifiable field is the field `fields`.",
+                              "description": "Note: Currently, this parameter can only take `\"fields\"` as value. Names of fields whose values to overwrite on a tag. Currently, a tag has the only modifiable field with the name `fields`. In general, if this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied.",
                               "format": "google-fieldmask",
                               "location": "query",
                               "type": "string"
@@ -869,7 +869,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "The fields to update on the Tag. If absent or empty, all modifiable fields are updated. Currently the only modifiable field is the field `fields`.",
+                          "description": "Note: Currently, this parameter can only take `\"fields\"` as value. Names of fields whose values to overwrite on a tag. Currently, a tag has the only modifiable field with the name `fields`. In general, if this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -1025,7 +1025,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "The field mask specifies the parts of the template to overwrite. Allowed fields: * `display_name` If absent or empty, all of the allowed fields above will be updated.",
+                      "description": "Names of fields whose values to overwrite on a tag template. Currently, only `display_name` can be overwritten. In general, if this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1182,7 +1182,7 @@
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Optional. The field mask specifies the parts of the template to be updated. Allowed fields: * `display_name` * `type.enum_type` * `is_required` If `update_mask` is not set or empty, all of the allowed fields above will be updated. When updating an enum type, the provided values will be merged with the existing values. Therefore, enum values can only be added, existing enum values cannot be deleted nor renamed. Updating a template field from optional to required is NOT allowed.",
+                          "description": "Optional. Names of fields whose values to overwrite on an individual field of a tag template. The following fields are modifiable: * `display_name` * `type.enum_type` * `is_required` If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied with one exception: when updating an enum type, the provided values are merged with the existing values. Therefore, enum values can only be added, existing enum values cannot be deleted or renamed. Additionally, updating a template field from optional to required is *not* allowed.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -1808,7 +1808,7 @@
       }
     }
   },
-  "revision": "20201107",
+  "revision": "20210223",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1999,14 +1999,12 @@
           "enum": [
             "INTEGRATED_SYSTEM_UNSPECIFIED",
             "BIGQUERY",
-            "CLOUD_PUBSUB",
-            "DPMS"
+            "CLOUD_PUBSUB"
           ],
           "enumDescriptions": [
             "Default unknown system.",
             "BigQuery.",
-            "Cloud Pub/Sub.",
-            "Dataproc Metastore - Managed Hive Metastore."
+            "Cloud Pub/Sub."
           ],
           "readOnly": true,
           "type": "string"
@@ -2016,7 +2014,8 @@
           "type": "string"
         },
         "name": {
-          "description": "The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Entry and its child resources may not actually be stored in the location in this name.",
+          "description": "Output only. The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id}/locations/{location}/entryGroups/{entry_group_id}/entries/{entry_id} Note that this Entry and its child resources may not actually be stored in the location in this name.",
+          "readOnly": true,
           "type": "string"
         },
         "schema": {
@@ -2477,6 +2476,11 @@
       "properties": {
         "linkedResource": {
           "description": "The full name of the cloud resource the entry belongs to. See: https://cloud.google.com/apis/design/resource_names#full_resource_name. Example: * `//bigquery.googleapis.com/projects/projectId/datasets/datasetId/tables/tableId`",
+          "type": "string"
+        },
+        "modifyTime": {
+          "description": "Last-modified timestamp of the entry from the managing system.",
+          "format": "google-datetime",
           "type": "string"
         },
         "relativeResourceName": {

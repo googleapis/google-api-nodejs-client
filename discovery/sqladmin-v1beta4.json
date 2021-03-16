@@ -1167,7 +1167,7 @@
           ]
         },
         "truncateLog": {
-          "description": "Truncate MySQL general and slow query log tables",
+          "description": "Truncate MySQL general and slow query log tables MySQL only.",
           "flatPath": "sql/v1beta4/projects/{project}/instances/{instance}/truncateLog",
           "httpMethod": "POST",
           "id": "sql.instances.truncateLog",
@@ -1375,6 +1375,11 @@
                   "location": "path",
                   "required": true,
                   "type": "string"
+                },
+                "skipVerification": {
+                  "description": "Whether to skip the verification step (VESS).",
+                  "location": "query",
+                  "type": "boolean"
                 },
                 "syncMode": {
                   "description": "External sync mode.",
@@ -1829,7 +1834,7 @@
       }
     }
   },
-  "revision": "20201112",
+  "revision": "20210302",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -1874,6 +1879,10 @@
         },
         "message": {
           "description": "The warning message.",
+          "type": "string"
+        },
+        "region": {
+          "description": "The region name for REGION_UNREACHABLE warning.",
           "type": "string"
         }
       },
@@ -2062,7 +2071,7 @@
           "type": "string"
         },
         "type": {
-          "description": "The type of this run; can be either \"AUTOMATED\" or \"ON_DEMAND\".",
+          "description": "The type of this run; can be either \"AUTOMATED\" or \"ON_DEMAND\". This field defaults to \"ON_DEMAND\" and is ignored, when specified for insert requests.",
           "enum": [
             "SQL_BACKUP_RUN_TYPE_UNSPECIFIED",
             "AUTOMATED",
@@ -2212,7 +2221,7 @@
       "type": "object"
     },
     "DatabaseInstance": {
-      "description": "A Cloud SQL instance resource. Next field: 36",
+      "description": "A Cloud SQL instance resource.",
       "id": "DatabaseInstance",
       "properties": {
         "backendType": {
@@ -2380,7 +2389,7 @@
           "type": "string"
         },
         "satisfiesPzs": {
-          "description": "The status indicating if instance satisfies physical zone separation. Reserved for future use.",
+          "description": "The status indicating if instance satisfiesPzs. Reserved for future use.",
           "type": "boolean"
         },
         "scheduledMaintenance": {
@@ -2408,7 +2417,7 @@
           "description": "The user settings."
         },
         "state": {
-          "description": "The current serving state of the Cloud SQL instance. This can be one of the following. *SQL_INSTANCE_STATE_UNSPECIFIED*: The state of the instance is unknown. *RUNNABLE*: The instance has been stopped by owner. It is not currently running, but it's ready to be restarted. *SUSPENDED*: The instance is not available, for example due to problems with billing. for example due to problems with billing. *PENDING_DELETE*: The instance is being deleted. *PENDING_CREATE*: The instance is being created. *MAINTENANCE*: The instance is down for maintenance. *FAILED*: The instance creation failed.",
+          "description": "The current serving state of the Cloud SQL instance. This can be one of the following. *SQL_INSTANCE_STATE_UNSPECIFIED*: The state of the instance is unknown. *RUNNABLE*: The instance is running, or has been stopped by owner. *SUSPENDED*: The instance is not available, for example due to problems with billing. for example due to problems with billing. *PENDING_DELETE*: The instance is being deleted. *PENDING_CREATE*: The instance is being created. *MAINTENANCE*: The instance is down for maintenance. *FAILED*: The instance creation failed.",
           "enum": [
             "SQL_INSTANCE_STATE_UNSPECIFIED",
             "RUNNABLE",
@@ -2420,7 +2429,7 @@
           ],
           "enumDescriptions": [
             "The state of the instance is unknown.",
-            "The instance has been stopped by owner. It is not currently running, but it's ready to be restarted.",
+            "The instance is running, or has been stopped by owner.",
             "The instance is not available, for example due to problems with billing.",
             "The instance is being deleted.",
             "The instance is being created.",
@@ -2604,7 +2613,7 @@
           "type": "object"
         },
         "databases": {
-          "description": "Databases to be exported. *MySQL instances:* If *fileType* is *SQL* and no database is specified, all databases are exported, except for the *mysql* system database. If *fileType* is *CSV*, you can specify one database, either by using this property or by using the *csvExportOptions.selectQuery* property, which takes precedence over this property. *PostgreSQL instances:* You must specify one database to be exported. If *fileType* is *CSV*, this database must match the one specified in the *csvExportOptions.selectQuery* property.",
+          "description": "Databases to be exported. *MySQL instances:* If *fileType* is *SQL* and no database is specified, all databases are exported, except for the *mysql* system database. If *fileType* is *CSV*, you can specify one database, either by using this property or by using the *csvExportOptions.selectQuery* property, which takes precedence over this property. *PostgreSQL instances:* You must specify one database to be exported. If *fileType* is *CSV*, this database must match the one specified in the *csvExportOptions.selectQuery* property. *SQL Server instances:* You must specify one database to be exported, and the *fileType* must be *BAK*.",
           "items": {
             "type": "string"
           },
@@ -2663,7 +2672,7 @@
           "type": "object"
         },
         "uri": {
-          "description": "The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form *gs: //bucketName/fileName*. If the file already exists, the requests // succeeds, but the operation fails. If *fileType* is // *SQL* and the filename ends with .gz, the contents are // compressed.",
+          "description": "The path to the file in Google Cloud Storage where the export will be stored. The URI is in the form *gs://bucketName/fileName*. If the file already exists, the request succeeds, but the operation fails. If *fileType* is *SQL* and the filename ends with .gz, the contents are compressed.",
           "type": "string"
         }
       },
@@ -2889,7 +2898,7 @@
           "type": "string"
         },
         "uri": {
-          "description": "Path to the import file in Cloud Storage, in the form *gs: //bucketName/fileName*. Compressed gzip files (.gz) are supported // when *fileType* is *SQL*. The instance must have // write permissions to the bucket and read access to the file.",
+          "description": "Path to the import file in Cloud Storage, in the form *gs://bucketName/fileName*. Compressed gzip files (.gz) are supported when *fileType* is *SQL*. The instance must have write permissions to the bucket and read access to the file.",
           "type": "string"
         }
       },
@@ -3268,7 +3277,7 @@
       "type": "object"
     },
     "Operation": {
-      "description": "An Operation resource. For successful operations that return an Operation resource, only the fields relevant to the operation are populated in the resource. Next field: 18",
+      "description": "An Operation resource. For successful operations that return an Operation resource, only the fields relevant to the operation are populated in the resource.",
       "id": "Operation",
       "properties": {
         "backupContext": {
@@ -3758,7 +3767,7 @@
       "type": "object"
     },
     "SqlExternalSyncSettingError": {
-      "description": "External primary instance migration setting error.",
+      "description": "External primary instance migration setting error/warning.",
       "id": "SqlExternalSyncSettingError",
       "properties": {
         "detail": {
@@ -3766,7 +3775,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "This is always *sql#migrationSettingError*.",
+          "description": "Can be *sql#externalSyncSettingError* or *sql#externalSyncSettingWarning*.",
           "type": "string"
         },
         "type": {
@@ -3849,6 +3858,13 @@
         "kind": {
           "description": "This is always *sql#migrationSettingErrorList*.",
           "type": "string"
+        },
+        "warnings": {
+          "description": "List of migration warnings.",
+          "items": {
+            "$ref": "SqlExternalSyncSettingError"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3970,6 +3986,10 @@
       "description": "SslCerts create ephemeral certificate request.",
       "id": "SslCertsCreateEphemeralRequest",
       "properties": {
+        "access_token": {
+          "description": "Access token to include in the signed certificate.",
+          "type": "string"
+        },
         "public_key": {
           "description": "PEM encoded public key to include in the signed certificate.",
           "type": "string"

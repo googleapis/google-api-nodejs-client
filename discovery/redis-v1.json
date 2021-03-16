@@ -596,7 +596,7 @@
       }
     }
   },
-  "revision": "20201110",
+  "revision": "20210225",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -828,7 +828,7 @@
           "type": "object"
         },
         "redisVersion": {
-          "description": "Optional. The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are: * `REDIS_3_2` for Redis 3.2 compatibility * `REDIS_4_0` for Redis 4.0 compatibility (default) * `REDIS_5_0` for Redis 5.0 compatibility",
+          "description": "Optional. The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are: * `REDIS_3_2` for Redis 3.2 compatibility * `REDIS_4_0` for Redis 4.0 compatibility (default) * `REDIS_5_0` for Redis 5.0 compatibility * `REDIS_6_0` for Redis 6.0 compatibility",
           "type": "string"
         },
         "reservedIpRange": {
@@ -890,7 +890,7 @@
           "type": "string"
         },
         "transitEncryptionMode": {
-          "description": "Optional. The In-transit encryption mode of Redis instance. If not provided, in-transit encryption is disabled for instance.",
+          "description": "Optional. The TLS mode of the Redis instance. If not provided, TLS is disabled for the instance.",
           "enum": [
             "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED",
             "SERVER_AUTHENTICATION",
@@ -898,8 +898,8 @@
           ],
           "enumDescriptions": [
             "Not set.",
-            "In-transit encryption enabled with server authentication",
-            "In-transit encryption is disabled for instance."
+            "Client to Server traffic encryption enabled with server authentication.",
+            "TLS is disabled for the instance."
           ],
           "type": "string"
         }

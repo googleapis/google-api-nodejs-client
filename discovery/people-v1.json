@@ -18,10 +18,10 @@
           "description": "View your street addresses"
         },
         "https://www.googleapis.com/auth/user.birthday.read": {
-          "description": "View your complete date of birth"
+          "description": "See and download your exact date of birth"
         },
         "https://www.googleapis.com/auth/user.emails.read": {
-          "description": "View your email addresses"
+          "description": "See and download all of your Google Account email addresses"
         },
         "https://www.googleapis.com/auth/user.gender.read": {
           "description": "See your gender"
@@ -30,7 +30,7 @@
           "description": "See your education, work history and org info"
         },
         "https://www.googleapis.com/auth/user.phonenumbers.read": {
-          "description": "View your phone numbers"
+          "description": "See and download your personal phone numbers"
         },
         "https://www.googleapis.com/auth/userinfo.email": {
           "description": "View your email address"
@@ -146,6 +146,12 @@
           "id": "people.contactGroups.batchGet",
           "parameterOrder": [],
           "parameters": {
+            "groupFields": {
+              "description": "Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            },
             "maxMembers": {
               "description": "Optional. Specifies the maximum number of members to return for each group. Defaults to 0 if not set, which will return zero members.",
               "format": "int32",
@@ -225,6 +231,12 @@
             "resourceName"
           ],
           "parameters": {
+            "groupFields": {
+              "description": "Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            },
             "maxMembers": {
               "description": "Optional. Specifies the maximum number of members to return. Defaults to 0 if not set, which will return zero members.",
               "format": "int32",
@@ -255,6 +267,12 @@
           "id": "people.contactGroups.list",
           "parameterOrder": [],
           "parameters": {
+            "groupFields": {
+              "description": "Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, `memberCount`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            },
             "pageSize": {
               "description": "Optional. The maximum number of resources to return. Valid values are between 1 and 1000, inclusive. Defaults to 30 if not set or set to 0.",
               "format": "int32",
@@ -414,6 +432,39 @@
           "path": "v1/otherContacts",
           "response": {
             "$ref": "ListOtherContactsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/contacts.other.readonly"
+          ]
+        },
+        "search": {
+          "description": "Provides a list of contacts in the authenticated user's other contacts that matches the search query.",
+          "flatPath": "v1/otherContacts:search",
+          "httpMethod": "GET",
+          "id": "people.otherContacts.search",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "query": {
+              "description": "Required. The plain-text query for the request. The query is used to match prefix phrases of the fields on a person. For example, a person with name \"foo name\" matches queries such as \"f\", \"fo\", \"foo\", \"foo n\", \"nam\", etc., but not \"oo n\".",
+              "location": "query",
+              "type": "string"
+            },
+            "readMask": {
+              "description": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * emailAddresses * names * phoneNumbers",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/otherContacts:search",
+          "response": {
+            "$ref": "SearchResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/contacts.other.readonly"
@@ -740,6 +791,40 @@
             "https://www.googleapis.com/auth/directory.readonly"
           ]
         },
+        "searchContacts": {
+          "description": "Provides a list of contacts in the authenticated user's grouped contacts that matches the search query.",
+          "flatPath": "v1/people:searchContacts",
+          "httpMethod": "GET",
+          "id": "people.people.searchContacts",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "Optional. The number of results to return.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "query": {
+              "description": "Required. The plain-text query for the request. The query is used to match prefix phrases of the fields on a person. For example, a person with name \"foo name\" matches queries such as \"f\", \"fo\", \"foo\", \"foo n\", \"nam\", etc., but not \"oo n\".",
+              "location": "query",
+              "type": "string"
+            },
+            "readMask": {
+              "description": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/people:searchContacts",
+          "response": {
+            "$ref": "SearchResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/contacts",
+            "https://www.googleapis.com/auth/contacts.readonly"
+          ]
+        },
         "searchDirectoryPeople": {
           "description": "Provides a list of domain profiles and domain contacts in the authenticated user's domain directory that match the search query.",
           "flatPath": "v1/people:searchDirectoryPeople",
@@ -899,7 +984,7 @@
         "connections": {
           "methods": {
             "list": {
-              "description": "Provides a list of the authenticated user's contacts. The request returns a 400 error if `personFields` is not specified. The request returns a 410 error if `sync_token` is specified and is expired. Sync tokens expire after 7 days. A request without `sync_token` should be made and all contacts should be synced.",
+              "description": "Provides a list of the authenticated user's contacts. The request returns a 400 error if `personFields` is not specified. The request returns a 410 error if `sync_token` is specified and is expired. Sync tokens expire after 7 days to prevent data drift between clients and the server. To handle a sync token expired error, a request should be sent without `sync_token` to get all contacts.",
               "flatPath": "v1/people/{peopleId}/connections",
               "httpMethod": "GET",
               "id": "people.people.connections.list",
@@ -931,7 +1016,7 @@
                   "type": "string"
                 },
                 "requestSyncToken": {
-                  "description": "Optional. Whether the response should include `next_sync_token` on the last page, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial sync requests that specify `request_sync_token` have an additional rate limit.",
+                  "description": "Optional. Whether the response should include `next_sync_token` on the last page, which can be used to get all changes since the last request. For subsequent sync requests use the `sync_token` param instead. Initial full sync requests that specify `request_sync_token` and do not specify `sync_token` have an additional rate limit per user. Each client should generally only be doing a full sync once every few days per user and so should not hit this limit.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -978,7 +1063,7 @@
                   "type": "string"
                 },
                 "syncToken": {
-                  "description": "Optional. A sync token, received from a previous `ListConnections` call. Provide this to retrieve only the resources changed since the last request. Sync requests that specify `sync_token` have an additional rate limit. When syncing, all other parameters provided to `ListConnections` must match the call that provided the sync token.",
+                  "description": "Optional. A sync token, received from a previous `ListConnections` call. Provide this to retrieve only the resources changed since the last request. When syncing, all other parameters provided to `ListConnections` except `page_size` and `page_token` must match the initial call that provided the sync token. Sync tokens expire after seven days, after which a full sync request without a `sync_token` should be made.",
                   "location": "query",
                   "type": "string"
                 }
@@ -997,7 +1082,7 @@
       }
     }
   },
-  "revision": "20201123",
+  "revision": "20210304",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1207,6 +1292,13 @@
       "description": "A contact group.",
       "id": "ContactGroup",
       "properties": {
+        "clientData": {
+          "description": "The group's client data.",
+          "items": {
+            "$ref": "GroupClientData"
+          },
+          "type": "array"
+        },
         "etag": {
           "description": "The [HTTP entity tag](https://en.wikipedia.org/wiki/HTTP_ETag) of the resource. Used for web cache validation.",
           "type": "string"
@@ -1238,7 +1330,7 @@
           "type": "integer"
         },
         "memberResourceNames": {
-          "description": "Output only. The list of contact person resource names that are members of the contact group. The field is not populated for LIST requests and can only be updated through the [ModifyContactGroupMembers](/people/api/rest/v1/contactgroups/members/modify).",
+          "description": "Output only. The list of contact person resource names that are members of the contact group. The field is only populated for GET requests and will only return as many members as `maxMembers` in the get request.",
           "items": {
             "type": "string"
           },
@@ -1376,6 +1468,11 @@
         "contactGroup": {
           "$ref": "ContactGroup",
           "description": "Required. The contact group to create."
+        },
+        "readGroupFields": {
+          "description": "Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * metadata * name",
+          "format": "google-fieldmask",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1403,7 +1500,7 @@
       "type": "object"
     },
     "DeleteContactPhotoResponse": {
-      "description": "The response for deleteing a contact's photo.",
+      "description": "The response for deleting a contact's photo.",
       "id": "DeleteContactPhotoResponse",
       "properties": {
         "person": {
@@ -1575,6 +1672,21 @@
             "$ref": "PersonResponse"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GroupClientData": {
+      "description": "Arbitrary client data that is populated by clients. Duplicate keys and values are allowed.",
+      "id": "GroupClientData",
+      "properties": {
+        "key": {
+          "description": "The client specified key of the client data.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The client specified value of the client data.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2634,6 +2746,31 @@
       },
       "type": "object"
     },
+    "SearchResponse": {
+      "description": "The response to a search request for the authenticated user, given a query.",
+      "id": "SearchResponse",
+      "properties": {
+        "results": {
+          "description": "The results of the request.",
+          "items": {
+            "$ref": "SearchResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SearchResult": {
+      "description": "A result of a search query.",
+      "id": "SearchResult",
+      "properties": {
+        "person": {
+          "$ref": "Person",
+          "description": "The matched Person."
+        }
+      },
+      "type": "object"
+    },
     "SipAddress": {
       "description": "A person's SIP address. Session Initial Protocol addresses are used for VoIP communications to make voice or video calls over the internet.",
       "id": "SipAddress",
@@ -2770,6 +2907,16 @@
         "contactGroup": {
           "$ref": "ContactGroup",
           "description": "Required. The contact group to update."
+        },
+        "readGroupFields": {
+          "description": "Optional. A field mask to restrict which fields on the group are returned. Defaults to `metadata`, `groupType`, and `name` if not set or set to empty. Valid fields are: * clientData * groupType * memberCount * metadata * name",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
+        "updateGroupFields": {
+          "description": "Optional. A field mask to restrict which fields on the group are updated. Multiple fields can be specified by separating them with commas. Defaults to `name` if not set or set to empty. Updated fields are replaced. Valid values are: * clientData * name",
+          "format": "google-fieldmask",
+          "type": "string"
         }
       },
       "type": "object"

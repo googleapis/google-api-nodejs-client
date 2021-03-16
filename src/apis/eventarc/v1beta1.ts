@@ -155,7 +155,6 @@ export namespace eventarc_v1beta1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
-    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -195,7 +194,7 @@ export namespace eventarc_v1beta1 {
    */
   export interface Schema$Destination {
     /**
-     * Cloud Run fully-managed service that receives the events. The service should be running in the same project of the trigger.
+     * Cloud Run fully-managed service that receives the events. The service should be running in the same project as the trigger.
      */
     cloudRunService?: Schema$CloudRunService;
   }
@@ -297,11 +296,11 @@ export namespace eventarc_v1beta1 {
    */
   export interface Schema$MatchingCriteria {
     /**
-     * Required. The name of a CloudEvents atrribute. Currently, only a subset of attributes can be specified. All triggers MUST provide a matching criteria for attribute 'type'. Event types specify what event type has attributes are allowed based on
+     * Required. The name of a CloudEvents attribute. Currently, only a subset of attributes can be specified. All triggers MUST provide a matching criteria for the 'type' attribute.
      */
     attribute?: string | null;
     /**
-     * Required. The value for the attribute
+     * Required. The value for the attribute.
      */
     value?: string | null;
   }
@@ -389,11 +388,11 @@ export namespace eventarc_v1beta1 {
    */
   export interface Schema$Pubsub {
     /**
-     * The name of the Pub/Sub subscription created and managed by Eventarc system as a transport for the event delivery. The value must be in the form of `projects/{PROJECT_ID\}/subscriptions/{SUBSCRIPTION_NAME\}
+     * Output only. The name of the Pub/Sub subscription created and managed by Eventarc system as a transport for the event delivery. Format: `projects/{PROJECT_ID\}/subscriptions/{SUBSCRIPTION_NAME\}`.
      */
     subscription?: string | null;
     /**
-     * The name of the Pub/Sub topic created and managed by Eventarc system as a transport for the event delivery. The value must be in the form of `projects/{PROJECT_ID\}/topics/{TOPIC_NAME\}
+     * Optional. The name of the Pub/Sub topic created and managed by Eventarc system as a transport for the event delivery. Format: `projects/{PROJECT_ID\}/topics/{TOPIC_NAME\}`. You may set an existing topic for triggers of the type `google.cloud.pubsub.topic.v1.messagePublished` only. The topic you provide here will not be deleted by Eventarc at trigger deletion.
      */
     topic?: string | null;
   }
@@ -450,7 +449,7 @@ export namespace eventarc_v1beta1 {
    */
   export interface Schema$Transport {
     /**
-     * The Pub/Sub topic and subscription that maybe created by Eventarc as delivery intermediary.
+     * The Pub/Sub topic and subscription used by Eventarc as delivery intermediary.
      */
     pubsub?: Schema$Pubsub;
   }
@@ -463,7 +462,7 @@ export namespace eventarc_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * Required. Destinations specify where the events will be sent to. Exactly one destination is supported at this time.
+     * Required. Destination specifies where the events should be sent to.
      */
     destination?: Schema$Destination;
     /**
@@ -471,11 +470,15 @@ export namespace eventarc_v1beta1 {
      */
     etag?: string | null;
     /**
-     * Required. The criteria by which events are filtered. Only events that match with this critera will be sent to the destinations.
+     * Optional. User labels attached to the triggers that can be used to group resources.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. null The criteria by which events are filtered. Only events that match with this criteria will be sent to the destination.
      */
     matchingCriteria?: Schema$MatchingCriteria[];
     /**
-     * Required. The resource name of the trigger. Must be unique within the location on the project. Format: projects/{project\}/locations/{location\}/triggers/{trigger\}
+     * Required. The resource name of the trigger. Must be unique within the location on the project and must in `projects/{project\}/locations/{location\}/triggers/{trigger\}` format.
      */
     name?: string | null;
     /**
@@ -483,7 +486,7 @@ export namespace eventarc_v1beta1 {
      */
     serviceAccount?: string | null;
     /**
-     * Output only. In order to deliver messages, Eventarc may configure other GCP products as transport intermediary. This field returns a reference to that transport intermediary. This information can be used for debugging purposes.
+     * Output only. In order to deliver messages, Eventarc may use other GCP products as transport intermediary. This field contains a reference to that transport intermediary. This information can be used for debugging purposes.
      */
     transport?: Schema$Transport;
     /**
@@ -1430,6 +1433,8 @@ export namespace eventarc_v1beta1 {
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. The user-provided ID to be assigned to the trigger.
      *     triggerId: 'placeholder-value',
+     *     // Required. If set, validate the request and preview the review, but do not actually post it.
+     *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -1438,6 +1443,7 @@ export namespace eventarc_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "destination": {},
      *       //   "etag": "my_etag",
+     *       //   "labels": {},
      *       //   "matchingCriteria": [],
      *       //   "name": "my_name",
      *       //   "serviceAccount": "my_serviceAccount",
@@ -1576,10 +1582,14 @@ export namespace eventarc_v1beta1 {
      *
      *   // Do the magic
      *   const res = await eventarc.projects.locations.triggers.delete({
+     *     // If set to true, and the trigger is not found, the request will succeed but no action will be taken on the server.
+     *     allowMissing: 'placeholder-value',
      *     // If provided, the trigger will only be deleted if the etag matches the current etag on the resource.
      *     etag: 'placeholder-value',
      *     // Required. The name of the trigger to be deleted.
      *     name: 'projects/my-project/locations/my-location/triggers/my-trigger',
+     *     // Required. If set, validate the request and preview the review, but do not actually post it.
+     *     validateOnly: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -1718,6 +1728,7 @@ export namespace eventarc_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "destination": {},
      *   //   "etag": "my_etag",
+     *   //   "labels": {},
      *   //   "matchingCriteria": [],
      *   //   "name": "my_name",
      *   //   "serviceAccount": "my_serviceAccount",
@@ -2117,10 +2128,14 @@ export namespace eventarc_v1beta1 {
      *
      *   // Do the magic
      *   const res = await eventarc.projects.locations.triggers.patch({
-     *     // Required. The resource name of the trigger. Must be unique within the location on the project. Format: projects/{project\}/locations/{location\}/triggers/{trigger\}
+     *     // If set to true, and the trigger is not found, a new trigger will be created. In this situation, `update_mask` is ignored.
+     *     allowMissing: 'placeholder-value',
+     *     // Required. The resource name of the trigger. Must be unique within the location on the project and must in `projects/{project\}/locations/{location\}/triggers/{trigger\}` format.
      *     name: 'projects/my-project/locations/my-location/triggers/my-trigger',
      *     // The fields to be updated; only fields explicitly provided will be updated. If no field mask is provided, all provided fields in the request will be updated. To update all fields, provide a field mask of "*".
      *     updateMask: 'placeholder-value',
+     *     // Required. If set, validate the request and preview the review, but do not actually post it.
+     *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2129,6 +2144,7 @@ export namespace eventarc_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "destination": {},
      *       //   "etag": "my_etag",
+     *       //   "labels": {},
      *       //   "matchingCriteria": [],
      *       //   "name": "my_name",
      *       //   "serviceAccount": "my_serviceAccount",
@@ -2533,6 +2549,10 @@ export namespace eventarc_v1beta1 {
      * Required. The user-provided ID to be assigned to the trigger.
      */
     triggerId?: string;
+    /**
+     * Required. If set, validate the request and preview the review, but do not actually post it.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
@@ -2542,6 +2562,10 @@ export namespace eventarc_v1beta1 {
   export interface Params$Resource$Projects$Locations$Triggers$Delete
     extends StandardParameters {
     /**
+     * If set to true, and the trigger is not found, the request will succeed but no action will be taken on the server.
+     */
+    allowMissing?: boolean;
+    /**
      * If provided, the trigger will only be deleted if the etag matches the current etag on the resource.
      */
     etag?: string;
@@ -2549,6 +2573,10 @@ export namespace eventarc_v1beta1 {
      * Required. The name of the trigger to be deleted.
      */
     name?: string;
+    /**
+     * Required. If set, validate the request and preview the review, but do not actually post it.
+     */
+    validateOnly?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Triggers$Get
     extends StandardParameters {
@@ -2590,13 +2618,21 @@ export namespace eventarc_v1beta1 {
   export interface Params$Resource$Projects$Locations$Triggers$Patch
     extends StandardParameters {
     /**
-     * Required. The resource name of the trigger. Must be unique within the location on the project. Format: projects/{project\}/locations/{location\}/triggers/{trigger\}
+     * If set to true, and the trigger is not found, a new trigger will be created. In this situation, `update_mask` is ignored.
+     */
+    allowMissing?: boolean;
+    /**
+     * Required. The resource name of the trigger. Must be unique within the location on the project and must in `projects/{project\}/locations/{location\}/triggers/{trigger\}` format.
      */
     name?: string;
     /**
      * The fields to be updated; only fields explicitly provided will be updated. If no field mask is provided, all provided fields in the request will be updated. To update all fields, provide a field mask of "*".
      */
     updateMask?: string;
+    /**
+     * Required. If set, validate the request and preview the review, but do not actually post it.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata

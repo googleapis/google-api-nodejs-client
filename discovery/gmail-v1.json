@@ -21,10 +21,10 @@
           "description": "Manage drafts and send emails"
         },
         "https://www.googleapis.com/auth/gmail.insert": {
-          "description": "Insert mail into your mailbox"
+          "description": "Add emails into your Gmail mailbox"
         },
         "https://www.googleapis.com/auth/gmail.labels": {
-          "description": "Manage mailbox labels"
+          "description": "See and edit your email labels"
         },
         "https://www.googleapis.com/auth/gmail.metadata": {
           "description": "View your email message metadata such as labels and headers, but not the email body"
@@ -39,7 +39,7 @@
           "description": "Send email on your behalf"
         },
         "https://www.googleapis.com/auth/gmail.settings.basic": {
-          "description": "Manage your basic mail settings"
+          "description": "See, edit, create, or change your email settings and filters in Gmail"
         },
         "https://www.googleapis.com/auth/gmail.settings.sharing": {
           "description": "Manage your sensitive mail settings, including who can manage your mail"
@@ -911,7 +911,7 @@
                   "type": "string"
                 },
                 "id": {
-                  "description": "The ID of the message to retrieve.",
+                  "description": "The ID of the message to retrieve. This ID is usually retrieved using `messages.list`. The ID is also contained in the result when a message is inserted (`messages.insert`) or imported (`messages.import`).",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2682,7 +2682,7 @@
       }
     }
   },
-  "revision": "20200919",
+  "revision": "20210301",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {
@@ -3620,7 +3620,7 @@
           "type": "string"
         },
         "signature": {
-          "description": "An optional HTML signature that is included in messages composed with this alias in the Gmail web UI.",
+          "description": "An optional HTML signature that is included in messages composed with this alias in the Gmail web UI. This signature is added to new emails only.",
           "type": "string"
         },
         "smtpMsa": {

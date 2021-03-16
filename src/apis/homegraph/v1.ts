@@ -150,7 +150,7 @@ export namespace homegraph_v1 {
     deviceId?: string | null;
   }
   /**
-   * Third-party device definition.
+   * Third-party device definition. Next ID = 14
    */
   export interface Schema$Device {
     /**
@@ -158,7 +158,7 @@ export namespace homegraph_v1 {
      */
     attributes?: {[key: string]: any} | null;
     /**
-     * Custom device attributes stored in Home Graph and provided to your smart home Action in each [QUERY](https://developers.google.com/assistant/smarthome/reference/intent/query) and [EXECUTE](https://developers.google.com/assistant/smarthome/reference/intent/execute) intent.
+     * Custom device attributes stored in Home Graph and provided to your smart home Action in each [QUERY](https://developers.google.com/assistant/smarthome/reference/intent/query) and [EXECUTE](https://developers.google.com/assistant/smarthome/reference/intent/execute) intent. Data in this object has a few constraints: No sensitive information, including but not limited to Personally Identifiable Information.
      */
     customData?: {[key: string]: any} | null;
     /**
@@ -173,6 +173,10 @@ export namespace homegraph_v1 {
      * Names given to this device by your smart home Action.
      */
     name?: Schema$DeviceNames;
+    /**
+     * See description for "traits". For Smart Home Entertainment Devices (SHED) devices, some traits can only be executed on 3P cloud, e.g. "non_local_traits": [ { "trait": "action.devices.traits.MediaInitiation" \}, { "trait": "action.devices.traits.Channel" \} ] go/shed-per-trait-routing.
+     */
+    nonLocalTraits?: Schema$NonLocalTrait[];
     /**
      * Indicates whether your smart home Action will report notifications to Google for this device via ReportStateAndNotification. If your smart home Action enables users to control device notifications, you should update this field and call RequestSyncDevices.
      */
@@ -244,6 +248,15 @@ export namespace homegraph_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
+  /**
+   * LINT.IfChange go/shed-per-trait-routing. Making it object to allow for extendible design, where we can add attributes in future.
+   */
+  export interface Schema$NonLocalTrait {
+    /**
+     * Trait name, e.g., "action.devices.traits.MediaInitiation". See [device traits](https://developers.google.com/assistant/smarthome/traits).
+     */
+    trait?: string | null;
+  }
   /**
    * Request type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call.
    */
@@ -347,6 +360,32 @@ export namespace homegraph_v1 {
      * Request ID copied from ReportStateAndNotificationRequest.
      */
     requestId?: string | null;
+  }
+  /**
+   * Request type for the [`RequestLink`](#google.home.graph.v1.HomeGraphApiService.RequestLink) call.
+   */
+  export interface Schema$RequestLinkRequest {
+    /**
+     * Required. ID(s) and detection time of potential Cast devices.
+     */
+    payload?: Schema$RequestLinkRequestPayload;
+    /**
+     * Required. Request ID used for debugging.
+     */
+    requestId?: string | null;
+  }
+  /**
+   * Payload containing potential devices detected and when they were detected.
+   */
+  export interface Schema$RequestLinkRequestPayload {
+    /**
+     * Required. Time at which devices represented in `potential_cast_device_ids` were detected.
+     */
+    detectionTime?: string | null;
+    /**
+     * Required. List of device IDs detected that may potentially be for Cast devices.
+     */
+    potentialCastDeviceIds?: string[] | null;
   }
   /**
    * Request type for the [`RequestSyncDevices`](#google.home.graph.v1.HomeGraphApiService.RequestSyncDevices) call.
@@ -846,6 +885,139 @@ export namespace homegraph_v1 {
     }
 
     /**
+     * Sends an account linking suggestion to users associated with any potential Cast devices detected by third-party devices. This request must be authorized using service account credentials from your Actions console project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/homegraph.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const homegraph = google.homegraph('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/homegraph'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await homegraph.devices.requestLink({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "payload": {},
+     *       //   "requestId": "my_requestId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    requestLink(
+      params: Params$Resource$Devices$Requestlink,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    requestLink(
+      params?: Params$Resource$Devices$Requestlink,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    requestLink(
+      params: Params$Resource$Devices$Requestlink,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    requestLink(
+      params: Params$Resource$Devices$Requestlink,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    requestLink(
+      params: Params$Resource$Devices$Requestlink,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    requestLink(callback: BodyResponseCallback<Schema$Empty>): void;
+    requestLink(
+      paramsOrCallback?:
+        | Params$Resource$Devices$Requestlink
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Devices$Requestlink;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Devices$Requestlink;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://homegraph.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/devices:requestLink').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
      * Requests Google to send an `action.devices.SYNC` [intent](https://developers.google.com/assistant/smarthome/reference/intent/sync) to your smart home Action to update device metadata for the given user. The third-party user's identity is passed via the `agent_user_id` (see RequestSyncDevicesRequest). This request must be authorized using service account credentials from your Actions console project.
      * @example
      * ```js
@@ -1130,6 +1302,13 @@ export namespace homegraph_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ReportStateAndNotificationRequest;
+  }
+  export interface Params$Resource$Devices$Requestlink
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RequestLinkRequest;
   }
   export interface Params$Resource$Devices$Requestsync
     extends StandardParameters {

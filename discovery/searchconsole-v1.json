@@ -373,7 +373,7 @@
       }
     }
   },
-  "revision": "20200927",
+  "revision": "20210308",
   "rootUrl": "https://searchconsole.googleapis.com/",
   "schemas": {
     "ApiDataRow": {
@@ -610,6 +610,20 @@
           ],
           "type": "string"
         },
+        "dataState": {
+          "description": "The data state to be fetched, can be full or all, the latter including full and partial data.",
+          "enum": [
+            "DATA_STATE_UNSPECIFIED",
+            "FINAL",
+            "ALL"
+          ],
+          "enumDescriptions": [
+            "Default value, should not be used.",
+            "Include full final data only, without partial.",
+            "Include all data, full and partial."
+          ],
+          "type": "string"
+        },
         "dimensionFilterGroups": {
           "description": "[Optional] Zero or more filters to apply to the dimension grouping values; for example, 'query contains \\\"buy\\\"' to see only data where the query string contains the substring \\\"buy\\\" (not case-sensitive). You can filter by a dimension without grouping by it.",
           "items": {
@@ -654,9 +668,11 @@
           "enum": [
             "WEB",
             "IMAGE",
-            "VIDEO"
+            "VIDEO",
+            "NEWS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             ""

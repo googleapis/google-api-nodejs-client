@@ -114,6 +114,7 @@ export namespace binaryauthorization_v1 {
   export class Binaryauthorization {
     context: APIRequestContext;
     projects: Resource$Projects;
+    systempolicy: Resource$Systempolicy;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -122,11 +123,12 @@ export namespace binaryauthorization_v1 {
       };
 
       this.projects = new Resource$Projects(this.context);
+      this.systempolicy = new Resource$Systempolicy(this.context);
     }
   }
 
   /**
-   * An admission rule specifies either that all container images used in a pod creation request must be attested to by one or more attestors, that all pod creations will be allowed, or that all pod creations will be denied. Images matching an admission whitelist pattern are exempted from admission rules and will never block a pod creation.
+   * An admission rule specifies either that all container images used in a pod creation request must be attested to by one or more attestors, that all pod creations will be allowed, or that all pod creations will be denied. Images matching an admission allowlist pattern are exempted from admission rules and will never block a pod creation.
    */
   export interface Schema$AdmissionRule {
     /**
@@ -143,7 +145,7 @@ export namespace binaryauthorization_v1 {
     requireAttestationsBy?: string[] | null;
   }
   /**
-   * An admission whitelist pattern exempts images from checks by admission rules.
+   * An admission allowlist pattern exempts images from checks by admission rules.
    */
   export interface Schema$AdmissionWhitelistPattern {
     /**
@@ -326,6 +328,24 @@ export namespace binaryauthorization_v1 {
      */
     globalPolicyEvaluationMode?: string | null;
     /**
+     * Optional. Per-istio-service-identity admission rules. Istio service identity spec format: spiffe:///ns//sa/ or /ns//sa/ e.g. spiffe://example.com/ns/test-ns/sa/default
+     */
+    istioServiceIdentityAdmissionRules?: {
+      [key: string]: Schema$AdmissionRule;
+    } | null;
+    /**
+     * Optional. Per-kubernetes-namespace admission rules. K8s namespace spec format: [a-z.-]+, e.g. 'some-namespace'
+     */
+    kubernetesNamespaceAdmissionRules?: {
+      [key: string]: Schema$AdmissionRule;
+    } | null;
+    /**
+     * Optional. Per-kubernetes-service-account admission rules. Service account spec format: `namespace:serviceaccount`. e.g. 'test-ns:default'
+     */
+    kubernetesServiceAccountAdmissionRules?: {
+      [key: string]: Schema$AdmissionRule;
+    } | null;
+    /**
      * Output only. The resource name, in the format `projects/x/policy`. There is at most one policy per project.
      */
     name?: string | null;
@@ -471,6 +491,9 @@ export namespace binaryauthorization_v1 {
      *   //   "defaultAdmissionRule": {},
      *   //   "description": "my_description",
      *   //   "globalPolicyEvaluationMode": "my_globalPolicyEvaluationMode",
+     *   //   "istioServiceIdentityAdmissionRules": {},
+     *   //   "kubernetesNamespaceAdmissionRules": {},
+     *   //   "kubernetesServiceAccountAdmissionRules": {},
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -604,6 +627,9 @@ export namespace binaryauthorization_v1 {
      *       //   "defaultAdmissionRule": {},
      *       //   "description": "my_description",
      *       //   "globalPolicyEvaluationMode": "my_globalPolicyEvaluationMode",
+     *       //   "istioServiceIdentityAdmissionRules": {},
+     *       //   "kubernetesNamespaceAdmissionRules": {},
+     *       //   "kubernetesServiceAccountAdmissionRules": {},
      *       //   "name": "my_name",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -618,6 +644,9 @@ export namespace binaryauthorization_v1 {
      *   //   "defaultAdmissionRule": {},
      *   //   "description": "my_description",
      *   //   "globalPolicyEvaluationMode": "my_globalPolicyEvaluationMode",
+     *   //   "istioServiceIdentityAdmissionRules": {},
+     *   //   "kubernetesNamespaceAdmissionRules": {},
+     *   //   "kubernetesServiceAccountAdmissionRules": {},
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -2557,5 +2586,156 @@ export namespace binaryauthorization_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Systempolicy {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the current system policy in the specified location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const binaryauthorization = google.binaryauthorization('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await binaryauthorization.systempolicy.getPolicy({
+     *     // Required. The resource name, in the format `locations/x/policy`. Note that the system policy is not associated with a project.
+     *     name: 'locations/my-location/policy',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "admissionWhitelistPatterns": [],
+     *   //   "clusterAdmissionRules": {},
+     *   //   "defaultAdmissionRule": {},
+     *   //   "description": "my_description",
+     *   //   "globalPolicyEvaluationMode": "my_globalPolicyEvaluationMode",
+     *   //   "istioServiceIdentityAdmissionRules": {},
+     *   //   "kubernetesNamespaceAdmissionRules": {},
+     *   //   "kubernetesServiceAccountAdmissionRules": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getPolicy(
+      params: Params$Resource$Systempolicy$Getpolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getPolicy(
+      params?: Params$Resource$Systempolicy$Getpolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getPolicy(
+      params: Params$Resource$Systempolicy$Getpolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getPolicy(
+      params: Params$Resource$Systempolicy$Getpolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getPolicy(
+      params: Params$Resource$Systempolicy$Getpolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Systempolicy$Getpolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Systempolicy$Getpolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Systempolicy$Getpolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://binaryauthorization.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Systempolicy$Getpolicy
+    extends StandardParameters {
+    /**
+     * Required. The resource name, in the format `locations/x/policy`. Note that the system policy is not associated with a project.
+     */
+    name?: string;
   }
 }

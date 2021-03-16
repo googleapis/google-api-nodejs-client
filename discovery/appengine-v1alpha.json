@@ -708,7 +708,7 @@
       }
     }
   },
-  "revision": "20200802",
+  "revision": "20210227",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "AuthorizedCertificate": {
@@ -987,6 +987,11 @@
       "properties": {
         "flexibleEnvironmentAvailable": {
           "description": "App Engine flexible environment is available in the given location.@OutputOnly",
+          "type": "boolean"
+        },
+        "searchApiAvailable": {
+          "description": "Output only. Search API (https://cloud.google.com/appengine/docs/standard/python/search) is available in the given location.",
+          "readOnly": true,
           "type": "boolean"
         },
         "standardEnvironmentAvailable": {
