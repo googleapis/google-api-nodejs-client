@@ -294,7 +294,6 @@ export class Generator {
     await writeFile(outputPath, output, {encoding: 'utf8'});
   }
 
-  // Generate release-please config for mono-repo publishing
   public async generateReleasePleaseConfig() {
     /*
     1. pull in disclaimers (files we're not going to generate)
