@@ -20,9 +20,6 @@ import * as mv from 'mv';
 import {ncp} from 'ncp';
 import {promisify} from 'util';
 import * as tmp from 'tmp';
-
-//TODO: uncomment this line and remove the eslint disable once
-// https://github.com/mochajs/mocha/issues/4598 is resolved
 //import {describe, it, afterEach} from 'mocha';
 
 const mvp = promisify(mv);
