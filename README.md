@@ -200,6 +200,7 @@ oauth2Client.on('tokens', (tokens) => {
   console.log(tokens.access_token);
 });
 ```
+This tokens event only occurs in the first authorization, and you need to have set your `access_type` to `offline` when calling the  `generateAuthUrl` method to receive the refresh token. If you have already given your app the requisiste permissions without setting the appropriate constraints for receiving a refresh token, you will need to re-authorize the application to receive a fresh refresh token. You can revoke your app's access to your account [here](https://myaccount.google.com/permissions).
 
 To set the `refresh_token` at a later time, you can use the `setCredentials` method:
 
@@ -210,6 +211,17 @@ oauth2Client.setCredentials({
 ```
 
 Once the client has a refresh token, access tokens will be acquired and refreshed automatically in the next call to the API.
+
+Refresh tokens may stop working after they are granted, either because:
+- The user has revoked your app's access
+- The refresh token has not been used for 6 months
+- The user changed passwords and the refresh token contains Gmail scopes
+- The user account has exceeded a max number of live refresh tokens
+- The refresh token has expired after 7 days
+
+As a developer, you should write your code to handle the case
+where a refresh token is no longer working.
+
 
 ### Using API keys
 You may need to send an API key with the request you are going to make. The following uses an API key to make a request to the Blogger API service to retrieve a blog's name, url, and its total amount of posts:
