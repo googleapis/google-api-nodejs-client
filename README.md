@@ -219,8 +219,7 @@ Refresh tokens may stop working after they are granted, either because:
 - The user account has exceeded a max number of live refresh tokens
 - The refresh token has expired after 7 days
 
-As a developer, you should write your code to handle the case
-where a refresh token is no longer working.
+As a developer, you should write your code to handle the case where a refresh token is no longer working.
 
 
 ### Using API keys
