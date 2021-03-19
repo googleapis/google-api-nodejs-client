@@ -129,5 +129,6 @@
   "src/apis/workflowexecutions": "0.2.0",
   "src/apis/youtube": "0.2.0",
   "src/apis/youtubeAnalytics": "0.1.0",
-  "src/apis/youtubereporting": "0.1.0"
+  "src/apis/youtubereporting": "0.1.0",
+  ".": "68.0.0"
 }
