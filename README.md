@@ -217,7 +217,7 @@ Refresh tokens may stop working after they are granted, either because:
 - The refresh token has not been used for 6 months
 - The user changed passwords and the refresh token contains Gmail scopes
 - The user account has exceeded a max number of live refresh tokens
-- The refresh token has expired after 7 days
+- The application has a status of 'Testing' and the consent screen is configured for an external user type, causing the token to expire in 7 days
 
 As a developer, you should write your code to handle the case where a refresh token is no longer working.
 
