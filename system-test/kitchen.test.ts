@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-
 // Copyright 2017 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,10 +18,7 @@ import * as mv from 'mv';
 import {ncp} from 'ncp';
 import {promisify} from 'util';
 import * as tmp from 'tmp';
-
-//TODO: uncomment this line and remove the eslint disable once
-// https://github.com/mochajs/mocha/issues/4598 is resolved
-//import {describe, it, afterEach} from 'mocha';
+import {describe, it, afterEach} from 'mocha';
 
 const mvp = promisify(mv);
 const ncpp = promisify(ncp);

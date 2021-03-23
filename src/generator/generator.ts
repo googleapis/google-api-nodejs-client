@@ -293,6 +293,63 @@ export class Generator {
     }
     await writeFile(outputPath, output, {encoding: 'utf8'});
   }
+
+  public async generateReleasePleaseConfig() {
+    /*
+    1. pull in disclaimers (files we're not going to generate)
+    2. list all folders inside apis directory
+    3. find the delta from 2 - 1
+    4. fill out bootstrap sha
+    */
+    const disclaimers = require('../../../disclaimers.json') as Array<{
+      package: string;
+      api: string;
+    }>;
+
+    const excludedAPIs = disclaimers.map(x => x.api);
+    const apis = fs.readdirSync(path.join(srcPath, 'apis'), {
+      withFileTypes: true,
+    });
+    const releasableAPIs = apis
+      .filter(e => e.isDirectory() && !excludedAPIs.includes(e.name))
+      .map(x => x.name);
+
+    const rootPath = path.join(__dirname, '../../../');
+
+    // Bootstrap sha is used the first time the releaser runs when it grabs the initial commits
+    // Afterwards, it uses the most recent release as a starting point
+    const releasePleaseConfig: {
+      'bootstrap-sha': string;
+      packages: {[key: string]: {}};
+    } = {
+      'bootstrap-sha': '6e61af34c0bfdfc3d6f973bffcd6a7e2420590d2',
+      packages: {},
+    };
+    const releasePleaseManifest: {[key: string]: string} = {};
+
+    for (const api of releasableAPIs) {
+      releasePleaseConfig.packages[`src/apis/${api}`] = {};
+      releasePleaseManifest[
+        `src/apis/${api}`
+      ] = require(`../../../src/apis/${api}/package.json`).version;
+    }
+
+    // Include the root library in the config:
+    releasePleaseManifest['.'] = require('../../../package.json').version;
+    releasePleaseConfig.packages['.'] = {};
+
+    fs.writeFileSync(
+      path.resolve(rootPath, './release-please-config.json'),
+      JSON.stringify(releasePleaseConfig, null, 2),
+      'utf8'
+    );
+
+    fs.writeFileSync(
+      path.resolve(rootPath, './.release-please-manifest.json'),
+      JSON.stringify(releasePleaseManifest, null, 2),
+      'utf8'
+    );
+  }
 }
 
 async function main() {
@@ -314,6 +371,13 @@ async function main() {
     await gen.generateAllAPIs(discoveryUrl || DISCOVERY_URL, useCache);
     console.log('Finished generating APIs!');
   }
+
+  //Re-generates release-please manifest and config files
+  console.log(
+    'Generating .release-please-manifest.json and release-please-config.json'
+  );
+  gen.generateReleasePleaseConfig();
+  console.log('Finished generating release-please config files!');
 }
 
 if (require.main === module) {
