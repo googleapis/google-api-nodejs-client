@@ -333,6 +333,11 @@ export class Generator {
         `src/apis/${api}`
       ] = require(`../../../src/apis/${api}/package.json`).version;
     }
+
+    // Include the root library in the config:
+    releasePleaseManifest['.'] = require('../../../package.json').version;
+    releasePleaseConfig.packages['.'] = {};
+
     fs.writeFileSync(
       path.resolve(rootPath, './release-please-config.json'),
       JSON.stringify(releasePleaseConfig, null, 2),

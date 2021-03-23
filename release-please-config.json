@@ -1,6 +1,7 @@
 {
   "bootstrap-sha": "6e61af34c0bfdfc3d6f973bffcd6a7e2420590d2",
   "packages": {
+    ".": "68.0.0",
     "src/apis/abusiveexperiencereport": {},
     "src/apis/acceleratedmobilepageurl": {},
     "src/apis/accesscontextmanager": {},
