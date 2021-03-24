@@ -894,11 +894,11 @@ export namespace transcoder_v1beta1 {
      */
     rowCount?: number | null;
     /**
-     * Required. The height of sprite in pixels. Must be an even integer.
+     * Required. The height of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_height_pixels field or the SpriteSheet.sprite_width_pixels field, but not both (the API will automatically calculate the missing field).
      */
     spriteHeightPixels?: number | null;
     /**
-     * Required. The width of sprite in pixels. Must be an even integer.
+     * Required. The width of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_width_pixels field or the SpriteSheet.sprite_height_pixels field, but not both (the API will automatically calculate the missing field).
      */
     spriteWidthPixels?: number | null;
     /**
