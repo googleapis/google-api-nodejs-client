@@ -221,7 +221,7 @@
       }
     }
   },
-  "revision": "20210226",
+  "revision": "20210312",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -243,6 +243,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "AnalyzeIamPolicyLongrunningResponse": {
+      "description": "A response message for AssetService.AnalyzeIamPolicyLongrunning.",
+      "id": "AnalyzeIamPolicyLongrunningResponse",
+      "properties": {},
       "type": "object"
     },
     "AnalyzeIamPolicyResponse": {

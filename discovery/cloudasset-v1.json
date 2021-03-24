@@ -570,7 +570,7 @@
       }
     }
   },
-  "revision": "20210226",
+  "revision": "20210312",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -607,6 +607,12 @@
           "description": "Required. Output configuration indicating where the results will be output to."
         }
       },
+      "type": "object"
+    },
+    "AnalyzeIamPolicyLongrunningResponse": {
+      "description": "A response message for AssetService.AnalyzeIamPolicyLongrunning.",
+      "id": "AnalyzeIamPolicyLongrunningResponse",
+      "properties": {},
       "type": "object"
     },
     "AnalyzeIamPolicyResponse": {
