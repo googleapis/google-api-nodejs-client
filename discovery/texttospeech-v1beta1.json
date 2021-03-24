@@ -153,7 +153,7 @@
       }
     }
   },
-  "revision": "20210226",
+  "revision": "20210312",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AudioConfig": {
@@ -168,7 +168,8 @@
             "MP3",
             "MP3_64_KBPS",
             "OGG_OPUS",
-            "MULAW"
+            "MULAW",
+            "ALAW"
           ],
           "enumDescriptions": [
             "Not specified. Will return result google.rpc.Code.INVALID_ARGUMENT.",
@@ -176,7 +177,8 @@
             "MP3 audio at 32kbps.",
             "MP3 at 64kbps.",
             "Opus encoded audio wrapped in an ogg container. The result will be a file which can be played natively on Android, and in browsers (at least Chrome and Firefox). The quality of the encoding is considerably higher than MP3 while using approximately the same bitrate.",
-            "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law. Audio content returned as MULAW also contains a WAV header."
+            "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law. Audio content returned as MULAW also contains a WAV header.",
+            "8-bit samples that compand 14-bit audio samples using G.711 PCMU/A-law. Audio content returned as ALAW also contains a WAV header."
           ],
           "type": "string"
         },

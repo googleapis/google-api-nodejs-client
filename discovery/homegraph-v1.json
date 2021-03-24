@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/homegraph": {
-          "description": "New Service: https://www.googleapis.com/auth/homegraph"
+          "description": "Private Service: https://www.googleapis.com/auth/homegraph"
         }
       }
     }
@@ -234,7 +234,7 @@
       }
     }
   },
-  "revision": "20210226",
+  "revision": "20210310",
   "rootUrl": "https://homegraph.googleapis.com/",
   "schemas": {
     "AgentDeviceId": {

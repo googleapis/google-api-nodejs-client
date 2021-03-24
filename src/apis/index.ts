@@ -242,6 +242,10 @@ import {
   VERSIONS as firebaserulesVersions,
   firebaserules,
 } from './firebaserules';
+import {
+  VERSIONS as firebasestorageVersions,
+  firebasestorage,
+} from './firebasestorage';
 import {VERSIONS as firestoreVersions, firestore} from './firestore';
 import {VERSIONS as fitnessVersions, fitness} from './fitness';
 import {VERSIONS as gamesVersions, games} from './games';
@@ -255,6 +259,7 @@ import {
 } from './gamesManagement';
 import {VERSIONS as gameservicesVersions, gameservices} from './gameservices';
 import {VERSIONS as genomicsVersions, genomics} from './genomics';
+import {VERSIONS as gkehubVersions, gkehub} from './gkehub';
 import {VERSIONS as gmailVersions, gmail} from './gmail';
 import {
   VERSIONS as gmailpostmastertoolsVersions,
@@ -322,6 +327,7 @@ import {
   VERSIONS as ondemandscanningVersions,
   ondemandscanning,
 } from './ondemandscanning';
+import {VERSIONS as orgpolicyVersions, orgpolicy} from './orgpolicy';
 import {VERSIONS as osconfigVersions, osconfig} from './osconfig';
 import {VERSIONS as osloginVersions, oslogin} from './oslogin';
 import {
@@ -585,6 +591,7 @@ export const APIS: APIList = {
   firebasehosting: firebasehostingVersions,
   firebaseml: firebasemlVersions,
   firebaserules: firebaserulesVersions,
+  firebasestorage: firebasestorageVersions,
   firestore: firestoreVersions,
   fitness: fitnessVersions,
   games: gamesVersions,
@@ -592,6 +599,7 @@ export const APIS: APIList = {
   gamesManagement: gamesManagementVersions,
   gameservices: gameservicesVersions,
   genomics: genomicsVersions,
+  gkehub: gkehubVersions,
   gmail: gmailVersions,
   gmailpostmastertools: gmailpostmastertoolsVersions,
   groupsmigration: groupsmigrationVersions,
@@ -623,6 +631,7 @@ export const APIS: APIList = {
   notebooks: notebooksVersions,
   oauth2: oauth2Versions,
   ondemandscanning: ondemandscanningVersions,
+  orgpolicy: orgpolicyVersions,
   osconfig: osconfigVersions,
   oslogin: osloginVersions,
   pagespeedonline: pagespeedonlineVersions,
@@ -795,6 +804,7 @@ export class GeneratedAPIs {
   firebasehosting = firebasehosting;
   firebaseml = firebaseml;
   firebaserules = firebaserules;
+  firebasestorage = firebasestorage;
   firestore = firestore;
   fitness = fitness;
   games = games;
@@ -802,6 +812,7 @@ export class GeneratedAPIs {
   gamesManagement = gamesManagement;
   gameservices = gameservices;
   genomics = genomics;
+  gkehub = gkehub;
   gmail = gmail;
   gmailpostmastertools = gmailpostmastertools;
   groupsmigration = groupsmigration;
@@ -833,6 +844,7 @@ export class GeneratedAPIs {
   notebooks = notebooks;
   oauth2 = oauth2;
   ondemandscanning = ondemandscanning;
+  orgpolicy = orgpolicy;
   osconfig = osconfig;
   oslogin = oslogin;
   pagespeedonline = pagespeedonline;
