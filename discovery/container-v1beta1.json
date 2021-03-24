@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20210219",
+  "revision": "20210311",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2581,7 +2581,7 @@
       "type": "object"
     },
     "Autopilot": {
-      "description": "Autopilot is the configuration for Autopilot settings on the cluster. It is the official product name of what is previously known as AutoGKE",
+      "description": "Autopilot is the configuration for Autopilot settings on the cluster.",
       "id": "Autopilot",
       "properties": {
         "enabled": {
@@ -2763,7 +2763,7 @@
         },
         "autopilot": {
           "$ref": "Autopilot",
-          "description": "Autopilot configuration for the cluster. It has the same semantics as AutoGKE and overrides the setting in autogke."
+          "description": "Autopilot configuration for the cluster."
         },
         "autoscaling": {
           "$ref": "ClusterAutoscaling",
@@ -3147,6 +3147,10 @@
         "desiredIntraNodeVisibilityConfig": {
           "$ref": "IntraNodeVisibilityConfig",
           "description": "The desired config of Intra-node visibility."
+        },
+        "desiredL4ilbSubsettingConfig": {
+          "$ref": "ILBSubsettingConfig",
+          "description": "The desired L4 Internal Load Balancer Subsetting configuration."
         },
         "desiredLocations": {
           "description": "The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes should be located. This list must always include the cluster's primary zone. Warning: changing cluster locations will update the locations of all node pools and will result in nodes being added and/or removed.",
@@ -3548,6 +3552,17 @@
       "properties": {
         "disabled": {
           "description": "Whether the HTTP Load Balancing controller is enabled in the cluster. When enabled, it runs a small pod in the cluster that manages the load balancers.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ILBSubsettingConfig": {
+      "description": "ILBSubsettingConfig contains the desired config of L4 Internal LoadBalancer subsetting on this cluster.",
+      "id": "ILBSubsettingConfig",
+      "properties": {
+        "enabled": {
+          "description": "Enables l4 ILB subsetting for this cluster",
           "type": "boolean"
         }
       },
@@ -4015,6 +4030,10 @@
           "description": "Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.",
           "type": "boolean"
         },
+        "enableL4ilbSubsetting": {
+          "description": "Whether L4ILB Subsetting is enabled for this cluster.",
+          "type": "boolean"
+        },
         "network": {
           "description": "Output only. The relative name of the Google Compute Engine network(https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network",
           "type": "string"
@@ -4072,6 +4091,20 @@
         "disabled": {
           "description": "Whether NetworkPolicy is enabled for this cluster.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "NetworkTags": {
+      "description": "Collection of Compute Engine network tags that can be applied to a node's underyling VM instance. (See `tags` field in [`NodeConfig`](/kubernetes-engine/docs/reference/rest/v1/NodeConfig)).",
+      "id": "NetworkTags",
+      "properties": {
+        "tags": {
+          "description": "List of network tags.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4210,6 +4243,20 @@
         "cpuManagerPolicy": {
           "description": "Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. - \"none\": the default, which represents the existing scheduling behavior. - \"static\": allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is 'none' if unspecified.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NodeLabels": {
+      "description": "Collection of node-level [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels).",
+      "id": "NodeLabels",
+      "properties": {
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map of node label keys and node label values.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -4404,6 +4451,20 @@
         "value": {
           "description": "Value for taint.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NodeTaints": {
+      "description": "Collection of Kubernetes [node taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration).",
+      "id": "NodeTaints",
+      "properties": {
+        "taints": {
+          "description": "List of node taints.",
+          "items": {
+            "$ref": "NodeTaint"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5529,6 +5590,10 @@
           "$ref": "NodeKubeletConfig",
           "description": "Node kubelet configs."
         },
+        "labels": {
+          "$ref": "NodeLabels",
+          "description": "The desired node labels to be applied to all nodes in the node pool. If this field is not present, the labels will not be changed. Otherwise, the existing node labels will be *replaced* with the provided labels."
+        },
         "linuxNodeConfig": {
           "$ref": "LinuxNodeConfig",
           "description": "Parameters that can be configured on Linux nodes."
@@ -5555,6 +5620,14 @@
         "projectId": {
           "description": "Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.",
           "type": "string"
+        },
+        "tags": {
+          "$ref": "NetworkTags",
+          "description": "The desired network tags to be applied to all nodes in the node pool. If this field is not present, the tags will not be changed. Otherwise, the existing network tags will be *replaced* with the provided tags."
+        },
+        "taints": {
+          "$ref": "NodeTaints",
+          "description": "The desired node taints to be applied to all nodes in the node pool. If this field is not present, the taints will not be changed. Otherwise, the existing node taints will be *replaced* with the provided taints."
         },
         "upgradeSettings": {
           "$ref": "UpgradeSettings",
