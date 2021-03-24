@@ -425,6 +425,8 @@ export namespace pubsublite_v1 {
      *   const res = await pubsublite.admin.projects.locations.subscriptions.create({
      *     // Required. The parent location in which to create the subscription. Structured like `projects/{project_number\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
+     *     // If true, the newly created subscription will only receive messages published after the subscription was created. Otherwise, the entire message backlog will be received on the subscription. Defaults to false.
+     *     skipBacklog: 'placeholder-value',
      *     // Required. The ID to use for the subscription, which will become the final component of the subscription's name. This value is structured like: `my-sub-name`.
      *     subscriptionId: 'placeholder-value',
      *
@@ -1082,6 +1084,10 @@ export namespace pubsublite_v1 {
      * Required. The parent location in which to create the subscription. Structured like `projects/{project_number\}/locations/{location\}`.
      */
     parent?: string;
+    /**
+     * If true, the newly created subscription will only receive messages published after the subscription was created. Otherwise, the entire message backlog will be received on the subscription. Defaults to false.
+     */
+    skipBacklog?: boolean;
     /**
      * Required. The ID to use for the subscription, which will become the final component of the subscription's name. This value is structured like: `my-sub-name`.
      */
