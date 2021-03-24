@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -248,6 +248,11 @@
                 "parent"
               ],
               "parameters": {
+                "dryRun": {
+                  "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "parent": {
                   "description": "The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.",
                   "location": "path",
@@ -278,6 +283,11 @@
               "parameters": {
                 "apiVersion": {
                   "description": "Cloud Run currently ignores this parameter.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "dryRun": {
+                  "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
                   "location": "query",
                   "type": "string"
                 },
@@ -408,6 +418,11 @@
               "parameters": {
                 "apiVersion": {
                   "description": "Cloud Run currently ignores this parameter.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "dryRun": {
+                  "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
                   "location": "query",
                   "type": "string"
                 },
@@ -626,6 +641,11 @@
                 "parent"
               ],
               "parameters": {
+                "dryRun": {
+                  "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "parent": {
                   "description": "The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.",
                   "location": "path",
@@ -656,6 +676,11 @@
               "parameters": {
                 "apiVersion": {
                   "description": "Cloud Run currently ignores this parameter.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "dryRun": {
+                  "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
                   "location": "query",
                   "type": "string"
                 },
@@ -780,6 +805,11 @@
                 "name"
               ],
               "parameters": {
+                "dryRun": {
+                  "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "name": {
                   "description": "The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.",
                   "location": "path",
@@ -857,7 +887,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "The standard list filter.",
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
@@ -869,13 +899,13 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The standard list page size.",
+                  "description": "The maximum number of results to return. If not set, the service will select a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "The standard list page token.",
+                  "description": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
                   "location": "query",
                   "type": "string"
                 }
@@ -1031,6 +1061,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "dryRun": {
+                      "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "parent": {
                       "description": "The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.",
                       "location": "path",
@@ -1061,6 +1096,11 @@
                   "parameters": {
                     "apiVersion": {
                       "description": "Cloud Run currently ignores this parameter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "dryRun": {
+                      "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1191,6 +1231,11 @@
                   "parameters": {
                     "apiVersion": {
                       "description": "Cloud Run currently ignores this parameter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "dryRun": {
+                      "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1409,6 +1454,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "dryRun": {
+                      "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "parent": {
                       "description": "The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.",
                       "location": "path",
@@ -1439,6 +1489,11 @@
                   "parameters": {
                     "apiVersion": {
                       "description": "Cloud Run currently ignores this parameter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "dryRun": {
+                      "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1594,6 +1649,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "dryRun": {
+                      "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "name": {
                       "description": "The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.",
                       "location": "path",
@@ -1676,7 +1736,7 @@
       }
     }
   },
-  "revision": "20210301",
+  "revision": "20210312",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -3317,7 +3377,7 @@
           "type": "string"
         },
         "url": {
-          "description": "Output only. URL displays the URL for accessing tagged traffic targets. URL is displayed in status, and is disallowed on spec. URL must contain a scheme (e.g. http://) and a hostname, but may not contain anything else (e.g. basic auth, url path, etc. Not currently supported in Cloud Run.",
+          "description": "Output only. URL displays the URL for accessing tagged traffic targets. URL is displayed in status, and is disallowed on spec. URL must contain a scheme (e.g. http://) and a hostname, but may not contain anything else (e.g. basic auth, url path, etc.)",
           "type": "string"
         }
       },
