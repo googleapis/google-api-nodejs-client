@@ -36,9 +36,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace cloudbuild_v1alpha2 {
+export namespace cloudbuild_v1beta1 {
   export interface Options extends GlobalOptions {
-    version: 'v1alpha2';
+    version: 'v1beta1';
   }
 
   interface StandardParameters {
@@ -108,7 +108,7 @@ export namespace cloudbuild_v1alpha2 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const cloudbuild = google.cloudbuild('v1alpha2');
+   * const cloudbuild = google.cloudbuild('v1beta1');
    * ```
    */
   export class Cloudbuild {
@@ -479,7 +479,7 @@ export namespace cloudbuild_v1alpha2 {
    */
   export interface Schema$NetworkConfig {
     /**
-     * Required. Immutable. The network definition that the workers are peered to. If this section is left empty, the workers will be peered to WorkerPool.project_id on the default network. Must be in the format `projects/{project\}/global/networks/{network\}`, where {project\} is a project number, such as `12345`, and {network\} is the name of a VPC network in the project.
+     * Required. Immutable. The network definition that the workers are peered to. If this section is left empty, the workers will be peered to `WorkerPool.project_id` on the service producer network. Must be in the format `projects/{project\}/global/networks/{network\}`, where `{project\}` is a project number, such as `12345`, and `{network\}` is the name of a VPC network in the project. See [Understanding network configuration options](https://cloud.google.com/cloud-build/docs/custom-workers/set-up-custom-worker-pool-environment#understanding_the_network_configuration_options)
      */
     peeredNetwork?: string | null;
   }
@@ -861,20 +861,24 @@ export namespace cloudbuild_v1alpha2 {
     path?: string | null;
   }
   /**
-   * WorkerConfig defines the configuration to be used for a creating workers in the pool.
+   * Defines the configuration to be used for creating workers in the pool.
    */
   export interface Schema$WorkerConfig {
     /**
-     * Size of the disk attached to the worker, in GB. See https://cloud.google.com/compute/docs/disks/ If `0` is specified, Cloud Build will use a standard disk size.
+     * Size of the disk attached to the worker, in GB. See [Worker pool config file](https://cloud.google.com/cloud-build/docs/custom-workers/worker-pool-config-file). Specify a value of up to 1000. If `0` is specified, Cloud Build will use a standard disk size.
      */
     diskSizeGb?: string | null;
     /**
-     * Machine Type of the worker, such as n1-standard-1. See https://cloud.google.com/compute/docs/machine-types. If left blank, Cloud Build will use a standard unspecified machine to create the worker pool.
+     * Machine type of a worker, such as `n1-standard-1`. See [Worker pool config file](https://cloud.google.com/cloud-build/docs/custom-workers/worker-pool-config-file). If left blank, Cloud Build will use `n1-standard-1`.
      */
     machineType?: string | null;
+    /**
+     * If true, workers are created without any public address, which prevents network egress to public IPs.
+     */
+    noExternalIp?: boolean | null;
   }
   /**
-   * Configuration for a WorkerPool to run the builds. Workers are machines that Cloud Build uses to run your builds. By default, all workers run in a project owned by Cloud Build. To have full control over the workers that execute your builds -- such as enabling them to access private resources on your private network -- you can request Cloud Build to run the workers in your own project by creating a custom workers pool.
+   * Configuration for a `WorkerPool` to run the builds. Workers provide a build environment where Cloud Build runs your builds. Cloud Build owns and maintains a pool of workers for general use. By default, when you submit a build, Cloud Build uses one of the workers from this pool. Builds that run in the default worker pool have access to the public internet. If your build needs access to resources on a private network, create and use a `WorkerPool` to run your builds. Custom `WorkerPool`s give your builds access to any single VPC network that you administer, including any on-prem resources connected to that VPC network. For an overview of custom worker pools, see [Custom workers overview](https://cloud.google.com/cloud-build/docs/custom-workers/custom-workers-overview).
    */
   export interface Schema$WorkerPool {
     /**
@@ -886,7 +890,7 @@ export namespace cloudbuild_v1alpha2 {
      */
     deleteTime?: string | null;
     /**
-     * Output only. The resource name of the `WorkerPool`. Format of the name is `projects/{project_id\}/workerPools/{worker_pool_id\}`, where the value of {worker_pool_id\} is provided in the CreateWorkerPool request.
+     * Output only. The resource name of the `WorkerPool`, with format `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`. The value of `{worker_pool\}` is provided by `worker_pool_id` in `CreateWorkerPool` request and the value of `{location\}` is determined by the endpoint accessed.
      */
     name?: string | null;
     /**
@@ -894,11 +898,7 @@ export namespace cloudbuild_v1alpha2 {
      */
     networkConfig?: Schema$NetworkConfig;
     /**
-     * Required. Immutable. The region where the `WorkerPool` runs. Only "us-central1" is currently supported. Note that `region` cannot be changed once the `WorkerPool` is created.
-     */
-    region?: string | null;
-    /**
-     * Output only. WorkerPool state.
+     * Output only. `WorkerPool` state.
      */
     state?: string | null;
     /**
@@ -914,20 +914,22 @@ export namespace cloudbuild_v1alpha2 {
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
-    workerPools: Resource$Projects$Workerpools;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.locations = new Resource$Projects$Locations(this.context);
-      this.workerPools = new Resource$Projects$Workerpools(this.context);
     }
   }
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     operations: Resource$Projects$Locations$Operations;
+    workerPools: Resource$Projects$Locations$Workerpools;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.operations = new Resource$Projects$Locations$Operations(
+        this.context
+      );
+      this.workerPools = new Resource$Projects$Locations$Workerpools(
         this.context
       );
     }
@@ -952,7 +954,7 @@ export namespace cloudbuild_v1alpha2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1alpha2');
+     * const cloudbuild = google.cloudbuild('v1beta1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1049,7 +1051,7 @@ export namespace cloudbuild_v1alpha2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha2/{+name}:cancel').replace(
+            url: (rootUrl + '/v1beta1/{+name}:cancel').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1085,7 +1087,7 @@ export namespace cloudbuild_v1alpha2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1alpha2');
+     * const cloudbuild = google.cloudbuild('v1beta1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1182,7 +1184,7 @@ export namespace cloudbuild_v1alpha2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1223,14 +1225,14 @@ export namespace cloudbuild_v1alpha2 {
     name?: string;
   }
 
-  export class Resource$Projects$Workerpools {
+  export class Resource$Projects$Locations$Workerpools {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
     /**
-     * Creates a `WorkerPool` to run the builds, and returns the new worker pool.
+     * Creates a `WorkerPool` to run the builds, and returns the new worker pool. NOTE: As of now, this method returns an `Operation` that is always complete.
      * @example
      * ```js
      * // Before running the sample:
@@ -1242,7 +1244,7 @@ export namespace cloudbuild_v1alpha2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1alpha2');
+     * const cloudbuild = google.cloudbuild('v1beta1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1255,9 +1257,9 @@ export namespace cloudbuild_v1alpha2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudbuild.projects.workerPools.create({
-     *     // Required. The parent resource where this book will be created. Format: projects/{project\}
-     *     parent: 'projects/my-project',
+     *   const res = await cloudbuild.projects.locations.workerPools.create({
+     *     // Required. The parent resource where this worker pool will be created. Format: `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
      *     // Required. Immutable. The ID to use for the `WorkerPool`, which will become the final component of the resource name. This value should be 1-63 characters, and valid characters are /a-z-/.
      *     workerPoolId: 'placeholder-value',
      *
@@ -1269,7 +1271,6 @@ export namespace cloudbuild_v1alpha2 {
      *       //   "deleteTime": "my_deleteTime",
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
-     *       //   "region": "my_region",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime",
      *       //   "workerConfig": {}
@@ -1280,14 +1281,11 @@ export namespace cloudbuild_v1alpha2 {
      *
      *   // Example response
      *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "deleteTime": "my_deleteTime",
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
      *   //   "name": "my_name",
-     *   //   "networkConfig": {},
-     *   //   "region": "my_region",
-     *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "workerConfig": {}
+     *   //   "response": {}
      *   // }
      * }
      *
@@ -1304,49 +1302,49 @@ export namespace cloudbuild_v1alpha2 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
-      params: Params$Resource$Projects$Workerpools$Create,
+      params: Params$Resource$Projects$Locations$Workerpools$Create,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     create(
-      params?: Params$Resource$Projects$Workerpools$Create,
+      params?: Params$Resource$Projects$Locations$Workerpools$Create,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkerPool>;
+    ): GaxiosPromise<Schema$Operation>;
     create(
-      params: Params$Resource$Projects$Workerpools$Create,
+      params: Params$Resource$Projects$Locations$Workerpools$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     create(
-      params: Params$Resource$Projects$Workerpools$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$WorkerPool>,
-      callback: BodyResponseCallback<Schema$WorkerPool>
+      params: Params$Resource$Projects$Locations$Workerpools$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
     create(
-      params: Params$Resource$Projects$Workerpools$Create,
-      callback: BodyResponseCallback<Schema$WorkerPool>
+      params: Params$Resource$Projects$Locations$Workerpools$Create,
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
-    create(callback: BodyResponseCallback<Schema$WorkerPool>): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
     create(
       paramsOrCallback?:
-        | Params$Resource$Projects$Workerpools$Create
-        | BodyResponseCallback<Schema$WorkerPool>
+        | Params$Resource$Projects$Locations$Workerpools$Create
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Workerpools$Create;
+        {}) as Params$Resource$Projects$Locations$Workerpools$Create;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Workerpools$Create;
+        params = {} as Params$Resource$Projects$Locations$Workerpools$Create;
         options = {};
       }
 
@@ -1359,7 +1357,7 @@ export namespace cloudbuild_v1alpha2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha2/{+parent}/workerPools').replace(
+            url: (rootUrl + '/v1beta1/{+parent}/workerPools').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1373,17 +1371,17 @@ export namespace cloudbuild_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WorkerPool>(
+        createAPIRequest<Schema$Operation>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$WorkerPool>(parameters);
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
     /**
-     * Deletes a `WorkerPool`.
+     * Deletes a `WorkerPool`. NOTE: As of now, this method returns an `Operation` that is always complete.
      * @example
      * ```js
      * // Before running the sample:
@@ -1395,7 +1393,7 @@ export namespace cloudbuild_v1alpha2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1alpha2');
+     * const cloudbuild = google.cloudbuild('v1beta1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1408,14 +1406,20 @@ export namespace cloudbuild_v1alpha2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudbuild.projects.workerPools.delete({
-     *     // Required. The name of the `WorkerPool` to delete. Format: projects/{project\}/workerPools/{workerPool\}
-     *     name: 'projects/my-project/workerPools/my-workerPool',
+     *   const res = await cloudbuild.projects.locations.workerPools.delete({
+     *     // Required. The name of the `WorkerPool` to delete. Format: `projects/{project\}/locations/{workerPool\}/workerPools/{workerPool\}`.
+     *     name: 'projects/my-project/locations/my-location/workerPools/my-workerPool',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
-     *   // {}
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
      * }
      *
      * main().catch(e => {
@@ -1431,49 +1435,49 @@ export namespace cloudbuild_v1alpha2 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
-      params: Params$Resource$Projects$Workerpools$Delete,
+      params: Params$Resource$Projects$Locations$Workerpools$Delete,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     delete(
-      params?: Params$Resource$Projects$Workerpools$Delete,
+      params?: Params$Resource$Projects$Locations$Workerpools$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
+    ): GaxiosPromise<Schema$Operation>;
     delete(
-      params: Params$Resource$Projects$Workerpools$Delete,
+      params: Params$Resource$Projects$Locations$Workerpools$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     delete(
-      params: Params$Resource$Projects$Workerpools$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
+      params: Params$Resource$Projects$Locations$Workerpools$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
     delete(
-      params: Params$Resource$Projects$Workerpools$Delete,
-      callback: BodyResponseCallback<Schema$Empty>
+      params: Params$Resource$Projects$Locations$Workerpools$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
     delete(
       paramsOrCallback?:
-        | Params$Resource$Projects$Workerpools$Delete
-        | BodyResponseCallback<Schema$Empty>
+        | Params$Resource$Projects$Locations$Workerpools$Delete
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Workerpools$Delete;
+        {}) as Params$Resource$Projects$Locations$Workerpools$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Workerpools$Delete;
+        params = {} as Params$Resource$Projects$Locations$Workerpools$Delete;
         options = {};
       }
 
@@ -1486,7 +1490,7 @@ export namespace cloudbuild_v1alpha2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -1497,12 +1501,12 @@ export namespace cloudbuild_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$Empty>(
+        createAPIRequest<Schema$Operation>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$Empty>(parameters);
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
 
@@ -1519,7 +1523,7 @@ export namespace cloudbuild_v1alpha2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1alpha2');
+     * const cloudbuild = google.cloudbuild('v1beta1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1532,9 +1536,9 @@ export namespace cloudbuild_v1alpha2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudbuild.projects.workerPools.get({
-     *     // Required. The name of the `WorkerPool` to retrieve. Format: projects/{project\}/workerPools/{workerPool\}
-     *     name: 'projects/my-project/workerPools/my-workerPool',
+     *   const res = await cloudbuild.projects.locations.workerPools.get({
+     *     // Required. The name of the `WorkerPool` to retrieve. Format: `projects/{project\}/locations/{location\}/workerPools/{workerPool\}`.
+     *     name: 'projects/my-project/locations/my-location/workerPools/my-workerPool',
      *   });
      *   console.log(res.data);
      *
@@ -1544,7 +1548,6 @@ export namespace cloudbuild_v1alpha2 {
      *   //   "deleteTime": "my_deleteTime",
      *   //   "name": "my_name",
      *   //   "networkConfig": {},
-     *   //   "region": "my_region",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime",
      *   //   "workerConfig": {}
@@ -1564,31 +1567,31 @@ export namespace cloudbuild_v1alpha2 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
-      params: Params$Resource$Projects$Workerpools$Get,
+      params: Params$Resource$Projects$Locations$Workerpools$Get,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     get(
-      params?: Params$Resource$Projects$Workerpools$Get,
+      params?: Params$Resource$Projects$Locations$Workerpools$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$WorkerPool>;
     get(
-      params: Params$Resource$Projects$Workerpools$Get,
+      params: Params$Resource$Projects$Locations$Workerpools$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     get(
-      params: Params$Resource$Projects$Workerpools$Get,
+      params: Params$Resource$Projects$Locations$Workerpools$Get,
       options: MethodOptions | BodyResponseCallback<Schema$WorkerPool>,
       callback: BodyResponseCallback<Schema$WorkerPool>
     ): void;
     get(
-      params: Params$Resource$Projects$Workerpools$Get,
+      params: Params$Resource$Projects$Locations$Workerpools$Get,
       callback: BodyResponseCallback<Schema$WorkerPool>
     ): void;
     get(callback: BodyResponseCallback<Schema$WorkerPool>): void;
     get(
       paramsOrCallback?:
-        | Params$Resource$Projects$Workerpools$Get
+        | Params$Resource$Projects$Locations$Workerpools$Get
         | BodyResponseCallback<Schema$WorkerPool>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -1601,12 +1604,12 @@ export namespace cloudbuild_v1alpha2 {
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Workerpools$Get;
+        {}) as Params$Resource$Projects$Locations$Workerpools$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Workerpools$Get;
+        params = {} as Params$Resource$Projects$Locations$Workerpools$Get;
         options = {};
       }
 
@@ -1619,7 +1622,7 @@ export namespace cloudbuild_v1alpha2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1640,7 +1643,7 @@ export namespace cloudbuild_v1alpha2 {
     }
 
     /**
-     * Lists `WorkerPool`s by project.
+     * Lists `WorkerPool`s in the given project.
      * @example
      * ```js
      * // Before running the sample:
@@ -1652,7 +1655,7 @@ export namespace cloudbuild_v1alpha2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1alpha2');
+     * const cloudbuild = google.cloudbuild('v1beta1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1665,9 +1668,9 @@ export namespace cloudbuild_v1alpha2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudbuild.projects.workerPools.list({
-     *     // Required. The parent, which owns this collection of `WorkerPools`. Format: projects/{project\}
-     *     parent: 'projects/my-project',
+     *   const res = await cloudbuild.projects.locations.workerPools.list({
+     *     // Required. The parent of the collection of `WorkerPools`. Format: `projects/{project\}/locations/location`.
+     *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
      *
@@ -1690,33 +1693,33 @@ export namespace cloudbuild_v1alpha2 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
-      params: Params$Resource$Projects$Workerpools$List,
+      params: Params$Resource$Projects$Locations$Workerpools$List,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     list(
-      params?: Params$Resource$Projects$Workerpools$List,
+      params?: Params$Resource$Projects$Locations$Workerpools$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$ListWorkerPoolsResponse>;
     list(
-      params: Params$Resource$Projects$Workerpools$List,
+      params: Params$Resource$Projects$Locations$Workerpools$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     list(
-      params: Params$Resource$Projects$Workerpools$List,
+      params: Params$Resource$Projects$Locations$Workerpools$List,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListWorkerPoolsResponse>,
       callback: BodyResponseCallback<Schema$ListWorkerPoolsResponse>
     ): void;
     list(
-      params: Params$Resource$Projects$Workerpools$List,
+      params: Params$Resource$Projects$Locations$Workerpools$List,
       callback: BodyResponseCallback<Schema$ListWorkerPoolsResponse>
     ): void;
     list(callback: BodyResponseCallback<Schema$ListWorkerPoolsResponse>): void;
     list(
       paramsOrCallback?:
-        | Params$Resource$Projects$Workerpools$List
+        | Params$Resource$Projects$Locations$Workerpools$List
         | BodyResponseCallback<Schema$ListWorkerPoolsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -1732,12 +1735,12 @@ export namespace cloudbuild_v1alpha2 {
       | GaxiosPromise<Schema$ListWorkerPoolsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Workerpools$List;
+        {}) as Params$Resource$Projects$Locations$Workerpools$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Workerpools$List;
+        params = {} as Params$Resource$Projects$Locations$Workerpools$List;
         options = {};
       }
 
@@ -1750,7 +1753,7 @@ export namespace cloudbuild_v1alpha2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha2/{+parent}/workerPools').replace(
+            url: (rootUrl + '/v1beta1/{+parent}/workerPools').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1774,7 +1777,7 @@ export namespace cloudbuild_v1alpha2 {
     }
 
     /**
-     * Updates a `WorkerPool`.
+     * Updates a `WorkerPool`. NOTE: As of now, this method returns an `Operation` that is always complete.
      * @example
      * ```js
      * // Before running the sample:
@@ -1786,7 +1789,7 @@ export namespace cloudbuild_v1alpha2 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const cloudbuild = google.cloudbuild('v1alpha2');
+     * const cloudbuild = google.cloudbuild('v1beta1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1799,10 +1802,10 @@ export namespace cloudbuild_v1alpha2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudbuild.projects.workerPools.patch({
-     *     // Output only. The resource name of the `WorkerPool`. Format of the name is `projects/{project_id\}/workerPools/{worker_pool_id\}`, where the value of {worker_pool_id\} is provided in the CreateWorkerPool request.
-     *     name: 'projects/my-project/workerPools/my-workerPool',
-     *     // A mask specifying which fields in `WorkerPool` should be updated.
+     *   const res = await cloudbuild.projects.locations.workerPools.patch({
+     *     // Output only. The resource name of the `WorkerPool`, with format `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`. The value of `{worker_pool\}` is provided by `worker_pool_id` in `CreateWorkerPool` request and the value of `{location\}` is determined by the endpoint accessed.
+     *     name: 'projects/my-project/locations/my-location/workerPools/my-workerPool',
+     *     // A mask specifying which fields in `WorkerPool` to update.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1813,7 +1816,6 @@ export namespace cloudbuild_v1alpha2 {
      *       //   "deleteTime": "my_deleteTime",
      *       //   "name": "my_name",
      *       //   "networkConfig": {},
-     *       //   "region": "my_region",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime",
      *       //   "workerConfig": {}
@@ -1824,14 +1826,11 @@ export namespace cloudbuild_v1alpha2 {
      *
      *   // Example response
      *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "deleteTime": "my_deleteTime",
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
      *   //   "name": "my_name",
-     *   //   "networkConfig": {},
-     *   //   "region": "my_region",
-     *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime",
-     *   //   "workerConfig": {}
+     *   //   "response": {}
      *   // }
      * }
      *
@@ -1848,49 +1847,49 @@ export namespace cloudbuild_v1alpha2 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
-      params: Params$Resource$Projects$Workerpools$Patch,
+      params: Params$Resource$Projects$Locations$Workerpools$Patch,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     patch(
-      params?: Params$Resource$Projects$Workerpools$Patch,
+      params?: Params$Resource$Projects$Locations$Workerpools$Patch,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$WorkerPool>;
+    ): GaxiosPromise<Schema$Operation>;
     patch(
-      params: Params$Resource$Projects$Workerpools$Patch,
+      params: Params$Resource$Projects$Locations$Workerpools$Patch,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     patch(
-      params: Params$Resource$Projects$Workerpools$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$WorkerPool>,
-      callback: BodyResponseCallback<Schema$WorkerPool>
+      params: Params$Resource$Projects$Locations$Workerpools$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
     patch(
-      params: Params$Resource$Projects$Workerpools$Patch,
-      callback: BodyResponseCallback<Schema$WorkerPool>
+      params: Params$Resource$Projects$Locations$Workerpools$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
     ): void;
-    patch(callback: BodyResponseCallback<Schema$WorkerPool>): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
     patch(
       paramsOrCallback?:
-        | Params$Resource$Projects$Workerpools$Patch
-        | BodyResponseCallback<Schema$WorkerPool>
+        | Params$Resource$Projects$Locations$Workerpools$Patch
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$WorkerPool>
+        | BodyResponseCallback<Schema$Operation>
         | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$WorkerPool> | GaxiosPromise<Readable> {
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Workerpools$Patch;
+        {}) as Params$Resource$Projects$Locations$Workerpools$Patch;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Workerpools$Patch;
+        params = {} as Params$Resource$Projects$Locations$Workerpools$Patch;
         options = {};
       }
 
@@ -1903,7 +1902,7 @@ export namespace cloudbuild_v1alpha2 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -1914,20 +1913,20 @@ export namespace cloudbuild_v1alpha2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$WorkerPool>(
+        createAPIRequest<Schema$Operation>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$WorkerPool>(parameters);
+        return createAPIRequest<Schema$Operation>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Projects$Workerpools$Create
+  export interface Params$Resource$Projects$Locations$Workerpools$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource where this book will be created. Format: projects/{project\}
+     * Required. The parent resource where this worker pool will be created. Format: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
     /**
@@ -1940,35 +1939,35 @@ export namespace cloudbuild_v1alpha2 {
      */
     requestBody?: Schema$WorkerPool;
   }
-  export interface Params$Resource$Projects$Workerpools$Delete
+  export interface Params$Resource$Projects$Locations$Workerpools$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the `WorkerPool` to delete. Format: projects/{project\}/workerPools/{workerPool\}
+     * Required. The name of the `WorkerPool` to delete. Format: `projects/{project\}/locations/{workerPool\}/workerPools/{workerPool\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Workerpools$Get
+  export interface Params$Resource$Projects$Locations$Workerpools$Get
     extends StandardParameters {
     /**
-     * Required. The name of the `WorkerPool` to retrieve. Format: projects/{project\}/workerPools/{workerPool\}
+     * Required. The name of the `WorkerPool` to retrieve. Format: `projects/{project\}/locations/{location\}/workerPools/{workerPool\}`.
      */
     name?: string;
   }
-  export interface Params$Resource$Projects$Workerpools$List
+  export interface Params$Resource$Projects$Locations$Workerpools$List
     extends StandardParameters {
     /**
-     * Required. The parent, which owns this collection of `WorkerPools`. Format: projects/{project\}
+     * Required. The parent of the collection of `WorkerPools`. Format: `projects/{project\}/locations/location`.
      */
     parent?: string;
   }
-  export interface Params$Resource$Projects$Workerpools$Patch
+  export interface Params$Resource$Projects$Locations$Workerpools$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the `WorkerPool`. Format of the name is `projects/{project_id\}/workerPools/{worker_pool_id\}`, where the value of {worker_pool_id\} is provided in the CreateWorkerPool request.
+     * Output only. The resource name of the `WorkerPool`, with format `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`. The value of `{worker_pool\}` is provided by `worker_pool_id` in `CreateWorkerPool` request and the value of `{location\}` is determined by the endpoint accessed.
      */
     name?: string;
     /**
-     * A mask specifying which fields in `WorkerPool` should be updated.
+     * A mask specifying which fields in `WorkerPool` to update.
      */
     updateMask?: string;
 
