@@ -12,7 +12,7 @@
   "baseUrl": "https://chromemanagement.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Chrome Management",
-  "description": "The Chrome Management API is a suite of services that allows Chrome administrators to view, manage and gain insights on their Chrome OS The Chrome Management API is a suite of services that allows GSuite domain administrators to view, manage and gain insights on their Chrome OS and Chrome Browser devices and users.",
+  "description": "The Chrome Management API is a suite of services that allows Chrome administrators to view, manage and gain insights on their Chrome OS and Chrome Browser devices.",
   "discoveryVersion": "v1",
   "documentationLink": "http://developers.google.com/chrome/management/",
   "fullyEncodeReservedExpansion": true,
@@ -254,7 +254,7 @@
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Field used to order results. Supported order by fields: * machine_name * device_id",
+                  "description": "Field used to order results. Supported order by fields: * machine * device_id",
                   "location": "query",
                   "type": "string"
                 },
@@ -288,7 +288,7 @@
       }
     }
   },
-  "revision": "20210307",
+  "revision": "20210322",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1BrowserVersion": {

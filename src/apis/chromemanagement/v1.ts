@@ -103,7 +103,7 @@ export namespace chromemanagement_v1 {
   /**
    * Chrome Management API
    *
-   * The Chrome Management API is a suite of services that allows Chrome administrators to view, manage and gain insights on their Chrome OS The Chrome Management API is a suite of services that allows GSuite domain administrators to view, manage and gain insights on their Chrome OS and Chrome Browser devices and users.
+   * The Chrome Management API is a suite of services that allows Chrome administrators to view, manage and gain insights on their Chrome OS and Chrome Browser devices.
    *
    * @example
    * ```js
@@ -618,7 +618,7 @@ export namespace chromemanagement_v1 {
      *     customer: 'customers/my-customer',
      *     // Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * last_active_date
      *     filter: 'placeholder-value',
-     *     // Field used to order results. Supported order by fields: * machine_name * device_id
+     *     // Field used to order results. Supported order by fields: * machine * device_id
      *     orderBy: 'placeholder-value',
      *     // The ID of the organizational unit.
      *     orgUnitId: 'placeholder-value',
@@ -807,7 +807,7 @@ export namespace chromemanagement_v1 {
      */
     filter?: string;
     /**
-     * Field used to order results. Supported order by fields: * machine_name * device_id
+     * Field used to order results. Supported order by fields: * machine * device_id
      */
     orderBy?: string;
     /**
