@@ -902,18 +902,18 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "The standard list filter.",
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in AIP-160 (https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The standard list page size.",
+                  "description": "The maximum number of results to return. If not set, the service will select a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "The standard list page token.",
+                  "description": "A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.",
                   "location": "query",
                   "type": "string"
                 }
@@ -1594,7 +1594,7 @@
       }
     }
   },
-  "revision": "20210227",
+  "revision": "20210315",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -3498,7 +3498,7 @@
           "description": "Serving configuration for Google Cloud Endpoints (https://cloud.google.com/appengine/docs/python/endpoints/).Only returned in GET requests if view=FULL is set."
         },
         "appEngineApis": {
-          "description": "app_engine_apis allows Second Generation runtimes to access the App Engine APIs.",
+          "description": "app_engine_apis allows second generation runtimes to access the App Engine APIs.",
           "type": "boolean"
         },
         "automaticScaling": {
@@ -3669,6 +3669,10 @@
         },
         "runtimeMainExecutablePath": {
           "description": "The path or name of the app's main executable.",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "The identity that the deployed version will run as. Admin API will use the App Engine Appspot service account as default if this field is neither provided in app.yaml file nor through CLI flag.",
           "type": "string"
         },
         "servingStatus": {
