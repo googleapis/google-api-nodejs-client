@@ -151,7 +151,7 @@ export namespace calendar_v3 {
      */
     etag?: string | null;
     /**
-     * Identifier of the ACL rule.
+     * Identifier of the Access Control List (ACL) rule. See Sharing calendars.
      */
     id?: string | null;
     /**
@@ -168,7 +168,7 @@ export namespace calendar_v3 {
      */
     role?: string | null;
     /**
-     * The scope of the rule.
+     * The extent to which calendar access is granted by this ACL rule.
      */
     scope?: {type?: string; value?: string} | null;
   }
