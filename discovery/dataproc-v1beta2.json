@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -2291,7 +2291,7 @@
       }
     }
   },
-  "revision": "20210225",
+  "revision": "20210315",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3143,7 +3143,7 @@
           "type": "string"
         },
         "numInstances": {
-          "description": "Optional. The number of VM instances in the instance group. For master instance groups, must be set to 1.",
+          "description": "Optional. The number of VM instances in the instance group. For HA cluster master_config groups, must be set to 3. For standard cluster master_config groups, must be set to 1.",
           "format": "int32",
           "type": "integer"
         },
