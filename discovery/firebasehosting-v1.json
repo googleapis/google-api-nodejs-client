@@ -3,7 +3,7 @@
   "baseUrl": "https://firebasehosting.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Firebase Hosting",
-  "description": "The Firebase Hosting REST API enables programmatic and customizable deployments to your Firebase-hosted sites. Use this REST API to deploy new or updated hosting configurations and content files.",
+  "description": "The Firebase Hosting REST API enables programmatic and customizable management and deployments to your Firebase-hosted sites. Use this REST API to create and manage channels and sites as well as to deploy new or updated hosting configurations and content files.",
   "discoveryVersion": "v1",
   "documentationLink": "https://firebase.google.com/docs/hosting/",
   "fullyEncodeReservedExpansion": true,
@@ -186,7 +186,7 @@
       }
     }
   },
-  "revision": "20200731",
+  "revision": "20210315",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
