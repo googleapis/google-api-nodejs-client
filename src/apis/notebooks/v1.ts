@@ -525,6 +525,10 @@ export namespace notebooks_v1 {
      */
     upgradeable?: boolean | null;
     /**
+     * The new image self link this instance will be upgraded to if calling the upgrade endpoint. This field will only be populated if field upgradeable is true.
+     */
+    upgradeImage?: string | null;
+    /**
      * Additional information about upgrade.
      */
     upgradeInfo?: string | null;
@@ -3318,6 +3322,7 @@ export namespace notebooks_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "upgradeImage": "my_upgradeImage",
      *   //   "upgradeInfo": "my_upgradeInfo",
      *   //   "upgradeVersion": "my_upgradeVersion",
      *   //   "upgradeable": false
