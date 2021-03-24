@@ -168,7 +168,6 @@ export namespace networkmanagement_v1beta1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
-    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -390,7 +389,7 @@ export namespace networkmanagement_v1beta1 {
     title?: string | null;
   }
   /**
-   * For display only. Metadata associated with a Compute Engine firewall rule.
+   * For display only. Metadata associated with a VPC firewall rule, an implied VPC firewall rule, or a hierarchical firewall policy rule.
    */
   export interface Schema$FirewallInfo {
     /**
@@ -402,27 +401,35 @@ export namespace networkmanagement_v1beta1 {
      */
     direction?: string | null;
     /**
-     * Name of a Compute Engine firewall rule.
+     * The display name of the VPC firewall rule. This field is not applicable to hierarchical firewall policy rules.
      */
     displayName?: string | null;
     /**
-     * URI of a Compute Engine network.
+     * The firewall rule's type.
+     */
+    firewallRuleType?: string | null;
+    /**
+     * The URI of the VPC network that the firewall rule is associated with. This field is not applicable to hierarchical firewall policy rules.
      */
     networkUri?: string | null;
     /**
-     * Priority of the firewall rule.
+     * The hierarchical firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules.
+     */
+    policy?: string | null;
+    /**
+     * The priority of the firewall rule.
      */
     priority?: number | null;
     /**
-     * Target service accounts of the firewall rule.
+     * The target service accounts specified by the firewall rule.
      */
     targetServiceAccounts?: string[] | null;
     /**
-     * Target tags of the firewall rule.
+     * The target tags defined by the VPC firewall rule. This field is not applicable to hierarchical firewall policy rules.
      */
     targetTags?: string[] | null;
     /**
-     * URI of a Compute Engine firewall rule. Implied default rule does not have URI.
+     * The URI of the VPC firewall rule. This field is not applicable to implied firewall rules or hierarchical firewall policy rules.
      */
     uri?: string | null;
   }
@@ -767,27 +774,27 @@ export namespace networkmanagement_v1beta1 {
     version?: number | null;
   }
   /**
-   * The details of probing from the latest run.
+   * Results of active probing from the last run of the test.
    */
   export interface Schema$ProbingDetails {
     /**
-     * Causes that the probing was aborted.
+     * The reason probing was aborted.
      */
     abortCause?: string | null;
     /**
-     * Derived from the test input. The actual source and destination endpoint where the probing was run.
+     * The source and destination endpoints derived from the test input and used for active probing.
      */
     endpointInfo?: Schema$EndpointInfo;
     /**
-     * The details of an internal failure or a cancellation of reachability analysis.
+     * Details about an internal failure or the cancellation of active probing.
      */
     error?: Schema$Status;
     /**
-     * One way probing latency distribution. The latency is measured as duration of packet traversal of Google Cloud network, from source to destination endpoint.
+     * Latency as measured by active probing in one direction: from the source to the destination endpoint.
      */
     probingLatency?: Schema$LatencyDistribution;
     /**
-     * The overall reachability result of the test.
+     * The overall result of active probing.
      */
     result?: string | null;
     /**
@@ -795,16 +802,16 @@ export namespace networkmanagement_v1beta1 {
      */
     sentProbeCount?: number | null;
     /**
-     * Number of probes that reached destination.
+     * Number of probes that reached the destination.
      */
     successfulProbeCount?: number | null;
     /**
-     * The time the reachability state was verified.
+     * The time that reachability was assessed through active probing.
      */
     verifyTime?: string | null;
   }
   /**
-   * The details of reachability state from the latest run.
+   * Results of the configuration analysis from the last run of the test.
    */
   export interface Schema$ReachabilityDetails {
     /**
@@ -812,7 +819,7 @@ export namespace networkmanagement_v1beta1 {
      */
     error?: Schema$Status;
     /**
-     * The overall reachability result of the test.
+     * The overall result of the test's configuration analysis.
      */
     result?: string | null;
     /**
@@ -820,7 +827,7 @@ export namespace networkmanagement_v1beta1 {
      */
     traces?: Schema$Trace[];
     /**
-     * The time the reachability state was verified.
+     * The time of the configuration analysis.
      */
     verifyTime?: string | null;
   }
@@ -928,7 +935,7 @@ export namespace networkmanagement_v1beta1 {
      */
     drop?: Schema$DropInfo;
     /**
-     * Display info of the source and destination under analysis. The endpiont info in an intermediate state may differ with the initial input, as it might be modified by state like NAT, or Connection Proxy.
+     * Display info of the source and destination under analysis. The endpoint info in an intermediate state may differ with the initial input, as it might be modified by state like NAT, or Connection Proxy.
      */
     endpoint?: Schema$EndpointInfo;
     /**
@@ -999,7 +1006,7 @@ export namespace networkmanagement_v1beta1 {
     permissions?: string[] | null;
   }
   /**
-   * Trace represents one simulated packet forwarding path. - Each trace contains multiple ordered steps. - Each step is in a particular state and has an associated configuration. - State is categorized as a final or non-final state. - Each final state has a reason associated with it. - Each trace must end with a final state (the last step). |---------------------Trace----------------------| Step1(State) Step2(State) --- StepN(State(final))
+   * Trace represents one simulated packet forwarding path. * Each trace contains multiple ordered Steps. * Each step is in a particular state with associated configuration. * State is categorized as final or non-final states. * Each final state has a reason associated. * Each trace must end with a final state (the last step). ``` |---------------------Trace----------------------| Step1(State) Step2(State) --- StepN(State(final)) ```
    */
   export interface Schema$Trace {
     /**
@@ -1257,13 +1264,13 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.list({
-     *     // The standard list filter.
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The standard list page size.
+     *     // The maximum number of results to return. If not set, the service will select a default.
      *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1383,7 +1390,7 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * The standard list filter.
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -1391,11 +1398,11 @@ export namespace networkmanagement_v1beta1 {
      */
     name?: string;
     /**
-     * The standard list page size.
+     * The maximum number of results to return. If not set, the service will select a default.
      */
     pageSize?: number;
     /**
-     * The standard list page token.
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
   }
