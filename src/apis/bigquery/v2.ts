@@ -1543,6 +1543,10 @@ export namespace bigquery_v2 {
      */
     createDisposition?: string | null;
     /**
+     * If true, creates a new session, where session id will be a server generated random id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs query in non-session mode.
+     */
+    createSession?: boolean | null;
+    /**
      * [Optional] Specifies the default dataset to use for unqualified table names in the query. Note that this does not alter behavior of unqualified dataset names.
      */
     defaultDataset?: Schema$DatasetReference;
@@ -1984,6 +1988,10 @@ export namespace bigquery_v2 {
   }
   export interface Schema$Model {
     /**
+     * The best trial_id across all training runs.
+     */
+    bestTrialId?: string | null;
+    /**
      * Output only. The time when this model was created, in millisecs since the epoch.
      */
     creationTime?: string | null;
@@ -2219,6 +2227,10 @@ export namespace bigquery_v2 {
      */
     connectionProperties?: Schema$ConnectionProperty[];
     /**
+     * If true, creates a new session, where session id will be a server generated random id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs query in non-session mode.
+     */
+    createSession?: boolean | null;
+    /**
      * [Optional] Specifies the default datasetId and projectId to assume for any unqualified table names in the query. If not set, all table names in the query string must be qualified in the format 'datasetId.tableId'.
      */
     defaultDataset?: Schema$DatasetReference;
@@ -2444,6 +2456,10 @@ export namespace bigquery_v2 {
      */
     lastModifiedTime?: string | null;
     /**
+     * Optional. Set only if Routine is a "TABLE_VALUED_FUNCTION". TODO(b/173344646) - Update return_type documentation to say it cannot be set for TABLE_VALUED_FUNCTION before preview launch.
+     */
+    returnTableType?: Schema$StandardSqlTableType;
+    /**
      * Optional if language = "SQL"; required otherwise. If absent, the return type is inferred from definition_body at query time in each query that references this routine. If present, then the evaluated result will be cast to the specified returned type at query time. For example, for the functions created with the following statements: * `CREATE FUNCTION Add(x FLOAT64, y FLOAT64) RETURNS FLOAT64 AS (x + y);` * `CREATE FUNCTION Increment(x FLOAT64) AS (Add(x, 1));` * `CREATE FUNCTION Decrement(x FLOAT64) RETURNS FLOAT64 AS (Add(x, -1));` The return_type is `{type_kind: "FLOAT64"\}` for `Add` and `Decrement`, and is absent for `Increment` (inferred as FLOAT64 at query time). Suppose the function `Add` is replaced by `CREATE OR REPLACE FUNCTION Add(x INT64, y INT64) AS (x + y);` Then the inferred return type of `Increment` is automatically changed to INT64 at query time, while the return type of `Decrement` remains FLOAT64.
      */
     returnType?: Schema$StandardSqlDataType;
@@ -2623,6 +2639,15 @@ export namespace bigquery_v2 {
   }
   export interface Schema$StandardSqlStructType {
     fields?: Schema$StandardSqlField[];
+  }
+  /**
+   * A table type
+   */
+  export interface Schema$StandardSqlTableType {
+    /**
+     * The columns in this table type
+     */
+    columns?: Schema$StandardSqlField[];
   }
   export interface Schema$Streamingbuffer {
     /**
@@ -5004,6 +5029,7 @@ export namespace bigquery_v2 {
      *       // request body parameters
      *       // {
      *       //   "connectionProperties": [],
+     *       //   "createSession": false,
      *       //   "defaultDataset": {},
      *       //   "dryRun": false,
      *       //   "kind": "my_kind",
@@ -5442,6 +5468,7 @@ export namespace bigquery_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "bestTrialId": "my_bestTrialId",
      *   //   "creationTime": "my_creationTime",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
@@ -5733,6 +5760,7 @@ export namespace bigquery_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "bestTrialId": "my_bestTrialId",
      *       //   "creationTime": "my_creationTime",
      *       //   "description": "my_description",
      *       //   "encryptionConfiguration": {},
@@ -5754,6 +5782,7 @@ export namespace bigquery_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "bestTrialId": "my_bestTrialId",
      *   //   "creationTime": "my_creationTime",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
@@ -6421,6 +6450,7 @@ export namespace bigquery_v2 {
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "returnTableType": {},
      *   //   "returnType": {},
      *   //   "routineReference": {},
      *   //   "routineType": "my_routineType"
@@ -6565,6 +6595,7 @@ export namespace bigquery_v2 {
      *       //   "importedLibraries": [],
      *       //   "language": "my_language",
      *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "returnTableType": {},
      *       //   "returnType": {},
      *       //   "routineReference": {},
      *       //   "routineType": "my_routineType"
@@ -6584,6 +6615,7 @@ export namespace bigquery_v2 {
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "returnTableType": {},
      *   //   "returnType": {},
      *   //   "routineReference": {},
      *   //   "routineType": "my_routineType"
@@ -6879,6 +6911,7 @@ export namespace bigquery_v2 {
      *       //   "importedLibraries": [],
      *       //   "language": "my_language",
      *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "returnTableType": {},
      *       //   "returnType": {},
      *       //   "routineReference": {},
      *       //   "routineType": "my_routineType"
@@ -6898,6 +6931,7 @@ export namespace bigquery_v2 {
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "returnTableType": {},
      *   //   "returnType": {},
      *   //   "routineReference": {},
      *   //   "routineType": "my_routineType"
