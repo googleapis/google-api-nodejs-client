@@ -548,6 +548,7 @@ import {
   google,   // The top level object used to access services
   drive_v3, // For every service client, there is an exported namespace
   Auth,     // Namespace for auth related types
+  Common,   // General types used throughout the library
 } from 'googleapis';
 
 // Note: using explicit types like `Auth.GoogleAuth` are only here for
