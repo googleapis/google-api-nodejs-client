@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+### [68.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/v68.0.0...v68.0.1) (2021-03-24)
+
+
+### Bug Fixes
+
+* add basic typescript sample and emit additional types ([#2561](https://www.github.com/googleapis/google-api-nodejs-client/issues/2561)) ([ed0e1ab](https://www.github.com/googleapis/google-api-nodejs-client/commit/ed0e1ab2551a1bbd62f9496b350bc4b6129f1f16))
+
 ## [68.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v67.1.1...v68.0.0) (2021-03-10)
 
 
