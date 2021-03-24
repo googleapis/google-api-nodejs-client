@@ -196,6 +196,41 @@ export namespace people_v1 {
     metadata?: Schema$FieldMetadata;
   }
   /**
+   * A request to create a batch of contacts.
+   */
+  export interface Schema$BatchCreateContactsRequest {
+    /**
+     * Required. The contact to create. Allows up to 200 contacts in a single request.
+     */
+    contacts?: Schema$ContactToCreate[];
+    /**
+     * Required. A field mask to restrict which fields on each person are returned in the response. Multiple fields can be specified by separating them with commas. If read mask is left empty, the post-mutate-get is skipped and no data will be returned in the response. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
+     */
+    readMask?: string | null;
+    /**
+     * Optional. A mask of what source types to return in the post mutate read. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.
+     */
+    sources?: string[] | null;
+  }
+  /**
+   * The response to a request to create a batch of contacts.
+   */
+  export interface Schema$BatchCreateContactsResponse {
+    /**
+     * The contacts that were created, unless the request `read_mask` is empty.
+     */
+    createdPeople?: Schema$PersonResponse[];
+  }
+  /**
+   * A request to delete a batch of existing contacts.
+   */
+  export interface Schema$BatchDeleteContactsRequest {
+    /**
+     * Required. The resource names of the contact to delete. It's repeatable. Allows up to 500 resource names in a single request.
+     */
+    resourceNames?: string[] | null;
+  }
+  /**
    * The response to a batch get contact groups request.
    */
   export interface Schema$BatchGetContactGroupsResponse {
@@ -203,6 +238,36 @@ export namespace people_v1 {
      * The list of responses for each requested contact group resource.
      */
     responses?: Schema$ContactGroupResponse[];
+  }
+  /**
+   * A request to update a batch of contacts.
+   */
+  export interface Schema$BatchUpdateContactsRequest {
+    /**
+     * Required. A map of resource names to the person data to be updated. Allows up to 200 contacts in a single request.
+     */
+    contacts?: {[key: string]: Schema$Person} | null;
+    /**
+     * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. If read mask is left empty, the post-mutate-get is skipped and no data will be returned in the response. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
+     */
+    readMask?: string | null;
+    /**
+     * Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.
+     */
+    sources?: string[] | null;
+    /**
+     * Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All specified fields will be replaced, or cleared if left empty for each person. Valid values are: * addresses * biographies * birthdays * calendarUrls * clientData * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * relations * sipAddresses * urls * userDefined
+     */
+    updateMask?: string | null;
+  }
+  /**
+   * The response to a request to create a batch of contacts.
+   */
+  export interface Schema$BatchUpdateContactsResponse {
+    /**
+     * A map of resource names to the contacts that were updated, unless the request `read_mask` is empty.
+     */
+    updateResult?: {[key: string]: Schema$PersonResponse} | null;
   }
   /**
    * A person's short biography.
@@ -372,6 +437,15 @@ export namespace people_v1 {
      * The status of the response.
      */
     status?: Schema$Status;
+  }
+  /**
+   * A wrapper that contains the person data to populate a newly created source.
+   */
+  export interface Schema$ContactToCreate {
+    /**
+     * Required. The person data to populate a newly created source.
+     */
+    contactPerson?: Schema$Person;
   }
   /**
    * A request to copy an "Other contact" to my contacts group.
@@ -3157,6 +3231,425 @@ export namespace people_v1 {
     }
 
     /**
+     * Create a batch of new contacts and return the PersonResponses for the newly created contacts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/people.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/contacts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await people.people.batchCreateContacts({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contacts": [],
+     *       //   "readMask": "my_readMask",
+     *       //   "sources": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createdPeople": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchCreateContacts(
+      params: Params$Resource$People$Batchcreatecontacts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCreateContacts(
+      params?: Params$Resource$People$Batchcreatecontacts,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchCreateContactsResponse>;
+    batchCreateContacts(
+      params: Params$Resource$People$Batchcreatecontacts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchCreateContacts(
+      params: Params$Resource$People$Batchcreatecontacts,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchCreateContactsResponse>,
+      callback: BodyResponseCallback<Schema$BatchCreateContactsResponse>
+    ): void;
+    batchCreateContacts(
+      params: Params$Resource$People$Batchcreatecontacts,
+      callback: BodyResponseCallback<Schema$BatchCreateContactsResponse>
+    ): void;
+    batchCreateContacts(
+      callback: BodyResponseCallback<Schema$BatchCreateContactsResponse>
+    ): void;
+    batchCreateContacts(
+      paramsOrCallback?:
+        | Params$Resource$People$Batchcreatecontacts
+        | BodyResponseCallback<Schema$BatchCreateContactsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchCreateContactsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchCreateContactsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchCreateContactsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Batchcreatecontacts;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$People$Batchcreatecontacts;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/people:batchCreateContacts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchCreateContactsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchCreateContactsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Delete a batch of contacts. Any non-contact data will not be deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/people.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/contacts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await people.people.batchDeleteContacts({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "resourceNames": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDeleteContacts(
+      params: Params$Resource$People$Batchdeletecontacts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchDeleteContacts(
+      params?: Params$Resource$People$Batchdeletecontacts,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    batchDeleteContacts(
+      params: Params$Resource$People$Batchdeletecontacts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDeleteContacts(
+      params: Params$Resource$People$Batchdeletecontacts,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    batchDeleteContacts(
+      params: Params$Resource$People$Batchdeletecontacts,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    batchDeleteContacts(callback: BodyResponseCallback<Schema$Empty>): void;
+    batchDeleteContacts(
+      paramsOrCallback?:
+        | Params$Resource$People$Batchdeletecontacts
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Batchdeletecontacts;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$People$Batchdeletecontacts;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/people:batchDeleteContacts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Update a batch of contacts and return a map of resource names to PersonResponses for the updated contacts.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/people.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const people = google.people('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/contacts'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await people.people.batchUpdateContacts({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contacts": {},
+     *       //   "readMask": "my_readMask",
+     *       //   "sources": [],
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "updateResult": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdateContacts(
+      params: Params$Resource$People$Batchupdatecontacts,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchUpdateContacts(
+      params?: Params$Resource$People$Batchupdatecontacts,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BatchUpdateContactsResponse>;
+    batchUpdateContacts(
+      params: Params$Resource$People$Batchupdatecontacts,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdateContacts(
+      params: Params$Resource$People$Batchupdatecontacts,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateContactsResponse>,
+      callback: BodyResponseCallback<Schema$BatchUpdateContactsResponse>
+    ): void;
+    batchUpdateContacts(
+      params: Params$Resource$People$Batchupdatecontacts,
+      callback: BodyResponseCallback<Schema$BatchUpdateContactsResponse>
+    ): void;
+    batchUpdateContacts(
+      callback: BodyResponseCallback<Schema$BatchUpdateContactsResponse>
+    ): void;
+    batchUpdateContacts(
+      paramsOrCallback?:
+        | Params$Resource$People$Batchupdatecontacts
+        | BodyResponseCallback<Schema$BatchUpdateContactsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateContactsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdateContactsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BatchUpdateContactsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$People$Batchupdatecontacts;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$People$Batchupdatecontacts;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://people.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/people:batchUpdateContacts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchUpdateContactsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchUpdateContactsResponse>(parameters);
+      }
+    }
+
+    /**
      * Create a new contact and return the person resource for that contact. The request returns a 400 error if more than one field is specified on a field that is a singleton for contact sources: * biographies * birthdays * genders * names
      * @example
      * ```js
@@ -4769,6 +5262,27 @@ export namespace people_v1 {
     }
   }
 
+  export interface Params$Resource$People$Batchcreatecontacts
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchCreateContactsRequest;
+  }
+  export interface Params$Resource$People$Batchdeletecontacts
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchDeleteContactsRequest;
+  }
+  export interface Params$Resource$People$Batchupdatecontacts
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchUpdateContactsRequest;
+  }
   export interface Params$Resource$People$Createcontact
     extends StandardParameters {
     /**
