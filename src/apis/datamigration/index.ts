@@ -14,27 +14,40 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {datamigration_v1} from './v1';
 import {datamigration_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
+  v1: datamigration_v1.Datamigration,
   v1beta1: datamigration_v1beta1.Datamigration,
 };
 
+export function datamigration(version: 'v1'): datamigration_v1.Datamigration;
+export function datamigration(
+  options: datamigration_v1.Options
+): datamigration_v1.Datamigration;
 export function datamigration(
   version: 'v1beta1'
 ): datamigration_v1beta1.Datamigration;
 export function datamigration(
   options: datamigration_v1beta1.Options
 ): datamigration_v1beta1.Datamigration;
-export function datamigration<T = datamigration_v1beta1.Datamigration>(
+export function datamigration<
+  T = datamigration_v1.Datamigration | datamigration_v1beta1.Datamigration
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta1' | datamigration_v1beta1.Options
+  versionOrOptions:
+    | 'v1'
+    | datamigration_v1.Options
+    | 'v1beta1'
+    | datamigration_v1beta1.Options
 ) {
   return getAPI<T>('datamigration', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {datamigration_v1};
 export {datamigration_v1beta1};
 export {
   AuthPlus,

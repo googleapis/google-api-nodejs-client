@@ -36,9 +36,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace datamigration_v1beta1 {
+export namespace datamigration_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta1';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -108,7 +108,7 @@ export namespace datamigration_v1beta1 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const datamigration = google.datamigration('v1beta1');
+   * const datamigration = google.datamigration('v1');
    * ```
    */
   export class Datamigration {
@@ -206,6 +206,10 @@ export namespace datamigration_v1beta1 {
      */
     autoStorageIncrease?: boolean | null;
     /**
+     * The Cloud SQL default instance level collation.
+     */
+    collation?: string | null;
+    /**
      * The database flags passed to the Cloud SQL instance at startup. An object containing a list of "key": value pairs. Example: { "name": "wrench", "mass": "1.3kg", "count": "3" \}.
      */
     databaseFlags?: {[key: string]: string} | null;
@@ -242,7 +246,7 @@ export namespace datamigration_v1beta1 {
      */
     storageAutoResizeLimit?: string | null;
     /**
-     * The tier (or machine type) for this instance, for example: `db-n1-standard-1` (MySQL instances). For more information, see [Cloud SQL Instance Settings](https://cloud.google.com/sql/docs/mysql/instance-settings).
+     * The tier (or machine type) for this instance, for example: `db-n1-standard-1` (MySQL instances) or `db-custom-1-3840` (PostgreSQL instances). For more information, see [Cloud SQL Instance Settings](https://cloud.google.com/sql/docs/mysql/instance-settings).
      */
     tier?: string | null;
     /**
@@ -286,6 +290,10 @@ export namespace datamigration_v1beta1 {
      * The name of this connection profile resource in the form of projects/{project\}/locations/{location\}/instances/{instance\}.
      */
     name?: string | null;
+    /**
+     * A PostgreSQL database connection profile.
+     */
+    postgresql?: Schema$PostgreSqlConnectionProfile;
     /**
      * The database provider.
      */
@@ -361,7 +369,7 @@ export namespace datamigration_v1beta1 {
   /**
    * Represents the metadata of the long-running operation.
    */
-  export interface Schema$GoogleCloudClouddmsV1beta1OperationMetadata {
+  export interface Schema$GoogleCloudClouddmsV1OperationMetadata {
     /**
      * Output only. API version used to start the operation.
      */
@@ -654,6 +662,39 @@ export namespace datamigration_v1beta1 {
     version?: number | null;
   }
   /**
+   * Specifies connection parameters required specifically for PostgreSQL databases.
+   */
+  export interface Schema$PostgreSqlConnectionProfile {
+    /**
+     * If the source is a Cloud SQL database, use this field to provide the Cloud SQL instance ID of the source.
+     */
+    cloudSqlId?: string | null;
+    /**
+     * Required. The IP or hostname of the source PostgreSQL database.
+     */
+    host?: string | null;
+    /**
+     * Required. Input only. The password for the user that Database Migration Service will be using to connect to the database. This field is not returned on request, and the value is encrypted when stored in Database Migration Service.
+     */
+    password?: string | null;
+    /**
+     * Output only. Indicates If this connection profile password is stored.
+     */
+    passwordSet?: boolean | null;
+    /**
+     * Required. The network port of the source PostgreSQL database.
+     */
+    port?: number | null;
+    /**
+     * SSL configuration for the destination to connect to the source database.
+     */
+    ssl?: Schema$SslConfig;
+    /**
+     * Required. The username that Database Migration Service will use to connect to the database. The value is encrypted when stored in Database Migration Service.
+     */
+    username?: string | null;
+  }
+  /**
    * Request message for 'PromoteMigrationJob' request.
    */
   export interface Schema$PromoteMigrationJobRequest {}
@@ -666,7 +707,7 @@ export namespace datamigration_v1beta1 {
    */
   export interface Schema$ResumeMigrationJobRequest {}
   /**
-   * The details needed to configure a reverse SSH tunnel between the source and destination databases. These details will be used when calling the generateSshScript method (see https://cloud.google.com/database-migration/docs/reference/rest/v1beta1/projects.locations.migrationJobs/generateSshScript) to produce the script that will help set up the reverse SSH tunnel, and to set up the VPC peering between the Cloud SQL private network and the VPC.
+   * The details needed to configure a reverse SSH tunnel between the source and destination databases. These details will be used when calling the generateSshScript method (see https://cloud.google.com/database-migration/docs/reference/rest/v1/projects.locations.migrationJobs/generateSshScript) to produce the script that will help set up the reverse SSH tunnel, and to set up the VPC peering between the Cloud SQL private network and the VPC.
    */
   export interface Schema$ReverseSshConnectivity {
     /**
@@ -898,7 +939,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -996,7 +1037,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1029,7 +1070,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1135,7 +1176,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1205,7 +1246,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1237,6 +1278,7 @@ export namespace datamigration_v1beta1 {
      *       //   "labels": {},
      *       //   "mysql": {},
      *       //   "name": "my_name",
+     *       //   "postgresql": {},
      *       //   "provider": "my_provider",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
@@ -1324,7 +1366,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/connectionProfiles').replace(
+            url: (rootUrl + '/v1/{+parent}/connectionProfiles').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1360,7 +1402,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1463,7 +1505,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -1496,7 +1538,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1525,6 +1567,7 @@ export namespace datamigration_v1beta1 {
      *   //   "labels": {},
      *   //   "mysql": {},
      *   //   "name": "my_name",
+     *   //   "postgresql": {},
      *   //   "provider": "my_provider",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
@@ -1603,7 +1646,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1636,7 +1679,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1738,7 +1781,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1774,7 +1817,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1885,7 +1928,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/connectionProfiles').replace(
+            url: (rootUrl + '/v1/{+parent}/connectionProfiles').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1923,7 +1966,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1956,6 +1999,7 @@ export namespace datamigration_v1beta1 {
      *       //   "labels": {},
      *       //   "mysql": {},
      *       //   "name": "my_name",
+     *       //   "postgresql": {},
      *       //   "provider": "my_provider",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
@@ -2043,7 +2087,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -2076,7 +2120,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2185,7 +2229,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2221,7 +2265,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2333,7 +2377,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2497,7 +2541,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2625,7 +2669,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/migrationJobs').replace(
+            url: (rootUrl + '/v1/{+parent}/migrationJobs').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2661,7 +2705,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2764,7 +2808,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -2797,7 +2841,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2905,9 +2949,10 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1beta1/{+migrationJob}:generateSshScript'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+migrationJob}:generateSshScript').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
@@ -2940,7 +2985,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3053,7 +3098,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -3086,7 +3131,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3188,7 +3233,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:getIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3224,7 +3269,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3335,7 +3380,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/migrationJobs').replace(
+            url: (rootUrl + '/v1/{+parent}/migrationJobs').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3371,7 +3416,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3500,7 +3545,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
           },
           options
@@ -3533,7 +3578,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3638,7 +3683,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:promote').replace(
+            url: (rootUrl + '/v1/{+name}:promote').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3674,7 +3719,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3779,7 +3824,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:restart').replace(
+            url: (rootUrl + '/v1/{+name}:restart').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3815,7 +3860,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3920,10 +3965,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:resume').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:resume').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -3956,7 +3998,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4065,7 +4107,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:setIamPolicy').replace(
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4101,7 +4143,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4206,10 +4248,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:start').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:start').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -4242,7 +4281,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4347,10 +4386,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:stop').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -4383,7 +4419,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4495,7 +4531,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+resource}:testIamPermissions').replace(
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4531,7 +4567,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4636,10 +4672,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:verify').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:verify').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -4884,7 +4917,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4982,10 +5015,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -5018,7 +5048,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5110,7 +5140,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -5143,7 +5173,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5241,7 +5271,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -5274,7 +5304,7 @@ export namespace datamigration_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const datamigration = google.datamigration('v1beta1');
+     * const datamigration = google.datamigration('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5380,7 +5410,7 @@ export namespace datamigration_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/operations').replace(
+            url: (rootUrl + '/v1/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
