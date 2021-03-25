@@ -351,7 +351,7 @@
       }
     }
   },
-  "revision": "20210312",
+  "revision": "20210318",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata": {
@@ -539,7 +539,9 @@
             "CJIS",
             "FEDRAMP_HIGH",
             "FEDRAMP_MODERATE",
-            "US_REGIONAL_ACCESS"
+            "US_REGIONAL_ACCESS",
+            "HIPAA",
+            "HITRUST"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -547,7 +549,9 @@
             "Criminal Justice Information Services (CJIS) Security policies.",
             "FedRAMP High data protection controls",
             "FedRAMP Moderate data protection controls",
-            "Assured Workloads For US Regions data protection controls"
+            "Assured Workloads For US Regions data protection controls",
+            "Health Insurance Portability and Accountability Act controls",
+            "Health Information Trust Alliance controls"
           ],
           "type": "string"
         },
@@ -587,7 +591,9 @@
             "CJIS",
             "FEDRAMP_HIGH",
             "FEDRAMP_MODERATE",
-            "US_REGIONAL_ACCESS"
+            "US_REGIONAL_ACCESS",
+            "HIPAA",
+            "HITRUST"
           ],
           "enumDescriptions": [
             "Unknown compliance regime.",
@@ -595,7 +601,9 @@
             "Criminal Justice Information Services (CJIS) Security policies.",
             "FedRAMP High data protection controls",
             "FedRAMP Moderate data protection controls",
-            "Assured Workloads For US Regions data protection controls"
+            "Assured Workloads For US Regions data protection controls",
+            "Health Insurance Portability and Accountability Act controls",
+            "Health Information Trust Alliance controls"
           ],
           "type": "string"
         },
