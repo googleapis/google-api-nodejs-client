@@ -129,7 +129,6 @@
             "applicationName": {
               "description": "Application name for which the events are to be retrieved.",
               "enum": [
-                "application_name_undefined",
                 "access_transparency",
                 "admin",
                 "calendar",
@@ -152,7 +151,6 @@
                 "data_studio"
               ],
               "enumDescriptions": [
-                "",
                 "The Google Workspace Access Transparency activity reports return information about different types of Access Transparency activity events.",
                 "The Admin console application's activity reports return account information about different types of administrator activity events.",
                 "The Google Calendar application's activity reports return information about various Calendar activity events.",
@@ -268,7 +266,6 @@
             "applicationName": {
               "description": "Application name for which the events are to be retrieved.",
               "enum": [
-                "application_name_unspecified",
                 "access_transparency",
                 "admin",
                 "calendar",
@@ -291,7 +288,6 @@
                 "data_studio"
               ],
               "enumDescriptions": [
-                "",
                 "The Google Workspace Access Transparency activity reports return information about different types of Access Transparency activity events.",
                 "The Admin console application's activity reports return account information about different types of administrator activity events.",
                 "The Google Calendar application's activity reports return information about various Calendar activity events.",
@@ -488,12 +484,10 @@
             "entityKey": {
               "description": "Represents the key of the object to filter the data with.",
               "enum": [
-                "entityKeyUndefined",
                 "all",
                 "entityKey"
               ],
               "enumDescriptions": [
-                "",
                 "Returns activity events for all users.",
                 "Represents an app-specific identifier for the entity. For details on how to obtain the `entityKey` for a particular `entityType`, see the Entities Usage parameters reference guides."
               ],
@@ -504,11 +498,9 @@
             "entityType": {
               "description": "Represents the type of entity for the report.",
               "enum": [
-                "entity_type_undefined",
                 "gplus_communities"
               ],
               "enumDescriptions": [
-                "",
                 "Returns a report on Google+ communities."
               ],
               "location": "path",
@@ -635,7 +627,7 @@
       }
     }
   },
-  "revision": "20210302",
+  "revision": "20210323",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {
