@@ -409,6 +409,19 @@ export namespace secretmanager_v1 {
     userManaged?: Schema$UserManagedStatus;
   }
   /**
+   * The rotation time and period for a Secret. At next_rotation_time, Secret Manager will send a Pub/Sub notification to the topics configured on the Secret. Secret.topics must be set to configure rotation.
+   */
+  export interface Schema$Rotation {
+    /**
+     * Optional. Timestamp in UTC at which the Secret is scheduled to rotate. next_rotation_time MUST be set if rotation_period is set.
+     */
+    nextRotationTime?: string | null;
+    /**
+     * Input only. The Duration between rotation notifications. Must be in seconds and at least 3600s (1h) and at most 3153600000s (100 years). If rotation_period is set, next_rotation_time must be set. next_rotation_time will be advanced by this period when the service automatically sends rotation notifications.
+     */
+    rotationPeriod?: string | null;
+  }
+  /**
    * A Secret is a logical secret whose value and versions can be accessed. A Secret is made up of zero or more SecretVersions that represent the secret data.
    */
   export interface Schema$Secret {
@@ -432,6 +445,10 @@ export namespace secretmanager_v1 {
      * Required. Immutable. The replication policy of the secret data attached to the Secret. The replication policy cannot be changed after the Secret has been created.
      */
     replication?: Schema$Replication;
+    /**
+     * Optional. Rotation policy attached to the Secret. May be excluded if there is no rotation policy.
+     */
+    rotation?: Schema$Rotation;
     /**
      * Optional. A list of up to 10 Pub/Sub topics to which messages are published when control plane operations are called on the secret or its versions.
      */
@@ -1043,6 +1060,7 @@ export namespace secretmanager_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "replication": {},
+     *       //   "rotation": {},
      *       //   "topics": [],
      *       //   "ttl": "my_ttl"
      *       // }
@@ -1057,6 +1075,7 @@ export namespace secretmanager_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "replication": {},
+     *   //   "rotation": {},
      *   //   "topics": [],
      *   //   "ttl": "my_ttl"
      *   // }
@@ -1318,6 +1337,7 @@ export namespace secretmanager_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "replication": {},
+     *   //   "rotation": {},
      *   //   "topics": [],
      *   //   "ttl": "my_ttl"
      *   // }
@@ -1727,6 +1747,7 @@ export namespace secretmanager_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "replication": {},
+     *       //   "rotation": {},
      *       //   "topics": [],
      *       //   "ttl": "my_ttl"
      *       // }
@@ -1741,6 +1762,7 @@ export namespace secretmanager_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "replication": {},
+     *   //   "rotation": {},
      *   //   "topics": [],
      *   //   "ttl": "my_ttl"
      *   // }
