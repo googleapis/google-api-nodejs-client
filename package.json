@@ -54,7 +54,7 @@
   ],
   "dependencies": {
     "google-auth-library": "^7.0.2",
-    "googleapis-common": "^5.0.1"
+    "googleapis-common": "^5.0.2"
   },
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.10",
