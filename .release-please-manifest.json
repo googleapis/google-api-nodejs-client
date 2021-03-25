@@ -1,4 +1,5 @@
 {
+  ".": "69.0.0",
   "src/apis/abusiveexperiencereport": "0.2.0",
   "src/apis/acceleratedmobilepageurl": "0.2.0",
   "src/apis/accesscontextmanager": "0.2.0",
@@ -31,12 +32,12 @@
   "src/apis/cloudkms": "1.0.0",
   "src/apis/cloudsearch": "0.2.0",
   "src/apis/cloudshell": "0.2.0",
-  "src/apis/cloudtasks": "0.2.0",
+  "src/apis/cloudtasks": "0.2.1",
   "src/apis/composer": "0.2.0",
   "src/apis/content": "1.0.0",
   "src/apis/customsearch": "0.2.0",
   "src/apis/dataflow": "0.2.0",
-  "src/apis/datafusion": "1.0.0",
+  "src/apis/datafusion": "1.1.0",
   "src/apis/datamigration": "1.0.0",
   "src/apis/deploymentmanager": "1.0.0",
   "src/apis/dfareporting": "0.2.0",
@@ -94,8 +95,8 @@
   "src/apis/realtimebidding": "0.2.0",
   "src/apis/recommendationengine": "0.2.0",
   "src/apis/remotebuildexecution": "1.0.0",
-  "src/apis/reseller": "0.2.0",
-  "src/apis/run": "1.0.0",
+  "src/apis/reseller": "0.3.0",
+  "src/apis/run": "1.0.1",
   "src/apis/safebrowsing": "1.0.0",
   "src/apis/sasportal": "1.0.0",
   "src/apis/script": "0.2.0",
@@ -129,6 +130,5 @@
   "src/apis/workflowexecutions": "0.2.0",
   "src/apis/youtube": "0.2.0",
   "src/apis/youtubeAnalytics": "0.1.0",
-  "src/apis/youtubereporting": "0.1.0",
-  ".": "68.0.0"
+  "src/apis/youtubereporting": "0.1.0"
 }
