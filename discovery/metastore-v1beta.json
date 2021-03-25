@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "The standard list filter.",
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in AIP-160 (https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
@@ -156,13 +156,13 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The standard list page size.",
+                  "description": "The maximum number of results to return. If not set, the service will select a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "The standard list page token.",
+                  "description": "A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.",
                   "location": "query",
                   "type": "string"
                 }
@@ -284,7 +284,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The relative resource name of the location in which to create a metastore service, in the following form:\"projects/{project_number}/locations/{location_id}\".",
+                      "description": "Required. The relative resource name of the location in which to create a metastore service, in the following form:projects/{project_number}/locations/{location_id}.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -322,7 +322,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The relative resource name of the metastore service to delete, in the following form:\"projects/{project_number}/locations/{location_id}/services/{service_id}\".",
+                      "description": "Required. The relative resource name of the metastore service to delete, in the following form:projects/{project_number}/locations/{location_id}/services/{service_id}.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
                       "required": true,
@@ -352,7 +352,7 @@
                   ],
                   "parameters": {
                     "service": {
-                      "description": "Required. The relative resource name of the metastore service to run export, in the following form:\"projects/{project_id}/locations/{location_id}/services/{service_id}",
+                      "description": "Required. The relative resource name of the metastore service to run export, in the following form:projects/{project_id}/locations/{location_id}/services/{service_id}.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
                       "required": true,
@@ -380,7 +380,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The relative resource name of the metastore service to retrieve, in the following form:\"projects/{project_number}/locations/{location_id}/services/{service_id}\".",
+                      "description": "Required. The relative resource name of the metastore service to retrieve, in the following form:projects/{project_number}/locations/{location_id}/services/{service_id}.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
                       "required": true,
@@ -441,7 +441,7 @@
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Specify the ordering of results as described in Sorting Order. If not specified, the results will be sorted in the default order.",
+                      "description": "Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.",
                       "location": "query",
                       "type": "string"
                     },
@@ -457,7 +457,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The relative resource name of the location of metastore services to list, in the following form:\"projects/{project_number}/locations/{location_id}\".",
+                      "description": "Required. The relative resource name of the location of metastore services to list, in the following form:projects/{project_number}/locations/{location_id}.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -482,7 +482,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. The relative resource name of the metastore service, of the form:\"projects/{project_number}/locations/{location_id}/services/{service_id}\".",
+                      "description": "Immutable. The relative resource name of the metastore service, of the form:projects/{project_number}/locations/{location_id}/services/{service_id}.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
                       "required": true,
@@ -586,7 +586,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The relative resource name of the service in which to create a metastore import, in the following form:\"projects/{project_number}/locations/{location_id}/services/{service_id}\"",
+                          "description": "Required. The relative resource name of the service in which to create a metastore import, in the following form:projects/{project_number}/locations/{location_id}/services/{service_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
                           "required": true,
@@ -619,7 +619,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The relative resource name of the metadata import to retrieve, in the following form:\"projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports/{import_id}\".",
+                          "description": "Required. The relative resource name of the metadata import to retrieve, in the following form:projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports/{import_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+/metadataImports/[^/]+$",
                           "required": true,
@@ -649,7 +649,7 @@
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. Specify the ordering of results as described in Sorting Order. If not specified, the results will be sorted in the default order.",
+                          "description": "Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.",
                           "location": "query",
                           "type": "string"
                         },
@@ -665,7 +665,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The relative resource name of the service whose metadata imports to list, in the following form:\"projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports\".",
+                          "description": "Required. The relative resource name of the service whose metadata imports to list, in the following form:projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
                           "required": true,
@@ -690,7 +690,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Immutable. The relative resource name of the metadata import, of the form:\"projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports/{metadata_import_id}\".",
+                          "description": "Immutable. The relative resource name of the metadata import, of the form:projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports/{metadata_import_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+/metadataImports/[^/]+$",
                           "required": true,
@@ -728,7 +728,7 @@
       }
     }
   },
-  "revision": "20210226",
+  "revision": "20210318",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -801,6 +801,17 @@
       },
       "type": "object"
     },
+    "DataCatalogConfig": {
+      "description": "Specifies how metastore metadata should be integrated with the Data Catalog service.",
+      "id": "DataCatalogConfig",
+      "properties": {
+        "enabled": {
+          "description": "Defines whether the metastore metadata should be synced to Data Catalog. The default value is to disable syncing metastore metadata to Data Catalog.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "DatabaseDump": {
       "description": "A specification of the location of and metadata about a database dump from a relational database management system.",
       "id": "DatabaseDump",
@@ -867,7 +878,7 @@
           "type": "string"
         },
         "destinationGcsFolder": {
-          "description": "Required. A Cloud Storage URI of a folder that metadata are exported to, in the format gs:///. A sub-folder containing exported files will be created below it.",
+          "description": "A Cloud Storage URI of a folder, in the format gs:///. A sub-folder containing exported files will be created below it.",
           "type": "string"
         },
         "requestId": {
@@ -913,7 +924,7 @@
         },
         "kerberosConfig": {
           "$ref": "KerberosConfig",
-          "description": "Information used to configure the Hive metastore service as a service principal in a Kerberos realm. To disable Kerberos, use the UpdateService method and specify this field's path (\"hive_metastore_config.kerberos_config\") in the request's update_mask while omitting this field from the request's service."
+          "description": "Information used to configure the Hive metastore service as a service principal in a Kerberos realm. To disable Kerberos, use the UpdateService method and specify this field's path (hive_metastore_config.kerberos_config) in the request's update_mask while omitting this field from the request's service."
         },
         "version": {
           "description": "Immutable. The Hive metastore schema version.",
@@ -950,7 +961,7 @@
           "type": "string"
         },
         "principal": {
-          "description": "A Kerberos principal that exists in the both the keytab the KDC to authenticate as. A typical principal is of the form \"primary/instance@REALM\", but there is no exact format.",
+          "description": "A Kerberos principal that exists in the both the keytab the KDC to authenticate as. A typical principal is of the form primary/instance@REALM, but there is no exact format.",
           "type": "string"
         }
       },
@@ -1146,7 +1157,7 @@
           "type": "string"
         },
         "destinationGcsUri": {
-          "description": "Output only. A Cloud Storage URI of a folder that metadata are exported to, in the form of gs:////, where ` is automatically generated.",
+          "description": "Output only. A Cloud Storage URI of a folder that metadata are exported to, in the form of gs:////, where is automatically generated.",
           "readOnly": true,
           "type": "string"
         },
@@ -1203,7 +1214,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. The relative resource name of the metadata import, of the form:\"projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports/{metadata_import_id}\".",
+          "description": "Immutable. The relative resource name of the metadata import, of the form:projects/{project_number}/locations/{location_id}/services/{service_id}/metadataImports/{metadata_import_id}.",
           "type": "string"
         },
         "state": {
@@ -1237,7 +1248,12 @@
     "MetadataIntegration": {
       "description": "Specifies how metastore metadata should be integrated with external services.",
       "id": "MetadataIntegration",
-      "properties": {},
+      "properties": {
+        "dataCatalogConfig": {
+          "$ref": "DataCatalogConfig",
+          "description": "The integration config for the Data Catalog service."
+        }
+      },
       "type": "object"
     },
     "MetadataManagementActivity": {
@@ -1334,7 +1350,7 @@
       "id": "Restore",
       "properties": {
         "backup": {
-          "description": "Output only. The relative resource name of the metastore service backup to restore from, in the following form:projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}",
+          "description": "Output only. The relative resource name of the metastore service backup to restore from, in the following form:projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}.",
           "readOnly": true,
           "type": "string"
         },
@@ -1397,7 +1413,7 @@
       "id": "Secret",
       "properties": {
         "cloudSecret": {
-          "description": "The relative resource name of a Secret Manager secret version, in the following form:\"projects/{project_number}/secrets/{secret_id}/versions/{version_id}\".",
+          "description": "The relative resource name of a Secret Manager secret version, in the following form:projects/{project_number}/secrets/{secret_id}/versions/{version_id}.",
           "type": "string"
         }
       },
@@ -1448,17 +1464,31 @@
           "readOnly": true
         },
         "name": {
-          "description": "Immutable. The relative resource name of the metastore service, of the form:\"projects/{project_number}/locations/{location_id}/services/{service_id}\".",
+          "description": "Immutable. The relative resource name of the metastore service, of the form:projects/{project_number}/locations/{location_id}/services/{service_id}.",
           "type": "string"
         },
         "network": {
-          "description": "Immutable. The relative resource name of the VPC network on which the instance can be accessed. It is specified in the following form:\"projects/{project_number}/global/networks/{network_id}\".",
+          "description": "Immutable. The relative resource name of the VPC network on which the instance can be accessed. It is specified in the following form:projects/{project_number}/global/networks/{network_id}.",
           "type": "string"
         },
         "port": {
           "description": "The TCP port at which the metastore service is reached. Default: 9083.",
           "format": "int32",
           "type": "integer"
+        },
+        "releaseChannel": {
+          "description": "Immutable. The release channel of the service. If unspecified, defaults to STABLE.",
+          "enum": [
+            "RELEASE_CHANNEL_UNSPECIFIED",
+            "CANARY",
+            "STABLE"
+          ],
+          "enumDescriptions": [
+            "Release channel is not specified.",
+            "The CANARY release channel contains the newest features, which may be unstable and subject to unresolved issues with no known workarounds. Services using the CANARY release channel are not subject to any SLAs.",
+            "The STABLE release channel contains features that are considered stable and have been validated for production use."
+          ],
+          "type": "string"
         },
         "state": {
           "description": "Output only. The current state of the metastore service.",

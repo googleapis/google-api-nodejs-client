@@ -222,6 +222,36 @@ export namespace cloudresourcemanager_v1beta1 {
     sourceParent?: string | null;
   }
   /**
+   * Metadata pertaining to the Folder creation process.
+   */
+  export interface Schema$CreateFolderMetadata {
+    /**
+     * The display name of the folder.
+     */
+    displayName?: string | null;
+    /**
+     * The resource name of the folder or organization we are creating the folder under.
+     */
+    parent?: string | null;
+  }
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by CreateProject. It provides insight for when significant phases of Project creation have completed.
+   */
+  export interface Schema$CreateProjectMetadata {
+    /**
+     * Creation time of the project creation workflow.
+     */
+    createTime?: string | null;
+    /**
+     * True if the project can be retrieved using GetProject. No other operations on the project are guaranteed to work until the project creation is complete.
+     */
+    gettable?: boolean | null;
+    /**
+     * True if the project creation process is complete.
+     */
+    ready?: boolean | null;
+  }
+  /**
    * Runtime operation information for creating a TagKey.
    */
   export interface Schema$CreateTagKeyMetadata {}
@@ -229,6 +259,18 @@ export namespace cloudresourcemanager_v1beta1 {
    * Runtime operation information for creating a TagValue.
    */
   export interface Schema$CreateTagValueMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by DeleteFolder.
+   */
+  export interface Schema$DeleteFolderMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by DeleteOrganization.
+   */
+  export interface Schema$DeleteOrganizationMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by DeleteProject.
+   */
+  export interface Schema$DeleteProjectMetadata {}
   /**
    * Runtime operation information for deleting a TagKey.
    */
@@ -349,6 +391,27 @@ export namespace cloudresourcemanager_v1beta1 {
      */
     projects?: Schema$Project[];
   }
+  /**
+   * Metadata pertaining to the Folder move process.
+   */
+  export interface Schema$MoveFolderMetadata {
+    /**
+     * The resource name of the folder or organization to move the folder to.
+     */
+    destinationParent?: string | null;
+    /**
+     * The display name of the folder.
+     */
+    displayName?: string | null;
+    /**
+     * The resource name of the folder's parent.
+     */
+    sourceParent?: string | null;
+  }
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by MoveProject.
+   */
+  export interface Schema$MoveProjectMetadata {}
   /**
    * The root node in the resource hierarchy to which a particular entity's (e.g., company) resources belong.
    */
@@ -503,9 +566,29 @@ export namespace cloudresourcemanager_v1beta1 {
     permissions?: string[] | null;
   }
   /**
+   * A status object which is used as the `metadata` field for the Operation returned by UndeleteFolder.
+   */
+  export interface Schema$UndeleteFolderMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by UndeleteOrganization.
+   */
+  export interface Schema$UndeleteOrganizationMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by UndeleteProject.
+   */
+  export interface Schema$UndeleteProjectMetadata {}
+  /**
    * The request sent to the UndeleteProject method.
    */
   export interface Schema$UndeleteProjectRequest {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by UpdateFolder.
+   */
+  export interface Schema$UpdateFolderMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by UpdateProject.
+   */
+  export interface Schema$UpdateProjectMetadata {}
   /**
    * Runtime operation information for updating a TagKey.
    */

@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -2260,7 +2260,7 @@
       }
     }
   },
-  "revision": "20210225",
+  "revision": "20210315",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2684,7 +2684,10 @@
             "RUNNING",
             "ERROR",
             "DELETING",
-            "UPDATING"
+            "UPDATING",
+            "STOPPING",
+            "STOPPED",
+            "STARTING"
           ],
           "enumDescriptions": [
             "The cluster state is unknown.",
@@ -2692,7 +2695,10 @@
             "The cluster is currently running and healthy. It is ready for use.",
             "The cluster encountered an error. It is not ready for use.",
             "The cluster is being deleted. It cannot be used.",
-            "The cluster is being updated. It continues to accept and process jobs."
+            "The cluster is being updated. It continues to accept and process jobs.",
+            "The cluster is being stopped. It cannot be used.",
+            "The cluster is currently stopped. It is not ready for use.",
+            "The cluster is being started. It is not ready for use."
           ],
           "readOnly": true,
           "type": "string"
@@ -3103,7 +3109,7 @@
           "type": "string"
         },
         "numInstances": {
-          "description": "Optional. The number of VM instances in the instance group. For master instance groups, must be set to 1.",
+          "description": "Optional. The number of VM instances in the instance group. For HA cluster master_config groups, must be set to 3. For standard cluster master_config groups, must be set to 1.",
           "format": "int32",
           "type": "integer"
         },
@@ -4113,7 +4119,9 @@
               "COMPONENT_UNSPECIFIED",
               "ANACONDA",
               "DOCKER",
+              "DRUID",
               "FLINK",
+              "HBASE",
               "HIVE_WEBHCAT",
               "JUPYTER",
               "PRESTO",
@@ -4126,7 +4134,9 @@
               "Unspecified component. Specifying this will cause Cluster creation to fail.",
               "The Anaconda python distribution. The Anaconda component is not supported in the Dataproc 2.0 image. The 2.0 image is pre-installed with Miniconda.",
               "Docker",
+              "The Druid query engine. (beta)",
               "Flink",
+              "HBase. (beta)",
               "The Hive Web HCatalog (the REST service for accessing HCatalog).",
               "The Jupyter Notebook.",
               "The Presto query engine.",

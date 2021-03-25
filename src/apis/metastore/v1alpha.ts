@@ -190,6 +190,15 @@ export namespace metastore_v1alpha {
     type?: string | null;
   }
   /**
+   * Specifies how metastore metadata should be integrated with the Data Catalog service.
+   */
+  export interface Schema$DataCatalogConfig {
+    /**
+     * Defines whether the metastore metadata should be synced to Data Catalog. The default value is to disable syncing metastore metadata to Data Catalog.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for Empty is empty JSON object {\}.
    */
   export interface Schema$Empty {}
@@ -202,7 +211,7 @@ export namespace metastore_v1alpha {
      */
     databaseDumpType?: string | null;
     /**
-     * Required. A Cloud Storage URI of a folder that metadata are exported to, in the format gs:///. A sub-folder containing exported files will be created below it.
+     * A Cloud Storage URI of a folder, in the format gs:///. A sub-folder containing exported files will be created below it.
      */
     destinationGcsFolder?: string | null;
     /**
@@ -240,7 +249,7 @@ export namespace metastore_v1alpha {
      */
     configOverrides?: {[key: string]: string} | null;
     /**
-     * Information used to configure the Hive metastore service as a service principal in a Kerberos realm. To disable Kerberos, use the UpdateService method and specify this field's path ("hive_metastore_config.kerberos_config") in the request's update_mask while omitting this field from the request's service.
+     * Information used to configure the Hive metastore service as a service principal in a Kerberos realm. To disable Kerberos, use the UpdateService method and specify this field's path (hive_metastore_config.kerberos_config) in the request's update_mask while omitting this field from the request's service.
      */
     kerberosConfig?: Schema$KerberosConfig;
     /**
@@ -274,7 +283,7 @@ export namespace metastore_v1alpha {
      */
     krb5ConfigGcsUri?: string | null;
     /**
-     * A Kerberos principal that exists in the both the keytab the KDC to authenticate as. A typical principal is of the form "primary/instance@REALM", but there is no exact format.
+     * A Kerberos principal that exists in the both the keytab the KDC to authenticate as. A typical principal is of the form primary/instance@REALM, but there is no exact format.
      */
     principal?: string | null;
   }
@@ -394,7 +403,7 @@ export namespace metastore_v1alpha {
      */
     databaseDumpType?: string | null;
     /**
-     * Output only. A Cloud Storage URI of a folder that metadata are exported to, in the form of gs:////, where ` is automatically generated.
+     * Output only. A Cloud Storage URI of a folder that metadata are exported to, in the form of gs:////, where is automatically generated.
      */
     destinationGcsUri?: string | null;
     /**
@@ -427,7 +436,7 @@ export namespace metastore_v1alpha {
      */
     description?: string | null;
     /**
-     * Immutable. The relative resource name of the metadata import, of the form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}".
+     * Immutable. The relative resource name of the metadata import, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}.
      */
     name?: string | null;
     /**
@@ -442,7 +451,12 @@ export namespace metastore_v1alpha {
   /**
    * Specifies how metastore metadata should be integrated with external services.
    */
-  export interface Schema$MetadataIntegration {}
+  export interface Schema$MetadataIntegration {
+    /**
+     * The integration config for the Data Catalog service.
+     */
+    dataCatalogConfig?: Schema$DataCatalogConfig;
+  }
   /**
    * The metadata management activities of the metastore service.
    */
@@ -507,7 +521,7 @@ export namespace metastore_v1alpha {
    */
   export interface Schema$Restore {
     /**
-     * Output only. The relative resource name of the metastore service backup to restore from, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}
+     * Output only. The relative resource name of the metastore service backup to restore from, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}.
      */
     backup?: string | null;
     /**
@@ -536,7 +550,7 @@ export namespace metastore_v1alpha {
    */
   export interface Schema$Secret {
     /**
-     * The relative resource name of a Secret Manager secret version, in the following form:"projects/{project_number\}/secrets/{secret_id\}/versions/{version_id\}".
+     * The relative resource name of a Secret Manager secret version, in the following form:projects/{project_number\}/secrets/{secret_id\}/versions/{version_id\}.
      */
     cloudSecret?: string | null;
   }
@@ -577,17 +591,21 @@ export namespace metastore_v1alpha {
      */
     metadataManagementActivity?: Schema$MetadataManagementActivity;
     /**
-     * Immutable. The relative resource name of the metastore service, of the form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}".
+     * Immutable. The relative resource name of the metastore service, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
     name?: string | null;
     /**
-     * Immutable. The relative resource name of the VPC network on which the instance can be accessed. It is specified in the following form:"projects/{project_number\}/global/networks/{network_id\}".
+     * Immutable. The relative resource name of the VPC network on which the instance can be accessed. It is specified in the following form:projects/{project_number\}/global/networks/{network_id\}.
      */
     network?: string | null;
     /**
      * The TCP port at which the metastore service is reached. Default: 9083.
      */
     port?: number | null;
+    /**
+     * Immutable. The release channel of the service. If unspecified, defaults to STABLE.
+     */
+    releaseChannel?: string | null;
     /**
      * Output only. The current state of the metastore service.
      */
@@ -836,13 +854,13 @@ export namespace metastore_v1alpha {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.list({
-     *     // The standard list filter.
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The standard list page size.
+     *     // The maximum number of results to return. If not set, the service will select a default.
      *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
+     *     // A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -961,7 +979,7 @@ export namespace metastore_v1alpha {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * The standard list filter.
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -969,11 +987,11 @@ export namespace metastore_v1alpha {
      */
     name?: string;
     /**
-     * The standard list page size.
+     * The maximum number of results to return. If not set, the service will select a default.
      */
     pageSize?: number;
     /**
-     * The standard list page token.
+     * A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
   }
@@ -1451,7 +1469,7 @@ export namespace metastore_v1alpha {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.create({
-     *     // Required. The relative resource name of the location in which to create a metastore service, in the following form:"projects/{project_number\}/locations/{location_id\}".
+     *     // Required. The relative resource name of the location in which to create a metastore service, in the following form:projects/{project_number\}/locations/{location_id\}.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      *     requestId: 'placeholder-value',
@@ -1473,6 +1491,7 @@ export namespace metastore_v1alpha {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "port": 0,
+     *       //   "releaseChannel": "my_releaseChannel",
      *       //   "state": "my_state",
      *       //   "stateMessage": "my_stateMessage",
      *       //   "tier": "my_tier",
@@ -1611,7 +1630,7 @@ export namespace metastore_v1alpha {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.delete({
-     *     // Required. The relative resource name of the metastore service to delete, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}".
+     *     // Required. The relative resource name of the metastore service to delete, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *     // Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      *     requestId: 'placeholder-value',
@@ -1743,7 +1762,7 @@ export namespace metastore_v1alpha {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.exportMetadata({
-     *     // Required. The relative resource name of the metastore service to run export, in the following form:"projects/{project_id\}/locations/{location_id\}/services/{service_id\}
+     *     // Required. The relative resource name of the metastore service to run export, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
      *     service: 'projects/my-project/locations/my-location/services/my-service',
      *
      *     // Request body metadata
@@ -1886,7 +1905,7 @@ export namespace metastore_v1alpha {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.get({
-     *     // Required. The relative resource name of the metastore service to retrieve, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}".
+     *     // Required. The relative resource name of the metastore service to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *   });
      *   console.log(res.data);
@@ -1904,6 +1923,7 @@ export namespace metastore_v1alpha {
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "port": 0,
+     *   //   "releaseChannel": "my_releaseChannel",
      *   //   "state": "my_state",
      *   //   "stateMessage": "my_stateMessage",
      *   //   "tier": "my_tier",
@@ -2163,13 +2183,13 @@ export namespace metastore_v1alpha {
      *   const res = await metastore.projects.locations.services.list({
      *     // Optional. The filter to apply to list results.
      *     filter: 'placeholder-value',
-     *     // Optional. Specify the ordering of results as described in Sorting Order. If not specified, the results will be sorted in the default order.
+     *     // Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.
      *     orderBy: 'placeholder-value',
      *     // Optional. The maximum number of services to return. The response may contain less than the maximum number. If unspecified, no more than 500 services are returned. The maximum value is 1000; values above 1000 are changed to 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous DataprocMetastore.ListServices call. Provide this token to retrieve the subsequent page.To retrieve the first page, supply an empty page token.When paginating, other parameters provided to DataprocMetastore.ListServices must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The relative resource name of the location of metastore services to list, in the following form:"projects/{project_number\}/locations/{location_id\}".
+     *     // Required. The relative resource name of the location of metastore services to list, in the following form:projects/{project_number\}/locations/{location_id\}.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2305,7 +2325,7 @@ export namespace metastore_v1alpha {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.patch({
-     *     // Immutable. The relative resource name of the metastore service, of the form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}".
+     *     // Immutable. The relative resource name of the metastore service, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *     // Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      *     requestId: 'placeholder-value',
@@ -2327,6 +2347,7 @@ export namespace metastore_v1alpha {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "port": 0,
+     *       //   "releaseChannel": "my_releaseChannel",
      *       //   "state": "my_state",
      *       //   "stateMessage": "my_stateMessage",
      *       //   "tier": "my_tier",
@@ -2724,7 +2745,7 @@ export namespace metastore_v1alpha {
   export interface Params$Resource$Projects$Locations$Services$Create
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the location in which to create a metastore service, in the following form:"projects/{project_number\}/locations/{location_id\}".
+     * Required. The relative resource name of the location in which to create a metastore service, in the following form:projects/{project_number\}/locations/{location_id\}.
      */
     parent?: string;
     /**
@@ -2744,7 +2765,7 @@ export namespace metastore_v1alpha {
   export interface Params$Resource$Projects$Locations$Services$Delete
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the metastore service to delete, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}".
+     * Required. The relative resource name of the metastore service to delete, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
     name?: string;
     /**
@@ -2755,7 +2776,7 @@ export namespace metastore_v1alpha {
   export interface Params$Resource$Projects$Locations$Services$Exportmetadata
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the metastore service to run export, in the following form:"projects/{project_id\}/locations/{location_id\}/services/{service_id\}
+     * Required. The relative resource name of the metastore service to run export, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
      */
     service?: string;
 
@@ -2767,7 +2788,7 @@ export namespace metastore_v1alpha {
   export interface Params$Resource$Projects$Locations$Services$Get
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the metastore service to retrieve, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}".
+     * Required. The relative resource name of the metastore service to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
     name?: string;
   }
@@ -2789,7 +2810,7 @@ export namespace metastore_v1alpha {
      */
     filter?: string;
     /**
-     * Optional. Specify the ordering of results as described in Sorting Order. If not specified, the results will be sorted in the default order.
+     * Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.
      */
     orderBy?: string;
     /**
@@ -2801,14 +2822,14 @@ export namespace metastore_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. The relative resource name of the location of metastore services to list, in the following form:"projects/{project_number\}/locations/{location_id\}".
+     * Required. The relative resource name of the location of metastore services to list, in the following form:projects/{project_number\}/locations/{location_id\}.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Services$Patch
     extends StandardParameters {
     /**
-     * Immutable. The relative resource name of the metastore service, of the form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}".
+     * Immutable. The relative resource name of the metastore service, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
     name?: string;
     /**
@@ -2886,7 +2907,7 @@ export namespace metastore_v1alpha {
      *     {
      *       // Required. The ID of the metadata import, which is used as the final component of the metadata import's name.This value must be between 1 and 64 characters long, begin with a letter, end with a letter or number, and consist of alpha-numeric ASCII characters or hyphens.
      *       metadataImportId: 'placeholder-value',
-     *       // Required. The relative resource name of the service in which to create a metastore import, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}"
+     *       // Required. The relative resource name of the service in which to create a metastore import, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      *       parent: 'projects/my-project/locations/my-location/services/my-service',
      *       // Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      *       requestId: 'placeholder-value',
@@ -3035,7 +3056,7 @@ export namespace metastore_v1alpha {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.metadataImports.get({
-     *     // Required. The relative resource name of the metadata import to retrieve, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{import_id\}".
+     *     // Required. The relative resource name of the metadata import to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{import_id\}.
      *     name:
      *       'projects/my-project/locations/my-location/services/my-service/metadataImports/my-metadataImport',
      *   });
@@ -3169,13 +3190,13 @@ export namespace metastore_v1alpha {
      *   const res = await metastore.projects.locations.services.metadataImports.list({
      *     // Optional. The filter to apply to list results.
      *     filter: 'placeholder-value',
-     *     // Optional. Specify the ordering of results as described in Sorting Order. If not specified, the results will be sorted in the default order.
+     *     // Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.
      *     orderBy: 'placeholder-value',
      *     // Optional. The maximum number of imports to return. The response may contain less than the maximum number. If unspecified, no more than 500 imports are returned. The maximum value is 1000; values above 1000 are changed to 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous DataprocMetastore.ListServices call. Provide this token to retrieve the subsequent page.To retrieve the first page, supply an empty page token.When paginating, other parameters provided to DataprocMetastore.ListServices must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The relative resource name of the service whose metadata imports to list, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports".
+     *     // Required. The relative resource name of the service whose metadata imports to list, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports.
      *     parent: 'projects/my-project/locations/my-location/services/my-service',
      *   });
      *   console.log(res.data);
@@ -3314,7 +3335,7 @@ export namespace metastore_v1alpha {
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.metadataImports.patch(
      *     {
-     *       // Immutable. The relative resource name of the metadata import, of the form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}".
+     *       // Immutable. The relative resource name of the metadata import, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}.
      *       name:
      *         'projects/my-project/locations/my-location/services/my-service/metadataImports/my-metadataImport',
      *       // Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
@@ -3444,7 +3465,7 @@ export namespace metastore_v1alpha {
      */
     metadataImportId?: string;
     /**
-     * Required. The relative resource name of the service in which to create a metastore import, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}"
+     * Required. The relative resource name of the service in which to create a metastore import, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
     parent?: string;
     /**
@@ -3460,7 +3481,7 @@ export namespace metastore_v1alpha {
   export interface Params$Resource$Projects$Locations$Services$Metadataimports$Get
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the metadata import to retrieve, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{import_id\}".
+     * Required. The relative resource name of the metadata import to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{import_id\}.
      */
     name?: string;
   }
@@ -3471,7 +3492,7 @@ export namespace metastore_v1alpha {
      */
     filter?: string;
     /**
-     * Optional. Specify the ordering of results as described in Sorting Order. If not specified, the results will be sorted in the default order.
+     * Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.
      */
     orderBy?: string;
     /**
@@ -3483,14 +3504,14 @@ export namespace metastore_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. The relative resource name of the service whose metadata imports to list, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports".
+     * Required. The relative resource name of the service whose metadata imports to list, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Services$Metadataimports$Patch
     extends StandardParameters {
     /**
-     * Immutable. The relative resource name of the metadata import, of the form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}".
+     * Immutable. The relative resource name of the metadata import, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}.
      */
     name?: string;
     /**

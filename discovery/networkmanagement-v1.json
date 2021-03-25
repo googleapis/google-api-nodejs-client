@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "The standard list filter.",
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
@@ -156,13 +156,13 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The standard list page size.",
+                  "description": "The maximum number of results to return. If not set, the service will select a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "The standard list page token.",
+                  "description": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
                   "location": "query",
                   "type": "string"
                 }
@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20201029",
+  "revision": "20210316",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -687,9 +687,6 @@
       "description": "Associates `members` with a `role`.",
       "id": "Binding",
       "properties": {
-        "bindingId": {
-          "type": "string"
-        },
         "condition": {
           "$ref": "Expr",
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
@@ -831,22 +828,22 @@
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
-            "Destination external address cannot be resolved to a known target.",
-            "a Compute Engine instance can only send or receive a packet with a foreign IP if ip_forward is enabled.",
-            "Dropped due to a firewall rule unless allowed due to connection tracking.",
+            "Destination external address cannot be resolved to a known target. If the address is used in a GCP project, provide the project ID as test input.",
+            "A Compute Engine instance can send or receive a packet with a foreign IP only if ip_forward is enabled.",
+            "Dropped due to a firewall rule, unless allowed due to connection tracking.",
             "Dropped due to no routes.",
             "Dropped due to invalid route. Route's next hop is a blackhole.",
-            "Packet is sent to a wrong (unintended) network. Example: user traces a packet from VM1:Network1 to VM2:Network2, however, the route configured in Network1 sends the packet destined for VM2's IP addresss to Network3.",
+            "Packet is sent to a wrong (unintended) network. Example: you trace a packet from VM1:Network1 to VM2:Network2, however, the route configured in Network1 sends the packet destined for VM2's IP addresss to Network3.",
             "Packet with internal destination address sent to Internet gateway.",
             "Instance with only an internal IP tries to access Google API and Services, and private Google access is not enabled.",
             "Instance with only internal IP tries to access external hosts, but Cloud NAT is not enabled in the subnet, unless special configurations on a VM allows this connection. See [Special Configurations for VM instances](/vpc/docs/special-configurations) for details.",
-            "Destination internal address cannot be resolved to a known target.",
+            "Destination internal address cannot be resolved to a known target. If this is a shared VPC scenario, verify if the service project ID is provided as test input. Otherwise, verify if the IP address is being used in the project.",
             "Forwarding rule's protocol and ports do not match the packet header.",
             "Forwarding rule does not have backends configured.",
-            "Firewalls block the health check probes to the backends and cause the backends to be unavailable for traffic from the load balancer. See [Health check firewall rules](/load-balancing/docs/ health-checks#firewall_rules) for more details.",
+            "Firewalls block the health check probes to the backends and cause the backends to be unavailable for traffic from the load balancer. See [Health check firewall rules](/load-balancing/docs/health-checks#firewall_rules) for more details.",
             "Packet is sent from or to a Compute Engine instance that is not in a running state.",
-            "The type of traffic is blocked and the user cannot configure a firewall rule to enable it. See [Always blocked traffic](/vpc/docs/firewalls# blockedtraffic) for more details.",
-            "Access to GKE master's endpoint is not authorized. See [Access to the cluster endpoints](/kubernetes-engine/docs/how-to/ private-clusters#access_to_the_cluster_endpoints) for more details."
+            "The type of traffic is blocked and the user cannot configure a firewall rule to enable it. See [Always blocked traffic](/vpc/docs/firewalls#blockedtraffic) for more details.",
+            "Access to GKE master's endpoint is not authorized. See [Access to the cluster endpoints](/docs/how-to/private-clusters#access_to_the_cluster_endpoints) for more details."
           ],
           "type": "string"
         },
@@ -966,7 +963,7 @@
       "type": "object"
     },
     "FirewallInfo": {
-      "description": "For display only. Metadata associated with a Compute Engine firewall rule.",
+      "description": "For display only. Metadata associated with a VPC firewall rule, an implied VPC firewall rule, or a hierarchical firewall policy rule.",
       "id": "FirewallInfo",
       "properties": {
         "action": {
@@ -978,34 +975,54 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Name of a Compute Engine firewall rule.",
+          "description": "The display name of the VPC firewall rule. This field is not applicable to hierarchical firewall policy rules.",
+          "type": "string"
+        },
+        "firewallRuleType": {
+          "description": "The firewall rule's type.",
+          "enum": [
+            "FIREWALL_RULE_TYPE_UNSPECIFIED",
+            "HIERARCHICAL_FIREWALL_POLICY_RULE",
+            "VPC_FIREWALL_RULE",
+            "IMPLIED_VPC_FIREWALL_RULE"
+          ],
+          "enumDescriptions": [
+            "Unspecified type.",
+            "Hierarchical firewall policy rule. For details, see [Hierarchical firewall policy rules](https://cloud.google.com/vpc/docs/firewall-policies).",
+            "VPC firewall rule. For details, see [VPC firewall rules overview](https://cloud.google.com/vpc/docs/firewalls).",
+            "Implied VPC firewall rule. For details, see [Implied rules](https://cloud.google.com/vpc/docs/firewalls#default_firewall_rules)."
+          ],
           "type": "string"
         },
         "networkUri": {
-          "description": "URI of a Compute Engine network.",
+          "description": "The URI of the VPC network that the firewall rule is associated with. This field is not applicable to hierarchical firewall policy rules.",
+          "type": "string"
+        },
+        "policy": {
+          "description": "The hierarchical firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules.",
           "type": "string"
         },
         "priority": {
-          "description": "Priority of the firewall rule.",
+          "description": "The priority of the firewall rule.",
           "format": "int32",
           "type": "integer"
         },
         "targetServiceAccounts": {
-          "description": "Target service accounts of the firewall rule.",
+          "description": "The target service accounts specified by the firewall rule.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "targetTags": {
-          "description": "Target tags of the firewall rule.",
+          "description": "The target tags defined by the VPC firewall rule. This field is not applicable to hierarchical firewall policy rules.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "uri": {
-          "description": "URI of a Compute Engine firewall rule. Implied default rule does not have URI.",
+          "description": "The URI of the VPC firewall rule. This field is not applicable to implied firewall rules or hierarchical firewall policy rules.",
           "type": "string"
         }
       },
@@ -1033,7 +1050,7 @@
             "Target not specified.",
             "Forwarded to a VPC peering network.",
             "Forwarded to a Cloud VPN gateway.",
-            "Forwarded to an Cloud Interconnect connection.",
+            "Forwarded to a Cloud Interconnect connection.",
             "Forwarded to a Google Kubernetes Engine Container cluster master.",
             "Forwarded to the next hop of a custom route imported from a peering VPC."
           ],
@@ -1436,7 +1453,7 @@
       "type": "object"
     },
     "ReachabilityDetails": {
-      "description": "The details of reachability state from the latest run.",
+      "description": "Results of the configuration analysis from the last run of the test.",
       "id": "ReachabilityDetails",
       "properties": {
         "error": {
@@ -1444,7 +1461,7 @@
           "description": "The details of a failure or a cancellation of reachability analysis."
         },
         "result": {
-          "description": "The overall reachability result of the test.",
+          "description": "The overall result of the test's configuration analysis.",
           "enum": [
             "RESULT_UNSPECIFIED",
             "REACHABLE",
@@ -1453,11 +1470,11 @@
             "UNDETERMINED"
           ],
           "enumDescriptions": [
-            "Result is not specified.",
-            "Packet originating from source is expected to reach destination.",
-            "Packet originating from source is expected to be dropped before reaching destination.",
-            "If the source and destination endpoint does not uniquely identify the test location in the network, and the reachability result contains multiple traces with mixed reachable and unreachable states, then this result is returned.",
-            "The reachability could not be determined. Possible reasons are: * Analysis is aborted due to permission error. User does not have read permission to the projects listed in the test. * Analysis is aborted due to internal errors. * Analysis is partially complete based on configurations where the user has permission. The Final state indicates that the packet is forwarded to another network where the user has no permission to access the configurations."
+            "No result was specified.",
+            "Possible scenarios are: * The configuration analysis determined that a packet originating from the source is expected to reach the destination. * The analysis didn't complete because the user lacks permission for some of the resources in the trace. However, at the time the user's permission became insufficient, the trace had been successful so far.",
+            "A packet originating from the source is expected to be dropped before reaching the destination.",
+            "The source and destination endpoints do not uniquely identify the test location in the network, and the reachability result contains multiple traces. For some traces, a packet could be delivered, and for others, it would not be.",
+            "The configuration analysis did not complete. Possible reasons are: * A permissions error occurred--for example, the user might not have read permission for all of the resources named in the test. * An internal error occurred. * The analyzer received an invalid or unsupported argument or was unable to identify a known endpoint."
           ],
           "type": "string"
         },
@@ -1469,7 +1486,7 @@
           "type": "array"
         },
         "verifyTime": {
-          "description": "The time the reachability state was verified.",
+          "description": "The time of the configuration analysis.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -1532,7 +1549,7 @@
             "Next hop is a peering VPC.",
             "Next hop is an interconnect.",
             "Next hop is a VPN tunnel.",
-            "Next hop is a VPN Gateway. This scenario only happens when tracing connectivity from an on-premises network to GCP through a VPN. The analysis simulates a packet departing from the on-premises network through a VPN tunnel and arrives at a Cloud VPN gateway.",
+            "Next hop is a VPN Gateway. This scenario happens only when tracing connectivity from an on-premises network to GCP through a VPN. The analysis simulates a packet departing from the on-premises network through a VPN tunnel and arriving at a Cloud VPN gateway.",
             "Next hop is an internet gateway.",
             "Next hop is blackhole; that is, the next hop either does not exist or is not running.",
             "Next hop is the forwarding rule of an Internal Load Balancer."
@@ -1558,7 +1575,7 @@
           "enumDescriptions": [
             "Unspecified type. Default value.",
             "Route is a subnet route automatically created by the system.",
-            "Static route created by the user including the default route to the Internet.",
+            "Static route created by the user, including the default route to the Internet.",
             "Dynamic route exchanged between BGP peers.",
             "A subnet route received from peering network.",
             "A static route received from peering network.",
@@ -1642,7 +1659,7 @@
         },
         "endpoint": {
           "$ref": "EndpointInfo",
-          "description": "Display info of the source and destination under analysis. The endpiont info in an intermediate state may differ with the initial input, as it might be modified by state like NAT, or Connection Proxy."
+          "description": "Display info of the source and destination under analysis. The endpoint info in an intermediate state may differ with the initial input, as it might be modified by state like NAT, or Connection Proxy."
         },
         "firewall": {
           "$ref": "FirewallInfo",
@@ -1718,9 +1735,9 @@
             "Forwarding state: arriving at a Cloud VPN tunnel.",
             "Transition state: packet header translated.",
             "Transition state: original connection is terminated and a new proxied connection is initiated.",
-            "Final state: packet delivered.",
-            "Final state: packet dropped.",
-            "Final state: packet forwarded to a network with an unknown configuration.",
+            "Final state: packet could be delivered.",
+            "Final state: packet coud be dropped.",
+            "Final state: packet could be forwarded to a network with an unknown configuration.",
             "Final state: analysis is aborted.",
             "Special state: viewer of the test result does not have permission to see the configuration in this step."
           ],
@@ -1766,7 +1783,7 @@
       "type": "object"
     },
     "Trace": {
-      "description": "Trace represents one simulated packet forwarding path. - Each trace contains multiple ordered steps. - Each step is in a particular state and has an associated configuration. - State is categorized as a final or non-final state. - Each final state has a reason associated with it. - Each trace must end with a final state (the last step). |---------------------Trace----------------------| Step1(State) Step2(State) --- StepN(State(final)) ",
+      "description": "Trace represents one simulated packet forwarding path. * Each trace contains multiple ordered Steps. * Each step is in a particular state with associated configuration. * State is categorized as final or non-final states. * Each final state has a reason associated. * Each trace must end with a final state (the last step). ``` |---------------------Trace----------------------| Step1(State) Step2(State) --- StepN(State(final)) ```",
       "id": "Trace",
       "properties": {
         "endpointInfo": {

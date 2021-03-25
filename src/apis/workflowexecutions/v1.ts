@@ -134,13 +134,17 @@ export namespace workflowexecutions_v1 {
    */
   export interface Schema$Error {
     /**
-     * Human readable error context, helpful for debugging purposes.
+     * Human readable stack trace string.
      */
     context?: string | null;
     /**
-     * Error payload returned by the execution, represented as a JSON string.
+     * Error message and data returned represented as a JSON string.
      */
     payload?: string | null;
+    /**
+     * Stack trace with detailed information of where error was generated.
+     */
+    stackTrace?: Schema$StackTrace;
   }
   /**
    * A running instance of a [Workflow](/workflows/docs/reference/rest/v1/projects.locations.workflows).
@@ -191,6 +195,49 @@ export namespace workflowexecutions_v1 {
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Position contains source position information about the stack trace element such as line number, column number and length of the code block in bytes.
+   */
+  export interface Schema$Position {
+    /**
+     * The source code column position (of the line) the current instruction was generated from.
+     */
+    column?: string | null;
+    /**
+     * The length in bytes of text in this character group, e.g. digits of a number, string length, or AST (abstract syntax tree) node.
+     */
+    length?: string | null;
+    /**
+     * The source code line number the current instruction was generated from.
+     */
+    line?: string | null;
+  }
+  /**
+   * A collection of stack elements (frames) where an error occurred.
+   */
+  export interface Schema$StackTrace {
+    /**
+     * An array of Stack elements.
+     */
+    elements?: Schema$StackTraceElement[];
+  }
+  /**
+   * A single stack element (frame) where an error occurred.
+   */
+  export interface Schema$StackTraceElement {
+    /**
+     * The source position information of the stacktrace element.
+     */
+    position?: Schema$Position;
+    /**
+     * The routine where the error occurred.
+     */
+    routine?: string | null;
+    /**
+     * The step the error occurred at.
+     */
+    step?: string | null;
   }
 
   export class Resource$Projects {

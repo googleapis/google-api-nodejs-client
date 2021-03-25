@@ -6,7 +6,7 @@
           "description": "See, edit, create, and delete all of your Google Drive files"
         },
         "https://www.googleapis.com/auth/drive.file": {
-          "description": "View and manage Google Drive files and folders that you have opened or created with this app"
+          "description": "See, edit, create, and delete only the specific Google Drive files you use with this app"
         },
         "https://www.googleapis.com/auth/drive.readonly": {
           "description": "See and download all your Google Drive files"
@@ -406,7 +406,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "Optional. Raw text query to search for in rows of the table. Special characters must be escaped. Logical operators and field specific filtering not supported.",
+                  "description": "Optional. Filter to only include resources matching the requirements. For more information, see [Filtering list results](https://support.google.com/area120-tables/answer/10503371).",
                   "location": "query",
                   "type": "string"
                 },
@@ -576,7 +576,7 @@
       }
     }
   },
-  "revision": "20210306",
+  "revision": "20210322",
   "rootUrl": "https://area120tables.googleapis.com/",
   "schemas": {
     "BatchCreateRowsRequest": {

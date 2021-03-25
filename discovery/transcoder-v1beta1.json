@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -355,7 +355,7 @@
       }
     }
   },
-  "revision": "20210301",
+  "revision": "20210323",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -1355,12 +1355,12 @@
           "type": "integer"
         },
         "spriteHeightPixels": {
-          "description": "Required. The height of sprite in pixels. Must be an even integer.",
+          "description": "Required. The height of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_height_pixels field or the SpriteSheet.sprite_width_pixels field, but not both (the API will automatically calculate the missing field).",
           "format": "int32",
           "type": "integer"
         },
         "spriteWidthPixels": {
-          "description": "Required. The width of sprite in pixels. Must be an even integer.",
+          "description": "Required. The width of sprite in pixels. Must be an even integer. To preserve the source aspect ratio, set the SpriteSheet.sprite_width_pixels field or the SpriteSheet.sprite_height_pixels field, but not both (the API will automatically calculate the missing field).",
           "format": "int32",
           "type": "integer"
         },

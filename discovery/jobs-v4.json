@@ -110,6 +110,36 @@
   "resources": {
     "projects": {
       "resources": {
+        "operations": {
+          "methods": {
+            "get": {
+              "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
+              "flatPath": "v4/projects/{projectsId}/operations/{operationsId}",
+              "httpMethod": "GET",
+              "id": "jobs.projects.operations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The name of the operation resource.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/operations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v4/{+name}",
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/jobs"
+              ]
+            }
+          }
+        },
         "tenants": {
           "methods": {
             "completeQuery": {
@@ -873,7 +903,7 @@
       }
     }
   },
-  "revision": "20210226",
+  "revision": "20210309",
   "rootUrl": "https://jobs.googleapis.com/",
   "schemas": {
     "ApplicationInfo": {

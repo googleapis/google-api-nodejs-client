@@ -33,7 +33,7 @@
           "description": "See and download your personal phone numbers"
         },
         "https://www.googleapis.com/auth/userinfo.email": {
-          "description": "View your email address"
+          "description": "See your primary Google Account email address"
         },
         "https://www.googleapis.com/auth/userinfo.profile": {
           "description": "See your personal info, including any personal info you've made publicly available"
@@ -474,6 +474,60 @@
     },
     "people": {
       "methods": {
+        "batchCreateContacts": {
+          "description": "Create a batch of new contacts and return the PersonResponses for the newly created contacts.",
+          "flatPath": "v1/people:batchCreateContacts",
+          "httpMethod": "POST",
+          "id": "people.people.batchCreateContacts",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/people:batchCreateContacts",
+          "request": {
+            "$ref": "BatchCreateContactsRequest"
+          },
+          "response": {
+            "$ref": "BatchCreateContactsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/contacts"
+          ]
+        },
+        "batchDeleteContacts": {
+          "description": "Delete a batch of contacts. Any non-contact data will not be deleted.",
+          "flatPath": "v1/people:batchDeleteContacts",
+          "httpMethod": "POST",
+          "id": "people.people.batchDeleteContacts",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/people:batchDeleteContacts",
+          "request": {
+            "$ref": "BatchDeleteContactsRequest"
+          },
+          "response": {
+            "$ref": "Empty"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/contacts"
+          ]
+        },
+        "batchUpdateContacts": {
+          "description": "Update a batch of contacts and return a map of resource names to PersonResponses for the updated contacts.",
+          "flatPath": "v1/people:batchUpdateContacts",
+          "httpMethod": "POST",
+          "id": "people.people.batchUpdateContacts",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/people:batchUpdateContacts",
+          "request": {
+            "$ref": "BatchUpdateContactsRequest"
+          },
+          "response": {
+            "$ref": "BatchUpdateContactsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/contacts"
+          ]
+        },
         "createContact": {
           "description": "Create a new contact and return the person resource for that contact. The request returns a 400 error if more than one field is specified on a field that is a singleton for contact sources: * biographies * birthdays * genders * names",
           "flatPath": "v1/people:createContact",
@@ -1082,7 +1136,7 @@
       }
     }
   },
-  "revision": "20210304",
+  "revision": "20210322",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1168,6 +1222,72 @@
       },
       "type": "object"
     },
+    "BatchCreateContactsRequest": {
+      "description": "A request to create a batch of contacts.",
+      "id": "BatchCreateContactsRequest",
+      "properties": {
+        "contacts": {
+          "description": "Required. The contact to create. Allows up to 200 contacts in a single request.",
+          "items": {
+            "$ref": "ContactToCreate"
+          },
+          "type": "array"
+        },
+        "readMask": {
+          "description": "Required. A field mask to restrict which fields on each person are returned in the response. Multiple fields can be specified by separating them with commas. If read mask is left empty, the post-mutate-get is skipped and no data will be returned in the response. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
+        "sources": {
+          "description": "Optional. A mask of what source types to return in the post mutate read. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
+          "items": {
+            "enum": [
+              "READ_SOURCE_TYPE_UNSPECIFIED",
+              "READ_SOURCE_TYPE_PROFILE",
+              "READ_SOURCE_TYPE_CONTACT",
+              "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+            ],
+            "enumDescriptions": [
+              "Unspecified.",
+              "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
+              "Returns SourceType.CONTACT.",
+              "Returns SourceType.DOMAIN_CONTACT."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchCreateContactsResponse": {
+      "description": "The response to a request to create a batch of contacts.",
+      "id": "BatchCreateContactsResponse",
+      "properties": {
+        "createdPeople": {
+          "description": "The contacts that were created, unless the request `read_mask` is empty.",
+          "items": {
+            "$ref": "PersonResponse"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchDeleteContactsRequest": {
+      "description": "A request to delete a batch of existing contacts.",
+      "id": "BatchDeleteContactsRequest",
+      "properties": {
+        "resourceNames": {
+          "description": "Required. The resource names of the contact to delete. It's repeatable. Allows up to 500 resource names in a single request.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "BatchGetContactGroupsResponse": {
       "description": "The response to a batch get contact groups request.",
       "id": "BatchGetContactGroupsResponse",
@@ -1178,6 +1298,63 @@
             "$ref": "ContactGroupResponse"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateContactsRequest": {
+      "description": "A request to update a batch of contacts.",
+      "id": "BatchUpdateContactsRequest",
+      "properties": {
+        "contacts": {
+          "additionalProperties": {
+            "$ref": "Person"
+          },
+          "description": "Required. A map of resource names to the person data to be updated. Allows up to 200 contacts in a single request.",
+          "type": "object"
+        },
+        "readMask": {
+          "description": "Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. If read mask is left empty, the post-mutate-get is skipped and no data will be returned in the response. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined",
+          "format": "google-fieldmask",
+          "type": "string"
+        },
+        "sources": {
+          "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
+          "items": {
+            "enum": [
+              "READ_SOURCE_TYPE_UNSPECIFIED",
+              "READ_SOURCE_TYPE_PROFILE",
+              "READ_SOURCE_TYPE_CONTACT",
+              "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+            ],
+            "enumDescriptions": [
+              "Unspecified.",
+              "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
+              "Returns SourceType.CONTACT.",
+              "Returns SourceType.DOMAIN_CONTACT."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "updateMask": {
+          "description": "Required. A field mask to restrict which fields on the person are updated. Multiple fields can be specified by separating them with commas. All specified fields will be replaced, or cleared if left empty for each person. Valid values are: * addresses * biographies * birthdays * calendarUrls * clientData * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * relations * sipAddresses * urls * userDefined",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateContactsResponse": {
+      "description": "The response to a request to create a batch of contacts.",
+      "id": "BatchUpdateContactsResponse",
+      "properties": {
+        "updateResult": {
+          "additionalProperties": {
+            "$ref": "PersonResponse"
+          },
+          "description": "A map of resource names to the contacts that were updated, unless the request `read_mask` is empty.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -1402,6 +1579,17 @@
         "status": {
           "$ref": "Status",
           "description": "The status of the response."
+        }
+      },
+      "type": "object"
+    },
+    "ContactToCreate": {
+      "description": "A wrapper that contains the person data to populate a newly created source.",
+      "id": "ContactToCreate",
+      "properties": {
+        "contactPerson": {
+          "$ref": "Person",
+          "description": "Required. The person data to populate a newly created source."
         }
       },
       "type": "object"

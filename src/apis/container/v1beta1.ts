@@ -197,7 +197,7 @@ export namespace container_v1beta1 {
     securityGroup?: string | null;
   }
   /**
-   * Autopilot is the configuration for Autopilot settings on the cluster. It is the official product name of what is previously known as AutoGKE
+   * Autopilot is the configuration for Autopilot settings on the cluster.
    */
   export interface Schema$Autopilot {
     /**
@@ -359,7 +359,7 @@ export namespace container_v1beta1 {
      */
     authenticatorGroupsConfig?: Schema$AuthenticatorGroupsConfig;
     /**
-     * Autopilot configuration for the cluster. It has the same semantics as AutoGKE and overrides the setting in autogke.
+     * Autopilot configuration for the cluster.
      */
     autopilot?: Schema$Autopilot;
     /**
@@ -665,6 +665,10 @@ export namespace container_v1beta1 {
      * The desired config of Intra-node visibility.
      */
     desiredIntraNodeVisibilityConfig?: Schema$IntraNodeVisibilityConfig;
+    /**
+     * The desired L4 Internal Load Balancer Subsetting configuration.
+     */
+    desiredL4ilbSubsettingConfig?: Schema$ILBSubsettingConfig;
     /**
      * The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes should be located. This list must always include the cluster's primary zone. Warning: changing cluster locations will update the locations of all node pools and will result in nodes being added and/or removed.
      */
@@ -986,6 +990,15 @@ export namespace container_v1beta1 {
      * Whether the HTTP Load Balancing controller is enabled in the cluster. When enabled, it runs a small pod in the cluster that manages the load balancers.
      */
     disabled?: boolean | null;
+  }
+  /**
+   * ILBSubsettingConfig contains the desired config of L4 Internal LoadBalancer subsetting on this cluster.
+   */
+  export interface Schema$ILBSubsettingConfig {
+    /**
+     * Enables l4 ILB subsetting for this cluster
+     */
+    enabled?: boolean | null;
   }
   /**
    * IntraNodeVisibilityConfig contains the desired config of the intra-node visibility on this cluster.
@@ -1345,6 +1358,10 @@ export namespace container_v1beta1 {
      */
     enableIntraNodeVisibility?: boolean | null;
     /**
+     * Whether L4ILB Subsetting is enabled for this cluster.
+     */
+    enableL4ilbSubsetting?: boolean | null;
+    /**
      * Output only. The relative name of the Google Compute Engine network(https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network
      */
     network?: string | null;
@@ -1378,6 +1395,15 @@ export namespace container_v1beta1 {
      * Whether NetworkPolicy is enabled for this cluster.
      */
     disabled?: boolean | null;
+  }
+  /**
+   * Collection of Compute Engine network tags that can be applied to a node's underyling VM instance. (See `tags` field in [`NodeConfig`](/kubernetes-engine/docs/reference/rest/v1/NodeConfig)).
+   */
+  export interface Schema$NetworkTags {
+    /**
+     * List of network tags.
+     */
+    tags?: string[] | null;
   }
   /**
    * Parameters that describe the nodes in a cluster.
@@ -1492,6 +1518,15 @@ export namespace container_v1beta1 {
      * Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. - "none": the default, which represents the existing scheduling behavior. - "static": allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is 'none' if unspecified.
      */
     cpuManagerPolicy?: string | null;
+  }
+  /**
+   * Collection of node-level [Kubernetes labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels).
+   */
+  export interface Schema$NodeLabels {
+    /**
+     * Map of node label keys and node label values.
+     */
+    labels?: {[key: string]: string} | null;
   }
   /**
    * NodeManagement defines the set of node management services turned on for the node pool.
@@ -1633,6 +1668,15 @@ export namespace container_v1beta1 {
      * Value for taint.
      */
     value?: string | null;
+  }
+  /**
+   * Collection of Kubernetes [node taints](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration).
+   */
+  export interface Schema$NodeTaints {
+    /**
+     * List of node taints.
+     */
+    taints?: Schema$NodeTaint[];
   }
   /**
    * NotificationConfig is the configuration of notifications.
@@ -2452,6 +2496,10 @@ export namespace container_v1beta1 {
      */
     kubeletConfig?: Schema$NodeKubeletConfig;
     /**
+     * The desired node labels to be applied to all nodes in the node pool. If this field is not present, the labels will not be changed. Otherwise, the existing node labels will be *replaced* with the provided labels.
+     */
+    labels?: Schema$NodeLabels;
+    /**
      * Parameters that can be configured on Linux nodes.
      */
     linuxNodeConfig?: Schema$LinuxNodeConfig;
@@ -2475,6 +2523,14 @@ export namespace container_v1beta1 {
      * Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
+    /**
+     * The desired network tags to be applied to all nodes in the node pool. If this field is not present, the tags will not be changed. Otherwise, the existing network tags will be *replaced* with the provided tags.
+     */
+    tags?: Schema$NetworkTags;
+    /**
+     * The desired node taints to be applied to all nodes in the node pool. If this field is not present, the taints will not be changed. Otherwise, the existing node taints will be *replaced* with the provided taints.
+     */
+    taints?: Schema$NodeTaints;
     /**
      * Upgrade settings control disruption and speed of the upgrade.
      */
@@ -7432,12 +7488,15 @@ export namespace container_v1beta1 {
      *       //   "clusterId": "my_clusterId",
      *       //   "imageType": "my_imageType",
      *       //   "kubeletConfig": {},
+     *       //   "labels": {},
      *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
      *       //   "name": "my_name",
      *       //   "nodePoolId": "my_nodePoolId",
      *       //   "nodeVersion": "my_nodeVersion",
      *       //   "projectId": "my_projectId",
+     *       //   "tags": {},
+     *       //   "taints": {},
      *       //   "upgradeSettings": {},
      *       //   "workloadMetadataConfig": {},
      *       //   "zone": "my_zone"
@@ -12840,12 +12899,15 @@ export namespace container_v1beta1 {
      *       //   "clusterId": "my_clusterId",
      *       //   "imageType": "my_imageType",
      *       //   "kubeletConfig": {},
+     *       //   "labels": {},
      *       //   "linuxNodeConfig": {},
      *       //   "locations": [],
      *       //   "name": "my_name",
      *       //   "nodePoolId": "my_nodePoolId",
      *       //   "nodeVersion": "my_nodeVersion",
      *       //   "projectId": "my_projectId",
+     *       //   "tags": {},
+     *       //   "taints": {},
      *       //   "upgradeSettings": {},
      *       //   "workloadMetadataConfig": {},
      *       //   "zone": "my_zone"

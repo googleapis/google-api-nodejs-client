@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -269,7 +269,7 @@
       }
     }
   },
-  "revision": "20210209",
+  "revision": "20210309",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "CancelExecutionRequest": {
@@ -283,12 +283,16 @@
       "id": "Error",
       "properties": {
         "context": {
-          "description": "Human readable error context, helpful for debugging purposes.",
+          "description": "Human readable stack trace string.",
           "type": "string"
         },
         "payload": {
-          "description": "Error payload returned by the execution, represented as a JSON string.",
+          "description": "Error message and data returned represented as a JSON string.",
           "type": "string"
+        },
+        "stackTrace": {
+          "$ref": "StackTrace",
+          "description": "Stack trace with detailed information of where error was generated."
         }
       },
       "type": "object"
@@ -368,6 +372,61 @@
         },
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Position": {
+      "description": "Position contains source position information about the stack trace element such as line number, column number and length of the code block in bytes.",
+      "id": "Position",
+      "properties": {
+        "column": {
+          "description": "The source code column position (of the line) the current instruction was generated from.",
+          "format": "int64",
+          "type": "string"
+        },
+        "length": {
+          "description": "The length in bytes of text in this character group, e.g. digits of a number, string length, or AST (abstract syntax tree) node.",
+          "format": "int64",
+          "type": "string"
+        },
+        "line": {
+          "description": "The source code line number the current instruction was generated from.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StackTrace": {
+      "description": "A collection of stack elements (frames) where an error occurred.",
+      "id": "StackTrace",
+      "properties": {
+        "elements": {
+          "description": "An array of Stack elements.",
+          "items": {
+            "$ref": "StackTraceElement"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "StackTraceElement": {
+      "description": "A single stack element (frame) where an error occurred.",
+      "id": "StackTraceElement",
+      "properties": {
+        "position": {
+          "$ref": "Position",
+          "description": "The source position information of the stacktrace element."
+        },
+        "routine": {
+          "description": "The routine where the error occurred.",
+          "type": "string"
+        },
+        "step": {
+          "description": "The step the error occurred at.",
           "type": "string"
         }
       },

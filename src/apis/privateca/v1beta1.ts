@@ -217,15 +217,6 @@ export namespace privateca_v1beta1 {
     logType?: string | null;
   }
   /**
-   * Message for reporting billing requests through Eventstream.
-   */
-  export interface Schema$BillingView {
-    /**
-     * Billing requests to be reported for cloud.eventstream.v2.ResourceEvent Each request contains billing operations to be reported under a service name. See go/billing-view-construction for documentation on constructing billing view report requests.
-     */
-    reportRequests?: Schema$GoogleApiServicecontrolV1ReportRequest[];
-  }
-  /**
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
@@ -545,23 +536,6 @@ export namespace privateca_v1beta1 {
     requestId?: string | null;
   }
   /**
-   * Exemplars are example points that may be used to annotate aggregated distribution values. They are metadata that gives information about a particular value added to a Distribution bucket, such as a trace ID that was active when a value was added. They may contain further information, such as a example values and timestamps, origin, etc.
-   */
-  export interface Schema$Exemplar {
-    /**
-     * Contextual information about the example value. Examples are: Trace: type.googleapis.com/google.monitoring.v3.SpanContext Literal string: type.googleapis.com/google.protobuf.StringValue Labels dropped during aggregation: type.googleapis.com/google.monitoring.v3.DroppedLabels There may be only a single attachment of any given message type in a single exemplar, and this is enforced by the system.
-     */
-    attachments?: Array<{[key: string]: any}> | null;
-    /**
-     * The observation (sampling) time of the above value.
-     */
-    timestamp?: string | null;
-    /**
-     * Value of the exemplar point. This value determines to which bucket the exemplar belongs.
-     */
-    value?: number | null;
-  }
-  /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
@@ -619,502 +593,6 @@ export namespace privateca_v1beta1 {
      * Output only. The PEM-encoded signed certificate signing request (CSR).
      */
     pemCsr?: string | null;
-  }
-  /**
-   * A set of attributes, each in the format `[KEY]:[VALUE]`.
-   */
-  export interface Schema$GoogleApiServicecontrolV1Attributes {
-    /**
-     * The set of attributes. Each attribute's key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example: "/instance_id": "my-instance" "/http/user_agent": "" "/http/request_bytes": 300 "abc.com/myattribute": true
-     */
-    attributeMap?: {
-      [key: string]: Schema$GoogleApiServicecontrolV1AttributeValue;
-    } | null;
-    /**
-     * The number of attributes that were discarded. Attributes can be discarded because their keys are too long or because there are too many attributes. If this value is 0 then all attributes are valid.
-     */
-    droppedAttributesCount?: number | null;
-  }
-  /**
-   * The allowed types for [VALUE] in a `[KEY]:[VALUE]` attribute.
-   */
-  export interface Schema$GoogleApiServicecontrolV1AttributeValue {
-    /**
-     * A Boolean value represented by `true` or `false`.
-     */
-    boolValue?: boolean | null;
-    /**
-     * A 64-bit signed integer.
-     */
-    intValue?: string | null;
-    /**
-     * A string up to 256 bytes long.
-     */
-    stringValue?: Schema$GoogleApiServicecontrolV1TruncatableString;
-  }
-  /**
-   * Distribution represents a frequency distribution of double-valued sample points. It contains the size of the population of sample points plus additional optional information: - the arithmetic mean of the samples - the minimum and maximum of the samples - the sum-squared-deviation of the samples, used to compute variance - a histogram of the values of the sample points
-   */
-  export interface Schema$GoogleApiServicecontrolV1Distribution {
-    /**
-     * The number of samples in each histogram bucket. `bucket_counts` are optional. If present, they must sum to the `count` value. The buckets are defined below in `bucket_option`. There are N buckets. `bucket_counts[0]` is the number of samples in the underflow bucket. `bucket_counts[1]` to `bucket_counts[N-1]` are the numbers of samples in each of the finite buckets. And `bucket_counts[N] is the number of samples in the overflow bucket. See the comments of `bucket_option` below for more details. Any suffix of trailing zeros may be omitted.
-     */
-    bucketCounts?: string[] | null;
-    /**
-     * The total number of samples in the distribution. Must be \>= 0.
-     */
-    count?: string | null;
-    /**
-     * Example points. Must be in increasing order of `value` field.
-     */
-    exemplars?: Schema$Exemplar[];
-    /**
-     * Buckets with arbitrary user-provided width.
-     */
-    explicitBuckets?: Schema$GoogleApiServicecontrolV1ExplicitBuckets;
-    /**
-     * Buckets with exponentially growing width.
-     */
-    exponentialBuckets?: Schema$GoogleApiServicecontrolV1ExponentialBuckets;
-    /**
-     * Buckets with constant width.
-     */
-    linearBuckets?: Schema$GoogleApiServicecontrolV1LinearBuckets;
-    /**
-     * The maximum of the population of values. Ignored if `count` is zero.
-     */
-    maximum?: number | null;
-    /**
-     * The arithmetic mean of the samples in the distribution. If `count` is zero then this field must be zero.
-     */
-    mean?: number | null;
-    /**
-     * The minimum of the population of values. Ignored if `count` is zero.
-     */
-    minimum?: number | null;
-    /**
-     * The sum of squared deviations from the mean: Sum[i=1..count]((x_i - mean)^2) where each x_i is a sample values. If `count` is zero then this field must be zero, otherwise validation of the request fails.
-     */
-    sumOfSquaredDeviation?: number | null;
-  }
-  /**
-   * Describing buckets with arbitrary user-provided width.
-   */
-  export interface Schema$GoogleApiServicecontrolV1ExplicitBuckets {
-    /**
-     * 'bound' is a list of strictly increasing boundaries between buckets. Note that a list of length N-1 defines N buckets because of fenceposting. See comments on `bucket_options` for details. The i'th finite bucket covers the interval [bound[i-1], bound[i]) where i ranges from 1 to bound_size() - 1. Note that there are no finite buckets at all if 'bound' only contains a single element; in that special case the single bound defines the boundary between the underflow and overflow buckets. bucket number lower bound upper bound i == 0 (underflow) -inf bound[i] 0 < i < bound_size() bound[i-1] bound[i] i == bound_size() (overflow) bound[i-1] +inf
-     */
-    bounds?: number[] | null;
-  }
-  /**
-   * Describing buckets with exponentially growing width.
-   */
-  export interface Schema$GoogleApiServicecontrolV1ExponentialBuckets {
-    /**
-     * The i'th exponential bucket covers the interval [scale * growth_factor^(i-1), scale * growth_factor^i) where i ranges from 1 to num_finite_buckets inclusive. Must be larger than 1.0.
-     */
-    growthFactor?: number | null;
-    /**
-     * The number of finite buckets. With the underflow and overflow buckets, the total number of buckets is `num_finite_buckets` + 2. See comments on `bucket_options` for details.
-     */
-    numFiniteBuckets?: number | null;
-    /**
-     * The i'th exponential bucket covers the interval [scale * growth_factor^(i-1), scale * growth_factor^i) where i ranges from 1 to num_finite_buckets inclusive. Must be \> 0.
-     */
-    scale?: number | null;
-  }
-  /**
-   * A common proto for logging HTTP requests. Only contains semantics defined by the HTTP specification. Product-specific logging information MUST be defined in a separate message.
-   */
-  export interface Schema$GoogleApiServicecontrolV1HttpRequest {
-    /**
-     * The number of HTTP response bytes inserted into cache. Set only when a cache fill was attempted.
-     */
-    cacheFillBytes?: string | null;
-    /**
-     * Whether or not an entity was served from cache (with or without validation).
-     */
-    cacheHit?: boolean | null;
-    /**
-     * Whether or not a cache lookup was attempted.
-     */
-    cacheLookup?: boolean | null;
-    /**
-     * Whether or not the response was validated with the origin server before being served from cache. This field is only meaningful if `cache_hit` is True.
-     */
-    cacheValidatedWithOriginServer?: boolean | null;
-    /**
-     * The request processing latency on the server, from the time the request was received until the response was sent.
-     */
-    latency?: string | null;
-    /**
-     * Protocol used for the request. Examples: "HTTP/1.1", "HTTP/2", "websocket"
-     */
-    protocol?: string | null;
-    /**
-     * The referer URL of the request, as defined in [HTTP/1.1 Header Field Definitions](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html).
-     */
-    referer?: string | null;
-    /**
-     * The IP address (IPv4 or IPv6) of the client that issued the HTTP request. Examples: `"192.168.1.1"`, `"FE80::0202:B3FF:FE1E:8329"`.
-     */
-    remoteIp?: string | null;
-    /**
-     * The request method. Examples: `"GET"`, `"HEAD"`, `"PUT"`, `"POST"`.
-     */
-    requestMethod?: string | null;
-    /**
-     * The size of the HTTP request message in bytes, including the request headers and the request body.
-     */
-    requestSize?: string | null;
-    /**
-     * The scheme (http, https), the host name, the path, and the query portion of the URL that was requested. Example: `"http://example.com/some/info?color=red"`.
-     */
-    requestUrl?: string | null;
-    /**
-     * The size of the HTTP response message sent back to the client, in bytes, including the response headers and the response body.
-     */
-    responseSize?: string | null;
-    /**
-     * The IP address (IPv4 or IPv6) of the origin server that the request was sent to.
-     */
-    serverIp?: string | null;
-    /**
-     * The response code indicating the status of the response. Examples: 200, 404.
-     */
-    status?: number | null;
-    /**
-     * The user agent sent by the client. Example: `"Mozilla/4.0 (compatible; MSIE 6.0; Windows 98; Q312461; .NET CLR 1.0.3705)"`.
-     */
-    userAgent?: string | null;
-  }
-  /**
-   * Describing buckets with constant width.
-   */
-  export interface Schema$GoogleApiServicecontrolV1LinearBuckets {
-    /**
-     * The number of finite buckets. With the underflow and overflow buckets, the total number of buckets is `num_finite_buckets` + 2. See comments on `bucket_options` for details.
-     */
-    numFiniteBuckets?: number | null;
-    /**
-     * The i'th linear bucket covers the interval [offset + (i-1) * width, offset + i * width) where i ranges from 1 to num_finite_buckets, inclusive.
-     */
-    offset?: number | null;
-    /**
-     * The i'th linear bucket covers the interval [offset + (i-1) * width, offset + i * width) where i ranges from 1 to num_finite_buckets, inclusive. Must be strictly positive.
-     */
-    width?: number | null;
-  }
-  /**
-   * An individual log entry.
-   */
-  export interface Schema$GoogleApiServicecontrolV1LogEntry {
-    /**
-     * Optional. Information about the HTTP request associated with this log entry, if applicable.
-     */
-    httpRequest?: Schema$GoogleApiServicecontrolV1HttpRequest;
-    /**
-     * A unique ID for the log entry used for deduplication. If omitted, the implementation will generate one based on operation_id.
-     */
-    insertId?: string | null;
-    /**
-     * A set of user-defined (key, value) data that provides additional information about the log entry.
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * Required. The log to which this log entry belongs. Examples: `"syslog"`, `"book_log"`.
-     */
-    name?: string | null;
-    /**
-     * Optional. Information about an operation associated with the log entry, if applicable.
-     */
-    operation?: Schema$GoogleApiServicecontrolV1LogEntryOperation;
-    /**
-     * The log entry payload, represented as a protocol buffer that is expressed as a JSON object. The only accepted type currently is AuditLog.
-     */
-    protoPayload?: {[key: string]: any} | null;
-    /**
-     * The severity of the log entry. The default value is `LogSeverity.DEFAULT`.
-     */
-    severity?: string | null;
-    /**
-     * Optional. Source code location information associated with the log entry, if any.
-     */
-    sourceLocation?: Schema$GoogleApiServicecontrolV1LogEntrySourceLocation;
-    /**
-     * The log entry payload, represented as a structure that is expressed as a JSON object.
-     */
-    structPayload?: {[key: string]: any} | null;
-    /**
-     * The log entry payload, represented as a Unicode string (UTF-8).
-     */
-    textPayload?: string | null;
-    /**
-     * The time the event described by the log entry occurred. If omitted, defaults to operation start time.
-     */
-    timestamp?: string | null;
-    /**
-     * Optional. Resource name of the trace associated with the log entry, if any. If this field contains a relative resource name, you can assume the name is relative to `//tracing.googleapis.com`. Example: `projects/my-projectid/traces/06796866738c859f2f19b7cfb3214824`
-     */
-    trace?: string | null;
-  }
-  /**
-   * Additional information about a potentially long-running operation with which a log entry is associated.
-   */
-  export interface Schema$GoogleApiServicecontrolV1LogEntryOperation {
-    /**
-     * Optional. Set this to True if this is the first log entry in the operation.
-     */
-    first?: boolean | null;
-    /**
-     * Optional. An arbitrary operation identifier. Log entries with the same identifier are assumed to be part of the same operation.
-     */
-    id?: string | null;
-    /**
-     * Optional. Set this to True if this is the last log entry in the operation.
-     */
-    last?: boolean | null;
-    /**
-     * Optional. An arbitrary producer identifier. The combination of `id` and `producer` must be globally unique. Examples for `producer`: `"MyDivision.MyBigCompany.com"`, `"github.com/MyProject/MyApplication"`.
-     */
-    producer?: string | null;
-  }
-  /**
-   * Additional information about the source code location that produced the log entry.
-   */
-  export interface Schema$GoogleApiServicecontrolV1LogEntrySourceLocation {
-    /**
-     * Optional. Source file name. Depending on the runtime environment, this might be a simple name or a fully-qualified name.
-     */
-    file?: string | null;
-    /**
-     * Optional. Human-readable name of the function or method being invoked, with optional context such as the class or package name. This information may be used in contexts such as the logs viewer, where a file and line number are less meaningful. The format can vary by language. For example: `qual.if.ied.Class.method` (Java), `dir/package.func` (Go), `function` (Python).
-     */
-    function?: string | null;
-    /**
-     * Optional. Line within the source file. 1-based; 0 indicates no line number available.
-     */
-    line?: string | null;
-  }
-  /**
-   * Represents a single metric value.
-   */
-  export interface Schema$GoogleApiServicecontrolV1MetricValue {
-    /**
-     * A boolean value.
-     */
-    boolValue?: boolean | null;
-    /**
-     * A distribution value.
-     */
-    distributionValue?: Schema$GoogleApiServicecontrolV1Distribution;
-    /**
-     * A double precision floating point value.
-     */
-    doubleValue?: number | null;
-    /**
-     * The end of the time period over which this metric value's measurement applies. If not specified, google.api.servicecontrol.v1.Operation.end_time will be used.
-     */
-    endTime?: string | null;
-    /**
-     * A signed 64-bit integer value.
-     */
-    int64Value?: string | null;
-    /**
-     * The labels describing the metric value. See comments on google.api.servicecontrol.v1.Operation.labels for the overriding relationship. Note that this map must not contain monitored resource labels.
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * A money value.
-     */
-    moneyValue?: Schema$Money;
-    /**
-     * The start of the time period over which this metric value's measurement applies. The time period has different semantics for different metric types (cumulative, delta, and gauge). See the metric definition documentation in the service configuration for details. If not specified, google.api.servicecontrol.v1.Operation.start_time will be used.
-     */
-    startTime?: string | null;
-    /**
-     * A text string value.
-     */
-    stringValue?: string | null;
-  }
-  /**
-   * Represents a set of metric values in the same metric. Each metric value in the set should have a unique combination of start time, end time, and label values.
-   */
-  export interface Schema$GoogleApiServicecontrolV1MetricValueSet {
-    /**
-     * The metric name defined in the service configuration.
-     */
-    metricName?: string | null;
-    /**
-     * The values in this metric.
-     */
-    metricValues?: Schema$GoogleApiServicecontrolV1MetricValue[];
-  }
-  /**
-   * Represents information regarding an operation.
-   */
-  export interface Schema$GoogleApiServicecontrolV1Operation {
-    /**
-     * Identity of the consumer who is using the service. This field should be filled in for the operations initiated by a consumer, but not for service-initiated operations that are not related to a specific consumer. - This can be in one of the following formats: - project:PROJECT_ID, - project`_`number:PROJECT_NUMBER, - projects/PROJECT_ID or PROJECT_NUMBER, - folders/FOLDER_NUMBER, - organizations/ORGANIZATION_NUMBER, - api`_`key:API_KEY.
-     */
-    consumerId?: string | null;
-    /**
-     * End time of the operation. Required when the operation is used in ServiceController.Report, but optional when the operation is used in ServiceController.Check.
-     */
-    endTime?: string | null;
-    /**
-     * Unimplemented.
-     */
-    extensions?: Array<{[key: string]: any}> | null;
-    /**
-     * DO NOT USE. This is an experimental field.
-     */
-    importance?: string | null;
-    /**
-     * Labels describing the operation. Only the following labels are allowed: - Labels describing monitored resources as defined in the service configuration. - Default labels of metric values. When specified, labels defined in the metric value override these default. - The following labels defined by Google Cloud Platform: - `cloud.googleapis.com/location` describing the location where the operation happened, - `servicecontrol.googleapis.com/user_agent` describing the user agent of the API request, - `servicecontrol.googleapis.com/service_agent` describing the service used to handle the API request (e.g. ESP), - `servicecontrol.googleapis.com/platform` describing the platform where the API is served, such as App Engine, Compute Engine, or Kubernetes Engine.
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * Represents information to be logged.
-     */
-    logEntries?: Schema$GoogleApiServicecontrolV1LogEntry[];
-    /**
-     * Represents information about this operation. Each MetricValueSet corresponds to a metric defined in the service configuration. The data type used in the MetricValueSet must agree with the data type specified in the metric definition. Within a single operation, it is not allowed to have more than one MetricValue instances that have the same metric names and identical label value combinations. If a request has such duplicated MetricValue instances, the entire request is rejected with an invalid argument error.
-     */
-    metricValueSets?: Schema$GoogleApiServicecontrolV1MetricValueSet[];
-    /**
-     * Identity of the operation. This must be unique within the scope of the service that generated the operation. If the service calls Check() and Report() on the same operation, the two calls should carry the same id. UUID version 4 is recommended, though not required. In scenarios where an operation is computed from existing information and an idempotent id is desirable for deduplication purpose, UUID version 5 is recommended. See RFC 4122 for details.
-     */
-    operationId?: string | null;
-    /**
-     * Fully qualified name of the operation. Reserved for future use.
-     */
-    operationName?: string | null;
-    /**
-     * Represents the properties needed for quota check. Applicable only if this operation is for a quota check request. If this is not specified, no quota check will be performed.
-     */
-    quotaProperties?: Schema$GoogleApiServicecontrolV1QuotaProperties;
-    /**
-     * The resources that are involved in the operation. The maximum supported number of entries in this field is 100.
-     */
-    resources?: Schema$GoogleApiServicecontrolV1ResourceInfo[];
-    /**
-     * Required. Start time of the operation.
-     */
-    startTime?: string | null;
-    /**
-     * Unimplemented. A list of Cloud Trace spans. The span names shall contain the id of the destination project which can be either the produce or the consumer project.
-     */
-    traceSpans?: Schema$GoogleApiServicecontrolV1TraceSpan[];
-    /**
-     * Private Preview. This feature is only available for approved services. User defined labels for the resource that this operation is associated with.
-     */
-    userLabels?: {[key: string]: string} | null;
-  }
-  /**
-   * Represents the properties needed for quota operations.
-   */
-  export interface Schema$GoogleApiServicecontrolV1QuotaProperties {
-    /**
-     * Quota mode for this operation.
-     */
-    quotaMode?: string | null;
-  }
-  /**
-   * Request message for the Report method.
-   */
-  export interface Schema$GoogleApiServicecontrolV1ReportRequest {
-    /**
-     * Operations to be reported. Typically the service should report one operation per request. Putting multiple operations into a single request is allowed, but should be used only when multiple operations are natually available at the time of the report. There is no limit on the number of operations in the same ReportRequest, however the ReportRequest size should be no larger than 1MB. See ReportResponse.report_errors for partial failure behavior.
-     */
-    operations?: Schema$GoogleApiServicecontrolV1Operation[];
-    /**
-     * Specifies which version of service config should be used to process the request. If unspecified or no matching version can be found, the latest one will be used.
-     */
-    serviceConfigId?: string | null;
-    /**
-     * The service name as specified in its service configuration. For example, `"pubsub.googleapis.com"`. See [google.api.Service](https://cloud.google.com/service-management/reference/rpc/google.api#google.api.Service) for the definition of a service name.
-     */
-    serviceName?: string | null;
-  }
-  /**
-   * Describes a resource associated with this operation.
-   */
-  export interface Schema$GoogleApiServicecontrolV1ResourceInfo {
-    /**
-     * The identifier of the parent of this resource instance. Must be in one of the following formats: - `projects/` - `folders/` - `organizations/`
-     */
-    resourceContainer?: string | null;
-    /**
-     * The location of the resource. If not empty, the resource will be checked against location policy. The value must be a valid zone, region or multiregion. For example: "europe-west4" or "northamerica-northeast1-a"
-     */
-    resourceLocation?: string | null;
-    /**
-     * Name of the resource. This is used for auditing purposes.
-     */
-    resourceName?: string | null;
-  }
-  /**
-   * A span represents a single operation within a trace. Spans can be nested to form a trace tree. Often, a trace contains a root span that describes the end-to-end latency, and one or more subspans for its sub-operations. A trace can also contain multiple root spans, or none at all. Spans do not need to be contiguous—there may be gaps or overlaps between spans in a trace.
-   */
-  export interface Schema$GoogleApiServicecontrolV1TraceSpan {
-    /**
-     * A set of attributes on the span. You can have up to 32 attributes per span.
-     */
-    attributes?: Schema$GoogleApiServicecontrolV1Attributes;
-    /**
-     * An optional number of child spans that were generated while this span was active. If set, allows implementation to detect missing child spans.
-     */
-    childSpanCount?: number | null;
-    /**
-     * A description of the span's operation (up to 128 bytes). Stackdriver Trace displays the description in the Google Cloud Platform Console. For example, the display name can be a qualified method name or a file name and a line number where the operation is called. A best practice is to use the same display name within an application and at the same call point. This makes it easier to correlate spans in different traces.
-     */
-    displayName?: Schema$GoogleApiServicecontrolV1TruncatableString;
-    /**
-     * The end time of the span. On the client side, this is the time kept by the local machine where the span execution ends. On the server side, this is the time when the server application handler stops running.
-     */
-    endTime?: string | null;
-    /**
-     * The resource name of the span in the following format: projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array.
-     */
-    name?: string | null;
-    /**
-     * The [SPAN_ID] of this span's parent span. If this is a root span, then this field must be empty.
-     */
-    parentSpanId?: string | null;
-    /**
-     * (Optional) Set this parameter to indicate whether this span is in the same process as its parent. If you do not set this parameter, Stackdriver Trace is unable to take advantage of this helpful information.
-     */
-    sameProcessAsParentSpan?: boolean | null;
-    /**
-     * The [SPAN_ID] portion of the span's resource name.
-     */
-    spanId?: string | null;
-    /**
-     * Distinguishes between spans generated in a particular context. For example, two spans with the same name may be distinguished using `CLIENT` (caller) and `SERVER` (callee) to identify an RPC call.
-     */
-    spanKind?: string | null;
-    /**
-     * The start time of the span. On the client side, this is the time kept by the local machine where the span execution starts. On the server side, this is the time when the server's application handler starts running.
-     */
-    startTime?: string | null;
-    /**
-     * An optional final status for this span.
-     */
-    status?: Schema$Status;
-  }
-  /**
-   * Represents a string that might be shortened to a specified length.
-   */
-  export interface Schema$GoogleApiServicecontrolV1TruncatableString {
-    /**
-     * The number of bytes removed from the original string. If this value is 0, then the string was not shortened.
-     */
-    truncatedByteCount?: number | null;
-    /**
-     * The shortened string. For example, if the original string is 500 bytes long and the limit of the string is 128 bytes, then `value` contains the first 128 bytes of the 500-byte string. Truncation always happens on a UTF8 character boundary. If there are multi-byte characters in the string, then the length of the shortened string might be less than the size limit.
-     */
-    value?: string | null;
   }
   /**
    * IssuanceModes specifies the allowed ways in which Certificates may be requested from this CertificateAuthority.
@@ -1342,23 +820,6 @@ export namespace privateca_v1beta1 {
     name?: string | null;
   }
   /**
-   * Represents an amount of money with its currency type.
-   */
-  export interface Schema$Money {
-    /**
-     * The three-letter currency code defined in ISO 4217.
-     */
-    currencyCode?: string | null;
-    /**
-     * Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.
-     */
-    nanos?: number | null;
-    /**
-     * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
-     */
-    units?: string | null;
-  }
-  /**
    * An ObjectId specifies an object identifier (OID). These provide context and describe types in ASN.1 messages.
    */
   export interface Schema$ObjectId {
@@ -1458,6 +919,15 @@ export namespace privateca_v1beta1 {
      * Optional. The type of public key. If specified, it must match the public key used for the`key` field.
      */
     type?: string | null;
+  }
+  /**
+   * Operation metadata returned by the CLH during resource state reconciliation.
+   */
+  export interface Schema$ReconciliationOperationMetadata {
+    /**
+     * If set to TRUE, the resource has to be deleted. When using this bit, the CLH should fail the operation.
+     */
+    deleteResource?: boolean | null;
   }
   /**
    * Request message for CertificateAuthorityService.RestoreCertificateAuthority.
@@ -1971,13 +1441,13 @@ export namespace privateca_v1beta1 {
      *
      *   // Do the magic
      *   const res = await privateca.projects.locations.list({
-     *     // The standard list filter.
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The standard list page size.
+     *     // The maximum number of results to return. If not set, the service will select a default.
      *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2096,7 +1566,7 @@ export namespace privateca_v1beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * The standard list filter.
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -2104,11 +1574,11 @@ export namespace privateca_v1beta1 {
      */
     name?: string;
     /**
-     * The standard list page size.
+     * The maximum number of results to return. If not set, the service will select a default.
      */
     pageSize?: number;
     /**
-     * The standard list page token.
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
   }

@@ -156,6 +156,10 @@ export namespace cloudasset_v1 {
     outputConfig?: Schema$IamPolicyAnalysisOutputConfig;
   }
   /**
+   * A response message for AssetService.AnalyzeIamPolicyLongrunning.
+   */
+  export interface Schema$AnalyzeIamPolicyLongrunningResponse {}
+  /**
    * A response message for AssetService.AnalyzeIamPolicy.
    */
   export interface Schema$AnalyzeIamPolicyResponse {

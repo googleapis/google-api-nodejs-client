@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         },
         "https://www.googleapis.com/auth/genomics": {
           "description": "View and manage Genomics data"
@@ -301,7 +301,7 @@
       }
     }
   },
-  "revision": "20210220",
+  "revision": "20210322",
   "rootUrl": "https://genomics.googleapis.com/",
   "schemas": {
     "Accelerator": {

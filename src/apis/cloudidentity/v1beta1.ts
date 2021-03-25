@@ -113,6 +113,7 @@ export namespace cloudidentity_v1beta1 {
    */
   export class Cloudidentity {
     context: APIRequestContext;
+    customers: Resource$Customers;
     devices: Resource$Devices;
     groups: Resource$Groups;
 
@@ -122,6 +123,7 @@ export namespace cloudidentity_v1beta1 {
         google,
       };
 
+      this.customers = new Resource$Customers(this.context);
       this.devices = new Resource$Devices(this.context);
       this.groups = new Resource$Groups(this.context);
     }
@@ -151,12 +153,7 @@ export namespace cloudidentity_v1beta1 {
   /**
    * Request message for approving the device to access user data.
    */
-  export interface Schema$ApproveDeviceUserRequest {
-    /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     */
-    customer?: string | null;
-  }
+  export interface Schema$ApproveDeviceUserRequest {}
   /**
    * Response message for approving the device to access user data.
    */
@@ -169,12 +166,7 @@ export namespace cloudidentity_v1beta1 {
   /**
    * Request message for blocking account on device.
    */
-  export interface Schema$BlockDeviceUserRequest {
-    /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     */
-    customer?: string | null;
-  }
+  export interface Schema$BlockDeviceUserRequest {}
   /**
    * Response message for blocking the device from accessing user data.
    */
@@ -185,14 +177,13 @@ export namespace cloudidentity_v1beta1 {
     deviceUser?: Schema$DeviceUser;
   }
   /**
+   * Request to cancel sent invitation for target email in UserInvitation.
+   */
+  export interface Schema$CancelUserInvitationRequest {}
+  /**
    * Request message for cancelling an unfinished device wipe.
    */
-  export interface Schema$CancelWipeDeviceRequest {
-    /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     */
-    customer?: string | null;
-  }
+  export interface Schema$CancelWipeDeviceRequest {}
   /**
    * Response message for cancelling an unfinished device wipe.
    */
@@ -205,12 +196,7 @@ export namespace cloudidentity_v1beta1 {
   /**
    * Request message for cancelling an unfinished user account wipe.
    */
-  export interface Schema$CancelWipeDeviceUserRequest {
-    /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     */
-    customer?: string | null;
-  }
+  export interface Schema$CancelWipeDeviceUserRequest {}
   /**
    * Response message for cancelling an unfinished user account wipe.
    */
@@ -287,11 +273,7 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$CreateDeviceRequest {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     */
-    customer?: string | null;
-    /**
-     * Required. The device to be created. The name field within this device is ignored in the create method. A new name is created by the method, and returned within the response. Only the fields `device_type`, `serial_number` and `asset_tag` (if present) are used to create the device.`device_type` and `serial_number` are required.
+     * Required. The device to be created. The name field within this device is ignored in the create method. A new name is created by the method, and returned within the response. Only the fields `device_type`, `serial_number` and `asset_tag` (if present) are used to create the device. All other fields are ignored. The `device_type` and `serial_number` fields are required.
      */
     device?: Schema$Device;
   }
@@ -931,6 +913,15 @@ export namespace cloudidentity_v1beta1 {
     roles?: Schema$TransitiveMembershipRole[];
   }
   /**
+   * Response for IsInvitableUser RPC.
+   */
+  export interface Schema$IsInvitableUserResponse {
+    /**
+     * Returns true if the email address is invitable.
+     */
+    isInvitableUser?: boolean | null;
+  }
+  /**
    * Response message that is returned in LRO result of ListClientStates Operation.
    */
   export interface Schema$ListClientStatesResponse {
@@ -994,6 +985,19 @@ export namespace cloudidentity_v1beta1 {
      * A continuation token to retrieve the next page of results, or empty if there are no more results available.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response message for UserInvitation listing request.
+   */
+  export interface Schema$ListUserInvitationsResponse {
+    /**
+     * The token for the next page. If not empty, indicates that there may be more `UserInvitation` resources that match the listing request; this value can be used in a subsequent ListUserInvitationsRequest to get continued results with the current list call.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of UserInvitation resources.
+     */
+    userInvitations?: Schema$UserInvitation[];
   }
   /**
    * The response message for GroupsService.LookupGroupName.
@@ -1201,6 +1205,10 @@ export namespace cloudidentity_v1beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * A request to send email for inviting target user corresponding to the UserInvitation.
+   */
+  export interface Schema$SendUserInvitationRequest {}
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1240,7 +1248,7 @@ export namespace cloudidentity_v1beta1 {
     membershipRole?: Schema$MembershipRole;
   }
   /**
-   * The `UserInvitation` resource represents an email sent to an unmanaged user account (an email address that shares the domain of the Google Workspace customer but is not managed by it yet), inviting them to join the customer’s domain. If the user accepts the `UserInvitation`, the account will become a managed account.
+   * The `UserInvitation` resource represents an email that can be sent to an unmanaged user account inviting them to join the customer’s Google Workspace or Cloud Identity account. An unmanaged account shares an email address domain with the Google Workspace or Cloud Identity account but is not managed by it yet. If the user accepts the `UserInvitation`, the user account will become managed.
    */
   export interface Schema$UserInvitation {
     /**
@@ -1263,12 +1271,7 @@ export namespace cloudidentity_v1beta1 {
   /**
    * Request message for wiping all data on the device.
    */
-  export interface Schema$WipeDeviceRequest {
-    /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     */
-    customer?: string | null;
-  }
+  export interface Schema$WipeDeviceRequest {}
   /**
    * Response message for wiping all data on the device.
    */
@@ -1281,12 +1284,7 @@ export namespace cloudidentity_v1beta1 {
   /**
    * Request message for starting an account wipe on device.
    */
-  export interface Schema$WipeDeviceUserRequest {
-    /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     */
-    customer?: string | null;
-  }
+  export interface Schema$WipeDeviceUserRequest {}
   /**
    * Response message for wiping the user's account from the device.
    */
@@ -1295,6 +1293,779 @@ export namespace cloudidentity_v1beta1 {
      * Resultant DeviceUser object for the action.
      */
     deviceUser?: Schema$DeviceUser;
+  }
+
+  export class Resource$Customers {
+    context: APIRequestContext;
+    userinvitations: Resource$Customers$Userinvitations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.userinvitations = new Resource$Customers$Userinvitations(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Customers$Userinvitations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Cancels a UserInvitation that was already sent.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.customers.userinvitations.cancel({
+     *     // Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     *     name: 'customers/my-customer/userinvitations/my-userinvitation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Customers$Userinvitations$Cancel,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancel(
+      params?: Params$Resource$Customers$Userinvitations$Cancel,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    cancel(
+      params: Params$Resource$Customers$Userinvitations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Customers$Userinvitations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancel(
+      params: Params$Resource$Customers$Userinvitations$Cancel,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Operation>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Userinvitations$Cancel
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Userinvitations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Userinvitations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:cancel').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a UserInvitation resource. **Note:** New consumer accounts with the customer’s verified domain created within the previous 48 hours will not appear in the result. This delay also applies to newly-verified domains.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.customers.userinvitations.get({
+     *     // Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     *     name: 'customers/my-customer/userinvitations/my-userinvitation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "mailsSentCount": "my_mailsSentCount",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Customers$Userinvitations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Customers$Userinvitations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$UserInvitation>;
+    get(
+      params: Params$Resource$Customers$Userinvitations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Userinvitations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$UserInvitation>,
+      callback: BodyResponseCallback<Schema$UserInvitation>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Userinvitations$Get,
+      callback: BodyResponseCallback<Schema$UserInvitation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$UserInvitation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Userinvitations$Get
+        | BodyResponseCallback<Schema$UserInvitation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$UserInvitation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$UserInvitation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$UserInvitation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Userinvitations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Userinvitations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$UserInvitation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$UserInvitation>(parameters);
+      }
+    }
+
+    /**
+     * Verifies whether a user account is eligible to receive a UserInvitation (is an unmanaged account). Eligibility is based on the following criteria: * the email address is a consumer account and it’s the primary email address of the account, and * the domain of the email address matches an existing verified Google Workspace or Cloud Identity domain If both conditions are met, the user is eligible. **Note:** This method is not supported for Workspace Essentials customers.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.customers.userinvitations.isInvitableUser({
+     *     // Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     *     name: 'customers/my-customer/userinvitations/my-userinvitation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "isInvitableUser": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    isInvitableUser(
+      params: Params$Resource$Customers$Userinvitations$Isinvitableuser,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    isInvitableUser(
+      params?: Params$Resource$Customers$Userinvitations$Isinvitableuser,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$IsInvitableUserResponse>;
+    isInvitableUser(
+      params: Params$Resource$Customers$Userinvitations$Isinvitableuser,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    isInvitableUser(
+      params: Params$Resource$Customers$Userinvitations$Isinvitableuser,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$IsInvitableUserResponse>,
+      callback: BodyResponseCallback<Schema$IsInvitableUserResponse>
+    ): void;
+    isInvitableUser(
+      params: Params$Resource$Customers$Userinvitations$Isinvitableuser,
+      callback: BodyResponseCallback<Schema$IsInvitableUserResponse>
+    ): void;
+    isInvitableUser(
+      callback: BodyResponseCallback<Schema$IsInvitableUserResponse>
+    ): void;
+    isInvitableUser(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Userinvitations$Isinvitableuser
+        | BodyResponseCallback<Schema$IsInvitableUserResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$IsInvitableUserResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$IsInvitableUserResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$IsInvitableUserResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Userinvitations$Isinvitableuser;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Userinvitations$Isinvitableuser;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:isInvitableUser').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$IsInvitableUserResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$IsInvitableUserResponse>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a list of UserInvitation resources. **Note:** New consumer accounts with the customer’s verified domain created within the previous 48 hours will not appear in the result. This delay also applies to newly-verified domains.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.customers.userinvitations.list({
+     *     // Optional. A query string for filtering `UserInvitation` results by their current state, in the format: `"state=='invited'"`.
+     *     filter: 'placeholder-value',
+     *     // Optional. The sort order of the list results. You can sort the results in descending order based on either email or last update timestamp but not both, using `order_by="email desc"`. Currently, sorting is supported for `update_time asc`, `update_time desc`, `email asc`, and `email desc`. If not specified, results will be returned based on `email asc` order.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of UserInvitation resources to return. If unspecified, at most 100 resources will be returned. The maximum value is 200; values above 200 will be set to 200.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListUserInvitations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBooks` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The customer ID of the Google Workspace or Cloud Identity account the UserInvitation resources are associated with.
+     *     parent: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "userInvitations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Customers$Userinvitations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Customers$Userinvitations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListUserInvitationsResponse>;
+    list(
+      params: Params$Resource$Customers$Userinvitations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Userinvitations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListUserInvitationsResponse>,
+      callback: BodyResponseCallback<Schema$ListUserInvitationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Userinvitations$List,
+      callback: BodyResponseCallback<Schema$ListUserInvitationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListUserInvitationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Userinvitations$List
+        | BodyResponseCallback<Schema$ListUserInvitationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListUserInvitationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListUserInvitationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListUserInvitationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Userinvitations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Userinvitations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/userinvitations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListUserInvitationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListUserInvitationsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Sends a UserInvitation to email. If the `UserInvitation` does not exist for this request and it is a valid request, the request creates a `UserInvitation`. **Note:** The `get` and `list` methods have a 48-hour delay where newly-created consumer accounts will not appear in the results. You can still send a `UserInvitation` to those accounts if you know the unmanaged email address and IsInvitableUser==True.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.customers.userinvitations.send({
+     *     // Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     *     name: 'customers/my-customer/userinvitations/my-userinvitation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    send(
+      params: Params$Resource$Customers$Userinvitations$Send,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    send(
+      params?: Params$Resource$Customers$Userinvitations$Send,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    send(
+      params: Params$Resource$Customers$Userinvitations$Send,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    send(
+      params: Params$Resource$Customers$Userinvitations$Send,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    send(
+      params: Params$Resource$Customers$Userinvitations$Send,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    send(callback: BodyResponseCallback<Schema$Operation>): void;
+    send(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Userinvitations$Send
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Userinvitations$Send;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Userinvitations$Send;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:send').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Userinvitations$Cancel
+    extends StandardParameters {
+    /**
+     * Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelUserInvitationRequest;
+  }
+  export interface Params$Resource$Customers$Userinvitations$Get
+    extends StandardParameters {
+    /**
+     * Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Customers$Userinvitations$Isinvitableuser
+    extends StandardParameters {
+    /**
+     * Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Customers$Userinvitations$List
+    extends StandardParameters {
+    /**
+     * Optional. A query string for filtering `UserInvitation` results by their current state, in the format: `"state=='invited'"`.
+     */
+    filter?: string;
+    /**
+     * Optional. The sort order of the list results. You can sort the results in descending order based on either email or last update timestamp but not both, using `order_by="email desc"`. Currently, sorting is supported for `update_time asc`, `update_time desc`, `email asc`, and `email desc`. If not specified, results will be returned based on `email asc` order.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of UserInvitation resources to return. If unspecified, at most 100 resources will be returned. The maximum value is 200; values above 200 will be set to 200.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListUserInvitations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBooks` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The customer ID of the Google Workspace or Cloud Identity account the UserInvitation resources are associated with.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Customers$Userinvitations$Send
+    extends StandardParameters {
+    /**
+     * Required. `UserInvitation` name in the format `customers/{customer\}/userinvitations/{user_email_address\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SendUserInvitationRequest;
   }
 
   export class Resource$Devices {
@@ -1338,9 +2109,7 @@ export namespace cloudidentity_v1beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {
-     *       //   "customer": "my_customer"
-     *       // }
+     *       // {}
      *     },
      *   });
      *   console.log(res.data);
@@ -1478,7 +2247,6 @@ export namespace cloudidentity_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "customer": "my_customer",
      *       //   "device": {}
      *       // }
      *     },
@@ -1610,8 +2378,6 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.delete({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     *     customer: 'placeholder-value',
      *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      *     name: 'devices/my-device',
      *   });
@@ -1742,8 +2508,6 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.get({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Customer in format: `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     *     customer: 'placeholder-value',
      *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      *     name: 'devices/my-device',
      *   });
@@ -1897,8 +2661,6 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.list({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer.
-     *     customer: 'placeholder-value',
      *     // Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      *     filter: 'placeholder-value',
      *     // Optional. Order specification for devices in the response. Only one of the following field names may be used to specify the order: `create_time`, `last_sync_time`, `model`, `os_version`, `device_type` and `serial_number`. `desc` may be specified optionally to specify results to be sorted in descending order. Default order is ascending.
@@ -2043,9 +2805,7 @@ export namespace cloudidentity_v1beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {
-     *       //   "customer": "my_customer"
-     *       // }
+     *       // {}
      *     },
      *   });
      *   console.log(res.data);
@@ -2172,29 +2932,17 @@ export namespace cloudidentity_v1beta1 {
   }
   export interface Params$Resource$Devices$Delete extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     */
-    customer?: string;
-    /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$Get extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Customer in format: `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     */
-    customer?: string;
-    /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$List extends StandardParameters {
-    /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer.
-     */
-    customer?: string;
     /**
      * Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      */
@@ -2271,9 +3019,7 @@ export namespace cloudidentity_v1beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {
-     *       //   "customer": "my_customer"
-     *       // }
+     *       // {}
      *     },
      *   });
      *   console.log(res.data);
@@ -2413,9 +3159,7 @@ export namespace cloudidentity_v1beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {
-     *       //   "customer": "my_customer"
-     *       // }
+     *       // {}
      *     },
      *   });
      *   console.log(res.data);
@@ -2555,9 +3299,7 @@ export namespace cloudidentity_v1beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {
-     *       //   "customer": "my_customer"
-     *       // }
+     *       // {}
      *     },
      *   });
      *   console.log(res.data);
@@ -2691,8 +3433,6 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.delete({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     *     customer: 'placeholder-value',
      *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *   });
@@ -2824,8 +3564,6 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.get({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     *     customer: 'placeholder-value',
      *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *   });
@@ -2962,8 +3700,6 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.list({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     *     customer: 'placeholder-value',
      *     // Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      *     filter: 'placeholder-value',
      *     // Optional. Order specification for devices in the response.
@@ -3265,9 +4001,7 @@ export namespace cloudidentity_v1beta1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {
-     *       //   "customer": "my_customer"
-     *       // }
+     *       // {}
      *     },
      *   });
      *   console.log(res.data);
@@ -3414,10 +4148,6 @@ export namespace cloudidentity_v1beta1 {
   export interface Params$Resource$Devices$Deviceusers$Delete
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     */
-    customer?: string;
-    /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      */
     name?: string;
@@ -3425,20 +4155,12 @@ export namespace cloudidentity_v1beta1 {
   export interface Params$Resource$Devices$Deviceusers$Get
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     */
-    customer?: string;
-    /**
      * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$Deviceusers$List
     extends StandardParameters {
-    /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
-     */
-    customer?: string;
     /**
      * Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      */
@@ -3533,9 +4255,9 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.clientStates.get({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientStates/{partner_id\}`, where device_id is the unique ID assigned to the Device, device_user_id is the unique ID assigned to the User and partner_id identifies the partner storing the data. To get the client state for devices belonging to your own organization, the `partnerId` is in the format: `customerId-*anystring*`. Where the `customerId` is your organization's customer ID and `anystring` is any suffix. This suffix is used in setting up Custom Access Levels in Context-Aware Access. You may use `my_customer` instead of the customer ID for devices managed by your own organization.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientStates/{partner_id\}`, where `device_id` is the unique ID assigned to the Device, `device_user_id` is the unique ID assigned to the User and `partner_id` identifies the partner storing the data. To get the client state for devices belonging to your own organization, the `partnerId` is in the format: `customerId-*anystring*`. Where the `customerId` is your organization's customer ID and `anystring` is any suffix. This suffix is used in setting up Custom Access Levels in Context-Aware Access. You may use `my_customer` instead of the customer ID for devices managed by your own organization. You may specify `-` in place of the `{device_id\}`, so the ClientState resource name can be: `devices/-/deviceUsers/{device_user_resource_id\}/clientStates/{partner_id\}`.
      *     name:
      *       'devices/my-device/deviceUsers/my-deviceUser/clientStates/my-clientState',
      *   });
@@ -3674,7 +4396,7 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.clientStates.patch({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
      *     // Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientState/{partner_id\}`, where partner_id corresponds to the partner storing the data.
      *     name:
@@ -3806,18 +4528,18 @@ export namespace cloudidentity_v1beta1 {
   export interface Params$Resource$Devices$Deviceusers$Clientstates$Get
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string;
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientStates/{partner_id\}`, where device_id is the unique ID assigned to the Device, device_user_id is the unique ID assigned to the User and partner_id identifies the partner storing the data. To get the client state for devices belonging to your own organization, the `partnerId` is in the format: `customerId-*anystring*`. Where the `customerId` is your organization's customer ID and `anystring` is any suffix. This suffix is used in setting up Custom Access Levels in Context-Aware Access. You may use `my_customer` instead of the customer ID for devices managed by your own organization.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientStates/{partner_id\}`, where `device_id` is the unique ID assigned to the Device, `device_user_id` is the unique ID assigned to the User and `partner_id` identifies the partner storing the data. To get the client state for devices belonging to your own organization, the `partnerId` is in the format: `customerId-*anystring*`. Where the `customerId` is your organization's customer ID and `anystring` is any suffix. This suffix is used in setting up Custom Access Levels in Context-Aware Access. You may use `my_customer` instead of the customer ID for devices managed by your own organization. You may specify `-` in place of the `{device_id\}`, so the ClientState resource name can be: `devices/-/deviceUsers/{device_user_resource_id\}/clientStates/{partner_id\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$Deviceusers$Clientstates$Patch
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
+     * Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string;
     /**

@@ -15,9 +15,11 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {analyticsdata_v1alpha} from './v1alpha';
+import {analyticsdata_v1beta} from './v1beta';
 
 export const VERSIONS = {
   v1alpha: analyticsdata_v1alpha.Analyticsdata,
+  v1beta: analyticsdata_v1beta.Analyticsdata,
 };
 
 export function analyticsdata(
@@ -26,9 +28,21 @@ export function analyticsdata(
 export function analyticsdata(
   options: analyticsdata_v1alpha.Options
 ): analyticsdata_v1alpha.Analyticsdata;
-export function analyticsdata<T = analyticsdata_v1alpha.Analyticsdata>(
+export function analyticsdata(
+  version: 'v1beta'
+): analyticsdata_v1beta.Analyticsdata;
+export function analyticsdata(
+  options: analyticsdata_v1beta.Options
+): analyticsdata_v1beta.Analyticsdata;
+export function analyticsdata<
+  T = analyticsdata_v1alpha.Analyticsdata | analyticsdata_v1beta.Analyticsdata
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1alpha' | analyticsdata_v1alpha.Options
+  versionOrOptions:
+    | 'v1alpha'
+    | analyticsdata_v1alpha.Options
+    | 'v1beta'
+    | analyticsdata_v1beta.Options
 ) {
   return getAPI<T>('analyticsdata', versionOrOptions, VERSIONS, this);
 }
@@ -36,6 +50,7 @@ export function analyticsdata<T = analyticsdata_v1alpha.Analyticsdata>(
 const auth = new AuthPlus();
 export {auth};
 export {analyticsdata_v1alpha};
+export {analyticsdata_v1beta};
 export {
   AuthPlus,
   GlobalOptions,

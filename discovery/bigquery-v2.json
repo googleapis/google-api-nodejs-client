@@ -1670,7 +1670,7 @@
       }
     }
   },
-  "revision": "20210219",
+  "revision": "20210303",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -3714,6 +3714,10 @@
           "description": "[Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.",
           "type": "string"
         },
+        "createSession": {
+          "description": "If true, creates a new session, where session id will be a server generated random id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs query in non-session mode.",
+          "type": "boolean"
+        },
         "defaultDataset": {
           "$ref": "DatasetReference",
           "description": "[Optional] Specifies the default dataset to use for unqualified table names in the query. Note that this does not alter behavior of unqualified dataset names."
@@ -4365,6 +4369,11 @@
     "Model": {
       "id": "Model",
       "properties": {
+        "bestTrialId": {
+          "description": "The best trial_id across all training runs.",
+          "format": "int64",
+          "type": "string"
+        },
         "creationTime": {
           "description": "Output only. The time when this model was created, in millisecs since the epoch.",
           "format": "int64",
@@ -4768,6 +4777,10 @@
           },
           "type": "array"
         },
+        "createSession": {
+          "description": "If true, creates a new session, where session id will be a server generated random id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs query in non-session mode.",
+          "type": "boolean"
+        },
         "defaultDataset": {
           "$ref": "DatasetReference",
           "description": "[Optional] Specifies the default datasetId and projectId to assume for any unqualified table names in the query. If not set, all table names in the query string must be qualified in the format 'datasetId.tableId'."
@@ -5100,6 +5113,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "returnTableType": {
+          "$ref": "StandardSqlTableType",
+          "description": "Optional. Set only if Routine is a \"TABLE_VALUED_FUNCTION\". TODO(b/173344646) - Update return_type documentation to say it cannot be set for TABLE_VALUED_FUNCTION before preview launch."
+        },
         "returnType": {
           "$ref": "StandardSqlDataType",
           "description": "Optional if language = \"SQL\"; required otherwise. If absent, the return type is inferred from definition_body at query time in each query that references this routine. If present, then the evaluated result will be cast to the specified returned type at query time. For example, for the functions created with the following statements: * `CREATE FUNCTION Add(x FLOAT64, y FLOAT64) RETURNS FLOAT64 AS (x + y);` * `CREATE FUNCTION Increment(x FLOAT64) AS (Add(x, 1));` * `CREATE FUNCTION Decrement(x FLOAT64) RETURNS FLOAT64 AS (Add(x, -1));` The return_type is `{type_kind: \"FLOAT64\"}` for `Add` and `Decrement`, and is absent for `Increment` (inferred as FLOAT64 at query time). Suppose the function `Add` is replaced by `CREATE OR REPLACE FUNCTION Add(x INT64, y INT64) AS (x + y);` Then the inferred return type of `Increment` is automatically changed to INT64 at query time, while the return type of `Decrement` remains FLOAT64."
@@ -5113,12 +5130,14 @@
           "enum": [
             "ROUTINE_TYPE_UNSPECIFIED",
             "SCALAR_FUNCTION",
-            "PROCEDURE"
+            "PROCEDURE",
+            "TABLE_VALUED_FUNCTION"
           ],
           "enumDescriptions": [
             "",
             "Non-builtin permanent scalar function.",
-            "Stored procedure."
+            "Stored procedure.",
+            "Non-builtin permanent TVF."
           ],
           "type": "string"
         }
@@ -5379,6 +5398,20 @@
       "id": "StandardSqlStructType",
       "properties": {
         "fields": {
+          "items": {
+            "$ref": "StandardSqlField"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "StandardSqlTableType": {
+      "description": "A table type",
+      "id": "StandardSqlTableType",
+      "properties": {
+        "columns": {
+          "description": "The columns in this table type",
           "items": {
             "$ref": "StandardSqlField"
           },

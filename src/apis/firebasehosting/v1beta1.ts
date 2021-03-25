@@ -103,7 +103,7 @@ export namespace firebasehosting_v1beta1 {
   /**
    * Firebase Hosting API
    *
-   * The Firebase Hosting REST API enables programmatic and customizable deployments to your Firebase-hosted sites. Use this REST API to deploy new or updated hosting configurations and content files.
+   * The Firebase Hosting REST API enables programmatic and customizable management and deployments to your Firebase-hosted sites. Use this REST API to create and manage channels and sites as well as to deploy new or updated hosting configurations and content files.
    *
    * @example
    * ```js
@@ -183,7 +183,7 @@ export namespace firebasehosting_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The fully-qualified identifier for the channel, in the format: sites/ SITE_NAME/channels/CHANNEL_ID
+     * The fully-qualified resource name for the channel, in the format: sites/ SITE_ID/channels/CHANNEL_ID
      */
     name?: string | null;
     /**
@@ -221,7 +221,7 @@ export namespace firebasehosting_v1beta1 {
      */
     include?: Schema$PathFilter;
     /**
-     * Required. The unique identifier for the version to be cloned, in the format: sites/SITE_NAME/versions/VERSION_ID
+     * Required. The unique identifier for the version to be cloned, in the format: sites/SITE_ID/versions/VERSION_ID
      */
     sourceVersion?: string | null;
   }
@@ -380,6 +380,16 @@ export namespace firebasehosting_v1beta1 {
      */
     releases?: Schema$Release[];
   }
+  export interface Schema$ListSitesResponse {
+    /**
+     * The pagination token, if more results exist beyond the ones in this response. Include this token in your next call to `ListSites`. Page tokens are short-lived and should not be stored.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of Site objects associated with the specified Firebase project.
+     */
+    sites?: Schema$Site[];
+  }
   export interface Schema$ListVersionFilesResponse {
     /**
      *  The list of paths to the hashes of the files in the specified version.
@@ -446,7 +456,7 @@ export namespace firebasehosting_v1beta1 {
      */
     uploadRequiredHashes?: string[] | null;
     /**
-     * The URL to which the files should be uploaded, in the format: "https://upload-firebasehosting.googleapis.com/upload/sites/SITE_NAME /versions/VERSION_ID/files" Perform a multipart `POST` of the Gzipped file contents to the URL using a forward slash and the hash of the file appended to the end.
+     * The URL to which the files should be uploaded, in the format: "https://upload-firebasehosting.googleapis.com/upload/sites/SITE_ID /versions/VERSION_ID/files" Perform a multipart `POST` of the Gzipped file contents to the URL using a forward slash and the hash of the file appended to the end.
      */
     uploadUrl?: string | null;
   }
@@ -493,7 +503,7 @@ export namespace firebasehosting_v1beta1 {
      */
     message?: string | null;
     /**
-     * Output only. The unique identifier for the release, in either of the following formats: - sites/SITE_NAME/releases/RELEASE_ID - sites/SITE_NAME/channels/CHANNEL_ID/releases/RELEASE_ID This name is provided in the response body when you call [`releases.create`](sites.releases/create) or [`channels.releases.create`](sites.channels.releases/create).
+     * Output only. The unique identifier for the release, in either of the following formats: - sites/SITE_ID/releases/RELEASE_ID - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID This name is provided in the response body when you call [`releases.create`](sites.releases/create) or [`channels.releases.create`](sites.channels.releases/create).
      */
     name?: string | null;
     /**
@@ -576,6 +586,31 @@ export namespace firebasehosting_v1beta1 {
     trailingSlashBehavior?: string | null;
   }
   /**
+   * A `Site` represents a Firebase Hosting site.
+   */
+  export interface Schema$Site {
+    /**
+     * Optional. The [ID of a Web App](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.webApps#WebApp.FIELDS.app_id) associated with the Hosting site.
+     */
+    appId?: string | null;
+    /**
+     * Output only. The default URL for the Hosting site.
+     */
+    defaultUrl?: string | null;
+    /**
+     * Optional. User-specified labels for the Hosting site.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The fully-qualified resource name of the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID PROJECT_IDENTIFIER: the Firebase project's [`ProjectNumber`](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510).
+     */
+    name?: string | null;
+    /**
+     * Output only. The type of Hosting site. Every Firebase project has a `DEFAULT_SITE`, which is created when Hosting is provisioned for the project. All additional sites are `USER_SITE`.
+     */
+    type?: string | null;
+  }
+  /**
    * A `SiteConfig` contains metadata associated with a specific site that controls Firebase Hosting serving behavior
    */
   export interface Schema$SiteConfig {
@@ -646,7 +681,7 @@ export namespace firebasehosting_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The fully-qualified identifier for the version, in the format: sites/ SITE_NAME/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
+     * The fully-qualified resource name for the version, in the format: sites/ SITE_ID/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
      */
     name?: string | null;
     /**
@@ -857,6 +892,421 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
+     * Creates a new Hosting Site in the specified parent Firebase project. Note that Hosting sites can take several minutes to propagate through Firebase systems.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.create({
+     *     // Required. The Firebase project in which to create a Hosting site, in the format: projects/PROJECT_IDENTIFIER Refer to the `Site` [`name`](../projects#Site.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
+     *     parent: 'projects/my-project',
+     *     // Required. Immutable. A globally unique identifier for the Hosting site. This identifier is used to construct the Firebase-provisioned subdomains for the site, so it must also be a valid domain name label.
+     *     siteId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appId": "my_appId",
+     *       //   "defaultUrl": "my_defaultUrl",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appId": "my_appId",
+     *   //   "defaultUrl": "my_defaultUrl",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Sites$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Sites$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Site>;
+    create(
+      params: Params$Resource$Projects$Sites$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Sites$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Site>,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Sites$Create,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Site>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Create
+        | BodyResponseCallback<Schema$Site>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Site>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Site>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/sites').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Site>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Site>(parameters);
+      }
+    }
+
+    /**
+     * Deletes the specified Hosting Site from the specified parent Firebase project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.delete({
+     *     // Required. The fully-qualified resource name for the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID Refer to the `Site` [`name`](../projects#Site.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
+     *     name: 'projects/my-project/sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Sites$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Sites$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Projects$Sites$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Sites$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Sites$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the specified Hosting Site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.get({
+     *     // Required. The fully-qualified resource name for the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID Refer to the `Site` [`name`](../projects#Site.FIELDS.name) field for details about PROJECT_IDENTIFIER values. Since a SITE_ID is a globally unique identifier, you can also use the unique sub-collection resource access pattern, in the format: projects/-/sites/SITE_ID
+     *     name: 'projects/my-project/sites/my-site',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appId": "my_appId",
+     *   //   "defaultUrl": "my_defaultUrl",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Sites$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Sites$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Site>;
+    get(
+      params: Params$Resource$Projects$Sites$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Sites$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Site>,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Sites$Get,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Site>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Get
+        | BodyResponseCallback<Schema$Site>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Site>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Site>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Site>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Site>(parameters);
+      }
+    }
+
+    /**
      * Gets the Hosting metadata for a specific site.
      * @example
      * ```js
@@ -986,6 +1436,297 @@ export namespace firebasehosting_v1beta1 {
         );
       } else {
         return createAPIRequest<Schema$SiteConfig>(parameters);
+      }
+    }
+
+    /**
+     * Lists each Hosting Site associated with the specified parent Firebase project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/firebase',
+     *       'https://www.googleapis.com/auth/firebase.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.list({
+     *     // Optional. The maximum number of sites to return. The service may return a lower number if fewer sites exist than this maximum number. If unspecified, defaults to 40.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token from a previous call to `ListSites` that tells the server where to resume listing.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The Firebase project for which to list sites, in the format: projects/PROJECT_IDENTIFIER Refer to the `Site` [`name`](../projects#Site.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Sites$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Sites$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListSitesResponse>;
+    list(
+      params: Params$Resource$Projects$Sites$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Sites$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListSitesResponse>,
+      callback: BodyResponseCallback<Schema$ListSitesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Sites$List,
+      callback: BodyResponseCallback<Schema$ListSitesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListSitesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$List
+        | BodyResponseCallback<Schema$ListSitesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListSitesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListSitesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListSitesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+parent}/sites').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListSitesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListSitesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates attributes of the specified Hosting Site.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const firebasehosting = google.firebasehosting('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebasehosting.projects.sites.patch({
+     *     // Output only. The fully-qualified resource name of the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID PROJECT_IDENTIFIER: the Firebase project's [`ProjectNumber`](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510).
+     *     name: 'projects/my-project/sites/my-site',
+     *     // A set of field names from your Site that you want to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appId": "my_appId",
+     *       //   "defaultUrl": "my_defaultUrl",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appId": "my_appId",
+     *   //   "defaultUrl": "my_defaultUrl",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Sites$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Sites$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Site>;
+    patch(
+      params: Params$Resource$Projects$Sites$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Sites$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Site>,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Sites$Patch,
+      callback: BodyResponseCallback<Schema$Site>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Site>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Sites$Patch
+        | BodyResponseCallback<Schema$Site>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Site>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Site>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Site> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Sites$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Sites$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://firebasehosting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Site>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Site>(parameters);
       }
     }
 
@@ -1132,12 +1873,73 @@ export namespace firebasehosting_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Sites$Create
+    extends StandardParameters {
+    /**
+     * Required. The Firebase project in which to create a Hosting site, in the format: projects/PROJECT_IDENTIFIER Refer to the `Site` [`name`](../projects#Site.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
+     */
+    parent?: string;
+    /**
+     * Required. Immutable. A globally unique identifier for the Hosting site. This identifier is used to construct the Firebase-provisioned subdomains for the site, so it must also be a valid domain name label.
+     */
+    siteId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Site;
+  }
+  export interface Params$Resource$Projects$Sites$Delete
+    extends StandardParameters {
+    /**
+     * Required. The fully-qualified resource name for the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID Refer to the `Site` [`name`](../projects#Site.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Sites$Get
+    extends StandardParameters {
+    /**
+     * Required. The fully-qualified resource name for the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID Refer to the `Site` [`name`](../projects#Site.FIELDS.name) field for details about PROJECT_IDENTIFIER values. Since a SITE_ID is a globally unique identifier, you can also use the unique sub-collection resource access pattern, in the format: projects/-/sites/SITE_ID
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Sites$Getconfig
     extends StandardParameters {
     /**
      * Required. The site for which to get the SiteConfig, in the format: sites/ site-name/config
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Sites$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of sites to return. The service may return a lower number if fewer sites exist than this maximum number. If unspecified, defaults to 40.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token from a previous call to `ListSites` that tells the server where to resume listing.
+     */
+    pageToken?: string;
+    /**
+     * Required. The Firebase project for which to list sites, in the format: projects/PROJECT_IDENTIFIER Refer to the `Site` [`name`](../projects#Site.FIELDS.name) field for details about PROJECT_IDENTIFIER values.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Sites$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The fully-qualified resource name of the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID PROJECT_IDENTIFIER: the Firebase project's [`ProjectNumber`](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510).
+     */
+    name?: string;
+    /**
+     * A set of field names from your Site that you want to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Site;
   }
   export interface Params$Resource$Projects$Sites$Updateconfig
     extends StandardParameters {
@@ -1198,7 +2000,7 @@ export namespace firebasehosting_v1beta1 {
      *   const res = await firebasehosting.projects.sites.channels.create({
      *     // Required. Immutable. A unique ID within the site that identifies the channel.
      *     channelId: 'placeholder-value',
-     *     // Required. The site in which to create this channel, in the format: sites/ SITE_NAME
+     *     // Required. The site in which to create this channel, in the format: sites/ SITE_ID
      *     parent: 'projects/my-project/sites/my-site',
      *
      *     // Request body metadata
@@ -1355,7 +2157,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.channels.delete({
-     *     // Required. The fully-qualified identifier for the channel, in the format: sites/SITE_NAME/channels/CHANNEL_ID
+     *     // Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID
      *     name: 'projects/my-project/sites/my-site/channels/my-channel',
      *   });
      *   console.log(res.data);
@@ -1485,7 +2287,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.channels.get({
-     *     // Required. The fully-qualified identifier for the channel, in the format: sites/SITE_NAME/channels/CHANNEL_ID
+     *     // Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID
      *     name: 'projects/my-project/sites/my-site/channels/my-channel',
      *   });
      *   console.log(res.data);
@@ -1629,7 +2431,7 @@ export namespace firebasehosting_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // A token from a previous call to `ListChannels` that tells the server where to resume listing.
      *     pageToken: 'placeholder-value',
-     *     // Required. The site for which to list channels, in the format: sites/ SITE_NAME
+     *     // Required. The site for which to list channels, in the format: sites/SITE_ID
      *     parent: 'projects/my-project/sites/my-site',
      *   });
      *   console.log(res.data);
@@ -1768,7 +2570,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.channels.patch({
-     *     // The fully-qualified identifier for the channel, in the format: sites/ SITE_NAME/channels/CHANNEL_ID
+     *     // The fully-qualified resource name for the channel, in the format: sites/ SITE_ID/channels/CHANNEL_ID
      *     name: 'projects/my-project/sites/my-site/channels/my-channel',
      *     // A comma-separated list of fields to be updated in this request.
      *     updateMask: 'placeholder-value',
@@ -1902,7 +2704,7 @@ export namespace firebasehosting_v1beta1 {
      */
     channelId?: string;
     /**
-     * Required. The site in which to create this channel, in the format: sites/ SITE_NAME
+     * Required. The site in which to create this channel, in the format: sites/ SITE_ID
      */
     parent?: string;
 
@@ -1914,14 +2716,14 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Channels$Delete
     extends StandardParameters {
     /**
-     * Required. The fully-qualified identifier for the channel, in the format: sites/SITE_NAME/channels/CHANNEL_ID
+     * Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Sites$Channels$Get
     extends StandardParameters {
     /**
-     * Required. The fully-qualified identifier for the channel, in the format: sites/SITE_NAME/channels/CHANNEL_ID
+     * Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID
      */
     name?: string;
   }
@@ -1936,14 +2738,14 @@ export namespace firebasehosting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The site for which to list channels, in the format: sites/ SITE_NAME
+     * Required. The site for which to list channels, in the format: sites/SITE_ID
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Sites$Channels$Patch
     extends StandardParameters {
     /**
-     * The fully-qualified identifier for the channel, in the format: sites/ SITE_NAME/channels/CHANNEL_ID
+     * The fully-qualified resource name for the channel, in the format: sites/ SITE_ID/channels/CHANNEL_ID
      */
     name?: string;
     /**
@@ -1993,9 +2795,9 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.channels.releases.create({
-     *     // Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     *     // Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      *     parent: 'projects/my-project/sites/my-site/channels/my-channel',
-     *     //  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     *     //  The unique identifier for a version, in the format: sites/SITE_ID/versions/ VERSION_ID The SITE_ID in this version identifier must match the SITE_ID in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      *     versionName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2152,7 +2954,7 @@ export namespace firebasehosting_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // A token from a previous call to `releases.list` or `channels.releases.list` that tells the server where to resume listing.
      *     pageToken: 'placeholder-value',
-     *     // Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     *     // Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      *     parent: 'projects/my-project/sites/my-site/channels/my-channel',
      *   });
      *   console.log(res.data);
@@ -2265,11 +3067,11 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Channels$Releases$Create
     extends StandardParameters {
     /**
-     * Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     * Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      */
     parent?: string;
     /**
-     *  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     *  The unique identifier for a version, in the format: sites/SITE_ID/versions/ VERSION_ID The SITE_ID in this version identifier must match the SITE_ID in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      */
     versionName?: string;
 
@@ -2289,7 +3091,7 @@ export namespace firebasehosting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     * Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      */
     parent?: string;
   }
@@ -3098,9 +3900,9 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.releases.create({
-     *     // Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     *     // Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      *     parent: 'projects/my-project/sites/my-site',
-     *     //  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     *     //  The unique identifier for a version, in the format: sites/SITE_ID/versions/ VERSION_ID The SITE_ID in this version identifier must match the SITE_ID in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      *     versionName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3257,7 +4059,7 @@ export namespace firebasehosting_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // A token from a previous call to `releases.list` or `channels.releases.list` that tells the server where to resume listing.
      *     pageToken: 'placeholder-value',
-     *     // Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     *     // Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      *     parent: 'projects/my-project/sites/my-site',
      *   });
      *   console.log(res.data);
@@ -3370,11 +4172,11 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Releases$Create
     extends StandardParameters {
     /**
-     * Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     * Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      */
     parent?: string;
     /**
-     *  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     *  The unique identifier for a version, in the format: sites/SITE_ID/versions/ VERSION_ID The SITE_ID in this version identifier must match the SITE_ID in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      */
     versionName?: string;
 
@@ -3394,7 +4196,7 @@ export namespace firebasehosting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     * Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      */
     parent?: string;
   }
@@ -3437,7 +4239,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.clone({
-     *     // Required. The target site for the cloned version, in the format: sites/ SITE_NAME
+     *     // Required. The target site for the cloned version, in the format: sites/ SITE_ID
      *     parent: 'projects/my-project/sites/my-site',
      *
      *     // Request body metadata
@@ -3585,7 +4387,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.create({
-     *     // Required. The site in which to create the version, in the format: sites/ SITE_NAME
+     *     // Required. The site in which to create the version, in the format: sites/ SITE_ID
      *     parent: 'projects/my-project/sites/my-site',
      *     // The self-reported size of the version. This value is used for a pre-emptive quota check for legacy version uploads.
      *     sizeBytes: 'placeholder-value',
@@ -3754,7 +4556,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.delete({
-     *     // Required. The fully-qualified identifier for the version, in the format: sites/SITE_NAME/versions/VERSION_ID
+     *     // Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID
      *     name: 'projects/my-project/sites/my-site/versions/my-version',
      *   });
      *   console.log(res.data);
@@ -3890,7 +4692,7 @@ export namespace firebasehosting_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // A token from a previous call to `ListVersions` that tells the server where to resume listing.
      *     pageToken: 'placeholder-value',
-     *     // Required. The site or channel for which to list versions, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     *     // Required. The site or channel for which to list versions, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      *     parent: 'projects/my-project/sites/my-site',
      *   });
      *   console.log(res.data);
@@ -4029,7 +4831,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.patch({
-     *     // The fully-qualified identifier for the version, in the format: sites/ SITE_NAME/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
+     *     // The fully-qualified resource name for the version, in the format: sites/ SITE_ID/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
      *     name: 'projects/my-project/sites/my-site/versions/my-version',
      *     // A set of field names from your [version](../sites.versions) that you want to update. A field will be overwritten if, and only if, it's in the mask. If a mask is not provided then a default mask of only [`status`](../sites.versions#Version.FIELDS.status) will be used.
      *     updateMask: 'placeholder-value',
@@ -4193,7 +4995,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.populateFiles({
-     *     // Required. The version to which to add files, in the format: sites/SITE_NAME /versions/VERSION_ID
+     *     // Required. The version to which to add files, in the format: sites/SITE_ID /versions/VERSION_ID
      *     parent: 'projects/my-project/sites/my-site/versions/my-version',
      *
      *     // Request body metadata
@@ -4318,7 +5120,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Clone
     extends StandardParameters {
     /**
-     * Required. The target site for the cloned version, in the format: sites/ SITE_NAME
+     * Required. The target site for the cloned version, in the format: sites/ SITE_ID
      */
     parent?: string;
 
@@ -4330,7 +5132,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Create
     extends StandardParameters {
     /**
-     * Required. The site in which to create the version, in the format: sites/ SITE_NAME
+     * Required. The site in which to create the version, in the format: sites/ SITE_ID
      */
     parent?: string;
     /**
@@ -4350,7 +5152,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Delete
     extends StandardParameters {
     /**
-     * Required. The fully-qualified identifier for the version, in the format: sites/SITE_NAME/versions/VERSION_ID
+     * Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID
      */
     name?: string;
   }
@@ -4369,14 +5171,14 @@ export namespace firebasehosting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The site or channel for which to list versions, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     * Required. The site or channel for which to list versions, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Sites$Versions$Patch
     extends StandardParameters {
     /**
-     * The fully-qualified identifier for the version, in the format: sites/ SITE_NAME/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
+     * The fully-qualified resource name for the version, in the format: sites/ SITE_ID/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
      */
     name?: string;
     /**
@@ -4392,7 +5194,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Populatefiles
     extends StandardParameters {
     /**
-     * Required. The version to which to add files, in the format: sites/SITE_NAME /versions/VERSION_ID
+     * Required. The version to which to add files, in the format: sites/SITE_ID /versions/VERSION_ID
      */
     parent?: string;
 
@@ -4444,7 +5246,7 @@ export namespace firebasehosting_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // A token from a previous call to `ListVersionFiles` that tells the server where to resume listing.
      *     pageToken: 'placeholder-value',
-     *     // Required. The version for which to list files, in the format: sites/ SITE_NAME/versions/VERSION_ID
+     *     // Required. The version for which to list files, in the format: sites/SITE_ID /versions/VERSION_ID
      *     parent: 'projects/my-project/sites/my-site/versions/my-version',
      *     //  The type of files that should be listed for the specified version.
      *     status: 'placeholder-value',
@@ -4567,7 +5369,7 @@ export namespace firebasehosting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The version for which to list files, in the format: sites/ SITE_NAME/versions/VERSION_ID
+     * Required. The version for which to list files, in the format: sites/SITE_ID /versions/VERSION_ID
      */
     parent?: string;
     /**
@@ -4928,7 +5730,7 @@ export namespace firebasehosting_v1beta1 {
      *   const res = await firebasehosting.sites.channels.create({
      *     // Required. Immutable. A unique ID within the site that identifies the channel.
      *     channelId: 'placeholder-value',
-     *     // Required. The site in which to create this channel, in the format: sites/ SITE_NAME
+     *     // Required. The site in which to create this channel, in the format: sites/ SITE_ID
      *     parent: 'sites/my-site',
      *
      *     // Request body metadata
@@ -5085,7 +5887,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.channels.delete({
-     *     // Required. The fully-qualified identifier for the channel, in the format: sites/SITE_NAME/channels/CHANNEL_ID
+     *     // Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID
      *     name: 'sites/my-site/channels/my-channel',
      *   });
      *   console.log(res.data);
@@ -5215,7 +6017,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.channels.get({
-     *     // Required. The fully-qualified identifier for the channel, in the format: sites/SITE_NAME/channels/CHANNEL_ID
+     *     // Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID
      *     name: 'sites/my-site/channels/my-channel',
      *   });
      *   console.log(res.data);
@@ -5359,7 +6161,7 @@ export namespace firebasehosting_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // A token from a previous call to `ListChannels` that tells the server where to resume listing.
      *     pageToken: 'placeholder-value',
-     *     // Required. The site for which to list channels, in the format: sites/ SITE_NAME
+     *     // Required. The site for which to list channels, in the format: sites/SITE_ID
      *     parent: 'sites/my-site',
      *   });
      *   console.log(res.data);
@@ -5498,7 +6300,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.channels.patch({
-     *     // The fully-qualified identifier for the channel, in the format: sites/ SITE_NAME/channels/CHANNEL_ID
+     *     // The fully-qualified resource name for the channel, in the format: sites/ SITE_ID/channels/CHANNEL_ID
      *     name: 'sites/my-site/channels/my-channel',
      *     // A comma-separated list of fields to be updated in this request.
      *     updateMask: 'placeholder-value',
@@ -5632,7 +6434,7 @@ export namespace firebasehosting_v1beta1 {
      */
     channelId?: string;
     /**
-     * Required. The site in which to create this channel, in the format: sites/ SITE_NAME
+     * Required. The site in which to create this channel, in the format: sites/ SITE_ID
      */
     parent?: string;
 
@@ -5644,14 +6446,14 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Channels$Delete
     extends StandardParameters {
     /**
-     * Required. The fully-qualified identifier for the channel, in the format: sites/SITE_NAME/channels/CHANNEL_ID
+     * Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID
      */
     name?: string;
   }
   export interface Params$Resource$Sites$Channels$Get
     extends StandardParameters {
     /**
-     * Required. The fully-qualified identifier for the channel, in the format: sites/SITE_NAME/channels/CHANNEL_ID
+     * Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID
      */
     name?: string;
   }
@@ -5666,14 +6468,14 @@ export namespace firebasehosting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The site for which to list channels, in the format: sites/ SITE_NAME
+     * Required. The site for which to list channels, in the format: sites/SITE_ID
      */
     parent?: string;
   }
   export interface Params$Resource$Sites$Channels$Patch
     extends StandardParameters {
     /**
-     * The fully-qualified identifier for the channel, in the format: sites/ SITE_NAME/channels/CHANNEL_ID
+     * The fully-qualified resource name for the channel, in the format: sites/ SITE_ID/channels/CHANNEL_ID
      */
     name?: string;
     /**
@@ -5723,9 +6525,9 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.channels.releases.create({
-     *     // Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     *     // Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      *     parent: 'sites/my-site/channels/my-channel',
-     *     //  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     *     //  The unique identifier for a version, in the format: sites/SITE_ID/versions/ VERSION_ID The SITE_ID in this version identifier must match the SITE_ID in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      *     versionName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5882,7 +6684,7 @@ export namespace firebasehosting_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // A token from a previous call to `releases.list` or `channels.releases.list` that tells the server where to resume listing.
      *     pageToken: 'placeholder-value',
-     *     // Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     *     // Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      *     parent: 'sites/my-site/channels/my-channel',
      *   });
      *   console.log(res.data);
@@ -5995,11 +6797,11 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Channels$Releases$Create
     extends StandardParameters {
     /**
-     * Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     * Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      */
     parent?: string;
     /**
-     *  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     *  The unique identifier for a version, in the format: sites/SITE_ID/versions/ VERSION_ID The SITE_ID in this version identifier must match the SITE_ID in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      */
     versionName?: string;
 
@@ -6019,7 +6821,7 @@ export namespace firebasehosting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     * Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      */
     parent?: string;
   }
@@ -6828,9 +7630,9 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.releases.create({
-     *     // Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     *     // Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      *     parent: 'sites/my-site',
-     *     //  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     *     //  The unique identifier for a version, in the format: sites/SITE_ID/versions/ VERSION_ID The SITE_ID in this version identifier must match the SITE_ID in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      *     versionName: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6987,7 +7789,7 @@ export namespace firebasehosting_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // A token from a previous call to `releases.list` or `channels.releases.list` that tells the server where to resume listing.
      *     pageToken: 'placeholder-value',
-     *     // Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     *     // Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      *     parent: 'sites/my-site',
      *   });
      *   console.log(res.data);
@@ -7100,11 +7902,11 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Releases$Create
     extends StandardParameters {
     /**
-     * Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     * Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      */
     parent?: string;
     /**
-     *  The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
+     *  The unique identifier for a version, in the format: sites/SITE_ID/versions/ VERSION_ID The SITE_ID in this version identifier must match the SITE_ID in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
      */
     versionName?: string;
 
@@ -7124,7 +7926,7 @@ export namespace firebasehosting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     * Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      */
     parent?: string;
   }
@@ -7167,7 +7969,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.clone({
-     *     // Required. The target site for the cloned version, in the format: sites/ SITE_NAME
+     *     // Required. The target site for the cloned version, in the format: sites/ SITE_ID
      *     parent: 'sites/my-site',
      *
      *     // Request body metadata
@@ -7315,7 +8117,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.create({
-     *     // Required. The site in which to create the version, in the format: sites/ SITE_NAME
+     *     // Required. The site in which to create the version, in the format: sites/ SITE_ID
      *     parent: 'sites/my-site',
      *     // The self-reported size of the version. This value is used for a pre-emptive quota check for legacy version uploads.
      *     sizeBytes: 'placeholder-value',
@@ -7484,7 +8286,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.delete({
-     *     // Required. The fully-qualified identifier for the version, in the format: sites/SITE_NAME/versions/VERSION_ID
+     *     // Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID
      *     name: 'sites/my-site/versions/my-version',
      *   });
      *   console.log(res.data);
@@ -7620,7 +8422,7 @@ export namespace firebasehosting_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // A token from a previous call to `ListVersions` that tells the server where to resume listing.
      *     pageToken: 'placeholder-value',
-     *     // Required. The site or channel for which to list versions, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     *     // Required. The site or channel for which to list versions, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      *     parent: 'sites/my-site',
      *   });
      *   console.log(res.data);
@@ -7759,7 +8561,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.patch({
-     *     // The fully-qualified identifier for the version, in the format: sites/ SITE_NAME/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
+     *     // The fully-qualified resource name for the version, in the format: sites/ SITE_ID/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
      *     name: 'sites/my-site/versions/my-version',
      *     // A set of field names from your [version](../sites.versions) that you want to update. A field will be overwritten if, and only if, it's in the mask. If a mask is not provided then a default mask of only [`status`](../sites.versions#Version.FIELDS.status) will be used.
      *     updateMask: 'placeholder-value',
@@ -7923,7 +8725,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.populateFiles({
-     *     // Required. The version to which to add files, in the format: sites/SITE_NAME /versions/VERSION_ID
+     *     // Required. The version to which to add files, in the format: sites/SITE_ID /versions/VERSION_ID
      *     parent: 'sites/my-site/versions/my-version',
      *
      *     // Request body metadata
@@ -8048,7 +8850,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Clone
     extends StandardParameters {
     /**
-     * Required. The target site for the cloned version, in the format: sites/ SITE_NAME
+     * Required. The target site for the cloned version, in the format: sites/ SITE_ID
      */
     parent?: string;
 
@@ -8060,7 +8862,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Create
     extends StandardParameters {
     /**
-     * Required. The site in which to create the version, in the format: sites/ SITE_NAME
+     * Required. The site in which to create the version, in the format: sites/ SITE_ID
      */
     parent?: string;
     /**
@@ -8080,7 +8882,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Delete
     extends StandardParameters {
     /**
-     * Required. The fully-qualified identifier for the version, in the format: sites/SITE_NAME/versions/VERSION_ID
+     * Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID
      */
     name?: string;
   }
@@ -8099,14 +8901,14 @@ export namespace firebasehosting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The site or channel for which to list versions, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID
+     * Required. The site or channel for which to list versions, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID
      */
     parent?: string;
   }
   export interface Params$Resource$Sites$Versions$Patch
     extends StandardParameters {
     /**
-     * The fully-qualified identifier for the version, in the format: sites/ SITE_NAME/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
+     * The fully-qualified resource name for the version, in the format: sites/ SITE_ID/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).
      */
     name?: string;
     /**
@@ -8122,7 +8924,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Populatefiles
     extends StandardParameters {
     /**
-     * Required. The version to which to add files, in the format: sites/SITE_NAME /versions/VERSION_ID
+     * Required. The version to which to add files, in the format: sites/SITE_ID /versions/VERSION_ID
      */
     parent?: string;
 
@@ -8174,7 +8976,7 @@ export namespace firebasehosting_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // A token from a previous call to `ListVersionFiles` that tells the server where to resume listing.
      *     pageToken: 'placeholder-value',
-     *     // Required. The version for which to list files, in the format: sites/ SITE_NAME/versions/VERSION_ID
+     *     // Required. The version for which to list files, in the format: sites/SITE_ID /versions/VERSION_ID
      *     parent: 'sites/my-site/versions/my-version',
      *     //  The type of files that should be listed for the specified version.
      *     status: 'placeholder-value',
@@ -8297,7 +9099,7 @@ export namespace firebasehosting_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The version for which to list files, in the format: sites/ SITE_NAME/versions/VERSION_ID
+     * Required. The version for which to list files, in the format: sites/SITE_ID /versions/VERSION_ID
      */
     parent?: string;
     /**

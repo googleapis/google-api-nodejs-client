@@ -189,7 +189,7 @@ export namespace container_v1 {
     securityGroup?: string | null;
   }
   /**
-   * Autopilot is the configuration for Autopilot settings on the cluster. It is the official product name of what is previously known as AutoGKE
+   * Autopilot is the configuration for Autopilot settings on the cluster.
    */
   export interface Schema$Autopilot {
     /**
@@ -338,7 +338,7 @@ export namespace container_v1 {
      */
     authenticatorGroupsConfig?: Schema$AuthenticatorGroupsConfig;
     /**
-     * Autopilot configuration for the cluster. It has the same semantics as AutoGKE and overrides the setting in autogke.
+     * Autopilot configuration for the cluster.
      */
     autopilot?: Schema$Autopilot;
     /**

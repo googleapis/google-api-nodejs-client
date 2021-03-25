@@ -171,6 +171,23 @@ export namespace realtimebidding_v1 {
     targetingMode?: string | null;
   }
   /**
+   * The list of detected Ad Technology Providers for this creative. Bids placed for inventory that will serve to EEA or UK users are expected to comply with GDPR requirements. You must ensure that the creatives used in such bids should contain only user consented ad technology providers as indicated in the bid request. Google reserves the right to filter non-compliant bids. User consented ad technology providers can be found in the [Google Protocol](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto) with the `BidRequest.adslot.consented_providers_settings` field, and can be found as an [OpenRTB extension](https://developers.google.com/authorized-buyers/rtb/downloads/openrtb-adx-proto) with the `BidRequest.user.ext.consented_providers_settings` and `BidRequest.user.ext.consent` fields. See https://support.google.com/authorizedbuyers/answer/9789378 for additional information about the Google TCF v2 integration.
+   */
+  export interface Schema$AdTechnologyProviders {
+    /**
+     * The detected IAB Global Vendor List (GVL) IDs for this creative. See the IAB Global Vendor List at https://vendorlist.consensu.org/v2/vendor-list.json for details about the vendors.
+     */
+    detectedGvlIds?: string[] | null;
+    /**
+     * The detected [Google Ad Tech Providers (ATP)](https://support.google.com/admanager/answer/9012903) for this creative. See https://storage.googleapis.com/adx-rtb-dictionaries/providers.csv for mapping of provider ID to provided name, a privacy policy URL, and a list of domains which can be attributed to the provider.
+     */
+    detectedProviderIds?: string[] | null;
+    /**
+     * Domains of detected unidentified ad technology providers (if any). You must ensure that the creatives used in bids placed for inventory that will serve to EEA or UK users does not contain unidentified ad technology providers. Google reserves the right to filter non-compliant bids.
+     */
+    unidentifiedProviderDomains?: string[] | null;
+  }
+  /**
    * Detected advertiser and brand information.
    */
   export interface Schema$AdvertiserAndBrand {
@@ -203,6 +220,60 @@ export namespace realtimebidding_v1 {
      * Targeted app IDs. App IDs can refer to those found in an app store or ones that are not published in an app store. A maximum of 30,000 app IDs can be targeted.
      */
     mobileAppTargeting?: Schema$StringTargetingDimension;
+  }
+  /**
+   * Bidder settings.
+   */
+  export interface Schema$Bidder {
+    /**
+     * Output only. A flag to bypass pretargeting for private auctions and preferred deals. When true, bid requests from these nonguaranteed deals will always be sent. When false, bid requests will be subject to regular pretargeting configurations. Programmatic Guaranteed deals will always be sent to the bidder, regardless of the value for this flag. Auction packages are not impacted by this value and are subject to the regular pretargeting configurations.
+     */
+    bypassNonguaranteedDealsPretargeting?: boolean | null;
+    /**
+     * Output only. The buyer's network ID used for cookie matching. This ID corresponds to the `google_nid` parameter in the URL used in cookie match requests. Refer to https://developers.google.com/authorized-buyers/rtb/cookie-guide for further information.
+     */
+    cookieMatchingNetworkId?: string | null;
+    /**
+     * Output only. The base URL used in cookie match requests. Refer to https://developers.google.com/authorized-buyers/rtb/cookie-guide for further information.
+     */
+    cookieMatchingUrl?: string | null;
+    /**
+     * Output only. The billing ID for the deals pretargeting config. This billing ID is sent on the bid request for guaranteed and nonguaranteed deals matched in pretargeting.
+     */
+    dealsBillingId?: string | null;
+    /**
+     * Output only. Name of the bidder resource that must follow the pattern `bidders/{bidderAccountId\}`, where `{bidderAccountId\}` is the account ID of the bidder whose information is to be received. One can get their account ID on the Authorized Buyers or Open Bidding UI, or by contacting their Google account manager.
+     */
+    name?: string | null;
+  }
+  /**
+   * RTB Buyer account information.
+   */
+  export interface Schema$Buyer {
+    /**
+     * Output only. The number of creatives that this buyer submitted via the API or bid with in the last 30 days. This is counted against the maximum number of active creatives.
+     */
+    activeCreativeCount?: string | null;
+    /**
+     * Output only. The name of the bidder resource that is responsible for receiving bidding traffic for this account. The bidder name must follow the pattern `bidders/{bidderAccountId\}`, where `{bidderAccountId\}` is the account ID of the bidder receiving traffic for this buyer.
+     */
+    bidder?: string | null;
+    /**
+     * Output only. A list of billing IDs associated with this account. These IDs appear on: 1. A bid request, to signal which buyers are eligible to bid on a given opportunity, and which pretargeting configurations were matched for each eligible buyer. 2. The bid response, to attribute a winning impression to a specific account for billing, reporting, policy and publisher block enforcement.
+     */
+    billingIds?: string[] | null;
+    /**
+     * Output only. The diplay name associated with this buyer account, as visible to sellers.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The maximum number of active creatives that this buyer can have.
+     */
+    maximumActiveCreativeCount?: string | null;
+    /**
+     * Output only. Name of the buyer resource that must follow the pattern `buyers/{buyerAccountId\}`, where `{buyerAccountId\}` is the account ID of the buyer account whose information is to be received. One can get their account ID on the Authorized Buyers or Open Bidding UI, or by contacting their Google account manager.
+     */
+    name?: string | null;
   }
   /**
    * A request to close a specified user list.
@@ -310,6 +381,10 @@ export namespace realtimebidding_v1 {
    * Top level status and detected attributes of a creative.
    */
   export interface Schema$CreativeServingDecision {
+    /**
+     * The detected ad technology providers.
+     */
+    adTechnologyProviders?: Schema$AdTechnologyProviders;
     /**
      * The policy compliance of this creative in China. When approved or disapproved, this applies to both deals and open auction in China. When pending review, this creative is allowed to serve for deals but not for open auction.
      */
@@ -491,6 +566,31 @@ export namespace realtimebidding_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Bidder endpoint that receives bid requests.
+   */
+  export interface Schema$Endpoint {
+    /**
+     * The protocol that the bidder endpoint is using.
+     */
+    bidProtocol?: string | null;
+    /**
+     * The maximum number of queries per second allowed to be sent to this server.
+     */
+    maximumQps?: string | null;
+    /**
+     * Output only. Name of the endpoint resource that must follow the pattern `bidders/{bidderAccountId\}/endpoints/{endpointId\}`, where {bidderAccountId\} is the account ID of the bidder who operates this endpoint, and {endpointId\} is a unique ID assigned by the server.
+     */
+    name?: string | null;
+    /**
+     * The trading location that bid requests should be sent from. See https://developers.google.com/authorized-buyers/rtb/peer-guide#trading-locations for further information.
+     */
+    tradingLocation?: string | null;
+    /**
+     * Output only. The URL that bid requests should be sent to.
+     */
+    url?: string | null;
+  }
+  /**
    * Response for a request to get remarketing tag.
    */
   export interface Schema$GetRemarketingTagResponse {
@@ -556,6 +656,32 @@ export namespace realtimebidding_v1 {
     width?: number | null;
   }
   /**
+   * A response containing bidders.
+   */
+  export interface Schema$ListBiddersResponse {
+    /**
+     * List of bidders.
+     */
+    bidders?: Schema$Bidder[];
+    /**
+     * A token which can be passed to a subsequent call to the `ListBidders` method to retrieve the next page of results in ListBiddersRequest.pageToken.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * A response containing buyer account information.
+   */
+  export interface Schema$ListBuyersResponse {
+    /**
+     * List of buyers.
+     */
+    buyers?: Schema$Buyer[];
+    /**
+     * A token which can be passed to a subsequent call to the `ListBuyers` method to retrieve the next page of results in ListBuyersRequest.pageToken.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * A response for listing creatives.
    */
   export interface Schema$ListCreativesResponse {
@@ -565,6 +691,19 @@ export namespace realtimebidding_v1 {
     creatives?: Schema$Creative[];
     /**
      * A token to retrieve the next page of results. Pass this value in the ListCreativesRequest.pageToken field in the subsequent call to the `ListCreatives` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * A response containing bidder endpoints.
+   */
+  export interface Schema$ListEndpointsResponse {
+    /**
+     * List of bidder endpoints.
+     */
+    endpoints?: Schema$Endpoint[];
+    /**
+     * A token which can be passed to a subsequent call to the `ListEndpoints` method to retrieve the next page of results in ListEndpointsRequest.pageToken.
      */
     nextPageToken?: string | null;
   }
@@ -1011,14 +1150,295 @@ export namespace realtimebidding_v1 {
   export class Resource$Bidders {
     context: APIRequestContext;
     creatives: Resource$Bidders$Creatives;
+    endpoints: Resource$Bidders$Endpoints;
     pretargetingConfigs: Resource$Bidders$Pretargetingconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.creatives = new Resource$Bidders$Creatives(this.context);
+      this.endpoints = new Resource$Bidders$Endpoints(this.context);
       this.pretargetingConfigs = new Resource$Bidders$Pretargetingconfigs(
         this.context
       );
     }
+
+    /**
+     * Gets a bidder account by its name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.get({
+     *     // Required. Name of the bidder to get. Format: `bidders/{bidderAccountId\}`
+     *     name: 'bidders/my-bidder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bypassNonguaranteedDealsPretargeting": false,
+     *   //   "cookieMatchingNetworkId": "my_cookieMatchingNetworkId",
+     *   //   "cookieMatchingUrl": "my_cookieMatchingUrl",
+     *   //   "dealsBillingId": "my_dealsBillingId",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Bidders$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Bidders$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Bidder>;
+    get(
+      params: Params$Resource$Bidders$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Bidders$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Bidder>,
+      callback: BodyResponseCallback<Schema$Bidder>
+    ): void;
+    get(
+      params: Params$Resource$Bidders$Get,
+      callback: BodyResponseCallback<Schema$Bidder>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Bidder>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Get
+        | BodyResponseCallback<Schema$Bidder>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Bidder>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Bidder>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Bidder> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Bidders$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Bidder>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Bidder>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the bidder accounts that belong to the caller.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.list({
+     *     // The maximum number of bidders to return. If unspecified, at most 100 bidders will be returned. The maximum value is 500; values above 500 will be coerced to 500.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. This value is received from a previous `ListBidders` call in ListBiddersResponse.nextPageToken.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bidders": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Bidders$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Bidders$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBiddersResponse>;
+    list(
+      params: Params$Resource$Bidders$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Bidders$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBiddersResponse>,
+      callback: BodyResponseCallback<Schema$ListBiddersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Bidders$List,
+      callback: BodyResponseCallback<Schema$ListBiddersResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBiddersResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$List
+        | BodyResponseCallback<Schema$ListBiddersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBiddersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBiddersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBiddersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Bidders$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/bidders').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBiddersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBiddersResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Bidders$Get extends StandardParameters {
+    /**
+     * Required. Name of the bidder to get. Format: `bidders/{bidderAccountId\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Bidders$List extends StandardParameters {
+    /**
+     * The maximum number of bidders to return. If unspecified, at most 100 bidders will be returned. The maximum value is 500; values above 500 will be coerced to 500.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. This value is received from a previous `ListBidders` call in ListBiddersResponse.nextPageToken.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Bidders$Creatives {
@@ -1348,6 +1768,307 @@ export namespace realtimebidding_v1 {
      * Request body metadata
      */
     requestBody?: Schema$WatchCreativesRequest;
+  }
+
+  export class Resource$Bidders$Endpoints {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a bidder endpoint by its name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.endpoints.get({
+     *     // Required. Name of the bidder endpoint to get. Format: `bidders/{bidderAccountId\}/endpoints/{endpointId\}`
+     *     name: 'bidders/my-bidder/endpoints/my-endpoint',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bidProtocol": "my_bidProtocol",
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "name": "my_name",
+     *   //   "tradingLocation": "my_tradingLocation",
+     *   //   "url": "my_url"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Bidders$Endpoints$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Bidders$Endpoints$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Endpoint>;
+    get(
+      params: Params$Resource$Bidders$Endpoints$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Bidders$Endpoints$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Endpoint>,
+      callback: BodyResponseCallback<Schema$Endpoint>
+    ): void;
+    get(
+      params: Params$Resource$Bidders$Endpoints$Get,
+      callback: BodyResponseCallback<Schema$Endpoint>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Endpoint>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Endpoints$Get
+        | BodyResponseCallback<Schema$Endpoint>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Endpoint>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Endpoint>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Endpoint> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Endpoints$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Endpoints$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Endpoint>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Endpoint>(parameters);
+      }
+    }
+
+    /**
+     * Lists all the bidder's endpoints.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.endpoints.list({
+     *     // The maximum number of endpoints to return. If unspecified, at most 100 endpoints will be returned. The maximum value is 500; values above 500 will be coerced to 500.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. This value is received from a previous `ListEndpoints` call in ListEndpointsResponse.nextPageToken.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of the bidder whose endpoints will be listed. Format: `bidders/{bidderAccountId\}`
+     *     parent: 'bidders/my-bidder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endpoints": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Bidders$Endpoints$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Bidders$Endpoints$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListEndpointsResponse>;
+    list(
+      params: Params$Resource$Bidders$Endpoints$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Bidders$Endpoints$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListEndpointsResponse>,
+      callback: BodyResponseCallback<Schema$ListEndpointsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Bidders$Endpoints$List,
+      callback: BodyResponseCallback<Schema$ListEndpointsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListEndpointsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Endpoints$List
+        | BodyResponseCallback<Schema$ListEndpointsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListEndpointsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListEndpointsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListEndpointsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Endpoints$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Endpoints$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/endpoints').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListEndpointsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListEndpointsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Bidders$Endpoints$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the bidder endpoint to get. Format: `bidders/{bidderAccountId\}/endpoints/{endpointId\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Bidders$Endpoints$List
+    extends StandardParameters {
+    /**
+     * The maximum number of endpoints to return. If unspecified, at most 100 endpoints will be returned. The maximum value is 500; values above 500 will be coerced to 500.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. This value is received from a previous `ListEndpoints` call in ListEndpointsResponse.nextPageToken.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the bidder whose endpoints will be listed. Format: `bidders/{bidderAccountId\}`
+     */
+    parent?: string;
   }
 
   export class Resource$Bidders$Pretargetingconfigs {
@@ -3639,6 +4360,137 @@ export namespace realtimebidding_v1 {
     }
 
     /**
+     * Gets a buyer account by its name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.buyers.get({
+     *     // Required. Name of the buyer to get. Format: `buyers/{buyerId\}`
+     *     name: 'buyers/my-buyer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeCreativeCount": "my_activeCreativeCount",
+     *   //   "bidder": "my_bidder",
+     *   //   "billingIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "maximumActiveCreativeCount": "my_maximumActiveCreativeCount",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Buyers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Buyers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Buyer>;
+    get(
+      params: Params$Resource$Buyers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Buyers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Buyer>,
+      callback: BodyResponseCallback<Schema$Buyer>
+    ): void;
+    get(
+      params: Params$Resource$Buyers$Get,
+      callback: BodyResponseCallback<Schema$Buyer>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Buyer>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$Get
+        | BodyResponseCallback<Schema$Buyer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Buyer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Buyer>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Buyer> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Buyers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyers$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Buyer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Buyer>(parameters);
+      }
+    }
+
+    /**
      * Gets remarketing tag for a buyer. A remarketing tag is a piece of JavaScript code that can be placed on a web page. When a user visits a page containing a remarketing tag, Google adds the user to a user list.
      * @example
      * ```js
@@ -3774,14 +4626,162 @@ export namespace realtimebidding_v1 {
         return createAPIRequest<Schema$GetRemarketingTagResponse>(parameters);
       }
     }
+
+    /**
+     * Lists all buyer account information the calling buyer user or service account is permissioned to manage.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.buyers.list({
+     *     // The maximum number of buyers to return. If unspecified, at most 100 buyers will be returned. The maximum value is 500; values above 500 will be coerced to 500.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. This value is received from a previous `ListBuyers` call in ListBuyersResponse.nextPageToken.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "buyers": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Buyers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Buyers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBuyersResponse>;
+    list(
+      params: Params$Resource$Buyers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBuyersResponse>,
+      callback: BodyResponseCallback<Schema$ListBuyersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Buyers$List,
+      callback: BodyResponseCallback<Schema$ListBuyersResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBuyersResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Buyers$List
+        | BodyResponseCallback<Schema$ListBuyersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBuyersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBuyersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBuyersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Buyers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/buyers').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBuyersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBuyersResponse>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Buyers$Get extends StandardParameters {
+    /**
+     * Required. Name of the buyer to get. Format: `buyers/{buyerId\}`
+     */
+    name?: string;
+  }
   export interface Params$Resource$Buyers$Getremarketingtag
     extends StandardParameters {
     /**
      * Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId\}` where `{accountId\}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId\}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId\}/userLists/{userListId\}`. See UserList.name.
      */
     name?: string;
+  }
+  export interface Params$Resource$Buyers$List extends StandardParameters {
+    /**
+     * The maximum number of buyers to return. If unspecified, at most 100 buyers will be returned. The maximum value is 500; values above 500 will be coerced to 500.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. This value is received from a previous `ListBuyers` call in ListBuyersResponse.nextPageToken.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Buyers$Creatives {

@@ -548,7 +548,6 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name, in the form \"spaces/*/messages/*\". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4",
                   "location": "path",
                   "pattern": "^spaces/[^/]+/messages/[^/]+$",
                   "required": true,
@@ -602,7 +601,7 @@
       }
     }
   },
-  "revision": "20210227",
+  "revision": "20210314",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -1267,7 +1266,6 @@
           "type": "string"
         },
         "name": {
-          "description": "Resource name, in the form \"spaces/*/messages/*\". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4",
           "type": "string"
         },
         "previewText": {
@@ -1342,7 +1340,7 @@
       "type": "object"
     },
     "SlashCommand": {
-      "description": "A Slash Command in Hangouts Chat.",
+      "description": "A Slash Command in Chat.",
       "id": "SlashCommand",
       "properties": {
         "commandId": {
@@ -1465,7 +1463,7 @@
       "type": "object"
     },
     "User": {
-      "description": "A user in Hangouts Chat.",
+      "description": "A user in Google Chat.",
       "id": "User",
       "properties": {
         "displayName": {
@@ -1477,7 +1475,7 @@
           "type": "string"
         },
         "isAnonymous": {
-          "description": "True when the user is deleted or the user's proifle is not visible.",
+          "description": "True when the user is deleted or the user's profile is not visible.",
           "type": "boolean"
         },
         "name": {

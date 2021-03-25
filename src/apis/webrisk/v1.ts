@@ -114,7 +114,6 @@ export namespace webrisk_v1 {
   export class Webrisk {
     context: APIRequestContext;
     hashes: Resource$Hashes;
-    operations: Resource$Operations;
     projects: Resource$Projects;
     threatLists: Resource$Threatlists;
     uris: Resource$Uris;
@@ -126,7 +125,6 @@ export namespace webrisk_v1 {
       };
 
       this.hashes = new Resource$Hashes(this.context);
-      this.operations = new Resource$Operations(this.context);
       this.projects = new Resource$Projects(this.context);
       this.threatLists = new Resource$Threatlists(this.context);
       this.uris = new Resource$Uris(this.context);
@@ -269,6 +267,23 @@ export namespace webrisk_v1 {
      * Required. The URI that is being reported for malicious content to be analyzed.
      */
     uri?: string | null;
+  }
+  /**
+   * Metadata for the Submit URI long-running operation.
+   */
+  export interface Schema$GoogleCloudWebriskV1SubmitUriMetadata {
+    /**
+     * Creation time of the operation.
+     */
+    createTime?: string | null;
+    /**
+     * The state of the operation.
+     */
+    state?: string | null;
+    /**
+     * Latest update time of the operation.
+     */
+    updateTime?: string | null;
   }
   /**
    * Request to send a potentially malicious URI to WebRisk.
@@ -524,7 +539,20 @@ export namespace webrisk_v1 {
     threatTypes?: string[];
   }
 
-  export class Resource$Operations {
+  export class Resource$Projects {
+    context: APIRequestContext;
+    operations: Resource$Projects$Operations;
+    submissions: Resource$Projects$Submissions;
+    uris: Resource$Projects$Uris;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Projects$Operations(this.context);
+      this.submissions = new Resource$Projects$Submissions(this.context);
+      this.uris = new Resource$Projects$Uris(this.context);
+    }
+  }
+
+  export class Resource$Projects$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -556,9 +584,9 @@ export namespace webrisk_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await webrisk.operations.cancel({
+     *   const res = await webrisk.projects.operations.cancel({
      *     // The name of the operation resource to be cancelled.
-     *     name: 'operations/.*',
+     *     name: 'projects/my-project/operations/my-operation',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -585,31 +613,31 @@ export namespace webrisk_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
-      params: Params$Resource$Operations$Cancel,
+      params: Params$Resource$Projects$Operations$Cancel,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     cancel(
-      params?: Params$Resource$Operations$Cancel,
+      params?: Params$Resource$Projects$Operations$Cancel,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     cancel(
-      params: Params$Resource$Operations$Cancel,
+      params: Params$Resource$Projects$Operations$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     cancel(
-      params: Params$Resource$Operations$Cancel,
+      params: Params$Resource$Projects$Operations$Cancel,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
     cancel(
-      params: Params$Resource$Operations$Cancel,
+      params: Params$Resource$Projects$Operations$Cancel,
       callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
     cancel(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
     cancel(
       paramsOrCallback?:
-        | Params$Resource$Operations$Cancel
+        | Params$Resource$Projects$Operations$Cancel
         | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -625,12 +653,12 @@ export namespace webrisk_v1 {
       | GaxiosPromise<Schema$GoogleProtobufEmpty>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Operations$Cancel;
+        {}) as Params$Resource$Projects$Operations$Cancel;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$Cancel;
+        params = {} as Params$Resource$Projects$Operations$Cancel;
         options = {};
       }
 
@@ -689,9 +717,9 @@ export namespace webrisk_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await webrisk.operations.delete({
+     *   const res = await webrisk.projects.operations.delete({
      *     // The name of the operation resource to be deleted.
-     *     name: 'operations/.*',
+     *     name: 'projects/my-project/operations/my-operation',
      *   });
      *   console.log(res.data);
      *
@@ -712,31 +740,31 @@ export namespace webrisk_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
-      params: Params$Resource$Operations$Delete,
+      params: Params$Resource$Projects$Operations$Delete,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     delete(
-      params?: Params$Resource$Operations$Delete,
+      params?: Params$Resource$Projects$Operations$Delete,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
     delete(
-      params: Params$Resource$Operations$Delete,
+      params: Params$Resource$Projects$Operations$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     delete(
-      params: Params$Resource$Operations$Delete,
+      params: Params$Resource$Projects$Operations$Delete,
       options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
       callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
     delete(
-      params: Params$Resource$Operations$Delete,
+      params: Params$Resource$Projects$Operations$Delete,
       callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
     ): void;
     delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
     delete(
       paramsOrCallback?:
-        | Params$Resource$Operations$Delete
+        | Params$Resource$Projects$Operations$Delete
         | BodyResponseCallback<Schema$GoogleProtobufEmpty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -752,12 +780,12 @@ export namespace webrisk_v1 {
       | GaxiosPromise<Schema$GoogleProtobufEmpty>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Operations$Delete;
+        {}) as Params$Resource$Projects$Operations$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$Delete;
+        params = {} as Params$Resource$Projects$Operations$Delete;
         options = {};
       }
 
@@ -816,9 +844,9 @@ export namespace webrisk_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await webrisk.operations.get({
+     *   const res = await webrisk.projects.operations.get({
      *     // The name of the operation resource.
-     *     name: 'operations/.*',
+     *     name: 'projects/my-project/operations/my-operation',
      *   });
      *   console.log(res.data);
      *
@@ -845,27 +873,27 @@ export namespace webrisk_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
-      params: Params$Resource$Operations$Get,
+      params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     get(
-      params?: Params$Resource$Operations$Get,
+      params?: Params$Resource$Projects$Operations$Get,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
     get(
-      params: Params$Resource$Operations$Get,
+      params: Params$Resource$Projects$Operations$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     get(
-      params: Params$Resource$Operations$Get,
+      params: Params$Resource$Projects$Operations$Get,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
-      params: Params$Resource$Operations$Get,
+      params: Params$Resource$Projects$Operations$Get,
       callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
     ): void;
     get(
@@ -873,7 +901,7 @@ export namespace webrisk_v1 {
     ): void;
     get(
       paramsOrCallback?:
-        | Params$Resource$Operations$Get
+        | Params$Resource$Projects$Operations$Get
         | BodyResponseCallback<Schema$GoogleLongrunningOperation>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -888,12 +916,13 @@ export namespace webrisk_v1 {
       | void
       | GaxiosPromise<Schema$GoogleLongrunningOperation>
       | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Operations$Get;
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Operations$Get;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$Get;
+        params = {} as Params$Resource$Projects$Operations$Get;
         options = {};
       }
 
@@ -952,11 +981,11 @@ export namespace webrisk_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await webrisk.operations.list({
+     *   const res = await webrisk.projects.operations.list({
      *     // The standard list filter.
      *     filter: 'placeholder-value',
      *     // The name of the operation's parent resource.
-     *     name: 'operations',
+     *     name: 'projects/my-project',
      *     // The standard list page size.
      *     pageSize: 'placeholder-value',
      *     // The standard list page token.
@@ -984,27 +1013,27 @@ export namespace webrisk_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
-      params: Params$Resource$Operations$List,
+      params: Params$Resource$Projects$Operations$List,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     list(
-      params?: Params$Resource$Operations$List,
+      params?: Params$Resource$Projects$Operations$List,
       options?: MethodOptions
     ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
     list(
-      params: Params$Resource$Operations$List,
+      params: Params$Resource$Projects$Operations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     list(
-      params: Params$Resource$Operations$List,
+      params: Params$Resource$Projects$Operations$List,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
       callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
-      params: Params$Resource$Operations$List,
+      params: Params$Resource$Projects$Operations$List,
       callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
@@ -1012,7 +1041,7 @@ export namespace webrisk_v1 {
     ): void;
     list(
       paramsOrCallback?:
-        | Params$Resource$Operations$List
+        | Params$Resource$Projects$Operations$List
         | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -1027,12 +1056,13 @@ export namespace webrisk_v1 {
       | void
       | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
       | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Operations$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$List;
+        params = {} as Params$Resource$Projects$Operations$List;
         options = {};
       }
 
@@ -1045,7 +1075,10 @@ export namespace webrisk_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
           },
           options
@@ -1068,7 +1101,7 @@ export namespace webrisk_v1 {
     }
   }
 
-  export interface Params$Resource$Operations$Cancel
+  export interface Params$Resource$Projects$Operations$Cancel
     extends StandardParameters {
     /**
      * The name of the operation resource to be cancelled.
@@ -1080,20 +1113,22 @@ export namespace webrisk_v1 {
      */
     requestBody?: Schema$GoogleLongrunningCancelOperationRequest;
   }
-  export interface Params$Resource$Operations$Delete
+  export interface Params$Resource$Projects$Operations$Delete
     extends StandardParameters {
     /**
      * The name of the operation resource to be deleted.
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$Get extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$Get
+    extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
   }
-  export interface Params$Resource$Operations$List extends StandardParameters {
+  export interface Params$Resource$Projects$Operations$List
+    extends StandardParameters {
     /**
      * The standard list filter.
      */
@@ -1110,17 +1145,6 @@ export namespace webrisk_v1 {
      * The standard list page token.
      */
     pageToken?: string;
-  }
-
-  export class Resource$Projects {
-    context: APIRequestContext;
-    submissions: Resource$Projects$Submissions;
-    uris: Resource$Projects$Uris;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.submissions = new Resource$Projects$Submissions(this.context);
-      this.uris = new Resource$Projects$Uris(this.context);
-    }
   }
 
   export class Resource$Projects$Submissions {

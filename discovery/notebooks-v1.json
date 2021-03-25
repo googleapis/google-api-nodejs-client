@@ -1262,7 +1262,7 @@
       }
     }
   },
-  "revision": "20210226",
+  "revision": "20210305",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1885,6 +1885,10 @@
       "description": "Response for checking if a notebook instance is upgradeable.",
       "id": "IsInstanceUpgradeableResponse",
       "properties": {
+        "upgradeImage": {
+          "description": "The new image self link this instance will be upgraded to if calling the upgrade endpoint. This field will only be populated if field upgradeable is true.",
+          "type": "string"
+        },
         "upgradeInfo": {
           "description": "Additional information about upgrade.",
           "type": "string"

@@ -139,6 +139,10 @@ export namespace cloudasset_v1p4beta1 {
     roles?: string[] | null;
   }
   /**
+   * A response message for AssetService.AnalyzeIamPolicyLongrunning.
+   */
+  export interface Schema$AnalyzeIamPolicyLongrunningResponse {}
+  /**
    * A response message for AssetService.AnalyzeIamPolicy.
    */
   export interface Schema$AnalyzeIamPolicyResponse {

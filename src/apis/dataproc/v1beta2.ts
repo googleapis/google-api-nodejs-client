@@ -746,7 +746,7 @@ export namespace dataproc_v1beta2 {
      */
     minCpuPlatform?: string | null;
     /**
-     * Optional. The number of VM instances in the instance group. For master instance groups, must be set to 1.
+     * Optional. The number of VM instances in the instance group. For HA cluster master_config groups, must be set to 3. For standard cluster master_config groups, must be set to 1.
      */
     numInstances?: number | null;
     /**

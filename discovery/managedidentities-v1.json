@@ -703,7 +703,7 @@
       }
     }
   },
-  "revision": "20210218",
+  "revision": "20210305",
   "rootUrl": "https://managedidentities.googleapis.com/",
   "schemas": {
     "AttachTrustRequest": {
@@ -1170,7 +1170,7 @@
       "id": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule",
       "properties": {
         "canReschedule": {
-          "description": "Can this scheduled update be rescheduled? By default, it's true and API needs to do explicitly check whether it's set, if it's set as false explicitly, it's false",
+          "description": "This field will be deprecated, and will be always set to true since reschedule can happen multiple times now.",
           "type": "boolean"
         },
         "endTime": {

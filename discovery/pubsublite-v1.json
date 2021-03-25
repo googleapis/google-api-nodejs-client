@@ -129,6 +129,11 @@
                           "required": true,
                           "type": "string"
                         },
+                        "skipBacklog": {
+                          "description": "If true, the newly created subscription will only receive messages published after the subscription was created. Otherwise, the entire message backlog will be received on the subscription. Defaults to false.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
                         "subscriptionId": {
                           "description": "Required. The ID to use for the subscription, which will become the final component of the subscription's name. This value is structured like: `my-sub-name`.",
                           "location": "query",
@@ -627,7 +632,7 @@
       }
     }
   },
-  "revision": "20210302",
+  "revision": "20210316",
   "rootUrl": "https://pubsublite.googleapis.com/",
   "schemas": {
     "Capacity": {
