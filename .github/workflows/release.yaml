@@ -12,7 +12,7 @@ jobs:
         with:
           fork: true
           token: ${{ secrets.FORKING_TOKEN }}
-          command: manifest
+          command: manifest-pr
       - id: label
         if: ${{ steps.release-pr.outputs.pr }}
         uses: actions/github-script@v3    
