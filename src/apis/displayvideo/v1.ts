@@ -361,6 +361,10 @@ export namespace displayvideo_v1 {
      */
     appId?: string | null;
     /**
+     * Indicates the platform of the targeted app. If this field is not specified, the app platform will be assumed to be mobile (i.e., Android or iOS), and we will derive the appropriate mobile platform from the app ID.
+     */
+    appPlatform?: string | null;
+    /**
      * Output only. The display name of the app.
      */
     displayName?: string | null;
@@ -976,6 +980,19 @@ export namespace displayvideo_v1 {
     assignedTargetingOptions?: Schema$AssignedTargetingOption[];
     /**
      * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent BulkListAdvertiserAssignedTargetingOptionsRequest to fetch the next page of results. This token will be absent if there are no more assigned_targeting_options to return.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for BulkListCampaignAssignedTargetingOptions.
+   */
+  export interface Schema$BulkListCampaignAssignedTargetingOptionsResponse {
+    /**
+     * The list of assigned targeting options. This list will be absent if empty.
+     */
+    assignedTargetingOptions?: Schema$AssignedTargetingOption[];
+    /**
+     * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent BulkListCampaignAssignedTargetingOptionsRequest to fetch the next page of results. This token will be absent if there are no more assigned_targeting_options to return.
      */
     nextPageToken?: string | null;
   }
@@ -2198,6 +2215,27 @@ export namespace displayvideo_v1 {
     gender?: string | null;
   }
   /**
+   * Request message for LineItemService.GenerateDefaultLineItem.
+   */
+  export interface Schema$GenerateDefaultLineItemRequest {
+    /**
+     * Required. The display name of the line item. Must be UTF-8 encoded with a maximum size of 240 bytes.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The unique ID of the insertion order that the line item belongs to.
+     */
+    insertionOrderId?: string | null;
+    /**
+     * Required. The type of the line item.
+     */
+    lineItemType?: string | null;
+    /**
+     * The mobile app promoted by the line item. This is applicable only when line_item_type is either `LINE_ITEM_TYPE_DISPLAY_MOBILE_APP_INSTALL` or `LINE_ITEM_TYPE_VIDEO_MOBILE_APP_INSTALL`.
+     */
+    mobileApp?: Schema$MobileApp;
+  }
+  /**
    * Details for assigned geographic region targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_GEO_REGION`.
    */
   export interface Schema$GeoRegionAssignedTargetingOptionDetails {
@@ -2880,6 +2918,19 @@ export namespace displayvideo_v1 {
     assignedLocations?: Schema$AssignedLocation[];
     /**
      * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListAssignedLocations` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for ListCampaignAssignedTargetingOptions.
+   */
+  export interface Schema$ListCampaignAssignedTargetingOptionsResponse {
+    /**
+     * The list of assigned targeting options. This list will be absent if empty.
+     */
+    assignedTargetingOptions?: Schema$AssignedTargetingOption[];
+    /**
+     * A token identifying the next page of results. This value should be specified as the pageToken in a subsequent ListCampaignAssignedTargetingOptionsRequest to fetch the next page of results. This token will be absent if there are no more assigned_targeting_options to return.
      */
     nextPageToken?: string | null;
   }
@@ -3701,6 +3752,50 @@ export namespace displayvideo_v1 {
      * Required. ID of the regional location list. Should refer to the location_list_id field of a LocationList resource whose type is `TARGETING_LOCATION_TYPE_REGIONAL`.
      */
     regionalLocationListId?: string | null;
+  }
+  /**
+   * Request message for NegativeKeywordService.ReplaceNegativeKeywords.
+   */
+  export interface Schema$ReplaceNegativeKeywordsRequest {
+    /**
+     * The negative keywords that will replace the existing keywords in the negative keyword list, specified as a list of NegativeKeywords.
+     */
+    newNegativeKeywords?: Schema$NegativeKeyword[];
+  }
+  /**
+   * Response message for NegativeKeywordService.ReplaceNegativeKeywords.
+   */
+  export interface Schema$ReplaceNegativeKeywordsResponse {
+    /**
+     * The full list of negative keywords now present in the negative keyword list.
+     */
+    negativeKeywords?: Schema$NegativeKeyword[];
+  }
+  /**
+   * Request message for SiteService.ReplaceSites.
+   */
+  export interface Schema$ReplaceSitesRequest {
+    /**
+     * The ID of the advertiser that owns the parent channel.
+     */
+    advertiserId?: string | null;
+    /**
+     * The sites that will replace the existing sites assigned to the channel, specified as a list of Sites.
+     */
+    newSites?: Schema$Site[];
+    /**
+     * The ID of the partner that owns the parent channel.
+     */
+    partnerId?: string | null;
+  }
+  /**
+   * Response message for SiteService.ReplaceSites.
+   */
+  export interface Schema$ReplaceSitesResponse {
+    /**
+     * The list of sites in the channel after replacing.
+     */
+    sites?: Schema$Site[];
   }
   /**
    * Review statuses for the creative.
@@ -5725,8 +5820,163 @@ export namespace displayvideo_v1 {
 
   export class Resource$Advertisers$Campaigns {
     context: APIRequestContext;
+    targetingTypes: Resource$Advertisers$Campaigns$Targetingtypes;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.targetingTypes = new Resource$Advertisers$Campaigns$Targetingtypes(
+        this.context
+      );
+    }
+
+    /**
+     * Lists assigned targeting options of a campaign across targeting types.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.campaigns.bulkListCampaignAssignedTargetingOptions(
+     *     {
+     *       // Required. The ID of the advertiser the campaign belongs to.
+     *       advertiserId: '[^/]+',
+     *       // Required. The ID of the campaign to list assigned targeting options for.
+     *       campaignId: '[^/]+',
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_LANGUAGE or TARGETING_TYPE_GENDER `targetingType="TARGETING_TYPE_LANGUAGE" OR targetingType="TARGETING_TYPE_GENDER"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     *       filter: 'placeholder-value',
+     *       // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListCampaignAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    bulkListCampaignAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    bulkListCampaignAssignedTargetingOptions(
+      params?: Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$BulkListCampaignAssignedTargetingOptionsResponse>;
+    bulkListCampaignAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    bulkListCampaignAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>,
+      callback: BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
+    ): void;
+    bulkListCampaignAssignedTargetingOptions(
+      params: Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions,
+      callback: BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
+    ): void;
+    bulkListCampaignAssignedTargetingOptions(
+      callback: BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
+    ): void;
+    bulkListCampaignAssignedTargetingOptions(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions
+        | BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$BulkListCampaignAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/campaigns/{+campaignId}:bulkListCampaignAssignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'campaignId'],
+        pathParams: ['advertiserId', 'campaignId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BulkListCampaignAssignedTargetingOptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BulkListCampaignAssignedTargetingOptionsResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -6464,6 +6714,33 @@ export namespace displayvideo_v1 {
     }
   }
 
+  export interface Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the campaign belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the campaign to list assigned targeting options for.
+     */
+    campaignId?: string;
+    /**
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_LANGUAGE or TARGETING_TYPE_GENDER `targetingType="TARGETING_TYPE_LANGUAGE" OR targetingType="TARGETING_TYPE_GENDER"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListCampaignAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
   export interface Params$Resource$Advertisers$Campaigns$Create
     extends StandardParameters {
     /**
@@ -6540,6 +6817,420 @@ export namespace displayvideo_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Campaign;
+  }
+
+  export class Resource$Advertisers$Campaigns$Targetingtypes {
+    context: APIRequestContext;
+    assignedTargetingOptions: Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.assignedTargetingOptions = new Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a single targeting option assigned to a campaign.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.campaigns.targetingTypes.assignedTargetingOptions.get(
+     *     {
+     *       // Required. The ID of the advertiser the campaign belongs to.
+     *       advertiserId: '[^/]+',
+     *       // Required. An identifier unique to the targeting type in this campaign that identifies the assigned targeting option being requested.
+     *       assignedTargetingOptionId: '[^/]+',
+     *       // Required. The ID of the campaign the assigned targeting option belongs to.
+     *       campaignId: '[^/]+',
+     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_VIEWABILITY`
+     *       targetingType: '[^/]+',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "ageRangeDetails": {},
+     *   //   "appCategoryDetails": {},
+     *   //   "appDetails": {},
+     *   //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *   //   "audienceGroupDetails": {},
+     *   //   "authorizedSellerStatusDetails": {},
+     *   //   "browserDetails": {},
+     *   //   "carrierAndIspDetails": {},
+     *   //   "categoryDetails": {},
+     *   //   "channelDetails": {},
+     *   //   "contentInstreamPositionDetails": {},
+     *   //   "contentOutstreamPositionDetails": {},
+     *   //   "dayAndTimeDetails": {},
+     *   //   "deviceMakeModelDetails": {},
+     *   //   "deviceTypeDetails": {},
+     *   //   "digitalContentLabelExclusionDetails": {},
+     *   //   "environmentDetails": {},
+     *   //   "exchangeDetails": {},
+     *   //   "genderDetails": {},
+     *   //   "geoRegionDetails": {},
+     *   //   "householdIncomeDetails": {},
+     *   //   "inheritance": "my_inheritance",
+     *   //   "inventorySourceDetails": {},
+     *   //   "inventorySourceGroupDetails": {},
+     *   //   "keywordDetails": {},
+     *   //   "languageDetails": {},
+     *   //   "name": "my_name",
+     *   //   "negativeKeywordListDetails": {},
+     *   //   "onScreenPositionDetails": {},
+     *   //   "operatingSystemDetails": {},
+     *   //   "parentalStatusDetails": {},
+     *   //   "proximityLocationListDetails": {},
+     *   //   "regionalLocationListDetails": {},
+     *   //   "sensitiveCategoryExclusionDetails": {},
+     *   //   "subExchangeDetails": {},
+     *   //   "targetingType": "my_targetingType",
+     *   //   "thirdPartyVerifierDetails": {},
+     *   //   "urlDetails": {},
+     *   //   "userRewardedContentDetails": {},
+     *   //   "videoPlayerSizeDetails": {},
+     *   //   "viewabilityDetails": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AssignedTargetingOption>;
+    get(
+      params: Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$Get,
+      callback: BodyResponseCallback<Schema$AssignedTargetingOption>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$AssignedTargetingOption>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$Get
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AssignedTargetingOption>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AssignedTargetingOption>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions/{+assignedTargetingOptionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'advertiserId',
+          'campaignId',
+          'targetingType',
+          'assignedTargetingOptionId',
+        ],
+        pathParams: [
+          'advertiserId',
+          'assignedTargetingOptionId',
+          'campaignId',
+          'targetingType',
+        ],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AssignedTargetingOption>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AssignedTargetingOption>(parameters);
+      }
+    }
+
+    /**
+     * Lists the targeting options assigned to a campaign for a specified targeting type.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.campaigns.targetingTypes.assignedTargetingOptions.list(
+     *     {
+     *       // Required. The ID of the advertiser the campaign belongs to.
+     *       advertiserId: '[^/]+',
+     *       // Required. The ID of the campaign to list assigned targeting options for.
+     *       campaignId: '[^/]+',
+     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     *       filter: 'placeholder-value',
+     *       // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     *       orderBy: 'placeholder-value',
+     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *       pageSize: 'placeholder-value',
+     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCampaignAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_VIEWABILITY`
+     *       targetingType: '[^/]+',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignedTargetingOptions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListCampaignAssignedTargetingOptionsResponse>;
+    list(
+      params: Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListCampaignAssignedTargetingOptionsResponse>,
+      callback: BodyResponseCallback<Schema$ListCampaignAssignedTargetingOptionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$List,
+      callback: BodyResponseCallback<Schema$ListCampaignAssignedTargetingOptionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListCampaignAssignedTargetingOptionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$List
+        | BodyResponseCallback<Schema$ListCampaignAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListCampaignAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListCampaignAssignedTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListCampaignAssignedTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/campaigns/{+campaignId}/targetingTypes/{+targetingType}/assignedTargetingOptions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'campaignId', 'targetingType'],
+        pathParams: ['advertiserId', 'campaignId', 'targetingType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListCampaignAssignedTargetingOptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListCampaignAssignedTargetingOptionsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the campaign belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Required. An identifier unique to the targeting type in this campaign that identifies the assigned targeting option being requested.
+     */
+    assignedTargetingOptionId?: string;
+    /**
+     * Required. The ID of the campaign the assigned targeting option belongs to.
+     */
+    campaignId?: string;
+    /**
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_VIEWABILITY`
+     */
+    targetingType?: string;
+  }
+  export interface Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser the campaign belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the campaign to list assigned targeting options for.
+     */
+    campaignId?: string;
+    /**
+     * Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCampaignAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+    /**
+     * Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_VIEWABILITY`
+     */
+    targetingType?: string;
   }
 
   export class Resource$Advertisers$Channels {
@@ -7678,7 +8369,7 @@ export namespace displayvideo_v1 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `10000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -7787,6 +8478,152 @@ export namespace displayvideo_v1 {
         return createAPIRequest<Schema$ListSitesResponse>(parameters);
       }
     }
+
+    /**
+     * Replaces all of the sites under a single channel. The operation will replace the sites under a channel with the sites provided in ReplaceSitesRequest.new_sites.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.channels.sites.replace({
+     *     // The ID of the advertiser that owns the parent channel.
+     *     advertiserId: 'placeholder-value',
+     *     // Required. The ID of the parent channel whose sites will be replaced.
+     *     channelId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "newSites": [],
+     *       //   "partnerId": "my_partnerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    replace(
+      params: Params$Resource$Advertisers$Channels$Sites$Replace,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    replace(
+      params?: Params$Resource$Advertisers$Channels$Sites$Replace,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReplaceSitesResponse>;
+    replace(
+      params: Params$Resource$Advertisers$Channels$Sites$Replace,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    replace(
+      params: Params$Resource$Advertisers$Channels$Sites$Replace,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReplaceSitesResponse>,
+      callback: BodyResponseCallback<Schema$ReplaceSitesResponse>
+    ): void;
+    replace(
+      params: Params$Resource$Advertisers$Channels$Sites$Replace,
+      callback: BodyResponseCallback<Schema$ReplaceSitesResponse>
+    ): void;
+    replace(callback: BodyResponseCallback<Schema$ReplaceSitesResponse>): void;
+    replace(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Channels$Sites$Replace
+        | BodyResponseCallback<Schema$ReplaceSitesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReplaceSitesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReplaceSitesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReplaceSitesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Channels$Sites$Replace;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Channels$Sites$Replace;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{advertiserId}/channels/{+channelId}/sites:replace'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'channelId'],
+        pathParams: ['advertiserId', 'channelId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReplaceSitesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReplaceSitesResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Advertisers$Channels$Sites$Bulkedit
@@ -7863,7 +8700,7 @@ export namespace displayvideo_v1 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `10000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -7874,6 +8711,22 @@ export namespace displayvideo_v1 {
      * The ID of the partner that owns the parent channel.
      */
     partnerId?: string;
+  }
+  export interface Params$Resource$Advertisers$Channels$Sites$Replace
+    extends StandardParameters {
+    /**
+     * The ID of the advertiser that owns the parent channel.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the parent channel whose sites will be replaced.
+     */
+    channelId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReplaceSitesRequest;
   }
 
   export class Resource$Advertisers$Creatives {
@@ -10924,6 +11777,168 @@ export namespace displayvideo_v1 {
     }
 
     /**
+     * Creates a new line item with settings (including targeting) inherited from the insertion order. Returns the newly created line item if successful. There are default values based on the three fields: * The insertion order's InsertionOrderType * The insertion order's InsertionOrderAutomationType * The given line_item_type
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.lineItems.generateDefault({
+     *     // Required. The ID of the advertiser this line item belongs to.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "insertionOrderId": "my_insertionOrderId",
+     *       //   "lineItemType": "my_lineItemType",
+     *       //   "mobileApp": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "bidStrategy": {},
+     *   //   "budget": {},
+     *   //   "campaignId": "my_campaignId",
+     *   //   "conversionCounting": {},
+     *   //   "creativeIds": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "entityStatus": "my_entityStatus",
+     *   //   "flight": {},
+     *   //   "frequencyCap": {},
+     *   //   "insertionOrderId": "my_insertionOrderId",
+     *   //   "integrationDetails": {},
+     *   //   "inventorySourceIds": [],
+     *   //   "lineItemId": "my_lineItemId",
+     *   //   "lineItemType": "my_lineItemType",
+     *   //   "mobileApp": {},
+     *   //   "name": "my_name",
+     *   //   "pacing": {},
+     *   //   "partnerCosts": [],
+     *   //   "partnerRevenueModel": {},
+     *   //   "targetingExpansion": {},
+     *   //   "updateTime": "my_updateTime",
+     *   //   "warningMessages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateDefault(
+      params: Params$Resource$Advertisers$Lineitems$Generatedefault,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    generateDefault(
+      params?: Params$Resource$Advertisers$Lineitems$Generatedefault,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LineItem>;
+    generateDefault(
+      params: Params$Resource$Advertisers$Lineitems$Generatedefault,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateDefault(
+      params: Params$Resource$Advertisers$Lineitems$Generatedefault,
+      options: MethodOptions | BodyResponseCallback<Schema$LineItem>,
+      callback: BodyResponseCallback<Schema$LineItem>
+    ): void;
+    generateDefault(
+      params: Params$Resource$Advertisers$Lineitems$Generatedefault,
+      callback: BodyResponseCallback<Schema$LineItem>
+    ): void;
+    generateDefault(callback: BodyResponseCallback<Schema$LineItem>): void;
+    generateDefault(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Lineitems$Generatedefault
+        | BodyResponseCallback<Schema$LineItem>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LineItem>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LineItem>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$LineItem> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Lineitems$Generatedefault;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Lineitems$Generatedefault;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/lineItems:generateDefault'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LineItem>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LineItem>(parameters);
+      }
+    }
+
+    /**
      * Gets a line item.
      * @example
      * ```js
@@ -11469,6 +12484,18 @@ export namespace displayvideo_v1 {
      * The ID of the line item we need to fetch.
      */
     lineItemId?: string;
+  }
+  export interface Params$Resource$Advertisers$Lineitems$Generatedefault
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser this line item belongs to.
+     */
+    advertiserId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateDefaultLineItemRequest;
   }
   export interface Params$Resource$Advertisers$Lineitems$Get
     extends StandardParameters {
@@ -15900,7 +16927,7 @@ export namespace displayvideo_v1 {
      *       negativeKeywordListId: '[^/]+',
      *       // Field by which to sort the list. Acceptable values are: * `keywordValue` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `keywordValue desc`.
      *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *       // Requested page size. Must be between `1` and `1000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *       pageSize: 'placeholder-value',
      *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywords` method. If not specified, the first page of results will be returned.
      *       pageToken: 'placeholder-value',
@@ -16014,6 +17041,156 @@ export namespace displayvideo_v1 {
         );
       }
     }
+
+    /**
+     * Replaces all negative keywords in a single negative keyword list. The operation will replace the keywords in a negative keywords with keywords provided in ReplaceNegativeKeywordsRequest.new_negative_keywords.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.replace(
+     *     {
+     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     *       advertiserId: 'placeholder-value',
+     *       // Required. The ID of the parent negative keyword list to which the negative keywords belong.
+     *       negativeKeywordListId: '[^/]+',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "newNegativeKeywords": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "negativeKeywords": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    replace(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    replace(
+      params?: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReplaceNegativeKeywordsResponse>;
+    replace(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    replace(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReplaceNegativeKeywordsResponse>,
+      callback: BodyResponseCallback<Schema$ReplaceNegativeKeywordsResponse>
+    ): void;
+    replace(
+      params: Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace,
+      callback: BodyResponseCallback<Schema$ReplaceNegativeKeywordsResponse>
+    ): void;
+    replace(
+      callback: BodyResponseCallback<Schema$ReplaceNegativeKeywordsResponse>
+    ): void;
+    replace(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace
+        | BodyResponseCallback<Schema$ReplaceNegativeKeywordsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReplaceNegativeKeywordsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReplaceNegativeKeywordsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReplaceNegativeKeywordsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{advertiserId}/negativeKeywordLists/{+negativeKeywordListId}/negativeKeywords:replace'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'negativeKeywordListId'],
+        pathParams: ['advertiserId', 'negativeKeywordListId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReplaceNegativeKeywordsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReplaceNegativeKeywordsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit
@@ -16082,13 +17259,29 @@ export namespace displayvideo_v1 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `1000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
      * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywords` method. If not specified, the first page of results will be returned.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace
+    extends StandardParameters {
+    /**
+     * Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the parent negative keyword list to which the negative keywords belong.
+     */
+    negativeKeywordListId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReplaceNegativeKeywordsRequest;
   }
 
   export class Resource$Advertisers$Targetingtypes {
@@ -22496,7 +23689,7 @@ export namespace displayvideo_v1 {
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * `urlOrAppId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix " desc" should be added to the field name. Example: `urlOrAppId desc`.
      *     orderBy: 'placeholder-value',
-     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     // Requested page size. Must be between `1` and `10000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListSites` method. If not specified, the first page of results will be returned.
      *     pageToken: 'placeholder-value',
@@ -22604,6 +23797,152 @@ export namespace displayvideo_v1 {
         return createAPIRequest<Schema$ListSitesResponse>(parameters);
       }
     }
+
+    /**
+     * Replaces all of the sites under a single channel. The operation will replace the sites under a channel with the sites provided in ReplaceSitesRequest.new_sites.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.partners.channels.sites.replace({
+     *     // Required. The ID of the parent channel whose sites will be replaced.
+     *     channelId: '[^/]+',
+     *     // The ID of the partner that owns the parent channel.
+     *     partnerId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "newSites": [],
+     *       //   "partnerId": "my_partnerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    replace(
+      params: Params$Resource$Partners$Channels$Sites$Replace,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    replace(
+      params?: Params$Resource$Partners$Channels$Sites$Replace,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReplaceSitesResponse>;
+    replace(
+      params: Params$Resource$Partners$Channels$Sites$Replace,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    replace(
+      params: Params$Resource$Partners$Channels$Sites$Replace,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ReplaceSitesResponse>,
+      callback: BodyResponseCallback<Schema$ReplaceSitesResponse>
+    ): void;
+    replace(
+      params: Params$Resource$Partners$Channels$Sites$Replace,
+      callback: BodyResponseCallback<Schema$ReplaceSitesResponse>
+    ): void;
+    replace(callback: BodyResponseCallback<Schema$ReplaceSitesResponse>): void;
+    replace(
+      paramsOrCallback?:
+        | Params$Resource$Partners$Channels$Sites$Replace
+        | BodyResponseCallback<Schema$ReplaceSitesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReplaceSitesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReplaceSitesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReplaceSitesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Partners$Channels$Sites$Replace;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Partners$Channels$Sites$Replace;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/partners/{partnerId}/channels/{+channelId}/sites:replace'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['partnerId', 'channelId'],
+        pathParams: ['channelId', 'partnerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReplaceSitesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReplaceSitesResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Partners$Channels$Sites$Bulkedit
@@ -22680,7 +24019,7 @@ export namespace displayvideo_v1 {
      */
     orderBy?: string;
     /**
-     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     * Requested page size. Must be between `1` and `10000`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      */
     pageSize?: number;
     /**
@@ -22691,6 +24030,22 @@ export namespace displayvideo_v1 {
      * The ID of the partner that owns the parent channel.
      */
     partnerId?: string;
+  }
+  export interface Params$Resource$Partners$Channels$Sites$Replace
+    extends StandardParameters {
+    /**
+     * Required. The ID of the parent channel whose sites will be replaced.
+     */
+    channelId?: string;
+    /**
+     * The ID of the partner that owns the parent channel.
+     */
+    partnerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReplaceSitesRequest;
   }
 
   export class Resource$Partners$Targetingtypes {

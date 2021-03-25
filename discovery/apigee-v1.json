@@ -1081,7 +1081,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets an API proxy revision. To download the API proxy configuration bundle for the specified revision as a zip file, do the following: * Set the `format` query parameter to `bundle`. * Set the `Accept` header to `application/zip`. If you are using curl, specify `-o filename.zip` to save the output to a file; otherwise, it displays to `stdout`. Then, develop the API proxy configuration locally and upload the updated API proxy configuration revision, as described in [updateApiProxyRevision](updateApiProxyRevision).",
+                  "description": "Gets an API proxy revision. To download the API proxy configuration bundle for the specified revision as a zip file, set the `format` query parameter to `bundle`. If you are using curl, specify `-o filename.zip` to save the output to a file; otherwise, it displays to `stdout`. Then, develop the API proxy configuration locally and upload the updated API proxy configuration revision, as described in [updateApiProxyRevision](updateApiProxyRevision).",
                   "flatPath": "v1/organizations/{organizationsId}/apis/{apisId}/revisions/{revisionsId}",
                   "httpMethod": "GET",
                   "id": "apigee.organizations.apis.revisions.get",
@@ -6390,7 +6390,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets a revision of a shared flow. If `format=bundle` is passed, it instead outputs a shared flow revision as a ZIP-formatted bundle of code and config files.",
+                  "description": "Gets a revision of a shared flow. To download the shared flow configuration bundle for the specified revision as a zip file, set the `format` query parameter to `bundle`. If you are using curl, specify `-o filename.zip` to save the output to a file; otherwise, it displays to `stdout`. Then, develop the shared flow configuration locally and upload the updated sharedFlow configuration revision, as described in [updateSharedFlowRevision](updateSharedFlowRevision).",
                   "flatPath": "v1/organizations/{organizationsId}/sharedflows/{sharedflowsId}/revisions/{revisionsId}",
                   "httpMethod": "GET",
                   "id": "apigee.organizations.sharedflows.revisions.get",
@@ -6661,7 +6661,7 @@
       }
     }
   },
-  "revision": "20210302",
+  "revision": "20210312",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -6900,6 +6900,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "graphqlOperationGroup": {
+          "$ref": "GoogleCloudApigeeV1GraphQLOperationGroup",
+          "description": "Configuration used to group Apigee proxies or remote services with graphQL operation name, graphQL operation type and quotas. This grouping allows us to precisely set quota for a particular combination of graphQL name and operation type for a particular proxy request. If graphQL name is not set, this would imply quota will be applied on all graphQL requests matching the operation type."
         },
         "lastModifiedAt": {
           "description": "Response only. Modified time of this environment as milliseconds since epoch.",
@@ -8826,6 +8830,71 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudApigeeV1GraphQLOperation": {
+      "description": "GraphQLOperation represents the pairing of graphQL operation types and the graphQL operation name.",
+      "id": "GoogleCloudApigeeV1GraphQLOperation",
+      "properties": {
+        "operation": {
+          "description": "GraphQL operation name, along with operation type which will be used to associate quotas with. If no name is specified, the quota will be applied to all graphQL operations irrespective of their operation names in the payload.",
+          "type": "string"
+        },
+        "operationType": {
+          "description": "Required. `query`, `mutation` and `subscription` are the three operation types offered by graphQL. Currently we support only `query` and `mutation`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1GraphQLOperationConfig": {
+      "description": "GraphQLOperationConfig binds the resources in a proxy or remote service with the graphQL operation and its associated quota enforcement.",
+      "id": "GoogleCloudApigeeV1GraphQLOperationConfig",
+      "properties": {
+        "apiSource": {
+          "description": "Required. API proxy endpoint or remote service name with which the graphQL operation, and quota are associated.",
+          "type": "string"
+        },
+        "attributes": {
+          "description": "Custom attributes associated with the operation.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Attribute"
+          },
+          "type": "array"
+        },
+        "operations": {
+          "description": "Required. List of graphQL name/Operation type pairs for the proxy/remote service, upon which quota will applied. If GraphQLOperation operation has only the operation type(s), that would imply that quota will be applied on all graphQL requests irrespective of the graphQL name. **Note**: Currently, we can specify only a single GraphQLOperation. Specifying more than one will result in failure of the operation.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1GraphQLOperation"
+          },
+          "type": "array"
+        },
+        "quota": {
+          "$ref": "GoogleCloudApigeeV1Quota",
+          "description": "Quota parameters to be enforced for the resources, methods, api_source combination. If none are specified, quota enforcement will not be done."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1GraphQLOperationGroup": {
+      "description": "List of graphQL operation configuration details associated with Apigee API proxies or remote services. Remote services are non-Apigee proxies, such as Istio-Envoy.",
+      "id": "GoogleCloudApigeeV1GraphQLOperationGroup",
+      "properties": {
+        "operationConfigType": {
+          "description": "Flag that specifes whether the configuration is for Apigee API proxy or a remote service. Valid values are `proxy` or `remoteservice`. Defaults to `proxy`. Set to `proxy` when Apigee API proxies are associated with the API product. Set to `remoteservice` when non-Apigee proxies like Istio-Envoy are associated with the API product.",
+          "type": "string"
+        },
+        "operationConfigs": {
+          "description": "Required. List of operation configurations for either Apigee API proxies or other remote services that are associated with this API product.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1GraphQLOperationConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1IngressConfig": {
       "id": "GoogleCloudApigeeV1IngressConfig",
       "properties": {
@@ -9690,7 +9759,7 @@
           "type": "array"
         },
         "authorizedNetwork": {
-          "description": "Compute Engine network used for Service Networking to be peered with Apigee runtime instances. See [Getting started with the Service Networking API](https://cloud.google.com/service-infrastructure/docs/service-networking/getting-started). Valid only when [RuntimeType](#RuntimeType) is set to `CLOUD`. The value can be updated only when there are no runtime instances. For example: `default`. Apigee also supports shared VPC (that is, the host network project is not the same as the one that is peering with Apigee). See [Shared VPC overview](https://cloud.google.com/vpc/docs/shared-vpc). To use a shared VPC network, use the following format: `projects/{host-project-id}/{region}/networks/{network-name}`. For example: `projects/my-sharedvpc-host/global/networks/mynetwork` **Note:** Not supported for Apigee hybrid.",
+          "description": "Compute Engine network used for Service Networking to be peered with Apigee runtime instances. See [Getting started with the Service Networking API](https://cloud.google.com/service-infrastructure/docs/service-networking/getting-started). Valid only when [RuntimeType](#RuntimeType) is set to `CLOUD`. The value must be set before the creation of a runtime instance and can be updated only when there are no runtime instances. For example: `default`. Apigee also supports shared VPC (that is, the host network project is not the same as the one that is peering with Apigee). See [Shared VPC overview](https://cloud.google.com/vpc/docs/shared-vpc). To use a shared VPC network, use the following format: `projects/{host-project-id}/{region}/networks/{network-name}`. For example: `projects/my-sharedvpc-host/global/networks/mynetwork` **Note:** Not supported for Apigee hybrid.",
           "type": "string"
         },
         "billingType": {
@@ -9757,7 +9826,8 @@
           "type": "string"
         },
         "projectId": {
-          "description": "Project ID associated with the Apigee organization.",
+          "description": "Output only. Project ID associated with the Apigee organization.",
+          "readOnly": true,
           "type": "string"
         },
         "properties": {
@@ -9765,7 +9835,7 @@
           "description": "Properties defined in the Apigee organization profile."
         },
         "runtimeDatabaseEncryptionKeyName": {
-          "description": "Cloud KMS key name used for encrypting the data that is stored and replicated across runtime instances. Update is not allowed after the organization is created. If not specified, a Google-Managed encryption key will be used. Valid only when [RuntimeType](#RuntimeType) is `CLOUD`. For example: \"projects/foo/locations/us/keyRings/bar/cryptoKeys/baz\". **Note:** Not supported for Apigee hybrid.",
+          "description": "Cloud KMS key name used for encrypting the data that is stored and replicated across runtime instances. Update is not allowed after the organization is created. Required when [RuntimeType](#RuntimeType) is `CLOUD`. If not specified when [RuntimeType](#RuntimeType) is `TRIAL`, a Google-Managed encryption key will be used. For example: \"projects/foo/locations/us/keyRings/bar/cryptoKeys/baz\". **Note:** Not supported for Apigee hybrid.",
           "type": "string"
         },
         "runtimeType": {

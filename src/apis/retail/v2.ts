@@ -727,158 +727,11 @@ export namespace retail_v2 {
     nextPageToken?: string | null;
   }
   /**
-   * Configuration of destination for Export related errors.
-   */
-  export interface Schema$GoogleCloudRetailV2mainExportErrorsConfig {
-    /**
-     * Google Cloud Storage path for import errors. This must be an empty, existing Cloud Storage bucket. Export errors will be written to a file in this bucket, one per line, as a JSON-encoded `google.rpc.Status` message.
-     */
-    gcsPrefix?: string | null;
-  }
-  /**
-   * Metadata related to the progress of the Export operation. This will be returned by the google.longrunning.Operation.metadata field.
-   */
-  export interface Schema$GoogleCloudRetailV2mainExportMetadata {
-    /**
-     * Operation create time.
-     */
-    createTime?: string | null;
-    /**
-     * Operation last update time. If the operation is done, this is also the finish time.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * Response of the ExportProductsRequest. If the long running operation is done, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.
-   */
-  export interface Schema$GoogleCloudRetailV2mainExportProductsResponse {
-    /**
-     * A sample of errors encountered while processing the request.
-     */
-    errorSamples?: Schema$GoogleRpcStatus[];
-    /**
-     * Echoes the destination for the complete errors in the request if set.
-     */
-    errorsConfig?: Schema$GoogleCloudRetailV2mainExportErrorsConfig;
-  }
-  /**
-   * Response of the ExportUserEventsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.
-   */
-  export interface Schema$GoogleCloudRetailV2mainExportUserEventsResponse {
-    /**
-     * A sample of errors encountered while processing the request.
-     */
-    errorSamples?: Schema$GoogleRpcStatus[];
-    /**
-     * Echoes the destination for the complete errors if this field was set in the request.
-     */
-    errorsConfig?: Schema$GoogleCloudRetailV2mainExportErrorsConfig;
-  }
-  /**
-   * Configuration of destination for Import related errors.
-   */
-  export interface Schema$GoogleCloudRetailV2mainImportErrorsConfig {
-    /**
-     * Google Cloud Storage path for import errors. This must be an empty, existing Cloud Storage bucket. Import errors will be written to a file in this bucket, one per line, as a JSON-encoded `google.rpc.Status` message.
-     */
-    gcsPrefix?: string | null;
-  }
-  /**
-   * Metadata related to the progress of the Import operation. This will be returned by the google.longrunning.Operation.metadata field.
-   */
-  export interface Schema$GoogleCloudRetailV2mainImportMetadata {
-    /**
-     * Operation create time.
-     */
-    createTime?: string | null;
-    /**
-     * Count of entries that encountered errors while processing.
-     */
-    failureCount?: string | null;
-    /**
-     * Count of entries that were processed successfully.
-     */
-    successCount?: string | null;
-    /**
-     * Operation last update time. If the operation is done, this is also the finish time.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * Response of the ImportProductsRequest. If the long running operation is done, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.
-   */
-  export interface Schema$GoogleCloudRetailV2mainImportProductsResponse {
-    /**
-     * A sample of errors encountered while processing the request.
-     */
-    errorSamples?: Schema$GoogleRpcStatus[];
-    /**
-     * Echoes the destination for the complete errors in the request if set.
-     */
-    errorsConfig?: Schema$GoogleCloudRetailV2mainImportErrorsConfig;
-  }
-  /**
-   * Response of the ImportUserEventsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field if the operation was successful.
-   */
-  export interface Schema$GoogleCloudRetailV2mainImportUserEventsResponse {
-    /**
-     * A sample of errors encountered while processing the request.
-     */
-    errorSamples?: Schema$GoogleRpcStatus[];
-    /**
-     * Echoes the destination for the complete errors if this field was set in the request.
-     */
-    errorsConfig?: Schema$GoogleCloudRetailV2mainImportErrorsConfig;
-    /**
-     * Aggregated statistics of user event import status.
-     */
-    importSummary?: Schema$GoogleCloudRetailV2mainUserEventImportSummary;
-  }
-  /**
-   * Metadata related to the progress of the Purge operation. This will be returned by the google.longrunning.Operation.metadata field.
-   */
-  export interface Schema$GoogleCloudRetailV2mainPurgeMetadata {}
-  /**
-   * Response of the PurgeUserEventsRequest. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.
-   */
-  export interface Schema$GoogleCloudRetailV2mainPurgeUserEventsResponse {
-    /**
-     * The total count of events purged as a result of the operation.
-     */
-    purgedEventsCount?: string | null;
-  }
-  /**
-   * Metadata for RejoinUserEvents method.
-   */
-  export interface Schema$GoogleCloudRetailV2mainRejoinUserEventsMetadata {}
-  /**
-   * Response message for RejoinUserEvents method.
-   */
-  export interface Schema$GoogleCloudRetailV2mainRejoinUserEventsResponse {
-    /**
-     * Number of user events that were joined with latest product catalog.
-     */
-    rejoinedUserEventsCount?: string | null;
-  }
-  /**
-   * A summary of import result. The UserEventImportSummary summarizes the import status for user events.
-   */
-  export interface Schema$GoogleCloudRetailV2mainUserEventImportSummary {
-    /**
-     * Count of user events imported with complete existing catalog information.
-     */
-    joinedEventsCount?: string | null;
-    /**
-     * Count of user events imported, but with catalog information not found in the imported catalog.
-     */
-    unjoinedEventsCount?: string | null;
-  }
-  /**
    * Request message for Predict method.
    */
   export interface Schema$GoogleCloudRetailV2PredictRequest {
     /**
-     * Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-"tagA"` is also supported and is equivalent to `NOT "tagA"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=("Red" OR "Blue") tag="New-Arrival" tag=(NOT "promotional") * filterOutOfStockItems tag=(-"promotional") * filterOutOfStockItems If your filter blocks all prediction results, nothing will be returned. If you want generic (unfiltered) popular products to be returned instead, set `strictFiltering` to false in `PredictRequest.params`.
+     * Filter for restricting prediction results with a length limit of 5,000 characters. Accepts values for tags and the `filterOutOfStockItems` flag. * Tag expressions. Restricts predictions to products that match all of the specified tags. Boolean operators `OR` and `NOT` are supported if the expression is enclosed in parentheses, and must be separated from the tag values by a space. `-"tagA"` is also supported and is equivalent to `NOT "tagA"`. Tag values must be double quoted UTF-8 encoded strings with a size limit of 1,000 characters. Note: "Recently viewed" models don't support tag filtering at the moment. * filterOutOfStockItems. Restricts predictions to products that do not have a stockState value of OUT_OF_STOCK. Examples: * tag=("Red" OR "Blue") tag="New-Arrival" tag=(NOT "promotional") * filterOutOfStockItems tag=(-"promotional") * filterOutOfStockItems If your filter blocks all prediction results, nothing will be returned. If you want generic (unfiltered) popular products to be returned instead, set `strictFiltering` to false in `PredictRequest.params`.
      */
     filter?: string | null;
     /**
@@ -3077,7 +2930,7 @@ export namespace retail_v2 {
      *
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.placements.predict({
-     *     // Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/placements/x\} The id of the recommendation engine placement. This id is used to identify the set of models that will be used to make the prediction. We currently support three placements with the following IDs by default: * `shopping_cart`: Predicts products frequently bought together with one or more products in the same shopping session. Commonly displayed after `add-to-cart` events, on product detail pages, or on the shopping cart page. * `home_page`: Predicts the next product that a user will most likely engage with or purchase based on the shopping or viewing history of the specified `userId` or `visitorId`. For example - Recommendations for you. * `product_detail`: Predicts the next product that a user will most likely engage with or purchase. The prediction is based on the shopping or viewing history of the specified `userId` or `visitorId` and its relevance to a specified `CatalogItem`. Typically used on product detail pages. For example - More products like this. * `recently_viewed_default`: Returns up to 75 products recently viewed by the specified `userId` or `visitorId`, most recent ones first. Returns nothing if neither of them has viewed any products yet. For example - Recently viewed. The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
+     *     // Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/placements/x\} The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
      *     placement:
      *       'projects/my-project/locations/my-location/catalogs/my-catalog/placements/my-placement',
      *
@@ -3210,7 +3063,7 @@ export namespace retail_v2 {
   export interface Params$Resource$Projects$Locations$Catalogs$Placements$Predict
     extends StandardParameters {
     /**
-     * Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/placements/x\} The id of the recommendation engine placement. This id is used to identify the set of models that will be used to make the prediction. We currently support three placements with the following IDs by default: * `shopping_cart`: Predicts products frequently bought together with one or more products in the same shopping session. Commonly displayed after `add-to-cart` events, on product detail pages, or on the shopping cart page. * `home_page`: Predicts the next product that a user will most likely engage with or purchase based on the shopping or viewing history of the specified `userId` or `visitorId`. For example - Recommendations for you. * `product_detail`: Predicts the next product that a user will most likely engage with or purchase. The prediction is based on the shopping or viewing history of the specified `userId` or `visitorId` and its relevance to a specified `CatalogItem`. Typically used on product detail pages. For example - More products like this. * `recently_viewed_default`: Returns up to 75 products recently viewed by the specified `userId` or `visitorId`, most recent ones first. Returns nothing if neither of them has viewed any products yet. For example - Recently viewed. The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
+     * Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/placements/x\} The ID of the Recommendations AI placement. Before you can request predictions from your model, you must create at least one placement for it. For more information, see [Managing placements](https://cloud.google.com/retail/recommendations-ai/docs/manage-placements). The full list of available placements can be seen at https://console.cloud.google.com/recommendation/catalogs/default_catalog/placements
      */
     placement?: string;
 

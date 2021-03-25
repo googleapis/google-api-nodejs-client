@@ -1421,7 +1421,7 @@ export namespace run_v1 {
      */
     tag?: string | null;
     /**
-     * Output only. URL displays the URL for accessing tagged traffic targets. URL is displayed in status, and is disallowed on spec. URL must contain a scheme (e.g. http://) and a hostname, but may not contain anything else (e.g. basic auth, url path, etc. Not currently supported in Cloud Run.
+     * Output only. URL displays the URL for accessing tagged traffic targets. URL is displayed in status, and is disallowed on spec. URL must contain a scheme (e.g. http://) and a hostname, but may not contain anything else (e.g. basic auth, url path, etc.)
      */
     url?: string | null;
   }
@@ -2024,6 +2024,8 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.domainmappings.create({
+     *     // DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     *     dryRun: 'placeholder-value',
      *     // The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
      *
@@ -2170,6 +2172,8 @@ export namespace run_v1 {
      *   const res = await run.namespaces.domainmappings.delete({
      *     // Cloud Run currently ignores this parameter.
      *     apiVersion: 'placeholder-value',
+     *     // DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
      *     // The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
@@ -2571,6 +2575,10 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Domainmappings$Create
     extends StandardParameters {
     /**
+     * DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     */
+    dryRun?: string;
+    /**
      * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
@@ -2586,6 +2594,10 @@ export namespace run_v1 {
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
+    /**
+     * DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     */
+    dryRun?: string;
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -2677,6 +2689,8 @@ export namespace run_v1 {
      *   const res = await run.namespaces.revisions.delete({
      *     // Cloud Run currently ignores this parameter.
      *     apiVersion: 'placeholder-value',
+     *     // DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
      *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
@@ -3079,6 +3093,10 @@ export namespace run_v1 {
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
+    /**
+     * DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     */
+    dryRun?: string;
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -3500,6 +3518,8 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.create({
+     *     // DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     *     dryRun: 'placeholder-value',
      *     // The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
      *
@@ -3646,6 +3666,8 @@ export namespace run_v1 {
      *   const res = await run.namespaces.services.delete({
      *     // Cloud Run currently ignores this parameter.
      *     apiVersion: 'placeholder-value',
+     *     // DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
      *     // The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
@@ -4068,6 +4090,8 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.replaceService({
+     *     // DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     *     dryRun: 'placeholder-value',
      *     // The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'namespaces/my-namespace/services/my-service',
      *
@@ -4190,6 +4214,10 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Services$Create
     extends StandardParameters {
     /**
+     * DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     */
+    dryRun?: string;
+    /**
      * The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
@@ -4205,6 +4233,10 @@ export namespace run_v1 {
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
+    /**
+     * DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     */
+    dryRun?: string;
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -4262,6 +4294,10 @@ export namespace run_v1 {
   }
   export interface Params$Resource$Namespaces$Services$Replaceservice
     extends StandardParameters {
+    /**
+     * DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     */
+    dryRun?: string;
     /**
      * The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
@@ -4503,13 +4539,13 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.list({
-     *     // The standard list filter.
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The standard list page size.
+     *     // The maximum number of results to return. If not set, the service will select a default.
      *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4621,7 +4657,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * The standard list filter.
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -4629,11 +4665,11 @@ export namespace run_v1 {
      */
     name?: string;
     /**
-     * The standard list page size.
+     * The maximum number of results to return. If not set, the service will select a default.
      */
     pageSize?: number;
     /**
-     * The standard list page token.
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
   }
@@ -5172,6 +5208,8 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.domainmappings.create({
+     *     // DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     *     dryRun: 'placeholder-value',
      *     // The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
      *
@@ -5319,6 +5357,8 @@ export namespace run_v1 {
      *   const res = await run.projects.locations.domainmappings.delete({
      *     // Cloud Run currently ignores this parameter.
      *     apiVersion: 'placeholder-value',
+     *     // DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
      *     // The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
@@ -5717,6 +5757,10 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Domainmappings$Create
     extends StandardParameters {
     /**
+     * DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     */
+    dryRun?: string;
+    /**
      * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
@@ -5732,6 +5776,10 @@ export namespace run_v1 {
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
+    /**
+     * DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     */
+    dryRun?: string;
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -5823,6 +5871,8 @@ export namespace run_v1 {
      *   const res = await run.projects.locations.revisions.delete({
      *     // Cloud Run currently ignores this parameter.
      *     apiVersion: 'placeholder-value',
+     *     // DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
      *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
@@ -6220,6 +6270,10 @@ export namespace run_v1 {
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
+    /**
+     * DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     */
+    dryRun?: string;
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -6639,6 +6693,8 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.create({
+     *     // DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     *     dryRun: 'placeholder-value',
      *     // The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
      *
@@ -6786,6 +6842,8 @@ export namespace run_v1 {
      *   const res = await run.projects.locations.services.delete({
      *     // Cloud Run currently ignores this parameter.
      *     apiVersion: 'placeholder-value',
+     *     // DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
      *     // The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
@@ -7337,6 +7395,8 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.replaceService({
+     *     // DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     *     dryRun: 'placeholder-value',
      *     // The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *
@@ -7741,6 +7801,10 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Services$Create
     extends StandardParameters {
     /**
+     * DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     */
+    dryRun?: string;
+    /**
      * The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
@@ -7756,6 +7820,10 @@ export namespace run_v1 {
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
+    /**
+     * DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     */
+    dryRun?: string;
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -7824,6 +7892,10 @@ export namespace run_v1 {
   }
   export interface Params$Resource$Projects$Locations$Services$Replaceservice
     extends StandardParameters {
+    /**
+     * DryRun is a query string parameter which indicates that the server should run validation without persisting the request.
+     */
+    dryRun?: string;
     /**
      * The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */

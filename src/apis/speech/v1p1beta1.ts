@@ -233,6 +233,10 @@ export namespace speech_v1p1beta1 {
      */
     lastUpdateTime?: string | null;
     /**
+     * Output only. A copy of the TranscriptOutputConfig if it was set in the request.
+     */
+    outputConfig?: Schema$TranscriptOutputConfig;
+    /**
      * Approximate percentage of audio processed thus far. Guaranteed to be 100 when the audio is fully processed and the results are available.
      */
     progressPercent?: number | null;
@@ -257,11 +261,23 @@ export namespace speech_v1p1beta1 {
      * Required. Provides information to the recognizer that specifies how to process the request.
      */
     config?: Schema$RecognitionConfig;
+    /**
+     * Optional. Specifies an optional destination for the recognition results.
+     */
+    outputConfig?: Schema$TranscriptOutputConfig;
   }
   /**
    * The only message returned to the client by the `LongRunningRecognize` method. It contains the result as zero or more sequential `SpeechRecognitionResult` messages. It is included in the `result.response` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service.
    */
   export interface Schema$LongRunningRecognizeResponse {
+    /**
+     * Original output config if present in the request.
+     */
+    outputConfig?: Schema$TranscriptOutputConfig;
+    /**
+     * If the transcript output fails this field contains the relevant error.
+     */
+    outputError?: Schema$Status;
     /**
      * Sequential list of transcription results corresponding to sequential portions of audio.
      */
@@ -580,6 +596,15 @@ export namespace speech_v1p1beta1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Specifies an optional destination for the recognition results.
+   */
+  export interface Schema$TranscriptOutputConfig {
+    /**
+     * Specifies a Cloud Storage URI for the recognition results. Must be specified in the format: `gs://bucket_name/object_name`, and the bucket must already exist.
+     */
+    gcsUri?: string | null;
   }
   /**
    * Word-specific information for recognized words.
@@ -2450,7 +2475,8 @@ export namespace speech_v1p1beta1 {
      *       // request body parameters
      *       // {
      *       //   "audio": {},
-     *       //   "config": {}
+     *       //   "config": {},
+     *       //   "outputConfig": {}
      *       // }
      *     },
      *   });

@@ -1587,7 +1587,7 @@ export namespace area120tables_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await area120tables.tables.rows.list({
-     *     // Optional. Raw text query to search for in rows of the table. Special characters must be escaped. Logical operators and field specific filtering not supported.
+     *     // Optional. Filter to only include resources matching the requirements. For more information, see [Filtering list results](https://support.google.com/area120-tables/answer/10503371).
      *     filter: 'placeholder-value',
      *     // The maximum number of rows to return. The service may return fewer than this value. If unspecified, at most 50 rows are returned. The maximum value is 1,000; values above 1,000 are coerced to 1,000.
      *     pageSize: 'placeholder-value',
@@ -1920,7 +1920,7 @@ export namespace area120tables_v1alpha1 {
   }
   export interface Params$Resource$Tables$Rows$List extends StandardParameters {
     /**
-     * Optional. Raw text query to search for in rows of the table. Special characters must be escaped. Logical operators and field specific filtering not supported.
+     * Optional. Filter to only include resources matching the requirements. For more information, see [Filtering list results](https://support.google.com/area120-tables/answer/10503371).
      */
     filter?: string;
     /**

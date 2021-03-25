@@ -524,7 +524,7 @@
       }
     }
   },
-  "revision": "20210225",
+  "revision": "20210318",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
     "ClassItem": {
@@ -659,6 +659,11 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "outputConfig": {
+          "$ref": "TranscriptOutputConfig",
+          "description": "Output only. A copy of the TranscriptOutputConfig if it was set in the request.",
+          "readOnly": true
+        },
         "progressPercent": {
           "description": "Approximate percentage of audio processed thus far. Guaranteed to be 100 when the audio is fully processed and the results are available.",
           "format": "int32",
@@ -688,6 +693,10 @@
         "config": {
           "$ref": "RecognitionConfig",
           "description": "Required. Provides information to the recognizer that specifies how to process the request."
+        },
+        "outputConfig": {
+          "$ref": "TranscriptOutputConfig",
+          "description": "Optional. Specifies an optional destination for the recognition results."
         }
       },
       "type": "object"
@@ -696,6 +705,14 @@
       "description": "The only message returned to the client by the `LongRunningRecognize` method. It contains the result as zero or more sequential `SpeechRecognitionResult` messages. It is included in the `result.response` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service.",
       "id": "LongRunningRecognizeResponse",
       "properties": {
+        "outputConfig": {
+          "$ref": "TranscriptOutputConfig",
+          "description": "Original output config if present in the request."
+        },
+        "outputError": {
+          "$ref": "Status",
+          "description": "If the transcript output fails this field contains the relevant error."
+        },
         "results": {
           "description": "Sequential list of transcription results corresponding to sequential portions of audio.",
           "items": {
@@ -1190,6 +1207,17 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TranscriptOutputConfig": {
+      "description": "Specifies an optional destination for the recognition results.",
+      "id": "TranscriptOutputConfig",
+      "properties": {
+        "gcsUri": {
+          "description": "Specifies a Cloud Storage URI for the recognition results. Must be specified in the format: `gs://bucket_name/object_name`, and the bucket must already exist.",
           "type": "string"
         }
       },

@@ -432,7 +432,7 @@
       }
     }
   },
-  "revision": "20210302",
+  "revision": "20210316",
   "rootUrl": "https://admin-remotebuildexecution.googleapis.com/",
   "schemas": {
     "BuildBazelRemoteExecutionV2Action": {
@@ -978,8 +978,20 @@
           "description": "An identifier that ties multiple requests to the same action. For example, multiple requests to the CAS, Action Cache, and Execution API are used in order to compile foo.cc.",
           "type": "string"
         },
+        "actionMnemonic": {
+          "description": "A brief description of the kind of action, for example, CppCompile or GoLink. There is no standard agreed set of values for this, and they are expected to vary between different client tools.",
+          "type": "string"
+        },
+        "configurationId": {
+          "description": "An identifier for the configuration in which the target was built, e.g. for differentiating building host tools or different target platforms. There is no expectation that this value will have any particular structure, or equality across invocations, though some client tools may offer these guarantees.",
+          "type": "string"
+        },
         "correlatedInvocationsId": {
           "description": "An identifier to tie multiple tool invocations together. For example, runs of foo_test, bar_test and baz_test on a post-submit of a given patch.",
+          "type": "string"
+        },
+        "targetId": {
+          "description": "An identifier for the target which produced this action. No guarantees are made around how many actions may relate to a single target.",
           "type": "string"
         },
         "toolDetails": {

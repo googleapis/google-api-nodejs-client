@@ -1836,14 +1836,10 @@ export namespace fitness_v1 {
      *
      *   // Do the magic
      *   const res = await fitness.users.dataSources.datasets.delete({
-     *     // The client's current time in milliseconds since epoch.
-     *     currentTimeMillis: 'placeholder-value',
      *     // Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
      *     datasetId: 'placeholder-value',
      *     // The data stream ID of the data source that created the dataset.
      *     dataSourceId: 'placeholder-value',
-     *     // When the operation was performed on the client.
-     *     modifiedTimeMillis: 'placeholder-value',
      *     // Delete a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
      *     userId: 'placeholder-value',
      *   });
@@ -2142,8 +2138,6 @@ export namespace fitness_v1 {
      *
      *   // Do the magic
      *   const res = await fitness.users.dataSources.datasets.patch({
-     *     // The client's current time in milliseconds since epoch. Note that the minStartTimeNs and maxEndTimeNs properties in the request body are in nanoseconds instead of milliseconds.
-     *     currentTimeMillis: 'placeholder-value',
      *     // This field is not used, and can be safely omitted.
      *     datasetId: 'placeholder-value',
      *     // The data stream ID of the data source that created the dataset.
@@ -2270,10 +2264,6 @@ export namespace fitness_v1 {
   export interface Params$Resource$Users$Datasources$Datasets$Delete
     extends StandardParameters {
     /**
-     * The client's current time in milliseconds since epoch.
-     */
-    currentTimeMillis?: string;
-    /**
      * Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
      */
     datasetId?: string;
@@ -2281,10 +2271,6 @@ export namespace fitness_v1 {
      * The data stream ID of the data source that created the dataset.
      */
     dataSourceId?: string;
-    /**
-     * When the operation was performed on the client.
-     */
-    modifiedTimeMillis?: string;
     /**
      * Delete a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
      */
@@ -2315,10 +2301,6 @@ export namespace fitness_v1 {
   }
   export interface Params$Resource$Users$Datasources$Datasets$Patch
     extends StandardParameters {
-    /**
-     * The client's current time in milliseconds since epoch. Note that the minStartTimeNs and maxEndTimeNs properties in the request body are in nanoseconds instead of milliseconds.
-     */
-    currentTimeMillis?: string;
     /**
      * This field is not used, and can be safely omitted.
      */
@@ -2374,8 +2356,6 @@ export namespace fitness_v1 {
      *
      *   // Do the magic
      *   const res = await fitness.users.sessions.delete({
-     *     // The client's current time in milliseconds since epoch.
-     *     currentTimeMillis: 'placeholder-value',
      *     // The ID of the session to be deleted.
      *     sessionId: 'placeholder-value',
      *     // Delete a session for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
@@ -2672,8 +2652,6 @@ export namespace fitness_v1 {
      *
      *   // Do the magic
      *   const res = await fitness.users.sessions.update({
-     *     // The client's current time in milliseconds since epoch.
-     *     currentTimeMillis: 'placeholder-value',
      *     // The ID of the session to be created.
      *     sessionId: 'placeholder-value',
      *     // Create sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
@@ -2805,10 +2783,6 @@ export namespace fitness_v1 {
   export interface Params$Resource$Users$Sessions$Delete
     extends StandardParameters {
     /**
-     * The client's current time in milliseconds since epoch.
-     */
-    currentTimeMillis?: string;
-    /**
      * The ID of the session to be deleted.
      */
     sessionId?: string;
@@ -2846,10 +2820,6 @@ export namespace fitness_v1 {
   }
   export interface Params$Resource$Users$Sessions$Update
     extends StandardParameters {
-    /**
-     * The client's current time in milliseconds since epoch.
-     */
-    currentTimeMillis?: string;
     /**
      * The ID of the session to be created.
      */

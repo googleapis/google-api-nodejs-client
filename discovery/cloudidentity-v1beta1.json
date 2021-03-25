@@ -114,6 +114,151 @@
   },
   "protocol": "rest",
   "resources": {
+    "customers": {
+      "resources": {
+        "userinvitations": {
+          "methods": {
+            "cancel": {
+              "description": "Cancels a UserInvitation that was already sent.",
+              "flatPath": "v1beta1/customers/{customersId}/userinvitations/{userinvitationsId}:cancel",
+              "httpMethod": "POST",
+              "id": "cloudidentity.customers.userinvitations.cancel",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. `UserInvitation` name in the format `customers/{customer}/userinvitations/{user_email_address}`",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/userinvitations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}:cancel",
+              "request": {
+                "$ref": "CancelUserInvitationRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              }
+            },
+            "get": {
+              "description": "Retrieves a UserInvitation resource. **Note:** New consumer accounts with the customer’s verified domain created within the previous 48 hours will not appear in the result. This delay also applies to newly-verified domains.",
+              "flatPath": "v1beta1/customers/{customersId}/userinvitations/{userinvitationsId}",
+              "httpMethod": "GET",
+              "id": "cloudidentity.customers.userinvitations.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. `UserInvitation` name in the format `customers/{customer}/userinvitations/{user_email_address}`",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/userinvitations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "UserInvitation"
+              }
+            },
+            "isInvitableUser": {
+              "description": "Verifies whether a user account is eligible to receive a UserInvitation (is an unmanaged account). Eligibility is based on the following criteria: * the email address is a consumer account and it’s the primary email address of the account, and * the domain of the email address matches an existing verified Google Workspace or Cloud Identity domain If both conditions are met, the user is eligible. **Note:** This method is not supported for Workspace Essentials customers.",
+              "flatPath": "v1beta1/customers/{customersId}/userinvitations/{userinvitationsId}:isInvitableUser",
+              "httpMethod": "GET",
+              "id": "cloudidentity.customers.userinvitations.isInvitableUser",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. `UserInvitation` name in the format `customers/{customer}/userinvitations/{user_email_address}`",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/userinvitations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}:isInvitableUser",
+              "response": {
+                "$ref": "IsInvitableUserResponse"
+              }
+            },
+            "list": {
+              "description": "Retrieves a list of UserInvitation resources. **Note:** New consumer accounts with the customer’s verified domain created within the previous 48 hours will not appear in the result. This delay also applies to newly-verified domains.",
+              "flatPath": "v1beta1/customers/{customersId}/userinvitations",
+              "httpMethod": "GET",
+              "id": "cloudidentity.customers.userinvitations.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. A query string for filtering `UserInvitation` results by their current state, in the format: `\"state=='invited'\"`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Optional. The sort order of the list results. You can sort the results in descending order based on either email or last update timestamp but not both, using `order_by=\"email desc\"`. Currently, sorting is supported for `update_time asc`, `update_time desc`, `email asc`, and `email desc`. If not specified, results will be returned based on `email asc` order.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of UserInvitation resources to return. If unspecified, at most 100 resources will be returned. The maximum value is 200; values above 200 will be set to 200.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListUserInvitations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBooks` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The customer ID of the Google Workspace or Cloud Identity account the UserInvitation resources are associated with.",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/userinvitations",
+              "response": {
+                "$ref": "ListUserInvitationsResponse"
+              }
+            },
+            "send": {
+              "description": "Sends a UserInvitation to email. If the `UserInvitation` does not exist for this request and it is a valid request, the request creates a `UserInvitation`. **Note:** The `get` and `list` methods have a 48-hour delay where newly-created consumer accounts will not appear in the results. You can still send a `UserInvitation` to those accounts if you know the unmanaged email address and IsInvitableUser==True.",
+              "flatPath": "v1beta1/customers/{customersId}/userinvitations/{userinvitationsId}:send",
+              "httpMethod": "POST",
+              "id": "cloudidentity.customers.userinvitations.send",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. `UserInvitation` name in the format `customers/{customer}/userinvitations/{user_email_address}`",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/userinvitations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}:send",
+              "request": {
+                "$ref": "SendUserInvitationRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              }
+            }
+          }
+        }
+      }
+    },
     "devices": {
       "methods": {
         "cancelWipe": {
@@ -165,11 +310,6 @@
             "name"
           ],
           "parameters": {
-            "customer": {
-              "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
-              "location": "query",
-              "type": "string"
-            },
             "name": {
               "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}`, where device_id is the unique ID assigned to the Device.",
               "location": "path",
@@ -192,11 +332,6 @@
             "name"
           ],
           "parameters": {
-            "customer": {
-              "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Customer in format: `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
-              "location": "query",
-              "type": "string"
-            },
             "name": {
               "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}`, where device_id is the unique ID assigned to the Device.",
               "location": "path",
@@ -217,11 +352,6 @@
           "id": "cloudidentity.devices.list",
           "parameterOrder": [],
           "parameters": {
-            "customer": {
-              "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer.",
-              "location": "query",
-              "type": "string"
-            },
             "filter": {
               "description": "Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.",
               "location": "query",
@@ -377,11 +507,6 @@
                 "name"
               ],
               "parameters": {
-                "customer": {
-                  "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
-                  "location": "query",
-                  "type": "string"
-                },
                 "name": {
                   "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.",
                   "location": "path",
@@ -404,11 +529,6 @@
                 "name"
               ],
               "parameters": {
-                "customer": {
-                  "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
-                  "location": "query",
-                  "type": "string"
-                },
                 "name": {
                   "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.",
                   "location": "path",
@@ -431,11 +551,6 @@
                 "parent"
               ],
               "parameters": {
-                "customer": {
-                  "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
-                  "location": "query",
-                  "type": "string"
-                },
                 "filter": {
                   "description": "Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.",
                   "location": "query",
@@ -560,12 +675,12 @@
                   ],
                   "parameters": {
                     "customer": {
-                      "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
+                      "description": "Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientStates/{partner_id}`, where device_id is the unique ID assigned to the Device, device_user_id is the unique ID assigned to the User and partner_id identifies the partner storing the data. To get the client state for devices belonging to your own organization, the `partnerId` is in the format: `customerId-*anystring*`. Where the `customerId` is your organization's customer ID and `anystring` is any suffix. This suffix is used in setting up Custom Access Levels in Context-Aware Access. You may use `my_customer` instead of the customer ID for devices managed by your own organization.",
+                      "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientStates/{partner_id}`, where `device_id` is the unique ID assigned to the Device, `device_user_id` is the unique ID assigned to the User and `partner_id` identifies the partner storing the data. To get the client state for devices belonging to your own organization, the `partnerId` is in the format: `customerId-*anystring*`. Where the `customerId` is your organization's customer ID and `anystring` is any suffix. This suffix is used in setting up Custom Access Levels in Context-Aware Access. You may use `my_customer` instead of the customer ID for devices managed by your own organization. You may specify `-` in place of the `{device_id}`, so the ClientState resource name can be: `devices/-/deviceUsers/{device_user_resource_id}/clientStates/{partner_id}`.",
                       "location": "path",
                       "pattern": "^devices/[^/]+/deviceUsers/[^/]+/clientStates/[^/]+$",
                       "required": true,
@@ -587,7 +702,7 @@
                   ],
                   "parameters": {
                     "customer": {
-                      "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
+                      "description": "Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1221,7 +1336,7 @@
       }
     }
   },
-  "revision": "20210204",
+  "revision": "20210310",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
@@ -1262,12 +1377,7 @@
     "ApproveDeviceUserRequest": {
       "description": "Request message for approving the device to access user data.",
       "id": "ApproveDeviceUserRequest",
-      "properties": {
-        "customer": {
-          "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
-          "type": "string"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "ApproveDeviceUserResponse": {
@@ -1284,12 +1394,7 @@
     "BlockDeviceUserRequest": {
       "description": "Request message for blocking account on device.",
       "id": "BlockDeviceUserRequest",
-      "properties": {
-        "customer": {
-          "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
-          "type": "string"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "BlockDeviceUserResponse": {
@@ -1303,15 +1408,16 @@
       },
       "type": "object"
     },
+    "CancelUserInvitationRequest": {
+      "description": "Request to cancel sent invitation for target email in UserInvitation.",
+      "id": "CancelUserInvitationRequest",
+      "properties": {},
+      "type": "object"
+    },
     "CancelWipeDeviceRequest": {
       "description": "Request message for cancelling an unfinished device wipe.",
       "id": "CancelWipeDeviceRequest",
-      "properties": {
-        "customer": {
-          "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
-          "type": "string"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "CancelWipeDeviceResponse": {
@@ -1328,12 +1434,7 @@
     "CancelWipeDeviceUserRequest": {
       "description": "Request message for cancelling an unfinished user account wipe.",
       "id": "CancelWipeDeviceUserRequest",
-      "properties": {
-        "customer": {
-          "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
-          "type": "string"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "CancelWipeDeviceUserResponse": {
@@ -1475,13 +1576,9 @@
       "description": "Request message for creating a Company Owned device.",
       "id": "CreateDeviceRequest",
       "properties": {
-        "customer": {
-          "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
-          "type": "string"
-        },
         "device": {
           "$ref": "Device",
-          "description": "Required. The device to be created. The name field within this device is ignored in the create method. A new name is created by the method, and returned within the response. Only the fields `device_type`, `serial_number` and `asset_tag` (if present) are used to create the device.`device_type` and `serial_number` are required."
+          "description": "Required. The device to be created. The name field within this device is ignored in the create method. A new name is created by the method, and returned within the response. Only the fields `device_type`, `serial_number` and `asset_tag` (if present) are used to create the device. All other fields are ignored. The `device_type` and `serial_number` fields are required."
         }
       },
       "type": "object"
@@ -2594,6 +2691,17 @@
       },
       "type": "object"
     },
+    "IsInvitableUserResponse": {
+      "description": "Response for IsInvitableUser RPC.",
+      "id": "IsInvitableUserResponse",
+      "properties": {
+        "isInvitableUser": {
+          "description": "Returns true if the email address is invitable.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "ListClientStatesResponse": {
       "description": "Response message that is returned in LRO result of ListClientStates Operation.",
       "id": "ListClientStatesResponse",
@@ -2680,6 +2788,24 @@
         "nextPageToken": {
           "description": "A continuation token to retrieve the next page of results, or empty if there are no more results available.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListUserInvitationsResponse": {
+      "description": "Response message for UserInvitation listing request.",
+      "id": "ListUserInvitationsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The token for the next page. If not empty, indicates that there may be more `UserInvitation` resources that match the listing request; this value can be used in a subsequent ListUserInvitationsRequest to get continued results with the current list call.",
+          "type": "string"
+        },
+        "userInvitations": {
+          "description": "The list of UserInvitation resources.",
+          "items": {
+            "$ref": "UserInvitation"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2989,6 +3115,12 @@
       },
       "type": "object"
     },
+    "SendUserInvitationRequest": {
+      "description": "A request to send email for inviting target user corresponding to the UserInvitation.",
+      "id": "SendUserInvitationRequest",
+      "properties": {},
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -3044,7 +3176,7 @@
       "type": "object"
     },
     "UserInvitation": {
-      "description": "The `UserInvitation` resource represents an email sent to an unmanaged user account (an email address that shares the domain of the Google Workspace customer but is not managed by it yet), inviting them to join the customer’s domain. If the user accepts the `UserInvitation`, the account will become a managed account.",
+      "description": "The `UserInvitation` resource represents an email that can be sent to an unmanaged user account inviting them to join the customer’s Google Workspace or Cloud Identity account. An unmanaged account shares an email address domain with the Google Workspace or Cloud Identity account but is not managed by it yet. If the user accepts the `UserInvitation`, the user account will become managed.",
       "id": "UserInvitation",
       "properties": {
         "mailsSentCount": {
@@ -3085,12 +3217,7 @@
     "WipeDeviceRequest": {
       "description": "Request message for wiping all data on the device.",
       "id": "WipeDeviceRequest",
-      "properties": {
-        "customer": {
-          "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
-          "type": "string"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "WipeDeviceResponse": {
@@ -3107,12 +3234,7 @@
     "WipeDeviceUserRequest": {
       "description": "Request message for starting an account wipe on device.",
       "id": "WipeDeviceUserRequest",
-      "properties": {
-        "customer": {
-          "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.",
-          "type": "string"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "WipeDeviceUserResponse": {

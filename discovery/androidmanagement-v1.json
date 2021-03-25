@@ -1004,7 +1004,7 @@
       }
     }
   },
-  "revision": "20210222",
+  "revision": "20210318",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -1623,6 +1623,28 @@
         },
         "euRepresentativePhone": {
           "description": "The phone number of the EU representative. The phone number is validated but not verified.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContentProviderEndpoint": {
+      "description": "This feature is not generally available.",
+      "id": "ContentProviderEndpoint",
+      "properties": {
+        "packageName": {
+          "description": "This feature is not generally available.",
+          "type": "string"
+        },
+        "signingCertsSha256": {
+          "description": "Required. This feature is not generally available.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "uri": {
+          "description": "This feature is not generally available.",
           "type": "string"
         }
       },
@@ -2832,6 +2854,24 @@
       },
       "type": "object"
     },
+    "OncCertificateProvider": {
+      "description": "This feature is not generally available.",
+      "id": "OncCertificateProvider",
+      "properties": {
+        "certificateReferences": {
+          "description": "This feature is not generally available.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "contentProviderEndpoint": {
+          "$ref": "ContentProviderEndpoint",
+          "description": "This feature is not generally available."
+        }
+      },
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -3316,7 +3356,7 @@
           "type": "boolean"
         },
         "installUnknownSourcesAllowed": {
-          "description": "Whether the user is allowed to enable the \"Unknown Sources\" setting, which allows installation of apps from unknown sources.",
+          "description": "This field has no effect.",
           "type": "boolean"
         },
         "keyguardDisabled": {
@@ -3425,6 +3465,13 @@
         "networkResetDisabled": {
           "description": "Whether resetting network settings is disabled.",
           "type": "boolean"
+        },
+        "oncCertificateProviders": {
+          "description": "This feature is not generally available.",
+          "items": {
+            "$ref": "OncCertificateProvider"
+          },
+          "type": "array"
         },
         "openNetworkConfiguration": {
           "additionalProperties": {

@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -819,7 +819,7 @@
       }
     }
   },
-  "revision": "20210225",
+  "revision": "20210319",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ArtifactObjects": {
@@ -1997,6 +1997,10 @@
         "storageSource": {
           "$ref": "StorageSource",
           "description": "If provided, get the source from this location in Google Cloud Storage."
+        },
+        "storageSourceManifest": {
+          "$ref": "StorageSourceManifest",
+          "description": "If provided, get the source from this manifest in Google Cloud Storage. This feature is in Preview."
         }
       },
       "type": "object"
@@ -2020,6 +2024,10 @@
         "resolvedStorageSource": {
           "$ref": "StorageSource",
           "description": "A copy of the build's `source.storage_source`, if exists, with any generations resolved."
+        },
+        "resolvedStorageSourceManifest": {
+          "$ref": "StorageSourceManifest",
+          "description": "A copy of the build's `source.storage_source_manifest`, if exists, with any revisions resolved. This feature is in Preview."
         }
       },
       "type": "object"
@@ -2066,6 +2074,26 @@
         },
         "object": {
           "description": "Google Cloud Storage object containing the source. This object must be a gzipped archive file (`.tar.gz`) containing source to build.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StorageSourceManifest": {
+      "description": "Location of the source manifest in Google Cloud Storage. This feature is in Preview.",
+      "id": "StorageSourceManifest",
+      "properties": {
+        "bucket": {
+          "description": "Google Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).",
+          "type": "string"
+        },
+        "generation": {
+          "description": "Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.",
+          "format": "int64",
+          "type": "string"
+        },
+        "object": {
+          "description": "Google Cloud Storage object containing the source manifest. This object must be a JSON file.",
           "type": "string"
         }
       },

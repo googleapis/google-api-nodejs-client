@@ -307,12 +307,12 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "analyticsdata:v1alpha",
+      "id": "analyticsdata:v1beta",
       "name": "analyticsdata",
-      "version": "v1alpha",
+      "version": "v1beta",
       "title": "Google Analytics Data API",
       "description": "Accesses report data in Google Analytics.",
-      "discoveryRestUrl": "https://analyticsdata.googleapis.com/$discovery/rest?version=v1alpha",
+      "discoveryRestUrl": "https://analyticsdata.googleapis.com/$discovery/rest?version=v1beta",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -835,7 +835,7 @@
       "name": "chromemanagement",
       "version": "v1",
       "title": "Chrome Management API",
-      "description": "The Chrome Management API is a suite of services that allows Chrome administrators to view, manage and gain insights on their Chrome OS The Chrome Management API is a suite of services that allows GSuite domain administrators to view, manage and gain insights on their Chrome OS and Chrome Browser devices and users.",
+      "description": "The Chrome Management API is a suite of services that allows Chrome administrators to view, manage and gain insights on their Chrome OS and Chrome Browser devices.",
       "discoveryRestUrl": "https://chromemanagement.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -1032,6 +1032,21 @@
       "title": "Cloud Build API",
       "description": "Creates and manages builds on Google Cloud Platform.",
       "discoveryRestUrl": "https://cloudbuild.googleapis.com/$discovery/rest?version=v1alpha2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/cloud-build/docs/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "cloudbuild:v1beta1",
+      "name": "cloudbuild",
+      "version": "v1beta1",
+      "title": "Cloud Build API",
+      "description": "Creates and manages builds on Google Cloud Platform.",
+      "discoveryRestUrl": "https://cloudbuild.googleapis.com/$discovery/rest?version=v1beta1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -1308,21 +1323,6 @@
       },
       "documentationLink": "https://developers.google.com/cloud-search/docs/guides/",
       "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "cloudshell:v1alpha1",
-      "name": "cloudshell",
-      "version": "v1alpha1",
-      "title": "Cloud Shell API",
-      "description": "Allows users to start, configure, and connect to interactive shell sessions running in the cloud.",
-      "discoveryRestUrl": "https://cloudshell.googleapis.com/$discovery/rest?version=v1alpha1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/shell/docs/",
-      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -1695,6 +1695,21 @@
       "title": "Database Migration API",
       "description": "Manage Cloud Database Migration Service resources on Google Cloud Platform.",
       "discoveryRestUrl": "https://datamigration.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/database-migration/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "datamigration:v1",
+      "name": "datamigration",
+      "version": "v1",
+      "title": "Database Migration API",
+      "description": "Manage Cloud Database Migration Service resources on Google Cloud Platform.",
+      "discoveryRestUrl": "https://datamigration.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -2396,6 +2411,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "firebasestorage:v1beta",
+      "name": "firebasestorage",
+      "version": "v1beta",
+      "title": "Cloud Storage for Firebase API",
+      "description": "The Cloud Storage for Firebase API enables programmatic management of Cloud Storage buckets for use in Firebase projects",
+      "discoveryRestUrl": "https://firebasestorage.googleapis.com/$discovery/rest?version=v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://firebase.google.com/docs/storage",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "firestore:v1beta1",
       "name": "firestore",
       "version": "v1beta1",
@@ -2572,6 +2602,81 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/genomics",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "gkehub:v1alpha",
+      "name": "gkehub",
+      "version": "v1alpha",
+      "title": "GKE Hub",
+      "description": "",
+      "discoveryRestUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1alpha",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "gkehub:v1alpha2",
+      "name": "gkehub",
+      "version": "v1alpha2",
+      "title": "GKE Hub",
+      "description": "",
+      "discoveryRestUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1alpha2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "gkehub:v1beta",
+      "name": "gkehub",
+      "version": "v1beta",
+      "title": "GKE Hub",
+      "description": "",
+      "discoveryRestUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "gkehub:v1beta1",
+      "name": "gkehub",
+      "version": "v1beta1",
+      "title": "GKE Hub",
+      "description": "",
+      "discoveryRestUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "gkehub:v1",
+      "name": "gkehub",
+      "version": "v1",
+      "title": "GKE Hub",
+      "description": "",
+      "discoveryRestUrl": "https://gkehub.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster",
       "preferred": true
     },
     {
@@ -3233,6 +3338,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/container-analysis/docs/on-demand-scanning/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "orgpolicy:v2",
+      "name": "orgpolicy",
+      "version": "v2",
+      "title": "Organization Policy API",
+      "description": "The Org Policy API allows users to configure governance ruleson their GCP resources across the Cloud Resource Hierarchy.",
+      "discoveryRestUrl": "https://orgpolicy.googleapis.com/$discovery/rest?version=v2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints",
       "preferred": true
     },
     {

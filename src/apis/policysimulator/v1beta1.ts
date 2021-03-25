@@ -381,6 +381,78 @@ export namespace policysimulator_v1beta1 {
     unchangedCount?: number | null;
   }
   /**
+   * A resource describing a `Replay`, or simulation.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1Replay {
+    /**
+     * Required. The configuration used for the `Replay`.
+     */
+    config?: Schema$GoogleCloudPolicysimulatorV1ReplayConfig;
+    /**
+     * Output only. The resource name of the `Replay`, which has the following format: `{projects|folders|organizations\}/{resource-id\}/locations/global/replays/{replay-id\}`, where `{resource-id\}` is the ID of the project, folder, or organization that owns the Replay. Example: `projects/my-example-project/locations/global/replays/506a5f7f-38ce-4d7d-8e03-479ce1833c36`
+     */
+    name?: string | null;
+    /**
+     * Output only. Summary statistics about the replayed log entries.
+     */
+    resultsSummary?: Schema$GoogleCloudPolicysimulatorV1ReplayResultsSummary;
+    /**
+     * Output only. The current state of the `Replay`.
+     */
+    state?: string | null;
+  }
+  /**
+   * The configuration used for a Replay.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1ReplayConfig {
+    /**
+     * The logs to use as input for the Replay.
+     */
+    logSource?: string | null;
+    /**
+     * A mapping of the resources that you want to simulate policies for and the policies that you want to simulate. Keys are the full resource names for the resources. For example, `//cloudresourcemanager.googleapis.com/projects/my-project`. For examples of full resource names for Google Cloud services, see https://cloud.google.com/iam/help/troubleshooter/full-resource-names. Values are Policy objects representing the policies that you want to simulate. Replays automatically take into account any IAM policies inherited through the resource hierarchy, and any policies set on descendant resources. You do not need to include these policies in the policy overlay.
+     */
+    policyOverlay?: {[key: string]: Schema$GoogleIamV1Policy} | null;
+  }
+  /**
+   * Metadata about a Replay operation.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1ReplayOperationMetadata {
+    /**
+     * Time when the request was received.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Summary statistics about the replayed log entries.
+   */
+  export interface Schema$GoogleCloudPolicysimulatorV1ReplayResultsSummary {
+    /**
+     * The number of replayed log entries with a difference between baseline and simulated policies.
+     */
+    differenceCount?: number | null;
+    /**
+     * The number of log entries that could not be replayed.
+     */
+    errorCount?: number | null;
+    /**
+     * The total number of log entries replayed.
+     */
+    logCount?: number | null;
+    /**
+     * The date of the newest log entry replayed.
+     */
+    newestDate?: Schema$GoogleTypeDate;
+    /**
+     * The date of the oldest log entry replayed.
+     */
+    oldestDate?: Schema$GoogleTypeDate;
+    /**
+     * The number of replayed log entries with no difference between baseline and simulated policies.
+     */
+    unchangedCount?: number | null;
+  }
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$GoogleIamV1AuditConfig {

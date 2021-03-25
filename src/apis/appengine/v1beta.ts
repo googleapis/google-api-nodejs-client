@@ -1472,7 +1472,7 @@ export namespace appengine_v1beta {
      */
     apiConfig?: Schema$ApiConfigHandler;
     /**
-     * app_engine_apis allows Second Generation runtimes to access the App Engine APIs.
+     * app_engine_apis allows second generation runtimes to access the App Engine APIs.
      */
     appEngineApis?: boolean | null;
     /**
@@ -1599,6 +1599,10 @@ export namespace appengine_v1beta {
      * The path or name of the app's main executable.
      */
     runtimeMainExecutablePath?: string | null;
+    /**
+     * The identity that the deployed version will run as. Admin API will use the App Engine Appspot service account as default if this field is neither provided in app.yaml file nor through CLI flag.
+     */
+    serviceAccount?: string | null;
     /**
      * Current serving status of this version. Only the versions with a SERVING status create instances and can be billed.SERVING_STATUS_UNSPECIFIED is an invalid value. Defaults to SERVING.
      */
@@ -5232,11 +5236,11 @@ export namespace appengine_v1beta {
      *   const res = await appengine.apps.locations.list({
      *     // Part of `name`. The resource that owns the locations collection, if applicable.
      *     appsId: 'placeholder-value',
-     *     // The standard list filter.
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
-     *     // The standard list page size.
+     *     // The maximum number of results to return. If not set, the service will select a default.
      *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
+     *     // A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5363,15 +5367,15 @@ export namespace appengine_v1beta {
      */
     appsId?: string;
     /**
-     * The standard list filter.
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      */
     filter?: string;
     /**
-     * The standard list page size.
+     * The maximum number of results to return. If not set, the service will select a default.
      */
     pageSize?: number;
     /**
-     * The standard list page token.
+     * A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
   }
@@ -6410,6 +6414,7 @@ export namespace appengine_v1beta {
      *       //   "runtimeApiVersion": "my_runtimeApiVersion",
      *       //   "runtimeChannel": "my_runtimeChannel",
      *       //   "runtimeMainExecutablePath": "my_runtimeMainExecutablePath",
+     *       //   "serviceAccount": "my_serviceAccount",
      *       //   "servingStatus": "my_servingStatus",
      *       //   "threadsafe": false,
      *       //   "versionUrl": "my_versionUrl",
@@ -6735,6 +6740,7 @@ export namespace appengine_v1beta {
      *   //   "runtimeApiVersion": "my_runtimeApiVersion",
      *   //   "runtimeChannel": "my_runtimeChannel",
      *   //   "runtimeMainExecutablePath": "my_runtimeMainExecutablePath",
+     *   //   "serviceAccount": "my_serviceAccount",
      *   //   "servingStatus": "my_servingStatus",
      *   //   "threadsafe": false,
      *   //   "versionUrl": "my_versionUrl",
@@ -7054,6 +7060,7 @@ export namespace appengine_v1beta {
      *       //   "runtimeApiVersion": "my_runtimeApiVersion",
      *       //   "runtimeChannel": "my_runtimeChannel",
      *       //   "runtimeMainExecutablePath": "my_runtimeMainExecutablePath",
+     *       //   "serviceAccount": "my_serviceAccount",
      *       //   "servingStatus": "my_servingStatus",
      *       //   "threadsafe": false,
      *       //   "versionUrl": "my_versionUrl",

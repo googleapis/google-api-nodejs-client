@@ -342,7 +342,7 @@
       }
     }
   },
-  "revision": "20210225",
+  "revision": "20210315",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -812,9 +812,11 @@
             "FILTER_EVENT_TYPE",
             "FILTER_CHANNEL_GROUPING",
             "FILTER_OM_SDK_AVAILABLE",
-            "FILTER_DATA_SOURCE"
+            "FILTER_DATA_SOURCE",
+            "FILTER_CM360_PLACEMENT_ID"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -1422,9 +1424,11 @@
               "FILTER_EVENT_TYPE",
               "FILTER_CHANNEL_GROUPING",
               "FILTER_OM_SDK_AVAILABLE",
-              "FILTER_DATA_SOURCE"
+              "FILTER_DATA_SOURCE",
+              "FILTER_CM360_PLACEMENT_ID"
             ],
             "enumDescriptions": [
+              "",
               "",
               "",
               "",
@@ -2149,9 +2153,19 @@
               "METRIC_VIRTUAL_PEOPLE_AVERAGE_VIEWABLE_IMPRESSION_FREQUENCY_BY_DEMO",
               "METRIC_VIRTUAL_PEOPLE_VIEWABLE_IMPRESSION_REACH_BY_DEMO",
               "METRIC_VIRTUAL_PEOPLE_VIEWABLE_IMPRESSION_REACH_PERCENT",
-              "METRIC_VIRTUAL_PEOPLE_VIEWABLE_IMPRESSION_REACH_SHARE_PERCENT"
+              "METRIC_VIRTUAL_PEOPLE_VIEWABLE_IMPRESSION_REACH_SHARE_PERCENT",
+              "METRIC_ENGAGEMENT_RATE",
+              "METRIC_CM360_POST_VIEW_REVENUE",
+              "METRIC_CM360_POST_CLICK_REVENUE",
+              "METRIC_CM360_POST_CLICK_REVENUE_CROSS_ENVIRONMENT",
+              "METRIC_CM360_POST_VIEW_REVENUE_CROSS_ENVIRONMENT"
             ],
             "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              "",
               "",
               "",
               "",
@@ -3004,9 +3018,11 @@
             "FILTER_EVENT_TYPE",
             "FILTER_CHANNEL_GROUPING",
             "FILTER_OM_SDK_AVAILABLE",
-            "FILTER_DATA_SOURCE"
+            "FILTER_DATA_SOURCE",
+            "FILTER_CM360_PLACEMENT_ID"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",

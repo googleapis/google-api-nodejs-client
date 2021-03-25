@@ -867,7 +867,7 @@ export namespace monitoring_v1 {
     }
 
     /**
-     * Deletes an existing custom dashboard.This method requires the monitoring.dashboards.delete permission on the specified dashboard. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
+     * Deletes an existing custom dashboard.This method requires the monitoring.dashboards.delete permission on the specified dashboard. For more information, see Cloud Identity and Access Management (https://cloud.google.com/iam).
      * @example
      * ```js
      * // Before running the sample:
@@ -995,7 +995,7 @@ export namespace monitoring_v1 {
     }
 
     /**
-     * Fetches a specific dashboard.This method requires the monitoring.dashboards.get permission on the specified dashboard. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
+     * Fetches a specific dashboard.This method requires the monitoring.dashboards.get permission on the specified dashboard. For more information, see Cloud Identity and Access Management (https://cloud.google.com/iam).
      * @example
      * ```js
      * // Before running the sample:
@@ -1131,7 +1131,7 @@ export namespace monitoring_v1 {
     }
 
     /**
-     * Lists the existing dashboards.This method requires the monitoring.dashboards.list permission on the specified project. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
+     * Lists the existing dashboards.This method requires the monitoring.dashboards.list permission on the specified project. For more information, see Cloud Identity and Access Management (https://cloud.google.com/iam).
      * @example
      * ```js
      * // Before running the sample:
@@ -1274,7 +1274,7 @@ export namespace monitoring_v1 {
     }
 
     /**
-     * Replaces an existing custom dashboard with a new definition.This method requires the monitoring.dashboards.update permission on the specified dashboard. For more information, see Google Cloud IAM (https://cloud.google.com/iam).
+     * Replaces an existing custom dashboard with a new definition.This method requires the monitoring.dashboards.update permission on the specified dashboard. For more information, see Cloud Identity and Access Management (https://cloud.google.com/iam).
      * @example
      * ```js
      * // Before running the sample:

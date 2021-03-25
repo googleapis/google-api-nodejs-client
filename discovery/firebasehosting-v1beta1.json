@@ -21,7 +21,7 @@
   "baseUrl": "https://firebasehosting.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Firebase Hosting",
-  "description": "The Firebase Hosting REST API enables programmatic and customizable deployments to your Firebase-hosted sites. Use this REST API to deploy new or updated hosting configurations and content files.",
+  "description": "The Firebase Hosting REST API enables programmatic and customizable management and deployments to your Firebase-hosted sites. Use this REST API to create and manage channels and sites as well as to deploy new or updated hosting configurations and content files.",
   "discoveryVersion": "v1",
   "documentationLink": "https://firebase.google.com/docs/hosting/",
   "fullyEncodeReservedExpansion": true,
@@ -150,6 +150,94 @@
         },
         "sites": {
           "methods": {
+            "create": {
+              "description": "Creates a new Hosting Site in the specified parent Firebase project. Note that Hosting sites can take several minutes to propagate through Firebase systems.",
+              "flatPath": "v1beta1/projects/{projectsId}/sites",
+              "httpMethod": "POST",
+              "id": "firebasehosting.projects.sites.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The Firebase project in which to create a Hosting site, in the format: projects/PROJECT_IDENTIFIER Refer to the `Site` [`name`](../projects#Site.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "siteId": {
+                  "description": "Required. Immutable. A globally unique identifier for the Hosting site. This identifier is used to construct the Firebase-provisioned subdomains for the site, so it must also be a valid domain name label.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/sites",
+              "request": {
+                "$ref": "Site"
+              },
+              "response": {
+                "$ref": "Site"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
+              ]
+            },
+            "delete": {
+              "description": "Deletes the specified Hosting Site from the specified parent Firebase project.",
+              "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}",
+              "httpMethod": "DELETE",
+              "id": "firebasehosting.projects.sites.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The fully-qualified resource name for the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID Refer to the `Site` [`name`](../projects#Site.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/sites/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
+              ]
+            },
+            "get": {
+              "description": "Gets the specified Hosting Site.",
+              "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}",
+              "httpMethod": "GET",
+              "id": "firebasehosting.projects.sites.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The fully-qualified resource name for the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID Refer to the `Site` [`name`](../projects#Site.FIELDS.name) field for details about PROJECT_IDENTIFIER values. Since a SITE_ID is a globally unique identifier, you can also use the unique sub-collection resource access pattern, in the format: projects/-/sites/SITE_ID",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/sites/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "response": {
+                "$ref": "Site"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only",
+                "https://www.googleapis.com/auth/firebase",
+                "https://www.googleapis.com/auth/firebase.readonly"
+              ]
+            },
             "getConfig": {
               "description": "Gets the Hosting metadata for a specific site.",
               "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}/config",
@@ -176,6 +264,80 @@
                 "https://www.googleapis.com/auth/cloud-platform.read-only",
                 "https://www.googleapis.com/auth/firebase",
                 "https://www.googleapis.com/auth/firebase.readonly"
+              ]
+            },
+            "list": {
+              "description": "Lists each Hosting Site associated with the specified parent Firebase project.",
+              "flatPath": "v1beta1/projects/{projectsId}/sites",
+              "httpMethod": "GET",
+              "id": "firebasehosting.projects.sites.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of sites to return. The service may return a lower number if fewer sites exist than this maximum number. If unspecified, defaults to 40.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A token from a previous call to `ListSites` that tells the server where to resume listing.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The Firebase project for which to list sites, in the format: projects/PROJECT_IDENTIFIER Refer to the `Site` [`name`](../projects#Site.FIELDS.name) field for details about PROJECT_IDENTIFIER values.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/sites",
+              "response": {
+                "$ref": "ListSitesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only",
+                "https://www.googleapis.com/auth/firebase",
+                "https://www.googleapis.com/auth/firebase.readonly"
+              ]
+            },
+            "patch": {
+              "description": "Updates attributes of the specified Hosting Site.",
+              "flatPath": "v1beta1/projects/{projectsId}/sites/{sitesId}",
+              "httpMethod": "PATCH",
+              "id": "firebasehosting.projects.sites.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. The fully-qualified resource name of the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID PROJECT_IDENTIFIER: the Firebase project's [`ProjectNumber`](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510).",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/sites/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "A set of field names from your Site that you want to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+name}",
+              "request": {
+                "$ref": "Site"
+              },
+              "response": {
+                "$ref": "Site"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/firebase"
               ]
             },
             "updateConfig": {
@@ -232,7 +394,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The site in which to create this channel, in the format: sites/ SITE_NAME",
+                      "description": "Required. The site in which to create this channel, in the format: sites/ SITE_ID",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sites/[^/]+$",
                       "required": true,
@@ -261,7 +423,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The fully-qualified identifier for the channel, in the format: sites/SITE_NAME/channels/CHANNEL_ID",
+                      "description": "Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sites/[^/]+/channels/[^/]+$",
                       "required": true,
@@ -287,7 +449,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The fully-qualified identifier for the channel, in the format: sites/SITE_NAME/channels/CHANNEL_ID",
+                      "description": "Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sites/[^/]+/channels/[^/]+$",
                       "required": true,
@@ -326,7 +488,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The site for which to list channels, in the format: sites/ SITE_NAME",
+                      "description": "Required. The site for which to list channels, in the format: sites/SITE_ID",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sites/[^/]+$",
                       "required": true,
@@ -354,7 +516,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The fully-qualified identifier for the channel, in the format: sites/ SITE_NAME/channels/CHANNEL_ID",
+                      "description": "The fully-qualified resource name for the channel, in the format: sites/ SITE_ID/channels/CHANNEL_ID",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sites/[^/]+/channels/[^/]+$",
                       "required": true,
@@ -393,14 +555,14 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID",
+                          "description": "Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID",
                           "location": "path",
                           "pattern": "^projects/[^/]+/sites/[^/]+/channels/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "versionName": {
-                          "description": " The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.",
+                          "description": " The unique identifier for a version, in the format: sites/SITE_ID/versions/ VERSION_ID The SITE_ID in this version identifier must match the SITE_ID in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.",
                           "location": "query",
                           "type": "string"
                         }
@@ -438,7 +600,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID ",
+                          "description": "Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID ",
                           "location": "path",
                           "pattern": "^projects/[^/]+/sites/[^/]+/channels/[^/]+$",
                           "required": true,
@@ -627,14 +789,14 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID",
+                      "description": "Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sites/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "versionName": {
-                      "description": " The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.",
+                      "description": " The unique identifier for a version, in the format: sites/SITE_ID/versions/ VERSION_ID The SITE_ID in this version identifier must match the SITE_ID in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.",
                       "location": "query",
                       "type": "string"
                     }
@@ -672,7 +834,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID ",
+                      "description": "Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID ",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sites/[^/]+$",
                       "required": true,
@@ -704,7 +866,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The target site for the cloned version, in the format: sites/ SITE_NAME",
+                      "description": "Required. The target site for the cloned version, in the format: sites/ SITE_ID",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sites/[^/]+$",
                       "required": true,
@@ -733,7 +895,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The site in which to create the version, in the format: sites/ SITE_NAME",
+                      "description": "Required. The site in which to create the version, in the format: sites/ SITE_ID",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sites/[^/]+$",
                       "required": true,
@@ -773,7 +935,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The fully-qualified identifier for the version, in the format: sites/SITE_NAME/versions/VERSION_ID",
+                      "description": "Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sites/[^/]+/versions/[^/]+$",
                       "required": true,
@@ -815,7 +977,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The site or channel for which to list versions, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID ",
+                      "description": "Required. The site or channel for which to list versions, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID ",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sites/[^/]+$",
                       "required": true,
@@ -843,7 +1005,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The fully-qualified identifier for the version, in the format: sites/ SITE_NAME/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).",
+                      "description": "The fully-qualified resource name for the version, in the format: sites/ SITE_ID/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sites/[^/]+/versions/[^/]+$",
                       "required": true,
@@ -878,7 +1040,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The version to which to add files, in the format: sites/SITE_NAME /versions/VERSION_ID",
+                      "description": "Required. The version to which to add files, in the format: sites/SITE_ID /versions/VERSION_ID",
                       "location": "path",
                       "pattern": "^projects/[^/]+/sites/[^/]+/versions/[^/]+$",
                       "required": true,
@@ -922,7 +1084,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The version for which to list files, in the format: sites/ SITE_NAME/versions/VERSION_ID",
+                          "description": "Required. The version for which to list files, in the format: sites/SITE_ID /versions/VERSION_ID",
                           "location": "path",
                           "pattern": "^projects/[^/]+/sites/[^/]+/versions/[^/]+$",
                           "required": true,
@@ -1047,7 +1209,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The site in which to create this channel, in the format: sites/ SITE_NAME",
+                  "description": "Required. The site in which to create this channel, in the format: sites/ SITE_ID",
                   "location": "path",
                   "pattern": "^sites/[^/]+$",
                   "required": true,
@@ -1076,7 +1238,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The fully-qualified identifier for the channel, in the format: sites/SITE_NAME/channels/CHANNEL_ID",
+                  "description": "Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID",
                   "location": "path",
                   "pattern": "^sites/[^/]+/channels/[^/]+$",
                   "required": true,
@@ -1102,7 +1264,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The fully-qualified identifier for the channel, in the format: sites/SITE_NAME/channels/CHANNEL_ID",
+                  "description": "Required. The fully-qualified resource name for the channel, in the format: sites/SITE_ID/channels/CHANNEL_ID",
                   "location": "path",
                   "pattern": "^sites/[^/]+/channels/[^/]+$",
                   "required": true,
@@ -1141,7 +1303,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The site for which to list channels, in the format: sites/ SITE_NAME",
+                  "description": "Required. The site for which to list channels, in the format: sites/SITE_ID",
                   "location": "path",
                   "pattern": "^sites/[^/]+$",
                   "required": true,
@@ -1169,7 +1331,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The fully-qualified identifier for the channel, in the format: sites/ SITE_NAME/channels/CHANNEL_ID",
+                  "description": "The fully-qualified resource name for the channel, in the format: sites/ SITE_ID/channels/CHANNEL_ID",
                   "location": "path",
                   "pattern": "^sites/[^/]+/channels/[^/]+$",
                   "required": true,
@@ -1208,14 +1370,14 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID",
+                      "description": "Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID",
                       "location": "path",
                       "pattern": "^sites/[^/]+/channels/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "versionName": {
-                      "description": " The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.",
+                      "description": " The unique identifier for a version, in the format: sites/SITE_ID/versions/ VERSION_ID The SITE_ID in this version identifier must match the SITE_ID in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1253,7 +1415,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID ",
+                      "description": "Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID ",
                       "location": "path",
                       "pattern": "^sites/[^/]+/channels/[^/]+$",
                       "required": true,
@@ -1442,14 +1604,14 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID",
+                  "description": "Required. The site or channel to which the release belongs, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID",
                   "location": "path",
                   "pattern": "^sites/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
                 "versionName": {
-                  "description": " The unique identifier for a version, in the format: sites/SITE_NAME /versions/VERSION_ID The SITE_NAME in this version identifier must match the SITE_NAME in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.",
+                  "description": " The unique identifier for a version, in the format: sites/SITE_ID/versions/ VERSION_ID The SITE_ID in this version identifier must match the SITE_ID in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.",
                   "location": "query",
                   "type": "string"
                 }
@@ -1487,7 +1649,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID ",
+                  "description": "Required. The site or channel for which to list releases, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID ",
                   "location": "path",
                   "pattern": "^sites/[^/]+$",
                   "required": true,
@@ -1519,7 +1681,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The target site for the cloned version, in the format: sites/ SITE_NAME",
+                  "description": "Required. The target site for the cloned version, in the format: sites/ SITE_ID",
                   "location": "path",
                   "pattern": "^sites/[^/]+$",
                   "required": true,
@@ -1548,7 +1710,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The site in which to create the version, in the format: sites/ SITE_NAME",
+                  "description": "Required. The site in which to create the version, in the format: sites/ SITE_ID",
                   "location": "path",
                   "pattern": "^sites/[^/]+$",
                   "required": true,
@@ -1588,7 +1750,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The fully-qualified identifier for the version, in the format: sites/SITE_NAME/versions/VERSION_ID",
+                  "description": "Required. The fully-qualified resource name for the version, in the format: sites/SITE_ID/versions/VERSION_ID",
                   "location": "path",
                   "pattern": "^sites/[^/]+/versions/[^/]+$",
                   "required": true,
@@ -1630,7 +1792,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The site or channel for which to list versions, in either of the following formats: - sites/SITE_NAME - sites/SITE_NAME/channels/CHANNEL_ID ",
+                  "description": "Required. The site or channel for which to list versions, in either of the following formats: - sites/SITE_ID - sites/SITE_ID/channels/CHANNEL_ID ",
                   "location": "path",
                   "pattern": "^sites/[^/]+$",
                   "required": true,
@@ -1658,7 +1820,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The fully-qualified identifier for the version, in the format: sites/ SITE_NAME/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).",
+                  "description": "The fully-qualified resource name for the version, in the format: sites/ SITE_ID/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).",
                   "location": "path",
                   "pattern": "^sites/[^/]+/versions/[^/]+$",
                   "required": true,
@@ -1693,7 +1855,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The version to which to add files, in the format: sites/SITE_NAME /versions/VERSION_ID",
+                  "description": "Required. The version to which to add files, in the format: sites/SITE_ID /versions/VERSION_ID",
                   "location": "path",
                   "pattern": "^sites/[^/]+/versions/[^/]+$",
                   "required": true,
@@ -1737,7 +1899,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The version for which to list files, in the format: sites/ SITE_NAME/versions/VERSION_ID",
+                      "description": "Required. The version for which to list files, in the format: sites/SITE_ID /versions/VERSION_ID",
                       "location": "path",
                       "pattern": "^sites/[^/]+/versions/[^/]+$",
                       "required": true,
@@ -1777,7 +1939,7 @@
       }
     }
   },
-  "revision": "20210305",
+  "revision": "20210315",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
@@ -1848,7 +2010,7 @@
           "type": "object"
         },
         "name": {
-          "description": "The fully-qualified identifier for the channel, in the format: sites/ SITE_NAME/channels/CHANNEL_ID",
+          "description": "The fully-qualified resource name for the channel, in the format: sites/ SITE_ID/channels/CHANNEL_ID",
           "type": "string"
         },
         "release": {
@@ -1896,7 +2058,7 @@
           "description": "If provided, only paths that match one or more RegEx values in this list will be included in the new version."
         },
         "sourceVersion": {
-          "description": "Required. The unique identifier for the version to be cloned, in the format: sites/SITE_NAME/versions/VERSION_ID",
+          "description": "Required. The unique identifier for the version to be cloned, in the format: sites/SITE_ID/versions/VERSION_ID",
           "type": "string"
         }
       },
@@ -2160,6 +2322,23 @@
       },
       "type": "object"
     },
+    "ListSitesResponse": {
+      "id": "ListSitesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The pagination token, if more results exist beyond the ones in this response. Include this token in your next call to `ListSites`. Page tokens are short-lived and should not be stored.",
+          "type": "string"
+        },
+        "sites": {
+          "description": "A list of Site objects associated with the specified Firebase project.",
+          "items": {
+            "$ref": "Site"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListVersionFilesResponse": {
       "id": "ListVersionFilesResponse",
       "properties": {
@@ -2267,7 +2446,7 @@
           "type": "array"
         },
         "uploadUrl": {
-          "description": "The URL to which the files should be uploaded, in the format: \"https://upload-firebasehosting.googleapis.com/upload/sites/SITE_NAME /versions/VERSION_ID/files\" Perform a multipart `POST` of the Gzipped file contents to the URL using a forward slash and the hash of the file appended to the end.",
+          "description": "The URL to which the files should be uploaded, in the format: \"https://upload-firebasehosting.googleapis.com/upload/sites/SITE_ID /versions/VERSION_ID/files\" Perform a multipart `POST` of the Gzipped file contents to the URL using a forward slash and the hash of the file appended to the end.",
           "type": "string"
         }
       },
@@ -2322,7 +2501,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The unique identifier for the release, in either of the following formats: - sites/SITE_NAME/releases/RELEASE_ID - sites/SITE_NAME/channels/CHANNEL_ID/releases/RELEASE_ID This name is provided in the response body when you call [`releases.create`](sites.releases/create) or [`channels.releases.create`](sites.channels.releases/create).",
+          "description": "Output only. The unique identifier for the release, in either of the following formats: - sites/SITE_ID/releases/RELEASE_ID - sites/SITE_ID/channels/CHANNEL_ID/releases/RELEASE_ID This name is provided in the response body when you call [`releases.create`](sites.releases/create) or [`channels.releases.create`](sites.channels.releases/create).",
           "type": "string"
         },
         "releaseTime": {
@@ -2450,6 +2629,49 @@
       },
       "type": "object"
     },
+    "Site": {
+      "description": "A `Site` represents a Firebase Hosting site.",
+      "id": "Site",
+      "properties": {
+        "appId": {
+          "description": "Optional. The [ID of a Web App](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.webApps#WebApp.FIELDS.app_id) associated with the Hosting site.",
+          "type": "string"
+        },
+        "defaultUrl": {
+          "description": "Output only. The default URL for the Hosting site.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. User-specified labels for the Hosting site.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The fully-qualified resource name of the Hosting site, in the format: projects/PROJECT_IDENTIFIER/sites/SITE_ID PROJECT_IDENTIFIER: the Firebase project's [`ProjectNumber`](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects#FirebaseProject.FIELDS.project_number) ***(recommended)*** or its [`ProjectId`](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects#FirebaseProject.FIELDS.project_id). Learn more about using project identifiers in Google's [AIP 2510 standard](https://google.aip.dev/cloud/2510).",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of Hosting site. Every Firebase project has a `DEFAULT_SITE`, which is created when Hosting is provisioned for the project. All additional sites are `USER_SITE`.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "DEFAULT_SITE",
+            "USER_SITE"
+          ],
+          "enumDescriptions": [
+            "Unknown state, likely the result of an error on the backend.",
+            "The default Hosting site that is provisioned when a Firebase project is created.",
+            "A Hosting site that the user created."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SiteConfig": {
       "description": "A `SiteConfig` contains metadata associated with a specific site that controls Firebase Hosting serving behavior",
       "id": "SiteConfig",
@@ -2541,7 +2763,7 @@
           "type": "object"
         },
         "name": {
-          "description": "The fully-qualified identifier for the version, in the format: sites/ SITE_NAME/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).",
+          "description": "The fully-qualified resource name for the version, in the format: sites/ SITE_ID/versions/VERSION_ID This name is provided in the response body when you call [`CreateVersion`](sites.versions/create).",
           "type": "string"
         },
         "preview": {

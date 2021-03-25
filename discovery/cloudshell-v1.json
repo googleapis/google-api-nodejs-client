@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -374,7 +374,7 @@
       }
     }
   },
-  "revision": "20210308",
+  "revision": "20210320",
   "rootUrl": "https://cloudshell.googleapis.com/",
   "schemas": {
     "AddPublicKeyMetadata": {

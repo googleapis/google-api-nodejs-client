@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -269,7 +269,7 @@
       }
     }
   },
-  "revision": "20210209",
+  "revision": "20210309",
   "rootUrl": "https://workflowexecutions.googleapis.com/",
   "schemas": {
     "CancelExecutionRequest": {
@@ -414,7 +414,7 @@
       "type": "object"
     },
     "StackTraceElement": {
-      "description": "A single stack element (frame) where an error occurred. This field currently only exists in v1Beta. We will need to roll this change out to V1 after the feature is thoroughly tested. TODO(b/178540475)",
+      "description": "A single stack element (frame) where an error occurred.",
       "id": "StackTraceElement",
       "properties": {
         "position": {

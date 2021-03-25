@@ -317,6 +317,10 @@ export namespace remotebuildexecution_v2 {
      */
     maxBatchTotalSizeBytes?: string | null;
     /**
+     * Compressors supported by the "compressed-blobs" bytestream resources. Servers MUST support identity/no-compression, even if it is not listed here. Note that this does not imply which if any compressors are supported by the server at the gRPC level.
+     */
+    supportedCompressor?: string[] | null;
+    /**
      * Whether absolute symlink targets are supported.
      */
     symlinkAbsolutePathStrategy?: string | null;
@@ -754,9 +758,21 @@ export namespace remotebuildexecution_v2 {
      */
     actionId?: string | null;
     /**
+     * A brief description of the kind of action, for example, CppCompile or GoLink. There is no standard agreed set of values for this, and they are expected to vary between different client tools.
+     */
+    actionMnemonic?: string | null;
+    /**
+     * An identifier for the configuration in which the target was built, e.g. for differentiating building host tools or different target platforms. There is no expectation that this value will have any particular structure, or equality across invocations, though some client tools may offer these guarantees.
+     */
+    configurationId?: string | null;
+    /**
      * An identifier to tie multiple tool invocations together. For example, runs of foo_test, bar_test and baz_test on a post-submit of a given patch.
      */
     correlatedInvocationsId?: string | null;
+    /**
+     * An identifier for the target which produced this action. No guarantees are made around how many actions may relate to a single target.
+     */
+    targetId?: string | null;
     /**
      * The details for the tool invoking the requests.
      */

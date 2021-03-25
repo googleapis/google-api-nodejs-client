@@ -187,7 +187,7 @@ export namespace dns_v1beta2 {
      */
     kind?: string | null;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. There is no way to retrieve a "snapshot" of collections larger than the maximum page size.
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. This lets you retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a "snapshot" of collections larger than the maximum page size.
      */
     nextPageToken?: string | null;
   }
@@ -390,7 +390,7 @@ export namespace dns_v1beta2 {
     header?: Schema$ResponseHeader;
     kind?: string | null;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. This lets you retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
     /**
@@ -450,7 +450,7 @@ export namespace dns_v1beta2 {
     deletionTime?: string | null;
     kind?: string | null;
     /**
-     * The fully qualified URL of the namespace associated with the zone. This should be formatted like https://servicedirectory.googleapis.com/v1/projects/{project\}/locations/{location\}/namespaces/{namespace\}
+     * The fully qualified URL of the namespace associated with the zone. Format must be https://servicedirectory.googleapis.com/v1/projects/{project\}/locations/{location\}/namespaces/{namespace\}
      */
     namespaceUrl?: string | null;
   }
@@ -465,7 +465,7 @@ export namespace dns_v1beta2 {
      */
     managedZones?: Schema$ManagedZone[];
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. This lets you the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
   }
@@ -530,7 +530,7 @@ export namespace dns_v1beta2 {
      */
     kind?: string | null;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. This lets you the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
     /**
@@ -610,7 +610,7 @@ export namespace dns_v1beta2 {
     networkUrl?: string | null;
   }
   /**
-   * A project resource. The project is a top level container for resources including Cloud DNS ManagedZones. Projects can be created only in the APIs console.
+   * A project resource. The project is a top level container for resources including Cloud DNS ManagedZones. Projects can be created only in the APIs console. Next tag: 7.
    */
   export interface Schema$Project {
     /**
@@ -746,7 +746,7 @@ export namespace dns_v1beta2 {
   export interface Schema$ResponsePoliciesListResponse {
     header?: Schema$ResponseHeader;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. This lets you the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
     /**
@@ -822,7 +822,7 @@ export namespace dns_v1beta2 {
   export interface Schema$ResponsePolicyRulesListResponse {
     header?: Schema$ResponseHeader;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. This lets you the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
      */
     nextPageToken?: string | null;
     /**
@@ -1366,7 +1366,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Fetch the representation of an existing DnsKey.
+     * Fetches the representation of an existing DnsKey.
      * @example
      * ```js
      * // Before running the sample:
@@ -1517,7 +1517,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Enumerate DnsKeys to a ResourceRecordSet collection.
+     * Enumerates DnsKeys to a ResourceRecordSet collection.
      * @example
      * ```js
      * // Before running the sample:
@@ -2067,7 +2067,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Create a new ManagedZone.
+     * Creates a new ManagedZone.
      * @example
      * ```js
      * // Before running the sample:
@@ -2238,7 +2238,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Delete a previously created ManagedZone.
+     * Deletes a previously created ManagedZone.
      * @example
      * ```js
      * // Before running the sample:
@@ -2367,7 +2367,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Fetch the representation of an existing ManagedZone.
+     * Fetches the representation of an existing ManagedZone.
      * @example
      * ```js
      * // Before running the sample:
@@ -2519,7 +2519,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Enumerate ManagedZones that have been created but not yet deleted.
+     * Enumerates ManagedZones that have been created but not yet deleted.
      * @example
      * ```js
      * // Before running the sample:
@@ -2666,7 +2666,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Apply a partial update to an existing ManagedZone.
+     * Applies a partial update to an existing ManagedZone.
      * @example
      * ```js
      * // Before running the sample:
@@ -2832,7 +2832,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Update an existing ManagedZone.
+     * Updates an existing ManagedZone.
      * @example
      * ```js
      * // Before running the sample:
@@ -3680,7 +3680,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Apply a partial update to an existing Policy.
+     * Applies a partial update to an existing Policy.
      * @example
      * ```js
      * // Before running the sample:
@@ -3835,7 +3835,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Update an existing Policy.
+     * Updates an existing Policy.
      * @example
      * ```js
      * // Before running the sample:
@@ -4095,7 +4095,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Fetch the representation of an existing Project.
+     * Fetches the representation of an existing Project.
      * @example
      * ```js
      * // Before running the sample:
@@ -4260,7 +4260,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Create a new ResourceRecordSet.
+     * Creates a new ResourceRecordSet.
      * @example
      * ```js
      * // Before running the sample:
@@ -4417,7 +4417,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Delete a previously created ResourceRecordSet.
+     * Deletes a previously created ResourceRecordSet.
      * @example
      * ```js
      * // Before running the sample:
@@ -4550,7 +4550,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Fetch the representation of an existing ResourceRecordSet.
+     * Fetches the representation of an existing ResourceRecordSet.
      * @example
      * ```js
      * // Before running the sample:
@@ -4700,7 +4700,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Apply a partial update to an existing ResourceRecordSet.
+     * Applies a partial update to an existing ResourceRecordSet.
      * @example
      * ```js
      * // Before running the sample:
@@ -5303,7 +5303,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Delete a previously created Response Policy. Fails if the response policy is non-empty or still being referenced by a network.
+     * Deletes a previously created Response Policy. Fails if the response policy is non-empty or still being referenced by a network.
      * @example
      * ```js
      * // Before running the sample:
@@ -5432,7 +5432,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Fetch the representation of an existing Response Policy.
+     * Fetches the representation of an existing Response Policy.
      * @example
      * ```js
      * // Before running the sample:
@@ -5574,7 +5574,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Enumerate all Response Policies associated with a project.
+     * Enumerates all Response Policies associated with a project.
      * @example
      * ```js
      * // Before running the sample:
@@ -5722,7 +5722,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Apply a partial update to an existing Response Policy.
+     * Applies a partial update to an existing Response Policy.
      * @example
      * ```js
      * // Before running the sample:
@@ -5880,7 +5880,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Update an existing Response Policy.
+     * Updates an existing Response Policy.
      * @example
      * ```js
      * // Before running the sample:
@@ -6302,7 +6302,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Delete a previously created Response Policy Rule.
+     * Deletes a previously created Response Policy Rule.
      * @example
      * ```js
      * // Before running the sample:
@@ -6433,7 +6433,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Fetch the representation of an existing Response Policy Rule.
+     * Fetches the representation of an existing Response Policy Rule.
      * @example
      * ```js
      * // Before running the sample:
@@ -6580,7 +6580,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Enumerate all Response Policy Rules associated with a project.
+     * Enumerates all Response Policy Rules associated with a project.
      * @example
      * ```js
      * // Before running the sample:
@@ -6731,7 +6731,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Apply a partial update to an existing Response Policy Rule.
+     * Applies a partial update to an existing Response Policy Rule.
      * @example
      * ```js
      * // Before running the sample:
@@ -6891,7 +6891,7 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * Update an existing Response Policy Rule.
+     * Updates an existing Response Policy Rule.
      * @example
      * ```js
      * // Before running the sample:
