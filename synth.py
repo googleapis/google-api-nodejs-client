@@ -26,7 +26,8 @@ s.copy(templates, excludes=[
   "README.md",
   ".eslintignore",
   ".prettierignore",
-  ".github/release-please.yml"
+  ".github/release-please.yml",
+  ".kokoro/release/publish.cfg"
 ])
 subprocess.run(['npm', 'install'])
 subprocess.run(['npm', 'run', 'update-disclaimers'])

@@ -8,13 +8,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: release-pr
-        uses: GoogleCloudPlatform/release-please-action@v2
+        uses: google-github-actions/release-please-action@v2
         with:
-          token: ${{ secrets.FORKING_TOKEN }}
-          release-type: node
           fork: true
-          package-name: googleapis
-          command: release-pr
+          token: ${{ secrets.FORKING_TOKEN }}
+          command: manifest-pr
       - id: label
         if: ${{ steps.release-pr.outputs.pr }}
         uses: actions/github-script@v3    
@@ -29,27 +27,3 @@ jobs:
                 labels: ['autorelease: pending']
               });
               console.log(`Tagged ${{steps.release-pr.outputs.pr}}`)
-  release-please-release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: GoogleCloudPlatform/release-please-action@v2
-        id: tag-release
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          release-type: node
-          package-name: googleapis
-          command: github-release
-      - uses: actions/checkout@v2
-        if: ${{ steps.tag-release.outputs.release_created }}
-      - uses: actions/setup-node@v1
-        if: ${{ steps.tag-release.outputs.release_created }}
-        with:
-          node-version: 14
-          registry-url: 'https://wombat-dressing-room.appspot.com/'
-      - name: publish
-        if: ${{ steps.tag-release.outputs.release_created }}
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        run: |
-          npm install
-          npm publish
