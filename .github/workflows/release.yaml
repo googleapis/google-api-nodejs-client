@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - remove-release-action-2
+      - master
 name: release-please
 jobs:
   release-please-pr:
