@@ -1258,7 +1258,7 @@ export namespace run_v1alpha1 {
      */
     controller?: boolean | null;
     /**
-     * Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds
+     * Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
      */
     kind?: string | null;
     /**
