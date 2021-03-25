@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - remove-release-action-2
+name: release-please
+jobs:
+  release-please-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - id: release-pr
+        uses: google-github-actions/release-please-action@v2
+        with:
+          fork: true
+          token: ${{ secrets.FORKING_TOKEN }}
+          command: manifest
+      - id: label
+        if: ${{ steps.release-pr.outputs.pr }}
+        uses: actions/github-script@v3    
+        with:
+            github-token: ${{secrets.GITHUB_TOKEN}}
+            script: |
+              const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
+              await github.issues.addLabels({
+                owner,
+                repo,
+                issue_number: ${{steps.release-pr.outputs.pr}},
+                labels: ['autorelease: pending']
+              });
+              console.log(`Tagged ${{steps.release-pr.outputs.pr}}`)
