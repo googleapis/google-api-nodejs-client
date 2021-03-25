@@ -368,6 +368,7 @@ export namespace reseller_v1 {
      * Read-only transfer related information for the subscription. For more information, see retrieve transferable subscriptions for a customer.
      */
     transferInfo?: {
+      currentLegacySkuId?: string;
       minimumTransferableSeats?: number;
       transferabilityExpirationTime?: string;
     } | null;
