@@ -4,6 +4,22 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [69.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v68.0.0...v69.0.0) (2021-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* #### admin:directory_v1
+
+### Features
+
+* run the generator ([#2548](https://www.github.com/googleapis/google-api-nodejs-client/issues/2548)) ([339726b](https://www.github.com/googleapis/google-api-nodejs-client/commit/339726b5310e7ea5437e15642cb899c215127f8f))
+
+
+### Bug Fixes
+
+* add basic typescript sample and emit additional types ([#2561](https://www.github.com/googleapis/google-api-nodejs-client/issues/2561)) ([ed0e1ab](https://www.github.com/googleapis/google-api-nodejs-client/commit/ed0e1ab2551a1bbd62f9496b350bc4b6129f1f16))
+
 ## [68.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v67.1.1...v68.0.0) (2021-03-10)
 
 
