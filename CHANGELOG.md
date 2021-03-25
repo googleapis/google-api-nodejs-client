@@ -4,6 +4,33 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [69.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v68.0.0...googleapis-v69.0.0) (2021-03-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **gkehub:** This release has breaking changes.
+
+### Features
+
+* **bigquery:** update the API ([729bd3f](https://www.github.com/googleapis/google-api-nodejs-client/commit/729bd3f77fe78e4f8301c669bb12132b776ad86f))
+* **datafusion:** update the API ([eb6d9b9](https://www.github.com/googleapis/google-api-nodejs-client/commit/eb6d9b9a373df18992f38ee55209ad9e3062d8b7))
+* **gkehub:** update the API ([e0475ff](https://www.github.com/googleapis/google-api-nodejs-client/commit/e0475fff12860560c7f0ebcb2b5c930e5a52a5a9))
+* regenerate index files ([eb3738c](https://www.github.com/googleapis/google-api-nodejs-client/commit/eb3738c3d077c0eed77aad18fbf51dd812fddf24))
+* **reseller:** update the API ([ce4a444](https://www.github.com/googleapis/google-api-nodejs-client/commit/ce4a444aa9f8bdfacf562037339362f39fb5e346))
+* **secretmanager:** update the API ([9ab1bed](https://www.github.com/googleapis/google-api-nodejs-client/commit/9ab1bed43d5ceb4f39cb42e0ba081f9275bd65b9))
+* **spanner:** update the API ([585d0d7](https://www.github.com/googleapis/google-api-nodejs-client/commit/585d0d7da2e259253147487125972dc8d636562f))
+
+
+### Bug Fixes
+
+* add basic typescript sample and emit additional types ([#2561](https://www.github.com/googleapis/google-api-nodejs-client/issues/2561)) ([ed0e1ab](https://www.github.com/googleapis/google-api-nodejs-client/commit/ed0e1ab2551a1bbd62f9496b350bc4b6129f1f16))
+* **cloudscheduler:** update the API ([2fe88c0](https://www.github.com/googleapis/google-api-nodejs-client/commit/2fe88c0faf0a301511513f34294fea556be35793))
+* **cloudtasks:** update the API ([a539904](https://www.github.com/googleapis/google-api-nodejs-client/commit/a5399044f56cdfbdf1e19eba1636c6b8b1e12cd4))
+* **container:** update the API ([41a397b](https://www.github.com/googleapis/google-api-nodejs-client/commit/41a397b205d34d51aa00f3c4abffceda65bec19f))
+* **redis:** update the API ([a0d3466](https://www.github.com/googleapis/google-api-nodejs-client/commit/a0d3466bfdb1f8d0a1c052e4993899bc4b095027))
+* **run:** update the API ([b86feee](https://www.github.com/googleapis/google-api-nodejs-client/commit/b86feeea9cda412f373f907c3acb1bf92ea068be))
+
 ## [68.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v67.1.1...v68.0.0) (2021-03-10)
 
 
