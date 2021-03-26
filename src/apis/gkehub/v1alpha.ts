@@ -365,6 +365,10 @@ export namespace gkehub_v1alpha {
    */
   export interface Schema$ConfigManagementGitConfig {
     /**
+     * The GCP Service Account Email used for auth when secret_type is gcpServiceAccount.
+     */
+    gcpServiceAccountEmail?: string | null;
+    /**
      * URL for the HTTPS proxy to be used when communicating with the Git repo.
      */
     httpsProxy?: string | null;
@@ -1896,6 +1900,8 @@ export namespace gkehub_v1alpha {
      *     featureId: 'placeholder-value',
      *     // The parent (project and location) where the Feature will be created. Specified in the format `projects/x/locations/global`.
      *     parent: 'projects/my-project/locations/global',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2048,6 +2054,8 @@ export namespace gkehub_v1alpha {
      *     force: 'placeholder-value',
      *     // The Feature resource name in the format `projects/x/locations/global/features/x`.
      *     name: 'projects/my-project/locations/global/features/my-feature',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2456,6 +2464,8 @@ export namespace gkehub_v1alpha {
      *   const res = await gkehub.projects.locations.global.features.patch({
      *     // The Feature resource name in the format `projects/x/locations/global/features/x`.
      *     name: 'projects/my-project/locations/global/features/my-feature',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
      *     // Mask of fields to update.
      *     updateMask: 'placeholder-value',
      *
@@ -2587,6 +2597,10 @@ export namespace gkehub_v1alpha {
      * The parent (project and location) where the Feature will be created. Specified in the format `projects/x/locations/global`.
      */
     parent?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
 
     /**
      * Request body metadata
@@ -2603,6 +2617,10 @@ export namespace gkehub_v1alpha {
      * The Feature resource name in the format `projects/x/locations/global/features/x`.
      */
     name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Features$Get
     extends StandardParameters {
@@ -2640,6 +2658,10 @@ export namespace gkehub_v1alpha {
      * The Feature resource name in the format `projects/x/locations/global/features/x`.
      */
     name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
     /**
      * Mask of fields to update.
      */

@@ -173,6 +173,472 @@ export namespace gkehub_v1beta {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * CommonFeatureSpec contains Hub-wide configuration information
+   */
+  export interface Schema$CommonFeatureSpec {
+    /**
+     * Multicluster Ingress-specific spec.
+     */
+    multiclusteringress?: Schema$MultiClusterIngressFeatureSpec;
+  }
+  /**
+   * CommonFeatureState contains Hub-wide Feature status information.
+   */
+  export interface Schema$CommonFeatureState {
+    /**
+     * Output only. The "running state" of the Feature in this Hub.
+     */
+    state?: Schema$FeatureState;
+  }
+  /**
+   * Configuration for Binauthz
+   */
+  export interface Schema$ConfigManagementBinauthzConfig {
+    /**
+     * Whether binauthz is enabled in this cluster.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * State for Binauthz
+   */
+  export interface Schema$ConfigManagementBinauthzState {
+    /**
+     * The version of binauthz that is installed.
+     */
+    version?: Schema$ConfigManagementBinauthzVersion;
+    /**
+     * The state of the binauthz webhook.
+     */
+    webhook?: string | null;
+  }
+  /**
+   * The version of binauthz.
+   */
+  export interface Schema$ConfigManagementBinauthzVersion {
+    /**
+     * The version of the binauthz webhook.
+     */
+    webhookVersion?: string | null;
+  }
+  /**
+   * Configuration for Config Sync
+   */
+  export interface Schema$ConfigManagementConfigSync {
+    /**
+     * Git repo configuration for the cluster.
+     */
+    git?: Schema$ConfigManagementGitConfig;
+    /**
+     * Specifies whether the Config Sync Repo is in “hierarchical” or “unstructured” mode.
+     */
+    sourceFormat?: string | null;
+  }
+  /**
+   * The state of ConfigSync's deployment on a cluster
+   */
+  export interface Schema$ConfigManagementConfigSyncDeploymentState {
+    /**
+     * Deployment state of the git-sync pod
+     */
+    gitSync?: string | null;
+    /**
+     * Deployment state of the importer pod
+     */
+    importer?: string | null;
+    /**
+     * Deployment state of the monitor pod
+     */
+    monitor?: string | null;
+    /**
+     * Deployment state of reconciler-manager pod
+     */
+    reconcilerManager?: string | null;
+    /**
+     * Deployment state of root-reconciler
+     */
+    rootReconciler?: string | null;
+    /**
+     * Deployment state of the syncer pod
+     */
+    syncer?: string | null;
+  }
+  /**
+   * State information for ConfigSync
+   */
+  export interface Schema$ConfigManagementConfigSyncState {
+    /**
+     * Information about the deployment of ConfigSync, including the version of the various Pods deployed
+     */
+    deploymentState?: Schema$ConfigManagementConfigSyncDeploymentState;
+    /**
+     * The state of ConfigSync's process to sync configs to a cluster
+     */
+    syncState?: Schema$ConfigManagementSyncState;
+    /**
+     * The version of ConfigSync deployed
+     */
+    version?: Schema$ConfigManagementConfigSyncVersion;
+  }
+  /**
+   * Specific versioning information pertaining to ConfigSync's Pods
+   */
+  export interface Schema$ConfigManagementConfigSyncVersion {
+    /**
+     * Version of the deployed git-sync pod
+     */
+    gitSync?: string | null;
+    /**
+     * Version of the deployed importer pod
+     */
+    importer?: string | null;
+    /**
+     * Version of the deployed monitor pod
+     */
+    monitor?: string | null;
+    /**
+     * Version of the deployed reconciler-manager pod
+     */
+    reconcilerManager?: string | null;
+    /**
+     * Version of the deployed reconciler container in root-reconciler pod
+     */
+    rootReconciler?: string | null;
+    /**
+     * Version of the deployed syncer pod
+     */
+    syncer?: string | null;
+  }
+  /**
+   * Model for a config file in the git repo with an associated Sync error
+   */
+  export interface Schema$ConfigManagementErrorResource {
+    /**
+     * Group/version/kind of the resource that is causing an error
+     */
+    resourceGvk?: Schema$ConfigManagementGroupVersionKind;
+    /**
+     * Metadata name of the resource that is causing an error
+     */
+    resourceName?: string | null;
+    /**
+     * Namespace of the resource that is causing an error
+     */
+    resourceNamespace?: string | null;
+    /**
+     * Path in the git repo of the erroneous config
+     */
+    sourcePath?: string | null;
+  }
+  /**
+   * State of Policy Controller installation.
+   */
+  export interface Schema$ConfigManagementGatekeeperDeploymentState {
+    /**
+     * Status of gatekeeper-audit deployment.
+     */
+    gatekeeperAudit?: string | null;
+    /**
+     * Status of gatekeeper-controller-manager pod.
+     */
+    gatekeeperControllerManagerState?: string | null;
+  }
+  /**
+   * Git repo configuration for a single cluster.
+   */
+  export interface Schema$ConfigManagementGitConfig {
+    /**
+     * The GCP Service Account Email used for auth when secret_type is gcpServiceAccount.
+     */
+    gcpServiceAccountEmail?: string | null;
+    /**
+     * URL for the HTTPS proxy to be used when communicating with the Git repo.
+     */
+    httpsProxy?: string | null;
+    /**
+     * The path within the Git repository that represents the top level of the repo to sync. Default: the root directory of the repository.
+     */
+    policyDir?: string | null;
+    /**
+     * Type of secret configured for access to the Git repo.
+     */
+    secretType?: string | null;
+    /**
+     * The branch of the repository to sync from. Default: master.
+     */
+    syncBranch?: string | null;
+    /**
+     * The URL of the Git repository to use as the source of truth.
+     */
+    syncRepo?: string | null;
+    /**
+     * Git revision (tag or hash) to check out. Default HEAD.
+     */
+    syncRev?: string | null;
+    /**
+     * Period in seconds between consecutive syncs. Default: 15.
+     */
+    syncWaitSecs?: string | null;
+  }
+  /**
+   * A Kubernetes object's GVK
+   */
+  export interface Schema$ConfigManagementGroupVersionKind {
+    /**
+     * Kubernetes Group
+     */
+    group?: string | null;
+    /**
+     * Kubernetes Kind
+     */
+    kind?: string | null;
+    /**
+     * Kubernetes Version
+     */
+    version?: string | null;
+  }
+  /**
+   * Configuration for Hierarchy Controller
+   */
+  export interface Schema$ConfigManagementHierarchyControllerConfig {
+    /**
+     * Whether Hierarchy Controller is enabled in this cluster.
+     */
+    enabled?: boolean | null;
+    /**
+     * Whether hierarchical resource quota is enabled in this cluster.
+     */
+    enableHierarchicalResourceQuota?: boolean | null;
+    /**
+     * Whether pod tree labels are enabled in this cluster.
+     */
+    enablePodTreeLabels?: boolean | null;
+  }
+  /**
+   * Deployment state for Hierarchy Controller
+   */
+  export interface Schema$ConfigManagementHierarchyControllerDeploymentState {
+    /**
+     * The deployment state for Hierarchy Controller extension (e.g. v0.7.0-hc.1)
+     */
+    extension?: string | null;
+    /**
+     * The deployment state for open source HNC (e.g. v0.7.0-hc.0)
+     */
+    hnc?: string | null;
+  }
+  /**
+   * State for Hierarchy Controller
+   */
+  export interface Schema$ConfigManagementHierarchyControllerState {
+    /**
+     * The deployment state for Hierarchy Controller
+     */
+    state?: Schema$ConfigManagementHierarchyControllerDeploymentState;
+    /**
+     * The version for Hierarchy Controller
+     */
+    version?: Schema$ConfigManagementHierarchyControllerVersion;
+  }
+  /**
+   * Version for Hierarchy Controller
+   */
+  export interface Schema$ConfigManagementHierarchyControllerVersion {
+    /**
+     * Version for Hierarchy Controller extension
+     */
+    extension?: string | null;
+    /**
+     * Version for open source HNC
+     */
+    hnc?: string | null;
+  }
+  /**
+   * Errors pertaining to the installation of ACM
+   */
+  export interface Schema$ConfigManagementInstallError {
+    /**
+     * A string representing the user facing error message
+     */
+    errorMessage?: string | null;
+  }
+  /**
+   * Configuration for a single cluster. Intended to parallel the ConfigManagement CR.
+   */
+  export interface Schema$ConfigManagementMembershipSpec {
+    /**
+     * Binauthz conifguration for the cluster.
+     */
+    binauthz?: Schema$ConfigManagementBinauthzConfig;
+    /**
+     * Config Sync configuration for the cluster.
+     */
+    configSync?: Schema$ConfigManagementConfigSync;
+    /**
+     * Hierarchy Controller configuration for the cluster.
+     */
+    hierarchyController?: Schema$ConfigManagementHierarchyControllerConfig;
+    /**
+     * Policy Controller configuration for the cluster.
+     */
+    policyController?: Schema$ConfigManagementPolicyController;
+    /**
+     * Version of ACM installed.
+     */
+    version?: string | null;
+  }
+  /**
+   * State for Anthos Config Management
+   */
+  export interface Schema$ConfigManagementMembershipState {
+    /**
+     * Binauthz status
+     */
+    binauthzState?: Schema$ConfigManagementBinauthzState;
+    /**
+     * The user-defined name for the cluster used by ClusterSelectors to group clusters together. This should match Membership's membership_name, unless the user installed ACM on the cluster manually prior to enabling the ACM hub feature. Unique within a Anthos Config Management installation.
+     */
+    clusterName?: string | null;
+    /**
+     * Current sync status
+     */
+    configSyncState?: Schema$ConfigManagementConfigSyncState;
+    /**
+     * Hierarchy Controller status
+     */
+    hierarchyControllerState?: Schema$ConfigManagementHierarchyControllerState;
+    /**
+     * Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state
+     */
+    membershipSpec?: Schema$ConfigManagementMembershipSpec;
+    /**
+     * Current install status of ACM's Operator
+     */
+    operatorState?: Schema$ConfigManagementOperatorState;
+    /**
+     * PolicyController status
+     */
+    policyControllerState?: Schema$ConfigManagementPolicyControllerState;
+  }
+  /**
+   * State information for an ACM's Operator
+   */
+  export interface Schema$ConfigManagementOperatorState {
+    /**
+     * The state of the Operator's deployment
+     */
+    deploymentState?: string | null;
+    /**
+     * Install errors.
+     */
+    errors?: Schema$ConfigManagementInstallError[];
+    /**
+     * The semenatic version number of the operator
+     */
+    version?: string | null;
+  }
+  /**
+   * Configuration for Policy Controller
+   */
+  export interface Schema$ConfigManagementPolicyController {
+    /**
+     * Sets the interval for Policy Controller Audit Scans (in seconds). When set to 0, this disables audit functionality altogether.
+     */
+    auditIntervalSeconds?: string | null;
+    /**
+     * Enables the installation of Policy Controller. If false, the rest of PolicyController fields take no effect.
+     */
+    enabled?: boolean | null;
+    /**
+     * The set of namespaces that are excluded from Policy Controller checks. Namespaces do not need to currently exist on the cluster.
+     */
+    exemptableNamespaces?: string[] | null;
+    /**
+     * Logs all denies and dry run failures.
+     */
+    logDeniesEnabled?: boolean | null;
+    /**
+     * Enables the ability to use Constraint Templates that reference to objects other than the object currently being evaluated.
+     */
+    referentialRulesEnabled?: boolean | null;
+    /**
+     * Installs the default template library along with Policy Controller.
+     */
+    templateLibraryInstalled?: boolean | null;
+  }
+  /**
+   * State for PolicyControllerState.
+   */
+  export interface Schema$ConfigManagementPolicyControllerState {
+    /**
+     * The state about the policy controller installation.
+     */
+    deploymentState?: Schema$ConfigManagementGatekeeperDeploymentState;
+    /**
+     * The version of Gatekeeper Policy Controller deployed.
+     */
+    version?: Schema$ConfigManagementPolicyControllerVersion;
+  }
+  /**
+   * The build version of Gatekeeper Policy Controller is using.
+   */
+  export interface Schema$ConfigManagementPolicyControllerVersion {
+    /**
+     * The gatekeeper image tag that is composed of ACM version, git tag, build number.
+     */
+    version?: string | null;
+  }
+  /**
+   * An ACM created error representing a problem syncing configurations
+   */
+  export interface Schema$ConfigManagementSyncError {
+    /**
+     * An ACM defined error code
+     */
+    code?: string | null;
+    /**
+     * A description of the error
+     */
+    errorMessage?: string | null;
+    /**
+     * A list of config(s) associated with the error, if any
+     */
+    errorResources?: Schema$ConfigManagementErrorResource[];
+  }
+  /**
+   * State indicating an ACM's progress syncing configurations to a cluster
+   */
+  export interface Schema$ConfigManagementSyncState {
+    /**
+     * Sync status code
+     */
+    code?: string | null;
+    /**
+     * A list of errors resulting from problematic configs. This list will be truncated after 100 errors, although it is unlikely for that many errors to simultaneously exist.
+     */
+    errors?: Schema$ConfigManagementSyncError[];
+    /**
+     * Token indicating the state of the importer.
+     */
+    importToken?: string | null;
+    /**
+     * Timestamp of when ACM last successfully synced the repo The time format is specified in https://golang.org/pkg/time/#Time.String This field is being deprecated. Use last_sync_time instead. (b/154053616)
+     */
+    lastSync?: string | null;
+    /**
+     * Timestamp type of when ACM last successfully synced the repo
+     */
+    lastSyncTime?: string | null;
+    /**
+     * Token indicating the state of the repo.
+     */
+    sourceToken?: string | null;
+    /**
+     * Token indicating the state of the syncer.
+     */
+    syncToken?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
@@ -198,6 +664,77 @@ export namespace gkehub_v1beta {
     title?: string | null;
   }
   /**
+   * Feature represents the settings and status of any Hub Feature.
+   */
+  export interface Schema$Feature {
+    /**
+     * Output only. When the Feature resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. When the Feature resource was deleted.
+     */
+    deleteTime?: string | null;
+    /**
+     * GCP labels for this Feature.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Membership-specific configuration for this Feature. If this Feature does not support any per-Membership configuration, this field may be unused. The keys indicate which Membership the configuration is for, in the form: projects/{p\}/locations/{l\}/memberships/{m\} Where {p\} is the project number, {l\} is a valid location and {m\} is a valid Membership in this project at that location. {p\} MUST match the Feature's project number.
+     */
+    membershipSpecs?: {[key: string]: Schema$MembershipFeatureSpec} | null;
+    /**
+     * Output only. Membership-specific Feature status. If this Feature does report any per-Membership status, this field may be unused. The keys indicate which Membership the state is for, in the form: projects/{p\}/locations/{l\}/memberships/{m\} Where {p\} is the project number, {l\} is a valid location and {m\} is a valid Membership in this project at that location. {p\} MUST match the Feature's project number.
+     */
+    membershipStates?: {[key: string]: Schema$MembershipFeatureState} | null;
+    /**
+     * Output only. The full, unique name of this Feature resource in the format `projects/x/locations/global/features/x`.
+     */
+    name?: string | null;
+    /**
+     * Output only. State of the Feature resource itself.
+     */
+    resourceState?: Schema$FeatureResourceState;
+    /**
+     * Optional. Hub-wide Feature configuration. If this Feature does not support any Hub-wide configuration, this field may be unused.
+     */
+    spec?: Schema$CommonFeatureSpec;
+    /**
+     * Output only. The Hub-wide Feature state.
+     */
+    state?: Schema$CommonFeatureState;
+    /**
+     * Output only. When the Feature resource was last updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * FeatureResourceState describes the state of a Feature *resource* in the GkeHub API. See `FeatureState` for the "running state" of the Feature in the Hub and across Memberships.
+   */
+  export interface Schema$FeatureResourceState {
+    /**
+     * The current state of the Feature resource in the Hub API.
+     */
+    state?: string | null;
+  }
+  /**
+   * FeatureState describes the high-level state of a Feature. It may be used to describe a Feature's state at the environ-level, or per-membershop, depending on the context.
+   */
+  export interface Schema$FeatureState {
+    /**
+     * The high-level, machine-readable status of this Feature.
+     */
+    code?: string | null;
+    /**
+     * A human-readable description of the current status.
+     */
+    description?: string | null;
+    /**
+     * The time this status and any related Feature-specific details were updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$GoogleRpcStatus {
@@ -213,6 +750,19 @@ export namespace gkehub_v1beta {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Response message for the `GkeHub.ListFeatures` method.
+   */
+  export interface Schema$ListFeaturesResponse {
+    /**
+     * A token to request the next page of resources from the `ListFeatures` method. The value of an empty string means that there are no more resources to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of matching Features
+     */
+    resources?: Schema$Feature[];
   }
   /**
    * The response message for Locations.ListLocations.
@@ -264,6 +814,54 @@ export namespace gkehub_v1beta {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  /**
+   * MembershipFeatureSpec contains configuration information for a single Membership.
+   */
+  export interface Schema$MembershipFeatureSpec {
+    /**
+     * Config Management-specific spec.
+     */
+    configmanagement?: Schema$ConfigManagementMembershipSpec;
+  }
+  /**
+   * MembershipFeatureState contains Feature status information for a single Membership.
+   */
+  export interface Schema$MembershipFeatureState {
+    /**
+     * Config Management-specific state.
+     */
+    configmanagement?: Schema$ConfigManagementMembershipState;
+    /**
+     * Metering-specific spec.
+     */
+    metering?: Schema$MeteringMembershipState;
+    /**
+     * The high-level state of this Feature for a single membership.
+     */
+    state?: Schema$FeatureState;
+  }
+  /**
+   * Metering per-Membership Feature State.
+   */
+  export interface Schema$MeteringMembershipState {
+    /**
+     * The time stamp of the most recent measurement of the number of vCPUs in the cluster.
+     */
+    lastMeasurementTime?: string | null;
+    /**
+     * The vCPUs capacity in the cluster according to the most recent measurement (1/1000 precision).
+     */
+    preciseLastMeasuredClusterVcpuCapacity?: number | null;
+  }
+  /**
+   * FeatureSpec contains the input for the MultiClusterIngress feature.
+   */
+  export interface Schema$MultiClusterIngressFeatureSpec {
+    /**
+     * Fully-qualified Membership name which hosts the MultiClusterIngress CRD. Example: `projects/foo-proj/locations/global/memberships/bar`
+     */
+    configMembership?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -388,11 +986,13 @@ export namespace gkehub_v1beta {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     features: Resource$Projects$Locations$Features;
+    global: Resource$Projects$Locations$Global;
     memberships: Resource$Projects$Locations$Memberships;
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.features = new Resource$Projects$Locations$Features(this.context);
+      this.global = new Resource$Projects$Locations$Global(this.context);
       this.memberships = new Resource$Projects$Locations$Memberships(
         this.context
       );
@@ -1160,6 +1760,827 @@ export namespace gkehub_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Global {
+    context: APIRequestContext;
+    features: Resource$Projects$Locations$Global$Features;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.features = new Resource$Projects$Locations$Global$Features(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Projects$Locations$Global$Features {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Adds a new Feature.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.projects.locations.global.features.create({
+     *     // The ID of the feature to create.
+     *     featureId: 'placeholder-value',
+     *     // The parent (project and location) where the Feature will be created. Specified in the format `projects/x/locations/global`.
+     *     parent: 'projects/my-project/locations/global',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "labels": {},
+     *       //   "membershipSpecs": {},
+     *       //   "membershipStates": {},
+     *       //   "name": "my_name",
+     *       //   "resourceState": {},
+     *       //   "spec": {},
+     *       //   "state": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Global$Features$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Global$Features$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Global$Features$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Global$Features$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Global$Features$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Features$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Features$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Global$Features$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/features').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Removes a Feature.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.projects.locations.global.features.delete({
+     *     // If set to true, the delete will ignore any outstanding resources for this Feature (that is, `FeatureState.has_resources` is set to true). These resources will NOT be cleaned up or modified in any way.
+     *     force: 'placeholder-value',
+     *     // The Feature resource name in the format `projects/x/locations/global/features/x`.
+     *     name: 'projects/my-project/locations/global/features/my-feature',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Global$Features$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Global$Features$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Global$Features$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Global$Features$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Global$Features$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Features$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Features$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Global$Features$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single Feature.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.projects.locations.global.features.get({
+     *     // The Feature resource name in the format `projects/x/locations/global/features/x`
+     *     name: 'projects/my-project/locations/global/features/my-feature',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "labels": {},
+     *   //   "membershipSpecs": {},
+     *   //   "membershipStates": {},
+     *   //   "name": "my_name",
+     *   //   "resourceState": {},
+     *   //   "spec": {},
+     *   //   "state": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Global$Features$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Global$Features$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Feature>;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Features$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Features$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Feature>,
+      callback: BodyResponseCallback<Schema$Feature>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Global$Features$Get,
+      callback: BodyResponseCallback<Schema$Feature>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Feature>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Features$Get
+        | BodyResponseCallback<Schema$Feature>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Feature>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Feature>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Feature> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Features$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Global$Features$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Feature>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Feature>(parameters);
+      }
+    }
+
+    /**
+     * Lists Features in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.projects.locations.global.features.list({
+     *     // Lists Features that match the filter expression, following the syntax outlined in https://google.aip.dev/160. Examples: - Feature with the name "servicemesh" in project "foo-proj": name = "projects/foo-proj/locations/global/features/servicemesh" - Features that have a label called `foo`: labels.foo:* - Features that have a label called `foo` whose value is `bar`: labels.foo = bar
+     *     filter: 'placeholder-value',
+     *     // One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.
+     *     orderBy: 'placeholder-value',
+     *     // When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
+     *     pageSize: 'placeholder-value',
+     *     // Token returned by previous call to `ListFeatures` which specifies the position in the list from where to continue listing the resources.
+     *     pageToken: 'placeholder-value',
+     *     // The parent (project and location) where the Features will be listed. Specified in the format `projects/x/locations/global`.
+     *     parent: 'projects/my-project/locations/global',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Global$Features$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Global$Features$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListFeaturesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Features$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Features$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListFeaturesResponse>,
+      callback: BodyResponseCallback<Schema$ListFeaturesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Global$Features$List,
+      callback: BodyResponseCallback<Schema$ListFeaturesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListFeaturesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Features$List
+        | BodyResponseCallback<Schema$ListFeaturesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListFeaturesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListFeaturesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListFeaturesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Features$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Global$Features$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+parent}/features').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListFeaturesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListFeaturesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates an existing Feature.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const gkehub = google.gkehub('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await gkehub.projects.locations.global.features.patch({
+     *     // The Feature resource name in the format `projects/x/locations/global/features/x`.
+     *     name: 'projects/my-project/locations/global/features/my-feature',
+     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "deleteTime": "my_deleteTime",
+     *       //   "labels": {},
+     *       //   "membershipSpecs": {},
+     *       //   "membershipStates": {},
+     *       //   "name": "my_name",
+     *       //   "resourceState": {},
+     *       //   "spec": {},
+     *       //   "state": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Features$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Global$Features$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Features$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Features$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Global$Features$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Global$Features$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Global$Features$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Global$Features$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Global$Features$Create
+    extends StandardParameters {
+    /**
+     * The ID of the feature to create.
+     */
+    featureId?: string;
+    /**
+     * The parent (project and location) where the Feature will be created. Specified in the format `projects/x/locations/global`.
+     */
+    parent?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Feature;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Features$Delete
+    extends StandardParameters {
+    /**
+     * If set to true, the delete will ignore any outstanding resources for this Feature (that is, `FeatureState.has_resources` is set to true). These resources will NOT be cleaned up or modified in any way.
+     */
+    force?: boolean;
+    /**
+     * The Feature resource name in the format `projects/x/locations/global/features/x`.
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Features$Get
+    extends StandardParameters {
+    /**
+     * The Feature resource name in the format `projects/x/locations/global/features/x`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Features$List
+    extends StandardParameters {
+    /**
+     * Lists Features that match the filter expression, following the syntax outlined in https://google.aip.dev/160. Examples: - Feature with the name "servicemesh" in project "foo-proj": name = "projects/foo-proj/locations/global/features/servicemesh" - Features that have a label called `foo`: labels.foo:* - Features that have a label called `foo` whose value is `bar`: labels.foo = bar
+     */
+    filter?: string;
+    /**
+     * One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.
+     */
+    orderBy?: string;
+    /**
+     * When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
+     */
+    pageSize?: number;
+    /**
+     * Token returned by previous call to `ListFeatures` which specifies the position in the list from where to continue listing the resources.
+     */
+    pageToken?: string;
+    /**
+     * The parent (project and location) where the Features will be listed. Specified in the format `projects/x/locations/global`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Global$Features$Patch
+    extends StandardParameters {
+    /**
+     * The Feature resource name in the format `projects/x/locations/global/features/x`.
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Mask of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Feature;
   }
 
   export class Resource$Projects$Locations$Memberships {
