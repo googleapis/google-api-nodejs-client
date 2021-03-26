@@ -127,6 +127,10 @@ export namespace bigtableadmin_v1 {
    */
   export interface Schema$Backup {
     /**
+     * Output only. The encryption information for the backup.
+     */
+    encryptionInfo?: Schema$EncryptionInfo;
+    /**
      * Output only. `end_time` is the time that the backup was finished. The row data in the backup will be no newer than this timestamp.
      */
     endTime?: string | null;
@@ -184,6 +188,10 @@ export namespace bigtableadmin_v1 {
      * Immutable. The type of storage used by this cluster to serve its parent instance's tables, unless explicitly overridden.
      */
     defaultStorageType?: string | null;
+    /**
+     * Immutable. The encryption configuration for CMEK-protected clusters.
+     */
+    encryptionConfig?: Schema$EncryptionConfig;
     /**
      * Immutable. The location where this cluster's nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/{project\}/locations/{zone\}`.
      */
@@ -299,6 +307,32 @@ export namespace bigtableadmin_v1 {
     parent?: string | null;
   }
   /**
+   * Cloud Key Management Service (Cloud KMS) settings for a CMEK-protected cluster.
+   */
+  export interface Schema$EncryptionConfig {
+    /**
+     * Describes the Cloud KMS encryption key that will be used to protect the destination Bigtable cluster. The requirements for this key are: 1) The Cloud Bigtable service account associated with the project that contains this cluster must be granted the `cloudkms.cryptoKeyEncrypterDecrypter` role on the CMEK key. 2) Only regional keys can be used and the region of the CMEK key must match the region of the cluster. 3) All clusters within an instance must use the same CMEK key. Values are of the form `projects/{project\}/locations/{location\}/keyRings/{keyring\}/cryptoKeys/{key\}`
+     */
+    kmsKeyName?: string | null;
+  }
+  /**
+   * Encryption information for a given resource. If this resource is protected with customer managed encryption, the in-use Cloud Key Management Service (Cloud KMS) key version is specified along with its status.
+   */
+  export interface Schema$EncryptionInfo {
+    /**
+     * Output only. The status of encrypt/decrypt calls on underlying data for this resource. Regardless of status, the existing data is always encrypted at rest.
+     */
+    encryptionStatus?: Schema$Status;
+    /**
+     * Output only. The type of encryption used to protect this resource.
+     */
+    encryptionType?: string | null;
+    /**
+     * Output only. The version of the Cloud KMS key specified in the parent cluster that is in use for the data underlying this table.
+     */
+    kmsKeyVersion?: string | null;
+  }
+  /**
    * Added to the error payload.
    */
   export interface Schema$FailureTrace {
@@ -398,6 +432,23 @@ export namespace bigtableadmin_v1 {
      * The type of the restore source.
      */
     sourceType?: string | null;
+  }
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
   }
   /**
    * Progress info for copying a table's data to the new cluster.

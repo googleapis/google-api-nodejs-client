@@ -96,13 +96,18 @@
   },
   "protocol": "rest",
   "resources": {},
-  "revision": "20200916",
+  "revision": "20210323",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "Backup": {
       "description": "A backup of a Cloud Bigtable table.",
       "id": "Backup",
       "properties": {
+        "encryptionInfo": {
+          "$ref": "EncryptionInfo",
+          "description": "Output only. The encryption information for the backup.",
+          "readOnly": true
+        },
         "endTime": {
           "description": "Output only. `end_time` is the time that the backup was finished. The row data in the backup will be no newer than this timestamp.",
           "format": "google-datetime",
@@ -198,6 +203,10 @@
             "Magnetic drive (HDD) storage should be used."
           ],
           "type": "string"
+        },
+        "encryptionConfig": {
+          "$ref": "EncryptionConfig",
+          "description": "Immutable. The encryption configuration for CMEK-protected clusters."
         },
         "location": {
           "description": "Immutable. The location where this cluster's nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/{project}/locations/{zone}`.",
@@ -348,6 +357,49 @@
         },
         "parent": {
           "description": "Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EncryptionConfig": {
+      "description": "Cloud Key Management Service (Cloud KMS) settings for a CMEK-protected cluster.",
+      "id": "EncryptionConfig",
+      "properties": {
+        "kmsKeyName": {
+          "description": "Describes the Cloud KMS encryption key that will be used to protect the destination Bigtable cluster. The requirements for this key are: 1) The Cloud Bigtable service account associated with the project that contains this cluster must be granted the `cloudkms.cryptoKeyEncrypterDecrypter` role on the CMEK key. 2) Only regional keys can be used and the region of the CMEK key must match the region of the cluster. 3) All clusters within an instance must use the same CMEK key. Values are of the form `projects/{project}/locations/{location}/keyRings/{keyring}/cryptoKeys/{key}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EncryptionInfo": {
+      "description": "Encryption information for a given resource. If this resource is protected with customer managed encryption, the in-use Cloud Key Management Service (Cloud KMS) key version is specified along with its status.",
+      "id": "EncryptionInfo",
+      "properties": {
+        "encryptionStatus": {
+          "$ref": "Status",
+          "description": "Output only. The status of encrypt/decrypt calls on underlying data for this resource. Regardless of status, the existing data is always encrypted at rest.",
+          "readOnly": true
+        },
+        "encryptionType": {
+          "description": "Output only. The type of encryption used to protect this resource.",
+          "enum": [
+            "ENCRYPTION_TYPE_UNSPECIFIED",
+            "GOOGLE_DEFAULT_ENCRYPTION",
+            "CUSTOMER_MANAGED_ENCRYPTION"
+          ],
+          "enumDescriptions": [
+            "Encryption type was not specified, though data at rest remains encrypted.",
+            "The data backing this resource is encrypted at rest with a key that is fully managed by Google. No key version or status will be populated. This is the default state.",
+            "The data backing this resource is encrypted at rest with a key that is managed by the customer. The in-use version of the key and its status are populated for CMEK-protected tables. CMEK-protected backups are pinned to the key version that was in use at the time the backup was taken. This key version is populated but its status is not tracked and is reported as `UNKNOWN`."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "kmsKeyVersion": {
+          "description": "Output only. The version of the Cloud KMS key specified in the parent cluster that is in use for the data underlying this table.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -514,6 +566,33 @@
             "No restore associated.",
             "A backup was used as the source of the restore."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Status": {
+      "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
+      "id": "Status",
+      "properties": {
+        "code": {
+          "description": "The status code, which should be an enum value of google.rpc.Code.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "details": {
+          "description": "A list of messages that carry the error details. There is a common set of message types for APIs to use.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
         }
       },
