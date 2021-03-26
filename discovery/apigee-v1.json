@@ -3092,7 +3092,7 @@
                 "admin": {
                   "methods": {
                     "getSchemav2": {
-                      "description": "Get a list of metrics and dimensions which can be used for creating analytics queries and reports. Each schema element contains the name of the field with its associated type and if it is either custom field or standard field.",
+                      "description": "Gets a list of metrics and dimensions that can be used to create analytics queries and reports. Each schema element contains the name of the field, its associated type, and a flag indicating whether it is a standard or custom field.",
                       "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/analytics/admin/schemav2",
                       "httpMethod": "GET",
                       "id": "apigee.organizations.environments.analytics.admin.getSchemav2",
@@ -3100,15 +3100,20 @@
                         "name"
                       ],
                       "parameters": {
+                        "disableCache": {
+                          "description": "Flag that specifies whether the schema is be read from the database or cache. Set to `true` to read the schema from the database. Defaults to cache.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
                         "name": {
-                          "description": "Required. The parent organization and environment names. Must be of the form `organizations/{org}/environments/{env}/analytics/admin/schemav2`.",
+                          "description": "Required. Path to the schema. Use the following structure in your request: `organizations/{org}/environments/{env}/analytics/admin/schemav2`.",
                           "location": "path",
                           "pattern": "^organizations/[^/]+/environments/[^/]+/analytics/admin/schemav2$",
                           "required": true,
                           "type": "string"
                         },
                         "type": {
-                          "description": "Required. Type refers to the dataset name whose schema needs to be retrieved E.g. type=fact or type=agg_cus1",
+                          "description": "Required. Name of the dataset for which you want to retrieve the schema. For example: `fact` or `agg_cus1`",
                           "location": "query",
                           "type": "string"
                         }
@@ -6661,7 +6666,7 @@
       }
     }
   },
-  "revision": "20210312",
+  "revision": "20210319",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -8838,7 +8843,7 @@
           "description": "GraphQL operation name, along with operation type which will be used to associate quotas with. If no name is specified, the quota will be applied to all graphQL operations irrespective of their operation names in the payload.",
           "type": "string"
         },
-        "operationType": {
+        "operationTypes": {
           "description": "Required. `query`, `mutation` and `subscription` are the three operation types offered by graphQL. Currently we support only `query` and `mutation`.",
           "items": {
             "type": "string"
@@ -9763,7 +9768,7 @@
           "type": "string"
         },
         "billingType": {
-          "description": "Output only. Billing type of the Apigee organization. See [Apigee pricing](https://cloud.google.com/apigee/pricing).",
+          "description": "Billing type of the Apigee organization. See [Apigee pricing](https://cloud.google.com/apigee/pricing).",
           "enum": [
             "BILLING_TYPE_UNSPECIFIED",
             "SUBSCRIPTION",
@@ -9774,7 +9779,6 @@
             "A pre-paid subscription to Apigee.",
             "Free and limited access to Apigee for evaluation purposes only. only."
           ],
-          "readOnly": true,
           "type": "string"
         },
         "caCertificate": {
@@ -10543,7 +10547,7 @@
       "id": "GoogleCloudApigeeV1Schema",
       "properties": {
         "dimensions": {
-          "description": "List of schema fiels grouped as dimensions.",
+          "description": "List of schema fields grouped as dimensions.",
           "items": {
             "$ref": "GoogleCloudApigeeV1SchemaSchemaElement"
           },
@@ -10557,7 +10561,7 @@
           "type": "array"
         },
         "metrics": {
-          "description": "List of schema fields grouped as dimensions. These are fields that can be used with an aggregate function such as sum, avg, min, max.",
+          "description": "List of schema fields grouped as dimensions that can be used with an aggregate function such as `sum`, `avg`, `min`, and `max`.",
           "items": {
             "$ref": "GoogleCloudApigeeV1SchemaSchemaElement"
           },
@@ -10571,26 +10575,26 @@
       "id": "GoogleCloudApigeeV1SchemaSchemaElement",
       "properties": {
         "name": {
-          "description": "Name of the field",
+          "description": "Name of the field.",
           "type": "string"
         },
         "properties": {
           "$ref": "GoogleCloudApigeeV1SchemaSchemaProperty",
-          "description": "Property of the schema field E.g. { \"createTime\": \"2016-02-26T10:23:09.592Z\", \"custom\": \"false\", \"type\": \"string\" }"
+          "description": "Properties for the schema field. For example: { \"createTime\": \"2016-02-26T10:23:09.592Z\", \"custom\": \"false\", \"type\": \"string\" }"
         }
       },
       "type": "object"
     },
     "GoogleCloudApigeeV1SchemaSchemaProperty": {
-      "description": "Message type for schema property",
+      "description": "Properties for the schema field.",
       "id": "GoogleCloudApigeeV1SchemaSchemaProperty",
       "properties": {
         "createTime": {
-          "description": "Creation time of the field",
+          "description": "Time the field was created in RFC3339 string form. For example: `2016-02-26T10:23:09.592Z`.",
           "type": "string"
         },
         "custom": {
-          "description": "Custom is a flag signifying if the field was provided as part of the standard dataset or a custom field created by the customer",
+          "description": "Flag that specifies whether the field is standard in the dataset or a custom field created by the customer. `true` indicates that it is a custom field.",
           "type": "string"
         },
         "type": {
