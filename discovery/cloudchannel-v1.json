@@ -1508,7 +1508,7 @@
       }
     }
   },
-  "revision": "20210319",
+  "revision": "20210325",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -1767,7 +1767,8 @@
           "description": "Edu information about the customer."
         },
         "isDomainVerified": {
-          "description": "Whether the domain is verified.",
+          "description": "Output only. Whether the domain is verified. This field is not returned for a Customer's cloud_identity_info resource. Partners can use the domains.get() method of the Workspace SDK's Directory API, or listen to the PRIMARY_DOMAIN_VERIFIED Pub/Sub event in to track domain verification of their resolve Workspace customers.",
+          "readOnly": true,
           "type": "boolean"
         },
         "languageCode": {
@@ -1990,10 +1991,14 @@
         "eventType": {
           "description": "Type of event which happened on the customer.",
           "enum": [
-            "TYPE_UNSPECIFIED"
+            "TYPE_UNSPECIFIED",
+            "PRIMARY_DOMAIN_CHANGED",
+            "PRIMARY_DOMAIN_VERIFIED"
           ],
           "enumDescriptions": [
-            "Default value. This state doesn't show unless an error occurs."
+            "Default value. This state doesn't show unless an error occurs.",
+            "Primary domain for customer was changed.",
+            "Primary domain of the customer has been verified."
           ],
           "type": "string"
         }
@@ -3233,6 +3238,10 @@
       "description": "Data type and value of a parameter.",
       "id": "GoogleCloudChannelV1Value",
       "properties": {
+        "boolValue": {
+          "description": "Represents a boolean value.",
+          "type": "boolean"
+        },
         "doubleValue": {
           "description": "Represents a double value.",
           "format": "double",
@@ -3303,10 +3312,14 @@
         "eventType": {
           "description": "Type of event which happened on the customer.",
           "enum": [
-            "TYPE_UNSPECIFIED"
+            "TYPE_UNSPECIFIED",
+            "PRIMARY_DOMAIN_CHANGED",
+            "PRIMARY_DOMAIN_VERIFIED"
           ],
           "enumDescriptions": [
-            "Default value. This state doesn't show unless an error occurs."
+            "Default value. This state doesn't show unless an error occurs.",
+            "Primary domain for customer was changed.",
+            "Primary domain of the customer has been verified."
           ],
           "type": "string"
         }
@@ -3698,6 +3711,10 @@
       "description": "Data type and value of a parameter.",
       "id": "GoogleCloudChannelV1alpha1Value",
       "properties": {
+        "boolValue": {
+          "description": "Represents a boolean value.",
+          "type": "boolean"
+        },
         "doubleValue": {
           "description": "Represents a double value.",
           "format": "double",
