@@ -183,6 +183,10 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$Backup {
     /**
+     * Output only. The encryption information for the backup.
+     */
+    encryptionInfo?: Schema$EncryptionInfo;
+    /**
      * Output only. `end_time` is the time that the backup was finished. The row data in the backup will be no newer than this timestamp.
      */
     endTime?: string | null;
@@ -276,6 +280,10 @@ export namespace bigtableadmin_v2 {
      */
     defaultStorageType?: string | null;
     /**
+     * Immutable. The encryption configuration for CMEK-protected clusters.
+     */
+    encryptionConfig?: Schema$EncryptionConfig;
+    /**
      * Immutable. The location where this cluster's nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/{project\}/locations/{zone\}`.
      */
     location?: string | null;
@@ -296,6 +304,10 @@ export namespace bigtableadmin_v2 {
    * The state of a table's data in a particular cluster.
    */
   export interface Schema$ClusterState {
+    /**
+     * Output only. The encryption information for the table in this cluster. If the encryption key protecting this resource is customer managed, then its version can be rotated in Cloud Key Management Service (Cloud KMS). The primary version of the key and its status will be reflected here when changes propagate from Cloud KMS.
+     */
+    encryptionInfo?: Schema$EncryptionInfo[];
     /**
      * Output only. The state of replication for the table in this cluster.
      */
@@ -441,6 +453,32 @@ export namespace bigtableadmin_v2 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
+  /**
+   * Cloud Key Management Service (Cloud KMS) settings for a CMEK-protected cluster.
+   */
+  export interface Schema$EncryptionConfig {
+    /**
+     * Describes the Cloud KMS encryption key that will be used to protect the destination Bigtable cluster. The requirements for this key are: 1) The Cloud Bigtable service account associated with the project that contains this cluster must be granted the `cloudkms.cryptoKeyEncrypterDecrypter` role on the CMEK key. 2) Only regional keys can be used and the region of the CMEK key must match the region of the cluster. 3) All clusters within an instance must use the same CMEK key. Values are of the form `projects/{project\}/locations/{location\}/keyRings/{keyring\}/cryptoKeys/{key\}`
+     */
+    kmsKeyName?: string | null;
+  }
+  /**
+   * Encryption information for a given resource. If this resource is protected with customer managed encryption, the in-use Cloud Key Management Service (Cloud KMS) key version is specified along with its status.
+   */
+  export interface Schema$EncryptionInfo {
+    /**
+     * Output only. The status of encrypt/decrypt calls on underlying data for this resource. Regardless of status, the existing data is always encrypted at rest.
+     */
+    encryptionStatus?: Schema$Status;
+    /**
+     * Output only. The type of encryption used to protect this resource.
+     */
+    encryptionType?: string | null;
+    /**
+     * Output only. The version of the Cloud KMS key specified in the parent cluster that is in use for the data underlying this table.
+     */
+    kmsKeyVersion?: string | null;
+  }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -915,7 +953,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$Table {
     /**
-     * Output only. Map from cluster ID to per-cluster table state. If it could not be determined whether or not the table has data in a particular cluster (for example, if its zone is unavailable), then there will be an entry for the cluster with UNKNOWN `replication_status`. Views: `REPLICATION_VIEW`, `FULL`
+     * Output only. Map from cluster ID to per-cluster table state. If it could not be determined whether or not the table has data in a particular cluster (for example, if its zone is unavailable), then there will be an entry for the cluster with UNKNOWN `replication_status`. Views: `REPLICATION_VIEW`, `ENCRYPTION_VIEW`, `FULL`
      */
     clusterStates?: {[key: string]: Schema$ClusterState} | null;
     /**
@@ -3953,6 +3991,7 @@ export namespace bigtableadmin_v2 {
      *       // request body parameters
      *       // {
      *       //   "defaultStorageType": "my_defaultStorageType",
+     *       //   "encryptionConfig": {},
      *       //   "location": "my_location",
      *       //   "name": "my_name",
      *       //   "serveNodes": 0,
@@ -4239,6 +4278,7 @@ export namespace bigtableadmin_v2 {
      *   // Example response
      *   // {
      *   //   "defaultStorageType": "my_defaultStorageType",
+     *   //   "encryptionConfig": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "serveNodes": 0,
@@ -4524,6 +4564,7 @@ export namespace bigtableadmin_v2 {
      *       // request body parameters
      *       // {
      *       //   "defaultStorageType": "my_defaultStorageType",
+     *       //   "encryptionConfig": {},
      *       //   "location": "my_location",
      *       //   "name": "my_name",
      *       //   "serveNodes": 0,
@@ -4735,6 +4776,7 @@ export namespace bigtableadmin_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "encryptionInfo": {},
      *       //   "endTime": "my_endTime",
      *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
@@ -5022,6 +5064,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "encryptionInfo": {},
      *   //   "endTime": "my_endTime",
      *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
@@ -5462,6 +5505,7 @@ export namespace bigtableadmin_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "encryptionInfo": {},
      *       //   "endTime": "my_endTime",
      *       //   "expireTime": "my_expireTime",
      *       //   "name": "my_name",
@@ -5476,6 +5520,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "encryptionInfo": {},
      *   //   "endTime": "my_endTime",
      *   //   "expireTime": "my_expireTime",
      *   //   "name": "my_name",
