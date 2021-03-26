@@ -401,6 +401,10 @@ export namespace cloudchannel_v1 {
    */
   export interface Schema$GoogleCloudChannelV1alpha1Value {
     /**
+     * Represents a boolean value.
+     */
+    boolValue?: boolean | null;
+    /**
      * Represents a double value.
      */
     doubleValue?: number | null;
@@ -583,7 +587,7 @@ export namespace cloudchannel_v1 {
      */
     eduData?: Schema$GoogleCloudChannelV1EduData;
     /**
-     * Whether the domain is verified.
+     * Output only. Whether the domain is verified. This field is not returned for a Customer's cloud_identity_info resource. Partners can use the domains.get() method of the Workspace SDK's Directory API, or listen to the PRIMARY_DOMAIN_VERIFIED Pub/Sub event in to track domain verification of their resolve Workspace customers.
      */
     isDomainVerified?: boolean | null;
     /**
@@ -1564,6 +1568,10 @@ export namespace cloudchannel_v1 {
    * Data type and value of a parameter.
    */
   export interface Schema$GoogleCloudChannelV1Value {
+    /**
+     * Represents a boolean value.
+     */
+    boolValue?: boolean | null;
     /**
      * Represents a double value.
      */
