@@ -369,15 +369,13 @@ async function main() {
   } else {
     console.log('Generating APIs...');
     await gen.generateAllAPIs(discoveryUrl || DISCOVERY_URL, useCache);
+    // Re-generates release-please manifest and config files
+    console.log(
+      'Generating .release-please-manifest.json and release-please-config.json'
+    );
+    gen.generateReleasePleaseConfig();
     console.log('Finished generating APIs!');
   }
-
-  //Re-generates release-please manifest and config files
-  console.log(
-    'Generating .release-please-manifest.json and release-please-config.json'
-  );
-  gen.generateReleasePleaseConfig();
-  console.log('Finished generating release-please config files!');
 }
 
 if (require.main === module) {
