@@ -11,8 +11,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//TODO: confirm that http2 and user agent directives global options are set
-//correctly, and if so, that rootUrl is specifically not set globally
 import * as assert from 'assert';
 import {describe, it, afterEach, before} from 'mocha';
 import * as nock from 'nock';
@@ -157,6 +155,22 @@ describe('Options', () => {
       'product/version google-api-nodejs-client/5.0.2 (gzip)'
     );
     await drive.files.get({auth: 'apikey3', fileId: 'woot'});
+  });
+
+  it.only('should NOT respect global options for root url', async () => {
+    const google = new GoogleApis();
+    google.options({
+      rootUrl: 'http.example.com',
+    });
+    const drive = google.drive({version: 'v2', auth: 'apikey2'});
+    createNockRequestHeaders(
+      '/drive/v2/files/woot?key=apikey3',
+      'rootUrl',
+      'http.example.com'
+    );
+    assert.rejects(async () => {
+      await drive.files.get({auth: 'apikey3', fileId: 'woot'});
+    }, /reason: Nock: No match for request/);
   });
 
   it('should apply endpoint options to request object like timeout', async () => {
