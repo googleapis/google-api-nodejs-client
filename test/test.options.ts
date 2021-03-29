@@ -157,7 +157,7 @@ describe('Options', () => {
     await drive.files.get({auth: 'apikey3', fileId: 'woot'});
   });
 
-  it.only('should NOT respect global options for root url', async () => {
+  it('should NOT respect global options for root url', async () => {
     const google = new GoogleApis();
     google.options({
       rootUrl: 'http.example.com',
