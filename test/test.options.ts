@@ -11,6 +11,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+//TODO: confirm that http2 and user agent directives global options are set
+//correctly, and if so, that rootUrl is specifically not set globally
 import * as assert from 'assert';
 import {describe, it, afterEach, before} from 'mocha';
 import * as nock from 'nock';
@@ -24,6 +26,15 @@ import {GaxiosResponse} from 'gaxios';
 function createNock(path?: string) {
   const p = path || '/drive/v2/files/woot';
   return nock(Utils.baseUrl).get(p).reply(200);
+}
+
+function createNockRequestHeaders(
+  path: string,
+  header: string,
+  headerValue: string
+) {
+  const p = path || '/drive/v2/files/woot';
+  return nock(Utils.baseUrl).matchHeader(header, headerValue).get(p).reply(200);
 }
 
 describe('Options', () => {
@@ -125,6 +136,27 @@ describe('Options', () => {
     createNock('/drive/v2/files/woot?key=apikey3');
     const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
     assert.strictEqual(res.config.timeout, 12345);
+  });
+
+  it('should respect global options for user agent directives', async () => {
+    const google = new GoogleApis();
+    const product = 'product';
+    const version = 'version';
+    google.options({
+      userAgentDirectives: [
+        {
+          product,
+          version,
+        },
+      ],
+    });
+    const drive = google.drive({version: 'v2', auth: 'apikey2'});
+    createNockRequestHeaders(
+      '/drive/v2/files/woot?key=apikey3',
+      'user-agent',
+      'product/version google-api-nodejs-client/5.0.2 (gzip)'
+    );
+    await drive.files.get({auth: 'apikey3', fileId: 'woot'});
   });
 
   it('should apply endpoint options to request object like timeout', async () => {
