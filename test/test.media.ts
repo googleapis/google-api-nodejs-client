@@ -106,7 +106,7 @@ describe('Media', () => {
   });
 
   it('should post progress for uploads', async () => {
-    const scope = nock(Utils.baseUrl)
+    const scope = nock('https://youtube.googleapis.com')
       .post(
         '/upload/youtube/v3/videos?part=id&part=snippet&notifySubscribers=false&uploadType=multipart'
       )
@@ -142,7 +142,7 @@ describe('Media', () => {
 
   // See: https://github.com/googleapis/google-api-nodejs-client/issues/1820
   it('should post progress for uploads, for APIs with empty requestBody', async () => {
-    const scope = nock(Utils.baseUrl)
+    const scope = nock('https://youtube.googleapis.com')
       .post(
         '/upload/youtube/v3/thumbnails/set?videoId=abc123&uploadType=multipart'
       )
