@@ -29,7 +29,7 @@ function createNock(path?: string) {
 function createNockRequestHeaders(
   path: string,
   header: string,
-  headerValue: string
+  headerValue: RegExp | string
 ) {
   const p = path || '/drive/v2/files/woot';
   return nock(Utils.baseUrl).matchHeader(header, headerValue).get(p).reply(200);
@@ -152,7 +152,7 @@ describe('Options', () => {
     createNockRequestHeaders(
       '/drive/v2/files/woot?key=apikey3',
       'user-agent',
-      'product/version google-api-nodejs-client/5.0.2 (gzip)'
+      new RegExp(/product\/version google-api-nodejs-client\/.*[\s\S](gzip)/)
     );
     await drive.files.get({auth: 'apikey3', fileId: 'woot'});
   });
