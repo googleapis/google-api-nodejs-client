@@ -54,6 +54,12 @@ This library is distributed on `npm`. In order to add it as a dependency, run th
 $ npm install googleapis
 ```
 
+Each API is also released as a submodule. In order to add it as a dependency, run the following command, replacing `API_NAME` with the desired api:
+
+``` sh
+$ npm install @googleapis/${API_NAME}
+```
+
 ### Using the client library
 
 This is a very simple example. This creates a Blogger client and retrieves the details of a blog given the blog Id:
@@ -102,6 +108,25 @@ async function runSample() {
   console.log(`The blog url is ${res.data.url}`);
 }
 runSample().catch(console.error);
+```
+
+You can also make calls directly to the APIs by installing a submodule:
+
+``` js
+const docs = require('@googleapis/docs')
+
+const client = await docs.docs({
+    version: 'v1',
+    auth: 'YOUR_AUTHENTICATED_CLIENT'
+});
+
+const createResponse = await client.documents.create({
+    requestBody: {
+      title: 'Your new document!',
+    },
+  });
+
+console.log(createResponse.data);
 ```
 
 ### Samples
