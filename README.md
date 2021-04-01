@@ -54,8 +54,7 @@ This library is distributed on `npm`. In order to add it as a dependency, run th
 $ npm install googleapis
 ```
 
-If you need to reduce startup times, you can also add each submodule as its own dependency. In order to add it as a dependency, run the following sample command,
-replacing with your preferred API:
+If you need to reduce startup times, you can also add each submodule as its own dependency. In order to add it as a dependency, run the following sample command, replacing with your preferred API:
 
 ``` sh
 $ npm install @googleapis/docs
