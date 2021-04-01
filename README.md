@@ -57,7 +57,7 @@ $ npm install googleapis
 Each API is also released as a submodule. In order to add it as a dependency, run the following command, replacing `API_NAME` with the desired api:
 
 ``` sh
-$ npm install @googleapis/${API_NAME}
+$ npm install @googleapis/<API_NAME>
 ```
 
 ### Using the client library
