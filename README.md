@@ -54,10 +54,11 @@ This library is distributed on `npm`. In order to add it as a dependency, run th
 $ npm install googleapis
 ```
 
-Each API is also released as a submodule. In order to add it as a dependency, run the following command, replacing `API_NAME` with the desired api:
+If you need to reduce startup times, you can also add each submodule as its own dependency. In order to add it as a dependency, run the following sample command,
+replacing with your preferred API:
 
 ``` sh
-$ npm install @googleapis/<API_NAME>
+$ npm install @googleapis/docs
 ```
 
 ### Using the client library
@@ -115,9 +116,16 @@ You can also make calls directly to the APIs by installing a submodule:
 ``` js
 const docs = require('@googleapis/docs')
 
+const auth = new docs.auth.GoogleAuth({
+  keyFilename: 'PATH_TO_SERVICE_ACCOUNT_KEY.json',
+    // Scopes can be specified either as an array or as a single, space-delimited string.
+  scopes: ['https://www.googleapis.com/auth/documents']
+});
+const authClient = await auth.getClient();
+
 const client = await docs.docs({
     version: 'v1',
-    auth: 'YOUR_AUTHENTICATED_CLIENT'
+    auth: authClient
 });
 
 const createResponse = await client.documents.create({
