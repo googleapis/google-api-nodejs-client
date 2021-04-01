@@ -4,6 +4,34 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [70.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v69.0.0...googleapis-v70.0.0) (2021-04-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* stop ignoring YouTube, and re-generate with latest API (#2575)
+* **spanner:** This release has breaking changes.
+* **datafusion:** This release has breaking changes.
+
+### Features
+
+* **bigtableadmin:** update the API ([7a1fc20](https://www.github.com/googleapis/google-api-nodejs-client/commit/7a1fc205588bd16db9be17e6efe8aae28bbaf81d))
+* **cloudchannel:** update the API ([49d85bf](https://www.github.com/googleapis/google-api-nodejs-client/commit/49d85bf35cb0d34c079606c993ed96df6ffb0eee))
+* **datafusion:** update the API ([be0f3dc](https://www.github.com/googleapis/google-api-nodejs-client/commit/be0f3dc2adc99d172747e44d8799b476930b6366))
+* **gkehub:** update the API ([0a315ae](https://www.github.com/googleapis/google-api-nodejs-client/commit/0a315ae98964d51a6a633fee7cef6a92177f0f38))
+* regenerate index files ([1afade5](https://www.github.com/googleapis/google-api-nodejs-client/commit/1afade5579543f688510401c2e9e5ba4877cf784))
+* **spanner:** update the API ([6b9efab](https://www.github.com/googleapis/google-api-nodejs-client/commit/6b9efabed81567213f9076859406a0b034beab8d))
+
+
+### Bug Fixes
+
+* **cloudresourcemanager:** update the API ([08a2594](https://www.github.com/googleapis/google-api-nodejs-client/commit/08a25947f8bc630c2c328e970e235d7357cd91f2))
+* **eventarc:** update the API ([3b5331a](https://www.github.com/googleapis/google-api-nodejs-client/commit/3b5331a9ef9798e3fd30eadcc6c970dc0e616c67))
+* **firestore:** update the API ([5ead437](https://www.github.com/googleapis/google-api-nodejs-client/commit/5ead437f43e61aa4de03e6fd6bc5fc86613f27ae))
+* **healthcare:** update the API ([6e1f3be](https://www.github.com/googleapis/google-api-nodejs-client/commit/6e1f3bed7729c0f44cd0e6f4e492b7ed0cf0506d))
+* **redis:** update the API ([afc680a](https://www.github.com/googleapis/google-api-nodejs-client/commit/afc680abfcb4b3c6fa7808c493a50e8b29aafdec))
+* stop ignoring YouTube, and re-generate with latest API ([#2575](https://www.github.com/googleapis/google-api-nodejs-client/issues/2575)) ([7a6967f](https://www.github.com/googleapis/google-api-nodejs-client/commit/7a6967f7132c1d2ec34f1fba60609f0b7b515c83))
+
 ## [69.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v68.0.0...googleapis-v69.0.0) (2021-03-25)
 
 
