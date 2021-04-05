@@ -5307,7 +5307,7 @@
       }
     }
   },
-  "revision": "20210318",
+  "revision": "20210325",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -6035,7 +6035,7 @@
           "type": "string"
         },
         "services": {
-          "description": " Acceptable values are: - \"`shoppingAdsProductManagement`\" - \"`shoppingAdsOther`\" - \"`shoppingActionsProductManagement`\" - \"`shoppingActionsOrderManagement`\" - \"`shoppingActionsOther`\" ",
+          "description": " Acceptable values are: - \"`shoppingAdsProductManagement`\" - \"`shoppingActionsProductManagement`\" - \"`shoppingActionsOrderManagement`\" ",
           "items": {
             "type": "string"
           },
@@ -11191,6 +11191,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "additionalSizeType": {
+          "description": "Additional cut of the item. Used together with size_type to represent combined size types for apparel items.",
+          "type": "string"
         },
         "adsGrouping": {
           "description": "Used to group items in an arbitrary way. Only for CPA%, discouraged otherwise.",
