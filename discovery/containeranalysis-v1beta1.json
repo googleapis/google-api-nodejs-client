@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -853,7 +853,7 @@
       }
     }
   },
-  "revision": "20210226",
+  "revision": "20210326",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1515,6 +1515,10 @@
         "sourceUpdateTime": {
           "description": "The time this information was last changed at the source. This is an upstream timestamp from the underlying information source - e.g. Ubuntu security tracker.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "vendor": {
+          "description": "The name of the vendor of the product.",
           "type": "string"
         }
       },
