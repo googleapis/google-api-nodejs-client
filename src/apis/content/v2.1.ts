@@ -527,7 +527,7 @@ export namespace content_v2_1 {
      */
     linkType?: string | null;
     /**
-     *  Acceptable values are: - "`shoppingAdsProductManagement`" - "`shoppingAdsOther`" - "`shoppingActionsProductManagement`" - "`shoppingActionsOrderManagement`" - "`shoppingActionsOther`"
+     *  Acceptable values are: - "`shoppingAdsProductManagement`" - "`shoppingActionsProductManagement`" - "`shoppingActionsOrderManagement`"
      */
     services?: string[] | null;
   }
@@ -4612,6 +4612,10 @@ export namespace content_v2_1 {
      * Additional URLs of images of the item.
      */
     additionalImageLinks?: string[] | null;
+    /**
+     * Additional cut of the item. Used together with size_type to represent combined size types for apparel items.
+     */
+    additionalSizeType?: string | null;
     /**
      * Used to group items in an arbitrary way. Only for CPA%, discouraged otherwise.
      */
@@ -23039,6 +23043,7 @@ export namespace content_v2_1 {
      *   // Example response
      *   // {
      *   //   "additionalImageLinks": [],
+     *   //   "additionalSizeType": "my_additionalSizeType",
      *   //   "adsGrouping": "my_adsGrouping",
      *   //   "adsLabels": [],
      *   //   "adsRedirect": "my_adsRedirect",
@@ -23248,6 +23253,7 @@ export namespace content_v2_1 {
      *       // request body parameters
      *       // {
      *       //   "additionalImageLinks": [],
+     *       //   "additionalSizeType": "my_additionalSizeType",
      *       //   "adsGrouping": "my_adsGrouping",
      *       //   "adsLabels": [],
      *       //   "adsRedirect": "my_adsRedirect",
@@ -23335,6 +23341,7 @@ export namespace content_v2_1 {
      *   // Example response
      *   // {
      *   //   "additionalImageLinks": [],
+     *   //   "additionalSizeType": "my_additionalSizeType",
      *   //   "adsGrouping": "my_adsGrouping",
      *   //   "adsLabels": [],
      *   //   "adsRedirect": "my_adsRedirect",
