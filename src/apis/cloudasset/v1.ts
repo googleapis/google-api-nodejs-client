@@ -1501,7 +1501,7 @@ export namespace cloudasset_v1 {
      */
     parentAssetType?: string | null;
     /**
-     * The full resource name of this resource's parent, if it has one.
+     * The full resource name of this resource's parent, if it has one. To search against the `parent_full_resource_name`: * use a field query. Example: `parentFullResourceName:"project-name"` * use a free text query. Example: `project-name`
      */
     parentFullResourceName?: string | null;
     /**
