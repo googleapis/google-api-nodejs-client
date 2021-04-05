@@ -511,6 +511,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "restore": {
+                  "description": "Restores a service from a backup.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}:restore",
+                  "httpMethod": "POST",
+                  "id": "metastore.projects.locations.services.restore",
+                  "parameterOrder": [
+                    "service"
+                  ],
+                  "parameters": {
+                    "service": {
+                      "description": "Required. The relative resource name of the metastore service to run restore, in the following form:projects/{project_id}/locations/{location_id}/services/{service_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+service}:restore",
+                  "request": {
+                    "$ref": "RestoreServiceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}:setIamPolicy",
@@ -569,6 +597,149 @@
                 }
               },
               "resources": {
+                "backups": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new Backup in a given project and location.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/backups",
+                      "httpMethod": "POST",
+                      "id": "metastore.projects.locations.services.backups.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "backupId": {
+                          "description": "Required. The ID of the backup, which is used as the final component of the backup's name.This value must be between 1 and 64 characters long, begin with a letter, end with a letter or number, and consist of alpha-numeric ASCII characters or hyphens.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The relative resource name of the service in which to create a backup of the following form:projects/{project_number}/locations/{location_id}/services/{service_id}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/backups",
+                      "request": {
+                        "$ref": "Backup"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single backup.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/backups/{backupsId}",
+                      "httpMethod": "DELETE",
+                      "id": "metastore.projects.locations.services.backups.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The relative resource name of the backup to delete, in the following form:projects/{project_number}/locations/{location_id}/services/{service_id}/backups/{backup_id}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+/backups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single backup.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/backups/{backupsId}",
+                      "httpMethod": "GET",
+                      "id": "metastore.projects.locations.services.backups.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The relative resource name of the backup to retrieve, in the following form:projects/{project_number}/locations/{location_id}/services/{service_id}/backups/{backup_id}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+/backups/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "Backup"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists backups in a service.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/backups",
+                      "httpMethod": "GET",
+                      "id": "metastore.projects.locations.services.backups.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The filter to apply to list results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of backups to return. The response may contain less than the maximum number. If unspecified, no more than 500 backups are returned. The maximum value is 1000; values above 1000 are changed to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous DataprocMetastore.ListBackups call. Provide this token to retrieve the subsequent page.To retrieve the first page, supply an empty page token.When paginating, other parameters provided to DataprocMetastore.ListBackups must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The relative resource name of the service whose backups to list, in the following form:projects/{project_number}/locations/{location_id}/services/{service_id}/backups.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/backups",
+                      "response": {
+                        "$ref": "ListBackupsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "metadataImports": {
                   "methods": {
                     "create": {
@@ -728,7 +899,7 @@
       }
     }
   },
-  "revision": "20210318",
+  "revision": "20210325",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -774,6 +945,57 @@
             "Data writes. Example: CloudSQL Users create",
             "Data reads. Example: CloudSQL Users list"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Backup": {
+      "description": "The details of a backup resource.",
+      "id": "Backup",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the backup was started.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the backup.",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time when the backup finished creating.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Immutable. The relative resource name of the backup, in the following form:projects/{project_number}/locations/{location_id}/services/{service_id}/backups/{backup_id}",
+          "type": "string"
+        },
+        "serviceRevision": {
+          "$ref": "Service",
+          "description": "Output only. The revision of the service at the time of backup.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. The current state of the backup.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "DELETING",
+            "ACTIVE",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The state of the backup is unknown.",
+            "The backup is being created.",
+            "The backup is being deleted.",
+            "The backup is active and ready to use.",
+            "The backup failed."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -963,6 +1185,31 @@
         "principal": {
           "description": "A Kerberos principal that exists in the both the keytab the KDC to authenticate as. A typical principal is of the form primary/instance@REALM, but there is no exact format.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListBackupsResponse": {
+      "description": "Response message for DataprocMetastore.ListBackups.",
+      "id": "ListBackupsResponse",
+      "properties": {
+        "backups": {
+          "description": "The backups of the specified service.",
+          "items": {
+            "$ref": "Backup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token that can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1314,6 +1561,50 @@
       },
       "type": "object"
     },
+    "OperationMetadata": {
+      "description": "Represents the metadata of a long-running operation.",
+      "id": "OperationMetadata",
+      "properties": {
+        "apiVersion": {
+          "description": "Output only. API version used to start the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the operation was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Output only. The time the operation finished running.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestedCancellation": {
+          "description": "Output only. Identifies whether the caller has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "statusMessage": {
+          "description": "Output only. Human-readable status of the operation, if any.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "target": {
+          "description": "Output only. Server-defined resource path for the target of the operation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "verb": {
+          "description": "Output only. Name of the verb executed by the operation.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Policy": {
       "description": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role.For some types of Google Cloud resources, a binding can also specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).JSON example: { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } YAML example: bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the IAM documentation (https://cloud.google.com/iam/docs/).",
       "id": "Policy",
@@ -1403,6 +1694,35 @@
             "Only the service's metadata is restored."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RestoreServiceRequest": {
+      "description": "Request message for DataprocMetastore.Restore.",
+      "id": "RestoreServiceRequest",
+      "properties": {
+        "backup": {
+          "description": "Required. The relative resource name of the metastore service backup to restore from, in the following form:projects/{project_id}/locations/{location_id}/services/{service_id}/backups/{backup_id}.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format). A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.",
+          "type": "string"
+        },
+        "restoreType": {
+          "description": "Optional. The type of restore. If unspecified, defaults to METADATA_ONLY.",
+          "enum": [
+            "RESTORE_TYPE_UNSPECIFIED",
+            "FULL",
+            "METADATA_ONLY"
+          ],
+          "enumDescriptions": [
+            "The restore type is unknown.",
+            "The service's metadata and configuration are restored.",
+            "Only the service's metadata is restored."
+          ],
           "type": "string"
         }
       },
