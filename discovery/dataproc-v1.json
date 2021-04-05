@@ -2260,7 +2260,7 @@
       }
     }
   },
-  "revision": "20210315",
+  "revision": "20210322",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2465,6 +2465,10 @@
         "gceClusterConfig": {
           "$ref": "GceClusterConfig",
           "description": "Optional. The shared Compute Engine config settings for all instances in a cluster."
+        },
+        "gkeClusterConfig": {
+          "$ref": "GkeClusterConfig",
+          "description": "Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. Setting this is considered mutually exclusive with Compute Engine-based options such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config."
         },
         "initializationActions": {
           "description": "Optional. Commands to execute on each node after config is completed. By default, executables are run on master and all worker nodes. You can test a node's role metadata to run an executable on a master or worker node, as shown below using curl (you can also use wget): ROLE=$(curl -H Metadata-Flavor:Google http://metadata/computeMetadata/v1/instance/attributes/dataproc-role) if [[ \"${ROLE}\" == 'Master' ]]; then ... master specific actions ... else ... worker specific actions ... fi ",
@@ -2924,6 +2928,17 @@
       },
       "type": "object"
     },
+    "GkeClusterConfig": {
+      "description": "The GKE config for this cluster.",
+      "id": "GkeClusterConfig",
+      "properties": {
+        "namespacedGkeDeploymentTarget": {
+          "$ref": "NamespacedGkeDeploymentTarget",
+          "description": "Optional. A target for the deployment."
+        }
+      },
+      "type": "object"
+    },
     "HadoopJob": {
       "description": "A Dataproc job for running Apache Hadoop MapReduce (https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html) jobs on Apache Hadoop YARN (https://hadoop.apache.org/docs/r2.7.1/hadoop-yarn/hadoop-yarn-site/YARN.html).",
       "id": "HadoopJob",
@@ -3013,6 +3028,20 @@
             "type": "string"
           },
           "description": "Optional. Mapping of query variable names to values (equivalent to the Hive command: SET name=\"value\";).",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "IdentityConfig": {
+      "description": "Identity related configuration, including service account based secure multi-tenancy user mappings.",
+      "id": "IdentityConfig",
+      "properties": {
+        "userServiceAccountMapping": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required. Map of user to service account.",
           "type": "object"
         }
       },
@@ -3697,6 +3726,21 @@
       },
       "type": "object"
     },
+    "NamespacedGkeDeploymentTarget": {
+      "description": "A full, namespace-isolated deployment target for an existing GKE cluster.",
+      "id": "NamespacedGkeDeploymentTarget",
+      "properties": {
+        "clusterNamespace": {
+          "description": "Optional. A namespace within the GKE cluster to deploy into.",
+          "type": "string"
+        },
+        "targetGkeCluster": {
+          "description": "Optional. The target GKE cluster to deploy to. Format: 'projects/{project}/locations/{location}/clusters/{cluster_id}'",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NodeGroupAffinity": {
       "description": "Node Group Affinity for clusters using sole-tenant node groups.",
       "id": "NodeGroupAffinity",
@@ -4067,6 +4111,10 @@
       "description": "Security related configuration, including encryption, Kerberos, etc.",
       "id": "SecurityConfig",
       "properties": {
+        "identityConfig": {
+          "$ref": "IdentityConfig",
+          "description": "Optional. Identity related configuration, including service account based secure multi-tenancy user mappings."
+        },
         "kerberosConfig": {
           "$ref": "KerberosConfig",
           "description": "Optional. Kerberos related configuration."
