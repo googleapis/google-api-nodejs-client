@@ -1214,6 +1214,22 @@ export namespace dialogflow_v3 {
      * Information about session status.
      */
     sessionInfo?: Schema$GoogleCloudDialogflowCxV3beta1SessionInfo;
+    /**
+     * If natural language text was provided as input, this field will contain a copy of the text.
+     */
+    text?: string | null;
+    /**
+     * If natural language speech audio was provided as input, this field will contain the transcript for the audio.
+     */
+    transcript?: string | null;
+    /**
+     * If an event was provided as input, this field will contain the name of the event.
+     */
+    triggerEvent?: string | null;
+    /**
+     * If an intent was provided as input, this field will contain a copy of the intent identifier. Format: `projects//locations//agents//intents/`.
+     */
+    triggerIntent?: string | null;
   }
   /**
    * Represents fulfillment information communicated to the webhook.
@@ -1828,6 +1844,10 @@ export namespace dialogflow_v3 {
      * NLU related settings of the flow.
      */
     nluSettings?: Schema$GoogleCloudDialogflowCxV3NluSettings;
+    /**
+     * A flow's transition route group serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition route groups. Transition route groups defined in the page have higher priority than those defined in the flow. Format:`projects//locations//agents//flows//transitionRouteGroups/`.
+     */
+    transitionRouteGroups?: string[] | null;
     /**
      * A flow's transition routes serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition routes and can support use cases such as the user saying "help" or "can I talk to a human?", which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evalauted in the following order: * TransitionRoutes with intent specified.. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.
      */
@@ -2656,6 +2676,10 @@ export namespace dialogflow_v3 {
      * Configures whether sentiment analysis should be performed. If not provided, sentiment analysis is not performed.
      */
     analyzeQueryTextSentiment?: boolean | null;
+    /**
+     * The unique identifier of the page to override the current page in the session. Format: `projects//locations//agents//pages/`. If `current_page` is specified, the previous state of the session will be ignored by Dialogflow, including the previous page and the previous session parameters. In most cases, current_page and parameters should be configured together to direct a session to a specific state.
+     */
+    currentPage?: string | null;
     /**
      * Whether to disable webhook calls for this request.
      */
@@ -3547,6 +3571,22 @@ export namespace dialogflow_v3 {
      * Information about session status.
      */
     sessionInfo?: Schema$GoogleCloudDialogflowCxV3SessionInfo;
+    /**
+     * If natural language text was provided as input, this field will contain a copy of the text.
+     */
+    text?: string | null;
+    /**
+     * If natural language speech audio was provided as input, this field will contain the transcript for the audio.
+     */
+    transcript?: string | null;
+    /**
+     * If an event was provided as input, this field will contain the name of the event.
+     */
+    triggerEvent?: string | null;
+    /**
+     * If an intent was provided as input, this field will contain a copy of the intent identifier. Format: `projects//locations//agents//intents/`.
+     */
+    triggerIntent?: string | null;
   }
   /**
    * Represents fulfillment information communicated to the webhook.
@@ -12300,6 +12340,7 @@ export namespace dialogflow_v3 {
      *       //   "eventHandlers": [],
      *       //   "name": "my_name",
      *       //   "nluSettings": {},
+     *       //   "transitionRouteGroups": [],
      *       //   "transitionRoutes": []
      *       // }
      *     },
@@ -12313,6 +12354,7 @@ export namespace dialogflow_v3 {
      *   //   "eventHandlers": [],
      *   //   "name": "my_name",
      *   //   "nluSettings": {},
+     *   //   "transitionRouteGroups": [],
      *   //   "transitionRoutes": []
      *   // }
      * }
@@ -12595,6 +12637,7 @@ export namespace dialogflow_v3 {
      *   //   "eventHandlers": [],
      *   //   "name": "my_name",
      *   //   "nluSettings": {},
+     *   //   "transitionRouteGroups": [],
      *   //   "transitionRoutes": []
      *   // }
      * }
@@ -13036,6 +13079,7 @@ export namespace dialogflow_v3 {
      *       //   "eventHandlers": [],
      *       //   "name": "my_name",
      *       //   "nluSettings": {},
+     *       //   "transitionRouteGroups": [],
      *       //   "transitionRoutes": []
      *       // }
      *     },
@@ -13049,6 +13093,7 @@ export namespace dialogflow_v3 {
      *   //   "eventHandlers": [],
      *   //   "name": "my_name",
      *   //   "nluSettings": {},
+     *   //   "transitionRouteGroups": [],
      *   //   "transitionRoutes": []
      *   // }
      * }
