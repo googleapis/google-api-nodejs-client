@@ -356,7 +356,7 @@ export namespace speech_v1p1beta1 {
    */
   export interface Schema$RecognitionConfig {
     /**
-     * Speech adaptation configuration improves the accuracy of speech recognition. When speech adaptation is set it supersedes the `speech_contexts` field. For more information, see the [speech adaptation](https://cloud.google.com/speech-to-text/docs/context-strength) documentation.
+     * Speech adaptation configuration improves the accuracy of speech recognition. When speech adaptation is set it supersedes the `speech_contexts` field. For more information, see the [speech adaptation](https://cloud.google.com/speech-to-text/docs/adaptation) documentation.
      */
     adaptation?: Schema$SpeechAdaptation;
     /**
@@ -424,7 +424,7 @@ export namespace speech_v1p1beta1 {
      */
     sampleRateHertz?: number | null;
     /**
-     * Array of SpeechContext. A means to provide context to assist the speech recognition. For more information, see [speech adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
+     * Array of SpeechContext. A means to provide context to assist the speech recognition. For more information, see [speech adaptation](https://cloud.google.com/speech-to-text/docs/adaptation).
      */
     speechContexts?: Schema$SpeechContext[];
     /**
