@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         },
         "https://www.googleapis.com/auth/compute": {
           "description": "View and manage your Google Compute Engine resources"
@@ -306,7 +306,7 @@
       }
     }
   },
-  "revision": "20200925",
+  "revision": "20210329",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
