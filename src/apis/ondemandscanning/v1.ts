@@ -36,9 +36,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace ondemandscanning_v1beta1 {
+export namespace ondemandscanning_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1beta1';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -108,7 +108,7 @@ export namespace ondemandscanning_v1beta1 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const ondemandscanning = google.ondemandscanning('v1beta1');
+   * const ondemandscanning = google.ondemandscanning('v1');
    * ```
    */
   export class Ondemandscanning {
@@ -167,7 +167,7 @@ export namespace ondemandscanning_v1beta1 {
   /**
    * AnalyzePackagesRequest is the request to analyze a list of packages and create Vulnerability Occurrences for it.
    */
-  export interface Schema$AnalyzePackagesRequest {
+  export interface Schema$AnalyzePackagesRequestV1 {
     /**
      * The packages to analyze.
      */
@@ -562,7 +562,7 @@ export namespace ondemandscanning_v1beta1 {
   /**
    * ListVulnerabilitiesResponse contains a single page of vulnerabilities resulting from a scan.
    */
-  export interface Schema$ListVulnerabilitiesResponse {
+  export interface Schema$ListVulnerabilitiesResponseV1 {
     /**
      * A page token that can be used in a subsequent call to ListVulnerabilities to continue retrieving results.
      */
@@ -1045,7 +1045,7 @@ export namespace ondemandscanning_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const ondemandscanning = google.ondemandscanning('v1beta1');
+     * const ondemandscanning = google.ondemandscanning('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1137,10 +1137,7 @@ export namespace ondemandscanning_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -1173,7 +1170,7 @@ export namespace ondemandscanning_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const ondemandscanning = google.ondemandscanning('v1beta1');
+     * const ondemandscanning = google.ondemandscanning('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1265,7 +1262,7 @@ export namespace ondemandscanning_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
           },
           options
@@ -1298,7 +1295,7 @@ export namespace ondemandscanning_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const ondemandscanning = google.ondemandscanning('v1beta1');
+     * const ondemandscanning = google.ondemandscanning('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1396,7 +1393,7 @@ export namespace ondemandscanning_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
           },
           options
@@ -1429,7 +1426,7 @@ export namespace ondemandscanning_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const ondemandscanning = google.ondemandscanning('v1beta1');
+     * const ondemandscanning = google.ondemandscanning('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1535,7 +1532,7 @@ export namespace ondemandscanning_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}/operations').replace(
+            url: (rootUrl + '/v1/{+name}/operations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1571,7 +1568,7 @@ export namespace ondemandscanning_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const ondemandscanning = google.ondemandscanning('v1beta1');
+     * const ondemandscanning = google.ondemandscanning('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1671,10 +1668,7 @@ export namespace ondemandscanning_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+name}:wait').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/v1/{+name}:wait').replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
           },
           options
@@ -1770,7 +1764,7 @@ export namespace ondemandscanning_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const ondemandscanning = google.ondemandscanning('v1beta1');
+     * const ondemandscanning = google.ondemandscanning('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1877,7 +1871,7 @@ export namespace ondemandscanning_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/scans:analyzePackages').replace(
+            url: (rootUrl + '/v1/{+parent}/scans:analyzePackages').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1911,7 +1905,7 @@ export namespace ondemandscanning_v1beta1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$AnalyzePackagesRequest;
+    requestBody?: Schema$AnalyzePackagesRequestV1;
   }
 
   export class Resource$Projects$Locations$Scans$Vulnerabilities {
@@ -1933,7 +1927,7 @@ export namespace ondemandscanning_v1beta1 {
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const ondemandscanning = google.ondemandscanning('v1beta1');
+     * const ondemandscanning = google.ondemandscanning('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1984,7 +1978,7 @@ export namespace ondemandscanning_v1beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Scans$Vulnerabilities$List,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$ListVulnerabilitiesResponse>;
+    ): GaxiosPromise<Schema$ListVulnerabilitiesResponseV1>;
     list(
       params: Params$Resource$Projects$Locations$Scans$Vulnerabilities$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1994,32 +1988,32 @@ export namespace ondemandscanning_v1beta1 {
       params: Params$Resource$Projects$Locations$Scans$Vulnerabilities$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$ListVulnerabilitiesResponse>,
-      callback: BodyResponseCallback<Schema$ListVulnerabilitiesResponse>
+        | BodyResponseCallback<Schema$ListVulnerabilitiesResponseV1>,
+      callback: BodyResponseCallback<Schema$ListVulnerabilitiesResponseV1>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Scans$Vulnerabilities$List,
-      callback: BodyResponseCallback<Schema$ListVulnerabilitiesResponse>
+      callback: BodyResponseCallback<Schema$ListVulnerabilitiesResponseV1>
     ): void;
     list(
-      callback: BodyResponseCallback<Schema$ListVulnerabilitiesResponse>
+      callback: BodyResponseCallback<Schema$ListVulnerabilitiesResponseV1>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Scans$Vulnerabilities$List
-        | BodyResponseCallback<Schema$ListVulnerabilitiesResponse>
+        | BodyResponseCallback<Schema$ListVulnerabilitiesResponseV1>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListVulnerabilitiesResponse>
+        | BodyResponseCallback<Schema$ListVulnerabilitiesResponseV1>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$ListVulnerabilitiesResponse>
+        | BodyResponseCallback<Schema$ListVulnerabilitiesResponseV1>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$ListVulnerabilitiesResponse>
+      | GaxiosPromise<Schema$ListVulnerabilitiesResponseV1>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Scans$Vulnerabilities$List;
@@ -2041,7 +2035,7 @@ export namespace ondemandscanning_v1beta1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1beta1/{+parent}/vulnerabilities').replace(
+            url: (rootUrl + '/v1/{+parent}/vulnerabilities').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2055,12 +2049,14 @@ export namespace ondemandscanning_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$ListVulnerabilitiesResponse>(
+        createAPIRequest<Schema$ListVulnerabilitiesResponseV1>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$ListVulnerabilitiesResponse>(parameters);
+        return createAPIRequest<Schema$ListVulnerabilitiesResponseV1>(
+          parameters
+        );
       }
     }
   }
