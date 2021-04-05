@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         },
         "https://www.googleapis.com/auth/compute": {
           "description": "View and manage your Google Compute Engine resources"
@@ -1955,7 +1955,7 @@
                   ],
                   "parameters": {
                     "dynamicTemplate.gcsPath": {
-                      "description": "Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.",
+                      "description": "Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2175,7 +2175,7 @@
               ],
               "parameters": {
                 "dynamicTemplate.gcsPath": {
-                  "description": "Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.",
+                  "description": "Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.",
                   "location": "query",
                   "type": "string"
                 },
@@ -2225,7 +2225,7 @@
       }
     }
   },
-  "revision": "20210314",
+  "revision": "20210331",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -2392,7 +2392,7 @@
       "type": "object"
     },
     "BigTableIODetails": {
-      "description": "Metadata for a BigTable connector used by the job.",
+      "description": "Metadata for a Cloud BigTable connector used by the job.",
       "id": "BigTableIODetails",
       "properties": {
         "instanceId": {
@@ -3177,7 +3177,7 @@
             "`JOB_STATE_PENDING` indicates that the job has been created but is not yet running. Jobs that are pending may only transition to `JOB_STATE_RUNNING`, or `JOB_STATE_FAILED`.",
             "`JOB_STATE_CANCELLING` indicates that the job has been explicitly cancelled and is in the process of stopping. Jobs that are cancelling may only transition to `JOB_STATE_CANCELLED` or `JOB_STATE_FAILED`.",
             "`JOB_STATE_QUEUED` indicates that the job has been created but is being delayed until launch. Jobs that are queued may only transition to `JOB_STATE_PENDING` or `JOB_STATE_CANCELLED`.",
-            "`JOB_STATE_RESOURCE_CLEANING_UP` indicates that the batch job's associated resources are currently being cleaned up after a successful run. Currently, this is an opt-in feature, please reach out to Cloud support team if you are intersted."
+            "`JOB_STATE_RESOURCE_CLEANING_UP` indicates that the batch job's associated resources are currently being cleaned up after a successful run. Currently, this is an opt-in feature, please reach out to Cloud support team if you are interested."
           ],
           "type": "string"
         }
@@ -3214,7 +3214,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "Type of tranform this stage is executing.",
+          "description": "Type of transform this stage is executing.",
           "enum": [
             "UNKNOWN_KIND",
             "PAR_DO_KIND",
@@ -3673,7 +3673,7 @@
             "`JOB_STATE_PENDING` indicates that the job has been created but is not yet running. Jobs that are pending may only transition to `JOB_STATE_RUNNING`, or `JOB_STATE_FAILED`.",
             "`JOB_STATE_CANCELLING` indicates that the job has been explicitly cancelled and is in the process of stopping. Jobs that are cancelling may only transition to `JOB_STATE_CANCELLED` or `JOB_STATE_FAILED`.",
             "`JOB_STATE_QUEUED` indicates that the job has been created but is being delayed until launch. Jobs that are queued may only transition to `JOB_STATE_PENDING` or `JOB_STATE_CANCELLED`.",
-            "`JOB_STATE_RESOURCE_CLEANING_UP` indicates that the batch job's associated resources are currently being cleaned up after a successful run. Currently, this is an opt-in feature, please reach out to Cloud support team if you are intersted."
+            "`JOB_STATE_RESOURCE_CLEANING_UP` indicates that the batch job's associated resources are currently being cleaned up after a successful run. Currently, this is an opt-in feature, please reach out to Cloud support team if you are interested."
           ],
           "type": "string"
         },
@@ -3759,7 +3759,7 @@
             "`JOB_STATE_PENDING` indicates that the job has been created but is not yet running. Jobs that are pending may only transition to `JOB_STATE_RUNNING`, or `JOB_STATE_FAILED`.",
             "`JOB_STATE_CANCELLING` indicates that the job has been explicitly cancelled and is in the process of stopping. Jobs that are cancelling may only transition to `JOB_STATE_CANCELLED` or `JOB_STATE_FAILED`.",
             "`JOB_STATE_QUEUED` indicates that the job has been created but is being delayed until launch. Jobs that are queued may only transition to `JOB_STATE_PENDING` or `JOB_STATE_CANCELLED`.",
-            "`JOB_STATE_RESOURCE_CLEANING_UP` indicates that the batch job's associated resources are currently being cleaned up after a successful run. Currently, this is an opt-in feature, please reach out to Cloud support team if you are intersted."
+            "`JOB_STATE_RESOURCE_CLEANING_UP` indicates that the batch job's associated resources are currently being cleaned up after a successful run. Currently, this is an opt-in feature, please reach out to Cloud support team if you are interested."
           ],
           "type": "string"
         },
@@ -3787,7 +3787,7 @@
           "type": "array"
         },
         "stepsLocation": {
-          "description": "The GCS location where the steps are stored.",
+          "description": "The Cloud Storage location where the steps are stored.",
           "type": "string"
         },
         "tempFiles": {
@@ -3912,7 +3912,7 @@
       "id": "JobMetadata",
       "properties": {
         "bigTableDetails": {
-          "description": "Identification of a BigTable source used in the Dataflow job.",
+          "description": "Identification of a Cloud BigTable source used in the Dataflow job.",
           "items": {
             "$ref": "BigTableIODetails"
           },
@@ -4034,7 +4034,7 @@
           "description": "Spec about the container image to launch."
         },
         "containerSpecGcsPath": {
-          "description": "Gcs path to a file with json serialized ContainerSpec as content.",
+          "description": "Cloud Storage path to a file with json serialized ContainerSpec as content.",
           "type": "string"
         },
         "environment": {
@@ -4632,12 +4632,12 @@
           "enumDescriptions": [
             "Default input type.",
             "The parameter specifies generic text input.",
-            "The parameter specifies a GCS Bucket to read from.",
-            "The parameter specifies a GCS Bucket to write to.",
-            "The parameter specifies a GCS file path to read from.",
-            "The parameter specifies a GCS file path to write to.",
-            "The parameter specifies a GCS folder path to read from.",
-            "The parameter specifies a GCS folder to write to.",
+            "The parameter specifies a Cloud Storage Bucket to read from.",
+            "The parameter specifies a Cloud Storage Bucket to write to.",
+            "The parameter specifies a Cloud Storage file path to read from.",
+            "The parameter specifies a Cloud Storage file path to write to.",
+            "The parameter specifies a Cloud Storage folder path to read from.",
+            "The parameter specifies a Cloud Storage folder to write to.",
             "The parameter specifies a Pub/Sub Topic.",
             "The parameter specifies a Pub/Sub Subscription."
           ],
@@ -4793,7 +4793,7 @@
       "type": "object"
     },
     "PubSubIODetails": {
-      "description": "Metadata for a PubSub connector used by the job.",
+      "description": "Metadata for a Pub/Sub connector used by the job.",
       "id": "PubSubIODetails",
       "properties": {
         "subscription": {
@@ -6667,7 +6667,7 @@
       "id": "WorkerHealthReport",
       "properties": {
         "msg": {
-          "description": "A message describing any unusual health reports.",
+          "description": "Message describing any unusual health reports.",
           "type": "string"
         },
         "pods": {
@@ -6684,6 +6684,10 @@
         "reportInterval": {
           "description": "The interval at which the worker is sending health reports. The default value of 0 should be interpreted as the field is not being explicitly set by the worker.",
           "format": "google-duration",
+          "type": "string"
+        },
+        "vmBrokenCode": {
+          "description": "Code to describe a specific reason, if known, that a VM has reported broken state.",
           "type": "string"
         },
         "vmIsBroken": {
@@ -6801,7 +6805,7 @@
       "id": "WorkerMessageCode",
       "properties": {
         "code": {
-          "description": "The code is a string intended for consumption by a machine that identifies the type of message being sent. Examples: 1. \"HARNESS_STARTED\" might be used to indicate the worker harness has started. 2. \"GCS_DOWNLOAD_ERROR\" might be used to indicate an error downloading a GCS file as part of the boot process of one of the worker containers. This is a string and not an enum to make it easy to add new codes without waiting for an API change.",
+          "description": "The code is a string intended for consumption by a machine that identifies the type of message being sent. Examples: 1. \"HARNESS_STARTED\" might be used to indicate the worker harness has started. 2. \"GCS_DOWNLOAD_ERROR\" might be used to indicate an error downloading a Cloud Storage file as part of the boot process of one of the worker containers. This is a string and not an enum to make it easy to add new codes without waiting for an API change.",
           "type": "string"
         },
         "parameters": {
@@ -6809,7 +6813,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Parameters contains specific information about the code. This is a struct to allow parameters of different types. Examples: 1. For a \"HARNESS_STARTED\" message parameters might provide the name of the worker and additional data like timing information. 2. For a \"GCS_DOWNLOAD_ERROR\" parameters might contain fields listing the GCS objects being downloaded and fields containing errors. In general complex data structures should be avoided. If a worker needs to send a specific and complicated data structure then please consider defining a new proto and adding it to the data oneof in WorkerMessageResponse. Conventions: Parameters should only be used for information that isn't typically passed as a label. hostname and other worker identifiers should almost always be passed as labels since they will be included on most messages.",
+          "description": "Parameters contains specific information about the code. This is a struct to allow parameters of different types. Examples: 1. For a \"HARNESS_STARTED\" message parameters might provide the name of the worker and additional data like timing information. 2. For a \"GCS_DOWNLOAD_ERROR\" parameters might contain fields listing the Cloud Storage objects being downloaded and fields containing errors. In general complex data structures should be avoided. If a worker needs to send a specific and complicated data structure then please consider defining a new proto and adding it to the data oneof in WorkerMessageResponse. Conventions: Parameters should only be used for information that isn't typically passed as a label. hostname and other worker identifiers should almost always be passed as labels since they will be included on most messages.",
           "type": "object"
         }
       },
