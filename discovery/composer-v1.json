@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -406,7 +406,7 @@
       }
     }
   },
-  "revision": "20210227",
+  "revision": "20210330",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -802,13 +802,15 @@
             "TYPE_UNSPECIFIED",
             "CREATE",
             "DELETE",
-            "UPDATE"
+            "UPDATE",
+            "CHECK"
           ],
           "enumDescriptions": [
             "Unused.",
             "A resource creation operation.",
             "A resource deletion operation.",
-            "A resource update operation."
+            "A resource update operation.",
+            "A resource check operation."
           ],
           "type": "string"
         },

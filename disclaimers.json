@@ -301,7 +301,7 @@
   },
   {
     "api": "servicecontrol",
-    "package": ""
+    "package": "@google-cloud/service-control"
   },
   {
     "api": "servicedirectory",
