@@ -1462,7 +1462,7 @@ export namespace container_v1 {
    */
   export interface Schema$Operation {
     /**
-     * Which conditions caused the current cluster state.
+     * Which conditions caused the current cluster state. Deprecated. Use field error instead.
      */
     clusterConditions?: Schema$StatusCondition[];
     /**
@@ -1474,6 +1474,10 @@ export namespace container_v1 {
      */
     endTime?: string | null;
     /**
+     * The error result of the operation in case of failure.
+     */
+    error?: Schema$Status;
+    /**
      * [Output only] The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which the cluster resides.
      */
     location?: string | null;
@@ -1482,7 +1486,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Which conditions caused the current node pool state.
+     * Which conditions caused the current node pool state. Deprecated. Use field error instead.
      */
     nodepoolConditions?: Schema$StatusCondition[];
     /**
@@ -1506,7 +1510,7 @@ export namespace container_v1 {
      */
     status?: string | null;
     /**
-     * Output only. If an error has occurred, a textual description of the error.
+     * Output only. If an error has occurred, a textual description of the error. Deprecated. Use the field error instead.
      */
     statusMessage?: string | null;
     /**
@@ -2115,11 +2119,32 @@ export namespace container_v1 {
     zone?: string | null;
   }
   /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
+  }
+  /**
    * StatusCondition describes why a cluster or a node pool has a certain status (e.g., ERROR or DEGRADED).
    */
   export interface Schema$StatusCondition {
     /**
-     * Machine-friendly representation of the condition
+     * Canonical code of the condition.
+     */
+    canonicalCode?: string | null;
+    /**
+     * Machine-friendly representation of the condition Deprecated. Use canonical_code instead.
      */
     code?: string | null;
     /**
@@ -2779,6 +2804,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -2932,6 +2958,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -3080,6 +3107,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -3688,6 +3716,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -3842,6 +3871,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -3996,6 +4026,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -4150,6 +4181,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -4304,6 +4336,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -4461,6 +4494,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -4615,6 +4649,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -4769,6 +4804,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -4924,6 +4960,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -5078,6 +5115,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -5232,6 +5270,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -5383,6 +5422,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -5773,6 +5813,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -5924,6 +5965,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -6365,6 +6407,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -6523,6 +6566,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -6681,6 +6725,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -6837,6 +6882,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -6999,6 +7045,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -7584,6 +7631,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -8100,6 +8148,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -8257,6 +8306,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -8412,6 +8462,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -8559,6 +8610,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -8904,6 +8956,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -9200,6 +9253,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -9358,6 +9412,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -9516,6 +9571,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -9674,6 +9730,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -9833,6 +9890,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -9991,6 +10049,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -10152,6 +10211,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -10310,6 +10370,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -10468,6 +10529,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -10626,6 +10688,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -11124,6 +11187,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -11282,6 +11346,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -11432,6 +11497,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -11883,6 +11949,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -12044,6 +12111,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -12205,6 +12273,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -12372,6 +12441,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
@@ -12875,6 +12945,7 @@ export namespace container_v1 {
      *   //   "clusterConditions": [],
      *   //   "detail": "my_detail",
      *   //   "endTime": "my_endTime",
+     *   //   "error": {},
      *   //   "location": "my_location",
      *   //   "name": "my_name",
      *   //   "nodepoolConditions": [],
