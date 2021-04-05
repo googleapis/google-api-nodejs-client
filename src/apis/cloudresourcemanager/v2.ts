@@ -234,7 +234,7 @@ export namespace cloudresourcemanager_v2 {
      */
     createTime?: string | null;
     /**
-     * True if the project can be retrieved using GetProject. No other operations on the project are guaranteed to work until the project creation is complete.
+     * True if the project can be retrieved using `GetProject`. No other operations on the project are guaranteed to work until the project creation is complete.
      */
     gettable?: boolean | null;
     /**
@@ -251,15 +251,15 @@ export namespace cloudresourcemanager_v2 {
    */
   export interface Schema$CreateTagValueMetadata {}
   /**
-   * A status object which is used as the `metadata` field for the Operation returned by DeleteFolder.
+   * A status object which is used as the `metadata` field for the `Operation` returned by `DeleteFolder`.
    */
   export interface Schema$DeleteFolderMetadata {}
   /**
-   * A status object which is used as the `metadata` field for the Operation returned by DeleteOrganization.
+   * A status object which is used as the `metadata` field for the operation returned by DeleteOrganization.
    */
   export interface Schema$DeleteOrganizationMetadata {}
   /**
-   * A status object which is used as the `metadata` field for the Operation returned by DeleteProject.
+   * A status object which is used as the `metadata` field for the Operation returned by `DeleteProject`.
    */
   export interface Schema$DeleteProjectMetadata {}
   /**
@@ -378,7 +378,7 @@ export namespace cloudresourcemanager_v2 {
     nextPageToken?: string | null;
   }
   /**
-   * Metadata pertaining to the Folder move process.
+   * Metadata pertaining to the folder move process.
    */
   export interface Schema$MoveFolderMetadata {
     /**
@@ -549,7 +549,7 @@ export namespace cloudresourcemanager_v2 {
     permissions?: string[] | null;
   }
   /**
-   * A status object which is used as the `metadata` field for the Operation returned by UndeleteFolder.
+   * A status object which is used as the `metadata` field for the `Operation` returned by `UndeleteFolder`.
    */
   export interface Schema$UndeleteFolderMetadata {}
   /**
@@ -561,7 +561,7 @@ export namespace cloudresourcemanager_v2 {
    */
   export interface Schema$UndeleteOrganizationMetadata {}
   /**
-   * A status object which is used as the `metadata` field for the Operation returned by UndeleteProject.
+   * A status object which is used as the `metadata` field for the Operation returned by `UndeleteProject`.
    */
   export interface Schema$UndeleteProjectMetadata {}
   /**
