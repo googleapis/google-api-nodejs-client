@@ -249,7 +249,7 @@
               ],
               "parameters": {
                 "dryRun": {
-                  "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                  "description": "Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`",
                   "location": "query",
                   "type": "string"
                 },
@@ -287,7 +287,7 @@
                   "type": "string"
                 },
                 "dryRun": {
-                  "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                  "description": "Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`",
                   "location": "query",
                   "type": "string"
                 },
@@ -422,7 +422,7 @@
                   "type": "string"
                 },
                 "dryRun": {
-                  "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                  "description": "Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`",
                   "location": "query",
                   "type": "string"
                 },
@@ -642,7 +642,7 @@
               ],
               "parameters": {
                 "dryRun": {
-                  "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                  "description": "Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`",
                   "location": "query",
                   "type": "string"
                 },
@@ -680,7 +680,7 @@
                   "type": "string"
                 },
                 "dryRun": {
-                  "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                  "description": "Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`",
                   "location": "query",
                   "type": "string"
                 },
@@ -806,7 +806,7 @@
               ],
               "parameters": {
                 "dryRun": {
-                  "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                  "description": "Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`",
                   "location": "query",
                   "type": "string"
                 },
@@ -1062,7 +1062,7 @@
                   ],
                   "parameters": {
                     "dryRun": {
-                      "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                      "description": "Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`",
                       "location": "query",
                       "type": "string"
                     },
@@ -1100,7 +1100,7 @@
                       "type": "string"
                     },
                     "dryRun": {
-                      "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                      "description": "Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`",
                       "location": "query",
                       "type": "string"
                     },
@@ -1235,7 +1235,7 @@
                       "type": "string"
                     },
                     "dryRun": {
-                      "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                      "description": "Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`",
                       "location": "query",
                       "type": "string"
                     },
@@ -1455,7 +1455,7 @@
                   ],
                   "parameters": {
                     "dryRun": {
-                      "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                      "description": "Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`",
                       "location": "query",
                       "type": "string"
                     },
@@ -1493,7 +1493,7 @@
                       "type": "string"
                     },
                     "dryRun": {
-                      "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                      "description": "Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`",
                       "location": "query",
                       "type": "string"
                     },
@@ -1650,7 +1650,7 @@
                   ],
                   "parameters": {
                     "dryRun": {
-                      "description": "DryRun is a query string parameter which indicates that the server should run validation without persisting the request.",
+                      "description": "Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`",
                       "location": "query",
                       "type": "string"
                     },
@@ -1736,7 +1736,7 @@
       }
     }
   },
-  "revision": "20210319",
+  "revision": "20210326",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -2012,7 +2012,7 @@
           "description": "(Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Periodic probe of container liveness. Container will be restarted if the probe fails. More info: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle#container-probes"
         },
         "name": {
-          "description": "(Optional) Name of the container specified as a DNS_LABEL.",
+          "description": "(Optional) Name of the container specified as a DNS_LABEL. Currently unused in Cloud Run. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names",
           "type": "string"
         },
         "ports": {
@@ -2043,7 +2043,7 @@
           "type": "string"
         },
         "volumeMounts": {
-          "description": "(Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Pod volumes to mount into the container's filesystem.",
+          "description": "(Optional) Cloud Run fully managed: supported Volume to mount into the container's filesystem. Only supports SecretVolumeSources. Cloud Run for Anthos: supported Pod volumes to mount into the container's filesystem.",
           "items": {
             "$ref": "VolumeMount"
           },
@@ -2199,7 +2199,7 @@
         },
         "valueFrom": {
           "$ref": "EnvVarSource",
-          "description": "(Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Source for the environment variable's value. Cannot be used if value is not empty."
+          "description": "(Optional) Cloud Run fully managed: supported Source for the environment variable's value. Only supports secret_key_ref. Cloud Run for Anthos: supported Source for the environment variable's value. Cannot be used if value is not empty."
         }
       },
       "type": "object"
@@ -2214,7 +2214,7 @@
         },
         "secretKeyRef": {
           "$ref": "SecretKeySelector",
-          "description": "(Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Selects a key of a secret in the pod's namespace"
+          "description": "(Optional) Cloud Run fully managed: supported. Selects a key (version) of a secret in Secret Manager. Cloud Run for Anthos: supported. Selects a key of a secret in the pod's namespace."
         }
       },
       "type": "object"
@@ -2330,11 +2330,11 @@
       "type": "object"
     },
     "KeyToPath": {
-      "description": "Cloud Run fully managed: not supported Cloud Run for Anthos: supported Maps a string key to a path within a volume.",
+      "description": "Cloud Run fully managed: supported Cloud Run for Anthos: supported Maps a string key to a path within a volume.",
       "id": "KeyToPath",
       "properties": {
         "key": {
-          "description": "Cloud Run fully managed: not supported Cloud Run for Anthos: supported The key to project.",
+          "description": "Cloud Run fully managed: supported The Cloud Secret Manager secret version. Can be 'latest' for the latest value or an integer for a specific version. Cloud Run for Anthos: supported The key to project.",
           "type": "string"
         },
         "mode": {
@@ -2343,7 +2343,7 @@
           "type": "integer"
         },
         "path": {
-          "description": "Cloud Run fully managed: not supported Cloud Run for Anthos: supported The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
+          "description": "Cloud Run fully managed: supported Cloud Run for Anthos: supported The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.",
           "type": "string"
         }
       },
@@ -2683,7 +2683,7 @@
           "type": "array"
         },
         "resourceVersion": {
-          "description": "(Optional) An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources. Populated by the system. Read-only. Value must be treated as opaque by clients. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
+          "description": "Optional. An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server or omit the value to disable conflict-detection. They may only be valid for a particular resource or set of resources. Populated by the system. Read-only. Value must be treated as opaque by clients or omitted. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency",
           "type": "string"
         },
         "selfLink": {
@@ -3061,7 +3061,7 @@
       "id": "SecretKeySelector",
       "properties": {
         "key": {
-          "description": "Cloud Run fully managed: not supported Cloud Run for Anthos: supported The key of the secret to select from. Must be a valid secret key.",
+          "description": "Cloud Run fully managed: supported A Cloud Secret Manager secret version. Must be 'latest' for the latest version or an integer for a specific version. Cloud Run for Anthos: supported The key of the secret to select from. Must be a valid secret key.",
           "type": "string"
         },
         "localObjectReference": {
@@ -3069,7 +3069,7 @@
           "description": "This field should not be used directly as it is meant to be inlined directly into the message. Use the \"name\" field instead."
         },
         "name": {
-          "description": "Cloud Run fully managed: not supported Cloud Run for Anthos: supported The name of the secret in the pod's namespace to select from.",
+          "description": "Cloud Run fully managed: supported The name of the secret in Cloud Secret Manager. By default, the secret is assumed to be in the same project. If the secret is in another project, you must define an alias. An alias definition has the form: :projects//secrets/. If multiple alias definitions are needed, they must be separated by commas. The alias definitions must be set on the run.googleapis.com/secrets annotation. Cloud Run for Anthos: supported The name of the secret in the pod's namespace to select from.",
           "type": "string"
         },
         "optional": {
@@ -3080,7 +3080,7 @@
       "type": "object"
     },
     "SecretVolumeSource": {
-      "description": "Cloud Run fully managed: not supported Cloud Run for Anthos: supported The contents of the target Secret's Data field will be presented in a volume as files using the keys in the Data field as the file names.",
+      "description": "Cloud Run fully managed: supported The secret's value will be presented as the content of a file whose name is defined in the item path. If no items are defined, the name of the file is the secret_name. Cloud Run for Anthos: supported The contents of the target Secret's Data field will be presented in a volume as files using the keys in the Data field as the file names.",
       "id": "SecretVolumeSource",
       "properties": {
         "defaultMode": {
@@ -3089,7 +3089,7 @@
           "type": "integer"
         },
         "items": {
-          "description": "(Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional.",
+          "description": "(Optional) Cloud Run fully managed: supported If unspecified, the volume will expose a file whose name is the secret_name. If specified, the key will be used as the version to fetch from Cloud Secret Manager and the path will be the name of the file exposed in the volume. When items are defined, they must specify a key and a path. Cloud Run for Anthos: supported If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional.",
           "items": {
             "$ref": "KeyToPath"
           },
@@ -3100,7 +3100,7 @@
           "type": "boolean"
         },
         "secretName": {
-          "description": "Cloud Run fully managed: not supported Cloud Run for Anthos: supported Name of the secret in the container's namespace to use.",
+          "description": "Cloud Run fully managed: supported The name of the secret in Cloud Secret Manager. By default, the secret is assumed to be in the same project. If the secret is in another project, you must define an alias. An alias definition has the form: :projects//secrets/. If multiple alias definitions are needed, they must be separated by commas. The alias definitions must be set on the run.googleapis.com/secrets annotation. Cloud Run for Anthos: supported Name of the secret in the container's namespace to use.",
           "type": "string"
         }
       },
@@ -3392,12 +3392,12 @@
           "description": "Cloud Run fully managed: not supported Cloud Run for Anthos: supported"
         },
         "name": {
-          "description": "Cloud Run fully managed: not supported Cloud Run for Anthos: supported Volume's name.",
+          "description": "Cloud Run fully managed: supported Cloud Run for Anthos: supported Volume's name.",
           "type": "string"
         },
         "secret": {
           "$ref": "SecretVolumeSource",
-          "description": "Cloud Run fully managed: not supported Cloud Run for Anthos: supported"
+          "description": "Cloud Run fully managed: supported Cloud Run for Anthos: supported"
         }
       },
       "type": "object"
@@ -3407,15 +3407,15 @@
       "id": "VolumeMount",
       "properties": {
         "mountPath": {
-          "description": "Cloud Run fully managed: not supported Cloud Run for Anthos: supported Path within the container at which the volume should be mounted. Must not contain ':'.",
+          "description": "Cloud Run fully managed: supported Cloud Run for Anthos: supported Path within the container at which the volume should be mounted. Must not contain ':'.",
           "type": "string"
         },
         "name": {
-          "description": "Cloud Run fully managed: not supported Cloud Run for Anthos: supported This must match the Name of a Volume.",
+          "description": "Cloud Run fully managed: supported Cloud Run for Anthos: supported This must match the Name of a Volume.",
           "type": "string"
         },
         "readOnly": {
-          "description": "(Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Only true is accepted. Defaults to true.",
+          "description": "(Optional) Cloud Run fully managed: supported Cloud Run for Anthos: supported Only true is accepted. Defaults to true.",
           "type": "boolean"
         },
         "subPath": {
