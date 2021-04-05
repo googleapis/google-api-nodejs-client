@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -1816,13 +1816,17 @@
       }
     }
   },
-  "revision": "20210306",
+  "revision": "20210326",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Asset": {
       "description": "Security Command Center representation of a Google Cloud resource. The Asset is a Security Command Center resource that captures information about a single Google Cloud resource. All modifications to an Asset are only within the context of Security Command Center and don't affect the referenced Google Cloud resource.",
       "id": "Asset",
       "properties": {
+        "canonicalName": {
+          "description": "The canonical name of the resource. It's either \"organizations/{organization_id}/assets/{asset_id}\", \"folders/{folder_id}/assets/{asset_id}\" or \"projects/{project_number}/assets/{asset_id}\", depending on the closest CRM ancestor of the resource.",
+          "type": "string"
+        },
         "createTime": {
           "description": "The time at which the asset was created in Security Command Center.",
           "format": "google-datetime",
@@ -1997,6 +2001,10 @@
       "description": "Security Command Center finding. A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.",
       "id": "Finding",
       "properties": {
+        "canonicalName": {
+          "description": "The canonical name of the finding. It's either \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\" or \"projects/{project_number}/sources/{source_id}/findings/{finding_id}\", depending on the closest CRM ancestor of the resource associated with the finding.",
+          "type": "string"
+        },
         "category": {
           "description": "The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: \"XSS_FLASH_INJECTION\"",
           "type": "string"
@@ -2007,7 +2015,7 @@
           "type": "string"
         },
         "eventTime": {
-          "description": "The time at which the event took place, or when an update to the finding occurred. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding were to be resolved afterward, this time would reflect when the finding was resolved.",
+          "description": "The time at which the event took place, or when an update to the finding occurred. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding were to be resolved afterward, this time would reflect when the finding was resolved. Must not be set to a value greater than the current timestamp.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2226,6 +2234,10 @@
       "description": "Security Command Center finding. A finding is a record of assessment data (security, risk, health or privacy) ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, an XSS vulnerability in an App Engine application is a finding.",
       "id": "GoogleCloudSecuritycenterV1p1beta1Finding",
       "properties": {
+        "canonicalName": {
+          "description": "The canonical name of the finding. It's either \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}\", \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}\" or \"projects/{project_number}/sources/{source_id}/findings/{finding_id}\", depending on the closest CRM ancestor of the resource associated with the finding.",
+          "type": "string"
+        },
         "category": {
           "description": "The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: \"XSS_FLASH_INJECTION\"",
           "type": "string"
@@ -2236,7 +2248,7 @@
           "type": "string"
         },
         "eventTime": {
-          "description": "The time at which the event took place, or when an update to the finding occurred. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding were to be resolved afterward, this time would reflect when the finding was resolved.",
+          "description": "The time at which the event took place, or when an update to the finding occurred. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding were to be resolved afterward, this time would reflect when the finding was resolved. Must not be set to a value greater than the current timestamp.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2404,6 +2416,10 @@
       "description": "User specified security marks that are attached to the parent Security Command Center resource. Security marks are scoped within a Security Command Center organization -- they can be modified and viewed by all users who have proper permissions on the organization.",
       "id": "GoogleCloudSecuritycenterV1p1beta1SecurityMarks",
       "properties": {
+        "canonicalName": {
+          "description": "The canonical name of the marks. Examples: \"organizations/{organization_id}/assets/{asset_id}/securityMarks\" \"folders/{folder_id}/assets/{asset_id}/securityMarks\" \"projects/{project_number}/assets/{asset_id}/securityMarks\" \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks\" \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks\" \"projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks\"",
+          "type": "string"
+        },
         "marks": {
           "additionalProperties": {
             "type": "string"
@@ -2949,6 +2965,10 @@
       "description": "User specified security marks that are attached to the parent Security Command Center resource. Security marks are scoped within a Security Command Center organization -- they can be modified and viewed by all users who have proper permissions on the organization.",
       "id": "SecurityMarks",
       "properties": {
+        "canonicalName": {
+          "description": "The canonical name of the marks. Examples: \"organizations/{organization_id}/assets/{asset_id}/securityMarks\" \"folders/{folder_id}/assets/{asset_id}/securityMarks\" \"projects/{project_number}/assets/{asset_id}/securityMarks\" \"organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks\" \"folders/{folder_id}/sources/{source_id}/findings/{finding_id}/securityMarks\" \"projects/{project_number}/sources/{source_id}/findings/{finding_id}/securityMarks\"",
+          "type": "string"
+        },
         "marks": {
           "additionalProperties": {
             "type": "string"
@@ -3009,6 +3029,10 @@
       "description": "Security Command Center finding source. A finding source is an entity or a mechanism that can produce a finding. A source is like a container of findings that come from the same scanner, logger, monitor, and other tools.",
       "id": "Source",
       "properties": {
+        "canonicalName": {
+          "description": "The canonical name of the finding. It's either \"organizations/{organization_id}/sources/{source_id}\", \"folders/{folder_id}/sources/{source_id}\" or \"projects/{project_number}/sources/{source_id}\", depending on the closest CRM ancestor of the resource associated with the finding.",
+          "type": "string"
+        },
         "description": {
           "description": "The description of the source (max of 1024 characters). Example: \"Web Security Scanner is a web security scanner for common vulnerabilities in App Engine applications. It can automatically scan and detect four common vulnerabilities, including cross-site-scripting (XSS), Flash injection, mixed content (HTTP in HTTPS), and outdated or insecure libraries.\"",
           "type": "string"
