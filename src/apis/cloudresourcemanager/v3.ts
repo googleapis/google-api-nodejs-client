@@ -246,7 +246,7 @@ export namespace cloudresourcemanager_v3 {
      */
     createTime?: string | null;
     /**
-     * True if the project can be retrieved using GetProject. No other operations on the project are guaranteed to work until the project creation is complete.
+     * True if the project can be retrieved using `GetProject`. No other operations on the project are guaranteed to work until the project creation is complete.
      */
     gettable?: boolean | null;
     /**
@@ -263,15 +263,15 @@ export namespace cloudresourcemanager_v3 {
    */
   export interface Schema$CreateTagValueMetadata {}
   /**
-   * A status object which is used as the `metadata` field for the Operation returned by DeleteFolder.
+   * A status object which is used as the `metadata` field for the `Operation` returned by `DeleteFolder`.
    */
   export interface Schema$DeleteFolderMetadata {}
   /**
-   * A status object which is used as the `metadata` field for the Operation returned by DeleteOrganization.
+   * A status object which is used as the `metadata` field for the operation returned by DeleteOrganization.
    */
   export interface Schema$DeleteOrganizationMetadata {}
   /**
-   * A status object which is used as the `metadata` field for the Operation returned by DeleteProject.
+   * A status object which is used as the `metadata` field for the Operation returned by `DeleteProject`.
    */
   export interface Schema$DeleteProjectMetadata {}
   /**
@@ -308,39 +308,39 @@ export namespace cloudresourcemanager_v3 {
     title?: string | null;
   }
   /**
-   * A Folder in an Organization's resource hierarchy, used to organize that Organization's resources.
+   * A folder in an organization's resource hierarchy, used to organize that organization's resources.
    */
   export interface Schema$Folder {
     /**
-     * Output only. Timestamp when the Folder was created.
+     * Output only. Timestamp when the folder was created.
      */
     createTime?: string | null;
     /**
-     * Output only. Timestamp when the Folder was requested to be deleted.
+     * Output only. Timestamp when the folder was requested to be deleted.
      */
     deleteTime?: string | null;
     /**
-     * The folder's display name. A folder's display name must be unique amongst its siblings, e.g. no two folders with the same parent can share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters. This is captured by the regular expression: `[\p{L\}\p{N\}]([\p{L\}\p{N\}_- ]{0,28\}[\p{L\}\p{N\}])?`.
+     * The folder's display name. A folder's display name must be unique amongst its siblings. For example, no two folders with the same parent can share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters. This is captured by the regular expression: `[\p{L\}\p{N\}]([\p{L\}\p{N\}_- ]{0,28\}[\p{L\}\p{N\}])?`.
      */
     displayName?: string | null;
     /**
-     * Output only. A checksum computed by the server based on the current value of the Folder resource. This may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     * Output only. A checksum computed by the server based on the current value of the folder resource. This may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
-     * Output only. The resource name of the Folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
+     * Output only. The resource name of the folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
      */
     name?: string | null;
     /**
-     * Required. The Folder's parent's resource name. Updates to the folder's parent must be performed via MoveFolder.
+     * Required. The folder's parent's resource name. Updates to the folder's parent must be performed using MoveFolder.
      */
     parent?: string | null;
     /**
-     * Output only. The lifecycle state of the folder. Updates to the state must be performed via DeleteFolder and UndeleteFolder.
+     * Output only. The lifecycle state of the folder. Updates to the state must be performed using DeleteFolder and UndeleteFolder.
      */
     state?: string | null;
     /**
-     * Output only. Timestamp when the Folder was last modified.
+     * Output only. Timestamp when the folder was last modified.
      */
     updateTime?: string | null;
   }
@@ -426,7 +426,7 @@ export namespace cloudresourcemanager_v3 {
    */
   export interface Schema$ListFoldersResponse {
     /**
-     * A possibly paginated list of Folders that are direct descendants of the specified parent resource.
+     * A possibly paginated list of folders that are direct descendants of the specified parent resource.
      */
     folders?: Schema$Folder[];
     /**
@@ -500,7 +500,7 @@ export namespace cloudresourcemanager_v3 {
     tagValues?: Schema$TagValue[];
   }
   /**
-   * Metadata pertaining to the Folder move process.
+   * Metadata pertaining to the folder move process.
    */
   export interface Schema$MoveFolderMetadata {
     /**
@@ -521,7 +521,7 @@ export namespace cloudresourcemanager_v3 {
    */
   export interface Schema$MoveFolderRequest {
     /**
-     * Required. The resource name of the Folder or Organization to reparent the folder under. Must be of the form `folders/{folder_id\}` or `organizations/{org_id\}`.
+     * Required. The resource name of the folder or organization which should be the folder's new parent. Must be of the form `folders/{folder_id\}` or `organizations/{org_id\}`.
      */
     destinationParent?: string | null;
   }
@@ -564,7 +564,7 @@ export namespace cloudresourcemanager_v3 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * The root node in the resource hierarchy to which a particular entity's (e.g., company) resources belong.
+   * The root node in the resource hierarchy to which a particular entity's (a company, for example) resources belong.
    */
   export interface Schema$Organization {
     /**
@@ -580,7 +580,7 @@ export namespace cloudresourcemanager_v3 {
      */
     directoryCustomerId?: string | null;
     /**
-     * Output only. A human-readable string that refers to the Organization in the GCP Console UI. This string is set by the server and cannot be changed. The string will be set to the primary domain (for example, "google.com") of the G Suite customer that owns the organization.
+     * Output only. A human-readable string that refers to the organization in the Google Cloud Console. This string is set by the server and cannot be changed. The string will be set to the primary domain (for example, "google.com") of the Google Workspace customer that owns the organization.
      */
     displayName?: string | null;
     /**
@@ -622,7 +622,7 @@ export namespace cloudresourcemanager_v3 {
     version?: number | null;
   }
   /**
-   * A Project is a high-level Google Cloud Platform entity. It is a container for ACLs, APIs, App Engine Apps, VMs, and other Google Cloud Platform resources.
+   * A project is a high-level Google Cloud entity. It is a container for ACLs, APIs, App Engine Apps, VMs, and other Google Cloud Platform resources.
    */
   export interface Schema$Project {
     /**
@@ -634,7 +634,7 @@ export namespace cloudresourcemanager_v3 {
      */
     deleteTime?: string | null;
     /**
-     * Optional. A user-assigned display name of the Project. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: `My Project`
+     * Optional. A user-assigned display name of the project. When present it must be between 4 to 30 characters. Allowed characters are: lowercase and uppercase letters, numbers, hyphen, single-quote, double-quote, space, and exclamation point. Example: `My Project`
      */
     displayName?: string | null;
     /**
@@ -642,11 +642,11 @@ export namespace cloudresourcemanager_v3 {
      */
     etag?: string | null;
     /**
-     * Optional. The labels associated with this Project. Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?. Label values must be between 0 and 63 characters long and must conform to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?. No more than 256 labels can be associated with a given resource. Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed. Example: `"myBusinessDimension" : "businessValue"`
+     * Optional. The labels associated with this project. Label keys must be between 1 and 63 characters long and must conform to the following regular expression: \[a-z\](\[-a-z0-9\]*\[a-z0-9\])?. Label values must be between 0 and 63 characters long and must conform to the regular expression (\[a-z\](\[-a-z0-9\]*\[a-z0-9\])?)?. No more than 256 labels can be associated with a given resource. Clients should store labels in a representation such as JSON that does not depend on specific characters being disallowed. Example: `"myBusinessDimension" : "businessValue"`
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The unique resource name of the Project. It is an int64 generated number prefixed by "projects/". Example: `projects/415104041262`
+     * Output only. The unique resource name of the project. It is an int64 generated number prefixed by "projects/". Example: `projects/415104041262`
      */
     name?: string | null;
     /**
@@ -654,11 +654,11 @@ export namespace cloudresourcemanager_v3 {
      */
     parent?: string | null;
     /**
-     * Immutable. The unique, user-assigned id of the Project. It must be 6 to 30 lowercase ASCII letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: `tokyo-rain-123`
+     * Immutable. The unique, user-assigned id of the project. It must be 6 to 30 lowercase ASCII letters, digits, or hyphens. It must start with a letter. Trailing hyphens are prohibited. Example: `tokyo-rain-123`
      */
     projectId?: string | null;
     /**
-     * Output only. The Project lifecycle state.
+     * Output only. The project lifecycle state.
      */
     state?: string | null;
     /**
@@ -862,7 +862,7 @@ export namespace cloudresourcemanager_v3 {
     permissions?: string[] | null;
   }
   /**
-   * A status object which is used as the `metadata` field for the Operation returned by UndeleteFolder.
+   * A status object which is used as the `metadata` field for the `Operation` returned by `UndeleteFolder`.
    */
   export interface Schema$UndeleteFolderMetadata {}
   /**
@@ -874,7 +874,7 @@ export namespace cloudresourcemanager_v3 {
    */
   export interface Schema$UndeleteOrganizationMetadata {}
   /**
-   * A status object which is used as the `metadata` field for the Operation returned by UndeleteProject.
+   * A status object which is used as the `metadata` field for the Operation returned by `UndeleteProject`.
    */
   export interface Schema$UndeleteProjectMetadata {}
   /**
@@ -905,7 +905,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Creates a Folder in the resource hierarchy. Returns an Operation which can be used to track the progress of the folder creation workflow. Upon success the Operation.response field will be populated with the created Folder. In order to succeed, the addition of this new Folder must not violate the Folder naming, height or fanout constraints. + The Folder's display_name must be distinct from all other Folders that share its parent. + The addition of the Folder must not cause the active Folder hierarchy to exceed a height of 10. Note, the full active + deleted Folder hierarchy is allowed to reach a height of 20; this provides additional headroom when moving folders that contain deleted folders. + The addition of the Folder must not cause the total number of Folders under its parent to exceed 300. If the operation fails due to a folder constraint violation, some errors may be returned by the CreateFolder request, with status code FAILED_PRECONDITION and an error description. Other folder constraint violations will be communicated in the Operation, with the specific PreconditionFailure returned via the details list in the Operation.error field. The caller must have `resourcemanager.folders.create` permission on the identified parent.
+     * Creates a folder in the resource hierarchy. Returns an `Operation` which can be used to track the progress of the folder creation workflow. Upon success, the `Operation.response` field will be populated with the created Folder. In order to succeed, the addition of this new folder must not violate the folder naming, height, or fanout constraints. + The folder's `display_name` must be distinct from all other folders that share its parent. + The addition of the folder must not cause the active folder hierarchy to exceed a height of 10. Note, the full active + deleted folder hierarchy is allowed to reach a height of 20; this provides additional headroom when moving folders that contain deleted folders. + The addition of the folder must not cause the total number of folders under its parent to exceed 300. If the operation fails due to a folder constraint violation, some errors may be returned by the `CreateFolder` request, with status code `FAILED_PRECONDITION` and an error description. Other folder constraint violations will be communicated in the `Operation`, with the specific `PreconditionFailure` returned in the details list in the `Operation.error` field. The caller must have `resourcemanager.folders.create` permission on the identified parent.
      * @example
      * ```js
      * // Before running the sample:
@@ -1047,7 +1047,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Requests deletion of a Folder. The Folder is moved into the DELETE_REQUESTED state immediately, and is deleted approximately 30 days later. This method may only be called on an empty Folder, where a Folder is empty if it doesn't contain any Folders or Projects in the ACTIVE state. If called on a folder in DELETE_REQUESTED state the result will be a no-op success. The caller must have `resourcemanager.folders.delete` permission on the identified folder.
+     * Requests deletion of a folder. The folder is moved into the DELETE_REQUESTED state immediately, and is deleted approximately 30 days later. This method may only be called on an empty folder, where a folder is empty if it doesn't contain any folders or projects in the ACTIVE state. If called on a folder in DELETE_REQUESTED state the operation will result in a no-op success. The caller must have `resourcemanager.folders.delete` permission on the identified folder.
      * @example
      * ```js
      * // Before running the sample:
@@ -1073,7 +1073,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.delete({
-     *     // Required. The resource name of the Folder to be deleted. Must be of the form `folders/{folder_id\}`.
+     *     // Required. The resource name of the folder to be deleted. Must be of the form `folders/{folder_id\}`.
      *     name: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -1177,7 +1177,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Retrieves a Folder identified by the supplied resource name. Valid Folder resource names have the format `folders/{folder_id\}` (for example, `folders/1234`). The caller must have `resourcemanager.folders.get` permission on the identified folder.
+     * Retrieves a folder identified by the supplied resource name. Valid folder resource names have the format `folders/{folder_id\}` (for example, `folders/1234`). The caller must have `resourcemanager.folders.get` permission on the identified folder.
      * @example
      * ```js
      * // Before running the sample:
@@ -1206,7 +1206,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.get({
-     *     // Required. The resource name of the Folder to retrieve. Must be of the form `folders/{folder_id\}`.
+     *     // Required. The resource name of the folder to retrieve. Must be of the form `folders/{folder_id\}`.
      *     name: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -1313,7 +1313,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Gets the access control policy for a Folder. The returned policy may be empty if no such policy or resource exists. The `resource` field should be the Folder's resource name, e.g. "folders/1234". The caller must have `resourcemanager.folders.getIamPolicy` permission on the identified folder.
+     * Gets the access control policy for a folder. The returned policy may be empty if no such policy or resource exists. The `resource` field should be the folder's resource name, for example: "folders/1234". The caller must have `resourcemanager.folders.getIamPolicy` permission on the identified folder.
      * @example
      * ```js
      * // Before running the sample:
@@ -1457,7 +1457,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Lists the Folders that are direct descendants of supplied parent resource. List provides a strongly consistent view of the Folders underneath the specified parent resource. List returns Folders sorted based upon the (ascending) lexical ordering of their display_name. The caller must have `resourcemanager.folders.list` permission on the identified parent.
+     * Lists the folders that are direct descendants of supplied parent resource. `list()` provides a strongly consistent view of the folders underneath the specified parent resource. `list()` returns folders sorted based upon the (ascending) lexical ordering of their display_name. The caller must have `resourcemanager.folders.list` permission on the identified parent.
      * @example
      * ```js
      * // Before running the sample:
@@ -1486,13 +1486,13 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.list({
-     *     // Optional. The maximum number of Folders to return in the response. If unspecified, server picks an appropriate default.
+     *     // Optional. The maximum number of folders to return in the response. If unspecified, server picks an appropriate default.
      *     pageSize: 'placeholder-value',
      *     // Optional. A pagination token returned from a previous call to `ListFolders` that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id\}` or `organizations/{org_id\}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
+     *     // Required. The resource name of the organization or folder whose folders are being listed. Must be of the form `folders/{folder_id\}` or `organizations/{org_id\}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
      *     parent: 'placeholder-value',
-     *     // Optional. Controls whether Folders in the DELETE_REQUESTED state should be returned. Defaults to false.
+     *     // Optional. Controls whether folders in the DELETE_REQUESTED state should be returned. Defaults to false.
      *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1596,7 +1596,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Moves a Folder under a new resource parent. Returns an Operation which can be used to track the progress of the folder move workflow. Upon success the Operation.response field will be populated with the moved Folder. Upon failure, a FolderOperationError categorizing the failure cause will be returned - if the failure occurs synchronously then the FolderOperationError will be returned via the Status.details field and if it occurs asynchronously then the FolderOperation will be returned via the Operation.error field. In addition, the Operation.metadata field will be populated with a FolderOperation message as an aid to stateless clients. Folder moves will be rejected if they violate either the naming, height or fanout constraints described in the CreateFolder documentation. The caller must have `resourcemanager.folders.move` permission on the folder's current and proposed new parent.
+     * Moves a folder under a new resource parent. Returns an `Operation` which can be used to track the progress of the folder move workflow. Upon success, the `Operation.response` field will be populated with the moved folder. Upon failure, a `FolderOperationError` categorizing the failure cause will be returned - if the failure occurs synchronously then the `FolderOperationError` will be returned in the `Status.details` field. If it occurs asynchronously, then the FolderOperation will be returned in the `Operation.error` field. In addition, the `Operation.metadata` field will be populated with a `FolderOperation` message as an aid to stateless clients. Folder moves will be rejected if they violate either the naming, height, or fanout constraints described in the CreateFolder documentation. The caller must have `resourcemanager.folders.move` permission on the folder's current and proposed new parent.
      * @example
      * ```js
      * // Before running the sample:
@@ -1734,7 +1734,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Updates a Folder, changing its display_name. Changes to the folder display_name will be rejected if they violate either the display_name formatting rules or naming constraints described in the CreateFolder documentation. The Folder's display_name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be between 3 and 30 characters. This is captured by the regular expression: `\p{L\}\p{N\}{1,28\}[\p{L\}\p{N\}]`. The caller must have `resourcemanager.folders.update` permission on the identified folder. If the update fails due to the unique name constraint then a PreconditionFailure explaining this violation will be returned in the Status.details field.
+     * Updates a folder, changing its `display_name`. Changes to the folder `display_name` will be rejected if they violate either the `display_name` formatting rules or the naming constraints described in the CreateFolder documentation. The folder's `display_name` must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be between 3 and 30 characters. This is captured by the regular expression: `\p{L\}\p{N\}{1,28\}[\p{L\}\p{N\}]`. The caller must have `resourcemanager.folders.update` permission on the identified folder. If the update fails due to the unique name constraint then a `PreconditionFailure` explaining this violation will be returned in the Status.details field.
      * @example
      * ```js
      * // Before running the sample:
@@ -1760,7 +1760,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.patch({
-     *     // Output only. The resource name of the Folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
+     *     // Output only. The resource name of the folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
      *     name: 'folders/my-folder',
      *     // Required. Fields to be updated. Only the `display_name` can be updated.
      *     updateMask: 'placeholder-value',
@@ -1881,7 +1881,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Search for folders that match specific filter criteria. Search provides an eventually consistent view of the folders a user has access to which meet the specified filter criteria. This will only return folders on which the caller has the permission `resourcemanager.folders.get`.
+     * Search for folders that match specific filter criteria. `search()` provides an eventually consistent view of the folders a user has access to which meet the specified filter criteria. This will only return folders on which the caller has the permission `resourcemanager.folders.get`.
      * @example
      * ```js
      * // Before running the sample:
@@ -1914,7 +1914,7 @@ export namespace cloudresourcemanager_v3 {
      *     pageSize: 'placeholder-value',
      *     // Optional. A pagination token returned from a previous call to `SearchFolders` that indicates from where search should continue.
      *     pageToken: 'placeholder-value',
-     *     // Optional. Search criteria used to select the Folders to return. If no search criteria is specified then all accessible folders will be returned. Query expressions can be used to restrict results based upon displayName, state and parent, where the operators `=` (`:`) `NOT`, `AND` and `OR` can be used along with the suffix wildcard symbol `*`. The displayName field in a query expression should use escaped quotes for values that include whitespace to prevent unexpected behavior. | Field | Description | |-------------------------|----------------------------------------| | displayName | Filters by displayName. | | parent | Filters by parent (e.g. folders/123). | | state, lifecycleState | Filters by state. | Some example queries are: * Query `displayName=Test*` returns Folder resources whose display name starts with "Test". * Query `state=ACTIVE` returns Folder resources with `state` set to `ACTIVE`. * Query `parent=folders/123` returns Folder resources that have `folders/123` as a parent resource. * Query `parent=folders/123 AND state=ACTIVE` returns active Folder resources that have `folders/123` as a parent resource. * Query `displayName=\\"Test String\\"` returns Folder resources with display names that include both "Test" and "String".
+     *     // Optional. Search criteria used to select the folders to return. If no search criteria is specified then all accessible folders will be returned. Query expressions can be used to restrict results based upon displayName, state and parent, where the operators `=` (`:`) `NOT`, `AND` and `OR` can be used along with the suffix wildcard symbol `*`. The `displayName` field in a query expression should use escaped quotes for values that include whitespace to prevent unexpected behavior. | Field | Description | |-------------------------|----------------------------------------| | displayName | Filters by displayName. | | parent | Filters by parent (for example: folders/123). | | state, lifecycleState | Filters by state. | Some example queries are: * Query `displayName=Test*` returns Folder resources whose display name starts with "Test". * Query `state=ACTIVE` returns Folder resources with `state` set to `ACTIVE`. * Query `parent=folders/123` returns Folder resources that have `folders/123` as a parent resource. * Query `parent=folders/123 AND state=ACTIVE` returns active Folder resources that have `folders/123` as a parent resource. * Query `displayName=\\"Test String\\"` returns Folder resources with display names that include both "Test" and "String".
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2020,7 +2020,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Sets the access control policy on a Folder, replacing any existing policy. The `resource` field should be the Folder's resource name, e.g. "folders/1234". The caller must have `resourcemanager.folders.setIamPolicy` permission on the identified folder.
+     * Sets the access control policy on a folder, replacing any existing policy. The `resource` field should be the folder's resource name, for example: "folders/1234". The caller must have `resourcemanager.folders.setIamPolicy` permission on the identified folder.
      * @example
      * ```js
      * // Before running the sample:
@@ -2162,7 +2162,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Returns permissions that a caller has on the specified Folder. The `resource` field should be the Folder's resource name, e.g. "folders/1234". There are no permissions required for making this API call.
+     * Returns permissions that a caller has on the specified folder. The `resource` field should be the folder's resource name, for example: "folders/1234". There are no permissions required for making this API call.
      * @example
      * ```js
      * // Before running the sample:
@@ -2307,7 +2307,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Cancels the deletion request for a Folder. This method may be called on a Folder in any state. If Folder is in ACTIVE state the result will be a no-op success. In order to succeed, the Folder's parent must be in the ACTIVE state. In addition, reintroducing the folder into the tree must not violate folder naming, height and fanout constraints described in the CreateFolder documentation. The caller must have `resourcemanager.folders.undelete` permission on the identified folder.
+     * Cancels the deletion request for a folder. This method may be called on a folder in any state. If the folder is in the ACTIVE state the result will be a no-op success. In order to succeed, the folder's parent must be in the ACTIVE state. In addition, reintroducing the folder into the tree must not violate folder naming, height, and fanout constraints described in the CreateFolder documentation. The caller must have `resourcemanager.folders.undelete` permission on the identified folder.
      * @example
      * ```js
      * // Before running the sample:
@@ -2333,7 +2333,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.undelete({
-     *     // Required. The resource name of the Folder to undelete. Must be of the form `folders/{folder_id\}`.
+     *     // Required. The resource name of the folder to undelete. Must be of the form `folders/{folder_id\}`.
      *     name: 'folders/my-folder',
      *
      *     // Request body metadata
@@ -2454,13 +2454,13 @@ export namespace cloudresourcemanager_v3 {
   }
   export interface Params$Resource$Folders$Delete extends StandardParameters {
     /**
-     * Required. The resource name of the Folder to be deleted. Must be of the form `folders/{folder_id\}`.
+     * Required. The resource name of the folder to be deleted. Must be of the form `folders/{folder_id\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Get extends StandardParameters {
     /**
-     * Required. The resource name of the Folder to retrieve. Must be of the form `folders/{folder_id\}`.
+     * Required. The resource name of the folder to retrieve. Must be of the form `folders/{folder_id\}`.
      */
     name?: string;
   }
@@ -2478,7 +2478,7 @@ export namespace cloudresourcemanager_v3 {
   }
   export interface Params$Resource$Folders$List extends StandardParameters {
     /**
-     * Optional. The maximum number of Folders to return in the response. If unspecified, server picks an appropriate default.
+     * Optional. The maximum number of folders to return in the response. If unspecified, server picks an appropriate default.
      */
     pageSize?: number;
     /**
@@ -2486,11 +2486,11 @@ export namespace cloudresourcemanager_v3 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id\}` or `organizations/{org_id\}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
+     * Required. The resource name of the organization or folder whose folders are being listed. Must be of the form `folders/{folder_id\}` or `organizations/{org_id\}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
      */
     parent?: string;
     /**
-     * Optional. Controls whether Folders in the DELETE_REQUESTED state should be returned. Defaults to false.
+     * Optional. Controls whether folders in the DELETE_REQUESTED state should be returned. Defaults to false.
      */
     showDeleted?: boolean;
   }
@@ -2507,7 +2507,7 @@ export namespace cloudresourcemanager_v3 {
   }
   export interface Params$Resource$Folders$Patch extends StandardParameters {
     /**
-     * Output only. The resource name of the Folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
+     * Output only. The resource name of the folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
      */
     name?: string;
     /**
@@ -2530,7 +2530,7 @@ export namespace cloudresourcemanager_v3 {
      */
     pageToken?: string;
     /**
-     * Optional. Search criteria used to select the Folders to return. If no search criteria is specified then all accessible folders will be returned. Query expressions can be used to restrict results based upon displayName, state and parent, where the operators `=` (`:`) `NOT`, `AND` and `OR` can be used along with the suffix wildcard symbol `*`. The displayName field in a query expression should use escaped quotes for values that include whitespace to prevent unexpected behavior. | Field | Description | |-------------------------|----------------------------------------| | displayName | Filters by displayName. | | parent | Filters by parent (e.g. folders/123). | | state, lifecycleState | Filters by state. | Some example queries are: * Query `displayName=Test*` returns Folder resources whose display name starts with "Test". * Query `state=ACTIVE` returns Folder resources with `state` set to `ACTIVE`. * Query `parent=folders/123` returns Folder resources that have `folders/123` as a parent resource. * Query `parent=folders/123 AND state=ACTIVE` returns active Folder resources that have `folders/123` as a parent resource. * Query `displayName=\\"Test String\\"` returns Folder resources with display names that include both "Test" and "String".
+     * Optional. Search criteria used to select the folders to return. If no search criteria is specified then all accessible folders will be returned. Query expressions can be used to restrict results based upon displayName, state and parent, where the operators `=` (`:`) `NOT`, `AND` and `OR` can be used along with the suffix wildcard symbol `*`. The `displayName` field in a query expression should use escaped quotes for values that include whitespace to prevent unexpected behavior. | Field | Description | |-------------------------|----------------------------------------| | displayName | Filters by displayName. | | parent | Filters by parent (for example: folders/123). | | state, lifecycleState | Filters by state. | Some example queries are: * Query `displayName=Test*` returns Folder resources whose display name starts with "Test". * Query `state=ACTIVE` returns Folder resources with `state` set to `ACTIVE`. * Query `parent=folders/123` returns Folder resources that have `folders/123` as a parent resource. * Query `parent=folders/123 AND state=ACTIVE` returns active Folder resources that have `folders/123` as a parent resource. * Query `displayName=\\"Test String\\"` returns Folder resources with display names that include both "Test" and "String".
      */
     query?: string;
   }
@@ -2560,7 +2560,7 @@ export namespace cloudresourcemanager_v3 {
   }
   export interface Params$Resource$Folders$Undelete extends StandardParameters {
     /**
-     * Required. The resource name of the Folder to undelete. Must be of the form `folders/{folder_id\}`.
+     * Required. The resource name of the folder to undelete. Must be of the form `folders/{folder_id\}`.
      */
     name?: string;
 
@@ -3306,7 +3306,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Fetches an Organization resource identified by the specified resource name.
+     * Fetches an organization resource identified by the specified resource name.
      * @example
      * ```js
      * // Before running the sample:
@@ -3443,7 +3443,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Gets the access control policy for an Organization resource. May be empty if no such policy or resource exists. The `resource` field should be the organization's resource name, e.g. "organizations/123". Authorization requires the Google IAM permission `resourcemanager.organizations.getIamPolicy` on the specified organization
+     * Gets the access control policy for an organization resource. The policy may be empty if no such policy or resource exists. The `resource` field should be the organization's resource name, for example: "organizations/123". Authorization requires the IAM permission `resourcemanager.organizations.getIamPolicy` on the specified organization.
      * @example
      * ```js
      * // Before running the sample:
@@ -3587,7 +3587,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Searches Organization resources that are visible to the user and satisfy the specified filter. This method returns Organizations in an unspecified order. New Organizations do not necessarily appear at the end of the results, and may take a small amount of time to appear. Search will only return organizations on which the user has the permission `resourcemanager.organizations.get`
+     * Searches organization resources that are visible to the user and satisfy the specified filter. This method returns organizations in an unspecified order. New organizations do not necessarily appear at the end of the results, and may take a small amount of time to appear. Search will only return organizations on which the user has the permission `resourcemanager.organizations.get`
      * @example
      * ```js
      * // Before running the sample:
@@ -3616,7 +3616,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.organizations.search({
-     *     // Optional. The maximum number of Organizations to return in the response. If unspecified, server picks an appropriate default.
+     *     // Optional. The maximum number of organizations to return in the response. If unspecified, server picks an appropriate default.
      *     pageSize: 'placeholder-value',
      *     // Optional. A pagination token returned from a previous call to `SearchOrganizations` that indicates from where listing should continue.
      *     pageToken: 'placeholder-value',
@@ -3732,7 +3732,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Sets the access control policy on an Organization resource. Replaces any existing policy. The `resource` field should be the organization's resource name, e.g. "organizations/123". Authorization requires the Google IAM permission `resourcemanager.organizations.setIamPolicy` on the specified organization
+     * Sets the access control policy on an organization resource. Replaces any existing policy. The `resource` field should be the organization's resource name, for example: "organizations/123". Authorization requires the IAM permission `resourcemanager.organizations.setIamPolicy` on the specified organization.
      * @example
      * ```js
      * // Before running the sample:
@@ -3874,7 +3874,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Returns permissions that a caller has on the specified Organization. The `resource` field should be the organization's resource name, e.g. "organizations/123". There are no permissions required for making this API call.
+     * Returns the permissions that a caller has on the specified organization. The `resource` field should be the organization's resource name, for example: "organizations/123". There are no permissions required for making this API call.
      * @example
      * ```js
      * // Before running the sample:
@@ -4044,7 +4044,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Organizations$Search
     extends StandardParameters {
     /**
-     * Optional. The maximum number of Organizations to return in the response. If unspecified, server picks an appropriate default.
+     * Optional. The maximum number of organizations to return in the response. If unspecified, server picks an appropriate default.
      */
     pageSize?: number;
     /**
@@ -4088,7 +4088,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Request that a new Project be created. The result is an Operation which can be used to track the creation process. This process usually takes a few seconds, but can sometimes take much longer. The tracking Operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.
+     * Request that a new project be created. The result is an `Operation` which can be used to track the creation process. This process usually takes a few seconds, but can sometimes take much longer. The tracking `Operation` is automatically deleted after a few hours, so there is no need to call `DeleteOperation`.
      * @example
      * ```js
      * // Before running the sample:
@@ -4232,7 +4232,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Marks the Project identified by the specified `name` (for example, `projects/415104041262`) for deletion. This method will only affect the Project if it has a lifecycle state of ACTIVE. This method changes the Project's lifecycle state from ACTIVE to DELETE_REQUESTED. The deletion starts at an unspecified time, at which point the Project is no longer accessible. Until the deletion completes, you can check the lifecycle state checked by retrieving the Project with GetProject, and the Project remains visible to ListProjects. However, you cannot update the project. After the deletion completes, the Project is not retrievable by the GetProject, ListProjects, and SearchProjects methods. This method behaves idempotently (eg., deleting a `DELETE_REQUESTED` project will not be an error, but also won't do anything). The caller must have delete permissions for this Project.
+     * Marks the project identified by the specified `name` (for example, `projects/415104041262`) for deletion. This method will only affect the project if it has a lifecycle state of ACTIVE. This method changes the Project's lifecycle state from ACTIVE to DELETE_REQUESTED. The deletion starts at an unspecified time, at which point the Project is no longer accessible. Until the deletion completes, you can check the lifecycle state checked by retrieving the project with GetProject, and the project remains visible to ListProjects. However, you cannot update the project. After the deletion completes, the project is not retrievable by the GetProject, ListProjects, and SearchProjects methods. This method behaves idempotently, such that deleting a `DELETE_REQUESTED` project will not cause an error, but also won't do anything. The caller must have `resourcemanager.projects.delete` permissions for this project.
      * @example
      * ```js
      * // Before running the sample:
@@ -4362,7 +4362,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Retrieves the Project identified by the specified `name` (for example, `projects/415104041262`). The caller must have read permissions for this Project.
+     * Retrieves the project identified by the specified `name` (for example, `projects/415104041262`). The caller must have `resourcemanager.projects.get` permission for this project.
      * @example
      * ```js
      * // Before running the sample:
@@ -4500,7 +4500,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Returns the IAM access control policy for the specified Project. Permission is denied if the policy or the resource does not exist.
+     * Returns the IAM access control policy for the specified project. Permission is denied if the policy or the resource do not exist.
      * @example
      * ```js
      * // Before running the sample:
@@ -4644,7 +4644,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Lists Projects that are direct children of the specified folder or organization resource. List provides a strongly consistent view of the Projects underneath the specified parent resource. List returns Projects sorted based upon the (ascending) lexical ordering of their `display_name`. The caller must have `resourcemanager.projects.list` permission on the identified parent.
+     * Lists projects that are direct children of the specified folder or organization resource. `list()` provides a strongly consistent view of the projects underneath the specified parent resource. `list()` returns projects sorted based upon the (ascending) lexical ordering of their `display_name`. The caller must have `resourcemanager.projects.list` permission on the identified parent.
      * @example
      * ```js
      * // Before running the sample:
@@ -4673,13 +4673,13 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.list({
-     *     // Optional. The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default.
+     *     // Optional. The maximum number of projects to return in the response. The server can return fewer projects than requested. If unspecified, server picks an appropriate default.
      *     pageSize: 'placeholder-value',
      *     // Optional. A pagination token returned from a previous call to ListProjects that indicates from where listing should continue.
      *     pageToken: 'placeholder-value',
      *     // Required. The name of the parent resource to list projects under. For example, setting this field to 'folders/1234' would list all projects directly under that folder.
      *     parent: 'placeholder-value',
-     *     // Optional. Indicate that Projects in the `DELETE_REQUESTED` state should also be returned. Normally only `ACTIVE` projects are returned.
+     *     // Optional. Indicate that projects in the `DELETE_REQUESTED` state should also be returned. Normally only `ACTIVE` projects are returned.
      *     showDeleted: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4785,7 +4785,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Move a Project under a new resource parent. Returns an operation which can be used to track the process of the Project move workflow. Upon success, the Operation.response field will be populated with the moved Project. The caller must have `resourcemanager.projects.update` permission on the Project and have `resourcemanager.projects.move` permission on the Project's current and proposed new parent.
+     * Move a project to another place in your resource hierarchy, under a new resource parent. Returns an operation which can be used to track the process of the project move workflow. Upon success, the `Operation.response` field will be populated with the moved project. The caller must have `resourcemanager.projects.update` permission on the project and have `resourcemanager.projects.move` permission on the project's current and proposed new parent.
      * @example
      * ```js
      * // Before running the sample:
@@ -4923,7 +4923,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Updates the attributes of the Project identified by the specified `name` (for example, `projects/415104041262`). At present this is only useful for updating the display_name and labels. Deleting all labels requires an update mask for labels field. The caller must have modify permissions for this Project.
+     * Updates the `display_name` and labels of the project identified by the specified `name` (for example, `projects/415104041262`). Deleting all labels requires an update mask for labels field. The caller must have `resourcemanager.projects.update` permission for this project.
      * @example
      * ```js
      * // Before running the sample:
@@ -4949,7 +4949,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.patch({
-     *     // Output only. The unique resource name of the Project. It is an int64 generated number prefixed by "projects/". Example: `projects/415104041262`
+     *     // Output only. The unique resource name of the project. It is an int64 generated number prefixed by "projects/". Example: `projects/415104041262`
      *     name: 'projects/my-project',
      *     // Optional. An update mask to selectively update fields.
      *     updateMask: 'placeholder-value',
@@ -5072,7 +5072,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Search for Projects that the caller has the `resourcemanager.projects.get` permission on and satisfy the specified query. This method returns Projects in an unspecified order. This method is eventually consistent with project mutations; this means that a newly created project may not appear in the results or recent updates to an existing project may not be reflected in the results. To retrieve the latest state of a project, use the GetProject method.
+     * Search for projects that the caller has both `resourcemanager.projects.get` permission on, and also satisfy the specified query. This method returns projects in an unspecified order. This method is eventually consistent with project mutations; this means that a newly created project may not appear in the results or recent updates to an existing project may not be reflected in the results. To retrieve the latest state of a project, use the GetProject method.
      * @example
      * ```js
      * // Before running the sample:
@@ -5098,11 +5098,11 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.search({
-     *     // Optional. The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default.
+     *     // Optional. The maximum number of projects to return in the response. The server can return fewer projects than requested. If unspecified, server picks an appropriate default.
      *     pageSize: 'placeholder-value',
      *     // Optional. A pagination token returned from a previous call to ListProjects that indicates from where listing should continue.
      *     pageToken: 'placeholder-value',
-     *     // Optional. A query string for searching for projects that the caller has `resourcemanager.projects.get` permission to. If multiple fields are included in the query, the it will return results that match any of the fields. Some eligible fields are: | Field | Description | |-------------------------|----------------------------------------------| | displayName, name | Filters by displayName. | | parent | Project's parent. (e.g. folders/123, organizations/x) Prefer parent field over parent.type and parent.id. | | parent.type | Parent's type: `folder` or `organization`. | | parent.id | Parent's id number (e.g. 123) | | id, projectId | Filters by projectId. | | state, lifecycleState | Filters by state. | | labels | Filters by label name or value. | | labels. (where *key* is the name of a label) | Filters by label name. | Search expressions are case insensitive. Some examples queries: | Query | Description | |------------------|-----------------------------------------------------| | name:how* | The project's name starts with "how". | | name:Howl | The project's name is `Howl` or `howl`. | | name:HOWL | Equivalent to above. | | NAME:howl | Equivalent to above. | | labels.color:* | The project has the label `color`. | | labels.color:red | The project's label `color` has the value `red`. | | labels.color:red labels.size:big | The project's label `color` has the value `red` and its label `size` has the value `big`. | If no query is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission.
+     *     // Optional. A query string for searching for projects that the caller has `resourcemanager.projects.get` permission to. If multiple fields are included in the query, the it will return results that match any of the fields. Some eligible fields are: | Field | Description | |-------------------------|----------------------------------------------| | displayName, name | Filters by displayName. | | parent | Project's parent. (for example: folders/123, organizations/x) Prefer parent field over parent.type and parent.id. | | parent.type | Parent's type: `folder` or `organization`. | | parent.id | Parent's id number (for example: 123) | | id, projectId | Filters by projectId. | | state, lifecycleState | Filters by state. | | labels | Filters by label name or value. | | labels. (where *key* is the name of a label) | Filters by label name. | Search expressions are case insensitive. Some examples queries: | Query | Description | |------------------|-----------------------------------------------------| | name:how* | The project's name starts with "how". | | name:Howl | The project's name is `Howl` or `howl`. | | name:HOWL | Equivalent to above. | | NAME:howl | Equivalent to above. | | labels.color:* | The project has the label `color`. | | labels.color:red | The project's label `color` has the value `red`. | | labels.color:red labels.size:big | The project's label `color` has the value `red` and its label `size` has the value `big`. | If no query is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission.
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5211,7 +5211,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Sets the IAM access control policy for the specified Project. CAUTION: This method will replace the existing policy, and cannot be used to append additional IAM settings. NOTE: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles. The following constraints apply when using `setIamPolicy()`: + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`. + The owner role can be granted to a `user`, `serviceAccount`, or a group that is part of an organization. For example, group@myownpersonaldomain.com could be added as an owner to a project in the myownpersonaldomain.com organization, but not the examplepetstore.com organization. + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited via Cloud Platform console and must accept the invitation. + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation. + Invitations to grant the owner role cannot be sent using `setIamPolicy()`; they must be sent only using the Cloud Platform Console. + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected. + If the project is not part of an organization, there must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified. + Calling this method requires enabling the App Engine Admin API.
+     * Sets the IAM access control policy for the specified project. CAUTION: This method will replace the existing policy, and cannot be used to append additional IAM settings. Note: Removing service accounts from policies or changing their roles can render services completely inoperable. It is important to understand how the service account is being used before removing or updating its roles. The following constraints apply when using `setIamPolicy()`: + Project does not support `allUsers` and `allAuthenticatedUsers` as `members` in a `Binding` of a `Policy`. + The owner role can be granted to a `user`, `serviceAccount`, or a group that is part of an organization. For example, group@myownpersonaldomain.com could be added as an owner to a project in the myownpersonaldomain.com organization, but not the examplepetstore.com organization. + Service accounts can be made owners of a project directly without any restrictions. However, to be added as an owner, a user must be invited using the Cloud Platform console and must accept the invitation. + A user cannot be granted the owner role using `setIamPolicy()`. The user must be granted the owner role using the Cloud Platform Console and must explicitly accept the invitation. + Invitations to grant the owner role cannot be sent using `setIamPolicy()`; they must be sent only using the Cloud Platform Console. + Membership changes that leave the project without any owners that have accepted the Terms of Service (ToS) will be rejected. + If the project is not part of an organization, there must be at least one owner who has accepted the Terms of Service (ToS) agreement in the policy. Calling `setIamPolicy()` to remove the last ToS-accepted owner from the policy will fail. This restriction also applies to legacy projects that no longer have owners who have accepted the ToS. Edits to IAM policies will be rejected until the lack of a ToS-accepting owner is rectified. + Calling this method requires enabling the App Engine Admin API.
      * @example
      * ```js
      * // Before running the sample:
@@ -5353,7 +5353,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Returns permissions that a caller has on the specified Project.
+     * Returns permissions that a caller has on the specified project.
      * @example
      * ```js
      * // Before running the sample:
@@ -5501,7 +5501,7 @@ export namespace cloudresourcemanager_v3 {
     }
 
     /**
-     * Restores the Project identified by the specified `name` (for example, `projects/415104041262`). You can only use this method for a Project that has a lifecycle state of DELETE_REQUESTED. After deletion starts, the Project cannot be restored. The caller must have undelete permissions for this Project.
+     * Restores the project identified by the specified `name` (for example, `projects/415104041262`). You can only use this method for a project that has a lifecycle state of DELETE_REQUESTED. After deletion starts, the project cannot be restored. The caller must have `resourcemanager.projects.undelete` permission for this project.
      * @example
      * ```js
      * // Before running the sample:
@@ -5527,7 +5527,7 @@ export namespace cloudresourcemanager_v3 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.projects.undelete({
-     *     // Required. The name of the Project (for example, `projects/415104041262`). Required.
+     *     // Required. The name of the project (for example, `projects/415104041262`). Required.
      *     name: 'projects/my-project',
      *
      *     // Request body metadata
@@ -5673,7 +5673,7 @@ export namespace cloudresourcemanager_v3 {
   }
   export interface Params$Resource$Projects$List extends StandardParameters {
     /**
-     * Optional. The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default.
+     * Optional. The maximum number of projects to return in the response. The server can return fewer projects than requested. If unspecified, server picks an appropriate default.
      */
     pageSize?: number;
     /**
@@ -5685,7 +5685,7 @@ export namespace cloudresourcemanager_v3 {
      */
     parent?: string;
     /**
-     * Optional. Indicate that Projects in the `DELETE_REQUESTED` state should also be returned. Normally only `ACTIVE` projects are returned.
+     * Optional. Indicate that projects in the `DELETE_REQUESTED` state should also be returned. Normally only `ACTIVE` projects are returned.
      */
     showDeleted?: boolean;
   }
@@ -5702,7 +5702,7 @@ export namespace cloudresourcemanager_v3 {
   }
   export interface Params$Resource$Projects$Patch extends StandardParameters {
     /**
-     * Output only. The unique resource name of the Project. It is an int64 generated number prefixed by "projects/". Example: `projects/415104041262`
+     * Output only. The unique resource name of the project. It is an int64 generated number prefixed by "projects/". Example: `projects/415104041262`
      */
     name?: string;
     /**
@@ -5717,7 +5717,7 @@ export namespace cloudresourcemanager_v3 {
   }
   export interface Params$Resource$Projects$Search extends StandardParameters {
     /**
-     * Optional. The maximum number of Projects to return in the response. The server can return fewer Projects than requested. If unspecified, server picks an appropriate default.
+     * Optional. The maximum number of projects to return in the response. The server can return fewer projects than requested. If unspecified, server picks an appropriate default.
      */
     pageSize?: number;
     /**
@@ -5725,7 +5725,7 @@ export namespace cloudresourcemanager_v3 {
      */
     pageToken?: string;
     /**
-     * Optional. A query string for searching for projects that the caller has `resourcemanager.projects.get` permission to. If multiple fields are included in the query, the it will return results that match any of the fields. Some eligible fields are: | Field | Description | |-------------------------|----------------------------------------------| | displayName, name | Filters by displayName. | | parent | Project's parent. (e.g. folders/123, organizations/x) Prefer parent field over parent.type and parent.id. | | parent.type | Parent's type: `folder` or `organization`. | | parent.id | Parent's id number (e.g. 123) | | id, projectId | Filters by projectId. | | state, lifecycleState | Filters by state. | | labels | Filters by label name or value. | | labels. (where *key* is the name of a label) | Filters by label name. | Search expressions are case insensitive. Some examples queries: | Query | Description | |------------------|-----------------------------------------------------| | name:how* | The project's name starts with "how". | | name:Howl | The project's name is `Howl` or `howl`. | | name:HOWL | Equivalent to above. | | NAME:howl | Equivalent to above. | | labels.color:* | The project has the label `color`. | | labels.color:red | The project's label `color` has the value `red`. | | labels.color:red labels.size:big | The project's label `color` has the value `red` and its label `size` has the value `big`. | If no query is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission.
+     * Optional. A query string for searching for projects that the caller has `resourcemanager.projects.get` permission to. If multiple fields are included in the query, the it will return results that match any of the fields. Some eligible fields are: | Field | Description | |-------------------------|----------------------------------------------| | displayName, name | Filters by displayName. | | parent | Project's parent. (for example: folders/123, organizations/x) Prefer parent field over parent.type and parent.id. | | parent.type | Parent's type: `folder` or `organization`. | | parent.id | Parent's id number (for example: 123) | | id, projectId | Filters by projectId. | | state, lifecycleState | Filters by state. | | labels | Filters by label name or value. | | labels. (where *key* is the name of a label) | Filters by label name. | Search expressions are case insensitive. Some examples queries: | Query | Description | |------------------|-----------------------------------------------------| | name:how* | The project's name starts with "how". | | name:Howl | The project's name is `Howl` or `howl`. | | name:HOWL | Equivalent to above. | | NAME:howl | Equivalent to above. | | labels.color:* | The project has the label `color`. | | labels.color:red | The project's label `color` has the value `red`. | | labels.color:red labels.size:big | The project's label `color` has the value `red` and its label `size` has the value `big`. | If no query is specified, the call will return projects for which the user has the `resourcemanager.projects.get` permission.
      */
     query?: string;
   }
@@ -5756,7 +5756,7 @@ export namespace cloudresourcemanager_v3 {
   export interface Params$Resource$Projects$Undelete
     extends StandardParameters {
     /**
-     * Required. The name of the Project (for example, `projects/415104041262`). Required.
+     * Required. The name of the project (for example, `projects/415104041262`). Required.
      */
     name?: string;
 
