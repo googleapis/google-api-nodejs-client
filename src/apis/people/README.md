@@ -7,11 +7,12 @@
 ## Installation
 
 ```sh
-$ npm install googleapis
+$ npm install @googleapis/people
 ```
 
 ## Usage
 All documentation and usage information can be found on [GitHub](https://github.com/googleapis/google-api-nodejs-client).
+Information on classes can be found in [Googleapis Documentation](https://googleapis.dev/nodejs/googleapis/latest/people/classes/People.html).
 
 ## Building a browser bundle
 
@@ -19,8 +20,7 @@ This library can be used in a browser. To prepare a single file bundle, clone th
 [repository](https://github.com/googleapis/google-api-nodejs-client) and run
 
 ```sh
-$ cd src/apis/people
-$ npm install
+$ npm install @googleapis/people
 $ npm run webpack
 ```
 

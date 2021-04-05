@@ -7,11 +7,12 @@
 ## Installation
 
 ```sh
-$ npm install googleapis
+$ npm install @googleapis/healthcare
 ```
 
 ## Usage
 All documentation and usage information can be found on [GitHub](https://github.com/googleapis/google-api-nodejs-client).
+Information on classes can be found in [Googleapis Documentation](https://googleapis.dev/nodejs/googleapis/latest/healthcare/classes/Healthcare.html).
 
 ## Building a browser bundle
 
@@ -19,8 +20,7 @@ This library can be used in a browser. To prepare a single file bundle, clone th
 [repository](https://github.com/googleapis/google-api-nodejs-client) and run
 
 ```sh
-$ cd src/apis/healthcare
-$ npm install
+$ npm install @googleapis/healthcare
 $ npm run webpack
 ```
 

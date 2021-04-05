@@ -16,11 +16,12 @@ To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/do
 ## Installation
 
 ```sh
-$ npm install googleapis
+$ npm install @googleapis/runtimeconfig
 ```
 
 ## Usage
 All documentation and usage information can be found on [GitHub](https://github.com/googleapis/google-api-nodejs-client).
+Information on classes can be found in [Googleapis Documentation](https://googleapis.dev/nodejs/googleapis/latest/runtimeconfig/classes/Runtimeconfig.html).
 
 ## Building a browser bundle
 
@@ -28,8 +29,7 @@ This library can be used in a browser. To prepare a single file bundle, clone th
 [repository](https://github.com/googleapis/google-api-nodejs-client) and run
 
 ```sh
-$ cd src/apis/runtimeconfig
-$ npm install
+$ npm install @googleapis/runtimeconfig
 $ npm run webpack
 ```
 
