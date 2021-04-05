@@ -637,7 +637,7 @@
       }
     }
   },
-  "revision": "20210311",
+  "revision": "20210322",
   "rootUrl": "https://datafusion.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -822,6 +822,10 @@
         "displayName": {
           "description": "Display name for an instance.",
           "type": "string"
+        },
+        "enableRbac": {
+          "description": "Option to enable granular role-based access control.",
+          "type": "boolean"
         },
         "enableStackdriverLogging": {
           "description": "Option to enable Stackdriver Logging.",
