@@ -349,6 +349,19 @@ export namespace mybusinessaccountmanagement_v1 {
      */
     locationName?: string | null;
   }
+  /**
+   * Request message for AccessControl.TransferLocation.
+   */
+  export interface Schema$TransferLocationRequest {
+    /**
+     * Required. Name of the account resource to transfer the location to (for example, "accounts/{account\}").
+     */
+    destinationAccount?: string | null;
+    /**
+     * Required. The name of the location to transfer. `locations/{location_id\}`.
+     */
+    name?: string | null;
+  }
 
   export class Resource$Accounts {
     context: APIRequestContext;
@@ -2051,6 +2064,155 @@ export namespace mybusinessaccountmanagement_v1 {
       this.context = context;
       this.admins = new Resource$Locations$Admins(this.context);
     }
+
+    /**
+     * Moves a location from an account that the user owns to another account that the same user administers. The user must be an owner of the account the location is currently associated with and must also be at least a manager of the destination account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessaccountmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessaccountmanagement = google.mybusinessaccountmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessaccountmanagement.locations.transferLocation({
+     *     locationsId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destinationAccount": "my_destinationAccount",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    transferLocation(
+      params: Params$Resource$Locations$Transferlocation,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    transferLocation(
+      params?: Params$Resource$Locations$Transferlocation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    transferLocation(
+      params: Params$Resource$Locations$Transferlocation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    transferLocation(
+      params: Params$Resource$Locations$Transferlocation,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    transferLocation(
+      params: Params$Resource$Locations$Transferlocation,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    transferLocation(callback: BodyResponseCallback<Schema$Empty>): void;
+    transferLocation(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Transferlocation
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Transferlocation;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Locations$Transferlocation;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl ||
+        'https://mybusinessaccountmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/locations/{locationsId}:transferLocation'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['locationsId'],
+        pathParams: ['locationsId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Locations$Transferlocation
+    extends StandardParameters {
+    /**
+     *
+     */
+    locationsId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TransferLocationRequest;
   }
 
   export class Resource$Locations$Admins {

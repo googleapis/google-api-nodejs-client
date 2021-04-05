@@ -395,6 +395,31 @@
       }
     },
     "locations": {
+      "methods": {
+        "transferLocation": {
+          "description": "Moves a location from an account that the user owns to another account that the same user administers. The user must be an owner of the account the location is currently associated with and must also be at least a manager of the destination account.",
+          "flatPath": "v1/locations/{locationsId}:transferLocation",
+          "httpMethod": "POST",
+          "id": "mybusinessaccountmanagement.locations.transferLocation",
+          "parameterOrder": [
+            "locationsId"
+          ],
+          "parameters": {
+            "locationsId": {
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/locations/{locationsId}:transferLocation",
+          "request": {
+            "$ref": "TransferLocationRequest"
+          },
+          "response": {
+            "$ref": "Empty"
+          }
+        }
+      },
       "resources": {
         "admins": {
           "methods": {
@@ -503,7 +528,7 @@
       }
     }
   },
-  "revision": "20210307",
+  "revision": "20210330",
   "rootUrl": "https://mybusinessaccountmanagement.googleapis.com/",
   "schemas": {
     "AcceptInvitationRequest": {
@@ -880,6 +905,21 @@
         },
         "locationName": {
           "description": "The name of the location to which the user is invited.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TransferLocationRequest": {
+      "description": "Request message for AccessControl.TransferLocation.",
+      "id": "TransferLocationRequest",
+      "properties": {
+        "destinationAccount": {
+          "description": "Required. Name of the account resource to transfer the location to (for example, \"accounts/{account}\").",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. The name of the location to transfer. `locations/{location_id}`.",
           "type": "string"
         }
       },
