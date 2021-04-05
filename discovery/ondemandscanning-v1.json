@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "ondemandscanning:v1beta1",
+  "id": "ondemandscanning:v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://ondemandscanning.mtls.googleapis.com/",
   "name": "ondemandscanning",
@@ -113,7 +113,7 @@
               "methods": {
                 "cancel": {
                   "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:cancel",
                   "httpMethod": "POST",
                   "id": "ondemandscanning.projects.locations.operations.cancel",
                   "parameterOrder": [
@@ -128,7 +128,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}:cancel",
+                  "path": "v1/{+name}:cancel",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -138,7 +138,7 @@
                 },
                 "delete": {
                   "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "DELETE",
                   "id": "ondemandscanning.projects.locations.operations.delete",
                   "parameterOrder": [
@@ -153,7 +153,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -163,7 +163,7 @@
                 },
                 "get": {
                   "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}",
                   "httpMethod": "GET",
                   "id": "ondemandscanning.projects.locations.operations.get",
                   "parameterOrder": [
@@ -178,7 +178,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}",
+                  "path": "v1/{+name}",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -188,7 +188,7 @@
                 },
                 "list": {
                   "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. To override the binding, API services can add a binding such as `\"/v1/{name=users/*}/operations\"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations",
                   "httpMethod": "GET",
                   "id": "ondemandscanning.projects.locations.operations.list",
                   "parameterOrder": [
@@ -219,7 +219,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}/operations",
+                  "path": "v1/{+name}/operations",
                   "response": {
                     "$ref": "ListOperationsResponse"
                   },
@@ -229,7 +229,7 @@
                 },
                 "wait": {
                   "description": "Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:wait",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/operations/{operationsId}:wait",
                   "httpMethod": "POST",
                   "id": "ondemandscanning.projects.locations.operations.wait",
                   "parameterOrder": [
@@ -250,7 +250,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+name}:wait",
+                  "path": "v1/{+name}:wait",
                   "response": {
                     "$ref": "Operation"
                   },
@@ -264,7 +264,7 @@
               "methods": {
                 "analyzePackages": {
                   "description": "Initiates an analysis of the provided packages.",
-                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/scans:analyzePackages",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/scans:analyzePackages",
                   "httpMethod": "POST",
                   "id": "ondemandscanning.projects.locations.scans.analyzePackages",
                   "parameterOrder": [
@@ -279,9 +279,9 @@
                       "type": "string"
                     }
                   },
-                  "path": "v1beta1/{+parent}/scans:analyzePackages",
+                  "path": "v1/{+parent}/scans:analyzePackages",
                   "request": {
-                    "$ref": "AnalyzePackagesRequest"
+                    "$ref": "AnalyzePackagesRequestV1"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -296,7 +296,7 @@
                   "methods": {
                     "list": {
                       "description": "Lists vulnerabilities resulting from a successfully completed scan.",
-                      "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/scans/{scansId}/vulnerabilities",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/scans/{scansId}/vulnerabilities",
                       "httpMethod": "GET",
                       "id": "ondemandscanning.projects.locations.scans.vulnerabilities.list",
                       "parameterOrder": [
@@ -322,9 +322,9 @@
                           "type": "string"
                         }
                       },
-                      "path": "v1beta1/{+parent}/vulnerabilities",
+                      "path": "v1/{+parent}/vulnerabilities",
                       "response": {
-                        "$ref": "ListVulnerabilitiesResponse"
+                        "$ref": "ListVulnerabilitiesResponseV1"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -401,9 +401,9 @@
       },
       "type": "object"
     },
-    "AnalyzePackagesRequest": {
+    "AnalyzePackagesRequestV1": {
       "description": "AnalyzePackagesRequest is the request to analyze a list of packages and create Vulnerability Occurrences for it.",
-      "id": "AnalyzePackagesRequest",
+      "id": "AnalyzePackagesRequestV1",
       "properties": {
         "packages": {
           "description": "The packages to analyze.",
@@ -937,9 +937,9 @@
       },
       "type": "object"
     },
-    "ListVulnerabilitiesResponse": {
+    "ListVulnerabilitiesResponseV1": {
       "description": "ListVulnerabilitiesResponse contains a single page of vulnerabilities resulting from a scan.",
-      "id": "ListVulnerabilitiesResponse",
+      "id": "ListVulnerabilitiesResponseV1",
       "properties": {
         "nextPageToken": {
           "description": "A page token that can be used in a subsequent call to ListVulnerabilities to continue retrieving results.",
@@ -1542,6 +1542,6 @@
   },
   "servicePath": "",
   "title": "On-Demand Scanning API",
-  "version": "v1beta1",
+  "version": "v1",
   "version_module": true
 }
