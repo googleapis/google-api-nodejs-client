@@ -280,6 +280,8 @@ export namespace oslogin_v1alpha {
      *     projectId: 'placeholder-value',
      *     // A system ID for filtering the results of the request.
      *     systemId: 'placeholder-value',
+     *     // The view configures whether to retrieve security keys information.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -416,6 +418,8 @@ export namespace oslogin_v1alpha {
      *     parent: 'users/my-user',
      *     // The project ID of the Google Cloud Platform project.
      *     projectId: 'placeholder-value',
+     *     // The view configures whether to retrieve security keys information.
+     *     view: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -554,6 +558,10 @@ export namespace oslogin_v1alpha {
      * A system ID for filtering the results of the request.
      */
     systemId?: string;
+    /**
+     * The view configures whether to retrieve security keys information.
+     */
+    view?: string;
   }
   export interface Params$Resource$Users$Importsshpublickey
     extends StandardParameters {
@@ -565,6 +573,10 @@ export namespace oslogin_v1alpha {
      * The project ID of the Google Cloud Platform project.
      */
     projectId?: string;
+    /**
+     * The view configures whether to retrieve security keys information.
+     */
+    view?: string;
 
     /**
      * Request body metadata
