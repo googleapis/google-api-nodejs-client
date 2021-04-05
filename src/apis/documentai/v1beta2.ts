@@ -240,15 +240,6 @@ export namespace documentai_v1beta2 {
     evaluation?: string | null;
   }
   /**
-   * The long running operation metadata for SampleDataset.
-   */
-  export interface Schema$GoogleCloudDocumentaiUiv1beta3SampleDatasetMetadata {
-    /**
-     * The basic metadata of the long running operation.
-     */
-    commonMetadata?: Schema$GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata;
-  }
-  /**
    * The long running operation metadata for set default processor version method.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3SetDefaultProcessorVersionMetadata {
@@ -1121,7 +1112,7 @@ export namespace documentai_v1beta2 {
      */
     x?: number | null;
     /**
-     * Y coordinate.
+     * Y coordinate (starts from the top of the image).
      */
     y?: number | null;
   }
@@ -1181,7 +1172,7 @@ export namespace documentai_v1beta2 {
      */
     x?: number | null;
     /**
-     * Y coordinate.
+     * Y coordinate (starts from the top of the image).
      */
     y?: number | null;
   }
@@ -2011,7 +2002,7 @@ export namespace documentai_v1beta2 {
      */
     x?: number | null;
     /**
-     * Y coordinate.
+     * Y coordinate (starts from the top of the image).
      */
     y?: number | null;
   }
@@ -2155,7 +2146,7 @@ export namespace documentai_v1beta2 {
      */
     x?: number | null;
     /**
-     * Y coordinate.
+     * Y coordinate (starts from the top of the image).
      */
     y?: number | null;
   }
