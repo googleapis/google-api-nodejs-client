@@ -1026,6 +1026,52 @@
       }
     },
     "settings": {
+      "methods": {
+        "getCustomer": {
+          "description": "Get customer settings. **Note:** This API requires an admin account to execute.",
+          "flatPath": "v1/settings/customer",
+          "httpMethod": "GET",
+          "id": "cloudsearch.settings.getCustomer",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/settings/customer",
+          "response": {
+            "$ref": "CustomerSettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud_search",
+            "https://www.googleapis.com/auth/cloud_search.settings",
+            "https://www.googleapis.com/auth/cloud_search.settings.indexing"
+          ]
+        },
+        "updateCustomer": {
+          "description": "Update customer settings. **Note:** This API requires an admin account to execute.",
+          "flatPath": "v1/settings/customer",
+          "httpMethod": "PATCH",
+          "id": "cloudsearch.settings.updateCustomer",
+          "parameterOrder": [],
+          "parameters": {
+            "updateMask": {
+              "description": "Update mask to control which fields get updated. If you specify a field in the update_mask but don't specify its value here, that field will be cleared. If the mask is not present or empty, all fields will be updated. Currently supported field paths: vpc_settings and audit_logging_settings",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/settings/customer",
+          "request": {
+            "$ref": "CustomerSettings"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud_search",
+            "https://www.googleapis.com/auth/cloud_search.settings",
+            "https://www.googleapis.com/auth/cloud_search.settings.indexing"
+          ]
+        }
+      },
       "resources": {
         "datasources": {
           "methods": {
@@ -1870,7 +1916,7 @@
       }
     }
   },
-  "revision": "20210301",
+  "revision": "20210322",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "BooleanOperatorOptions": {
@@ -1977,6 +2023,17 @@
           "description": "The count of search sessions on the day",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerSettings": {
+      "description": "Represents settings at a customer level.",
+      "id": "CustomerSettings",
+      "properties": {
+        "vpcSettings": {
+          "$ref": "VPCSettings",
+          "description": "VPC SC settings for the customer. If update_mask is empty then this field will be updated based on UpdateCustomerSettings request."
         }
       },
       "type": "object"
@@ -5051,6 +5108,16 @@
       "properties": {
         "name": {
           "description": "Name of the content reference. The maximum length is 2048 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VPCSettings": {
+      "id": "VPCSettings",
+      "properties": {
+        "project": {
+          "description": "The resource name of the GCP Project to be used for VPC SC policy check. VPC security settings on this project will be honored for Cloud Search APIs after project_name has been updated through CustomerService. Format: projects/{project_id}",
           "type": "string"
         }
       },
