@@ -128,7 +128,7 @@ export namespace localservices_v1 {
   }
 
   /**
-   * An Account Report of a GLS account identified by their account id containing aggregate data gathered from a particular date range.
+   * An Account Report of a GLS account identified by their account id containing aggregate data gathered from a particular date range. Next ID: 18
    */
   export interface Schema$GoogleAdsHomeservicesLocalservicesV1AccountReport {
     /**
@@ -171,6 +171,10 @@ export namespace localservices_v1 {
      * Total cost of the account in current specified period in the account's specified currency.
      */
     currentPeriodTotalCost?: number | null;
+    /**
+     * Number of impressions that customers have had in the past 2 days.
+     */
+    impressionsLastTwoDays?: string | null;
     /**
      * Phone lead responsiveness of the account for the past 90 days from current date. This is computed by taking the total number of connected calls from charged phone leads and dividing by the total number of calls received.
      */
