@@ -177,24 +177,6 @@
             "https://www.googleapis.com/auth/homegraph"
           ]
         },
-        "requestLink": {
-          "description": "Sends an account linking suggestion to users associated with any potential Cast devices detected by third-party devices. This request must be authorized using service account credentials from your Actions console project.",
-          "flatPath": "v1/devices:requestLink",
-          "httpMethod": "POST",
-          "id": "homegraph.devices.requestLink",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1/devices:requestLink",
-          "request": {
-            "$ref": "RequestLinkRequest"
-          },
-          "response": {
-            "$ref": "Empty"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/homegraph"
-          ]
-        },
         "requestSync": {
           "description": "Requests Google to send an `action.devices.SYNC` [intent](https://developers.google.com/assistant/smarthome/reference/intent/sync) to your smart home Action to update device metadata for the given user. The third-party user's identity is passed via the `agent_user_id` (see RequestSyncDevicesRequest). This request must be authorized using service account credentials from your Actions console project.",
           "flatPath": "v1/devices:requestSync",
@@ -234,7 +216,7 @@
       }
     }
   },
-  "revision": "20210310",
+  "revision": "20210326",
   "rootUrl": "https://homegraph.googleapis.com/",
   "schemas": {
     "AgentDeviceId": {
@@ -520,7 +502,7 @@
           "type": "string"
         },
         "followUpToken": {
-          "description": "Token to maintain state in the follow up notification response. Deprecated. See the [notifications guide](https://developers.google.com/assistant/smarthome/develop/notifications) for details on implementing follow up notifications.",
+          "description": "Deprecated.",
           "type": "string"
         },
         "payload": {
@@ -541,40 +523,6 @@
         "requestId": {
           "description": "Request ID copied from ReportStateAndNotificationRequest.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "RequestLinkRequest": {
-      "description": "Request type for the [`RequestLink`](#google.home.graph.v1.HomeGraphApiService.RequestLink) call.",
-      "id": "RequestLinkRequest",
-      "properties": {
-        "payload": {
-          "$ref": "RequestLinkRequestPayload",
-          "description": "Required. ID(s) and detection time of potential Cast devices."
-        },
-        "requestId": {
-          "description": "Required. Request ID used for debugging.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "RequestLinkRequestPayload": {
-      "description": "Payload containing potential devices detected and when they were detected.",
-      "id": "RequestLinkRequestPayload",
-      "properties": {
-        "detectionTime": {
-          "description": "Required. Time at which devices represented in `potential_cast_device_ids` were detected.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "potentialCastDeviceIds": {
-          "description": "Required. List of device IDs detected that may potentially be for Cast devices.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
