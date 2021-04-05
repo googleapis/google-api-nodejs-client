@@ -1456,6 +1456,10 @@ export namespace cloudchannel_v1 {
    */
   export interface Schema$GoogleCloudChannelV1TransferableSku {
     /**
+     * Optional. The customer to transfer has an entitlement with the populated legacy SKU.
+     */
+    legacySku?: Schema$GoogleCloudChannelV1Sku;
+    /**
      * The SKU pertaining to the provisioning resource as specified in the Offer.
      */
     sku?: Schema$GoogleCloudChannelV1Sku;
