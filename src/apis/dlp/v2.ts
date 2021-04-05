@@ -717,7 +717,7 @@ export namespace dlp_v2 {
      */
     context?: Schema$GooglePrivacyDlpV2FieldId;
     /**
-     * The key used by the encryption function.
+     * The key used by the encryption function. For deterministic encryption using AES-SIV, the provided key is internally expanded to 64 bytes prior to use.
      */
     cryptoKey?: Schema$GooglePrivacyDlpV2CryptoKey;
     /**
