@@ -3038,7 +3038,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Provides a list of contacts in the authenticated user's other contacts that matches the search query.
+     * Provides a list of contacts in the authenticated user's other contacts that matches the search query. The query matches on a contact's `names`, `emailAddresses`, and `phoneNumbers` fields that are from the OTHER_CONTACT source.
      * @example
      * ```js
      * // Before running the sample:
@@ -3231,7 +3231,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Create a batch of new contacts and return the PersonResponses for the newly created contacts.
+     * Create a batch of new contacts and return the PersonResponses for the newly created contacts. Limited to 10 parallel requests per user.
      * @example
      * ```js
      * // Before running the sample:
@@ -3374,7 +3374,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Delete a batch of contacts. Any non-contact data will not be deleted.
+     * Delete a batch of contacts. Any non-contact data will not be deleted. Limited to 10 parallel requests per user.
      * @example
      * ```js
      * // Before running the sample:
@@ -3506,7 +3506,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Update a batch of contacts and return a map of resource names to PersonResponses for the updated contacts.
+     * Update a batch of contacts and return a map of resource names to PersonResponses for the updated contacts. Limited to 10 parallel requests per user.
      * @example
      * ```js
      * // Before running the sample:
@@ -4613,7 +4613,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Provides a list of contacts in the authenticated user's grouped contacts that matches the search query.
+     * Provides a list of contacts in the authenticated user's grouped contacts that matches the search query. The query matches on a contact's `names`, `nickNames`, `emailAddresses`, `phoneNumbers`, and `organizations` fields that are from the CONTACT" source.
      * @example
      * ```js
      * // Before running the sample:
