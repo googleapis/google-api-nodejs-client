@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "The standard list filter.",
+                  "description": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like \"displayName=tokyo\", and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
                   "location": "query",
                   "type": "string"
                 },
@@ -156,13 +156,13 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The standard list page size.",
+                  "description": "The maximum number of results to return. If not set, the service will select a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "The standard list page token.",
+                  "description": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
                   "location": "query",
                   "type": "string"
                 }
@@ -180,7 +180,7 @@
             "instances": {
               "methods": {
                 "applyParameters": {
-                  "description": "ApplyParameters will restart the set of specified nodes in order to update them to the current set of parameters for the Memcached Instance.",
+                  "description": "`ApplyParameters` restarts the set of specified nodes in order to update them to the current set of parameters for the Memcached Instance.",
                   "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:applyParameters",
                   "httpMethod": "POST",
                   "id": "memcache.projects.locations.instances.applyParameters",
@@ -245,7 +245,7 @@
                   ],
                   "parameters": {
                     "instanceId": {
-                      "description": "Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location If any of the above are not met, will raise an invalid argument error.",
+                      "description": "Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location. If any of the above are not met, the API raises an invalid argument error.",
                       "location": "query",
                       "type": "string"
                     },
@@ -328,7 +328,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "List filter. For example, exclude all Memcached instances with name as my-instance by specifying \"name != my-instance\".",
+                      "description": "List filter. For example, exclude all Memcached instances with name as my-instance by specifying `\"name != my-instance\"`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -338,13 +338,13 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.",
+                      "description": "The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the `page_size` value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more instances left to be queried.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "The next_page_token value returned from a previous List request, if any.",
+                      "description": "The `next_page_token` value returned from a previous List request, if any.",
                       "location": "query",
                       "type": "string"
                     },
@@ -374,7 +374,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` Note: Memcached instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which zones Memcached nodes within an instances should be provisioned in. Refer to [zones] field for more details.",
+                      "description": "Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` Note: Memcached instances are managed and addressed at the regional level so `location_id` here refers to a Google Cloud region; however, users may choose which zones Memcached nodes should be provisioned in within an instance. Refer to zones field for more details.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
                       "required": true,
@@ -399,7 +399,7 @@
                   ]
                 },
                 "updateParameters": {
-                  "description": "Updates the defined Memcached Parameters for an existing Instance. This method only stages the parameters, it must be followed by ApplyParameters to apply the parameters to nodes of the Memcached Instance.",
+                  "description": "Updates the defined Memcached parameters for an existing instance. This method only stages the parameters, it must be followed by `ApplyParameters` to apply the parameters to nodes of the Memcached instance.",
                   "flatPath": "v1beta2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:updateParameters",
                   "httpMethod": "PATCH",
                   "id": "memcache.projects.locations.instances.updateParameters",
@@ -556,7 +556,7 @@
       }
     }
   },
-  "revision": "20210209",
+  "revision": "20210324",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -564,11 +564,11 @@
       "id": "ApplyParametersRequest",
       "properties": {
         "applyAll": {
-          "description": "Whether to apply instance-level parameter group to all nodes. If set to true, will explicitly restrict users from specifying any nodes, and apply parameter group updates to all nodes within the instance.",
+          "description": "Whether to apply instance-level parameter group to all nodes. If set to true, users are restricted from specifying individual nodes, and `ApplyParameters` updates all nodes within the instance.",
           "type": "boolean"
         },
         "nodeIds": {
-          "description": "Nodes to which we should apply the instance-level parameter group.",
+          "description": "Nodes to which the instance-level parameter group is applied.",
           "items": {
             "type": "string"
           },
@@ -670,7 +670,7 @@
       "properties": {
         "availableZones": {
           "additionalProperties": {
-            "$ref": "ZoneMetadata"
+            "$ref": "GoogleCloudMemcacheV1beta2ZoneMetadata"
           },
           "description": "Output only. The set of available zones in the location. The map is keyed by the lowercase ID of each zone, as defined by GCE. These keys can be specified in the `zones` field when creating a Memcached instance.",
           "readOnly": true,
@@ -721,6 +721,11 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudMemcacheV1beta2ZoneMetadata": {
+      "id": "GoogleCloudMemcacheV1beta2ZoneMetadata",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudSaasacceleratorManagementProvidersV1Instance": {
@@ -839,7 +844,7 @@
       "id": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule",
       "properties": {
         "canReschedule": {
-          "description": "Can this scheduled update be rescheduled? By default, it's true and API needs to do explicitly check whether it's set, if it's set as false explicitly, it's false",
+          "description": "This field will be deprecated, and will be always set to true since reschedule can happen multiple times now.",
           "type": "boolean"
         },
         "endTime": {
@@ -852,7 +857,7 @@
           "type": "string"
         },
         "scheduleDeadlineTime": {
-          "description": "schedule_deadline_time is the time deadline any schedule start time cannot go beyond, including reschedule. It's normally the initial schedule start time plus a week. If the reschedule type is next window, simply take this value as start time. If reschedule type is IMMEDIATELY or BY_TIME, current or selected time cannot go beyond this deadline.",
+          "description": "schedule_deadline_time is the time deadline any schedule start time cannot go beyond, including reschedule. It's normally the initial schedule start time plus maintenance window length (1 day or 1 week). Maintenance cannot be scheduled to start beyond this deadline.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -908,6 +913,20 @@
       },
       "type": "object"
     },
+    "GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility": {
+      "description": "PerSliSloEligibility is a mapping from an SLI name to eligibility.",
+      "id": "GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility",
+      "properties": {
+        "eligibilities": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility"
+          },
+          "description": "An entry in the eligibilities map specifies an eligibility for a particular SLI for the given instance. The SLI key in the name must be a valid SLI name specified in the Eligibility Exporter binary flags otherwise an error will be emitted by Eligibility Exporter and the oncaller will be alerted. If an SLI has been defined in the binary flags but the eligibilities map does not contain it, the corresponding SLI time series will not be emitted by the Eligibility Exporter. This ensures a smooth rollout and compatibility between the data produced by different versions of the Eligibility Exporters. If eligibilities map contains a key for an SLI which has not been declared in the binary flags, there will be an error message emitted in the Eligibility Exporter log and the metric for the SLI in question will not be emitted.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource": {
       "description": "Describes provisioned dataplane resources.",
       "id": "GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource",
@@ -952,7 +971,7 @@
           "type": "string"
         },
         "sliName": {
-          "description": "Name of an SLI that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLIs defined in the service SLO configuration.",
+          "description": "Name of an SLI that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLIs.",
           "type": "string"
         },
         "startTime": {
@@ -969,7 +988,7 @@
       "properties": {
         "eligibility": {
           "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility",
-          "description": "Optional. User-defined instance eligibility."
+          "description": "Optional. Global per-instance SLI eligibility which applies to all defined SLIs. Exactly one of 'eligibility' and 'per_sli_eligibility' fields must be used."
         },
         "exclusions": {
           "description": "List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published. It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state). This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, use of custom instance eligibility is recommended. See 'eligibility' field below.",
@@ -985,6 +1004,10 @@
           },
           "type": "array"
         },
+        "perSliEligibility": {
+          "$ref": "GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility",
+          "description": "Optional. Multiple per-instance SLI eligibilities which apply for individual SLIs. Exactly one of 'eligibility' and 'per_sli_eligibility' fields must be used."
+        },
         "tier": {
           "description": "Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration. Field is mandatory and must not be empty.",
           "type": "string"
@@ -993,6 +1016,7 @@
       "type": "object"
     },
     "Instance": {
+      "description": "A Memorystore for Memcached instance",
       "id": "Instance",
       "properties": {
         "authorizedNetwork": {
@@ -1006,16 +1030,16 @@
           "type": "string"
         },
         "discoveryEndpoint": {
-          "description": "Output only. Endpoint for Discovery API",
+          "description": "Output only. Endpoint for the Discovery API.",
           "readOnly": true,
           "type": "string"
         },
         "displayName": {
-          "description": "User provided name for the instance only used for display purposes. Cannot be more than 80 characters.",
+          "description": "User provided name for the instance, which is only used for display purposes. Cannot be more than 80 characters.",
           "type": "string"
         },
         "instanceMessages": {
-          "description": "List of messages that describe current statuses of memcached instance.",
+          "description": "List of messages that describe the current state of the Memcached instance.",
           "items": {
             "$ref": "InstanceMessage"
           },
@@ -1034,7 +1058,7 @@
           "type": "string"
         },
         "memcacheNodes": {
-          "description": "Output only. List of Memcached nodes. Refer to [Node] message for more details.",
+          "description": "Output only. List of Memcached nodes. Refer to Node message for more details.",
           "items": {
             "$ref": "Node"
           },
@@ -1042,7 +1066,7 @@
           "type": "array"
         },
         "memcacheVersion": {
-          "description": "The major version of Memcached software. If not provided, latest supported version will be used. Currently the latest supported major version is MEMCACHE_1_5. The minor version will be automatically determined by our system based on the latest supported minor version.",
+          "description": "The major version of Memcached software. If not provided, latest supported version will be used. Currently the latest supported major version is `MEMCACHE_1_5`. The minor version will be automatically determined by our system based on the latest supported minor version.",
           "enum": [
             "MEMCACHE_VERSION_UNSPECIFIED",
             "MEMCACHE_1_5"
@@ -1054,7 +1078,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` Note: Memcached instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which zones Memcached nodes within an instances should be provisioned in. Refer to [zones] field for more details.",
+          "description": "Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` Note: Memcached instances are managed and addressed at the regional level so `location_id` here refers to a Google Cloud region; however, users may choose which zones Memcached nodes should be provisioned in within an instance. Refer to zones field for more details.",
           "type": "string"
         },
         "nodeConfig": {
@@ -1101,7 +1125,7 @@
           "type": "string"
         },
         "zones": {
-          "description": "Zones where Memcached nodes should be provisioned in. Memcached nodes will be equally distributed across these zones. If not provided, the service will by default create nodes in all zones in the region for the instance.",
+          "description": "Zones in which Memcached nodes should be provisioned. Memcached nodes will be equally distributed across these zones. If not provided, the service will by default create nodes in all zones in the region for the instance.",
           "items": {
             "type": "string"
           },
@@ -1227,6 +1251,21 @@
       },
       "type": "object"
     },
+    "LocationMetadata": {
+      "description": "Metadata for the given google.cloud.location.Location.",
+      "id": "LocationMetadata",
+      "properties": {
+        "availableZones": {
+          "additionalProperties": {
+            "$ref": "ZoneMetadata"
+          },
+          "description": "Output only. The set of available zones in the location. The map is keyed by the lowercase ID of each zone, as defined by GCE. These keys can be specified in the `zones` field when creating a Memcached instance.",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "MaintenancePolicy": {
       "description": "Defines policies to service maintenance events.",
       "id": "MaintenancePolicy",
@@ -1293,10 +1332,11 @@
       "type": "object"
     },
     "MemcacheParameters": {
+      "description": "The unique ID associated with this set of parameters. Users can use this id to determine if the parameters associated with the instance differ from the parameters associated with the nodes. A discrepancy between parameter ids can inform users that they may need to take action to apply parameters on nodes.",
       "id": "MemcacheParameters",
       "properties": {
         "id": {
-          "description": "Output only. The unique ID associated with this set of parameters. Users can use this id to determine if the parameters associated with the instance differ from the parameters associated with the nodes and any action needs to be taken to apply parameters on nodes.",
+          "description": "Output only.",
           "readOnly": true,
           "type": "string"
         },
