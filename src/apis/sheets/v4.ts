@@ -2833,6 +2833,15 @@ export namespace sheets_v4 {
     width?: number | null;
   }
   /**
+   * An external or local reference.
+   */
+  export interface Schema$Link {
+    /**
+     * The link identifier.
+     */
+    uri?: string | null;
+  }
+  /**
    * Allows you to manually organize the values in a source data column into buckets with names of your choosing. For example, a pivot table that aggregates population by state: +-------+-------------------+ | State | SUM of Population | +-------+-------------------+ | AK | 0.7 | | AL | 4.8 | | AR | 2.9 | ... +-------+-------------------+ could be turned into a pivot table that aggregates population by time zone by providing a list of groups (for example, groupName = 'Central', items = ['AL', 'AR', 'IA', ...]) to a manual group rule. Note that a similar effect could be achieved by adding a time zone column to the source data and adjusting the pivot table. +-----------+-------------------+ | Time Zone | SUM of Population | +-----------+-------------------+ | Central | 106.3 | | Eastern | 151.9 | | Mountain | 17.4 | ... +-----------+-------------------+
    */
   export interface Schema$ManualRule {
@@ -4175,6 +4184,10 @@ export namespace sheets_v4 {
      * True if the text is italicized.
      */
     italic?: boolean | null;
+    /**
+     * The link destination of the text, if any. Setting a link in a format run will clear an existing cell-level link. When a link is set, the text foreground color will be set to the default link color and the text will be underlined. If these fields are modified in the same request, those values will be used instead of the link defaults.
+     */
+    link?: Schema$Link;
     /**
      * True if the text has a strikethrough.
      */
