@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -570,7 +570,7 @@
       }
     }
   },
-  "revision": "20210312",
+  "revision": "20210326",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -2505,7 +2505,7 @@
           "type": "string"
         },
         "parentFullResourceName": {
-          "description": "The full resource name of this resource's parent, if it has one.",
+          "description": "The full resource name of this resource's parent, if it has one. To search against the `parent_full_resource_name`: * use a field query. Example: `parentFullResourceName:\"project-name\"` * use a free text query. Example: `project-name`",
           "type": "string"
         },
         "project": {
