@@ -342,6 +342,42 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "delete": {
+          "description": "Requests that a job is deleted. This call will return when the job is deleted. This method is available in limited preview.",
+          "flatPath": "projects/{projectsId}/jobs/{jobsId}/delete",
+          "httpMethod": "DELETE",
+          "id": "bigquery.jobs.delete",
+          "parameterOrder": [
+            "projectId",
+            "jobId"
+          ],
+          "parameters": {
+            "jobId": {
+              "description": "Required. Job ID of the job to be deleted. If this is a parent job which has child jobs, all child jobs will be deleted as well. Deletion of child jobs directly is not allowed.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "The geographic location of the job. Required. See details at: https://cloud.google.com/bigquery/docs/locations#specifying_your_location.",
+              "location": "query",
+              "type": "string"
+            },
+            "projectId": {
+              "description": "Required. Project ID of the job to be deleted.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{+projectId}/jobs/{+jobId}/delete",
+          "scopes": [
+            "https://www.googleapis.com/auth/bigquery",
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "get": {
           "description": "Returns information about a specific job. Job information is available for a six month period after creation. Requires that you're the person who ran the job, or have the Is Owner project role.",
           "httpMethod": "GET",
@@ -1670,7 +1706,7 @@
       }
     }
   },
-  "revision": "20210313",
+  "revision": "20210327",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -5123,7 +5159,7 @@
         },
         "returnTableType": {
           "$ref": "StandardSqlTableType",
-          "description": "Optional. Set only if Routine is a \"TABLE_VALUED_FUNCTION\". TODO(b/173344646) - Update return_type documentation to say it cannot be set for TABLE_VALUED_FUNCTION before preview launch."
+          "description": "Optional. Set only if Routine is a \"TABLE_VALUED_FUNCTION\"."
         },
         "returnType": {
           "$ref": "StandardSqlDataType",
@@ -5770,7 +5806,7 @@
           "type": "string"
         },
         "type": {
-          "description": "[Required] The field data type. Possible values include STRING, BYTES, INTEGER, INT64 (same as INTEGER), FLOAT, FLOAT64 (same as FLOAT), NUMERIC, BIGNUMERIC, BOOLEAN, BOOL (same as BOOLEAN), TIMESTAMP, DATE, TIME, DATETIME, RECORD (where RECORD indicates that the field contains a nested schema) or STRUCT (same as RECORD).",
+          "description": "[Required] The field data type. Possible values include STRING, BYTES, INTEGER, INT64 (same as INTEGER), FLOAT, FLOAT64 (same as FLOAT), NUMERIC, BIGNUMERIC, BOOLEAN, BOOL (same as BOOLEAN), TIMESTAMP, DATE, TIME, DATETIME, INTERVAL, RECORD (where RECORD indicates that the field contains a nested schema) or STRUCT (same as RECORD).",
           "type": "string"
         }
       },
