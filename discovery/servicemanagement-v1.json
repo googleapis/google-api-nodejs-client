@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         },
         "https://www.googleapis.com/auth/cloud-platform.read-only": {
           "description": "View your data across Google Cloud Platform services"
@@ -829,7 +829,7 @@
       }
     }
   },
-  "revision": "20210319",
+  "revision": "20210331",
   "rootUrl": "https://servicemanagement.googleapis.com/",
   "schemas": {
     "Advice": {
@@ -2708,7 +2708,7 @@
           "description": "Billing configuration."
         },
         "configVersion": {
-          "description": "Deprecated. The service config compiler always sets this field to `3`.",
+          "description": "Obsolete. Do not use. This field has no semantic meaning. The service config compiler always sets this field to `3`.",
           "format": "uint32",
           "type": "integer"
         },
