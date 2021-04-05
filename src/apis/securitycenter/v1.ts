@@ -134,6 +134,10 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$Asset {
     /**
+     * The canonical name of the resource. It's either "organizations/{organization_id\}/assets/{asset_id\}", "folders/{folder_id\}/assets/{asset_id\}" or "projects/{project_number\}/assets/{asset_id\}", depending on the closest CRM ancestor of the resource.
+     */
+    canonicalName?: string | null;
+    /**
      * The time at which the asset was created in Security Command Center.
      */
     createTime?: string | null;
@@ -252,6 +256,10 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$Finding {
     /**
+     * The canonical name of the finding. It's either "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}" or "projects/{project_number\}/sources/{source_id\}/findings/{finding_id\}", depending on the closest CRM ancestor of the resource associated with the finding.
+     */
+    canonicalName?: string | null;
+    /**
      * The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: "XSS_FLASH_INJECTION"
      */
     category?: string | null;
@@ -260,7 +268,7 @@ export namespace securitycenter_v1 {
      */
     createTime?: string | null;
     /**
-     * The time at which the event took place, or when an update to the finding occurred. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding were to be resolved afterward, this time would reflect when the finding was resolved.
+     * The time at which the event took place, or when an update to the finding occurred. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding were to be resolved afterward, this time would reflect when the finding was resolved. Must not be set to a value greater than the current timestamp.
      */
     eventTime?: string | null;
     /**
@@ -362,6 +370,10 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1Finding {
     /**
+     * The canonical name of the finding. It's either "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}", "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}" or "projects/{project_number\}/sources/{source_id\}/findings/{finding_id\}", depending on the closest CRM ancestor of the resource associated with the finding.
+     */
+    canonicalName?: string | null;
+    /**
      * The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: "XSS_FLASH_INJECTION"
      */
     category?: string | null;
@@ -370,7 +382,7 @@ export namespace securitycenter_v1 {
      */
     createTime?: string | null;
     /**
-     * The time at which the event took place, or when an update to the finding occurred. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding were to be resolved afterward, this time would reflect when the finding was resolved.
+     * The time at which the event took place, or when an update to the finding occurred. For example, if the finding represents an open firewall it would capture the time the detector believes the firewall became open. The accuracy is determined by the detector. If the finding were to be resolved afterward, this time would reflect when the finding was resolved. Must not be set to a value greater than the current timestamp.
      */
     eventTime?: string | null;
     /**
@@ -482,6 +494,10 @@ export namespace securitycenter_v1 {
    * User specified security marks that are attached to the parent Security Command Center resource. Security marks are scoped within a Security Command Center organization -- they can be modified and viewed by all users who have proper permissions on the organization.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1SecurityMarks {
+    /**
+     * The canonical name of the marks. Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "folders/{folder_id\}/assets/{asset_id\}/securityMarks" "projects/{project_number\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks" "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks" "projects/{project_number\}/sources/{source_id\}/findings/{finding_id\}/securityMarks"
+     */
+    canonicalName?: string | null;
     /**
      * Mutable user specified security marks belonging to the parent resource. Constraints are as follows: * Keys and values are treated as case insensitive * Keys must be between 1 - 256 characters (inclusive) * Keys must be letters, numbers, underscores, or dashes * Values have leading and trailing whitespace trimmed, remaining characters must be between 1 - 4096 characters (inclusive)
      */
@@ -933,6 +949,10 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$SecurityMarks {
     /**
+     * The canonical name of the marks. Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "folders/{folder_id\}/assets/{asset_id\}/securityMarks" "projects/{project_number\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks" "folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks" "projects/{project_number\}/sources/{source_id\}/findings/{finding_id\}/securityMarks"
+     */
+    canonicalName?: string | null;
+    /**
      * Mutable user specified security marks belonging to the parent resource. Constraints are as follows: * Keys and values are treated as case insensitive * Keys must be between 1 - 256 characters (inclusive) * Keys must be letters, numbers, underscores, or dashes * Values have leading and trailing whitespace trimmed, remaining characters must be between 1 - 4096 characters (inclusive)
      */
     marks?: {[key: string]: string} | null;
@@ -971,6 +991,10 @@ export namespace securitycenter_v1 {
    * Security Command Center finding source. A finding source is an entity or a mechanism that can produce a finding. A source is like a container of findings that come from the same scanner, logger, monitor, and other tools.
    */
   export interface Schema$Source {
+    /**
+     * The canonical name of the finding. It's either "organizations/{organization_id\}/sources/{source_id\}", "folders/{folder_id\}/sources/{source_id\}" or "projects/{project_number\}/sources/{source_id\}", depending on the closest CRM ancestor of the resource associated with the finding.
+     */
+    canonicalName?: string | null;
     /**
      * The description of the source (max of 1024 characters). Example: "Web Security Scanner is a web security scanner for common vulnerabilities in App Engine applications. It can automatically scan and detect four common vulnerabilities, including cross-site-scripting (XSS), Flash injection, mixed content (HTTP in HTTPS), and outdated or insecure libraries."
      */
@@ -1383,6 +1407,7 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "canonicalName": "my_canonicalName",
      *       //   "marks": {},
      *       //   "name": "my_name"
      *       // }
@@ -1392,6 +1417,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "marks": {},
      *   //   "name": "my_name"
      *   // }
@@ -2065,6 +2091,7 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
      *       //   "createTime": "my_createTime",
      *       //   "eventTime": "my_eventTime",
@@ -2083,6 +2110,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
@@ -2229,6 +2257,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
@@ -2375,6 +2404,7 @@ export namespace securitycenter_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "canonicalName": "my_canonicalName",
      *         //   "marks": {},
      *         //   "name": "my_name"
      *         // }
@@ -2385,6 +2415,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "marks": {},
      *   //   "name": "my_name"
      *   // }
@@ -3386,6 +3417,7 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "canonicalName": "my_canonicalName",
      *       //   "marks": {},
      *       //   "name": "my_name"
      *       // }
@@ -3395,6 +3427,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "marks": {},
      *   //   "name": "my_name"
      *   // }
@@ -4956,6 +4989,7 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "canonicalName": "my_canonicalName",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name"
@@ -4966,6 +5000,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name"
@@ -5098,6 +5133,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name"
@@ -5508,6 +5544,7 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "canonicalName": "my_canonicalName",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name"
@@ -5518,6 +5555,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name"
@@ -6030,6 +6068,7 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
      *       //   "createTime": "my_createTime",
      *       //   "eventTime": "my_eventTime",
@@ -6048,6 +6087,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
@@ -6493,6 +6533,7 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
      *       //   "createTime": "my_createTime",
      *       //   "eventTime": "my_eventTime",
@@ -6511,6 +6552,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
@@ -6657,6 +6699,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
@@ -6803,6 +6846,7 @@ export namespace securitycenter_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "canonicalName": "my_canonicalName",
      *         //   "marks": {},
      *         //   "name": "my_name"
      *         // }
@@ -6813,6 +6857,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "marks": {},
      *   //   "name": "my_name"
      *   // }
@@ -7376,6 +7421,7 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "canonicalName": "my_canonicalName",
      *       //   "marks": {},
      *       //   "name": "my_name"
      *       // }
@@ -7385,6 +7431,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "marks": {},
      *   //   "name": "my_name"
      *   // }
@@ -8058,6 +8105,7 @@ export namespace securitycenter_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "canonicalName": "my_canonicalName",
      *       //   "category": "my_category",
      *       //   "createTime": "my_createTime",
      *       //   "eventTime": "my_eventTime",
@@ -8076,6 +8124,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
@@ -8222,6 +8271,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "category": "my_category",
      *   //   "createTime": "my_createTime",
      *   //   "eventTime": "my_eventTime",
@@ -8368,6 +8418,7 @@ export namespace securitycenter_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "canonicalName": "my_canonicalName",
      *         //   "marks": {},
      *         //   "name": "my_name"
      *         // }
@@ -8378,6 +8429,7 @@ export namespace securitycenter_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "canonicalName": "my_canonicalName",
      *   //   "marks": {},
      *   //   "name": "my_name"
      *   // }
