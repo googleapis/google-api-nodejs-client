@@ -317,7 +317,7 @@
       }
     }
   },
-  "revision": "20210319",
+  "revision": "20210402",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ArtifactObjects": {
@@ -461,7 +461,7 @@
           "type": "array"
         },
         "serviceAccount": {
-          "description": "IAM service account whose credentials will be used at build runtime. Must be of the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. ACCOUNT can be email address or uniqueId of the service account. This field is in beta.",
+          "description": "IAM service account whose credentials will be used at build runtime. Must be of the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. ACCOUNT can be email address or uniqueId of the service account. ",
           "type": "string"
         },
         "source": {
