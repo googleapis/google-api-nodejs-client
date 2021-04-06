@@ -14,25 +14,6 @@ $ npm install @googleapis/iap
 All documentation and usage information can be found on [GitHub](https://github.com/googleapis/google-api-nodejs-client).
 Information on classes can be found in [Googleapis Documentation](https://googleapis.dev/nodejs/googleapis/latest/iap/classes/Iap.html).
 
-## Building a browser bundle
-
-This library can be used in a browser. To prepare a single file bundle, clone the
-[repository](https://github.com/googleapis/google-api-nodejs-client) and run
-
-```sh
-$ npm install @googleapis/iap
-$ npm run webpack
-```
-
-The generated bundle will be written to `dist/iap.min.js`. Use it from your HTML file:
-
-```html
-<script src="/path/to/iap.min.js"></script>
-<script>
-const { iap, auth } = Iap;
-</script>
-```
-
 ## License
 This library is licensed under Apache 2.0. Full license text is available in [LICENSE](https://github.com/googleapis/google-api-nodejs-client/blob/master/LICENSE).
 
