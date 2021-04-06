@@ -14,27 +14,44 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {policysimulator_v1} from './v1';
 import {policysimulator_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
+  v1: policysimulator_v1.Policysimulator,
   v1beta1: policysimulator_v1beta1.Policysimulator,
 };
 
+export function policysimulator(
+  version: 'v1'
+): policysimulator_v1.Policysimulator;
+export function policysimulator(
+  options: policysimulator_v1.Options
+): policysimulator_v1.Policysimulator;
 export function policysimulator(
   version: 'v1beta1'
 ): policysimulator_v1beta1.Policysimulator;
 export function policysimulator(
   options: policysimulator_v1beta1.Options
 ): policysimulator_v1beta1.Policysimulator;
-export function policysimulator<T = policysimulator_v1beta1.Policysimulator>(
+export function policysimulator<
+  T =
+    | policysimulator_v1.Policysimulator
+    | policysimulator_v1beta1.Policysimulator
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta1' | policysimulator_v1beta1.Options
+  versionOrOptions:
+    | 'v1'
+    | policysimulator_v1.Options
+    | 'v1beta1'
+    | policysimulator_v1beta1.Options
 ) {
   return getAPI<T>('policysimulator', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {policysimulator_v1};
 export {policysimulator_v1beta1};
 export {
   AuthPlus,

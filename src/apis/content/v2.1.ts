@@ -527,7 +527,7 @@ export namespace content_v2_1 {
      */
     linkType?: string | null;
     /**
-     *  Acceptable values are: - "`shoppingAdsProductManagement`" - "`shoppingAdsOther`" - "`shoppingActionsProductManagement`" - "`shoppingActionsOrderManagement`" - "`shoppingActionsOther`"
+     *  Acceptable values are: - "`shoppingAdsProductManagement`" - "`shoppingActionsProductManagement`" - "`shoppingActionsOrderManagement`"
      */
     services?: string[] | null;
   }
@@ -2441,7 +2441,7 @@ export namespace content_v2_1 {
      */
     clicks?: string | null;
     /**
-     * Number of clicks merchant's products receive (clicks) divided by the number of times the products are shown (impressions).
+     * Click-through rate - the number of clicks merchant's products receive (clicks) divided by the number of times the products are shown (impressions).
      */
     ctr?: number | null;
     /**
@@ -4613,6 +4613,10 @@ export namespace content_v2_1 {
      */
     additionalImageLinks?: string[] | null;
     /**
+     * Additional cut of the item. Used together with size_type to represent combined size types for apparel items.
+     */
+    additionalSizeType?: string | null;
+    /**
      * Used to group items in an arbitrary way. Only for CPA%, discouraged otherwise.
      */
     adsGrouping?: string | null;
@@ -6258,7 +6262,7 @@ export namespace content_v2_1 {
     results?: Schema$ReportRow[];
   }
   /**
-   * Dimensions according to which metrics are segmented in the response. Values of product dimensions, e.g., offer id, reflect the state of a product at the time of the corresponding event, e.g., impression or order. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for dimensions requested explicitly in the request's search query.
+   * Dimensions according to which metrics are segmented in the response. Values of product dimensions, e.g., offer id, reflect the state of a product at the time of the corresponding event, e.g., impression or order. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for dimensions requested explicitly in the request's search query. Next id: 22
    */
   export interface Schema$Segments {
     /**
@@ -23039,6 +23043,7 @@ export namespace content_v2_1 {
      *   // Example response
      *   // {
      *   //   "additionalImageLinks": [],
+     *   //   "additionalSizeType": "my_additionalSizeType",
      *   //   "adsGrouping": "my_adsGrouping",
      *   //   "adsLabels": [],
      *   //   "adsRedirect": "my_adsRedirect",
@@ -23248,6 +23253,7 @@ export namespace content_v2_1 {
      *       // request body parameters
      *       // {
      *       //   "additionalImageLinks": [],
+     *       //   "additionalSizeType": "my_additionalSizeType",
      *       //   "adsGrouping": "my_adsGrouping",
      *       //   "adsLabels": [],
      *       //   "adsRedirect": "my_adsRedirect",
@@ -23335,6 +23341,7 @@ export namespace content_v2_1 {
      *   // Example response
      *   // {
      *   //   "additionalImageLinks": [],
+     *   //   "additionalSizeType": "my_additionalSizeType",
      *   //   "adsGrouping": "my_adsGrouping",
      *   //   "adsLabels": [],
      *   //   "adsRedirect": "my_adsRedirect",

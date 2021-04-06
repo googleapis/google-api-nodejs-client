@@ -471,36 +471,6 @@
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "appengine:v1beta4",
-      "name": "appengine",
-      "version": "v1beta4",
-      "title": "App Engine Admin API",
-      "description": "Provisions and manages developers' App Engine applications.",
-      "discoveryRestUrl": "https://appengine.googleapis.com/$discovery/rest?version=v1beta4",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/appengine/docs/admin-api/",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "appengine:v1beta5",
-      "name": "appengine",
-      "version": "v1beta5",
-      "title": "App Engine Admin API",
-      "description": "Provisions and manages developers' App Engine applications.",
-      "discoveryRestUrl": "https://appengine.googleapis.com/$discovery/rest?version=v1beta5",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/appengine/docs/admin-api/",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
       "id": "appengine:v1",
       "name": "appengine",
       "version": "v1",
@@ -2060,6 +2030,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/document-ai/docs/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "documentai:v1",
+      "name": "documentai",
+      "version": "v1",
+      "title": "Cloud Document AI API",
+      "description": "Service to parse structured information from unstructured or semi-structured documents using state-of-the-art Google AI such as natural language, computer vision, translation, and AutoML.",
+      "discoveryRestUrl": "https://documentai.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/document-ai/docs/",
       "preferred": true
     },
     {
@@ -3338,6 +3323,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/container-analysis/docs/on-demand-scanning/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "ondemandscanning:v1",
+      "name": "ondemandscanning",
+      "version": "v1",
+      "title": "On-Demand Scanning API",
+      "description": "A service to scan container images for vulnerabilities.",
+      "discoveryRestUrl": "https://ondemandscanning.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/container-analysis/docs/on-demand-scanning/",
       "preferred": true
     },
     {
@@ -3498,6 +3498,21 @@
       "title": "Policy Simulator API",
       "description": "Policy Simulator is a collection of endpoints for creating, running, and viewing a [Replay][google.cloud.policysimulator.v1beta1.Replay]. A `Replay` is a type of simulation that lets you see how your members' access to resources might change if you changed your IAM policy. During a `Replay`, Policy Simulator re-evaluates, or replays, past access attempts under both the current policy and your proposed policy, and compares those results to determine how your members' access might change under the proposed policy.",
       "discoveryRestUrl": "https://policysimulator.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/iam/docs/simulating-access",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "policysimulator:v1",
+      "name": "policysimulator",
+      "version": "v1",
+      "title": "Policy Simulator API",
+      "description": "Policy Simulator is a collection of endpoints for creating, running, and viewing a [Replay][google.cloud.policysimulator.v1beta1.Replay]. A `Replay` is a type of simulation that lets you see how your members' access to resources might change if you changed your IAM policy. During a `Replay`, Policy Simulator re-evaluates, or replays, past access attempts under both the current policy and your proposed policy, and compares those results to determine how your members' access might change under the proposed policy.",
+      "discoveryRestUrl": "https://policysimulator.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"

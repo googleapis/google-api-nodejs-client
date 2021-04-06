@@ -349,7 +349,7 @@ export namespace servicecontrol_v2 {
      */
     headers?: {[key: string]: string} | null;
     /**
-     * An 'OK' status allows the operation. Any other status indicates a denial; [google.rpc.Status.details]() would contain additional details about the denial.
+     * Operation is allowed when this field is not set. Any non-'OK' status indicates a denial; [google.rpc.Status.details]() would contain additional details about the denial.
      */
     status?: Schema$Status;
   }

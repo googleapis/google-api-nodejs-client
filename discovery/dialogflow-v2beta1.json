@@ -2721,7 +2721,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filter on message fields. Currently predicates on `create_time` and `create_time_epoch_microseconds` are supported. `create_time` only support milliseconds accuracy. E.g., `create_time_epoch_microseconds > 1551790877964485` or `create_time > 2017-01-15T01:30:15.01Z`. For more information about filtering, see [API Filtering](https://aip.dev/160).",
+                      "description": "Optional. Filter on message fields. Currently predicates on `create_time` and `create_time_epoch_microseconds` are supported. `create_time` only support milliseconds accuracy. E.g., `create_time_epoch_microseconds > 1551790877964485` or `create_time > \"2017-01-15T01:30:15.01Z\"`. For more information about filtering, see [API Filtering](https://aip.dev/160).",
                       "location": "query",
                       "type": "string"
                     },
@@ -2956,7 +2956,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter on suggestions fields. Currently predicates on `create_time` and `create_time_epoch_microseconds` are supported. `create_time` only support milliseconds accuracy. E.g., `create_time_epoch_microseconds > 1551790877964485` or `create_time > 2017-01-15T01:30:15.01Z` For more information about filtering, see [API Filtering](https://aip.dev/160).",
+                          "description": "Optional. Filter on suggestions fields. Currently predicates on `create_time` and `create_time_epoch_microseconds` are supported. `create_time` only support milliseconds accuracy. E.g., `create_time_epoch_microseconds > 1551790877964485` or `create_time > \"2017-01-15T01:30:15.01Z\"` For more information about filtering, see [API Filtering](https://aip.dev/160).",
                           "location": "query",
                           "type": "string"
                         },
@@ -5664,7 +5664,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter on message fields. Currently predicates on `create_time` and `create_time_epoch_microseconds` are supported. `create_time` only support milliseconds accuracy. E.g., `create_time_epoch_microseconds > 1551790877964485` or `create_time > 2017-01-15T01:30:15.01Z`. For more information about filtering, see [API Filtering](https://aip.dev/160).",
+                          "description": "Optional. Filter on message fields. Currently predicates on `create_time` and `create_time_epoch_microseconds` are supported. `create_time` only support milliseconds accuracy. E.g., `create_time_epoch_microseconds > 1551790877964485` or `create_time > \"2017-01-15T01:30:15.01Z\"`. For more information about filtering, see [API Filtering](https://aip.dev/160).",
                           "location": "query",
                           "type": "string"
                         },
@@ -6548,7 +6548,7 @@
       }
     }
   },
-  "revision": "20210320",
+  "revision": "20210402",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -7868,6 +7868,22 @@
         "sessionInfo": {
           "$ref": "GoogleCloudDialogflowCxV3SessionInfo",
           "description": "Information about session status."
+        },
+        "text": {
+          "description": "If natural language text was provided as input, this field will contain a copy of the text.",
+          "type": "string"
+        },
+        "transcript": {
+          "description": "If natural language speech audio was provided as input, this field will contain the transcript for the audio.",
+          "type": "string"
+        },
+        "triggerEvent": {
+          "description": "If an event was provided as input, this field will contain the name of the event.",
+          "type": "string"
+        },
+        "triggerIntent": {
+          "description": "If an intent was provided as input, this field will contain a copy of the intent identifier. Format: `projects//locations//agents//intents/`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9322,6 +9338,22 @@
         "sessionInfo": {
           "$ref": "GoogleCloudDialogflowCxV3beta1SessionInfo",
           "description": "Information about session status."
+        },
+        "text": {
+          "description": "If natural language text was provided as input, this field will contain a copy of the text.",
+          "type": "string"
+        },
+        "transcript": {
+          "description": "If natural language speech audio was provided as input, this field will contain the transcript for the audio.",
+          "type": "string"
+        },
+        "triggerEvent": {
+          "description": "If an event was provided as input, this field will contain the name of the event.",
+          "type": "string"
+        },
+        "triggerIntent": {
+          "description": "If an intent was provided as input, this field will contain a copy of the intent identifier. Format: `projects//locations//agents//intents/`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -11903,6 +11935,10 @@
           "$ref": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfig",
           "description": "Configuration for agent assistance to use with this profile."
         },
+        "humanAgentHandoffConfig": {
+          "$ref": "GoogleCloudDialogflowV2beta1HumanAgentHandoffConfig",
+          "description": "Configuration for connecting to a live agent. Currently, this feature is not general available, please contact Google to get access."
+        },
         "languageCode": {
           "description": "Language code for the conversation profile. If not specified, the language is en-US. Language at ConversationProfile should be set for all non en-us languages.",
           "type": "string"
@@ -12433,6 +12469,10 @@
       "description": "Defines the Human Agent Assistant to connect to a conversation.",
       "id": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfig",
       "properties": {
+        "endUserSuggestionConfig": {
+          "$ref": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig",
+          "description": "Configuration for agent assistance of end user participant. Currently, this feature is not general available, please contact Google to get access."
+        },
         "humanAgentSuggestionConfig": {
           "$ref": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig",
           "description": "Configuration for agent assistance of human agent participant."
@@ -12463,6 +12503,10 @@
       "description": "Configuration for analyses to run on each conversation message.",
       "id": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigMessageAnalysisConfig",
       "properties": {
+        "enableEntityExtraction": {
+          "description": "Enable entity extraction in conversation messages on [agent assist stage](https://cloud.google.com/dialogflow/priv/docs/contact-center/basics#stages). If unspecified, defaults to false. Currently, this feature is not general available, please contact Google to get access.",
+          "type": "boolean"
+        },
         "enableSentimentAnalysis": {
           "description": "Enable sentiment analysis in conversation messages on [agent assist stage](https://cloud.google.com/dialogflow/priv/docs/contact-center/basics#stages). If unspecified, defaults to false. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral: https://cloud.google.com/natural-language/docs/basics#sentiment_analysis For Participants.StreamingAnalyzeContent method, result will be in StreamingAnalyzeContentResponse.message.SentimentAnalysisResult. For Participants.AnalyzeContent method, result will be in AnalyzeContentResponse.message.SentimentAnalysisResult For Conversations.ListMessages method, result will be in ListMessagesResponse.messages.SentimentAnalysisResult If Pub/Sub notification is configured, result will be in ConversationEvent.new_message_payload.SentimentAnalysisResult.",
           "type": "boolean"
@@ -12639,6 +12683,55 @@
             "$ref": "GoogleCloudDialogflowV2beta1SuggestionResult"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1HumanAgentHandoffConfig": {
+      "description": "Defines the hand off to a live agent, typically on which external agent service provider to connect to a conversation. Currently, this feature is not general available, please contact Google to get access.",
+      "id": "GoogleCloudDialogflowV2beta1HumanAgentHandoffConfig",
+      "properties": {
+        "livePersonConfig": {
+          "$ref": "GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigLivePersonConfig",
+          "description": "Uses LivePerson (https://www.liveperson.com)."
+        },
+        "salesforceLiveAgentConfig": {
+          "$ref": "GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigSalesforceLiveAgentConfig",
+          "description": "Uses Salesforce Live Agent."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigLivePersonConfig": {
+      "description": "Configuration specific to LivePerson (https://www.liveperson.com).",
+      "id": "GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigLivePersonConfig",
+      "properties": {
+        "accountNumber": {
+          "description": "Required. Account number of the LivePerson account to connect. This is the account number you input at the login page.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigSalesforceLiveAgentConfig": {
+      "description": "Configuration specific to Salesforce Live Agent.",
+      "id": "GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigSalesforceLiveAgentConfig",
+      "properties": {
+        "buttonId": {
+          "description": "Required. Live Agent chat button ID.",
+          "type": "string"
+        },
+        "deploymentId": {
+          "description": "Required. Live Agent deployment ID.",
+          "type": "string"
+        },
+        "endpointDomain": {
+          "description": "Required. Domain of the Live Agent endpoint for this agent. You can find the endpoint URL in the `Live Agent settings` page. For example if URL has the form https://d.la4-c2-phx.salesforceliveagent.com/..., you should fill in d.la4-c2-phx.salesforceliveagent.com.",
+          "type": "string"
+        },
+        "organizationId": {
+          "description": "Required. The organization ID of the Salesforce account.",
+          "type": "string"
         }
       },
       "type": "object"

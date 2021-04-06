@@ -250,11 +250,11 @@
       }
     }
   },
-  "revision": "20210307",
+  "revision": "20210331",
   "rootUrl": "https://localservices.googleapis.com/",
   "schemas": {
     "GoogleAdsHomeservicesLocalservicesV1AccountReport": {
-      "description": "An Account Report of a GLS account identified by their account id containing aggregate data gathered from a particular date range.",
+      "description": "An Account Report of a GLS account identified by their account id containing aggregate data gathered from a particular date range. Next ID: 18",
       "id": "GoogleAdsHomeservicesLocalservicesV1AccountReport",
       "properties": {
         "accountId": {
@@ -303,6 +303,11 @@
           "description": "Total cost of the account in current specified period in the account's specified currency.",
           "format": "double",
           "type": "number"
+        },
+        "impressionsLastTwoDays": {
+          "description": "Number of impressions that customers have had in the past 2 days.",
+          "format": "int64",
+          "type": "string"
         },
         "phoneLeadResponsiveness": {
           "description": "Phone lead responsiveness of the account for the past 90 days from current date. This is computed by taking the total number of connected calls from charged phone leads and dividing by the total number of calls received.",

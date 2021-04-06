@@ -365,7 +365,7 @@
       }
     }
   },
-  "revision": "20210319",
+  "revision": "20210329",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata": {
@@ -522,17 +522,6 @@
         "evaluation": {
           "description": "The resource name of the created evaluation.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDocumentaiUiv1beta3SampleDatasetMetadata": {
-      "description": "The long running operation metadata for SampleDataset.",
-      "id": "GoogleCloudDocumentaiUiv1beta3SampleDatasetMetadata",
-      "properties": {
-        "commonMetadata": {
-          "$ref": "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata",
-          "description": "The basic metadata of the long running operation."
         }
       },
       "type": "object"
@@ -1839,7 +1828,7 @@
           "type": "number"
         },
         "y": {
-          "description": "Y coordinate.",
+          "description": "Y coordinate (starts from the top of the image).",
           "format": "float",
           "type": "number"
         }
@@ -1930,7 +1919,7 @@
           "type": "integer"
         },
         "y": {
-          "description": "Y coordinate.",
+          "description": "Y coordinate (starts from the top of the image).",
           "format": "int32",
           "type": "integer"
         }
@@ -2989,7 +2978,7 @@
           "type": "number"
         },
         "y": {
-          "description": "Y coordinate.",
+          "description": "Y coordinate (starts from the top of the image).",
           "format": "float",
           "type": "number"
         }
@@ -3080,7 +3069,7 @@
           "type": "integer"
         },
         "y": {
-          "description": "Y coordinate.",
+          "description": "Y coordinate (starts from the top of the image).",
           "format": "int32",
           "type": "integer"
         }
@@ -4348,7 +4337,7 @@
           "type": "number"
         },
         "y": {
-          "description": "Y coordinate.",
+          "description": "Y coordinate (starts from the top of the image).",
           "format": "float",
           "type": "number"
         }
@@ -4494,7 +4483,7 @@
           "type": "integer"
         },
         "y": {
-          "description": "Y coordinate.",
+          "description": "Y coordinate (starts from the top of the image).",
           "format": "int32",
           "type": "integer"
         }

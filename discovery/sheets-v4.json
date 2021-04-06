@@ -6,7 +6,7 @@
           "description": "See, edit, create, and delete all of your Google Drive files"
         },
         "https://www.googleapis.com/auth/drive.file": {
-          "description": "View and manage Google Drive files and folders that you have opened or created with this app"
+          "description": "See, edit, create, and delete only the specific Google Drive files you use with this app"
         },
         "https://www.googleapis.com/auth/drive.readonly": {
           "description": "See and download all your Google Drive files"
@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20210316",
+  "revision": "20210322",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -5036,6 +5036,17 @@
       },
       "type": "object"
     },
+    "Link": {
+      "description": "An external or local reference.",
+      "id": "Link",
+      "properties": {
+        "uri": {
+          "description": "The link identifier.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ManualRule": {
       "description": "Allows you to manually organize the values in a source data column into buckets with names of your choosing. For example, a pivot table that aggregates population by state: +-------+-------------------+ | State | SUM of Population | +-------+-------------------+ | AK | 0.7 | | AL | 4.8 | | AR | 2.9 | ... +-------+-------------------+ could be turned into a pivot table that aggregates population by time zone by providing a list of groups (for example, groupName = 'Central', items = ['AL', 'AR', 'IA', ...]) to a manual group rule. Note that a similar effect could be achieved by adding a time zone column to the source data and adjusting the pivot table. +-----------+-------------------+ | Time Zone | SUM of Population | +-----------+-------------------+ | Central | 106.3 | | Eastern | 151.9 | | Mountain | 17.4 | ... +-----------+-------------------+",
       "id": "ManualRule",
@@ -6857,6 +6868,10 @@
         "italic": {
           "description": "True if the text is italicized.",
           "type": "boolean"
+        },
+        "link": {
+          "$ref": "Link",
+          "description": "The link destination of the text, if any. Setting a link in a format run will clear an existing cell-level link. When a link is set, the text foreground color will be set to the default link color and the text will be underlined. If these fields are modified in the same request, those values will be used instead of the link defaults."
         },
         "strikethrough": {
           "description": "True if the text has a strikethrough.",

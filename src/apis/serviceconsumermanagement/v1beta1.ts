@@ -1007,7 +1007,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      */
     billing?: Schema$Billing;
     /**
-     * Deprecated. The service config compiler always sets this field to `3`.
+     * Obsolete. Do not use. This field has no semantic meaning. The service config compiler always sets this field to `3`.
      */
     configVersion?: number | null;
     /**

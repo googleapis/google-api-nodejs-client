@@ -959,7 +959,7 @@
       }
     }
   },
-  "revision": "20210322",
+  "revision": "20210331",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AdminQuotaPolicy": {
@@ -1849,7 +1849,7 @@
           "description": "Billing configuration."
         },
         "configVersion": {
-          "description": "Deprecated. The service config compiler always sets this field to `3`.",
+          "description": "Obsolete. Do not use. This field has no semantic meaning. The service config compiler always sets this field to `3`.",
           "format": "uint32",
           "type": "integer"
         },

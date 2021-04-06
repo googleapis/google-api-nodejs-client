@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         },
         "https://www.googleapis.com/auth/pubsub": {
           "description": "View and manage Pub/Sub topics and subscriptions"
@@ -724,7 +724,7 @@
       }
     }
   },
-  "revision": "20201110",
+  "revision": "20210322",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {

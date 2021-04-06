@@ -342,7 +342,7 @@
       }
     }
   },
-  "revision": "20210315",
+  "revision": "20210323",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -813,9 +813,11 @@
             "FILTER_CHANNEL_GROUPING",
             "FILTER_OM_SDK_AVAILABLE",
             "FILTER_DATA_SOURCE",
-            "FILTER_CM360_PLACEMENT_ID"
+            "FILTER_CM360_PLACEMENT_ID",
+            "FILTER_TRUEVIEW_CLICK_TYPE_NAME"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -1425,9 +1427,11 @@
               "FILTER_CHANNEL_GROUPING",
               "FILTER_OM_SDK_AVAILABLE",
               "FILTER_DATA_SOURCE",
-              "FILTER_CM360_PLACEMENT_ID"
+              "FILTER_CM360_PLACEMENT_ID",
+              "FILTER_TRUEVIEW_CLICK_TYPE_NAME"
             ],
             "enumDescriptions": [
+              "",
               "",
               "",
               "",
@@ -3019,9 +3023,11 @@
             "FILTER_CHANNEL_GROUPING",
             "FILTER_OM_SDK_AVAILABLE",
             "FILTER_DATA_SOURCE",
-            "FILTER_CM360_PLACEMENT_ID"
+            "FILTER_CM360_PLACEMENT_ID",
+            "FILTER_TRUEVIEW_CLICK_TYPE_NAME"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",

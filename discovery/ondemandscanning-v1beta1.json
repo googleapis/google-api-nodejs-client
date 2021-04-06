@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20210323",
+  "revision": "20210329",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -385,6 +385,22 @@
       },
       "type": "object"
     },
+    "AnalyzePackagesMetadataV1": {
+      "description": "AnalyzePackagesMetadata contains metadata for an active scan of a container image.",
+      "id": "AnalyzePackagesMetadataV1",
+      "properties": {
+        "createTime": {
+          "description": "When the scan was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resourceUri": {
+          "description": "The resource URI of the container image being scanned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AnalyzePackagesRequest": {
       "description": "AnalyzePackagesRequest is the request to analyze a list of packages and create Vulnerability Occurrences for it.",
       "id": "AnalyzePackagesRequest",
@@ -406,6 +422,17 @@
     "AnalyzePackagesResponse": {
       "description": "AnalyzePackagesResponse contains the information necessary to find results for the given scan.",
       "id": "AnalyzePackagesResponse",
+      "properties": {
+        "scan": {
+          "description": "The name of the scan resource created by this successful scan.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AnalyzePackagesResponseV1": {
+      "description": "AnalyzePackagesResponse contains the information necessary to find results for the given scan.",
+      "id": "AnalyzePackagesResponseV1",
       "properties": {
         "scan": {
           "description": "The name of the scan resource created by this successful scan.",

@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         },
         "https://www.googleapis.com/auth/cloudkms": {
           "description": "View and manage your keys and secrets stored in Cloud Key Management Service"
@@ -1259,7 +1259,7 @@
       }
     }
   },
-  "revision": "20210312",
+  "revision": "20210331",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {

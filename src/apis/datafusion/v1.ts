@@ -243,6 +243,10 @@ export namespace datafusion_v1 {
      */
     displayName?: string | null;
     /**
+     * Option to enable granular role-based access control.
+     */
+    enableRbac?: boolean | null;
+    /**
      * Option to enable Stackdriver Logging.
      */
     enableStackdriverLogging?: boolean | null;
@@ -939,6 +943,7 @@ export namespace datafusion_v1 {
      *       //   "dataprocServiceAccount": "my_dataprocServiceAccount",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
+     *       //   "enableRbac": false,
      *       //   "enableStackdriverLogging": false,
      *       //   "enableStackdriverMonitoring": false,
      *       //   "gcsBucket": "my_gcsBucket",
@@ -1234,6 +1239,7 @@ export namespace datafusion_v1 {
      *   //   "dataprocServiceAccount": "my_dataprocServiceAccount",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
+     *   //   "enableRbac": false,
      *   //   "enableStackdriverLogging": false,
      *   //   "enableStackdriverMonitoring": false,
      *   //   "gcsBucket": "my_gcsBucket",
@@ -1664,6 +1670,7 @@ export namespace datafusion_v1 {
      *       //   "dataprocServiceAccount": "my_dataprocServiceAccount",
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
+     *       //   "enableRbac": false,
      *       //   "enableStackdriverLogging": false,
      *       //   "enableStackdriverMonitoring": false,
      *       //   "gcsBucket": "my_gcsBucket",

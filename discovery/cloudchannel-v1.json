@@ -1508,7 +1508,7 @@
       }
     }
   },
-  "revision": "20210325",
+  "revision": "20210331",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -3169,6 +3169,10 @@
       "description": "TransferableSku represents information a reseller needs to view existing provisioned services for a customer that they do not own. Read-only.",
       "id": "GoogleCloudChannelV1TransferableSku",
       "properties": {
+        "legacySku": {
+          "$ref": "GoogleCloudChannelV1Sku",
+          "description": "Optional. The customer to transfer has an entitlement with the populated legacy SKU."
+        },
         "sku": {
           "$ref": "GoogleCloudChannelV1Sku",
           "description": "The SKU pertaining to the provisioning resource as specified in the Offer."

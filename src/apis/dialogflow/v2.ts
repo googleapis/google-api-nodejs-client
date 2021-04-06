@@ -1130,6 +1130,22 @@ export namespace dialogflow_v2 {
      * Information about session status.
      */
     sessionInfo?: Schema$GoogleCloudDialogflowCxV3beta1SessionInfo;
+    /**
+     * If natural language text was provided as input, this field will contain a copy of the text.
+     */
+    text?: string | null;
+    /**
+     * If natural language speech audio was provided as input, this field will contain the transcript for the audio.
+     */
+    transcript?: string | null;
+    /**
+     * If an event was provided as input, this field will contain the name of the event.
+     */
+    triggerEvent?: string | null;
+    /**
+     * If an intent was provided as input, this field will contain a copy of the intent identifier. Format: `projects//locations//agents//intents/`.
+     */
+    triggerIntent?: string | null;
   }
   /**
    * Represents fulfillment information communicated to the webhook.
@@ -2176,6 +2192,22 @@ export namespace dialogflow_v2 {
      * Information about session status.
      */
     sessionInfo?: Schema$GoogleCloudDialogflowCxV3SessionInfo;
+    /**
+     * If natural language text was provided as input, this field will contain a copy of the text.
+     */
+    text?: string | null;
+    /**
+     * If natural language speech audio was provided as input, this field will contain the transcript for the audio.
+     */
+    transcript?: string | null;
+    /**
+     * If an event was provided as input, this field will contain the name of the event.
+     */
+    triggerEvent?: string | null;
+    /**
+     * If an intent was provided as input, this field will contain a copy of the intent identifier. Format: `projects//locations//agents//intents/`.
+     */
+    triggerIntent?: string | null;
   }
   /**
    * Represents fulfillment information communicated to the webhook.
@@ -4221,6 +4253,10 @@ export namespace dialogflow_v2 {
      */
     humanAgentAssistantConfig?: Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfig;
     /**
+     * Configuration for connecting to a live agent. Currently, this feature is not general available, please contact Google to get access.
+     */
+    humanAgentHandoffConfig?: Schema$GoogleCloudDialogflowV2HumanAgentHandoffConfig;
+    /**
      * Language which represents the conversationProfile. If unspecified, the default language code en-us applies. Users need to create a ConversationProfile for each language they want to support.
      */
     languageCode?: string | null;
@@ -4570,6 +4606,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfig {
     /**
+     * Configuration for agent assistance of end user participant. Currently, this feature is not general available, please contact Google to get access.
+     */
+    endUserSuggestionConfig?: Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionConfig;
+    /**
      * Configuration for agent assistance of human agent participant.
      */
     humanAgentSuggestionConfig?: Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionConfig;
@@ -4595,6 +4635,10 @@ export namespace dialogflow_v2 {
    * Configuration for analyses to run on each conversation message.
    */
   export interface Schema$GoogleCloudDialogflowV2HumanAgentAssistantConfigMessageAnalysisConfig {
+    /**
+     * Enable entity extraction in conversation messages on [agent assist stage](https://cloud.google.com/dialogflow/priv/docs/contact-center/basics#stages). If unspecified, defaults to false. Currently, this feature is not general available, please contact Google to get access.
+     */
+    enableEntityExtraction?: boolean | null;
     /**
      * Enable sentiment analysis in conversation messages on [agent assist stage](https://cloud.google.com/dialogflow/priv/docs/contact-center/basics#stages). If unspecified, defaults to false. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral: https://cloud.google.com/natural-language/docs/basics#sentiment_analysis For Participants.StreamingAnalyzeContent method, result will be in StreamingAnalyzeContentResponse.message.SentimentAnalysisResult. For Participants.AnalyzeContent method, result will be in AnalyzeContentResponse.message.SentimentAnalysisResult For Conversations.ListMessages method, result will be in ListMessagesResponse.messages.SentimentAnalysisResult If Pub/Sub notification is configured, result will be in ConversationEvent.new_message_payload.SentimentAnalysisResult.
      */
@@ -4740,6 +4784,49 @@ export namespace dialogflow_v2 {
      * The suggestion results payload that this notification refers to.
      */
     suggestionResults?: Schema$GoogleCloudDialogflowV2SuggestionResult[];
+  }
+  /**
+   * Defines the hand off to a live agent, typically on which external agent service provider to connect to a conversation. Currently, this feature is not general available, please contact Google to get access.
+   */
+  export interface Schema$GoogleCloudDialogflowV2HumanAgentHandoffConfig {
+    /**
+     * Uses LivePerson (https://www.liveperson.com).
+     */
+    livePersonConfig?: Schema$GoogleCloudDialogflowV2HumanAgentHandoffConfigLivePersonConfig;
+    /**
+     * Uses Salesforce Live Agent.
+     */
+    salesforceLiveAgentConfig?: Schema$GoogleCloudDialogflowV2HumanAgentHandoffConfigSalesforceLiveAgentConfig;
+  }
+  /**
+   * Configuration specific to LivePerson (https://www.liveperson.com).
+   */
+  export interface Schema$GoogleCloudDialogflowV2HumanAgentHandoffConfigLivePersonConfig {
+    /**
+     * Required. Account number of the LivePerson account to connect. This is the account number you input at the login page.
+     */
+    accountNumber?: string | null;
+  }
+  /**
+   * Configuration specific to Salesforce Live Agent.
+   */
+  export interface Schema$GoogleCloudDialogflowV2HumanAgentHandoffConfigSalesforceLiveAgentConfig {
+    /**
+     * Required. Live Agent chat button ID.
+     */
+    buttonId?: string | null;
+    /**
+     * Required. Live Agent deployment ID.
+     */
+    deploymentId?: string | null;
+    /**
+     * Required. Domain of the Live Agent endpoint for this agent. You can find the endpoint URL in the `Live Agent settings` page. For example if URL has the form https://d.la4-c2-phx.salesforceliveagent.com/..., you should fill in d.la4-c2-phx.salesforceliveagent.com.
+     */
+    endpointDomain?: string | null;
+    /**
+     * Required. The organization ID of the Salesforce account.
+     */
+    organizationId?: string | null;
   }
   /**
    * The request message for Agents.ImportAgent.
@@ -17452,6 +17539,7 @@ export namespace dialogflow_v2 {
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "humanAgentAssistantConfig": {},
+     *       //   "humanAgentHandoffConfig": {},
      *       //   "languageCode": "my_languageCode",
      *       //   "loggingConfig": {},
      *       //   "name": "my_name",
@@ -17470,6 +17558,7 @@ export namespace dialogflow_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "humanAgentAssistantConfig": {},
+     *   //   "humanAgentHandoffConfig": {},
      *   //   "languageCode": "my_languageCode",
      *   //   "loggingConfig": {},
      *   //   "name": "my_name",
@@ -17751,6 +17840,7 @@ export namespace dialogflow_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "humanAgentAssistantConfig": {},
+     *   //   "humanAgentHandoffConfig": {},
      *   //   "languageCode": "my_languageCode",
      *   //   "loggingConfig": {},
      *   //   "name": "my_name",
@@ -18047,6 +18137,7 @@ export namespace dialogflow_v2 {
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "humanAgentAssistantConfig": {},
+     *       //   "humanAgentHandoffConfig": {},
      *       //   "languageCode": "my_languageCode",
      *       //   "loggingConfig": {},
      *       //   "name": "my_name",
@@ -18065,6 +18156,7 @@ export namespace dialogflow_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "humanAgentAssistantConfig": {},
+     *   //   "humanAgentHandoffConfig": {},
      *   //   "languageCode": "my_languageCode",
      *   //   "loggingConfig": {},
      *   //   "name": "my_name",
@@ -31222,6 +31314,7 @@ export namespace dialogflow_v2 {
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "humanAgentAssistantConfig": {},
+     *       //   "humanAgentHandoffConfig": {},
      *       //   "languageCode": "my_languageCode",
      *       //   "loggingConfig": {},
      *       //   "name": "my_name",
@@ -31240,6 +31333,7 @@ export namespace dialogflow_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "humanAgentAssistantConfig": {},
+     *   //   "humanAgentHandoffConfig": {},
      *   //   "languageCode": "my_languageCode",
      *   //   "loggingConfig": {},
      *   //   "name": "my_name",
@@ -31523,6 +31617,7 @@ export namespace dialogflow_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "humanAgentAssistantConfig": {},
+     *   //   "humanAgentHandoffConfig": {},
      *   //   "languageCode": "my_languageCode",
      *   //   "loggingConfig": {},
      *   //   "name": "my_name",
@@ -31820,6 +31915,7 @@ export namespace dialogflow_v2 {
      *       //   "createTime": "my_createTime",
      *       //   "displayName": "my_displayName",
      *       //   "humanAgentAssistantConfig": {},
+     *       //   "humanAgentHandoffConfig": {},
      *       //   "languageCode": "my_languageCode",
      *       //   "loggingConfig": {},
      *       //   "name": "my_name",
@@ -31838,6 +31934,7 @@ export namespace dialogflow_v2 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "humanAgentAssistantConfig": {},
+     *   //   "humanAgentHandoffConfig": {},
      *   //   "languageCode": "my_languageCode",
      *   //   "loggingConfig": {},
      *   //   "name": "my_name",

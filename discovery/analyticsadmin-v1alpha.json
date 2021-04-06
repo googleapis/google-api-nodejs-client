@@ -679,7 +679,7 @@
           },
           "path": "v1alpha/{+name}",
           "response": {
-            "$ref": "GoogleProtobufEmpty"
+            "$ref": "GoogleAnalyticsAdminV1alphaProperty"
           },
           "scopes": [
             "https://www.googleapis.com/auth/analytics.edit"
@@ -1890,7 +1890,7 @@
       }
     }
   },
-  "revision": "20210322",
+  "revision": "20210403",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -2692,13 +2692,20 @@
           "description": "The currency type used in reports involving monetary values. Format: https://en.wikipedia.org/wiki/ISO_4217 Examples: \"USD\", \"EUR\", \"JPY\"",
           "type": "string"
         },
-        "deleted": {
-          "description": "Output only. Indicates whether this Property is soft-deleted or not. Deleted properties are excluded from List results unless specifically requested.",
+        "deleteTime": {
+          "description": "Output only. If set, the time at which this property was trashed. If not set, then this property is not currently in the trash can.",
+          "format": "google-datetime",
           "readOnly": true,
-          "type": "boolean"
+          "type": "string"
         },
         "displayName": {
           "description": "Required. Human-readable display name for this property. The max allowed display name length is 100 UTF-16 code units.",
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. If set, the time at which this trashed property will be permanently deleted. If not set, then this property is not currently in the trash can and is not slated to be deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "industryCategory": {

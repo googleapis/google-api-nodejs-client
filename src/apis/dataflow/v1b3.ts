@@ -244,7 +244,7 @@ export namespace dataflow_v1b3 {
     table?: string | null;
   }
   /**
-   * Metadata for a BigTable connector used by the job.
+   * Metadata for a Cloud BigTable connector used by the job.
    */
   export interface Schema$BigTableIODetails {
     /**
@@ -827,7 +827,7 @@ export namespace dataflow_v1b3 {
      */
     inputSource?: Schema$StageSource[];
     /**
-     * Type of tranform this stage is executing.
+     * Type of transform this stage is executing.
      */
     kind?: string | null;
     /**
@@ -1204,7 +1204,7 @@ export namespace dataflow_v1b3 {
      */
     steps?: Schema$Step[];
     /**
-     * The GCS location where the steps are stored.
+     * The Cloud Storage location where the steps are stored.
      */
     stepsLocation?: string | null;
     /**
@@ -1281,7 +1281,7 @@ export namespace dataflow_v1b3 {
      */
     bigqueryDetails?: Schema$BigQueryIODetails[];
     /**
-     * Identification of a BigTable source used in the Dataflow job.
+     * Identification of a Cloud BigTable source used in the Dataflow job.
      */
     bigTableDetails?: Schema$BigTableIODetails[];
     /**
@@ -1369,7 +1369,7 @@ export namespace dataflow_v1b3 {
      */
     containerSpec?: Schema$ContainerSpec;
     /**
-     * Gcs path to a file with json serialized ContainerSpec as content.
+     * Cloud Storage path to a file with json serialized ContainerSpec as content.
      */
     containerSpecGcsPath?: string | null;
     /**
@@ -1917,7 +1917,7 @@ export namespace dataflow_v1b3 {
     dataPoints?: Schema$Point[];
   }
   /**
-   * Metadata for a PubSub connector used by the job.
+   * Metadata for a Pub/Sub connector used by the job.
    */
   export interface Schema$PubSubIODetails {
     /**
@@ -3089,7 +3089,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$WorkerHealthReport {
     /**
-     * A message describing any unusual health reports.
+     * Message describing any unusual health reports.
      */
     msg?: string | null;
     /**
@@ -3100,6 +3100,10 @@ export namespace dataflow_v1b3 {
      * The interval at which the worker is sending health reports. The default value of 0 should be interpreted as the field is not being explicitly set by the worker.
      */
     reportInterval?: string | null;
+    /**
+     * Code to describe a specific reason, if known, that a VM has reported broken state.
+     */
+    vmBrokenCode?: string | null;
     /**
      * Whether the VM is in a permanently broken state. Broken VMs should be abandoned or deleted ASAP to avoid assigning or completing any work.
      */
@@ -3177,11 +3181,11 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$WorkerMessageCode {
     /**
-     * The code is a string intended for consumption by a machine that identifies the type of message being sent. Examples: 1. "HARNESS_STARTED" might be used to indicate the worker harness has started. 2. "GCS_DOWNLOAD_ERROR" might be used to indicate an error downloading a GCS file as part of the boot process of one of the worker containers. This is a string and not an enum to make it easy to add new codes without waiting for an API change.
+     * The code is a string intended for consumption by a machine that identifies the type of message being sent. Examples: 1. "HARNESS_STARTED" might be used to indicate the worker harness has started. 2. "GCS_DOWNLOAD_ERROR" might be used to indicate an error downloading a Cloud Storage file as part of the boot process of one of the worker containers. This is a string and not an enum to make it easy to add new codes without waiting for an API change.
      */
     code?: string | null;
     /**
-     * Parameters contains specific information about the code. This is a struct to allow parameters of different types. Examples: 1. For a "HARNESS_STARTED" message parameters might provide the name of the worker and additional data like timing information. 2. For a "GCS_DOWNLOAD_ERROR" parameters might contain fields listing the GCS objects being downloaded and fields containing errors. In general complex data structures should be avoided. If a worker needs to send a specific and complicated data structure then please consider defining a new proto and adding it to the data oneof in WorkerMessageResponse. Conventions: Parameters should only be used for information that isn't typically passed as a label. hostname and other worker identifiers should almost always be passed as labels since they will be included on most messages.
+     * Parameters contains specific information about the code. This is a struct to allow parameters of different types. Examples: 1. For a "HARNESS_STARTED" message parameters might provide the name of the worker and additional data like timing information. 2. For a "GCS_DOWNLOAD_ERROR" parameters might contain fields listing the Cloud Storage objects being downloaded and fields containing errors. In general complex data structures should be avoided. If a worker needs to send a specific and complicated data structure then please consider defining a new proto and adding it to the data oneof in WorkerMessageResponse. Conventions: Parameters should only be used for information that isn't typically passed as a label. hostname and other worker identifiers should almost always be passed as labels since they will be included on most messages.
      */
     parameters?: {[key: string]: any} | null;
   }
@@ -10062,7 +10066,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.templates.launch({
-     *     // Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
+     *     // Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.
      *     'dynamicTemplate.gcsPath': 'placeholder-value',
      *     // Cloud Storage path for staging dependencies. Must be a valid Cloud Storage URL, beginning with `gs://`.
      *     'dynamicTemplate.stagingLocation': 'placeholder-value',
@@ -10230,7 +10234,7 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Templates$Launch
     extends StandardParameters {
     /**
-     * Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
+     * Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.
      */
     'dynamicTemplate.gcsPath'?: string;
     /**
@@ -10940,7 +10944,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Do the magic
      *   const res = await dataflow.projects.templates.launch({
-     *     // Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
+     *     // Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.
      *     'dynamicTemplate.gcsPath': 'placeholder-value',
      *     // Cloud Storage path for staging dependencies. Must be a valid Cloud Storage URL, beginning with `gs://`.
      *     'dynamicTemplate.stagingLocation': 'placeholder-value',
@@ -11103,7 +11107,7 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Templates$Launch
     extends StandardParameters {
     /**
-     * Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
+     * Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.
      */
     'dynamicTemplate.gcsPath'?: string;
     /**

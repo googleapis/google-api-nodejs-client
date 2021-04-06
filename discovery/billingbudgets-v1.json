@@ -6,7 +6,7 @@
           "description": "View and manage your Google Cloud Platform billing accounts"
         },
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -270,7 +270,7 @@
       }
     }
   },
-  "revision": "20210302",
+  "revision": "20210326",
   "rootUrl": "https://billingbudgets.googleapis.com/",
   "schemas": {
     "GoogleCloudBillingBudgetsV1Budget": {
