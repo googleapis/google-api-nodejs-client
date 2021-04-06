@@ -266,6 +266,10 @@ export namespace tpu_v1 {
      */
     acceleratorType?: string | null;
     /**
+     * Output only. The API version that created this Node.
+     */
+    apiVersion?: string | null;
+    /**
      * The CIDR block that the TPU node will use when selecting an IP address. This CIDR block must be a /29 block; the Compute Engine networks API forbids a smaller block, and using a larger block would be wasteful (a node can only consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU node, the CIDR block conflicts with any subnetworks in the user's provided network, or the provided network is peered with another network that is using that CIDR block.
      */
     cidrBlock?: string | null;
@@ -660,13 +664,13 @@ export namespace tpu_v1 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.list({
-     *     // The standard list filter.
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The standard list page size.
+     *     // The maximum number of results to return. If not set, the service will select a default.
      *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -785,7 +789,7 @@ export namespace tpu_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * The standard list filter.
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -793,11 +797,11 @@ export namespace tpu_v1 {
      */
     name?: string;
     /**
-     * The standard list page size.
+     * The maximum number of results to return. If not set, the service will select a default.
      */
     pageSize?: number;
     /**
-     * The standard list page token.
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
   }
@@ -1159,6 +1163,7 @@ export namespace tpu_v1 {
      *       // request body parameters
      *       // {
      *       //   "acceleratorType": "my_acceleratorType",
+     *       //   "apiVersion": "my_apiVersion",
      *       //   "cidrBlock": "my_cidrBlock",
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
@@ -1447,6 +1452,7 @@ export namespace tpu_v1 {
      *   // Example response
      *   // {
      *   //   "acceleratorType": "my_acceleratorType",
+     *   //   "apiVersion": "my_apiVersion",
      *   //   "cidrBlock": "my_cidrBlock",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
