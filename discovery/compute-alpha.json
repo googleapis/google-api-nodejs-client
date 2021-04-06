@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/hiqisWl0t7KcM6BliB4xmOOmOxg\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/pyrls0FjB-CHfiQixrG9Uhuqqcg\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -28746,6 +28746,53 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "patch": {
+          "description": "Patches the specified ServiceAttachment resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules.",
+          "httpMethod": "PATCH",
+          "id": "compute.serviceAttachments.patch",
+          "parameterOrder": [
+            "project",
+            "region",
+            "serviceAttachment"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The region scoping this request and should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "serviceAttachment": {
+              "description": "The resource id of the ServiceAttachment to patch. It should conform to RFC1035 resource name or be a string form on an unsigned long number.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/serviceAttachments/{serviceAttachment}",
+          "request": {
+            "$ref": "ServiceAttachment"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "setIamPolicy": {
           "description": "Sets the access control policy on the specified resource. Replaces any existing policy.",
           "httpMethod": "POST",
@@ -35557,7 +35604,7 @@
       }
     }
   },
-  "revision": "20210316",
+  "revision": "20210322",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -39272,22 +39319,23 @@
         },
         "instance": {
           "$ref": "Instance",
-          "description": "The instance defining the VM instances to be created."
+          "description": "DEPRECATED: Please use instance_properties instead."
         },
         "instanceProperties": {
           "$ref": "InstanceProperties",
           "description": "The instance properties defining the VM instances to be created. Required if sourceInstanceTemplate is not provided."
         },
         "locationPolicy": {
-          "$ref": "LocationPolicy"
+          "$ref": "LocationPolicy",
+          "description": "Policy for chosing target zone."
         },
         "minCount": {
-          "description": "The minimum number of instances to create. If no min_count is specified then count is used as the default value. If min_count instances cannot be created, then no instances will be created.",
+          "description": "The minimum number of instances to create. If no min_count is specified then count is used as the default value. If min_count instances cannot be created, then no instances will be created and instances already created will be deleted.",
           "format": "int64",
           "type": "string"
         },
         "namePattern": {
-          "description": "The string pattern used for the names of the VMs. Either name_pattern or predefined_names must be set. The pattern should contain one consecutive sequence of placeholder hash characters (#) with each character corresponding to one digit of the generated instance name. Example: name_pattern of inst-#### will generate instance names like inst-0001, inst-0002, ... . If there already exist instance(s) whose names match the name pattern in the same project and zone, then the generated instance numbers will start after the biggest existing number. For example, if there exists an instance with name inst-0050, then instance names generated using the pattern inst-#### will be inst-0051, inst-0052, etc. The name pattern placeholder #...# can contain up to 18 characters.",
+          "description": "The string pattern used for the names of the VMs. Either name_pattern or per_instance_properties must be set. The pattern should contain one continuous sequence of placeholder hash characters (#) with each character corresponding to one digit of the generated instance name. Example: name_pattern of inst-#### will generate instance names such as inst-0001, inst-0002, ... . If there already exist instance(s) whose names match the name pattern in the same project and zone, then the generated instance numbers will start after the biggest existing number. For example, if there exists an instance with name inst-0050, then instance names generated using the pattern inst-#### will be inst-0051, inst-0052, etc. The name pattern placeholder #...# can contain up to 18 characters.",
           "type": "string"
         },
         "perInstanceProperties": {
@@ -39298,7 +39346,7 @@
           "type": "object"
         },
         "predefinedNames": {
-          "description": "List of predefined names. The number of names provided must be equal to count.",
+          "description": "DEPRECATED: Please use per_instance_properties instead.",
           "items": {
             "type": "string"
           },
@@ -42697,6 +42745,23 @@
         "pscConnectionId": {
           "description": "[Output Only] The PSC connection id of the PSC Forwarding Rule.",
           "format": "uint64",
+          "type": "string"
+        },
+        "pscConnectionStatus": {
+          "enum": [
+            "ACCEPTED",
+            "CLOSED",
+            "PENDING",
+            "REJECTED",
+            "STATUS_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
           "type": "string"
         },
         "region": {
@@ -51429,7 +51494,7 @@
           "additionalProperties": {
             "$ref": "LocationPolicyLocation"
           },
-          "description": "Location configurations mapped by location name. Currently only zone names are supported and must be represented as valid internal URLs, like: zones/us-central1-a.",
+          "description": "Location configurations mapped by location name. Currently only zone names are supported and must be represented as valid internal URLs, such as zones/us-central1-a.",
           "type": "object"
         }
       },
@@ -51439,6 +51504,7 @@
       "id": "LocationPolicyLocation",
       "properties": {
         "preference": {
+          "description": "Preference for a given locaction: ALLOW or DENY.",
           "enum": [
             "ALLOW",
             "DENY",
@@ -64039,25 +64105,41 @@
       "type": "object"
     },
     "ServiceAttachment": {
-      "description": "Represents a ServiceAttachment resource.\n\nA service attachment represents a service that a producer has exposed. It encapsulates the load balancer which fronts the service runs and a list of NAT IP ranges that the producers uses to represent the consumers connecting to the service. next tag = 17",
+      "description": "Represents a ServiceAttachment resource.\n\nA service attachment represents a service that a producer has exposed. It encapsulates the load balancer which fronts the service runs and a list of NAT IP ranges that the producers uses to represent the consumers connecting to the service. next tag = 19",
       "id": "ServiceAttachment",
       "properties": {
         "connectionPreference": {
           "description": "The connection preference of service attachment. The value can be set to ACCEPT_AUTOMATIC. An ACCEPT_AUTOMATIC service attachment is one that always accepts the connection from consumer forwarding rules.",
           "enum": [
             "ACCEPT_AUTOMATIC",
+            "ACCEPT_MANUAL",
             "CONNECTION_PREFERENCE_UNSPECIFIED"
           ],
           "enumDescriptions": [
+            "",
             "",
             ""
           ],
           "type": "string"
         },
+        "consumerAcceptLists": {
+          "description": "Projects that are allowed to connect to this service attachment.",
+          "items": {
+            "$ref": "ServiceAttachmentConsumerProjectLimit"
+          },
+          "type": "array"
+        },
         "consumerForwardingRules": {
           "description": "[Output Only] An array of forwarding rules for all the consumers connected to this service attachment.",
           "items": {
             "$ref": "ServiceAttachmentConsumerForwardingRule"
+          },
+          "type": "array"
+        },
+        "consumerRejectLists": {
+          "description": "Projects that are not allowed to connect to this service attachment. The project can be specified using its id or number.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         },
@@ -64072,6 +64154,11 @@
         "enableProxyProtocol": {
           "description": "If true, enable the proxy protocol which is for supplying client TCP/IP address data in TCP connections that traverse proxies on their way to destination servers.",
           "type": "boolean"
+        },
+        "fingerprint": {
+          "description": "Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a ServiceAttachment. An up-to-date fingerprint must be provided in order to patch/update the ServiceAttachment; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the ServiceAttachment.",
+          "format": "byte",
+          "type": "string"
         },
         "id": {
           "description": "[Output Only] The unique identifier for the resource type. The server generates this identifier.",
@@ -64110,6 +64197,10 @@
         },
         "selfLink": {
           "description": "[Output Only] Server-defined URL for the resource.",
+          "type": "string"
+        },
+        "targetService": {
+          "description": "The URL of a service serving the endpoint identified by this service attachment.",
           "type": "string"
         }
       },
@@ -64240,7 +64331,7 @@
       "type": "object"
     },
     "ServiceAttachmentConsumerForwardingRule": {
-      "description": "[Output Only] A consumer forwarding rule connected to this service attachment.",
+      "description": "[Output Only] A consumer forwarding rule connected to this service attachment. [Deprecated] Do not use.",
       "id": "ServiceAttachmentConsumerForwardingRule",
       "properties": {
         "forwardingRule": {
@@ -64251,6 +64342,7 @@
           "description": "The status of the forwarding rule.",
           "enum": [
             "ACCEPTED",
+            "CLOSED",
             "PENDING",
             "REJECTED",
             "STATUS_UNSPECIFIED"
@@ -64259,8 +64351,24 @@
             "",
             "",
             "",
+            "",
             ""
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceAttachmentConsumerProjectLimit": {
+      "id": "ServiceAttachmentConsumerProjectLimit",
+      "properties": {
+        "connectionLimit": {
+          "description": "The value of the limit to set.",
+          "format": "uint32",
+          "type": "integer"
+        },
+        "projectIdOrNum": {
+          "description": "The project id or number for the project to set the limit for.",
           "type": "string"
         }
       },
