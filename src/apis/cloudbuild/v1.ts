@@ -235,7 +235,7 @@ export namespace cloudbuild_v1 {
      */
     secrets?: Schema$Secret[];
     /**
-     * IAM service account whose credentials will be used at build runtime. Must be of the format `projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}`. ACCOUNT can be email address or uniqueId of the service account. This field is in beta.
+     * IAM service account whose credentials will be used at build runtime. Must be of the format `projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}`. ACCOUNT can be email address or uniqueId of the service account.
      */
     serviceAccount?: string | null;
     /**
