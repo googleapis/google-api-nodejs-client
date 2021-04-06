@@ -12,6 +12,14 @@
     "package": "@google-cloud/notebooks"
   },
   {
+    "api": "apigateway",
+    "package": "@google-cloud/api-gateway"
+  },
+  {
+    "api": "appengine",
+    "package": "@google-cloud/appengine-admin"
+  },
+  {
     "api": "area120tables",
     "package": "@google/area120-tables"
   },
@@ -292,8 +300,16 @@
     "package": "@google-cloud/security-center"
   },
   {
+    "api": "servicecontrol",
+    "package": "@google-cloud/service-control"
+  },
+  {
     "api": "servicedirectory",
     "package": "@google-cloud/service-directory"
+  },
+  {
+    "api": "servicemanagement",
+    "package": ""
   },
   {
     "api": "spanner",

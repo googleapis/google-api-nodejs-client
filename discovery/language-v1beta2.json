@@ -6,7 +6,7 @@
           "description": "Apply machine learning models to reveal the structure and meaning of text"
         },
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -227,7 +227,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20210319",
   "rootUrl": "https://language.googleapis.com/",
   "schemas": {
     "AnalyzeEntitiesRequest": {

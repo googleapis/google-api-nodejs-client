@@ -399,7 +399,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1Document {
     /**
-     * Inline document content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.
+     * Optional. Inline document content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.
      */
     content?: string | null;
     /**
@@ -431,7 +431,7 @@ export namespace documentai_v1beta2 {
      */
     shardInfo?: Schema$GoogleCloudDocumentaiV1beta1DocumentShardInfo;
     /**
-     * UTF-8 encoded text in reading order from the document.
+     * Optional. UTF-8 encoded text in reading order from the document.
      */
     text?: string | null;
     /**
@@ -443,11 +443,7 @@ export namespace documentai_v1beta2 {
      */
     textStyles?: Schema$GoogleCloudDocumentaiV1beta1DocumentStyle[];
     /**
-     * A list of translations on Document.text. For document shards, translations in this list may cross shard boundaries.
-     */
-    translations?: Schema$GoogleCloudDocumentaiV1beta1DocumentTranslation[];
-    /**
-     * Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. See [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.
+     * Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. See [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.
      */
     uri?: string | null;
   }
@@ -464,11 +460,11 @@ export namespace documentai_v1beta2 {
      */
     id?: string | null;
     /**
-     * Deprecated. Use `id` field instead.
+     * Optional. Deprecated. Use `id` field instead.
      */
     mentionId?: string | null;
     /**
-     * Text value in the document e.g. `1600 Amphitheatre Pkwy`.
+     * Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`.
      */
     mentionText?: string | null;
     /**
@@ -492,7 +488,7 @@ export namespace documentai_v1beta2 {
      */
     redacted?: boolean | null;
     /**
-     * Provenance of the entity. Text anchor indexing into the Document.text.
+     * Optional. Provenance of the entity. Text anchor indexing into the Document.text.
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta1DocumentTextAnchor;
     /**
@@ -1083,27 +1079,6 @@ export namespace documentai_v1beta2 {
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta1DocumentTextAnchor;
   }
   /**
-   * A translation of the text segment.
-   */
-  export interface Schema$GoogleCloudDocumentaiV1beta1DocumentTranslation {
-    /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     */
-    languageCode?: string | null;
-    /**
-     * The history of this annotation.
-     */
-    provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance[];
-    /**
-     * Provenance of the translation. Text anchor indexing into the Document.text. There can only be a single `TextAnchor.text_segments` element. If the start and end index of the text segment are the same, the text change is inserted before that index.
-     */
-    textAnchor?: Schema$GoogleCloudDocumentaiV1beta1DocumentTextAnchor;
-    /**
-     * Text translated into the target language.
-     */
-    translatedText?: string | null;
-  }
-  /**
    * The Google Cloud Storage location where the output file will be written to.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta1GcsDestination {
@@ -1137,7 +1112,7 @@ export namespace documentai_v1beta2 {
      */
     x?: number | null;
     /**
-     * Y coordinate.
+     * Y coordinate (starts from the top of the image).
      */
     y?: number | null;
   }
@@ -1197,7 +1172,7 @@ export namespace documentai_v1beta2 {
      */
     x?: number | null;
     /**
-     * Y coordinate.
+     * Y coordinate (starts from the top of the image).
      */
     y?: number | null;
   }
@@ -1246,7 +1221,7 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2Document {
     /**
-     * Inline document content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.
+     * Optional. Inline document content, represented as a stream of bytes. Note: As with all `bytes` fields, protobuffers use a pure binary representation, whereas JSON representations use base64.
      */
     content?: string | null;
     /**
@@ -1282,7 +1257,7 @@ export namespace documentai_v1beta2 {
      */
     shardInfo?: Schema$GoogleCloudDocumentaiV1beta2DocumentShardInfo;
     /**
-     * UTF-8 encoded text in reading order from the document.
+     * Optional. UTF-8 encoded text in reading order from the document.
      */
     text?: string | null;
     /**
@@ -1294,11 +1269,7 @@ export namespace documentai_v1beta2 {
      */
     textStyles?: Schema$GoogleCloudDocumentaiV1beta2DocumentStyle[];
     /**
-     * A list of translations on Document.text. For document shards, translations in this list may cross shard boundaries.
-     */
-    translations?: Schema$GoogleCloudDocumentaiV1beta2DocumentTranslation[];
-    /**
-     * Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. See [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.
+     * Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. See [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris) for more info.
      */
     uri?: string | null;
   }
@@ -1315,11 +1286,11 @@ export namespace documentai_v1beta2 {
      */
     id?: string | null;
     /**
-     * Deprecated. Use `id` field instead.
+     * Optional. Deprecated. Use `id` field instead.
      */
     mentionId?: string | null;
     /**
-     * Text value in the document e.g. `1600 Amphitheatre Pkwy`.
+     * Optional. Text value in the document e.g. `1600 Amphitheatre Pkwy`.
      */
     mentionText?: string | null;
     /**
@@ -1343,7 +1314,7 @@ export namespace documentai_v1beta2 {
      */
     redacted?: boolean | null;
     /**
-     * Provenance of the entity. Text anchor indexing into the Document.text.
+     * Optional. Provenance of the entity. Text anchor indexing into the Document.text.
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta2DocumentTextAnchor;
     /**
@@ -1951,27 +1922,6 @@ export namespace documentai_v1beta2 {
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta2DocumentTextAnchor;
   }
   /**
-   * A translation of the text segment.
-   */
-  export interface Schema$GoogleCloudDocumentaiV1beta2DocumentTranslation {
-    /**
-     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     */
-    languageCode?: string | null;
-    /**
-     * The history of this annotation.
-     */
-    provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance[];
-    /**
-     * Provenance of the translation. Text anchor indexing into the Document.text. There can only be a single `TextAnchor.text_segments` element. If the start and end index of the text segment are the same, the text change is inserted before that index.
-     */
-    textAnchor?: Schema$GoogleCloudDocumentaiV1beta2DocumentTextAnchor;
-    /**
-     * Text translated into the target language.
-     */
-    translatedText?: string | null;
-  }
-  /**
    * Parameters to control entity extraction behavior.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta2EntityExtractionParams {
@@ -2052,7 +2002,7 @@ export namespace documentai_v1beta2 {
      */
     x?: number | null;
     /**
-     * Y coordinate.
+     * Y coordinate (starts from the top of the image).
      */
     y?: number | null;
   }
@@ -2196,7 +2146,7 @@ export namespace documentai_v1beta2 {
      */
     x?: number | null;
     /**
-     * Y coordinate.
+     * Y coordinate (starts from the top of the image).
      */
     y?: number | null;
   }
@@ -2429,11 +2379,11 @@ export namespace documentai_v1beta2 {
     message?: string | null;
   }
   /**
-   * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness; for example, the fields of this representation can be trivially provided to the constructor of "java.awt.Color" in Java; it can also be trivially provided to UIColor's "+colorWithRed:green:blue:alpha" method in iOS; and, with just a little work, it can be easily formatted into a CSS "rgba()" string in JavaScript, as well. Note: this proto does not carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications SHOULD assume the sRGB color space. Note: when color equality needs to be decided, implementations, unless documented otherwise, will treat two colors to be equal if all their red, green, blue and alpha values each differ by at most 1e-5. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); \} public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); \} return resultBuilder.build(); \} // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; \} return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; \} static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; \} Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; \} [result autorelease]; return result; \} // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor_(red, green, blue); \} var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); \}; var rgbToCssColor_ = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); \} resultBuilder.push(hexString); return resultBuilder.join(''); \}; // ...
+   * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most 1e-5. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); \} public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); \} return resultBuilder.build(); \} // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; \} return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; \} static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; \} Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; \} [result autorelease]; return result; \} // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); \} var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); \}; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); \} resultBuilder.push(hexString); return resultBuilder.join(''); \}; // ...
    */
   export interface Schema$GoogleTypeColor {
     /**
-     * The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: pixel color = alpha * (this color) + (1.0 - alpha) * (background color) This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is to be rendered as a solid color (as if the alpha value had been explicitly given with a value of 1.0).
+     * The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: `pixel color = alpha * (this color) + (1.0 - alpha) * (background color)` This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is rendered as a solid color (as if the alpha value had been explicitly given a value of 1.0).
      */
     alpha?: number | null;
     /**
@@ -2815,7 +2765,6 @@ export namespace documentai_v1beta2 {
      *   //   "text": "my_text",
      *   //   "textChanges": [],
      *   //   "textStyles": [],
-     *   //   "translations": [],
      *   //   "uri": "my_uri"
      *   // }
      * }
@@ -3174,7 +3123,6 @@ export namespace documentai_v1beta2 {
      *   //   "text": "my_text",
      *   //   "textChanges": [],
      *   //   "textStyles": [],
-     *   //   "translations": [],
      *   //   "uri": "my_uri"
      *   // }
      * }

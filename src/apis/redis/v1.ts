@@ -296,11 +296,11 @@ export namespace redis_v1 {
      */
     redisConfigs?: {[key: string]: string} | null;
     /**
-     * Optional. The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are: * `REDIS_3_2` for Redis 3.2 compatibility * `REDIS_4_0` for Redis 4.0 compatibility (default) * `REDIS_5_0` for Redis 5.0 compatibility * `REDIS_6_0` for Redis 6.0 compatibility
+     * Optional. The version of Redis software. If not provided, latest supported version will be used. Currently, the supported values are: * `REDIS_3_2` for Redis 3.2 compatibility * `REDIS_4_0` for Redis 4.0 compatibility (default) * `REDIS_5_0` for Redis 5.0 compatibility * `REDIS_6_X` for Redis 6.x compatibility
      */
     redisVersion?: string | null;
     /**
-     * Optional. The CIDR range of internal addresses that are reserved for this instance. If not provided, the service will choose an unused /29 block, for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique and non-overlapping with existing subnets in an authorized network.
+     * Optional. For DIRECT_PEERING mode, the CIDR range of internal addresses that are reserved for this instance. Range must be unique and non-overlapping with existing subnets in an authorized network. For PRIVATE_SERVICE_ACCESS mode, the name of one allocated IP address ranges associated with this private service access connection. If not provided, the service will choose an unused /29 block, for example, 10.0.0.0/29 or 192.168.0.0/29.
      */
     reservedIpRange?: string | null;
     /**
@@ -665,13 +665,13 @@ export namespace redis_v1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.list({
-     *     // The standard list filter.
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The standard list page size.
+     *     // The maximum number of results to return. If not set, the service will select a default.
      *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -790,7 +790,7 @@ export namespace redis_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * The standard list filter.
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -798,11 +798,11 @@ export namespace redis_v1 {
      */
     name?: string;
     /**
-     * The standard list page size.
+     * The maximum number of results to return. If not set, the service will select a default.
      */
     pageSize?: number;
     /**
-     * The standard list page token.
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
   }

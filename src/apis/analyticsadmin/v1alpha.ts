@@ -730,13 +730,17 @@ export namespace analyticsadmin_v1alpha {
      */
     currencyCode?: string | null;
     /**
-     * Output only. Indicates whether this Property is soft-deleted or not. Deleted properties are excluded from List results unless specifically requested.
+     * Output only. If set, the time at which this property was trashed. If not set, then this property is not currently in the trash can.
      */
-    deleted?: boolean | null;
+    deleteTime?: string | null;
     /**
      * Required. Human-readable display name for this property. The max allowed display name length is 100 UTF-16 code units.
      */
     displayName?: string | null;
+    /**
+     * Output only. If set, the time at which this trashed property will be permanently deleted. If not set, then this property is not currently in the trash can and is not slated to be deleted.
+     */
+    expireTime?: string | null;
     /**
      * Industry associated with this property Example: AUTOMOTIVE, FOOD_AND_DRINK
      */
@@ -750,7 +754,7 @@ export namespace analyticsadmin_v1alpha {
      */
     parent?: string | null;
     /**
-     * Reporting Time Zone, used as the day boundary for reports, regardless of where the data originates. If the time zone honors DST, Analytics will automatically adjust for the changes. NOTE: Changing the time zone only affects data going forward, and is not applied retroactively. Format: https://www.iana.org/time-zones Example: "America/Los_Angeles"
+     * Required. Reporting Time Zone, used as the day boundary for reports, regardless of where the data originates. If the time zone honors DST, Analytics will automatically adjust for the changes. NOTE: Changing the time zone only affects data going forward, and is not applied retroactively. Format: https://www.iana.org/time-zones Example: "America/Los_Angeles"
      */
     timeZone?: string | null;
     /**
@@ -3791,8 +3795,9 @@ export namespace analyticsadmin_v1alpha {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "currencyCode": "my_currencyCode",
-     *       //   "deleted": false,
+     *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
+     *       //   "expireTime": "my_expireTime",
      *       //   "industryCategory": "my_industryCategory",
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
@@ -3807,8 +3812,9 @@ export namespace analyticsadmin_v1alpha {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "currencyCode": "my_currencyCode",
-     *   //   "deleted": false,
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
+     *   //   "expireTime": "my_expireTime",
      *   //   "industryCategory": "my_industryCategory",
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
@@ -3951,7 +3957,18 @@ export namespace analyticsadmin_v1alpha {
      *   console.log(res.data);
      *
      *   // Example response
-     *   // {}
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "currencyCode": "my_currencyCode",
+     *   //   "deleteTime": "my_deleteTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "industryCategory": "my_industryCategory",
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "timeZone": "my_timeZone",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
      * }
      *
      * main().catch(e => {
@@ -3973,7 +3990,7 @@ export namespace analyticsadmin_v1alpha {
     delete(
       params?: Params$Resource$Properties$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    ): GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaProperty>;
     delete(
       params: Params$Resource$Properties$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3981,30 +3998,34 @@ export namespace analyticsadmin_v1alpha {
     ): void;
     delete(
       params: Params$Resource$Properties$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaProperty>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaProperty>
     ): void;
     delete(
       params: Params$Resource$Properties$Delete,
-      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaProperty>
     ): void;
-    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaProperty>
+    ): void;
     delete(
       paramsOrCallback?:
         | Params$Resource$Properties$Delete
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaProperty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaProperty>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaProperty>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Schema$GoogleAnalyticsAdminV1alphaProperty>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Properties$Delete;
@@ -4037,12 +4058,14 @@ export namespace analyticsadmin_v1alpha {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleProtobufEmpty>(
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaProperty>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaProperty>(
+          parameters
+        );
       }
     }
 
@@ -4085,8 +4108,9 @@ export namespace analyticsadmin_v1alpha {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "currencyCode": "my_currencyCode",
-     *   //   "deleted": false,
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
+     *   //   "expireTime": "my_expireTime",
      *   //   "industryCategory": "my_industryCategory",
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",
@@ -4378,8 +4402,9 @@ export namespace analyticsadmin_v1alpha {
      *       // {
      *       //   "createTime": "my_createTime",
      *       //   "currencyCode": "my_currencyCode",
-     *       //   "deleted": false,
+     *       //   "deleteTime": "my_deleteTime",
      *       //   "displayName": "my_displayName",
+     *       //   "expireTime": "my_expireTime",
      *       //   "industryCategory": "my_industryCategory",
      *       //   "name": "my_name",
      *       //   "parent": "my_parent",
@@ -4394,8 +4419,9 @@ export namespace analyticsadmin_v1alpha {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "currencyCode": "my_currencyCode",
-     *   //   "deleted": false,
+     *   //   "deleteTime": "my_deleteTime",
      *   //   "displayName": "my_displayName",
+     *   //   "expireTime": "my_expireTime",
      *   //   "industryCategory": "my_industryCategory",
      *   //   "name": "my_name",
      *   //   "parent": "my_parent",

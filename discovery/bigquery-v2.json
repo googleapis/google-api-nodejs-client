@@ -12,7 +12,7 @@
           "description": "View your data in Google BigQuery"
         },
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         },
         "https://www.googleapis.com/auth/cloud-platform.read-only": {
           "description": "View your data across Google Cloud Platform services"
@@ -337,6 +337,42 @@
           "response": {
             "$ref": "JobCancelResponse"
           },
+          "scopes": [
+            "https://www.googleapis.com/auth/bigquery",
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "delete": {
+          "description": "Requests that a job is deleted. This call will return when the job is deleted. This method is available in limited preview.",
+          "flatPath": "projects/{projectsId}/jobs/{jobsId}/delete",
+          "httpMethod": "DELETE",
+          "id": "bigquery.jobs.delete",
+          "parameterOrder": [
+            "projectId",
+            "jobId"
+          ],
+          "parameters": {
+            "jobId": {
+              "description": "Required. Job ID of the job to be deleted. If this is a parent job which has child jobs, all child jobs will be deleted as well. Deletion of child jobs directly is not allowed.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "location": {
+              "description": "The geographic location of the job. Required. See details at: https://cloud.google.com/bigquery/docs/locations#specifying_your_location.",
+              "location": "query",
+              "type": "string"
+            },
+            "projectId": {
+              "description": "Required. Project ID of the job to be deleted.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{+projectId}/jobs/{+jobId}/delete",
           "scopes": [
             "https://www.googleapis.com/auth/bigquery",
             "https://www.googleapis.com/auth/cloud-platform"
@@ -1670,7 +1706,7 @@
       }
     }
   },
-  "revision": "20210219",
+  "revision": "20210327",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -3714,6 +3750,10 @@
           "description": "[Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.",
           "type": "string"
         },
+        "createSession": {
+          "description": "If true, creates a new session, where session id will be a server generated random id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs query in non-session mode.",
+          "type": "boolean"
+        },
         "defaultDataset": {
           "$ref": "DatasetReference",
           "description": "[Optional] Specifies the default dataset to use for unqualified table names in the query. Note that this does not alter behavior of unqualified dataset names."
@@ -4020,6 +4060,10 @@
         "scriptStatistics": {
           "$ref": "ScriptStatistics",
           "description": "[Output-only] Statistics for a child job of a script."
+        },
+        "sessionInfoTemplate": {
+          "$ref": "SessionInfo",
+          "description": "[Output-only] [Preview] Information of the session if this job is part of one."
         },
         "startTime": {
           "description": "[Output-only] Start time of this job, in milliseconds since the epoch. This field will be present when the job transitions from the PENDING state to either RUNNING or DONE.",
@@ -4365,6 +4409,11 @@
     "Model": {
       "id": "Model",
       "properties": {
+        "bestTrialId": {
+          "description": "The best trial_id across all training runs.",
+          "format": "int64",
+          "type": "string"
+        },
         "creationTime": {
           "description": "Output only. The time when this model was created, in millisecs since the epoch.",
           "format": "int64",
@@ -4768,6 +4817,10 @@
           },
           "type": "array"
         },
+        "createSession": {
+          "description": "If true, creates a new session, where session id will be a server generated random id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs query in non-session mode.",
+          "type": "boolean"
+        },
         "defaultDataset": {
           "$ref": "DatasetReference",
           "description": "[Optional] Specifies the default datasetId and projectId to assume for any unqualified table names in the query. If not set, all table names in the query string must be qualified in the format 'datasetId.tableId'."
@@ -4894,6 +4947,10 @@
         "schema": {
           "$ref": "TableSchema",
           "description": "The schema of the results. Present only when the query completes successfully."
+        },
+        "sessionInfoTemplate": {
+          "$ref": "SessionInfo",
+          "description": "[Output-only] [Preview] Information of the session if this job is part of one."
         },
         "totalBytesProcessed": {
           "description": "The total number of bytes processed for this query. If this query was a dry run, this is the number of bytes that would be processed if the query were run.",
@@ -5100,6 +5157,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "returnTableType": {
+          "$ref": "StandardSqlTableType",
+          "description": "Optional. Set only if Routine is a \"TABLE_VALUED_FUNCTION\"."
+        },
         "returnType": {
           "$ref": "StandardSqlDataType",
           "description": "Optional if language = \"SQL\"; required otherwise. If absent, the return type is inferred from definition_body at query time in each query that references this routine. If present, then the evaluated result will be cast to the specified returned type at query time. For example, for the functions created with the following statements: * `CREATE FUNCTION Add(x FLOAT64, y FLOAT64) RETURNS FLOAT64 AS (x + y);` * `CREATE FUNCTION Increment(x FLOAT64) AS (Add(x, 1));` * `CREATE FUNCTION Decrement(x FLOAT64) RETURNS FLOAT64 AS (Add(x, -1));` The return_type is `{type_kind: \"FLOAT64\"}` for `Add` and `Decrement`, and is absent for `Increment` (inferred as FLOAT64 at query time). Suppose the function `Add` is replaced by `CREATE OR REPLACE FUNCTION Add(x INT64, y INT64) AS (x + y);` Then the inferred return type of `Increment` is automatically changed to INT64 at query time, while the return type of `Decrement` remains FLOAT64."
@@ -5113,12 +5174,14 @@
           "enum": [
             "ROUTINE_TYPE_UNSPECIFIED",
             "SCALAR_FUNCTION",
-            "PROCEDURE"
+            "PROCEDURE",
+            "TABLE_VALUED_FUNCTION"
           ],
           "enumDescriptions": [
             "",
             "Non-builtin permanent scalar function.",
-            "Stored procedure."
+            "Stored procedure.",
+            "Non-builtin permanent TVF."
           ],
           "type": "string"
         }
@@ -5276,6 +5339,16 @@
       },
       "type": "object"
     },
+    "SessionInfo": {
+      "id": "SessionInfo",
+      "properties": {
+        "sessionId": {
+          "description": "[Output-only] // [Preview] Id of the session.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SetIamPolicyRequest": {
       "description": "Request message for `SetIamPolicy` method.",
       "id": "SetIamPolicyRequest",
@@ -5332,6 +5405,7 @@
             "DATE",
             "TIME",
             "DATETIME",
+            "INTERVAL",
             "GEOGRAPHY",
             "NUMERIC",
             "BIGNUMERIC",
@@ -5349,6 +5423,7 @@
             "Encoded as RFC 3339 full-date format string: 1985-04-12",
             "Encoded as RFC 3339 partial-time format string: 23:20:50.52",
             "Encoded as RFC 3339 full-date \"T\" partial-time: 1985-04-12T23:20:50.52",
+            "Encoded as fully qualified 3 part: 0-5 15 2:30:45.6",
             "Encoded as WKT",
             "Encoded as a decimal string.",
             "Encoded as a decimal string.",
@@ -5379,6 +5454,20 @@
       "id": "StandardSqlStructType",
       "properties": {
         "fields": {
+          "items": {
+            "$ref": "StandardSqlField"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "StandardSqlTableType": {
+      "description": "A table type",
+      "id": "StandardSqlTableType",
+      "properties": {
+        "columns": {
+          "description": "The columns in this table type",
           "items": {
             "$ref": "StandardSqlField"
           },
@@ -5681,6 +5770,11 @@
           },
           "type": "array"
         },
+        "maxLength": {
+          "description": "[Optional] Maximum length of values of this field for STRINGS or BYTES. If max_length is not specified, no maximum length constraint is imposed on this field. If type = \"STRING\", then max_length represents the maximum UTF-8 length of strings in this field. If type = \"BYTES\", then max_length represents the maximum number of bytes in this field. It is invalid to set this field if type ≠ \"STRING\" and ≠ \"BYTES\".",
+          "format": "int64",
+          "type": "string"
+        },
         "mode": {
           "description": "[Optional] The field mode. Possible values include NULLABLE, REQUIRED and REPEATED. The default value is NULLABLE.",
           "type": "string"
@@ -5701,8 +5795,18 @@
           },
           "type": "object"
         },
+        "precision": {
+          "description": "[Optional] Precision (maximum number of total digits in base 10) and scale (maximum number of digits in the fractional part in base 10) constraints for values of this field for NUMERIC or BIGNUMERIC. It is invalid to set precision or scale if type ≠ \"NUMERIC\" and ≠ \"BIGNUMERIC\". If precision and scale are not specified, no value range constraint is imposed on this field insofar as values are permitted by the type. Values of this NUMERIC or BIGNUMERIC field must be in this range when: - Precision (P) and scale (S) are specified: [-10P-S + 10-S, 10P-S - 10-S] - Precision (P) is specified but not scale (and thus scale is interpreted to be equal to zero): [-10P + 1, 10P - 1]. Acceptable values for precision and scale if both are specified: - If type = \"NUMERIC\": 1 ≤ precision - scale ≤ 29 and 0 ≤ scale ≤ 9. - If type = \"BIGNUMERIC\": 1 ≤ precision - scale ≤ 38 and 0 ≤ scale ≤ 38. Acceptable values for precision if only precision is specified but not scale (and thus scale is interpreted to be equal to zero): - If type = \"NUMERIC\": 1 ≤ precision ≤ 29. - If type = \"BIGNUMERIC\": 1 ≤ precision ≤ 38. If scale is specified but not precision, then it is invalid.",
+          "format": "int64",
+          "type": "string"
+        },
+        "scale": {
+          "description": "[Optional] See documentation for precision.",
+          "format": "int64",
+          "type": "string"
+        },
         "type": {
-          "description": "[Required] The field data type. Possible values include STRING, BYTES, INTEGER, INT64 (same as INTEGER), FLOAT, FLOAT64 (same as FLOAT), NUMERIC, BIGNUMERIC, BOOLEAN, BOOL (same as BOOLEAN), TIMESTAMP, DATE, TIME, DATETIME, RECORD (where RECORD indicates that the field contains a nested schema) or STRUCT (same as RECORD).",
+          "description": "[Required] The field data type. Possible values include STRING, BYTES, INTEGER, INT64 (same as INTEGER), FLOAT, FLOAT64 (same as FLOAT), NUMERIC, BIGNUMERIC, BOOLEAN, BOOL (same as BOOLEAN), TIMESTAMP, DATE, TIME, DATETIME, INTERVAL, RECORD (where RECORD indicates that the field contains a nested schema) or STRUCT (same as RECORD).",
           "type": "string"
         }
       },

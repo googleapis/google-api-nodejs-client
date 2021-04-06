@@ -333,7 +333,7 @@ export namespace run_v1 {
      */
     livenessProbe?: Schema$Probe;
     /**
-     * (Optional) Name of the container specified as a DNS_LABEL.
+     * (Optional) Name of the container specified as a DNS_LABEL. Currently unused in Cloud Run. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#dns-label-names
      */
     name?: string | null;
     /**
@@ -361,7 +361,7 @@ export namespace run_v1 {
      */
     terminationMessagePolicy?: string | null;
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Pod volumes to mount into the container's filesystem.
+     * (Optional) Cloud Run fully managed: supported Volume to mount into the container's filesystem. Only supports SecretVolumeSources. Cloud Run for Anthos: supported Pod volumes to mount into the container's filesystem.
      */
     volumeMounts?: Schema$VolumeMount[];
     /**
@@ -483,7 +483,7 @@ export namespace run_v1 {
      */
     value?: string | null;
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Source for the environment variable's value. Cannot be used if value is not empty.
+     * (Optional) Cloud Run fully managed: supported Source for the environment variable's value. Only supports secret_key_ref. Cloud Run for Anthos: supported Source for the environment variable's value. Cannot be used if value is not empty.
      */
     valueFrom?: Schema$EnvVarSource;
   }
@@ -496,7 +496,7 @@ export namespace run_v1 {
      */
     configMapKeyRef?: Schema$ConfigMapKeySelector;
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Selects a key of a secret in the pod's namespace
+     * (Optional) Cloud Run fully managed: supported. Selects a key (version) of a secret in Secret Manager. Cloud Run for Anthos: supported. Selects a key of a secret in the pod's namespace.
      */
     secretKeyRef?: Schema$SecretKeySelector;
   }
@@ -594,11 +594,11 @@ export namespace run_v1 {
     value?: string | null;
   }
   /**
-   * Cloud Run fully managed: not supported Cloud Run for Anthos: supported Maps a string key to a path within a volume.
+   * Cloud Run fully managed: supported Cloud Run for Anthos: supported Maps a string key to a path within a volume.
    */
   export interface Schema$KeyToPath {
     /**
-     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported The key to project.
+     * Cloud Run fully managed: supported The Cloud Secret Manager secret version. Can be 'latest' for the latest value or an integer for a specific version. Cloud Run for Anthos: supported The key to project.
      */
     key?: string | null;
     /**
@@ -606,7 +606,7 @@ export namespace run_v1 {
      */
     mode?: number | null;
     /**
-     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+     * Cloud Run fully managed: supported Cloud Run for Anthos: supported The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
      */
     path?: string | null;
   }
@@ -865,7 +865,7 @@ export namespace run_v1 {
      */
     ownerReferences?: Schema$OwnerReference[];
     /**
-     * (Optional) An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server. They may only be valid for a particular resource or set of resources. Populated by the system. Read-only. Value must be treated as opaque by clients. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+     * Optional. An opaque value that represents the internal version of this object that can be used by clients to determine when objects have changed. May be used for optimistic concurrency, change detection, and the watch operation on a resource or set of resources. Clients must treat these values as opaque and passed unmodified back to the server or omit the value to disable conflict-detection. They may only be valid for a particular resource or set of resources. Populated by the system. Read-only. Value must be treated as opaque by clients or omitted. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
      */
     resourceVersion?: string | null;
     /**
@@ -894,7 +894,7 @@ export namespace run_v1 {
      */
     controller?: boolean | null;
     /**
-     * Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds
+     * Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
      */
     kind?: string | null;
     /**
@@ -1160,7 +1160,7 @@ export namespace run_v1 {
    */
   export interface Schema$SecretKeySelector {
     /**
-     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported The key of the secret to select from. Must be a valid secret key.
+     * Cloud Run fully managed: supported A Cloud Secret Manager secret version. Must be 'latest' for the latest version or an integer for a specific version. Cloud Run for Anthos: supported The key of the secret to select from. Must be a valid secret key.
      */
     key?: string | null;
     /**
@@ -1168,7 +1168,7 @@ export namespace run_v1 {
      */
     localObjectReference?: Schema$LocalObjectReference;
     /**
-     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported The name of the secret in the pod's namespace to select from.
+     * Cloud Run fully managed: supported The name of the secret in Cloud Secret Manager. By default, the secret is assumed to be in the same project. If the secret is in another project, you must define an alias. An alias definition has the form: :projects//secrets/. If multiple alias definitions are needed, they must be separated by commas. The alias definitions must be set on the run.googleapis.com/secrets annotation. Cloud Run for Anthos: supported The name of the secret in the pod's namespace to select from.
      */
     name?: string | null;
     /**
@@ -1177,7 +1177,7 @@ export namespace run_v1 {
     optional?: boolean | null;
   }
   /**
-   * Cloud Run fully managed: not supported Cloud Run for Anthos: supported The contents of the target Secret's Data field will be presented in a volume as files using the keys in the Data field as the file names.
+   * Cloud Run fully managed: supported The secret's value will be presented as the content of a file whose name is defined in the item path. If no items are defined, the name of the file is the secret_name. Cloud Run for Anthos: supported The contents of the target Secret's Data field will be presented in a volume as files using the keys in the Data field as the file names.
    */
   export interface Schema$SecretVolumeSource {
     /**
@@ -1185,7 +1185,7 @@ export namespace run_v1 {
      */
     defaultMode?: number | null;
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional.
+     * (Optional) Cloud Run fully managed: supported If unspecified, the volume will expose a file whose name is the secret_name. If specified, the key will be used as the version to fetch from Cloud Secret Manager and the path will be the name of the file exposed in the volume. When items are defined, they must specify a key and a path. Cloud Run for Anthos: supported If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional.
      */
     items?: Schema$KeyToPath[];
     /**
@@ -1193,7 +1193,7 @@ export namespace run_v1 {
      */
     optional?: boolean | null;
     /**
-     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported Name of the secret in the container's namespace to use.
+     * Cloud Run fully managed: supported The name of the secret in Cloud Secret Manager. By default, the secret is assumed to be in the same project. If the secret is in another project, you must define an alias. An alias definition has the form: :projects//secrets/. If multiple alias definitions are needed, they must be separated by commas. The alias definitions must be set on the run.googleapis.com/secrets annotation. Cloud Run for Anthos: supported Name of the secret in the container's namespace to use.
      */
     secretName?: string | null;
   }
@@ -1219,7 +1219,7 @@ export namespace run_v1 {
      */
     kind?: string | null;
     /**
-     * Metadata associated with this Service, including name, namespace, labels, and annotations.
+     * Metadata associated with this Service, including name, namespace, labels, and annotations. Cloud Run (fully managed) uses the following annotation keys to configure features on a Service: * `run.googleapis.com/ingress` sets the ingress settings for the Service. See [the ingress settings documentation](/run/docs/securing/ingress) for details on configuring ingress settings. * `run.googleapis.com/ingress-status` is output-only and contains the currently active ingress settings for the Service. `run.googleapis.com/ingress-status` may differ from `run.googleapis.com/ingress` while the system is processing a change to `run.googleapis.com/ingress` or if the system failed to process a change to `run.googleapis.com/ingress`. When the system has processed all changes successfully `run.googleapis.com/ingress-status` and `run.googleapis.com/ingress` are equal.
      */
     metadata?: Schema$ObjectMeta;
     /**
@@ -1307,7 +1307,7 @@ export namespace run_v1 {
      */
     message?: string | null;
     /**
-     * Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds +optional
+     * Standard list metadata. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds +optional
      */
     metadata?: Schema$ListMeta;
     /**
@@ -1315,7 +1315,7 @@ export namespace run_v1 {
      */
     reason?: string | null;
     /**
-     * Status of the operation. One of: "Success" or "Failure". More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status +optional
+     * Status of the operation. One of: "Success" or "Failure". More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status +optional
      */
     status?: string | null;
   }
@@ -1349,7 +1349,7 @@ export namespace run_v1 {
      */
     group?: string | null;
     /**
-     * The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#types-kinds +optional
+     * The kind attribute of the resource associated with the status StatusReason. On some operations may differ from the requested resource Kind. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds +optional
      */
     kind?: string | null;
     /**
@@ -1421,7 +1421,7 @@ export namespace run_v1 {
      */
     tag?: string | null;
     /**
-     * Output only. URL displays the URL for accessing tagged traffic targets. URL is displayed in status, and is disallowed on spec. URL must contain a scheme (e.g. http://) and a hostname, but may not contain anything else (e.g. basic auth, url path, etc. Not currently supported in Cloud Run.
+     * Output only. URL displays the URL for accessing tagged traffic targets. URL is displayed in status, and is disallowed on spec. URL must contain a scheme (e.g. http://) and a hostname, but may not contain anything else (e.g. basic auth, url path, etc.)
      */
     url?: string | null;
   }
@@ -1434,11 +1434,11 @@ export namespace run_v1 {
      */
     configMap?: Schema$ConfigMapVolumeSource;
     /**
-     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported Volume's name.
+     * Cloud Run fully managed: supported Cloud Run for Anthos: supported Volume's name.
      */
     name?: string | null;
     /**
-     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported
+     * Cloud Run fully managed: supported Cloud Run for Anthos: supported
      */
     secret?: Schema$SecretVolumeSource;
   }
@@ -1447,15 +1447,15 @@ export namespace run_v1 {
    */
   export interface Schema$VolumeMount {
     /**
-     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported Path within the container at which the volume should be mounted. Must not contain ':'.
+     * Cloud Run fully managed: supported Cloud Run for Anthos: supported Path within the container at which the volume should be mounted. Must not contain ':'.
      */
     mountPath?: string | null;
     /**
-     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported This must match the Name of a Volume.
+     * Cloud Run fully managed: supported Cloud Run for Anthos: supported This must match the Name of a Volume.
      */
     name?: string | null;
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Only true is accepted. Defaults to true.
+     * (Optional) Cloud Run fully managed: supported Cloud Run for Anthos: supported Only true is accepted. Defaults to true.
      */
     readOnly?: boolean | null;
     /**
@@ -2024,6 +2024,8 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.domainmappings.create({
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
      *
@@ -2170,6 +2172,8 @@ export namespace run_v1 {
      *   const res = await run.namespaces.domainmappings.delete({
      *     // Cloud Run currently ignores this parameter.
      *     apiVersion: 'placeholder-value',
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
      *     // The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
@@ -2571,6 +2575,10 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Domainmappings$Create
     extends StandardParameters {
     /**
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
+    /**
      * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
@@ -2586,6 +2594,10 @@ export namespace run_v1 {
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
+    /**
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -2677,6 +2689,8 @@ export namespace run_v1 {
      *   const res = await run.namespaces.revisions.delete({
      *     // Cloud Run currently ignores this parameter.
      *     apiVersion: 'placeholder-value',
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
      *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
@@ -3079,6 +3093,10 @@ export namespace run_v1 {
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
+    /**
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -3500,6 +3518,8 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.create({
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
      *
@@ -3646,6 +3666,8 @@ export namespace run_v1 {
      *   const res = await run.namespaces.services.delete({
      *     // Cloud Run currently ignores this parameter.
      *     apiVersion: 'placeholder-value',
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
      *     // The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
@@ -4068,6 +4090,8 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.replaceService({
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'namespaces/my-namespace/services/my-service',
      *
@@ -4190,6 +4214,10 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Services$Create
     extends StandardParameters {
     /**
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
+    /**
      * The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
@@ -4205,6 +4233,10 @@ export namespace run_v1 {
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
+    /**
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -4262,6 +4294,10 @@ export namespace run_v1 {
   }
   export interface Params$Resource$Namespaces$Services$Replaceservice
     extends StandardParameters {
+    /**
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
     /**
      * The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
@@ -4503,13 +4539,13 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.list({
-     *     // The standard list filter.
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The standard list page size.
+     *     // The maximum number of results to return. If not set, the service will select a default.
      *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4621,7 +4657,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * The standard list filter.
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -4629,11 +4665,11 @@ export namespace run_v1 {
      */
     name?: string;
     /**
-     * The standard list page size.
+     * The maximum number of results to return. If not set, the service will select a default.
      */
     pageSize?: number;
     /**
-     * The standard list page token.
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
   }
@@ -5172,6 +5208,8 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.domainmappings.create({
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
      *
@@ -5319,6 +5357,8 @@ export namespace run_v1 {
      *   const res = await run.projects.locations.domainmappings.delete({
      *     // Cloud Run currently ignores this parameter.
      *     apiVersion: 'placeholder-value',
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
      *     // The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
@@ -5717,6 +5757,10 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Domainmappings$Create
     extends StandardParameters {
     /**
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
+    /**
      * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
@@ -5732,6 +5776,10 @@ export namespace run_v1 {
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
+    /**
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -5823,6 +5871,8 @@ export namespace run_v1 {
      *   const res = await run.projects.locations.revisions.delete({
      *     // Cloud Run currently ignores this parameter.
      *     apiVersion: 'placeholder-value',
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
      *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
@@ -6220,6 +6270,10 @@ export namespace run_v1 {
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
+    /**
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -6639,6 +6693,8 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.create({
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
      *
@@ -6786,6 +6842,8 @@ export namespace run_v1 {
      *   const res = await run.projects.locations.services.delete({
      *     // Cloud Run currently ignores this parameter.
      *     apiVersion: 'placeholder-value',
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
      *     // The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
@@ -7337,6 +7395,8 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.replaceService({
+     *     // Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     *     dryRun: 'placeholder-value',
      *     // The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *
@@ -7741,6 +7801,10 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Services$Create
     extends StandardParameters {
     /**
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
+    /**
      * The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
@@ -7756,6 +7820,10 @@ export namespace run_v1 {
      * Cloud Run currently ignores this parameter.
      */
     apiVersion?: string;
+    /**
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
     /**
      * Cloud Run currently ignores this parameter.
      */
@@ -7824,6 +7892,10 @@ export namespace run_v1 {
   }
   export interface Params$Resource$Projects$Locations$Services$Replaceservice
     extends StandardParameters {
+    /**
+     * Indicates that the server should validate the request and populate default values without persisting the request. Supported values: `all`
+     */
+    dryRun?: string;
     /**
      * The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */

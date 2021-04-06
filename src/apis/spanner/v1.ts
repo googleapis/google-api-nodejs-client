@@ -217,6 +217,10 @@ export namespace spanner_v1 {
      * Required. Options for the new transaction.
      */
     options?: Schema$TransactionOptions;
+    /**
+     * Common options for this request. Priority is ignored for this request. Setting the priority in this request_options struct will not do anything. To set the priority for a transaction, set it on the reads and writes that are part of this transaction instead.
+     */
+    requestOptions?: Schema$RequestOptions;
   }
   /**
    * Associates `members` with a `role`.
@@ -260,6 +264,10 @@ export namespace spanner_v1 {
      * The mutations to be executed when this transaction commits. All mutations are applied atomically, in the order they appear in this list.
      */
     mutations?: Schema$Mutation[];
+    /**
+     * Common options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
     /**
      * If `true`, then statistics related to the transaction will be included in the CommitResponse. Default value is `false`.
      */
@@ -470,6 +478,10 @@ export namespace spanner_v1 {
    */
   export interface Schema$ExecuteBatchDmlRequest {
     /**
+     * Common options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
+    /**
      * Required. A per-transaction sequence number used to identify this request. This field makes each request idempotent such that if the request is received multiple times, at most one will succeed. The sequence number must be monotonically increasing within the transaction. If a request arrives for the first time with an out-of-order sequence number, the transaction may be aborted. Replays of previously handled requests will yield the same response as the first execution.
      */
     seqno?: string | null;
@@ -519,6 +531,10 @@ export namespace spanner_v1 {
      * Query optimizer configuration to use for the given query.
      */
     queryOptions?: Schema$QueryOptions;
+    /**
+     * Common options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
     /**
      * If this request is resuming a previously interrupted SQL statement execution, `resume_token` should be copied from the last PartialResultSet yielded before the interruption. Doing this enables the new SQL statement execution to resume where the last one left off. The rest of the request parameters must exactly match the request that yielded this token.
      */
@@ -1046,7 +1062,11 @@ export namespace spanner_v1 {
    */
   export interface Schema$QueryOptions {
     /**
-     * An option to control the selection of optimizer version. This parameter allows individual queries to pick different query optimizer versions. Specifying "latest" as a value instructs Cloud Spanner to use the latest supported query optimizer version. If not specified, Cloud Spanner uses optimizer version set at the database level options. Any other positive integer (from the list of supported optimizer versions) overrides the default optimizer version for query execution. The list of supported optimizer versions can be queried from SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS. Executing a SQL statement with an invalid optimizer version will fail with a syntax error (`INVALID_ARGUMENT`) status. See https://cloud.google.com/spanner/docs/query-optimizer/manage-query-optimizer for more information on managing the query optimizer. The `optimizer_version` statement hint has precedence over this setting.
+     * An option to control the selection of optimizer statistics package. This parameter allows individual queries to use a different query optimizer statistics package. Specifying `latest` as a value instructs Cloud Spanner to use the latest generated statistics package. If not specified, Cloud Spanner uses the statistics package set at the database level options, or the latest package if the database option is not set. The statistics package requested by the query has to be exempt from garbage collection. This can be achieved with the following DDL statement: ``` ALTER STATISTICS SET OPTIONS (allow_gc=false) ``` The list of available statistics packages can be queried from `INFORMATION_SCHEMA.SPANNER_STATISTICS`. Executing a SQL statement with an invalid optimizer statistics package or with a statistics package that allows garbage collection fails with an `INVALID_ARGUMENT` error.
+     */
+    optimizerStatisticsPackage?: string | null;
+    /**
+     * An option to control the selection of optimizer version. This parameter allows individual queries to pick different query optimizer versions. Specifying `latest` as a value instructs Cloud Spanner to use the latest supported query optimizer version. If not specified, Cloud Spanner uses the optimizer version set at the database level options. Any other positive integer (from the list of supported optimizer versions) overrides the default optimizer version for query execution. The list of supported optimizer versions can be queried from SPANNER_SYS.SUPPORTED_OPTIMIZER_VERSIONS. Executing a SQL statement with an invalid optimizer version fails with an `INVALID_ARGUMENT` error. See https://cloud.google.com/spanner/docs/query-optimizer/manage-query-optimizer for more information on managing the query optimizer. The `optimizer_version` statement hint has precedence over this setting.
      */
     optimizerVersion?: string | null;
   }
@@ -1113,6 +1133,10 @@ export namespace spanner_v1 {
      */
     partitionToken?: string | null;
     /**
+     * Common options for this request.
+     */
+    requestOptions?: Schema$RequestOptions;
+    /**
      * If this request is resuming a previously interrupted read, `resume_token` should be copied from the last PartialResultSet yielded before the interruption. Doing this enables the new read to resume where the last read left off. The rest of the request parameters must exactly match the request that yielded this token.
      */
     resumeToken?: string | null;
@@ -1142,6 +1166,23 @@ export namespace spanner_v1 {
      * The type of replica.
      */
     type?: string | null;
+  }
+  /**
+   * Common request options for various APIs.
+   */
+  export interface Schema$RequestOptions {
+    /**
+     * Priority for the request.
+     */
+    priority?: string | null;
+    /**
+     * A per-request tag which can be applied to queries or reads, used for statistics collection. Both request_tag and transaction_tag can be specified for a read or query that belongs to a transaction. This field is ignored for requests where it's not applicable (e.g. CommitRequest). `request_tag` must be a valid identifier of the form: `a-zA-Z` between 2 and 64 characters in length
+     */
+    requestTag?: string | null;
+    /**
+     * A tag used for statistics collection about this transaction. Both request_tag and transaction_tag can be specified for a read or query that belongs to a transaction. The value of transaction_tag should be the same for all requests belonging to the same transaction. If this request doesn’t belong to any transaction, transaction_tag will be ignored. `transaction_tag` must be a valid identifier of the format: `a-zA-Z{0,49\}`
+     */
+    transactionTag?: string | null;
   }
   /**
    * Encryption configuration for the restored database.
@@ -1198,7 +1239,7 @@ export namespace spanner_v1 {
      */
     databaseId?: string | null;
     /**
-     * Optional. An encryption configuration describing the encryption type and key resources in Cloud KMS used to encrypt/decrypt the database to restore to. If this field is not specified, the restored database will use the same encryption configuration as the backup by default, namely encryption_type = `USE_CONFIG_DEFAULT_OR_DATABASE_ENCRYPTION`.
+     * Optional. An encryption configuration describing the encryption type and key resources in Cloud KMS used to encrypt/decrypt the database to restore to. If this field is not specified, the restored database will use the same encryption configuration as the backup by default, namely encryption_type = `USE_CONFIG_DEFAULT_OR_BACKUP_ENCRYPTION`.
      */
     encryptionConfig?: Schema$RestoreDatabaseEncryptionConfig;
   }
@@ -1455,6 +1496,10 @@ export namespace spanner_v1 {
      * The database being modified.
      */
     database?: string | null;
+    /**
+     * The progress of the UpdateDatabaseDdl operations. Currently, only index creation statements will have a continuously updating progress. For non-index creation statements, `progress[i]` will have start time and end time populated with commit timestamp of operation, as well as a progress of 100% once the operation has completed. `progress[i]` is the operation progress for `statements[i]`.
+     */
+    progress?: Schema$OperationProgress[];
     /**
      * For an update this list contains all the statements. For an individual statement, this list contains only that statement.
      */
@@ -7609,7 +7654,8 @@ export namespace spanner_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
-     *         //   "options": {}
+     *         //   "options": {},
+     *         //   "requestOptions": {}
      *         // }
      *       },
      *     }
@@ -7753,6 +7799,7 @@ export namespace spanner_v1 {
      *       // request body parameters
      *       // {
      *       //   "mutations": [],
+     *       //   "requestOptions": {},
      *       //   "returnCommitStats": false,
      *       //   "singleUseTransaction": {},
      *       //   "transactionId": "my_transactionId"
@@ -8169,6 +8216,7 @@ export namespace spanner_v1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "requestOptions": {},
      *         //   "seqno": "my_seqno",
      *         //   "statements": [],
      *         //   "transaction": {}
@@ -8326,6 +8374,7 @@ export namespace spanner_v1 {
      *       //   "partitionToken": "my_partitionToken",
      *       //   "queryMode": "my_queryMode",
      *       //   "queryOptions": {},
+     *       //   "requestOptions": {},
      *       //   "resumeToken": "my_resumeToken",
      *       //   "seqno": "my_seqno",
      *       //   "sql": "my_sql",
@@ -8478,6 +8527,7 @@ export namespace spanner_v1 {
      *         //   "partitionToken": "my_partitionToken",
      *         //   "queryMode": "my_queryMode",
      *         //   "queryOptions": {},
+     *         //   "requestOptions": {},
      *         //   "resumeToken": "my_resumeToken",
      *         //   "seqno": "my_seqno",
      *         //   "sql": "my_sql",
@@ -9218,6 +9268,7 @@ export namespace spanner_v1 {
      *       //   "keySet": {},
      *       //   "limit": "my_limit",
      *       //   "partitionToken": "my_partitionToken",
+     *       //   "requestOptions": {},
      *       //   "resumeToken": "my_resumeToken",
      *       //   "table": "my_table",
      *       //   "transaction": {}
@@ -9508,6 +9559,7 @@ export namespace spanner_v1 {
      *         //   "keySet": {},
      *         //   "limit": "my_limit",
      *         //   "partitionToken": "my_partitionToken",
+     *         //   "requestOptions": {},
      *         //   "resumeToken": "my_resumeToken",
      *         //   "table": "my_table",
      *         //   "transaction": {}

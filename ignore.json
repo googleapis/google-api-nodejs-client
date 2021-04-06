@@ -1,6 +1,5 @@
 {
   "ignore": [
-    "apigee:v1",
-    "youtube:v3"
+    "apigee:v1"
   ]
 }

@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -524,7 +524,7 @@
       }
     }
   },
-  "revision": "20210225",
+  "revision": "20210325",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
     "ClassItem": {
@@ -659,6 +659,11 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "outputConfig": {
+          "$ref": "TranscriptOutputConfig",
+          "description": "Output only. A copy of the TranscriptOutputConfig if it was set in the request.",
+          "readOnly": true
+        },
         "progressPercent": {
           "description": "Approximate percentage of audio processed thus far. Guaranteed to be 100 when the audio is fully processed and the results are available.",
           "format": "int32",
@@ -688,6 +693,10 @@
         "config": {
           "$ref": "RecognitionConfig",
           "description": "Required. Provides information to the recognizer that specifies how to process the request."
+        },
+        "outputConfig": {
+          "$ref": "TranscriptOutputConfig",
+          "description": "Optional. Specifies an optional destination for the recognition results."
         }
       },
       "type": "object"
@@ -696,6 +705,14 @@
       "description": "The only message returned to the client by the `LongRunningRecognize` method. It contains the result as zero or more sequential `SpeechRecognitionResult` messages. It is included in the `result.response` field of the `Operation` returned by the `GetOperation` call of the `google::longrunning::Operations` service.",
       "id": "LongRunningRecognizeResponse",
       "properties": {
+        "outputConfig": {
+          "$ref": "TranscriptOutputConfig",
+          "description": "Original output config if present in the request."
+        },
+        "outputError": {
+          "$ref": "Status",
+          "description": "If the transcript output fails this field contains the relevant error."
+        },
         "results": {
           "description": "Sequential list of transcription results corresponding to sequential portions of audio.",
           "items": {
@@ -802,7 +819,7 @@
       "properties": {
         "adaptation": {
           "$ref": "SpeechAdaptation",
-          "description": "Speech adaptation configuration improves the accuracy of speech recognition. When speech adaptation is set it supersedes the `speech_contexts` field. For more information, see the [speech adaptation](https://cloud.google.com/speech-to-text/docs/context-strength) documentation."
+          "description": "Speech adaptation configuration improves the accuracy of speech recognition. When speech adaptation is set it supersedes the `speech_contexts` field. For more information, see the [speech adaptation](https://cloud.google.com/speech-to-text/docs/adaptation) documentation."
         },
         "alternativeLanguageCodes": {
           "description": "A list of up to 3 additional [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags, listing possible alternative languages of the supplied audio. See [Language Support](https://cloud.google.com/speech-to-text/docs/languages) for a list of the currently supported language codes. If alternative languages are listed, recognition result will contain recognition in the most likely language detected including the main language_code. The recognition result will include the language tag of the language detected in the audio. Note: This feature is only supported for Voice Command and Voice Search use cases and performance may vary for other use cases (e.g., phone call transcription).",
@@ -898,7 +915,7 @@
           "type": "integer"
         },
         "speechContexts": {
-          "description": "Array of SpeechContext. A means to provide context to assist the speech recognition. For more information, see [speech adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).",
+          "description": "Array of SpeechContext. A means to provide context to assist the speech recognition. For more information, see [speech adaptation](https://cloud.google.com/speech-to-text/docs/adaptation).",
           "items": {
             "$ref": "SpeechContext"
           },
@@ -1190,6 +1207,17 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TranscriptOutputConfig": {
+      "description": "Specifies an optional destination for the recognition results.",
+      "id": "TranscriptOutputConfig",
+      "properties": {
+        "gcsUri": {
+          "description": "Specifies a Cloud Storage URI for the recognition results. Must be specified in the format: `gs://bucket_name/object_name`, and the bucket must already exist.",
           "type": "string"
         }
       },

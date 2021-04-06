@@ -534,10 +534,6 @@ export namespace servicemanagement_v1 {
     message?: string | null;
   }
   /**
-   * Operation payload for DisableService method.
-   */
-  export interface Schema$DisableServiceResponse {}
-  /**
    * `Documentation` provides the information for describing a service. Example: documentation: summary: \> The Google Calendar API gives access to most calendar features. pages: - name: Overview content: (== include google/foo/overview.md ==) - name: Tutorial content: (== include google/foo/tutorial.md ==) subpages; - name: Java content: (== include google/foo/tutorial_java.md ==) rules: - selector: google.calendar.Calendar.Get description: \> ... - selector: google.calendar.Calendar.Put description: \> ... Documentation is provided in markdown syntax. In addition to standard markdown features, definition lists, tables and fenced code blocks are supported. Section headers can be provided and are interpreted relative to the section nesting of the context where a documentation fragment is embedded. Documentation from the IDL is merged with documentation defined via the config at normalization time, where documentation provided by config rules overrides IDL provided. A number of constructs specific to the API platform are supported in documentation text. In order to reference a proto element, the following notation can be used: [fully.qualified.proto.name][] To override the display text used for the link, this can be used: [display text][fully.qualified.proto.name] Text can be excluded from doc using the following notation: (-- internal comment --) A few directives are available in documentation. Note that directives must appear on a single line to be properly identified. The `include` directive includes a markdown file from an external source: (== include path/to/file ==) The `resource_for` directive marks a message to be the resource of a collection in REST view. If it is not specified, tools attempt to infer the resource from the operations in a collection: (== resource_for v1.shelves.books ==) The directive `suppress_warning` does not directly affect documentation and is documented together with service config validation.
    */
   export interface Schema$Documentation {
@@ -582,15 +578,6 @@ export namespace servicemanagement_v1 {
      * The selector is a comma-separated list of patterns. Each pattern is a qualified name of the element which may end in "*", indicating a wildcard. Wildcards are only allowed at the end and for a whole component of the qualified name, i.e. "foo.*" is ok, but not "foo.b*" or "foo.*.bar". A wildcard will match one or more components. To specify a default for all applicable elements, the whole pattern "*" is used.
      */
     selector?: string | null;
-  }
-  /**
-   * Request message for EnableService method.
-   */
-  export interface Schema$EnableServiceRequest {
-    /**
-     * Required. The identity of consumer resource which service enablement will be applied to. The Google Service Management implementation accepts the following forms: - "project:" Note: this is made compatible with google.api.servicecontrol.v1.Operation.consumer_id.
-     */
-    consumerId?: string | null;
   }
   /**
    * Operation payload for EnableService method.
@@ -1405,7 +1392,7 @@ export namespace servicemanagement_v1 {
      */
     billing?: Schema$Billing;
     /**
-     * Deprecated. The service config compiler always sets this field to `3`.
+     * Obsolete. Do not use. This field has no semantic meaning. The service config compiler always sets this field to `3`.
      */
     configVersion?: number | null;
     /**
@@ -2294,150 +2281,6 @@ export namespace servicemanagement_v1 {
               '$1'
             ),
             method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['serviceName'],
-        pathParams: ['serviceName'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * Enables a service for a project, so it can be used for the project. See [Cloud Auth Guide](https://cloud.google.com/docs/authentication) for more information. Operation
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/servicemanagement.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const servicemanagement = google.servicemanagement('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/service.management',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await servicemanagement.services.enable({
-     *     // Required. Name of the service to enable. Specifying an unknown service name will cause the request to fail.
-     *     serviceName: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "consumerId": "my_consumerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    enable(
-      params: Params$Resource$Services$Enable,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    enable(
-      params?: Params$Resource$Services$Enable,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    enable(
-      params: Params$Resource$Services$Enable,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    enable(
-      params: Params$Resource$Services$Enable,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    enable(
-      params: Params$Resource$Services$Enable,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    enable(callback: BodyResponseCallback<Schema$Operation>): void;
-    enable(
-      paramsOrCallback?:
-        | Params$Resource$Services$Enable
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Services$Enable;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Enable;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://servicemanagement.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/services/{serviceName}:enable').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
           },
           options
         ),
@@ -3640,17 +3483,6 @@ export namespace servicemanagement_v1 {
      * Required. The name of the service. See the [overview](/service-management/overview) for naming requirements. For example: `example.googleapis.com`.
      */
     serviceName?: string;
-  }
-  export interface Params$Resource$Services$Enable extends StandardParameters {
-    /**
-     * Required. Name of the service to enable. Specifying an unknown service name will cause the request to fail.
-     */
-    serviceName?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$EnableServiceRequest;
   }
   export interface Params$Resource$Services$Generateconfigreport
     extends StandardParameters {

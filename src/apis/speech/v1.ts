@@ -274,7 +274,7 @@ export namespace speech_v1 {
      */
     sampleRateHertz?: number | null;
     /**
-     * Array of SpeechContext. A means to provide context to assist the speech recognition. For more information, see [speech adaptation](https://cloud.google.com/speech-to-text/docs/context-strength).
+     * Array of SpeechContext. A means to provide context to assist the speech recognition. For more information, see [speech adaptation](https://cloud.google.com/speech-to-text/docs/adaptation).
      */
     speechContexts?: Schema$SpeechContext[];
     /**

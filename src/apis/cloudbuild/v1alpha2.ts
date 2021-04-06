@@ -233,7 +233,7 @@ export namespace cloudbuild_v1alpha2 {
      */
     secrets?: Schema$Secret[];
     /**
-     * IAM service account whose credentials will be used at build runtime. Must be of the format `projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}`. ACCOUNT can be email address or uniqueId of the service account. This field is in beta.
+     * IAM service account whose credentials will be used at build runtime. Must be of the format `projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}`. ACCOUNT can be email address or uniqueId of the service account.
      */
     serviceAccount?: string | null;
     /**
@@ -757,6 +757,10 @@ export namespace cloudbuild_v1alpha2 {
      * If provided, get the source from this location in Google Cloud Storage.
      */
     storageSource?: Schema$StorageSource;
+    /**
+     * If provided, get the source from this manifest in Google Cloud Storage. This feature is in Preview.
+     */
+    storageSourceManifest?: Schema$StorageSourceManifest;
   }
   /**
    * Provenance of the source. Ways to find the original source, or verify that some source was used for this build.
@@ -774,6 +778,10 @@ export namespace cloudbuild_v1alpha2 {
      * A copy of the build's `source.storage_source`, if exists, with any generations resolved.
      */
     resolvedStorageSource?: Schema$StorageSource;
+    /**
+     * A copy of the build's `source.storage_source_manifest`, if exists, with any revisions resolved. This feature is in Preview.
+     */
+    resolvedStorageSourceManifest?: Schema$StorageSourceManifest;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -806,6 +814,23 @@ export namespace cloudbuild_v1alpha2 {
     generation?: string | null;
     /**
      * Google Cloud Storage object containing the source. This object must be a gzipped archive file (`.tar.gz`) containing source to build.
+     */
+    object?: string | null;
+  }
+  /**
+   * Location of the source manifest in Google Cloud Storage. This feature is in Preview.
+   */
+  export interface Schema$StorageSourceManifest {
+    /**
+     * Google Cloud Storage bucket containing the source manifest (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)).
+     */
+    bucket?: string | null;
+    /**
+     * Google Cloud Storage generation for the object. If the generation is omitted, the latest generation will be used.
+     */
+    generation?: string | null;
+    /**
+     * Google Cloud Storage object containing the source manifest. This object must be a JSON file.
      */
     object?: string | null;
   }

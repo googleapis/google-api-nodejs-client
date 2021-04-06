@@ -9,7 +9,7 @@
           "description": "See, create, and delete its own configuration data in your Google Drive"
         },
         "https://www.googleapis.com/auth/drive.file": {
-          "description": "View and manage Google Drive files and folders that you have opened or created with this app"
+          "description": "See, edit, create, and delete only the specific Google Drive files you use with this app"
         },
         "https://www.googleapis.com/auth/drive.metadata": {
           "description": "View and manage metadata of files in your Google Drive"
@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/_w67gF5xPKfOw4DCYqfd5GwBcCo\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/OJJW7Iw8BEx9p12r7dD_2mNZIX0\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -2185,7 +2185,7 @@
       }
     }
   },
-  "revision": "20210228",
+  "revision": "20210315",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {

@@ -106,6 +106,60 @@
   "protocol": "rest",
   "resources": {
     "bidders": {
+      "methods": {
+        "get": {
+          "description": "Gets a bidder account by its name.",
+          "flatPath": "v1/bidders/{biddersId}",
+          "httpMethod": "GET",
+          "id": "realtimebidding.bidders.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Name of the bidder to get. Format: `bidders/{bidderAccountId}`",
+              "location": "path",
+              "pattern": "^bidders/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "Bidder"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/realtime-bidding"
+          ]
+        },
+        "list": {
+          "description": "Lists all the bidder accounts that belong to the caller.",
+          "flatPath": "v1/bidders",
+          "httpMethod": "GET",
+          "id": "realtimebidding.bidders.list",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "The maximum number of bidders to return. If unspecified, at most 100 bidders will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A token identifying a page of results the server should return. This value is received from a previous `ListBidders` call in ListBiddersResponse.nextPageToken.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/bidders",
+          "response": {
+            "$ref": "ListBiddersResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/realtime-bidding"
+          ]
+        }
+      },
       "resources": {
         "creatives": {
           "methods": {
@@ -188,6 +242,71 @@
               },
               "response": {
                 "$ref": "WatchCreativesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            }
+          }
+        },
+        "endpoints": {
+          "methods": {
+            "get": {
+              "description": "Gets a bidder endpoint by its name.",
+              "flatPath": "v1/bidders/{biddersId}/endpoints/{endpointsId}",
+              "httpMethod": "GET",
+              "id": "realtimebidding.bidders.endpoints.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the bidder endpoint to get. Format: `bidders/{bidderAccountId}/endpoints/{endpointId}`",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+/endpoints/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Endpoint"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "list": {
+              "description": "Lists all the bidder's endpoints.",
+              "flatPath": "v1/bidders/{biddersId}/endpoints",
+              "httpMethod": "GET",
+              "id": "realtimebidding.bidders.endpoints.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of endpoints to return. If unspecified, at most 100 endpoints will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A token identifying a page of results the server should return. This value is received from a previous `ListEndpoints` call in ListEndpointsResponse.nextPageToken.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Name of the bidder whose endpoints will be listed. Format: `bidders/{bidderAccountId}`",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/endpoints",
+              "response": {
+                "$ref": "ListEndpointsResponse"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/realtime-bidding"
@@ -575,6 +694,31 @@
     },
     "buyers": {
       "methods": {
+        "get": {
+          "description": "Gets a buyer account by its name.",
+          "flatPath": "v1/buyers/{buyersId}",
+          "httpMethod": "GET",
+          "id": "realtimebidding.buyers.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. Name of the buyer to get. Format: `buyers/{buyerId}`",
+              "location": "path",
+              "pattern": "^buyers/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+name}",
+          "response": {
+            "$ref": "Buyer"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/realtime-bidding"
+          ]
+        },
         "getRemarketingTag": {
           "description": "Gets remarketing tag for a buyer. A remarketing tag is a piece of JavaScript code that can be placed on a web page. When a user visits a page containing a remarketing tag, Google adds the user to a user list.",
           "flatPath": "v1/buyers/{buyersId}:getRemarketingTag",
@@ -595,6 +739,33 @@
           "path": "v1/{+name}:getRemarketingTag",
           "response": {
             "$ref": "GetRemarketingTagResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/realtime-bidding"
+          ]
+        },
+        "list": {
+          "description": "Lists all buyer account information the calling buyer user or service account is permissioned to manage.",
+          "flatPath": "v1/buyers",
+          "httpMethod": "GET",
+          "id": "realtimebidding.buyers.list",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "The maximum number of buyers to return. If unspecified, at most 100 buyers will be returned. The maximum value is 500; values above 500 will be coerced to 500.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A token identifying a page of results the server should return. This value is received from a previous `ListBuyers` call in ListBuyersResponse.nextPageToken.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/buyers",
+          "response": {
+            "$ref": "ListBuyersResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/realtime-bidding"
@@ -969,13 +1140,43 @@
       }
     }
   },
-  "revision": "20201110",
+  "revision": "20210323",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {
       "description": "A request to activate a pretargeting configuration. Sets the configuration's state to ACTIVE.",
       "id": "ActivatePretargetingConfigRequest",
       "properties": {},
+      "type": "object"
+    },
+    "AdTechnologyProviders": {
+      "description": "The list of detected Ad Technology Providers for this creative. Bids placed for inventory that will serve to EEA or UK users are expected to comply with GDPR requirements. You must ensure that the creatives used in such bids should contain only user consented ad technology providers as indicated in the bid request. Google reserves the right to filter non-compliant bids. User consented ad technology providers can be found in the [Google Protocol](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto) with the `BidRequest.adslot.consented_providers_settings` field, and can be found as an [OpenRTB extension](https://developers.google.com/authorized-buyers/rtb/downloads/openrtb-adx-proto) with the `BidRequest.user.ext.consented_providers_settings` and `BidRequest.user.ext.consent` fields. See https://support.google.com/authorizedbuyers/answer/9789378 for additional information about the Google TCF v2 integration.",
+      "id": "AdTechnologyProviders",
+      "properties": {
+        "detectedGvlIds": {
+          "description": "The detected IAB Global Vendor List (GVL) IDs for this creative. See the IAB Global Vendor List at https://vendorlist.consensu.org/v2/vendor-list.json for details about the vendors.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "detectedProviderIds": {
+          "description": "The detected [Google Ad Tech Providers (ATP)](https://support.google.com/admanager/answer/9012903) for this creative. See https://storage.googleapis.com/adx-rtb-dictionaries/providers.csv for mapping of provider ID to provided name, a privacy policy URL, and a list of domains which can be attributed to the provider.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "unidentifiedProviderDomains": {
+          "description": "Domains of detected unidentified ad technology providers (if any). You must ensure that the creatives used in bids placed for inventory that will serve to EEA or UK users does not contain unidentified ad technology providers. Google reserves the right to filter non-compliant bids.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "AddTargetedAppsRequest": {
@@ -1098,6 +1299,80 @@
         "mobileAppTargeting": {
           "$ref": "StringTargetingDimension",
           "description": "Targeted app IDs. App IDs can refer to those found in an app store or ones that are not published in an app store. A maximum of 30,000 app IDs can be targeted."
+        }
+      },
+      "type": "object"
+    },
+    "Bidder": {
+      "description": "Bidder settings.",
+      "id": "Bidder",
+      "properties": {
+        "bypassNonguaranteedDealsPretargeting": {
+          "description": "Output only. A flag to bypass pretargeting for private auctions and preferred deals. When true, bid requests from these nonguaranteed deals will always be sent. When false, bid requests will be subject to regular pretargeting configurations. Programmatic Guaranteed deals will always be sent to the bidder, regardless of the value for this flag. Auction packages are not impacted by this value and are subject to the regular pretargeting configurations.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "cookieMatchingNetworkId": {
+          "description": "Output only. The buyer's network ID used for cookie matching. This ID corresponds to the `google_nid` parameter in the URL used in cookie match requests. Refer to https://developers.google.com/authorized-buyers/rtb/cookie-guide for further information.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "cookieMatchingUrl": {
+          "description": "Output only. The base URL used in cookie match requests. Refer to https://developers.google.com/authorized-buyers/rtb/cookie-guide for further information.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dealsBillingId": {
+          "description": "Output only. The billing ID for the deals pretargeting config. This billing ID is sent on the bid request for guaranteed and nonguaranteed deals matched in pretargeting.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the bidder resource that must follow the pattern `bidders/{bidderAccountId}`, where `{bidderAccountId}` is the account ID of the bidder whose information is to be received. One can get their account ID on the Authorized Buyers or Open Bidding UI, or by contacting their Google account manager.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Buyer": {
+      "description": "RTB Buyer account information.",
+      "id": "Buyer",
+      "properties": {
+        "activeCreativeCount": {
+          "description": "Output only. The number of creatives that this buyer submitted via the API or bid with in the last 30 days. This is counted against the maximum number of active creatives.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "bidder": {
+          "description": "Output only. The name of the bidder resource that is responsible for receiving bidding traffic for this account. The bidder name must follow the pattern `bidders/{bidderAccountId}`, where `{bidderAccountId}` is the account ID of the bidder receiving traffic for this buyer.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "billingIds": {
+          "description": "Output only. A list of billing IDs associated with this account. These IDs appear on: 1. A bid request, to signal which buyers are eligible to bid on a given opportunity, and which pretargeting configurations were matched for each eligible buyer. 2. The bid response, to attribute a winning impression to a specific account for billing, reporting, policy and publisher block enforcement.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Output only. The diplay name associated with this buyer account, as visible to sellers.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "maximumActiveCreativeCount": {
+          "description": "Output only. The maximum number of active creatives that this buyer can have.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the buyer resource that must follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}` is the account ID of the buyer account whose information is to be received. One can get their account ID on the Authorized Buyers or Open Bidding UI, or by contacting their Google account manager.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1357,6 +1632,10 @@
       "description": "Top level status and detected attributes of a creative.",
       "id": "CreativeServingDecision",
       "properties": {
+        "adTechnologyProviders": {
+          "$ref": "AdTechnologyProviders",
+          "description": "The detected ad technology providers."
+        },
         "chinaPolicyCompliance": {
           "$ref": "PolicyCompliance",
           "description": "The policy compliance of this creative in China. When approved or disapproved, this applies to both deals and open auction in China. When pending review, this creative is allowed to serve for deals but not for open auction."
@@ -1748,6 +2027,72 @@
       "properties": {},
       "type": "object"
     },
+    "Endpoint": {
+      "description": "Bidder endpoint that receives bid requests.",
+      "id": "Endpoint",
+      "properties": {
+        "bidProtocol": {
+          "description": "The protocol that the bidder endpoint is using.",
+          "enum": [
+            "BID_PROTOCOL_UNSPECIFIED",
+            "GOOGLE_RTB",
+            "OPENRTB_2_2",
+            "OPENRTB_2_3",
+            "OPENRTB_PROTOBUF_2_3",
+            "OPENRTB_2_4",
+            "OPENRTB_PROTOBUF_2_4",
+            "OPENRTB_2_5",
+            "OPENRTB_PROTOBUF_2_5"
+          ],
+          "enumDescriptions": [
+            "Placeholder for undefined bid protocol. This value should not be used.",
+            "Google RTB protocol / Protobuf encoding.",
+            "OpenRTB / JSON encoding, specification version 2.2.",
+            "OpenRTB / JSON encoding, specification version 2.3.",
+            "OpenRTB / Protobuf encoding, specification version 2.3.",
+            "OpenRTB / JSON encoding, specification version 2.4.",
+            "OpenRTB / Protobuf encoding, specification version 2.4.",
+            "OpenRTB / JSON encoding, specification version 2.5.",
+            "OpenRTB / Protobuf encoding, specification version 2.5."
+          ],
+          "type": "string"
+        },
+        "maximumQps": {
+          "description": "The maximum number of queries per second allowed to be sent to this server.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the endpoint resource that must follow the pattern `bidders/{bidderAccountId}/endpoints/{endpointId}`, where {bidderAccountId} is the account ID of the bidder who operates this endpoint, and {endpointId} is a unique ID assigned by the server.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tradingLocation": {
+          "description": "The trading location that bid requests should be sent from. See https://developers.google.com/authorized-buyers/rtb/peer-guide#trading-locations for further information.",
+          "enum": [
+            "TRADING_LOCATION_UNSPECIFIED",
+            "US_WEST",
+            "US_EAST",
+            "EUROPE",
+            "ASIA"
+          ],
+          "enumDescriptions": [
+            "A placeholder for an undefined trading region. This value should not be used.",
+            "The Western US trading location.",
+            "The Eastern US trading location.",
+            "The European trading location.",
+            "The Asia trading location."
+          ],
+          "type": "string"
+        },
+        "url": {
+          "description": "Output only. The URL that bid requests should be sent to.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GetRemarketingTagResponse": {
       "description": "Response for a request to get remarketing tag.",
       "id": "GetRemarketingTagResponse",
@@ -1834,6 +2179,42 @@
       },
       "type": "object"
     },
+    "ListBiddersResponse": {
+      "description": "A response containing bidders.",
+      "id": "ListBiddersResponse",
+      "properties": {
+        "bidders": {
+          "description": "List of bidders.",
+          "items": {
+            "$ref": "Bidder"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token which can be passed to a subsequent call to the `ListBidders` method to retrieve the next page of results in ListBiddersRequest.pageToken.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListBuyersResponse": {
+      "description": "A response containing buyer account information.",
+      "id": "ListBuyersResponse",
+      "properties": {
+        "buyers": {
+          "description": "List of buyers.",
+          "items": {
+            "$ref": "Buyer"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token which can be passed to a subsequent call to the `ListBuyers` method to retrieve the next page of results in ListBuyersRequest.pageToken.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListCreativesResponse": {
       "description": "A response for listing creatives.",
       "id": "ListCreativesResponse",
@@ -1847,6 +2228,24 @@
         },
         "nextPageToken": {
           "description": "A token to retrieve the next page of results. Pass this value in the ListCreativesRequest.pageToken field in the subsequent call to the `ListCreatives` method to retrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListEndpointsResponse": {
+      "description": "A response containing bidder endpoints.",
+      "id": "ListEndpointsResponse",
+      "properties": {
+        "endpoints": {
+          "description": "List of bidder endpoints.",
+          "items": {
+            "$ref": "Endpoint"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token which can be passed to a subsequent call to the `ListEndpoints` method to retrieve the next page of results in ListEndpointsRequest.pageToken.",
           "type": "string"
         }
       },

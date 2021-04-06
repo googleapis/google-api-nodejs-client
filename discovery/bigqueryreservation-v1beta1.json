@@ -6,7 +6,7 @@
           "description": "View and manage your data in Google BigQuery"
         },
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -736,7 +736,7 @@
       }
     }
   },
-  "revision": "20210219",
+  "revision": "20210324",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -890,17 +890,6 @@
             "Capacity commitment is failed to be activated by the backend."
           ],
           "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "CreateSlotPoolMetadata": {
-      "description": "The metadata for operation returned from ReservationService.CreateSlotPool.",
-      "id": "CreateSlotPoolMetadata",
-      "properties": {
-        "slotPool": {
-          "description": "Resource name of the slot pool that is being created. E.g., projects/myproject/locations/us-central1/reservations/foo/slotPools/123",
           "type": "string"
         }
       },

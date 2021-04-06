@@ -201,6 +201,15 @@ export namespace cloudsearch_v1 {
      */
     searchSessionsCount?: string | null;
   }
+  /**
+   * Represents settings at a customer level.
+   */
+  export interface Schema$CustomerSettings {
+    /**
+     * VPC SC settings for the customer. If update_mask is empty then this field will be updated based on UpdateCustomerSettings request.
+     */
+    vpcSettings?: Schema$VPCSettings;
+  }
   export interface Schema$CustomerUserStats {
     /**
      * Date for which session stats were calculated. Stats calculated on the next day close to midnight are returned.
@@ -2181,6 +2190,12 @@ export namespace cloudsearch_v1 {
      * The value to be compared with.
      */
     value?: Schema$Value;
+  }
+  export interface Schema$VPCSettings {
+    /**
+     * The resource name of the GCP Project to be used for VPC SC policy check. VPC security settings on this project will be honored for Cloud Search APIs after project_name has been updated through CustomerService. Format: projects/{project_id\}
+     */
+    project?: string | null;
   }
 
   export class Resource$Debug {
@@ -6031,6 +6046,296 @@ export namespace cloudsearch_v1 {
         this.context
       );
     }
+
+    /**
+     * Get customer settings. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.getCustomer({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "vpcSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getCustomer(
+      params: Params$Resource$Settings$Getcustomer,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getCustomer(
+      params?: Params$Resource$Settings$Getcustomer,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CustomerSettings>;
+    getCustomer(
+      params: Params$Resource$Settings$Getcustomer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getCustomer(
+      params: Params$Resource$Settings$Getcustomer,
+      options: MethodOptions | BodyResponseCallback<Schema$CustomerSettings>,
+      callback: BodyResponseCallback<Schema$CustomerSettings>
+    ): void;
+    getCustomer(
+      params: Params$Resource$Settings$Getcustomer,
+      callback: BodyResponseCallback<Schema$CustomerSettings>
+    ): void;
+    getCustomer(callback: BodyResponseCallback<Schema$CustomerSettings>): void;
+    getCustomer(
+      paramsOrCallback?:
+        | Params$Resource$Settings$Getcustomer
+        | BodyResponseCallback<Schema$CustomerSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CustomerSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CustomerSettings>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$CustomerSettings> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Settings$Getcustomer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Settings$Getcustomer;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/settings/customer').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CustomerSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CustomerSettings>(parameters);
+      }
+    }
+
+    /**
+     * Update customer settings. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.updateCustomer({
+     *     // Update mask to control which fields get updated. If you specify a field in the update_mask but don't specify its value here, that field will be cleared. If the mask is not present or empty, all fields will be updated. Currently supported field paths: vpc_settings and audit_logging_settings
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "vpcSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateCustomer(
+      params: Params$Resource$Settings$Updatecustomer,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateCustomer(
+      params?: Params$Resource$Settings$Updatecustomer,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updateCustomer(
+      params: Params$Resource$Settings$Updatecustomer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateCustomer(
+      params: Params$Resource$Settings$Updatecustomer,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateCustomer(
+      params: Params$Resource$Settings$Updatecustomer,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateCustomer(callback: BodyResponseCallback<Schema$Operation>): void;
+    updateCustomer(
+      paramsOrCallback?:
+        | Params$Resource$Settings$Updatecustomer
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Settings$Updatecustomer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Settings$Updatecustomer;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudsearch.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/settings/customer').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Settings$Getcustomer
+    extends StandardParameters {}
+  export interface Params$Resource$Settings$Updatecustomer
+    extends StandardParameters {
+    /**
+     * Update mask to control which fields get updated. If you specify a field in the update_mask but don't specify its value here, that field will be cleared. If the mask is not present or empty, all fields will be updated. Currently supported field paths: vpc_settings and audit_logging_settings
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CustomerSettings;
   }
 
   export class Resource$Settings$Datasources {

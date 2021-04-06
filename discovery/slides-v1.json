@@ -6,7 +6,7 @@
           "description": "See, edit, create, and delete all of your Google Drive files"
         },
         "https://www.googleapis.com/auth/drive.file": {
-          "description": "View and manage Google Drive files and folders that you have opened or created with this app"
+          "description": "See, edit, create, and delete only the specific Google Drive files you use with this app"
         },
         "https://www.googleapis.com/auth/drive.readonly": {
           "description": "See and download all your Google Drive files"
@@ -313,7 +313,7 @@
       }
     }
   },
-  "revision": "20210302",
+  "revision": "20210322",
   "rootUrl": "https://slides.googleapis.com/",
   "schemas": {
     "AffineTransform": {

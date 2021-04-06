@@ -156,6 +156,10 @@ export namespace cloudasset_v1 {
     outputConfig?: Schema$IamPolicyAnalysisOutputConfig;
   }
   /**
+   * A response message for AssetService.AnalyzeIamPolicyLongrunning.
+   */
+  export interface Schema$AnalyzeIamPolicyLongrunningResponse {}
+  /**
    * A response message for AssetService.AnalyzeIamPolicy.
    */
   export interface Schema$AnalyzeIamPolicyResponse {
@@ -1497,7 +1501,7 @@ export namespace cloudasset_v1 {
      */
     parentAssetType?: string | null;
     /**
-     * The full resource name of this resource's parent, if it has one.
+     * The full resource name of this resource's parent, if it has one. To search against the `parent_full_resource_name`: * use a field query. Example: `parentFullResourceName:"project-name"` * use a free text query. Example: `project-name`
      */
     parentFullResourceName?: string | null;
     /**

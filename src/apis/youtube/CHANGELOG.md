@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/youtube-v0.2.0...youtube-v1.0.0) (2021-04-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* stop ignoring YouTube, and re-generate with latest API (#2575)
+
+### Bug Fixes
+
+* stop ignoring YouTube, and re-generate with latest API ([#2575](https://www.github.com/googleapis/google-api-nodejs-client/issues/2575)) ([7a6967f](https://www.github.com/googleapis/google-api-nodejs-client/commit/7a6967f7132c1d2ec34f1fba60609f0b7b515c83))
+
 ## [0.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/youtube-v0.1.0...youtube-v0.2.0) (2021-03-18)
 
 

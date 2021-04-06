@@ -230,6 +230,15 @@ export namespace notebooks_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Represents a custom encryption key configuration that can be applied to a resource. This will encrypt all disks in Virtual Machine.
+   */
+  export interface Schema$EncryptionConfig {
+    /**
+     * The Cloud KMS resource identifier of the customer-managed encryption key used to protect a resource, such as a disks. It has the following format: `projects/{PROJECT_ID\}/locations/{REGION\}/keyRings/{KEY_RING_NAME\}/cryptoKeys/{KEY_NAME\}`
+     */
+    kmsKey?: string | null;
+  }
+  /**
    * Definition of a software environment that is used to start a notebook instance.
    */
   export interface Schema$Environment {
@@ -525,6 +534,10 @@ export namespace notebooks_v1 {
      */
     upgradeable?: boolean | null;
     /**
+     * The new image self link this instance will be upgraded to if calling the upgrade endpoint. This field will only be populated if field upgradeable is true.
+     */
+    upgradeImage?: string | null;
+    /**
      * Additional information about upgrade.
      */
     upgradeInfo?: string | null;
@@ -611,6 +624,23 @@ export namespace notebooks_v1 {
     operations?: Schema$Operation[];
   }
   /**
+   * Response for listing Managed Notebook Runtimes.
+   */
+  export interface Schema$ListRuntimesResponse {
+    /**
+     * Page token that can be used to continue listing from the last result in the next list call.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of returned Runtimes.
+     */
+    runtimes?: Schema$Runtime[];
+    /**
+     * Locations that could not be reached. For example, ['us-west1', 'us-central1']. A ListRuntimesResponse will only contain either runtimes or unreachables,
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Response for listing scheduled notebook job.
    */
   export interface Schema$ListSchedulesResponse {
@@ -626,6 +656,84 @@ export namespace notebooks_v1 {
      * Schedules that could not be reached. For example, ['projects/{project_id\}/location/{location\}/schedules/monthly_digest', 'projects/{project_id\}/location/{location\}/schedules/weekly_sentiment'].
      */
     unreachable?: string[] | null;
+  }
+  /**
+   * An Local attached disk resource.
+   */
+  export interface Schema$LocalDisk {
+    /**
+     * Output only. Specifies whether the disk will be auto-deleted when the instance is deleted (but not when the disk is detached from the instance).
+     */
+    autoDelete?: boolean | null;
+    /**
+     * Output only. Indicates that this is a boot disk. The virtual machine will use the first partition of the disk for its root filesystem.
+     */
+    boot?: boolean | null;
+    /**
+     * Output only. Specifies a unique device name of your choice that is reflected into the /dev/disk/by-id/google-* tree of a Linux operating system running within the instance. This name can be used to reference the device for mounting, resizing, and so on, from within the instance. If not specified, the server chooses a default device name to apply to this disk, in the form persistent-disk-x, where x is a number assigned by Google Compute Engine. This field is only applicable for persistent disks.
+     */
+    deviceName?: string | null;
+    /**
+     * Output only. Indicates a list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options.
+     */
+    guestOsFeatures?: Schema$RuntimeGuestOsFeature[];
+    /**
+     * Output only. [Output Only] A zero-based index to this disk, where 0 is reserved for the boot disk. If you have many disks attached to an instance, each disk would have a unique index number.
+     */
+    index?: number | null;
+    /**
+     * Input only. [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new instance. This property is mutually exclusive with the source property; you can only define one or the other, but not both.
+     */
+    initializeParams?: Schema$LocalDiskInitializeParams;
+    /**
+     * Specifies the disk interface to use for attaching this disk, which is either SCSI or NVME. The default is SCSI. Persistent disks must always use SCSI and the request will fail if you attempt to attach a persistent disk in any other format than SCSI. Local SSDs can use either NVME or SCSI. For performance characteristics of SCSI over NVMe, see Local SSD performance. Valid values: NVME SCSI
+     */
+    interface?: string | null;
+    /**
+     * Output only. Type of the resource. Always compute#attachedDisk for attached disks.
+     */
+    kind?: string | null;
+    /**
+     * Output only. [Output Only] Any valid publicly visible licenses.
+     */
+    licenses?: string[] | null;
+    /**
+     * The mode in which to attach this disk, either READ_WRITE or READ_ONLY. If not specified, the default is to attach the disk in READ_WRITE mode. Valid values: READ_ONLY READ_WRITE
+     */
+    mode?: string | null;
+    /**
+     * Specifies a valid partial or full URL to an existing Persistent Disk resource.
+     */
+    source?: string | null;
+    /**
+     * Specifies the type of the disk, either SCRATCH or PERSISTENT. If not specified, the default is PERSISTENT. Valid values: PERSISTENT SCRATCH
+     */
+    type?: string | null;
+  }
+  /**
+   * [Input Only] Specifies the parameters for a new disk that will be created alongside the new instance. Use initialization parameters to create boot disks or local SSDs attached to the new runtime. This property is mutually exclusive with the source property; you can only define one or the other, but not both.
+   */
+  export interface Schema$LocalDiskInitializeParams {
+    /**
+     * Optional. Provide this property when creating the disk.
+     */
+    description?: string | null;
+    /**
+     * Optional. Specifies the disk name. If not specified, the default is to use the name of the instance. If the disk with the instance name exists already in the given zone/region, a new name will be automatically generated.
+     */
+    diskName?: string | null;
+    /**
+     * Optional. Specifies the size of the disk in base-2 GB. If not specified, the disk will be the same size as the image (usually 10GB). If specified, the size must be equal to or larger than 10GB. Default 100 GB.
+     */
+    diskSizeGb?: string | null;
+    /**
+     * Input only. The type of the boot disk attached to this instance, defaults to standard persistent disk (`PD_STANDARD`).
+     */
+    diskType?: string | null;
+    /**
+     * Optional. Labels to apply to this disk. These can be later modified by the disks.setLabels method. This field is only applicable for persistent disks.
+     */
+    labels?: {[key: string]: string} | null;
   }
   /**
    * A resource that represents Google Cloud Platform location.
@@ -758,6 +866,149 @@ export namespace notebooks_v1 {
    */
   export interface Schema$ResetInstanceRequest {}
   /**
+   * Request for reseting a Managed Notebook Runtime.
+   */
+  export interface Schema$ResetRuntimeRequest {}
+  /**
+   * The definition of a Runtime for a managed notebook instance.
+   */
+  export interface Schema$Runtime {
+    /**
+     * The config settings for accessing runtime.
+     */
+    accessConfig?: Schema$RuntimeAccessConfig;
+    /**
+     * Output only. Runtime creation time.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Runtime health_state.
+     */
+    healthState?: string | null;
+    /**
+     * Output only. Contains Runtime daemon metrics such as Service status and JupyterLab stats.
+     */
+    metrics?: Schema$RuntimeMetrics;
+    /**
+     * Output only. The resource name of the runtime. Format: `projects/{project\}/locations/{location\}/runtimes/{runtime\}`
+     */
+    name?: string | null;
+    /**
+     * The config settings for software inside the runtime.
+     */
+    softwareConfig?: Schema$RuntimeSoftwareConfig;
+    /**
+     * Output only. Runtime state.
+     */
+    state?: string | null;
+    /**
+     * Output only. Runtime update time.
+     */
+    updateTime?: string | null;
+    /**
+     * Use a Compute Engine VM image to start the managed notebook instance.
+     */
+    virtualMachine?: Schema$VirtualMachine;
+  }
+  /**
+   * Definition of the types of hardware accelerators that can be used. Definition of the types of hardware accelerators that can be used. See [Compute Engine AcceleratorTypes](https://cloud.google.com/compute/docs/reference/beta/acceleratorTypes). Examples: * `nvidia-tesla-k80` * `nvidia-tesla-p100` * `nvidia-tesla-v100` * `nvidia-tesla-p4` * `nvidia-tesla-t4` * `nvidia-tesla-a100`
+   */
+  export interface Schema$RuntimeAcceleratorConfig {
+    /**
+     * Count of cores of this accelerator.
+     */
+    coreCount?: string | null;
+    /**
+     * Accelerator model.
+     */
+    type?: string | null;
+  }
+  /**
+   * Specifies the login configuration for Runtime
+   */
+  export interface Schema$RuntimeAccessConfig {
+    /**
+     * The type of access mode this instance.
+     */
+    accessType?: string | null;
+    /**
+     * Output only. The proxy endpoint that is used to access the runtime.
+     */
+    proxyUri?: string | null;
+    /**
+     * The owner of this runtime after creation. Format: `alias@example.com` Currently supports one owner only.
+     */
+    runtimeOwner?: string | null;
+  }
+  /**
+   * A list of features to enable on the guest operating system. Applicable only for bootable images. Read Enabling guest operating system features to see a list of available options. Guest OS features for boot disk.
+   */
+  export interface Schema$RuntimeGuestOsFeature {
+    /**
+     * The ID of a supported feature. Read Enabling guest operating system features to see a list of available options. Valid values: FEATURE_TYPE_UNSPECIFIED MULTI_IP_SUBNET SECURE_BOOT UEFI_COMPATIBLE VIRTIO_SCSI_MULTIQUEUE WINDOWS
+     */
+    type?: string | null;
+  }
+  /**
+   * Contains runtime daemon metrics, such as OS and kernels and sessions stats.
+   */
+  export interface Schema$RuntimeMetrics {
+    /**
+     * Output only. The system metrics.
+     */
+    systemMetrics?: {[key: string]: string} | null;
+  }
+  /**
+   * A set of Shielded Instance options. Check [Images using supported Shielded VM features] Not all combinations are valid.
+   */
+  export interface Schema$RuntimeShieldedInstanceConfig {
+    /**
+     * Defines whether the instance has integrity monitoring enabled. Enables monitoring and attestation of the boot integrity of the instance. The attestation is performed against the integrity policy baseline. This baseline is initially derived from the implicitly trusted boot image when the instance is created. Enabled by default.
+     */
+    enableIntegrityMonitoring?: boolean | null;
+    /**
+     * Defines whether the instance has Secure Boot enabled. Secure Boot helps ensure that the system only runs authentic software by verifying the digital signature of all boot components, and halting the boot process if signature verification fails. Disabled by default.
+     */
+    enableSecureBoot?: boolean | null;
+    /**
+     * Defines whether the instance has the vTPM enabled. Enabled by default.
+     */
+    enableVtpm?: boolean | null;
+  }
+  /**
+   * Specifies the selection and config of software inside the runtime. / The properties to set on runtime. Properties keys are specified in `key:value` format, for example: * idle_shutdown: idle_shutdown=true * idle_shutdown_timeout: idle_shutdown_timeout=180 * report-system-health: report-system-health=true
+   */
+  export interface Schema$RuntimeSoftwareConfig {
+    /**
+     * Specify a custom Cloud Storage path where the GPU driver is stored. If not specified, we'll automatically choose from official GPU drivers.
+     */
+    customGpuDriverPath?: string | null;
+    /**
+     * Verifies core internal services are running. Default: True
+     */
+    enableHealthMonitoring?: boolean | null;
+    /**
+     * Runtime will automatically shutdown after idle_shutdown_time. Default: False
+     */
+    idleShutdown?: boolean | null;
+    /**
+     * Time in minutes to wait before shuting down runtime. Default: 90 minutes
+     */
+    idleShutdownTimeout?: number | null;
+    /**
+     * Install Nvidia Driver automatically.
+     */
+    installGpuDriver?: boolean | null;
+    /**
+     * Cron expression in UTC timezone, used to schedule instance auto upgrade. Please follow the [cron format](https://en.wikipedia.org/wiki/Cron).
+     */
+    notebookUpgradeSchedule?: string | null;
+    /**
+     * Path to a Bash script that automatically runs after a notebook instance fully boots up. The path must be a URL or Cloud Storage path (gs://path-to-file/file-name).
+     */
+    postStartupScript?: string | null;
+  }
+  /**
    * The definition of a schedule.
    */
   export interface Schema$Schedule {
@@ -874,6 +1125,10 @@ export namespace notebooks_v1 {
    */
   export interface Schema$StartInstanceRequest {}
   /**
+   * Request for starting a Managed Notebook Runtime.
+   */
+  export interface Schema$StartRuntimeRequest {}
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -894,6 +1149,23 @@ export namespace notebooks_v1 {
    * Request for stopping a notebook instance
    */
   export interface Schema$StopInstanceRequest {}
+  /**
+   * Request for stopping a Managed Notebook Runtime.
+   */
+  export interface Schema$StopRuntimeRequest {}
+  /**
+   * Request for switching a Managed Notebook Runtime.
+   */
+  export interface Schema$SwitchRuntimeRequest {
+    /**
+     * accelerator config.
+     */
+    acceleratorConfig?: Schema$RuntimeAcceleratorConfig;
+    /**
+     * machine type.
+     */
+    machineType?: string | null;
+  }
   /**
    * Request message for `TestIamPermissions` method.
    */
@@ -916,6 +1188,15 @@ export namespace notebooks_v1 {
    * Request for created scheduled notebooks
    */
   export interface Schema$TriggerScheduleRequest {}
+  /**
+   * Request for updating the Shielded Instance config for a notebook instance. You can only use this method on a stopped instance
+   */
+  export interface Schema$UpdateShieldedInstanceConfigRequest {
+    /**
+     * ShieldedInstance configuration to be updated.
+     */
+    shieldedInstanceConfig?: Schema$ShieldedInstanceConfig;
+  }
   /**
    * The entry of VM image upgrade history.
    */
@@ -975,6 +1256,84 @@ export namespace notebooks_v1 {
    */
   export interface Schema$UpgradeInstanceRequest {}
   /**
+   * Runtime using Virtual Machine for computing.
+   */
+  export interface Schema$VirtualMachine {
+    /**
+     * Output only. The unique identifier of the Managed Compute Engine instance.
+     */
+    instanceId?: string | null;
+    /**
+     * Output only. The user-friendly name of the Managed Compute Engine instance.
+     */
+    instanceName?: string | null;
+    /**
+     * Virtual Machine configuration settings.
+     */
+    virtualMachineConfig?: Schema$VirtualMachineConfig;
+  }
+  /**
+   * The config settings for virtual machine.
+   */
+  export interface Schema$VirtualMachineConfig {
+    /**
+     * Optional. The Compute Engine accelerator configuration for this runtime.
+     */
+    acceleratorConfig?: Schema$RuntimeAcceleratorConfig;
+    /**
+     * Optional. Use a list of container images to start the notebook instance.
+     */
+    containerImages?: Schema$ContainerImage[];
+    /**
+     * Required. Data disk option configuration settings.
+     */
+    dataDisk?: Schema$LocalDisk;
+    /**
+     * Optional. Encryption settings for virtual machine data disk.
+     */
+    encryptionConfig?: Schema$EncryptionConfig;
+    /**
+     * Output only. The Compute Engine guest attributes. (see [Project and instance guest attributes](https://cloud.google.com/compute/docs/storing-retrieving-metadata#guest_attributes)).
+     */
+    guestAttributes?: {[key: string]: string} | null;
+    /**
+     * Optional. If true, runtime will only have internal IP addresses. By default, runtimes are not restricted to internal IP addresses, and will have ephemeral external IP addresses assigned to each vm. This `internal_ip_only` restriction can only be enabled for subnetwork enabled networks, and all dependencies must be configured to be accessible without external IP addresses.
+     */
+    internalIpOnly?: boolean | null;
+    /**
+     * Optional. The labels to associate with this runtime. Label **keys** must contain 1 to 63 characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt). Label **values** may be empty, but, if present, must contain 1 to 63 characters, and must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt). No more than 32 labels can be associated with a cluster.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. The Compute Engine machine type used for runtimes. Short name is valid. Examples: * `n1-standard-2` * `e2-standard-8`
+     */
+    machineType?: string | null;
+    /**
+     * Optional. The Compute Engine metadata entries to add to virtual machine. (see [Project and instance metadata](https://cloud.google.com/compute/docs/storing-retrieving-metadata#project_and_instance_metadata)).
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork. If neither `network` nor `subnet` is specified, the "default" network of the project is used, if it exists. A full URL or partial URI. Examples: * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default` * `projects/[project_id]/regions/global/default` Runtimes are managed resources inside Google Infrastructure. Runtimes support the following network configurations: * Google Managed Network (Network & subnet are empty) * Consumer Project VPC (network & subnet are required). Requires configuring Private Service Access. * Shared VPC (network & subnet are required). Requires configuring Private Service Access.
+     */
+    network?: string | null;
+    /**
+     * Optional. Shielded VM Instance configuration settings.
+     */
+    shieldedInstanceConfig?: Schema$RuntimeShieldedInstanceConfig;
+    /**
+     * Optional. The Compute Engine subnetwork to be used for machine communications. Cannot be specified with network. A full URL or partial URI are valid. Examples: * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/us-east1/subnetworks/sub0` * `projects/[project_id]/regions/us-east1/subnetworks/sub0`
+     */
+    subnet?: string | null;
+    /**
+     * Optional. The Compute Engine tags to add to runtime (see [Tagging instances](https://cloud.google.com/compute/docs/label-or-tag-resources#tags)).
+     */
+    tags?: string[] | null;
+    /**
+     * Output only. The zone where the virtual machine is located. If using regional request, the notebooks service will pick a location in the corresponding runtime region. On a get request, zone will always be present. Example: * `us-central1-b`
+     */
+    zone?: string | null;
+  }
+  /**
    * Definition of a custom Compute Engine virtual machine image for starting a notebook instance with the environment installed directly on the VM.
    */
   export interface Schema$VmImage {
@@ -1007,6 +1366,7 @@ export namespace notebooks_v1 {
     executions: Resource$Projects$Locations$Executions;
     instances: Resource$Projects$Locations$Instances;
     operations: Resource$Projects$Locations$Operations;
+    runtimes: Resource$Projects$Locations$Runtimes;
     schedules: Resource$Projects$Locations$Schedules;
     constructor(context: APIRequestContext) {
       this.context = context;
@@ -1020,6 +1380,7 @@ export namespace notebooks_v1 {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+      this.runtimes = new Resource$Projects$Locations$Runtimes(this.context);
       this.schedules = new Resource$Projects$Locations$Schedules(this.context);
     }
 
@@ -1180,13 +1541,13 @@ export namespace notebooks_v1 {
      *
      *   // Do the magic
      *   const res = await notebooks.projects.locations.list({
-     *     // The standard list filter.
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The standard list page size.
+     *     // The maximum number of results to return. If not set, the service will select a default.
      *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1305,7 +1666,7 @@ export namespace notebooks_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * The standard list filter.
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -1313,11 +1674,11 @@ export namespace notebooks_v1 {
      */
     name?: string;
     /**
-     * The standard list page size.
+     * The maximum number of results to return. If not set, the service will select a default.
      */
     pageSize?: number;
     /**
-     * The standard list page token.
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
   }
@@ -3318,6 +3679,7 @@ export namespace notebooks_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "upgradeImage": "my_upgradeImage",
      *   //   "upgradeInfo": "my_upgradeInfo",
      *   //   "upgradeVersion": "my_upgradeVersion",
      *   //   "upgradeable": false
@@ -4960,6 +5322,151 @@ export namespace notebooks_v1 {
     }
 
     /**
+     * Updates the Shielded instance configuration of a single Instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.updateShieldedInstanceConfig(
+     *     {
+     *       // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *       name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "shieldedInstanceConfig": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateShieldedInstanceConfig(
+      params: Params$Resource$Projects$Locations$Instances$Updateshieldedinstanceconfig,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    updateShieldedInstanceConfig(
+      params?: Params$Resource$Projects$Locations$Instances$Updateshieldedinstanceconfig,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    updateShieldedInstanceConfig(
+      params: Params$Resource$Projects$Locations$Instances$Updateshieldedinstanceconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateShieldedInstanceConfig(
+      params: Params$Resource$Projects$Locations$Instances$Updateshieldedinstanceconfig,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateShieldedInstanceConfig(
+      params: Params$Resource$Projects$Locations$Instances$Updateshieldedinstanceconfig,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateShieldedInstanceConfig(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    updateShieldedInstanceConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Updateshieldedinstanceconfig
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Updateshieldedinstanceconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Updateshieldedinstanceconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:updateShieldedInstanceConfig').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Upgrades a notebook instance to the latest version.
      * @example
      * ```js
@@ -5429,6 +5936,18 @@ export namespace notebooks_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Updateshieldedinstanceconfig
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UpdateShieldedInstanceConfigRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Upgrade
     extends StandardParameters {
@@ -6031,6 +6550,1209 @@ export namespace notebooks_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Runtimes {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new Runtime in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.runtimes.create({
+     *     // Required. Format: `parent=projects/{project_id\}/locations/{location\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Required. User-defined unique ID of this Runtime.
+     *     runtimeId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessConfig": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "healthState": "my_healthState",
+     *       //   "metrics": {},
+     *       //   "name": "my_name",
+     *       //   "softwareConfig": {},
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "virtualMachine": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Runtimes$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Runtimes$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Runtimes$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Runtimes$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Runtimes$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Runtimes$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Runtimes$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Runtimes$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/runtimes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single Runtime.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.runtimes.delete({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
+     *     name: 'projects/my-project/locations/my-location/runtimes/my-runtime',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Runtimes$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Runtimes$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Runtimes$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Runtimes$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Runtimes$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Runtimes$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Runtimes$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Runtimes$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single Runtime. The location must be a regional endpoint rather than zonal.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.runtimes.get({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
+     *     name: 'projects/my-project/locations/my-location/runtimes/my-runtime',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "healthState": "my_healthState",
+     *   //   "metrics": {},
+     *   //   "name": "my_name",
+     *   //   "softwareConfig": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "virtualMachine": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Runtimes$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Runtimes$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Runtime>;
+    get(
+      params: Params$Resource$Projects$Locations$Runtimes$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Runtimes$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Runtime>,
+      callback: BodyResponseCallback<Schema$Runtime>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Runtimes$Get,
+      callback: BodyResponseCallback<Schema$Runtime>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Runtime>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Runtimes$Get
+        | BodyResponseCallback<Schema$Runtime>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Runtime>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Runtime>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Runtime> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Runtimes$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Runtimes$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Runtime>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Runtime>(parameters);
+      }
+    }
+
+    /**
+     * Lists Runtimes in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.runtimes.list({
+     *     // Maximum return size of the list call.
+     *     pageSize: 'placeholder-value',
+     *     // A previous returned page token that can be used to continue listing from the last result.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Format: `parent=projects/{project_id\}/locations/{location\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "runtimes": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Runtimes$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Runtimes$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRuntimesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Runtimes$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Runtimes$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRuntimesResponse>,
+      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Runtimes$List,
+      callback: BodyResponseCallback<Schema$ListRuntimesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListRuntimesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Runtimes$List
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRuntimesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRuntimesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Runtimes$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Runtimes$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/runtimes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRuntimesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRuntimesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Resets a Managed Notebook Runtime.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.runtimes.reset({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
+     *     name: 'projects/my-project/locations/my-location/runtimes/my-runtime',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    reset(
+      params: Params$Resource$Projects$Locations$Runtimes$Reset,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    reset(
+      params?: Params$Resource$Projects$Locations$Runtimes$Reset,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    reset(
+      params: Params$Resource$Projects$Locations$Runtimes$Reset,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    reset(
+      params: Params$Resource$Projects$Locations$Runtimes$Reset,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reset(
+      params: Params$Resource$Projects$Locations$Runtimes$Reset,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    reset(callback: BodyResponseCallback<Schema$Operation>): void;
+    reset(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Runtimes$Reset
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Runtimes$Reset;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Runtimes$Reset;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:reset').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Starts a Managed Notebook Runtime. Perform "Start" on GPU instances; "Resume" on CPU instances See: https://cloud.google.com/compute/docs/instances/stop-start-instance https://cloud.google.com/compute/docs/instances/suspend-resume-instance
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.runtimes.start({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
+     *     name: 'projects/my-project/locations/my-location/runtimes/my-runtime',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    start(
+      params: Params$Resource$Projects$Locations$Runtimes$Start,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    start(
+      params?: Params$Resource$Projects$Locations$Runtimes$Start,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    start(
+      params: Params$Resource$Projects$Locations$Runtimes$Start,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    start(
+      params: Params$Resource$Projects$Locations$Runtimes$Start,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    start(
+      params: Params$Resource$Projects$Locations$Runtimes$Start,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    start(callback: BodyResponseCallback<Schema$Operation>): void;
+    start(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Runtimes$Start
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Runtimes$Start;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Runtimes$Start;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:start').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Stops a Managed Notebook Runtime. Perform "Stop" on GPU instances; "Suspend" on CPU instances See: https://cloud.google.com/compute/docs/instances/stop-start-instance https://cloud.google.com/compute/docs/instances/suspend-resume-instance
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.runtimes.stop({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
+     *     name: 'projects/my-project/locations/my-location/runtimes/my-runtime',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    stop(
+      params: Params$Resource$Projects$Locations$Runtimes$Stop,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    stop(
+      params?: Params$Resource$Projects$Locations$Runtimes$Stop,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    stop(
+      params: Params$Resource$Projects$Locations$Runtimes$Stop,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Runtimes$Stop,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    stop(
+      params: Params$Resource$Projects$Locations$Runtimes$Stop,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    stop(callback: BodyResponseCallback<Schema$Operation>): void;
+    stop(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Runtimes$Stop
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Runtimes$Stop;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Runtimes$Stop;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:stop').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Switch a Managed Notebook Runtime.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.runtimes.switch({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
+     *     name: 'projects/my-project/locations/my-location/runtimes/my-runtime',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acceleratorConfig": {},
+     *       //   "machineType": "my_machineType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    switch(
+      params: Params$Resource$Projects$Locations$Runtimes$Switch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    switch(
+      params?: Params$Resource$Projects$Locations$Runtimes$Switch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    switch(
+      params: Params$Resource$Projects$Locations$Runtimes$Switch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    switch(
+      params: Params$Resource$Projects$Locations$Runtimes$Switch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    switch(
+      params: Params$Resource$Projects$Locations$Runtimes$Switch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    switch(callback: BodyResponseCallback<Schema$Operation>): void;
+    switch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Runtimes$Switch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Runtimes$Switch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Runtimes$Switch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:switch').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Runtimes$Create
+    extends StandardParameters {
+    /**
+     * Required. Format: `parent=projects/{project_id\}/locations/{location\}`
+     */
+    parent?: string;
+    /**
+     * Required. User-defined unique ID of this Runtime.
+     */
+    runtimeId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Runtime;
+  }
+  export interface Params$Resource$Projects$Locations$Runtimes$Delete
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Runtimes$Get
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Runtimes$List
+    extends StandardParameters {
+    /**
+     * Maximum return size of the list call.
+     */
+    pageSize?: number;
+    /**
+     * A previous returned page token that can be used to continue listing from the last result.
+     */
+    pageToken?: string;
+    /**
+     * Required. Format: `parent=projects/{project_id\}/locations/{location\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Runtimes$Reset
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResetRuntimeRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Runtimes$Start
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StartRuntimeRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Runtimes$Stop
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$StopRuntimeRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Runtimes$Switch
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/runtimes/{runtime_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SwitchRuntimeRequest;
   }
 
   export class Resource$Projects$Locations$Schedules {

@@ -14,27 +14,44 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {ondemandscanning_v1} from './v1';
 import {ondemandscanning_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
+  v1: ondemandscanning_v1.Ondemandscanning,
   v1beta1: ondemandscanning_v1beta1.Ondemandscanning,
 };
 
+export function ondemandscanning(
+  version: 'v1'
+): ondemandscanning_v1.Ondemandscanning;
+export function ondemandscanning(
+  options: ondemandscanning_v1.Options
+): ondemandscanning_v1.Ondemandscanning;
 export function ondemandscanning(
   version: 'v1beta1'
 ): ondemandscanning_v1beta1.Ondemandscanning;
 export function ondemandscanning(
   options: ondemandscanning_v1beta1.Options
 ): ondemandscanning_v1beta1.Ondemandscanning;
-export function ondemandscanning<T = ondemandscanning_v1beta1.Ondemandscanning>(
+export function ondemandscanning<
+  T =
+    | ondemandscanning_v1.Ondemandscanning
+    | ondemandscanning_v1beta1.Ondemandscanning
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta1' | ondemandscanning_v1beta1.Options
+  versionOrOptions:
+    | 'v1'
+    | ondemandscanning_v1.Options
+    | 'v1beta1'
+    | ondemandscanning_v1beta1.Options
 ) {
   return getAPI<T>('ondemandscanning', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {ondemandscanning_v1};
 export {ondemandscanning_v1beta1};
 export {
   AuthPlus,

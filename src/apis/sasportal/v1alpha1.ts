@@ -147,6 +147,19 @@ export namespace sasportal_v1alpha1 {
     role?: string | null;
   }
   /**
+   * The channel with score.
+   */
+  export interface Schema$SasPortalChannelWithScore {
+    /**
+     * The frequency range of the channel.
+     */
+    frequencyRange?: Schema$SasPortalFrequencyRange;
+    /**
+     * The channel score, normalized to be in [0,100].
+     */
+    score?: number | null;
+  }
+  /**
    * Request for CreateSignedDevice.
    */
   export interface Schema$SasPortalCreateSignedDeviceRequest {
@@ -206,6 +219,10 @@ export namespace sasportal_v1alpha1 {
      * Output only. Current configuration of the device as registered to the SAS.
      */
     activeConfig?: Schema$SasPortalDeviceConfig;
+    /**
+     * Output only. Current channels with scores.
+     */
+    currentChannels?: Schema$SasPortalChannelWithScore[];
     /**
      * Device parameters that can be overridden by both SAS Portal and SAS registration requests.
      */
@@ -2132,6 +2149,7 @@ export namespace sasportal_v1alpha1 {
      *       // request body parameters
      *       // {
      *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
      *       //   "deviceMetadata": {},
      *       //   "displayName": "my_displayName",
      *       //   "fccId": "my_fccId",
@@ -2149,6 +2167,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -2296,6 +2315,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -2630,6 +2650,7 @@ export namespace sasportal_v1alpha1 {
      *       // request body parameters
      *       // {
      *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
      *       //   "deviceMetadata": {},
      *       //   "displayName": "my_displayName",
      *       //   "fccId": "my_fccId",
@@ -2647,6 +2668,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -2794,6 +2816,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -3056,6 +3079,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -3482,6 +3506,7 @@ export namespace sasportal_v1alpha1 {
      *       // request body parameters
      *       // {
      *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
      *       //   "deviceMetadata": {},
      *       //   "displayName": "my_displayName",
      *       //   "fccId": "my_fccId",
@@ -3499,6 +3524,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -3778,6 +3804,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -5272,6 +5299,7 @@ export namespace sasportal_v1alpha1 {
      *       // request body parameters
      *       // {
      *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
      *       //   "deviceMetadata": {},
      *       //   "displayName": "my_displayName",
      *       //   "fccId": "my_fccId",
@@ -5289,6 +5317,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -5436,6 +5465,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -6365,6 +6395,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -6646,6 +6677,7 @@ export namespace sasportal_v1alpha1 {
      *       // request body parameters
      *       // {
      *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
      *       //   "deviceMetadata": {},
      *       //   "displayName": "my_displayName",
      *       //   "fccId": "my_fccId",
@@ -6663,6 +6695,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -6942,6 +6975,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -8371,6 +8405,7 @@ export namespace sasportal_v1alpha1 {
      *       // request body parameters
      *       // {
      *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
      *       //   "deviceMetadata": {},
      *       //   "displayName": "my_displayName",
      *       //   "fccId": "my_fccId",
@@ -8388,6 +8423,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -8535,6 +8571,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -8869,6 +8906,7 @@ export namespace sasportal_v1alpha1 {
      *       // request body parameters
      *       // {
      *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
      *       //   "deviceMetadata": {},
      *       //   "displayName": "my_displayName",
      *       //   "fccId": "my_fccId",
@@ -8886,6 +8924,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -9033,6 +9072,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -9295,6 +9335,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -9721,6 +9762,7 @@ export namespace sasportal_v1alpha1 {
      *       // request body parameters
      *       // {
      *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
      *       //   "deviceMetadata": {},
      *       //   "displayName": "my_displayName",
      *       //   "fccId": "my_fccId",
@@ -9738,6 +9780,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -10017,6 +10060,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -11505,6 +11549,7 @@ export namespace sasportal_v1alpha1 {
      *       // request body parameters
      *       // {
      *       //   "activeConfig": {},
+     *       //   "currentChannels": [],
      *       //   "deviceMetadata": {},
      *       //   "displayName": "my_displayName",
      *       //   "fccId": "my_fccId",
@@ -11522,6 +11567,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",
@@ -11669,6 +11715,7 @@ export namespace sasportal_v1alpha1 {
      *   // Example response
      *   // {
      *   //   "activeConfig": {},
+     *   //   "currentChannels": [],
      *   //   "deviceMetadata": {},
      *   //   "displayName": "my_displayName",
      *   //   "fccId": "my_fccId",

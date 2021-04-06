@@ -631,7 +631,7 @@
       }
     }
   },
-  "revision": "20210308",
+  "revision": "20210323",
   "rootUrl": "https://reseller.googleapis.com/",
   "schemas": {
     "Address": {
@@ -924,6 +924,10 @@
         "transferInfo": {
           "description": "Read-only transfer related information for the subscription. For more information, see retrieve transferable subscriptions for a customer.",
           "properties": {
+            "currentLegacySkuId": {
+              "description": "Sku id of the current resold subscription. This is populated only when customer has subscription with legacy sku and the subscription resource is populated with recommeded sku for transfer in.",
+              "type": "string"
+            },
             "minimumTransferableSeats": {
               "description": "When inserting a subscription, this is the minimum number of seats listed in the transfer order for this product. For example, if the customer has 20 users, the reseller cannot place a transfer order of 15 seats. The minimum is 20 seats.",
               "format": "int32",

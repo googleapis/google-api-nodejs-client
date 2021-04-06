@@ -130,11 +130,11 @@ export namespace memcache_v1 {
    */
   export interface Schema$ApplyParametersRequest {
     /**
-     * Whether to apply instance-level parameter group to all nodes. If set to true, will explicitly restrict users from specifying any nodes, and apply parameter group updates to all nodes within the instance.
+     * Whether to apply instance-level parameter group to all nodes. If set to true, users are restricted from specifying individual nodes, and `ApplyParameters` updates all nodes within the instance.
      */
     applyAll?: boolean | null;
     /**
-     * Nodes to which we should apply the instance-level parameter group.
+     * Nodes to which the instance-level parameter group is applied.
      */
     nodeIds?: string[] | null;
   }
@@ -194,6 +194,17 @@ export namespace memcache_v1 {
    */
   export interface Schema$Empty {}
   /**
+   * Metadata for the given google.cloud.location.Location.
+   */
+  export interface Schema$GoogleCloudMemcacheV1LocationMetadata {
+    /**
+     * Output only. The set of available zones in the location. The map is keyed by the lowercase ID of each zone, as defined by GCE. These keys can be specified in the `zones` field when creating a Memcached instance.
+     */
+    availableZones?: {
+      [key: string]: Schema$GoogleCloudMemcacheV1ZoneMetadata;
+    } | null;
+  }
+  /**
    * Represents the metadata of a long-running operation.
    */
   export interface Schema$GoogleCloudMemcacheV1OperationMetadata {
@@ -226,6 +237,7 @@ export namespace memcache_v1 {
      */
     verb?: string | null;
   }
+  export interface Schema$GoogleCloudMemcacheV1ZoneMetadata {}
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1Instance {
     /**
      * consumer_defined_name is the name that is set by the consumer. On the other hand Name field represents system-assigned id of an instance so consumers are not necessarily aware of it. consumer_defined_name is used for notification/UI purposes for consumer to recognize their instances.
@@ -297,7 +309,7 @@ export namespace memcache_v1 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule {
     /**
-     * Can this scheduled update be rescheduled? By default, it's true and API needs to do explicitly check whether it's set, if it's set as false explicitly, it's false
+     * This field will be deprecated, and will be always set to true since reschedule can happen multiple times now.
      */
     canReschedule?: boolean | null;
     /**
@@ -309,7 +321,7 @@ export namespace memcache_v1 {
      */
     rolloutManagementPolicy?: string | null;
     /**
-     * schedule_deadline_time is the time deadline any schedule start time cannot go beyond, including reschedule. It's normally the initial schedule start time plus a week. If the reschedule type is next window, simply take this value as start time. If reschedule type is IMMEDIATELY or BY_TIME, current or selected time cannot go beyond this deadline.
+     * schedule_deadline_time is the time deadline any schedule start time cannot go beyond, including reschedule. It's normally the initial schedule start time plus maintenance window length (1 day or 1 week). Maintenance cannot be scheduled to start beyond this deadline.
      */
     scheduleDeadlineTime?: string | null;
     /**
@@ -352,6 +364,19 @@ export namespace memcache_v1 {
     nodeId?: string | null;
   }
   /**
+   * PerSliSloEligibility is a mapping from an SLI name to eligibility.
+   */
+  export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility {
+    /**
+     * An entry in the eligibilities map specifies an eligibility for a particular SLI for the given instance. The SLI key in the name must be a valid SLI name specified in the Eligibility Exporter binary flags otherwise an error will be emitted by Eligibility Exporter and the oncaller will be alerted. If an SLI has been defined in the binary flags but the eligibilities map does not contain it, the corresponding SLI time series will not be emitted by the Eligibility Exporter. This ensures a smooth rollout and compatibility between the data produced by different versions of the Eligibility Exporters. If eligibilities map contains a key for an SLI which has not been declared in the binary flags, there will be an error message emitted in the Eligibility Exporter log and the metric for the SLI in question will not be emitted.
+     */
+    eligibilities?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility;
+    } | null;
+  }
+  /**
    * Describes provisioned dataplane resources.
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource {
@@ -390,7 +415,7 @@ export namespace memcache_v1 {
      */
     reason?: string | null;
     /**
-     * Name of an SLI that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLIs defined in the service SLO configuration.
+     * Name of an SLI that this exclusion applies to. Can be left empty, signaling that the instance should be excluded from all SLIs.
      */
     sliName?: string | null;
     /**
@@ -403,7 +428,7 @@ export namespace memcache_v1 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloMetadata {
     /**
-     * Optional. User-defined instance eligibility.
+     * Optional. Global per-instance SLI eligibility which applies to all defined SLIs. Exactly one of 'eligibility' and 'per_sli_eligibility' fields must be used.
      */
     eligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility;
     /**
@@ -415,10 +440,17 @@ export namespace memcache_v1 {
      */
     nodes?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata[];
     /**
+     * Optional. Multiple per-instance SLI eligibilities which apply for individual SLIs. Exactly one of 'eligibility' and 'per_sli_eligibility' fields must be used.
+     */
+    perSliEligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1PerSliSloEligibility;
+    /**
      * Name of the SLO tier the Instance belongs to. This name will be expected to match the tiers specified in the service SLO configuration. Field is mandatory and must not be empty.
      */
     tier?: string | null;
   }
+  /**
+   * A Memorystore for Memcached instance
+   */
   export interface Schema$Instance {
     /**
      * The full name of the Google Compute Engine [network](/compute/docs/networks-and-firewalls#networks) to which the instance is connected. If left unspecified, the `default` network will be used.
@@ -429,15 +461,15 @@ export namespace memcache_v1 {
      */
     createTime?: string | null;
     /**
-     * Output only. Endpoint for Discovery API
+     * Output only. Endpoint for the Discovery API.
      */
     discoveryEndpoint?: string | null;
     /**
-     * User provided name for the instance only used for display purposes. Cannot be more than 80 characters.
+     * User provided name for the instance, which is only used for display purposes. Cannot be more than 80 characters.
      */
     displayName?: string | null;
     /**
-     * List of messages that describe current statuses of memcached instance.
+     * List of messages that describe the current state of the Memcached instance.
      */
     instanceMessages?: Schema$InstanceMessage[];
     /**
@@ -449,15 +481,15 @@ export namespace memcache_v1 {
      */
     memcacheFullVersion?: string | null;
     /**
-     * Output only. List of Memcached nodes. Refer to [Node] message for more details.
+     * Output only. List of Memcached nodes. Refer to Node message for more details.
      */
     memcacheNodes?: Schema$Node[];
     /**
-     * The major version of Memcached software. If not provided, latest supported version will be used. Currently the latest supported major version is MEMCACHE_1_5. The minor version will be automatically determined by our system based on the latest supported minor version.
+     * The major version of Memcached software. If not provided, latest supported version will be used. Currently the latest supported major version is `MEMCACHE_1_5`. The minor version will be automatically determined by our system based on the latest supported minor version.
      */
     memcacheVersion?: string | null;
     /**
-     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` Note: Memcached instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which zones Memcached nodes within an instances should be provisioned in. Refer to [zones] field for more details.
+     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` Note: Memcached instances are managed and addressed at the regional level so `location_id` here refers to a Google Cloud region; however, users may choose which zones Memcached nodes should be provisioned in within an instance. Refer to zones field for more details.
      */
     name?: string | null;
     /**
@@ -481,7 +513,7 @@ export namespace memcache_v1 {
      */
     updateTime?: string | null;
     /**
-     * Zones where Memcached nodes should be provisioned in. Memcached nodes will be equally distributed across these zones. If not provided, the service will by default create nodes in all zones in the region for the instance.
+     * Zones in which Memcached nodes should be provisioned. Memcached nodes will be equally distributed across these zones. If not provided, the service will by default create nodes in all zones in the region for the instance.
      */
     zones?: string[] | null;
   }
@@ -618,9 +650,12 @@ export namespace memcache_v1 {
      */
     weeklyCycle?: Schema$WeeklyCycle;
   }
+  /**
+   * The unique ID associated with this set of parameters. Users can use this id to determine if the parameters associated with the instance differ from the parameters associated with the nodes. A discrepancy between parameter ids can inform users that they may need to take action to apply parameters on nodes.
+   */
   export interface Schema$MemcacheParameters {
     /**
-     * Output only. The unique ID associated with this set of parameters. Users can use this id to determine if the parameters associated with the instance differ from the parameters associated with the nodes and any action needs to be taken to apply parameters on nodes.
+     * Output only.
      */
     id?: string | null;
     /**
@@ -999,13 +1034,13 @@ export namespace memcache_v1 {
      *
      *   // Do the magic
      *   const res = await memcache.projects.locations.list({
-     *     // The standard list filter.
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The standard list page size.
+     *     // The maximum number of results to return. If not set, the service will select a default.
      *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1124,7 +1159,7 @@ export namespace memcache_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * The standard list filter.
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -1132,11 +1167,11 @@ export namespace memcache_v1 {
      */
     name?: string;
     /**
-     * The standard list page size.
+     * The maximum number of results to return. If not set, the service will select a default.
      */
     pageSize?: number;
     /**
-     * The standard list page token.
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
   }
@@ -1148,7 +1183,7 @@ export namespace memcache_v1 {
     }
 
     /**
-     * ApplyParameters will restart the set of specified nodes in order to update them to the current set of parameters for the Memcached Instance.
+     * `ApplyParameters` restarts the set of specified nodes in order to update them to the current set of parameters for the Memcached Instance.
      * @example
      * ```js
      * // Before running the sample:
@@ -1316,7 +1351,7 @@ export namespace memcache_v1 {
      *
      *   // Do the magic
      *   const res = await memcache.projects.locations.instances.create({
-     *     // Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location If any of the above are not met, will raise an invalid argument error.
+     *     // Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location. If any of the above are not met, the API raises an invalid argument error.
      *     instanceId: 'placeholder-value',
      *     // Required. The resource name of the instance location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a GCP region
      *     parent: 'projects/my-project/locations/my-location',
@@ -1745,13 +1780,13 @@ export namespace memcache_v1 {
      *
      *   // Do the magic
      *   const res = await memcache.projects.locations.instances.list({
-     *     // List filter. For example, exclude all Memcached instances with name as my-instance by specifying "name != my-instance".
+     *     // List filter. For example, exclude all Memcached instances with name as my-instance by specifying `"name != my-instance"`.
      *     filter: 'placeholder-value',
      *     // Sort results. Supported values are "name", "name desc" or "" (unsorted).
      *     orderBy: 'placeholder-value',
-     *     // The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.
+     *     // The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the `page_size` value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more instances left to be queried.
      *     pageSize: 'placeholder-value',
-     *     // The next_page_token value returned from a previous List request, if any.
+     *     // The `next_page_token` value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
      *     // Required. The resource name of the instance location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a GCP region
      *     parent: 'projects/my-project/locations/my-location',
@@ -1889,7 +1924,7 @@ export namespace memcache_v1 {
      *
      *   // Do the magic
      *   const res = await memcache.projects.locations.instances.patch({
-     *     // Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` Note: Memcached instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which zones Memcached nodes within an instances should be provisioned in. Refer to [zones] field for more details.
+     *     // Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` Note: Memcached instances are managed and addressed at the regional level so `location_id` here refers to a Google Cloud region; however, users may choose which zones Memcached nodes should be provisioned in within an instance. Refer to zones field for more details.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *     // Required. Mask of fields to update. * `displayName`
      *     updateMask: 'placeholder-value',
@@ -2018,7 +2053,7 @@ export namespace memcache_v1 {
     }
 
     /**
-     * Updates the defined Memcached Parameters for an existing Instance. This method only stages the parameters, it must be followed by ApplyParameters to apply the parameters to nodes of the Memcached Instance.
+     * Updates the defined Memcached parameters for an existing instance. This method only stages the parameters, it must be followed by `ApplyParameters` to apply the parameters to nodes of the Memcached instance.
      * @example
      * ```js
      * // Before running the sample:
@@ -2175,7 +2210,7 @@ export namespace memcache_v1 {
   export interface Params$Resource$Projects$Locations$Instances$Create
     extends StandardParameters {
     /**
-     * Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location If any of the above are not met, will raise an invalid argument error.
+     * Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location. If any of the above are not met, the API raises an invalid argument error.
      */
     instanceId?: string;
     /**
@@ -2205,7 +2240,7 @@ export namespace memcache_v1 {
   export interface Params$Resource$Projects$Locations$Instances$List
     extends StandardParameters {
     /**
-     * List filter. For example, exclude all Memcached instances with name as my-instance by specifying "name != my-instance".
+     * List filter. For example, exclude all Memcached instances with name as my-instance by specifying `"name != my-instance"`.
      */
     filter?: string;
     /**
@@ -2213,11 +2248,11 @@ export namespace memcache_v1 {
      */
     orderBy?: string;
     /**
-     * The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.
+     * The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the `page_size` value, the response may include a partial list and a caller should only rely on response's `next_page_token` to determine if there are more instances left to be queried.
      */
     pageSize?: number;
     /**
-     * The next_page_token value returned from a previous List request, if any.
+     * The `next_page_token` value returned from a previous List request, if any.
      */
     pageToken?: string;
     /**
@@ -2228,7 +2263,7 @@ export namespace memcache_v1 {
   export interface Params$Resource$Projects$Locations$Instances$Patch
     extends StandardParameters {
     /**
-     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` Note: Memcached instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which zones Memcached nodes within an instances should be provisioned in. Refer to [zones] field for more details.
+     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` Note: Memcached instances are managed and addressed at the regional level so `location_id` here refers to a Google Cloud region; however, users may choose which zones Memcached nodes should be provisioned in within an instance. Refer to zones field for more details.
      */
     name?: string;
     /**

@@ -152,6 +152,35 @@ export namespace metastore_v1alpha {
     logType?: string | null;
   }
   /**
+   * The details of a backup resource.
+   */
+  export interface Schema$Backup {
+    /**
+     * Output only. The time when the backup was started.
+     */
+    createTime?: string | null;
+    /**
+     * The description of the backup.
+     */
+    description?: string | null;
+    /**
+     * Output only. The time when the backup finished creating.
+     */
+    endTime?: string | null;
+    /**
+     * Immutable. The relative resource name of the backup, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}
+     */
+    name?: string | null;
+    /**
+     * Output only. The revision of the service at the time of backup.
+     */
+    serviceRevision?: Schema$Service;
+    /**
+     * Output only. The current state of the backup.
+     */
+    state?: string | null;
+  }
+  /**
    * Associates members with a role.
    */
   export interface Schema$Binding {
@@ -190,6 +219,15 @@ export namespace metastore_v1alpha {
     type?: string | null;
   }
   /**
+   * Specifies how metastore metadata should be integrated with the Data Catalog service.
+   */
+  export interface Schema$DataCatalogConfig {
+    /**
+     * Defines whether the metastore metadata should be synced to Data Catalog. The default value is to disable syncing metastore metadata to Data Catalog.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for Empty is empty JSON object {\}.
    */
   export interface Schema$Empty {}
@@ -202,7 +240,7 @@ export namespace metastore_v1alpha {
      */
     databaseDumpType?: string | null;
     /**
-     * Required. A Cloud Storage URI of a folder that metadata are exported to, in the format gs:///. A sub-folder containing exported files will be created below it.
+     * A Cloud Storage URI of a folder, in the format gs:///. A sub-folder containing exported files will be created below it.
      */
     destinationGcsFolder?: string | null;
     /**
@@ -240,7 +278,7 @@ export namespace metastore_v1alpha {
      */
     configOverrides?: {[key: string]: string} | null;
     /**
-     * Information used to configure the Hive metastore service as a service principal in a Kerberos realm. To disable Kerberos, use the UpdateService method and specify this field's path ("hive_metastore_config.kerberos_config") in the request's update_mask while omitting this field from the request's service.
+     * Information used to configure the Hive metastore service as a service principal in a Kerberos realm. To disable Kerberos, use the UpdateService method and specify this field's path (hive_metastore_config.kerberos_config) in the request's update_mask while omitting this field from the request's service.
      */
     kerberosConfig?: Schema$KerberosConfig;
     /**
@@ -274,9 +312,26 @@ export namespace metastore_v1alpha {
      */
     krb5ConfigGcsUri?: string | null;
     /**
-     * A Kerberos principal that exists in the both the keytab the KDC to authenticate as. A typical principal is of the form "primary/instance@REALM", but there is no exact format.
+     * A Kerberos principal that exists in the both the keytab the KDC to authenticate as. A typical principal is of the form primary/instance@REALM, but there is no exact format.
      */
     principal?: string | null;
+  }
+  /**
+   * Response message for DataprocMetastore.ListBackups.
+   */
+  export interface Schema$ListBackupsResponse {
+    /**
+     * The backups of the specified service.
+     */
+    backups?: Schema$Backup[];
+    /**
+     * A token that can be sent as page_token to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
   }
   /**
    * The response message for Locations.ListLocations.
@@ -394,7 +449,7 @@ export namespace metastore_v1alpha {
      */
     databaseDumpType?: string | null;
     /**
-     * Output only. A Cloud Storage URI of a folder that metadata are exported to, in the form of gs:////, where ` is automatically generated.
+     * Output only. A Cloud Storage URI of a folder that metadata are exported to, in the form of gs:////, where is automatically generated.
      */
     destinationGcsUri?: string | null;
     /**
@@ -427,7 +482,7 @@ export namespace metastore_v1alpha {
      */
     description?: string | null;
     /**
-     * Immutable. The relative resource name of the metadata import, of the form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}".
+     * Immutable. The relative resource name of the metadata import, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}.
      */
     name?: string | null;
     /**
@@ -442,7 +497,12 @@ export namespace metastore_v1alpha {
   /**
    * Specifies how metastore metadata should be integrated with external services.
    */
-  export interface Schema$MetadataIntegration {}
+  export interface Schema$MetadataIntegration {
+    /**
+     * The integration config for the Data Catalog service.
+     */
+    dataCatalogConfig?: Schema$DataCatalogConfig;
+  }
   /**
    * The metadata management activities of the metastore service.
    */
@@ -482,6 +542,39 @@ export namespace metastore_v1alpha {
     response?: {[key: string]: any} | null;
   }
   /**
+   * Represents the metadata of a long-running operation.
+   */
+  export interface Schema$OperationMetadata {
+    /**
+     * Output only. API version used to start the operation.
+     */
+    apiVersion?: string | null;
+    /**
+     * Output only. The time the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time the operation finished running.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. Identifies whether the caller has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.
+     */
+    requestedCancellation?: boolean | null;
+    /**
+     * Output only. Human-readable status of the operation, if any.
+     */
+    statusMessage?: string | null;
+    /**
+     * Output only. Server-defined resource path for the target of the operation.
+     */
+    target?: string | null;
+    /**
+     * Output only. Name of the verb executed by the operation.
+     */
+    verb?: string | null;
+  }
+  /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.A Policy is a collection of bindings. A binding binds one or more members to a single role. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A role is a named list of permissions; each role can be an IAM predefined role or a user-created custom role.For some types of Google Cloud resources, a binding can also specify a condition, which is a logical expression that allows access to a resource only if the expression evaluates to true. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).JSON example: { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} YAML example: bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the IAM documentation (https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
@@ -507,7 +600,7 @@ export namespace metastore_v1alpha {
    */
   export interface Schema$Restore {
     /**
-     * Output only. The relative resource name of the metastore service backup to restore from, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}
+     * Output only. The relative resource name of the metastore service backup to restore from, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}.
      */
     backup?: string | null;
     /**
@@ -532,11 +625,28 @@ export namespace metastore_v1alpha {
     type?: string | null;
   }
   /**
+   * Request message for DataprocMetastore.Restore.
+   */
+  export interface Schema$RestoreServiceRequest {
+    /**
+     * Required. The relative resource name of the metastore service backup to restore from, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}.
+     */
+    backup?: string | null;
+    /**
+     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format). A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
+     */
+    requestId?: string | null;
+    /**
+     * Optional. The type of restore. If unspecified, defaults to METADATA_ONLY.
+     */
+    restoreType?: string | null;
+  }
+  /**
    * A securely stored value.
    */
   export interface Schema$Secret {
     /**
-     * The relative resource name of a Secret Manager secret version, in the following form:"projects/{project_number\}/secrets/{secret_id\}/versions/{version_id\}".
+     * The relative resource name of a Secret Manager secret version, in the following form:projects/{project_number\}/secrets/{secret_id\}/versions/{version_id\}.
      */
     cloudSecret?: string | null;
   }
@@ -577,17 +687,21 @@ export namespace metastore_v1alpha {
      */
     metadataManagementActivity?: Schema$MetadataManagementActivity;
     /**
-     * Immutable. The relative resource name of the metastore service, of the form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}".
+     * Immutable. The relative resource name of the metastore service, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
     name?: string | null;
     /**
-     * Immutable. The relative resource name of the VPC network on which the instance can be accessed. It is specified in the following form:"projects/{project_number\}/global/networks/{network_id\}".
+     * Immutable. The relative resource name of the VPC network on which the instance can be accessed. It is specified in the following form:projects/{project_number\}/global/networks/{network_id\}.
      */
     network?: string | null;
     /**
      * The TCP port at which the metastore service is reached. Default: 9083.
      */
     port?: number | null;
+    /**
+     * Immutable. The release channel of the service. If unspecified, defaults to STABLE.
+     */
+    releaseChannel?: string | null;
     /**
      * Output only. The current state of the metastore service.
      */
@@ -836,13 +950,13 @@ export namespace metastore_v1alpha {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.list({
-     *     // The standard list filter.
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The standard list page size.
+     *     // The maximum number of results to return. If not set, the service will select a default.
      *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
+     *     // A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -961,7 +1075,7 @@ export namespace metastore_v1alpha {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * The standard list filter.
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      */
     filter?: string;
     /**
@@ -969,11 +1083,11 @@ export namespace metastore_v1alpha {
      */
     name?: string;
     /**
-     * The standard list page size.
+     * The maximum number of results to return. If not set, the service will select a default.
      */
     pageSize?: number;
     /**
-     * The standard list page token.
+     * A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
   }
@@ -1416,9 +1530,13 @@ export namespace metastore_v1alpha {
 
   export class Resource$Projects$Locations$Services {
     context: APIRequestContext;
+    backups: Resource$Projects$Locations$Services$Backups;
     metadataImports: Resource$Projects$Locations$Services$Metadataimports;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.backups = new Resource$Projects$Locations$Services$Backups(
+        this.context
+      );
       this.metadataImports = new Resource$Projects$Locations$Services$Metadataimports(
         this.context
       );
@@ -1451,7 +1569,7 @@ export namespace metastore_v1alpha {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.create({
-     *     // Required. The relative resource name of the location in which to create a metastore service, in the following form:"projects/{project_number\}/locations/{location_id\}".
+     *     // Required. The relative resource name of the location in which to create a metastore service, in the following form:projects/{project_number\}/locations/{location_id\}.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      *     requestId: 'placeholder-value',
@@ -1473,6 +1591,7 @@ export namespace metastore_v1alpha {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "port": 0,
+     *       //   "releaseChannel": "my_releaseChannel",
      *       //   "state": "my_state",
      *       //   "stateMessage": "my_stateMessage",
      *       //   "tier": "my_tier",
@@ -1611,7 +1730,7 @@ export namespace metastore_v1alpha {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.delete({
-     *     // Required. The relative resource name of the metastore service to delete, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}".
+     *     // Required. The relative resource name of the metastore service to delete, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *     // Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      *     requestId: 'placeholder-value',
@@ -1743,7 +1862,7 @@ export namespace metastore_v1alpha {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.exportMetadata({
-     *     // Required. The relative resource name of the metastore service to run export, in the following form:"projects/{project_id\}/locations/{location_id\}/services/{service_id\}
+     *     // Required. The relative resource name of the metastore service to run export, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
      *     service: 'projects/my-project/locations/my-location/services/my-service',
      *
      *     // Request body metadata
@@ -1886,7 +2005,7 @@ export namespace metastore_v1alpha {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.get({
-     *     // Required. The relative resource name of the metastore service to retrieve, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}".
+     *     // Required. The relative resource name of the metastore service to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *   });
      *   console.log(res.data);
@@ -1904,6 +2023,7 @@ export namespace metastore_v1alpha {
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "port": 0,
+     *   //   "releaseChannel": "my_releaseChannel",
      *   //   "state": "my_state",
      *   //   "stateMessage": "my_stateMessage",
      *   //   "tier": "my_tier",
@@ -2163,13 +2283,13 @@ export namespace metastore_v1alpha {
      *   const res = await metastore.projects.locations.services.list({
      *     // Optional. The filter to apply to list results.
      *     filter: 'placeholder-value',
-     *     // Optional. Specify the ordering of results as described in Sorting Order. If not specified, the results will be sorted in the default order.
+     *     // Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.
      *     orderBy: 'placeholder-value',
      *     // Optional. The maximum number of services to return. The response may contain less than the maximum number. If unspecified, no more than 500 services are returned. The maximum value is 1000; values above 1000 are changed to 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous DataprocMetastore.ListServices call. Provide this token to retrieve the subsequent page.To retrieve the first page, supply an empty page token.When paginating, other parameters provided to DataprocMetastore.ListServices must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The relative resource name of the location of metastore services to list, in the following form:"projects/{project_number\}/locations/{location_id\}".
+     *     // Required. The relative resource name of the location of metastore services to list, in the following form:projects/{project_number\}/locations/{location_id\}.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2305,7 +2425,7 @@ export namespace metastore_v1alpha {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.patch({
-     *     // Immutable. The relative resource name of the metastore service, of the form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}".
+     *     // Immutable. The relative resource name of the metastore service, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *     // Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      *     requestId: 'placeholder-value',
@@ -2327,6 +2447,7 @@ export namespace metastore_v1alpha {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "port": 0,
+     *       //   "releaseChannel": "my_releaseChannel",
      *       //   "state": "my_state",
      *       //   "stateMessage": "my_stateMessage",
      *       //   "tier": "my_tier",
@@ -2423,6 +2544,149 @@ export namespace metastore_v1alpha {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Restores a service from a backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const metastore = google.metastore('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await metastore.projects.locations.services.restore({
+     *     // Required. The relative resource name of the metastore service to run restore, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
+     *     service: 'projects/my-project/locations/my-location/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "backup": "my_backup",
+     *       //   "requestId": "my_requestId",
+     *       //   "restoreType": "my_restoreType"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restore(
+      params: Params$Resource$Projects$Locations$Services$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
+      params?: Params$Resource$Projects$Locations$Services$Restore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    restore(
+      params: Params$Resource$Projects$Locations$Services$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Services$Restore,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Services$Restore,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restore(callback: BodyResponseCallback<Schema$Operation>): void;
+    restore(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Restore
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Services$Restore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+service}:restore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['service'],
+        pathParams: ['service'],
         context: this.context,
       };
       if (callback) {
@@ -2724,7 +2988,7 @@ export namespace metastore_v1alpha {
   export interface Params$Resource$Projects$Locations$Services$Create
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the location in which to create a metastore service, in the following form:"projects/{project_number\}/locations/{location_id\}".
+     * Required. The relative resource name of the location in which to create a metastore service, in the following form:projects/{project_number\}/locations/{location_id\}.
      */
     parent?: string;
     /**
@@ -2744,7 +3008,7 @@ export namespace metastore_v1alpha {
   export interface Params$Resource$Projects$Locations$Services$Delete
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the metastore service to delete, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}".
+     * Required. The relative resource name of the metastore service to delete, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
     name?: string;
     /**
@@ -2755,7 +3019,7 @@ export namespace metastore_v1alpha {
   export interface Params$Resource$Projects$Locations$Services$Exportmetadata
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the metastore service to run export, in the following form:"projects/{project_id\}/locations/{location_id\}/services/{service_id\}
+     * Required. The relative resource name of the metastore service to run export, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
      */
     service?: string;
 
@@ -2767,7 +3031,7 @@ export namespace metastore_v1alpha {
   export interface Params$Resource$Projects$Locations$Services$Get
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the metastore service to retrieve, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}".
+     * Required. The relative resource name of the metastore service to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
     name?: string;
   }
@@ -2789,7 +3053,7 @@ export namespace metastore_v1alpha {
      */
     filter?: string;
     /**
-     * Optional. Specify the ordering of results as described in Sorting Order. If not specified, the results will be sorted in the default order.
+     * Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.
      */
     orderBy?: string;
     /**
@@ -2801,14 +3065,14 @@ export namespace metastore_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. The relative resource name of the location of metastore services to list, in the following form:"projects/{project_number\}/locations/{location_id\}".
+     * Required. The relative resource name of the location of metastore services to list, in the following form:projects/{project_number\}/locations/{location_id\}.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Services$Patch
     extends StandardParameters {
     /**
-     * Immutable. The relative resource name of the metastore service, of the form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}".
+     * Immutable. The relative resource name of the metastore service, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
     name?: string;
     /**
@@ -2824,6 +3088,18 @@ export namespace metastore_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$Service;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Restore
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the metastore service to run restore, in the following form:projects/{project_id\}/locations/{location_id\}/services/{service_id\}.
+     */
+    service?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RestoreServiceRequest;
   }
   export interface Params$Resource$Projects$Locations$Services$Setiampolicy
     extends StandardParameters {
@@ -2848,6 +3124,632 @@ export namespace metastore_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Services$Backups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new Backup in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const metastore = google.metastore('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await metastore.projects.locations.services.backups.create({
+     *     // Required. The ID of the backup, which is used as the final component of the backup's name.This value must be between 1 and 64 characters long, begin with a letter, end with a letter or number, and consist of alpha-numeric ASCII characters or hyphens.
+     *     backupId: 'placeholder-value',
+     *     // Required. The relative resource name of the service in which to create a backup of the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
+     *     parent: 'projects/my-project/locations/my-location/services/my-service',
+     *     // Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
+     *     requestId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "endTime": "my_endTime",
+     *       //   "name": "my_name",
+     *       //   "serviceRevision": {},
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Services$Backups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Services$Backups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Services$Backups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Services$Backups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Services$Backups$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Backups$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Backups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Services$Backups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/backups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const metastore = google.metastore('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await metastore.projects.locations.services.backups.delete({
+     *     // Required. The relative resource name of the backup to delete, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}.
+     *     name:
+     *       'projects/my-project/locations/my-location/services/my-service/backups/my-backup',
+     *     // Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Services$Backups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Services$Backups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Services$Backups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Services$Backups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Services$Backups$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Backups$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Backups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Services$Backups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const metastore = google.metastore('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await metastore.projects.locations.services.backups.get({
+     *     // Required. The relative resource name of the backup to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}.
+     *     name:
+     *       'projects/my-project/locations/my-location/services/my-service/backups/my-backup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "endTime": "my_endTime",
+     *   //   "name": "my_name",
+     *   //   "serviceRevision": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Services$Backups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Services$Backups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Backup>;
+    get(
+      params: Params$Resource$Projects$Locations$Services$Backups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Services$Backups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Backup>,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Services$Backups$Get,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Backup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Backups$Get
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Backup> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Backups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Services$Backups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Backup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Backup>(parameters);
+      }
+    }
+
+    /**
+     * Lists backups in a service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/metastore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const metastore = google.metastore('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await metastore.projects.locations.services.backups.list({
+     *     // Optional. The filter to apply to list results.
+     *     filter: 'placeholder-value',
+     *     // Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of backups to return. The response may contain less than the maximum number. If unspecified, no more than 500 backups are returned. The maximum value is 1000; values above 1000 are changed to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous DataprocMetastore.ListBackups call. Provide this token to retrieve the subsequent page.To retrieve the first page, supply an empty page token.When paginating, other parameters provided to DataprocMetastore.ListBackups must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The relative resource name of the service whose backups to list, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/backups.
+     *     parent: 'projects/my-project/locations/my-location/services/my-service',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backups": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Services$Backups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Services$Backups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Services$Backups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Services$Backups$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBackupsResponse>,
+      callback: BodyResponseCallback<Schema$ListBackupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Services$Backups$List,
+      callback: BodyResponseCallback<Schema$ListBackupsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBackupsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Services$Backups$List
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBackupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Services$Backups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Services$Backups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://metastore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/backups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBackupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBackupsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Services$Backups$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID of the backup, which is used as the final component of the backup's name.This value must be between 1 and 64 characters long, begin with a letter, end with a letter or number, and consist of alpha-numeric ASCII characters or hyphens.
+     */
+    backupId?: string;
+    /**
+     * Required. The relative resource name of the service in which to create a backup of the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
+     */
+    parent?: string;
+    /**
+     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Backup;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Backups$Delete
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the backup to delete, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}.
+     */
+    name?: string;
+    /**
+     * Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Backups$Get
+    extends StandardParameters {
+    /**
+     * Required. The relative resource name of the backup to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Services$Backups$List
+    extends StandardParameters {
+    /**
+     * Optional. The filter to apply to list results.
+     */
+    filter?: string;
+    /**
+     * Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of backups to return. The response may contain less than the maximum number. If unspecified, no more than 500 backups are returned. The maximum value is 1000; values above 1000 are changed to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous DataprocMetastore.ListBackups call. Provide this token to retrieve the subsequent page.To retrieve the first page, supply an empty page token.When paginating, other parameters provided to DataprocMetastore.ListBackups must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The relative resource name of the service whose backups to list, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/backups.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Services$Metadataimports {
@@ -2886,7 +3788,7 @@ export namespace metastore_v1alpha {
      *     {
      *       // Required. The ID of the metadata import, which is used as the final component of the metadata import's name.This value must be between 1 and 64 characters long, begin with a letter, end with a letter or number, and consist of alpha-numeric ASCII characters or hyphens.
      *       metadataImportId: 'placeholder-value',
-     *       // Required. The relative resource name of the service in which to create a metastore import, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}"
+     *       // Required. The relative resource name of the service in which to create a metastore import, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      *       parent: 'projects/my-project/locations/my-location/services/my-service',
      *       // Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      *       requestId: 'placeholder-value',
@@ -3035,7 +3937,7 @@ export namespace metastore_v1alpha {
      *
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.metadataImports.get({
-     *     // Required. The relative resource name of the metadata import to retrieve, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{import_id\}".
+     *     // Required. The relative resource name of the metadata import to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{import_id\}.
      *     name:
      *       'projects/my-project/locations/my-location/services/my-service/metadataImports/my-metadataImport',
      *   });
@@ -3169,13 +4071,13 @@ export namespace metastore_v1alpha {
      *   const res = await metastore.projects.locations.services.metadataImports.list({
      *     // Optional. The filter to apply to list results.
      *     filter: 'placeholder-value',
-     *     // Optional. Specify the ordering of results as described in Sorting Order. If not specified, the results will be sorted in the default order.
+     *     // Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.
      *     orderBy: 'placeholder-value',
      *     // Optional. The maximum number of imports to return. The response may contain less than the maximum number. If unspecified, no more than 500 imports are returned. The maximum value is 1000; values above 1000 are changed to 1000.
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous DataprocMetastore.ListServices call. Provide this token to retrieve the subsequent page.To retrieve the first page, supply an empty page token.When paginating, other parameters provided to DataprocMetastore.ListServices must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The relative resource name of the service whose metadata imports to list, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports".
+     *     // Required. The relative resource name of the service whose metadata imports to list, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports.
      *     parent: 'projects/my-project/locations/my-location/services/my-service',
      *   });
      *   console.log(res.data);
@@ -3314,7 +4216,7 @@ export namespace metastore_v1alpha {
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.metadataImports.patch(
      *     {
-     *       // Immutable. The relative resource name of the metadata import, of the form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}".
+     *       // Immutable. The relative resource name of the metadata import, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}.
      *       name:
      *         'projects/my-project/locations/my-location/services/my-service/metadataImports/my-metadataImport',
      *       // Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
@@ -3444,7 +4346,7 @@ export namespace metastore_v1alpha {
      */
     metadataImportId?: string;
     /**
-     * Required. The relative resource name of the service in which to create a metastore import, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}"
+     * Required. The relative resource name of the service in which to create a metastore import, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
      */
     parent?: string;
     /**
@@ -3460,7 +4362,7 @@ export namespace metastore_v1alpha {
   export interface Params$Resource$Projects$Locations$Services$Metadataimports$Get
     extends StandardParameters {
     /**
-     * Required. The relative resource name of the metadata import to retrieve, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{import_id\}".
+     * Required. The relative resource name of the metadata import to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{import_id\}.
      */
     name?: string;
   }
@@ -3471,7 +4373,7 @@ export namespace metastore_v1alpha {
      */
     filter?: string;
     /**
-     * Optional. Specify the ordering of results as described in Sorting Order. If not specified, the results will be sorted in the default order.
+     * Optional. Specify the ordering of results as described in Sorting Order (https://cloud.google.com/apis/design/design_patterns#sorting_order). If not specified, the results will be sorted in the default order.
      */
     orderBy?: string;
     /**
@@ -3483,14 +4385,14 @@ export namespace metastore_v1alpha {
      */
     pageToken?: string;
     /**
-     * Required. The relative resource name of the service whose metadata imports to list, in the following form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports".
+     * Required. The relative resource name of the service whose metadata imports to list, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Services$Metadataimports$Patch
     extends StandardParameters {
     /**
-     * Immutable. The relative resource name of the metadata import, of the form:"projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}".
+     * Immutable. The relative resource name of the metadata import, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}.
      */
     name?: string;
     /**

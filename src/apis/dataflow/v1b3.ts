@@ -181,23 +181,6 @@ export namespace dataflow_v1b3 {
     position?: Schema$Position;
   }
   /**
-   * Job information for templates.
-   */
-  export interface Schema$Artifact {
-    /**
-     * Container image path set for flex Template.
-     */
-    containerSpec?: Schema$ContainerSpec;
-    /**
-     * job_graph_gcs_path set for legacy Template.
-     */
-    jobGraphGcsPath?: string | null;
-    /**
-     * Metadata set for legacy Template.
-     */
-    metadata?: Schema$TemplateMetadata;
-  }
-  /**
    * A structured message reporting an autoscaling decision made by the Dataflow service.
    */
   export interface Schema$AutoscalingEvent {
@@ -261,7 +244,7 @@ export namespace dataflow_v1b3 {
     table?: string | null;
   }
   /**
-   * Metadata for a BigTable connector used by the job.
+   * Metadata for a Cloud BigTable connector used by the job.
    */
   export interface Schema$BigTableIODetails {
     /**
@@ -276,15 +259,6 @@ export namespace dataflow_v1b3 {
      * TableId accessed in the connection.
      */
     tableId?: string | null;
-  }
-  /**
-   * Commit will add a new TemplateVersion to an existing template.
-   */
-  export interface Schema$CommitTemplateVersionRequest {
-    /**
-     * TemplateVersion obejct to create.
-     */
-    templateVersion?: Schema$TemplateVersion;
   }
   /**
    * Description of an interstitial value between transforms in an execution stage.
@@ -570,15 +544,6 @@ export namespace dataflow_v1b3 {
     parameters?: {[key: string]: string} | null;
   }
   /**
-   * Creates a new Template with TemplateVersions.
-   */
-  export interface Schema$CreateTemplateVersionRequest {
-    /**
-     * The TemplateVersion object to create.
-     */
-    templateVersion?: Schema$TemplateVersion;
-  }
-  /**
    * Identifies the location of a custom souce.
    */
   export interface Schema$CustomSourceLocation {
@@ -612,6 +577,15 @@ export namespace dataflow_v1b3 {
      * ProjectId accessed in the connection.
      */
     projectId?: string | null;
+  }
+  /**
+   * Describes any options that have an effect on the debugging of pipelines.
+   */
+  export interface Schema$DebugOptions {
+    /**
+     * When true, enables the logging of the literal hot key to the user's Cloud Logging.
+     */
+    enableHotKeyLogging?: boolean | null;
   }
   /**
    * Response from deleting a snapshot.
@@ -743,10 +717,6 @@ export namespace dataflow_v1b3 {
     residual?: Schema$DerivedSource;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
-   */
-  export interface Schema$Empty {}
-  /**
    * Describes the environment in which a Dataflow Job runs.
    */
   export interface Schema$Environment {
@@ -758,6 +728,10 @@ export namespace dataflow_v1b3 {
      * The dataset for the current project where various workflow related tables are stored. The supported resource type is: Google BigQuery: bigquery.googleapis.com/{dataset\}
      */
     dataset?: string | null;
+    /**
+     * Any debugging options to be supplied to the job.
+     */
+    debugOptions?: Schema$DebugOptions;
     /**
      * The list of experiments to enable. This field should be used for SDK related experiments and not for service related experiments. The proper field for service related experiments is service_options. For more details see the rationale at go/user-specified-service-options.
      */
@@ -853,7 +827,7 @@ export namespace dataflow_v1b3 {
      */
     inputSource?: Schema$StageSource[];
     /**
-     * Type of tranform this stage is executing.
+     * Type of transform this stage is executing.
      */
     kind?: string | null;
     /**
@@ -1230,7 +1204,7 @@ export namespace dataflow_v1b3 {
      */
     steps?: Schema$Step[];
     /**
-     * The GCS location where the steps are stored.
+     * The Cloud Storage location where the steps are stored.
      */
     stepsLocation?: string | null;
     /**
@@ -1307,7 +1281,7 @@ export namespace dataflow_v1b3 {
      */
     bigqueryDetails?: Schema$BigQueryIODetails[];
     /**
-     * Identification of a BigTable source used in the Dataflow job.
+     * Identification of a Cloud BigTable source used in the Dataflow job.
      */
     bigTableDetails?: Schema$BigTableIODetails[];
     /**
@@ -1395,7 +1369,7 @@ export namespace dataflow_v1b3 {
      */
     containerSpec?: Schema$ContainerSpec;
     /**
-     * Gcs path to a file with json serialized ContainerSpec as content.
+     * Cloud Storage path to a file with json serialized ContainerSpec as content.
      */
     containerSpecGcsPath?: string | null;
     /**
@@ -1569,19 +1543,6 @@ export namespace dataflow_v1b3 {
     snapshots?: Schema$Snapshot[];
   }
   /**
-   * Respond a list of TemplateVersions.
-   */
-  export interface Schema$ListTemplateVersionsResponse {
-    /**
-     * A token that can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
-     */
-    nextPageToken?: string | null;
-    /**
-     * A list of TemplateVersions.
-     */
-    templateVersions?: Schema$TemplateVersion[];
-  }
-  /**
    * MapTask consists of an ordered set of instructions, each of which describes one particular low-level operation for the worker to perform in order to accomplish the MapTask's WorkItem. Each instruction must appear in the list before any instructions which depends on its output.
    */
   export interface Schema$MapTask {
@@ -1701,54 +1662,6 @@ export namespace dataflow_v1b3 {
      * Timestamp associated with the metric value. Optional when workers are reporting work progress; it will be filled in responses from the metrics API.
      */
     updateTime?: string | null;
-  }
-  /**
-   * Either add the label to TemplateVersion or remove it from the TemplateVersion.
-   */
-  export interface Schema$ModifyTemplateVersionLabelRequest {
-    /**
-     * The label key for update.
-     */
-    key?: string | null;
-    /**
-     * Requests for add label to TemplateVersion or remove label from TemplateVersion.
-     */
-    op?: string | null;
-    /**
-     * The label value for update.
-     */
-    value?: string | null;
-  }
-  /**
-   * Respond the labels in the TemplateVersion.
-   */
-  export interface Schema$ModifyTemplateVersionLabelResponse {
-    /**
-     * All the label in the TemplateVersion.
-     */
-    labels?: {[key: string]: string} | null;
-  }
-  /**
-   * Add a tag to the current TemplateVersion. If tag exist in another TemplateVersion in the Template, remove the tag before add it to the current TemplateVersion. If remove_only set, remove the tag from the current TemplateVersion.
-   */
-  export interface Schema$ModifyTemplateVersionTagRequest {
-    /**
-     * The flag that indicates if the request is only for remove tag from TemplateVersion.
-     */
-    removeOnly?: boolean | null;
-    /**
-     * The tag for update.
-     */
-    tag?: string | null;
-  }
-  /**
-   * Respond the current tags in the TemplateVersion.
-   */
-  export interface Schema$ModifyTemplateVersionTagResponse {
-    /**
-     * All the tags in the TemplateVersion.
-     */
-    tags?: string[] | null;
   }
   /**
    * Describes mounted data disk.
@@ -2004,7 +1917,7 @@ export namespace dataflow_v1b3 {
     dataPoints?: Schema$Point[];
   }
   /**
-   * Metadata for a PubSub connector used by the job.
+   * Metadata for a Pub/Sub connector used by the job.
    */
   export interface Schema$PubSubIODetails {
     /**
@@ -3092,47 +3005,6 @@ export namespace dataflow_v1b3 {
     parameters?: Schema$ParameterMetadata[];
   }
   /**
-   * ///////////////////////////////////////////////////////////////////////////// //// Template Catalog is used to organize user TemplateVersions. //// TemplateVersions that have the same project_id and display_name are //// belong to the same Template. //// Templates with the same project_id belong to the same Project. //// TemplateVersion may have labels and multiple labels are allowed. //// Duplicated labels in the same `TemplateVersion` are not allowed. //// TemplateVersion may have tags and multiple tags are allowed. Duplicated //// tags in the same `Template` are not allowed!
-   */
-  export interface Schema$TemplateVersion {
-    /**
-     * Job graph and metadata if it is a legacy Template. Container image path and metadata if it is flex Template.
-     */
-    artifact?: Schema$Artifact;
-    /**
-     * Creation time of this TemplateVersion.
-     */
-    createTime?: string | null;
-    /**
-     * Template description from the user.
-     */
-    description?: string | null;
-    /**
-     * A customized name for Template. Multiple TemplateVersions per Template.
-     */
-    displayName?: string | null;
-    /**
-     * Labels for the Template Version. Labels can be duplicate within Template.
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * A unique project_id. Multiple Templates per Project.
-     */
-    projectId?: string | null;
-    /**
-     * Alias for version_id, helps locate a TemplateVersion.
-     */
-    tags?: string[] | null;
-    /**
-     * Either LEGACY or FLEX. This should match with the type of artifact.
-     */
-    type?: string | null;
-    /**
-     * An auto generated version_id for TemplateVersion.
-     */
-    versionId?: string | null;
-  }
-  /**
    * Global topology of the streaming Dataflow job, including all computations and their sharded locations.
    */
   export interface Schema$TopologyConfig {
@@ -3217,7 +3089,7 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$WorkerHealthReport {
     /**
-     * A message describing any unusual health reports.
+     * Message describing any unusual health reports.
      */
     msg?: string | null;
     /**
@@ -3228,6 +3100,10 @@ export namespace dataflow_v1b3 {
      * The interval at which the worker is sending health reports. The default value of 0 should be interpreted as the field is not being explicitly set by the worker.
      */
     reportInterval?: string | null;
+    /**
+     * Code to describe a specific reason, if known, that a VM has reported broken state.
+     */
+    vmBrokenCode?: string | null;
     /**
      * Whether the VM is in a permanently broken state. Broken VMs should be abandoned or deleted ASAP to avoid assigning or completing any work.
      */
@@ -3305,11 +3181,11 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$WorkerMessageCode {
     /**
-     * The code is a string intended for consumption by a machine that identifies the type of message being sent. Examples: 1. "HARNESS_STARTED" might be used to indicate the worker harness has started. 2. "GCS_DOWNLOAD_ERROR" might be used to indicate an error downloading a GCS file as part of the boot process of one of the worker containers. This is a string and not an enum to make it easy to add new codes without waiting for an API change.
+     * The code is a string intended for consumption by a machine that identifies the type of message being sent. Examples: 1. "HARNESS_STARTED" might be used to indicate the worker harness has started. 2. "GCS_DOWNLOAD_ERROR" might be used to indicate an error downloading a Cloud Storage file as part of the boot process of one of the worker containers. This is a string and not an enum to make it easy to add new codes without waiting for an API change.
      */
     code?: string | null;
     /**
-     * Parameters contains specific information about the code. This is a struct to allow parameters of different types. Examples: 1. For a "HARNESS_STARTED" message parameters might provide the name of the worker and additional data like timing information. 2. For a "GCS_DOWNLOAD_ERROR" parameters might contain fields listing the GCS objects being downloaded and fields containing errors. In general complex data structures should be avoided. If a worker needs to send a specific and complicated data structure then please consider defining a new proto and adding it to the data oneof in WorkerMessageResponse. Conventions: Parameters should only be used for information that isn't typically passed as a label. hostname and other worker identifiers should almost always be passed as labels since they will be included on most messages.
+     * Parameters contains specific information about the code. This is a struct to allow parameters of different types. Examples: 1. For a "HARNESS_STARTED" message parameters might provide the name of the worker and additional data like timing information. 2. For a "GCS_DOWNLOAD_ERROR" parameters might contain fields listing the Cloud Storage objects being downloaded and fields containing errors. In general complex data structures should be avoided. If a worker needs to send a specific and complicated data structure then please consider defining a new proto and adding it to the data oneof in WorkerMessageResponse. Conventions: Parameters should only be used for information that isn't typically passed as a label. hostname and other worker identifiers should almost always be passed as labels since they will be included on most messages.
      */
     parameters?: {[key: string]: any} | null;
   }
@@ -3685,24 +3561,16 @@ export namespace dataflow_v1b3 {
 
   export class Resource$Projects {
     context: APIRequestContext;
-    catalogTemplates: Resource$Projects$Catalogtemplates;
     jobs: Resource$Projects$Jobs;
     locations: Resource$Projects$Locations;
     snapshots: Resource$Projects$Snapshots;
     templates: Resource$Projects$Templates;
-    templateVersions: Resource$Projects$Templateversions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.catalogTemplates = new Resource$Projects$Catalogtemplates(
-        this.context
-      );
       this.jobs = new Resource$Projects$Jobs(this.context);
       this.locations = new Resource$Projects$Locations(this.context);
       this.snapshots = new Resource$Projects$Snapshots(this.context);
       this.templates = new Resource$Projects$Templates(this.context);
-      this.templateVersions = new Resource$Projects$Templateversions(
-        this.context
-      );
     }
 
     /**
@@ -4024,946 +3892,6 @@ export namespace dataflow_v1b3 {
      * Request body metadata
      */
     requestBody?: Schema$SendWorkerMessagesRequest;
-  }
-
-  export class Resource$Projects$Catalogtemplates {
-    context: APIRequestContext;
-    templateVersions: Resource$Projects$Catalogtemplates$Templateversions;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-      this.templateVersions = new Resource$Projects$Catalogtemplates$Templateversions(
-        this.context
-      );
-    }
-
-    /**
-     * Creates a new TemplateVersion (Important: not new Template) entry in the spanner table. Requires project_id and display_name (template).
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.catalogTemplates.commit({
-     *     // The location of the template, name includes project_id and display_name. Commit using project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\}
-     *     name: 'projects/my-project/catalogTemplates/my-catalogTemplate',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "templateVersion": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "artifact": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "labels": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "tags": [],
-     *   //   "type": "my_type",
-     *   //   "versionId": "my_versionId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    commit(
-      params: Params$Resource$Projects$Catalogtemplates$Commit,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    commit(
-      params?: Params$Resource$Projects$Catalogtemplates$Commit,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$TemplateVersion>;
-    commit(
-      params: Params$Resource$Projects$Catalogtemplates$Commit,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    commit(
-      params: Params$Resource$Projects$Catalogtemplates$Commit,
-      options: MethodOptions | BodyResponseCallback<Schema$TemplateVersion>,
-      callback: BodyResponseCallback<Schema$TemplateVersion>
-    ): void;
-    commit(
-      params: Params$Resource$Projects$Catalogtemplates$Commit,
-      callback: BodyResponseCallback<Schema$TemplateVersion>
-    ): void;
-    commit(callback: BodyResponseCallback<Schema$TemplateVersion>): void;
-    commit(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Catalogtemplates$Commit
-        | BodyResponseCallback<Schema$TemplateVersion>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$TemplateVersion>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$TemplateVersion>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TemplateVersion> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Catalogtemplates$Commit;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Catalogtemplates$Commit;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1b3/{+name}:commit').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$TemplateVersion>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$TemplateVersion>(parameters);
-      }
-    }
-
-    /**
-     * Deletes an existing Template. Do nothing if Template does not exist.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.catalogTemplates.delete({
-     *     // name includes project_id and display_name. Delete by project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\}
-     *     name: 'projects/my-project/catalogTemplates/my-catalogTemplate',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {}
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Catalogtemplates$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Projects$Catalogtemplates$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Empty>;
-    delete(
-      params: Params$Resource$Projects$Catalogtemplates$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Catalogtemplates$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Catalogtemplates$Delete,
-      callback: BodyResponseCallback<Schema$Empty>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Empty>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Catalogtemplates$Delete
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Empty>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Catalogtemplates$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Catalogtemplates$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1b3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Empty>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Empty>(parameters);
-      }
-    }
-
-    /**
-     * Get TemplateVersion using project_id and display_name with an optional version_id field. Get latest (has tag "latest") TemplateVersion if version_id not set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.catalogTemplates.get({
-     *     // Resource name includes project_id and display_name. version_id is optional. Get the latest TemplateVersion if version_id not set. Get by project_id(pid1) and display_name(tid1): Format: projects/{pid1\}/catalogTemplates/{tid1\} Get by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1\}/catalogTemplates/{tid1@vid\}
-     *     name: 'projects/my-project/catalogTemplates/my-catalogTemplate',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "artifact": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "labels": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "tags": [],
-     *   //   "type": "my_type",
-     *   //   "versionId": "my_versionId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Catalogtemplates$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Catalogtemplates$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$TemplateVersion>;
-    get(
-      params: Params$Resource$Projects$Catalogtemplates$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Catalogtemplates$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$TemplateVersion>,
-      callback: BodyResponseCallback<Schema$TemplateVersion>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Catalogtemplates$Get,
-      callback: BodyResponseCallback<Schema$TemplateVersion>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$TemplateVersion>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Catalogtemplates$Get
-        | BodyResponseCallback<Schema$TemplateVersion>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$TemplateVersion>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$TemplateVersion>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TemplateVersion> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Catalogtemplates$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Catalogtemplates$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1b3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$TemplateVersion>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$TemplateVersion>(parameters);
-      }
-    }
-
-    /**
-     * Updates the label of the TemplateVersion. Label can be duplicated in Template, so either add or remove the label in the TemplateVersion.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.catalogTemplates.label({
-     *     // Resource name includes project_id, display_name, and version_id. Updates by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1\}/catalogTemplates/{tid1@vid\}
-     *     name: 'projects/my-project/catalogTemplates/my-catalogTemplate',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "key": "my_key",
-     *       //   "op": "my_op",
-     *       //   "value": "my_value"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "labels": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    label(
-      params: Params$Resource$Projects$Catalogtemplates$Label,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    label(
-      params?: Params$Resource$Projects$Catalogtemplates$Label,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ModifyTemplateVersionLabelResponse>;
-    label(
-      params: Params$Resource$Projects$Catalogtemplates$Label,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    label(
-      params: Params$Resource$Projects$Catalogtemplates$Label,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ModifyTemplateVersionLabelResponse>,
-      callback: BodyResponseCallback<Schema$ModifyTemplateVersionLabelResponse>
-    ): void;
-    label(
-      params: Params$Resource$Projects$Catalogtemplates$Label,
-      callback: BodyResponseCallback<Schema$ModifyTemplateVersionLabelResponse>
-    ): void;
-    label(
-      callback: BodyResponseCallback<Schema$ModifyTemplateVersionLabelResponse>
-    ): void;
-    label(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Catalogtemplates$Label
-        | BodyResponseCallback<Schema$ModifyTemplateVersionLabelResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ModifyTemplateVersionLabelResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ModifyTemplateVersionLabelResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ModifyTemplateVersionLabelResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Catalogtemplates$Label;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Catalogtemplates$Label;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1b3/{+name}:label').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ModifyTemplateVersionLabelResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ModifyTemplateVersionLabelResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Updates the tag of the TemplateVersion, and tag is unique in Template. If tag exists in another TemplateVersion in the Template, updates the tag to this TemplateVersion will remove it from the old TemplateVersion and add it to this TemplateVersion. If request is remove_only (remove_only = true), remove the tag from this TemplateVersion.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.catalogTemplates.tag({
-     *     // Resource name includes project_id, display_name, and version_id. Updates by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1\}/catalogTemplates/{tid1@vid\}
-     *     name: 'projects/my-project/catalogTemplates/my-catalogTemplate',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "removeOnly": false,
-     *       //   "tag": "my_tag"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "tags": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    tag(
-      params: Params$Resource$Projects$Catalogtemplates$Tag,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    tag(
-      params?: Params$Resource$Projects$Catalogtemplates$Tag,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ModifyTemplateVersionTagResponse>;
-    tag(
-      params: Params$Resource$Projects$Catalogtemplates$Tag,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    tag(
-      params: Params$Resource$Projects$Catalogtemplates$Tag,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ModifyTemplateVersionTagResponse>,
-      callback: BodyResponseCallback<Schema$ModifyTemplateVersionTagResponse>
-    ): void;
-    tag(
-      params: Params$Resource$Projects$Catalogtemplates$Tag,
-      callback: BodyResponseCallback<Schema$ModifyTemplateVersionTagResponse>
-    ): void;
-    tag(
-      callback: BodyResponseCallback<Schema$ModifyTemplateVersionTagResponse>
-    ): void;
-    tag(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Catalogtemplates$Tag
-        | BodyResponseCallback<Schema$ModifyTemplateVersionTagResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ModifyTemplateVersionTagResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ModifyTemplateVersionTagResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ModifyTemplateVersionTagResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Catalogtemplates$Tag;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Catalogtemplates$Tag;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1b3/{+name}:tag').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ModifyTemplateVersionTagResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ModifyTemplateVersionTagResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Catalogtemplates$Commit
-    extends StandardParameters {
-    /**
-     * The location of the template, name includes project_id and display_name. Commit using project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\}
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$CommitTemplateVersionRequest;
-  }
-  export interface Params$Resource$Projects$Catalogtemplates$Delete
-    extends StandardParameters {
-    /**
-     * name includes project_id and display_name. Delete by project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\}
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Catalogtemplates$Get
-    extends StandardParameters {
-    /**
-     * Resource name includes project_id and display_name. version_id is optional. Get the latest TemplateVersion if version_id not set. Get by project_id(pid1) and display_name(tid1): Format: projects/{pid1\}/catalogTemplates/{tid1\} Get by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1\}/catalogTemplates/{tid1@vid\}
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Catalogtemplates$Label
-    extends StandardParameters {
-    /**
-     * Resource name includes project_id, display_name, and version_id. Updates by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1\}/catalogTemplates/{tid1@vid\}
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ModifyTemplateVersionLabelRequest;
-  }
-  export interface Params$Resource$Projects$Catalogtemplates$Tag
-    extends StandardParameters {
-    /**
-     * Resource name includes project_id, display_name, and version_id. Updates by project_id(pid1), display_name(tid1), and version_id(vid1): Format: projects/{pid1\}/catalogTemplates/{tid1@vid\}
-     */
-    name?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ModifyTemplateVersionTagRequest;
-  }
-
-  export class Resource$Projects$Catalogtemplates$Templateversions {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Creates a new Template with TemplateVersion. Requires project_id(projects) and template display_name(catalogTemplates). The template display_name is set by the user.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.catalogTemplates.templateVersions.create({
-     *     // The parent project and template that the TemplateVersion will be created under. Create using project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\}
-     *     parent: 'projects/my-project/catalogTemplates/my-catalogTemplate',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "templateVersion": {}
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "artifact": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "description": "my_description",
-     *   //   "displayName": "my_displayName",
-     *   //   "labels": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "tags": [],
-     *   //   "type": "my_type",
-     *   //   "versionId": "my_versionId"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Catalogtemplates$Templateversions$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Projects$Catalogtemplates$Templateversions$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$TemplateVersion>;
-    create(
-      params: Params$Resource$Projects$Catalogtemplates$Templateversions$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Catalogtemplates$Templateversions$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$TemplateVersion>,
-      callback: BodyResponseCallback<Schema$TemplateVersion>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Catalogtemplates$Templateversions$Create,
-      callback: BodyResponseCallback<Schema$TemplateVersion>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$TemplateVersion>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Catalogtemplates$Templateversions$Create
-        | BodyResponseCallback<Schema$TemplateVersion>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$TemplateVersion>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$TemplateVersion>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$TemplateVersion> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Catalogtemplates$Templateversions$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Catalogtemplates$Templateversions$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1b3/{+parent}/templateVersions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$TemplateVersion>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$TemplateVersion>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Catalogtemplates$Templateversions$Create
-    extends StandardParameters {
-    /**
-     * The parent project and template that the TemplateVersion will be created under. Create using project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\}
-     */
-    parent?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$CreateTemplateVersionRequest;
   }
 
   export class Resource$Projects$Jobs {
@@ -11138,7 +10066,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Do the magic
      *   const res = await dataflow.projects.locations.templates.launch({
-     *     // Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
+     *     // Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.
      *     'dynamicTemplate.gcsPath': 'placeholder-value',
      *     // Cloud Storage path for staging dependencies. Must be a valid Cloud Storage URL, beginning with `gs://`.
      *     'dynamicTemplate.stagingLocation': 'placeholder-value',
@@ -11306,7 +10234,7 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Locations$Templates$Launch
     extends StandardParameters {
     /**
-     * Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
+     * Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.
      */
     'dynamicTemplate.gcsPath'?: string;
     /**
@@ -12016,7 +10944,7 @@ export namespace dataflow_v1b3 {
      *
      *   // Do the magic
      *   const res = await dataflow.projects.templates.launch({
-     *     // Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
+     *     // Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.
      *     'dynamicTemplate.gcsPath': 'placeholder-value',
      *     // Cloud Storage path for staging dependencies. Must be a valid Cloud Storage URL, beginning with `gs://`.
      *     'dynamicTemplate.stagingLocation': 'placeholder-value',
@@ -12179,7 +11107,7 @@ export namespace dataflow_v1b3 {
   export interface Params$Resource$Projects$Templates$Launch
     extends StandardParameters {
     /**
-     * Path to dynamic template spec file on GCS. The file must be a Json serialized DynamicTemplateFieSpec object.
+     * Path to dynamic template spec file on Cloud Storage. The file must be a Json serialized DynamicTemplateFieSpec object.
      */
     'dynamicTemplate.gcsPath'?: string;
     /**
@@ -12207,174 +11135,5 @@ export namespace dataflow_v1b3 {
      * Request body metadata
      */
     requestBody?: Schema$LaunchTemplateParameters;
-  }
-
-  export class Resource$Projects$Templateversions {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * List TemplateVersions using project_id and an optional display_name field. List all the TemplateVersions in the Template if display set. List all the TemplateVersions in the Project if display_name not set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/userinfo.email',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.templateVersions.list({
-     *     // The maximum number of TemplateVersions to return per page.
-     *     pageSize: 'placeholder-value',
-     *     // The page token, received from a previous ListTemplateVersions call. Provide this to retrieve the subsequent page.
-     *     pageToken: 'placeholder-value',
-     *     // parent includes project_id, and display_name is optional. List by project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\} List by project_id(pid1). Format: projects/{pid1\}
-     *     parent: 'projects/my-project',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "templateVersions": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Templateversions$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Templateversions$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListTemplateVersionsResponse>;
-    list(
-      params: Params$Resource$Projects$Templateversions$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Templateversions$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListTemplateVersionsResponse>,
-      callback: BodyResponseCallback<Schema$ListTemplateVersionsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Templateversions$List,
-      callback: BodyResponseCallback<Schema$ListTemplateVersionsResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$ListTemplateVersionsResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Templateversions$List
-        | BodyResponseCallback<Schema$ListTemplateVersionsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListTemplateVersionsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListTemplateVersionsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListTemplateVersionsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Templateversions$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Templateversions$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1b3/{+parent}/templateVersions').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListTemplateVersionsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListTemplateVersionsResponse>(
-          parameters
-        );
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Templateversions$List
-    extends StandardParameters {
-    /**
-     * The maximum number of TemplateVersions to return per page.
-     */
-    pageSize?: number;
-    /**
-     * The page token, received from a previous ListTemplateVersions call. Provide this to retrieve the subsequent page.
-     */
-    pageToken?: string;
-    /**
-     * parent includes project_id, and display_name is optional. List by project_id(pid1) and display_name(tid1). Format: projects/{pid1\}/catalogTemplates/{tid1\} List by project_id(pid1). Format: projects/{pid1\}
-     */
-    parent?: string;
   }
 }

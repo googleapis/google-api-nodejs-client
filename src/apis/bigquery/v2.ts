@@ -1543,6 +1543,10 @@ export namespace bigquery_v2 {
      */
     createDisposition?: string | null;
     /**
+     * If true, creates a new session, where session id will be a server generated random id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs query in non-session mode.
+     */
+    createSession?: boolean | null;
+    /**
      * [Optional] Specifies the default dataset to use for unqualified table names in the query. Note that this does not alter behavior of unqualified dataset names.
      */
     defaultDataset?: Schema$DatasetReference;
@@ -1748,6 +1752,10 @@ export namespace bigquery_v2 {
      * [Output-only] Statistics for a child job of a script.
      */
     scriptStatistics?: Schema$ScriptStatistics;
+    /**
+     * [Output-only] [Preview] Information of the session if this job is part of one.
+     */
+    sessionInfoTemplate?: Schema$SessionInfo;
     /**
      * [Output-only] Start time of this job, in milliseconds since the epoch. This field will be present when the job transitions from the PENDING state to either RUNNING or DONE.
      */
@@ -1984,6 +1992,10 @@ export namespace bigquery_v2 {
   }
   export interface Schema$Model {
     /**
+     * The best trial_id across all training runs.
+     */
+    bestTrialId?: string | null;
+    /**
      * Output only. The time when this model was created, in millisecs since the epoch.
      */
     creationTime?: string | null;
@@ -2219,6 +2231,10 @@ export namespace bigquery_v2 {
      */
     connectionProperties?: Schema$ConnectionProperty[];
     /**
+     * If true, creates a new session, where session id will be a server generated random id. If false, runs query with an existing session_id passed in ConnectionProperty, otherwise runs query in non-session mode.
+     */
+    createSession?: boolean | null;
+    /**
      * [Optional] Specifies the default datasetId and projectId to assume for any unqualified table names in the query. If not set, all table names in the query string must be qualified in the format 'datasetId.tableId'.
      */
     defaultDataset?: Schema$DatasetReference;
@@ -2316,6 +2332,10 @@ export namespace bigquery_v2 {
      * The schema of the results. Present only when the query completes successfully.
      */
     schema?: Schema$TableSchema;
+    /**
+     * [Output-only] [Preview] Information of the session if this job is part of one.
+     */
+    sessionInfoTemplate?: Schema$SessionInfo;
     /**
      * The total number of bytes processed for this query. If this query was a dry run, this is the number of bytes that would be processed if the query were run.
      */
@@ -2444,6 +2464,10 @@ export namespace bigquery_v2 {
      */
     lastModifiedTime?: string | null;
     /**
+     * Optional. Set only if Routine is a "TABLE_VALUED_FUNCTION".
+     */
+    returnTableType?: Schema$StandardSqlTableType;
+    /**
      * Optional if language = "SQL"; required otherwise. If absent, the return type is inferred from definition_body at query time in each query that references this routine. If present, then the evaluated result will be cast to the specified returned type at query time. For example, for the functions created with the following statements: * `CREATE FUNCTION Add(x FLOAT64, y FLOAT64) RETURNS FLOAT64 AS (x + y);` * `CREATE FUNCTION Increment(x FLOAT64) AS (Add(x, 1));` * `CREATE FUNCTION Decrement(x FLOAT64) RETURNS FLOAT64 AS (Add(x, -1));` The return_type is `{type_kind: "FLOAT64"\}` for `Add` and `Decrement`, and is absent for `Increment` (inferred as FLOAT64 at query time). Suppose the function `Add` is replaced by `CREATE OR REPLACE FUNCTION Add(x INT64, y INT64) AS (x + y);` Then the inferred return type of `Increment` is automatically changed to INT64 at query time, while the return type of `Decrement` remains FLOAT64.
      */
     returnType?: Schema$StandardSqlDataType;
@@ -2568,6 +2592,12 @@ export namespace bigquery_v2 {
      */
     stackFrames?: Schema$ScriptStackFrame[];
   }
+  export interface Schema$SessionInfo {
+    /**
+     * [Output-only] // [Preview] Id of the session.
+     */
+    sessionId?: string | null;
+  }
   /**
    * Request message for `SetIamPolicy` method.
    */
@@ -2623,6 +2653,15 @@ export namespace bigquery_v2 {
   }
   export interface Schema$StandardSqlStructType {
     fields?: Schema$StandardSqlField[];
+  }
+  /**
+   * A table type
+   */
+  export interface Schema$StandardSqlTableType {
+    /**
+     * The columns in this table type
+     */
+    columns?: Schema$StandardSqlField[];
   }
   export interface Schema$Streamingbuffer {
     /**
@@ -2827,6 +2866,10 @@ export namespace bigquery_v2 {
      */
     fields?: Schema$TableFieldSchema[];
     /**
+     * [Optional] Maximum length of values of this field for STRINGS or BYTES. If max_length is not specified, no maximum length constraint is imposed on this field. If type = "STRING", then max_length represents the maximum UTF-8 length of strings in this field. If type = "BYTES", then max_length represents the maximum number of bytes in this field. It is invalid to set this field if type ≠ "STRING" and ≠ "BYTES".
+     */
+    maxLength?: string | null;
+    /**
      * [Optional] The field mode. Possible values include NULLABLE, REQUIRED and REPEATED. The default value is NULLABLE.
      */
     mode?: string | null;
@@ -2836,7 +2879,15 @@ export namespace bigquery_v2 {
     name?: string | null;
     policyTags?: {names?: string[]} | null;
     /**
-     * [Required] The field data type. Possible values include STRING, BYTES, INTEGER, INT64 (same as INTEGER), FLOAT, FLOAT64 (same as FLOAT), NUMERIC, BIGNUMERIC, BOOLEAN, BOOL (same as BOOLEAN), TIMESTAMP, DATE, TIME, DATETIME, RECORD (where RECORD indicates that the field contains a nested schema) or STRUCT (same as RECORD).
+     * [Optional] Precision (maximum number of total digits in base 10) and scale (maximum number of digits in the fractional part in base 10) constraints for values of this field for NUMERIC or BIGNUMERIC. It is invalid to set precision or scale if type ≠ "NUMERIC" and ≠ "BIGNUMERIC". If precision and scale are not specified, no value range constraint is imposed on this field insofar as values are permitted by the type. Values of this NUMERIC or BIGNUMERIC field must be in this range when: - Precision (P) and scale (S) are specified: [-10P-S + 10-S, 10P-S - 10-S] - Precision (P) is specified but not scale (and thus scale is interpreted to be equal to zero): [-10P + 1, 10P - 1]. Acceptable values for precision and scale if both are specified: - If type = "NUMERIC": 1 ≤ precision - scale ≤ 29 and 0 ≤ scale ≤ 9. - If type = "BIGNUMERIC": 1 ≤ precision - scale ≤ 38 and 0 ≤ scale ≤ 38. Acceptable values for precision if only precision is specified but not scale (and thus scale is interpreted to be equal to zero): - If type = "NUMERIC": 1 ≤ precision ≤ 29. - If type = "BIGNUMERIC": 1 ≤ precision ≤ 38. If scale is specified but not precision, then it is invalid.
+     */
+    precision?: string | null;
+    /**
+     * [Optional] See documentation for precision.
+     */
+    scale?: string | null;
+    /**
+     * [Required] The field data type. Possible values include STRING, BYTES, INTEGER, INT64 (same as INTEGER), FLOAT, FLOAT64 (same as FLOAT), NUMERIC, BIGNUMERIC, BOOLEAN, BOOL (same as BOOLEAN), TIMESTAMP, DATE, TIME, DATETIME, INTERVAL, RECORD (where RECORD indicates that the field contains a nested schema) or STRUCT (same as RECORD).
      */
     type?: string | null;
   }
@@ -4341,6 +4392,134 @@ export namespace bigquery_v2 {
     }
 
     /**
+     * Requests that a job is deleted. This call will return when the job is deleted. This method is available in limited preview.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.jobs.delete({
+     *     // Required. Job ID of the job to be deleted. If this is a parent job which has child jobs, all child jobs will be deleted as well. Deletion of child jobs directly is not allowed.
+     *     jobId: '[^/]+',
+     *     // The geographic location of the job. Required. See details at: https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
+     *     location: 'placeholder-value',
+     *     // Required. Project ID of the job to be deleted.
+     *     projectId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Jobs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Jobs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Jobs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Jobs$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Jobs$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Jobs$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Jobs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Jobs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/jobs/{+jobId}/delete'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'jobId'],
+        pathParams: ['jobId', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
      * Returns information about a specific job. Job information is available for a six month period after creation. Requires that you're the person who ran the job, or have the Is Owner project role.
      * @example
      * ```js
@@ -5004,6 +5183,7 @@ export namespace bigquery_v2 {
      *       // request body parameters
      *       // {
      *       //   "connectionProperties": [],
+     *       //   "createSession": false,
      *       //   "defaultDataset": {},
      *       //   "dryRun": false,
      *       //   "kind": "my_kind",
@@ -5035,6 +5215,7 @@ export namespace bigquery_v2 {
      *   //   "pageToken": "my_pageToken",
      *   //   "rows": [],
      *   //   "schema": {},
+     *   //   "sessionInfoTemplate": {},
      *   //   "totalBytesProcessed": "my_totalBytesProcessed",
      *   //   "totalRows": "my_totalRows"
      *   // }
@@ -5141,6 +5322,20 @@ export namespace bigquery_v2 {
     location?: string;
     /**
      * [Required] Project ID of the job to cancel
+     */
+    projectId?: string;
+  }
+  export interface Params$Resource$Jobs$Delete extends StandardParameters {
+    /**
+     * Required. Job ID of the job to be deleted. If this is a parent job which has child jobs, all child jobs will be deleted as well. Deletion of child jobs directly is not allowed.
+     */
+    jobId?: string;
+    /**
+     * The geographic location of the job. Required. See details at: https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
+     */
+    location?: string;
+    /**
+     * Required. Project ID of the job to be deleted.
      */
     projectId?: string;
   }
@@ -5442,6 +5637,7 @@ export namespace bigquery_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "bestTrialId": "my_bestTrialId",
      *   //   "creationTime": "my_creationTime",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
@@ -5733,6 +5929,7 @@ export namespace bigquery_v2 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "bestTrialId": "my_bestTrialId",
      *       //   "creationTime": "my_creationTime",
      *       //   "description": "my_description",
      *       //   "encryptionConfiguration": {},
@@ -5754,6 +5951,7 @@ export namespace bigquery_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "bestTrialId": "my_bestTrialId",
      *   //   "creationTime": "my_creationTime",
      *   //   "description": "my_description",
      *   //   "encryptionConfiguration": {},
@@ -6421,6 +6619,7 @@ export namespace bigquery_v2 {
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "returnTableType": {},
      *   //   "returnType": {},
      *   //   "routineReference": {},
      *   //   "routineType": "my_routineType"
@@ -6565,6 +6764,7 @@ export namespace bigquery_v2 {
      *       //   "importedLibraries": [],
      *       //   "language": "my_language",
      *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "returnTableType": {},
      *       //   "returnType": {},
      *       //   "routineReference": {},
      *       //   "routineType": "my_routineType"
@@ -6584,6 +6784,7 @@ export namespace bigquery_v2 {
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "returnTableType": {},
      *   //   "returnType": {},
      *   //   "routineReference": {},
      *   //   "routineType": "my_routineType"
@@ -6879,6 +7080,7 @@ export namespace bigquery_v2 {
      *       //   "importedLibraries": [],
      *       //   "language": "my_language",
      *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "returnTableType": {},
      *       //   "returnType": {},
      *       //   "routineReference": {},
      *       //   "routineType": "my_routineType"
@@ -6898,6 +7100,7 @@ export namespace bigquery_v2 {
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "returnTableType": {},
      *   //   "returnType": {},
      *   //   "routineReference": {},
      *   //   "routineType": "my_routineType"

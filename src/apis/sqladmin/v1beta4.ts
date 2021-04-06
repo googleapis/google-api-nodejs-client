@@ -442,7 +442,7 @@ export namespace sqladmin_v1beta4 {
      */
     currentDiskSize?: string | null;
     /**
-     * The database engine type and version. The *databaseVersion* field cannot be changed after instance creation. MySQL instances: *MYSQL_8_0*, *MYSQL_5_7* (default), or *MYSQL_5_6*. PostgreSQL instances: *POSTGRES_9_6*, *POSTGRES_10*, *POSTGRES_11* or *POSTGRES_12* (default). SQL Server instances: *SQLSERVER_2017_STANDARD* (default), *SQLSERVER_2017_ENTERPRISE*, *SQLSERVER_2017_EXPRESS*, or *SQLSERVER_2017_WEB*.
+     * The database engine type and version. The *databaseVersion* field cannot be changed after instance creation. MySQL instances: *MYSQL_8_0*, *MYSQL_5_7* (default), or *MYSQL_5_6*. PostgreSQL instances: *POSTGRES_9_6*, *POSTGRES_10*, *POSTGRES_11*, *POSTGRES_12*, or *POSTGRES_13* (default). SQL Server instances: *SQLSERVER_2017_STANDARD* (default), *SQLSERVER_2017_ENTERPRISE*, *SQLSERVER_2017_EXPRESS*, or *SQLSERVER_2017_WEB*.
      */
     databaseVersion?: string | null;
     /**
@@ -546,7 +546,7 @@ export namespace sqladmin_v1beta4 {
      */
     settings?: Schema$Settings;
     /**
-     * The current serving state of the Cloud SQL instance. This can be one of the following. *SQL_INSTANCE_STATE_UNSPECIFIED*: The state of the instance is unknown. *RUNNABLE*: The instance is running, or has been stopped by owner. *SUSPENDED*: The instance is not available, for example due to problems with billing. for example due to problems with billing. *PENDING_DELETE*: The instance is being deleted. *PENDING_CREATE*: The instance is being created. *MAINTENANCE*: The instance is down for maintenance. *FAILED*: The instance creation failed.
+     * The current serving state of the Cloud SQL instance. This can be one of the following. *SQL_INSTANCE_STATE_UNSPECIFIED*: The state of the instance is unknown. *RUNNABLE*: The instance is running, or has been stopped by owner. *SUSPENDED*: The instance is not available, for example due to problems with billing. *PENDING_DELETE*: The instance is being deleted. *PENDING_CREATE*: The instance is being created. *MAINTENANCE*: The instance is down for maintenance. *FAILED*: The instance creation failed.
      */
     state?: string | null;
     /**
@@ -829,7 +829,7 @@ export namespace sqladmin_v1beta4 {
      */
     queryInsightsEnabled?: boolean | null;
     /**
-     * Maximum query length stored in bytes. Default value: 1024 bytes. Range: 256-4500 bytes. Query length more than this field value will be truncated to this value. When unset, query length will be the default value.
+     * Maximum query length stored in bytes. Default value: 1024 bytes. Range: 256-4500 bytes. Query length more than this field value will be truncated to this value. When unset, query length will be the default value. Changing query length will restart the database.
      */
     queryStringLength?: number | null;
     /**
@@ -1381,7 +1381,7 @@ export namespace sqladmin_v1beta4 {
      */
     storageAutoResizeLimit?: string | null;
     /**
-     * The tier (or machine type) for this instance, for example *db-n1-standard-1* (MySQL instances) or *db-custom-1-3840* (PostgreSQL instances).
+     * The tier (or machine type) for this instance, for example *db-custom-1-3840* .
      */
     tier?: string | null;
     /**
@@ -1616,7 +1616,7 @@ export namespace sqladmin_v1beta4 {
      */
     region?: string[] | null;
     /**
-     * An identifier for the machine type, for example, db-n1-standard-1. For related information, see Pricing.
+     * An identifier for the machine type, for example, db-custom-1-3840. For related information, see Pricing.
      */
     tier?: string | null;
   }
@@ -8818,7 +8818,7 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * Lists all available machine types (tiers) for Cloud SQL, for example, db-n1-standard-1. For related information, see Pricing.
+     * Lists all available machine types (tiers) for Cloud SQL, for example, db-custom-1-3840. For related information, see Pricing.
      * @example
      * ```js
      * // Before running the sample:

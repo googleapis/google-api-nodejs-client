@@ -1,6 +1,6 @@
 {
   "name": "googleapis",
-  "version": "68.0.0",
+  "version": "70.0.0",
   "repository": "googleapis/google-api-nodejs-client",
   "license": "Apache-2.0",
   "description": "Google APIs Client Library for Node.js",
@@ -54,7 +54,7 @@
   ],
   "dependencies": {
     "google-auth-library": "^7.0.2",
-    "googleapis-common": "^5.0.1"
+    "googleapis-common": "^5.0.2"
   },
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.10",
@@ -93,7 +93,7 @@
     "prettier": "^2.0.5",
     "proxyquire": "^2.1.3",
     "server-destroy": "^1.0.1",
-    "sinon": "^9.0.2",
+    "sinon": "^10.0.0",
     "tmp": "^0.2.0",
     "typescript": "^3.8.3",
     "yargs-parser": "^20.2.0"

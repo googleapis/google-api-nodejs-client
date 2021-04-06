@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         },
         "https://www.googleapis.com/auth/monitoring": {
           "description": "View and write monitoring data for all of your Google and third-party Cloud and API projects"
@@ -241,7 +241,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The project, organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID] ",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name), organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID] ",
                   "location": "path",
                   "pattern": "^folders/[^/]+$",
                   "required": true,
@@ -514,7 +514,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The project, organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID] ",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name), organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID] ",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -674,7 +674,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The project in which to create the alerting policy. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policy will be written, not the name of the created policy. |name| must be a host project of a workspace, otherwise INVALID_ARGUMENT error will return. The alerting policy that is returned will have a name that contains a normalized representation of this name as a prefix but adds a suffix of the form /alertPolicies/[ALERT_POLICY_ID], identifying the policy in the container.",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the alerting policy. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policy will be written, not the name of the created policy. |name| must be a host project of a workspace, otherwise INVALID_ARGUMENT error will return. The alerting policy that is returned will have a name that contains a normalized representation of this name as a prefix but adds a suffix of the form /alertPolicies/[ALERT_POLICY_ID], identifying the policy in the container.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -761,7 +761,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The project whose alert policies are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policies to be listed are stored. To retrieve a single alerting policy by name, use the GetAlertPolicy operation, instead.",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose alert policies are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policies to be listed are stored. To retrieve a single alerting policy by name, use the GetAlertPolicy operation, instead.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -843,7 +843,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The project in which to create the time series. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
+                  "description": "The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the time series. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -877,7 +877,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The project in which to create the group. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the group. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -984,7 +984,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The project whose groups are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose groups are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1121,7 +1121,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: 4 projects/PROJECT_ID_OR_NUMBER",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1210,7 +1210,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1286,7 +1286,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1356,7 +1356,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The REST resource name of the parent from which to retrieve the notification channel descriptors. The expected syntax is: projects/[PROJECT_ID_OR_NUMBER] Note that this names the parent container in which to look for the descriptors; to retrieve a single descriptor by name, use the GetNotificationChannelDescriptor operation, instead.",
+                  "description": "Required. The REST resource name of the parent from which to retrieve the notification channel descriptors. The expected syntax is: projects/[PROJECT_ID_OR_NUMBER] Note that this names (https://cloud.google.com/monitoring/api/v3#project_name) the parent container in which to look for the descriptors; to retrieve a single descriptor by name, use the GetNotificationChannelDescriptor operation, instead.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1398,7 +1398,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container into which the channel will be written, this does not name the newly created channel. The resulting channel's name will have a normalized version of this field as a prefix, but will add /notificationChannels/[CHANNEL_ID] to identify the channel.",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container into which the channel will be written, this does not name the newly created channel. The resulting channel's name will have a normalized version of this field as a prefix, but will add /notificationChannels/[CHANNEL_ID] to identify the channel.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1519,7 +1519,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container in which to look for the notification channels; it does not name a specific channel. To query a specific channel by REST resource name, use the GetNotificationChannel operation.",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container in which to look for the notification channels; it does not name a specific channel. To query a specific channel by REST resource name, use the GetNotificationChannel operation.",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1659,7 +1659,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1802,7 +1802,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The project, organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID] ",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name), organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID] ",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1954,7 +1954,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -1988,7 +1988,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The project in which to create the Uptime check. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the Uptime check. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -2081,7 +2081,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The project whose Uptime check configurations are listed. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
+                  "description": "Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose Uptime check configurations are listed. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -2149,7 +2149,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. Resource name of the parent workspace. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
+              "description": "Required. Resource name (https://cloud.google.com/monitoring/api/v3#project_name) of the parent workspace. The format is: projects/[PROJECT_ID_OR_NUMBER] ",
               "location": "path",
               "pattern": "^[^/]+/[^/]+$",
               "required": true,
@@ -2252,7 +2252,7 @@
               "type": "string"
             },
             "parent": {
-              "description": "Required. Resource name of the parent containing the listed services, either a project or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER] ",
+              "description": "Required. Resource name of the parent containing the listed services, either a project (https://cloud.google.com/monitoring/api/v3#project_name) or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER] ",
               "location": "path",
               "pattern": "^[^/]+/[^/]+$",
               "required": true,
@@ -2541,7 +2541,7 @@
       }
     }
   },
-  "revision": "20210227",
+  "revision": "20210326",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -4878,7 +4878,7 @@
         },
         "resource": {
           "$ref": "MonitoredResource",
-          "description": "The associated monitored resource. Custom metrics can use only certain monitored resource types in their time series data."
+          "description": "The associated monitored resource. Custom metrics can use only certain monitored resource types in their time series data. For more information, see Monitored resources for custom metrics (https://cloud.google.com/monitoring/custom-metrics/creating-metrics#custom-metric-resources)."
         },
         "unit": {
           "description": "The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.",
@@ -5096,7 +5096,7 @@
         },
         "monitoredResource": {
           "$ref": "MonitoredResource",
-          "description": "The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are supported for Uptime checks: uptime_url, gce_instance, gae_app, aws_ec2_instance, aws_elb_load_balancer"
+          "description": "The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are valid for this field: uptime_url, gce_instance, gae_app, aws_ec2_instance, aws_elb_load_balancer"
         },
         "name": {
           "description": "A unique resource name for this Uptime check configuration. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID] [PROJECT_ID_OR_NUMBER] is the Workspace host project associated with the Uptime check.This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response.",

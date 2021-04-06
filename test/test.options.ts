@@ -26,6 +26,15 @@ function createNock(path?: string) {
   return nock(Utils.baseUrl).get(p).reply(200);
 }
 
+function createNockRequestHeaders(
+  path: string,
+  header: string,
+  headerValue: RegExp | string
+) {
+  const p = path || '/drive/v2/files/woot';
+  return nock(Utils.baseUrl).matchHeader(header, headerValue).get(p).reply(200);
+}
+
 describe('Options', () => {
   const sandbox = sinon.createSandbox();
   before(() => {
@@ -125,6 +134,43 @@ describe('Options', () => {
     createNock('/drive/v2/files/woot?key=apikey3');
     const res = await drive.files.get({auth: 'apikey3', fileId: 'woot'});
     assert.strictEqual(res.config.timeout, 12345);
+  });
+
+  it('should respect global options for user agent directives', async () => {
+    const google = new GoogleApis();
+    const product = 'product';
+    const version = 'version';
+    google.options({
+      userAgentDirectives: [
+        {
+          product,
+          version,
+        },
+      ],
+    });
+    const drive = google.drive({version: 'v2', auth: 'apikey2'});
+    createNockRequestHeaders(
+      '/drive/v2/files/woot?key=apikey3',
+      'user-agent',
+      new RegExp(/product\/version google-api-nodejs-client\/.*[\s\S](gzip)/)
+    );
+    await drive.files.get({auth: 'apikey3', fileId: 'woot'});
+  });
+
+  it('should NOT respect global options for root url', async () => {
+    const google = new GoogleApis();
+    google.options({
+      rootUrl: 'http.example.com',
+    });
+    const drive = google.drive({version: 'v2', auth: 'apikey2'});
+    createNockRequestHeaders(
+      '/drive/v2/files/woot?key=apikey3',
+      'rootUrl',
+      'http.example.com'
+    );
+    assert.rejects(async () => {
+      await drive.files.get({auth: 'apikey3', fileId: 'woot'});
+    }, /reason: Nock: No match for request/);
   });
 
   it('should apply endpoint options to request object like timeout', async () => {

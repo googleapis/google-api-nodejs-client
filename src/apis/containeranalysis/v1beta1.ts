@@ -528,6 +528,10 @@ export namespace containeranalysis_v1beta1 {
      * The time this information was last changed at the source. This is an upstream timestamp from the underlying information source - e.g. Ubuntu security tracker.
      */
     sourceUpdateTime?: string | null;
+    /**
+     * The name of the vendor of the product.
+     */
+    vendor?: string | null;
   }
   /**
    * Details of an attestation occurrence.

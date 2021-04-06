@@ -1095,7 +1095,7 @@ export namespace dialogflow_v2beta1 {
     genericMetadata?: Schema$GoogleCloudDialogflowCxV3beta1GenericKnowledgeOperationMetadata;
   }
   /**
-   * The request message for a webhook call.
+   * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1WebhookRequest {
     /**
@@ -1130,6 +1130,22 @@ export namespace dialogflow_v2beta1 {
      * Information about session status.
      */
     sessionInfo?: Schema$GoogleCloudDialogflowCxV3beta1SessionInfo;
+    /**
+     * If natural language text was provided as input, this field will contain a copy of the text.
+     */
+    text?: string | null;
+    /**
+     * If natural language speech audio was provided as input, this field will contain the transcript for the audio.
+     */
+    transcript?: string | null;
+    /**
+     * If an event was provided as input, this field will contain the name of the event.
+     */
+    triggerEvent?: string | null;
+    /**
+     * If an intent was provided as input, this field will contain a copy of the intent identifier. Format: `projects//locations//agents//intents/`.
+     */
+    triggerIntent?: string | null;
   }
   /**
    * Represents fulfillment information communicated to the webhook.
@@ -2141,7 +2157,7 @@ export namespace dialogflow_v2beta1 {
     genericMetadata?: Schema$GoogleCloudDialogflowCxV3GenericKnowledgeOperationMetadata;
   }
   /**
-   * The request message for a webhook call.
+   * The request message for a webhook call. The request is sent as a JSON object and the field names will be presented in camel cases.
    */
   export interface Schema$GoogleCloudDialogflowCxV3WebhookRequest {
     /**
@@ -2176,6 +2192,22 @@ export namespace dialogflow_v2beta1 {
      * Information about session status.
      */
     sessionInfo?: Schema$GoogleCloudDialogflowCxV3SessionInfo;
+    /**
+     * If natural language text was provided as input, this field will contain a copy of the text.
+     */
+    text?: string | null;
+    /**
+     * If natural language speech audio was provided as input, this field will contain the transcript for the audio.
+     */
+    transcript?: string | null;
+    /**
+     * If an event was provided as input, this field will contain the name of the event.
+     */
+    triggerEvent?: string | null;
+    /**
+     * If an intent was provided as input, this field will contain a copy of the intent identifier. Format: `projects//locations//agents//intents/`.
+     */
+    triggerIntent?: string | null;
   }
   /**
    * Represents fulfillment information communicated to the webhook.
@@ -2297,6 +2329,35 @@ export namespace dialogflow_v2beta1 {
     text?: string | null;
   }
   /**
+   * Represents article answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2ArticleAnswer {
+    /**
+     * The name of answer record, in the format of "projects//locations//answerRecords/"
+     */
+    answerRecord?: string | null;
+    /**
+     * Article match confidence. The system's confidence score that this article is a good match for this conversation, as a value from 0.0 (completely uncertain) to 1.0 (completely certain).
+     */
+    confidence?: number | null;
+    /**
+     * A map that contains metadata about the answer and the document from which it originates.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * Article snippets.
+     */
+    snippets?: string[] | null;
+    /**
+     * The article title.
+     */
+    title?: string | null;
+    /**
+     * The article URI.
+     */
+    uri?: string | null;
+  }
+  /**
    * The response message for EntityTypes.BatchUpdateEntityTypes.
    */
   export interface Schema$GoogleCloudDialogflowV2BatchUpdateEntityTypesResponse {
@@ -2368,6 +2429,241 @@ export namespace dialogflow_v2beta1 {
     timeZone?: string | null;
   }
   /**
+   * Detail feedback of Agent Assistant result.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AgentAssistantFeedback {
+    /**
+     * Optional. Whether or not the suggested answer is relevant. For example: * Query: "Can I change my mailing address?" * Suggested document says: "Items must be returned/exchanged within 60 days of the purchase date." * answer_relevance: AnswerRelevance.IRRELEVANT
+     */
+    answerRelevance?: string | null;
+    /**
+     * Optional. Whether or not the information in the document is correct. For example: * Query: "Can I return the package in 2 days once received?" * Suggested document says: "Items must be returned/exchanged within 60 days of the purchase date." * Ground truth: "No return or exchange is allowed." * [document_correctness]: INCORRECT
+     */
+    documentCorrectness?: string | null;
+    /**
+     * Optional. Whether or not the suggested document is efficient. For example, if the document is poorly written, hard to understand, hard to use or too long to find useful information, document_efficiency is DocumentEfficiency.INEFFICIENT.
+     */
+    documentEfficiency?: string | null;
+    /**
+     * Feedback for conversation summarization.
+     */
+    summarizationFeedback?: Schema$GoogleCloudDialogflowV2beta1AgentAssistantFeedbackSummarizationFeedback;
+  }
+  /**
+   * Feedback for conversation summarization.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AgentAssistantFeedbackSummarizationFeedback {
+    /**
+     * Timestamp when composing of the summary starts.
+     */
+    startTimestamp?: string | null;
+    /**
+     * Timestamp when the summary was submitted.
+     */
+    submitTimestamp?: string | null;
+    /**
+     * Text of actual submitted summary.
+     */
+    summaryText?: string | null;
+  }
+  /**
+   * Represents a record of a human agent assistant answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AgentAssistantRecord {
+    /**
+     * Output only. The article suggestion answer.
+     */
+    articleSuggestionAnswer?: Schema$GoogleCloudDialogflowV2beta1ArticleAnswer;
+    /**
+     * Output only. The FAQ answer.
+     */
+    faqAnswer?: Schema$GoogleCloudDialogflowV2beta1FaqAnswer;
+  }
+  /**
+   * The request message for Participants.AnalyzeContent.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AnalyzeContentRequest {
+    /**
+     * An input event to send to Dialogflow.
+     */
+    eventInput?: Schema$GoogleCloudDialogflowV2beta1EventInput;
+    /**
+     * Optional. The send time of the message from end user or human agent's perspective. It is used for identifying the same message under one participant. Given two messages under the same participant: - If send time are different regardless of whether the content of the messages are exactly the same, the conversation will regard them as two distinct messages sent by the participant. - If send time is the same regardless of whether the content of the messages are exactly the same, the conversation will regard them as same message, and ignore the message received later. If the value is not provided, a new request will always be regarded as a new message without any de-duplication.
+     */
+    messageSendTime?: string | null;
+    /**
+     * Parameters for a Dialogflow virtual-agent query.
+     */
+    queryParams?: Schema$GoogleCloudDialogflowV2beta1QueryParameters;
+    /**
+     * Speech synthesis configuration. The speech synthesis settings for a virtual agent that may be configured for the associated conversation profile are not used when calling AnalyzeContent. If this configuration is not supplied, speech synthesis is disabled.
+     */
+    replyAudioConfig?: Schema$GoogleCloudDialogflowV2beta1OutputAudioConfig;
+    /**
+     * A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is only idempotent if a `request_id` is provided.
+     */
+    requestId?: string | null;
+    /**
+     * The natural language text to be processed.
+     */
+    textInput?: Schema$GoogleCloudDialogflowV2beta1TextInput;
+  }
+  /**
+   * The response message for Participants.AnalyzeContent.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse {
+    /**
+     * Optional. Only set if a Dialogflow automated agent has responded. Note that: AutomatedAgentReply.detect_intent_response.output_audio and AutomatedAgentReply.detect_intent_response.output_audio_config are always empty, use reply_audio instead.
+     */
+    automatedAgentReply?: Schema$GoogleCloudDialogflowV2beta1AutomatedAgentReply;
+    /**
+     * Indicates the parameters of DTMF.
+     */
+    dtmfParameters?: Schema$GoogleCloudDialogflowV2beta1DtmfParameters;
+    /**
+     * The suggestions for end user. The order is the same as HumanAgentAssistantConfig.SuggestionConfig.feature_configs of HumanAgentAssistantConfig.end_user_suggestion_config.
+     */
+    endUserSuggestionResults?: Schema$GoogleCloudDialogflowV2beta1SuggestionResult[];
+    /**
+     * The suggestions for most recent human agent. The order is the same as HumanAgentAssistantConfig.SuggestionConfig.feature_configs of HumanAgentAssistantConfig.human_agent_suggestion_config.
+     */
+    humanAgentSuggestionResults?: Schema$GoogleCloudDialogflowV2beta1SuggestionResult[];
+    /**
+     * Output only. Message analyzed by CCAI.
+     */
+    message?: Schema$GoogleCloudDialogflowV2beta1Message;
+    /**
+     * Optional. The audio data bytes encoded as specified in the request. This field is set if: - `reply_audio_config` was specified in the request, or - The automated agent responded with audio to play to the user. In such case, `reply_audio.config` contains settings used to synthesize the speech. In some scenarios, multiple output audio fields may be present in the response structure. In these cases, only the top-most-level audio output has content.
+     */
+    replyAudio?: Schema$GoogleCloudDialogflowV2beta1OutputAudio;
+    /**
+     * Output only. The output text content. This field is set if the automated agent responded with text to show to the user.
+     */
+    replyText?: string | null;
+  }
+  /**
+   * Represents a part of a message possibly annotated with an entity. The part can be an entity or purely a part of the message between two entities or message start/end.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AnnotatedMessagePart {
+    /**
+     * Optional. The [Dialogflow system entity type](https://cloud.google.com/dialogflow/docs/reference/system-entities) of this message part. If this is empty, Dialogflow could not annotate the phrase part with a system entity.
+     */
+    entityType?: string | null;
+    /**
+     * Optional. The [Dialogflow system entity formatted value ](https://cloud.google.com/dialogflow/docs/reference/system-entities) of this message part. For example for a system entity of type `@sys.unit-currency`, this may contain: { "amount": 5, "currency": "USD" \}
+     */
+    formattedValue?: any | null;
+    /**
+     * Required. A part of a message possibly annotated with an entity.
+     */
+    text?: string | null;
+  }
+  /**
+   * Represents feedback the customer has about the quality & correctness of a certain answer in a conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AnswerFeedback {
+    /**
+     * Optional. Detail feedback of agent assistant suggestions.
+     */
+    agentAssistantDetailFeedback?: Schema$GoogleCloudDialogflowV2beta1AgentAssistantFeedback;
+    /**
+     * Indicates whether the answer/item was clicked by the human agent or not. Default to false.
+     */
+    clicked?: boolean | null;
+    /**
+     * Time when the answer/item was clicked.
+     */
+    clickTime?: string | null;
+    /**
+     * The correctness level of the specific answer.
+     */
+    correctnessLevel?: string | null;
+    /**
+     * Indicates whether the answer/item was displayed to the human agent in the agent desktop UI. Default to false.
+     */
+    displayed?: boolean | null;
+    /**
+     * Time when the answer/item was displayed.
+     */
+    displayTime?: string | null;
+  }
+  /**
+   * Answer records are records to manage answer history and feedbacks for Dialogflow. Currently, answer record includes: - human agent assistant article suggestion - human agent assistant faq article It doesn't include: - `DetectIntent` intent matching - `DetectIntent` knowledge Answer records are not related to the conversation history in the Dialogflow Console. A Record is generated even when the end-user disables conversation history in the console. Records are created when there's a human agent assistant suggestion generated. A typical workflow for customers provide feedback to an answer is: 1. For human agent assistant, customers get suggestion via ListSuggestions API. Together with the answers, AnswerRecord.name are returned to the customers. 2. The customer uses the AnswerRecord.name to call the UpdateAnswerRecord method to send feedback about a specific answer that they believe is wrong.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AnswerRecord {
+    /**
+     * Output only. The record for human agent assistant.
+     */
+    agentAssistantRecord?: Schema$GoogleCloudDialogflowV2beta1AgentAssistantRecord;
+    /**
+     * Optional. The AnswerFeedback for this record. You can set this with AnswerRecords.UpdateAnswerRecord in order to give us feedback about this answer.
+     */
+    answerFeedback?: Schema$GoogleCloudDialogflowV2beta1AnswerFeedback;
+    /**
+     * The unique identifier of this answer record. Required for AnswerRecords.UpdateAnswerRecord method. Format: `projects//locations//answerRecords/`.
+     */
+    name?: string | null;
+  }
+  /**
+   * Represents article answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ArticleAnswer {
+    /**
+     * The name of answer record, in the format of "projects//locations//answerRecords/"
+     */
+    answerRecord?: string | null;
+    /**
+     * A map that contains metadata about the answer and the document from which it originates.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * Output only. Article snippets.
+     */
+    snippets?: string[] | null;
+    /**
+     * The article title.
+     */
+    title?: string | null;
+    /**
+     * The article URI.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Defines the Automated Agent to connect to a conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AutomatedAgentConfig {
+    /**
+     * Required. ID of the Dialogflow agent environment to use. This project needs to either be the same project as the conversation or you need to grant `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow API Service Agent` role in this project. - For ES agents, use format: `projects//locations//agent/environments/`. If environment is not specified, the default `draft` environment is used. Refer to [DetectIntentRequest](/dialogflow/docs/reference/rpc/google.cloud.dialogflow.v2beta1#google.cloud.dialogflow.v2beta1.DetectIntentRequest) for more details. - For CX agents, use format `projects//locations//agents//environments/`. If environment is not specified, the default `draft` environment is used.
+     */
+    agent?: string | null;
+  }
+  /**
+   * Represents a response from an automated agent.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1AutomatedAgentReply {
+    /**
+     * The collection of current Dialogflow CX agent session parameters at the time of this response.
+     */
+    cxSessionParameters?: {[key: string]: any} | null;
+    /**
+     * Response of the Dialogflow Sessions.DetectIntent call.
+     */
+    detectIntentResponse?: Schema$GoogleCloudDialogflowV2beta1DetectIntentResponse;
+    /**
+     * Event name if an event is triggered for the query.
+     */
+    event?: string | null;
+    /**
+     * Name of the intent if an intent is matched for the query. For a V2 query, the value format is `projects//locations/ /agent/intents/`. For a V3 query, the value format is `projects//locations/ /agents//intents/`.
+     */
+    intent?: string | null;
+    /**
+     * Response messages from the automated agent.
+     */
+    responseMessages?: Schema$GoogleCloudDialogflowV2beta1ResponseMessage[];
+  }
+  /**
    * The request message for EntityTypes.BatchCreateEntities.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1BatchCreateEntitiesRequest {
@@ -2379,6 +2675,24 @@ export namespace dialogflow_v2beta1 {
      * Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).
      */
     languageCode?: string | null;
+  }
+  /**
+   * The request message for Conversations.BatchCreateMessagesRequest.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesRequest {
+    /**
+     * Required. A maximum of 1000 Messages can be created in a batch. CreateMessageRequest.message.send_time is required. All created messages will have identical Message.create_time.
+     */
+    requests?: Schema$GoogleCloudDialogflowV2beta1CreateMessageRequest[];
+  }
+  /**
+   * The request message for Conversations.BatchCreateMessagesResponse.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse {
+    /**
+     * Messages created.
+     */
+    messages?: Schema$GoogleCloudDialogflowV2beta1Message[];
   }
   /**
    * The request message for EntityTypes.BatchDeleteEntities.
@@ -2493,6 +2807,40 @@ export namespace dialogflow_v2beta1 {
     intents?: Schema$GoogleCloudDialogflowV2beta1Intent[];
   }
   /**
+   * The request message for Participants.CompileSuggestion.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1CompileSuggestionRequest {
+    /**
+     * Optional. Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. If zero or less than zero, 20 is used.
+     */
+    contextSize?: number | null;
+    /**
+     * Optional. The name of the latest conversation message to compile suggestion for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
+   * The response message for Participants.CompileSuggestion.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1CompileSuggestionResponse {
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the CompileSuggestionRequest.context_size field in the request if there aren't that many messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+    /**
+     * The compiled suggestion.
+     */
+    suggestion?: Schema$GoogleCloudDialogflowV2beta1Suggestion;
+  }
+  /**
+   * The request message for Conversations.CompleteConversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1CompleteConversationRequest {}
+  /**
    * Dialogflow contexts are similar to natural language context. If a person says to you "they are orange", you need context in order to understand what "they" is referring to. Similarly, for Dialogflow to handle an end-user expression like that, it needs to be provided with context in order to correctly match an intent. Using contexts, you can control the flow of a conversation. You can configure contexts for an intent by setting input and output contexts, which are identified by string names. When an intent is matched, any configured output contexts for that intent become active. While any contexts are active, Dialogflow is more likely to match intents that are configured with input contexts that correspond to the currently active contexts. For more information about context, see the [Contexts guide](https://cloud.google.com/dialogflow/docs/contexts-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Context {
@@ -2508,6 +2856,135 @@ export namespace dialogflow_v2beta1 {
      * Optional. The collection of parameters associated with this context. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
+  }
+  /**
+   * Represents a conversation. A conversation is an interaction between an agent, including live agents and Dialogflow agents, and a support customer. Conversations can include phone calls and text-based chat sessions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1Conversation {
+    /**
+     * Required. The Conversation Profile to be used to configure this Conversation. This field cannot be updated. Format: `projects//locations//conversationProfiles/`.
+     */
+    conversationProfile?: string | null;
+    /**
+     * The stage of a conversation. It indicates whether the virtual agent or a human agent is handling the conversation. If the conversation is created with the conversation profile that has Dialogflow config set, defaults to ConversationStage.VIRTUAL_AGENT_STAGE; Otherwise, defaults to ConversationStage.HUMAN_ASSIST_STAGE. If the conversation is created with the conversation profile that has Dialogflow config set but explicitly sets conversation_stage to ConversationStage.HUMAN_ASSIST_STAGE, it skips ConversationStage.VIRTUAL_AGENT_STAGE stage and directly goes to ConversationStage.HUMAN_ASSIST_STAGE.
+     */
+    conversationStage?: string | null;
+    /**
+     * Output only. The time the conversation was finished.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. The current state of the Conversation.
+     */
+    lifecycleState?: string | null;
+    /**
+     * Output only. The unique identifier of this conversation. Format: `projects//locations//conversations/`.
+     */
+    name?: string | null;
+    /**
+     * Output only. Required if the conversation is to be connected over telephony.
+     */
+    phoneNumber?: Schema$GoogleCloudDialogflowV2beta1ConversationPhoneNumber;
+    /**
+     * Output only. The time the conversation was started.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Represents a notification sent to Pub/Sub subscribers for conversation lifecycle events.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ConversationEvent {
+    /**
+     * Required. The unique identifier of the conversation this notification refers to. Format: `projects//conversations/`.
+     */
+    conversation?: string | null;
+    /**
+     * Optional. More detailed information about an error. Only set for type UNRECOVERABLE_ERROR_IN_PHONE_CALL.
+     */
+    errorStatus?: Schema$GoogleRpcStatus;
+    /**
+     * Payload of NEW_MESSAGE event.
+     */
+    newMessagePayload?: Schema$GoogleCloudDialogflowV2beta1Message;
+    /**
+     * Required. The type of the event that this notification refers to.
+     */
+    type?: string | null;
+  }
+  /**
+   * Represents a phone number for telephony integration. It allows for connecting a particular conversation over telephony.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ConversationPhoneNumber {
+    /**
+     * Output only. The phone number to connect to this conversation.
+     */
+    phoneNumber?: string | null;
+  }
+  /**
+   * Defines the services to connect to incoming Dialogflow conversations.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ConversationProfile {
+    /**
+     * Configuration for an automated agent to use with this profile.
+     */
+    automatedAgentConfig?: Schema$GoogleCloudDialogflowV2beta1AutomatedAgentConfig;
+    /**
+     * Output only. Create time of the conversation profile.
+     */
+    createTime?: string | null;
+    /**
+     * Required. Human readable name for this profile. Max length 1024 bytes.
+     */
+    displayName?: string | null;
+    /**
+     * Configuration for agent assistance to use with this profile.
+     */
+    humanAgentAssistantConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfig;
+    /**
+     * Configuration for connecting to a live agent. Currently, this feature is not general available, please contact Google to get access.
+     */
+    humanAgentHandoffConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentHandoffConfig;
+    /**
+     * Language code for the conversation profile. If not specified, the language is en-US. Language at ConversationProfile should be set for all non en-us languages.
+     */
+    languageCode?: string | null;
+    /**
+     * Configuration for logging conversation lifecycle events.
+     */
+    loggingConfig?: Schema$GoogleCloudDialogflowV2beta1LoggingConfig;
+    /**
+     * The unique identifier of this conversation profile. Format: `projects//locations//conversationProfiles/`.
+     */
+    name?: string | null;
+    /**
+     * Configuration for publishing new message events. Event will be sent in format of ConversationEvent
+     */
+    newMessageEventNotificationConfig?: Schema$GoogleCloudDialogflowV2beta1NotificationConfig;
+    /**
+     * Configuration for publishing conversation lifecycle events.
+     */
+    notificationConfig?: Schema$GoogleCloudDialogflowV2beta1NotificationConfig;
+    /**
+     * Settings for speech transcription.
+     */
+    sttConfig?: Schema$GoogleCloudDialogflowV2beta1SpeechToTextConfig;
+    /**
+     * Output only. Update time of the conversation profile.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * The request message to create one Message. Currently it is only used in BatchCreateMessagesRequest.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1CreateMessageRequest {
+    /**
+     * Required. The message to create. Message.participant is required.
+     */
+    message?: Schema$GoogleCloudDialogflowV2beta1Message;
+    /**
+     * Required. Resource identifier of the conversation to create message. Format: `projects//locations//conversations/`.
+     */
+    parent?: string | null;
   }
   /**
    * The request to detect user's intent.
@@ -2592,6 +3069,10 @@ export namespace dialogflow_v2beta1 {
      */
     latestReloadStatus?: Schema$GoogleCloudDialogflowV2beta1DocumentReloadStatus;
     /**
+     * Optional. Metadata for the document. The metadata supports arbitrary key-value pairs. Suggested use cases include storing a document's title, an external URL distinct from the document's content_uri, etc. The max size of a `key` or a `value` of the metadata is 1024 bytes.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
      * Required. The MIME type of this document.
      */
     mimeType?: string | null;
@@ -2616,6 +3097,15 @@ export namespace dialogflow_v2beta1 {
      * Output only. The time of a reload attempt. This reload may have been triggered automatically or manually and may not have succeeded.
      */
     time?: string | null;
+  }
+  /**
+   * The message in the response that indicates the parameters of DTMF.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1DtmfParameters {
+    /**
+     * Indicates whether DTMF input can be handled in the next request.
+     */
+    acceptsDtmfInput?: boolean | null;
   }
   /**
    * Each intent parameter has a type, called the entity type, which dictates exactly how data from an end-user expression is extracted. Dialogflow provides predefined system entities that can match many common types of data. For example, there are system entities for matching dates, times, colors, email addresses, and so on. You can also create your own custom entities for matching custom data. For example, you could define a vegetable entity that can match the types of vegetables available for purchase with a grocery store agent. For more information, see the [Entity guide](https://cloud.google.com/dialogflow/docs/entities-overview).
@@ -2733,11 +3223,40 @@ export namespace dialogflow_v2beta1 {
     agentUri?: string | null;
   }
   /**
+   * Represents answer from "frequently asked questions".
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1FaqAnswer {
+    /**
+     * The piece of text from the `source` knowledge base document.
+     */
+    answer?: string | null;
+    /**
+     * The name of answer record, in the format of "projects//locations//answerRecords/"
+     */
+    answerRecord?: string | null;
+    /**
+     * The system's confidence score that this Knowledge answer is a good match for this conversational query, range from 0.0 (completely uncertain) to 1.0 (completely certain).
+     */
+    confidence?: number | null;
+    /**
+     * A map that contains metadata about the answer and the document from which it originates.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * The corresponding FAQ question.
+     */
+    question?: string | null;
+    /**
+     * Indicates which Knowledge Document this answer was extracted from. Format: `projects//locations//agent/knowledgeBases//documents/`.
+     */
+    source?: string | null;
+  }
+  /**
    * By default, your agent responds to a matched intent with a static response. As an alternative, you can provide a more dynamic response by using fulfillment. When you enable fulfillment for an intent, Dialogflow responds to that intent by calling a service that you define. For example, if an end-user wants to schedule a haircut on Friday, your service can check your database and respond to the end-user with availability information for Friday. For more information, see the [fulfillment guide](https://cloud.google.com/dialogflow/docs/fulfillment-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Fulfillment {
     /**
-     * The human-readable name of the fulfillment, unique within the agent.
+     * The human-readable name of the fulfillment, unique within the agent. This field is not used for Fulfillment in an Environment.
      */
     displayName?: string | null;
     /**
@@ -2753,7 +3272,7 @@ export namespace dialogflow_v2beta1 {
      */
     genericWebService?: Schema$GoogleCloudDialogflowV2beta1FulfillmentGenericWebService;
     /**
-     * Required. The unique identifier of the fulfillment. Supported formats: - `projects//agent/fulfillment` - `projects//locations//agent/fulfillment`
+     * Required. The unique identifier of the fulfillment. Supported formats: - `projects//agent/fulfillment` - `projects//locations//agent/fulfillment` This field is not used for Fulfillment in an Environment.
      */
     name?: string | null;
   }
@@ -2801,6 +3320,242 @@ export namespace dialogflow_v2beta1 {
     uri?: string | null;
   }
   /**
+   * Google Cloud Storage locations for the inputs.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1GcsSources {
+    /**
+     * Required. Google Cloud Storage URIs for the inputs. A URI is of the form: gs://bucket/object-prefix-or-name Whether a prefix or name is used depends on the use case.
+     */
+    uris?: string[] | null;
+  }
+  /**
+   * Defines the Human Agent Assistant to connect to a conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfig {
+    /**
+     * Configuration for agent assistance of end user participant. Currently, this feature is not general available, please contact Google to get access.
+     */
+    endUserSuggestionConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig;
+    /**
+     * Configuration for agent assistance of human agent participant.
+     */
+    humanAgentSuggestionConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig;
+    /**
+     * Configuration for message analysis.
+     */
+    messageAnalysisConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigMessageAnalysisConfig;
+    /**
+     * Pub/Sub topic on which to publish new agent assistant events.
+     */
+    notificationConfig?: Schema$GoogleCloudDialogflowV2beta1NotificationConfig;
+  }
+  /**
+   * Custom conversation models used in agent assist feature. Supported feature: ARTICLE_SUGGESTION, SMART_COMPOSE, SMART_REPLY.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig {
+    /**
+     * Required. Conversation model resource name. Format: `projects//conversationModels/`.
+     */
+    model?: string | null;
+  }
+  /**
+   * Configuration for analyses to run on each conversation message.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigMessageAnalysisConfig {
+    /**
+     * Enable entity extraction in conversation messages on [agent assist stage](https://cloud.google.com/dialogflow/priv/docs/contact-center/basics#stages). If unspecified, defaults to false. Currently, this feature is not general available, please contact Google to get access.
+     */
+    enableEntityExtraction?: boolean | null;
+    /**
+     * Enable sentiment analysis in conversation messages on [agent assist stage](https://cloud.google.com/dialogflow/priv/docs/contact-center/basics#stages). If unspecified, defaults to false. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral: https://cloud.google.com/natural-language/docs/basics#sentiment_analysis For Participants.StreamingAnalyzeContent method, result will be in StreamingAnalyzeContentResponse.message.SentimentAnalysisResult. For Participants.AnalyzeContent method, result will be in AnalyzeContentResponse.message.SentimentAnalysisResult For Conversations.ListMessages method, result will be in ListMessagesResponse.messages.SentimentAnalysisResult If Pub/Sub notification is configured, result will be in ConversationEvent.new_message_payload.SentimentAnalysisResult.
+     */
+    enableSentimentAnalysis?: boolean | null;
+  }
+  /**
+   * Detail human agent assistant config.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionConfig {
+    /**
+     * Configuration of different suggestion features. One feature can have only one config.
+     */
+    featureConfigs?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig[];
+    /**
+     * If `group_suggestion_responses` is false, and there are multiple `feature_configs` in `event based suggestion` or StreamingAnalyzeContent, we will try to deliver suggestions to customers as soon as we get new suggestion. Different type of suggestions based on the same context will be in separate Pub/Sub event or `StreamingAnalyzeContentResponse`. If `group_suggestion_responses` set to true. All the suggestions to the same participant based on the same context will be grouped into a single Pub/Sub event or StreamingAnalyzeContentResponse.
+     */
+    groupSuggestionResponses?: boolean | null;
+  }
+  /**
+   * Config for suggestion features.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig {
+    /**
+     * Configs of custom conversation model.
+     */
+    conversationModelConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig;
+    /**
+     * Automatically iterates all participants and tries to compile suggestions. Supported features: ARTICLE_SUGGESTION, FAQ, DIALOGFLOW_ASSIST.
+     */
+    enableEventBasedSuggestion?: boolean | null;
+    /**
+     * Configs of query.
+     */
+    queryConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfig;
+    /**
+     * The suggestion feature.
+     */
+    suggestionFeature?: Schema$GoogleCloudDialogflowV2beta1SuggestionFeature;
+    /**
+     * Settings of suggestion trigger. Currently, only ARTICLE_SUGGESTION, FAQ, and DIALOGFLOW_ASSIST will use this field.
+     */
+    suggestionTriggerSettings?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionTriggerSettings;
+  }
+  /**
+   * Config for suggestion query.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfig {
+    /**
+     * Confidence threshold of query result. Agent Assist gives each suggestion a score in the range [0.0, 1.0], based on the relevance between the suggestion and the current conversation context. A score of 0.0 has no relevance, while a score of 1.0 has high relevance. Only suggestions with a score greater than or equal to the value of this field are included in the results. For a baseline model (the default), the recommended value is in the range [0.05, 0.1]. For a custom model, there is no recommended value. Tune this value by starting from a very low value and slowly increasing until you have desired results. If this field is not set, it is default to 0.0, which means that all suggestions are returned. Supported features: ARTICLE_SUGGESTION, FAQ, SMART_REPLY, SMART_COMPOSE.
+     */
+    confidenceThreshold?: number | null;
+    /**
+     * Determines how recent conversation context is filtered when generating suggestions. If unspecified, no messages will be dropped.
+     */
+    contextFilterSettings?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigContextFilterSettings;
+    /**
+     * Query from Dialogflow agent. It is used by DIALOGFLOW_ASSIST.
+     */
+    dialogflowQuerySource?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigDialogflowQuerySource;
+    /**
+     * Query from knowledge base document. It is used by: SMART_REPLY, SMART_COMPOSE.
+     */
+    documentQuerySource?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigDocumentQuerySource;
+    /**
+     * Query from knowledgebase. It is used by: ARTICLE_SUGGESTION, FAQ.
+     */
+    knowledgeBaseQuerySource?: Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigKnowledgeBaseQuerySource;
+    /**
+     * Maximum number of results to return. Currently, if unset, defaults to 10. And the max number is 20.
+     */
+    maxResults?: number | null;
+  }
+  /**
+   * Settings that determine how to filter recent conversation context when generating suggestions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigContextFilterSettings {
+    /**
+     * If set to true, the last message from virtual agent (hand off message) and the message before it (trigger message of hand off) are dropped.
+     */
+    dropHandoffMessages?: boolean | null;
+    /**
+     * If set to true, all messages from ivr stage are dropped.
+     */
+    dropIvrMessages?: boolean | null;
+    /**
+     * If set to true, all messages from virtual agent are dropped.
+     */
+    dropVirtualAgentMessages?: boolean | null;
+  }
+  /**
+   * Dialogflow source setting. Supported feature: DIALOGFLOW_ASSIST.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigDialogflowQuerySource {
+    /**
+     * Required. The name of a dialogflow virtual agent used for end user side intent detection and suggestion. Format: `projects//locations//agent`. When multiple agents are allowed in the same Dialogflow project.
+     */
+    agent?: string | null;
+  }
+  /**
+   * Document source settings. Supported features: SMART_REPLY, SMART_COMPOSE.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigDocumentQuerySource {
+    /**
+     * Required. Knowledge documents to query from. Format: `projects//locations//knowledgeBases//documents/`. Currently, only one document is supported.
+     */
+    documents?: string[] | null;
+  }
+  /**
+   * Knowledge base source settings. Supported features: ARTICLE_SUGGESTION, FAQ.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionQueryConfigKnowledgeBaseQuerySource {
+    /**
+     * Required. Knowledge bases to query. Format: `projects//locations//knowledgeBases/`. Currently, only one knowledge base is supported.
+     */
+    knowledgeBases?: string[] | null;
+  }
+  /**
+   * Settings of suggestion trigger.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionTriggerSettings {
+    /**
+     * Do not trigger if last utterance is small talk.
+     */
+    noSmallTalk?: boolean | null;
+    /**
+     * Only trigger suggestion if participant role of last utterance is END_USER.
+     */
+    onlyEndUser?: boolean | null;
+  }
+  /**
+   * Output only. Represents a notification sent to Pub/Sub subscribers for agent assistant events in a specific conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantEvent {
+    /**
+     * The conversation this notification refers to. Format: `projects//conversations/`.
+     */
+    conversation?: string | null;
+    /**
+     * The participant that the suggestion is compiled for. And This field is used to call Participants.ListSuggestions API. Format: `projects//conversations//participants/`. It will not be set in legacy workflow. HumanAgentAssistantConfig.name for more information.
+     */
+    participant?: string | null;
+    /**
+     * The suggestion results payload that this notification refers to. It will only be set when HumanAgentAssistantConfig.SuggestionConfig.group_suggestion_responses sets to true.
+     */
+    suggestionResults?: Schema$GoogleCloudDialogflowV2beta1SuggestionResult[];
+  }
+  /**
+   * Defines the hand off to a live agent, typically on which external agent service provider to connect to a conversation. Currently, this feature is not general available, please contact Google to get access.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentHandoffConfig {
+    /**
+     * Uses LivePerson (https://www.liveperson.com).
+     */
+    livePersonConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigLivePersonConfig;
+    /**
+     * Uses Salesforce Live Agent.
+     */
+    salesforceLiveAgentConfig?: Schema$GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigSalesforceLiveAgentConfig;
+  }
+  /**
+   * Configuration specific to LivePerson (https://www.liveperson.com).
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigLivePersonConfig {
+    /**
+     * Required. Account number of the LivePerson account to connect. This is the account number you input at the login page.
+     */
+    accountNumber?: string | null;
+  }
+  /**
+   * Configuration specific to Salesforce Live Agent.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentHandoffConfigSalesforceLiveAgentConfig {
+    /**
+     * Required. Live Agent chat button ID.
+     */
+    buttonId?: string | null;
+    /**
+     * Required. Live Agent deployment ID.
+     */
+    deploymentId?: string | null;
+    /**
+     * Required. Domain of the Live Agent endpoint for this agent. You can find the endpoint URL in the `Live Agent settings` page. For example if URL has the form https://d.la4-c2-phx.salesforceliveagent.com/..., you should fill in d.la4-c2-phx.salesforceliveagent.com.
+     */
+    endpointDomain?: string | null;
+    /**
+     * Required. The organization ID of the Salesforce account.
+     */
+    organizationId?: string | null;
+  }
+  /**
    * The request message for Agents.ImportAgent.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ImportAgentRequest {
@@ -2814,6 +3569,49 @@ export namespace dialogflow_v2beta1 {
     agentUri?: string | null;
   }
   /**
+   * Request message for Documents.ImportDocuments.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ImportDocumentsRequest {
+    /**
+     * Required. Document template used for importing all the documents.
+     */
+    documentTemplate?: Schema$GoogleCloudDialogflowV2beta1ImportDocumentTemplate;
+    /**
+     * The Google Cloud Storage location for the documents. The path can include a wildcard. These URIs may have the forms `gs:///`. `gs:////x.`.
+     */
+    gcsSource?: Schema$GoogleCloudDialogflowV2beta1GcsSources;
+    /**
+     * Whether to import custom metadata from Google Cloud Storage. Only valid when the document source is Google Cloud Storage URI.
+     */
+    importGcsCustomMetadata?: boolean | null;
+  }
+  /**
+   * Response message for Documents.ImportDocuments.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ImportDocumentsResponse {
+    /**
+     * Includes details about skipped documents or any other warnings.
+     */
+    warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * The template used for importing documents.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ImportDocumentTemplate {
+    /**
+     * Required. The knowledge type of document content.
+     */
+    knowledgeTypes?: string[] | null;
+    /**
+     * Metadata for the document. The metadata supports arbitrary key-value pairs. Suggested use cases include storing a document's title, an external URL distinct from the document's content_uri, etc. The max size of a `key` or a `value` of the metadata is 1024 bytes.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * Required. The MIME type of the document.
+     */
+    mimeType?: string | null;
+  }
+  /**
    * Instructs the speech recognizer on how to process the audio content.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1InputAudioConfig {
@@ -2821,6 +3619,10 @@ export namespace dialogflow_v2beta1 {
      * Required. Audio encoding of the audio content to process.
      */
     audioEncoding?: string | null;
+    /**
+     * Only used in Participants.AnalyzeContent and Participants.StreamingAnalyzeContent. If `false` and recognition doesn't return any result, trigger `NO_SPEECH_RECOGNIZED` event to Dialogflow agent.
+     */
+    disableNoSpeechRecognizedEvent?: boolean | null;
     /**
      * If `true`, Dialogflow returns SpeechWordInfo in StreamingRecognitionResult with information about the recognized speech words, e.g. start and end time offsets. If false or unspecified, Speech doesn't return any word-level information.
      */
@@ -2890,6 +3692,10 @@ export namespace dialogflow_v2beta1 {
      * Optional. Indicates whether this is a fallback intent.
      */
     isFallback?: boolean | null;
+    /**
+     * Optional. Indicates that a live agent should be brought in to handle the interaction with the user. In most cases, when you set this flag to true, you would also want to set end_interaction to true as well. Default is false.
+     */
+    liveAgentHandoff?: boolean | null;
     /**
      * Optional. The collection of rich messages corresponding to the `Response` field in the Dialogflow console.
      */
@@ -3782,6 +4588,19 @@ export namespace dialogflow_v2beta1 {
     state?: string | null;
   }
   /**
+   * Response message for AnswerRecords.ListAnswerRecords.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse {
+    /**
+     * The list of answer records.
+     */
+    answerRecords?: Schema$GoogleCloudDialogflowV2beta1AnswerRecord[];
+    /**
+     * A token to retrieve next page of results. Or empty if there are no more results. Pass this value in the ListAnswerRecordsRequest.page_token field in the subsequent call to `ListAnswerRecords` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response message for Contexts.ListContexts.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ListContextsResponse {
@@ -3789,6 +4608,32 @@ export namespace dialogflow_v2beta1 {
      * The list of contexts. There will be a maximum number of items returned based on the page_size field in the request.
      */
     contexts?: Schema$GoogleCloudDialogflowV2beta1Context[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response message for ConversationProfiles.ListConversationProfiles.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse {
+    /**
+     * The list of project conversation profiles. There is a maximum number of items returned based on the page_size field in the request.
+     */
+    conversationProfiles?: Schema$GoogleCloudDialogflowV2beta1ConversationProfile[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response message for Conversations.ListConversations.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse {
+    /**
+     * The list of conversations. There will be a maximum number of items returned based on the page_size field in the request.
+     */
+    conversations?: Schema$GoogleCloudDialogflowV2beta1Conversation[];
     /**
      * Token to retrieve the next page of results, or empty if there are no more results in the list.
      */
@@ -3860,6 +4705,32 @@ export namespace dialogflow_v2beta1 {
     nextPageToken?: string | null;
   }
   /**
+   * The response message for Conversations.ListMessages.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse {
+    /**
+     * Required. The list of messages. There will be a maximum number of items returned based on the page_size field in the request. `messages` is sorted by `create_time` in descending order.
+     */
+    messages?: Schema$GoogleCloudDialogflowV2beta1Message[];
+    /**
+     * Optional. Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * The response message for Participants.ListParticipants.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse {
+    /**
+     * Token to retrieve the next page of results or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of participants. There is a maximum number of items returned based on the page_size field in the request.
+     */
+    participants?: Schema$GoogleCloudDialogflowV2beta1Participant[];
+  }
+  /**
    * The response message for SessionEntityTypes.ListSessionEntityTypes.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1ListSessionEntityTypesResponse {
@@ -3871,6 +4742,95 @@ export namespace dialogflow_v2beta1 {
      * The list of session entity types. There will be a maximum number of items returned based on the page_size field in the request.
      */
     sessionEntityTypes?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType[];
+  }
+  /**
+   * The response message for Participants.ListSuggestions.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ListSuggestionsResponse {
+    /**
+     * Optional. Token to retrieve the next page of results or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Required. The list of suggestions. There will be a maximum number of items returned based on the page_size field in the request. `suggestions` is sorted by `create_time` in descending order.
+     */
+    suggestions?: Schema$GoogleCloudDialogflowV2beta1Suggestion[];
+  }
+  /**
+   * Defines logging behavior for conversation lifecycle events.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1LoggingConfig {
+    /**
+     * Whether to log conversation events like CONVERSATION_STARTED to Stackdriver in the conversation project as JSON format ConversationEvent protos.
+     */
+    enableStackdriverLogging?: boolean | null;
+  }
+  /**
+   * Represents a message posted into a conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1Message {
+    /**
+     * Required. The message content.
+     */
+    content?: string | null;
+    /**
+     * Output only. The time when the message was created in Contact Center AI.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The message language. This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: "en-US".
+     */
+    languageCode?: string | null;
+    /**
+     * Output only. The annotation for the message.
+     */
+    messageAnnotation?: Schema$GoogleCloudDialogflowV2beta1MessageAnnotation;
+    /**
+     * Optional. The unique identifier of the message. Format: `projects//locations//conversations//messages/`.
+     */
+    name?: string | null;
+    /**
+     * Output only. The participant that sends this message.
+     */
+    participant?: string | null;
+    /**
+     * Output only. The role of the participant.
+     */
+    participantRole?: string | null;
+    /**
+     * Optional. The time when the message was sent.
+     */
+    sendTime?: string | null;
+    /**
+     * Output only. The sentiment analysis result for the message.
+     */
+    sentimentAnalysis?: Schema$GoogleCloudDialogflowV2beta1SentimentAnalysisResult;
+  }
+  /**
+   * Represents the result of annotation for the message.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1MessageAnnotation {
+    /**
+     * Required. Indicates whether the text message contains entities.
+     */
+    containEntities?: boolean | null;
+    /**
+     * Optional. The collection of annotated message parts ordered by their position in the message. You can recover the annotated message by concatenating [AnnotatedMessagePart.text].
+     */
+    parts?: Schema$GoogleCloudDialogflowV2beta1AnnotatedMessagePart[];
+  }
+  /**
+   * Defines notification behavior.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1NotificationConfig {
+    /**
+     * Format of message.
+     */
+    messageFormat?: string | null;
+    /**
+     * Name of the Pub/Sub topic to publish conversation events like CONVERSATION_STARTED as serialized ConversationEvent protos. Notification works for phone calls, if this topic either is in the same project as the conversation or you grant `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` the `Dialogflow Service Agent` role in the topic project. Format: `projects//locations//topics/`.
+     */
+    topic?: string | null;
   }
   /**
    * Represents the contents of the original request that was passed to the `[Streaming]DetectIntent` call.
@@ -3890,6 +4850,19 @@ export namespace dialogflow_v2beta1 {
     version?: string | null;
   }
   /**
+   * Represents the natural language speech audio to be played to the end user.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1OutputAudio {
+    /**
+     * Required. The natural language speech audio.
+     */
+    audio?: string | null;
+    /**
+     * Required. Instructs the speech synthesizer how to generate the speech audio.
+     */
+    config?: Schema$GoogleCloudDialogflowV2beta1OutputAudioConfig;
+  }
+  /**
    * Instructs the speech synthesizer how to generate the output audio content. If this audio config is supplied in a request, it overrides all existing text-to-speech settings applied to the agent.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1OutputAudioConfig {
@@ -3907,6 +4880,23 @@ export namespace dialogflow_v2beta1 {
     synthesizeSpeechConfig?: Schema$GoogleCloudDialogflowV2beta1SynthesizeSpeechConfig;
   }
   /**
+   * Represents a conversation participant (human agent, virtual agent, end-user).
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1Participant {
+    /**
+     * Optional. The unique identifier of this participant. Format: `projects//locations//conversations//participants/`.
+     */
+    name?: string | null;
+    /**
+     * Optional. Obfuscated user id that should be associated with the created participant. You can specify a user id as follows: 1. If you set this field in CreateParticipantRequest or UpdateParticipantRequest, Dialogflow adds the obfuscated user id with the participant. 2. If you set this field in AnalyzeContent or StreamingAnalyzeContent, Dialogflow will update Participant.obfuscated_external_user_id. Dialogflow uses this user id for following purposes: 1) Billing and measurement. If user with the same obfuscated_external_user_id is created in a later conversation, dialogflow will know it's the same user. 2) Agent assist suggestion personalization. For example, Dialogflow can use it to provide personalized smart reply suggestions for this user. Note: * Please never pass raw user ids to Dialogflow. Always obfuscate your user id first. * Dialogflow only accepts a UTF-8 encoded string, e.g., a hex digest of a hash function like SHA-512. * The length of the user id must be <= 256 characters.
+     */
+    obfuscatedExternalUserId?: string | null;
+    /**
+     * Immutable. The role this participant plays in the conversation. This field must be set during participant creation and is then immutable.
+     */
+    role?: string | null;
+  }
+  /**
    * Represents the query input. It can contain either: 1. An audio config which instructs the speech recognizer how to process the speech audio. 2. A conversational query in the form of text. 3. An event that specifies which intent to trigger.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1QueryInput {
@@ -3914,6 +4904,10 @@ export namespace dialogflow_v2beta1 {
      * Instructs the speech recognizer how to process the speech audio.
      */
     audioConfig?: Schema$GoogleCloudDialogflowV2beta1InputAudioConfig;
+    /**
+     * The DTMF digits used to invoke intent and fill in parameter value.
+     */
+    dtmf?: Schema$GoogleCloudDialogflowV2beta1TelephonyDtmfEvents;
     /**
      * The event to be processed.
      */
@@ -4051,6 +5045,49 @@ export namespace dialogflow_v2beta1 {
     importGcsCustomMetadata?: boolean | null;
   }
   /**
+   * Response messages from an automated agent.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessage {
+    /**
+     * A signal that indicates the interaction with the Dialogflow agent has ended.
+     */
+    endInteraction?: Schema$GoogleCloudDialogflowV2beta1ResponseMessageEndInteraction;
+    /**
+     * Hands off conversation to a live agent.
+     */
+    liveAgentHandoff?: Schema$GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff;
+    /**
+     * Returns a response containing a custom, platform-specific payload.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Returns a text response.
+     */
+    text?: Schema$GoogleCloudDialogflowV2beta1ResponseMessageText;
+  }
+  /**
+   * Indicates that interaction with the Dialogflow agent has ended.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageEndInteraction {}
+  /**
+   * Indicates that the conversation should be handed off to a human agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry fulfillment of a CX Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageLiveAgentHandoff {
+    /**
+     * Custom metadata for your handoff procedure. Dialogflow doesn't impose any structure on this.
+     */
+    metadata?: {[key: string]: any} | null;
+  }
+  /**
+   * The text response message.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1ResponseMessageText {
+    /**
+     * A collection of text responses.
+     */
+    text?: string[] | null;
+  }
+  /**
    * The request message for Agents.RestoreAgent.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1RestoreAgentRequest {
@@ -4125,6 +5162,23 @@ export namespace dialogflow_v2beta1 {
     name?: string | null;
   }
   /**
+   * Represents a smart reply answer.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SmartReplyAnswer {
+    /**
+     * The name of answer record, in the format of "projects//locations//answerRecords/"
+     */
+    answerRecord?: string | null;
+    /**
+     * Smart reply confidence. The system's confidence score that this reply is a good match for this conversation, as a value from 0.0 (completely uncertain) to 1.0 (completely certain).
+     */
+    confidence?: number | null;
+    /**
+     * The content of the reply.
+     */
+    reply?: string | null;
+  }
+  /**
    * Hints for the speech recognizer to help with recognition in a specific conversation state.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SpeechContext {
@@ -4138,6 +5192,15 @@ export namespace dialogflow_v2beta1 {
     phrases?: string[] | null;
   }
   /**
+   * Configures speech transcription for ConversationProfile.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SpeechToTextConfig {
+    /**
+     * Optional. The speech model used in speech to text. `SPEECH_MODEL_VARIANT_UNSPECIFIED`, `USE_BEST_AVAILABLE` will be treated as `USE_ENHANCED`. It can be overridden in AnalyzeContentRequest and StreamingAnalyzeContentRequest request.
+     */
+    speechModelVariant?: string | null;
+  }
+  /**
    * Contains basic configuration for a sub-agent.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SubAgent {
@@ -4149,6 +5212,209 @@ export namespace dialogflow_v2beta1 {
      * Required. The project of this agent. Format: `projects/` or `projects//locations/`.
      */
     project?: string | null;
+  }
+  /**
+   * The request message for Participants.SuggestArticles.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestArticlesRequest {
+    /**
+     * Optional. Max number of messages prior to and including latest_message to use as context when compiling the suggestion. By default 20 and at most 50.
+     */
+    contextSize?: number | null;
+    /**
+     * Optional. The name of the latest conversation message to compile suggestion for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
+   * The response message for Participants.SuggestArticles.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse {
+    /**
+     * Output only. Articles ordered by score in descending order.
+     */
+    articleAnswers?: Schema$GoogleCloudDialogflowV2beta1ArticleAnswer[];
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestArticlesResponse.context_size field in the request if there aren't that many messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
+   * The request message for Participants.SuggestFaqAnswers.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersRequest {
+    /**
+     * Optional. Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 20 and at most 50.
+     */
+    contextSize?: number | null;
+    /**
+     * Optional. The name of the latest conversation message to compile suggestion for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
+   * The request message for Participants.SuggestFaqAnswers.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse {
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestFaqAnswersRequest.context_size field in the request if there aren't that many messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * Output only. Answers extracted from FAQ documents.
+     */
+    faqAnswers?: Schema$GoogleCloudDialogflowV2beta1FaqAnswer[];
+    /**
+     * The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
+   * Represents a suggestion for a human agent.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1Suggestion {
+    /**
+     * Output only. Articles ordered by score in descending order.
+     */
+    articles?: Schema$GoogleCloudDialogflowV2beta1SuggestionArticle[];
+    /**
+     * Output only. The time the suggestion was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Answers extracted from FAQ documents.
+     */
+    faqAnswers?: Schema$GoogleCloudDialogflowV2beta1SuggestionFaqAnswer[];
+    /**
+     * Output only. Latest message used as context to compile this suggestion. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+    /**
+     * Output only. The name of this suggestion. Format: `projects//locations//conversations//participants/x/suggestions/`.
+     */
+    name?: string | null;
+  }
+  /**
+   * Represents suggested article.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestionArticle {
+    /**
+     * Output only. The name of answer record, in the format of "projects//locations//answerRecords/"
+     */
+    answerRecord?: string | null;
+    /**
+     * Output only. A map that contains metadata about the answer and the document from which it originates.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * Output only. Article snippets.
+     */
+    snippets?: string[] | null;
+    /**
+     * Output only. The article title.
+     */
+    title?: string | null;
+    /**
+     * Output only. The article URI.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Represents suggested answer from "frequently asked questions".
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestionFaqAnswer {
+    /**
+     * Output only. The piece of text from the `source` knowledge base document.
+     */
+    answer?: string | null;
+    /**
+     * Output only. The name of answer record, in the format of "projects//locations//answerRecords/"
+     */
+    answerRecord?: string | null;
+    /**
+     * The system's confidence score that this Knowledge answer is a good match for this conversational query, range from 0.0 (completely uncertain) to 1.0 (completely certain).
+     */
+    confidence?: number | null;
+    /**
+     * Output only. A map that contains metadata about the answer and the document from which it originates.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * Output only. The corresponding FAQ question.
+     */
+    question?: string | null;
+    /**
+     * Output only. Indicates which Knowledge Document this answer was extracted from. Format: `projects//locations//agent/knowledgeBases//documents/`.
+     */
+    source?: string | null;
+  }
+  /**
+   * The type of Human Agent Assistant API suggestion to perform, and the maximum number of results to return for that type. Multiple `Feature` objects can be specified in the `features` list.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestionFeature {
+    /**
+     * Type of Human Agent Assistant API feature to request.
+     */
+    type?: string | null;
+  }
+  /**
+   * One response of different type of suggestion response which is used in the response of Participants.AnalyzeContent and Participants.AnalyzeContent, as well as HumanAgentAssistantEvent.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestionResult {
+    /**
+     * Error status if the request failed.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * SuggestArticlesResponse if request is for ARTICLE_SUGGESTION.
+     */
+    suggestArticlesResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse;
+    /**
+     * SuggestFaqAnswersResponse if request is for FAQ_ANSWER.
+     */
+    suggestFaqAnswersResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse;
+    /**
+     * SuggestSmartRepliesResponse if request is for SMART_REPLY.
+     */
+    suggestSmartRepliesResponse?: Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse;
+  }
+  /**
+   * The request message for Participants.SuggestSmartReplies.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesRequest {
+    /**
+     * Optional. Max number of messages prior to and including [latest_message] to use as context when compiling the suggestion. By default 20 and at most 50.
+     */
+    contextSize?: number | null;
+    /**
+     * The current natural language text segment to compile suggestion for. This provides a way for user to get follow up smart reply suggestion after a smart reply selection, without sending a text message.
+     */
+    currentTextInput?: Schema$GoogleCloudDialogflowV2beta1TextInput;
+    /**
+     * The name of the latest conversation message to compile suggestion for. If empty, it will be the latest message of the conversation. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
+   * The response message for Participants.SuggestSmartReplies.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse {
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestSmartRepliesRequest.context_size field in the request if there aren't that many messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+    /**
+     * Output only. Multiple reply options provided by smart reply service. The order is based on the rank of the model prediction. The maximum number of the returned replies is set in SmartReplyConfig.
+     */
+    smartReplyAnswers?: Schema$GoogleCloudDialogflowV2beta1SmartReplyAnswer[];
   }
   /**
    * Configuration of how speech should be synthesized.
@@ -4174,6 +5440,15 @@ export namespace dialogflow_v2beta1 {
      * Optional. Volume gain (in dB) of the normal native volume supported by the specific voice, in the range [-96.0, 16.0]. If unset, or set to a value of 0.0 (dB), will play at normal native signal amplitude. A value of -6.0 (dB) will play at approximately half the amplitude of the normal native signal amplitude. A value of +6.0 (dB) will play at approximately twice the amplitude of the normal native signal amplitude. We strongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.
      */
     volumeGainDb?: number | null;
+  }
+  /**
+   * A wrapper of repeated TelephonyDtmf digits.
+   */
+  export interface Schema$GoogleCloudDialogflowV2beta1TelephonyDtmfEvents {
+    /**
+     * A sequence of TelephonyDtmf digits.
+     */
+    dtmfEvents?: string[] | null;
   }
   /**
    * Represents the natural language text to be processed.
@@ -4276,6 +5551,10 @@ export namespace dialogflow_v2beta1 {
      * Optional. The text response message intended for the end-user. It is recommended to use `fulfillment_messages.text.text[0]` instead. When provided, Dialogflow uses this field to populate QueryResult.fulfillment_text sent to the integration or API caller.
      */
     fulfillmentText?: string | null;
+    /**
+     * Indicates that a live agent should be brought in to handle the interaction with the user. In most cases, when you set this flag to true, you would also want to set end_interaction to true as well. Default is false.
+     */
+    liveAgentHandoff?: boolean | null;
     /**
      * Optional. The collection of output contexts that will overwrite currently active contexts for the session and reset their lifespans. When provided, Dialogflow uses this field to populate QueryResult.output_contexts sent to the integration or API caller.
      */
@@ -4404,6 +5683,52 @@ export namespace dialogflow_v2beta1 {
     agentUri?: string | null;
   }
   /**
+   * Represents answer from "frequently asked questions".
+   */
+  export interface Schema$GoogleCloudDialogflowV2FaqAnswer {
+    /**
+     * The piece of text from the `source` knowledge base document.
+     */
+    answer?: string | null;
+    /**
+     * The name of answer record, in the format of "projects//locations//answerRecords/"
+     */
+    answerRecord?: string | null;
+    /**
+     * The system's confidence score that this Knowledge answer is a good match for this conversational query, range from 0.0 (completely uncertain) to 1.0 (completely certain).
+     */
+    confidence?: number | null;
+    /**
+     * A map that contains metadata about the answer and the document from which it originates.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * The corresponding FAQ question.
+     */
+    question?: string | null;
+    /**
+     * Indicates which Knowledge Document this answer was extracted from. Format: `projects//locations//agent/knowledgeBases//documents/`.
+     */
+    source?: string | null;
+  }
+  /**
+   * Represents a notification sent to Cloud Pub/Sub subscribers for human agent assistant events in a specific conversation.
+   */
+  export interface Schema$GoogleCloudDialogflowV2HumanAgentAssistantEvent {
+    /**
+     * The conversation this notification refers to. Format: `projects//conversations/`.
+     */
+    conversation?: string | null;
+    /**
+     * The participant that the suggestion is compiled for. Format: `projects//conversations//participants/`. It will not be set in legacy workflow.
+     */
+    participant?: string | null;
+    /**
+     * The suggestion results payload that this notification refers to.
+     */
+    suggestionResults?: Schema$GoogleCloudDialogflowV2SuggestionResult[];
+  }
+  /**
    * An intent categorizes an end-user's intention for one conversation turn. For each agent, you define many intents, where your combined intents can handle a complete conversation. When an end-user writes or says something, referred to as an end-user expression or end-user input, Dialogflow matches the end-user input to the best intent in your agent. Matching an intent is also known as intent classification. For more information, see the [intent guide](https://cloud.google.com/dialogflow/docs/intents-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2Intent {
@@ -4420,6 +5745,10 @@ export namespace dialogflow_v2beta1 {
      */
     displayName?: string | null;
     /**
+     * Optional. Indicates that this intent ends an interaction. Some integrations (e.g., Actions on Google or Dialogflow phone gateway) use this information to close interaction with an end user. Default is false.
+     */
+    endInteraction?: boolean | null;
+    /**
      * Optional. The collection of event names that trigger the intent. If the collection of input contexts is not empty, all of the contexts must be present in the active user session for an event to trigger this intent. Event names are limited to 150 characters.
      */
     events?: string[] | null;
@@ -4435,6 +5764,10 @@ export namespace dialogflow_v2beta1 {
      * Optional. Indicates whether this is a fallback intent.
      */
     isFallback?: boolean | null;
+    /**
+     * Optional. Indicates that a live agent should be brought in to handle the interaction with the user. In most cases, when you set this flag to true, you would also want to set end_interaction to true as well. Default is false.
+     */
+    liveAgentHandoff?: boolean | null;
     /**
      * Optional. The collection of rich messages corresponding to the `Response` field in the Dialogflow console.
      */
@@ -5045,6 +6378,15 @@ export namespace dialogflow_v2beta1 {
     userDefined?: boolean | null;
   }
   /**
+   * Metadata in google::longrunning::Operation for Knowledge operations.
+   */
+  export interface Schema$GoogleCloudDialogflowV2KnowledgeOperationMetadata {
+    /**
+     * Output only. The current state of this operation.
+     */
+    state?: string | null;
+  }
+  /**
    * Represents a message posted into a conversation.
    */
   export interface Schema$GoogleCloudDialogflowV2Message {
@@ -5210,6 +6552,57 @@ export namespace dialogflow_v2beta1 {
      * Required. The unique identifier of this session entity type. Format: `projects//agent/sessions//entityTypes/`, or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. `` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
     name?: string | null;
+  }
+  /**
+   * The response message for Participants.SuggestArticles.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SuggestArticlesResponse {
+    /**
+     * Articles ordered by score in descending order.
+     */
+    articleAnswers?: Schema$GoogleCloudDialogflowV2ArticleAnswer[];
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestArticlesRequest.context_size field in the request if there aren't that many messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
+   * The request message for Participants.SuggestFaqAnswers.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SuggestFaqAnswersResponse {
+    /**
+     * Number of messages prior to and including latest_message to compile the suggestion. It may be smaller than the SuggestFaqAnswersRequest.context_size field in the request if there aren't that many messages in the conversation.
+     */
+    contextSize?: number | null;
+    /**
+     * Answers extracted from FAQ documents.
+     */
+    faqAnswers?: Schema$GoogleCloudDialogflowV2FaqAnswer[];
+    /**
+     * The name of the latest conversation message used to compile suggestion for. Format: `projects//locations//conversations//messages/`.
+     */
+    latestMessage?: string | null;
+  }
+  /**
+   * One response of different type of suggestion response which is used in the response of Participants.AnalyzeContent and Participants.AnalyzeContent, as well as HumanAgentAssistantEvent.
+   */
+  export interface Schema$GoogleCloudDialogflowV2SuggestionResult {
+    /**
+     * Error status if the request failed.
+     */
+    error?: Schema$GoogleRpcStatus;
+    /**
+     * SuggestArticlesResponse if request is for ARTICLE_SUGGESTION.
+     */
+    suggestArticlesResponse?: Schema$GoogleCloudDialogflowV2SuggestArticlesResponse;
+    /**
+     * SuggestFaqAnswersResponse if request is for FAQ_ANSWER.
+     */
+    suggestFaqAnswersResponse?: Schema$GoogleCloudDialogflowV2SuggestFaqAnswersResponse;
   }
   /**
    * The request message for a webhook call.
@@ -5404,12 +6797,20 @@ export namespace dialogflow_v2beta1 {
   export class Resource$Projects {
     context: APIRequestContext;
     agent: Resource$Projects$Agent;
+    answerRecords: Resource$Projects$Answerrecords;
+    conversationProfiles: Resource$Projects$Conversationprofiles;
+    conversations: Resource$Projects$Conversations;
     knowledgeBases: Resource$Projects$Knowledgebases;
     locations: Resource$Projects$Locations;
     operations: Resource$Projects$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.agent = new Resource$Projects$Agent(this.context);
+      this.answerRecords = new Resource$Projects$Answerrecords(this.context);
+      this.conversationProfiles = new Resource$Projects$Conversationprofiles(
+        this.context
+      );
+      this.conversations = new Resource$Projects$Conversations(this.context);
       this.knowledgeBases = new Resource$Projects$Knowledgebases(this.context);
       this.locations = new Resource$Projects$Locations(this.context);
       this.operations = new Resource$Projects$Operations(this.context);
@@ -6991,7 +8392,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.agent.updateFulfillment({
-     *     // Required. The unique identifier of the fulfillment. Supported formats: - `projects//agent/fulfillment` - `projects//locations//agent/fulfillment`
+     *     // Required. The unique identifier of the fulfillment. Supported formats: - `projects//agent/fulfillment` - `projects//locations//agent/fulfillment` This field is not used for Fulfillment in an Environment.
      *     name: 'projects/my-project/agent/fulfillment',
      *     // Required. The mask to control which fields get updated. If the mask is not present, all fields will be updated.
      *     updateMask: 'placeholder-value',
@@ -7202,7 +8603,7 @@ export namespace dialogflow_v2beta1 {
   export interface Params$Resource$Projects$Agent$Updatefulfillment
     extends StandardParameters {
     /**
-     * Required. The unique identifier of the fulfillment. Supported formats: - `projects//agent/fulfillment` - `projects//locations//agent/fulfillment`
+     * Required. The unique identifier of the fulfillment. Supported formats: - `projects//agent/fulfillment` - `projects//locations//agent/fulfillment` This field is not used for Fulfillment in an Environment.
      */
     name?: string;
     /**
@@ -11537,6 +12938,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "followupIntentInfo": [],
      *       //   "inputContextNames": [],
      *       //   "isFallback": false,
+     *       //   "liveAgentHandoff": false,
      *       //   "messages": [],
      *       //   "mlDisabled": false,
      *       //   "mlEnabled": false,
@@ -11564,6 +12966,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "followupIntentInfo": [],
      *   //   "inputContextNames": [],
      *   //   "isFallback": false,
+     *   //   "liveAgentHandoff": false,
      *   //   "messages": [],
      *   //   "mlDisabled": false,
      *   //   "mlEnabled": false,
@@ -11858,6 +13261,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "followupIntentInfo": [],
      *   //   "inputContextNames": [],
      *   //   "isFallback": false,
+     *   //   "liveAgentHandoff": false,
      *   //   "messages": [],
      *   //   "mlDisabled": false,
      *   //   "mlEnabled": false,
@@ -12171,6 +13575,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "followupIntentInfo": [],
      *       //   "inputContextNames": [],
      *       //   "isFallback": false,
+     *       //   "liveAgentHandoff": false,
      *       //   "messages": [],
      *       //   "mlDisabled": false,
      *       //   "mlEnabled": false,
@@ -12198,6 +13603,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "followupIntentInfo": [],
      *   //   "inputContextNames": [],
      *   //   "isFallback": false,
+     *   //   "liveAgentHandoff": false,
      *   //   "messages": [],
      *   //   "mlDisabled": false,
      *   //   "mlEnabled": false,
@@ -13278,6 +14684,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "enableAutoReload": false,
      *       //   "knowledgeTypes": [],
      *       //   "latestReloadStatus": {},
+     *       //   "metadata": {},
      *       //   "mimeType": "my_mimeType",
      *       //   "name": "my_name",
      *       //   "rawContent": "my_rawContent"
@@ -13579,6 +14986,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "enableAutoReload": false,
      *   //   "knowledgeTypes": [],
      *   //   "latestReloadStatus": {},
+     *   //   "metadata": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "rawContent": "my_rawContent"
@@ -13876,6 +15284,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "enableAutoReload": false,
      *       //   "knowledgeTypes": [],
      *       //   "latestReloadStatus": {},
+     *       //   "metadata": {},
      *       //   "mimeType": "my_mimeType",
      *       //   "name": "my_name",
      *       //   "rawContent": "my_rawContent"
@@ -16124,6 +17533,4009 @@ export namespace dialogflow_v2beta1 {
     requestBody?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType;
   }
 
+  export class Resource$Projects$Answerrecords {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deprecated. Retrieves a specific answer record.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.answerRecords.get({
+     *     // Required. The name of the answer record to retrieve. Format: `projects//locations//answerRecords/`.
+     *     name: 'projects/my-project/answerRecords/my-answerRecord',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "agentAssistantRecord": {},
+     *   //   "answerFeedback": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Answerrecords$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Answerrecords$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>;
+    get(
+      params: Params$Resource$Projects$Answerrecords$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Answerrecords$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Answerrecords$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Answerrecords$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Answerrecords$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Answerrecords$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the list of all answer records in the specified project in reverse chronological order.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.answerRecords.list({
+     *     // Optional. The maximum number of records to return in a single page. The server may return fewer records than this. If unspecified, we use 10. The maximum is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The ListAnswerRecordsResponse.next_page_token value returned from a previous list request used to continue listing on the next page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project to list all answer records for in reverse chronological order. Format: `projects//locations/`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answerRecords": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Answerrecords$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Answerrecords$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>;
+    list(
+      params: Params$Resource$Projects$Answerrecords$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Answerrecords$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Answerrecords$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Answerrecords$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Answerrecords$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Answerrecords$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/answerRecords').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the specified answer record.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.answerRecords.patch({
+     *     // The unique identifier of this answer record. Required for AnswerRecords.UpdateAnswerRecord method. Format: `projects//locations//answerRecords/`.
+     *     name: 'projects/my-project/answerRecords/my-answerRecord',
+     *     // Required. The mask to control which fields get updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "agentAssistantRecord": {},
+     *       //   "answerFeedback": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "agentAssistantRecord": {},
+     *   //   "answerFeedback": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Answerrecords$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Answerrecords$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>;
+    patch(
+      params: Params$Resource$Projects$Answerrecords$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Answerrecords$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Answerrecords$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Answerrecords$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Answerrecords$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Answerrecords$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Answerrecords$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the answer record to retrieve. Format: `projects//locations//answerRecords/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Answerrecords$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of records to return in a single page. The server may return fewer records than this. If unspecified, we use 10. The maximum is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The ListAnswerRecordsResponse.next_page_token value returned from a previous list request used to continue listing on the next page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project to list all answer records for in reverse chronological order. Format: `projects//locations/`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Answerrecords$Patch
+    extends StandardParameters {
+    /**
+     * The unique identifier of this answer record. Required for AnswerRecords.UpdateAnswerRecord method. Format: `projects//locations//answerRecords/`.
+     */
+    name?: string;
+    /**
+     * Required. The mask to control which fields get updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1AnswerRecord;
+  }
+
+  export class Resource$Projects$Conversationprofiles {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a conversation profile in the specified project. ConversationProfile.CreateTime and ConversationProfile.UpdateTime aren't populated in the response. You can retrieve them via GetConversationProfile API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversationProfiles.create({
+     *     // Required. The project to create a conversation profile for. Format: `projects//locations/`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "automatedAgentConfig": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "humanAgentAssistantConfig": {},
+     *       //   "humanAgentHandoffConfig": {},
+     *       //   "languageCode": "my_languageCode",
+     *       //   "loggingConfig": {},
+     *       //   "name": "my_name",
+     *       //   "newMessageEventNotificationConfig": {},
+     *       //   "notificationConfig": {},
+     *       //   "sttConfig": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automatedAgentConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "humanAgentAssistantConfig": {},
+     *   //   "humanAgentHandoffConfig": {},
+     *   //   "languageCode": "my_languageCode",
+     *   //   "loggingConfig": {},
+     *   //   "name": "my_name",
+     *   //   "newMessageEventNotificationConfig": {},
+     *   //   "notificationConfig": {},
+     *   //   "sttConfig": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Conversationprofiles$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Conversationprofiles$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>;
+    create(
+      params: Params$Resource$Projects$Conversationprofiles$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Conversationprofiles$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Conversationprofiles$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversationprofiles$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversationprofiles$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversationprofiles$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/conversationProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes the specified conversation profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversationProfiles.delete({
+     *     // Required. The name of the conversation profile to delete. Format: `projects//locations//conversationProfiles/`.
+     *     name: 'projects/my-project/conversationProfiles/my-conversationProfile',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Conversationprofiles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Conversationprofiles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Conversationprofiles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Conversationprofiles$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Conversationprofiles$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversationprofiles$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversationprofiles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversationprofiles$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the specified conversation profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversationProfiles.get({
+     *     // Required. The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`.
+     *     name: 'projects/my-project/conversationProfiles/my-conversationProfile',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automatedAgentConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "humanAgentAssistantConfig": {},
+     *   //   "humanAgentHandoffConfig": {},
+     *   //   "languageCode": "my_languageCode",
+     *   //   "loggingConfig": {},
+     *   //   "name": "my_name",
+     *   //   "newMessageEventNotificationConfig": {},
+     *   //   "notificationConfig": {},
+     *   //   "sttConfig": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Conversationprofiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Conversationprofiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>;
+    get(
+      params: Params$Resource$Projects$Conversationprofiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Conversationprofiles$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Conversationprofiles$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversationprofiles$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversationprofiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversationprofiles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the list of all conversation profiles in the specified project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversationProfiles.list({
+     *     // The maximum number of items to return in a single page. By default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project to list all conversation profiles from. Format: `projects//locations/`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversationProfiles": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Conversationprofiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Conversationprofiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>;
+    list(
+      params: Params$Resource$Projects$Conversationprofiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Conversationprofiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Conversationprofiles$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversationprofiles$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversationprofiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversationprofiles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/conversationProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the specified conversation profile. ConversationProfile.CreateTime and ConversationProfile.UpdateTime aren't populated in the response. You can retrieve them via GetConversationProfile API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversationProfiles.patch({
+     *     // The unique identifier of this conversation profile. Format: `projects//locations//conversationProfiles/`.
+     *     name: 'projects/my-project/conversationProfiles/my-conversationProfile',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "automatedAgentConfig": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "humanAgentAssistantConfig": {},
+     *       //   "humanAgentHandoffConfig": {},
+     *       //   "languageCode": "my_languageCode",
+     *       //   "loggingConfig": {},
+     *       //   "name": "my_name",
+     *       //   "newMessageEventNotificationConfig": {},
+     *       //   "notificationConfig": {},
+     *       //   "sttConfig": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automatedAgentConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "humanAgentAssistantConfig": {},
+     *   //   "humanAgentHandoffConfig": {},
+     *   //   "languageCode": "my_languageCode",
+     *   //   "loggingConfig": {},
+     *   //   "name": "my_name",
+     *   //   "newMessageEventNotificationConfig": {},
+     *   //   "notificationConfig": {},
+     *   //   "sttConfig": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Conversationprofiles$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Conversationprofiles$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>;
+    patch(
+      params: Params$Resource$Projects$Conversationprofiles$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Conversationprofiles$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Conversationprofiles$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversationprofiles$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversationprofiles$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversationprofiles$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Conversationprofiles$Create
+    extends StandardParameters {
+    /**
+     * Required. The project to create a conversation profile for. Format: `projects//locations/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1ConversationProfile;
+  }
+  export interface Params$Resource$Projects$Conversationprofiles$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the conversation profile to delete. Format: `projects//locations//conversationProfiles/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Conversationprofiles$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Conversationprofiles$List
+    extends StandardParameters {
+    /**
+     * The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project to list all conversation profiles from. Format: `projects//locations/`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Conversationprofiles$Patch
+    extends StandardParameters {
+    /**
+     * The unique identifier of this conversation profile. Format: `projects//locations//conversationProfiles/`.
+     */
+    name?: string;
+    /**
+     * Required. The mask to control which fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1ConversationProfile;
+  }
+
+  export class Resource$Projects$Conversations {
+    context: APIRequestContext;
+    messages: Resource$Projects$Conversations$Messages;
+    participants: Resource$Projects$Conversations$Participants;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.messages = new Resource$Projects$Conversations$Messages(
+        this.context
+      );
+      this.participants = new Resource$Projects$Conversations$Participants(
+        this.context
+      );
+    }
+
+    /**
+     * Completes the specified conversation. Finished conversations are purged from the database after 30 days.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.complete({
+     *     // Required. Resource identifier of the conversation to close. Format: `projects//locations//conversations/`.
+     *     name: 'projects/my-project/conversations/my-conversation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversationProfile": "my_conversationProfile",
+     *   //   "conversationStage": "my_conversationStage",
+     *   //   "endTime": "my_endTime",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "phoneNumber": {},
+     *   //   "startTime": "my_startTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    complete(
+      params: Params$Resource$Projects$Conversations$Complete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    complete(
+      params?: Params$Resource$Projects$Conversations$Complete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Conversation>;
+    complete(
+      params: Params$Resource$Projects$Conversations$Complete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    complete(
+      params: Params$Resource$Projects$Conversations$Complete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    complete(
+      params: Params$Resource$Projects$Conversations$Complete,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    complete(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    complete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Complete
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Conversation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Complete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$Complete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}:complete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Conversation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Conversation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Creates a new conversation. Conversations are auto-completed after 24 hours. Conversation Lifecycle: There are two stages during a conversation: Automated Agent Stage and Assist Stage. For Automated Agent Stage, there will be a dialogflow agent responding to user queries. For Assist Stage, there's no dialogflow agent responding to user queries. But we will provide suggestions which are generated from conversation. If Conversation.conversation_profile is configured for a dialogflow agent, conversation will start from `Automated Agent Stage`, otherwise, it will start from `Assist Stage`. And during `Automated Agent Stage`, once an Intent with Intent.live_agent_handoff is triggered, conversation will transfer to Assist Stage.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.create({
+     *     // Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression fomula "a-zA-Z*" with the characters length in range of [3,64]. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     *     conversationId: 'placeholder-value',
+     *     // Required. Resource identifier of the project creating the conversation. Format: `projects//locations/`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conversationProfile": "my_conversationProfile",
+     *       //   "conversationStage": "my_conversationStage",
+     *       //   "endTime": "my_endTime",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "name": "my_name",
+     *       //   "phoneNumber": {},
+     *       //   "startTime": "my_startTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversationProfile": "my_conversationProfile",
+     *   //   "conversationStage": "my_conversationStage",
+     *   //   "endTime": "my_endTime",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "phoneNumber": {},
+     *   //   "startTime": "my_startTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Conversations$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Conversations$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Conversation>;
+    create(
+      params: Params$Resource$Projects$Conversations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Conversations$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Conversations$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Conversation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/conversations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Conversation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Conversation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Retrieves the specific conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.get({
+     *     // Required. The name of the conversation. Format: `projects//locations//conversations/`.
+     *     name: 'projects/my-project/conversations/my-conversation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversationProfile": "my_conversationProfile",
+     *   //   "conversationStage": "my_conversationStage",
+     *   //   "endTime": "my_endTime",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "phoneNumber": {},
+     *   //   "startTime": "my_startTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Conversations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Conversations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Conversation>;
+    get(
+      params: Params$Resource$Projects$Conversations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Conversations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Conversations$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Conversation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Conversation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Conversation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the list of all conversations in the specified project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.list({
+     *     // A filter expression that filters conversations listed in the response. In general, the expression must specify the field name, a comparison operator, and the value to use for filtering: - The value must be a string, a number, or a boolean. - The comparison operator must be either `=`,`!=`, `\>`, or `<`. - To filter on multiple expressions, separate the expressions with `AND` or `OR` (omitting both implies `AND`). - For clarity, expressions can be enclosed in parentheses. Only `lifecycle_state` can be filtered on in this way. For example, the following expression only returns `COMPLETED` conversations: `lifecycle_state = "COMPLETED"` For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project from which to list all conversation. Format: `projects//locations/`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Conversations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Conversations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>;
+    list(
+      params: Params$Resource$Projects$Conversations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Conversations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Conversations$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/conversations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Conversations$Complete
+    extends StandardParameters {
+    /**
+     * Required. Resource identifier of the conversation to close. Format: `projects//locations//conversations/`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1CompleteConversationRequest;
+  }
+  export interface Params$Resource$Projects$Conversations$Create
+    extends StandardParameters {
+    /**
+     * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression fomula "a-zA-Z*" with the characters length in range of [3,64]. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     */
+    conversationId?: string;
+    /**
+     * Required. Resource identifier of the project creating the conversation. Format: `projects//locations/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1Conversation;
+  }
+  export interface Params$Resource$Projects$Conversations$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the conversation. Format: `projects//locations//conversations/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Conversations$List
+    extends StandardParameters {
+    /**
+     * A filter expression that filters conversations listed in the response. In general, the expression must specify the field name, a comparison operator, and the value to use for filtering: - The value must be a string, a number, or a boolean. - The comparison operator must be either `=`,`!=`, `\>`, or `<`. - To filter on multiple expressions, separate the expressions with `AND` or `OR` (omitting both implies `AND`). - For clarity, expressions can be enclosed in parentheses. Only `lifecycle_state` can be filtered on in this way. For example, the following expression only returns `COMPLETED` conversations: `lifecycle_state = "COMPLETED"` For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project from which to list all conversation. Format: `projects//locations/`.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Conversations$Messages {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Batch ingests messages to conversation. Customers can use this RPC to ingest historical messages to conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.messages.batchCreate({
+     *     // Required. Resource identifier of the conversation to create message. Format: `projects//locations//conversations/`.
+     *     parent: 'projects/my-project/conversations/my-conversation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "messages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchCreate(
+      params: Params$Resource$Projects$Conversations$Messages$Batchcreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCreate(
+      params?: Params$Resource$Projects$Conversations$Messages$Batchcreate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>;
+    batchCreate(
+      params: Params$Resource$Projects$Conversations$Messages$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Conversations$Messages$Batchcreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Conversations$Messages$Batchcreate,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>
+    ): void;
+    batchCreate(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>
+    ): void;
+    batchCreate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Messages$Batchcreate
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Messages$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$Messages$Batchcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/messages:batchCreate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists messages that belong to a given conversation. `messages` are ordered by `create_time` in descending order. To fetch updates without duplication, send request with filter `create_time_epoch_microseconds \> [first item's create_time of previous request]` and empty page_token.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.messages.list({
+     *     // Optional. Filter on message fields. Currently predicates on `create_time` and `create_time_epoch_microseconds` are supported. `create_time` only support milliseconds accuracy. E.g., `create_time_epoch_microseconds \> 1551790877964485` or `create_time \> "2017-01-15T01:30:15.01Z"`. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the conversation to list messages for. Format: `projects//locations//conversations/`
+     *     parent: 'projects/my-project/conversations/my-conversation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "messages": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Conversations$Messages$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Conversations$Messages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>;
+    list(
+      params: Params$Resource$Projects$Conversations$Messages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Conversations$Messages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Conversations$Messages$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Messages$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Messages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$Messages$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/messages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Conversations$Messages$Batchcreate
+    extends StandardParameters {
+    /**
+     * Required. Resource identifier of the conversation to create message. Format: `projects//locations//conversations/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesRequest;
+  }
+  export interface Params$Resource$Projects$Conversations$Messages$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter on message fields. Currently predicates on `create_time` and `create_time_epoch_microseconds` are supported. `create_time` only support milliseconds accuracy. E.g., `create_time_epoch_microseconds \> 1551790877964485` or `create_time \> "2017-01-15T01:30:15.01Z"`. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the conversation to list messages for. Format: `projects//locations//conversations/`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Conversations$Participants {
+    context: APIRequestContext;
+    suggestions: Resource$Projects$Conversations$Participants$Suggestions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.suggestions = new Resource$Projects$Conversations$Participants$Suggestions(
+        this.context
+      );
+    }
+
+    /**
+     * Adds a text (chat, for example), or audio (phone recording, for example) message from a participant into the conversation. Note: Always use agent versions for production traffic sent to virtual agents. See [Versions and environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.participants.analyzeContent(
+     *     {
+     *       // Required. The name of the participant this text comes from. Format: `projects//locations//conversations//participants/`.
+     *       participant:
+     *         'projects/my-project/conversations/my-conversation/participants/my-participant',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "eventInput": {},
+     *         //   "messageSendTime": "my_messageSendTime",
+     *         //   "queryParams": {},
+     *         //   "replyAudioConfig": {},
+     *         //   "requestId": "my_requestId",
+     *         //   "textInput": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automatedAgentReply": {},
+     *   //   "dtmfParameters": {},
+     *   //   "endUserSuggestionResults": [],
+     *   //   "humanAgentSuggestionResults": [],
+     *   //   "message": {},
+     *   //   "replyAudio": {},
+     *   //   "replyText": "my_replyText"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    analyzeContent(
+      params: Params$Resource$Projects$Conversations$Participants$Analyzecontent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeContent(
+      params?: Params$Resource$Projects$Conversations$Participants$Analyzecontent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>;
+    analyzeContent(
+      params: Params$Resource$Projects$Conversations$Participants$Analyzecontent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    analyzeContent(
+      params: Params$Resource$Projects$Conversations$Participants$Analyzecontent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>
+    ): void;
+    analyzeContent(
+      params: Params$Resource$Projects$Conversations$Participants$Analyzecontent,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>
+    ): void;
+    analyzeContent(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>
+    ): void;
+    analyzeContent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Participants$Analyzecontent
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Participants$Analyzecontent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$Participants$Analyzecontent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+participant}:analyzeContent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['participant'],
+        pathParams: ['participant'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Creates a new participant in a conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.participants.create({
+     *     // Required. Resource identifier of the conversation adding the participant. Format: `projects//locations//conversations/`.
+     *     parent: 'projects/my-project/conversations/my-conversation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
+     *       //   "role": "my_role"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
+     *   //   "role": "my_role"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Conversations$Participants$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Conversations$Participants$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Participant>;
+    create(
+      params: Params$Resource$Projects$Conversations$Participants$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Conversations$Participants$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Conversations$Participants$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Participants$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Participant>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Participants$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$Participants$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/participants').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Participant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Participant>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Retrieves a conversation participant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.participants.get({
+     *     // Required. The name of the participant. Format: `projects//locations//conversations//participants/`.
+     *     name:
+     *       'projects/my-project/conversations/my-conversation/participants/my-participant',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
+     *   //   "role": "my_role"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Conversations$Participants$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Conversations$Participants$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Participant>;
+    get(
+      params: Params$Resource$Projects$Conversations$Participants$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Conversations$Participants$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Conversations$Participants$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Participants$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Participant>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Participants$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$Participants$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Participant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Participant>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the list of all participants in the specified conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.participants.list({
+     *     // Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The conversation to list all participants from. Format: `projects//locations//conversations/`.
+     *     parent: 'projects/my-project/conversations/my-conversation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "participants": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Conversations$Participants$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Conversations$Participants$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>;
+    list(
+      params: Params$Resource$Projects$Conversations$Participants$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Conversations$Participants$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Conversations$Participants$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Participants$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Participants$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$Participants$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/participants').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the specified participant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.participants.patch({
+     *     // Optional. The unique identifier of this participant. Format: `projects//locations//conversations//participants/`.
+     *     name:
+     *       'projects/my-project/conversations/my-conversation/participants/my-participant',
+     *     // Required. The mask to specify which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
+     *       //   "role": "my_role"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
+     *   //   "role": "my_role"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Conversations$Participants$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Conversations$Participants$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Participant>;
+    patch(
+      params: Params$Resource$Projects$Conversations$Participants$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Conversations$Participants$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Conversations$Participants$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Participants$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Participant>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Participants$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$Participants$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Participant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Participant>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Conversations$Participants$Analyzecontent
+    extends StandardParameters {
+    /**
+     * Required. The name of the participant this text comes from. Format: `projects//locations//conversations//participants/`.
+     */
+    participant?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1AnalyzeContentRequest;
+  }
+  export interface Params$Resource$Projects$Conversations$Participants$Create
+    extends StandardParameters {
+    /**
+     * Required. Resource identifier of the conversation adding the participant. Format: `projects//locations//conversations/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1Participant;
+  }
+  export interface Params$Resource$Projects$Conversations$Participants$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the participant. Format: `projects//locations//conversations//participants/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Conversations$Participants$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The conversation to list all participants from. Format: `projects//locations//conversations/`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Conversations$Participants$Patch
+    extends StandardParameters {
+    /**
+     * Optional. The unique identifier of this participant. Format: `projects//locations//conversations//participants/`.
+     */
+    name?: string;
+    /**
+     * Required. The mask to specify which fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1Participant;
+  }
+
+  export class Resource$Projects$Conversations$Participants$Suggestions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deprecated. use SuggestArticles and SuggestFaqAnswers instead. Gets suggestions for a participant based on specific historical messages. Note that ListSuggestions will only list the auto-generated suggestions, while CompileSuggestion will try to compile suggestion based on the provided conversation context in the real time.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.participants.suggestions.compile(
+     *     {
+     *       // Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     *       parent:
+     *         'projects/my-project/conversations/my-conversation/participants/my-participant',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "contextSize": 0,
+     *         //   "latestMessage": "my_latestMessage"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contextSize": 0,
+     *   //   "latestMessage": "my_latestMessage",
+     *   //   "suggestion": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    compile(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Compile,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    compile(
+      params?: Params$Resource$Projects$Conversations$Participants$Suggestions$Compile,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1CompileSuggestionResponse>;
+    compile(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Compile,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    compile(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Compile,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompileSuggestionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompileSuggestionResponse>
+    ): void;
+    compile(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Compile,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompileSuggestionResponse>
+    ): void;
+    compile(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompileSuggestionResponse>
+    ): void;
+    compile(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Participants$Suggestions$Compile
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompileSuggestionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompileSuggestionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1CompileSuggestionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1CompileSuggestionResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Participants$Suggestions$Compile;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$Participants$Suggestions$Compile;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/suggestions:compile').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1CompileSuggestionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1CompileSuggestionResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deprecated: Use inline suggestion, event based suggestion or Suggestion* API instead. See HumanAgentAssistantConfig.name for more details. Removal Date: 2020-09-01. Retrieves suggestions for live agents. This method should be used by human agent client software to fetch auto generated suggestions in real-time, while the conversation with an end user is in progress. The functionality is implemented in terms of the [list pagination](/apis/design/design_patterns#list_pagination) design pattern. The client app should use the `next_page_token` field to fetch the next batch of suggestions. `suggestions` are sorted by `create_time` in descending order. To fetch latest suggestion, just set `page_size` to 1. To fetch new suggestions without duplication, send request with filter `create_time_epoch_microseconds \> [first item's create_time of previous request]` and empty page_token.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.participants.suggestions.list(
+     *     {
+     *       // Optional. Filter on suggestions fields. Currently predicates on `create_time` and `create_time_epoch_microseconds` are supported. `create_time` only support milliseconds accuracy. E.g., `create_time_epoch_microseconds \> 1551790877964485` or `create_time \> "2017-01-15T01:30:15.01Z"` For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *       filter: 'placeholder-value',
+     *       // Optional. The maximum number of items to return in a single page. The default value is 100; the maximum value is 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. The next_page_token value returned from a previous list request.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The name of the participant to fetch suggestions for. Format: `projects//locations//conversations//participants/`.
+     *       parent:
+     *         'projects/my-project/conversations/my-conversation/participants/my-participant',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "suggestions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Conversations$Participants$Suggestions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListSuggestionsResponse>;
+    list(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListSuggestionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListSuggestionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListSuggestionsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListSuggestionsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Participants$Suggestions$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListSuggestionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListSuggestionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListSuggestionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListSuggestionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Participants$Suggestions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$Participants$Suggestions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/suggestions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListSuggestionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListSuggestionsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets suggested articles for a participant based on specific historical messages. Note that ListSuggestions will only list the auto-generated suggestions, while CompileSuggestion will try to compile suggestion based on the provided conversation context in the real time.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.participants.suggestions.suggestArticles(
+     *     {
+     *       // Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     *       parent:
+     *         'projects/my-project/conversations/my-conversation/participants/my-participant',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "contextSize": 0,
+     *         //   "latestMessage": "my_latestMessage"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "articleAnswers": [],
+     *   //   "contextSize": 0,
+     *   //   "latestMessage": "my_latestMessage"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    suggestArticles(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestarticles,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    suggestArticles(
+      params?: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestarticles,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>;
+    suggestArticles(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestarticles,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    suggestArticles(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestarticles,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>
+    ): void;
+    suggestArticles(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestarticles,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>
+    ): void;
+    suggestArticles(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>
+    ): void;
+    suggestArticles(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestarticles
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestarticles;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestarticles;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2beta1/{+parent}/suggestions:suggestArticles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets suggested faq answers for a participant based on specific historical messages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.participants.suggestions.suggestFaqAnswers(
+     *     {
+     *       // Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     *       parent:
+     *         'projects/my-project/conversations/my-conversation/participants/my-participant',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "contextSize": 0,
+     *         //   "latestMessage": "my_latestMessage"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contextSize": 0,
+     *   //   "faqAnswers": [],
+     *   //   "latestMessage": "my_latestMessage"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    suggestFaqAnswers(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestfaqanswers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    suggestFaqAnswers(
+      params?: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestfaqanswers,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>;
+    suggestFaqAnswers(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestfaqanswers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    suggestFaqAnswers(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestfaqanswers,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>
+    ): void;
+    suggestFaqAnswers(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestfaqanswers,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>
+    ): void;
+    suggestFaqAnswers(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>
+    ): void;
+    suggestFaqAnswers(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestfaqanswers
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestfaqanswers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestfaqanswers;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2beta1/{+parent}/suggestions:suggestFaqAnswers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets smart replies for a participant based on specific historical messages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.conversations.participants.suggestions.suggestSmartReplies(
+     *     {
+     *       // Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     *       parent:
+     *         'projects/my-project/conversations/my-conversation/participants/my-participant',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "contextSize": 0,
+     *         //   "currentTextInput": {},
+     *         //   "latestMessage": "my_latestMessage"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contextSize": 0,
+     *   //   "latestMessage": "my_latestMessage",
+     *   //   "smartReplyAnswers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    suggestSmartReplies(
+      params?: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>;
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>
+    ): void;
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>
+    ): void;
+    suggestSmartReplies(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>
+    ): void;
+    suggestSmartReplies(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2beta1/{+parent}/suggestions:suggestSmartReplies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Compile
+    extends StandardParameters {
+    /**
+     * Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1CompileSuggestionRequest;
+  }
+  export interface Params$Resource$Projects$Conversations$Participants$Suggestions$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter on suggestions fields. Currently predicates on `create_time` and `create_time_epoch_microseconds` are supported. `create_time` only support milliseconds accuracy. E.g., `create_time_epoch_microseconds \> 1551790877964485` or `create_time \> "2017-01-15T01:30:15.01Z"` For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of items to return in a single page. The default value is 100; the maximum value is 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the participant to fetch suggestions for. Format: `projects//locations//conversations//participants/`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestarticles
+    extends StandardParameters {
+    /**
+     * Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1SuggestArticlesRequest;
+  }
+  export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestfaqanswers
+    extends StandardParameters {
+    /**
+     * Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersRequest;
+  }
+  export interface Params$Resource$Projects$Conversations$Participants$Suggestions$Suggestsmartreplies
+    extends StandardParameters {
+    /**
+     * Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesRequest;
+  }
+
   export class Resource$Projects$Knowledgebases {
     context: APIRequestContext;
     documents: Resource$Projects$Knowledgebases$Documents;
@@ -16977,6 +22389,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "enableAutoReload": false,
      *       //   "knowledgeTypes": [],
      *       //   "latestReloadStatus": {},
+     *       //   "metadata": {},
      *       //   "mimeType": "my_mimeType",
      *       //   "name": "my_name",
      *       //   "rawContent": "my_rawContent"
@@ -17278,6 +22691,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "enableAutoReload": false,
      *   //   "knowledgeTypes": [],
      *   //   "latestReloadStatus": {},
+     *   //   "metadata": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "rawContent": "my_rawContent"
@@ -17378,6 +22792,159 @@ export namespace dialogflow_v2beta1 {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Document>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Create documents by importing data from external sources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.knowledgeBases.documents.import({
+     *     // Required. The knowledge base to import documents into. Format: `projects//locations//knowledgeBases/`.
+     *     parent: 'projects/my-project/knowledgeBases/my-knowledgeBase',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "documentTemplate": {},
+     *       //   "gcsSource": {},
+     *       //   "importGcsCustomMetadata": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Knowledgebases$Documents$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Knowledgebases$Documents$Import,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Knowledgebases$Documents$Import
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Knowledgebases$Documents$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Knowledgebases$Documents$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/documents:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -17575,6 +23142,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "enableAutoReload": false,
      *       //   "knowledgeTypes": [],
      *       //   "latestReloadStatus": {},
+     *       //   "metadata": {},
      *       //   "mimeType": "my_mimeType",
      *       //   "name": "my_name",
      *       //   "rawContent": "my_rawContent"
@@ -17872,6 +23440,18 @@ export namespace dialogflow_v2beta1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Knowledgebases$Documents$Import
+    extends StandardParameters {
+    /**
+     * Required. The knowledge base to import documents into. Format: `projects//locations//knowledgeBases/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1ImportDocumentsRequest;
+  }
   export interface Params$Resource$Projects$Knowledgebases$Documents$List
     extends StandardParameters {
     /**
@@ -17923,11 +23503,23 @@ export namespace dialogflow_v2beta1 {
   export class Resource$Projects$Locations {
     context: APIRequestContext;
     agent: Resource$Projects$Locations$Agent;
+    answerRecords: Resource$Projects$Locations$Answerrecords;
+    conversationProfiles: Resource$Projects$Locations$Conversationprofiles;
+    conversations: Resource$Projects$Locations$Conversations;
     knowledgeBases: Resource$Projects$Locations$Knowledgebases;
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.agent = new Resource$Projects$Locations$Agent(this.context);
+      this.answerRecords = new Resource$Projects$Locations$Answerrecords(
+        this.context
+      );
+      this.conversationProfiles = new Resource$Projects$Locations$Conversationprofiles(
+        this.context
+      );
+      this.conversations = new Resource$Projects$Locations$Conversations(
+        this.context
+      );
       this.knowledgeBases = new Resource$Projects$Locations$Knowledgebases(
         this.context
       );
@@ -19514,7 +25106,7 @@ export namespace dialogflow_v2beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.locations.agent.updateFulfillment({
-     *     // Required. The unique identifier of the fulfillment. Supported formats: - `projects//agent/fulfillment` - `projects//locations//agent/fulfillment`
+     *     // Required. The unique identifier of the fulfillment. Supported formats: - `projects//agent/fulfillment` - `projects//locations//agent/fulfillment` This field is not used for Fulfillment in an Environment.
      *     name: 'projects/my-project/locations/my-location/agent/fulfillment',
      *     // Required. The mask to control which fields get updated. If the mask is not present, all fields will be updated.
      *     updateMask: 'placeholder-value',
@@ -19725,7 +25317,7 @@ export namespace dialogflow_v2beta1 {
   export interface Params$Resource$Projects$Locations$Agent$Updatefulfillment
     extends StandardParameters {
     /**
-     * Required. The unique identifier of the fulfillment. Supported formats: - `projects//agent/fulfillment` - `projects//locations//agent/fulfillment`
+     * Required. The unique identifier of the fulfillment. Supported formats: - `projects//agent/fulfillment` - `projects//locations//agent/fulfillment` This field is not used for Fulfillment in an Environment.
      */
     name?: string;
     /**
@@ -23893,6 +29485,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "followupIntentInfo": [],
      *       //   "inputContextNames": [],
      *       //   "isFallback": false,
+     *       //   "liveAgentHandoff": false,
      *       //   "messages": [],
      *       //   "mlDisabled": false,
      *       //   "mlEnabled": false,
@@ -23920,6 +29513,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "followupIntentInfo": [],
      *   //   "inputContextNames": [],
      *   //   "isFallback": false,
+     *   //   "liveAgentHandoff": false,
      *   //   "messages": [],
      *   //   "mlDisabled": false,
      *   //   "mlEnabled": false,
@@ -24214,6 +29808,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "followupIntentInfo": [],
      *   //   "inputContextNames": [],
      *   //   "isFallback": false,
+     *   //   "liveAgentHandoff": false,
      *   //   "messages": [],
      *   //   "mlDisabled": false,
      *   //   "mlEnabled": false,
@@ -24527,6 +30122,7 @@ export namespace dialogflow_v2beta1 {
      *       //   "followupIntentInfo": [],
      *       //   "inputContextNames": [],
      *       //   "isFallback": false,
+     *       //   "liveAgentHandoff": false,
      *       //   "messages": [],
      *       //   "mlDisabled": false,
      *       //   "mlEnabled": false,
@@ -24554,6 +30150,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "followupIntentInfo": [],
      *   //   "inputContextNames": [],
      *   //   "isFallback": false,
+     *   //   "liveAgentHandoff": false,
      *   //   "messages": [],
      *   //   "mlDisabled": false,
      *   //   "mlEnabled": false,
@@ -26711,6 +32308,3693 @@ export namespace dialogflow_v2beta1 {
     requestBody?: Schema$GoogleCloudDialogflowV2beta1SessionEntityType;
   }
 
+  export class Resource$Projects$Locations$Answerrecords {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Deprecated. Retrieves a specific answer record.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.answerRecords.get({
+     *     // Required. The name of the answer record to retrieve. Format: `projects//locations//answerRecords/`.
+     *     name:
+     *       'projects/my-project/locations/my-location/answerRecords/my-answerRecord',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "agentAssistantRecord": {},
+     *   //   "answerFeedback": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Answerrecords$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Answerrecords$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>;
+    get(
+      params: Params$Resource$Projects$Locations$Answerrecords$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Answerrecords$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Answerrecords$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Answerrecords$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Answerrecords$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Answerrecords$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the list of all answer records in the specified project in reverse chronological order.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.answerRecords.list({
+     *     // Optional. The maximum number of records to return in a single page. The server may return fewer records than this. If unspecified, we use 10. The maximum is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The ListAnswerRecordsResponse.next_page_token value returned from a previous list request used to continue listing on the next page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project to list all answer records for in reverse chronological order. Format: `projects//locations/`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answerRecords": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Answerrecords$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Answerrecords$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Answerrecords$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Answerrecords$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Answerrecords$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Answerrecords$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Answerrecords$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Answerrecords$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/answerRecords').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListAnswerRecordsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the specified answer record.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.answerRecords.patch({
+     *     // The unique identifier of this answer record. Required for AnswerRecords.UpdateAnswerRecord method. Format: `projects//locations//answerRecords/`.
+     *     name:
+     *       'projects/my-project/locations/my-location/answerRecords/my-answerRecord',
+     *     // Required. The mask to control which fields get updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "agentAssistantRecord": {},
+     *       //   "answerFeedback": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "agentAssistantRecord": {},
+     *   //   "answerFeedback": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Answerrecords$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Answerrecords$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>;
+    patch(
+      params: Params$Resource$Projects$Locations$Answerrecords$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Answerrecords$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Answerrecords$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Answerrecords$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Answerrecords$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Answerrecords$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1AnswerRecord>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Answerrecords$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the answer record to retrieve. Format: `projects//locations//answerRecords/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Answerrecords$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of records to return in a single page. The server may return fewer records than this. If unspecified, we use 10. The maximum is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The ListAnswerRecordsResponse.next_page_token value returned from a previous list request used to continue listing on the next page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project to list all answer records for in reverse chronological order. Format: `projects//locations/`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Answerrecords$Patch
+    extends StandardParameters {
+    /**
+     * The unique identifier of this answer record. Required for AnswerRecords.UpdateAnswerRecord method. Format: `projects//locations//answerRecords/`.
+     */
+    name?: string;
+    /**
+     * Required. The mask to control which fields get updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1AnswerRecord;
+  }
+
+  export class Resource$Projects$Locations$Conversationprofiles {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a conversation profile in the specified project. ConversationProfile.CreateTime and ConversationProfile.UpdateTime aren't populated in the response. You can retrieve them via GetConversationProfile API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversationProfiles.create({
+     *     // Required. The project to create a conversation profile for. Format: `projects//locations/`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "automatedAgentConfig": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "humanAgentAssistantConfig": {},
+     *       //   "humanAgentHandoffConfig": {},
+     *       //   "languageCode": "my_languageCode",
+     *       //   "loggingConfig": {},
+     *       //   "name": "my_name",
+     *       //   "newMessageEventNotificationConfig": {},
+     *       //   "notificationConfig": {},
+     *       //   "sttConfig": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automatedAgentConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "humanAgentAssistantConfig": {},
+     *   //   "humanAgentHandoffConfig": {},
+     *   //   "languageCode": "my_languageCode",
+     *   //   "loggingConfig": {},
+     *   //   "name": "my_name",
+     *   //   "newMessageEventNotificationConfig": {},
+     *   //   "notificationConfig": {},
+     *   //   "sttConfig": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Conversationprofiles$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>;
+    create(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversationprofiles$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversationprofiles$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversationprofiles$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/conversationProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes the specified conversation profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversationProfiles.delete({
+     *     // Required. The name of the conversation profile to delete. Format: `projects//locations//conversationProfiles/`.
+     *     name:
+     *       'projects/my-project/locations/my-location/conversationProfiles/my-conversationProfile',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Conversationprofiles$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    delete(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversationprofiles$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversationprofiles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversationprofiles$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves the specified conversation profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversationProfiles.get({
+     *     // Required. The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`.
+     *     name:
+     *       'projects/my-project/locations/my-location/conversationProfiles/my-conversationProfile',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automatedAgentConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "humanAgentAssistantConfig": {},
+     *   //   "humanAgentHandoffConfig": {},
+     *   //   "languageCode": "my_languageCode",
+     *   //   "loggingConfig": {},
+     *   //   "name": "my_name",
+     *   //   "newMessageEventNotificationConfig": {},
+     *   //   "notificationConfig": {},
+     *   //   "sttConfig": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Conversationprofiles$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>;
+    get(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversationprofiles$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversationprofiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversationprofiles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the list of all conversation profiles in the specified project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversationProfiles.list({
+     *     // The maximum number of items to return in a single page. By default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project to list all conversation profiles from. Format: `projects//locations/`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversationProfiles": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Conversationprofiles$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversationprofiles$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversationprofiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversationprofiles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/conversationProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListConversationProfilesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the specified conversation profile. ConversationProfile.CreateTime and ConversationProfile.UpdateTime aren't populated in the response. You can retrieve them via GetConversationProfile API.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversationProfiles.patch({
+     *     // The unique identifier of this conversation profile. Format: `projects//locations//conversationProfiles/`.
+     *     name:
+     *       'projects/my-project/locations/my-location/conversationProfiles/my-conversationProfile',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "automatedAgentConfig": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "humanAgentAssistantConfig": {},
+     *       //   "humanAgentHandoffConfig": {},
+     *       //   "languageCode": "my_languageCode",
+     *       //   "loggingConfig": {},
+     *       //   "name": "my_name",
+     *       //   "newMessageEventNotificationConfig": {},
+     *       //   "notificationConfig": {},
+     *       //   "sttConfig": {},
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automatedAgentConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "humanAgentAssistantConfig": {},
+     *   //   "humanAgentHandoffConfig": {},
+     *   //   "languageCode": "my_languageCode",
+     *   //   "loggingConfig": {},
+     *   //   "name": "my_name",
+     *   //   "newMessageEventNotificationConfig": {},
+     *   //   "notificationConfig": {},
+     *   //   "sttConfig": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Conversationprofiles$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>;
+    patch(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Conversationprofiles$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversationprofiles$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversationprofiles$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversationprofiles$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ConversationProfile>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Conversationprofiles$Create
+    extends StandardParameters {
+    /**
+     * Required. The project to create a conversation profile for. Format: `projects//locations/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1ConversationProfile;
+  }
+  export interface Params$Resource$Projects$Locations$Conversationprofiles$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the conversation profile to delete. Format: `projects//locations//conversationProfiles/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Conversationprofiles$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the conversation profile. Format: `projects//locations//conversationProfiles/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Conversationprofiles$List
+    extends StandardParameters {
+    /**
+     * The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project to list all conversation profiles from. Format: `projects//locations/`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Conversationprofiles$Patch
+    extends StandardParameters {
+    /**
+     * The unique identifier of this conversation profile. Format: `projects//locations//conversationProfiles/`.
+     */
+    name?: string;
+    /**
+     * Required. The mask to control which fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1ConversationProfile;
+  }
+
+  export class Resource$Projects$Locations$Conversations {
+    context: APIRequestContext;
+    messages: Resource$Projects$Locations$Conversations$Messages;
+    participants: Resource$Projects$Locations$Conversations$Participants;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.messages = new Resource$Projects$Locations$Conversations$Messages(
+        this.context
+      );
+      this.participants = new Resource$Projects$Locations$Conversations$Participants(
+        this.context
+      );
+    }
+
+    /**
+     * Completes the specified conversation. Finished conversations are purged from the database after 30 days.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversations.complete({
+     *     // Required. Resource identifier of the conversation to close. Format: `projects//locations//conversations/`.
+     *     name:
+     *       'projects/my-project/locations/my-location/conversations/my-conversation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversationProfile": "my_conversationProfile",
+     *   //   "conversationStage": "my_conversationStage",
+     *   //   "endTime": "my_endTime",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "phoneNumber": {},
+     *   //   "startTime": "my_startTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    complete(
+      params: Params$Resource$Projects$Locations$Conversations$Complete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    complete(
+      params?: Params$Resource$Projects$Locations$Conversations$Complete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Conversation>;
+    complete(
+      params: Params$Resource$Projects$Locations$Conversations$Complete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    complete(
+      params: Params$Resource$Projects$Locations$Conversations$Complete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    complete(
+      params: Params$Resource$Projects$Locations$Conversations$Complete,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    complete(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    complete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Complete
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Conversation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Complete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversations$Complete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}:complete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Conversation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Conversation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Creates a new conversation. Conversations are auto-completed after 24 hours. Conversation Lifecycle: There are two stages during a conversation: Automated Agent Stage and Assist Stage. For Automated Agent Stage, there will be a dialogflow agent responding to user queries. For Assist Stage, there's no dialogflow agent responding to user queries. But we will provide suggestions which are generated from conversation. If Conversation.conversation_profile is configured for a dialogflow agent, conversation will start from `Automated Agent Stage`, otherwise, it will start from `Assist Stage`. And during `Automated Agent Stage`, once an Intent with Intent.live_agent_handoff is triggered, conversation will transfer to Assist Stage.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversations.create({
+     *     // Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression fomula "a-zA-Z*" with the characters length in range of [3,64]. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     *     conversationId: 'placeholder-value',
+     *     // Required. Resource identifier of the project creating the conversation. Format: `projects//locations/`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "conversationProfile": "my_conversationProfile",
+     *       //   "conversationStage": "my_conversationStage",
+     *       //   "endTime": "my_endTime",
+     *       //   "lifecycleState": "my_lifecycleState",
+     *       //   "name": "my_name",
+     *       //   "phoneNumber": {},
+     *       //   "startTime": "my_startTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversationProfile": "my_conversationProfile",
+     *   //   "conversationStage": "my_conversationStage",
+     *   //   "endTime": "my_endTime",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "phoneNumber": {},
+     *   //   "startTime": "my_startTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Conversations$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Conversations$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Conversation>;
+    create(
+      params: Params$Resource$Projects$Locations$Conversations$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Conversations$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Conversations$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Conversation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversations$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/conversations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Conversation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Conversation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Retrieves the specific conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversations.get({
+     *     // Required. The name of the conversation. Format: `projects//locations//conversations/`.
+     *     name:
+     *       'projects/my-project/locations/my-location/conversations/my-conversation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversationProfile": "my_conversationProfile",
+     *   //   "conversationStage": "my_conversationStage",
+     *   //   "endTime": "my_endTime",
+     *   //   "lifecycleState": "my_lifecycleState",
+     *   //   "name": "my_name",
+     *   //   "phoneNumber": {},
+     *   //   "startTime": "my_startTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Conversations$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Conversations$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Conversation>;
+    get(
+      params: Params$Resource$Projects$Locations$Conversations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Conversations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Conversations$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Conversation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Conversation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Conversation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Conversation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the list of all conversations in the specified project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversations.list({
+     *     // A filter expression that filters conversations listed in the response. In general, the expression must specify the field name, a comparison operator, and the value to use for filtering: - The value must be a string, a number, or a boolean. - The comparison operator must be either `=`,`!=`, `\>`, or `<`. - To filter on multiple expressions, separate the expressions with `AND` or `OR` (omitting both implies `AND`). - For clarity, expressions can be enclosed in parentheses. Only `lifecycle_state` can be filtered on in this way. For example, the following expression only returns `COMPLETED` conversations: `lifecycle_state = "COMPLETED"` For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project from which to list all conversation. Format: `projects//locations/`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Conversations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Conversations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Conversations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Conversations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Conversations$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/conversations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListConversationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Conversations$Complete
+    extends StandardParameters {
+    /**
+     * Required. Resource identifier of the conversation to close. Format: `projects//locations//conversations/`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1CompleteConversationRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$Create
+    extends StandardParameters {
+    /**
+     * Optional. Identifier of the conversation. Generally it's auto generated by Google. Only set it if you cannot wait for the response to return a auto-generated one to you. The conversation ID must be compliant with the regression fomula "a-zA-Z*" with the characters length in range of [3,64]. If the field is provided, the caller is resposible for 1. the uniqueness of the ID, otherwise the request will be rejected. 2. the consistency for whether to use custom ID or not under a project to better ensure uniqueness.
+     */
+    conversationId?: string;
+    /**
+     * Required. Resource identifier of the project creating the conversation. Format: `projects//locations/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1Conversation;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the conversation. Format: `projects//locations//conversations/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$List
+    extends StandardParameters {
+    /**
+     * A filter expression that filters conversations listed in the response. In general, the expression must specify the field name, a comparison operator, and the value to use for filtering: - The value must be a string, a number, or a boolean. - The comparison operator must be either `=`,`!=`, `\>`, or `<`. - To filter on multiple expressions, separate the expressions with `AND` or `OR` (omitting both implies `AND`). - For clarity, expressions can be enclosed in parentheses. Only `lifecycle_state` can be filtered on in this way. For example, the following expression only returns `COMPLETED` conversations: `lifecycle_state = "COMPLETED"` For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project from which to list all conversation. Format: `projects//locations/`.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Conversations$Messages {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Batch ingests messages to conversation. Customers can use this RPC to ingest historical messages to conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversations.messages.batchCreate(
+     *     {
+     *       // Required. Resource identifier of the conversation to create message. Format: `projects//locations//conversations/`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/conversations/my-conversation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "requests": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "messages": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Conversations$Messages$Batchcreate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchCreate(
+      params?: Params$Resource$Projects$Locations$Conversations$Messages$Batchcreate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Conversations$Messages$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Conversations$Messages$Batchcreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Conversations$Messages$Batchcreate,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>
+    ): void;
+    batchCreate(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>
+    ): void;
+    batchCreate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Messages$Batchcreate
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Messages$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversations$Messages$Batchcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/messages:batchCreate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists messages that belong to a given conversation. `messages` are ordered by `create_time` in descending order. To fetch updates without duplication, send request with filter `create_time_epoch_microseconds \> [first item's create_time of previous request]` and empty page_token.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversations.messages.list({
+     *     // Optional. Filter on message fields. Currently predicates on `create_time` and `create_time_epoch_microseconds` are supported. `create_time` only support milliseconds accuracy. E.g., `create_time_epoch_microseconds \> 1551790877964485` or `create_time \> "2017-01-15T01:30:15.01Z"`. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The next_page_token value returned from a previous list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the conversation to list messages for. Format: `projects//locations//conversations/`
+     *     parent:
+     *       'projects/my-project/locations/my-location/conversations/my-conversation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "messages": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Conversations$Messages$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Conversations$Messages$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Conversations$Messages$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Conversations$Messages$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Conversations$Messages$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Messages$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Messages$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversations$Messages$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/messages').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListMessagesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Conversations$Messages$Batchcreate
+    extends StandardParameters {
+    /**
+     * Required. Resource identifier of the conversation to create message. Format: `projects//locations//conversations/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1BatchCreateMessagesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$Messages$List
+    extends StandardParameters {
+    /**
+     * Optional. Filter on message fields. Currently predicates on `create_time` and `create_time_epoch_microseconds` are supported. `create_time` only support milliseconds accuracy. E.g., `create_time_epoch_microseconds \> 1551790877964485` or `create_time \> "2017-01-15T01:30:15.01Z"`. For more information about filtering, see [API Filtering](https://aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the conversation to list messages for. Format: `projects//locations//conversations/`
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Conversations$Participants {
+    context: APIRequestContext;
+    suggestions: Resource$Projects$Locations$Conversations$Participants$Suggestions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.suggestions = new Resource$Projects$Locations$Conversations$Participants$Suggestions(
+        this.context
+      );
+    }
+
+    /**
+     * Adds a text (chat, for example), or audio (phone recording, for example) message from a participant into the conversation. Note: Always use agent versions for production traffic sent to virtual agents. See [Versions and environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversations.participants.analyzeContent(
+     *     {
+     *       // Required. The name of the participant this text comes from. Format: `projects//locations//conversations//participants/`.
+     *       participant:
+     *         'projects/my-project/locations/my-location/conversations/my-conversation/participants/my-participant',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "eventInput": {},
+     *         //   "messageSendTime": "my_messageSendTime",
+     *         //   "queryParams": {},
+     *         //   "replyAudioConfig": {},
+     *         //   "requestId": "my_requestId",
+     *         //   "textInput": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automatedAgentReply": {},
+     *   //   "dtmfParameters": {},
+     *   //   "endUserSuggestionResults": [],
+     *   //   "humanAgentSuggestionResults": [],
+     *   //   "message": {},
+     *   //   "replyAudio": {},
+     *   //   "replyText": "my_replyText"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    analyzeContent(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Analyzecontent,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeContent(
+      params?: Params$Resource$Projects$Locations$Conversations$Participants$Analyzecontent,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>;
+    analyzeContent(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Analyzecontent,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    analyzeContent(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Analyzecontent,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>
+    ): void;
+    analyzeContent(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Analyzecontent,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>
+    ): void;
+    analyzeContent(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>
+    ): void;
+    analyzeContent(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Participants$Analyzecontent
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Participants$Analyzecontent;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversations$Participants$Analyzecontent;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+participant}:analyzeContent').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['participant'],
+        pathParams: ['participant'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1AnalyzeContentResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Creates a new participant in a conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversations.participants.create(
+     *     {
+     *       // Required. Resource identifier of the conversation adding the participant. Format: `projects//locations//conversations/`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/conversations/my-conversation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "name": "my_name",
+     *         //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
+     *         //   "role": "my_role"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
+     *   //   "role": "my_role"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Conversations$Participants$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Participant>;
+    create(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Participants$Create
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Participant>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Participants$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversations$Participants$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/participants').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Participant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Participant>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Retrieves a conversation participant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversations.participants.get(
+     *     {
+     *       // Required. The name of the participant. Format: `projects//locations//conversations//participants/`.
+     *       name:
+     *         'projects/my-project/locations/my-location/conversations/my-conversation/participants/my-participant',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
+     *   //   "role": "my_role"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Conversations$Participants$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Participant>;
+    get(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Participants$Get
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Participant>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Participants$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversations$Participants$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Participant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Participant>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Returns the list of all participants in the specified conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversations.participants.list(
+     *     {
+     *       // Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. The next_page_token value returned from a previous list request.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The conversation to list all participants from. Format: `projects//locations//conversations/`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/conversations/my-conversation',
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "participants": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Conversations$Participants$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Participants$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Participants$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversations$Participants$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/participants').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1ListParticipantsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the specified participant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversations.participants.patch(
+     *     {
+     *       // Optional. The unique identifier of this participant. Format: `projects//locations//conversations//participants/`.
+     *       name:
+     *         'projects/my-project/locations/my-location/conversations/my-conversation/participants/my-participant',
+     *       // Required. The mask to specify which fields to update.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "name": "my_name",
+     *         //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
+     *         //   "role": "my_role"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "obfuscatedExternalUserId": "my_obfuscatedExternalUserId",
+     *   //   "role": "my_role"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Conversations$Participants$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Participant>;
+    patch(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Participants$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1Participant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1Participant>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Participants$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversations$Participants$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Participant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Participant>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Analyzecontent
+    extends StandardParameters {
+    /**
+     * Required. The name of the participant this text comes from. Format: `projects//locations//conversations//participants/`.
+     */
+    participant?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1AnalyzeContentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Create
+    extends StandardParameters {
+    /**
+     * Required. Resource identifier of the conversation adding the participant. Format: `projects//locations//conversations/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1Participant;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the participant. Format: `projects//locations//conversations//participants/`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The conversation to list all participants from. Format: `projects//locations//conversations/`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Patch
+    extends StandardParameters {
+    /**
+     * Optional. The unique identifier of this participant. Format: `projects//locations//conversations//participants/`.
+     */
+    name?: string;
+    /**
+     * Required. The mask to specify which fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1Participant;
+  }
+
+  export class Resource$Projects$Locations$Conversations$Participants$Suggestions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets suggested articles for a participant based on specific historical messages. Note that ListSuggestions will only list the auto-generated suggestions, while CompileSuggestion will try to compile suggestion based on the provided conversation context in the real time.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversations.participants.suggestions.suggestArticles(
+     *     {
+     *       // Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/conversations/my-conversation/participants/my-participant',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "contextSize": 0,
+     *         //   "latestMessage": "my_latestMessage"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "articleAnswers": [],
+     *   //   "contextSize": 0,
+     *   //   "latestMessage": "my_latestMessage"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    suggestArticles(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestarticles,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    suggestArticles(
+      params?: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestarticles,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>;
+    suggestArticles(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestarticles,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    suggestArticles(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestarticles,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>
+    ): void;
+    suggestArticles(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestarticles,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>
+    ): void;
+    suggestArticles(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>
+    ): void;
+    suggestArticles(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestarticles
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestarticles;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestarticles;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2beta1/{+parent}/suggestions:suggestArticles'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SuggestArticlesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets suggested faq answers for a participant based on specific historical messages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversations.participants.suggestions.suggestFaqAnswers(
+     *     {
+     *       // Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/conversations/my-conversation/participants/my-participant',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "contextSize": 0,
+     *         //   "latestMessage": "my_latestMessage"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contextSize": 0,
+     *   //   "faqAnswers": [],
+     *   //   "latestMessage": "my_latestMessage"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    suggestFaqAnswers(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestfaqanswers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    suggestFaqAnswers(
+      params?: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestfaqanswers,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>;
+    suggestFaqAnswers(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestfaqanswers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    suggestFaqAnswers(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestfaqanswers,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>
+    ): void;
+    suggestFaqAnswers(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestfaqanswers,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>
+    ): void;
+    suggestFaqAnswers(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>
+    ): void;
+    suggestFaqAnswers(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestfaqanswers
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestfaqanswers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestfaqanswers;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2beta1/{+parent}/suggestions:suggestFaqAnswers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets smart replies for a participant based on specific historical messages.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.conversations.participants.suggestions.suggestSmartReplies(
+     *     {
+     *       // Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/conversations/my-conversation/participants/my-participant',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "contextSize": 0,
+     *         //   "currentTextInput": {},
+     *         //   "latestMessage": "my_latestMessage"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contextSize": 0,
+     *   //   "latestMessage": "my_latestMessage",
+     *   //   "smartReplyAnswers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    suggestSmartReplies(
+      params?: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>;
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>
+    ): void;
+    suggestSmartReplies(
+      params: Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>
+    ): void;
+    suggestSmartReplies(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>
+    ): void;
+    suggestSmartReplies(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v2beta1/{+parent}/suggestions:suggestSmartReplies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestarticles
+    extends StandardParameters {
+    /**
+     * Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1SuggestArticlesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestfaqanswers
+    extends StandardParameters {
+    /**
+     * Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1SuggestFaqAnswersRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Conversations$Participants$Suggestions$Suggestsmartreplies
+    extends StandardParameters {
+    /**
+     * Required. The name of the participant to fetch suggestion for. Format: `projects//locations//conversations//participants/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1SuggestSmartRepliesRequest;
+  }
+
   export class Resource$Projects$Locations$Knowledgebases {
     context: APIRequestContext;
     documents: Resource$Projects$Locations$Knowledgebases$Documents;
@@ -27569,6 +36853,7 @@ export namespace dialogflow_v2beta1 {
      *         //   "enableAutoReload": false,
      *         //   "knowledgeTypes": [],
      *         //   "latestReloadStatus": {},
+     *         //   "metadata": {},
      *         //   "mimeType": "my_mimeType",
      *         //   "name": "my_name",
      *         //   "rawContent": "my_rawContent"
@@ -27873,6 +37158,7 @@ export namespace dialogflow_v2beta1 {
      *   //   "enableAutoReload": false,
      *   //   "knowledgeTypes": [],
      *   //   "latestReloadStatus": {},
+     *   //   "metadata": {},
      *   //   "mimeType": "my_mimeType",
      *   //   "name": "my_name",
      *   //   "rawContent": "my_rawContent"
@@ -27973,6 +37259,162 @@ export namespace dialogflow_v2beta1 {
         return createAPIRequest<Schema$GoogleCloudDialogflowV2beta1Document>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Create documents by importing data from external sources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.knowledgeBases.documents.import(
+     *     {
+     *       // Required. The knowledge base to import documents into. Format: `projects//locations//knowledgeBases/`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/knowledgeBases/my-knowledgeBase',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "documentTemplate": {},
+     *         //   "gcsSource": {},
+     *         //   "importGcsCustomMetadata": false
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Knowledgebases$Documents$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Knowledgebases$Documents$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Locations$Knowledgebases$Documents$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Knowledgebases$Documents$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Knowledgebases$Documents$Import,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Knowledgebases$Documents$Import
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Knowledgebases$Documents$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Knowledgebases$Documents$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2beta1/{+parent}/documents:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -28174,6 +37616,7 @@ export namespace dialogflow_v2beta1 {
      *         //   "enableAutoReload": false,
      *         //   "knowledgeTypes": [],
      *         //   "latestReloadStatus": {},
+     *         //   "metadata": {},
      *         //   "mimeType": "my_mimeType",
      *         //   "name": "my_name",
      *         //   "rawContent": "my_rawContent"
@@ -28473,6 +37916,18 @@ export namespace dialogflow_v2beta1 {
      * Required. The name of the document to retrieve. Format `projects//locations//knowledgeBases//documents/`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$Import
+    extends StandardParameters {
+    /**
+     * Required. The knowledge base to import documents into. Format: `projects//locations//knowledgeBases/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowV2beta1ImportDocumentsRequest;
   }
   export interface Params$Resource$Projects$Locations$Knowledgebases$Documents$List
     extends StandardParameters {

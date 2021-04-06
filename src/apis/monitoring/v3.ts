@@ -1684,7 +1684,7 @@ export namespace monitoring_v3 {
      */
     points?: Schema$Point[];
     /**
-     * The associated monitored resource. Custom metrics can use only certain monitored resource types in their time series data.
+     * The associated monitored resource. Custom metrics can use only certain monitored resource types in their time series data. For more information, see Monitored resources for custom metrics (https://cloud.google.com/monitoring/custom-metrics/creating-metrics#custom-metric-resources).
      */
     resource?: Schema$MonitoredResource;
     /**
@@ -1831,7 +1831,7 @@ export namespace monitoring_v3 {
      */
     isInternal?: boolean | null;
     /**
-     * The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are supported for Uptime checks: uptime_url, gce_instance, gae_app, aws_ec2_instance, aws_elb_load_balancer
+     * The monitored resource (https://cloud.google.com/monitoring/api/resources) associated with the configuration. The following monitored resource types are valid for this field: uptime_url, gce_instance, gae_app, aws_ec2_instance, aws_elb_load_balancer
      */
     monitoredResource?: Schema$MonitoredResource;
     /**
@@ -1992,7 +1992,7 @@ export namespace monitoring_v3 {
      *     'interval.endTime': 'placeholder-value',
      *     // Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
      *     'interval.startTime': 'placeholder-value',
-     *     // Required. The project, organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name), organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
      *     name: 'folders/my-folder',
      *     // Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest).
      *     orderBy: 'placeholder-value',
@@ -2150,7 +2150,7 @@ export namespace monitoring_v3 {
      */
     'interval.startTime'?: string;
     /**
-     * Required. The project, organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name), organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
      */
     name?: string;
     /**
@@ -2247,7 +2247,7 @@ export namespace monitoring_v3 {
      *     'interval.endTime': 'placeholder-value',
      *     // Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
      *     'interval.startTime': 'placeholder-value',
-     *     // Required. The project, organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name), organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
      *     name: 'organizations/my-organization',
      *     // Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest).
      *     orderBy: 'placeholder-value',
@@ -2405,7 +2405,7 @@ export namespace monitoring_v3 {
      */
     'interval.startTime'?: string;
     /**
-     * Required. The project, organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name), organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
      */
     name?: string;
     /**
@@ -2515,7 +2515,7 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.alertPolicies.create({
-     *     // Required. The project in which to create the alerting policy. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policy will be written, not the name of the created policy. |name| must be a host project of a workspace, otherwise INVALID_ARGUMENT error will return. The alerting policy that is returned will have a name that contains a normalized representation of this name as a prefix but adds a suffix of the form /alertPolicies/[ALERT_POLICY_ID], identifying the policy in the container.
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the alerting policy. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policy will be written, not the name of the created policy. |name| must be a host project of a workspace, otherwise INVALID_ARGUMENT error will return. The alerting policy that is returned will have a name that contains a normalized representation of this name as a prefix but adds a suffix of the form /alertPolicies/[ALERT_POLICY_ID], identifying the policy in the container.
      *     name: 'projects/my-project',
      *
      *     // Request body metadata
@@ -2945,7 +2945,7 @@ export namespace monitoring_v3 {
      *   const res = await monitoring.projects.alertPolicies.list({
      *     // If provided, this field specifies the criteria that must be met by alert policies to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *     filter: 'placeholder-value',
-     *     // Required. The project whose alert policies are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policies to be listed are stored. To retrieve a single alerting policy by name, use the GetAlertPolicy operation, instead.
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose alert policies are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policies to be listed are stored. To retrieve a single alerting policy by name, use the GetAlertPolicy operation, instead.
      *     name: 'projects/my-project',
      *     // A comma-separated list of fields by which to sort the result. Supports the same set of field references as the filter field. Entries can be prefixed with a minus sign to sort by the field in descending order.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *     orderBy: 'placeholder-value',
@@ -3225,7 +3225,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Alertpolicies$Create
     extends StandardParameters {
     /**
-     * Required. The project in which to create the alerting policy. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policy will be written, not the name of the created policy. |name| must be a host project of a workspace, otherwise INVALID_ARGUMENT error will return. The alerting policy that is returned will have a name that contains a normalized representation of this name as a prefix but adds a suffix of the form /alertPolicies/[ALERT_POLICY_ID], identifying the policy in the container.
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the alerting policy. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policy will be written, not the name of the created policy. |name| must be a host project of a workspace, otherwise INVALID_ARGUMENT error will return. The alerting policy that is returned will have a name that contains a normalized representation of this name as a prefix but adds a suffix of the form /alertPolicies/[ALERT_POLICY_ID], identifying the policy in the container.
      */
     name?: string;
 
@@ -3255,7 +3255,7 @@ export namespace monitoring_v3 {
      */
     filter?: string;
     /**
-     * Required. The project whose alert policies are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policies to be listed are stored. To retrieve a single alerting policy by name, use the GetAlertPolicy operation, instead.
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose alert policies are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policies to be listed are stored. To retrieve a single alerting policy by name, use the GetAlertPolicy operation, instead.
      */
     name?: string;
     /**
@@ -3325,7 +3325,7 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.collectdTimeSeries.create({
-     *     // The project in which to create the time series. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     *     // The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the time series. The format is: projects/[PROJECT_ID_OR_NUMBER]
      *     name: 'projects/my-project',
      *
      *     // Request body metadata
@@ -3451,7 +3451,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Collectdtimeseries$Create
     extends StandardParameters {
     /**
-     * The project in which to create the time series. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     * The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the time series. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     name?: string;
 
@@ -3499,7 +3499,7 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.groups.create({
-     *     // Required. The project in which to create the group. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the group. The format is: projects/[PROJECT_ID_OR_NUMBER]
      *     name: 'projects/my-project',
      *     // If true, validate this request but do not create the group.
      *     validateOnly: 'placeholder-value',
@@ -3916,7 +3916,7 @@ export namespace monitoring_v3 {
      *     childrenOfGroup: 'placeholder-value',
      *     // A group name. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] Returns the descendants of the specified group. This is a superset of the results returned by the children_of_group filter, and includes children-of-children, and so forth.
      *     descendantsOfGroup: 'placeholder-value',
-     *     // Required. The project whose groups are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose groups are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER]
      *     name: 'projects/my-project',
      *     // A positive number that is the maximum number of results to return.
      *     pageSize: 'placeholder-value',
@@ -4174,7 +4174,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Groups$Create
     extends StandardParameters {
     /**
-     * Required. The project in which to create the group. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the group. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     name?: string;
     /**
@@ -4220,7 +4220,7 @@ export namespace monitoring_v3 {
      */
     descendantsOfGroup?: string;
     /**
-     * Required. The project whose groups are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose groups are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     name?: string;
     /**
@@ -4471,7 +4471,7 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.metricDescriptors.create({
-     *     // Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: 4 projects/PROJECT_ID_OR_NUMBER
      *     name: 'projects/my-project',
      *
      *     // Request body metadata
@@ -4903,7 +4903,7 @@ export namespace monitoring_v3 {
      *   const res = await monitoring.projects.metricDescriptors.list({
      *     // If this field is empty, all custom and system-defined metric descriptors are returned. Otherwise, the filter (https://cloud.google.com/monitoring/api/v3/filters) specifies which metric descriptors are to be returned. For example, the following filter matches all custom metrics (https://cloud.google.com/monitoring/custom-metrics): metric.type = starts_with("custom.googleapis.com/")
      *     filter: 'placeholder-value',
-     *     // Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
      *     name: 'projects/my-project',
      *     // A positive number that is the maximum number of results to return.
      *     pageSize: 'placeholder-value',
@@ -5023,7 +5023,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Metricdescriptors$Create
     extends StandardParameters {
     /**
-     * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: 4 projects/PROJECT_ID_OR_NUMBER
      */
     name?: string;
 
@@ -5053,7 +5053,7 @@ export namespace monitoring_v3 {
      */
     filter?: string;
     /**
-     * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     name?: string;
     /**
@@ -5249,7 +5249,7 @@ export namespace monitoring_v3 {
      *   const res = await monitoring.projects.monitoredResourceDescriptors.list({
      *     // An optional filter (https://cloud.google.com/monitoring/api/v3/filters) describing the descriptors to be returned. The filter can reference the descriptor's type and labels. For example, the following filter returns only Google Compute Engine descriptors that have an id label: resource.type = starts_with("gce_") AND resource.label:id
      *     filter: 'placeholder-value',
-     *     // Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
      *     name: 'projects/my-project',
      *     // A positive number that is the maximum number of results to return.
      *     pageSize: 'placeholder-value',
@@ -5380,7 +5380,7 @@ export namespace monitoring_v3 {
      */
     filter?: string;
     /**
-     * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     name?: string;
     /**
@@ -5575,7 +5575,7 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannelDescriptors.list({
-     *     // Required. The REST resource name of the parent from which to retrieve the notification channel descriptors. The expected syntax is: projects/[PROJECT_ID_OR_NUMBER] Note that this names the parent container in which to look for the descriptors; to retrieve a single descriptor by name, use the GetNotificationChannelDescriptor operation, instead.
+     *     // Required. The REST resource name of the parent from which to retrieve the notification channel descriptors. The expected syntax is: projects/[PROJECT_ID_OR_NUMBER] Note that this names (https://cloud.google.com/monitoring/api/v3#project_name) the parent container in which to look for the descriptors; to retrieve a single descriptor by name, use the GetNotificationChannelDescriptor operation, instead.
      *     name: 'projects/my-project',
      *     // The maximum number of results to return in a single response. If not set to a positive number, a reasonable value will be chosen by the service.
      *     pageSize: 'placeholder-value',
@@ -5701,7 +5701,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Notificationchanneldescriptors$List
     extends StandardParameters {
     /**
-     * Required. The REST resource name of the parent from which to retrieve the notification channel descriptors. The expected syntax is: projects/[PROJECT_ID_OR_NUMBER] Note that this names the parent container in which to look for the descriptors; to retrieve a single descriptor by name, use the GetNotificationChannelDescriptor operation, instead.
+     * Required. The REST resource name of the parent from which to retrieve the notification channel descriptors. The expected syntax is: projects/[PROJECT_ID_OR_NUMBER] Note that this names (https://cloud.google.com/monitoring/api/v3#project_name) the parent container in which to look for the descriptors; to retrieve a single descriptor by name, use the GetNotificationChannelDescriptor operation, instead.
      */
     name?: string;
     /**
@@ -5750,7 +5750,7 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannels.create({
-     *     // Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container into which the channel will be written, this does not name the newly created channel. The resulting channel's name will have a normalized version of this field as a prefix, but will add /notificationChannels/[CHANNEL_ID] to identify the channel.
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container into which the channel will be written, this does not name the newly created channel. The resulting channel's name will have a normalized version of this field as a prefix, but will add /notificationChannels/[CHANNEL_ID] to identify the channel.
      *     name: 'projects/my-project',
      *
      *     // Request body metadata
@@ -6337,7 +6337,7 @@ export namespace monitoring_v3 {
      *   const res = await monitoring.projects.notificationChannels.list({
      *     // If provided, this field specifies the criteria that must be met by notification channels to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *     filter: 'placeholder-value',
-     *     // Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container in which to look for the notification channels; it does not name a specific channel. To query a specific channel by REST resource name, use the GetNotificationChannel operation.
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container in which to look for the notification channels; it does not name a specific channel. To query a specific channel by REST resource name, use the GetNotificationChannel operation.
      *     name: 'projects/my-project',
      *     // A comma-separated list of fields by which to sort the result. Supports the same set of fields as in filter. Entries can be prefixed with a minus sign to sort in descending rather than ascending order.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
      *     orderBy: 'placeholder-value',
@@ -6907,7 +6907,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Notificationchannels$Create
     extends StandardParameters {
     /**
-     * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container into which the channel will be written, this does not name the newly created channel. The resulting channel's name will have a normalized version of this field as a prefix, but will add /notificationChannels/[CHANNEL_ID] to identify the channel.
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container into which the channel will be written, this does not name the newly created channel. The resulting channel's name will have a normalized version of this field as a prefix, but will add /notificationChannels/[CHANNEL_ID] to identify the channel.
      */
     name?: string;
 
@@ -6953,7 +6953,7 @@ export namespace monitoring_v3 {
      */
     filter?: string;
     /**
-     * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container in which to look for the notification channels; it does not name a specific channel. To query a specific channel by REST resource name, use the GetNotificationChannel operation.
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container in which to look for the notification channels; it does not name a specific channel. To query a specific channel by REST resource name, use the GetNotificationChannel operation.
      */
     name?: string;
     /**
@@ -7047,7 +7047,7 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.timeSeries.create({
-     *     // Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
      *     name: 'projects/my-project',
      *
      *     // Request body metadata
@@ -7200,7 +7200,7 @@ export namespace monitoring_v3 {
      *     'interval.endTime': 'placeholder-value',
      *     // Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
      *     'interval.startTime': 'placeholder-value',
-     *     // Required. The project, organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name), organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
      *     name: 'projects/my-project',
      *     // Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest).
      *     orderBy: 'placeholder-value',
@@ -7357,7 +7357,7 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.timeSeries.query({
-     *     // Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
      *     name: 'projects/my-project',
      *
      *     // Request body metadata
@@ -7481,7 +7481,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Timeseries$Create
     extends StandardParameters {
     /**
-     * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     name?: string;
 
@@ -7521,7 +7521,7 @@ export namespace monitoring_v3 {
      */
     'interval.startTime'?: string;
     /**
-     * Required. The project, organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name), organization or folder on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] organizations/[ORGANIZATION_ID] folders/[FOLDER_ID]
      */
     name?: string;
     /**
@@ -7560,7 +7560,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Timeseries$Query
     extends StandardParameters {
     /**
-     * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     name?: string;
 
@@ -7606,7 +7606,7 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.projects.uptimeCheckConfigs.create({
-     *     // Required. The project in which to create the Uptime check. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the Uptime check. The format is: projects/[PROJECT_ID_OR_NUMBER]
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -8047,7 +8047,7 @@ export namespace monitoring_v3 {
      *     pageSize: 'placeholder-value',
      *     // If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project whose Uptime check configurations are listed. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     *     // Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose Uptime check configurations are listed. The format is: projects/[PROJECT_ID_OR_NUMBER]
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -8328,7 +8328,7 @@ export namespace monitoring_v3 {
   export interface Params$Resource$Projects$Uptimecheckconfigs$Create
     extends StandardParameters {
     /**
-     * Required. The project in which to create the Uptime check. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) in which to create the Uptime check. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     parent?: string;
 
@@ -8362,7 +8362,7 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
     /**
-     * Required. The project whose Uptime check configurations are listed. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     * Required. The project (https://cloud.google.com/monitoring/api/v3#project_name) whose Uptime check configurations are listed. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     parent?: string;
   }
@@ -8423,7 +8423,7 @@ export namespace monitoring_v3 {
      *
      *   // Do the magic
      *   const res = await monitoring.services.create({
-     *     // Required. Resource name of the parent workspace. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     *     // Required. Resource name (https://cloud.google.com/monitoring/api/v3#project_name) of the parent workspace. The format is: projects/[PROJECT_ID_OR_NUMBER]
      *     parent: '[^/]+/[^/]+',
      *     // Optional. The Service id to use for this Service. If omitted, an id will be generated instead. Must match the pattern [a-z0-9\-]+
      *     serviceId: 'placeholder-value',
@@ -8850,7 +8850,7 @@ export namespace monitoring_v3 {
      *     pageSize: 'placeholder-value',
      *     // If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
      *     pageToken: 'placeholder-value',
-     *     // Required. Resource name of the parent containing the listed services, either a project or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER]
+     *     // Required. Resource name of the parent containing the listed services, either a project (https://cloud.google.com/monitoring/api/v3#project_name) or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER]
      *     parent: '[^/]+/[^/]+',
      *   });
      *   console.log(res.data);
@@ -9114,7 +9114,7 @@ export namespace monitoring_v3 {
 
   export interface Params$Resource$Services$Create extends StandardParameters {
     /**
-     * Required. Resource name of the parent workspace. The format is: projects/[PROJECT_ID_OR_NUMBER]
+     * Required. Resource name (https://cloud.google.com/monitoring/api/v3#project_name) of the parent workspace. The format is: projects/[PROJECT_ID_OR_NUMBER]
      */
     parent?: string;
     /**
@@ -9153,7 +9153,7 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the parent containing the listed services, either a project or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER]
+     * Required. Resource name of the parent containing the listed services, either a project (https://cloud.google.com/monitoring/api/v3#project_name) or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER]
      */
     parent?: string;
   }

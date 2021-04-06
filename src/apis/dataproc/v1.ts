@@ -290,6 +290,10 @@ export namespace dataproc_v1 {
      */
     gceClusterConfig?: Schema$GceClusterConfig;
     /**
+     * Optional. BETA. The Kubernetes Engine config for Dataproc clusters deployed to Kubernetes. Setting this is considered mutually exclusive with Compute Engine-based options such as gce_cluster_config, master_config, worker_config, secondary_worker_config, and autoscaling_config.
+     */
+    gkeClusterConfig?: Schema$GkeClusterConfig;
+    /**
      * Optional. Commands to execute on each node after config is completed. By default, executables are run on master and all worker nodes. You can test a node's role metadata to run an executable on a master or worker node, as shown below using curl (you can also use wget): ROLE=$(curl -H Metadata-Flavor:Google http://metadata/computeMetadata/v1/instance/attributes/dataproc-role) if [[ "${ROLE\}" == 'Master' ]]; then ... master specific actions ... else ... worker specific actions ... fi
      */
     initializationActions?: Schema$NodeInitializationAction[];
@@ -597,6 +601,15 @@ export namespace dataproc_v1 {
     requestedPolicyVersion?: number | null;
   }
   /**
+   * The GKE config for this cluster.
+   */
+  export interface Schema$GkeClusterConfig {
+    /**
+     * Optional. A target for the deployment.
+     */
+    namespacedGkeDeploymentTarget?: Schema$NamespacedGkeDeploymentTarget;
+  }
+  /**
    * A Dataproc job for running Apache Hadoop MapReduce (https://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html) jobs on Apache Hadoop YARN (https://hadoop.apache.org/docs/r2.7.1/hadoop-yarn/hadoop-yarn-site/YARN.html).
    */
   export interface Schema$HadoopJob {
@@ -661,6 +674,15 @@ export namespace dataproc_v1 {
      * Optional. Mapping of query variable names to values (equivalent to the Hive command: SET name="value";).
      */
     scriptVariables?: {[key: string]: string} | null;
+  }
+  /**
+   * Identity related configuration, including service account based secure multi-tenancy user mappings.
+   */
+  export interface Schema$IdentityConfig {
+    /**
+     * Required. Map of user to service account.
+     */
+    userServiceAccountMapping?: {[key: string]: string} | null;
   }
   /**
    * A request to inject credentials into a cluster.
@@ -733,7 +755,7 @@ export namespace dataproc_v1 {
      */
     minCpuPlatform?: string | null;
     /**
-     * Optional. The number of VM instances in the instance group. For master instance groups, must be set to 1.
+     * Optional. The number of VM instances in the instance group. For HA cluster master_config groups, must be set to 3. For standard cluster master_config groups, must be set to 1.
      */
     numInstances?: number | null;
     /**
@@ -1141,6 +1163,19 @@ export namespace dataproc_v1 {
     dataprocMetastoreService?: string | null;
   }
   /**
+   * A full, namespace-isolated deployment target for an existing GKE cluster.
+   */
+  export interface Schema$NamespacedGkeDeploymentTarget {
+    /**
+     * Optional. A namespace within the GKE cluster to deploy into.
+     */
+    clusterNamespace?: string | null;
+    /**
+     * Optional. The target GKE cluster to deploy to. Format: 'projects/{project\}/locations/{location\}/clusters/{cluster_id\}'
+     */
+    targetGkeCluster?: string | null;
+  }
+  /**
    * Node Group Affinity for clusters using sole-tenant node groups.
    */
   export interface Schema$NodeGroupAffinity {
@@ -1412,6 +1447,10 @@ export namespace dataproc_v1 {
    * Security related configuration, including encryption, Kerberos, etc.
    */
   export interface Schema$SecurityConfig {
+    /**
+     * Optional. Identity related configuration, including service account based secure multi-tenancy user mappings.
+     */
+    identityConfig?: Schema$IdentityConfig;
     /**
      * Optional. Kerberos related configuration.
      */

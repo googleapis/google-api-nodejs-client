@@ -2483,7 +2483,7 @@
       }
     }
   },
-  "revision": "20210225",
+  "revision": "20210319",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -2500,6 +2500,22 @@
         "role": {
           "description": "Required. Role that is assigned to `members`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SasPortalChannelWithScore": {
+      "description": "The channel with score.",
+      "id": "SasPortalChannelWithScore",
+      "properties": {
+        "frequencyRange": {
+          "$ref": "SasPortalFrequencyRange",
+          "description": "The frequency range of the channel."
+        },
+        "score": {
+          "description": "The channel score, normalized to be in [0,100].",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -2602,6 +2618,14 @@
         "activeConfig": {
           "$ref": "SasPortalDeviceConfig",
           "description": "Output only. Current configuration of the device as registered to the SAS."
+        },
+        "currentChannels": {
+          "description": "Output only. Current channels with scores.",
+          "items": {
+            "$ref": "SasPortalChannelWithScore"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "deviceMetadata": {
           "$ref": "SasPortalDeviceMetadata",

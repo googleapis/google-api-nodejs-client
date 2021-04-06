@@ -514,9 +514,6 @@ export namespace chat_v1 {
      * A plain-text description of the message's cards, used when the actual cards cannot be displayed (e.g. mobile notifications).
      */
     fallbackText?: string | null;
-    /**
-     * Resource name, in the form "spaces/x/messages/x". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
-     */
     name?: string | null;
     /**
      * Text for generating preview chips. This text will not be displayed to the user, but any links to images, web pages, videos, etc. included here will generate preview chips.
@@ -579,7 +576,7 @@ export namespace chat_v1 {
     widgets?: Schema$WidgetMarkup[];
   }
   /**
-   * A Slash Command in Hangouts Chat.
+   * A Slash Command in Chat.
    */
   export interface Schema$SlashCommand {
     /**
@@ -666,7 +663,7 @@ export namespace chat_v1 {
     name?: string | null;
   }
   /**
-   * A user in Hangouts Chat.
+   * A user in Google Chat.
    */
   export interface Schema$User {
     /**
@@ -678,7 +675,7 @@ export namespace chat_v1 {
      */
     domainId?: string | null;
     /**
-     * True when the user is deleted or the user's proifle is not visible.
+     * True when the user is deleted or the user's profile is not visible.
      */
     isAnonymous?: boolean | null;
     /**
@@ -3209,7 +3206,6 @@ export namespace chat_v1 {
      *
      *   // Do the magic
      *   const res = await chat.spaces.messages.update({
-     *     // Resource name, in the form "spaces/x/messages/x". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      *     name: 'spaces/my-space/messages/my-message',
      *     // Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards
      *     updateMask: 'placeholder-value',
@@ -3378,7 +3374,7 @@ export namespace chat_v1 {
   export interface Params$Resource$Spaces$Messages$Update
     extends StandardParameters {
     /**
-     * Resource name, in the form "spaces/x/messages/x". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     *
      */
     name?: string;
     /**

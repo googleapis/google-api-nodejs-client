@@ -152,6 +152,19 @@ export namespace ondemandscanning_v1beta1 {
     resourceUri?: string | null;
   }
   /**
+   * AnalyzePackagesMetadata contains metadata for an active scan of a container image.
+   */
+  export interface Schema$AnalyzePackagesMetadataV1 {
+    /**
+     * When the scan was created.
+     */
+    createTime?: string | null;
+    /**
+     * The resource URI of the container image being scanned.
+     */
+    resourceUri?: string | null;
+  }
+  /**
    * AnalyzePackagesRequest is the request to analyze a list of packages and create Vulnerability Occurrences for it.
    */
   export interface Schema$AnalyzePackagesRequest {
@@ -168,6 +181,15 @@ export namespace ondemandscanning_v1beta1 {
    * AnalyzePackagesResponse contains the information necessary to find results for the given scan.
    */
   export interface Schema$AnalyzePackagesResponse {
+    /**
+     * The name of the scan resource created by this successful scan.
+     */
+    scan?: string | null;
+  }
+  /**
+   * AnalyzePackagesResponse contains the information necessary to find results for the given scan.
+   */
+  export interface Schema$AnalyzePackagesResponseV1 {
     /**
      * The name of the scan resource created by this successful scan.
      */
