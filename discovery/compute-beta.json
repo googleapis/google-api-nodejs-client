@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/di31WvGozRdVEu9pKqqvFd_GfMM\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/8NH5VUhg7eH5yLGqaLx2Dvdhj6E\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -31177,7 +31177,7 @@
       }
     }
   },
-  "revision": "20210316",
+  "revision": "20210322",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -34629,15 +34629,16 @@
           "description": "The instance properties defining the VM instances to be created. Required if sourceInstanceTemplate is not provided."
         },
         "locationPolicy": {
-          "$ref": "LocationPolicy"
+          "$ref": "LocationPolicy",
+          "description": "Policy for chosing target zone."
         },
         "minCount": {
-          "description": "The minimum number of instances to create. If no min_count is specified then count is used as the default value. If min_count instances cannot be created, then no instances will be created.",
+          "description": "The minimum number of instances to create. If no min_count is specified then count is used as the default value. If min_count instances cannot be created, then no instances will be created and instances already created will be deleted.",
           "format": "int64",
           "type": "string"
         },
         "namePattern": {
-          "description": "The string pattern used for the names of the VMs. Either name_pattern or predefined_names must be set. The pattern should contain one consecutive sequence of placeholder hash characters (#) with each character corresponding to one digit of the generated instance name. Example: name_pattern of inst-#### will generate instance names like inst-0001, inst-0002, ... . If there already exist instance(s) whose names match the name pattern in the same project and zone, then the generated instance numbers will start after the biggest existing number. For example, if there exists an instance with name inst-0050, then instance names generated using the pattern inst-#### will be inst-0051, inst-0052, etc. The name pattern placeholder #...# can contain up to 18 characters.",
+          "description": "The string pattern used for the names of the VMs. Either name_pattern or per_instance_properties must be set. The pattern should contain one continuous sequence of placeholder hash characters (#) with each character corresponding to one digit of the generated instance name. Example: name_pattern of inst-#### will generate instance names such as inst-0001, inst-0002, ... . If there already exist instance(s) whose names match the name pattern in the same project and zone, then the generated instance numbers will start after the biggest existing number. For example, if there exists an instance with name inst-0050, then instance names generated using the pattern inst-#### will be inst-0051, inst-0052, etc. The name pattern placeholder #...# can contain up to 18 characters.",
           "type": "string"
         },
         "perInstanceProperties": {
@@ -41793,6 +41794,22 @@
           ],
           "type": "string"
         },
+        "mostDisruptiveAllowedAction": {
+          "description": "Most disruptive action that is allowed to be taken on an instance. You can specify either NONE to forbid any actions, REFRESH to allow actions that do not need instance restart, RESTART to allow actions that can be applied without instance replacing or REPLACE to allow all possible actions. If the Updater determines that the minimal update action needed is more disruptive than most disruptive allowed action you specify it will not perform the update at all.",
+          "enum": [
+            "NONE",
+            "REFRESH",
+            "REPLACE",
+            "RESTART"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "replacementMethod": {
           "description": "What action should be used to replace instances. See minimal_action.REPLACE",
           "enum": [
@@ -45225,7 +45242,7 @@
           "additionalProperties": {
             "$ref": "LocationPolicyLocation"
           },
-          "description": "Location configurations mapped by location name. Currently only zone names are supported and must be represented as valid internal URLs, like: zones/us-central1-a.",
+          "description": "Location configurations mapped by location name. Currently only zone names are supported and must be represented as valid internal URLs, such as zones/us-central1-a.",
           "type": "object"
         }
       },
@@ -45235,6 +45252,7 @@
       "id": "LocationPolicyLocation",
       "properties": {
         "preference": {
+          "description": "Preference for a given locaction: ALLOW or DENY.",
           "enum": [
             "ALLOW",
             "DENY",
@@ -56437,7 +56455,7 @@
       "type": "object"
     },
     "ServiceAttachment": {
-      "description": "Represents a ServiceAttachment resource.\n\nA service attachment represents a service that a producer has exposed. It encapsulates the load balancer which fronts the service runs and a list of NAT IP ranges that the producers uses to represent the consumers connecting to the service. next tag = 17",
+      "description": "Represents a ServiceAttachment resource.\n\nA service attachment represents a service that a producer has exposed. It encapsulates the load balancer which fronts the service runs and a list of NAT IP ranges that the producers uses to represent the consumers connecting to the service. next tag = 19",
       "id": "ServiceAttachment",
       "properties": {
         "connectionPreference": {
@@ -56508,6 +56526,10 @@
         },
         "selfLink": {
           "description": "[Output Only] Server-defined URL for the resource.",
+          "type": "string"
+        },
+        "targetService": {
+          "description": "The URL of a service serving the endpoint identified by this service attachment.",
           "type": "string"
         }
       },
@@ -56638,7 +56660,7 @@
       "type": "object"
     },
     "ServiceAttachmentConsumerForwardingRule": {
-      "description": "[Output Only] A consumer forwarding rule connected to this service attachment.",
+      "description": "[Output Only] A consumer forwarding rule connected to this service attachment. [Deprecated] Do not use.",
       "id": "ServiceAttachmentConsumerForwardingRule",
       "properties": {
         "forwardingRule": {
@@ -56649,11 +56671,13 @@
           "description": "The status of the forwarding rule.",
           "enum": [
             "ACCEPTED",
+            "CLOSED",
             "PENDING",
             "REJECTED",
             "STATUS_UNSPECIFIED"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
