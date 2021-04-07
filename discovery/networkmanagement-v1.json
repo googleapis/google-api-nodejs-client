@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20210316",
+  "revision": "20210401",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -988,7 +988,7 @@
           ],
           "enumDescriptions": [
             "Unspecified type.",
-            "Hierarchical firewall policy rule. For details, see [Hierarchical firewall policy rules](https://cloud.google.com/vpc/docs/firewall-policies).",
+            "Hierarchical firewall policy rule. For details, see [Hierarchical firewall policies overview](https://cloud.google.com/vpc/docs/firewall-policies).",
             "VPC firewall rule. For details, see [VPC firewall rules overview](https://cloud.google.com/vpc/docs/firewalls).",
             "Implied VPC firewall rule. For details, see [Implied rules](https://cloud.google.com/vpc/docs/firewalls#default_firewall_rules)."
           ],

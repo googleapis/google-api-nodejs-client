@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/userinfo.email": {
-          "description": "View your email address"
+          "description": "See your primary Google Account email address"
         }
       }
     }
@@ -2483,7 +2483,7 @@
       }
     }
   },
-  "revision": "20210319",
+  "revision": "20210403",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
