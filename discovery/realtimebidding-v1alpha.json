@@ -178,7 +178,7 @@
       }
     }
   },
-  "revision": "20210308",
+  "revision": "20210406",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "BiddingFunction": {
@@ -186,7 +186,7 @@
       "id": "BiddingFunction",
       "properties": {
         "biddingFunction": {
-          "description": "The raw Javascript source code of the bidding function. The function takes in a Javascript object, `inputs`, that contains the following named fields: `openrtbContextualBidRequest` OR `googleContextualBidRequest`, `customContextualSignal`, `interestBasedBidData`, `interestGroupData`, `recentImpressionAges`, and returns the bid price CPM (double). Example: ``` /* Returns a bid price CPM (double). * * @param {Object} inputs an object with the * following named fields: * - openrtbContextualBidRequest * OR googleContextualBidRequest * - customContextualSignal * - interestBasedBidData * - interestGroupData * - recentImpressionAges */ function biddingFunction(inputs) { ... return inputs.interestBasedBidData.cpm * inputs.customContextualSignals.placementMultiplier; } ```",
+          "description": "The raw Javascript source code of the bidding function.",
           "type": "string"
         },
         "name": {

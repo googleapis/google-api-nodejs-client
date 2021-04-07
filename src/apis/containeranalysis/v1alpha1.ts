@@ -452,6 +452,10 @@ export namespace containeranalysis_v1alpha1 {
      * The source from which the information in this Detail was obtained.
      */
     source?: string | null;
+    /**
+     * The vendor of the product. e.g. "google"
+     */
+    vendor?: string | null;
   }
   /**
    * Provides information about the scan status of a discovered resource.
