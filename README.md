@@ -54,6 +54,13 @@ This library is distributed on `npm`. In order to add it as a dependency, run th
 $ npm install googleapis
 ```
 
+If you need to reduce startup times, you can also install a submodule as its own dependency. We make an effort to publish submodules that are __not__ in this [list](https://github.com/googleapis/google-cloud-node#google-cloud-nodejs-client-libraries). In order to add it as a dependency, run the following sample command, replacing with your preferred API:
+
+``` sh
+$ npm install @googleapis/docs
+```
+
+You can run [this search](https://www.npmjs.com/search?q=scope%3Agoogleapis) on npm, to find a list of the submodules available.
 ### Using the client library
 
 This is a very simple example. This creates a Blogger client and retrieves the details of a blog given the blog Id:
@@ -102,6 +109,32 @@ async function runSample() {
   console.log(`The blog url is ${res.data.url}`);
 }
 runSample().catch(console.error);
+```
+
+You can also make calls directly to the APIs by installing a submodule:
+
+``` js
+const docs = require('@googleapis/docs')
+
+const auth = new docs.auth.GoogleAuth({
+  keyFilename: 'PATH_TO_SERVICE_ACCOUNT_KEY.json',
+    // Scopes can be specified either as an array or as a single, space-delimited string.
+  scopes: ['https://www.googleapis.com/auth/documents']
+});
+const authClient = await auth.getClient();
+
+const client = await docs.docs({
+    version: 'v1',
+    auth: authClient
+});
+
+const createResponse = await client.documents.create({
+    requestBody: {
+      title: 'Your new document!',
+    },
+});
+
+console.log(createResponse.data);
 ```
 
 ### Samples
