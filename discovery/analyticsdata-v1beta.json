@@ -284,7 +284,7 @@
       }
     }
   },
-  "revision": "20210320",
+  "revision": "20210403",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "BatchRunPivotReportsRequest": {
@@ -500,7 +500,7 @@
       "type": "object"
     },
     "Dimension": {
-      "description": "Dimensions are attributes of your data. For example, the dimension city indicates the city from which an event originates. Dimension values in report responses are strings; for example, city could be \"Paris\" or \"New York\". Requests are allowed up to 8 dimensions.",
+      "description": "Dimensions are attributes of your data. For example, the dimension city indicates the city from which an event originates. Dimension values in report responses are strings; for example, city could be \"Paris\" or \"New York\". Requests are allowed up to 9 dimensions.",
       "id": "Dimension",
       "properties": {
         "dimensionExpression": {
