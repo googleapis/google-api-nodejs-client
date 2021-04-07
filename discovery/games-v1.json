@@ -1204,38 +1204,6 @@
         }
       }
     },
-    "snapshotsExtended": {
-      "methods": {
-        "resolveSnapshotHead": {
-          "description": "Resolves any potential conflicts according to the resolution policy specified in the request and returns the snapshot head after the resolution.",
-          "flatPath": "games/v1/snapshotsExtended/{snapshotName}:resolveHead",
-          "httpMethod": "POST",
-          "id": "games.snapshotsExtended.resolveSnapshotHead",
-          "parameterOrder": [
-            "snapshotName"
-          ],
-          "parameters": {
-            "snapshotName": {
-              "description": "Required. Name of the snapshot.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "games/v1/snapshotsExtended/{snapshotName}:resolveHead",
-          "request": {
-            "$ref": "ResolveSnapshotHeadRequest"
-          },
-          "response": {
-            "$ref": "ResolveSnapshotHeadResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/drive.appdata",
-            "https://www.googleapis.com/auth/games"
-          ]
-        }
-      }
-    },
     "stats": {
       "methods": {
         "get": {
@@ -1256,7 +1224,7 @@
       }
     }
   },
-  "revision": "20210304",
+  "revision": "20210401",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -2935,49 +2903,6 @@
       },
       "type": "object"
     },
-    "ResolveSnapshotHeadRequest": {
-      "description": "Request for ResolveSnapshotHead RPC.",
-      "id": "ResolveSnapshotHeadRequest",
-      "properties": {
-        "maxConflictsPerSnapshot": {
-          "description": "The maximum number of SnapshotRevision resources for `conflictingRevisions` to return per SnapshotExtended resource in the response. For any response, the actual number of resources returned may be less than specified by `maxConflictsPerSnapshot`. The value provided should be greater or equal to 0. If no value is provided, the server will use a sensible default.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "resolutionPolicy": {
-          "description": "Required. The automatic resolution policy. All conflicts are resolved in chronological order, starting from the/ least recent. If the comparison metric is equal for the tentative head and the conflict, the head wins.",
-          "enum": [
-            "RESOLUTION_POLICY_UNSPECIFIED",
-            "USE_HEAD",
-            "LONGEST_PLAYTIME",
-            "MOST_RECENTLY_MODIFIED",
-            "HIGHEST_PROGRESS",
-            "NO_AUTOMATIC_RESOLUTION"
-          ],
-          "enumDescriptions": [
-            "Safe default, don't use explicitly.",
-            "Drops all conflicts and keeps the current head only.",
-            "Use the snapshot with the longest played time.",
-            "Use the snapshot that was most recently modified.",
-            "Use the snapshot with the highest progress value.",
-            "Don't resolve conflicts at all. Effectively only returns the current head revision of the snapshot. Corresponds to a game opening the snapshot with manual resolution policy."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ResolveSnapshotHeadResponse": {
-      "description": "Response for ResolveSnapshotHead RPC.",
-      "id": "ResolveSnapshotHeadResponse",
-      "properties": {
-        "snapshot": {
-          "$ref": "SnapshotExtended",
-          "description": "The state of the snapshot."
-        }
-      },
-      "type": "object"
-    },
     "RevisionCheckResponse": {
       "description": "A third party checking a revision response.",
       "id": "RevisionCheckResponse",
@@ -3099,95 +3024,6 @@
       },
       "type": "object"
     },
-    "SnapshotCoverImageResource": {
-      "description": "Identifies a snapshot cover image resource. The image is provided by the game.",
-      "id": "SnapshotCoverImageResource",
-      "properties": {
-        "contentHash": {
-          "description": "Output only. Hash-like weak identifier of the uploaded image bytes, consistent per player per application. The content hash for a given resource will not change if the binary data hasn't changed. Except in very rare circumstances, the content_hash for matching binary data will be the same within a given player and application.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "downloadUrl": {
-          "description": "Output only. A URL the client can use to download the image. May vary across requests, and only guaranteed to be valid for a short time after it is returned.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "height": {
-          "description": "The height of the image in pixels.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "mimeType": {
-          "description": "Output only. The MIME type of the image.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "resourceId": {
-          "description": "The ID of the image resource. It's guaranteed that if two IDs are equal then the contents are equal as well. It's not guaranteed that two identical blobs coming from separate uploads have the same ID. The resource ID can only be used within the application, user and resource type it was originally returned for. For example, it's not possible to use SnapshotDataResource's resource ID as the resource_id of a SnapshotCoverImageResource, even if the blob is a valid image file.",
-          "type": "string"
-        },
-        "width": {
-          "description": "The width of the image in pixels.",
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "SnapshotDataResource": {
-      "description": "Identifies a snapshot data resource. The data is provided by the game.",
-      "id": "SnapshotDataResource",
-      "properties": {
-        "contentHash": {
-          "description": "Output only. Hash-like weak identifier of the uploaded blob bytes, consistent per player per application. The content hash for a given resource will not change if the binary data hasn't changed. Except in very rare circumstances, the content_hash for matching binary data will be the same within a given player and application.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "downloadUrl": {
-          "description": "Output only. A URL that the client can use to download the blob. May vary across requests, and only guaranteed to be valid for a short time after it is returned.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "resourceId": {
-          "description": "The ID of the blob resource. It's guaranteed that if two IDs are equal then the contents are equal as well. It's not guaranteed that two identical blobs coming from separate uploads have the same resource ID. The resource ID can only be used within the application, user and resource type it was originally returned for. For example, it's not possible to use SnapshotDataResource's resource ID as the resource_id of a SnapshotCoverImageResource, even if the blob is a valid image file.",
-          "type": "string"
-        },
-        "size": {
-          "description": "Output only. Size of the saved game blob in bytes.",
-          "format": "int64",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SnapshotExtended": {
-      "description": "A snapshot represents a saved game state referred to using the developer-provided snapshot_name. The set of attributes and binary data for a specific state is called a revision. Each revision is itself immutable, and referred to by a snapshot revision id. At any time, a snapshot has a \"head\" revision, and updates are made against that revision. If a snapshot update is received that isn't against the current head revision, then instead of changing the head revision it will result in a conflicting revision that must be specifically resolved.",
-      "id": "SnapshotExtended",
-      "properties": {
-        "conflictingRevisions": {
-          "description": "A list of conflicting revisions. Only set if explicitly requested (e.g. using a field mask or a request flag), or if the RPC guarantees that this field is set. The conflicting revisions are sorted chronologically by their server creation time (oldest first). If there are too many conflicting revisions to return all of them in a single request this will only contain the first batch. In such case, the presented conflicting revisions must be resolved first in order to fetch the next batch.",
-          "items": {
-            "$ref": "SnapshotRevision"
-          },
-          "type": "array"
-        },
-        "hasConflictingRevisions": {
-          "description": "An indicator whether the snapshot has any conflicting revisions or not. Always set.",
-          "type": "boolean"
-        },
-        "headRevision": {
-          "$ref": "SnapshotRevision",
-          "description": "The current head revision (the canonical revision as understood by the server)."
-        },
-        "snapshotName": {
-          "description": "An identifier of the snapshot, developer-specified. It must match the pattern [0-9a-zA-Z-._~]{1,100}.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "SnapshotImage": {
       "description": "An image of a snapshot.",
       "id": "SnapshotImage",
@@ -3235,60 +3071,6 @@
         "nextPageToken": {
           "description": "Token corresponding to the next page of results. If there are no more results, the token is omitted.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SnapshotMetadata": {
-      "description": "Metadata about a snapshot revision. Snapshot metadata is immutable - a metadata change corresponds to a new snapshot revision.",
-      "id": "SnapshotMetadata",
-      "properties": {
-        "description": {
-          "description": "The description of this snapshot.",
-          "type": "string"
-        },
-        "deviceName": {
-          "description": "The device that created the current revision.",
-          "type": "string"
-        },
-        "gameplayDuration": {
-          "description": "The duration associated with this snapshot. Values with sub-millisecond precision can be rounded or trimmed to the closest millisecond.",
-          "format": "google-duration",
-          "type": "string"
-        },
-        "lastModifyTime": {
-          "description": "The timestamp of the last modification to this snapshot as provided by the client. Values with sub-millisecond precision can be rounded or trimmed to the closest millisecond.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "progressValue": {
-          "description": "The progress value (64-bit integer set by developer) associated with this snapshot.",
-          "format": "int64",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SnapshotRevision": {
-      "description": "A Snapshot revision resource. Snapshot revisions are immutable.",
-      "id": "SnapshotRevision",
-      "properties": {
-        "blob": {
-          "$ref": "SnapshotDataResource",
-          "description": "Reference to the game provided blob for this revision."
-        },
-        "coverImage": {
-          "$ref": "SnapshotCoverImageResource",
-          "description": "Reference to the cover image for this revision."
-        },
-        "id": {
-          "description": "Output only. A server generated identifier of the snapshot revision.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "metadata": {
-          "$ref": "SnapshotMetadata",
-          "description": "Metadata for this snapshot revision."
         }
       },
       "type": "object"

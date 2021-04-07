@@ -123,7 +123,6 @@ export namespace games_v1 {
     revisions: Resource$Revisions;
     scores: Resource$Scores;
     snapshots: Resource$Snapshots;
-    snapshotsExtended: Resource$Snapshotsextended;
     stats: Resource$Stats;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -144,7 +143,6 @@ export namespace games_v1 {
       this.revisions = new Resource$Revisions(this.context);
       this.scores = new Resource$Scores(this.context);
       this.snapshots = new Resource$Snapshots(this.context);
-      this.snapshotsExtended = new Resource$Snapshotsextended(this.context);
       this.stats = new Resource$Stats(this.context);
     }
   }
@@ -1385,28 +1383,6 @@ export namespace games_v1 {
     profileVisible?: boolean | null;
   }
   /**
-   * Request for ResolveSnapshotHead RPC.
-   */
-  export interface Schema$ResolveSnapshotHeadRequest {
-    /**
-     * The maximum number of SnapshotRevision resources for `conflictingRevisions` to return per SnapshotExtended resource in the response. For any response, the actual number of resources returned may be less than specified by `maxConflictsPerSnapshot`. The value provided should be greater or equal to 0. If no value is provided, the server will use a sensible default.
-     */
-    maxConflictsPerSnapshot?: number | null;
-    /**
-     * Required. The automatic resolution policy. All conflicts are resolved in chronological order, starting from the/ least recent. If the comparison metric is equal for the tentative head and the conflict, the head wins.
-     */
-    resolutionPolicy?: string | null;
-  }
-  /**
-   * Response for ResolveSnapshotHead RPC.
-   */
-  export interface Schema$ResolveSnapshotHeadResponse {
-    /**
-     * The state of the snapshot.
-     */
-    snapshot?: Schema$SnapshotExtended;
-  }
-  /**
    * A third party checking a revision response.
    */
   export interface Schema$RevisionCheckResponse {
@@ -1498,77 +1474,6 @@ export namespace games_v1 {
     uniqueName?: string | null;
   }
   /**
-   * Identifies a snapshot cover image resource. The image is provided by the game.
-   */
-  export interface Schema$SnapshotCoverImageResource {
-    /**
-     * Output only. Hash-like weak identifier of the uploaded image bytes, consistent per player per application. The content hash for a given resource will not change if the binary data hasn't changed. Except in very rare circumstances, the content_hash for matching binary data will be the same within a given player and application.
-     */
-    contentHash?: string | null;
-    /**
-     * Output only. A URL the client can use to download the image. May vary across requests, and only guaranteed to be valid for a short time after it is returned.
-     */
-    downloadUrl?: string | null;
-    /**
-     * The height of the image in pixels.
-     */
-    height?: number | null;
-    /**
-     * Output only. The MIME type of the image.
-     */
-    mimeType?: string | null;
-    /**
-     * The ID of the image resource. It's guaranteed that if two IDs are equal then the contents are equal as well. It's not guaranteed that two identical blobs coming from separate uploads have the same ID. The resource ID can only be used within the application, user and resource type it was originally returned for. For example, it's not possible to use SnapshotDataResource's resource ID as the resource_id of a SnapshotCoverImageResource, even if the blob is a valid image file.
-     */
-    resourceId?: string | null;
-    /**
-     * The width of the image in pixels.
-     */
-    width?: number | null;
-  }
-  /**
-   * Identifies a snapshot data resource. The data is provided by the game.
-   */
-  export interface Schema$SnapshotDataResource {
-    /**
-     * Output only. Hash-like weak identifier of the uploaded blob bytes, consistent per player per application. The content hash for a given resource will not change if the binary data hasn't changed. Except in very rare circumstances, the content_hash for matching binary data will be the same within a given player and application.
-     */
-    contentHash?: string | null;
-    /**
-     * Output only. A URL that the client can use to download the blob. May vary across requests, and only guaranteed to be valid for a short time after it is returned.
-     */
-    downloadUrl?: string | null;
-    /**
-     * The ID of the blob resource. It's guaranteed that if two IDs are equal then the contents are equal as well. It's not guaranteed that two identical blobs coming from separate uploads have the same resource ID. The resource ID can only be used within the application, user and resource type it was originally returned for. For example, it's not possible to use SnapshotDataResource's resource ID as the resource_id of a SnapshotCoverImageResource, even if the blob is a valid image file.
-     */
-    resourceId?: string | null;
-    /**
-     * Output only. Size of the saved game blob in bytes.
-     */
-    size?: string | null;
-  }
-  /**
-   * A snapshot represents a saved game state referred to using the developer-provided snapshot_name. The set of attributes and binary data for a specific state is called a revision. Each revision is itself immutable, and referred to by a snapshot revision id. At any time, a snapshot has a "head" revision, and updates are made against that revision. If a snapshot update is received that isn't against the current head revision, then instead of changing the head revision it will result in a conflicting revision that must be specifically resolved.
-   */
-  export interface Schema$SnapshotExtended {
-    /**
-     * A list of conflicting revisions. Only set if explicitly requested (e.g. using a field mask or a request flag), or if the RPC guarantees that this field is set. The conflicting revisions are sorted chronologically by their server creation time (oldest first). If there are too many conflicting revisions to return all of them in a single request this will only contain the first batch. In such case, the presented conflicting revisions must be resolved first in order to fetch the next batch.
-     */
-    conflictingRevisions?: Schema$SnapshotRevision[];
-    /**
-     * An indicator whether the snapshot has any conflicting revisions or not. Always set.
-     */
-    hasConflictingRevisions?: boolean | null;
-    /**
-     * The current head revision (the canonical revision as understood by the server).
-     */
-    headRevision?: Schema$SnapshotRevision;
-    /**
-     * An identifier of the snapshot, developer-specified. It must match the pattern [0-9a-zA-Z-._~]{1,100\}.
-     */
-    snapshotName?: string | null;
-  }
-  /**
    * An image of a snapshot.
    */
   export interface Schema$SnapshotImage {
@@ -1609,52 +1514,6 @@ export namespace games_v1 {
      * Token corresponding to the next page of results. If there are no more results, the token is omitted.
      */
     nextPageToken?: string | null;
-  }
-  /**
-   * Metadata about a snapshot revision. Snapshot metadata is immutable - a metadata change corresponds to a new snapshot revision.
-   */
-  export interface Schema$SnapshotMetadata {
-    /**
-     * The description of this snapshot.
-     */
-    description?: string | null;
-    /**
-     * The device that created the current revision.
-     */
-    deviceName?: string | null;
-    /**
-     * The duration associated with this snapshot. Values with sub-millisecond precision can be rounded or trimmed to the closest millisecond.
-     */
-    gameplayDuration?: string | null;
-    /**
-     * The timestamp of the last modification to this snapshot as provided by the client. Values with sub-millisecond precision can be rounded or trimmed to the closest millisecond.
-     */
-    lastModifyTime?: string | null;
-    /**
-     * The progress value (64-bit integer set by developer) associated with this snapshot.
-     */
-    progressValue?: string | null;
-  }
-  /**
-   * A Snapshot revision resource. Snapshot revisions are immutable.
-   */
-  export interface Schema$SnapshotRevision {
-    /**
-     * Reference to the game provided blob for this revision.
-     */
-    blob?: Schema$SnapshotDataResource;
-    /**
-     * Reference to the cover image for this revision.
-     */
-    coverImage?: Schema$SnapshotCoverImageResource;
-    /**
-     * Output only. A server generated identifier of the snapshot revision.
-     */
-    id?: string | null;
-    /**
-     * Metadata for this snapshot revision.
-     */
-    metadata?: Schema$SnapshotMetadata;
   }
   /**
    * A third party stats resource.
@@ -6110,173 +5969,6 @@ export namespace games_v1 {
      * A player ID. A value of `me` may be used in place of the authenticated player's ID.
      */
     playerId?: string;
-  }
-
-  export class Resource$Snapshotsextended {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Resolves any potential conflicts according to the resolution policy specified in the request and returns the snapshot head after the resolution.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/games.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const games = google.games('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive.appdata',
-     *       'https://www.googleapis.com/auth/games',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await games.snapshotsExtended.resolveSnapshotHead({
-     *     // Required. Name of the snapshot.
-     *     snapshotName: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "maxConflictsPerSnapshot": 0,
-     *       //   "resolutionPolicy": "my_resolutionPolicy"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "snapshot": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    resolveSnapshotHead(
-      params: Params$Resource$Snapshotsextended$Resolvesnapshothead,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    resolveSnapshotHead(
-      params?: Params$Resource$Snapshotsextended$Resolvesnapshothead,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ResolveSnapshotHeadResponse>;
-    resolveSnapshotHead(
-      params: Params$Resource$Snapshotsextended$Resolvesnapshothead,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    resolveSnapshotHead(
-      params: Params$Resource$Snapshotsextended$Resolvesnapshothead,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ResolveSnapshotHeadResponse>,
-      callback: BodyResponseCallback<Schema$ResolveSnapshotHeadResponse>
-    ): void;
-    resolveSnapshotHead(
-      params: Params$Resource$Snapshotsextended$Resolvesnapshothead,
-      callback: BodyResponseCallback<Schema$ResolveSnapshotHeadResponse>
-    ): void;
-    resolveSnapshotHead(
-      callback: BodyResponseCallback<Schema$ResolveSnapshotHeadResponse>
-    ): void;
-    resolveSnapshotHead(
-      paramsOrCallback?:
-        | Params$Resource$Snapshotsextended$Resolvesnapshothead
-        | BodyResponseCallback<Schema$ResolveSnapshotHeadResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ResolveSnapshotHeadResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ResolveSnapshotHeadResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ResolveSnapshotHeadResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Snapshotsextended$Resolvesnapshothead;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Snapshotsextended$Resolvesnapshothead;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://games.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/games/v1/snapshotsExtended/{snapshotName}:resolveHead'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['snapshotName'],
-        pathParams: ['snapshotName'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ResolveSnapshotHeadResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ResolveSnapshotHeadResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Snapshotsextended$Resolvesnapshothead
-    extends StandardParameters {
-    /**
-     * Required. Name of the snapshot.
-     */
-    snapshotName?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$ResolveSnapshotHeadRequest;
   }
 
   export class Resource$Stats {
