@@ -1217,7 +1217,7 @@
       }
     }
   },
-  "revision": "20210326",
+  "revision": "20210402",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "Artifact": {
@@ -1638,6 +1638,10 @@
         },
         "source": {
           "description": "The source from which the information in this Detail was obtained.",
+          "type": "string"
+        },
+        "vendor": {
+          "description": "The vendor of the product. e.g. \"google\"",
           "type": "string"
         }
       },
