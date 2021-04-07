@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/content-v1.0.0...content-v1.1.0) (2021-04-07)
+
+
+### Features
+
+* **content:** update the API ([8d8f6d4](https://www.github.com/googleapis/google-api-nodejs-client/commit/8d8f6d450477ad92d84822d0f408d10526f03c0d))
+
+
+### Bug Fixes
+
+* **content:** update the API ([1fee5c2](https://www.github.com/googleapis/google-api-nodejs-client/commit/1fee5c28539933712a49476f893dbf5ede29bbfb))
+
 ## [1.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/content-v0.1.0...content-v1.0.0) (2021-03-18)
 
 
