@@ -131,7 +131,7 @@ const createResponse = await client.documents.create({
     requestBody: {
       title: 'Your new document!',
     },
-  });
+});
 
 console.log(createResponse.data);
 ```
