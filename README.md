@@ -54,7 +54,7 @@ This library is distributed on `npm`. In order to add it as a dependency, run th
 $ npm install googleapis
 ```
 
-If you need to reduce startup times, you can also add a submodule as its own dependency. We make an effort to publish submodules that are __not__ in this [list](https://github.com/googleapis/google-cloud-node#google-cloud-nodejs-client-libraries). In order to add it as a dependency, run the following sample command, replacing with your preferred API:
+If you need to reduce startup times, you can also install a submodule as its own dependency. We make an effort to publish submodules that are __not__ in this [list](https://github.com/googleapis/google-cloud-node#google-cloud-nodejs-client-libraries). In order to add it as a dependency, run the following sample command, replacing with your preferred API:
 
 ``` sh
 $ npm install @googleapis/docs
