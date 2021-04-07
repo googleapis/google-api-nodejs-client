@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.2.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v0.2.0...serviceusage-v0.2.1) (2021-04-07)
+
+
+### Bug Fixes
+
+* **serviceusage:** update the API ([83bab8c](https://www.github.com/googleapis/google-api-nodejs-client/commit/83bab8c43588342b17243dac47b4db037ef902ea))
+
 ## [0.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v0.1.0...serviceusage-v0.2.0) (2021-03-18)
 
 

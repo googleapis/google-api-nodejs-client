@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/analytics-v1.0.0...analytics-v2.0.0) (2021-04-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **analyticsadmin:** This release has breaking changes.
+
+### Features
+
+* **analyticsadmin:** update the API ([5fc76fa](https://www.github.com/googleapis/google-api-nodejs-client/commit/5fc76fa6418d28f13e3b5bf021bc16efe7592775))
+
+
+### Bug Fixes
+
+* **analyticsdata:** update the API ([a536e57](https://www.github.com/googleapis/google-api-nodejs-client/commit/a536e5744daa4851a94ec4950a18c8e5a73e9bf8))
+
 ## [1.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/analytics-v0.1.0...analytics-v1.0.0) (2021-03-18)
 
 
