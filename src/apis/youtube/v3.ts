@@ -2135,11 +2135,11 @@ export namespace youtube_v3 {
      */
     publishedAt?: string | null;
     /**
-     * The date and time that the broadcast is scheduled to start.
+     * The date and time that the broadcast is scheduled to end.
      */
     scheduledEndTime?: string | null;
     /**
-     * The date and time that the broadcast is scheduled to end.
+     * The date and time that the broadcast is scheduled to start.
      */
     scheduledStartTime?: string | null;
     /**
@@ -4029,6 +4029,28 @@ export namespace youtube_v3 {
      */
     widthPixels?: number | null;
   }
+  export interface Schema$VideoGetRatingResponse {
+    /**
+     * Etag of this resource.
+     */
+    etag?: string | null;
+    /**
+     * Serialized EventId of the request which produced this response.
+     */
+    eventId?: string | null;
+    /**
+     * A list of ratings that match the request criteria.
+     */
+    items?: Schema$VideoRating[];
+    /**
+     * Identifies what kind of resource this is. Value: the fixed string "youtube#videoGetRatingResponse".
+     */
+    kind?: string | null;
+    /**
+     * The visitorId identifies the visitor.
+     */
+    visitorId?: string | null;
+  }
   export interface Schema$VideoListResponse {
     /**
      * Etag of this resource.
@@ -4196,28 +4218,6 @@ export namespace youtube_v3 {
      * The ID that YouTube uses to uniquely identify the video.
      */
     videoId?: string | null;
-  }
-  export interface Schema$VideoRatingListResponse {
-    /**
-     * Etag of this resource.
-     */
-    etag?: string | null;
-    /**
-     * Serialized EventId of the request which produced this response.
-     */
-    eventId?: string | null;
-    /**
-     * A list of ratings that match the request criteria.
-     */
-    items?: Schema$VideoRating[];
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string "youtube#videoGetRatingResponse".
-     */
-    kind?: string | null;
-    /**
-     * The visitorId identifies the visitor.
-     */
-    visitorId?: string | null;
   }
   /**
    * Recording information associated with the video.
@@ -15930,7 +15930,7 @@ export namespace youtube_v3 {
     getRating(
       params?: Params$Resource$Videos$Getrating,
       options?: MethodOptions
-    ): GaxiosPromise<Schema$VideoRatingListResponse>;
+    ): GaxiosPromise<Schema$VideoGetRatingResponse>;
     getRating(
       params: Params$Resource$Videos$Getrating,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -15940,32 +15940,32 @@ export namespace youtube_v3 {
       params: Params$Resource$Videos$Getrating,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$VideoRatingListResponse>,
-      callback: BodyResponseCallback<Schema$VideoRatingListResponse>
+        | BodyResponseCallback<Schema$VideoGetRatingResponse>,
+      callback: BodyResponseCallback<Schema$VideoGetRatingResponse>
     ): void;
     getRating(
       params: Params$Resource$Videos$Getrating,
-      callback: BodyResponseCallback<Schema$VideoRatingListResponse>
+      callback: BodyResponseCallback<Schema$VideoGetRatingResponse>
     ): void;
     getRating(
-      callback: BodyResponseCallback<Schema$VideoRatingListResponse>
+      callback: BodyResponseCallback<Schema$VideoGetRatingResponse>
     ): void;
     getRating(
       paramsOrCallback?:
         | Params$Resource$Videos$Getrating
-        | BodyResponseCallback<Schema$VideoRatingListResponse>
+        | BodyResponseCallback<Schema$VideoGetRatingResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$VideoRatingListResponse>
+        | BodyResponseCallback<Schema$VideoGetRatingResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$VideoRatingListResponse>
+        | BodyResponseCallback<Schema$VideoGetRatingResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<Schema$VideoRatingListResponse>
+      | GaxiosPromise<Schema$VideoGetRatingResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Videos$Getrating;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -15999,12 +15999,12 @@ export namespace youtube_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$VideoRatingListResponse>(
+        createAPIRequest<Schema$VideoGetRatingResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$VideoRatingListResponse>(parameters);
+        return createAPIRequest<Schema$VideoGetRatingResponse>(parameters);
       }
     }
 
