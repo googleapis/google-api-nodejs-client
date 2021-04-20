@@ -156,7 +156,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of results to return. If not set, the service will select a default.",
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -312,7 +312,7 @@
       }
     }
   },
-  "revision": "20210319",
+  "revision": "20210410",
   "rootUrl": "https://lifesciences.googleapis.com/",
   "schemas": {
     "Accelerator": {
