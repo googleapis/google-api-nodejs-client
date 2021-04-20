@@ -126,6 +126,82 @@ export namespace admob_v1 {
   }
 
   /**
+   * Describes an AdMob ad unit.
+   */
+  export interface Schema$AdUnit {
+    /**
+     * AdFormat of the ad unit. Possible values are as follows: "BANNER" - Banner ad format. "BANNER_INTERSTITIAL" - Legacy format that can be used as either banner or interstitial. This format can no longer be created but can be targeted by mediation groups. "INTERSTITIAL" - A full screen ad. Supported ad types are "RICH_MEDIA" and "VIDEO". "NATIVE" - Native ad format. "REWARDED" - An ad that, once viewed, gets a callback verifying the view so that a reward can be given to the user. Supported ad types are "RICH_MEDIA" (interactive) and video where video can not be excluded.
+     */
+    adFormat?: string | null;
+    /**
+     * Ad media type supported by this ad unit. Possible values as follows: "RICH_MEDIA" - Text, image, and other non-video media. "VIDEO" - Video media.
+     */
+    adTypes?: string[] | null;
+    /**
+     * The externally visible ID of the ad unit which can be used to integrate with the AdMob SDK. This is a read only property. Example: ca-app-pub-9876543210987654/0123456789
+     */
+    adUnitId?: string | null;
+    /**
+     * The externally visible ID of the app this ad unit is associated with. Example: ca-app-pub-9876543210987654~0123456789
+     */
+    appId?: string | null;
+    /**
+     * The display name of the ad unit as shown in the AdMob UI, which is provided by the user. The maximum length allowed is 80 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Resource name for this ad unit. Format is accounts/{publisher_id\}/adUnits/{ad_unit_id_fragment\} Example: accounts/pub-9876543210987654/adUnits/0123456789
+     */
+    name?: string | null;
+  }
+  /**
+   * Describes an AdMob app for a specific platform (For example: Android or iOS).
+   */
+  export interface Schema$App {
+    /**
+     * The externally visible ID of the app which can be used to integrate with the AdMob SDK. This is a read only property. Example: ca-app-pub-9876543210987654~0123456789
+     */
+    appId?: string | null;
+    /**
+     * Immutable. The information for an app that is linked to an app store. This field is present if and only if the app is linked to an app store.
+     */
+    linkedAppInfo?: Schema$AppLinkedAppInfo;
+    /**
+     * The information for an app that is not linked to any app store. After an app is linked, this information is still retrivable. If no name is provided for the app upon creation, a placeholder name will be used.
+     */
+    manualAppInfo?: Schema$AppManualAppInfo;
+    /**
+     * Resource name for this app. Format is accounts/{publisher_id\}/apps/{app_id_fragment\} Example: accounts/pub-9876543210987654/apps/0123456789
+     */
+    name?: string | null;
+    /**
+     * Describes the platform of the app. Limited to "IOS" and "ANDROID".
+     */
+    platform?: string | null;
+  }
+  /**
+   * Information from the app store if the app is linked to an app store.
+   */
+  export interface Schema$AppLinkedAppInfo {
+    /**
+     * The app store ID of the app; present if and only if the app is linked to an app store. If the app is added to the Google Play store, it will be the application ID of the app. For example: "com.example.myapp". See https://developer.android.com/studio/build/application-id. If the app is added to the Apple App Store, it will be app store ID. For example "105169111". Note that setting the app store id is considered an irreversible action. Once an app is linked, it cannot be unlinked.
+     */
+    appStoreId?: string | null;
+    /**
+     * Output only. Display name of the app as it appears in the app store. This is an output-only field, and may be empty if the app cannot be found in the store.
+     */
+    displayName?: string | null;
+  }
+  /**
+   * Information provided for manual apps which are not linked to an application store (Example: Google Play, App Store).
+   */
+  export interface Schema$AppManualAppInfo {
+    /**
+     * The display name of the app as shown in the AdMob UI, which is provided by the user. The maximum length allowed is 80 characters.
+     */
+    displayName?: string | null;
+  }
+  /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
@@ -206,6 +282,32 @@ export namespace admob_v1 {
      * Actual report data.
      */
     row?: Schema$ReportRow;
+  }
+  /**
+   * Response for the ad units list request.
+   */
+  export interface Schema$ListAdUnitsResponse {
+    /**
+     * The resulting ad units for the requested account.
+     */
+    adUnits?: Schema$AdUnit[];
+    /**
+     * If not empty, indicates that there may be more ad units for the request; this value should be passed in a new `ListAdUnitsRequest`.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response for the apps list request.
+   */
+  export interface Schema$ListAppsResponse {
+    /**
+     * The resulting apps for the requested account.
+     */
+    apps?: Schema$App[];
+    /**
+     * If not empty, indicates that there may be more apps for the request; this value should be passed in a new `ListAppsRequest`.
+     */
+    nextPageToken?: string | null;
   }
   /**
    * Response for the publisher account list request.
@@ -486,10 +588,14 @@ export namespace admob_v1 {
 
   export class Resource$Accounts {
     context: APIRequestContext;
+    adUnits: Resource$Accounts$Adunits;
+    apps: Resource$Accounts$Apps;
     mediationReport: Resource$Accounts$Mediationreport;
     networkReport: Resource$Accounts$Networkreport;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.adUnits = new Resource$Accounts$Adunits(this.context);
+      this.apps = new Resource$Accounts$Apps(this.context);
       this.mediationReport = new Resource$Accounts$Mediationreport(
         this.context
       );
@@ -783,6 +889,320 @@ export namespace admob_v1 {
      * The value returned by the last `ListPublisherAccountsResponse`; indicates that this is a continuation of a prior `ListPublisherAccounts` call, and that the system should return the next page of data.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Accounts$Adunits {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List the ad units under the specified AdMob account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admob.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admob = google.admob('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admob.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await admob.accounts.adUnits.list({
+     *     // The maximum number of ad units to return. If unspecified or 0, at most 1000 ad units will be returned. The maximum value is 10,000; values above 10,000 will be coerced to 10,000.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListAdUnitsResponse`; indicates that this is a continuation of a prior `ListAdUnits` call, and that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name of the account to list ad units for. Example: accounts/pub-9876543210987654
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adUnits": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Adunits$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Adunits$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAdUnitsResponse>;
+    list(
+      params: Params$Resource$Accounts$Adunits$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Adunits$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListAdUnitsResponse>,
+      callback: BodyResponseCallback<Schema$ListAdUnitsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Adunits$List,
+      callback: BodyResponseCallback<Schema$ListAdUnitsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAdUnitsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Adunits$List
+        | BodyResponseCallback<Schema$ListAdUnitsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAdUnitsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAdUnitsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAdUnitsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Adunits$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Adunits$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://admob.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/adUnits').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAdUnitsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAdUnitsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Adunits$List
+    extends StandardParameters {
+    /**
+     * The maximum number of ad units to return. If unspecified or 0, at most 1000 ad units will be returned. The maximum value is 10,000; values above 10,000 will be coerced to 10,000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListAdUnitsResponse`; indicates that this is a continuation of a prior `ListAdUnits` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. Resource name of the account to list ad units for. Example: accounts/pub-9876543210987654
+     */
+    parent?: string;
+  }
+
+  export class Resource$Accounts$Apps {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List the apps under the specified AdMob account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/admob.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const admob = google.admob('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/admob.readonly'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await admob.accounts.apps.list({
+     *     // The maximum number of apps to return. If unspecified or 0, at most 1000 apps will be returned. The maximum value is 10,000; values above 10,000 will be coerced to 10,000.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListAppsResponse`; indicates that this is a continuation of a prior `ListApps` call, and that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name of the account to list apps for. Example: accounts/pub-9876543210987654
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apps": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Apps$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Accounts$Apps$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAppsResponse>;
+    list(
+      params: Params$Resource$Accounts$Apps$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Apps$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListAppsResponse>,
+      callback: BodyResponseCallback<Schema$ListAppsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Apps$List,
+      callback: BodyResponseCallback<Schema$ListAppsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAppsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Apps$List
+        | BodyResponseCallback<Schema$ListAppsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAppsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAppsResponse>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ListAppsResponse> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Apps$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Apps$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://admob.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/apps').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAppsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAppsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Apps$List
+    extends StandardParameters {
+    /**
+     * The maximum number of apps to return. If unspecified or 0, at most 1000 apps will be returned. The maximum value is 10,000; values above 10,000 will be coerced to 10,000.
+     */
+    pageSize?: number;
+    /**
+     * The value returned by the last `ListAppsResponse`; indicates that this is a continuation of a prior `ListApps` call, and that the system should return the next page of data.
+     */
+    pageToken?: string;
+    /**
+     * Required. Resource name of the account to list apps for. Example: accounts/pub-9876543210987654
+     */
+    parent?: string;
   }
 
   export class Resource$Accounts$Mediationreport {
