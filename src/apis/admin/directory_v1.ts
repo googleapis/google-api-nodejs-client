@@ -1623,6 +1623,9 @@ export namespace admin_directory_v1 {
      */
     rolePrivileges?: Array<{privilegeName?: string; serviceId?: string}> | null;
   }
+  /**
+   * Defines an assignment of a role.
+   */
   export interface Schema$RoleAssignment {
     /**
      * The unique ID of the user this role is assigned to.
@@ -20148,6 +20151,8 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.aliases.list({
+     *     // Events to watch for.
+     *     event: 'placeholder-value',
      *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      *     userKey: 'placeholder-value',
      *   });
@@ -20438,6 +20443,10 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$Aliases$List
     extends StandardParameters {
+    /**
+     * Events to watch for.
+     */
+    event?: string;
     /**
      * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */

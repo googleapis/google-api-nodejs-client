@@ -4164,6 +4164,19 @@
                 "userKey"
               ],
               "parameters": {
+                "event": {
+                  "description": "Events to watch for.",
+                  "enum": [
+                    "add",
+                    "delete"
+                  ],
+                  "enumDescriptions": [
+                    "Alias Created Event",
+                    "Alias Deleted Event"
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
                 "userKey": {
                   "description": "Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.",
                   "location": "path",
@@ -4404,7 +4417,7 @@
       }
     }
   },
-  "revision": "20210323",
+  "revision": "20210413",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -6552,6 +6565,7 @@
       "type": "object"
     },
     "RoleAssignment": {
+      "description": "Defines an assignment of a role.",
       "id": "RoleAssignment",
       "properties": {
         "assignedTo": {
