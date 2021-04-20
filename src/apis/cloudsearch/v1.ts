@@ -138,6 +138,27 @@ export namespace cloudsearch_v1 {
   }
 
   /**
+   * Represents the settings for Cloud audit logging
+   */
+  export interface Schema$AuditLoggingSettings {
+    /**
+     * Indicates whether audit logging is on/off for admin activity read APIs i.e. Get/List DataSources, Get/List SearchApplications etc.
+     */
+    logAdminReadActions?: boolean | null;
+    /**
+     * Indicates whether audit logging is on/off for data access read APIs i.e. ListItems, GetItem etc.
+     */
+    logDataReadActions?: boolean | null;
+    /**
+     * Indicates whether audit logging is on/off for data access write APIs i.e. IndexItem etc.
+     */
+    logDataWriteActions?: boolean | null;
+    /**
+     * The resource name of the GCP Project to store audit logs. Cloud audit logging will be enabled after project_name has been updated through CustomerService. Format: projects/{project_id\}
+     */
+    project?: string | null;
+  }
+  /**
    * Used to provide a search operator for boolean properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.
    */
   export interface Schema$BooleanOperatorOptions {
@@ -170,6 +191,19 @@ export namespace cloudsearch_v1 {
      * Sub filters.
      */
     subFilters?: Schema$Filter[];
+  }
+  /**
+   * A named attribute associated with an item which can be used for influencing the ranking of the item based on the context in the request.
+   */
+  export interface Schema$ContextAttribute {
+    /**
+     * The name of the attribute. It should not be empty. The maximum length is 32 characters. The name must start with a letter and can only contain letters (A-Z, a-z) or numbers (0-9). The name will be normalized (lower-cased) before being matched.
+     */
+    name?: string | null;
+    /**
+     * Text values of the attribute. The maximum number of elements is 10. The maximum length of an element in the array is 32 characters. The value will be normalized (lower-cased) before being matched.
+     */
+    values?: string[] | null;
   }
   /**
    * Aggregation of items by status code as of the specified date.
@@ -205,6 +239,10 @@ export namespace cloudsearch_v1 {
    * Represents settings at a customer level.
    */
   export interface Schema$CustomerSettings {
+    /**
+     * Audit Logging settings for the customer. If update_mask is empty then this field will be updated based on UpdateCustomerSettings request.
+     */
+    auditLoggingSettings?: Schema$AuditLoggingSettings;
     /**
      * VPC SC settings for the customer. If update_mask is empty then this field will be updated based on UpdateCustomerSettings request.
      */
@@ -857,6 +895,10 @@ export namespace cloudsearch_v1 {
      * The BCP-47 language code for the item, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. The maximum length is 32 characters.
      */
     contentLanguage?: string | null;
+    /**
+     * A set of named attributes associated with the item. This can be used for influencing the ranking of the item based on the context in the request. The maximum number of elements is 10.
+     */
+    contextAttributes?: Schema$ContextAttribute[];
     /**
      * The time when the item was created in the source repository.
      */
@@ -1659,6 +1701,10 @@ export namespace cloudsearch_v1 {
      */
     displayName?: string | null;
     /**
+     * Indicates whether audit logging is on/off for requests made for the search application in query APIs.
+     */
+    enableAuditLog?: boolean | null;
+    /**
      * Name of the Search Application. Format: searchapplications/{application_id\}.
      */
     name?: string | null;
@@ -1744,6 +1790,10 @@ export namespace cloudsearch_v1 {
    * The search API request.
    */
   export interface Schema$SearchRequest {
+    /**
+     * Context attributes for the request which will be used to adjust ranking of search results. The maximum number of elements is 10.
+     */
+    contextAttributes?: Schema$ContextAttribute[];
     /**
      * The sources to use for querying. If not specified, all data sources from the current search application are used.
      */
@@ -5596,6 +5646,7 @@ export namespace cloudsearch_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "contextAttributes": [],
      *       //   "dataSourceRestrictions": [],
      *       //   "facetOptions": [],
      *       //   "pageSize": 0,
@@ -6082,6 +6133,7 @@ export namespace cloudsearch_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "auditLoggingSettings": {},
      *   //   "vpcSettings": {}
      *   // }
      * }
@@ -6215,6 +6267,7 @@ export namespace cloudsearch_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "auditLoggingSettings": {},
      *       //   "vpcSettings": {}
      *       // }
      *     },
@@ -7166,6 +7219,7 @@ export namespace cloudsearch_v1 {
      *       //   "defaultFacetOptions": [],
      *       //   "defaultSortOptions": {},
      *       //   "displayName": "my_displayName",
+     *       //   "enableAuditLog": false,
      *       //   "name": "my_name",
      *       //   "operationIds": [],
      *       //   "scoringConfig": {},
@@ -7459,6 +7513,7 @@ export namespace cloudsearch_v1 {
      *   //   "defaultFacetOptions": [],
      *   //   "defaultSortOptions": {},
      *   //   "displayName": "my_displayName",
+     *   //   "enableAuditLog": false,
      *   //   "name": "my_name",
      *   //   "operationIds": [],
      *   //   "scoringConfig": {},
@@ -7894,6 +7949,7 @@ export namespace cloudsearch_v1 {
      *       //   "defaultFacetOptions": [],
      *       //   "defaultSortOptions": {},
      *       //   "displayName": "my_displayName",
+     *       //   "enableAuditLog": false,
      *       //   "name": "my_name",
      *       //   "operationIds": [],
      *       //   "scoringConfig": {},
