@@ -169,7 +169,7 @@
       }
     }
   },
-  "revision": "20210326",
+  "revision": "20210409",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "Api": {
@@ -572,7 +572,7 @@
           "type": "string"
         },
         "path": {
-          "description": "The HTTP URL path.",
+          "description": "The HTTP URL path, excluding the query parameters.",
           "type": "string"
         },
         "protocol": {
@@ -740,7 +740,7 @@
       "id": "Response",
       "properties": {
         "backendLatency": {
-          "description": "The length of time it takes the backend service to fully respond to a request. Measured from when the destination service starts to send the request to the backend until when the destination service receives the complete response from the backend.",
+          "description": "The amount of time it takes the backend service to fully respond to a request. Measured from when the destination service starts to send the request to the backend until when the destination service receives the complete response from the backend.",
           "format": "google-duration",
           "type": "string"
         },
