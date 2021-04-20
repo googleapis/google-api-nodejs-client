@@ -907,7 +907,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of results to return. If not set, the service will select a default.",
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -1594,7 +1594,7 @@
       }
     }
   },
-  "revision": "20210319",
+  "revision": "20210410",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -2268,6 +2268,26 @@
         "sourceRange": {
           "description": "IP address or range, defined using CIDR notation, of requests that this rule applies to. You can use the wildcard character \"*\" to match all IPs equivalent to \"0/0\" and \"::/0\" together. Examples: 192.168.1.1 or 192.168.0.0/16 or 2001:db8::/32 or 2001:0db8:0000:0042:0000:8a2e:0370:7334. Truncation will be silently performed on addresses which are not properly truncated. For example, 1.2.3.4/24 is accepted as the same address as 1.2.3.0/24. Similarly, for IPv6, 2001:db8::1/32 is accepted as the same address as 2001:db8::/32.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppengineV1betaLocationMetadata": {
+      "description": "Metadata for the given google.cloud.location.Location.",
+      "id": "GoogleAppengineV1betaLocationMetadata",
+      "properties": {
+        "flexibleEnvironmentAvailable": {
+          "description": "App Engine flexible environment is available in the given location.@OutputOnly",
+          "type": "boolean"
+        },
+        "searchApiAvailable": {
+          "description": "Output only. Search API (https://cloud.google.com/appengine/docs/standard/python/search) is available in the given location.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "standardEnvironmentAvailable": {
+          "description": "App Engine standard environment is available in the given location.@OutputOnly",
+          "type": "boolean"
         }
       },
       "type": "object"
