@@ -292,6 +292,12 @@
               "repeated": true,
               "type": "string"
             },
+            "analysisQuery.conditionContext.accessTime": {
+              "description": "The hypothetical access timestamp to evaluate IAM conditions. Note that this value must not be earlier than the current time; otherwise, an INVALID_ARGUMENT error will be returned.",
+              "format": "google-datetime",
+              "location": "query",
+              "type": "string"
+            },
             "analysisQuery.identitySelector.identity": {
               "description": "Required. The identity appear in the form of members in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding). The examples of supported forms are: \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\". Notice that wildcard characters (such as * and ?) are not supported. You must give a specific identity.",
               "location": "query",
@@ -570,7 +576,7 @@
       }
     }
   },
-  "revision": "20210326",
+  "revision": "20210409",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -806,6 +812,41 @@
       },
       "type": "object"
     },
+    "ConditionContext": {
+      "description": "The IAM conditions context.",
+      "id": "ConditionContext",
+      "properties": {
+        "accessTime": {
+          "description": "The hypothetical access timestamp to evaluate IAM conditions. Note that this value must not be earlier than the current time; otherwise, an INVALID_ARGUMENT error will be returned.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConditionEvaluation": {
+      "description": "The Condition evaluation.",
+      "id": "ConditionEvaluation",
+      "properties": {
+        "evaluationValue": {
+          "description": "The evaluation result.",
+          "enum": [
+            "EVALUATION_VALUE_UNSPECIFIED",
+            "TRUE",
+            "FALSE",
+            "CONDITIONAL"
+          ],
+          "enumDescriptions": [
+            "Reserved for future use.",
+            "The evaluation result is `true`.",
+            "The evaluation result is `false`.",
+            "The evaluation result is `conditional` when the condition expression contains variables that are either missing input values or have not been supported by Analyzer yet."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CreateFeedRequest": {
       "description": "Create asset feed request.",
       "id": "CreateFeedRequest",
@@ -1015,6 +1056,10 @@
             "$ref": "GoogleCloudAssetV1Access"
           },
           "type": "array"
+        },
+        "conditionEvaluation": {
+          "$ref": "ConditionEvaluation",
+          "description": "Condition evaluation for this AccessControlList, if there is a condition defined in the above IAM policy binding."
         },
         "resourceEdges": {
           "description": "Resource edges of the graph starting from the policy attached resource to any descendant resources. The Edge.source_node contains the full resource name of a parent resource and Edge.target_node contains the full resource name of a child resource. This field is present only if the output_resource_edges option is enabled in request.",
@@ -1975,6 +2020,10 @@
         "accessSelector": {
           "$ref": "AccessSelector",
           "description": "Optional. Specifies roles or permissions for analysis. This is optional."
+        },
+        "conditionContext": {
+          "$ref": "ConditionContext",
+          "description": "Optional. The hypothetical context for IAM conditions evaluation."
         },
         "identitySelector": {
           "$ref": "IdentitySelector",
