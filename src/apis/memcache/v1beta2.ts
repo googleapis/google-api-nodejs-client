@@ -322,7 +322,7 @@ export namespace memcache_v1beta2 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule {
     /**
-     * This field will be deprecated, and will be always set to true since reschedule can happen multiple times now.
+     * This field is deprecated, and will be always set to true since reschedule can happen multiple times now. This field should not be removed until all service producers remove this for their customers.
      */
     canReschedule?: boolean | null;
     /**
