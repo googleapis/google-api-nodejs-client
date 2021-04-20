@@ -186,6 +186,35 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * For display only. Metadata associated with a Cloud SQL instance.
+   */
+  export interface Schema$CloudSQLInstanceInfo {
+    /**
+     * Name of a Cloud SQL instance.
+     */
+    displayName?: string | null;
+    /**
+     * External IP address of Cloud SQL instance.
+     */
+    externalIp?: string | null;
+    /**
+     * Internal IP address of Cloud SQL instance.
+     */
+    internalIp?: string | null;
+    /**
+     * URI of a Cloud SQL instance network or empty string if instance does not have one.
+     */
+    networkUri?: string | null;
+    /**
+     * Region in which the Cloud SQL instance is running.
+     */
+    region?: string | null;
+    /**
+     * URI of a Cloud SQL instance.
+     */
+    uri?: string | null;
+  }
+  /**
    * A Connectivity Test for a network reachability analysis.
    */
   export interface Schema$ConnectivityTest {
@@ -437,6 +466,27 @@ export namespace networkmanagement_v1 {
      * VIP of the forwarding rule.
      */
     vip?: string | null;
+  }
+  /**
+   * For display only. Metadata associated with a Google Kubernetes Engine cluster master.
+   */
+  export interface Schema$GKEMasterInfo {
+    /**
+     * URI of a Google Kubernetes Engine cluster network.
+     */
+    clusterNetworkUri?: string | null;
+    /**
+     * URI of a Google Kubernetes Engine cluster.
+     */
+    clusterUri?: string | null;
+    /**
+     * External IP address of a Google Kubernetes Engine cluster master.
+     */
+    externalIp?: string | null;
+    /**
+     * Internal IP address of a Google Kubernetes Engine cluster master.
+     */
+    internalIp?: string | null;
   }
   /**
    * For display only. Metadata associated with a Compute Engine instance.
@@ -798,6 +848,10 @@ export namespace networkmanagement_v1 {
      */
     causesDrop?: boolean | null;
     /**
+     * Display info of a Cloud SQL instance.
+     */
+    cloudSqlInstance?: Schema$CloudSQLInstanceInfo;
+    /**
      * Display info of the final state "deliver" and reason.
      */
     deliver?: Schema$DeliverInfo;
@@ -825,6 +879,10 @@ export namespace networkmanagement_v1 {
      * Display info of a Compute Engine forwarding rule.
      */
     forwardingRule?: Schema$ForwardingRuleInfo;
+    /**
+     * Display info of a Google Kubernetes Engine cluster master.
+     */
+    gkeMaster?: Schema$GKEMasterInfo;
     /**
      * Display info of a Compute Engine instance.
      */
@@ -877,7 +935,7 @@ export namespace networkmanagement_v1 {
     permissions?: string[] | null;
   }
   /**
-   * Trace represents one simulated packet forwarding path. * Each trace contains multiple ordered Steps. * Each step is in a particular state with associated configuration. * State is categorized as final or non-final states. * Each final state has a reason associated. * Each trace must end with a final state (the last step). ``` |---------------------Trace----------------------| Step1(State) Step2(State) --- StepN(State(final)) ```
+   * Trace represents one simulated packet forwarding path. * Each trace contains multiple ordered steps. * Each step is in a particular state with associated configuration. * State is categorized as final or non-final states. * Each final state has a reason associated. * Each trace must end with a final state (the last step). ``` |---------------------Trace----------------------| Step1(State) Step2(State) --- StepN(State(final)) ```
    */
   export interface Schema$Trace {
     /**
@@ -1139,7 +1197,7 @@ export namespace networkmanagement_v1 {
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service will select a default.
+     *     // The maximum number of results to return. If not set, the service selects a default.
      *     pageSize: 'placeholder-value',
      *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
@@ -1269,7 +1327,7 @@ export namespace networkmanagement_v1 {
      */
     name?: string;
     /**
-     * The maximum number of results to return. If not set, the service will select a default.
+     * The maximum number of results to return. If not set, the service selects a default.
      */
     pageSize?: number;
     /**
