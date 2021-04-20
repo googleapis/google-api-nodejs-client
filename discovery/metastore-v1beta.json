@@ -156,7 +156,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of results to return. If not set, the service will select a default.",
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -600,7 +600,7 @@
                 "backups": {
                   "methods": {
                     "create": {
-                      "description": "Creates a new Backup in a given project and location.",
+                      "description": "Creates a new backup in a given project and location.",
                       "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/services/{servicesId}/backups",
                       "httpMethod": "POST",
                       "id": "metastore.projects.locations.services.backups.create",
@@ -899,7 +899,7 @@
       }
     }
   },
-  "revision": "20210325",
+  "revision": "20210408",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AuditConfig": {
