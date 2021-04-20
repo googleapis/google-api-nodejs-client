@@ -314,6 +314,10 @@ import {
   mybusinessaccountmanagement,
 } from './mybusinessaccountmanagement';
 import {
+  VERSIONS as mybusinesslodgingVersions,
+  mybusinesslodging,
+} from './mybusinesslodging';
+import {
   VERSIONS as networkconnectivityVersions,
   networkconnectivity,
 } from './networkconnectivity';
@@ -626,6 +630,7 @@ export const APIS: APIList = {
   ml: mlVersions,
   monitoring: monitoringVersions,
   mybusinessaccountmanagement: mybusinessaccountmanagementVersions,
+  mybusinesslodging: mybusinesslodgingVersions,
   networkconnectivity: networkconnectivityVersions,
   networkmanagement: networkmanagementVersions,
   notebooks: notebooksVersions,
@@ -839,6 +844,7 @@ export class GeneratedAPIs {
   ml = ml;
   monitoring = monitoring;
   mybusinessaccountmanagement = mybusinessaccountmanagement;
+  mybusinesslodging = mybusinesslodging;
   networkconnectivity = networkconnectivity;
   networkmanagement = networkmanagement;
   notebooks = notebooks;

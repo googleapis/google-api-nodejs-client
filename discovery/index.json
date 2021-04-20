@@ -243,6 +243,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "http://code.google.com/apis/adsense/management/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "adsense:v2",
+      "name": "adsense",
+      "version": "v2",
+      "title": "AdSense Management API",
+      "description": "The AdSense Management API allows publishers to access their inventory and run earnings and performance reports.",
+      "discoveryRestUrl": "https://adsense.googleapis.com/$discovery/rest?version=v2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "http://code.google.com/apis/adsense/management/",
       "preferred": true
     },
     {
@@ -3236,6 +3251,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "mybusinesslodging:v1",
+      "name": "mybusinesslodging",
+      "version": "v1",
+      "title": "My Business Lodging API",
+      "description": "The My Business Lodging API enables managing lodging business information on Google.",
+      "discoveryRestUrl": "https://mybusinesslodging.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/my-business/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "networkconnectivity:v1alpha1",
       "name": "networkconnectivity",
       "version": "v1alpha1",
@@ -3367,7 +3397,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/compute/docs/manage-os",
+      "documentationLink": "https://cloud.google.com/compute/docs/osconfig/rest",
       "preferred": false
     },
     {
@@ -3382,7 +3412,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://cloud.google.com/compute/docs/manage-os",
+      "documentationLink": "https://cloud.google.com/compute/docs/osconfig/rest",
       "preferred": true
     },
     {

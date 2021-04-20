@@ -2541,7 +2541,7 @@
       }
     }
   },
-  "revision": "20210326",
+  "revision": "20210414",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -3005,8 +3005,8 @@
             "No content matcher type specified (maintained for backward compatibility, but deprecated for future use). Treated as CONTAINS_STRING.",
             "Selects substring matching. The match succeeds if the output contains the content string. This is the default value for checks without a matcher option, or where the value of matcher is CONTENT_MATCHER_OPTION_UNSPECIFIED.",
             "Selects negation of substring matching. The match succeeds if the output does NOT contain the content string.",
-            "Selects regular-expression matching. The match succeeds of the output matches the regular expression specified in the content string.",
-            "Selects negation of regular-expression matching. The match succeeds if the output does NOT match the regular expression specified in the content string."
+            "Selects regular-expression matching. The match succeeds of the output matches the regular expression specified in the content string. Regex matching is only supported for HTTP/HTTPS checks.",
+            "Selects negation of regular-expression matching. The match succeeds if the output does NOT match the regular expression specified in the content string. Regex matching is only supported for HTTP/HTTPS checks."
           ],
           "type": "string"
         }
