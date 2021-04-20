@@ -303,6 +303,24 @@ export namespace cloudasset_v1 {
     role?: string | null;
   }
   /**
+   * The IAM conditions context.
+   */
+  export interface Schema$ConditionContext {
+    /**
+     * The hypothetical access timestamp to evaluate IAM conditions. Note that this value must not be earlier than the current time; otherwise, an INVALID_ARGUMENT error will be returned.
+     */
+    accessTime?: string | null;
+  }
+  /**
+   * The Condition evaluation.
+   */
+  export interface Schema$ConditionEvaluation {
+    /**
+     * The evaluation result.
+     */
+    evaluationValue?: string | null;
+  }
+  /**
    * Create asset feed request.
    */
   export interface Schema$CreateFeedRequest {
@@ -446,6 +464,10 @@ export namespace cloudasset_v1 {
      * The accesses that match one of the following conditions: - The access_selector, if it is specified in request; - Otherwise, access specifiers reachable from the policy binding's role.
      */
     accesses?: Schema$GoogleCloudAssetV1Access[];
+    /**
+     * Condition evaluation for this AccessControlList, if there is a condition defined in the above IAM policy binding.
+     */
+    conditionEvaluation?: Schema$ConditionEvaluation;
     /**
      * Resource edges of the graph starting from the policy attached resource to any descendant resources. The Edge.source_node contains the full resource name of a parent resource and Edge.target_node contains the full resource name of a child resource. This field is present only if the output_resource_edges option is enabled in request.
      */
@@ -1122,6 +1144,10 @@ export namespace cloudasset_v1 {
      * Optional. Specifies roles or permissions for analysis. This is optional.
      */
     accessSelector?: Schema$AccessSelector;
+    /**
+     * Optional. The hypothetical context for IAM conditions evaluation.
+     */
+    conditionContext?: Schema$ConditionContext;
     /**
      * Optional. Specifies an identity for analysis.
      */
@@ -2664,6 +2690,8 @@ export namespace cloudasset_v1 {
      *     'analysisQuery.accessSelector.permissions': 'placeholder-value',
      *     // Optional. The roles to appear in result.
      *     'analysisQuery.accessSelector.roles': 'placeholder-value',
+     *     // The hypothetical access timestamp to evaluate IAM conditions. Note that this value must not be earlier than the current time; otherwise, an INVALID_ARGUMENT error will be returned.
+     *     'analysisQuery.conditionContext.accessTime': 'placeholder-value',
      *     // Required. The identity appear in the form of members in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding). The examples of supported forms are: "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com". Notice that wildcard characters (such as * and ?) are not supported. You must give a specific identity.
      *     'analysisQuery.identitySelector.identity': 'placeholder-value',
      *     // Optional. If true, the response will include access analysis from identities to resources via service account impersonation. This is a very expensive operation, because many derived queries will be executed. We highly recommend you use AssetService.AnalyzeIamPolicyLongrunning rpc instead. For example, if the request analyzes for which resources user A has permission P, and there's an IAM policy states user A has iam.serviceAccounts.getAccessToken permission to a service account SA, and there's another IAM policy states service account SA has permission P to a GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Another example, if the request analyzes for who has permission P to a GCP folder F, and there's an IAM policy states user A has iam.serviceAccounts.actAs permission to a service account SA, and there's another IAM policy states service account SA has permission P to the GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Default is false.
@@ -3530,6 +3558,10 @@ export namespace cloudasset_v1 {
      * Optional. The roles to appear in result.
      */
     'analysisQuery.accessSelector.roles'?: string[];
+    /**
+     * The hypothetical access timestamp to evaluate IAM conditions. Note that this value must not be earlier than the current time; otherwise, an INVALID_ARGUMENT error will be returned.
+     */
+    'analysisQuery.conditionContext.accessTime'?: string;
     /**
      * Required. The identity appear in the form of members in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding). The examples of supported forms are: "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com". Notice that wildcard characters (such as * and ?) are not supported. You must give a specific identity.
      */
