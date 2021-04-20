@@ -919,6 +919,10 @@ export namespace content_v2_1 {
      */
     status?: string | null;
   }
+  /**
+   * Request message for the ActivateProgram method.
+   */
+  export interface Schema$ActivateBuyOnGoogleProgramRequest {}
   export interface Schema$Amount {
     /**
      * [required] The pre-tax or post-tax price depending on the location of the order.
@@ -4171,6 +4175,10 @@ export namespace content_v2_1 {
      */
     trackingId?: string | null;
   }
+  /**
+   * Request message for the PauseProgram method.
+   */
+  export interface Schema$PauseBuyOnGoogleProgramRequest {}
   export interface Schema$PickupCarrierService {
     /**
      * The name of the pickup carrier (e.g., `"UPS"`). Required.
@@ -5041,6 +5049,22 @@ export namespace content_v2_1 {
      */
     locationId?: string | null;
     /**
+     * Maximum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds.
+     */
+    maxHandlingTime?: string | null;
+    /**
+     * Maximum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. Both maxHandlingTime and maxTransitTime are required if providing shipping speeds.
+     */
+    maxTransitTime?: string | null;
+    /**
+     * Minimum handling time (inclusive) between when the order is received and shipped in business days. 0 means that the order is shipped on the same day as it is received if it happens before the cut-off time. minHandlingTime can only be present together with maxHandlingTime; but it is not required if maxHandlingTime is present.
+     */
+    minHandlingTime?: string | null;
+    /**
+     * Minimum transit time (inclusive) between when the order has shipped and when it is delivered in business days. 0 means that the order is delivered on the same day as it ships. minTransitTime can only be present together with maxTransitTime; but it is not required if maxTransitTime is present.
+     */
+    minTransitTime?: string | null;
+    /**
      * The postal code range that the shipping rate applies to, represented by a postal code, a postal code prefix followed by a * wildcard, a range between two postal codes or two postal code prefixes of equal length.
      */
     postalCode?: string | null;
@@ -5815,6 +5839,10 @@ export namespace content_v2_1 {
     priceDelta?: string | null;
   }
   /**
+   * Request message for the RequestReviewProgram method.
+   */
+  export interface Schema$RequestReviewBuyOnGoogleProgramRequest {}
+  /**
    * Return address resource.
    */
   export interface Schema$ReturnAddress {
@@ -6262,7 +6290,7 @@ export namespace content_v2_1 {
     results?: Schema$ReportRow[];
   }
   /**
-   * Dimensions according to which metrics are segmented in the response. Values of product dimensions, e.g., offer id, reflect the state of a product at the time of the corresponding event, e.g., impression or order. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for dimensions requested explicitly in the request's search query. Next id: 22
+   * Dimensions according to which metrics are segmented in the response. Values of product dimensions, e.g., offer id, reflect the state of a product at the time of the corresponding event, e.g., impression or order. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for dimensions requested explicitly in the request's search query.
    */
   export interface Schema$Segments {
     /**
@@ -11220,7 +11248,138 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Retrieves a status of BoG program for your Merchant Center account.
+     * Reactivates the BoG program in your Merchant Center account. Moves the program to the active state when allowed, e.g. when paused. Important: This method is only whitelisted for selected merchants.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.buyongoogleprograms.activate({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *     // The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     *     regionCode: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    activate(
+      params: Params$Resource$Buyongoogleprograms$Activate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    activate(
+      params?: Params$Resource$Buyongoogleprograms$Activate,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    activate(
+      params: Params$Resource$Buyongoogleprograms$Activate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    activate(
+      params: Params$Resource$Buyongoogleprograms$Activate,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    activate(
+      params: Params$Resource$Buyongoogleprograms$Activate,
+      callback: BodyResponseCallback<void>
+    ): void;
+    activate(callback: BodyResponseCallback<void>): void;
+    activate(
+      paramsOrCallback?:
+        | Params$Resource$Buyongoogleprograms$Activate
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyongoogleprograms$Activate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyongoogleprograms$Activate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/buyongoogleprograms/{regionCode}/activate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'regionCode'],
+        pathParams: ['merchantId', 'regionCode'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a status of the BoG program for your Merchant Center account.
      * @example
      * ```js
      * // Before running the sample:
@@ -11359,7 +11518,7 @@ export namespace content_v2_1 {
     }
 
     /**
-     * Onboards BoG in your Merchant Center account. By using this method, you agree to the [Terms of Service](https://merchants.google.com/mc/termsofservice/transactions/US/latest). Calling this method is only possible if the authenticated account is the same as the merchant id in the request. Calling this method multiple times will only accept Terms of Service if the latest version is not currently signed.
+     * Onboards the BoG program in your Merchant Center account. By using this method, you agree to the [Terms of Service](https://merchants.google.com/mc/termsofservice/transactions/US/latest). Calling this method is only possible if the authenticated account is the same as the merchant id in the request. Calling this method multiple times will only accept Terms of Service if the latest version is not currently signed.
      * @example
      * ```js
      * // Before running the sample:
@@ -11490,8 +11649,286 @@ export namespace content_v2_1 {
         return createAPIRequest<void>(parameters);
       }
     }
+
+    /**
+     * Pauses the BoG program in your Merchant Center account. Important: This method is only whitelisted for selected merchants.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.buyongoogleprograms.pause({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *     // The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     *     regionCode: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    pause(
+      params: Params$Resource$Buyongoogleprograms$Pause,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    pause(
+      params?: Params$Resource$Buyongoogleprograms$Pause,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    pause(
+      params: Params$Resource$Buyongoogleprograms$Pause,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    pause(
+      params: Params$Resource$Buyongoogleprograms$Pause,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    pause(
+      params: Params$Resource$Buyongoogleprograms$Pause,
+      callback: BodyResponseCallback<void>
+    ): void;
+    pause(callback: BodyResponseCallback<void>): void;
+    pause(
+      paramsOrCallback?:
+        | Params$Resource$Buyongoogleprograms$Pause
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyongoogleprograms$Pause;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyongoogleprograms$Pause;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/buyongoogleprograms/{regionCode}/pause'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'regionCode'],
+        pathParams: ['merchantId', 'regionCode'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Requests review and then activates the BoG program in your Merchant Center account for the first time. Moves the program to the REVIEW_PENDING state. Important: This method is only whitelisted for selected merchants.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.buyongoogleprograms.requestreview({
+     *     // Required. The ID of the account.
+     *     merchantId: 'placeholder-value',
+     *     // The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     *     regionCode: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    requestreview(
+      params: Params$Resource$Buyongoogleprograms$Requestreview,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    requestreview(
+      params?: Params$Resource$Buyongoogleprograms$Requestreview,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    requestreview(
+      params: Params$Resource$Buyongoogleprograms$Requestreview,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    requestreview(
+      params: Params$Resource$Buyongoogleprograms$Requestreview,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    requestreview(
+      params: Params$Resource$Buyongoogleprograms$Requestreview,
+      callback: BodyResponseCallback<void>
+    ): void;
+    requestreview(callback: BodyResponseCallback<void>): void;
+    requestreview(
+      paramsOrCallback?:
+        | Params$Resource$Buyongoogleprograms$Requestreview
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Buyongoogleprograms$Requestreview;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Buyongoogleprograms$Requestreview;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/buyongoogleprograms/{regionCode}/requestreview'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'regionCode'],
+        pathParams: ['merchantId', 'regionCode'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Buyongoogleprograms$Activate
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+    /**
+     * The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     */
+    regionCode?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ActivateBuyOnGoogleProgramRequest;
+  }
   export interface Params$Resource$Buyongoogleprograms$Get
     extends StandardParameters {
     /**
@@ -11518,6 +11955,38 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$OnboardBuyOnGoogleProgramRequest;
+  }
+  export interface Params$Resource$Buyongoogleprograms$Pause
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+    /**
+     * The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     */
+    regionCode?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PauseBuyOnGoogleProgramRequest;
+  }
+  export interface Params$Resource$Buyongoogleprograms$Requestreview
+    extends StandardParameters {
+    /**
+     * Required. The ID of the account.
+     */
+    merchantId?: string;
+    /**
+     * The program region code [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). Currently only US is available.
+     */
+    regionCode?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RequestReviewBuyOnGoogleProgramRequest;
   }
 
   export class Resource$Collections {
