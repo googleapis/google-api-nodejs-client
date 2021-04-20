@@ -159,6 +159,11 @@
           "id": "area120tables.tables.list",
           "parameterOrder": [],
           "parameters": {
+            "orderBy": {
+              "description": "Optional. Sorting order for the list of tables on createTime/updateTime.",
+              "location": "query",
+              "type": "string"
+            },
             "pageSize": {
               "description": "The maximum number of tables to return. The service may return fewer than this value. If unspecified, at most 20 tables are returned. The maximum value is 100; values above 100 are coerced to 100.",
               "format": "int32",
@@ -410,6 +415,11 @@
                   "location": "query",
                   "type": "string"
                 },
+                "orderBy": {
+                  "description": "Optional. Sorting order for the list of rows on createTime/updateTime.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "pageSize": {
                   "description": "The maximum number of rows to return. The service may return fewer than this value. If unspecified, at most 50 rows are returned. The maximum value is 1,000; values above 1,000 are coerced to 1,000.",
                   "format": "int32",
@@ -576,7 +586,7 @@
       }
     }
   },
-  "revision": "20210322",
+  "revision": "20210415",
   "rootUrl": "https://area120tables.googleapis.com/",
   "schemas": {
     "BatchCreateRowsRequest": {
@@ -671,6 +681,10 @@
         "lookupDetails": {
           "$ref": "LookupDetails",
           "description": "Optional. Indicates that this is a lookup column whose value is derived from the relationship column specified in the details. Lookup columns can not be updated directly. To change the value you must update the associated relationship column."
+        },
+        "multipleValuesDisallowed": {
+          "description": "Optional. Indicates whether or not multiple values are allowed for array types where such a restriction is possible.",
+          "type": "boolean"
         },
         "name": {
           "description": "column name",
@@ -839,8 +853,23 @@
       },
       "type": "object"
     },
+    "SavedView": {
+      "description": "A saved view of a table. NextId: 3",
+      "id": "SavedView",
+      "properties": {
+        "id": {
+          "description": "Internal id associated with the saved view.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Display name of the saved view.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Table": {
-      "description": "A single table.",
+      "description": "A single table. NextId: 7",
       "id": "Table",
       "properties": {
         "columns": {
@@ -862,6 +891,13 @@
         "name": {
           "description": "The resource name of the table. Table names have the form `tables/{table}`.",
           "type": "string"
+        },
+        "savedViews": {
+          "description": "Saved views for this table.",
+          "items": {
+            "$ref": "SavedView"
+          },
+          "type": "array"
         },
         "updateTime": {
           "description": "Time when the table was last updated excluding updates to individual rows",
