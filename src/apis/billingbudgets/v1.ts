@@ -134,7 +134,7 @@ export namespace billingbudgets_v1 {
      */
     amount?: Schema$GoogleCloudBillingBudgetsV1BudgetAmount;
     /**
-     * Optional. Filters that define which resources are used to compute the actual spend against the budget.
+     * Optional. Filters that define which resources are used to compute the actual spend against the budget amount, such as projects, services, and the budget's time period, as well as other filters.
      */
     budgetFilter?: Schema$GoogleCloudBillingBudgetsV1Filter;
     /**
@@ -163,7 +163,7 @@ export namespace billingbudgets_v1 {
    */
   export interface Schema$GoogleCloudBillingBudgetsV1BudgetAmount {
     /**
-     * Use the last period's actual spend as the budget for the present period. Cannot be set in combination with Filter.custom_period.
+     * Use the last period's actual spend as the budget for the present period. LastPeriodAmount can only be set when the budget's time period is a Filter.calendar_period. It cannot be set in combination with Filter.custom_period.
      */
     lastPeriodAmount?: Schema$GoogleCloudBillingBudgetsV1LastPeriodAmount;
     /**
@@ -189,11 +189,11 @@ export namespace billingbudgets_v1 {
    */
   export interface Schema$GoogleCloudBillingBudgetsV1Filter {
     /**
-     * Optional. Specifies to track usage for recurring calendar period. E.g. Assume that CalendarPeriod.QUARTER is set. The budget will track usage from April 1 to June 30, when current calendar month is April, May, June. After that, it will track usage from July 1 to September 30 when current calendar month is July, August, September, and so on.
+     * Optional. Specifies to track usage for recurring calendar period. For example, assume that CalendarPeriod.QUARTER is set. The budget will track usage from April 1 to June 30, when the current calendar month is April, May, June. After that, it will track usage from July 1 to September 30 when the current calendar month is July, August, September, so on.
      */
     calendarPeriod?: string | null;
     /**
-     * Optional. If Filter.credit_types_treatment is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be subtracted from gross cost to determine the spend for threshold calculations. If Filter.credit_types_treatment is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty. See [a list of acceptable credit type values](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type).
+     * Optional. If Filter.credit_types_treatment is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be subtracted from gross cost to determine the spend for threshold calculations. See [a list of acceptable credit type values](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type). If Filter.credit_types_treatment is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty.
      */
     creditTypes?: string[] | null;
     /**
@@ -201,7 +201,7 @@ export namespace billingbudgets_v1 {
      */
     creditTypesTreatment?: string | null;
     /**
-     * Optional. Specifies to track usage from any start date (required) to any end date (optional).
+     * Optional. Specifies to track usage from any start date (required) to any end date (optional). This time period is static, it does not recur.
      */
     customPeriod?: Schema$GoogleCloudBillingBudgetsV1CustomPeriod;
     /**
@@ -222,7 +222,7 @@ export namespace billingbudgets_v1 {
     subaccounts?: string[] | null;
   }
   /**
-   * Describes a budget amount targeted to last period's spend. At this time, the amount is automatically 100% of last period's spend; that is, there are no other options yet. Future configuration will be described here (for example, configuring a percentage of last period's spend).
+   * Describes a budget amount targeted to the last Filter.calendar_period spend. At this time, the amount is automatically 100% of the last calendar period's spend; that is, there are no other options yet. Future configuration options will be described here (for example, configuring a percentage of last period's spend). LastPeriodAmount cannot be set for a budget configured with a Filter.custom_period.
    */
   export interface Schema$GoogleCloudBillingBudgetsV1LastPeriodAmount {}
   /**
