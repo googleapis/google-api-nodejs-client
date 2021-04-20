@@ -348,6 +348,10 @@ export namespace notebooks_v1 {
      * Required. Scale tier of the hardware used for notebook execution.
      */
     scaleTier?: string | null;
+    /**
+     * The email address of a service account to use when running the execution. You must have the `iam.serviceAccounts.actAs` permission for the specified service account.
+     */
+    serviceAccount?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -468,6 +472,10 @@ export namespace notebooks_v1 {
      * The name of the VPC that this instance is in. Format: `projects/{project_id\}/global/networks/{network_id\}`
      */
     network?: string | null;
+    /**
+     * Optional. The type of vNIC to be used on this interface. This may be gVNIC or VirtioNet.
+     */
+    nicType?: string | null;
     /**
      * If true, the notebook instance will not register with the proxy.
      */
@@ -869,6 +877,15 @@ export namespace notebooks_v1 {
    * Request for reseting a Managed Notebook Runtime.
    */
   export interface Schema$ResetRuntimeRequest {}
+  /**
+   * Request for rollbacking a notebook instance
+   */
+  export interface Schema$RollbackInstanceRequest {
+    /**
+     * Required. The snapshot for rollback. Example: "projects/test-project/global/snapshots/krwlzipynril".
+     */
+    targetSnapshot?: string | null;
+  }
   /**
    * The definition of a Runtime for a managed notebook instance.
    */
@@ -1316,6 +1333,10 @@ export namespace notebooks_v1 {
      * Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork. If neither `network` nor `subnet` is specified, the "default" network of the project is used, if it exists. A full URL or partial URI. Examples: * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default` * `projects/[project_id]/regions/global/default` Runtimes are managed resources inside Google Infrastructure. Runtimes support the following network configurations: * Google Managed Network (Network & subnet are empty) * Consumer Project VPC (network & subnet are required). Requires configuring Private Service Access. * Shared VPC (network & subnet are required). Requires configuring Private Service Access.
      */
     network?: string | null;
+    /**
+     * Optional. The type of vNIC to be used on this interface. This may be gVNIC or VirtioNet.
+     */
+    nicType?: string | null;
     /**
      * Optional. Shielded VM Instance configuration settings.
      */
@@ -2967,6 +2988,7 @@ export namespace notebooks_v1 {
      *       //   "metadata": {},
      *       //   "name": "my_name",
      *       //   "network": "my_network",
+     *       //   "nicType": "my_nicType",
      *       //   "noProxyAccess": false,
      *       //   "noPublicIp": false,
      *       //   "noRemoveDataDisk": false,
@@ -3269,6 +3291,7 @@ export namespace notebooks_v1 {
      *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
+     *   //   "nicType": "my_nicType",
      *   //   "noProxyAccess": false,
      *   //   "noPublicIp": false,
      *   //   "noRemoveDataDisk": false,
@@ -4323,6 +4346,147 @@ export namespace notebooks_v1 {
         options: Object.assign(
           {
             url: (rootUrl + '/v1/{+name}:reset').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Rollbacks a notebook instance to the previous version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.rollback({
+     *     // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "targetSnapshot": "my_targetSnapshot"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rollback(
+      params: Params$Resource$Projects$Locations$Instances$Rollback,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rollback(
+      params?: Params$Resource$Projects$Locations$Instances$Rollback,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    rollback(
+      params: Params$Resource$Projects$Locations$Instances$Rollback,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rollback(
+      params: Params$Resource$Projects$Locations$Instances$Rollback,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rollback(
+      params: Params$Resource$Projects$Locations$Instances$Rollback,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rollback(callback: BodyResponseCallback<Schema$Operation>): void;
+    rollback(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Rollback
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Rollback;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Rollback;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:rollback').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
@@ -5852,6 +6016,18 @@ export namespace notebooks_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ResetInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Rollback
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RollbackInstanceRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Setaccelerator
     extends StandardParameters {
