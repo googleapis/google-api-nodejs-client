@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -302,6 +302,34 @@
           "path": "v1/{+parent}",
           "response": {
             "$ref": "GoogleCloudApigeeV1ListOrganizationsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "setAddons": {
+          "description": "Configures the add-ons for the Apigee organization. The existing add-on configuration will be fully replaced.",
+          "flatPath": "v1/organizations/{organizationsId}:setAddons",
+          "httpMethod": "POST",
+          "id": "apigee.organizations.setAddons",
+          "parameterOrder": [
+            "org"
+          ],
+          "parameters": {
+            "org": {
+              "description": "Required. Name of the organization. Use the following structure in your request: `organizations/{org}`",
+              "location": "path",
+              "pattern": "^organizations/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+org}:setAddons",
+          "request": {
+            "$ref": "GoogleCloudApigeeV1SetAddonsRequest"
+          },
+          "response": {
+            "$ref": "GoogleLongrunningOperation"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -826,6 +854,177 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudApigeeV1Attribute"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "rateplans": {
+              "methods": {
+                "create": {
+                  "description": "Create a rate plan that is associated with an API product in an organization. Using rate plans, API product owners can monetize their API products by configuring one or more of the following: - Billing frequency - Initial setup fees for using an API product - Payment funding model (postpaid only) - Fixed recurring or consumption-based charges for using an API product - Revenue sharing with developer partners An API product can have multiple rate plans associated with it but *only one* rate plan can be active at any point of time. **Note: From the developer's perspective, they purchase API products not rate plans.",
+                  "flatPath": "v1/organizations/{organizationsId}/apiproducts/{apiproductsId}/rateplans",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.apiproducts.rateplans.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Name of the API product that is associated with the rate plan. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/apiproducts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/rateplans",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1RatePlan"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1RatePlan"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a rate plan.",
+                  "flatPath": "v1/organizations/{organizationsId}/apiproducts/{apiproductsId}/rateplans/{rateplansId}",
+                  "httpMethod": "DELETE",
+                  "id": "apigee.organizations.apiproducts.rateplans.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. ID of the rate plan. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}/rateplans/{rateplan}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/apiproducts/[^/]+/rateplans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1RatePlan"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the details of a rate plan.",
+                  "flatPath": "v1/organizations/{organizationsId}/apiproducts/{apiproductsId}/rateplans/{rateplansId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.apiproducts.rateplans.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the rate plan. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}/rateplans/{rateplan}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/apiproducts/[^/]+/rateplans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1RatePlan"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the rate plans for an API product.",
+                  "flatPath": "v1/organizations/{organizationsId}/apiproducts/{apiproductsId}/rateplans",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.apiproducts.rateplans.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "count": {
+                      "description": "Number of rate plans to return in the API call. Use with the `startKey` parameter to provide more targeted filtering. The maximum limit is 1000. Defaults to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "expand": {
+                      "description": "Flag that specifies whether to expand the results. Set to `true` to get expanded details about each API. Defaults to `false`.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "orderBy": {
+                      "description": "Name of the attribute used for sorting. Valid values include: * `name`: Name of the rate plan. * `state`: State of the rate plan (`DRAFT`, `PUBLISHED`). * `startTime`: Time when the rate plan becomes active. * `endTime`: Time when the rate plan expires. **Note**: Not supported by Apigee at this time.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}` Use `organizations/{org}/apiproducts/-` to return rate plans for all API products within the organization.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/apiproducts/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "startKey": {
+                      "description": "Name of the rate plan from which to start displaying the list of rate plans. If omitted, the list starts from the first item. For example, to view the rate plans from 51-150, set the value of `startKey` to the name of the 51st rate plan and set the value of `count` to 100.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "state": {
+                      "description": "State of the rate plans (`DRAFT`, `PUBLISHED`) that you want to display.",
+                      "enum": [
+                        "STATE_UNSPECIFIED",
+                        "DRAFT",
+                        "PUBLISHED"
+                      ],
+                      "enumDescriptions": [
+                        "State of the rate plan is not specified.",
+                        "Rate plan is in draft mode and only visible to API providers.",
+                        "Rate plan is published and will become visible to developers for the configured duration (between `startTime` and `endTime`)."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/rateplans",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListRatePlansResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "update": {
+                  "description": "Updates an existing rate plan.",
+                  "flatPath": "v1/organizations/{organizationsId}/apiproducts/{apiproductsId}/rateplans/{rateplansId}",
+                  "httpMethod": "PUT",
+                  "id": "apigee.organizations.apiproducts.rateplans.update",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the rate plan. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}/rateplans/{rateplan}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/apiproducts/[^/]+/rateplans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1RatePlan"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1RatePlan"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2370,6 +2569,127 @@
                   },
                   "response": {
                     "$ref": "GoogleCloudApigeeV1Attribute"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "subscriptions": {
+              "methods": {
+                "create": {
+                  "description": "Creates a subscription to an API product. ",
+                  "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/subscriptions",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.developers.subscriptions.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Email address of the developer that is purchasing a subscription to the API product. Use the following structure in your request: `organizations/{org}/developers/{developer_email}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/developers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/subscriptions",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1DeveloperSubscription"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1DeveloperSubscription"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "expire": {
+                  "description": "Expires an API product subscription immediately.",
+                  "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/subscriptions/{subscriptionsId}:expire",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.developers.subscriptions.expire",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the API product subscription. Use the following structure in your request: `organizations/{org}/developers/{developer_email}/subscriptions/{subscription}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/developers/[^/]+/subscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:expire",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1ExpireDeveloperSubscriptionRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1DeveloperSubscription"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details for an API product subscription.",
+                  "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/subscriptions/{subscriptionsId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.developers.subscriptions.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the API product subscription. Use the following structure in your request: `organizations/{org}/developers/{developer_email}/subscriptions/{subscription}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/developers/[^/]+/subscriptions/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1DeveloperSubscription"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all API product subscriptions for a developer.",
+                  "flatPath": "v1/organizations/{organizationsId}/developers/{developersId}/subscriptions",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.developers.subscriptions.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "count": {
+                      "description": "Number of API product subscriptions to return in the API call. Use with `startKey` to provide more targeted filtering. Defaults to 100. The maximum limit is 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "parent": {
+                      "description": "Required. Email address of the developer. Use the following structure in your request: `organizations/{org}/developers/{developer_email}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/developers/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "startKey": {
+                      "description": "Name of the API product subscription from which to start displaying the list of subscriptions. If omitted, the list starts from the first item. For example, to view the API product subscriptions from 51-150, set the value of `startKey` to the name of the 51st subscription and set the value of `count` to 100.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/subscriptions",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1ListDeveloperSubscriptionsResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -5387,6 +5707,12 @@
                 "parent"
               ],
               "parameters": {
+                "environments": {
+                  "description": "Optional. List of environments that will be attached to the instance during creation.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                },
                 "parent": {
                   "description": "Required. Name of the organization. Use the following structure in your request: `organizations/{org}`.",
                   "location": "path",
@@ -6666,7 +6992,7 @@
       }
     }
   },
-  "revision": "20210319",
+  "revision": "20210408",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -6757,6 +7083,36 @@
       "description": "Request for ActivateNatAddressRequest. Activate the nat address request.",
       "id": "GoogleCloudApigeeV1ActivateNatAddressRequest",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1AddonsConfig": {
+      "description": "Add-on configurations for the Apigee organization.",
+      "id": "GoogleCloudApigeeV1AddonsConfig",
+      "properties": {
+        "advancedApiOpsConfig": {
+          "$ref": "GoogleCloudApigeeV1AdvancedApiOpsConfig",
+          "description": "Configuration for the Advanced API Ops add-on."
+        },
+        "integrationConfig": {
+          "$ref": "GoogleCloudApigeeV1IntegrationConfig",
+          "description": "Configuration for the Integration add-on."
+        },
+        "monetizationConfig": {
+          "$ref": "GoogleCloudApigeeV1MonetizationConfig",
+          "description": "Configuration for the Monetization add-on."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1AdvancedApiOpsConfig": {
+      "description": "Configuration for the Advanced API Ops add-on.",
+      "id": "GoogleCloudApigeeV1AdvancedApiOpsConfig",
+      "properties": {
+        "enabled": {
+          "description": "Flag that specifies whether the Advanced API Ops add-on is enabled.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudApigeeV1Alias": {
@@ -8415,6 +8771,44 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1DeveloperSubscription": {
+      "description": "Structure of a DeveloperSubscription.",
+      "id": "GoogleCloudApigeeV1DeveloperSubscription",
+      "properties": {
+        "apiproduct": {
+          "description": "Name of the API product for which the developer is purchasing a subscription.",
+          "type": "string"
+        },
+        "createdAt": {
+          "description": "Output only. Time when the API product subscription was created in milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Time when the API product subscription ends in milliseconds since epoch.",
+          "format": "int64",
+          "type": "string"
+        },
+        "lastModifiedAt": {
+          "description": "Output only. Time when the API product subscription was last modified in milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the API product subscription.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Time when the API product subscription starts in milliseconds since epoch.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1DimensionMetric": {
       "description": "This message type encapsulates a metric grouped by dimension.",
       "id": "GoogleCloudApigeeV1DimensionMetric",
@@ -8708,6 +9102,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ExpireDeveloperSubscriptionRequest": {
+      "description": "Request for ExpireDeveloperSubscription.",
+      "id": "GoogleCloudApigeeV1ExpireDeveloperSubscriptionRequest",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudApigeeV1Export": {
       "description": "Details of an export job.",
       "id": "GoogleCloudApigeeV1Export",
@@ -8977,12 +9377,20 @@
           "enum": [
             "CIDR_RANGE_UNSPECIFIED",
             "SLASH_16",
-            "SLASH_20"
+            "SLASH_17",
+            "SLASH_18",
+            "SLASH_19",
+            "SLASH_20",
+            "SLASH_23"
           ],
           "enumDescriptions": [
             "Range not specified.",
             "`/16` CIDR range.",
-            "`/20` CIDR range."
+            "`/17` CIDR range.",
+            "`/18` CIDR range.",
+            "`/19` CIDR range.",
+            "`/20` CIDR range.",
+            "`/23` CIDR range. Supported for evaluation only."
           ],
           "type": "string"
         },
@@ -9094,6 +9502,17 @@
           "description": "Percentage of ingress replicas reporting this route.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1IntegrationConfig": {
+      "description": "Configuration for the Integration add-on.",
+      "id": "GoogleCloudApigeeV1IntegrationConfig",
+      "properties": {
+        "enabled": {
+          "description": "Flag that specifies whether the Integration add-on is enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -9332,6 +9751,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ListDeveloperSubscriptionsResponse": {
+      "description": "Response for ListDeveloperSubscriptions.",
+      "id": "GoogleCloudApigeeV1ListDeveloperSubscriptionsResponse",
+      "properties": {
+        "developerSubscriptions": {
+          "description": "List of all subscriptions.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1DeveloperSubscription"
+          },
+          "type": "array"
+        },
+        "nextStartKey": {
+          "description": "Value that can be sent as `startKey` to retrieve the next page of content. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ListEnvironmentGroupAttachmentsResponse": {
       "description": "Response for ListEnvironmentGroupAttachments.",
       "id": "GoogleCloudApigeeV1ListEnvironmentGroupAttachmentsResponse",
@@ -9489,6 +9926,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ListRatePlansResponse": {
+      "description": "Response for ListRatePlans.",
+      "id": "GoogleCloudApigeeV1ListRatePlansResponse",
+      "properties": {
+        "nextStartKey": {
+          "description": "Value that can be sent as `startKey` to retrieve the next page of content. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "ratePlans": {
+          "description": "List of rate plans in an organization.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1RatePlan"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ListSharedFlowsResponse": {
       "id": "GoogleCloudApigeeV1ListSharedFlowsResponse",
       "properties": {
@@ -9554,6 +10009,17 @@
             "type": "any"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1MonetizationConfig": {
+      "description": "Configuration for the Monetization add-on.",
+      "id": "GoogleCloudApigeeV1MonetizationConfig",
+      "properties": {
+        "enabled": {
+          "description": "Flag that specifies whether the Monetization add-on is enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -9677,6 +10143,10 @@
           ],
           "type": "string"
         },
+        "progress": {
+          "$ref": "GoogleCloudApigeeV1OperationMetadataProgress",
+          "description": "Progress of the operation."
+        },
         "state": {
           "enum": [
             "STATE_UNSPECIFIED",
@@ -9694,6 +10164,46 @@
         },
         "targetResourceName": {
           "description": "Name of the resource for which the operation is operating on.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1OperationMetadataProgress": {
+      "description": "Information about operation progress.",
+      "id": "GoogleCloudApigeeV1OperationMetadataProgress",
+      "properties": {
+        "description": {
+          "description": "Description of the operation's progress.",
+          "type": "string"
+        },
+        "details": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The additional details of the progress.",
+          "type": "object"
+        },
+        "percentDone": {
+          "description": "The percentage of the operation progress.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "state": {
+          "description": "State of the operation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "NOT_STARTED",
+            "IN_PROGRESS",
+            "FINISHED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
           "type": "string"
         }
       },
@@ -9752,6 +10262,10 @@
     "GoogleCloudApigeeV1Organization": {
       "id": "GoogleCloudApigeeV1Organization",
       "properties": {
+        "addonsConfig": {
+          "$ref": "GoogleCloudApigeeV1AddonsConfig",
+          "description": "Addon configurations of the Apigee organization."
+        },
         "analyticsRegion": {
           "description": "Required. Primary GCP region for analytics data storage. For valid values, see [Create an Apigee organization](https://cloud.google.com/apigee/docs/api-platform/get-started/create-org).",
           "type": "string"
@@ -10174,6 +10688,178 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1RatePlan": {
+      "description": "Rate plan details.",
+      "id": "GoogleCloudApigeeV1RatePlan",
+      "properties": {
+        "apiproduct": {
+          "description": "Name of the API product that the rate plan is associated with.",
+          "type": "string"
+        },
+        "billingPeriod": {
+          "description": "Frequency at which the customer will be billed.",
+          "enum": [
+            "BILLING_PERIOD_UNSPECIFIED",
+            "WEEKLY",
+            "MONTHLY"
+          ],
+          "enumDescriptions": [
+            "Billing period not specified.",
+            "Weekly billing period. **Note**: Not supported by Apigee at this time.",
+            "Monthly billing period."
+          ],
+          "type": "string"
+        },
+        "consumptionPricingRates": {
+          "description": "API call volume ranges and the fees charged when the total number of API calls is within a given range. The method used to calculate the final fee depends on the selected pricing model. For example, if the pricing model is `STAIRSTEP` and the ranges are defined as follows: ``` { \"start\": 1, \"end\": 100, \"fee\": 75 }, { \"start\": 101, \"end\": 200, \"fee\": 100 }, } ``` Then the following fees would be charged based on the total number of API calls (assuming the currency selected is `USD`): * 1 call costs $75 * 50 calls cost $75 * 150 calls cost $100 The number of API calls cannot exceed 200.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1RateRange"
+          },
+          "type": "array"
+        },
+        "consumptionPricingType": {
+          "description": "Pricing model used for consumption-based charges.",
+          "enum": [
+            "CONSUMPTION_PRICING_TYPE_UNSPECIFIED",
+            "FIXED_PER_UNIT",
+            "BANDED",
+            "TIERED",
+            "STAIRSTEP"
+          ],
+          "enumDescriptions": [
+            "Pricing model not specified. This is the default.",
+            "Fixed rate charged for each API call.",
+            "Variable rate charged based on the total volume of API calls. Example: * 1-100 calls cost $2 per call * 101-200 calls cost $1.50 per call * 201-300 calls cost $1 per call * Total price for 50 calls: 50 x $2 = $100 * Total price for 150 calls: 150 x $1.5 = $225 * Total price for 250 calls: 250 x $1 = $250. **Note**: Not supported by Apigee at this time.",
+            "Variable rate charged for each API call based on price tiers. Example: * 1-100 calls cost $2 per call * 101-200 calls cost $1.50 per call * 201-300 calls cost $1 per call * Total price for 50 calls: 50 x $2 = $100 * Total price for 150 calls: 100 x $2 + 50 x $1.5 = $275 * Total price for 250 calls: 100 x $2 + 100 x $1.5 + 50 x $1 = $400. **Note**: Not supported by Apigee at this time.",
+            "Flat rate charged for a bundle of API calls whether or not the entire bundle is used. Example: * 1-100 calls cost $75 flat fee * 101-200 calls cost $100 flat free * 201-300 calls cost $150 flat fee * Total price for 1 call: $75 * Total price for 50 calls: $75 * Total price for 150 calls: $100 * Total price for 250 calls: $150. **Note**: Not supported by Apigee at this time."
+          ],
+          "type": "string"
+        },
+        "createdAt": {
+          "description": "Output only. Time that the rate plan was created in milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "currencyCode": {
+          "description": "Currency to be used for billing. Consists of a three-letter code as defined by the [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) standard.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the rate plan.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name of the rate plan.",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Time when the rate plan will expire in milliseconds since epoch. Set to 0 or `null` to indicate that the rate plan should never expire.",
+          "format": "int64",
+          "type": "string"
+        },
+        "fixedFeeFrequency": {
+          "description": "Frequency at which the fixed fee is charged.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "fixedRecurringFee": {
+          "$ref": "GoogleTypeMoney",
+          "description": "Fixed amount that is charged at a defined interval and billed in advance of use of the API product. The fee will be prorated for the first billing period."
+        },
+        "lastModifiedAt": {
+          "description": "Output only. Time the rate plan was last modified in milliseconds since epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Name of the rate plan.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "paymentFundingModel": {
+          "description": "Flag that specifies the billing account type, prepaid or postpaid.",
+          "enum": [
+            "PAYMENT_FUNDING_MODEL_UNSPECIFIED",
+            "PREPAID",
+            "POSTPAID"
+          ],
+          "enumDescriptions": [
+            "Billing account type not specified.",
+            "Prepaid billing account type. Developer pays in advance for the use of your API products. Funds are deducted from their prepaid account balance. **Note**: Not supported by Apigee at this time.",
+            "Postpaid billing account type. Developer is billed through an invoice after using your API products."
+          ],
+          "type": "string"
+        },
+        "revenueShareRates": {
+          "description": "Details of the revenue sharing model.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1RevenueShareRange"
+          },
+          "type": "array"
+        },
+        "revenueShareType": {
+          "description": "Method used to calculate the revenue that is shared with developers.",
+          "enum": [
+            "REVENUE_SHARE_TYPE_UNSPECIFIED",
+            "FIXED",
+            "VOLUME_BANDED"
+          ],
+          "enumDescriptions": [
+            "Revenue share type is not specified.",
+            "Fixed percentage of the total revenue will be shared. The percentage to be shared can be configured by the API provider.",
+            "Amount of revenue shared depends on the number of API calls. The API call volume ranges and the revenue share percentage for each volume can be configured by the API provider. **Note**: Not supported by Apigee at this time."
+          ],
+          "type": "string"
+        },
+        "setupFee": {
+          "$ref": "GoogleTypeMoney",
+          "description": "Initial, one-time fee paid when purchasing the API product."
+        },
+        "startTime": {
+          "description": "Time when the rate plan becomes active in milliseconds since epoch.",
+          "format": "int64",
+          "type": "string"
+        },
+        "state": {
+          "description": "Current state of the rate plan (draft or published).",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DRAFT",
+            "PUBLISHED"
+          ],
+          "enumDescriptions": [
+            "State of the rate plan is not specified.",
+            "Rate plan is in draft mode and only visible to API providers.",
+            "Rate plan is published and will become visible to developers for the configured duration (between `startTime` and `endTime`)."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1RateRange": {
+      "description": "API call volume range and the fees charged when the total number of API calls is within the range.",
+      "id": "GoogleCloudApigeeV1RateRange",
+      "properties": {
+        "end": {
+          "description": "Ending value of the range. Set to 0 or `null` for the last range of values.",
+          "format": "int64",
+          "type": "string"
+        },
+        "fee": {
+          "$ref": "GoogleTypeMoney",
+          "description": "Fee to charge when total number of API calls falls within this range."
+        },
+        "start": {
+          "description": "Starting value of the range. Set to 0 or `null` for the initial range of values.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1Reference": {
       "description": "A Reference configuration. References must refer to a keystore that also exists in the parent environment.",
       "id": "GoogleCloudApigeeV1Reference",
@@ -10375,6 +11061,28 @@
         },
         "verb": {
           "description": "HTTP method verb",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1RevenueShareRange": {
+      "description": "API call volume range and the percentage of revenue to share with the developer when the total number of API calls is within the range.",
+      "id": "GoogleCloudApigeeV1RevenueShareRange",
+      "properties": {
+        "end": {
+          "description": "Ending value of the range. Set to 0 or `null` for the last range of values.",
+          "format": "int64",
+          "type": "string"
+        },
+        "sharePercentage": {
+          "description": "Percentage of the revenue to be shared with the developer. For example, to share 21 percent of the total revenue with the developer, set this value to 21. Specify a decimal number with a maximum of two digits following the decimal point.",
+          "format": "double",
+          "type": "number"
+        },
+        "start": {
+          "description": "Starting value of the range. Set to 0 or `null` for the initial range of values.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -10633,6 +11341,17 @@
           "description": "The first transaction creation timestamp in millisecond, recoreded by UAP.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1SetAddonsRequest": {
+      "description": "Request for SetAddons.",
+      "id": "GoogleCloudApigeeV1SetAddonsRequest",
+      "properties": {
+        "addonsConfig": {
+          "$ref": "GoogleCloudApigeeV1AddonsConfig",
+          "description": "Required. Add-on configurations."
         }
       },
       "type": "object"
@@ -11443,6 +12162,27 @@
         },
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleTypeMoney": {
+      "description": "Represents an amount of money with its currency type.",
+      "id": "GoogleTypeMoney",
+      "properties": {
+        "currencyCode": {
+          "description": "The three-letter currency code defined in ISO 4217.",
+          "type": "string"
+        },
+        "nanos": {
+          "description": "Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "units": {
+          "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar.",
+          "format": "int64",
           "type": "string"
         }
       },

@@ -24,7 +24,7 @@
           "description": "Administer your Cloud Bigtable tables"
         },
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         },
         "https://www.googleapis.com/auth/cloud-platform.read-only": {
           "description": "View your data across Google Cloud Platform services"
@@ -1764,7 +1764,7 @@
       }
     }
   },
-  "revision": "20210314",
+  "revision": "20210326",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {

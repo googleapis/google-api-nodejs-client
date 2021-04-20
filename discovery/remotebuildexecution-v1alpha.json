@@ -432,7 +432,7 @@
       }
     }
   },
-  "revision": "20210322",
+  "revision": "20210412",
   "rootUrl": "https://admin-remotebuildexecution.googleapis.com/",
   "schemas": {
     "BuildBazelRemoteExecutionV2Action": {
@@ -1176,14 +1176,18 @@
             "LOCATION_NONE",
             "LOCATION_EXEC_ROOT_RELATIVE",
             "LOCATION_WORKING_DIR_RELATIVE",
-            "LOCATION_EXEC_ROOT_AND_WORKING_DIR_RELATIVE"
+            "LOCATION_EXEC_ROOT_AND_WORKING_DIR_RELATIVE",
+            "LOCATION_EXEC_ROOT_RELATIVE_OUTPUT_OUTSIDE_WORKING_DIR",
+            "LOCATION_EXEC_ROOT_AND_WORKING_DIR_RELATIVE_OUTPUT_OUTSIDE_WORKING_DIR"
           ],
           "enumDescriptions": [
             "Location is set to LOCATION_UNDEFINED for tasks where the working directorty is not specified or is identical to the execution root directory.",
             "No output files or directories were found neither relative to the execution root directory nor relative to the working directory.",
             "Output files or directories were found relative to the execution root directory but not relative to the working directory.",
             "Output files or directories were found relative to the working directory but not relative to the execution root directory.",
-            "Output files or directories were found both relative to the execution root directory and relative to the working directory."
+            "Output files or directories were found both relative to the execution root directory and relative to the working directory.",
+            "Output files or directories were found relative to the execution root directory but not relative to the working directory. In addition at least one output file or directory was found outside of the working directory such that a working-directory-relative-path would have needed to start with a `..`.",
+            "Output files or directories were found both relative to the execution root directory and relative to the working directory. In addition at least one exec-root-relative output file or directory was found outside of the working directory such that a working-directory-relative-path would have needed to start with a `..`."
           ],
           "type": "string"
         },
@@ -1241,7 +1245,8 @@
             "DOCKER_CREATE_COMPUTE_SYSTEM_INCORRECT_PARAMETER_ERROR",
             "DOCKER_TOO_MANY_SYMBOLIC_LINK_LEVELS",
             "LOCAL_CONTAINER_MANAGER_NOT_RUNNING",
-            "DOCKER_IMAGE_VPCSC_PERMISSION_DENIED"
+            "DOCKER_IMAGE_VPCSC_PERMISSION_DENIED",
+            "WORKING_DIR_NOT_RELATIVE"
           ],
           "enumDescriptions": [
             "The command succeeded.",
@@ -1284,7 +1289,8 @@
             "Docker failed to run containers with CreateComputeSystem error that involves an incorrect parameter (more specific version of DOCKER_CREATE_COMPUTE_SYSTEM_ERROR that is user-caused).",
             "Docker failed to create an overlay mount because of too many levels of symbolic links.",
             "The local Container Manager is not running.",
-            "Docker failed because a request was denied by the organization's policy."
+            "Docker failed because a request was denied by the organization's policy.",
+            "Working directory is not relative"
           ],
           "type": "string"
         },

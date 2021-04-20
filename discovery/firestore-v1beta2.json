@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         },
         "https://www.googleapis.com/auth/datastore": {
           "description": "View and manage your Google Cloud Datastore data"
@@ -415,7 +415,7 @@
       }
     }
   },
-  "revision": "20200801",
+  "revision": "20210326",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Empty": {

@@ -54,7 +54,7 @@
           "description": "See, edit, create, and delete your spreadsheets in Google Drive"
         },
         "https://www.googleapis.com/auth/userinfo.email": {
-          "description": "View your email address"
+          "description": "See your primary Google Account email address"
         }
       }
     }
@@ -887,7 +887,7 @@
       }
     }
   },
-  "revision": "20210227",
+  "revision": "20210410",
   "rootUrl": "https://script.googleapis.com/",
   "schemas": {
     "Content": {

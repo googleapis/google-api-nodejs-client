@@ -309,7 +309,7 @@
   },
   {
     "api": "servicemanagement",
-    "package": ""
+    "package": "@google-cloud/service-management"
   },
   {
     "api": "spanner",
