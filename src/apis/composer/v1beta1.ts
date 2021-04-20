@@ -539,7 +539,7 @@ export namespace composer_v1beta1 {
      */
     pypiPackages?: {[key: string]: string} | null;
     /**
-     * Optional. The major version of Python used to run the Apache Airflow scheduler, worker, and webserver processes. Can be set to '2' or '3'. If not specified, the default is '2'. Cannot be updated.
+     * Optional. The major version of Python used to run the Apache Airflow scheduler, worker, and webserver processes. Can be set to '2' or '3'. If not specified, the default is '3'. Cannot be updated.
      */
     pythonVersion?: string | null;
   }
