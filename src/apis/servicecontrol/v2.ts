@@ -433,7 +433,7 @@ export namespace servicecontrol_v2 {
      */
     method?: string | null;
     /**
-     * The HTTP URL path.
+     * The HTTP URL path, excluding the query parameters.
      */
     path?: string | null;
     /**
@@ -574,7 +574,7 @@ export namespace servicecontrol_v2 {
    */
   export interface Schema$Response {
     /**
-     * The length of time it takes the backend service to fully respond to a request. Measured from when the destination service starts to send the request to the backend until when the destination service receives the complete response from the backend.
+     * The amount of time it takes the backend service to fully respond to a request. Measured from when the destination service starts to send the request to the backend until when the destination service receives the complete response from the backend.
      */
     backendLatency?: string | null;
     /**

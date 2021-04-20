@@ -1011,7 +1011,7 @@ export namespace servicecontrol_v1 {
      */
     method?: string | null;
     /**
-     * The HTTP URL path.
+     * The HTTP URL path, excluding the query parameters.
      */
     path?: string | null;
     /**
