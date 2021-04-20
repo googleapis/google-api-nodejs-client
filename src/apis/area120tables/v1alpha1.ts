@@ -193,6 +193,10 @@ export namespace area120tables_v1alpha1 {
      */
     lookupDetails?: Schema$LookupDetails;
     /**
+     * Optional. Indicates whether or not multiple values are allowed for array types where such a restriction is possible.
+     */
+    multipleValuesDisallowed?: boolean | null;
+    /**
      * column name
      */
     name?: string | null;
@@ -318,7 +322,20 @@ export namespace area120tables_v1alpha1 {
     values?: {[key: string]: any} | null;
   }
   /**
-   * A single table.
+   * A saved view of a table. NextId: 3
+   */
+  export interface Schema$SavedView {
+    /**
+     * Internal id associated with the saved view.
+     */
+    id?: string | null;
+    /**
+     * Display name of the saved view.
+     */
+    name?: string | null;
+  }
+  /**
+   * A single table. NextId: 7
    */
   export interface Schema$Table {
     /**
@@ -337,6 +354,10 @@ export namespace area120tables_v1alpha1 {
      * The resource name of the table. Table names have the form `tables/{table\}`.
      */
     name?: string | null;
+    /**
+     * Saved views for this table.
+     */
+    savedViews?: Schema$SavedView[];
     /**
      * Time when the table was last updated excluding updates to individual rows
      */
@@ -438,6 +459,7 @@ export namespace area120tables_v1alpha1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
+     *   //   "savedViews": [],
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -564,6 +586,8 @@ export namespace area120tables_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await area120tables.tables.list({
+     *     // Optional. Sorting order for the list of tables on createTime/updateTime.
+     *     orderBy: 'placeholder-value',
      *     // The maximum number of tables to return. The service may return fewer than this value. If unspecified, at most 20 tables are returned. The maximum value is 100; values above 100 are coerced to 100.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListTables` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTables` must match the call that provided the page token.
@@ -677,6 +701,10 @@ export namespace area120tables_v1alpha1 {
     name?: string;
   }
   export interface Params$Resource$Tables$List extends StandardParameters {
+    /**
+     * Optional. Sorting order for the list of tables on createTime/updateTime.
+     */
+    orderBy?: string;
     /**
      * The maximum number of tables to return. The service may return fewer than this value. If unspecified, at most 20 tables are returned. The maximum value is 100; values above 100 are coerced to 100.
      */
@@ -1589,6 +1617,8 @@ export namespace area120tables_v1alpha1 {
      *   const res = await area120tables.tables.rows.list({
      *     // Optional. Filter to only include resources matching the requirements. For more information, see [Filtering list results](https://support.google.com/area120-tables/answer/10503371).
      *     filter: 'placeholder-value',
+     *     // Optional. Sorting order for the list of rows on createTime/updateTime.
+     *     orderBy: 'placeholder-value',
      *     // The maximum number of rows to return. The service may return fewer than this value. If unspecified, at most 50 rows are returned. The maximum value is 1,000; values above 1,000 are coerced to 1,000.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListRows` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRows` must match the call that provided the page token.
@@ -1923,6 +1953,10 @@ export namespace area120tables_v1alpha1 {
      * Optional. Filter to only include resources matching the requirements. For more information, see [Filtering list results](https://support.google.com/area120-tables/answer/10503371).
      */
     filter?: string;
+    /**
+     * Optional. Sorting order for the list of rows on createTime/updateTime.
+     */
+    orderBy?: string;
     /**
      * The maximum number of rows to return. The service may return fewer than this value. If unspecified, at most 50 rows are returned. The maximum value is 1,000; values above 1,000 are coerced to 1,000.
      */
