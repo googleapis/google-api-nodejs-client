@@ -2260,7 +2260,7 @@
       }
     }
   },
-  "revision": "20210322",
+  "revision": "20210406",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2731,6 +2731,17 @@
       },
       "type": "object"
     },
+    "ConfidentialInstanceConfig": {
+      "description": "Confidential Instance Config for clusters using Confidential VMs (https://cloud.google.com/compute/confidential-vm/docs) NEXT ID: 2",
+      "id": "ConfidentialInstanceConfig",
+      "properties": {
+        "enableConfidentialCompute": {
+          "description": "Optional. Defines whether the instance should have confidential compute enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "DiagnoseClusterRequest": {
       "description": "A request to collect cluster diagnostic information.",
       "id": "DiagnoseClusterRequest",
@@ -2833,6 +2844,10 @@
       "description": "Common config settings for resources of Compute Engine cluster instances, applicable to all instances in the cluster.",
       "id": "GceClusterConfig",
       "properties": {
+        "confidentialInstanceConfig": {
+          "$ref": "ConfidentialInstanceConfig",
+          "description": "Optional. Confidential Instance Config for clusters using Confidential VMs (https://cloud.google.com/compute/confidential-vm/docs)"
+        },
         "internalIpOnly": {
           "description": "Optional. If true, all instances in the cluster will only have internal IP addresses. By default, clusters are not restricted to internal IP addresses, and will have ephemeral external IP addresses assigned to each instance. This internal_ip_only restriction can only be enabled for subnetwork enabled networks, and all off-cluster dependencies must be configured to be accessible without external IP addresses.",
           "type": "boolean"
@@ -4182,7 +4197,7 @@
               "Unspecified component. Specifying this will cause Cluster creation to fail.",
               "The Anaconda python distribution. The Anaconda component is not supported in the Dataproc 2.0 image. The 2.0 image is pre-installed with Miniconda.",
               "Docker",
-              "The Druid query engine. (beta)",
+              "The Druid query engine. (alpha)",
               "Flink",
               "HBase. (beta)",
               "The Hive Web HCatalog (the REST service for accessing HCatalog).",
