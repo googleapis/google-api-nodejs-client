@@ -12,7 +12,7 @@
           "description": "View your Google Compute Engine resources"
         },
         "https://www.googleapis.com/auth/userinfo.email": {
-          "description": "View your email address"
+          "description": "See your primary Google Account email address"
         }
       }
     }
@@ -2225,7 +2225,7 @@
       }
     }
   },
-  "revision": "20210331",
+  "revision": "20210408",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3370,6 +3370,10 @@
         },
         "serviceAccountEmail": {
           "description": "The email address of the service account to run the job as.",
+          "type": "string"
+        },
+        "stagingLocation": {
+          "description": "The Cloud Storage path for staging local files. Must be a valid Cloud Storage URL, beginning with `gs://`.",
           "type": "string"
         },
         "subnetwork": {
