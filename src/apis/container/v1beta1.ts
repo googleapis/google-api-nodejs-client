@@ -431,6 +431,10 @@ export namespace container_v1beta1 {
      */
     expireTime?: string | null;
     /**
+     * Output only. Unique id for the cluster.
+     */
+    id?: string | null;
+    /**
      * The initial Kubernetes version for this cluster. Valid versions are those found in validMasterVersions returned by getServerConfig. The version can be upgraded over time; such upgrades are reflected in currentMasterVersion and currentNodeVersion. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - "latest": picks the highest valid Kubernetes version - "1.X": picks the highest valid patch+gke.N patch in the 1.X version - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version - "1.X.Y-gke.N": picks an explicit Kubernetes version - "","-": picks the default Kubernetes version
      */
     initialClusterVersion?: string | null;
@@ -582,6 +586,10 @@ export namespace container_v1beta1 {
      * Cluster-level Vertical Pod Autoscaling configuration.
      */
     verticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
+    /**
+     * Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
+     */
+    workloadCertificates?: Schema$WorkloadCertificates;
     /**
      * Configuration for the use of Kubernetes Service Accounts in GCP IAM policies.
      */
@@ -741,6 +749,10 @@ export namespace container_v1beta1 {
      * Cluster-level Vertical Pod Autoscaling configuration.
      */
     desiredVerticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
+    /**
+     * Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
+     */
+    desiredWorkloadCertificates?: Schema$WorkloadCertificates;
     /**
      * Configuration for Workload Identity.
      */
@@ -1397,7 +1409,7 @@ export namespace container_v1beta1 {
     disabled?: boolean | null;
   }
   /**
-   * Collection of Compute Engine network tags that can be applied to a node's underyling VM instance. (See `tags` field in [`NodeConfig`](/kubernetes-engine/docs/reference/rest/v1/NodeConfig)).
+   * Collection of Compute Engine network tags that can be applied to a node's underlying VM instance. (See `tags` field in [`NodeConfig`](/kubernetes-engine/docs/reference/rest/v1/NodeConfig)).
    */
   export interface Schema$NetworkTags {
     /**
@@ -2659,6 +2671,15 @@ export namespace container_v1beta1 {
     enabled?: boolean | null;
   }
   /**
+   * Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
+   */
+  export interface Schema$WorkloadCertificates {
+    /**
+     * enable_certificates controls issuance of workload mTLS certificates. If set, the GKE Workload Identity Certificates controller and node agent will be deployed in the cluster, which can then be configured by creating a WorkloadCertificateConfig Custom Resource. Requires Workload Identity (workload_pool must be non-empty).
+     */
+    enableCertificates?: boolean | null;
+  }
+  /**
    * Configuration for the use of Kubernetes Service Accounts in GCP IAM policies.
    */
   export interface Schema$WorkloadIdentityConfig {
@@ -3721,6 +3742,7 @@ export namespace container_v1beta1 {
      *   //   "enableTpu": false,
      *   //   "endpoint": "my_endpoint",
      *   //   "expireTime": "my_expireTime",
+     *   //   "id": "my_id",
      *   //   "initialClusterVersion": "my_initialClusterVersion",
      *   //   "initialNodeCount": 0,
      *   //   "instanceGroupUrls": [],
@@ -3759,6 +3781,7 @@ export namespace container_v1beta1 {
      *   //   "tpuConfig": {},
      *   //   "tpuIpv4CidrBlock": "my_tpuIpv4CidrBlock",
      *   //   "verticalPodAutoscaling": {},
+     *   //   "workloadCertificates": {},
      *   //   "workloadIdentityConfig": {},
      *   //   "zone": "my_zone"
      *   // }
@@ -9245,6 +9268,7 @@ export namespace container_v1beta1 {
      *   //   "enableTpu": false,
      *   //   "endpoint": "my_endpoint",
      *   //   "expireTime": "my_expireTime",
+     *   //   "id": "my_id",
      *   //   "initialClusterVersion": "my_initialClusterVersion",
      *   //   "initialNodeCount": 0,
      *   //   "instanceGroupUrls": [],
@@ -9283,6 +9307,7 @@ export namespace container_v1beta1 {
      *   //   "tpuConfig": {},
      *   //   "tpuIpv4CidrBlock": "my_tpuIpv4CidrBlock",
      *   //   "verticalPodAutoscaling": {},
+     *   //   "workloadCertificates": {},
      *   //   "workloadIdentityConfig": {},
      *   //   "zone": "my_zone"
      *   // }
