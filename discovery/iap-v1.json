@@ -487,7 +487,7 @@
       }
     }
   },
-  "revision": "20210326",
+  "revision": "20210409",
   "rootUrl": "https://iap.googleapis.com/",
   "schemas": {
     "AccessDeniedPageSettings": {
@@ -813,9 +813,11 @@
       "type": "object"
     },
     "PolicyName": {
+      "description": "An internal name for an IAM policy, based on the resource to which the policy applies. Not to be confused with a resource's external full resource name. For more information on this distinction, see go/iam-full-resource-names.",
       "id": "PolicyName",
       "properties": {
         "id": {
+          "description": "Identifies an instance of the type. ID format varies by type. The ID format is defined in the IAM .service file that defines the type, either in path_mapping or in a comment.",
           "type": "string"
         },
         "region": {
@@ -823,7 +825,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Valid values for type might be 'gce', 'gcs', 'project', 'account' etc.",
+          "description": "Resource type. Types are defined in IAM's .service files. Valid values for type might be 'gce', 'gcs', 'project', 'account' etc.",
           "type": "string"
         }
       },
