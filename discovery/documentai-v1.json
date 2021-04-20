@@ -254,7 +254,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of results to return. If not set, the service will select a default.",
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -544,7 +544,7 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "The maximum number of results to return. If not set, the service will select a default.",
+                      "description": "The maximum number of results to return. If not set, the service selects a default.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -601,7 +601,7 @@
       }
     }
   },
-  "revision": "20210329",
+  "revision": "20210415",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata": {
@@ -802,12 +802,22 @@
       "description": "The dataset validation information. This includes any and all errors with documents and the dataset.",
       "id": "GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation",
       "properties": {
+        "datasetErrorCount": {
+          "description": "The total number of dataset errors.",
+          "format": "int32",
+          "type": "integer"
+        },
         "datasetErrors": {
           "description": "Error information for the dataset as a whole. A maximum of 10 dataset errors will be returned. A single dataset error is terminal for training.",
           "items": {
             "$ref": "GoogleRpcStatus"
           },
           "type": "array"
+        },
+        "documentErrorCount": {
+          "description": "The total number of document errors.",
+          "format": "int32",
+          "type": "integer"
         },
         "documentErrors": {
           "description": "Error information pertaining to specific documents. A maximum of 10 document errors will be returned. Any document with errors will not be used throughout training.",

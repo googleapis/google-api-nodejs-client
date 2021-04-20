@@ -274,9 +274,17 @@ export namespace documentai_v1beta2 {
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3TrainProcessorVersionMetadataDatasetValidation {
     /**
+     * The total number of dataset errors.
+     */
+    datasetErrorCount?: number | null;
+    /**
      * Error information for the dataset as a whole. A maximum of 10 dataset errors will be returned. A single dataset error is terminal for training.
      */
     datasetErrors?: Schema$GoogleRpcStatus[];
+    /**
+     * The total number of document errors.
+     */
+    documentErrorCount?: number | null;
     /**
      * Error information pertaining to specific documents. A maximum of 10 document errors will be returned. Any document with errors will not be used throughout training.
      */
