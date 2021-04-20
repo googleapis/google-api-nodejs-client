@@ -423,6 +423,10 @@ export namespace cloudbuild_v1 {
      */
     filename?: string | null;
     /**
+     * Optional. A Common Expression Language string.
+     */
+    filter?: string | null;
+    /**
      * GitHubEventsConfig describes the configuration of a trigger that creates a build whenever a GitHub event is received. Mutually exclusive with `trigger_template`.
      */
     github?: Schema$GitHubEventsConfig;
@@ -442,6 +446,10 @@ export namespace cloudbuild_v1 {
      * User-assigned name of the trigger. Must be unique within the project. Trigger names must meet the following requirements: + They must contain only alphanumeric characters and dashes. + They can be 1-64 characters long. + They must begin and end with an alphanumeric character.
      */
     name?: string | null;
+    /**
+     * Optional. PubsubConfig describes the configuration of a trigger that creates a build whenever a Pub/Sub message is published.
+     */
+    pubsubConfig?: Schema$PubsubConfig;
     /**
      * Substitutions for Build resource. The keys must match the following regular expression: `^_[A-Z0-9_]+$`.
      */
@@ -727,6 +735,27 @@ export namespace cloudbuild_v1 {
      * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * PubsubConfig describes the configuration of a trigger that creates a build whenever a Pub/Sub message is published.
+   */
+  export interface Schema$PubsubConfig {
+    /**
+     * Service account that will make the push request.
+     */
+    serviceAccountEmail?: string | null;
+    /**
+     * Potential issues with the underlying Pub/Sub subscription configuration. Only populated on get requests.
+     */
+    state?: string | null;
+    /**
+     * Output only. Name of the subscription. Format is `projects/{project\}/subscriptions/{subscription\}`.
+     */
+    subscription?: string | null;
+    /**
+     * The name of the topic from which this subscription is receiving messages. Format is `projects/{project\}/topics/{topic\}`.
+     */
+    topic?: string | null;
   }
   /**
    * PullRequestFilter contains filter properties for matching GitHub Pull Requests.
@@ -3406,11 +3435,13 @@ export namespace cloudbuild_v1 {
      *       //   "description": "my_description",
      *       //   "disabled": false,
      *       //   "filename": "my_filename",
+     *       //   "filter": "my_filter",
      *       //   "github": {},
      *       //   "id": "my_id",
      *       //   "ignoredFiles": [],
      *       //   "includedFiles": [],
      *       //   "name": "my_name",
+     *       //   "pubsubConfig": {},
      *       //   "substitutions": {},
      *       //   "tags": [],
      *       //   "triggerTemplate": {}
@@ -3426,11 +3457,13 @@ export namespace cloudbuild_v1 {
      *   //   "description": "my_description",
      *   //   "disabled": false,
      *   //   "filename": "my_filename",
+     *   //   "filter": "my_filter",
      *   //   "github": {},
      *   //   "id": "my_id",
      *   //   "ignoredFiles": [],
      *   //   "includedFiles": [],
      *   //   "name": "my_name",
+     *   //   "pubsubConfig": {},
      *   //   "substitutions": {},
      *   //   "tags": [],
      *   //   "triggerTemplate": {}
@@ -3697,11 +3730,13 @@ export namespace cloudbuild_v1 {
      *   //   "description": "my_description",
      *   //   "disabled": false,
      *   //   "filename": "my_filename",
+     *   //   "filter": "my_filter",
      *   //   "github": {},
      *   //   "id": "my_id",
      *   //   "ignoredFiles": [],
      *   //   "includedFiles": [],
      *   //   "name": "my_name",
+     *   //   "pubsubConfig": {},
      *   //   "substitutions": {},
      *   //   "tags": [],
      *   //   "triggerTemplate": {}
@@ -3980,11 +4015,13 @@ export namespace cloudbuild_v1 {
      *       //   "description": "my_description",
      *       //   "disabled": false,
      *       //   "filename": "my_filename",
+     *       //   "filter": "my_filter",
      *       //   "github": {},
      *       //   "id": "my_id",
      *       //   "ignoredFiles": [],
      *       //   "includedFiles": [],
      *       //   "name": "my_name",
+     *       //   "pubsubConfig": {},
      *       //   "substitutions": {},
      *       //   "tags": [],
      *       //   "triggerTemplate": {}
@@ -4000,11 +4037,13 @@ export namespace cloudbuild_v1 {
      *   //   "description": "my_description",
      *   //   "disabled": false,
      *   //   "filename": "my_filename",
+     *   //   "filter": "my_filter",
      *   //   "github": {},
      *   //   "id": "my_id",
      *   //   "ignoredFiles": [],
      *   //   "includedFiles": [],
      *   //   "name": "my_name",
+     *   //   "pubsubConfig": {},
      *   //   "substitutions": {},
      *   //   "tags": [],
      *   //   "triggerTemplate": {}
