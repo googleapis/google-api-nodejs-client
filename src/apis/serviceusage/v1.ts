@@ -431,6 +431,10 @@ export namespace serviceusage_v1 {
     environment?: string | null;
   }
   /**
+   * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by CreateAdminQuotaPolicy.
+   */
+  export interface Schema$CreateAdminQuotaPolicyMetadata {}
+  /**
    * Customize service error responses. For example, list any service specific protobuf types that can appear in error detail lists of error responses. Example: custom_error: types: - google.foo.v1.CustomError - google.foo.v1.AnotherError
    */
   export interface Schema$CustomError {
@@ -469,6 +473,10 @@ export namespace serviceusage_v1 {
      */
     path?: string | null;
   }
+  /**
+   * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by DeleteAdminQuotaPolicy.
+   */
+  export interface Schema$DeleteAdminQuotaPolicyMetadata {}
   /**
    * Request message for the `DisableService` method.
    */
@@ -572,10 +580,6 @@ export namespace serviceusage_v1 {
    */
   export interface Schema$Endpoint {
     /**
-     * DEPRECATED: This field is no longer supported. Instead of using aliases, please specify multiple google.api.Endpoint for each of the intended aliases. Additional names that this endpoint will be hosted on.
-     */
-    aliases?: string[] | null;
-    /**
      * Allowing [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka cross-domain traffic, would allow the backends served from this endpoint to receive and respond to HTTP OPTIONS requests. The response will be used by the browser to determine whether the subsequent cross-origin request is allowed to proceed.
      */
     allowCors?: boolean | null;
@@ -675,6 +679,10 @@ export namespace serviceusage_v1 {
      */
     typeUrl?: string | null;
   }
+  /**
+   * Metadata for the `GetServiceIdentity` method.
+   */
+  export interface Schema$GetServiceIdentityMetadata {}
   /**
    * Response message for getting service identity.
    */
@@ -961,6 +969,10 @@ export namespace serviceusage_v1 {
     selector?: string | null;
   }
   /**
+   * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by ImportAdminOverrides.
+   */
+  export interface Schema$ImportAdminOverridesMetadata {}
+  /**
    * Response message for ImportAdminOverrides
    */
   export interface Schema$ImportAdminOverridesResponse {
@@ -970,6 +982,10 @@ export namespace serviceusage_v1 {
     overrides?: Schema$QuotaOverride[];
   }
   /**
+   * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by ImportAdminQuotaPolicies.
+   */
+  export interface Schema$ImportAdminQuotaPoliciesMetadata {}
+  /**
    * Response message for ImportAdminQuotaPolicies
    */
   export interface Schema$ImportAdminQuotaPoliciesResponse {
@@ -978,6 +994,10 @@ export namespace serviceusage_v1 {
      */
     policies?: Schema$AdminQuotaPolicy[];
   }
+  /**
+   * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by ImportConsumerOverrides.
+   */
+  export interface Schema$ImportConsumerOverridesMetadata {}
   /**
    * Response message for ImportConsumerOverrides
    */
@@ -1550,6 +1570,10 @@ export namespace serviceusage_v1 {
      */
     syntax?: string | null;
   }
+  /**
+   * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by UpdateAdminQuotaPolicy.
+   */
+  export interface Schema$UpdateAdminQuotaPolicyMetadata {}
   /**
    * Configuration controlling usage of a service.
    */
