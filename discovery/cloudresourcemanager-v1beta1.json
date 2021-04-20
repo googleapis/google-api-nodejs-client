@@ -566,7 +566,7 @@
       }
     }
   },
-  "revision": "20210328",
+  "revision": "20210411",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "Ancestor": {
@@ -751,6 +751,12 @@
       },
       "type": "object"
     },
+    "CreateTagBindingMetadata": {
+      "description": "Runtime operation information for creating a TagValue.",
+      "id": "CreateTagBindingMetadata",
+      "properties": {},
+      "type": "object"
+    },
     "CreateTagKeyMetadata": {
       "description": "Runtime operation information for creating a TagKey.",
       "id": "CreateTagKeyMetadata",
@@ -778,6 +784,12 @@
     "DeleteProjectMetadata": {
       "description": "A status object which is used as the `metadata` field for the Operation returned by `DeleteProject`.",
       "id": "DeleteProjectMetadata",
+      "properties": {},
+      "type": "object"
+    },
+    "DeleteTagBindingMetadata": {
+      "description": "Runtime operation information for deleting a TagBinding.",
+      "id": "DeleteTagBindingMetadata",
       "properties": {},
       "type": "object"
     },
