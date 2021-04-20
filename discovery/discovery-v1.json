@@ -5,7 +5,7 @@
   "description": "Provides information about other Google APIs, such as what APIs are available, the resource, and method details for each API.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/discovery/",
-  "etag": "\"u9GIe6H63LSGq-9_t39K2Zx_EAc/SkonogyFkVaMzpxWkF9B9P1QZ1Q\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/vabF8Q1ADCm_Bt9EBq9rkrRawQA\"",
   "icons": {
     "x16": "http://www.google.com/images/icons/feature/filing_cabinet_search-g16.png",
     "x32": "http://www.google.com/images/icons/feature/filing_cabinet_search-g32.png"
@@ -116,7 +116,7 @@
       }
     }
   },
-  "revision": "20200429",
+  "revision": "20200806",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "DirectoryList": {
@@ -525,6 +525,10 @@
         "etagRequired": {
           "description": "Whether this method requires an ETag to be specified. The ETag is sent as an HTTP If-Match or If-None-Match header.",
           "type": "boolean"
+        },
+        "flatPath": {
+          "description": "The URI path of this REST method in (RFC 6570) format without level 2 features ({+var}). Supplementary to the path property.",
+          "type": "string"
         },
         "httpMethod": {
           "description": "HTTP method used by this method.",
