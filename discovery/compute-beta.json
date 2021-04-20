@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/8NH5VUhg7eH5yLGqaLx2Dvdhj6E\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/q0ayh9DnjS_HQ2URCq9euZb3b7Y\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -31177,7 +31177,7 @@
       }
     }
   },
-  "revision": "20210322",
+  "revision": "20210327",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -32130,6 +32130,11 @@
         "enableNestedVirtualization": {
           "description": "Whether to enable nested virtualization or not (default is false).",
           "type": "boolean"
+        },
+        "threadsPerCore": {
+          "description": "The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -56458,6 +56463,13 @@
       "description": "Represents a ServiceAttachment resource.\n\nA service attachment represents a service that a producer has exposed. It encapsulates the load balancer which fronts the service runs and a list of NAT IP ranges that the producers uses to represent the consumers connecting to the service. next tag = 19",
       "id": "ServiceAttachment",
       "properties": {
+        "connectedEndpoints": {
+          "description": "[Output Only] An array of connections for all the consumers connected to this service attachment.",
+          "items": {
+            "$ref": "ServiceAttachmentConnectedEndpoint"
+          },
+          "type": "array"
+        },
         "connectionPreference": {
           "description": "The connection preference of service attachment. The value can be set to ACCEPT_AUTOMATIC. An ACCEPT_AUTOMATIC service attachment is one that always accepts the connection from consumer forwarding rules.",
           "enum": [
@@ -56519,6 +56531,10 @@
         "producerForwardingRule": {
           "description": "The URL of a forwarding rule with loadBalancingScheme INTERNAL* that is serving the endpoint identified by this service attachment.",
           "type": "string"
+        },
+        "pscServiceAttachmentId": {
+          "$ref": "Uint128",
+          "description": "[Output Only] An 128-bit global unique ID of the PSC service attachment."
         },
         "region": {
           "description": "[Output Only] URL of the region where the service attachment resides. This field applies only to the region resource. You must specify this field as part of the HTTP request URL. It is not settable as a field in the request body.",
@@ -56659,12 +56675,55 @@
       },
       "type": "object"
     },
+    "ServiceAttachmentConnectedEndpoint": {
+      "description": "[Output Only] A connection connected to this service attachment.",
+      "id": "ServiceAttachmentConnectedEndpoint",
+      "properties": {
+        "endpoint": {
+          "description": "The url of a connected endpoint.",
+          "type": "string"
+        },
+        "forwardingRule": {
+          "description": "The url of a consumer forwarding rule. [Deprecated] Do not use.",
+          "type": "string"
+        },
+        "pscConnectionId": {
+          "description": "The PSC connection id of the connected endpoint.",
+          "format": "uint64",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of a connected endpoint to this service attachment.",
+          "enum": [
+            "ACCEPTED",
+            "CLOSED",
+            "PENDING",
+            "REJECTED",
+            "STATUS_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ServiceAttachmentConsumerForwardingRule": {
       "description": "[Output Only] A consumer forwarding rule connected to this service attachment. [Deprecated] Do not use.",
       "id": "ServiceAttachmentConsumerForwardingRule",
       "properties": {
         "forwardingRule": {
           "description": "The url of a consumer forwarding rule.",
+          "type": "string"
+        },
+        "pscConnectionId": {
+          "description": "The PSC connection id of the PSC Forwarding Rule.",
+          "format": "uint64",
           "type": "string"
         },
         "status": {
@@ -61770,6 +61829,20 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Uint128": {
+      "id": "Uint128",
+      "properties": {
+        "high": {
+          "format": "uint64",
+          "type": "string"
+        },
+        "low": {
+          "format": "uint64",
+          "type": "string"
         }
       },
       "type": "object"
