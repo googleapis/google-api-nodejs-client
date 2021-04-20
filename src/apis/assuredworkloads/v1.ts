@@ -364,6 +364,10 @@ export namespace assuredworkloads_v1 {
      * Output only. The resources associated with this workload. These resources will be created when creating the workload. If any of the projects already exist, the workload creation will fail. Always read only.
      */
     resources?: Schema$GoogleCloudAssuredworkloadsV1WorkloadResourceInfo[];
+    /**
+     * Input only. Resource properties that are used to customize workload resources. These properties (such as custom project id) will be used to create workload resources if possible. This field is optional.
+     */
+    resourceSettings?: Schema$GoogleCloudAssuredworkloadsV1WorkloadResourceSettings[];
   }
   /**
    * Settings specific to the Key Management Service.
@@ -388,6 +392,19 @@ export namespace assuredworkloads_v1 {
     resourceId?: string | null;
     /**
      * Indicates the type of resource.
+     */
+    resourceType?: string | null;
+  }
+  /**
+   * Represent the custom settings for the resources to be created.
+   */
+  export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadResourceSettings {
+    /**
+     * Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail.
+     */
+    resourceId?: string | null;
+    /**
+     * Indicates the type of resource. This field should be specified to correspond the id to the right project type (CONSUMER_PROJECT or ENCRYPTION_KEYS_PROJECT)
      */
     resourceType?: string | null;
   }
@@ -845,6 +862,7 @@ export namespace assuredworkloads_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
+     *       //   "resourceSettings": [],
      *       //   "resources": []
      *       // }
      *     },
@@ -1135,6 +1153,7 @@ export namespace assuredworkloads_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
+     *   //   "resourceSettings": [],
      *   //   "resources": []
      *   // }
      * }
@@ -1429,6 +1448,7 @@ export namespace assuredworkloads_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
+     *       //   "resourceSettings": [],
      *       //   "resources": []
      *       // }
      *     },
@@ -1446,6 +1466,7 @@ export namespace assuredworkloads_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
+     *   //   "resourceSettings": [],
      *   //   "resources": []
      *   // }
      * }
