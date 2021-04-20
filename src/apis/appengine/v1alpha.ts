@@ -245,6 +245,23 @@ export namespace appengine_v1alpha {
    */
   export interface Schema$Empty {}
   /**
+   * Metadata for the given google.cloud.location.Location.
+   */
+  export interface Schema$GoogleAppengineV1betaLocationMetadata {
+    /**
+     * App Engine flexible environment is available in the given location.@OutputOnly
+     */
+    flexibleEnvironmentAvailable?: boolean | null;
+    /**
+     * Output only. Search API (https://cloud.google.com/appengine/docs/standard/python/search) is available in the given location.
+     */
+    searchApiAvailable?: boolean | null;
+    /**
+     * App Engine standard environment is available in the given location.@OutputOnly
+     */
+    standardEnvironmentAvailable?: boolean | null;
+  }
+  /**
    * Response message for AuthorizedCertificates.ListAuthorizedCertificates.
    */
   export interface Schema$ListAuthorizedCertificatesResponse {
@@ -2545,7 +2562,7 @@ export namespace appengine_v1alpha {
      *     appsId: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
-     *     // The maximum number of results to return. If not set, the service will select a default.
+     *     // The maximum number of results to return. If not set, the service selects a default.
      *     pageSize: 'placeholder-value',
      *     // A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
@@ -2678,7 +2695,7 @@ export namespace appengine_v1alpha {
      */
     filter?: string;
     /**
-     * The maximum number of results to return. If not set, the service will select a default.
+     * The maximum number of results to return. If not set, the service selects a default.
      */
     pageSize?: number;
     /**
