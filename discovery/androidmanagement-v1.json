@@ -1004,7 +1004,7 @@
       }
     }
   },
-  "revision": "20210322",
+  "revision": "20210405",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -1022,6 +1022,34 @@
             "Unspecified. Defaults to COMMON_CRITERIA_MODE_DISABLED.",
             "Default. Disables Common Criteria Mode.",
             "Enables Common Criteria Mode."
+          ],
+          "type": "string"
+        },
+        "developerSettings": {
+          "description": "Controls access to developer settings: developer options and safe boot. Replaces safeBootDisabled (deprecated) and debuggingFeaturesAllowed (deprecated).",
+          "enum": [
+            "DEVELOPER_SETTINGS_UNSPECIFIED",
+            "DEVELOPER_SETTINGS_DISABLED",
+            "DEVELOPER_SETTINGS_ALLOWED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to DEVELOPER_SETTINGS_DISABLED.",
+            "Default. Disables all developer settings and prevents the user from accessing them.",
+            "Allows all developer settings. The user can access and optionally configure the settings."
+          ],
+          "type": "string"
+        },
+        "googlePlayProtectVerifyApps": {
+          "description": "Whether Google Play Protect verification (https://support.google.com/accounts/answer/2812853) is enforced. Replaces ensureVerifyAppsEnabled (deprecated).",
+          "enum": [
+            "GOOGLE_PLAY_PROTECT_VERIFY_APPS_UNSPECIFIED",
+            "VERIFY_APPS_ENFORCED",
+            "VERIFY_APPS_USER_CHOICE"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to VERIFY_APPS_ENFORCED.",
+            "Default. Force-enables app verification.",
+            "Allows the user to choose whether to enable app verification."
           ],
           "type": "string"
         },
@@ -1940,7 +1968,7 @@
           "type": "boolean"
         },
         "verifyAppsEnabled": {
-          "description": "Whether Verify Apps (Google Play Protect (https://support.google.com/googleplay/answer/2812853)) is enabled on the device.",
+          "description": "Whether Google Play Protect verification (https://support.google.com/accounts/answer/2812853) is enforced on the device.",
           "type": "boolean"
         }
       },
@@ -3459,7 +3487,7 @@
           "type": "string"
         },
         "networkEscapeHatchEnabled": {
-          "description": "Whether the network escape hatch is enabled. If a network connection can't be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.",
+          "description": "Whether the network escape hatch is enabled. If a network connection can't be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.Note: Setting wifiConfigDisabled to true will override this setting under specific circumstances. Please see wifiConfigDisabled for further details.",
           "type": "boolean"
         },
         "networkResetDisabled": {
@@ -3659,7 +3687,7 @@
           "type": "boolean"
         },
         "wifiConfigDisabled": {
-          "description": "Whether configuring Wi-Fi access points is disabled.",
+          "description": "Whether configuring Wi-Fi access points is disabled.Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).",
           "type": "boolean"
         },
         "wifiConfigsLockdownEnabled": {

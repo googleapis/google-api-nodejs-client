@@ -136,6 +136,14 @@ export namespace androidmanagement_v1 {
      */
     commonCriteriaMode?: string | null;
     /**
+     * Controls access to developer settings: developer options and safe boot. Replaces safeBootDisabled (deprecated) and debuggingFeaturesAllowed (deprecated).
+     */
+    developerSettings?: string | null;
+    /**
+     * Whether Google Play Protect verification (https://support.google.com/accounts/answer/2812853) is enforced. Replaces ensureVerifyAppsEnabled (deprecated).
+     */
+    googlePlayProtectVerifyApps?: string | null;
+    /**
      * The policy for untrusted apps (apps from unknown sources) enforced on the device. Replaces install_unknown_sources_allowed (deprecated).
      */
     untrustedAppsPolicy?: string | null;
@@ -675,7 +683,7 @@ export namespace androidmanagement_v1 {
      */
     unknownSourcesEnabled?: boolean | null;
     /**
-     * Whether Verify Apps (Google Play Protect (https://support.google.com/googleplay/answer/2812853)) is enabled on the device.
+     * Whether Google Play Protect verification (https://support.google.com/accounts/answer/2812853) is enforced on the device.
      */
     verifyAppsEnabled?: boolean | null;
   }
@@ -1567,7 +1575,7 @@ export namespace androidmanagement_v1 {
      */
     name?: string | null;
     /**
-     * Whether the network escape hatch is enabled. If a network connection can't be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.
+     * Whether the network escape hatch is enabled. If a network connection can't be made at boot time, the escape hatch prompts the user to temporarily connect to a network in order to refresh the device policy. After applying policy, the temporary network will be forgotten and the device will continue booting. This prevents being unable to connect to a network if there is no suitable network in the last policy and the device boots into an app in lock task mode, or the user is otherwise unable to reach device settings.Note: Setting wifiConfigDisabled to true will override this setting under specific circumstances. Please see wifiConfigDisabled for further details.
      */
     networkEscapeHatchEnabled?: boolean | null;
     /**
@@ -1719,7 +1727,7 @@ export namespace androidmanagement_v1 {
      */
     vpnConfigDisabled?: boolean | null;
     /**
-     * Whether configuring Wi-Fi access points is disabled.
+     * Whether configuring Wi-Fi access points is disabled.Note: If a network connection can't be made at boot time and configuring Wi-Fi is disabled then network escape hatch will be shown in order to refresh the device policy (see networkEscapeHatchEnabled).
      */
     wifiConfigDisabled?: boolean | null;
     /**
