@@ -2797,7 +2797,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2SurrogateType {}
   /**
-   * Structured content to inspect. Up to 50,000 `Value`s per request allowed. See https://cloud.google.com/dlp/docs/inspecting-text#inspecting_a_table to learn more.
+   * Structured content to inspect. Up to 50,000 `Value`s per request allowed. See https://cloud.google.com/dlp/docs/inspecting-structured-text#inspecting_a_table to learn more.
    */
   export interface Schema$GooglePrivacyDlpV2Table {
     /**

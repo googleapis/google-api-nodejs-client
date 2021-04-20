@@ -3367,7 +3367,7 @@
       }
     }
   },
-  "revision": "20210326",
+  "revision": "20210410",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -7041,7 +7041,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2Table": {
-      "description": "Structured content to inspect. Up to 50,000 `Value`s per request allowed. See https://cloud.google.com/dlp/docs/inspecting-text#inspecting_a_table to learn more.",
+      "description": "Structured content to inspect. Up to 50,000 `Value`s per request allowed. See https://cloud.google.com/dlp/docs/inspecting-structured-text#inspecting_a_table to learn more.",
       "id": "GooglePrivacyDlpV2Table",
       "properties": {
         "headers": {
