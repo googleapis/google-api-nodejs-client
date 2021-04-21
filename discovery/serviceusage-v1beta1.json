@@ -4,12 +4,6 @@
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud Platform data"
-        },
-        "https://www.googleapis.com/auth/cloud-platform.read-only": {
-          "description": "View your data across Google Cloud Platform services"
-        },
-        "https://www.googleapis.com/auth/service.management": {
-          "description": "Manage your Google API service configuration"
         }
       }
     }
@@ -135,8 +129,7 @@
             "$ref": "Operation"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/service.management"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "list": {
@@ -173,8 +166,7 @@
             "$ref": "ListOperationsResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/service.management"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         }
       }
@@ -182,7 +174,7 @@
     "services": {
       "methods": {
         "batchEnable": {
-          "description": "Enable multiple services on a project. The operation is atomic: if enabling any service fails, then the entire batch fails, and no state changes occur. Operation",
+          "description": "Enables multiple services on a project. The operation is atomic: if enabling any service fails, then the entire batch fails, and no state changes occur. Operation response type: `google.protobuf.Empty`",
           "flatPath": "v1beta1/{v1beta1Id}/{v1beta1Id1}/services:batchEnable",
           "httpMethod": "POST",
           "id": "serviceusage.services.batchEnable",
@@ -206,12 +198,11 @@
             "$ref": "Operation"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/service.management"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "disable": {
-          "description": "Disable a service so that it can no longer be used with a project. This prevents unintended usage that may cause unexpected billing charges or security leaks. It is not valid to call the disable method on a service that is not currently enabled. Callers will receive a `FAILED_PRECONDITION` status if the target service is not currently enabled. Operation",
+          "description": "Disables a service so that it can no longer be used with a project. This prevents unintended usage that may cause unexpected billing charges or security leaks. It is not valid to call the disable method on a service that is not currently enabled. Callers will receive a `FAILED_PRECONDITION` status if the target service is not currently enabled. Operation response type: `google.protobuf.Empty`",
           "flatPath": "v1beta1/{v1beta1Id}/{v1beta1Id1}/services/{servicesId}:disable",
           "httpMethod": "POST",
           "id": "serviceusage.services.disable",
@@ -235,12 +226,11 @@
             "$ref": "Operation"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/service.management"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "enable": {
-          "description": "Enable a service so that it can be used with a project. Operation",
+          "description": "Enables a service so that it can be used with a project. Operation response type: `google.protobuf.Empty`",
           "flatPath": "v1beta1/{v1beta1Id}/{v1beta1Id1}/services/{servicesId}:enable",
           "httpMethod": "POST",
           "id": "serviceusage.services.enable",
@@ -264,12 +254,11 @@
             "$ref": "Operation"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/service.management"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "generateServiceIdentity": {
-          "description": "Generate service identity for service.",
+          "description": "Generates service identity for service.",
           "flatPath": "v1beta1/{v1beta1Id}/{v1beta1Id1}/services/{servicesId}:generateServiceIdentity",
           "httpMethod": "POST",
           "id": "serviceusage.services.generateServiceIdentity",
@@ -290,8 +279,7 @@
             "$ref": "Operation"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/service.management"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "get": {
@@ -316,12 +304,11 @@
             "$ref": "Service"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-platform.read-only"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "list": {
-          "description": "List all services available to the specified project, and the current state of those services with respect to the project. The list includes all public services, all services for which the calling user has the `servicemanagement.services.bind` permission, and all services that have already been enabled on the project. The list can be filtered to only include services in a specific state, for example to only include services enabled on the project.",
+          "description": "Lists all services available to the specified project, and the current state of those services with respect to the project. The list includes all public services, all services for which the calling user has the `servicemanagement.services.bind` permission, and all services that have already been enabled on the project. The list can be filtered to only include services in a specific state, for example to only include services enabled on the project.",
           "flatPath": "v1beta1/{v1beta1Id}/{v1beta1Id1}/services",
           "httpMethod": "GET",
           "id": "serviceusage.services.list",
@@ -358,8 +345,7 @@
             "$ref": "ListServicesResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-platform.read-only"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         }
       },
@@ -376,7 +362,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "The resource name of the quota limit. An example name would be: projects/123/services/serviceusage.googleapis.com/quotas/metrics/serviceusage.googleapis.com%2Fmutate_requests",
+                  "description": "The resource name of the quota limit. An example name would be: `projects/123/services/serviceusage.googleapis.com/quotas/metrics/serviceusage.googleapis.com%2Fmutate_requests`",
                   "location": "path",
                   "pattern": "^[^/]+/[^/]+/services/[^/]+/consumerQuotaMetrics/[^/]+$",
                   "required": true,
@@ -403,12 +389,11 @@
                 "$ref": "ConsumerQuotaMetric"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/cloud-platform.read-only"
+                "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
             "importAdminOverrides": {
-              "description": "Create or update multiple admin overrides atomically, all on the same consumer, but on many different metrics or limits. The name field in the quota override message should not be set.",
+              "description": "Creates or updates multiple admin overrides atomically, all on the same consumer, but on many different metrics or limits. The name field in the quota override message should not be set.",
               "flatPath": "v1beta1/{v1beta1Id}/{v1beta1Id1}/services/{servicesId}/consumerQuotaMetrics:importAdminOverrides",
               "httpMethod": "POST",
               "id": "serviceusage.services.consumerQuotaMetrics.importAdminOverrides",
@@ -432,12 +417,11 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/service.management"
+                "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
             "importConsumerOverrides": {
-              "description": "Create or update multiple consumer overrides atomically, all on the same consumer, but on many different metrics or limits. The name field in the quota override message should not be set.",
+              "description": "Creates or updates multiple consumer overrides atomically, all on the same consumer, but on many different metrics or limits. The name field in the quota override message should not be set.",
               "flatPath": "v1beta1/{v1beta1Id}/{v1beta1Id1}/services/{servicesId}/consumerQuotaMetrics:importConsumerOverrides",
               "httpMethod": "POST",
               "id": "serviceusage.services.consumerQuotaMetrics.importConsumerOverrides",
@@ -461,8 +445,7 @@
                 "$ref": "Operation"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/service.management"
+                "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
             "list": {
@@ -486,7 +469,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Parent of the quotas resource. Some example names would be: projects/123/services/serviceconsumermanagement.googleapis.com folders/345/services/serviceconsumermanagement.googleapis.com organizations/456/services/serviceconsumermanagement.googleapis.com",
+                  "description": "Parent of the quotas resource. Some example names would be: `projects/123/services/serviceconsumermanagement.googleapis.com` `folders/345/services/serviceconsumermanagement.googleapis.com` `organizations/456/services/serviceconsumermanagement.googleapis.com`",
                   "location": "path",
                   "pattern": "^[^/]+/[^/]+/services/[^/]+$",
                   "required": true,
@@ -513,8 +496,7 @@
                 "$ref": "ListConsumerQuotaMetricsResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/cloud-platform.read-only"
+                "https://www.googleapis.com/auth/cloud-platform"
               ]
             }
           },
@@ -558,8 +540,7 @@
                     "$ref": "ConsumerQuotaLimit"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
               },
@@ -612,8 +593,7 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/service.management"
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
                     "delete": {
@@ -659,8 +639,7 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/service.management"
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
                     "list": {
@@ -696,8 +675,7 @@
                         "$ref": "ListAdminOverridesResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
                     "patch": {
@@ -752,8 +730,7 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/service.management"
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
                   }
@@ -806,8 +783,7 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/service.management"
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
                     "delete": {
@@ -853,8 +829,7 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/service.management"
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
                     "list": {
@@ -890,8 +865,7 @@
                         "$ref": "ListConsumerOverridesResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
                     "patch": {
@@ -946,8 +920,7 @@
                         "$ref": "Operation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/service.management"
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
                   }
@@ -959,7 +932,7 @@
       }
     }
   },
-  "revision": "20210413",
+  "revision": "20210417",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AdminQuotaPolicy": {
@@ -967,14 +940,14 @@
       "id": "AdminQuotaPolicy",
       "properties": {
         "container": {
-          "description": "The cloud resource container at which the quota policy is created. The format is {container_type}/{container_number}",
+          "description": "The cloud resource container at which the quota policy is created. The format is `{container_type}/{container_number}`",
           "type": "string"
         },
         "dimensions": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": " If this map is nonempty, then this policy applies only to specific values for dimensions defined in the limit unit. For example, an policy on a limit with the unit 1/{project}/{region} could contain an entry with the key \"region\" and the value \"us-east-1\"; the policy is only applied to quota consumed in that region. This map has the following restrictions: * If \"region\" appears as a key, its value must be a valid Cloud region. * If \"zone\" appears as a key, its value must be a valid Cloud zone. * Keys other than \"region\" or \"zone\" are not valid.",
+          "description": " If this map is nonempty, then this policy applies only to specific values for dimensions defined in the limit unit. For example, an policy on a limit with the unit `1/{project}/{region}` could contain an entry with the key `region` and the value `us-east-1`; the policy is only applied to quota consumed in that region. This map has the following restrictions: * If `region` appears as a key, its value must be a valid Cloud region. * If `zone` appears as a key, its value must be a valid Cloud zone. * Keys other than `region` or `zone` are not valid.",
           "type": "object"
         },
         "metric": {
@@ -1099,7 +1072,7 @@
       "type": "object"
     },
     "Authentication": {
-      "description": "`Authentication` defines the authentication configuration for an API. Example for an API targeted for external use: name: calendar.googleapis.com authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: \"*\" requirements: provider_id: google_calendar_auth",
+      "description": "`Authentication` defines the authentication configuration for API methods provided by an API service. Example: name: calendar.googleapis.com authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: \"*\" requirements: provider_id: google_calendar_auth - selector: google.calendar.Delegate oauth: canonical_scopes: https://www.googleapis.com/auth/calendar.read",
       "id": "Authentication",
       "properties": {
         "providers": {
@@ -1362,7 +1335,7 @@
           "type": "array"
         },
         "displayName": {
-          "description": "The display name of the metric. An example name would be: \"CPUs\"",
+          "description": "The display name of the metric. An example name would be: `CPUs`",
           "type": "string"
         },
         "metric": {
@@ -1370,7 +1343,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name of the quota settings on this metric for this consumer. An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus The resource name is intended to be opaque and should not be parsed for its component strings, since its representation could change in the future.",
+          "description": "The resource name of the quota settings on this metric for this consumer. An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus` The resource name is intended to be opaque and should not be parsed for its component strings, since its representation could change in the future.",
           "type": "string"
         },
         "unit": {
@@ -2990,7 +2963,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The dimensions of this quota bucket. If this map is empty, this is the global bucket, which is the default quota value applied to all requests that do not have a more specific override. If this map is nonempty, the default limit, effective limit, and quota overrides apply only to requests that have the dimensions given in the map. For example, if the map has key \"region\" and value \"us-east-1\", then the specified effective limit is only effective in that region, and the specified overrides apply only in that region.",
+          "description": "The dimensions of this quota bucket. If this map is empty, this is the global bucket, which is the default quota value applied to all requests that do not have a more specific override. If this map is nonempty, the default limit, effective limit, and quota overrides apply only to requests that have the dimensions given in the map. For example, if the map has key `region` and value `us-east-1`, then the specified effective limit is only effective in that region, and the specified overrides apply only in that region.",
           "type": "object"
         },
         "effectiveLimit": {
@@ -3064,14 +3037,14 @@
       "id": "QuotaOverride",
       "properties": {
         "adminOverrideAncestor": {
-          "description": "The resource name of the ancestor that requested the override. For example: \"organizations/12345\" or \"folders/67890\". Used by admin overrides only.",
+          "description": "The resource name of the ancestor that requested the override. For example: `organizations/12345` or `folders/67890`. Used by admin overrides only.",
           "type": "string"
         },
         "dimensions": {
           "additionalProperties": {
             "type": "string"
           },
-          "description": "If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit. For example, an override on a limit with the unit 1/{project}/{region} could contain an entry with the key \"region\" and the value \"us-east-1\"; the override is only applied to quota consumed in that region. This map has the following restrictions: * Keys that are not defined in the limit's unit are not valid keys. Any string appearing in {brackets} in the unit (besides {project} or {user}) is a defined key. * \"project\" is not a valid key; the project is already specified in the parent resource name. * \"user\" is not a valid key; the API does not support quota overrides that apply only to a specific user. * If \"region\" appears as a key, its value must be a valid Cloud region. * If \"zone\" appears as a key, its value must be a valid Cloud zone. * If any valid key other than \"region\" or \"zone\" appears in the map, then all valid keys other than \"region\" or \"zone\" must also appear in the map.",
+          "description": "If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit. For example, an override on a limit with the unit `1/{project}/{region}` could contain an entry with the key `region` and the value `us-east-1`; the override is only applied to quota consumed in that region. This map has the following restrictions: * Keys that are not defined in the limit's unit are not valid keys. Any string appearing in `{brackets}` in the unit (besides `{project}` or `{user}`) is a defined key. * `project` is not a valid key; the project is already specified in the parent resource name. * `user` is not a valid key; the API does not support quota overrides that apply only to a specific user. * If `region` appears as a key, its value must be a valid Cloud region. * If `zone` appears as a key, its value must be a valid Cloud zone. * If any valid key other than `region` or `zone` appears in the map, then all valid keys other than `region` or `zone` must also appear in the map.",
           "type": "object"
         },
         "metric": {
@@ -3103,11 +3076,11 @@
           "description": "The service configuration of the available service. Some fields may be filtered out of the configuration in responses to the `ListServices` method. These fields are present only in responses to the `GetService` method."
         },
         "name": {
-          "description": "The resource name of the consumer and service. A valid name would be: - projects/123/services/serviceusage.googleapis.com",
+          "description": "The resource name of the consumer and service. A valid name would be: - `projects/123/services/serviceusage.googleapis.com`",
           "type": "string"
         },
         "parent": {
-          "description": "The resource name of the consumer. A valid name would be: - projects/123",
+          "description": "The resource name of the consumer. A valid name would be: - `projects/123`",
           "type": "string"
         },
         "state": {
