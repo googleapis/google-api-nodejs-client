@@ -794,6 +794,10 @@ export namespace people_v1 {
      * The list of "Other contacts" returned as Person resources. "Other contacts" support a limited subset of fields. See ListOtherContactsRequest.request_mask for more detailed information.
      */
     otherContacts?: Schema$Person[];
+    /**
+     * The total number of other contacts in the list without pagination.
+     */
+    totalSize?: number | null;
   }
   /**
    * A person's locale preference.
@@ -2938,7 +2942,8 @@ export namespace people_v1 {
      *   // {
      *   //   "nextPageToken": "my_nextPageToken",
      *   //   "nextSyncToken": "my_nextSyncToken",
-     *   //   "otherContacts": []
+     *   //   "otherContacts": [],
+     *   //   "totalSize": 0
      *   // }
      * }
      *
@@ -3064,7 +3069,7 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.otherContacts.search({
-     *     // Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0.
+     *     // Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 10 will be capped to 10.
      *     pageSize: 'placeholder-value',
      *     // Required. The plain-text query for the request. The query is used to match prefix phrases of the fields on a person. For example, a person with name "foo name" matches queries such as "f", "fo", "foo", "foo n", "nam", etc., but not "oo n".
      *     query: 'placeholder-value',
@@ -3209,7 +3214,7 @@ export namespace people_v1 {
   export interface Params$Resource$Othercontacts$Search
     extends StandardParameters {
     /**
-     * Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0.
+     * Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 10 will be capped to 10.
      */
     pageSize?: number;
     /**
@@ -4642,7 +4647,7 @@ export namespace people_v1 {
      *
      *   // Do the magic
      *   const res = await people.people.searchContacts({
-     *     // Optional. The number of results to return.
+     *     // Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 10 will be capped to 10.
      *     pageSize: 'placeholder-value',
      *     // Required. The plain-text query for the request. The query is used to match prefix phrases of the fields on a person. For example, a person with name "foo name" matches queries such as "f", "fo", "foo", "foo n", "nam", etc., but not "oo n".
      *     query: 'placeholder-value',
@@ -5394,7 +5399,7 @@ export namespace people_v1 {
   export interface Params$Resource$People$Searchcontacts
     extends StandardParameters {
     /**
-     * Optional. The number of results to return.
+     * Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 10 will be capped to 10.
      */
     pageSize?: number;
     /**

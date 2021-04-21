@@ -445,7 +445,7 @@
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0.",
+              "description": "Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 10 will be capped to 10.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -853,7 +853,7 @@
           "parameterOrder": [],
           "parameters": {
             "pageSize": {
-              "description": "Optional. The number of results to return.",
+              "description": "Optional. The number of results to return. Defaults to 10 if field is not set, or set to 0. Values greater than 10 will be capped to 10.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -1154,7 +1154,7 @@
       }
     }
   },
-  "revision": "20210415",
+  "revision": "20210419",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -2044,6 +2044,11 @@
             "$ref": "Person"
           },
           "type": "array"
+        },
+        "totalSize": {
+          "description": "The total number of other contacts in the list without pagination.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
