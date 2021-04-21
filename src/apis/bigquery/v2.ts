@@ -257,6 +257,18 @@ export namespace bigquery_v2 {
      */
     hasDrift?: boolean | null;
     /**
+     * If true, holiday_effect is a part of time series decomposition result.
+     */
+    hasHolidayEffect?: boolean | null;
+    /**
+     * If true, spikes_and_dips is a part of time series decomposition result.
+     */
+    hasSpikesAndDips?: boolean | null;
+    /**
+     * If true, step_changes is a part of time series decomposition result.
+     */
+    hasStepChanges?: boolean | null;
+    /**
      * Non-seasonal order.
      */
     nonSeasonalOrder?: Schema$ArimaOrder;
@@ -268,6 +280,10 @@ export namespace bigquery_v2 {
      * The time_series_id value for this time series. It will be one of the unique values from the time_series_id_column specified during ARIMA model training. Only present when time_series_id_column training option was used.
      */
     timeSeriesId?: string | null;
+    /**
+     * The tuple of time_series_ids identifying this time series. It will be one of the unique tuples of values present in the time_series_id_columns specified during ARIMA model training. Only present when time_series_id_columns training option was used and the order of values here are same as the order of time_series_id_columns.
+     */
+    timeSeriesIds?: string[] | null;
   }
   /**
    * Arima order, can be used for both non-seasonal and seasonal parts.
@@ -312,6 +328,18 @@ export namespace bigquery_v2 {
      */
     hasDrift?: boolean | null;
     /**
+     * If true, holiday_effect is a part of time series decomposition result.
+     */
+    hasHolidayEffect?: boolean | null;
+    /**
+     * If true, spikes_and_dips is a part of time series decomposition result.
+     */
+    hasSpikesAndDips?: boolean | null;
+    /**
+     * If true, step_changes is a part of time series decomposition result.
+     */
+    hasStepChanges?: boolean | null;
+    /**
      * Non-seasonal order.
      */
     nonSeasonalOrder?: Schema$ArimaOrder;
@@ -323,6 +351,10 @@ export namespace bigquery_v2 {
      * The time_series_id value for this time series. It will be one of the unique values from the time_series_id_column specified during ARIMA model training. Only present when time_series_id_column training option was used.
      */
     timeSeriesId?: string | null;
+    /**
+     * The tuple of time_series_ids identifying this time series. It will be one of the unique tuples of values present in the time_series_id_columns specified during ARIMA model training. Only present when time_series_id_columns training option was used and the order of values here are same as the order of time_series_id_columns.
+     */
+    timeSeriesIds?: string[] | null;
   }
   /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
@@ -818,15 +850,6 @@ export namespace bigquery_v2 {
      */
     labels?: {[key: string]: string} | null;
   }
-  /**
-   * Model evaluation metrics for dimensionality reduction models.
-   */
-  export interface Schema$DimensionalityReductionMetrics {
-    /**
-     * Total percentage of variance explained by the selected principal components.
-     */
-    totalExplainedVarianceRatio?: number | null;
-  }
   export interface Schema$EncryptionConfiguration {
     /**
      * [Optional] Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table. The BigQuery Service Account associated with your project requires access to this encryption key.
@@ -880,10 +903,6 @@ export namespace bigquery_v2 {
      * Populated for clustering models.
      */
     clusteringMetrics?: Schema$ClusteringMetrics;
-    /**
-     * Evaluation metrics when the model is a dimensionality reduction model, which currently includes PCA.
-     */
-    dimensionalityReductionMetrics?: Schema$DimensionalityReductionMetrics;
     /**
      * Populated for multi-class classification/classifier models.
      */
@@ -1274,10 +1293,6 @@ export namespace bigquery_v2 {
      * Learn rate used for this iteration.
      */
     learnRate?: number | null;
-    /**
-     * The information of the principal components.
-     */
-    principalComponentInfos?: Schema$PrincipalComponentInfo[];
     /**
      * Loss computed on the training data at the end of iteration.
      */
@@ -2124,27 +2139,6 @@ export namespace bigquery_v2 {
      */
     version?: number | null;
   }
-  /**
-   * Principal component infos, used only for eigen decomposition based models, e.g., PCA. Ordered by explained_variance in the descending order.
-   */
-  export interface Schema$PrincipalComponentInfo {
-    /**
-     * The explained_variance is pre-ordered in the descending order to compute the cumulative explained variance ratio.
-     */
-    cumulativeExplainedVarianceRatio?: number | null;
-    /**
-     * Explained variance by this principal component, which is simply the eigenvalue.
-     */
-    explainedVariance?: number | null;
-    /**
-     * Explained_variance over the total explained variance.
-     */
-    explainedVarianceRatio?: number | null;
-    /**
-     * Id of the principal component.
-     */
-    principalComponentId?: string | null;
-  }
   export interface Schema$ProjectList {
     /**
      * A hash of the page of results
@@ -2874,7 +2868,7 @@ export namespace bigquery_v2 {
      */
     mode?: string | null;
     /**
-     * [Required] The field name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 128 characters.
+     * [Required] The field name. The name must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_), and must start with a letter or underscore. The maximum length is 300 characters.
      */
     name?: string | null;
     policyTags?: {names?: string[]} | null;
@@ -2990,6 +2984,10 @@ export namespace bigquery_v2 {
    */
   export interface Schema$TrainingOptions {
     /**
+     * If true, detect step changes and make data adjustment in the input time series.
+     */
+    adjustStepChanges?: boolean | null;
+    /**
      * Whether to enable auto ARIMA or not.
      */
     autoArima?: boolean | null;
@@ -3001,6 +2999,10 @@ export namespace bigquery_v2 {
      * Batch size for dnn models.
      */
     batchSize?: string | null;
+    /**
+     * If true, clean spikes and dips in the input time series.
+     */
+    cleanSpikesAndDips?: boolean | null;
     /**
      * The data frequency of a time series.
      */
@@ -3017,6 +3019,10 @@ export namespace bigquery_v2 {
      * The data split type for training and evaluation, e.g. RANDOM.
      */
     dataSplitMethod?: string | null;
+    /**
+     * If true, perform decompose time series and save the results.
+     */
+    decomposeTimeSeries?: boolean | null;
     /**
      * Distance type for clustering models.
      */
@@ -3145,6 +3151,10 @@ export namespace bigquery_v2 {
      * The time series id column that was used during ARIMA model training.
      */
     timeSeriesIdColumn?: string | null;
+    /**
+     * The time series id columns that were used during ARIMA model training.
+     */
+    timeSeriesIdColumns?: string[] | null;
     /**
      * Column to be designated as time series timestamp for ARIMA model.
      */
@@ -3378,7 +3388,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -3695,7 +3704,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -4539,7 +4547,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -4683,7 +4690,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -5011,7 +5017,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -5163,7 +5168,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -5614,7 +5618,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -5765,7 +5768,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -6152,7 +6154,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -6293,7 +6294,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -6585,7 +6585,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -6901,7 +6900,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -7317,7 +7315,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -7463,7 +7460,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -7760,7 +7756,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -8133,7 +8128,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -8468,7 +8462,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -8635,7 +8628,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -8977,7 +8969,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
@@ -9463,7 +9454,6 @@ export namespace bigquery_v2 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
-     *       'https://www.googleapis.com/auth/bigquery.readonly',
      *       'https://www.googleapis.com/auth/cloud-platform',
      *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],

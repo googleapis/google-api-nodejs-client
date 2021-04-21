@@ -4648,6 +4648,8 @@ export namespace people_v1 {
      *     query: 'placeholder-value',
      *     // Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
      *     readMask: 'placeholder-value',
+     *     // Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT if not set.
+     *     sources: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -5403,6 +5405,10 @@ export namespace people_v1 {
      * Required. A field mask to restrict which fields on each person are returned. Multiple fields can be specified by separating them with commas. Valid values are: * addresses * ageRanges * biographies * birthdays * calendarUrls * clientData * coverPhotos * emailAddresses * events * externalIds * genders * imClients * interests * locales * locations * memberships * metadata * miscKeywords * names * nicknames * occupations * organizations * phoneNumbers * photos * relations * sipAddresses * skills * urls * userDefined
      */
     readMask?: string;
+    /**
+     * Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT if not set.
+     */
+    sources?: string[];
   }
   export interface Params$Resource$People$Searchdirectorypeople
     extends StandardParameters {

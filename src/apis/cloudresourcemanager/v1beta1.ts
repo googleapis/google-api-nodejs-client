@@ -252,6 +252,10 @@ export namespace cloudresourcemanager_v1beta1 {
     ready?: boolean | null;
   }
   /**
+   * Runtime operation information for creating a TagValue.
+   */
+  export interface Schema$CreateTagBindingMetadata {}
+  /**
    * Runtime operation information for creating a TagKey.
    */
   export interface Schema$CreateTagKeyMetadata {}
@@ -271,6 +275,10 @@ export namespace cloudresourcemanager_v1beta1 {
    * A status object which is used as the `metadata` field for the Operation returned by `DeleteProject`.
    */
   export interface Schema$DeleteProjectMetadata {}
+  /**
+   * Runtime operation information for deleting a TagBinding.
+   */
+  export interface Schema$DeleteTagBindingMetadata {}
   /**
    * Runtime operation information for deleting a TagKey.
    */

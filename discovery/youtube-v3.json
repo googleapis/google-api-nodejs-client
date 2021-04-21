@@ -2723,7 +2723,7 @@
                 "3d"
               ],
               "enumDescriptions": [
-                "",
+                "Include both 3D and non-3D videos in returned results. This is the default value.",
                 "Restrict search results to exclude 3D videos.",
                 "Restrict search results to only include 3D videos."
               ],
@@ -3385,7 +3385,7 @@
           },
           "path": "youtube/v3/videos/getRating",
           "response": {
-            "$ref": "VideoRatingListResponse"
+            "$ref": "VideoGetRatingResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/youtube",
@@ -3764,7 +3764,7 @@
       }
     }
   },
-  "revision": "20210307",
+  "revision": "20210417",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -4086,7 +4086,7 @@
         "type": {
           "description": "The name of the social network.",
           "enum": [
-            "typeUnspecified",
+            "unspecified",
             "googlePlus",
             "facebook",
             "twitter"
@@ -4350,6 +4350,11 @@
           "type": "boolean"
         },
         "language": {
+          "annotations": {
+            "required": [
+              "youtube.captions.insert"
+            ]
+          },
           "description": "The language of the caption track. The property value is a BCP-47 language tag.",
           "type": "string"
         },
@@ -4359,6 +4364,11 @@
           "type": "string"
         },
         "name": {
+          "annotations": {
+            "required": [
+              "youtube.captions.insert"
+            ]
+          },
           "description": "The name of the caption track. The name is intended to be visible to the user as an option during playback.",
           "type": "string"
         },
@@ -4407,6 +4417,12 @@
       "id": "CdnSettings",
       "properties": {
         "format": {
+          "annotations": {
+            "required": [
+              "youtube.liveStreams.insert",
+              "youtube.liveStreams.update"
+            ]
+          },
           "description": "The format of the video stream that you are sending to Youtube. ",
           "type": "string"
         },
@@ -4429,6 +4445,12 @@
           "description": "The ingestionInfo object contains information that YouTube provides that you need to transmit your RTMP or HTTP stream to YouTube."
         },
         "ingestionType": {
+          "annotations": {
+            "required": [
+              "youtube.liveStreams.insert",
+              "youtube.liveStreams.update"
+            ]
+          },
           "description": " The method or protocol used to transmit the video stream.",
           "enum": [
             "rtmp",
@@ -4908,7 +4930,7 @@
         "type": {
           "description": "The type of the channel section.",
           "enum": [
-            "channelsectionTypeUnspecified",
+            "channelsectionTypeUndefined",
             "singlePlaylist",
             "multiplePlaylists",
             "popularUploads",
@@ -7635,6 +7657,11 @@
           "type": "string"
         },
         "id": {
+          "annotations": {
+            "required": [
+              "youtube.liveBroadcasts.update"
+            ]
+          },
           "description": "The ID that YouTube assigns to uniquely identify the broadcast.",
           "type": "string"
         },
@@ -7888,12 +7915,18 @@
           "type": "string"
         },
         "scheduledEndTime": {
-          "description": "The date and time that the broadcast is scheduled to start.",
+          "description": "The date and time that the broadcast is scheduled to end.",
           "format": "date-time",
           "type": "string"
         },
         "scheduledStartTime": {
-          "description": "The date and time that the broadcast is scheduled to end.",
+          "annotations": {
+            "required": [
+              "youtube.liveBroadcasts.insert",
+              "youtube.liveBroadcasts.update"
+            ]
+          },
+          "description": "The date and time that the broadcast is scheduled to start.",
           "format": "date-time",
           "type": "string"
         },
@@ -7902,6 +7935,12 @@
           "description": "A map of thumbnail images associated with the broadcast. For each nested object in this object, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail."
         },
         "title": {
+          "annotations": {
+            "required": [
+              "youtube.liveBroadcasts.insert",
+              "youtube.liveBroadcasts.update"
+            ]
+          },
           "description": "The broadcast's title. Note that the broadcast represents exactly one YouTube video. You can set this field by modifying the broadcast resource or by setting the title field of the corresponding video resource.",
           "type": "string"
         }
@@ -7971,6 +8010,12 @@
           "type": "boolean"
         },
         "privacyStatus": {
+          "annotations": {
+            "required": [
+              "youtube.liveBroadcasts.insert",
+              "youtube.liveBroadcasts.update"
+            ]
+          },
           "description": "The broadcast's privacy status. Note that the broadcast represents exactly one YouTube video, so the privacy settings are identical to those supported for videos. In addition, you can set this field by modifying the broadcast resource or by setting the privacyStatus field of the corresponding video resource.",
           "enum": [
             "public",
@@ -8497,6 +8542,11 @@
           "type": "string"
         },
         "id": {
+          "annotations": {
+            "required": [
+              "youtube.liveStreams.update"
+            ]
+          },
           "description": "The ID that YouTube assigns to uniquely identify the stream.",
           "type": "string"
         },
@@ -8735,6 +8785,12 @@
           "type": "string"
         },
         "title": {
+          "annotations": {
+            "required": [
+              "youtube.liveStreams.insert",
+              "youtube.liveStreams.update"
+            ]
+          },
           "description": "The stream's title. The value must be between 1 and 128 characters long.",
           "type": "string"
         }
@@ -9233,6 +9289,12 @@
           "type": "string"
         },
         "playlistId": {
+          "annotations": {
+            "required": [
+              "youtube.playlistItems.insert",
+              "youtube.playlistItems.update"
+            ]
+          },
           "description": "The ID that YouTube uses to uniquely identify thGe playlist that the playlist item is in.",
           "type": "string"
         },
@@ -9248,6 +9310,12 @@
         },
         "resourceId": {
           "$ref": "ResourceId",
+          "annotations": {
+            "required": [
+              "youtube.playlistItems.insert",
+              "youtube.playlistItems.update"
+            ]
+          },
           "description": "The id object contains information that can be used to uniquely identify the resource that is included in the playlist as the playlist item."
         },
         "thumbnails": {
@@ -9405,6 +9473,12 @@
           "description": "A map of thumbnail images associated with the playlist. For each object in the map, the key is the name of the thumbnail image, and the value is an object that contains other information about the thumbnail."
         },
         "title": {
+          "annotations": {
+            "required": [
+              "youtube.playlists.insert",
+              "youtube.playlists.update"
+            ]
+          },
           "description": "The playlist's title.",
           "type": "string"
         }
@@ -10099,6 +10173,11 @@
           "description": "The fileDetails object encapsulates information about the video file that was uploaded to YouTube, including the file's resolution, duration, audio and video codecs, stream bitrates, and more. This data can only be retrieved by the video owner."
         },
         "id": {
+          "annotations": {
+            "required": [
+              "youtube.videos.update"
+            ]
+          },
           "description": "The ID that YouTube uses to uniquely identify the video.",
           "type": "string"
         },
@@ -10636,6 +10715,36 @@
       },
       "type": "object"
     },
+    "VideoGetRatingResponse": {
+      "id": "VideoGetRatingResponse",
+      "properties": {
+        "etag": {
+          "description": "Etag of this resource.",
+          "type": "string"
+        },
+        "eventId": {
+          "description": "Serialized EventId of the request which produced this response.",
+          "type": "string"
+        },
+        "items": {
+          "description": "A list of ratings that match the request criteria.",
+          "items": {
+            "$ref": "VideoRating"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "youtube#videoGetRatingResponse",
+          "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#videoGetRatingResponse\".",
+          "type": "string"
+        },
+        "visitorId": {
+          "description": "The visitorId identifies the visitor.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "VideoListResponse": {
       "id": "VideoListResponse",
       "properties": {
@@ -10873,36 +10982,6 @@
         },
         "videoId": {
           "description": "The ID that YouTube uses to uniquely identify the video.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "VideoRatingListResponse": {
-      "id": "VideoRatingListResponse",
-      "properties": {
-        "etag": {
-          "description": "Etag of this resource.",
-          "type": "string"
-        },
-        "eventId": {
-          "description": "Serialized EventId of the request which produced this response.",
-          "type": "string"
-        },
-        "items": {
-          "description": "A list of ratings that match the request criteria.",
-          "items": {
-            "$ref": "VideoRating"
-          },
-          "type": "array"
-        },
-        "kind": {
-          "default": "youtube#videoGetRatingResponse",
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"youtube#videoGetRatingResponse\".",
-          "type": "string"
-        },
-        "visitorId": {
-          "description": "The visitorId identifies the visitor.",
           "type": "string"
         }
       },

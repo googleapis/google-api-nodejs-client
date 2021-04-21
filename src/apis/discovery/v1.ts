@@ -350,6 +350,10 @@ export namespace discovery_v1 {
      */
     etagRequired?: boolean | null;
     /**
+     * The URI path of this REST method in (RFC 6570) format without level 2 features ({+var\}). Supplementary to the path property.
+     */
+    flatPath?: string | null;
+    /**
      * HTTP method used by this method.
      */
     httpMethod?: string | null;

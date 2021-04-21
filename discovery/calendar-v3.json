@@ -814,7 +814,7 @@
               "enumDescriptions": [
                 "Notifications are sent to all guests.",
                 "Notifications are sent to non-Google Calendar guests only.",
-                "No notifications are sent. This value should only be used for migration use cases (note that in most migration cases the import method should be used)."
+                "No notifications are sent. For calendar migration tasks, consider using the Events.import method instead."
               ],
               "location": "query",
               "type": "string"
@@ -960,7 +960,7 @@
               "enumDescriptions": [
                 "Notifications are sent to all guests.",
                 "Notifications are sent to non-Google Calendar guests only.",
-                "No notifications are sent. This value should only be used for migration use cases (note that in most migration cases the import method should be used)."
+                "No notifications are sent. For calendar migration tasks, consider using the Events.import method instead."
               ],
               "location": "query",
               "type": "string"
@@ -1241,7 +1241,7 @@
               "enumDescriptions": [
                 "Notifications are sent to all guests.",
                 "Notifications are sent to non-Google Calendar guests only.",
-                "No notifications are sent. This value should only be used for migration use cases (note that in most migration cases the import method should be used)."
+                "No notifications are sent. For calendar migration tasks, consider using the Events.import method instead."
               ],
               "location": "query",
               "type": "string"
@@ -1312,7 +1312,7 @@
               "enumDescriptions": [
                 "Notifications are sent to all guests.",
                 "Notifications are sent to non-Google Calendar guests only.",
-                "No notifications are sent. This value should only be used for migration use cases (note that in most migration cases the import method should be used)."
+                "No notifications are sent. For calendar migration tasks, consider using the Events.import method instead."
               ],
               "location": "query",
               "type": "string"
@@ -1365,7 +1365,7 @@
               "enumDescriptions": [
                 "Notifications are sent to all guests.",
                 "Notifications are sent to non-Google Calendar guests only.",
-                "No notifications are sent. This value should only be used for migration use cases (note that in most migration cases the import method should be used)."
+                "No notifications are sent. For calendar migration tasks, consider using the Events.import method instead."
               ],
               "location": "query",
               "type": "string"
@@ -1442,7 +1442,7 @@
               "enumDescriptions": [
                 "Notifications are sent to all guests.",
                 "Notifications are sent to non-Google Calendar guests only.",
-                "No notifications are sent. This value should only be used for migration use cases (note that in most migration cases the import method should be used)."
+                "No notifications are sent. For calendar migration tasks, consider using the Events.import method instead."
               ],
               "location": "query",
               "type": "string"
@@ -1723,7 +1723,7 @@
       }
     }
   },
-  "revision": "20210320",
+  "revision": "20210417",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {

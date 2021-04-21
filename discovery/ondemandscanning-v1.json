@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20210329",
+  "revision": "20210410",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1117,6 +1117,9 @@
         },
         "package": {
           "description": "The package being analysed for vulnerabilities",
+          "type": "string"
+        },
+        "unused": {
           "type": "string"
         },
         "version": {

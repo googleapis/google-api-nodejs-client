@@ -603,7 +603,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of results to return. If not set, the service will select a default.",
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -708,7 +708,7 @@
       }
     }
   },
-  "revision": "20210319",
+  "revision": "20210410",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "AuthorizedCertificate": {
@@ -855,6 +855,26 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleAppengineV1betaLocationMetadata": {
+      "description": "Metadata for the given google.cloud.location.Location.",
+      "id": "GoogleAppengineV1betaLocationMetadata",
+      "properties": {
+        "flexibleEnvironmentAvailable": {
+          "description": "App Engine flexible environment is available in the given location.@OutputOnly",
+          "type": "boolean"
+        },
+        "searchApiAvailable": {
+          "description": "Output only. Search API (https://cloud.google.com/appengine/docs/standard/python/search) is available in the given location.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "standardEnvironmentAvailable": {
+          "description": "App Engine standard environment is available in the given location.@OutputOnly",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "ListAuthorizedCertificatesResponse": {

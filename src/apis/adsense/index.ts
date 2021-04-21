@@ -15,16 +15,20 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {adsense_v1_4} from './v1.4';
+import {adsense_v2} from './v2';
 
 export const VERSIONS = {
   'v1.4': adsense_v1_4.Adsense,
+  v2: adsense_v2.Adsense,
 };
 
 export function adsense(version: 'v1.4'): adsense_v1_4.Adsense;
 export function adsense(options: adsense_v1_4.Options): adsense_v1_4.Adsense;
-export function adsense<T = adsense_v1_4.Adsense>(
+export function adsense(version: 'v2'): adsense_v2.Adsense;
+export function adsense(options: adsense_v2.Options): adsense_v2.Adsense;
+export function adsense<T = adsense_v1_4.Adsense | adsense_v2.Adsense>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1.4' | adsense_v1_4.Options
+  versionOrOptions: 'v1.4' | adsense_v1_4.Options | 'v2' | adsense_v2.Options
 ) {
   return getAPI<T>('adsense', versionOrOptions, VERSIONS, this);
 }
@@ -32,6 +36,7 @@ export function adsense<T = adsense_v1_4.Adsense>(
 const auth = new AuthPlus();
 export {auth};
 export {adsense_v1_4};
+export {adsense_v2};
 export {
   AuthPlus,
   GlobalOptions,

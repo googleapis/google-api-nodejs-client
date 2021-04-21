@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20210326",
+  "revision": "20210409",
   "rootUrl": "https://homegraph.googleapis.com/",
   "schemas": {
     "AgentDeviceId": {
@@ -276,13 +276,6 @@
         "name": {
           "$ref": "DeviceNames",
           "description": "Names given to this device by your smart home Action."
-        },
-        "nonLocalTraits": {
-          "description": "See description for \"traits\". For Smart Home Entertainment Devices (SHED) devices, some traits can only be executed on 3P cloud, e.g. \"non_local_traits\": [ { \"trait\": \"action.devices.traits.MediaInitiation\" }, { \"trait\": \"action.devices.traits.Channel\" } ] go/shed-per-trait-routing.",
-          "items": {
-            "$ref": "NonLocalTrait"
-          },
-          "type": "array"
         },
         "notificationSupportedByAgent": {
           "description": "Indicates whether your smart home Action will report notifications to Google for this device via ReportStateAndNotification. If your smart home Action enables users to control device notifications, you should update this field and call RequestSyncDevices.",
@@ -373,17 +366,6 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
       "id": "Empty",
       "properties": {},
-      "type": "object"
-    },
-    "NonLocalTrait": {
-      "description": "LINT.IfChange go/shed-per-trait-routing. Making it object to allow for extendible design, where we can add attributes in future.",
-      "id": "NonLocalTrait",
-      "properties": {
-        "trait": {
-          "description": "Trait name, e.g., \"action.devices.traits.MediaInitiation\". See [device traits](https://developers.google.com/assistant/smarthome/traits).",
-          "type": "string"
-        }
-      },
       "type": "object"
     },
     "QueryRequest": {

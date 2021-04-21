@@ -270,7 +270,7 @@
       }
     }
   },
-  "revision": "20210326",
+  "revision": "20210412",
   "rootUrl": "https://billingbudgets.googleapis.com/",
   "schemas": {
     "GoogleCloudBillingBudgetsV1Budget": {
@@ -283,7 +283,7 @@
         },
         "budgetFilter": {
           "$ref": "GoogleCloudBillingBudgetsV1Filter",
-          "description": "Optional. Filters that define which resources are used to compute the actual spend against the budget."
+          "description": "Optional. Filters that define which resources are used to compute the actual spend against the budget amount, such as projects, services, and the budget's time period, as well as other filters."
         },
         "displayName": {
           "description": "User data for display name in UI. The name must be less than or equal to 60 characters.",
@@ -318,7 +318,7 @@
       "properties": {
         "lastPeriodAmount": {
           "$ref": "GoogleCloudBillingBudgetsV1LastPeriodAmount",
-          "description": "Use the last period's actual spend as the budget for the present period. Cannot be set in combination with Filter.custom_period."
+          "description": "Use the last period's actual spend as the budget for the present period. LastPeriodAmount can only be set when the budget's time period is a Filter.calendar_period. It cannot be set in combination with Filter.custom_period."
         },
         "specifiedAmount": {
           "$ref": "GoogleTypeMoney",
@@ -347,7 +347,7 @@
       "id": "GoogleCloudBillingBudgetsV1Filter",
       "properties": {
         "calendarPeriod": {
-          "description": "Optional. Specifies to track usage for recurring calendar period. E.g. Assume that CalendarPeriod.QUARTER is set. The budget will track usage from April 1 to June 30, when current calendar month is April, May, June. After that, it will track usage from July 1 to September 30 when current calendar month is July, August, September, and so on.",
+          "description": "Optional. Specifies to track usage for recurring calendar period. For example, assume that CalendarPeriod.QUARTER is set. The budget will track usage from April 1 to June 30, when the current calendar month is April, May, June. After that, it will track usage from July 1 to September 30 when the current calendar month is July, August, September, so on.",
           "enum": [
             "CALENDAR_PERIOD_UNSPECIFIED",
             "MONTH",
@@ -363,7 +363,7 @@
           "type": "string"
         },
         "creditTypes": {
-          "description": "Optional. If Filter.credit_types_treatment is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be subtracted from gross cost to determine the spend for threshold calculations. If Filter.credit_types_treatment is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty. See [a list of acceptable credit type values](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type).",
+          "description": "Optional. If Filter.credit_types_treatment is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be subtracted from gross cost to determine the spend for threshold calculations. See [a list of acceptable credit type values](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type). If Filter.credit_types_treatment is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty.",
           "items": {
             "type": "string"
           },
@@ -381,13 +381,13 @@
             "",
             "All types of credit are subtracted from the gross cost to determine the spend for threshold calculations.",
             "All types of credit are added to the net cost to determine the spend for threshold calculations.",
-            "Credit types specified in the credit_types field are subtracted from the gross cost to determine the spend for threshold calculations."
+            "[Credit types](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type) specified in the credit_types field are subtracted from the gross cost to determine the spend for threshold calculations."
           ],
           "type": "string"
         },
         "customPeriod": {
           "$ref": "GoogleCloudBillingBudgetsV1CustomPeriod",
-          "description": "Optional. Specifies to track usage from any start date (required) to any end date (optional)."
+          "description": "Optional. Specifies to track usage from any start date (required) to any end date (optional). This time period is static, it does not recur."
         },
         "labels": {
           "additionalProperties": {
@@ -424,7 +424,7 @@
       "type": "object"
     },
     "GoogleCloudBillingBudgetsV1LastPeriodAmount": {
-      "description": "Describes a budget amount targeted to last period's spend. At this time, the amount is automatically 100% of last period's spend; that is, there are no other options yet. Future configuration will be described here (for example, configuring a percentage of last period's spend).",
+      "description": "Describes a budget amount targeted to the last Filter.calendar_period spend. At this time, the amount is automatically 100% of the last calendar period's spend; that is, there are no other options yet. Future configuration options will be described here (for example, configuring a percentage of last period's spend). LastPeriodAmount cannot be set for a budget configured with a Filter.custom_period.",
       "id": "GoogleCloudBillingBudgetsV1LastPeriodAmount",
       "properties": {},
       "type": "object"
@@ -487,7 +487,7 @@
           "enumDescriptions": [
             "Unspecified threshold basis.",
             "Use current spend as the basis for comparison against the threshold.",
-            "Use forecasted spend for the period as the basis for comparison against the threshold. Cannot be set in combination with Filter.custom_period."
+            "Use forecasted spend for the period as the basis for comparison against the threshold. FORECASTED_SPEND can only be set when the budget's time period is a Filter.calendar_period. It cannot be set in combination with Filter.custom_period."
           ],
           "type": "string"
         },

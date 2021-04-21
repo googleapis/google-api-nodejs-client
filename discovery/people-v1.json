@@ -868,6 +868,24 @@
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
+            },
+            "sources": {
+              "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT if not set.",
+              "enum": [
+                "READ_SOURCE_TYPE_UNSPECIFIED",
+                "READ_SOURCE_TYPE_PROFILE",
+                "READ_SOURCE_TYPE_CONTACT",
+                "READ_SOURCE_TYPE_DOMAIN_CONTACT"
+              ],
+              "enumDescriptions": [
+                "Unspecified.",
+                "Returns SourceType.ACCOUNT, SourceType.DOMAIN_PROFILE, and SourceType.PROFILE.",
+                "Returns SourceType.CONTACT.",
+                "Returns SourceType.DOMAIN_CONTACT."
+              ],
+              "location": "query",
+              "repeated": true,
+              "type": "string"
             }
           },
           "path": "v1/people:searchContacts",
@@ -1136,7 +1154,7 @@
       }
     }
   },
-  "revision": "20210330",
+  "revision": "20210415",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {

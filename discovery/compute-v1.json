@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/hFkNRjc1rr89Q6jONgNcfqWVWho\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/RlyP24rYZXNwHW-3coUsJ2aChyE\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -27120,7 +27120,7 @@
       }
     }
   },
-  "revision": "20210322",
+  "revision": "20210327",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -28061,6 +28061,11 @@
         "enableNestedVirtualization": {
           "description": "Whether to enable nested virtualization or not (default is false).",
           "type": "boolean"
+        },
+        "threadsPerCore": {
+          "description": "The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"

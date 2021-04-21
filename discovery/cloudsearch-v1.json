@@ -1916,9 +1916,32 @@
       }
     }
   },
-  "revision": "20210322",
+  "revision": "20210406",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
+    "AuditLoggingSettings": {
+      "description": "Represents the settings for Cloud audit logging",
+      "id": "AuditLoggingSettings",
+      "properties": {
+        "logAdminReadActions": {
+          "description": "Indicates whether audit logging is on/off for admin activity read APIs i.e. Get/List DataSources, Get/List SearchApplications etc.",
+          "type": "boolean"
+        },
+        "logDataReadActions": {
+          "description": "Indicates whether audit logging is on/off for data access read APIs i.e. ListItems, GetItem etc.",
+          "type": "boolean"
+        },
+        "logDataWriteActions": {
+          "description": "Indicates whether audit logging is on/off for data access write APIs i.e. IndexItem etc.",
+          "type": "boolean"
+        },
+        "project": {
+          "description": "The resource name of the GCP Project to store audit logs. Cloud audit logging will be enabled after project_name has been updated through CustomerService. Format: projects/{project_id}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BooleanOperatorOptions": {
       "description": "Used to provide a search operator for boolean properties. This is optional. Search operators let users restrict the query to specific fields relevant to the type of item being searched.",
       "id": "BooleanOperatorOptions",
@@ -1978,6 +2001,24 @@
       },
       "type": "object"
     },
+    "ContextAttribute": {
+      "description": "A named attribute associated with an item which can be used for influencing the ranking of the item based on the context in the request.",
+      "id": "ContextAttribute",
+      "properties": {
+        "name": {
+          "description": "The name of the attribute. It should not be empty. The maximum length is 32 characters. The name must start with a letter and can only contain letters (A-Z, a-z) or numbers (0-9). The name will be normalized (lower-cased) before being matched.",
+          "type": "string"
+        },
+        "values": {
+          "description": "Text values of the attribute. The maximum number of elements is 10. The maximum length of an element in the array is 32 characters. The value will be normalized (lower-cased) before being matched.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "CustomerIndexStats": {
       "description": "Aggregation of items by status code as of the specified date.",
       "id": "CustomerIndexStats",
@@ -2031,6 +2072,10 @@
       "description": "Represents settings at a customer level.",
       "id": "CustomerSettings",
       "properties": {
+        "auditLoggingSettings": {
+          "$ref": "AuditLoggingSettings",
+          "description": "Audit Logging settings for the customer. If update_mask is empty then this field will be updated based on UpdateCustomerSettings request."
+        },
         "vpcSettings": {
           "$ref": "VPCSettings",
           "description": "VPC SC settings for the customer. If update_mask is empty then this field will be updated based on UpdateCustomerSettings request."
@@ -3118,6 +3163,13 @@
         "contentLanguage": {
           "description": "The BCP-47 language code for the item, such as \"en-US\" or \"sr-Latn\". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. The maximum length is 32 characters.",
           "type": "string"
+        },
+        "contextAttributes": {
+          "description": "A set of named attributes associated with the item. This can be used for influencing the ranking of the item based on the context in the request. The maximum number of elements is 10.",
+          "items": {
+            "$ref": "ContextAttribute"
+          },
+          "type": "array"
         },
         "createTime": {
           "description": "The time when the item was created in the source repository.",
@@ -4367,6 +4419,10 @@
           "description": "Display name of the Search Application. The maximum length is 300 characters.",
           "type": "string"
         },
+        "enableAuditLog": {
+          "description": "Indicates whether audit logging is on/off for requests made for the search application in query APIs.",
+          "type": "boolean"
+        },
         "name": {
           "description": "Name of the Search Application. Format: searchapplications/{application_id}.",
           "type": "string"
@@ -4499,6 +4555,13 @@
       "description": "The search API request.",
       "id": "SearchRequest",
       "properties": {
+        "contextAttributes": {
+          "description": "Context attributes for the request which will be used to adjust ranking of search results. The maximum number of elements is 10.",
+          "items": {
+            "$ref": "ContextAttribute"
+          },
+          "type": "array"
+        },
         "dataSourceRestrictions": {
           "description": "The sources to use for querying. If not specified, all data sources from the current search application are used.",
           "items": {

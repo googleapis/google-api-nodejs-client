@@ -406,7 +406,7 @@
       }
     }
   },
-  "revision": "20210330",
+  "revision": "20210413",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -923,7 +923,7 @@
           "type": "object"
         },
         "pythonVersion": {
-          "description": "Optional. The major version of Python used to run the Apache Airflow scheduler, worker, and webserver processes. Can be set to '2' or '3'. If not specified, the default is '2'. Cannot be updated.",
+          "description": "Optional. The major version of Python used to run the Apache Airflow scheduler, worker, and webserver processes. Can be set to '2' or '3'. If not specified, the default is '3'. Cannot be updated.",
           "type": "string"
         }
       },

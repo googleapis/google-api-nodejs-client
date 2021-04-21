@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -528,7 +528,7 @@
       }
     }
   },
-  "revision": "20210401",
+  "revision": "20210413",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -798,7 +798,7 @@
       "id": "GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule",
       "properties": {
         "canReschedule": {
-          "description": "This field will be deprecated, and will be always set to true since reschedule can happen multiple times now.",
+          "description": "This field is deprecated, and will be always set to true since reschedule can happen multiple times now. This field should not be removed until all service producers remove this for their customers.",
           "type": "boolean"
         },
         "endTime": {
@@ -1054,6 +1054,7 @@
             "STATE_UNSPECIFIED",
             "CREATING",
             "READY",
+            "UPDATING",
             "DELETING",
             "PERFORMING_MAINTENANCE"
           ],
@@ -1061,6 +1062,7 @@
             "State not set.",
             "Memcached instance is being created.",
             "Memcached instance has been created and ready to be used.",
+            "Memcached instance is updating configuration such as maintenance policy and schedule.",
             "Memcached instance is being deleted.",
             "Memcached instance is going through maintenance, e.g. data plane rollout."
           ],

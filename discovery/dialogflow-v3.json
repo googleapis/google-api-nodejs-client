@@ -1986,7 +1986,7 @@
                           ]
                         },
                         "load": {
-                          "description": "Loads a specified version to draft version.",
+                          "description": "Loads resources in the specified version to the draft flow.",
                           "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows/{flowsId}/versions/{versionsId}:load",
                           "httpMethod": "POST",
                           "id": "dialogflow.projects.locations.agents.flows.versions.load",
@@ -1995,7 +1995,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The Version to be loaded to draft version. Format: `projects//locations//agents//flows//versions/`.",
+                              "description": "Required. The Version to be loaded to draft flow. Format: `projects//locations//agents//flows//versions/`.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/flows/[^/]+/versions/[^/]+$",
                               "required": true,
@@ -3425,7 +3425,7 @@
       }
     }
   },
-  "revision": "20210402",
+  "revision": "20210416",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3Agent": {
@@ -4689,7 +4689,7 @@
       "id": "GoogleCloudDialogflowCxV3Intent",
       "properties": {
         "description": {
-          "description": "Optional. Human readable description for better understanding an intent like its scope, content, result etc. Maximum character limit: 140 characters.",
+          "description": "Human readable description for better understanding an intent like its scope, content, result etc. Maximum character limit: 140 characters.",
           "type": "string"
         },
         "displayName": {
@@ -4704,7 +4704,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix \"sys.\" is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys.head * sys.contextual The above labels do not require value. \"sys.head\" means the intent is a head intent. \"sys.contextual\" means the intent is a contextual intent.",
+          "description": "The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix \"sys.\" is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys.head * sys.contextual The above labels do not require value. \"sys.head\" means the intent is a head intent. \"sys.contextual\" means the intent is a contextual intent.",
           "type": "object"
         },
         "name": {
@@ -5096,7 +5096,7 @@
       "id": "GoogleCloudDialogflowCxV3LoadVersionRequest",
       "properties": {
         "allowOverrideAgentResources": {
-          "description": "This field is used to prevent accidental overwrite of other agent resources in the draft version, which can potentially impact other flow's behavior. If `allow_override_agent_resources` is false, conflicted agent-level resources will not be overridden (i.e. intents, entities, webhooks).",
+          "description": "This field is used to prevent accidental overwrite of other agent resources, which can potentially impact other flow's behavior. If `allow_override_agent_resources` is false, conflicted agent-level resources will not be overridden (i.e. intents, entities, webhooks).",
           "type": "boolean"
         }
       },
@@ -6697,6 +6697,10 @@
           "$ref": "GoogleCloudDialogflowCxV3WebhookRequestIntentInfo",
           "description": "Information about the last matched intent."
         },
+        "languageCode": {
+          "description": "The language code specified in the original request.",
+          "type": "string"
+        },
         "messages": {
           "description": "The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;",
           "items": {
@@ -7451,7 +7455,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1Intent",
       "properties": {
         "description": {
-          "description": "Optional. Human readable description for better understanding an intent like its scope, content, result etc. Maximum character limit: 140 characters.",
+          "description": "Human readable description for better understanding an intent like its scope, content, result etc. Maximum character limit: 140 characters.",
           "type": "string"
         },
         "displayName": {
@@ -7466,7 +7470,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix \"sys-\" is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys-head * sys-contextual The above labels do not require value. \"sys-head\" means the intent is a head intent. \"sys-contextual\" means the intent is a contextual intent.",
+          "description": "The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix \"sys-\" is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys-head * sys-contextual The above labels do not require value. \"sys-head\" means the intent is a head intent. \"sys-contextual\" means the intent is a contextual intent.",
           "type": "object"
         },
         "name": {
@@ -8166,6 +8170,10 @@
         "intentInfo": {
           "$ref": "GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo",
           "description": "Information about the last matched intent."
+        },
+        "languageCode": {
+          "description": "The language code specified in the original request.",
+          "type": "string"
         },
         "messages": {
           "description": "The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;",

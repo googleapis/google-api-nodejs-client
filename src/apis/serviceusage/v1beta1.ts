@@ -476,6 +476,10 @@ export namespace serviceusage_v1beta1 {
     environment?: string | null;
   }
   /**
+   * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by CreateAdminQuotaPolicy.
+   */
+  export interface Schema$CreateAdminQuotaPolicyMetadata {}
+  /**
    * Customize service error responses. For example, list any service specific protobuf types that can appear in error detail lists of error responses. Example: custom_error: types: - google.foo.v1.CustomError - google.foo.v1.AnotherError
    */
   export interface Schema$CustomError {
@@ -514,6 +518,10 @@ export namespace serviceusage_v1beta1 {
      */
     path?: string | null;
   }
+  /**
+   * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by DeleteAdminQuotaPolicy.
+   */
+  export interface Schema$DeleteAdminQuotaPolicyMetadata {}
   /**
    * Request message for the `DisableService` method.
    */
@@ -607,10 +615,6 @@ export namespace serviceusage_v1beta1 {
    * `Endpoint` describes a network endpoint of a service that serves a set of APIs. It is commonly known as a service endpoint. A service may expose any number of service endpoints, and all service endpoints share the same service definition, such as quota limits and monitoring metrics. Example service configuration: name: library-example.googleapis.com endpoints: # Below entry makes 'google.example.library.v1.Library' # API be served from endpoint address library-example.googleapis.com. # It also allows HTTP OPTIONS calls to be passed to the backend, for # it to decide whether the subsequent cross-origin request is # allowed to proceed. - name: library-example.googleapis.com allow_cors: true
    */
   export interface Schema$Endpoint {
-    /**
-     * DEPRECATED: This field is no longer supported. Instead of using aliases, please specify multiple google.api.Endpoint for each of the intended aliases. Additional names that this endpoint will be hosted on.
-     */
-    aliases?: string[] | null;
     /**
      * Allowing [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka cross-domain traffic, would allow the backends served from this endpoint to receive and respond to HTTP OPTIONS requests. The response will be used by the browser to determine whether the subsequent cross-origin request is allowed to proceed.
      */
@@ -711,6 +715,10 @@ export namespace serviceusage_v1beta1 {
      */
     typeUrl?: string | null;
   }
+  /**
+   * Metadata for the `GetServiceIdentity` method.
+   */
+  export interface Schema$GetServiceIdentityMetadata {}
   /**
    * Response message for getting service identity.
    */
@@ -997,6 +1005,10 @@ export namespace serviceusage_v1beta1 {
     selector?: string | null;
   }
   /**
+   * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by ImportAdminOverrides.
+   */
+  export interface Schema$ImportAdminOverridesMetadata {}
+  /**
    * Request message for ImportAdminOverrides
    */
   export interface Schema$ImportAdminOverridesRequest {
@@ -1023,6 +1035,10 @@ export namespace serviceusage_v1beta1 {
     overrides?: Schema$QuotaOverride[];
   }
   /**
+   * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by ImportAdminQuotaPolicies.
+   */
+  export interface Schema$ImportAdminQuotaPoliciesMetadata {}
+  /**
    * Response message for ImportAdminQuotaPolicies
    */
   export interface Schema$ImportAdminQuotaPoliciesResponse {
@@ -1031,6 +1047,10 @@ export namespace serviceusage_v1beta1 {
      */
     policies?: Schema$AdminQuotaPolicy[];
   }
+  /**
+   * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by ImportConsumerOverrides.
+   */
+  export interface Schema$ImportConsumerOverridesMetadata {}
   /**
    * Request message for ImportConsumerOverrides
    */
@@ -1763,6 +1783,10 @@ export namespace serviceusage_v1beta1 {
      */
     syntax?: string | null;
   }
+  /**
+   * Metadata message that provides information such as progress, partial failures, and similar information on each GetOperation call of LRO returned by UpdateAdminQuotaPolicy.
+   */
+  export interface Schema$UpdateAdminQuotaPolicyMetadata {}
   /**
    * Configuration controlling usage of a service.
    */

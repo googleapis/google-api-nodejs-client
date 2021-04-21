@@ -368,7 +368,7 @@ export namespace recommendationengine_v1beta1 {
    */
   export interface Schema$GoogleCloudRecommendationengineV1beta1GcsSource {
     /**
-     * Required. Google Cloud Storage URIs to input files. URI can be up to 2000 characters long. URIs can match the full object path (for example, gs://bucket/directory/object.json) or a pattern matching one or more files, such as gs://bucket/directory/x.json. A request can contain at most 100 files, and each file can be up to 2 GB. See [Importing catalog information](/recommendations-ai/docs/upload-catalog) for the expected file format and setup instructions.
+     * Required. Google Cloud Storage URIs to input files. URI can be up to 2000 characters long. URIs can match the full object path (for example, `gs://bucket/directory/object.json`) or a pattern matching one or more files, such as `gs://bucket/directory/x.json`. A request can contain at most 100 files, and each file can be up to 2 GB. See [Importing catalog information](/recommendations-ai/docs/upload-catalog) for the expected file format and setup instructions.
      */
     inputUris?: string[] | null;
     /**
@@ -1406,7 +1406,7 @@ export namespace recommendationengine_v1beta1 {
      *   // Do the magic
      *   const res = await recommendationengine.projects.locations.catalogs.catalogItems.create(
      *     {
-     *       // Required. The parent catalog resource name, such as "projects/x/locations/global/catalogs/default_catalog".
+     *       // Required. The parent catalog resource name, such as `projects/x/locations/global/catalogs/default_catalog`.
      *       parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
      *
      *       // Request body metadata
@@ -1571,7 +1571,7 @@ export namespace recommendationengine_v1beta1 {
      *   // Do the magic
      *   const res = await recommendationengine.projects.locations.catalogs.catalogItems.delete(
      *     {
-     *       // Required. Full resource name of catalog item, such as "projects/x/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
+     *       // Required. Full resource name of catalog item, such as `projects/x/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`.
      *       name:
      *         'projects/my-project/locations/my-location/catalogs/my-catalog/catalogItems/.*',
      *     }
@@ -1702,7 +1702,7 @@ export namespace recommendationengine_v1beta1 {
      *   // Do the magic
      *   const res = await recommendationengine.projects.locations.catalogs.catalogItems.get(
      *     {
-     *       // Required. Full resource name of catalog item, such as "projects/x/locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id".
+     *       // Required. Full resource name of catalog item, such as `projects/x/locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
      *       name:
      *         'projects/my-project/locations/my-location/catalogs/my-catalog/catalogItems/.*',
      *     }
@@ -1849,7 +1849,7 @@ export namespace recommendationengine_v1beta1 {
      *   // Do the magic
      *   const res = await recommendationengine.projects.locations.catalogs.catalogItems.import(
      *     {
-     *       // Required. "projects/1234/locations/global/catalogs/default_catalog" If no updateMask is specified, requires catalogItems.create permission. If updateMask is specified, requires catalogItems.update permission.
+     *       // Required. `projects/1234/locations/global/catalogs/default_catalog` If no updateMask is specified, requires catalogItems.create permission. If updateMask is specified, requires catalogItems.update permission.
      *       parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
      *
      *       // Request body metadata
@@ -2009,7 +2009,7 @@ export namespace recommendationengine_v1beta1 {
      *       pageSize: 'placeholder-value',
      *       // Optional. The previous ListCatalogItemsResponse.next_page_token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent catalog resource name, such as "projects/x/locations/global/catalogs/default_catalog".
+     *       // Required. The parent catalog resource name, such as `projects/x/locations/global/catalogs/default_catalog`.
      *       parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
      *     }
      *   );
@@ -2151,7 +2151,7 @@ export namespace recommendationengine_v1beta1 {
      *   // Do the magic
      *   const res = await recommendationengine.projects.locations.catalogs.catalogItems.patch(
      *     {
-     *       // Required. Full resource name of catalog item, such as "projects/x/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
+     *       // Required. Full resource name of catalog item, such as `projects/x/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`.
      *       name:
      *         'projects/my-project/locations/my-location/catalogs/my-catalog/catalogItems/.*',
      *       // Optional. Indicates which fields in the provided 'item' to update. If not set, will by default update all fields.
@@ -2292,7 +2292,7 @@ export namespace recommendationengine_v1beta1 {
   export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$Create
     extends StandardParameters {
     /**
-     * Required. The parent catalog resource name, such as "projects/x/locations/global/catalogs/default_catalog".
+     * Required. The parent catalog resource name, such as `projects/x/locations/global/catalogs/default_catalog`.
      */
     parent?: string;
 
@@ -2304,21 +2304,21 @@ export namespace recommendationengine_v1beta1 {
   export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$Delete
     extends StandardParameters {
     /**
-     * Required. Full resource name of catalog item, such as "projects/x/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
+     * Required. Full resource name of catalog item, such as `projects/x/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$Get
     extends StandardParameters {
     /**
-     * Required. Full resource name of catalog item, such as "projects/x/locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id".
+     * Required. Full resource name of catalog item, such as `projects/x/locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$Import
     extends StandardParameters {
     /**
-     * Required. "projects/1234/locations/global/catalogs/default_catalog" If no updateMask is specified, requires catalogItems.create permission. If updateMask is specified, requires catalogItems.update permission.
+     * Required. `projects/1234/locations/global/catalogs/default_catalog` If no updateMask is specified, requires catalogItems.create permission. If updateMask is specified, requires catalogItems.update permission.
      */
     parent?: string;
 
@@ -2342,14 +2342,14 @@ export namespace recommendationengine_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent catalog resource name, such as "projects/x/locations/global/catalogs/default_catalog".
+     * Required. The parent catalog resource name, such as `projects/x/locations/global/catalogs/default_catalog`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Catalogitems$Patch
     extends StandardParameters {
     /**
-     * Required. Full resource name of catalog item, such as "projects/x/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id".
+     * Required. Full resource name of catalog item, such as `projects/x/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`.
      */
     name?: string;
     /**
@@ -2744,7 +2744,7 @@ export namespace recommendationengine_v1beta1 {
      *   // Do the magic
      *   const res = await recommendationengine.projects.locations.catalogs.eventStores.placements.predict(
      *     {
-     *       // Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/x\} The id of the recommendation engine placement. This id is used to identify the set of models that will be used to make the prediction. We currently support three placements with the following IDs by default: * `shopping_cart`: Predicts items frequently bought together with one or more catalog items in the same shopping session. Commonly displayed after `add-to-cart` events, on product detail pages, or on the shopping cart page. * `home_page`: Predicts the next product that a user will most likely engage with or purchase based on the shopping or viewing history of the specified `userId` or `visitorId`. For example - Recommendations for you. * `product_detail`: Predicts the next product that a user will most likely engage with or purchase. The prediction is based on the shopping or viewing history of the specified `userId` or `visitorId` and its relevance to a specified `CatalogItem`. Typically used on product detail pages. For example - More items like this. * `recently_viewed_default`: Returns up to 75 items recently viewed by the specified `userId` or `visitorId`, most recent ones first. Returns nothing if neither of them has viewed any items yet. For example - Recently viewed. The full list of available placements can be seen at https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
+     *       // Required. Full resource name of the format: `{name=projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/x\}` The id of the recommendation engine placement. This id is used to identify the set of models that will be used to make the prediction. We currently support three placements with the following IDs by default: * `shopping_cart`: Predicts items frequently bought together with one or more catalog items in the same shopping session. Commonly displayed after `add-to-cart` events, on product detail pages, or on the shopping cart page. * `home_page`: Predicts the next product that a user will most likely engage with or purchase based on the shopping or viewing history of the specified `userId` or `visitorId`. For example - Recommendations for you. * `product_detail`: Predicts the next product that a user will most likely engage with or purchase. The prediction is based on the shopping or viewing history of the specified `userId` or `visitorId` and its relevance to a specified `CatalogItem`. Typically used on product detail pages. For example - More items like this. * `recently_viewed_default`: Returns up to 75 items recently viewed by the specified `userId` or `visitorId`, most recent ones first. Returns nothing if neither of them has viewed any items yet. For example - Recently viewed. The full list of available placements can be seen at https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
      *       name:
      *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore/placements/my-placement',
      *
@@ -2881,7 +2881,7 @@ export namespace recommendationengine_v1beta1 {
   export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Placements$Predict
     extends StandardParameters {
     /**
-     * Required. Full resource name of the format: {name=projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/x\} The id of the recommendation engine placement. This id is used to identify the set of models that will be used to make the prediction. We currently support three placements with the following IDs by default: * `shopping_cart`: Predicts items frequently bought together with one or more catalog items in the same shopping session. Commonly displayed after `add-to-cart` events, on product detail pages, or on the shopping cart page. * `home_page`: Predicts the next product that a user will most likely engage with or purchase based on the shopping or viewing history of the specified `userId` or `visitorId`. For example - Recommendations for you. * `product_detail`: Predicts the next product that a user will most likely engage with or purchase. The prediction is based on the shopping or viewing history of the specified `userId` or `visitorId` and its relevance to a specified `CatalogItem`. Typically used on product detail pages. For example - More items like this. * `recently_viewed_default`: Returns up to 75 items recently viewed by the specified `userId` or `visitorId`, most recent ones first. Returns nothing if neither of them has viewed any items yet. For example - Recently viewed. The full list of available placements can be seen at https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
+     * Required. Full resource name of the format: `{name=projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/x\}` The id of the recommendation engine placement. This id is used to identify the set of models that will be used to make the prediction. We currently support three placements with the following IDs by default: * `shopping_cart`: Predicts items frequently bought together with one or more catalog items in the same shopping session. Commonly displayed after `add-to-cart` events, on product detail pages, or on the shopping cart page. * `home_page`: Predicts the next product that a user will most likely engage with or purchase based on the shopping or viewing history of the specified `userId` or `visitorId`. For example - Recommendations for you. * `product_detail`: Predicts the next product that a user will most likely engage with or purchase. The prediction is based on the shopping or viewing history of the specified `userId` or `visitorId` and its relevance to a specified `CatalogItem`. Typically used on product detail pages. For example - More items like this. * `recently_viewed_default`: Returns up to 75 items recently viewed by the specified `userId` or `visitorId`, most recent ones first. Returns nothing if neither of them has viewed any items yet. For example - Recently viewed. The full list of available placements can be seen at https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
      */
     name?: string;
 
@@ -2925,7 +2925,7 @@ export namespace recommendationengine_v1beta1 {
      *   // Do the magic
      *   const res = await recommendationengine.projects.locations.catalogs.eventStores.predictionApiKeyRegistrations.create(
      *     {
-     *       // Required. The parent resource path. "projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     *       // Required. The parent resource path. `projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      *       parent:
      *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
      *
@@ -3074,7 +3074,7 @@ export namespace recommendationengine_v1beta1 {
      *   // Do the magic
      *   const res = await recommendationengine.projects.locations.catalogs.eventStores.predictionApiKeyRegistrations.delete(
      *     {
-     *       // Required. The API key to unregister including full resource path. "projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/"
+     *       // Required. The API key to unregister including full resource path. `projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/`
      *       name:
      *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore/predictionApiKeyRegistrations/my-predictionApiKeyRegistration',
      *     }
@@ -3209,7 +3209,7 @@ export namespace recommendationengine_v1beta1 {
      *       pageSize: 'placeholder-value',
      *       // Optional. The previous `ListPredictionApiKeyRegistration.nextPageToken`.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent placement resource name such as "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store"
+     *       // Required. The parent placement resource name such as `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
      *       parent:
      *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
      *     }
@@ -3327,7 +3327,7 @@ export namespace recommendationengine_v1beta1 {
   export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource path. "projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     * Required. The parent resource path. `projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      */
     parent?: string;
 
@@ -3339,7 +3339,7 @@ export namespace recommendationengine_v1beta1 {
   export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Delete
     extends StandardParameters {
     /**
-     * Required. The API key to unregister including full resource path. "projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/"
+     * Required. The API key to unregister including full resource path. `projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/`
      */
     name?: string;
   }
@@ -3354,7 +3354,7 @@ export namespace recommendationengine_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent placement resource name such as "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store"
+     * Required. The parent placement resource name such as `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
      */
     parent?: string;
   }
@@ -3395,7 +3395,7 @@ export namespace recommendationengine_v1beta1 {
      *     {
      *       // Optional. The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
      *       ets: 'placeholder-value',
-     *       // Required. The parent eventStore name, such as "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     *       // Required. The parent eventStore name, such as `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      *       parent:
      *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
      *       // Optional. The url including cgi-parameters but excluding the hash fragment. The URL must be truncated to 1.5K bytes to conservatively be under the 2K bytes. This is often more useful than the referer url, because many browsers only send the domain for 3rd party requests.
@@ -3537,7 +3537,7 @@ export namespace recommendationengine_v1beta1 {
      *   // Do the magic
      *   const res = await recommendationengine.projects.locations.catalogs.eventStores.userEvents.import(
      *     {
-     *       // Required. "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store"
+     *       // Required. `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
      *       parent:
      *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
      *
@@ -3697,7 +3697,7 @@ export namespace recommendationengine_v1beta1 {
      *       pageSize: 'placeholder-value',
      *       // Optional. The previous ListUserEventsResponse.next_page_token.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent eventStore resource name, such as "projects/x/locations/x/catalogs/default_catalog/eventStores/default_event_store".
+     *       // Required. The parent eventStore resource name, such as `projects/x/locations/x/catalogs/default_catalog/eventStores/default_event_store`.
      *       parent:
      *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
      *     }
@@ -3840,7 +3840,7 @@ export namespace recommendationengine_v1beta1 {
      *   // Do the magic
      *   const res = await recommendationengine.projects.locations.catalogs.eventStores.userEvents.purge(
      *     {
-     *       // Required. The resource name of the event_store under which the events are created. The format is "projects/${projectId\}/locations/global/catalogs/${catalogId\}/eventStores/${eventStoreId\}"
+     *       // Required. The resource name of the event_store under which the events are created. The format is `projects/${projectId\}/locations/global/catalogs/${catalogId\}/eventStores/${eventStoreId\}`
      *       parent:
      *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
      *
@@ -3993,7 +3993,7 @@ export namespace recommendationengine_v1beta1 {
      *   // Do the magic
      *   const res = await recommendationengine.projects.locations.catalogs.eventStores.userEvents.rejoin(
      *     {
-     *       // Required. Full resource name of user event, such as "projects/x/locations/x/catalogs/default_catalog/eventStores/default_event_store".
+     *       // Required. Full resource name of user event, such as `projects/x/locations/x/catalogs/default_catalog/eventStores/default_event_store`.
      *       parent:
      *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
      *
@@ -4285,7 +4285,7 @@ export namespace recommendationengine_v1beta1 {
      */
     ets?: string;
     /**
-     * Required. The parent eventStore name, such as "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     * Required. The parent eventStore name, such as `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
      */
     parent?: string;
     /**
@@ -4300,7 +4300,7 @@ export namespace recommendationengine_v1beta1 {
   export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Import
     extends StandardParameters {
     /**
-     * Required. "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store"
+     * Required. `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
      */
     parent?: string;
 
@@ -4324,14 +4324,14 @@ export namespace recommendationengine_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent eventStore resource name, such as "projects/x/locations/x/catalogs/default_catalog/eventStores/default_event_store".
+     * Required. The parent eventStore resource name, such as `projects/x/locations/x/catalogs/default_catalog/eventStores/default_event_store`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Purge
     extends StandardParameters {
     /**
-     * Required. The resource name of the event_store under which the events are created. The format is "projects/${projectId\}/locations/global/catalogs/${catalogId\}/eventStores/${eventStoreId\}"
+     * Required. The resource name of the event_store under which the events are created. The format is `projects/${projectId\}/locations/global/catalogs/${catalogId\}/eventStores/${eventStoreId\}`
      */
     parent?: string;
 
@@ -4343,7 +4343,7 @@ export namespace recommendationengine_v1beta1 {
   export interface Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Rejoin
     extends StandardParameters {
     /**
-     * Required. Full resource name of user event, such as "projects/x/locations/x/catalogs/default_catalog/eventStores/default_event_store".
+     * Required. Full resource name of user event, such as `projects/x/locations/x/catalogs/default_catalog/eventStores/default_event_store`.
      */
     parent?: string;
 

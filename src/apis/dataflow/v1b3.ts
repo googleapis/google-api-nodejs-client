@@ -919,6 +919,10 @@ export namespace dataflow_v1b3 {
      */
     serviceAccountEmail?: string | null;
     /**
+     * The Cloud Storage path for staging local files. Must be a valid Cloud Storage URL, beginning with `gs://`.
+     */
+    stagingLocation?: string | null;
+    /**
      * Subnetwork to which VMs will be assigned, if desired. You can specify a subnetwork using either a complete URL or an abbreviated path. Expected to be of the form "https://www.googleapis.com/compute/v1/projects/HOST_PROJECT_ID/regions/REGION/subnetworks/SUBNETWORK" or "regions/REGION/subnetworks/SUBNETWORK". If the subnetwork is located in a Shared VPC network, you must use the complete URL.
      */
     subnetwork?: string | null;

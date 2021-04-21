@@ -1070,7 +1070,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Intent {
     /**
-     * Optional. Human readable description for better understanding an intent like its scope, content, result etc. Maximum character limit: 140 characters.
+     * Human readable description for better understanding an intent like its scope, content, result etc. Maximum character limit: 140 characters.
      */
     description?: string | null;
     /**
@@ -1082,7 +1082,7 @@ export namespace dialogflow_v3beta1 {
      */
     isFallback?: boolean | null;
     /**
-     * Optional. The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix "sys-" is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys-head * sys-contextual The above labels do not require value. "sys-head" means the intent is a head intent. "sys-contextual" means the intent is a contextual intent.
+     * The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix "sys-" is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys-head * sys-contextual The above labels do not require value. "sys-head" means the intent is a head intent. "sys-contextual" means the intent is a contextual intent.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1375,7 +1375,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1LoadVersionRequest {
     /**
-     * This field is used to prevent accidental overwrite of other agent resources in the draft version, which can potentially impact other flow's behavior. If `allow_override_agent_resources` is false, conflicted agent-level resources will not be overridden (i.e. intents, entities, webhooks).
+     * This field is used to prevent accidental overwrite of other agent resources, which can potentially impact other flow's behavior. If `allow_override_agent_resources` is false, conflicted agent-level resources will not be overridden (i.e. intents, entities, webhooks).
      */
     allowOverrideAgentResources?: boolean | null;
   }
@@ -2490,6 +2490,10 @@ export namespace dialogflow_v3beta1 {
      */
     intentInfo?: Schema$GoogleCloudDialogflowCxV3beta1WebhookRequestIntentInfo;
     /**
+     * The language code specified in the original request.
+     */
+    languageCode?: string | null;
+    /**
      * The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;
      */
     messages?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
@@ -3006,7 +3010,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3Intent {
     /**
-     * Optional. Human readable description for better understanding an intent like its scope, content, result etc. Maximum character limit: 140 characters.
+     * Human readable description for better understanding an intent like its scope, content, result etc. Maximum character limit: 140 characters.
      */
     description?: string | null;
     /**
@@ -3018,7 +3022,7 @@ export namespace dialogflow_v3beta1 {
      */
     isFallback?: boolean | null;
     /**
-     * Optional. The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix "sys." is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys.head * sys.contextual The above labels do not require value. "sys.head" means the intent is a head intent. "sys.contextual" means the intent is a contextual intent.
+     * The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix "sys." is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys.head * sys.contextual The above labels do not require value. "sys.head" means the intent is a head intent. "sys.contextual" means the intent is a contextual intent.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -3551,6 +3555,10 @@ export namespace dialogflow_v3beta1 {
      * Information about the last matched intent.
      */
     intentInfo?: Schema$GoogleCloudDialogflowCxV3WebhookRequestIntentInfo;
+    /**
+     * The language code specified in the original request.
+     */
+    languageCode?: string | null;
     /**
      * The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;
      */
@@ -15877,7 +15885,7 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * Loads a specified version to draft version.
+     * Loads resources in the specified version to the draft flow.
      * @example
      * ```js
      * // Before running the sample:
@@ -15906,7 +15914,7 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Do the magic
      *   const res = await dialogflow.projects.locations.agents.flows.versions.load({
-     *     // Required. The Version to be loaded to draft version. Format: `projects//locations//agents//flows//versions/`.
+     *     // Required. The Version to be loaded to draft flow. Format: `projects//locations//agents//flows//versions/`.
      *     name:
      *       'projects/my-project/locations/my-location/agents/my-agent/flows/my-flow/versions/my-version',
      *
@@ -16232,7 +16240,7 @@ export namespace dialogflow_v3beta1 {
   export interface Params$Resource$Projects$Locations$Agents$Flows$Versions$Load
     extends StandardParameters {
     /**
-     * Required. The Version to be loaded to draft version. Format: `projects//locations//agents//flows//versions/`.
+     * Required. The Version to be loaded to draft flow. Format: `projects//locations//agents//flows//versions/`.
      */
     name?: string;
 

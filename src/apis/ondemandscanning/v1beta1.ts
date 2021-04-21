@@ -696,6 +696,7 @@ export namespace ondemandscanning_v1beta1 {
      * The package being analysed for vulnerabilities
      */
     package?: string | null;
+    unused?: string | null;
     /**
      * The version of the package being analysed
      */

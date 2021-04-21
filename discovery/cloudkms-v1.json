@@ -160,7 +160,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of results to return. If not set, the service will select a default.",
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -1259,7 +1259,7 @@
       }
     }
   },
-  "revision": "20210331",
+  "revision": "20210410",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -1666,7 +1666,7 @@
             "This version is still being generated. It may not be used, enabled, disabled, or destroyed yet. Cloud KMS will automatically mark this version ENABLED as soon as the version is ready.",
             "This version may be used for cryptographic operations.",
             "This version may not be used, but the key material is still available, and the version can be placed back into the ENABLED state.",
-            "This version is destroyed, and the key material is no longer stored. A version may not leave this state once entered.",
+            "This version is destroyed, and the key material is no longer stored.",
             "This version is scheduled for destruction, and will be destroyed soon. Call RestoreCryptoKeyVersion to put it back into the DISABLED state.",
             "This version is still being imported. It may not be used, enabled, disabled, or destroyed yet. Cloud KMS will automatically mark this version ENABLED as soon as the version is ready.",
             "This version was not imported successfully. It may not be used, enabled, disabled, or destroyed. The submitted key material has been discarded. Additional details can be found in CryptoKeyVersion.import_failure_reason."

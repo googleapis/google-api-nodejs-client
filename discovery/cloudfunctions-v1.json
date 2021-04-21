@@ -197,7 +197,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of results to return. If not set, the service will select a default.",
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -546,7 +546,7 @@
       }
     }
   },
-  "revision": "20210325",
+  "revision": "20210409",
   "rootUrl": "https://cloudfunctions.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1075,6 +1075,10 @@
       "properties": {
         "buildId": {
           "description": "The Cloud Build ID of the function created or updated by an API call. This field is only populated for Create and Update operations.",
+          "type": "string"
+        },
+        "buildName": {
+          "description": "The Cloud Build Name of the function deployment. This field is only populated for Create and Update operations. projects//locations//builds/.",
           "type": "string"
         },
         "request": {

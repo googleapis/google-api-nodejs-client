@@ -1162,7 +1162,7 @@ export namespace gkehub_v1beta {
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service will select a default.
+     *     // The maximum number of results to return. If not set, the service selects a default.
      *     pageSize: 'placeholder-value',
      *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
@@ -1291,7 +1291,7 @@ export namespace gkehub_v1beta {
      */
     name?: string;
     /**
-     * The maximum number of results to return. If not set, the service will select a default.
+     * The maximum number of results to return. If not set, the service selects a default.
      */
     pageSize?: number;
     /**

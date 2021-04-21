@@ -719,6 +719,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "rollback": {
+                  "description": "Rollbacks a notebook instance to the previous version.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:rollback",
+                  "httpMethod": "POST",
+                  "id": "notebooks.projects.locations.instances.rollback",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:rollback",
+                  "request": {
+                    "$ref": "RollbackInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "setAccelerator": {
                   "description": "Updates the guest accelerators of a single Instance.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:setAccelerator",
@@ -1525,7 +1553,7 @@
       }
     }
   },
-  "revision": "20210323",
+  "revision": "20210406",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1859,6 +1887,10 @@
             "The CUSTOM tier is not a set tier, but rather enables you to use your own cluster specification. When you use this tier, set values to configure your processing cluster according to these guidelines: * You _must_ set `TrainingInput.masterType` to specify the type of machine to use for your master node. This is the only required setting. * You _may_ set `TrainingInput.workerCount` to specify the number of workers to use. If you specify one or more workers, you _must_ also set `TrainingInput.workerType` to specify the type of machine to use for your worker nodes. * You _may_ set `TrainingInput.parameterServerCount` to specify the number of parameter servers to use. If you specify one or more parameter servers, you _must_ also set `TrainingInput.parameterServerType` to specify the type of machine to use for your parameter servers. Note that all of your workers must use the same machine type, which can be different from your parameter server type and master type. Your parameter servers must likewise use the same machine type, which can be different from your worker type and master type."
           ],
           "type": "string"
+        },
+        "serviceAccount": {
+          "description": "The email address of a service account to use when running the execution. You must have the `iam.serviceAccounts.actAs` permission for the specified service account.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2057,6 +2089,20 @@
         },
         "network": {
           "description": "The name of the VPC that this instance is in. Format: `projects/{project_id}/global/networks/{network_id}`",
+          "type": "string"
+        },
+        "nicType": {
+          "description": "Optional. The type of vNIC to be used on this interface. This may be gVNIC or VirtioNet.",
+          "enum": [
+            "UNSPECIFIED_NIC_TYPE",
+            "VIRTIO_NET",
+            "GVNIC"
+          ],
+          "enumDescriptions": [
+            "No type specified.",
+            "VIRTIO",
+            "GVNIC"
+          ],
           "type": "string"
         },
         "noProxyAccess": {
@@ -2624,6 +2670,17 @@
       "description": "Request for reseting a Managed Notebook Runtime.",
       "id": "ResetRuntimeRequest",
       "properties": {},
+      "type": "object"
+    },
+    "RollbackInstanceRequest": {
+      "description": "Request for rollbacking a notebook instance",
+      "id": "RollbackInstanceRequest",
+      "properties": {
+        "targetSnapshot": {
+          "description": "Required. The snapshot for rollback. Example: \"projects/test-project/global/snapshots/krwlzipynril\".",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Runtime": {
@@ -3341,6 +3398,20 @@
         },
         "network": {
           "description": "Optional. The Compute Engine network to be used for machine communications. Cannot be specified with subnetwork. If neither `network` nor `subnet` is specified, the \"default\" network of the project is used, if it exists. A full URL or partial URI. Examples: * `https://www.googleapis.com/compute/v1/projects/[project_id]/regions/global/default` * `projects/[project_id]/regions/global/default` Runtimes are managed resources inside Google Infrastructure. Runtimes support the following network configurations: * Google Managed Network (Network & subnet are empty) * Consumer Project VPC (network & subnet are required). Requires configuring Private Service Access. * Shared VPC (network & subnet are required). Requires configuring Private Service Access.",
+          "type": "string"
+        },
+        "nicType": {
+          "description": "Optional. The type of vNIC to be used on this interface. This may be gVNIC or VirtioNet.",
+          "enum": [
+            "UNSPECIFIED_NIC_TYPE",
+            "VIRTIO_NET",
+            "GVNIC"
+          ],
+          "enumDescriptions": [
+            "No type specified.",
+            "VIRTIO",
+            "GVNIC"
+          ],
           "type": "string"
         },
         "shieldedInstanceConfig": {

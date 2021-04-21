@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -2459,7 +2459,7 @@
       }
     }
   },
-  "revision": "20210314",
+  "revision": "20210406",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2736,6 +2736,10 @@
           },
           "type": "array"
         },
+        "confidentialNodes": {
+          "$ref": "ConfidentialNodes",
+          "description": "Configuration of Confidential Nodes"
+        },
         "createTime": {
           "description": "[Output only] The time the cluster was created, in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.",
           "type": "string"
@@ -2779,6 +2783,11 @@
         },
         "expireTime": {
           "description": "[Output only] The time the cluster will be automatically deleted in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Output only. Unique id for the cluster.",
+          "readOnly": true,
           "type": "string"
         },
         "initialClusterVersion": {
@@ -3118,6 +3127,17 @@
         "zone": {
           "description": "Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfidentialNodes": {
+      "description": "ConfidentialNodes is configuration for the confidential nodes feature, which makes nodes run on confidential VMs.",
+      "id": "ConfidentialNodes",
+      "properties": {
+        "enabled": {
+          "description": "Whether Confidential Nodes feature is enabled for all nodes in this cluster.",
+          "type": "boolean"
         }
       },
       "type": "object"

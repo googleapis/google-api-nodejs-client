@@ -358,6 +358,10 @@ export namespace container_v1 {
      */
     conditions?: Schema$StatusCondition[];
     /**
+     * Configuration of Confidential Nodes
+     */
+    confidentialNodes?: Schema$ConfidentialNodes;
+    /**
      * [Output only] The time the cluster was created, in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
     createTime?: string | null;
@@ -401,6 +405,10 @@ export namespace container_v1 {
      * [Output only] The time the cluster will be automatically deleted in [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) text format.
      */
     expireTime?: string | null;
+    /**
+     * Output only. Unique id for the cluster.
+     */
+    id?: string | null;
     /**
      * The initial Kubernetes version for this cluster. Valid versions are those found in validMasterVersions returned by getServerConfig. The version can be upgraded over time; such upgrades are reflected in currentMasterVersion and currentNodeVersion. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - "latest": picks the highest valid Kubernetes version - "1.X": picks the highest valid patch+gke.N patch in the 1.X version - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version - "1.X.Y-gke.N": picks an explicit Kubernetes version - "","-": picks the default Kubernetes version
      */
@@ -680,6 +688,15 @@ export namespace container_v1 {
      * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
+  }
+  /**
+   * ConfidentialNodes is configuration for the confidential nodes feature, which makes nodes run on confidential VMs.
+   */
+  export interface Schema$ConfidentialNodes {
+    /**
+     * Whether Confidential Nodes feature is enabled for all nodes in this cluster.
+     */
+    enabled?: boolean | null;
   }
   /**
    * Configuration options for the Config Connector add-on.
@@ -3257,6 +3274,7 @@ export namespace container_v1 {
      *   //   "binaryAuthorization": {},
      *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
      *   //   "conditions": [],
+     *   //   "confidentialNodes": {},
      *   //   "createTime": "my_createTime",
      *   //   "currentMasterVersion": "my_currentMasterVersion",
      *   //   "currentNodeCount": 0,
@@ -3268,6 +3286,7 @@ export namespace container_v1 {
      *   //   "enableTpu": false,
      *   //   "endpoint": "my_endpoint",
      *   //   "expireTime": "my_expireTime",
+     *   //   "id": "my_id",
      *   //   "initialClusterVersion": "my_initialClusterVersion",
      *   //   "initialNodeCount": 0,
      *   //   "instanceGroupUrls": [],
@@ -8763,6 +8782,7 @@ export namespace container_v1 {
      *   //   "binaryAuthorization": {},
      *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
      *   //   "conditions": [],
+     *   //   "confidentialNodes": {},
      *   //   "createTime": "my_createTime",
      *   //   "currentMasterVersion": "my_currentMasterVersion",
      *   //   "currentNodeCount": 0,
@@ -8774,6 +8794,7 @@ export namespace container_v1 {
      *   //   "enableTpu": false,
      *   //   "endpoint": "my_endpoint",
      *   //   "expireTime": "my_expireTime",
+     *   //   "id": "my_id",
      *   //   "initialClusterVersion": "my_initialClusterVersion",
      *   //   "initialNodeCount": 0,
      *   //   "instanceGroupUrls": [],

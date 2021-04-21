@@ -1193,7 +1193,7 @@
       }
     }
   },
-  "revision": "20210223",
+  "revision": "20210406",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -1522,7 +1522,7 @@
       "type": "object"
     },
     "Export": {
-      "description": "An export",
+      "description": "An export To work with Vault resources, the account must have the [required Vault privileges] (https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege.",
       "id": "Export",
       "properties": {
         "cloudStorageSink": {
@@ -1752,7 +1752,7 @@
       "type": "object"
     },
     "HeldAccount": {
-      "description": "An account being held in a particular hold. This structure is immutable. This can be either a single user or a google group, depending on the corpus.",
+      "description": "An account being held in a particular hold. This structure is immutable. This can be either a single user or a google group, depending on the corpus. To work with Vault resources, the account must have the [required Vault privileges] (https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege.",
       "id": "HeldAccount",
       "properties": {
         "accountId": {
@@ -1890,7 +1890,7 @@
       "type": "object"
     },
     "Hold": {
-      "description": "Represents a hold within Vault. A hold restricts purging of artifacts based on the combination of the query and accounts restrictions. A hold can be configured to either apply to an explicitly configured set of accounts, or can be applied to all members of an organizational unit.",
+      "description": "Represents a hold within Vault. A hold restricts purging of artifacts based on the combination of the query and accounts restrictions. A hold can be configured to either apply to an explicitly configured set of accounts, or can be applied to all members of an organizational unit. To work with Vault resources, the account must have the [required Vault privileges] (https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege.",
       "id": "Hold",
       "properties": {
         "accounts": {
@@ -2123,7 +2123,7 @@
       "type": "object"
     },
     "Matter": {
-      "description": "Represents a matter.",
+      "description": "Represents a matter. To work with Vault resources, the account must have the [required Vault privileges] (https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege.",
       "id": "Matter",
       "properties": {
         "description": {
@@ -2433,7 +2433,7 @@
       "type": "object"
     },
     "SavedQuery": {
-      "description": "Definition of the saved query.",
+      "description": "Definition of the saved query. To work with Vault resources, the account must have the [required Vault privileges] (https://support.google.com/vault/answer/2799699) and access to the matter. To access a matter, the account must have created the matter, have the matter shared with them, or have the **View All Matters** privilege.",
       "id": "SavedQuery",
       "properties": {
         "createTime": {

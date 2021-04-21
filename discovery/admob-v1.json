@@ -168,6 +168,88 @@
         }
       },
       "resources": {
+        "adUnits": {
+          "methods": {
+            "list": {
+              "description": "List the ad units under the specified AdMob account.",
+              "flatPath": "v1/accounts/{accountsId}/adUnits",
+              "httpMethod": "GET",
+              "id": "admob.accounts.adUnits.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of ad units to return. If unspecified or 0, at most 1000 ad units will be returned. The maximum value is 10,000; values above 10,000 will be coerced to 10,000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The value returned by the last `ListAdUnitsResponse`; indicates that this is a continuation of a prior `ListAdUnits` call, and that the system should return the next page of data.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Resource name of the account to list ad units for. Example: accounts/pub-9876543210987654",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/adUnits",
+              "response": {
+                "$ref": "ListAdUnitsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/admob.readonly"
+              ],
+              "streamingType": "NONE"
+            }
+          }
+        },
+        "apps": {
+          "methods": {
+            "list": {
+              "description": "List the apps under the specified AdMob account.",
+              "flatPath": "v1/accounts/{accountsId}/apps",
+              "httpMethod": "GET",
+              "id": "admob.accounts.apps.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of apps to return. If unspecified or 0, at most 1000 apps will be returned. The maximum value is 10,000; values above 10,000 will be coerced to 10,000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "The value returned by the last `ListAppsResponse`; indicates that this is a continuation of a prior `ListApps` call, and that the system should return the next page of data.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Resource name of the account to list apps for. Example: accounts/pub-9876543210987654",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/apps",
+              "response": {
+                "$ref": "ListAppsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/admob.readonly"
+              ],
+              "streamingType": "NONE"
+            }
+          }
+        },
         "mediationReport": {
           "methods": {
             "generate": {
@@ -239,9 +321,97 @@
       }
     }
   },
-  "revision": "20210308",
+  "revision": "20210417",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
+    "AdUnit": {
+      "description": "Describes an AdMob ad unit.",
+      "id": "AdUnit",
+      "properties": {
+        "adFormat": {
+          "description": "AdFormat of the ad unit. Possible values are as follows: \"BANNER\" - Banner ad format. \"BANNER_INTERSTITIAL\" - Legacy format that can be used as either banner or interstitial. This format can no longer be created but can be targeted by mediation groups. \"INTERSTITIAL\" - A full screen ad. Supported ad types are \"RICH_MEDIA\" and \"VIDEO\". \"NATIVE\" - Native ad format. \"REWARDED\" - An ad that, once viewed, gets a callback verifying the view so that a reward can be given to the user. Supported ad types are \"RICH_MEDIA\" (interactive) and video where video can not be excluded.",
+          "type": "string"
+        },
+        "adTypes": {
+          "description": "Ad media type supported by this ad unit. Possible values as follows: \"RICH_MEDIA\" - Text, image, and other non-video media. \"VIDEO\" - Video media.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "adUnitId": {
+          "description": "The externally visible ID of the ad unit which can be used to integrate with the AdMob SDK. This is a read only property. Example: ca-app-pub-9876543210987654/0123456789",
+          "type": "string"
+        },
+        "appId": {
+          "description": "The externally visible ID of the app this ad unit is associated with. Example: ca-app-pub-9876543210987654~0123456789",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the ad unit as shown in the AdMob UI, which is provided by the user. The maximum length allowed is 80 characters.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Resource name for this ad unit. Format is accounts/{publisher_id}/adUnits/{ad_unit_id_fragment} Example: accounts/pub-9876543210987654/adUnits/0123456789",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "App": {
+      "description": "Describes an AdMob app for a specific platform (For example: Android or iOS).",
+      "id": "App",
+      "properties": {
+        "appId": {
+          "description": "The externally visible ID of the app which can be used to integrate with the AdMob SDK. This is a read only property. Example: ca-app-pub-9876543210987654~0123456789",
+          "type": "string"
+        },
+        "linkedAppInfo": {
+          "$ref": "AppLinkedAppInfo",
+          "description": "Immutable. The information for an app that is linked to an app store. This field is present if and only if the app is linked to an app store."
+        },
+        "manualAppInfo": {
+          "$ref": "AppManualAppInfo",
+          "description": "The information for an app that is not linked to any app store. After an app is linked, this information is still retrivable. If no name is provided for the app upon creation, a placeholder name will be used."
+        },
+        "name": {
+          "description": "Resource name for this app. Format is accounts/{publisher_id}/apps/{app_id_fragment} Example: accounts/pub-9876543210987654/apps/0123456789",
+          "type": "string"
+        },
+        "platform": {
+          "description": "Describes the platform of the app. Limited to \"IOS\" and \"ANDROID\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppLinkedAppInfo": {
+      "description": "Information from the app store if the app is linked to an app store.",
+      "id": "AppLinkedAppInfo",
+      "properties": {
+        "appStoreId": {
+          "description": "The app store ID of the app; present if and only if the app is linked to an app store. If the app is added to the Google Play store, it will be the application ID of the app. For example: \"com.example.myapp\". See https://developer.android.com/studio/build/application-id. If the app is added to the Apple App Store, it will be app store ID. For example \"105169111\". Note that setting the app store id is considered an irreversible action. Once an app is linked, it cannot be unlinked.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. Display name of the app as it appears in the app store. This is an output-only field, and may be empty if the app cannot be found in the store.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppManualAppInfo": {
+      "description": "Information provided for manual apps which are not linked to an application store (Example: Google Play, App Store).",
+      "id": "AppManualAppInfo",
+      "properties": {
+        "displayName": {
+          "description": "The display name of the app as shown in the AdMob UI, which is provided by the user. The maximum length allowed is 80 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Date": {
       "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
       "id": "Date",
@@ -335,6 +505,42 @@
         "row": {
           "$ref": "ReportRow",
           "description": "Actual report data."
+        }
+      },
+      "type": "object"
+    },
+    "ListAdUnitsResponse": {
+      "description": "Response for the ad units list request.",
+      "id": "ListAdUnitsResponse",
+      "properties": {
+        "adUnits": {
+          "description": "The resulting ad units for the requested account.",
+          "items": {
+            "$ref": "AdUnit"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If not empty, indicates that there may be more ad units for the request; this value should be passed in a new `ListAdUnitsRequest`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAppsResponse": {
+      "description": "Response for the apps list request.",
+      "id": "ListAppsResponse",
+      "properties": {
+        "apps": {
+          "description": "The resulting apps for the requested account.",
+          "items": {
+            "$ref": "App"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "If not empty, indicates that there may be more apps for the request; this value should be passed in a new `ListAppsRequest`.",
+          "type": "string"
         }
       },
       "type": "object"

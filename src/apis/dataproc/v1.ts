@@ -453,6 +453,15 @@ export namespace dataproc_v1 {
     substate?: string | null;
   }
   /**
+   * Confidential Instance Config for clusters using Confidential VMs (https://cloud.google.com/compute/confidential-vm/docs) NEXT ID: 2
+   */
+  export interface Schema$ConfidentialInstanceConfig {
+    /**
+     * Optional. Defines whether the instance should have confidential compute enabled.
+     */
+    enableConfidentialCompute?: boolean | null;
+  }
+  /**
    * A request to collect cluster diagnostic information.
    */
   export interface Schema$DiagnoseClusterRequest {}
@@ -533,6 +542,10 @@ export namespace dataproc_v1 {
    * Common config settings for resources of Compute Engine cluster instances, applicable to all instances in the cluster.
    */
   export interface Schema$GceClusterConfig {
+    /**
+     * Optional. Confidential Instance Config for clusters using Confidential VMs (https://cloud.google.com/compute/confidential-vm/docs)
+     */
+    confidentialInstanceConfig?: Schema$ConfidentialInstanceConfig;
     /**
      * Optional. If true, all instances in the cluster will only have internal IP addresses. By default, clusters are not restricted to internal IP addresses, and will have ephemeral external IP addresses assigned to each instance. This internal_ip_only restriction can only be enabled for subnetwork enabled networks, and all off-cluster dependencies must be configured to be accessible without external IP addresses.
      */

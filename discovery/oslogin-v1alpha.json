@@ -160,7 +160,7 @@
             "view": {
               "description": "The view configures whether to retrieve security keys information.",
               "enum": [
-                "VIEW_UNSPECIFIED",
+                "LOGIN_PROFILE_VIEW_UNSPECIFIED",
                 "BASIC",
                 "SECURITY_KEY"
               ],
@@ -208,7 +208,7 @@
             "view": {
               "description": "The view configures whether to retrieve security keys information.",
               "enum": [
-                "VIEW_UNSPECIFIED",
+                "LOGIN_PROFILE_VIEW_UNSPECIFIED",
                 "BASIC",
                 "SECURITY_KEY"
               ],
@@ -374,7 +374,7 @@
       }
     }
   },
-  "revision": "20210329",
+  "revision": "20210410",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
