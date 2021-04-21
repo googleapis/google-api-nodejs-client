@@ -787,34 +787,6 @@
       "resources": {
         "androidAppDataStreams": {
           "methods": {
-            "create": {
-              "description": "Creates an Android app stream with the specified location and attributes. Note that an Android app stream must be linked to a Firebase app to receive traffic. To create a working app stream, make sure your property is linked to a Firebase project. Then, use the Firebase API to create a Firebase app, which will also create an appropriate data stream in Analytics (may take up to 24 hours).",
-              "flatPath": "v1alpha/properties/{propertiesId}/androidAppDataStreams",
-              "httpMethod": "POST",
-              "id": "analyticsadmin.properties.androidAppDataStreams.create",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. The parent resource where this android app data stream will be created. Format: properties/123",
-                  "location": "path",
-                  "pattern": "^properties/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+parent}/androidAppDataStreams",
-              "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaAndroidAppDataStream"
-              },
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaAndroidAppDataStream"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.edit"
-              ]
-            },
             "delete": {
               "description": "Deletes an android app stream on a property.",
               "flatPath": "v1alpha/properties/{propertiesId}/androidAppDataStreams/{androidAppDataStreamsId}",
@@ -1197,34 +1169,6 @@
         },
         "iosAppDataStreams": {
           "methods": {
-            "create": {
-              "description": "Creates an iOS app stream with the specified location and attributes. Note that an iOS app stream must be linked to a Firebase app to receive traffic. To create a working app stream, make sure your property is linked to a Firebase project. Then, use the Firebase API to create a Firebase app, which will also create an appropriate data stream in Analytics (may take up to 24 hours).",
-              "flatPath": "v1alpha/properties/{propertiesId}/iosAppDataStreams",
-              "httpMethod": "POST",
-              "id": "analyticsadmin.properties.iosAppDataStreams.create",
-              "parameterOrder": [
-                "parent"
-              ],
-              "parameters": {
-                "parent": {
-                  "description": "Required. The parent resource where this ios app data stream will be created. Format: properties/123",
-                  "location": "path",
-                  "pattern": "^properties/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v1alpha/{+parent}/iosAppDataStreams",
-              "request": {
-                "$ref": "GoogleAnalyticsAdminV1alphaIosAppDataStream"
-              },
-              "response": {
-                "$ref": "GoogleAnalyticsAdminV1alphaIosAppDataStream"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/analytics.edit"
-              ]
-            },
             "delete": {
               "description": "Deletes an iOS app stream on a property.",
               "flatPath": "v1alpha/properties/{propertiesId}/iosAppDataStreams/{iosAppDataStreamsId}",
@@ -1890,7 +1834,7 @@
       }
     }
   },
-  "revision": "20210403",
+  "revision": "20210420",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
