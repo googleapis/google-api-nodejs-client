@@ -52,6 +52,7 @@ export {androidpublisher_v2} from './apis/androidpublisher/v2';
 export {androidpublisher_v3} from './apis/androidpublisher/v3';
 export {apigateway_v1} from './apis/apigateway/v1';
 export {apigateway_v1beta} from './apis/apigateway/v1beta';
+export {apikeys_v2} from './apis/apikeys/v2';
 export {appengine_v1} from './apis/appengine/v1';
 export {appengine_v1alpha} from './apis/appengine/v1alpha';
 export {appengine_v1beta} from './apis/appengine/v1beta';
