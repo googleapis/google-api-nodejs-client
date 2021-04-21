@@ -456,6 +456,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "apikeys:v2",
+      "name": "apikeys",
+      "version": "v2",
+      "title": "API Keys API",
+      "description": "Manages the API keys associated with developer projects.",
+      "discoveryRestUrl": "https://apikeys.googleapis.com/$discovery/rest?version=v2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/api-keys/docs",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "appengine:v1alpha",
       "name": "appengine",
       "version": "v1alpha",

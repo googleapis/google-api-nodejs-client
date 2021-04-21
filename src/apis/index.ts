@@ -75,6 +75,7 @@ import {
   androidpublisher,
 } from './androidpublisher';
 import {VERSIONS as apigatewayVersions, apigateway} from './apigateway';
+import {VERSIONS as apikeysVersions, apikeys} from './apikeys';
 import {VERSIONS as appengineVersions, appengine} from './appengine';
 import {VERSIONS as appsactivityVersions, appsactivity} from './appsactivity';
 import {
@@ -518,6 +519,7 @@ export const APIS: APIList = {
   androidmanagement: androidmanagementVersions,
   androidpublisher: androidpublisherVersions,
   apigateway: apigatewayVersions,
+  apikeys: apikeysVersions,
   appengine: appengineVersions,
   appsactivity: appsactivityVersions,
   area120tables: area120tablesVersions,
@@ -732,6 +734,7 @@ export class GeneratedAPIs {
   androidmanagement = androidmanagement;
   androidpublisher = androidpublisher;
   apigateway = apigateway;
+  apikeys = apikeys;
   appengine = appengine;
   appsactivity = appsactivity;
   area120tables = area120tables;
