@@ -526,7 +526,7 @@
       }
     }
   },
-  "revision": "20210324",
+  "revision": "20210417",
   "rootUrl": "https://websecurityscanner.googleapis.com/",
   "schemas": {
     "Authentication": {
@@ -907,6 +907,10 @@
             "Do not export results of this scan to Security Command Center."
           ],
           "type": "string"
+        },
+        "ignoreHttpStatusErrors": {
+          "description": "Whether to keep scanning even if most requests return HTTP error codes.",
+          "type": "boolean"
         },
         "latestRun": {
           "$ref": "ScanRun",
