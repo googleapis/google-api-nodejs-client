@@ -491,6 +491,10 @@ export namespace artifactregistry_v1beta2 {
      */
     description?: string | null;
     /**
+     * Output only. Repository-specific Metadata stored against this version. The fields returned are defined by the underlying repository-specific resource. Currently, the only resource in use is DockerImage
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * The name of the version, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1".
      */
     name?: string | null;
@@ -695,7 +699,7 @@ export namespace artifactregistry_v1beta2 {
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service will select a default.
+     *     // The maximum number of results to return. If not set, the service selects a default.
      *     pageSize: 'placeholder-value',
      *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
@@ -825,7 +829,7 @@ export namespace artifactregistry_v1beta2 {
      */
     name?: string;
     /**
-     * The maximum number of results to return. If not set, the service will select a default.
+     * The maximum number of results to return. If not set, the service selects a default.
      */
     pageSize?: number;
     /**
@@ -4133,6 +4137,7 @@ export namespace artifactregistry_v1beta2 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "relatedTags": [],
      *   //   "updateTime": "my_updateTime"
