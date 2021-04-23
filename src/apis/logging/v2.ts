@@ -519,6 +519,10 @@ export namespace logging_v2 {
      */
     name?: string | null;
     /**
+     * Log entry field paths that are denied access in this bucket. The following fields and their children are eligible: textPayload, jsonPayload, protoPayload, httpRequest, labels, sourceLocation. Restricting a repeated field will restrict all values. Adding a parent will block all child fields e.g. foo.bar will block foo.bar.baz.
+     */
+    restrictedFields?: string[] | null;
+    /**
      * Logs will be retained by default for this amount of time, after which they will automatically be deleted. The minimum retention period is 1 day. If this value is set to zero at bucket creation time, the default time of 30 days will be used.
      */
     retentionDays?: number | null;
@@ -1249,6 +1253,7 @@ export namespace logging_v2 {
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
+     *   //   "restrictedFields": [],
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -2645,6 +2650,7 @@ export namespace logging_v2 {
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
      *       //   "retentionDays": 0,
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -2659,6 +2665,7 @@ export namespace logging_v2 {
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
+     *   //   "restrictedFields": [],
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -3070,6 +3077,7 @@ export namespace logging_v2 {
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
      *       //   "retentionDays": 0,
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -3084,6 +3092,7 @@ export namespace logging_v2 {
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
+     *   //   "restrictedFields": [],
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -7684,6 +7693,7 @@ export namespace logging_v2 {
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
      *       //   "retentionDays": 0,
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -7698,6 +7708,7 @@ export namespace logging_v2 {
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
+     *   //   "restrictedFields": [],
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -7965,6 +7976,7 @@ export namespace logging_v2 {
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
+     *   //   "restrictedFields": [],
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -8244,6 +8256,7 @@ export namespace logging_v2 {
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
      *       //   "retentionDays": 0,
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -8258,6 +8271,7 @@ export namespace logging_v2 {
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
+     *   //   "restrictedFields": [],
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -10993,6 +11007,7 @@ export namespace logging_v2 {
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
      *       //   "retentionDays": 0,
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -11007,6 +11022,7 @@ export namespace logging_v2 {
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
+     *   //   "restrictedFields": [],
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -11274,6 +11290,7 @@ export namespace logging_v2 {
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
+     *   //   "restrictedFields": [],
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -11553,6 +11570,7 @@ export namespace logging_v2 {
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
      *       //   "retentionDays": 0,
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -11567,6 +11585,7 @@ export namespace logging_v2 {
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
+     *   //   "restrictedFields": [],
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -14566,6 +14585,7 @@ export namespace logging_v2 {
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
      *       //   "retentionDays": 0,
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -14580,6 +14600,7 @@ export namespace logging_v2 {
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
+     *   //   "restrictedFields": [],
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -14849,6 +14870,7 @@ export namespace logging_v2 {
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
+     *   //   "restrictedFields": [],
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -15129,6 +15151,7 @@ export namespace logging_v2 {
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
      *       //   "retentionDays": 0,
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -15143,6 +15166,7 @@ export namespace logging_v2 {
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
+     *   //   "restrictedFields": [],
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -18673,6 +18697,7 @@ export namespace logging_v2 {
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
      *       //   "retentionDays": 0,
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -18687,6 +18712,7 @@ export namespace logging_v2 {
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
+     *   //   "restrictedFields": [],
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -18954,6 +18980,7 @@ export namespace logging_v2 {
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
+     *   //   "restrictedFields": [],
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -19233,6 +19260,7 @@ export namespace logging_v2 {
      *       //   "lifecycleState": "my_lifecycleState",
      *       //   "locked": false,
      *       //   "name": "my_name",
+     *       //   "restrictedFields": [],
      *       //   "retentionDays": 0,
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -19247,6 +19275,7 @@ export namespace logging_v2 {
      *   //   "lifecycleState": "my_lifecycleState",
      *   //   "locked": false,
      *   //   "name": "my_name",
+     *   //   "restrictedFields": [],
      *   //   "retentionDays": 0,
      *   //   "updateTime": "my_updateTime"
      *   // }
