@@ -422,6 +422,10 @@ export namespace websecurityscanner_v1 {
      */
     exportToSecurityCommandCenter?: string | null;
     /**
+     * Whether to keep scanning even if most requests return HTTP error codes.
+     */
+    ignoreHttpStatusErrors?: boolean | null;
+    /**
      * Whether the scan config is managed by Web Security Scanner, output only.
      */
     managedScan?: boolean | null;
@@ -675,6 +679,7 @@ export namespace websecurityscanner_v1 {
      *       //   "blacklistPatterns": [],
      *       //   "displayName": "my_displayName",
      *       //   "exportToSecurityCommandCenter": "my_exportToSecurityCommandCenter",
+     *       //   "ignoreHttpStatusErrors": false,
      *       //   "managedScan": false,
      *       //   "maxQps": 0,
      *       //   "name": "my_name",
@@ -694,6 +699,7 @@ export namespace websecurityscanner_v1 {
      *   //   "blacklistPatterns": [],
      *   //   "displayName": "my_displayName",
      *   //   "exportToSecurityCommandCenter": "my_exportToSecurityCommandCenter",
+     *   //   "ignoreHttpStatusErrors": false,
      *   //   "managedScan": false,
      *   //   "maxQps": 0,
      *   //   "name": "my_name",
@@ -960,6 +966,7 @@ export namespace websecurityscanner_v1 {
      *   //   "blacklistPatterns": [],
      *   //   "displayName": "my_displayName",
      *   //   "exportToSecurityCommandCenter": "my_exportToSecurityCommandCenter",
+     *   //   "ignoreHttpStatusErrors": false,
      *   //   "managedScan": false,
      *   //   "maxQps": 0,
      *   //   "name": "my_name",
@@ -1240,6 +1247,7 @@ export namespace websecurityscanner_v1 {
      *       //   "blacklistPatterns": [],
      *       //   "displayName": "my_displayName",
      *       //   "exportToSecurityCommandCenter": "my_exportToSecurityCommandCenter",
+     *       //   "ignoreHttpStatusErrors": false,
      *       //   "managedScan": false,
      *       //   "maxQps": 0,
      *       //   "name": "my_name",
@@ -1259,6 +1267,7 @@ export namespace websecurityscanner_v1 {
      *   //   "blacklistPatterns": [],
      *   //   "displayName": "my_displayName",
      *   //   "exportToSecurityCommandCenter": "my_exportToSecurityCommandCenter",
+     *   //   "ignoreHttpStatusErrors": false,
      *   //   "managedScan": false,
      *   //   "maxQps": 0,
      *   //   "name": "my_name",
