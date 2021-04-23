@@ -103,7 +103,7 @@ export namespace chat_v1 {
   /**
    * Google Chat API
    *
-   * Enables bots to fetch information and perform actions in Google Chat.
+   * Enables bots to fetch information and perform actions in Google Chat. Authentication using a service account is a prerequisite for using the Google Chat REST API.
    *
    * @example
    * ```js
