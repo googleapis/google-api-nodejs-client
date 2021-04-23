@@ -6856,7 +6856,7 @@
       }
     }
   },
-  "revision": "20210416",
+  "revision": "20210417",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -11022,7 +11022,7 @@
       "id": "GoogleCloudDialogflowV2FulfillmentGenericWebService",
       "properties": {
         "isCloudFunction": {
-          "description": "Optional. Indicates if generic web service is created through Cloud Functions integration. Defaults to false.",
+          "description": "Optional. Indicates if generic web service is created through Cloud Functions integration. Defaults to false. is_cloud_function is deprecated. Cloud functions can be configured by its uri as a regular web service now.",
           "type": "boolean"
         },
         "password": {
