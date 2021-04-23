@@ -1163,9 +1163,17 @@ export namespace displayvideo_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Number of line items that are directly targeting this channel negatively.
+     */
+    negativelyTargetedLineItemCount?: string | null;
+    /**
      * The ID of the partner that owns the channel.
      */
     partnerId?: string | null;
+    /**
+     * Output only. Number of line items that are directly targeting this channel positively.
+     */
+    positivelyTargetedLineItemCount?: string | null;
   }
   /**
    * Details for assigned channel targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_CHANNEL`.
@@ -3357,6 +3365,10 @@ export namespace displayvideo_v1 {
      * Output only. The unique ID of the negative keyword list. Assigned by the system.
      */
     negativeKeywordListId?: string | null;
+    /**
+     * Output only. Number of line items that are directly targeting this negative keyword list.
+     */
+    targetedLineItemCount?: string | null;
   }
   /**
    * Targeting details for negative keyword list. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST`.
@@ -7281,7 +7293,9 @@ export namespace displayvideo_v1 {
      *       //   "channelId": "my_channelId",
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
-     *       //   "partnerId": "my_partnerId"
+     *       //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *       //   "partnerId": "my_partnerId",
+     *       //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
      *       // }
      *     },
      *   });
@@ -7293,7 +7307,9 @@ export namespace displayvideo_v1 {
      *   //   "channelId": "my_channelId",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "partnerId": "my_partnerId"
+     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
      *   // }
      * }
      *
@@ -7430,7 +7446,9 @@ export namespace displayvideo_v1 {
      *   //   "channelId": "my_channelId",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "partnerId": "my_partnerId"
+     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
      *   // }
      * }
      *
@@ -7713,7 +7731,9 @@ export namespace displayvideo_v1 {
      *       //   "channelId": "my_channelId",
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
-     *       //   "partnerId": "my_partnerId"
+     *       //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *       //   "partnerId": "my_partnerId",
+     *       //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
      *       // }
      *     },
      *   });
@@ -7725,7 +7745,9 @@ export namespace displayvideo_v1 {
      *   //   "channelId": "my_channelId",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "partnerId": "my_partnerId"
+     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
      *   // }
      * }
      *
@@ -12120,7 +12142,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.lineItems.list({
      *     // Required. The ID of the advertiser to list line items for.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) * The operator can be `NO LESS THAN (\>=)` or `NO GREATER THAN (<=)`. - `updateTime` (format of ISO 8601) Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` * All line items with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All line items with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported properties: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) - `targetedChannelId` - `targetedNegativeKeywordListId` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` * All line items with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All line items with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` * All line items that are using both the specified channel and specified negative keyword list in their targeting: `targetedNegativeKeywordListId=789 AND targetedChannelId=12345` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate” * "updateTime" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -12515,7 +12537,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) * The operator can be `NO LESS THAN (\>=)` or `NO GREATER THAN (<=)`. - `updateTime` (format of ISO 8601) Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` * All line items with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All line items with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
+     * Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported properties: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) - `targetedChannelId` - `targetedNegativeKeywordListId` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` * All line items with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All line items with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` * All line items that are using both the specified channel and specified negative keyword list in their targeting: `targetedNegativeKeywordListId=789 AND targetedChannelId=12345` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -15717,7 +15739,8 @@ export namespace displayvideo_v1 {
      *       //   "advertiserId": "my_advertiserId",
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
-     *       //   "negativeKeywordListId": "my_negativeKeywordListId"
+     *       //   "negativeKeywordListId": "my_negativeKeywordListId",
+     *       //   "targetedLineItemCount": "my_targetedLineItemCount"
      *       // }
      *     },
      *   });
@@ -15728,7 +15751,8 @@ export namespace displayvideo_v1 {
      *   //   "advertiserId": "my_advertiserId",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "negativeKeywordListId": "my_negativeKeywordListId"
+     *   //   "negativeKeywordListId": "my_negativeKeywordListId",
+     *   //   "targetedLineItemCount": "my_targetedLineItemCount"
      *   // }
      * }
      *
@@ -15993,7 +16017,8 @@ export namespace displayvideo_v1 {
      *   //   "advertiserId": "my_advertiserId",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "negativeKeywordListId": "my_negativeKeywordListId"
+     *   //   "negativeKeywordListId": "my_negativeKeywordListId",
+     *   //   "targetedLineItemCount": "my_targetedLineItemCount"
      *   // }
      * }
      *
@@ -16274,7 +16299,8 @@ export namespace displayvideo_v1 {
      *       //   "advertiserId": "my_advertiserId",
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
-     *       //   "negativeKeywordListId": "my_negativeKeywordListId"
+     *       //   "negativeKeywordListId": "my_negativeKeywordListId",
+     *       //   "targetedLineItemCount": "my_targetedLineItemCount"
      *       // }
      *     },
      *   });
@@ -16285,7 +16311,8 @@ export namespace displayvideo_v1 {
      *   //   "advertiserId": "my_advertiserId",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "negativeKeywordListId": "my_negativeKeywordListId"
+     *   //   "negativeKeywordListId": "my_negativeKeywordListId",
+     *   //   "targetedLineItemCount": "my_targetedLineItemCount"
      *   // }
      * }
      *
@@ -22602,7 +22629,9 @@ export namespace displayvideo_v1 {
      *       //   "channelId": "my_channelId",
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
-     *       //   "partnerId": "my_partnerId"
+     *       //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *       //   "partnerId": "my_partnerId",
+     *       //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
      *       // }
      *     },
      *   });
@@ -22614,7 +22643,9 @@ export namespace displayvideo_v1 {
      *   //   "channelId": "my_channelId",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "partnerId": "my_partnerId"
+     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
      *   // }
      * }
      *
@@ -22751,7 +22782,9 @@ export namespace displayvideo_v1 {
      *   //   "channelId": "my_channelId",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "partnerId": "my_partnerId"
+     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
      *   // }
      * }
      *
@@ -23034,7 +23067,9 @@ export namespace displayvideo_v1 {
      *       //   "channelId": "my_channelId",
      *       //   "displayName": "my_displayName",
      *       //   "name": "my_name",
-     *       //   "partnerId": "my_partnerId"
+     *       //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *       //   "partnerId": "my_partnerId",
+     *       //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
      *       // }
      *     },
      *   });
@@ -23046,7 +23081,9 @@ export namespace displayvideo_v1 {
      *   //   "channelId": "my_channelId",
      *   //   "displayName": "my_displayName",
      *   //   "name": "my_name",
-     *   //   "partnerId": "my_partnerId"
+     *   //   "negativelyTargetedLineItemCount": "my_negativelyTargetedLineItemCount",
+     *   //   "partnerId": "my_partnerId",
+     *   //   "positivelyTargetedLineItemCount": "my_positivelyTargetedLineItemCount"
      *   // }
      * }
      *
