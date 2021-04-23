@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/homegraph-v1.0.0...homegraph-v2.0.0) (2021-04-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **homegraph:** This release has breaking changes.
+
+### Features
+
+* **homegraph:** update the API ([1f42f6b](https://www.github.com/googleapis/google-api-nodejs-client/commit/1f42f6b5ed952b3201a205113c2cf48a23ed49d1))
+
 ## [1.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/homegraph-v0.2.0...homegraph-v1.0.0) (2021-04-07)
 
 

@@ -137,6 +137,10 @@ export namespace container_v1beta1 {
      * The accelerator type resource name. List of supported accelerators [here](https://cloud.google.com/compute/docs/gpus)
      */
     acceleratorType?: string | null;
+    /**
+     * Size of partitions to create on the GPU. Valid values are described in the NVIDIA [mig user guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).
+     */
+    gpuPartitionSize?: string | null;
   }
   /**
    * Configuration for the addons that can be automatically spun up in the cluster, enabling additional functionality.

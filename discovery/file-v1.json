@@ -672,7 +672,7 @@
       }
     }
   },
-  "revision": "20210407",
+  "revision": "20210409",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1196,6 +1196,11 @@
             "$ref": "NetworkConfig"
           },
           "type": "array"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "state": {
           "description": "Output only. The instance state.",

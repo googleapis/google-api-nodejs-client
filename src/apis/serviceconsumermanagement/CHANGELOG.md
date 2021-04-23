@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v0.2.1...serviceconsumermanagement-v1.0.0) (2021-04-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **serviceconsumermanagement:** This release has breaking changes.
+
+### Features
+
+* **serviceconsumermanagement:** update the API ([429b8c1](https://www.github.com/googleapis/google-api-nodejs-client/commit/429b8c13978f56f23d0b4c9f86c0fc28d94212e4))
+
+
+### Bug Fixes
+
+* **serviceconsumermanagement:** update the API ([887451f](https://www.github.com/googleapis/google-api-nodejs-client/commit/887451fdf76ee0c3f4ba0c0ae106d12e953d3694))
+
 ### [0.2.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/serviceconsumermanagement-v0.2.0...serviceconsumermanagement-v0.2.1) (2021-04-07)
 
 

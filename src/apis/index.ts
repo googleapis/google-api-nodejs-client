@@ -75,6 +75,7 @@ import {
   androidpublisher,
 } from './androidpublisher';
 import {VERSIONS as apigatewayVersions, apigateway} from './apigateway';
+import {VERSIONS as apikeysVersions, apikeys} from './apikeys';
 import {VERSIONS as appengineVersions, appengine} from './appengine';
 import {VERSIONS as appsactivityVersions, appsactivity} from './appsactivity';
 import {
@@ -217,6 +218,10 @@ import {
   VERSIONS as driveactivityVersions,
   driveactivity,
 } from './driveactivity';
+import {
+  VERSIONS as essentialcontactsVersions,
+  essentialcontacts,
+} from './essentialcontacts';
 import {VERSIONS as eventarcVersions, eventarc} from './eventarc';
 import {
   VERSIONS as factchecktoolsVersions,
@@ -518,6 +523,7 @@ export const APIS: APIList = {
   androidmanagement: androidmanagementVersions,
   androidpublisher: androidpublisherVersions,
   apigateway: apigatewayVersions,
+  apikeys: apikeysVersions,
   appengine: appengineVersions,
   appsactivity: appsactivityVersions,
   area120tables: area120tablesVersions,
@@ -585,6 +591,7 @@ export const APIS: APIList = {
   doubleclicksearch: doubleclicksearchVersions,
   drive: driveVersions,
   driveactivity: driveactivityVersions,
+  essentialcontacts: essentialcontactsVersions,
   eventarc: eventarcVersions,
   factchecktools: factchecktoolsVersions,
   fcm: fcmVersions,
@@ -732,6 +739,7 @@ export class GeneratedAPIs {
   androidmanagement = androidmanagement;
   androidpublisher = androidpublisher;
   apigateway = apigateway;
+  apikeys = apikeys;
   appengine = appengine;
   appsactivity = appsactivity;
   area120tables = area120tables;
@@ -799,6 +807,7 @@ export class GeneratedAPIs {
   doubleclicksearch = doubleclicksearch;
   drive = drive;
   driveactivity = driveactivity;
+  essentialcontacts = essentialcontacts;
   eventarc = eventarc;
   factchecktools = factchecktools;
   fcm = fcm;

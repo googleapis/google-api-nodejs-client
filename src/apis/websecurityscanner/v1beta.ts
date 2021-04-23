@@ -422,6 +422,10 @@ export namespace websecurityscanner_v1beta {
      */
     exportToSecurityCommandCenter?: string | null;
     /**
+     * Whether to keep scanning even if most requests return HTTP error codes.
+     */
+    ignoreHttpStatusErrors?: boolean | null;
+    /**
      * Latest ScanRun if available.
      */
     latestRun?: Schema$ScanRun;
@@ -675,6 +679,7 @@ export namespace websecurityscanner_v1beta {
      *       //   "blacklistPatterns": [],
      *       //   "displayName": "my_displayName",
      *       //   "exportToSecurityCommandCenter": "my_exportToSecurityCommandCenter",
+     *       //   "ignoreHttpStatusErrors": false,
      *       //   "latestRun": {},
      *       //   "managedScan": false,
      *       //   "maxQps": 0,
@@ -696,6 +701,7 @@ export namespace websecurityscanner_v1beta {
      *   //   "blacklistPatterns": [],
      *   //   "displayName": "my_displayName",
      *   //   "exportToSecurityCommandCenter": "my_exportToSecurityCommandCenter",
+     *   //   "ignoreHttpStatusErrors": false,
      *   //   "latestRun": {},
      *   //   "managedScan": false,
      *   //   "maxQps": 0,
@@ -964,6 +970,7 @@ export namespace websecurityscanner_v1beta {
      *   //   "blacklistPatterns": [],
      *   //   "displayName": "my_displayName",
      *   //   "exportToSecurityCommandCenter": "my_exportToSecurityCommandCenter",
+     *   //   "ignoreHttpStatusErrors": false,
      *   //   "latestRun": {},
      *   //   "managedScan": false,
      *   //   "maxQps": 0,
@@ -1246,6 +1253,7 @@ export namespace websecurityscanner_v1beta {
      *       //   "blacklistPatterns": [],
      *       //   "displayName": "my_displayName",
      *       //   "exportToSecurityCommandCenter": "my_exportToSecurityCommandCenter",
+     *       //   "ignoreHttpStatusErrors": false,
      *       //   "latestRun": {},
      *       //   "managedScan": false,
      *       //   "maxQps": 0,
@@ -1267,6 +1275,7 @@ export namespace websecurityscanner_v1beta {
      *   //   "blacklistPatterns": [],
      *   //   "displayName": "my_displayName",
      *   //   "exportToSecurityCommandCenter": "my_exportToSecurityCommandCenter",
+     *   //   "ignoreHttpStatusErrors": false,
      *   //   "latestRun": {},
      *   //   "managedScan": false,
      *   //   "maxQps": 0,

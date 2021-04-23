@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20210406",
+  "revision": "20210413",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2498,6 +2498,10 @@
         },
         "acceleratorType": {
           "description": "The accelerator type resource name. List of supported accelerators [here](https://cloud.google.com/compute/docs/gpus)",
+          "type": "string"
+        },
+        "gpuPartitionSize": {
+          "description": "Size of partitions to create on the GPU. Valid values are described in the NVIDIA [mig user guide](https://docs.nvidia.com/datacenter/tesla/mig-user-guide/#partitioning).",
           "type": "string"
         }
       },

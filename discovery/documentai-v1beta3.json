@@ -236,6 +236,151 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "create": {
+                  "description": "Creates a processor from the type processor that the user chose. The processor will be at \"ENABLED\" state by default after its creation.",
+                  "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors",
+                  "httpMethod": "POST",
+                  "id": "documentai.projects.locations.processors.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent (project and location) under which to create the processor. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta3/{+parent}/processors",
+                  "request": {
+                    "$ref": "GoogleCloudDocumentaiV1beta3Processor"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDocumentaiV1beta3Processor"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes the processor, unloads all deployed model artifacts if it was enabled and then deletes all artifacts associated with this processor.",
+                  "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}",
+                  "httpMethod": "DELETE",
+                  "id": "documentai.projects.locations.processors.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The processor resource name to be deleted.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta3/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "disable": {
+                  "description": "Disables a processor",
+                  "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}:disable",
+                  "httpMethod": "POST",
+                  "id": "documentai.projects.locations.processors.disable",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The processor resource name to be disabled.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta3/{+name}:disable",
+                  "request": {
+                    "$ref": "GoogleCloudDocumentaiV1beta3DisableProcessorRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "enable": {
+                  "description": "Enables a processor",
+                  "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}:enable",
+                  "httpMethod": "POST",
+                  "id": "documentai.projects.locations.processors.enable",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The processor resource name to be enabled.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/processors/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta3/{+name}:enable",
+                  "request": {
+                    "$ref": "GoogleCloudDocumentaiV1beta3EnableProcessorRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all processors which belong to this project.",
+                  "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors",
+                  "httpMethod": "GET",
+                  "id": "documentai.projects.locations.processors.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of processors to return. If unspecified, at most 50 processors will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "We will return the processors sorted by creation time. The page token will point to the next processor.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent (project and location) which owns this collection of Processors. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta3/{+parent}/processors",
+                  "response": {
+                    "$ref": "GoogleCloudDocumentaiV1beta3ListProcessorsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "process": {
                   "description": "Processes a single document.",
                   "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}/processors/{processorsId}:process",
@@ -365,7 +510,7 @@
       }
     }
   },
-  "revision": "20210415",
+  "revision": "20210417",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata": {
@@ -3302,6 +3447,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3DisableProcessorRequest": {
+      "description": "Request message for the disable processor method.",
+      "id": "GoogleCloudDocumentaiV1beta3DisableProcessorRequest",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3Document": {
       "description": "Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.",
       "id": "GoogleCloudDocumentaiV1beta3Document",
@@ -4264,6 +4415,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3EnableProcessorRequest": {
+      "description": "Request message for the enable processor method.",
+      "id": "GoogleCloudDocumentaiV1beta3EnableProcessorRequest",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3GcsDocument": {
       "description": "Specifies a document stored on Cloud Storage.",
       "id": "GoogleCloudDocumentaiV1beta3GcsDocument",
@@ -4337,6 +4494,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3ListProcessorsResponse": {
+      "description": "Response message for list processors.",
+      "id": "GoogleCloudDocumentaiV1beta3ListProcessorsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Points to the next processor, otherwise empty.",
+          "type": "string"
+        },
+        "processors": {
+          "description": "The list of processors.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3Processor"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3NormalizedVertex": {
       "description": "A vertex represents a 2D point in the image. NOTE: the normalized vertex coordinates are relative to the original image and range from 0 to 1.",
       "id": "GoogleCloudDocumentaiV1beta3NormalizedVertex",
@@ -4392,6 +4567,69 @@
         "humanReviewStatus": {
           "$ref": "GoogleCloudDocumentaiV1beta3HumanReviewStatus",
           "description": "The status of human review on the processed document."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3Processor": {
+      "description": "The first-class citizen for DAI. Each processor defines how to extract structural information from a document.",
+      "id": "GoogleCloudDocumentaiV1beta3Processor",
+      "properties": {
+        "createTime": {
+          "description": "The time the processor was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "defaultProcessorVersion": {
+          "description": "The default processor version.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The display name of the processor.",
+          "type": "string"
+        },
+        "kmsKeyName": {
+          "description": "The KMS key used for encryption/decryption in CMEK scenarios. See https://cloud.google.com/security-key-management.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Immutable. The resource name of the processor. Format: projects/{project}/locations/{location}/processors/{processor}",
+          "readOnly": true,
+          "type": "string"
+        },
+        "processEndpoint": {
+          "description": "Output only. Immutable. The http endpoint that can be called to invoke processing.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the processor.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLED",
+            "DISABLED",
+            "ENABLING",
+            "DISABLING",
+            "CREATING",
+            "FAILED",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "The processor is in an unspecified state.",
+            "The processor is enabled, i.e, has an enabled version which can currently serve processing requests and all the feature dependencies have been successfully initialized.",
+            "The processor is disabled.",
+            "The processor is being enabled, will become ENABLED if successful.",
+            "The processor is being disabled, will become DISABLED if successful.",
+            "The processor is being created, will become either ENABLED (for successful creation) or FAILED (for failed ones). Once a processor is in this state, it can then be used for document processing, but the feature dependencies of the processor might not be fully created yet.",
+            "The processor failed during creation or initialization of feature dependencies. The user should delete the processor and recreate one as all the functionalities of the processor are disabled.",
+            "The processor is being deleted, will be removed if successful."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "The processor type, e.g., INVOICE_PARSING, W2_PARSING, etc.",
+          "type": "string"
         }
       },
       "type": "object"

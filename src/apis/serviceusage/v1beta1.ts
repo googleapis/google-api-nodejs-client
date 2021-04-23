@@ -132,11 +132,11 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$AdminQuotaPolicy {
     /**
-     * The cloud resource container at which the quota policy is created. The format is {container_type\}/{container_number\}
+     * The cloud resource container at which the quota policy is created. The format is `{container_type\}/{container_number\}`
      */
     container?: string | null;
     /**
-     *  If this map is nonempty, then this policy applies only to specific values for dimensions defined in the limit unit. For example, an policy on a limit with the unit 1/{project\}/{region\} could contain an entry with the key "region" and the value "us-east-1"; the policy is only applied to quota consumed in that region. This map has the following restrictions: * If "region" appears as a key, its value must be a valid Cloud region. * If "zone" appears as a key, its value must be a valid Cloud zone. * Keys other than "region" or "zone" are not valid.
+     *  If this map is nonempty, then this policy applies only to specific values for dimensions defined in the limit unit. For example, an policy on a limit with the unit `1/{project\}/{region\}` could contain an entry with the key `region` and the value `us-east-1`; the policy is only applied to quota consumed in that region. This map has the following restrictions: * If `region` appears as a key, its value must be a valid Cloud region. * If `zone` appears as a key, its value must be a valid Cloud zone. * Keys other than `region` or `zone` are not valid.
      */
     dimensions?: {[key: string]: string} | null;
     /**
@@ -190,7 +190,7 @@ export namespace serviceusage_v1beta1 {
     version?: string | null;
   }
   /**
-   * `Authentication` defines the authentication configuration for an API. Example for an API targeted for external use: name: calendar.googleapis.com authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: "*" requirements: provider_id: google_calendar_auth
+   * `Authentication` defines the authentication configuration for API methods provided by an API service. Example: name: calendar.googleapis.com authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: "*" requirements: provider_id: google_calendar_auth - selector: google.calendar.Delegate oauth: canonical_scopes: https://www.googleapis.com/auth/calendar.read
    */
   export interface Schema$Authentication {
     /**
@@ -416,7 +416,7 @@ export namespace serviceusage_v1beta1 {
      */
     descendantConsumerQuotaLimits?: Schema$ConsumerQuotaLimit[];
     /**
-     * The display name of the metric. An example name would be: "CPUs"
+     * The display name of the metric. An example name would be: `CPUs`
      */
     displayName?: string | null;
     /**
@@ -424,7 +424,7 @@ export namespace serviceusage_v1beta1 {
      */
     metric?: string | null;
     /**
-     * The resource name of the quota settings on this metric for this consumer. An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus The resource name is intended to be opaque and should not be parsed for its component strings, since its representation could change in the future.
+     * The resource name of the quota settings on this metric for this consumer. An example name would be: `projects/123/services/compute.googleapis.com/consumerQuotaMetrics/compute.googleapis.com%2Fcpus` The resource name is intended to be opaque and should not be parsed for its component strings, since its representation could change in the future.
      */
     name?: string | null;
     /**
@@ -1515,7 +1515,7 @@ export namespace serviceusage_v1beta1 {
      */
     defaultLimit?: string | null;
     /**
-     * The dimensions of this quota bucket. If this map is empty, this is the global bucket, which is the default quota value applied to all requests that do not have a more specific override. If this map is nonempty, the default limit, effective limit, and quota overrides apply only to requests that have the dimensions given in the map. For example, if the map has key "region" and value "us-east-1", then the specified effective limit is only effective in that region, and the specified overrides apply only in that region.
+     * The dimensions of this quota bucket. If this map is empty, this is the global bucket, which is the default quota value applied to all requests that do not have a more specific override. If this map is nonempty, the default limit, effective limit, and quota overrides apply only to requests that have the dimensions given in the map. For example, if the map has key `region` and value `us-east-1`, then the specified effective limit is only effective in that region, and the specified overrides apply only in that region.
      */
     dimensions?: {[key: string]: string} | null;
     /**
@@ -1577,11 +1577,11 @@ export namespace serviceusage_v1beta1 {
    */
   export interface Schema$QuotaOverride {
     /**
-     * The resource name of the ancestor that requested the override. For example: "organizations/12345" or "folders/67890". Used by admin overrides only.
+     * The resource name of the ancestor that requested the override. For example: `organizations/12345` or `folders/67890`. Used by admin overrides only.
      */
     adminOverrideAncestor?: string | null;
     /**
-     * If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit. For example, an override on a limit with the unit 1/{project\}/{region\} could contain an entry with the key "region" and the value "us-east-1"; the override is only applied to quota consumed in that region. This map has the following restrictions: * Keys that are not defined in the limit's unit are not valid keys. Any string appearing in {brackets\} in the unit (besides {project\} or {user\}) is a defined key. * "project" is not a valid key; the project is already specified in the parent resource name. * "user" is not a valid key; the API does not support quota overrides that apply only to a specific user. * If "region" appears as a key, its value must be a valid Cloud region. * If "zone" appears as a key, its value must be a valid Cloud zone. * If any valid key other than "region" or "zone" appears in the map, then all valid keys other than "region" or "zone" must also appear in the map.
+     * If this map is nonempty, then this override applies only to specific values for dimensions defined in the limit unit. For example, an override on a limit with the unit `1/{project\}/{region\}` could contain an entry with the key `region` and the value `us-east-1`; the override is only applied to quota consumed in that region. This map has the following restrictions: * Keys that are not defined in the limit's unit are not valid keys. Any string appearing in `{brackets\}` in the unit (besides `{project\}` or `{user\}`) is a defined key. * `project` is not a valid key; the project is already specified in the parent resource name. * `user` is not a valid key; the API does not support quota overrides that apply only to a specific user. * If `region` appears as a key, its value must be a valid Cloud region. * If `zone` appears as a key, its value must be a valid Cloud zone. * If any valid key other than `region` or `zone` appears in the map, then all valid keys other than `region` or `zone` must also appear in the map.
      */
     dimensions?: {[key: string]: string} | null;
     /**
@@ -1610,11 +1610,11 @@ export namespace serviceusage_v1beta1 {
      */
     config?: Schema$ServiceConfig;
     /**
-     * The resource name of the consumer and service. A valid name would be: - projects/123/services/serviceusage.googleapis.com
+     * The resource name of the consumer and service. A valid name would be: - `projects/123/services/serviceusage.googleapis.com`
      */
     name?: string | null;
     /**
-     * The resource name of the consumer. A valid name would be: - projects/123
+     * The resource name of the consumer. A valid name would be: - `projects/123`
      */
     parent?: string | null;
     /**
@@ -2140,7 +2140,7 @@ export namespace serviceusage_v1beta1 {
     }
 
     /**
-     * Enable multiple services on a project. The operation is atomic: if enabling any service fails, then the entire batch fails, and no state changes occur. Operation
+     * Enables multiple services on a project. The operation is atomic: if enabling any service fails, then the entire batch fails, and no state changes occur. Operation response type: `google.protobuf.Empty`
      * @example
      * ```js
      * // Before running the sample:
@@ -2284,7 +2284,7 @@ export namespace serviceusage_v1beta1 {
     }
 
     /**
-     * Disable a service so that it can no longer be used with a project. This prevents unintended usage that may cause unexpected billing charges or security leaks. It is not valid to call the disable method on a service that is not currently enabled. Callers will receive a `FAILED_PRECONDITION` status if the target service is not currently enabled. Operation
+     * Disables a service so that it can no longer be used with a project. This prevents unintended usage that may cause unexpected billing charges or security leaks. It is not valid to call the disable method on a service that is not currently enabled. Callers will receive a `FAILED_PRECONDITION` status if the target service is not currently enabled. Operation response type: `google.protobuf.Empty`
      * @example
      * ```js
      * // Before running the sample:
@@ -2425,7 +2425,7 @@ export namespace serviceusage_v1beta1 {
     }
 
     /**
-     * Enable a service so that it can be used with a project. Operation
+     * Enables a service so that it can be used with a project. Operation response type: `google.protobuf.Empty`
      * @example
      * ```js
      * // Before running the sample:
@@ -2566,7 +2566,7 @@ export namespace serviceusage_v1beta1 {
     }
 
     /**
-     * Generate service identity for service.
+     * Generates service identity for service.
      * @example
      * ```js
      * // Before running the sample:
@@ -2834,7 +2834,7 @@ export namespace serviceusage_v1beta1 {
     }
 
     /**
-     * List all services available to the specified project, and the current state of those services with respect to the project. The list includes all public services, all services for which the calling user has the `servicemanagement.services.bind` permission, and all services that have already been enabled on the project. The list can be filtered to only include services in a specific state, for example to only include services enabled on the project.
+     * Lists all services available to the specified project, and the current state of those services with respect to the project. The list includes all public services, all services for which the calling user has the `servicemanagement.services.bind` permission, and all services that have already been enabled on the project. The list can be filtered to only include services in a specific state, for example to only include services enabled on the project.
      * @example
      * ```js
      * // Before running the sample:
@@ -3083,7 +3083,7 @@ export namespace serviceusage_v1beta1 {
      *
      *   // Do the magic
      *   const res = await serviceusage.services.consumerQuotaMetrics.get({
-     *     // The resource name of the quota limit. An example name would be: projects/123/services/serviceusage.googleapis.com/quotas/metrics/serviceusage.googleapis.com%2Fmutate_requests
+     *     // The resource name of the quota limit. An example name would be: `projects/123/services/serviceusage.googleapis.com/quotas/metrics/serviceusage.googleapis.com%2Fmutate_requests`
      *     name:
      *       '[^/]+/[^/]+/services/my-service/consumerQuotaMetrics/my-consumerQuotaMetric',
      *     // Specifies the level of detail for quota information in the response.
@@ -3194,7 +3194,7 @@ export namespace serviceusage_v1beta1 {
     }
 
     /**
-     * Create or update multiple admin overrides atomically, all on the same consumer, but on many different metrics or limits. The name field in the quota override message should not be set.
+     * Creates or updates multiple admin overrides atomically, all on the same consumer, but on many different metrics or limits. The name field in the quota override message should not be set.
      * @example
      * ```js
      * // Before running the sample:
@@ -3344,7 +3344,7 @@ export namespace serviceusage_v1beta1 {
     }
 
     /**
-     * Create or update multiple consumer overrides atomically, all on the same consumer, but on many different metrics or limits. The name field in the quota override message should not be set.
+     * Creates or updates multiple consumer overrides atomically, all on the same consumer, but on many different metrics or limits. The name field in the quota override message should not be set.
      * @example
      * ```js
      * // Before running the sample:
@@ -3527,7 +3527,7 @@ export namespace serviceusage_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // Token identifying which result to start with; returned by a previous list call.
      *     pageToken: 'placeholder-value',
-     *     // Parent of the quotas resource. Some example names would be: projects/123/services/serviceconsumermanagement.googleapis.com folders/345/services/serviceconsumermanagement.googleapis.com organizations/456/services/serviceconsumermanagement.googleapis.com
+     *     // Parent of the quotas resource. Some example names would be: `projects/123/services/serviceconsumermanagement.googleapis.com` `folders/345/services/serviceconsumermanagement.googleapis.com` `organizations/456/services/serviceconsumermanagement.googleapis.com`
      *     parent: '[^/]+/[^/]+/services/my-service',
      *     // Specifies the level of detail for quota information in the response.
      *     view: 'placeholder-value',
@@ -3645,7 +3645,7 @@ export namespace serviceusage_v1beta1 {
   export interface Params$Resource$Services$Consumerquotametrics$Get
     extends StandardParameters {
     /**
-     * The resource name of the quota limit. An example name would be: projects/123/services/serviceusage.googleapis.com/quotas/metrics/serviceusage.googleapis.com%2Fmutate_requests
+     * The resource name of the quota limit. An example name would be: `projects/123/services/serviceusage.googleapis.com/quotas/metrics/serviceusage.googleapis.com%2Fmutate_requests`
      */
     name?: string;
     /**
@@ -3688,7 +3688,7 @@ export namespace serviceusage_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Parent of the quotas resource. Some example names would be: projects/123/services/serviceconsumermanagement.googleapis.com folders/345/services/serviceconsumermanagement.googleapis.com organizations/456/services/serviceconsumermanagement.googleapis.com
+     * Parent of the quotas resource. Some example names would be: `projects/123/services/serviceconsumermanagement.googleapis.com` `folders/345/services/serviceconsumermanagement.googleapis.com` `organizations/456/services/serviceconsumermanagement.googleapis.com`
      */
     parent?: string;
     /**
