@@ -351,7 +351,7 @@
       }
     }
   },
-  "revision": "20210408",
+  "revision": "20210415",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata": {
@@ -530,12 +530,14 @@
           "enum": [
             "RESOURCE_TYPE_UNSPECIFIED",
             "CONSUMER_PROJECT",
-            "ENCRYPTION_KEYS_PROJECT"
+            "ENCRYPTION_KEYS_PROJECT",
+            "KEYRING"
           ],
           "enumDescriptions": [
             "Unknown resource type.",
             "Consumer project.",
-            "Consumer project containing encryption keys."
+            "Consumer project containing encryption keys.",
+            "Keyring resource that hosts encryption keys."
           ],
           "type": "string"
         }
@@ -555,12 +557,14 @@
           "enum": [
             "RESOURCE_TYPE_UNSPECIFIED",
             "CONSUMER_PROJECT",
-            "ENCRYPTION_KEYS_PROJECT"
+            "ENCRYPTION_KEYS_PROJECT",
+            "KEYRING"
           ],
           "enumDescriptions": [
             "Unknown resource type.",
             "Consumer project.",
-            "Consumer project containing encryption keys."
+            "Consumer project containing encryption keys.",
+            "Keyring resource that hosts encryption keys."
           ],
           "type": "string"
         }
@@ -785,12 +789,14 @@
           "enum": [
             "RESOURCE_TYPE_UNSPECIFIED",
             "CONSUMER_PROJECT",
-            "ENCRYPTION_KEYS_PROJECT"
+            "ENCRYPTION_KEYS_PROJECT",
+            "KEYRING"
           ],
           "enumDescriptions": [
             "Unknown resource type.",
             "Consumer project.",
-            "Consumer project containing encryption keys."
+            "Consumer project containing encryption keys.",
+            "Keyring resource that hosts encryption keys."
           ],
           "type": "string"
         }
@@ -810,12 +816,14 @@
           "enum": [
             "RESOURCE_TYPE_UNSPECIFIED",
             "CONSUMER_PROJECT",
-            "ENCRYPTION_KEYS_PROJECT"
+            "ENCRYPTION_KEYS_PROJECT",
+            "KEYRING"
           ],
           "enumDescriptions": [
             "Unknown resource type.",
             "Consumer project.",
-            "Consumer project containing encryption keys."
+            "Consumer project containing encryption keys.",
+            "Keyring resource that hosts encryption keys."
           ],
           "type": "string"
         }

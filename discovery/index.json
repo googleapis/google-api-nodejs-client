@@ -2216,6 +2216,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "essentialcontacts:v1",
+      "name": "essentialcontacts",
+      "version": "v1",
+      "title": "Essential Contacts API",
+      "description": "",
+      "discoveryRestUrl": "https://essentialcontacts.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/essentialcontacts/docs/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "eventarc:v1beta1",
       "name": "eventarc",
       "version": "v1beta1",
