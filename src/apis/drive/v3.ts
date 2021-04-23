@@ -317,7 +317,7 @@ export namespace drive_v3 {
    */
   export interface Schema$Comment {
     /**
-     * A region of the document represented as a JSON string. See anchor documentation for details on how to define and interpret anchor properties.
+     * A region of the document represented as a JSON string. For details on defining anchor properties, refer to  Add comments and replies.
      */
     anchor?: string | null;
     /**
