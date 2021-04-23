@@ -3340,7 +3340,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1FulfillmentGenericWebService {
     /**
-     * Indicates if generic web service is created through Cloud Functions integration. Defaults to false.
+     * Optional. Indicates if generic web service is created through Cloud Functions integration. Defaults to false. is_cloud_function is deprecated. Cloud functions can be configured by its uri as a regular web service now.
      */
     isCloudFunction?: boolean | null;
     /**
