@@ -155,6 +155,10 @@ export namespace genomics_v2alpha1 {
      */
     credentials?: Schema$Secret;
     /**
+     * The encrypted environment to pass into the container. This environment is merged with values specified in the google.genomics.v2alpha1.Pipeline message, overwriting any duplicate values. The secret must decrypt to a JSON-encoded dictionary where key-value pairs serve as environment variable names and their values. The decoded environment variables can overwrite the values specified by the `environment` field.
+     */
+    encryptedEnvironment?: Schema$Secret;
+    /**
      * If specified, overrides the `ENTRYPOINT` specified in the container.
      */
     entrypoint?: string | null;
@@ -592,6 +596,10 @@ export namespace genomics_v2alpha1 {
      * The list of actions to execute, in the order they are specified.
      */
     actions?: Schema$Action[];
+    /**
+     * The encrypted environment to pass into every action. Each action can also specify its own encrypted environment. The secret must decrypt to a JSON-encoded dictionary where key-value pairs serve as environment variable names and their values. The decoded environment variables can overwrite the values specified by the `environment` field.
+     */
+    encryptedEnvironment?: Schema$Secret;
     /**
      * The environment to pass into every action. Each action can also specify additional environment variables but cannot delete an entry from this map (though they can overwrite it with a different value).
      */
