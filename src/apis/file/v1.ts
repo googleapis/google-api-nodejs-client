@@ -493,6 +493,10 @@ export namespace file_v1 {
      */
     networks?: Schema$NetworkConfig[];
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. The instance state.
      */
     state?: string | null;
@@ -2000,6 +2004,7 @@ export namespace file_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "networks": [],
+     *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
      *       //   "tier": "my_tier"
@@ -2280,6 +2285,7 @@ export namespace file_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "networks": [],
+     *   //   "satisfiesPzs": false,
      *   //   "state": "my_state",
      *   //   "statusMessage": "my_statusMessage",
      *   //   "tier": "my_tier"
@@ -2561,6 +2567,7 @@ export namespace file_v1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "networks": [],
+     *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
      *       //   "tier": "my_tier"
