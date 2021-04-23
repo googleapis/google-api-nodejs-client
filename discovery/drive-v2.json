@@ -38,7 +38,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/WyBZdYbE0D4DynBiI0u-hsaxEpU\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/eQF4I95O1DZouFXGqPCiKaiuYnM\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -1341,7 +1341,7 @@
           ]
         },
         "get": {
-          "description": "Gets a file's metadata by ID.",
+          "description": "Gets a file's metadata or content by ID.",
           "httpMethod": "GET",
           "id": "drive.files.get",
           "parameterOrder": [
@@ -3521,7 +3521,7 @@
       }
     }
   },
-  "revision": "20210315",
+  "revision": "20210419",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -4186,7 +4186,7 @@
       "id": "Comment",
       "properties": {
         "anchor": {
-          "description": "A region of the document represented as a JSON string. See anchor documentation for details on how to define and interpret anchor properties.",
+          "description": "A region of the document represented as a JSON string. For details on defining anchor properties, refer to  Add comments and replies.",
           "type": "string"
         },
         "author": {

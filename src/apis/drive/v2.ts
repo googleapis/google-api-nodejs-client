@@ -592,7 +592,7 @@ export namespace drive_v2 {
    */
   export interface Schema$Comment {
     /**
-     * A region of the document represented as a JSON string. See anchor documentation for details on how to define and interpret anchor properties.
+     * A region of the document represented as a JSON string. For details on defining anchor properties, refer to  Add comments and replies.
      */
     anchor?: string | null;
     /**
@@ -6795,7 +6795,7 @@ export namespace drive_v2 {
     }
 
     /**
-     * Gets a file's metadata by ID.
+     * Gets a file's metadata or content by ID.
      * @example
      * ```js
      * // Before running the sample:
