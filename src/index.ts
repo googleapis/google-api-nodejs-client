@@ -178,6 +178,7 @@ export {doubleclicksearch_v2} from './apis/doubleclicksearch/v2';
 export {drive_v2} from './apis/drive/v2';
 export {drive_v3} from './apis/drive/v3';
 export {driveactivity_v2} from './apis/driveactivity/v2';
+export {essentialcontacts_v1} from './apis/essentialcontacts/v1';
 export {eventarc_v1} from './apis/eventarc/v1';
 export {eventarc_v1beta1} from './apis/eventarc/v1beta1';
 export {factchecktools_v1alpha1} from './apis/factchecktools/v1alpha1';

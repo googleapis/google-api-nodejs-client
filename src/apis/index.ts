@@ -218,6 +218,10 @@ import {
   VERSIONS as driveactivityVersions,
   driveactivity,
 } from './driveactivity';
+import {
+  VERSIONS as essentialcontactsVersions,
+  essentialcontacts,
+} from './essentialcontacts';
 import {VERSIONS as eventarcVersions, eventarc} from './eventarc';
 import {
   VERSIONS as factchecktoolsVersions,
@@ -587,6 +591,7 @@ export const APIS: APIList = {
   doubleclicksearch: doubleclicksearchVersions,
   drive: driveVersions,
   driveactivity: driveactivityVersions,
+  essentialcontacts: essentialcontactsVersions,
   eventarc: eventarcVersions,
   factchecktools: factchecktoolsVersions,
   fcm: fcmVersions,
@@ -802,6 +807,7 @@ export class GeneratedAPIs {
   doubleclicksearch = doubleclicksearch;
   drive = drive;
   driveactivity = driveactivity;
+  essentialcontacts = essentialcontacts;
   eventarc = eventarc;
   factchecktools = factchecktools;
   fcm = fcm;
