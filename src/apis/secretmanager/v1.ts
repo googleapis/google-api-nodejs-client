@@ -2261,7 +2261,7 @@ export namespace secretmanager_v1 {
     }
 
     /**
-     * Accesses a SecretVersion. This call returns the secret data. `projects/x/secrets/x/versions/latest` is an alias to the `latest` SecretVersion.
+     * Accesses a SecretVersion. This call returns the secret data. `projects/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
      * @example
      * ```js
      * // Before running the sample:
@@ -2287,7 +2287,7 @@ export namespace secretmanager_v1 {
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.versions.access({
-     *     // Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`.
+     *     // Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
      *     name: 'projects/my-project/secrets/my-secret/versions/my-version',
      *   });
      *   console.log(res.data);
@@ -2813,7 +2813,7 @@ export namespace secretmanager_v1 {
     }
 
     /**
-     * Gets metadata for a SecretVersion. `projects/x/secrets/x/versions/latest` is an alias to the `latest` SecretVersion.
+     * Gets metadata for a SecretVersion. `projects/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
      * @example
      * ```js
      * // Before running the sample:
@@ -2839,7 +2839,7 @@ export namespace secretmanager_v1 {
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.versions.get({
-     *     // Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` is an alias to the `latest` SecretVersion.
+     *     // Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
      *     name: 'projects/my-project/secrets/my-secret/versions/my-version',
      *   });
      *   console.log(res.data);
@@ -3090,7 +3090,7 @@ export namespace secretmanager_v1 {
   export interface Params$Resource$Projects$Secrets$Versions$Access
     extends StandardParameters {
     /**
-     * Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`.
+     * Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
      */
     name?: string;
   }
@@ -3133,7 +3133,7 @@ export namespace secretmanager_v1 {
   export interface Params$Resource$Projects$Secrets$Versions$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` is an alias to the `latest` SecretVersion.
+     * Required. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`. `projects/x/secrets/x/versions/latest` is an alias to the most recently created SecretVersion.
      */
     name?: string;
   }
