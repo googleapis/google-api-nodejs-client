@@ -1027,9 +1027,21 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     guaranteedLooks?: string | null;
     /**
+     * The lifetime impression cap for CPM sponsorship deals. The deal will stop serving when the cap is reached.
+     */
+    impressionCap?: string | null;
+    /**
      * Daily minimum looks for CPD deal types.
      */
     minimumDailyLooks?: string | null;
+    /**
+     * For sponsorship deals, this is the percentage of the seller's eligible impressions that the deal will serve until the cap is reached.
+     */
+    percentShareOfVoice?: string | null;
+    /**
+     * The reservation type for a Programmatic Guaranteed deal. This indicates whether the number of impressions is fixed, or a percent of available impressions. If not specified, the default reservation type is STANDARD.
+     */
+    reservationType?: string | null;
   }
   /**
    * HTML content for a creative.
