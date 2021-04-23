@@ -3,7 +3,7 @@
   "baseUrl": "https://chat.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Hangouts Chat",
-  "description": "Enables bots to fetch information and perform actions in Google Chat.",
+  "description": "Enables bots to fetch information and perform actions in Google Chat. Authentication using a service account is a prerequisite for using the Google Chat REST API.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/hangouts/chat",
   "fullyEncodeReservedExpansion": true,
@@ -601,7 +601,7 @@
       }
     }
   },
-  "revision": "20210314",
+  "revision": "20210417",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
