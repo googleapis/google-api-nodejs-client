@@ -274,10 +274,6 @@ export namespace bigqueryreservation_v1beta1 {
      */
     ignoreIdleSlots?: boolean | null;
     /**
-     * Maximum number of queries that are allowed to run concurrently in this reservation. Default value is 0 which means that maximum concurrency will be automatically set based on the reservation size.
-     */
-    maxConcurrency?: string | null;
-    /**
      * The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`.
      */
     name?: string | null;
@@ -874,6 +870,8 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.capacityCommitments.create(
      *     {
+     *       // The optional capacity commitment ID. Capacity commitment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters. NOTE: this ID won't be kept if the capacity commitment is split or merged.
+     *       capacityCommitmentId: 'placeholder-value',
      *       // If true, fail the request if another project in the organization has a capacity commitment.
      *       enforceSingleAdminProjectPerOrg: 'placeholder-value',
      *       // Required. Resource name of the parent reservation. E.g., `projects/myproject/locations/US`
@@ -1898,6 +1896,10 @@ export namespace bigqueryreservation_v1beta1 {
   export interface Params$Resource$Projects$Locations$Capacitycommitments$Create
     extends StandardParameters {
     /**
+     * The optional capacity commitment ID. Capacity commitment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters. NOTE: this ID won't be kept if the capacity commitment is split or merged.
+     */
+    capacityCommitmentId?: string;
+    /**
      * If true, fail the request if another project in the organization has a capacity commitment.
      */
     enforceSingleAdminProjectPerOrg?: boolean;
@@ -2032,7 +2034,6 @@ export namespace bigqueryreservation_v1beta1 {
      *       // {
      *       //   "creationTime": "my_creationTime",
      *       //   "ignoreIdleSlots": false,
-     *       //   "maxConcurrency": "my_maxConcurrency",
      *       //   "name": "my_name",
      *       //   "slotCapacity": "my_slotCapacity",
      *       //   "updateTime": "my_updateTime"
@@ -2045,7 +2046,6 @@ export namespace bigqueryreservation_v1beta1 {
      *   // {
      *   //   "creationTime": "my_creationTime",
      *   //   "ignoreIdleSlots": false,
-     *   //   "maxConcurrency": "my_maxConcurrency",
      *   //   "name": "my_name",
      *   //   "slotCapacity": "my_slotCapacity",
      *   //   "updateTime": "my_updateTime"
@@ -2313,7 +2313,6 @@ export namespace bigqueryreservation_v1beta1 {
      *   // {
      *   //   "creationTime": "my_creationTime",
      *   //   "ignoreIdleSlots": false,
-     *   //   "maxConcurrency": "my_maxConcurrency",
      *   //   "name": "my_name",
      *   //   "slotCapacity": "my_slotCapacity",
      *   //   "updateTime": "my_updateTime"
@@ -2596,7 +2595,6 @@ export namespace bigqueryreservation_v1beta1 {
      *       // {
      *       //   "creationTime": "my_creationTime",
      *       //   "ignoreIdleSlots": false,
-     *       //   "maxConcurrency": "my_maxConcurrency",
      *       //   "name": "my_name",
      *       //   "slotCapacity": "my_slotCapacity",
      *       //   "updateTime": "my_updateTime"
@@ -2609,7 +2607,6 @@ export namespace bigqueryreservation_v1beta1 {
      *   // {
      *   //   "creationTime": "my_creationTime",
      *   //   "ignoreIdleSlots": false,
-     *   //   "maxConcurrency": "my_maxConcurrency",
      *   //   "name": "my_name",
      *   //   "slotCapacity": "my_slotCapacity",
      *   //   "updateTime": "my_updateTime"
@@ -2809,6 +2806,8 @@ export namespace bigqueryreservation_v1beta1 {
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.assignments.create(
      *     {
+     *       // The optional assignment ID. Assignment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters.
+     *       assignmentId: 'placeholder-value',
      *       // Required. The parent resource name of the assignment E.g. `projects/myproject/locations/US/reservations/team1-prod`
      *       parent:
      *         'projects/my-project/locations/my-location/reservations/my-reservation',
@@ -3351,10 +3350,163 @@ export namespace bigqueryreservation_v1beta1 {
         return createAPIRequest<Schema$Assignment>(parameters);
       }
     }
+
+    /**
+     * Updates an existing assignment. Only the `priority` field can be updated.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigqueryreservation = google.bigqueryreservation('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigqueryreservation.projects.locations.reservations.assignments.patch(
+     *     {
+     *       // Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`.
+     *       name:
+     *         'projects/my-project/locations/my-location/reservations/my-reservation/assignments/my-assignment',
+     *       // Standard field mask for the set of fields to be updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "assignee": "my_assignee",
+     *         //   "jobType": "my_jobType",
+     *         //   "name": "my_name",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assignee": "my_assignee",
+     *   //   "jobType": "my_jobType",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Reservations$Assignments$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Reservations$Assignments$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Assignment>;
+    patch(
+      params: Params$Resource$Projects$Locations$Reservations$Assignments$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Reservations$Assignments$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Assignment>,
+      callback: BodyResponseCallback<Schema$Assignment>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Reservations$Assignments$Patch,
+      callback: BodyResponseCallback<Schema$Assignment>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Assignment>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Reservations$Assignments$Patch
+        | BodyResponseCallback<Schema$Assignment>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Assignment>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Assignment>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Assignment> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Reservations$Assignments$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Reservations$Assignments$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigqueryreservation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Assignment>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Assignment>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Reservations$Assignments$Create
     extends StandardParameters {
+    /**
+     * The optional assignment ID. Assignment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters.
+     */
+    assignmentId?: string;
     /**
      * Required. The parent resource name of the assignment E.g. `projects/myproject/locations/US/reservations/team1-prod`
      */
@@ -3398,5 +3550,21 @@ export namespace bigqueryreservation_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$MoveAssignmentRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Reservations$Assignments$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Name of the resource. E.g.: `projects/myproject/locations/US/reservations/team1-prod/assignments/123`.
+     */
+    name?: string;
+    /**
+     * Standard field mask for the set of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Assignment;
   }
 }
