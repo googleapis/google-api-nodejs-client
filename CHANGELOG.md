@@ -4,6 +4,43 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [73.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v72.0.0...googleapis-v73.0.0) (2021-04-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **bigqueryreservation:** This release has breaking changes.
+* **bigquerydatatransfer:** This release has breaking changes.
+
+### Features
+
+* **adexchangebuyer2:** update the API ([b41120f](https://www.github.com/googleapis/google-api-nodejs-client/commit/b41120fd6c12b84c9f6d2f93f2752479cd880fa1))
+* **artifactregistry:** update the API ([2f63583](https://www.github.com/googleapis/google-api-nodejs-client/commit/2f635837e631dcdf9bee0c6b8dcf8118ea57a3c1))
+* **bigquerydatatransfer:** update the API ([28bfee0](https://www.github.com/googleapis/google-api-nodejs-client/commit/28bfee08af42283dc03f65bdcabb2e81e3d77a1c))
+* **bigqueryreservation:** update the API ([b3a028e](https://www.github.com/googleapis/google-api-nodejs-client/commit/b3a028e875e703040b46d0d6578b35c5924079f4))
+* **container:** update the API ([e18215b](https://www.github.com/googleapis/google-api-nodejs-client/commit/e18215b8419211b5190fb37e77d3d19a1ae49e89))
+* **displayvideo:** update the API ([e109b39](https://www.github.com/googleapis/google-api-nodejs-client/commit/e109b39139ba12b4809897c4dc1ed23637ee4719))
+* **documentai:** update the API ([e0ab15b](https://www.github.com/googleapis/google-api-nodejs-client/commit/e0ab15b00188967e97fdb322ee1c940a4d781c1b))
+* **file:** update the API ([f52fc10](https://www.github.com/googleapis/google-api-nodejs-client/commit/f52fc102b59d11c897e8ec7ba135bf5a4667e2f8))
+* **genomics:** update the API ([85a6cd7](https://www.github.com/googleapis/google-api-nodejs-client/commit/85a6cd710fcdf33b4dbc615ae93ff2be82ab59a1))
+* **logging:** update the API ([ab28a04](https://www.github.com/googleapis/google-api-nodejs-client/commit/ab28a04765af485e49eddf0c716a8b9043817fe9))
+* regenerate index files ([6e4cb8c](https://www.github.com/googleapis/google-api-nodejs-client/commit/6e4cb8c1db18632eb9118bd7688a21d32bce6bcc))
+* **serviceusage:** update the API ([d23fbcb](https://www.github.com/googleapis/google-api-nodejs-client/commit/d23fbcbb94ba9feff6f2ef3cae92cd8318121b75))
+* **websecurityscanner:** update the API ([05f142f](https://www.github.com/googleapis/google-api-nodejs-client/commit/05f142f574db41bb49988f8fe47e2c1049c79a4a))
+
+
+### Bug Fixes
+
+* **chat:** update the API ([47f816c](https://www.github.com/googleapis/google-api-nodejs-client/commit/47f816c798517093d0f9619f642a86699dc94468))
+* **dialogflow:** update the API ([0050937](https://www.github.com/googleapis/google-api-nodejs-client/commit/005093776ea3ed486c05098d499f392dd8fe2368))
+* **drive:** update the API ([e18c6f2](https://www.github.com/googleapis/google-api-nodejs-client/commit/e18c6f2f18dd106fbb8b65bce2f6cc3aea79303a))
+* **essentialcontacts:** update the API ([6fbf643](https://www.github.com/googleapis/google-api-nodejs-client/commit/6fbf643c0a7cfe09256a4d8a76e9c89b0e39d122))
+* **gkehub:** update the API ([c13e342](https://www.github.com/googleapis/google-api-nodejs-client/commit/c13e3424d71cdb05233b350e36ce2478b16d8158))
+* **playablelocations:** update the API ([d10cbc9](https://www.github.com/googleapis/google-api-nodejs-client/commit/d10cbc933a57221ef18e8848a08f382fc266f1f2))
+* **retail:** update the API ([5d22b00](https://www.github.com/googleapis/google-api-nodejs-client/commit/5d22b0003e20ea779cd1a80b7c59371c9b1cd924))
+* **secretmanager:** update the API ([3446148](https://www.github.com/googleapis/google-api-nodejs-client/commit/344614852b5144a830135ebe920e95d390a0b381))
+* **streetviewpublish:** update the API ([9f6705b](https://www.github.com/googleapis/google-api-nodejs-client/commit/9f6705b9883df5387195dcb535b7f0780050284d))
+
 ## [72.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v71.0.0...googleapis-v72.0.0) (2021-04-21)
 
 
