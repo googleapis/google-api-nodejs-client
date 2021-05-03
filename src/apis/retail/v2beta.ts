@@ -908,7 +908,7 @@ export namespace retail_v2beta {
     rejoinedUserEventsCount?: string | null;
   }
   /**
-   * UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website.
+   * UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website. Next tag: 22
    */
   export interface Schema$GoogleCloudRetailV2betaUserEvent {
     /**
