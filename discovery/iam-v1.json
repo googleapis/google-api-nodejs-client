@@ -1696,7 +1696,7 @@
       }
     }
   },
-  "revision": "20210325",
+  "revision": "20210422",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AdminAuditData": {
@@ -2206,7 +2206,7 @@
             "NOT_SUPPORTED"
           ],
           "enumDescriptions": [
-            "Permission is fully supported for custom role use.",
+            "Default state. Permission is fully supported for custom role use.",
             "Permission is being tested to check custom role compatibility.",
             "Permission is not supported for custom role use."
           ],
