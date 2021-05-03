@@ -1326,6 +1326,8 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.edits.commit({
+     *     // Indicates that the changes in this edit will not be reviewed until they are explicitly sent for review from the Google Play Console UI. These changes will be added to any other changes that are not yet sent for review.
+     *     changesNotSentForReview: 'placeholder-value',
      *     // Identifier of the edit.
      *     editId: 'placeholder-value',
      *     // Package name of the app.
@@ -1959,6 +1961,10 @@ export namespace androidpublisher_v3 {
   }
 
   export interface Params$Resource$Edits$Commit extends StandardParameters {
+    /**
+     * Indicates that the changes in this edit will not be reviewed until they are explicitly sent for review from the Google Play Console UI. These changes will be added to any other changes that are not yet sent for review.
+     */
+    changesNotSentForReview?: boolean;
     /**
      * Identifier of the edit.
      */
