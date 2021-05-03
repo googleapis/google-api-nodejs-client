@@ -3296,6 +3296,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "mybusinessplaceactions:v1",
+      "name": "mybusinessplaceactions",
+      "version": "v1",
+      "title": "My Business Place Actions API",
+      "description": "The My Business Place Actions API provides an interface for managing place action links of a location on Google.",
+      "discoveryRestUrl": "https://mybusinessplaceactions.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/my-business/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "networkconnectivity:v1alpha1",
       "name": "networkconnectivity",
       "version": "v1alpha1",
@@ -3503,6 +3518,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/speed/docs/insights/v5/about",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "paymentsresellersubscription:v1",
+      "name": "paymentsresellersubscription",
+      "version": "v1",
+      "title": "Payments Reseller Subscription API",
+      "description": "",
+      "discoveryRestUrl": "https://paymentsresellersubscription.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/payments/reseller/subscription/",
       "preferred": true
     },
     {
@@ -5026,7 +5056,7 @@
       "name": "workflows",
       "version": "v1beta",
       "title": "Workflows API",
-      "description": "Orchestrate Workflows consisting of Google Cloud APIs, SaaS APIs or private API endpoints.",
+      "description": "Manage workflow definitions. To execute workflows and manage executions, see the Workflows Executions API.",
       "discoveryRestUrl": "https://workflows.googleapis.com/$discovery/rest?version=v1beta",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -5041,7 +5071,7 @@
       "name": "workflows",
       "version": "v1",
       "title": "Workflows API",
-      "description": "Orchestrate Workflows consisting of Google Cloud APIs, SaaS APIs or private API endpoints.",
+      "description": "Manage workflow definitions. To execute workflows and manage executions, see the Workflows Executions API.",
       "discoveryRestUrl": "https://workflows.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
