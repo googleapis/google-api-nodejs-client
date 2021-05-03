@@ -2610,7 +2610,7 @@
       }
     }
   },
-  "revision": "20201125",
+  "revision": "20210428",
   "rootUrl": "https://androidenterprise.googleapis.com/",
   "schemas": {
     "Administrator": {
@@ -2679,6 +2679,10 @@
         "webApps": {
           "$ref": "AdministratorWebTokenSpecWebApps",
           "description": "Options for displaying the Web Apps page."
+        },
+        "zeroTouch": {
+          "$ref": "AdministratorWebTokenSpecZeroTouch",
+          "description": "Options for displaying the Zero Touch page."
         }
       },
       "type": "object"
@@ -2732,6 +2736,16 @@
       "properties": {
         "enabled": {
           "description": "Whether the Web Apps page is displayed. Default is true.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AdministratorWebTokenSpecZeroTouch": {
+      "id": "AdministratorWebTokenSpecZeroTouch",
+      "properties": {
+        "enabled": {
+          "description": "Whether zero-touch embedded UI is usable with this token. If enabled, the admin can link zero-touch customers to this enterprise.",
           "type": "boolean"
         }
       },
