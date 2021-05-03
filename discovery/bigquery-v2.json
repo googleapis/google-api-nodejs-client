@@ -718,7 +718,7 @@
           ]
         },
         "list": {
-          "description": "Lists all models in the specified dataset. Requires the READER dataset role.",
+          "description": "Lists all models in the specified dataset. Requires the READER dataset role. After retrieving the list of models, you can get information about a particular model by calling the models.get method.",
           "flatPath": "projects/{projectsId}/datasets/{datasetsId}/models",
           "httpMethod": "GET",
           "id": "bigquery.models.list",
@@ -1683,7 +1683,7 @@
       }
     }
   },
-  "revision": "20210410",
+  "revision": "20210422",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
