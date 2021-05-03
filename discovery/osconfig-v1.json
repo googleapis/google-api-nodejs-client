@@ -14,7 +14,7 @@
   "canonicalName": "OS Config",
   "description": "OS management tools that can be used for patch management, patch compliance, and configuration management on VM instances.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://cloud.google.com/compute/docs/manage-os",
+  "documentationLink": "https://cloud.google.com/compute/docs/osconfig/rest",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -476,7 +476,7 @@
       }
     }
   },
-  "revision": "20210412",
+  "revision": "20210427",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -1027,6 +1027,61 @@
         "weekDayOfMonth": {
           "$ref": "WeekDayOfMonth",
           "description": "Required. Week day in a month."
+        }
+      },
+      "type": "object"
+    },
+    "OSPolicyAssignmentOperationMetadata": {
+      "description": "OS policy assignment operation metadata provided by OS policy assignment API methods that return long running operations.",
+      "id": "OSPolicyAssignmentOperationMetadata",
+      "properties": {
+        "apiMethod": {
+          "description": "The OS policy assignment API method.",
+          "enum": [
+            "API_METHOD_UNSPECIFIED",
+            "CREATE",
+            "UPDATE",
+            "DELETE"
+          ],
+          "enumDescriptions": [
+            "Invalid value",
+            "Create OS policy assignment API method",
+            "Update OS policy assignment API method",
+            "Delete OS policy assignment API method"
+          ],
+          "type": "string"
+        },
+        "osPolicyAssignment": {
+          "description": "Reference to the `OSPolicyAssignment` API resource. Format: `projects/{project_number}/locations/{location}/osPolicyAssignments/{os_policy_assignment_id@revision_id}`",
+          "type": "string"
+        },
+        "rolloutStartTime": {
+          "description": "Rollout start time",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "rolloutState": {
+          "description": "State of the rollout",
+          "enum": [
+            "ROLLOUT_STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "CANCELLING",
+            "CANCELLED",
+            "SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "Invalid value",
+            "The rollout is in progress.",
+            "The rollout is being cancelled.",
+            "The rollout is cancelled.",
+            "The rollout has completed successfully."
+          ],
+          "type": "string"
+        },
+        "rolloutUpdateTime": {
+          "description": "Rollout update time",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
