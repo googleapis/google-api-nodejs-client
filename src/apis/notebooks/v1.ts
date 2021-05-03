@@ -2756,7 +2756,7 @@ export namespace notebooks_v1 {
      *
      *   // Do the magic
      *   const res = await notebooks.projects.locations.executions.list({
-     *     // Filter applied to resulting executions.
+     *     // Filter applied to resulting executions. Currently only supports filtering executions by a specified schedule_id. Format: "schedule_id="
      *     filter: 'placeholder-value',
      *     // Sort by field.
      *     orderBy: 'placeholder-value',
@@ -2907,7 +2907,7 @@ export namespace notebooks_v1 {
   export interface Params$Resource$Projects$Locations$Executions$List
     extends StandardParameters {
     /**
-     * Filter applied to resulting executions.
+     * Filter applied to resulting executions. Currently only supports filtering executions by a specified schedule_id. Format: "schedule_id="
      */
     filter?: string;
     /**
