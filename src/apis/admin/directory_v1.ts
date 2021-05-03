@@ -661,7 +661,7 @@ export namespace admin_directory_v1 {
     /**
      * List of recent device users, in descending order, by last login time.
      */
-    recentUsers?: Schema$RecentUsers[];
+    recentUsers?: Array<{email?: string; type?: string}> | null;
     /**
      * List of screenshot files to download. Type is always "SCREENSHOT_FILE". (Read-only)
      */
@@ -1575,19 +1575,6 @@ export namespace admin_directory_v1 {
      * The type of the API resource. This is always `admin#directory#privileges`.
      */
     kind?: string | null;
-  }
-  /**
-   * List of recent device users, in descending order, by last login time.
-   */
-  export interface Schema$RecentUsers {
-    /**
-     * The user's email address. This is only present if the user type is `USER_TYPE_MANAGED`.
-     */
-    email?: string | null;
-    /**
-     * The type of the user.
-     */
-    type?: string | null;
   }
   export interface Schema$Role {
     /**
