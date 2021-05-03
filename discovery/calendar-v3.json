@@ -1723,7 +1723,7 @@
       }
     }
   },
-  "revision": "20210417",
+  "revision": "20210424",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2074,9 +2074,9 @@
         "calendar": {
           "additionalProperties": {
             "$ref": "ColorDefinition",
-            "description": "A calendar color defintion."
+            "description": "A calendar color definition."
           },
-          "description": "A global palette of calendar colors, mapping from the color ID to its definition. A calendarListEntry resource refers to one of these color IDs in its color field. Read-only.",
+          "description": "A global palette of calendar colors, mapping from the color ID to its definition. A calendarListEntry resource refers to one of these color IDs in its colorId field. Read-only.",
           "type": "object"
         },
         "event": {
@@ -2084,7 +2084,7 @@
             "$ref": "ColorDefinition",
             "description": "An event color definition."
           },
-          "description": "A global palette of event colors, mapping from the color ID to its definition. An event resource may refer to one of these color IDs in its color field. Read-only.",
+          "description": "A global palette of event colors, mapping from the color ID to its definition. An event resource may refer to one of these color IDs in its colorId field. Read-only.",
           "type": "object"
         },
         "kind": {

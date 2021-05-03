@@ -384,11 +384,11 @@ export namespace calendar_v3 {
   }
   export interface Schema$Colors {
     /**
-     * A global palette of calendar colors, mapping from the color ID to its definition. A calendarListEntry resource refers to one of these color IDs in its color field. Read-only.
+     * A global palette of calendar colors, mapping from the color ID to its definition. A calendarListEntry resource refers to one of these color IDs in its colorId field. Read-only.
      */
     calendar?: {[key: string]: Schema$ColorDefinition} | null;
     /**
-     * A global palette of event colors, mapping from the color ID to its definition. An event resource may refer to one of these color IDs in its color field. Read-only.
+     * A global palette of event colors, mapping from the color ID to its definition. An event resource may refer to one of these color IDs in its colorId field. Read-only.
      */
     event?: {[key: string]: Schema$ColorDefinition} | null;
     /**
