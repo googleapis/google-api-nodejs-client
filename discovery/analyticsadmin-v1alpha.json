@@ -1834,7 +1834,7 @@
       }
     }
   },
-  "revision": "20210420",
+  "revision": "20210429",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -2386,7 +2386,7 @@
       "id": "GoogleAnalyticsAdminV1alphaGoogleAdsLink",
       "properties": {
         "adsPersonalizationEnabled": {
-          "description": "Enable personalized advertising features with this integration. Automatically publish my Google Analytics audience lists and Google Analytics remarketing events/parameters to the linked Google Ads account. If this field is not set on create/update it will be defaulted to true.",
+          "description": "Enable personalized advertising features with this integration. Automatically publish my Google Analytics audience lists and Google Analytics remarketing events/parameters to the linked Google Ads account. If this field is not set on create/update, it will be defaulted to true.",
           "type": "boolean"
         },
         "canManageClients": {
