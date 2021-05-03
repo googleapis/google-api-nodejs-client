@@ -761,7 +761,7 @@ export namespace retail_v2alpha {
     rejoinedUserEventsCount?: string | null;
   }
   /**
-   * UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website.
+   * UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website. Next tag: 22
    */
   export interface Schema$GoogleCloudRetailV2alphaUserEvent {
     /**
@@ -814,6 +814,10 @@ export namespace retail_v2alpha {
      * The user's search query. The value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. At least one of search_query or page_categories is required for `search` events. Other event types should not set this field. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     searchQuery?: string | null;
+    /**
+     * Represents the user sessions to aggregate user behavior within a time period. If not set, heuristics will be used to autogenerate one.
+     */
+    sessionId?: string | null;
     /**
      * Complete URL (window.location.href) of the user's current page. When using the client side event reporting with JavaScript pixel and Google Tag Manager, this value is filled in automatically. Maximum length 5,000 characters.
      */
@@ -3719,6 +3723,7 @@ export namespace retail_v2alpha {
      *       //   "purchaseTransaction": {},
      *       //   "referrerUri": "my_referrerUri",
      *       //   "searchQuery": "my_searchQuery",
+     *       //   "sessionId": "my_sessionId",
      *       //   "uri": "my_uri",
      *       //   "userInfo": {},
      *       //   "visitorId": "my_visitorId"
@@ -3741,6 +3746,7 @@ export namespace retail_v2alpha {
      *   //   "purchaseTransaction": {},
      *   //   "referrerUri": "my_referrerUri",
      *   //   "searchQuery": "my_searchQuery",
+     *   //   "sessionId": "my_sessionId",
      *   //   "uri": "my_uri",
      *   //   "userInfo": {},
      *   //   "visitorId": "my_visitorId"

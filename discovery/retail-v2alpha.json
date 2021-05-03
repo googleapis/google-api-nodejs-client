@@ -706,7 +706,7 @@
       }
     }
   },
-  "revision": "20210416",
+  "revision": "20210423",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1681,7 +1681,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2alphaUserEvent": {
-      "description": "UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website.",
+      "description": "UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website. Next tag: 22",
       "id": "GoogleCloudRetailV2alphaUserEvent",
       "properties": {
         "attributes": {
@@ -1743,6 +1743,10 @@
         },
         "searchQuery": {
           "description": "The user's search query. The value must be a UTF-8 encoded string with a length limit of 5,000 characters. Otherwise, an INVALID_ARGUMENT error is returned. At least one of search_query or page_categories is required for `search` events. Other event types should not set this field. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "type": "string"
+        },
+        "sessionId": {
+          "description": "Represents the user sessions to aggregate user behavior within a time period. If not set, heuristics will be used to autogenerate one.",
           "type": "string"
         },
         "uri": {

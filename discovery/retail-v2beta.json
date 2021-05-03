@@ -706,7 +706,7 @@
       }
     }
   },
-  "revision": "20210416",
+  "revision": "20210423",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1876,7 +1876,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2betaUserEvent": {
-      "description": "UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website.",
+      "description": "UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website. Next tag: 22",
       "id": "GoogleCloudRetailV2betaUserEvent",
       "properties": {
         "attributes": {
