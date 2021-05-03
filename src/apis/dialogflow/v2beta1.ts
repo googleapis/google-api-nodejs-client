@@ -338,6 +338,19 @@ export namespace dialogflow_v2beta1 {
     agentUri?: string | null;
   }
   /**
+   * The response message for Flows.ExportFlow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportFlowResponse {
+    /**
+     * Uncompressed raw byte content for flow.
+     */
+    flowContent?: string | null;
+    /**
+     * The URI to a file containing the exported flow. This field is populated only if `flow_uri` is specified in ExportFlowRequest.
+     */
+    flowUri?: string | null;
+  }
+  /**
    * Metadata returned for the TestCases.ExportTestCases long running operation.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata {}
@@ -508,6 +521,15 @@ export namespace dialogflow_v2beta1 {
      * Includes details about skipped documents or any other warnings.
      */
     warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * The response message for Flows.ImportFlow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportFlowResponse {
+    /**
+     * The unique identifier of the new flow. Format: `projects//locations//agents//flows/`.
+     */
+    flow?: string | null;
   }
   /**
    * Metadata returned for the TestCases.ImportTestCases long running operation.
@@ -1404,6 +1426,19 @@ export namespace dialogflow_v2beta1 {
     agentUri?: string | null;
   }
   /**
+   * The response message for Flows.ExportFlow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ExportFlowResponse {
+    /**
+     * Uncompressed raw byte content for flow.
+     */
+    flowContent?: string | null;
+    /**
+     * The URI to a file containing the exported flow. This field is populated only if `flow_uri` is specified in ExportFlowRequest.
+     */
+    flowUri?: string | null;
+  }
+  /**
    * Metadata returned for the TestCases.ExportTestCases long running operation.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ExportTestCasesMetadata {}
@@ -1574,6 +1609,15 @@ export namespace dialogflow_v2beta1 {
      * Includes details about skipped documents or any other warnings.
      */
     warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * The response message for Flows.ImportFlow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportFlowResponse {
+    /**
+     * The unique identifier of the new flow. Format: `projects//locations//agents//flows/`.
+     */
+    flow?: string | null;
   }
   /**
    * Metadata returned for the TestCases.ImportTestCases long running operation.
@@ -3404,7 +3448,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig {
     /**
-     * Required. Conversation model resource name. Format: `projects//conversationModels/`.
+     * Conversation model resource name. Format: `projects//conversationModels/`.
      */
     model?: string | null;
   }
@@ -6892,7 +6936,7 @@ export namespace dialogflow_v2beta1 {
     message?: string | null;
   }
   /**
-   * An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the WGS84 standard. Values must be within normalized ranges.
+   * An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges.
    */
   export interface Schema$GoogleTypeLatLng {
     /**
