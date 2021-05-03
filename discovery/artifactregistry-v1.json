@@ -234,6 +234,71 @@
         "locations": {
           "resources": {
             "repositories": {
+              "methods": {
+                "get": {
+                  "description": "Gets a repository.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories/{repositoriesId}",
+                  "httpMethod": "GET",
+                  "id": "artifactregistry.projects.locations.repositories.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the repository to retrieve.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/repositories/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Repository"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                },
+                "list": {
+                  "description": "Lists repositories.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/repositories",
+                  "httpMethod": "GET",
+                  "id": "artifactregistry.projects.locations.repositories.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of repositories to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The next_page_token value returned from a previous list request, if any.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The name of the parent resource whose repositories will be listed.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/repositories",
+                  "response": {
+                    "$ref": "ListRepositoriesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                  ]
+                }
+              },
               "resources": {
                 "dockerImages": {
                   "methods": {
@@ -283,7 +348,7 @@
       }
     }
   },
-  "revision": "20210324",
+  "revision": "20210423",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -370,6 +435,24 @@
       },
       "type": "object"
     },
+    "ListRepositoriesResponse": {
+      "description": "The response from listing repositories.",
+      "id": "ListRepositoriesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The token to retrieve the next page of repositories, or empty if there are no more repositories to return.",
+          "type": "string"
+        },
+        "repositories": {
+          "description": "The repositories returned.",
+          "items": {
+            "$ref": "Repository"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Operation": {
       "description": "This resource represents a long-running operation that is the result of a network API call.",
       "id": "Operation",
@@ -401,6 +484,54 @@
           },
           "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "Repository": {
+      "description": "A Repository for storing artifacts with a specific format.",
+      "id": "Repository",
+      "properties": {
+        "createTime": {
+          "description": "The time when the repository was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "description": {
+          "description": "The user-provided description of the repository.",
+          "type": "string"
+        },
+        "format": {
+          "description": "The format of packages that are stored in the repository.",
+          "enum": [
+            "FORMAT_UNSPECIFIED",
+            "DOCKER"
+          ],
+          "enumDescriptions": [
+            "Unspecified package format.",
+            "Docker package format."
+          ],
+          "type": "string"
+        },
+        "kmsKeyName": {
+          "description": "The Cloud KMS resource name of the customer managed encryption key that’s used to encrypt the contents of the Repository. Has the form: `projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key`. This value may not be changed after the Repository has been created.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels with user-defined metadata. This field may contain up to 64 entries. Label keys and values may be no longer than 63 characters. Label keys must begin with a lowercase letter and may only contain lowercase letters, numeric characters, underscores, and dashes.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The name of the repository, for example: \"projects/p1/locations/us-central1/repositories/repo1\".",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The time when the repository was last updated.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
