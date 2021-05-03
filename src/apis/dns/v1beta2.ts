@@ -388,6 +388,9 @@ export namespace dns_v1beta2 {
   }
   export interface Schema$ManagedZoneOperationsListResponse {
     header?: Schema$ResponseHeader;
+    /**
+     * Type of resource.
+     */
     kind?: string | null;
     /**
      * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your page token. This lets you retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned are an inconsistent view of the collection. You cannot retrieve a consistent snapshot of a collection larger than the maximum page size.
@@ -417,11 +420,22 @@ export namespace dns_v1beta2 {
     networkUrl?: string | null;
   }
   export interface Schema$ManagedZonePrivateVisibilityConfig {
+    /**
+     * The list of Google Kubernetes Engine clusters that can see this zone.
+     */
+    gkeClusters?: Schema$ManagedZonePrivateVisibilityConfigGKECluster[];
     kind?: string | null;
     /**
      * The list of VPC networks that can see this zone.
      */
     networks?: Schema$ManagedZonePrivateVisibilityConfigNetwork[];
+  }
+  export interface Schema$ManagedZonePrivateVisibilityConfigGKECluster {
+    /**
+     * The resource name of the cluster to bind this ManagedZone to. This should be specified in the format like: projects/x/locations/x/clusters/x. This is referenced from GKE projects.locations.clusters.get API: https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/get
+     */
+    gkeClusterName?: string | null;
+    kind?: string | null;
   }
   export interface Schema$ManagedZonePrivateVisibilityConfigNetwork {
     kind?: string | null;
@@ -635,11 +649,19 @@ export namespace dns_v1beta2 {
      * Maximum allowed number of DnsKeys per ManagedZone.
      */
     dnsKeysPerManagedZone?: number | null;
+    /**
+     * Maximum allowed number of GKE clusters to which a privately scoped zone can be attached.
+     */
+    gkeClustersPerManagedZone?: number | null;
     kind?: string | null;
     /**
      * Maximum allowed number of managed zones in the project.
      */
     managedZones?: number | null;
+    /**
+     * Maximum allowed number of managed zones which can be attached to a GKE cluster.
+     */
+    managedZonesPerGkeCluster?: number | null;
     /**
      * Maximum allowed number of managed zones which can be attached to a network.
      */
@@ -771,6 +793,10 @@ export namespace dns_v1beta2 {
      */
     description?: string | null;
     /**
+     * The list of Google Kubernetes Engine clusters to which this response policy is applied.
+     */
+    gkeClusters?: Schema$ResponsePolicyGKECluster[];
+    /**
      * Unique identifier for the resource; defined by the server (output only).
      */
     id?: string | null;
@@ -783,6 +809,13 @@ export namespace dns_v1beta2 {
      * User assigned name for this Response Policy.
      */
     responsePolicyName?: string | null;
+  }
+  export interface Schema$ResponsePolicyGKECluster {
+    /**
+     * The resource name of the cluster to bind this response policy to. This should be specified in the format like: projects/x/locations/x/clusters/x. This is referenced from GKE projects.locations.clusters.get API: https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/get
+     */
+    gkeClusterName?: string | null;
+    kind?: string | null;
   }
   export interface Schema$ResponsePolicyNetwork {
     kind?: string | null;
@@ -5193,6 +5226,7 @@ export namespace dns_v1beta2 {
      *       // request body parameters
      *       // {
      *       //   "description": "my_description",
+     *       //   "gkeClusters": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "networks": [],
@@ -5205,6 +5239,7 @@ export namespace dns_v1beta2 {
      *   // Example response
      *   // {
      *   //   "description": "my_description",
+     *   //   "gkeClusters": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "networks": [],
@@ -5475,6 +5510,7 @@ export namespace dns_v1beta2 {
      *   // Example response
      *   // {
      *   //   "description": "my_description",
+     *   //   "gkeClusters": [],
      *   //   "id": "my_id",
      *   //   "kind": "my_kind",
      *   //   "networks": [],
@@ -5763,6 +5799,7 @@ export namespace dns_v1beta2 {
      *       // request body parameters
      *       // {
      *       //   "description": "my_description",
+     *       //   "gkeClusters": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "networks": [],
@@ -5921,6 +5958,7 @@ export namespace dns_v1beta2 {
      *       // request body parameters
      *       // {
      *       //   "description": "my_description",
+     *       //   "gkeClusters": [],
      *       //   "id": "my_id",
      *       //   "kind": "my_kind",
      *       //   "networks": [],
