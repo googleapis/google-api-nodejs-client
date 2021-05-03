@@ -109,6 +109,31 @@
       "resources": {
         "locations": {
           "methods": {
+            "fetchProcessorTypes": {
+              "description": "Fetches processor types.",
+              "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}:fetchProcessorTypes",
+              "httpMethod": "GET",
+              "id": "documentai.projects.locations.fetchProcessorTypes",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The project of processor type to list. The available processor types may depend on the whitelisting on projects. Format: projects/{project}/locations/{location}",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta3/{+parent}:fetchProcessorTypes",
+              "response": {
+                "$ref": "GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "get": {
               "description": "Gets information about a location.",
               "flatPath": "v1beta3/projects/{projectsId}/locations/{locationsId}",
@@ -510,7 +535,7 @@
       }
     }
   },
-  "revision": "20210417",
+  "revision": "20210426",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata": {
@@ -4421,6 +4446,20 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse": {
+      "description": "Response message for fetch processor types.",
+      "id": "GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse",
+      "properties": {
+        "processorTypes": {
+          "description": "The list of processor types.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3ProcessorType"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3GcsDocument": {
       "description": "Specifies a document stored on Cloud Storage.",
       "id": "GoogleCloudDocumentaiV1beta3GcsDocument",
@@ -4634,6 +4673,51 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3ProcessorType": {
+      "description": "A processor type is responsible for performing a certain document understanding task on a certain type of document. All processor types are created by the documentai service internally. User will only list all available processor types via UI. For different users (projects), the available processor types may be different since we'll expose the access of some types via EAP whitelisting. We make the ProcessorType a resource under location so we have a unified API and keep the possibility that UI will load different available processor types from different regions. But for alpha the behavior is that the user will always get the union of all available processor types among all regions no matter which regionalized endpoint is called, and then we use the 'available_locations' field to show under which regions a processor type is available. For example, users can call either the 'US' or 'EU' endpoint to feach processor types. In the return, we will have an 'invoice parsing' processor with 'available_locations' field only containing 'US'. So the user can try to create an 'invoice parsing' processor under the location 'US'. Such attempt of creating under the location 'EU' will fail. Next ID: 7.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessorType",
+      "properties": {
+        "allowCreation": {
+          "description": "Whether the processor type allows creation. If yes, user can create a processor of this processor type. Otherwise, user needs to require for whitelisting.",
+          "type": "boolean"
+        },
+        "availableLocations": {
+          "description": "The locations in which this processor is available.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3ProcessorTypeLocationInfo"
+          },
+          "type": "array"
+        },
+        "category": {
+          "description": "The processor category, used by UI to group processor types.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The resource name of the processor type. Format: projects/{project}/processorTypes/{processor_type}",
+          "type": "string"
+        },
+        "schema": {
+          "$ref": "GoogleCloudDocumentaiV1beta3Schema",
+          "description": "The schema of the default version of this processor type."
+        },
+        "type": {
+          "description": "The type of the processor, e.g, \"invoice_parsing\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3ProcessorTypeLocationInfo": {
+      "description": "The location information about where the processor is available.",
+      "id": "GoogleCloudDocumentaiV1beta3ProcessorTypeLocationInfo",
+      "properties": {
+        "locationId": {
+          "description": "The location id, currently must be one of [us, eu].",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3RawDocument": {
       "description": "Payload message of raw document content (bytes).",
       "id": "GoogleCloudDocumentaiV1beta3RawDocument",
@@ -4716,6 +4800,93 @@
       "properties": {
         "gcsDestination": {
           "description": "The Cloud Storage uri for the human reviewed document.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3Schema": {
+      "description": "The schema defines the output of the processed document by a processor.",
+      "id": "GoogleCloudDocumentaiV1beta3Schema",
+      "properties": {
+        "description": {
+          "description": "Description of the schema.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name to show to users.",
+          "type": "string"
+        },
+        "entityTypes": {
+          "description": "Entity types of the schema.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3SchemaEntityType"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3SchemaEntityType": {
+      "description": "EntityType is the wrapper of a label of the corresponding model with detailed attributes and limitations for entity-based processors. Multiple types can also compose a dependency tree to represent nested types.",
+      "id": "GoogleCloudDocumentaiV1beta3SchemaEntityType",
+      "properties": {
+        "baseType": {
+          "description": "Type of the entity. It must be one of the following: `document` - the entity represents a classification of a logical document. `object` - if the entity has properties it is likely an object (or or a document.) `datetime` - the entity is a date or time value. `money` - the entity represents a money value amount. `number` - the entity is a number - integer or floating point. `string` - the entity is a string value. `boolean` - the entity is a boolean value. `address` - the entity is a location address.",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description of the entity type.",
+          "type": "string"
+        },
+        "enumValues": {
+          "description": "For some entity types there are only a few possible values. They can be specified here.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "occurrenceType": {
+          "description": "Occurrence type limits the number of times an entity type appears in the document.",
+          "enum": [
+            "OCCURRENCE_TYPE_UNSPECIFIED",
+            "OPTIONAL_ONCE",
+            "OPTIONAL_MULTIPLE",
+            "REQUIRED_ONCE",
+            "REQUIRED_MULTIPLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified occurrence type.",
+            "The entity type will appear zero times or once.",
+            "The entity type will appear zero or multiple times.",
+            "The entity type will only appear exactly once.",
+            "The entity type will appear once or more times."
+          ],
+          "type": "string"
+        },
+        "properties": {
+          "description": "Describing the nested structure of an entity. An EntityType may consist of several other EntityTypes. For example, in a document there can be an EntityType 'ID', which consists of EntityType 'name' and 'address', with corresponding attributes, such as TEXT for both types and ONCE for occurrence types.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1beta3SchemaEntityType"
+          },
+          "type": "array"
+        },
+        "source": {
+          "description": "Source of this entity type.",
+          "enum": [
+            "SOURCE_UNSPECIFIED",
+            "PREDEFINED",
+            "USER_INPUT"
+          ],
+          "enumDescriptions": [
+            "Unspecified source.",
+            "The entity type is in the predefined schema of a pretrained version of a processor.",
+            "The entity type is added by the users either: - during an uptraining of an existing processor, or - during the process of creating a customized processor."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "Name of the type. It must be unique within the set of same level types.",
           "type": "string"
         }
       },
