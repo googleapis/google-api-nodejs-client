@@ -30,7 +30,7 @@
     "precompile": "rimraf build",
     "compile": "cross-env NODE_OPTIONS=--max-old-space-size=8192 tsc -p tsconfig.json",
     "prebuild-test": "rimraf build",
-    "build-test": "tsc -p tsconfig.test.json",
+    "build-test": "cross-env NODE_OPTIONS=--max-old-space-size=8192 tsc -p tsconfig.test.json",
     "build-tools": "tsc -p tsconfig.tools.json",
     "clean": "gts clean",
     "fix": "gts fix",
