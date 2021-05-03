@@ -2225,7 +2225,7 @@
       }
     }
   },
-  "revision": "20210408",
+  "revision": "20210420",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -4603,6 +4603,13 @@
       "description": "Metadata for a specific parameter.",
       "id": "ParameterMetadata",
       "properties": {
+        "customMetadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Additional metadata for describing this parameter.",
+          "type": "object"
+        },
         "helpText": {
           "description": "Required. The help text to display for the parameter.",
           "type": "string"
@@ -5404,6 +5411,10 @@
             "$ref": "PubsubSnapshotMetadata"
           },
           "type": "array"
+        },
+        "region": {
+          "description": "Cloud region where this snapshot lives in, e.g., \"us-central1\".",
+          "type": "string"
         },
         "sourceJobId": {
           "description": "The job this snapshot was created from.",

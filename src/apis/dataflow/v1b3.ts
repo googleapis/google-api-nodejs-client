@@ -1770,6 +1770,10 @@ export namespace dataflow_v1b3 {
    */
   export interface Schema$ParameterMetadata {
     /**
+     * Optional. Additional metadata for describing this parameter.
+     */
+    customMetadata?: {[key: string]: string} | null;
+    /**
      * Required. The help text to display for the parameter.
      */
     helpText?: string | null;
@@ -2362,6 +2366,10 @@ export namespace dataflow_v1b3 {
      * PubSub snapshot metadata.
      */
     pubsubMetadata?: Schema$PubsubSnapshotMetadata[];
+    /**
+     * Cloud region where this snapshot lives in, e.g., "us-central1".
+     */
+    region?: string | null;
     /**
      * The job this snapshot was created from.
      */
@@ -4759,6 +4767,7 @@ export namespace dataflow_v1b3 {
      *   //   "id": "my_id",
      *   //   "projectId": "my_projectId",
      *   //   "pubsubMetadata": [],
+     *   //   "region": "my_region",
      *   //   "sourceJobId": "my_sourceJobId",
      *   //   "state": "my_state",
      *   //   "ttl": "my_ttl"
@@ -7338,6 +7347,7 @@ export namespace dataflow_v1b3 {
      *   //   "id": "my_id",
      *   //   "projectId": "my_projectId",
      *   //   "pubsubMetadata": [],
+     *   //   "region": "my_region",
      *   //   "sourceJobId": "my_sourceJobId",
      *   //   "state": "my_state",
      *   //   "ttl": "my_ttl"
@@ -9267,6 +9277,7 @@ export namespace dataflow_v1b3 {
      *   //   "id": "my_id",
      *   //   "projectId": "my_projectId",
      *   //   "pubsubMetadata": [],
+     *   //   "region": "my_region",
      *   //   "sourceJobId": "my_sourceJobId",
      *   //   "state": "my_state",
      *   //   "ttl": "my_ttl"
@@ -10323,6 +10334,7 @@ export namespace dataflow_v1b3 {
      *   //   "id": "my_id",
      *   //   "projectId": "my_projectId",
      *   //   "pubsubMetadata": [],
+     *   //   "region": "my_region",
      *   //   "sourceJobId": "my_sourceJobId",
      *   //   "state": "my_state",
      *   //   "ttl": "my_ttl"
