@@ -883,7 +883,7 @@
       }
     }
   },
-  "revision": "20210407",
+  "revision": "20210422",
   "rootUrl": "https://servicedirectory.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -931,6 +931,10 @@
         },
         "name": {
           "description": "Immutable. The resource name for the endpoint in the format `projects/*/locations/*/namespaces/*/services/*/endpoints/*`.",
+          "type": "string"
+        },
+        "network": {
+          "description": "Immutable. The Google Compute Engine network (VPC) of the endpoint in the format `projects//locations/global/networks/*`. The project must be specified by project number (project id is rejected). Incorrectly formatted networks are rejected, but no other validation is performed on this field (ex. network or project existence, reachability, or permissions).",
           "type": "string"
         },
         "port": {
