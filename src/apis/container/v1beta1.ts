@@ -646,6 +646,10 @@ export namespace container_v1beta1 {
      */
     desiredAddonsConfig?: Schema$AddonsConfig;
     /**
+     * The desired Autopilot configuration for the cluster.
+     */
+    desiredAutopilot?: Schema$Autopilot;
+    /**
      * The desired configuration options for the Binary Authorization feature.
      */
     desiredBinaryAuthorization?: Schema$BinaryAuthorization;
@@ -2569,7 +2573,7 @@ export namespace container_v1beta1 {
      */
     releaseChannel?: Schema$ReleaseChannel;
     /**
-     * Optional. Optional relative path to the resource. For example, the relative path of the node pool.
+     * Optional relative path to the resource. For example, the relative path of the node pool.
      */
     resource?: string | null;
     /**
