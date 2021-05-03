@@ -672,7 +672,7 @@
       }
     }
   },
-  "revision": "20210409",
+  "revision": "20210422",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -712,6 +712,11 @@
           "description": "Output only. The resource name of the backup, in the format projects/{project_number}/locations/{location_id}/backups/{backup_id}.",
           "readOnly": true,
           "type": "string"
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "sourceFileShare": {
           "description": "Name of the file share in the source Cloud Filestore instance that the backup is created from.",
@@ -905,7 +910,7 @@
           "description": "Optional. The MaintenanceSettings associated with instance."
         },
         "name": {
-          "description": "Unique name of the resource. It uses the form: `projects/{project_id|project_number}/locations/{location_id}/instances/{instance_id}` Note: Either project_id or project_number and be used, but keep it consistent with other APIs (e.g. RescheduleUpdate)",
+          "description": "Unique name of the resource. It uses the form: `projects/{project_id|project_number}/locations/{location_id}/instances/{instance_id}` Note: Either project_id or project_number can be used, but keep it consistent with other APIs (e.g. RescheduleUpdate)",
           "type": "string"
         },
         "producerMetadata": {

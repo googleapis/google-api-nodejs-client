@@ -154,6 +154,10 @@ export namespace file_v1beta1 {
      */
     name?: string | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Name of the file share in the source Cloud Filestore instance that the backup is created from.
      */
     sourceFileShare?: string | null;
@@ -280,7 +284,7 @@ export namespace file_v1beta1 {
      */
     maintenanceSettings?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings;
     /**
-     * Unique name of the resource. It uses the form: `projects/{project_id|project_number\}/locations/{location_id\}/instances/{instance_id\}` Note: Either project_id or project_number and be used, but keep it consistent with other APIs (e.g. RescheduleUpdate)
+     * Unique name of the resource. It uses the form: `projects/{project_id|project_number\}/locations/{location_id\}/instances/{instance_id\}` Note: Either project_id or project_number can be used, but keep it consistent with other APIs (e.g. RescheduleUpdate)
      */
     name?: string | null;
     /**
@@ -492,6 +496,10 @@ export namespace file_v1beta1 {
      * VPC networks to which the instance is connected. For this version, only a single network is supported.
      */
     networks?: Schema$NetworkConfig[];
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Output only. The instance state.
      */
@@ -1215,6 +1223,7 @@ export namespace file_v1beta1 {
      *       //   "downloadBytes": "my_downloadBytes",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzs": false,
      *       //   "sourceFileShare": "my_sourceFileShare",
      *       //   "sourceInstance": "my_sourceInstance",
      *       //   "sourceInstanceTier": "my_sourceInstanceTier",
@@ -1496,6 +1505,7 @@ export namespace file_v1beta1 {
      *   //   "downloadBytes": "my_downloadBytes",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "satisfiesPzs": false,
      *   //   "sourceFileShare": "my_sourceFileShare",
      *   //   "sourceInstance": "my_sourceInstance",
      *   //   "sourceInstanceTier": "my_sourceInstanceTier",
@@ -1776,6 +1786,7 @@ export namespace file_v1beta1 {
      *       //   "downloadBytes": "my_downloadBytes",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzs": false,
      *       //   "sourceFileShare": "my_sourceFileShare",
      *       //   "sourceInstance": "my_sourceInstance",
      *       //   "sourceInstanceTier": "my_sourceInstanceTier",
@@ -2004,6 +2015,7 @@ export namespace file_v1beta1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "networks": [],
+     *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
      *       //   "tier": "my_tier"
@@ -2284,6 +2296,7 @@ export namespace file_v1beta1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "networks": [],
+     *   //   "satisfiesPzs": false,
      *   //   "state": "my_state",
      *   //   "statusMessage": "my_statusMessage",
      *   //   "tier": "my_tier"
@@ -2565,6 +2578,7 @@ export namespace file_v1beta1 {
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "networks": [],
+     *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
      *       //   "tier": "my_tier"
