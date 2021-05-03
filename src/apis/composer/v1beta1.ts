@@ -169,7 +169,7 @@ export namespace composer_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
-   * The encryption options for the Composer environment and its dependencies.
+   * The encryption options for the Cloud Composer environment and its dependencies.
    */
   export interface Schema$EncryptionConfig {
     /**
@@ -227,7 +227,7 @@ export namespace composer_v1beta1 {
      */
     databaseConfig?: Schema$DatabaseConfig;
     /**
-     * Optional. The encryption options for the Composer environment and its dependencies. Cannot be updated.
+     * Optional. The encryption options for the Cloud Composer environment and its dependencies. Cannot be updated.
      */
     encryptionConfig?: Schema$EncryptionConfig;
     /**
@@ -406,7 +406,7 @@ export namespace composer_v1beta1 {
      */
     oauthScopes?: string[] | null;
     /**
-     * Optional. The Google Cloud Platform Service Account to be used by the node VMs. If a service account is not specified, the "default" Compute Engine service account is used. Cannot be updated.
+     * Optional. The Google Cloud Platform Service Account to be used by the workloads. If a service account is not specified, the "default" Compute Engine service account is used. Cannot be updated .
      */
     serviceAccount?: string | null;
     /**
@@ -498,7 +498,7 @@ export namespace composer_v1beta1 {
      */
     cloudSqlIpv4CidrBlock?: string | null;
     /**
-     * Optional. If `true`, a Private IP Cloud Composer environment is created. If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be set to true.
+     * Optional. If `true`, a Private IP Cloud Composer environment is created. If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be set to true .
      */
     enablePrivateEnvironment?: boolean | null;
     /**
