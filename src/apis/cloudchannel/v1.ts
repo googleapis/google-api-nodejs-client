@@ -7052,6 +7052,151 @@ export namespace cloudchannel_v1 {
     }
 
     /**
+     * Returns the requested Offer resource. Possible error codes: * PERMISSION_DENIED: The entitlement doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: Entitlement or offer was not found. Return value: The Offer resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudchannel.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudchannel = google.cloudchannel('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/apps.order'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudchannel.accounts.customers.entitlements.lookupOffer({
+     *     // Required. The resource name of the entitlement to retrieve the Offer. Entitlement uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
+     *     entitlement:
+     *       'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "constraints": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "marketingInfo": {},
+     *   //   "name": "my_name",
+     *   //   "parameterDefinitions": [],
+     *   //   "plan": {},
+     *   //   "priceByResources": [],
+     *   //   "sku": {},
+     *   //   "startTime": "my_startTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lookupOffer(
+      params: Params$Resource$Accounts$Customers$Entitlements$Lookupoffer,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lookupOffer(
+      params?: Params$Resource$Accounts$Customers$Entitlements$Lookupoffer,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudChannelV1Offer>;
+    lookupOffer(
+      params: Params$Resource$Accounts$Customers$Entitlements$Lookupoffer,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lookupOffer(
+      params: Params$Resource$Accounts$Customers$Entitlements$Lookupoffer,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1Offer>,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1Offer>
+    ): void;
+    lookupOffer(
+      params: Params$Resource$Accounts$Customers$Entitlements$Lookupoffer,
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1Offer>
+    ): void;
+    lookupOffer(
+      callback: BodyResponseCallback<Schema$GoogleCloudChannelV1Offer>
+    ): void;
+    lookupOffer(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Customers$Entitlements$Lookupoffer
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1Offer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1Offer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudChannelV1Offer>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudChannelV1Offer>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Customers$Entitlements$Lookupoffer;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Customers$Entitlements$Lookupoffer;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudchannel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+entitlement}:lookupOffer').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['entitlement'],
+        pathParams: ['entitlement'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudChannelV1Offer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudChannelV1Offer>(parameters);
+      }
+    }
+
+    /**
      * Starts paid service for a trial entitlement. Starts paid service for a trial entitlement immediately. This method is only applicable if a plan is set up for a trial entitlement but has some trial days remaining. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: Entitlement resource not found. * FAILED_PRECONDITION/NOT_IN_TRIAL: This method only works for entitlement on trial plans. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.
      * @example
      * ```js
@@ -7445,6 +7590,13 @@ export namespace cloudchannel_v1 {
      * Required. The resource name of the reseller's customer account to list entitlements for. Parent uses the format: accounts/{account_id\}/customers/{customer_id\}
      */
     parent?: string;
+  }
+  export interface Params$Resource$Accounts$Customers$Entitlements$Lookupoffer
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the entitlement to retrieve the Offer. Entitlement uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
+     */
+    entitlement?: string;
   }
   export interface Params$Resource$Accounts$Customers$Entitlements$Startpaidservice
     extends StandardParameters {
