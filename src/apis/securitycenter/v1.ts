@@ -871,7 +871,7 @@ export namespace securitycenter_v1 {
     version?: number | null;
   }
   /**
-   * Information related to the Google Cloud resource that is associated with this finding. LINT.IfChange
+   * Information related to the Google Cloud resource that is associated with this finding.
    */
   export interface Schema$Resource {
     /**
