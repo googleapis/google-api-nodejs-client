@@ -156,7 +156,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of results to return. If not set, the service will select a default.",
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -4837,7 +4837,7 @@
       }
     }
   },
-  "revision": "20210407",
+  "revision": "20210414",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {

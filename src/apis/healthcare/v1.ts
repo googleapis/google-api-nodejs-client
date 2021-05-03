@@ -687,6 +687,10 @@ export namespace healthcare_v1 {
    */
   export interface Schema$FhirStore {
     /**
+     * If true, overrides the default search behavior for this FHIR store to `handling=strict` which returns an error for unrecognized search parameters. If false, uses the FHIR specification default `handling=lenient` which ignores unrecognized search parameters. The handling can always be changed from the default on an individual API call by setting the HTTP header `Prefer: handling=strict` or `Prefer: handling=lenient`.
+     */
+    defaultSearchHandlingStrict?: boolean | null;
+    /**
      * Immutable. Whether to disable referential integrity in this FHIR store. This field is immutable after FHIR store creation. The default value is false, meaning that the API enforces referential integrity and fails the requests that result in inconsistent state in the FHIR store. When this field is set to true, the API skips referential integrity checks. Consequently, operations that rely on references, such as GetPatientEverything, do not return all the results if broken references exist.
      */
     disableReferentialIntegrity?: boolean | null;
@@ -1926,7 +1930,7 @@ export namespace healthcare_v1 {
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service will select a default.
+     *     // The maximum number of results to return. If not set, the service selects a default.
      *     pageSize: 'placeholder-value',
      *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
@@ -2055,7 +2059,7 @@ export namespace healthcare_v1 {
      */
     name?: string;
     /**
-     * The maximum number of results to return. If not set, the service will select a default.
+     * The maximum number of results to return. If not set, the service selects a default.
      */
     pageSize?: number;
     /**
@@ -13829,6 +13833,7 @@ export namespace healthcare_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "defaultSearchHandlingStrict": false,
      *       //   "disableReferentialIntegrity": false,
      *       //   "disableResourceVersioning": false,
      *       //   "enableUpdateCreate": false,
@@ -13844,6 +13849,7 @@ export namespace healthcare_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "defaultSearchHandlingStrict": false,
      *   //   "disableReferentialIntegrity": false,
      *   //   "disableResourceVersioning": false,
      *   //   "enableUpdateCreate": false,
@@ -14392,6 +14398,7 @@ export namespace healthcare_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "defaultSearchHandlingStrict": false,
      *   //   "disableReferentialIntegrity": false,
      *   //   "disableResourceVersioning": false,
      *   //   "enableUpdateCreate": false,
@@ -14946,6 +14953,7 @@ export namespace healthcare_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "defaultSearchHandlingStrict": false,
      *       //   "disableReferentialIntegrity": false,
      *       //   "disableResourceVersioning": false,
      *       //   "enableUpdateCreate": false,
@@ -14961,6 +14969,7 @@ export namespace healthcare_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "defaultSearchHandlingStrict": false,
      *   //   "disableReferentialIntegrity": false,
      *   //   "disableResourceVersioning": false,
      *   //   "enableUpdateCreate": false,

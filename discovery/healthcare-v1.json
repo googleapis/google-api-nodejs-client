@@ -156,7 +156,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of results to return. If not set, the service will select a default.",
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -3916,7 +3916,7 @@
       }
     }
   },
-  "revision": "20210407",
+  "revision": "20210414",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -4714,6 +4714,10 @@
       "description": "Represents a FHIR store.",
       "id": "FhirStore",
       "properties": {
+        "defaultSearchHandlingStrict": {
+          "description": "If true, overrides the default search behavior for this FHIR store to `handling=strict` which returns an error for unrecognized search parameters. If false, uses the FHIR specification default `handling=lenient` which ignores unrecognized search parameters. The handling can always be changed from the default on an individual API call by setting the HTTP header `Prefer: handling=strict` or `Prefer: handling=lenient`.",
+          "type": "boolean"
+        },
         "disableReferentialIntegrity": {
           "description": "Immutable. Whether to disable referential integrity in this FHIR store. This field is immutable after FHIR store creation. The default value is false, meaning that the API enforces referential integrity and fails the requests that result in inconsistent state in the FHIR store. When this field is set to true, the API skips referential integrity checks. Consequently, operations that rely on references, such as GetPatientEverything, do not return all the results if broken references exist.",
           "type": "boolean"
