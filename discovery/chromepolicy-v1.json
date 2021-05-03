@@ -278,9 +278,53 @@
           }
         }
       }
+    },
+    "media": {
+      "methods": {
+        "upload": {
+          "description": "Creates an enterprise file from the content provided by user. Returns a public download url for end user.",
+          "flatPath": "v1/customers/{customersId}/policies/files:uploadPolicyFile",
+          "httpMethod": "POST",
+          "id": "chromepolicy.media.upload",
+          "mediaUpload": {
+            "accept": [
+              "*/*"
+            ],
+            "protocols": {
+              "simple": {
+                "multipart": true,
+                "path": "/upload/v1/{+customer}/policies/files:uploadPolicyFile"
+              }
+            }
+          },
+          "parameterOrder": [
+            "customer"
+          ],
+          "parameters": {
+            "customer": {
+              "description": "Required. The customer for which the file upload will apply.",
+              "location": "path",
+              "pattern": "^customers/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+customer}/policies/files:uploadPolicyFile",
+          "request": {
+            "$ref": "GoogleChromePolicyV1UploadPolicyFileRequest"
+          },
+          "response": {
+            "$ref": "GoogleChromePolicyV1UploadPolicyFileResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/chrome.management.policy"
+          ],
+          "supportsMediaUpload": true
+        }
+      }
     }
   },
-  "revision": "20210307",
+  "revision": "20210429",
   "rootUrl": "https://chromepolicy.googleapis.com/",
   "schemas": {
     "GoogleChromePolicyV1AdditionalTargetKeyName": {
@@ -620,6 +664,28 @@
           "$ref": "GoogleChromePolicyV1PolicyValue",
           "description": "Output only. The resolved value of the policy.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromePolicyV1UploadPolicyFileRequest": {
+      "description": "Request message for uploading a file for a policy. Next ID: 5",
+      "id": "GoogleChromePolicyV1UploadPolicyFileRequest",
+      "properties": {
+        "policyField": {
+          "description": "Required. The fully qualified policy schema and field name this file is uploaded for. This information will be used to validate the content type of the file.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromePolicyV1UploadPolicyFileResponse": {
+      "description": "Response message for downloading an uploaded file. Next ID: 2",
+      "id": "GoogleChromePolicyV1UploadPolicyFileResponse",
+      "properties": {
+        "downloadUri": {
+          "description": "The uri for end user to download the file.",
+          "type": "string"
         }
       },
       "type": "object"

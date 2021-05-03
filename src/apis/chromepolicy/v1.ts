@@ -114,6 +114,7 @@ export namespace chromepolicy_v1 {
   export class Chromepolicy {
     context: APIRequestContext;
     customers: Resource$Customers;
+    media: Resource$Media;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -122,6 +123,7 @@ export namespace chromepolicy_v1 {
       };
 
       this.customers = new Resource$Customers(this.context);
+      this.media = new Resource$Media(this.context);
     }
   }
 
@@ -375,6 +377,24 @@ export namespace chromepolicy_v1 {
      * The list of resolved policies found by the resolve request.
      */
     resolvedPolicies?: Schema$GoogleChromePolicyV1ResolvedPolicy[];
+  }
+  /**
+   * Request message for uploading a file for a policy. Next ID: 5
+   */
+  export interface Schema$GoogleChromePolicyV1UploadPolicyFileRequest {
+    /**
+     * Required. The fully qualified policy schema and field name this file is uploaded for. This information will be used to validate the content type of the file.
+     */
+    policyField?: string | null;
+  }
+  /**
+   * Response message for downloading an uploaded file. Next ID: 2
+   */
+  export interface Schema$GoogleChromePolicyV1UploadPolicyFileResponse {
+    /**
+     * The uri for end user to download the file.
+     */
+    downloadUri?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
@@ -1287,5 +1307,190 @@ export namespace chromepolicy_v1 {
      * Required. The customer for which the listing request will apply.
      */
     parent?: string;
+  }
+
+  export class Resource$Media {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an enterprise file from the content provided by user. Returns a public download url for end user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromepolicy.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const chromepolicy = google.chromepolicy('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.policy'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromepolicy.media.upload({
+     *     // Required. The customer for which the file upload will apply.
+     *     customer: 'customers/my-customer',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policyField": "my_policyField"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "downloadUri": "my_downloadUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    upload(
+      params: Params$Resource$Media$Upload,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    upload(
+      params?: Params$Resource$Media$Upload,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>;
+    upload(
+      params: Params$Resource$Media$Upload,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    upload(
+      params: Params$Resource$Media$Upload,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>
+    ): void;
+    upload(
+      params: Params$Resource$Media$Upload,
+      callback: BodyResponseCallback<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>
+    ): void;
+    upload(
+      callback: BodyResponseCallback<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>
+    ): void;
+    upload(
+      paramsOrCallback?:
+        | Params$Resource$Media$Upload
+        | BodyResponseCallback<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Media$Upload;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://chromepolicy.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+customer}/policies/files:uploadPolicyFile'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        mediaUrl: (
+          rootUrl + '/upload/v1/{+customer}/policies/files:uploadPolicyFile'
+        ).replace(/([^:]\/)\/+/g, '$1'),
+        requiredParams: ['customer'],
+        pathParams: ['customer'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromePolicyV1UploadPolicyFileResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Media$Upload extends StandardParameters {
+    /**
+     * Required. The customer for which the file upload will apply.
+     */
+    customer?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromePolicyV1UploadPolicyFileRequest;
+
+    /**
+     * Media metadata
+     */
+    media?: {
+      /**
+       * Media mime-type
+       */
+      mimeType?: string;
+
+      /**
+       * Media body contents
+       */
+      body?: any;
+    };
   }
 }
