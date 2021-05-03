@@ -395,7 +395,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Filter applied to resulting executions.",
+                      "description": "Filter applied to resulting executions. Currently only supports filtering executions by a specified schedule_id. Format: \"schedule_id=\"",
                       "location": "query",
                       "type": "string"
                     },
@@ -1553,7 +1553,7 @@
       }
     }
   },
-  "revision": "20210417",
+  "revision": "20210422",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
