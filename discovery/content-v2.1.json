@@ -5403,7 +5403,7 @@
       }
     }
   },
-  "revision": "20210414",
+  "revision": "20210424",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -6123,15 +6123,19 @@
           "type": "string"
         },
         "linkType": {
-          "description": "Type of the link between the two accounts. Acceptable values are: - \"`channelPartner`\" - \"`eCommercePlatform`\" ",
+          "description": "Type of the link between the two accounts. Acceptable values are: - \"`channelPartner`\" - \"`eCommercePlatform`\" - \"`paymentServiceProvider`\" ",
           "type": "string"
         },
         "linkedAccountId": {
           "description": "The ID of the linked account.",
           "type": "string"
         },
+        "paymentServiceProviderLinkInfo": {
+          "$ref": "PaymentServiceProviderLinkInfo",
+          "description": "Additional information required for `paymentServiceProvider` link type."
+        },
         "services": {
-          "description": " Acceptable values are: - \"`shoppingAdsProductManagement`\" - \"`shoppingActionsProductManagement`\" - \"`shoppingActionsOrderManagement`\" ",
+          "description": " Acceptable values are: - \"`shoppingAdsProductManagement`\" - \"`shoppingActionsProductManagement`\" - \"`shoppingActionsOrderManagement`\" - \"`paymentProcessing`\" ",
           "items": {
             "type": "string"
           },
@@ -6533,12 +6537,19 @@
           "description": "The CLDR country code of the carrier (e.g., \"US\"). Always present.",
           "type": "string"
         },
+        "eddServices": {
+          "description": "A list of services supported for EDD (Estimated Delivery Date) calculation. This is the list of valid values for WarehouseBasedDeliveryTime.carrierService.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "name": {
           "description": "The name of the carrier (e.g., `\"UPS\"`). Always present.",
           "type": "string"
         },
         "services": {
-          "description": "A list of supported services (e.g., `\"ground\"`) for that carrier. Contains at least one service.",
+          "description": "A list of supported services (e.g., `\"ground\"`) for that carrier. Contains at least one service. This is the list of valid values for CarrierRate.carrierService.",
           "items": {
             "type": "string"
           },
@@ -7394,6 +7405,13 @@
         "transitTimeTable": {
           "$ref": "TransitTable",
           "description": "Transit time table, number of business days spent in transit based on row and column dimensions. Either `{min,max}TransitTimeInDays` or `transitTimeTable` can be set, but not both."
+        },
+        "warehouseBasedDeliveryTimes": {
+          "description": "Indicates that the delivery time should be calculated per warehouse (shipping origin location) based on the settings of the selected carrier. When set, no other transit time related field in DeliveryTime should be set.",
+          "items": {
+            "$ref": "WarehouseBasedDeliveryTime"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -8023,7 +8041,7 @@
       "id": "LinkService",
       "properties": {
         "service": {
-          "description": "Service provided to or by the linked account. Acceptable values are: - \"`shoppingActionsOrderManagement`\" - \"`shoppingActionsProductManagement`\" - \"`shoppingAdsProductManagement`\" ",
+          "description": "Service provided to or by the linked account. Acceptable values are: - \"`shoppingActionsOrderManagement`\" - \"`shoppingActionsProductManagement`\" - \"`shoppingAdsProductManagement`\" - \"`paymentProcessing`\" ",
           "type": "string"
         },
         "status": {
@@ -10764,6 +10782,21 @@
       "description": "Request message for the PauseProgram method.",
       "id": "PauseBuyOnGoogleProgramRequest",
       "properties": {},
+      "type": "object"
+    },
+    "PaymentServiceProviderLinkInfo": {
+      "description": "Additional information required for PAYMENT_SERVICE_PROVIDER link type.",
+      "id": "PaymentServiceProviderLinkInfo",
+      "properties": {
+        "externalAccountBusinessCountry": {
+          "description": "The business country of the merchant account as identified by the third party service provider.",
+          "type": "string"
+        },
+        "externalAccountId": {
+          "description": "The id used by the third party service provider to identify the merchant.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "PickupCarrierService": {
@@ -14492,6 +14525,40 @@
         },
         "subtableName": {
           "description": "The name of a subtable. Can only be set in table cells (i.e., not for single values), and only if all other fields are not set.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WarehouseBasedDeliveryTime": {
+      "id": "WarehouseBasedDeliveryTime",
+      "properties": {
+        "carrier": {
+          "description": "Required. Carrier, such as `\"UPS\"` or `\"Fedex\"`. The list of supported carriers can be retrieved via the `listSupportedCarriers` method.",
+          "type": "string"
+        },
+        "carrierService": {
+          "description": "Required. Carrier service, such as `\"ground\"` or `\"2 days\"`. The list of supported services for a carrier can be retrieved via the `listSupportedCarriers` method. The name of the service must be in the eddSupportedServices list.",
+          "type": "string"
+        },
+        "originAdministrativeArea": {
+          "description": "Required. Shipping origin's state.",
+          "type": "string"
+        },
+        "originCity": {
+          "description": "Required. Shipping origin's city.",
+          "type": "string"
+        },
+        "originCountry": {
+          "description": "Required. Shipping origin's country represented as a [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml).",
+          "type": "string"
+        },
+        "originPostalCode": {
+          "description": "Required. Shipping origin.",
+          "type": "string"
+        },
+        "originStreetAddress": {
+          "description": "Shipping origin's street address.",
           "type": "string"
         }
       },

@@ -849,11 +849,15 @@ export namespace content_v2 {
      */
     country?: string | null;
     /**
+     * A list of services supported for EDD (Estimated Delivery Date) calculation. This is the list of valid values for WarehouseBasedDeliveryTime.carrierService.
+     */
+    eddServices?: string[] | null;
+    /**
      * The name of the carrier (e.g., `"UPS"`). Always present.
      */
     name?: string | null;
     /**
-     * A list of supported services (e.g., `"ground"`) for that carrier. Contains at least one service.
+     * A list of supported services (e.g., `"ground"`) for that carrier. Contains at least one service. This is the list of valid values for CarrierRate.carrierService.
      */
     services?: string[] | null;
   }
@@ -1303,6 +1307,10 @@ export namespace content_v2 {
      * Transit time table, number of business days spent in transit based on row and column dimensions. Either `{min,max\}TransitTimeInDays` or `transitTimeTable` can be set, but not both.
      */
     transitTimeTable?: Schema$TransitTable;
+    /**
+     * Indicates that the delivery time should be calculated per warehouse (shipping origin location) based on the settings of the selected carrier. When set, no other transit time related field in DeliveryTime should be set.
+     */
+    warehouseBasedDeliveryTimes?: Schema$WarehouseBasedDeliveryTime[];
   }
   /**
    * An error returned by the API.
@@ -5436,6 +5444,36 @@ export namespace content_v2 {
      * The name of a subtable. Can only be set in table cells (i.e., not for single values), and only if all other fields are not set.
      */
     subtableName?: string | null;
+  }
+  export interface Schema$WarehouseBasedDeliveryTime {
+    /**
+     * Required. Carrier, such as `"UPS"` or `"Fedex"`. The list of supported carriers can be retrieved via the `listSupportedCarriers` method.
+     */
+    carrier?: string | null;
+    /**
+     * Required. Carrier service, such as `"ground"` or `"2 days"`. The list of supported services for a carrier can be retrieved via the `listSupportedCarriers` method. The name of the service must be in the eddSupportedServices list.
+     */
+    carrierService?: string | null;
+    /**
+     * Required. Shipping origin's state.
+     */
+    originAdministrativeArea?: string | null;
+    /**
+     * Required. Shipping origin's city.
+     */
+    originCity?: string | null;
+    /**
+     * Required. Shipping origin's country represented as a [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml).
+     */
+    originCountry?: string | null;
+    /**
+     * Required. Shipping origin.
+     */
+    originPostalCode?: string | null;
+    /**
+     * Shipping origin's street address
+     */
+    originStreetAddress?: string | null;
   }
   export interface Schema$Weight {
     /**

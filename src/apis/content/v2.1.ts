@@ -523,11 +523,15 @@ export namespace content_v2_1 {
      */
     linkedAccountId?: string | null;
     /**
-     * Type of the link between the two accounts. Acceptable values are: - "`channelPartner`" - "`eCommercePlatform`"
+     * Type of the link between the two accounts. Acceptable values are: - "`channelPartner`" - "`eCommercePlatform`" - "`paymentServiceProvider`"
      */
     linkType?: string | null;
     /**
-     *  Acceptable values are: - "`shoppingAdsProductManagement`" - "`shoppingActionsProductManagement`" - "`shoppingActionsOrderManagement`"
+     * Additional information required for `paymentServiceProvider` link type.
+     */
+    paymentServiceProviderLinkInfo?: Schema$PaymentServiceProviderLinkInfo;
+    /**
+     *  Acceptable values are: - "`shoppingAdsProductManagement`" - "`shoppingActionsProductManagement`" - "`shoppingActionsOrderManagement`" - "`paymentProcessing`"
      */
     services?: string[] | null;
   }
@@ -988,11 +992,15 @@ export namespace content_v2_1 {
      */
     country?: string | null;
     /**
+     * A list of services supported for EDD (Estimated Delivery Date) calculation. This is the list of valid values for WarehouseBasedDeliveryTime.carrierService.
+     */
+    eddServices?: string[] | null;
+    /**
      * The name of the carrier (e.g., `"UPS"`). Always present.
      */
     name?: string | null;
     /**
-     * A list of supported services (e.g., `"ground"`) for that carrier. Contains at least one service.
+     * A list of supported services (e.g., `"ground"`) for that carrier. Contains at least one service. This is the list of valid values for CarrierRate.carrierService.
      */
     services?: string[] | null;
   }
@@ -1652,6 +1660,10 @@ export namespace content_v2_1 {
      * Transit time table, number of business days spent in transit based on row and column dimensions. Either `{min,max\}TransitTimeInDays` or `transitTimeTable` can be set, but not both.
      */
     transitTimeTable?: Schema$TransitTable;
+    /**
+     * Indicates that the delivery time should be calculated per warehouse (shipping origin location) based on the settings of the selected carrier. When set, no other transit time related field in DeliveryTime should be set.
+     */
+    warehouseBasedDeliveryTimes?: Schema$WarehouseBasedDeliveryTime[];
   }
   /**
    * An error returned by the API.
@@ -2094,7 +2106,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$LinkService {
     /**
-     * Service provided to or by the linked account. Acceptable values are: - "`shoppingActionsOrderManagement`" - "`shoppingActionsProductManagement`" - "`shoppingAdsProductManagement`"
+     * Service provided to or by the linked account. Acceptable values are: - "`shoppingActionsOrderManagement`" - "`shoppingActionsProductManagement`" - "`shoppingAdsProductManagement`" - "`paymentProcessing`"
      */
     service?: string | null;
     /**
@@ -4179,6 +4191,19 @@ export namespace content_v2_1 {
    * Request message for the PauseProgram method.
    */
   export interface Schema$PauseBuyOnGoogleProgramRequest {}
+  /**
+   * Additional information required for PAYMENT_SERVICE_PROVIDER link type.
+   */
+  export interface Schema$PaymentServiceProviderLinkInfo {
+    /**
+     * The business country of the merchant account as identified by the third party service provider.
+     */
+    externalAccountBusinessCountry?: string | null;
+    /**
+     * The id used by the third party service provider to identify the merchant.
+     */
+    externalAccountId?: string | null;
+  }
   export interface Schema$PickupCarrierService {
     /**
      * The name of the pickup carrier (e.g., `"UPS"`). Required.
@@ -6975,6 +7000,36 @@ export namespace content_v2_1 {
      */
     subtableName?: string | null;
   }
+  export interface Schema$WarehouseBasedDeliveryTime {
+    /**
+     * Required. Carrier, such as `"UPS"` or `"Fedex"`. The list of supported carriers can be retrieved via the `listSupportedCarriers` method.
+     */
+    carrier?: string | null;
+    /**
+     * Required. Carrier service, such as `"ground"` or `"2 days"`. The list of supported services for a carrier can be retrieved via the `listSupportedCarriers` method. The name of the service must be in the eddSupportedServices list.
+     */
+    carrierService?: string | null;
+    /**
+     * Required. Shipping origin's state.
+     */
+    originAdministrativeArea?: string | null;
+    /**
+     * Required. Shipping origin's city.
+     */
+    originCity?: string | null;
+    /**
+     * Required. Shipping origin's country represented as a [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml).
+     */
+    originCountry?: string | null;
+    /**
+     * Required. Shipping origin.
+     */
+    originPostalCode?: string | null;
+    /**
+     * Shipping origin's street address.
+     */
+    originStreetAddress?: string | null;
+  }
   export interface Schema$Weight {
     /**
      * Required. The weight unit. Acceptable values are: - "`kg`" - "`lb`"
@@ -7891,6 +7946,7 @@ export namespace content_v2_1 {
      *       //   "action": "my_action",
      *       //   "linkType": "my_linkType",
      *       //   "linkedAccountId": "my_linkedAccountId",
+     *       //   "paymentServiceProviderLinkInfo": {},
      *       //   "services": []
      *       // }
      *     },
