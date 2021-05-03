@@ -434,7 +434,7 @@
       }
     }
   },
-  "revision": "20210413",
+  "revision": "20210421",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -492,7 +492,7 @@
       "type": "object"
     },
     "EncryptionConfig": {
-      "description": "The encryption options for the Composer environment and its dependencies.",
+      "description": "The encryption options for the Cloud Composer environment and its dependencies.",
       "id": "EncryptionConfig",
       "properties": {
         "kmsKeyName": {
@@ -581,7 +581,7 @@
         },
         "encryptionConfig": {
           "$ref": "EncryptionConfig",
-          "description": "Optional. The encryption options for the Composer environment and its dependencies. Cannot be updated."
+          "description": "Optional. The encryption options for the Cloud Composer environment and its dependencies. Cannot be updated."
         },
         "gkeCluster": {
           "description": "Output only. The Kubernetes Engine cluster used to run this environment.",
@@ -794,7 +794,7 @@
           "type": "array"
         },
         "serviceAccount": {
-          "description": "Optional. The Google Cloud Platform Service Account to be used by the node VMs. If a service account is not specified, the \"default\" Compute Engine service account is used. Cannot be updated.",
+          "description": "Optional. The Google Cloud Platform Service Account to be used by the workloads. If a service account is not specified, the \"default\" Compute Engine service account is used. Cannot be updated .",
           "type": "string"
         },
         "subnetwork": {
@@ -936,7 +936,7 @@
           "type": "string"
         },
         "enablePrivateEnvironment": {
-          "description": "Optional. If `true`, a Private IP Cloud Composer environment is created. If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be set to true.",
+          "description": "Optional. If `true`, a Private IP Cloud Composer environment is created. If this field is set to true, `IPAllocationPolicy.use_ip_aliases` must be set to true .",
           "type": "boolean"
         },
         "privateClusterConfig": {
