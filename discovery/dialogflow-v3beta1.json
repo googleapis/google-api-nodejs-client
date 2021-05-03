@@ -1297,6 +1297,35 @@
                         "https://www.googleapis.com/auth/dialogflow"
                       ]
                     },
+                    "export": {
+                      "description": "Exports the specified flow to a binary file. Note that resources (e.g. intents, entities, webhooks) that the flow references will also be exported.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows/{flowsId}:export",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.agents.flows.export",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the flow to export. Format: `projects//locations//agents//flows/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/flows/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+name}:export",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1ExportFlowRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
                     "get": {
                       "description": "Retrieves the specified flow.",
                       "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows/{flowsId}",
@@ -1353,6 +1382,35 @@
                       "path": "v3beta1/{+name}",
                       "response": {
                         "$ref": "GoogleCloudDialogflowCxV3beta1FlowValidationResult"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/dialogflow"
+                      ]
+                    },
+                    "import": {
+                      "description": "Imports the specified flow to the specified agent from a binary file.",
+                      "flatPath": "v3beta1/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/flows:import",
+                      "httpMethod": "POST",
+                      "id": "dialogflow.projects.locations.agents.flows.import",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The agent to import the flow into. Format: `projects//locations//agents/`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v3beta1/{+parent}/flows:import",
+                      "request": {
+                        "$ref": "GoogleCloudDialogflowCxV3beta1ImportFlowRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -3425,7 +3483,7 @@
       }
     }
   },
-  "revision": "20210417",
+  "revision": "20210426",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -3663,6 +3721,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3ExportFlowResponse": {
+      "description": "The response message for Flows.ExportFlow.",
+      "id": "GoogleCloudDialogflowCxV3ExportFlowResponse",
+      "properties": {
+        "flowContent": {
+          "description": "Uncompressed raw byte content for flow.",
+          "format": "byte",
+          "type": "string"
+        },
+        "flowUri": {
+          "description": "The URI to a file containing the exported flow. This field is populated only if `flow_uri` is specified in ExportFlowRequest.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3ExportTestCasesMetadata": {
       "description": "Metadata returned for the TestCases.ExportTestCases long running operation.",
       "id": "GoogleCloudDialogflowCxV3ExportTestCasesMetadata",
@@ -3895,6 +3969,17 @@
             "$ref": "GoogleRpcStatus"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ImportFlowResponse": {
+      "description": "The response message for Flows.ImportFlow.",
+      "id": "GoogleCloudDialogflowCxV3ImportFlowResponse",
+      "properties": {
+        "flow": {
+          "description": "The unique identifier of the new flow. Format: `projects//locations//agents//flows/`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4946,6 +5031,13 @@
           "description": "Immutable. Name of the start flow in this agent. A start flow will be automatically created when the agent is created, and can only be deleted by deleting the agent. Format: `projects//locations//agents//flows/`.",
           "type": "string"
         },
+        "supportedLanguageCodes": {
+          "description": "The list of all languages supported by the agent (except for the `default_language_code`).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "timeZone": {
           "description": "Required. The time zone of the agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.",
           "type": "string"
@@ -5648,6 +5740,10 @@
         "agentUri": {
           "description": "Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to export the agent to. The format of this URI must be `gs:///`. If left unspecified, the serialized agent is returned inline.",
           "type": "string"
+        },
+        "environment": {
+          "description": "Optional. Environment name. If not set, draft environment is assumed. Format: `projects//locations//agents//environments/`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5663,6 +5759,37 @@
         },
         "agentUri": {
           "description": "The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in ExportAgentRequest.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ExportFlowRequest": {
+      "description": "The request message for Flows.ExportFlow.",
+      "id": "GoogleCloudDialogflowCxV3beta1ExportFlowRequest",
+      "properties": {
+        "flowUri": {
+          "description": "Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to export the flow to. The format of this URI must be `gs:///`. If left unspecified, the serialized flow is returned inline.",
+          "type": "string"
+        },
+        "includeReferencedFlows": {
+          "description": "Optional. Whether to export flows referenced by the specified flow.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ExportFlowResponse": {
+      "description": "The response message for Flows.ExportFlow.",
+      "id": "GoogleCloudDialogflowCxV3beta1ExportFlowResponse",
+      "properties": {
+        "flowContent": {
+          "description": "Uncompressed raw byte content for flow.",
+          "format": "byte",
+          "type": "string"
+        },
+        "flowUri": {
+          "description": "The URI to a file containing the exported flow. This field is populated only if `flow_uri` is specified in ExportFlowRequest.",
           "type": "string"
         }
       },
@@ -6039,6 +6166,47 @@
             "$ref": "GoogleRpcStatus"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ImportFlowRequest": {
+      "description": "The request message for Flows.ImportFlow.",
+      "id": "GoogleCloudDialogflowCxV3beta1ImportFlowRequest",
+      "properties": {
+        "flowContent": {
+          "description": "Uncompressed raw byte content for flow.",
+          "format": "byte",
+          "type": "string"
+        },
+        "flowUri": {
+          "description": "The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to import flow from. The format of this URI must be `gs:///`.",
+          "type": "string"
+        },
+        "importOption": {
+          "description": "Flow import mode. If not specified, `KEEP` is assumed.",
+          "enum": [
+            "IMPORT_OPTION_UNSPECIFIED",
+            "KEEP",
+            "FALLBACK"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Treated as `KEEP`.",
+            "Always respect settings in exported flow content. It may cause a import failure if some settings (e.g. custom NLU) are not supported in the agent to import into.",
+            "Fallback to default settings if some settings are not supported in the agent to import into. E.g. Standard NLU will be used if custom NLU is not available."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ImportFlowResponse": {
+      "description": "The response message for Flows.ImportFlow.",
+      "id": "GoogleCloudDialogflowCxV3beta1ImportFlowResponse",
+      "properties": {
+        "flow": {
+          "description": "The unique identifier of the new flow. Format: `projects//locations//agents//flows/`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6949,7 +7117,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "This field can be used to pass custom data into the webhook associated with the agent. Arbitrary JSON objects are supported.",
+          "description": "This field can be used to pass custom data into the webhook associated with the agent. Arbitrary JSON objects are supported. Some integrations that query a Dialogflow agent may provide additional information in the payload. In particular, for the Dialogflow Phone Gateway integration, this field has the form: { \"telephony\": { \"caller_id\": \"+18558363987\" } } ",
           "type": "object"
         },
         "sessionEntityTypes": {
@@ -12217,7 +12385,7 @@
       "type": "object"
     },
     "GoogleTypeLatLng": {
-      "description": "An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the WGS84 standard. Values must be within normalized ranges.",
+      "description": "An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges.",
       "id": "GoogleTypeLatLng",
       "properties": {
         "latitude": {
