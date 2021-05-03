@@ -1816,7 +1816,7 @@
       }
     }
   },
-  "revision": "20210326",
+  "revision": "20210422",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Asset": {
@@ -2873,7 +2873,7 @@
       "type": "object"
     },
     "Resource": {
-      "description": "Information related to the Google Cloud resource that is associated with this finding. LINT.IfChange",
+      "description": "Information related to the Google Cloud resource that is associated with this finding.",
       "id": "Resource",
       "properties": {
         "folders": {
