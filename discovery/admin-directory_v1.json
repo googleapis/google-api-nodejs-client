@@ -4417,7 +4417,7 @@
       }
     }
   },
-  "revision": "20210420",
+  "revision": "20210427",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5146,7 +5146,18 @@
         "recentUsers": {
           "description": "List of recent device users, in descending order, by last login time.",
           "items": {
-            "$ref": "RecentUsers"
+            "description": "List of recent device users, in descending order, by last login time.",
+            "properties": {
+              "email": {
+                "description": "The user's email address. This is only present if the user type is `USER_TYPE_MANAGED`.",
+                "type": "string"
+              },
+              "type": {
+                "description": "The type of the user.",
+                "type": "string"
+              }
+            },
+            "type": "object"
           },
           "type": "array"
         },
@@ -6481,21 +6492,6 @@
         "kind": {
           "default": "admin#directory#privileges",
           "description": "The type of the API resource. This is always `admin#directory#privileges`.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "RecentUsers": {
-      "description": "List of recent device users, in descending order, by last login time.",
-      "id": "RecentUsers",
-      "properties": {
-        "email": {
-          "description": "The user's email address. This is only present if the user type is `USER_TYPE_MANAGED`.",
-          "type": "string"
-        },
-        "type": {
-          "description": "The type of the user.",
           "type": "string"
         }
       },
