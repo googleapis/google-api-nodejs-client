@@ -105,46 +105,6 @@
   },
   "protocol": "rest",
   "resources": {
-    "lineitems": {
-      "methods": {
-        "downloadlineitems": {
-          "description": "Retrieves line items in CSV format. YouTube & partners line items are not supported.",
-          "flatPath": "lineitems/downloadlineitems",
-          "httpMethod": "POST",
-          "id": "doubleclickbidmanager.lineitems.downloadlineitems",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "lineitems/downloadlineitems",
-          "request": {
-            "$ref": "DownloadLineItemsRequest"
-          },
-          "response": {
-            "$ref": "DownloadLineItemsResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/doubleclickbidmanager"
-          ]
-        },
-        "uploadlineitems": {
-          "description": "Uploads line items in CSV format. YouTube & partners line items are not supported.",
-          "flatPath": "lineitems/uploadlineitems",
-          "httpMethod": "POST",
-          "id": "doubleclickbidmanager.lineitems.uploadlineitems",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "lineitems/uploadlineitems",
-          "request": {
-            "$ref": "UploadLineItemsRequest"
-          },
-          "response": {
-            "$ref": "UploadLineItemsResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/doubleclickbidmanager"
-          ]
-        }
-      }
-    },
     "queries": {
       "methods": {
         "createquery": {
@@ -318,31 +278,9 @@
           ]
         }
       }
-    },
-    "sdf": {
-      "methods": {
-        "download": {
-          "description": "Retrieves entities in SDF format.",
-          "flatPath": "sdf/download",
-          "httpMethod": "POST",
-          "id": "doubleclickbidmanager.sdf.download",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "sdf/download",
-          "request": {
-            "$ref": "DownloadRequest"
-          },
-          "response": {
-            "$ref": "DownloadResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/doubleclickbidmanager"
-          ]
-        }
-      }
     }
   },
-  "revision": "20210406",
+  "revision": "20210420",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -377,158 +315,6 @@
             "$ref": "EventFilter"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "DownloadLineItemsRequest": {
-      "description": "Request to fetch stored line items.",
-      "id": "DownloadLineItemsRequest",
-      "properties": {
-        "fileSpec": {
-          "description": "File specification (column names, types, order) in which the line items will be returned. Default to EWF.",
-          "enum": [
-            "EWF"
-          ],
-          "enumDescriptions": [
-            ""
-          ],
-          "type": "string"
-        },
-        "filterIds": {
-          "description": "Ids of the specified filter type used to filter line items to fetch. If omitted, all the line items will be returned.",
-          "items": {
-            "format": "int64",
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "filterType": {
-          "description": "Filter type used to filter line items to fetch.",
-          "enum": [
-            "ADVERTISER_ID",
-            "INSERTION_ORDER_ID",
-            "LINE_ITEM_ID"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "format": {
-          "description": "Format in which the line items will be returned. Default to CSV.",
-          "enum": [
-            "CSV"
-          ],
-          "enumDescriptions": [
-            ""
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "DownloadLineItemsResponse": {
-      "description": "Download line items response.",
-      "id": "DownloadLineItemsResponse",
-      "properties": {
-        "lineItems": {
-          "description": "Retrieved line items in CSV format. For more information about file formats, see Entity Write File Format.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "DownloadRequest": {
-      "description": "Request to fetch stored inventory sources, campaigns, insertion orders, line items, YouTube ad groups and ads.",
-      "id": "DownloadRequest",
-      "properties": {
-        "fileTypes": {
-          "description": "File types that will be returned. If INVENTORY_SOURCE is requested, no other file types may be requested. Acceptable values are: - \"AD\" - \"AD_GROUP\" - \"CAMPAIGN\" - \"INSERTION_ORDER\" - \"INVENTORY_SOURCE\" - \"LINE_ITEM\" ",
-          "items": {
-            "enum": [
-              "INSERTION_ORDER",
-              "LINE_ITEM",
-              "AD_GROUP",
-              "AD",
-              "CAMPAIGN",
-              "INVENTORY_SOURCE"
-            ],
-            "enumDescriptions": [
-              "",
-              "",
-              "",
-              "",
-              "",
-              ""
-            ],
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "filterIds": {
-          "description": "The IDs of the specified filter type. This is used to filter entities to fetch. At least one ID must be specified.",
-          "items": {
-            "format": "int64",
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "filterType": {
-          "description": "Filter type used to filter entities to fetch. PARTNER_ID and INVENTORY_SOURCE_ID may only be used when downloading inventory sources.",
-          "enum": [
-            "ADVERTISER_ID",
-            "INSERTION_ORDER_ID",
-            "LINE_ITEM_ID",
-            "CAMPAIGN_ID",
-            "INVENTORY_SOURCE_ID",
-            "PARTNER_ID"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "version": {
-          "description": "SDF Version (column names, types, order) in which the entities will be returned. Default to 5.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "DownloadResponse": {
-      "description": "Download response.",
-      "id": "DownloadResponse",
-      "properties": {
-        "adGroups": {
-          "description": "Retrieved ad groups in SDF format.",
-          "type": "string"
-        },
-        "ads": {
-          "description": "Retrieved ads in SDF format.",
-          "type": "string"
-        },
-        "campaigns": {
-          "description": "Retrieved campaigns in SDF format.",
-          "type": "string"
-        },
-        "insertionOrders": {
-          "description": "Retrieved insertion orders in SDF format.",
-          "type": "string"
-        },
-        "inventorySources": {
-          "type": "string"
-        },
-        "lineItems": {
-          "description": "Retrieved line items in SDF format.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -3684,42 +3470,6 @@
       },
       "type": "object"
     },
-    "RowStatus": {
-      "description": "Represents the upload status of a row in the request.",
-      "id": "RowStatus",
-      "properties": {
-        "changed": {
-          "description": "Whether the stored entity is changed as a result of upload.",
-          "type": "boolean"
-        },
-        "entityId": {
-          "description": "Entity Id.",
-          "format": "int64",
-          "type": "string"
-        },
-        "entityName": {
-          "description": "Entity name.",
-          "type": "string"
-        },
-        "errors": {
-          "description": "Reasons why the entity can't be uploaded.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "persisted": {
-          "description": "Whether the entity is persisted.",
-          "type": "boolean"
-        },
-        "rowNumber": {
-          "description": "Row number.",
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "Rule": {
       "description": "A Rule defines a name, and a boolean expression in [conjunctive normal form](http: //mathworld.wolfram.com/ConjunctiveNormalForm.html){.external} that can be // applied to a path event to determine if that name should be applied.",
       "id": "Rule",
@@ -3802,63 +3552,6 @@
         "timezoneCode": {
           "description": "Canonical timezone code for report data time. Defaults to America/New_York.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "UploadLineItemsRequest": {
-      "description": "Request to upload line items.",
-      "id": "UploadLineItemsRequest",
-      "properties": {
-        "dryRun": {
-          "description": "Set to true to get upload status without actually persisting the line items.",
-          "type": "boolean"
-        },
-        "format": {
-          "description": "Format the line items are in. Default to CSV.",
-          "enum": [
-            "CSV"
-          ],
-          "enumDescriptions": [
-            ""
-          ],
-          "type": "string"
-        },
-        "lineItems": {
-          "description": "Line items in CSV to upload. Refer to Entity Write File Format for more information on file format.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "UploadLineItemsResponse": {
-      "description": "Upload line items response.",
-      "id": "UploadLineItemsResponse",
-      "properties": {
-        "uploadStatus": {
-          "$ref": "UploadStatus",
-          "description": "Status of upload."
-        }
-      },
-      "type": "object"
-    },
-    "UploadStatus": {
-      "description": "Represents the status of upload.",
-      "id": "UploadStatus",
-      "properties": {
-        "errors": {
-          "description": "Reasons why upload can't be completed.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "rowStatus": {
-          "description": "Per-row upload status.",
-          "items": {
-            "$ref": "RowStatus"
-          },
-          "type": "array"
         }
       },
       "type": "object"
