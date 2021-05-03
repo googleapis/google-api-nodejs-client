@@ -208,6 +208,43 @@ export namespace dataproc_v1 {
     scaleUpMinWorkerFraction?: number | null;
   }
   /**
+   * Metadata describing the Batch operation.
+   */
+  export interface Schema$BatchOperationMetadata {
+    /**
+     * Name of the batch for the operation.
+     */
+    batch?: string | null;
+    /**
+     * Batch UUID for the operation.
+     */
+    batchUuid?: string | null;
+    /**
+     * The time when the operation was created.
+     */
+    createTime?: string | null;
+    /**
+     * Short description of the operation.
+     */
+    description?: string | null;
+    /**
+     * The time when the operation was finished.
+     */
+    doneTime?: string | null;
+    /**
+     * Labels associated with the operation.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The operation type.
+     */
+    operationType?: string | null;
+    /**
+     * Warnings encountered during operation execution.
+     */
+    warnings?: string[] | null;
+  }
+  /**
    * Associates members with a role.
    */
   export interface Schema$Binding {

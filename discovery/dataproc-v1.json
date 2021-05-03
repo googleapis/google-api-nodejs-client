@@ -2260,7 +2260,7 @@
       }
     }
   },
-  "revision": "20210406",
+  "revision": "20210421",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2361,6 +2361,61 @@
           "description": "Optional. Minimum scale-up threshold as a fraction of total cluster size before scaling occurs. For example, in a 20-worker cluster, a threshold of 0.1 means the autoscaler must recommend at least a 2-worker scale-up for the cluster to scale. A threshold of 0 means the autoscaler will scale up on any recommended change.Bounds: 0.0, 1.0. Default: 0.0.",
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "BatchOperationMetadata": {
+      "description": "Metadata describing the Batch operation.",
+      "id": "BatchOperationMetadata",
+      "properties": {
+        "batch": {
+          "description": "Name of the batch for the operation.",
+          "type": "string"
+        },
+        "batchUuid": {
+          "description": "Batch UUID for the operation.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "The time when the operation was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "description": {
+          "description": "Short description of the operation.",
+          "type": "string"
+        },
+        "doneTime": {
+          "description": "The time when the operation was finished.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Labels associated with the operation.",
+          "type": "object"
+        },
+        "operationType": {
+          "description": "The operation type.",
+          "enum": [
+            "BATCH_OPERATION_TYPE_UNSPECIFIED",
+            "BATCH"
+          ],
+          "enumDescriptions": [
+            "Batch operation type is unknown.",
+            "Batch operation type."
+          ],
+          "type": "string"
+        },
+        "warnings": {
+          "description": "Warnings encountered during operation execution.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
