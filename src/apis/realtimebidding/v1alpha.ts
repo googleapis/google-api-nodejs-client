@@ -137,6 +137,10 @@ export namespace realtimebidding_v1alpha {
      * The name of the bidding function that must follow the pattern: `bidders/{bidder_account_id\}/biddingFunctions/{bidding_function_name\}`.
      */
     name?: string | null;
+    /**
+     * The type of the bidding function to be created.
+     */
+    type?: string | null;
   }
   /**
    * A response containing a list of a bidder's bidding functions.
@@ -204,7 +208,8 @@ export namespace realtimebidding_v1alpha {
      *       // request body parameters
      *       // {
      *       //   "biddingFunction": "my_biddingFunction",
-     *       //   "name": "my_name"
+     *       //   "name": "my_name",
+     *       //   "type": "my_type"
      *       // }
      *     },
      *   });
@@ -213,7 +218,8 @@ export namespace realtimebidding_v1alpha {
      *   // Example response
      *   // {
      *   //   "biddingFunction": "my_biddingFunction",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "type": "my_type"
      *   // }
      * }
      *
