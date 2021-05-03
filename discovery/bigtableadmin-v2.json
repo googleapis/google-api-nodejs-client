@@ -923,8 +923,47 @@
                     "https://www.googleapis.com/auth/cloud-platform.read-only"
                   ]
                 },
+                "partialUpdateCluster": {
+                  "description": "Partially updates a cluster within a project. This method is the preferred way to update a Cluster. ",
+                  "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}",
+                  "httpMethod": "PATCH",
+                  "id": "bigtableadmin.projects.instances.clusters.partialUpdateCluster",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/clusters/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The subset of Cluster fields which should be replaced. Must be explicitly set.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "Cluster"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigtable.admin",
+                    "https://www.googleapis.com/auth/bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/bigtable.admin.instance",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                    "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "update": {
-                  "description": "Updates a cluster within an instance.",
+                  "description": "Updates a cluster within an instance. UpdateCluster is deprecated. Please use PartialUpdateCluster instead.",
                   "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/clusters/{clustersId}",
                   "httpMethod": "PUT",
                   "id": "bigtableadmin.projects.instances.clusters.update",
@@ -1433,7 +1472,7 @@
                         "Only populates `name`.",
                         "Only populates `name` and fields related to the table's schema.",
                         "Only populates `name` and fields related to the table's replication state.",
-                        "Only populates 'name' and fields related to the table's encryption state.",
+                        "Only populates `name` and fields related to the table's encryption state.",
                         "Populates all fields."
                       ],
                       "location": "query",
@@ -1527,7 +1566,7 @@
                         "Only populates `name`.",
                         "Only populates `name` and fields related to the table's schema.",
                         "Only populates `name` and fields related to the table's replication state.",
-                        "Only populates 'name' and fields related to the table's encryption state.",
+                        "Only populates `name` and fields related to the table's encryption state.",
                         "Populates all fields."
                       ],
                       "location": "query",
@@ -1764,7 +1803,7 @@
       }
     }
   },
-  "revision": "20210326",
+  "revision": "20210405",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
