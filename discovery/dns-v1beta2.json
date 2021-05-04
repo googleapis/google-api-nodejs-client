@@ -1740,7 +1740,7 @@
       }
     }
   },
-  "revision": "20210319",
+  "revision": "20210423",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
@@ -2176,6 +2176,7 @@
         },
         "kind": {
           "default": "dns#managedZoneOperationsListResponse",
+          "description": "Type of resource.",
           "type": "string"
         },
         "nextPageToken": {
@@ -2227,6 +2228,13 @@
     "ManagedZonePrivateVisibilityConfig": {
       "id": "ManagedZonePrivateVisibilityConfig",
       "properties": {
+        "gkeClusters": {
+          "description": "The list of Google Kubernetes Engine clusters that can see this zone.",
+          "items": {
+            "$ref": "ManagedZonePrivateVisibilityConfigGKECluster"
+          },
+          "type": "array"
+        },
         "kind": {
           "default": "dns#managedZonePrivateVisibilityConfig",
           "type": "string"
@@ -2237,6 +2245,20 @@
             "$ref": "ManagedZonePrivateVisibilityConfigNetwork"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ManagedZonePrivateVisibilityConfigGKECluster": {
+      "id": "ManagedZonePrivateVisibilityConfigGKECluster",
+      "properties": {
+        "gkeClusterName": {
+          "description": "The resource name of the cluster to bind this ManagedZone to. This should be specified in the format like: projects/*/locations/*/clusters/*. This is referenced from GKE projects.locations.clusters.get API: https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/get",
+          "type": "string"
+        },
+        "kind": {
+          "default": "dns#managedZonePrivateVisibilityConfigGKECluster",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2584,12 +2606,22 @@
           "format": "int32",
           "type": "integer"
         },
+        "gkeClustersPerManagedZone": {
+          "description": "Maximum allowed number of GKE clusters to which a privately scoped zone can be attached.",
+          "format": "int32",
+          "type": "integer"
+        },
         "kind": {
           "default": "dns#quota",
           "type": "string"
         },
         "managedZones": {
           "description": "Maximum allowed number of managed zones in the project.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "managedZonesPerGkeCluster": {
+          "description": "Maximum allowed number of managed zones which can be attached to a GKE cluster.",
           "format": "int32",
           "type": "integer"
         },
@@ -2789,6 +2821,13 @@
           "description": "User-provided description for this Response Policy.",
           "type": "string"
         },
+        "gkeClusters": {
+          "description": "The list of Google Kubernetes Engine clusters to which this response policy is applied.",
+          "items": {
+            "$ref": "ResponsePolicyGKECluster"
+          },
+          "type": "array"
+        },
         "id": {
           "description": "Unique identifier for the resource; defined by the server (output only).",
           "format": "int64",
@@ -2807,6 +2846,20 @@
         },
         "responsePolicyName": {
           "description": "User assigned name for this Response Policy.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResponsePolicyGKECluster": {
+      "id": "ResponsePolicyGKECluster",
+      "properties": {
+        "gkeClusterName": {
+          "description": "The resource name of the cluster to bind this response policy to. This should be specified in the format like: projects/*/locations/*/clusters/*. This is referenced from GKE projects.locations.clusters.get API: https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/get",
+          "type": "string"
+        },
+        "kind": {
+          "default": "dns#responsePolicyGKECluster",
           "type": "string"
         }
       },

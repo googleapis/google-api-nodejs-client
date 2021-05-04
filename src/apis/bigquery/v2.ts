@@ -5749,7 +5749,7 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * Lists all models in the specified dataset. Requires the READER dataset role.
+     * Lists all models in the specified dataset. Requires the READER dataset role. After retrieving the list of models, you can get information about a particular model by calling the models.get method.
      * @example
      * ```js
      * // Before running the sample:

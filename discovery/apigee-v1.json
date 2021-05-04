@@ -5707,12 +5707,6 @@
                 "parent"
               ],
               "parameters": {
-                "environments": {
-                  "description": "Optional. List of environments that will be attached to the instance during creation.",
-                  "location": "query",
-                  "repeated": true,
-                  "type": "string"
-                },
                 "parent": {
                   "description": "Required. Name of the organization. Use the following structure in your request: `organizations/{org}`.",
                   "location": "path",
@@ -6992,7 +6986,7 @@
       }
     }
   },
-  "revision": "20210415",
+  "revision": "20210422",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -10543,7 +10537,7 @@
           "type": "string"
         },
         "runtimeLocation": {
-          "description": "Cloud Platform location for the runtime instance. Defaults to `us-west1-a`.",
+          "description": "Cloud Platform location for the runtime instance. Defaults to zone `us-west1-a`. If a region is provided, `EVAL` organizations will use the region for automatically selecting a zone for the runtime instance.",
           "type": "string"
         }
       },
@@ -11587,6 +11581,20 @@
           "format": "int32",
           "type": "integer"
         },
+        "protocol": {
+          "description": "Immutable. The protocol used by this TargetServer.",
+          "enum": [
+            "PROTOCOL_UNSPECIFIED",
+            "HTTP",
+            "GRPC"
+          ],
+          "enumDescriptions": [
+            "UNSPECIFIED defaults to HTTP for backwards compatibility.",
+            "The TargetServer uses HTTP.",
+            "The TargetServer uses GRPC."
+          ],
+          "type": "string"
+        },
         "sSLInfo": {
           "$ref": "GoogleCloudApigeeV1TlsInfo",
           "description": "Optional. Specifies TLS configuration info for this TargetServer. The JSON name is `sSLInfo` for legacy/backwards compatibility reasons -- Edge originally supported SSL, and the name is still used for TLS configuration."
@@ -11609,6 +11617,20 @@
           "description": "Port number for the target server.",
           "format": "int32",
           "type": "integer"
+        },
+        "protocol": {
+          "description": "The protocol used by this target server.",
+          "enum": [
+            "PROTOCOL_UNSPECIFIED",
+            "HTTP",
+            "GRPC"
+          ],
+          "enumDescriptions": [
+            "UNSPECIFIED defaults to HTTP for backwards compatibility.",
+            "The TargetServer uses HTTP.",
+            "The TargetServer uses GRPC."
+          ],
+          "type": "string"
         },
         "tlsInfo": {
           "$ref": "GoogleCloudApigeeV1TlsInfoConfig",

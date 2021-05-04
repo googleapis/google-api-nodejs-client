@@ -612,7 +612,7 @@ export namespace servicecontrol_v2 {
     thirdPartyPrincipal?: Schema$ThirdPartyPrincipal;
   }
   /**
-   * The context of a span, attached to Exemplars in Distribution values during aggregation. It contains the name of a span with format: projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID]
+   * The context of a span. This is attached to an Exemplar in Distribution values during aggregation. It contains the name of a span with format: projects/[PROJECT_ID_OR_NUMBER]/traces/[TRACE_ID]/spans/[SPAN_ID]
    */
   export interface Schema$SpanContext {
     /**

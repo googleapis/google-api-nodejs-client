@@ -553,7 +553,7 @@
               "type": "string"
             },
             "query": {
-              "description": "Optional. The query statement. See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query) for more information. If not specified or empty, it will search all the resources within the specified `scope`. Examples: * `name:Important` to find Cloud resources whose name contains \"Important\" as a word. * `name=Important` to find the Cloud resource whose name is exactly \"Important\". * `displayName:Impor*` to find Cloud resources whose display name contains \"Impor\" as a prefix of any word in the field. * `location:us-west*` to find Cloud resources whose location contains both \"us\" and \"west\" as prefixes. * `labels:prod` to find Cloud resources whose labels contain \"prod\" as a key or value. * `labels.env:prod` to find Cloud resources that have a label \"env\" and its value is \"prod\". * `labels.env:*` to find Cloud resources that have a label \"env\". * `kmsKey:key` to find Cloud resources encrypted with a customer-managed encryption key whose name contains the word \"key\". * `state:ACTIVE` to find Cloud resources whose state contains \"ACTIVE\" as a word. * `createTime<1609459200` to find Cloud resources that were created before \"2021-01-01 00:00:00 UTC\". 1609459200 is the epoch timestamp of \"2021-01-01 00:00:00 UTC\" in seconds. * `updateTime>1609459200` to find Cloud resources that were updated after \"2021-01-01 00:00:00 UTC\". 1609459200 is the epoch timestamp of \"2021-01-01 00:00:00 UTC\" in seconds. * `Important` to find Cloud resources that contain \"Important\" as a word in any of the searchable fields. * `Impor*` to find Cloud resources that contain \"Impor\" as a prefix of any word in any of the searchable fields. * `Important location:(us-west1 OR global)` to find Cloud resources that contain \"Important\" as a word in any of the searchable fields and are also located in the \"us-west1\" region or the \"global\" location.",
+              "description": "Optional. The query statement. See [how to construct a query](https://cloud.google.com/asset-inventory/docs/searching-resources#how_to_construct_a_query) for more information. If not specified or empty, it will search all the resources within the specified `scope`. Examples: * `name:Important` to find Cloud resources whose name contains \"Important\" as a word. * `name=Important` to find the Cloud resource whose name is exactly \"Important\". * `displayName:Impor*` to find Cloud resources whose display name contains \"Impor\" as a prefix of any word in the field. * `location:us-west*` to find Cloud resources whose location contains both \"us\" and \"west\" as prefixes. * `labels:prod` to find Cloud resources whose labels contain \"prod\" as a key or value. * `labels.env:prod` to find Cloud resources that have a label \"env\" and its value is \"prod\". * `labels.env:*` to find Cloud resources that have a label \"env\". * `kmsKey:key` to find Cloud resources encrypted with a customer-managed encryption key whose name contains the word \"key\". * `state:ACTIVE` to find Cloud resources whose state contains \"ACTIVE\" as a word. * `NOT state:ACTIVE` to find {{gcp_name}} resources whose state doesn't contain \"ACTIVE\" as a word. * `createTime<1609459200` to find Cloud resources that were created before \"2021-01-01 00:00:00 UTC\". 1609459200 is the epoch timestamp of \"2021-01-01 00:00:00 UTC\" in seconds. * `updateTime>1609459200` to find Cloud resources that were updated after \"2021-01-01 00:00:00 UTC\". 1609459200 is the epoch timestamp of \"2021-01-01 00:00:00 UTC\" in seconds. * `Important` to find Cloud resources that contain \"Important\" as a word in any of the searchable fields. * `Impor*` to find Cloud resources that contain \"Impor\" as a prefix of any word in any of the searchable fields. * `Important location:(us-west1 OR global)` to find Cloud resources that contain \"Important\" as a word in any of the searchable fields and are also located in the \"us-west1\" region or the \"global\" location.",
               "location": "query",
               "type": "string"
             },
@@ -576,7 +576,7 @@
       }
     }
   },
-  "revision": "20210409",
+  "revision": "20210426",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -644,7 +644,7 @@
       "type": "object"
     },
     "Asset": {
-      "description": "An asset in Google Cloud. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.",
+      "description": "An asset in Google Cloud. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy), or a relationship (e.g. an INSTANCE_TO_INSTANCEGROUP relationship). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.",
       "id": "Asset",
       "properties": {
         "accessLevel": {
@@ -1657,7 +1657,7 @@
       "type": "object"
     },
     "GoogleIdentityAccesscontextmanagerV1EgressFrom": {
-      "description": "Defines the conditions under which an EgressPolicy matches a request. Conditions based on information about the source of the request. Note that if the destination of the request is protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed.",
+      "description": "Defines the conditions under which an EgressPolicy matches a request. Conditions based on information about the source of the request. Note that if the destination of the request is also protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed.",
       "id": "GoogleIdentityAccesscontextmanagerV1EgressFrom",
       "properties": {
         "identities": {
@@ -1702,18 +1702,18 @@
       "type": "object"
     },
     "GoogleIdentityAccesscontextmanagerV1EgressTo": {
-      "description": "Defines the conditions under which an EgressPolicy matches a request. Conditions are based on information about the ApiOperation intended to be performed on the `resources` specified. Note that if the destination of the request is protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed.",
+      "description": "Defines the conditions under which an EgressPolicy matches a request. Conditions are based on information about the ApiOperation intended to be performed on the `resources` specified. Note that if the destination of the request is also protected by a ServicePerimeter, then that ServicePerimeter must have an IngressPolicy which allows access in order for this request to succeed. The request must match `operations` AND `resources` fields in order to be allowed egress out of the perimeter.",
       "id": "GoogleIdentityAccesscontextmanagerV1EgressTo",
       "properties": {
         "operations": {
-          "description": "A list of ApiOperations that this egress rule applies to. A request matches if it contains an operation/service in this list.",
+          "description": "A list of ApiOperations allowed to be performed by the sources specified in the corresponding EgressFrom. A request matches if it uses an operation/service in this list.",
           "items": {
             "$ref": "GoogleIdentityAccesscontextmanagerV1ApiOperation"
           },
           "type": "array"
         },
         "resources": {
-          "description": "A list of resources, currently only projects in the form `projects/`, that match this to stanza. A request matches if it contains a resource in this list. If `*` is specified for resources, then this EgressTo rule will authorize access to all resources outside the perimeter.",
+          "description": "A list of resources, currently only projects in the form `projects/`, that are allowed to be accessed by sources defined in the corresponding EgressFrom. A request matches if it contains a resource in this list. If `*` is specified for `resources`, then this EgressTo rule will authorize access to all resources outside the perimeter.",
           "items": {
             "type": "string"
           },
@@ -1723,7 +1723,7 @@
       "type": "object"
     },
     "GoogleIdentityAccesscontextmanagerV1IngressFrom": {
-      "description": "Defines the conditions under which an IngressPolicy matches a request. Conditions are based on information about the source of the request.",
+      "description": "Defines the conditions under which an IngressPolicy matches a request. Conditions are based on information about the source of the request. The request must satisfy what is defined in `sources` AND identity related fields in order to match.",
       "id": "GoogleIdentityAccesscontextmanagerV1IngressFrom",
       "properties": {
         "identities": {
@@ -1779,7 +1779,7 @@
       "id": "GoogleIdentityAccesscontextmanagerV1IngressSource",
       "properties": {
         "accessLevel": {
-          "description": "An AccessLevel resource name that allow resources within the ServicePerimeters to be accessed from the internet. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If no AccessLevel names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If `*` is specified, then all IngressSources will be allowed.",
+          "description": "An AccessLevel resource name that allow resources within the ServicePerimeters to be accessed from the internet. AccessLevels listed must be in the same policy as this ServicePerimeter. Referencing a nonexistent AccessLevel will cause an error. If no AccessLevel names are listed, resources within the perimeter can only be accessed via Google Cloud calls with request origins within the perimeter. Example: `accessPolicies/MY_POLICY/accessLevels/MY_LEVEL`. If a single `*` is specified for `access_level`, then all IngressSources will be allowed.",
           "type": "string"
         },
         "resource": {
@@ -1790,18 +1790,18 @@
       "type": "object"
     },
     "GoogleIdentityAccesscontextmanagerV1IngressTo": {
-      "description": "Defines the conditions under which an IngressPolicy matches a request. Conditions are based on information about the ApiOperation intended to be performed on the destination of the request.",
+      "description": "Defines the conditions under which an IngressPolicy matches a request. Conditions are based on information about the ApiOperation intended to be performed on the target resource of the request. The request must satisfy what is defined in `operations` AND `resources` in order to match.",
       "id": "GoogleIdentityAccesscontextmanagerV1IngressTo",
       "properties": {
         "operations": {
-          "description": "A list of ApiOperations the sources specified in corresponding IngressFrom are allowed to perform in this ServicePerimeter.",
+          "description": "A list of ApiOperations allowed to be performed by the sources specified in corresponding IngressFrom in this ServicePerimeter.",
           "items": {
             "$ref": "GoogleIdentityAccesscontextmanagerV1ApiOperation"
           },
           "type": "array"
         },
         "resources": {
-          "description": "A list of resources, currently only projects in the form `projects/`, protected by this ServicePerimeter that are allowed to be accessed by sources defined in the corresponding IngressFrom. A request matches if it contains a resource in this list. If `*` is specified for resources, then this IngressTo rule will authorize access to all resources inside the perimeter, provided that the request also matches the `operations` field.",
+          "description": "A list of resources, currently only projects in the form `projects/`, protected by this ServicePerimeter that are allowed to be accessed by sources defined in the corresponding IngressFrom. If a single `*` is specified, then access to all resources inside the perimeter are allowed.",
           "items": {
             "type": "string"
           },
@@ -2114,7 +2114,7 @@
             "The caller does not have permission to execute the specified operation. `PERMISSION_DENIED` must not be used for rejections caused by exhausting some resource (use `RESOURCE_EXHAUSTED` instead for those errors). `PERMISSION_DENIED` must not be used if the caller can not be identified (use `UNAUTHENTICATED` instead for those errors). This error code does not imply the request is valid or the requested entity exists or satisfies other pre-conditions. HTTP Mapping: 403 Forbidden",
             "The request does not have valid authentication credentials for the operation. HTTP Mapping: 401 Unauthorized",
             "Some resource has been exhausted, perhaps a per-user quota, or perhaps the entire file system is out of space. HTTP Mapping: 429 Too Many Requests",
-            "The operation was rejected because the system is not in a state required for the operation's execution. For example, the directory to be deleted is non-empty, an rmdir operation is applied to a non-directory, etc. Service implementors can use the following guidelines to decide between `FAILED_PRECONDITION`, `ABORTED`, and `UNAVAILABLE`: (a) Use `UNAVAILABLE` if the client can retry just the failing call. (b) Use `ABORTED` if the client should retry at a higher level (e.g., when a client-specified test-and-set fails, indicating the client should restart a read-modify-write sequence). (c) Use `FAILED_PRECONDITION` if the client should not retry until the system state has been explicitly fixed. E.g., if an \"rmdir\" fails because the directory is non-empty, `FAILED_PRECONDITION` should be returned since the client should not retry unless the files are deleted from the directory. HTTP Mapping: 400 Bad Request",
+            "The operation was rejected because the system is not in a state required for the operation's execution. For example, the directory to be deleted is non-empty, an rmdir operation is applied to a non-directory, etc. Service implementors can use the following guidelines to decide between `FAILED_PRECONDITION`, `ABORTED`, and `UNAVAILABLE`: (a) Use `UNAVAILABLE` if the client can retry just the failing call. (b) Use `ABORTED` if the client should retry at a higher level. For example, when a client-specified test-and-set fails, indicating the client should restart a read-modify-write sequence. (c) Use `FAILED_PRECONDITION` if the client should not retry until the system state has been explicitly fixed. For example, if an \"rmdir\" fails because the directory is non-empty, `FAILED_PRECONDITION` should be returned since the client should not retry unless the files are deleted from the directory. HTTP Mapping: 400 Bad Request",
             "The operation was aborted, typically due to a concurrency issue such as a sequencer check failure or transaction abort. See the guidelines above for deciding between `FAILED_PRECONDITION`, `ABORTED`, and `UNAVAILABLE`. HTTP Mapping: 409 Conflict",
             "The operation was attempted past the valid range. E.g., seeking or reading past end-of-file. Unlike `INVALID_ARGUMENT`, this error indicates a problem that may be fixed if the system state changes. For example, a 32-bit file system will generate `INVALID_ARGUMENT` if asked to read at an offset that is not in the range [0,2^32-1], but it will generate `OUT_OF_RANGE` if asked to read from an offset past the current file size. There is a fair bit of overlap between `FAILED_PRECONDITION` and `OUT_OF_RANGE`. We recommend using `OUT_OF_RANGE` (the more specific error) when it applies so that callers who are iterating through a space can easily look for an `OUT_OF_RANGE` error to detect when they are done. HTTP Mapping: 400 Bad Request",
             "The operation is not implemented or is not supported/enabled in this service. HTTP Mapping: 501 Not Implemented",

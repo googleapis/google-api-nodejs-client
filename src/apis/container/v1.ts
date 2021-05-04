@@ -580,6 +580,10 @@ export namespace container_v1 {
      */
     desiredAddonsConfig?: Schema$AddonsConfig;
     /**
+     * The desired Autopilot configuration for the cluster.
+     */
+    desiredAutopilot?: Schema$Autopilot;
+    /**
      * The desired configuration options for the Binary Authorization feature.
      */
     desiredBinaryAuthorization?: Schema$BinaryAuthorization;

@@ -1245,7 +1245,7 @@
       }
     }
   },
-  "revision": "20210319",
+  "revision": "20210423",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
@@ -1677,6 +1677,7 @@
         },
         "kind": {
           "default": "dns#managedZoneOperationsListResponse",
+          "description": "Type of resource.",
           "type": "string"
         },
         "nextPageToken": {

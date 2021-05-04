@@ -543,7 +543,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink {
     /**
-     * Enable personalized advertising features with this integration. Automatically publish my Google Analytics audience lists and Google Analytics remarketing events/parameters to the linked Google Ads account. If this field is not set on create/update it will be defaulted to true.
+     * Enable personalized advertising features with this integration. Automatically publish my Google Analytics audience lists and Google Analytics remarketing events/parameters to the linked Google Ads account. If this field is not set on create/update, it will be defaulted to true.
      */
     adsPersonalizationEnabled?: boolean | null;
     /**

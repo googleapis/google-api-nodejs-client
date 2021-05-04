@@ -2872,6 +2872,15 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3EnableProcessorRequest {}
   /**
+   * Response message for fetch processor types.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse {
+    /**
+     * The list of processor types.
+     */
+    processorTypes?: Schema$GoogleCloudDocumentaiV1beta3ProcessorType[];
+  }
+  /**
    * Specifies a document stored on Cloud Storage.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3GcsDocument {
@@ -2983,6 +2992,44 @@ export namespace documentai_v1beta3 {
     type?: string | null;
   }
   /**
+   * A processor type is responsible for performing a certain document understanding task on a certain type of document. All processor types are created by the documentai service internally. User will only list all available processor types via UI. For different users (projects), the available processor types may be different since we'll expose the access of some types via EAP whitelisting. We make the ProcessorType a resource under location so we have a unified API and keep the possibility that UI will load different available processor types from different regions. But for alpha the behavior is that the user will always get the union of all available processor types among all regions no matter which regionalized endpoint is called, and then we use the 'available_locations' field to show under which regions a processor type is available. For example, users can call either the 'US' or 'EU' endpoint to feach processor types. In the return, we will have an 'invoice parsing' processor with 'available_locations' field only containing 'US'. So the user can try to create an 'invoice parsing' processor under the location 'US'. Such attempt of creating under the location 'EU' will fail. Next ID: 7.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorType {
+    /**
+     * Whether the processor type allows creation. If yes, user can create a processor of this processor type. Otherwise, user needs to require for whitelisting.
+     */
+    allowCreation?: boolean | null;
+    /**
+     * The locations in which this processor is available.
+     */
+    availableLocations?: Schema$GoogleCloudDocumentaiV1beta3ProcessorTypeLocationInfo[];
+    /**
+     * The processor category, used by UI to group processor types.
+     */
+    category?: string | null;
+    /**
+     * The resource name of the processor type. Format: projects/{project\}/processorTypes/{processor_type\}
+     */
+    name?: string | null;
+    /**
+     * The schema of the default version of this processor type.
+     */
+    schema?: Schema$GoogleCloudDocumentaiV1beta3Schema;
+    /**
+     * The type of the processor, e.g, "invoice_parsing".
+     */
+    type?: string | null;
+  }
+  /**
+   * The location information about where the processor is available.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorTypeLocationInfo {
+    /**
+     * The location id, currently must be one of [us, eu].
+     */
+    locationId?: string | null;
+  }
+  /**
    * Request message for the process document method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ProcessRequest {
@@ -3079,6 +3126,56 @@ export namespace documentai_v1beta3 {
      * The Cloud Storage uri for the human reviewed document.
      */
     gcsDestination?: string | null;
+  }
+  /**
+   * The schema defines the output of the processed document by a processor.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3Schema {
+    /**
+     * Description of the schema.
+     */
+    description?: string | null;
+    /**
+     * Display name to show to users.
+     */
+    displayName?: string | null;
+    /**
+     * Entity types of the schema.
+     */
+    entityTypes?: Schema$GoogleCloudDocumentaiV1beta3SchemaEntityType[];
+  }
+  /**
+   * EntityType is the wrapper of a label of the corresponding model with detailed attributes and limitations for entity-based processors. Multiple types can also compose a dependency tree to represent nested types.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3SchemaEntityType {
+    /**
+     * Type of the entity. It must be one of the following: `document` - the entity represents a classification of a logical document. `object` - if the entity has properties it is likely an object (or or a document.) `datetime` - the entity is a date or time value. `money` - the entity represents a money value amount. `number` - the entity is a number - integer or floating point. `string` - the entity is a string value. `boolean` - the entity is a boolean value. `address` - the entity is a location address.
+     */
+    baseType?: string | null;
+    /**
+     * Description of the entity type.
+     */
+    description?: string | null;
+    /**
+     * For some entity types there are only a few possible values. They can be specified here.
+     */
+    enumValues?: string[] | null;
+    /**
+     * Occurrence type limits the number of times an entity type appears in the document.
+     */
+    occurrenceType?: string | null;
+    /**
+     * Describing the nested structure of an entity. An EntityType may consist of several other EntityTypes. For example, in a document there can be an EntityType 'ID', which consists of EntityType 'name' and 'address', with corresponding attributes, such as TEXT for both types and ONCE for occurrence types.
+     */
+    properties?: Schema$GoogleCloudDocumentaiV1beta3SchemaEntityType[];
+    /**
+     * Source of this entity type.
+     */
+    source?: string | null;
+    /**
+     * Name of the type. It must be unique within the set of same level types.
+     */
+    type?: string | null;
   }
   /**
    * A vertex represents a 2D point in the image. NOTE: the vertex coordinates are in the same scale as the original image.
@@ -3416,6 +3513,144 @@ export namespace documentai_v1beta3 {
     }
 
     /**
+     * Fetches processor types.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.fetchProcessorTypes({
+     *     // Required. The project of processor type to list. The available processor types may depend on the whitelisting on projects. Format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "processorTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchProcessorTypes(
+      params: Params$Resource$Projects$Locations$Fetchprocessortypes,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    fetchProcessorTypes(
+      params?: Params$Resource$Projects$Locations$Fetchprocessortypes,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse>;
+    fetchProcessorTypes(
+      params: Params$Resource$Projects$Locations$Fetchprocessortypes,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchProcessorTypes(
+      params: Params$Resource$Projects$Locations$Fetchprocessortypes,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse>
+    ): void;
+    fetchProcessorTypes(
+      params: Params$Resource$Projects$Locations$Fetchprocessortypes,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse>
+    ): void;
+    fetchProcessorTypes(
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse>
+    ): void;
+    fetchProcessorTypes(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Fetchprocessortypes
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Fetchprocessortypes;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Fetchprocessortypes;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+parent}:fetchProcessorTypes').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3FetchProcessorTypesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets information about a location.
      * @example
      * ```js
@@ -3698,6 +3933,13 @@ export namespace documentai_v1beta3 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Fetchprocessortypes
+    extends StandardParameters {
+    /**
+     * Required. The project of processor type to list. The available processor types may depend on the whitelisting on projects. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+  }
   export interface Params$Resource$Projects$Locations$Get
     extends StandardParameters {
     /**

@@ -1522,7 +1522,7 @@ export namespace adexchangebuyer2_v2beta1 {
     reservePricesPerBuyer?: Schema$PricePerBuyer[];
   }
   /**
-   * Terms for Preferred Deals. Note that Preferred Deals cannot be created via the API at this time, but can be returned in a get or list request.
+   * Terms for Preferred Deals.
    */
   export interface Schema$NonGuaranteedFixedPriceTerms {
     /**
@@ -1639,7 +1639,7 @@ export namespace adexchangebuyer2_v2beta1 {
     referenceId?: string | null;
   }
   /**
-   * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources. A product is a segment of inventory that a seller wishes to sell. It is associated with certain terms and targeting information which helps the buyer know more about the inventory.
+   * A product is a segment of inventory that a seller wishes to sell. It is associated with certain terms and targeting information which helps the buyer know more about the inventory.
    */
   export interface Schema$Product {
     /**
@@ -1704,7 +1704,7 @@ export namespace adexchangebuyer2_v2beta1 {
     webPropertyCode?: string | null;
   }
   /**
-   * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources. Represents a proposal in the Marketplace. A proposal is the unit of negotiation between a seller and a buyer and contains deals which are served. Note: you can not update, create, or otherwise modify Private Auction or Preferred Deals deals through the API. Fields are updatable unless noted otherwise.
+   * Represents a proposal in the Marketplace. A proposal is the unit of negotiation between a seller and a buyer and contains deals which are served. Note: You can't update, create, or otherwise modify Private Auction deals through the API. Fields are updatable unless noted otherwise.
    */
   export interface Schema$Proposal {
     /**
@@ -1785,7 +1785,7 @@ export namespace adexchangebuyer2_v2beta1 {
     updateTime?: string | null;
   }
   /**
-   * Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources. Represents a publisher profile (https://support.google.com/admanager/answer/6035806) in Marketplace. All fields are read only. All string fields are free-form text entered by the publisher unless noted otherwise.
+   * Represents a publisher profile (https://support.google.com/admanager/answer/6035806) in Marketplace. All fields are read only. All string fields are free-form text entered by the publisher unless noted otherwise.
    */
   export interface Schema$PublisherProfile {
     /**

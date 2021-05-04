@@ -2500,7 +2500,7 @@
       }
     }
   },
-  "revision": "20210422",
+  "revision": "20210429",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -4082,7 +4082,7 @@
             "Financial service ad does not adhere to specifications.",
             "Flash content was found in an unsupported context.",
             "Misuse by an Open Measurement SDK script.",
-            "Use of an Open Measurement SDK vendor not on approved whitelist.",
+            "Use of an Open Measurement SDK vendor not on approved vendor list.",
             "Unacceptable landing page.",
             "Unsupported language.",
             "Non-SSL compliant.",
@@ -5069,7 +5069,7 @@
       "type": "object"
     },
     "NonGuaranteedFixedPriceTerms": {
-      "description": "Terms for Preferred Deals. Note that Preferred Deals cannot be created via the API at this time, but can be returned in a get or list request.",
+      "description": "Terms for Preferred Deals.",
       "id": "NonGuaranteedFixedPriceTerms",
       "properties": {
         "fixedPrices": {
@@ -5249,7 +5249,7 @@
       "type": "object"
     },
     "Product": {
-      "description": "Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources. A product is a segment of inventory that a seller wishes to sell. It is associated with certain terms and targeting information which helps the buyer know more about the inventory.",
+      "description": "A product is a segment of inventory that a seller wishes to sell. It is associated with certain terms and targeting information which helps the buyer know more about the inventory.",
       "id": "Product",
       "properties": {
         "availableEndTime": {
@@ -5341,7 +5341,7 @@
       "type": "object"
     },
     "Proposal": {
-      "description": "Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources. Represents a proposal in the Marketplace. A proposal is the unit of negotiation between a seller and a buyer and contains deals which are served. Note: you can not update, create, or otherwise modify Private Auction or Preferred Deals deals through the API. Fields are updatable unless noted otherwise.",
+      "description": "Represents a proposal in the Marketplace. A proposal is the unit of negotiation between a seller and a buyer and contains deals which are served. Note: You can't update, create, or otherwise modify Private Auction deals through the API. Fields are updatable unless noted otherwise.",
       "id": "Proposal",
       "properties": {
         "billedBuyer": {
@@ -5487,7 +5487,7 @@
       "type": "object"
     },
     "PublisherProfile": {
-      "description": "Note: this resource requires whitelisting for access. Please contact your account manager for access to Marketplace resources. Represents a publisher profile (https://support.google.com/admanager/answer/6035806) in Marketplace. All fields are read only. All string fields are free-form text entered by the publisher unless noted otherwise.",
+      "description": "Represents a publisher profile (https://support.google.com/admanager/answer/6035806) in Marketplace. All fields are read only. All string fields are free-form text entered by the publisher unless noted otherwise.",
       "id": "PublisherProfile",
       "properties": {
         "audienceDescription": {

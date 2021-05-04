@@ -116,6 +116,11 @@
             "editId"
           ],
           "parameters": {
+            "changesNotSentForReview": {
+              "description": "Indicates that the changes in this edit will not be reviewed until they are explicitly sent for review from the Google Play Console UI. These changes will be added to any other changes that are not yet sent for review.",
+              "location": "query",
+              "type": "boolean"
+            },
             "editId": {
               "description": "Identifier of the edit.",
               "location": "path",
@@ -2671,7 +2676,7 @@
       }
     }
   },
-  "revision": "20201127",
+  "revision": "20210429",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Apk": {

@@ -7188,7 +7188,7 @@
       }
     }
   },
-  "revision": "20210417",
+  "revision": "20210426",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -7426,6 +7426,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3ExportFlowResponse": {
+      "description": "The response message for Flows.ExportFlow.",
+      "id": "GoogleCloudDialogflowCxV3ExportFlowResponse",
+      "properties": {
+        "flowContent": {
+          "description": "Uncompressed raw byte content for flow.",
+          "format": "byte",
+          "type": "string"
+        },
+        "flowUri": {
+          "description": "The URI to a file containing the exported flow. This field is populated only if `flow_uri` is specified in ExportFlowRequest.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3ExportTestCasesMetadata": {
       "description": "Metadata returned for the TestCases.ExportTestCases long running operation.",
       "id": "GoogleCloudDialogflowCxV3ExportTestCasesMetadata",
@@ -7658,6 +7674,17 @@
             "$ref": "GoogleRpcStatus"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ImportFlowResponse": {
+      "description": "The response message for Flows.ImportFlow.",
+      "id": "GoogleCloudDialogflowCxV3ImportFlowResponse",
+      "properties": {
+        "flow": {
+          "description": "The unique identifier of the new flow. Format: `projects//locations//agents//flows/`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8900,6 +8927,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3beta1ExportFlowResponse": {
+      "description": "The response message for Flows.ExportFlow.",
+      "id": "GoogleCloudDialogflowCxV3beta1ExportFlowResponse",
+      "properties": {
+        "flowContent": {
+          "description": "Uncompressed raw byte content for flow.",
+          "format": "byte",
+          "type": "string"
+        },
+        "flowUri": {
+          "description": "The URI to a file containing the exported flow. This field is populated only if `flow_uri` is specified in ExportFlowRequest.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata": {
       "description": "Metadata returned for the TestCases.ExportTestCases long running operation.",
       "id": "GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata",
@@ -9132,6 +9175,17 @@
             "$ref": "GoogleRpcStatus"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ImportFlowResponse": {
+      "description": "The response message for Flows.ImportFlow.",
+      "id": "GoogleCloudDialogflowCxV3beta1ImportFlowResponse",
+      "properties": {
+        "flow": {
+          "description": "The unique identifier of the new flow. Format: `projects//locations//agents//flows/`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -13194,7 +13248,7 @@
       "id": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig",
       "properties": {
         "model": {
-          "description": "Required. Conversation model resource name. Format: `projects//conversationModels/`.",
+          "description": "Conversation model resource name. Format: `projects//conversationModels/`.",
           "type": "string"
         }
       },
@@ -16647,7 +16701,7 @@
       "type": "object"
     },
     "GoogleTypeLatLng": {
-      "description": "An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the WGS84 standard. Values must be within normalized ranges.",
+      "description": "An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges.",
       "id": "GoogleTypeLatLng",
       "properties": {
         "latitude": {

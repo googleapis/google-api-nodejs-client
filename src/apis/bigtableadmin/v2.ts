@@ -4523,7 +4523,164 @@ export namespace bigtableadmin_v2 {
     }
 
     /**
-     * Updates a cluster within an instance.
+     * Partially updates a cluster within a project. This method is the preferred way to update a Cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigtableadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigtableadmin = google.bigtableadmin('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigtable.admin',
+     *       'https://www.googleapis.com/auth/bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/bigtable.admin.instance',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin',
+     *       'https://www.googleapis.com/auth/cloud-bigtable.admin.cluster',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigtableadmin.projects.instances.clusters.partialUpdateCluster(
+     *     {
+     *       // The unique name of the cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/a-z*`.
+     *       name: 'projects/my-project/instances/my-instance/clusters/my-cluster',
+     *       // Required. The subset of Cluster fields which should be replaced. Must be explicitly set.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "defaultStorageType": "my_defaultStorageType",
+     *         //   "encryptionConfig": {},
+     *         //   "location": "my_location",
+     *         //   "name": "my_name",
+     *         //   "serveNodes": 0,
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    partialUpdateCluster(
+      params: Params$Resource$Projects$Instances$Clusters$Partialupdatecluster,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    partialUpdateCluster(
+      params?: Params$Resource$Projects$Instances$Clusters$Partialupdatecluster,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    partialUpdateCluster(
+      params: Params$Resource$Projects$Instances$Clusters$Partialupdatecluster,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    partialUpdateCluster(
+      params: Params$Resource$Projects$Instances$Clusters$Partialupdatecluster,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    partialUpdateCluster(
+      params: Params$Resource$Projects$Instances$Clusters$Partialupdatecluster,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    partialUpdateCluster(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    partialUpdateCluster(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Clusters$Partialupdatecluster
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Clusters$Partialupdatecluster;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Clusters$Partialupdatecluster;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://bigtableadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Updates a cluster within an instance. UpdateCluster is deprecated. Please use PartialUpdateCluster instead.
      * @example
      * ```js
      * // Before running the sample:
@@ -4714,6 +4871,22 @@ export namespace bigtableadmin_v2 {
      * Required. The unique name of the instance for which a list of clusters is requested. Values are of the form `projects/{project\}/instances/{instance\}`. Use `{instance\} = '-'` to list Clusters for all Instances in a project, e.g., `projects/myproject/instances/-`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Instances$Clusters$Partialupdatecluster
+    extends StandardParameters {
+    /**
+     * The unique name of the cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/a-z*`.
+     */
+    name?: string;
+    /**
+     * Required. The subset of Cluster fields which should be replaced. Must be explicitly set.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Cluster;
   }
   export interface Params$Resource$Projects$Instances$Clusters$Update
     extends StandardParameters {

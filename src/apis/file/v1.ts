@@ -154,6 +154,10 @@ export namespace file_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Name of the file share in the source Cloud Filestore instance that the backup is created from.
      */
     sourceFileShare?: string | null;
@@ -280,7 +284,7 @@ export namespace file_v1 {
      */
     maintenanceSettings?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings;
     /**
-     * Unique name of the resource. It uses the form: `projects/{project_id|project_number\}/locations/{location_id\}/instances/{instance_id\}` Note: Either project_id or project_number and be used, but keep it consistent with other APIs (e.g. RescheduleUpdate)
+     * Unique name of the resource. It uses the form: `projects/{project_id|project_number\}/locations/{location_id\}/instances/{instance_id\}` Note: Either project_id or project_number can be used, but keep it consistent with other APIs (e.g. RescheduleUpdate)
      */
     name?: string | null;
     /**
@@ -1215,6 +1219,7 @@ export namespace file_v1 {
      *       //   "downloadBytes": "my_downloadBytes",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzs": false,
      *       //   "sourceFileShare": "my_sourceFileShare",
      *       //   "sourceInstance": "my_sourceInstance",
      *       //   "sourceInstanceTier": "my_sourceInstanceTier",
@@ -1496,6 +1501,7 @@ export namespace file_v1 {
      *   //   "downloadBytes": "my_downloadBytes",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "satisfiesPzs": false,
      *   //   "sourceFileShare": "my_sourceFileShare",
      *   //   "sourceInstance": "my_sourceInstance",
      *   //   "sourceInstanceTier": "my_sourceInstanceTier",
@@ -1776,6 +1782,7 @@ export namespace file_v1 {
      *       //   "downloadBytes": "my_downloadBytes",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzs": false,
      *       //   "sourceFileShare": "my_sourceFileShare",
      *       //   "sourceInstance": "my_sourceInstance",
      *       //   "sourceInstanceTier": "my_sourceInstanceTier",

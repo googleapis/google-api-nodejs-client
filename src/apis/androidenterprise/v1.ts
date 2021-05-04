@@ -211,6 +211,10 @@ export namespace androidenterprise_v1 {
      * Options for displaying the Web Apps page.
      */
     webApps?: Schema$AdministratorWebTokenSpecWebApps;
+    /**
+     * Options for displaying the Zero Touch page.
+     */
+    zeroTouch?: Schema$AdministratorWebTokenSpecZeroTouch;
   }
   export interface Schema$AdministratorWebTokenSpecManagedConfigurations {
     /**
@@ -243,6 +247,12 @@ export namespace androidenterprise_v1 {
   export interface Schema$AdministratorWebTokenSpecWebApps {
     /**
      * Whether the Web Apps page is displayed. Default is true.
+     */
+    enabled?: boolean | null;
+  }
+  export interface Schema$AdministratorWebTokenSpecZeroTouch {
+    /**
+     * Whether zero-touch embedded UI is usable with this token. If enabled, the admin can link zero-touch customers to this enterprise.
      */
     enabled?: boolean | null;
   }
@@ -2693,7 +2703,8 @@ export namespace androidenterprise_v1 {
      *       //   "playSearch": {},
      *       //   "privateApps": {},
      *       //   "storeBuilder": {},
-     *       //   "webApps": {}
+     *       //   "webApps": {},
+     *       //   "zeroTouch": {}
      *       // }
      *     },
      *   });

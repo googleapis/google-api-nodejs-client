@@ -170,6 +170,10 @@ export namespace dialogflow_v3 {
      */
     startFlow?: string | null;
     /**
+     * The list of all languages supported by the agent (except for the `default_language_code`).
+     */
+    supportedLanguageCodes?: string[] | null;
+    /**
      * Required. The time zone of the agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris.
      */
     timeZone?: string | null;
@@ -422,6 +426,19 @@ export namespace dialogflow_v3 {
     agentUri?: string | null;
   }
   /**
+   * The response message for Flows.ExportFlow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ExportFlowResponse {
+    /**
+     * Uncompressed raw byte content for flow.
+     */
+    flowContent?: string | null;
+    /**
+     * The URI to a file containing the exported flow. This field is populated only if `flow_uri` is specified in ExportFlowRequest.
+     */
+    flowUri?: string | null;
+  }
+  /**
    * Metadata returned for the TestCases.ExportTestCases long running operation.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ExportTestCasesMetadata {}
@@ -592,6 +609,15 @@ export namespace dialogflow_v3 {
      * Includes details about skipped documents or any other warnings.
      */
     warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * The response message for Flows.ImportFlow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportFlowResponse {
+    /**
+     * The unique identifier of the new flow. Format: `projects//locations//agents//flows/`.
+     */
+    flow?: string | null;
   }
   /**
    * Metadata returned for the TestCases.ImportTestCases long running operation.
@@ -1776,6 +1802,10 @@ export namespace dialogflow_v3 {
      * Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to export the agent to. The format of this URI must be `gs:///`. If left unspecified, the serialized agent is returned inline.
      */
     agentUri?: string | null;
+    /**
+     * Optional. Environment name. If not set, draft environment is assumed. Format: `projects//locations//agents//environments/`.
+     */
+    environment?: string | null;
   }
   /**
    * The response message for Agents.ExportAgent.
@@ -1789,6 +1819,32 @@ export namespace dialogflow_v3 {
      * The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in ExportAgentRequest.
      */
     agentUri?: string | null;
+  }
+  /**
+   * The request message for Flows.ExportFlow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ExportFlowRequest {
+    /**
+     * Optional. The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to export the flow to. The format of this URI must be `gs:///`. If left unspecified, the serialized flow is returned inline.
+     */
+    flowUri?: string | null;
+    /**
+     * Optional. Whether to export flows referenced by the specified flow.
+     */
+    includeReferencedFlows?: boolean | null;
+  }
+  /**
+   * The response message for Flows.ExportFlow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ExportFlowResponse {
+    /**
+     * Uncompressed raw byte content for flow.
+     */
+    flowContent?: string | null;
+    /**
+     * The URI to a file containing the exported flow. This field is populated only if `flow_uri` is specified in ExportFlowRequest.
+     */
+    flowUri?: string | null;
   }
   /**
    * Metadata returned for the TestCases.ExportTestCases long running operation.
@@ -2066,6 +2122,32 @@ export namespace dialogflow_v3 {
      * Includes details about skipped documents or any other warnings.
      */
     warnings?: Schema$GoogleRpcStatus[];
+  }
+  /**
+   * The request message for Flows.ImportFlow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportFlowRequest {
+    /**
+     * Uncompressed raw byte content for flow.
+     */
+    flowContent?: string | null;
+    /**
+     * The [Google Cloud Storage](https://cloud.google.com/storage/docs/) URI to import flow from. The format of this URI must be `gs:///`.
+     */
+    flowUri?: string | null;
+    /**
+     * Flow import mode. If not specified, `KEEP` is assumed.
+     */
+    importOption?: string | null;
+  }
+  /**
+   * The response message for Flows.ImportFlow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ImportFlowResponse {
+    /**
+     * The unique identifier of the new flow. Format: `projects//locations//agents//flows/`.
+     */
+    flow?: string | null;
   }
   /**
    * Metadata returned for the TestCases.ImportTestCases long running operation.
@@ -2697,7 +2779,7 @@ export namespace dialogflow_v3 {
      */
     parameters?: {[key: string]: any} | null;
     /**
-     * This field can be used to pass custom data into the webhook associated with the agent. Arbitrary JSON objects are supported.
+     * This field can be used to pass custom data into the webhook associated with the agent. Arbitrary JSON objects are supported. Some integrations that query a Dialogflow agent may provide additional information in the payload. In particular, for the Dialogflow Phone Gateway integration, this field has the form: { "telephony": { "caller_id": "+18558363987" \} \}
      */
     payload?: {[key: string]: any} | null;
     /**
@@ -6435,7 +6517,7 @@ export namespace dialogflow_v3 {
     message?: string | null;
   }
   /**
-   * An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the WGS84 standard. Values must be within normalized ranges.
+   * An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges.
    */
   export interface Schema$GoogleTypeLatLng {
     /**
@@ -6555,6 +6637,7 @@ export namespace dialogflow_v3 {
      *       //   "securitySettings": "my_securitySettings",
      *       //   "speechToTextSettings": {},
      *       //   "startFlow": "my_startFlow",
+     *       //   "supportedLanguageCodes": [],
      *       //   "timeZone": "my_timeZone"
      *       // }
      *     },
@@ -6573,6 +6656,7 @@ export namespace dialogflow_v3 {
      *   //   "securitySettings": "my_securitySettings",
      *   //   "speechToTextSettings": {},
      *   //   "startFlow": "my_startFlow",
+     *   //   "supportedLanguageCodes": [],
      *   //   "timeZone": "my_timeZone"
      *   // }
      * }
@@ -6844,7 +6928,8 @@ export namespace dialogflow_v3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "agentUri": "my_agentUri"
+     *       //   "agentUri": "my_agentUri",
+     *       //   "environment": "my_environment"
      *       // }
      *     },
      *   });
@@ -7002,6 +7087,7 @@ export namespace dialogflow_v3 {
      *   //   "securitySettings": "my_securitySettings",
      *   //   "speechToTextSettings": {},
      *   //   "startFlow": "my_startFlow",
+     *   //   "supportedLanguageCodes": [],
      *   //   "timeZone": "my_timeZone"
      *   // }
      * }
@@ -7440,6 +7526,7 @@ export namespace dialogflow_v3 {
      *       //   "securitySettings": "my_securitySettings",
      *       //   "speechToTextSettings": {},
      *       //   "startFlow": "my_startFlow",
+     *       //   "supportedLanguageCodes": [],
      *       //   "timeZone": "my_timeZone"
      *       // }
      *     },
@@ -7458,6 +7545,7 @@ export namespace dialogflow_v3 {
      *   //   "securitySettings": "my_securitySettings",
      *   //   "speechToTextSettings": {},
      *   //   "startFlow": "my_startFlow",
+     *   //   "supportedLanguageCodes": [],
      *   //   "timeZone": "my_timeZone"
      *   // }
      * }
@@ -12601,6 +12689,156 @@ export namespace dialogflow_v3 {
     }
 
     /**
+     * Exports the specified flow to a binary file. Note that resources (e.g. intents, entities, webhooks) that the flow references will also be exported.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agents.flows.export({
+     *     // Required. The name of the flow to export. Format: `projects//locations//agents//flows/`.
+     *     name:
+     *       'projects/my-project/locations/my-location/agents/my-agent/flows/my-flow',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "flowUri": "my_flowUri",
+     *       //   "includeReferencedFlows": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Flows$Export,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    export(
+      params?: Params$Resource$Projects$Locations$Agents$Flows$Export,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Flows$Export,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Flows$Export,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      params: Params$Resource$Projects$Locations$Agents$Flows$Export,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    export(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Flows$Export
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Flows$Export;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Agents$Flows$Export;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+name}:export').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
      * Retrieves the specified flow.
      * @example
      * ```js
@@ -12889,6 +13127,159 @@ export namespace dialogflow_v3 {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3FlowValidationResult>(
           parameters
         );
+      }
+    }
+
+    /**
+     * Imports the specified flow to the specified agent from a binary file.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dialogflow.projects.locations.agents.flows.import({
+     *     // Required. The agent to import the flow into. Format: `projects//locations//agents/`.
+     *     parent: 'projects/my-project/locations/my-location/agents/my-agent',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "flowContent": "my_flowContent",
+     *       //   "flowUri": "my_flowUri",
+     *       //   "importOption": "my_importOption"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Flows$Import,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    import(
+      params?: Params$Resource$Projects$Locations$Agents$Flows$Import,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Flows$Import,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Flows$Import,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      params: Params$Resource$Projects$Locations$Agents$Flows$Import,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    import(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Flows$Import
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Flows$Import;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Agents$Flows$Import;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/flows:import').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
 
@@ -13530,6 +13921,18 @@ export namespace dialogflow_v3 {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Export
+    extends StandardParameters {
+    /**
+     * Required. The name of the flow to export. Format: `projects//locations//agents//flows/`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3ExportFlowRequest;
+  }
   export interface Params$Resource$Projects$Locations$Agents$Flows$Get
     extends StandardParameters {
     /**
@@ -13551,6 +13954,18 @@ export namespace dialogflow_v3 {
      * Required. The flow name. Format: `projects//locations//agents//flows//validationResult`.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Flows$Import
+    extends StandardParameters {
+    /**
+     * Required. The agent to import the flow into. Format: `projects//locations//agents/`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3ImportFlowRequest;
   }
   export interface Params$Resource$Projects$Locations$Agents$Flows$List
     extends StandardParameters {

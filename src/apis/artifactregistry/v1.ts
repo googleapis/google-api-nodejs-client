@@ -191,6 +191,19 @@ export namespace artifactregistry_v1 {
     operations?: Schema$Operation[];
   }
   /**
+   * The response from listing repositories.
+   */
+  export interface Schema$ListRepositoriesResponse {
+    /**
+     * The token to retrieve the next page of repositories, or empty if there are no more repositories to return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The repositories returned.
+     */
+    repositories?: Schema$Repository[];
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -214,6 +227,39 @@ export namespace artifactregistry_v1 {
      * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * A Repository for storing artifacts with a specific format.
+   */
+  export interface Schema$Repository {
+    /**
+     * The time when the repository was created.
+     */
+    createTime?: string | null;
+    /**
+     * The user-provided description of the repository.
+     */
+    description?: string | null;
+    /**
+     * The format of packages that are stored in the repository.
+     */
+    format?: string | null;
+    /**
+     * The Cloud KMS resource name of the customer managed encryption key that’s used to encrypt the contents of the Repository. Has the form: `projects/my-project/locations/my-region/keyRings/my-kr/cryptoKeys/my-key`. This value may not be changed after the Repository has been created.
+     */
+    kmsKeyName?: string | null;
+    /**
+     * Labels with user-defined metadata. This field may contain up to 64 entries. Label keys and values may be no longer than 63 characters. Label keys must begin with a lowercase letter and may only contain lowercase letters, numeric characters, underscores, and dashes.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * The name of the repository, for example: "projects/p1/locations/us-central1/repositories/repo1".
+     */
+    name?: string | null;
+    /**
+     * The time when the repository was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
@@ -843,6 +889,309 @@ export namespace artifactregistry_v1 {
         this.context
       );
     }
+
+    /**
+     * Gets a repository.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.repositories.get({
+     *     // Required. The name of the repository to retrieve.
+     *     name:
+     *       'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "format": "my_format",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Repositories$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Repository>;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Repository>,
+      callback: BodyResponseCallback<Schema$Repository>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Repositories$Get,
+      callback: BodyResponseCallback<Schema$Repository>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Repository>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$Get
+        | BodyResponseCallback<Schema$Repository>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Repository>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Repository>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Repository> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Repositories$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Repository>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Repository>(parameters);
+      }
+    }
+
+    /**
+     * Lists repositories.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const artifactregistry = google.artifactregistry('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await artifactregistry.projects.locations.repositories.list({
+     *     // The maximum number of repositories to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous list request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource whose repositories will be listed.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "repositories": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Repositories$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRepositoriesResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRepositoriesResponse>,
+      callback: BodyResponseCallback<Schema$ListRepositoriesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Repositories$List,
+      callback: BodyResponseCallback<Schema$ListRepositoriesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListRepositoriesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Repositories$List
+        | BodyResponseCallback<Schema$ListRepositoriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRepositoriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRepositoriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRepositoriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Repositories$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Repositories$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://artifactregistry.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/repositories').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRepositoriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRepositoriesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Repositories$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the repository to retrieve.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Repositories$List
+    extends StandardParameters {
+    /**
+     * The maximum number of repositories to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent resource whose repositories will be listed.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Repositories$Dockerimages {

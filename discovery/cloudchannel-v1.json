@@ -1179,6 +1179,31 @@
                     "https://www.googleapis.com/auth/apps.order"
                   ]
                 },
+                "lookupOffer": {
+                  "description": "Returns the requested Offer resource. Possible error codes: * PERMISSION_DENIED: The entitlement doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: Entitlement or offer was not found. Return value: The Offer resource.",
+                  "flatPath": "v1/accounts/{accountsId}/customers/{customersId}/entitlements/{entitlementsId}:lookupOffer",
+                  "httpMethod": "GET",
+                  "id": "cloudchannel.accounts.customers.entitlements.lookupOffer",
+                  "parameterOrder": [
+                    "entitlement"
+                  ],
+                  "parameters": {
+                    "entitlement": {
+                      "description": "Required. The resource name of the entitlement to retrieve the Offer. Entitlement uses the format: accounts/{account_id}/customers/{customer_id}/entitlements/{entitlement_id}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/customers/[^/]+/entitlements/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+entitlement}:lookupOffer",
+                  "response": {
+                    "$ref": "GoogleCloudChannelV1Offer"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/apps.order"
+                  ]
+                },
                 "startPaidService": {
                   "description": "Starts paid service for a trial entitlement. Starts paid service for a trial entitlement immediately. This method is only applicable if a plan is set up for a trial entitlement but has some trial days remaining. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: Entitlement resource not found. * FAILED_PRECONDITION/NOT_IN_TRIAL: This method only works for entitlement on trial plans. * INTERNAL: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. * UNKNOWN: Any non-user error related to a technical issue in the backend. Contact Cloud Channel support. Return value: The ID of a long-running operation. To get the results of the operation, call the GetOperation method of CloudChannelOperationsService. The Operation metadata will contain an instance of OperationMetadata.",
                   "flatPath": "v1/accounts/{accountsId}/customers/{customersId}/entitlements/{entitlementsId}:startPaidService",
@@ -1508,7 +1533,7 @@
       }
     }
   },
-  "revision": "20210331",
+  "revision": "20210429",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -2172,7 +2197,8 @@
             "SKU_CHANGED",
             "RENEWAL_SETTING_CHANGED",
             "PAID_SERVICE_STARTED",
-            "LICENSE_ASSIGNMENT_CHANGED"
+            "LICENSE_ASSIGNMENT_CHANGED",
+            "LICENSE_CAP_CHANGED"
           ],
           "enumDescriptions": [
             "Default value. This state doesn't show unless an error occurs.",
@@ -2186,7 +2212,8 @@
             "Entitlement was upgraded or downgraded (e.g. from Google Workspace Business Standard to Google Workspace Business Plus).",
             "The renewal settings of an entitlement has changed.",
             "Paid service has started on trial entitlement.",
-            "License was assigned to or revoked from a user."
+            "License was assigned to or revoked from a user.",
+            "License cap was changed for the entitlement."
           ],
           "type": "string"
         }
@@ -3473,7 +3500,8 @@
             "SKU_CHANGED",
             "RENEWAL_SETTING_CHANGED",
             "PAID_SERVICE_STARTED",
-            "LICENSE_ASSIGNMENT_CHANGED"
+            "LICENSE_ASSIGNMENT_CHANGED",
+            "LICENSE_CAP_CHANGED"
           ],
           "enumDescriptions": [
             "Default value. This state doesn't show unless an error occurs.",
@@ -3487,7 +3515,8 @@
             "Entitlement was upgraded or downgraded (e.g. from Google Workspace Business Standard to Google Workspace Business Plus).",
             "The renewal settings of an entitlement has changed.",
             "Paid service has started on trial entitlement.",
-            "License was assigned to or revoked from a user."
+            "License was assigned to or revoked from a user.",
+            "License cap was changed for the entitlement."
           ],
           "type": "string"
         }

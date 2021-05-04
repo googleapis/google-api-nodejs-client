@@ -323,6 +323,10 @@ import {
   mybusinesslodging,
 } from './mybusinesslodging';
 import {
+  VERSIONS as mybusinessplaceactionsVersions,
+  mybusinessplaceactions,
+} from './mybusinessplaceactions';
+import {
   VERSIONS as networkconnectivityVersions,
   networkconnectivity,
 } from './networkconnectivity';
@@ -343,6 +347,10 @@ import {
   VERSIONS as pagespeedonlineVersions,
   pagespeedonline,
 } from './pagespeedonline';
+import {
+  VERSIONS as paymentsresellersubscriptionVersions,
+  paymentsresellersubscription,
+} from './paymentsresellersubscription';
 import {VERSIONS as peopleVersions, people} from './people';
 import {
   VERSIONS as playablelocationsVersions,
@@ -638,6 +646,7 @@ export const APIS: APIList = {
   monitoring: monitoringVersions,
   mybusinessaccountmanagement: mybusinessaccountmanagementVersions,
   mybusinesslodging: mybusinesslodgingVersions,
+  mybusinessplaceactions: mybusinessplaceactionsVersions,
   networkconnectivity: networkconnectivityVersions,
   networkmanagement: networkmanagementVersions,
   notebooks: notebooksVersions,
@@ -647,6 +656,7 @@ export const APIS: APIList = {
   osconfig: osconfigVersions,
   oslogin: osloginVersions,
   pagespeedonline: pagespeedonlineVersions,
+  paymentsresellersubscription: paymentsresellersubscriptionVersions,
   people: peopleVersions,
   playablelocations: playablelocationsVersions,
   playcustomapp: playcustomappVersions,
@@ -854,6 +864,7 @@ export class GeneratedAPIs {
   monitoring = monitoring;
   mybusinessaccountmanagement = mybusinessaccountmanagement;
   mybusinesslodging = mybusinesslodging;
+  mybusinessplaceactions = mybusinessplaceactions;
   networkconnectivity = networkconnectivity;
   networkmanagement = networkmanagement;
   notebooks = notebooks;
@@ -863,6 +874,7 @@ export class GeneratedAPIs {
   osconfig = osconfig;
   oslogin = oslogin;
   pagespeedonline = pagespeedonline;
+  paymentsresellersubscription = paymentsresellersubscription;
   people = people;
   playablelocations = playablelocations;
   playcustomapp = playcustomapp;
