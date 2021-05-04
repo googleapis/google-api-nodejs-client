@@ -68,7 +68,7 @@ This is a very simple example. This creates a Blogger client and retrieves the d
 ``` js
 const {google} = require('googleapis');
 
-// Each API may support multiple version. With this sample, we're getting
+// Each API may support multiple versions. With this sample, we're getting
 // v3 of the blogger API, and using an API key to authenticate.
 const blogger = google.blogger({
   version: 'v3',
