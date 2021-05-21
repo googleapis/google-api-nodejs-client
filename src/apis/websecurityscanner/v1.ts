@@ -1595,9 +1595,10 @@ export namespace websecurityscanner_v1 {
       this.findings = new Resource$Projects$Scanconfigs$Scanruns$Findings(
         this.context
       );
-      this.findingTypeStats = new Resource$Projects$Scanconfigs$Scanruns$Findingtypestats(
-        this.context
-      );
+      this.findingTypeStats =
+        new Resource$Projects$Scanconfigs$Scanruns$Findingtypestats(
+          this.context
+        );
     }
 
     /**
@@ -2088,8 +2089,8 @@ export namespace websecurityscanner_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.crawledUrls.list(
-     *     {
+     *   const res =
+     *     await websecurityscanner.projects.scanConfigs.scanRuns.crawledUrls.list({
      *       // The maximum number of CrawledUrls to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
      *       pageSize: 'placeholder-value',
      *       // A token identifying a page of results to be returned. This should be a `next_page_token` value returned from a previous List request. If unspecified, the first page of results is returned.
@@ -2097,8 +2098,7 @@ export namespace websecurityscanner_v1 {
      *       // Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId\}/scanConfigs/{scanConfigId\}/scanRuns/{scanRunId\}'.
      *       parent:
      *         'projects/my-project/scanConfigs/my-scanConfig/scanRuns/my-scanRun',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2168,7 +2168,8 @@ export namespace websecurityscanner_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List;
+        params =
+          {} as Params$Resource$Projects$Scanconfigs$Scanruns$Crawledurls$List;
         options = {};
       }
 
@@ -2254,13 +2255,11 @@ export namespace websecurityscanner_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.findings.get(
-     *     {
+     *   const res =
+     *     await websecurityscanner.projects.scanConfigs.scanRuns.findings.get({
      *       // Required. The resource name of the Finding to be returned. The name follows the format of 'projects/{projectId\}/scanConfigs/{scanConfigId\}/scanRuns/{scanRunId\}/findings/{findingId\}'.
-     *       name:
-     *         'projects/my-project/scanConfigs/my-scanConfig/scanRuns/my-scanRun/findings/my-finding',
-     *     }
-     *   );
+     *       name: 'projects/my-project/scanConfigs/my-scanConfig/scanRuns/my-scanRun/findings/my-finding',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2340,7 +2339,8 @@ export namespace websecurityscanner_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get;
+        params =
+          {} as Params$Resource$Projects$Scanconfigs$Scanruns$Findings$Get;
         options = {};
       }
 
@@ -2400,8 +2400,8 @@ export namespace websecurityscanner_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.findings.list(
-     *     {
+     *   const res =
+     *     await websecurityscanner.projects.scanConfigs.scanRuns.findings.list({
      *       // The filter expression. The expression must be in the format: . Supported field: 'finding_type'. Supported operator: '='.
      *       filter: 'placeholder-value',
      *       // The maximum number of Findings to return, can be limited by server. If not specified or not positive, the implementation will select a reasonable value.
@@ -2411,8 +2411,7 @@ export namespace websecurityscanner_v1 {
      *       // Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId\}/scanConfigs/{scanConfigId\}/scanRuns/{scanRunId\}'.
      *       parent:
      *         'projects/my-project/scanConfigs/my-scanConfig/scanRuns/my-scanRun',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2482,7 +2481,8 @@ export namespace websecurityscanner_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List;
+        params =
+          {} as Params$Resource$Projects$Scanconfigs$Scanruns$Findings$List;
         options = {};
       }
 
@@ -2579,13 +2579,14 @@ export namespace websecurityscanner_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await websecurityscanner.projects.scanConfigs.scanRuns.findingTypeStats.list(
-     *     {
-     *       // Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId\}/scanConfigs/{scanConfigId\}/scanRuns/{scanRunId\}'.
-     *       parent:
-     *         'projects/my-project/scanConfigs/my-scanConfig/scanRuns/my-scanRun',
-     *     }
-     *   );
+     *   const res =
+     *     await websecurityscanner.projects.scanConfigs.scanRuns.findingTypeStats.list(
+     *       {
+     *         // Required. The parent resource name, which should be a scan run resource name in the format 'projects/{projectId\}/scanConfigs/{scanConfigId\}/scanRuns/{scanRunId\}'.
+     *         parent:
+     *           'projects/my-project/scanConfigs/my-scanConfig/scanRuns/my-scanRun',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2656,7 +2657,8 @@ export namespace websecurityscanner_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List;
+        params =
+          {} as Params$Resource$Projects$Scanconfigs$Scanruns$Findingtypestats$List;
         options = {};
       }
 
