@@ -720,13 +720,9 @@ export namespace servicenetworking_v1 {
     consumerNetwork?: string | null;
   }
   /**
-   * `Endpoint` describes a network endpoint of a service that serves a set of APIs. It is commonly known as a service endpoint. A service may expose any number of service endpoints, and all service endpoints share the same service definition, such as quota limits and monitoring metrics. Example service configuration: name: library-example.googleapis.com endpoints: # Below entry makes 'google.example.library.v1.Library' # API be served from endpoint address library-example.googleapis.com. # It also allows HTTP OPTIONS calls to be passed to the backend, for # it to decide whether the subsequent cross-origin request is # allowed to proceed. - name: library-example.googleapis.com allow_cors: true
+   * `Endpoint` describes a network address of a service that serves a set of APIs. It is commonly known as a service endpoint. A service may expose any number of service endpoints, and all service endpoints share the same service definition, such as quota limits and monitoring metrics. Example: type: google.api.Service name: library-example.googleapis.com endpoints: # Declares network address `https://library-example.googleapis.com` # for service `library-example.googleapis.com`. The `https` scheme # is implicit for all service endpoints. Other schemes may be # supported in the future. - name: library-example.googleapis.com allow_cors: false - name: content-staging-library-example.googleapis.com # Allows HTTP OPTIONS calls to be passed to the API frontend, for it # to decide whether the subsequent cross-origin request is allowed # to proceed. allow_cors: true
    */
   export interface Schema$Endpoint {
-    /**
-     * Unimplemented. Dot not use. DEPRECATED: This field is no longer supported. Instead of using aliases, please specify multiple google.api.Endpoint for each of the intended aliases. Additional names that this endpoint will be hosted on.
-     */
-    aliases?: string[] | null;
     /**
      * Allowing [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing), aka cross-domain traffic, would allow the backends served from this endpoint to receive and respond to HTTP OPTIONS requests. The response will be used by the browser to determine whether the subsequent cross-origin request is allowed to proceed.
      */
@@ -1527,7 +1523,7 @@ export namespace servicenetworking_v1 {
     requestedAddress?: string | null;
   }
   /**
-   * `Service` is the root object of Google service configuration schema. It describes basic information about a service, such as the name and the title, and delegates other aspects to sub-sections. Each sub-section is either a proto message or a repeated proto message that configures a specific aspect, such as auth. See each proto message definition for details. Example: type: google.api.Service name: calendar.googleapis.com title: Google Calendar API apis: - name: google.calendar.v3.Calendar authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: "*" requirements: provider_id: google_calendar_auth
+   * `Service` is the root object of Google API service configuration (service config). It describes the basic information about a logical service, such as the service name and the user-facing title, and delegates other aspects to sub-sections. Each sub-section is either a proto message or a repeated proto message that configures a specific aspect, such as auth. For more information, see each proto message definition. Example: type: google.api.Service name: calendar.googleapis.com title: Google Calendar API apis: - name: google.calendar.v3.Calendar visibility: rules: - selector: "google.calendar.v3.*" restriction: PREVIEW backend: rules: - selector: "google.calendar.v3.*" address: calendar.example.com authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: "*" requirements: provider_id: google_calendar_auth
    */
   export interface Schema$Service {
     /**
@@ -4764,9 +4760,10 @@ export namespace servicenetworking_v1 {
     peeredDnsDomains: Resource$Services$Projects$Global$Networks$Peereddnsdomains;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.peeredDnsDomains = new Resource$Services$Projects$Global$Networks$Peereddnsdomains(
-        this.context
-      );
+      this.peeredDnsDomains =
+        new Resource$Services$Projects$Global$Networks$Peereddnsdomains(
+          this.context
+        );
     }
 
     /**
@@ -4938,21 +4935,22 @@ export namespace servicenetworking_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicenetworking.services.projects.global.networks.updateConsumerConfig(
-     *     {
-     *       // Required. Parent resource identifying the connection for which the consumer config is being updated in the format: `services/{service\}/projects/{project\}/global/networks/{network\}` {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is the number of the project that contains the service consumer's VPC network e.g. `12345`. {network\} is the name of the service consumer's VPC network.
-     *       parent:
-     *         'services/my-service/projects/my-project/global/networks/my-network',
+     *   const res =
+     *     await servicenetworking.services.projects.global.networks.updateConsumerConfig(
+     *       {
+     *         // Required. Parent resource identifying the connection for which the consumer config is being updated in the format: `services/{service\}/projects/{project\}/global/networks/{network\}` {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is the number of the project that contains the service consumer's VPC network e.g. `12345`. {network\} is the name of the service consumer's VPC network.
+     *         parent:
+     *           'services/my-service/projects/my-project/global/networks/my-network',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "consumerConfig": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "consumerConfig": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5022,7 +5020,8 @@ export namespace servicenetworking_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Projects$Global$Networks$Updateconsumerconfig;
+        params =
+          {} as Params$Resource$Services$Projects$Global$Networks$Updateconsumerconfig;
         options = {};
       }
 
@@ -5115,22 +5114,23 @@ export namespace servicenetworking_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicenetworking.services.projects.global.networks.peeredDnsDomains.create(
-     *     {
-     *       // Required. Parent resource identifying the connection for which the peered DNS domain will be created in the format: `services/{service\}/projects/{project\}/global/networks/{network\}` {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is the number of the project that contains the service consumer's VPC network e.g. `12345`. {network\} is the name of the service consumer's VPC network.
-     *       parent:
-     *         'services/my-service/projects/my-project/global/networks/my-network',
+     *   const res =
+     *     await servicenetworking.services.projects.global.networks.peeredDnsDomains.create(
+     *       {
+     *         // Required. Parent resource identifying the connection for which the peered DNS domain will be created in the format: `services/{service\}/projects/{project\}/global/networks/{network\}` {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is the number of the project that contains the service consumer's VPC network e.g. `12345`. {network\} is the name of the service consumer's VPC network.
+     *         parent:
+     *           'services/my-service/projects/my-project/global/networks/my-network',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "dnsSuffix": "my_dnsSuffix",
-     *         //   "name": "my_name"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "dnsSuffix": "my_dnsSuffix",
+     *           //   "name": "my_name"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5198,7 +5198,8 @@ export namespace servicenetworking_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Projects$Global$Networks$Peereddnsdomains$Create;
+        params =
+          {} as Params$Resource$Services$Projects$Global$Networks$Peereddnsdomains$Create;
         options = {};
       }
 
@@ -5264,13 +5265,13 @@ export namespace servicenetworking_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicenetworking.services.projects.global.networks.peeredDnsDomains.delete(
-     *     {
-     *       // Required. The name of the peered DNS domain to delete in the format: `services/{service\}/projects/{project\}/global/networks/{network\}/peeredDnsDomains/{name\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is the number of the project that contains the service consumer's VPC network e.g. `12345`. {network\} is the name of the service consumer's VPC network. {name\} is the name of the peered DNS domain.
-     *       name:
-     *         'services/my-service/projects/my-project/global/networks/my-network/peeredDnsDomains/my-peeredDnsDomain',
-     *     }
-     *   );
+     *   const res =
+     *     await servicenetworking.services.projects.global.networks.peeredDnsDomains.delete(
+     *       {
+     *         // Required. The name of the peered DNS domain to delete in the format: `services/{service\}/projects/{project\}/global/networks/{network\}/peeredDnsDomains/{name\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is the number of the project that contains the service consumer's VPC network e.g. `12345`. {network\} is the name of the service consumer's VPC network. {name\} is the name of the peered DNS domain.
+     *         name: 'services/my-service/projects/my-project/global/networks/my-network/peeredDnsDomains/my-peeredDnsDomain',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5338,7 +5339,8 @@ export namespace servicenetworking_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Projects$Global$Networks$Peereddnsdomains$Delete;
+        params =
+          {} as Params$Resource$Services$Projects$Global$Networks$Peereddnsdomains$Delete;
         options = {};
       }
 
@@ -5401,13 +5403,14 @@ export namespace servicenetworking_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicenetworking.services.projects.global.networks.peeredDnsDomains.list(
-     *     {
-     *       // Required. Parent resource identifying the connection which owns this collection of peered DNS domains in the format: `services/{service\}/projects/{project\}/global/networks/{network\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is a project number e.g. `12345` that contains the service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
-     *       parent:
-     *         'services/my-service/projects/my-project/global/networks/my-network',
-     *     }
-     *   );
+     *   const res =
+     *     await servicenetworking.services.projects.global.networks.peeredDnsDomains.list(
+     *       {
+     *         // Required. Parent resource identifying the connection which owns this collection of peered DNS domains in the format: `services/{service\}/projects/{project\}/global/networks/{network\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is a project number e.g. `12345` that contains the service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
+     *         parent:
+     *           'services/my-service/projects/my-project/global/networks/my-network',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5478,7 +5481,8 @@ export namespace servicenetworking_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Projects$Global$Networks$Peereddnsdomains$List;
+        params =
+          {} as Params$Resource$Services$Projects$Global$Networks$Peereddnsdomains$List;
         options = {};
       }
 
