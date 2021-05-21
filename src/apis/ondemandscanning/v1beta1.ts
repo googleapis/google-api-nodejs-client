@@ -1753,9 +1753,8 @@ export namespace ondemandscanning_v1beta1 {
     vulnerabilities: Resource$Projects$Locations$Scans$Vulnerabilities;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.vulnerabilities = new Resource$Projects$Locations$Scans$Vulnerabilities(
-        this.context
-      );
+      this.vulnerabilities =
+        new Resource$Projects$Locations$Scans$Vulnerabilities(this.context);
     }
 
     /**
@@ -1947,16 +1946,15 @@ export namespace ondemandscanning_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await ondemandscanning.projects.locations.scans.vulnerabilities.list(
-     *     {
+     *   const res =
+     *     await ondemandscanning.projects.locations.scans.vulnerabilities.list({
      *       // The number of vulnerabilities to retrieve.
      *       pageSize: 'placeholder-value',
      *       // The page token, resulting from a previous call to ListVulnerabilities.
      *       pageToken: 'placeholder-value',
      *       // Required. The parent of the collection of Vulnerabilities being requested. Format: projects/[project_name]/locations/[location]/scans/[scan_id]
      *       parent: 'projects/my-project/locations/my-location/scans/my-scan',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2028,7 +2026,8 @@ export namespace ondemandscanning_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Scans$Vulnerabilities$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Scans$Vulnerabilities$List;
         options = {};
       }
 
