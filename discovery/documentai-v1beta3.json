@@ -535,7 +535,7 @@
       }
     }
   },
-  "revision": "20210426",
+  "revision": "20210513",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata": {
@@ -1311,6 +1311,11 @@
           "$ref": "GoogleCloudDocumentaiV1beta1BoundingPoly",
           "description": "Optional. Identifies the bounding polygon of a layout element on the page."
         },
+        "confidence": {
+          "description": "Optional. Confidence of detected page element, if applicable. Range [0, 1].",
+          "format": "float",
+          "type": "number"
+        },
         "layoutId": {
           "description": "Optional. Deprecated. Use PageRef.bounding_poly instead.",
           "type": "string"
@@ -1771,6 +1776,11 @@
       "properties": {
         "id": {
           "description": "The id of the parent provenance.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "index": {
+          "description": "The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)",
           "format": "int32",
           "type": "integer"
         },
@@ -2456,6 +2466,11 @@
           "$ref": "GoogleCloudDocumentaiV1beta2BoundingPoly",
           "description": "Optional. Identifies the bounding polygon of a layout element on the page."
         },
+        "confidence": {
+          "description": "Optional. Confidence of detected page element, if applicable. Range [0, 1].",
+          "format": "float",
+          "type": "number"
+        },
         "layoutId": {
           "description": "Optional. Deprecated. Use PageRef.bounding_poly instead.",
           "type": "string"
@@ -2916,6 +2931,11 @@
       "properties": {
         "id": {
           "description": "The id of the parent provenance.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "index": {
+          "description": "The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)",
           "format": "int32",
           "type": "integer"
         },
@@ -3788,6 +3808,11 @@
           "$ref": "GoogleCloudDocumentaiV1beta3BoundingPoly",
           "description": "Optional. Identifies the bounding polygon of a layout element on the page."
         },
+        "confidence": {
+          "description": "Optional. Confidence of detected page element, if applicable. Range [0, 1].",
+          "format": "float",
+          "type": "number"
+        },
         "layoutId": {
           "description": "Optional. Deprecated. Use PageRef.bounding_poly instead.",
           "type": "string"
@@ -4248,6 +4273,11 @@
       "properties": {
         "id": {
           "description": "The id of the parent provenance.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "index": {
+          "description": "The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)",
           "format": "int32",
           "type": "integer"
         },
