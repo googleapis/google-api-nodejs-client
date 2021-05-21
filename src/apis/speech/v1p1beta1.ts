@@ -1142,8 +1142,7 @@ export namespace speech_v1p1beta1 {
      *   // Do the magic
      *   const res = await speech.projects.locations.customClasses.delete({
      *     // Required. The name of the custom class to delete. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses/{custom_class\}
-     *     name:
-     *       'projects/my-project/locations/my-location/customClasses/my-customClasse',
+     *     name: 'projects/my-project/locations/my-location/customClasses/my-customClasse',
      *   });
      *   console.log(res.data);
      *
@@ -1267,8 +1266,7 @@ export namespace speech_v1p1beta1 {
      *   // Do the magic
      *   const res = await speech.projects.locations.customClasses.get({
      *     // Required. The name of the custom class to retrieve. Format: {api_version\}/projects/{project\}/locations/{location\}/customClasses/{custom_class\}
-     *     name:
-     *       'projects/my-project/locations/my-location/customClasses/my-customClasse',
+     *     name: 'projects/my-project/locations/my-location/customClasses/my-customClasse',
      *   });
      *   console.log(res.data);
      *
@@ -1537,8 +1535,7 @@ export namespace speech_v1p1beta1 {
      *   // Do the magic
      *   const res = await speech.projects.locations.customClasses.patch({
      *     // The resource name of the custom class.
-     *     name:
-     *       'projects/my-project/locations/my-location/customClasses/my-customClasse',
+     *     name: 'projects/my-project/locations/my-location/customClasses/my-customClasse',
      *     // The list of fields to be updated.
      *     updateMask: 'placeholder-value',
      *
