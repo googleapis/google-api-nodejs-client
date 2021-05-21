@@ -2052,7 +2052,8 @@ export namespace apigateway_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Apis$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Apis$Testiampermissions;
         options = {};
       }
 
@@ -2387,8 +2388,7 @@ export namespace apigateway_v1beta {
      *   // Do the magic
      *   const res = await apigateway.projects.locations.apis.configs.delete({
      *     // Required. Resource name of the form: `projects/x/locations/global/apis/x/configs/x`
-     *     name:
-     *       'projects/my-project/locations/my-location/apis/my-api/configs/my-config',
+     *     name: 'projects/my-project/locations/my-location/apis/my-api/configs/my-config',
      *   });
      *   console.log(res.data);
      *
@@ -2521,8 +2521,7 @@ export namespace apigateway_v1beta {
      *   // Do the magic
      *   const res = await apigateway.projects.locations.apis.configs.get({
      *     // Required. Resource name of the form: `projects/x/locations/global/apis/x/configs/x`
-     *     name:
-     *       'projects/my-project/locations/my-location/apis/my-api/configs/my-config',
+     *     name: 'projects/my-project/locations/my-location/apis/my-api/configs/my-config',
      *     // Specifies which fields of the API Config are returned in the response. Defaults to `BASIC` view.
      *     view: 'placeholder-value',
      *   });
@@ -2735,7 +2734,8 @@ export namespace apigateway_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Apis$Configs$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Apis$Configs$Getiampolicy;
         options = {};
       }
 
@@ -2947,8 +2947,7 @@ export namespace apigateway_v1beta {
      *   // Do the magic
      *   const res = await apigateway.projects.locations.apis.configs.patch({
      *     // Output only. Resource name of the API Config. Format: projects/{project\}/locations/global/apis/{api\}/configs/{api_config\}
-     *     name:
-     *       'projects/my-project/locations/my-location/apis/my-api/configs/my-config',
+     *     name: 'projects/my-project/locations/my-location/apis/my-api/configs/my-config',
      *     // Field mask is used to specify the fields to be overwritten in the ApiConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
      *
@@ -3180,7 +3179,8 @@ export namespace apigateway_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Apis$Configs$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Apis$Configs$Setiampolicy;
         options = {};
       }
 
@@ -3242,8 +3242,8 @@ export namespace apigateway_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await apigateway.projects.locations.apis.configs.testIamPermissions(
-     *     {
+     *   const res =
+     *     await apigateway.projects.locations.apis.configs.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/apis/my-api/configs/my-config',
@@ -3255,8 +3255,7 @@ export namespace apigateway_v1beta {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3327,7 +3326,8 @@ export namespace apigateway_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Apis$Configs$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Apis$Configs$Testiampermissions;
         options = {};
       }
 
@@ -4584,7 +4584,8 @@ export namespace apigateway_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gateways$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Gateways$Testiampermissions;
         options = {};
       }
 
