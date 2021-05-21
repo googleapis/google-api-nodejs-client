@@ -301,19 +301,17 @@ export namespace workflowexecutions_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await workflowexecutions.projects.locations.workflows.executions.cancel(
-     *     {
+     *   const res =
+     *     await workflowexecutions.projects.locations.workflows.executions.cancel({
      *       // Required. Name of the execution to be cancelled. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
-     *       name:
-     *         'projects/my-project/locations/my-location/workflows/my-workflow/executions/my-execution',
+     *       name: 'projects/my-project/locations/my-location/workflows/my-workflow/executions/my-execution',
      *
      *       // Request body metadata
      *       requestBody: {
      *         // request body parameters
      *         // {}
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -384,7 +382,8 @@ export namespace workflowexecutions_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workflows$Executions$Cancel;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflows$Executions$Cancel;
         options = {};
       }
 
@@ -447,8 +446,8 @@ export namespace workflowexecutions_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await workflowexecutions.projects.locations.workflows.executions.create(
-     *     {
+     *   const res =
+     *     await workflowexecutions.projects.locations.workflows.executions.create({
      *       // Required. Name of the workflow for which an execution should be created. Format: projects/{project\}/locations/{location\}/workflows/{workflow\} The latest revision of the workflow will be used.
      *       parent: 'projects/my-project/locations/my-location/workflows/my-workflow',
      *
@@ -466,8 +465,7 @@ export namespace workflowexecutions_v1beta {
      *         //   "workflowRevisionId": "my_workflowRevisionId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -538,7 +536,8 @@ export namespace workflowexecutions_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workflows$Executions$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflows$Executions$Create;
         options = {};
       }
 
@@ -601,15 +600,13 @@ export namespace workflowexecutions_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await workflowexecutions.projects.locations.workflows.executions.get(
-     *     {
+     *   const res =
+     *     await workflowexecutions.projects.locations.workflows.executions.get({
      *       // Required. Name of the execution to be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
-     *       name:
-     *         'projects/my-project/locations/my-location/workflows/my-workflow/executions/my-execution',
+     *       name: 'projects/my-project/locations/my-location/workflows/my-workflow/executions/my-execution',
      *       // Optional. A view defining which fields should be filled in the returned execution. The API will default to the FULL view.
      *       view: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -680,7 +677,8 @@ export namespace workflowexecutions_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workflows$Executions$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflows$Executions$Get;
         options = {};
       }
 
@@ -740,8 +738,8 @@ export namespace workflowexecutions_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await workflowexecutions.projects.locations.workflows.executions.list(
-     *     {
+     *   const res =
+     *     await workflowexecutions.projects.locations.workflows.executions.list({
      *       // Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 10000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it.
      *       pageSize: 'placeholder-value',
      *       // A page token, received from a previous `ListExecutions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExecutions` must match the call that provided the page token.
@@ -750,8 +748,7 @@ export namespace workflowexecutions_v1beta {
      *       parent: 'projects/my-project/locations/my-location/workflows/my-workflow',
      *       // Optional. A view defining which fields should be filled in the returned executions. The API will default to the BASIC view.
      *       view: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -821,7 +818,8 @@ export namespace workflowexecutions_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workflows$Executions$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflows$Executions$List;
         options = {};
       }
 
