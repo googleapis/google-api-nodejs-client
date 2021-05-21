@@ -3579,8 +3579,8 @@ export namespace osconfig_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await osconfig.projects.zones.instances.lookupEffectiveGuestPolicy(
-     *     {
+     *   const res =
+     *     await osconfig.projects.zones.instances.lookupEffectiveGuestPolicy({
      *       // Required. The VM instance whose policies are being looked up.
      *       instance: 'projects/my-project/zones/my-zone/instances/my-instance',
      *
@@ -3593,8 +3593,7 @@ export namespace osconfig_v1beta {
      *         //   "osVersion": "my_osVersion"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3667,7 +3666,8 @@ export namespace osconfig_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Zones$Instances$Lookupeffectiveguestpolicy;
+        params =
+          {} as Params$Resource$Projects$Zones$Instances$Lookupeffectiveguestpolicy;
         options = {};
       }
 
