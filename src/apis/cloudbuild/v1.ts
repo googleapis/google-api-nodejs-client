@@ -278,6 +278,10 @@ export namespace cloudbuild_v1 {
      * Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source. If the build does not specify source or images, these keys will not be included.
      */
     timing?: {[key: string]: Schema$TimeSpan} | null;
+    /**
+     * Output only. Non-fatal problems encountered during the execution of the build.
+     */
+    warnings?: Schema$Warning[];
   }
   /**
    * Metadata for build operations.
@@ -1070,6 +1074,19 @@ export namespace cloudbuild_v1 {
      */
     path?: string | null;
   }
+  /**
+   * A non-fatal problem encountered during the execution of the build.
+   */
+  export interface Schema$Warning {
+    /**
+     * The priority for this warning.
+     */
+    priority?: string | null;
+    /**
+     * Explanation of the warning generated.
+     */
+    text?: string | null;
+  }
 
   export class Resource$Operations {
     context: APIRequestContext;
@@ -1446,7 +1463,8 @@ export namespace cloudbuild_v1 {
      *   //   "substitutions": {},
      *   //   "tags": [],
      *   //   "timeout": "my_timeout",
-     *   //   "timing": {}
+     *   //   "timing": {},
+     *   //   "warnings": []
      *   // }
      * }
      *
@@ -1601,7 +1619,8 @@ export namespace cloudbuild_v1 {
      *       //   "substitutions": {},
      *       //   "tags": [],
      *       //   "timeout": "my_timeout",
-     *       //   "timing": {}
+     *       //   "timing": {},
+     *       //   "warnings": []
      *       // }
      *     },
      *   });
@@ -1771,7 +1790,8 @@ export namespace cloudbuild_v1 {
      *   //   "substitutions": {},
      *   //   "tags": [],
      *   //   "timeout": "my_timeout",
-     *   //   "timing": {}
+     *   //   "timing": {},
+     *   //   "warnings": []
      *   // }
      * }
      *
@@ -2327,7 +2347,8 @@ export namespace cloudbuild_v1 {
      *   //   "substitutions": {},
      *   //   "tags": [],
      *   //   "timeout": "my_timeout",
-     *   //   "timing": {}
+     *   //   "timing": {},
+     *   //   "warnings": []
      *   // }
      * }
      *
@@ -2480,7 +2501,8 @@ export namespace cloudbuild_v1 {
      *       //   "substitutions": {},
      *       //   "tags": [],
      *       //   "timeout": "my_timeout",
-     *       //   "timing": {}
+     *       //   "timing": {},
+     *       //   "warnings": []
      *       // }
      *     },
      *   });
@@ -2650,7 +2672,8 @@ export namespace cloudbuild_v1 {
      *   //   "substitutions": {},
      *   //   "tags": [],
      *   //   "timeout": "my_timeout",
-     *   //   "timing": {}
+     *   //   "timing": {},
+     *   //   "warnings": []
      *   // }
      * }
      *
