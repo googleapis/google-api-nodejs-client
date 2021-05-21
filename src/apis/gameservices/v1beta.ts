@@ -407,6 +407,10 @@ export namespace gameservices_v1beta {
      */
     allocationPriority?: string | null;
     /**
+     * Output only. The state of the Kubernetes cluster, this will be available if 'view' is set to `FULL` in the relevant List/Get/Preview request.
+     */
+    clusterState?: Schema$KubernetesClusterState;
+    /**
      * The game server cluster connection information. This information is used to manage game server clusters.
      */
     connectionInfo?: Schema$GameServerClusterConnectionInfo;
@@ -573,6 +577,35 @@ export namespace gameservices_v1beta {
      * The full or partial name of a GKE Hub membership, using one of the following forms: * `https://gkehub.googleapis.com/v1beta1/projects/{project_id\}/locations/global/memberships/{membership_id\}` * `projects/{project_id\}/locations/global/memberships/{membership_id\}` * `{membership_id\}` If project is not specified, the project of the GameServerCluster resource is used to generate the full name of the GKE Hub membership.
      */
     membership?: string | null;
+  }
+  /**
+   * The state of the Kubernetes cluster.
+   */
+  export interface Schema$KubernetesClusterState {
+    /**
+     * Output only. The version of Agones currently installed in the registered Kubernetes cluster.
+     */
+    agonesVersionInstalled?: string | null;
+    /**
+     * Output only. The version of Agones that is targeted to be installed in the cluster.
+     */
+    agonesVersionTargeted?: string | null;
+    /**
+     * Output only. The state for the installed versions of Agones/Kubernetes.
+     */
+    installationState?: string | null;
+    /**
+     * Output only. The version of Kubernetes that is currently used in the registered Kubernetes cluster (as detected by the Cloud Game Servers service).
+     */
+    kubernetesVersionInstalled?: string | null;
+    /**
+     * Output only. The cloud provider type reported by the first node's providerID in the list of nodes on the Kubernetes endpoint. On Kubernetes platforms that support zero-node clusters (like GKE-on-GCP), the provider type will be empty.
+     */
+    provider?: string | null;
+    /**
+     * Output only. The detailed error message for the installed versions of Agones/Kubernetes.
+     */
+    versionInstalledErrorMessage?: string | null;
   }
   /**
    * The label selector, used to group labels on the resources.
@@ -829,6 +862,10 @@ export namespace gameservices_v1beta {
    * Response message for GameServerClustersService.PreviewCreateGameServerCluster.
    */
   export interface Schema$PreviewCreateGameServerClusterResponse {
+    /**
+     * Output only. The state of the Kubernetes cluster in preview, this will be available if 'view' is set to `FULL` in the relevant List/Get/Preview request.
+     */
+    clusterState?: Schema$KubernetesClusterState;
     /**
      * The ETag of the game server cluster.
      */
@@ -1154,9 +1191,8 @@ export namespace gameservices_v1beta {
     realms: Resource$Projects$Locations$Realms;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.gameServerDeployments = new Resource$Projects$Locations$Gameserverdeployments(
-        this.context
-      );
+      this.gameServerDeployments =
+        new Resource$Projects$Locations$Gameserverdeployments(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -1473,9 +1509,10 @@ export namespace gameservices_v1beta {
     configs: Resource$Projects$Locations$Gameserverdeployments$Configs;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.configs = new Resource$Projects$Locations$Gameserverdeployments$Configs(
-        this.context
-      );
+      this.configs =
+        new Resource$Projects$Locations$Gameserverdeployments$Configs(
+          this.context
+        );
     }
 
     /**
@@ -1504,8 +1541,8 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.gameServerDeployments.create(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.gameServerDeployments.create({
      *       // Required. The ID of the game server delpoyment resource to be created.
      *       deploymentId: 'placeholder-value',
      *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
@@ -1523,8 +1560,7 @@ export namespace gameservices_v1beta {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1592,7 +1628,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$Create;
         options = {};
       }
 
@@ -1654,13 +1691,11 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.gameServerDeployments.delete(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.gameServerDeployments.delete({
      *       // Required. The name of the game server delpoyment to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
-     *       name:
-     *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1728,7 +1763,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$Delete;
         options = {};
       }
 
@@ -1787,19 +1823,19 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.gameServerDeployments.fetchDeploymentState(
-     *     {
-     *       // Required. The name of the game server delpoyment, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
-     *       name:
-     *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
+     *   const res =
+     *     await gameservices.projects.locations.gameServerDeployments.fetchDeploymentState(
+     *       {
+     *         // Required. The name of the game server delpoyment, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
+     *         name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -1871,7 +1907,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$Fetchdeploymentstate;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$Fetchdeploymentstate;
         options = {};
       }
 
@@ -1937,8 +1974,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.get({
      *     // Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
-     *     name:
-     *       'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
+     *     name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *   });
      *   console.log(res.data);
      *
@@ -2013,7 +2049,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$Get;
         options = {};
       }
 
@@ -2072,15 +2109,14 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.gameServerDeployments.getIamPolicy(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.gameServerDeployments.getIamPolicy({
      *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2149,7 +2185,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$Getiampolicy;
         options = {};
       }
 
@@ -2211,13 +2248,11 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.gameServerDeployments.getRollout(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.gameServerDeployments.getRollout({
      *       // Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`.
-     *       name:
-     *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2293,7 +2328,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$Getrollout;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$Getrollout;
         options = {};
       }
 
@@ -2439,7 +2475,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$List;
         options = {};
       }
 
@@ -2506,8 +2543,7 @@ export namespace gameservices_v1beta {
      *   const res = await gameservices.projects.locations.gameServerDeployments.patch(
      *     {
      *       // The resource name of the game server deployment, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
-     *       name:
-     *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
+     *       name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
@@ -2592,7 +2628,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$Patch;
         options = {};
       }
 
@@ -2651,11 +2688,10 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.gameServerDeployments.previewRollout(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.gameServerDeployments.previewRollout({
      *       // The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
-     *       name:
-     *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
+     *       name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *       // Optional. The target timestamp to compute the preview. Defaults to the immediately after the proposed rollout completes.
      *       previewTime: 'placeholder-value',
      *       // Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
@@ -2673,8 +2709,7 @@ export namespace gameservices_v1beta {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2747,7 +2782,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout;
         options = {};
       }
 
@@ -2811,8 +2847,8 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.gameServerDeployments.setIamPolicy(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.gameServerDeployments.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
@@ -2825,8 +2861,7 @@ export namespace gameservices_v1beta {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2895,7 +2930,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$Setiampolicy;
         options = {};
       }
 
@@ -2957,21 +2993,22 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.gameServerDeployments.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
+     *   const res =
+     *     await gameservices.projects.locations.gameServerDeployments.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3042,7 +3079,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$Testiampermissions;
         options = {};
       }
 
@@ -3104,11 +3142,10 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.gameServerDeployments.updateRollout(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.gameServerDeployments.updateRollout({
      *       // The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
-     *       name:
-     *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
+     *       name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
@@ -3124,8 +3161,7 @@ export namespace gameservices_v1beta {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3193,7 +3229,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$Updaterollout;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$Updaterollout;
         options = {};
       }
 
@@ -3422,8 +3459,8 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.gameServerDeployments.configs.create(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.gameServerDeployments.configs.create({
      *       // Required. The ID of the game server config resource to be created.
      *       configId: 'placeholder-value',
      *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/`.
@@ -3443,8 +3480,7 @@ export namespace gameservices_v1beta {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3512,7 +3548,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Create;
         options = {};
       }
 
@@ -3574,13 +3611,11 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.gameServerDeployments.configs.delete(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.gameServerDeployments.configs.delete({
      *       // Required. The name of the game server config to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/{config\}`.
-     *       name:
-     *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment/configs/my-config',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment/configs/my-config',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3648,7 +3683,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Delete;
         options = {};
       }
 
@@ -3707,13 +3743,11 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.gameServerDeployments.configs.get(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.gameServerDeployments.configs.get({
      *       // Required. The name of the game server config to retrieve, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/{config\}`.
-     *       name:
-     *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment/configs/my-config',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment/configs/my-config',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3783,7 +3817,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Get;
         options = {};
       }
 
@@ -3842,8 +3877,8 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.gameServerDeployments.configs.list(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.gameServerDeployments.configs.list({
      *       // Optional. The filter to apply to list results.
      *       filter: 'placeholder-value',
      *       // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
@@ -3855,8 +3890,7 @@ export namespace gameservices_v1beta {
      *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/x`.
      *       parent:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3929,7 +3963,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Gameserverdeployments$Configs$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Gameserverdeployments$Configs$List;
         options = {};
       }
 
@@ -4608,9 +4643,8 @@ export namespace gameservices_v1beta {
     gameServerClusters: Resource$Projects$Locations$Realms$Gameserverclusters;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.gameServerClusters = new Resource$Projects$Locations$Realms$Gameserverclusters(
-        this.context
-      );
+      this.gameServerClusters =
+        new Resource$Projects$Locations$Realms$Gameserverclusters(this.context);
     }
 
     /**
@@ -5590,8 +5624,8 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.realms.gameServerClusters.create(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.realms.gameServerClusters.create({
      *       // Required. The ID of the game server cluster resource to be created.
      *       gameServerClusterId: 'placeholder-value',
      *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/realms/{realm-id\}`.
@@ -5602,6 +5636,7 @@ export namespace gameservices_v1beta {
      *         // request body parameters
      *         // {
      *         //   "allocationPriority": "my_allocationPriority",
+     *         //   "clusterState": {},
      *         //   "connectionInfo": {},
      *         //   "createTime": "my_createTime",
      *         //   "description": "my_description",
@@ -5611,8 +5646,7 @@ export namespace gameservices_v1beta {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5680,7 +5714,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Create;
         options = {};
       }
 
@@ -5742,13 +5777,11 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.realms.gameServerClusters.delete(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.realms.gameServerClusters.delete({
      *       // Required. The name of the game server cluster to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerClusters/{cluster\}`.
-     *       name:
-     *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5816,7 +5849,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Delete;
         options = {};
       }
 
@@ -5875,18 +5909,19 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.realms.gameServerClusters.get(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.realms.gameServerClusters.get({
      *       // Required. The name of the game server cluster to retrieve, in the following form: `projects/{project\}/locations/{location\}/realms/{realm-id\}/gameServerClusters/{cluster\}`.
-     *       name:
-     *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
+     *       // Optional. View for the returned GameServerCluster objects. When `FULL` is specified, the `cluster_state` field is also returned in the GameServerCluster object, which includes the state of the referenced Kubernetes cluster such as versions and provider info. The default/unset value is GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED, same as BASIC, which does not return the `cluster_state` field.
+     *       view: 'placeholder-value',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
      *   //   "allocationPriority": "my_allocationPriority",
+     *   //   "clusterState": {},
      *   //   "connectionInfo": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
@@ -5955,7 +5990,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Get;
         options = {};
       }
 
@@ -6014,8 +6050,8 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.realms.gameServerClusters.list(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.realms.gameServerClusters.list({
      *       // Optional. The filter to apply to list results.
      *       filter: 'placeholder-value',
      *       // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
@@ -6026,8 +6062,9 @@ export namespace gameservices_v1beta {
      *       pageToken: 'placeholder-value',
      *       // Required. The parent resource name, in the following form: "projects/{project\}/locations/{location\}/realms/{realm\}".
      *       parent: 'projects/my-project/locations/my-location/realms/my-realm',
-     *     }
-     *   );
+     *       // Optional. View for the returned GameServerCluster objects. When `FULL` is specified, the `cluster_state` field is also returned in the GameServerCluster object, which includes the state of the referenced Kubernetes cluster such as versions and provider info. The default/unset value is GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED, same as BASIC, which does not return the `cluster_state` field.
+     *       view: 'placeholder-value',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6100,7 +6137,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$List;
         options = {};
       }
 
@@ -6164,11 +6202,10 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.realms.gameServerClusters.patch(
-     *     {
+     *   const res =
+     *     await gameservices.projects.locations.realms.gameServerClusters.patch({
      *       // Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`. For example, `projects/my-project/locations/{location\}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
-     *       name:
-     *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
+     *       name: 'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
@@ -6177,6 +6214,7 @@ export namespace gameservices_v1beta {
      *         // request body parameters
      *         // {
      *         //   "allocationPriority": "my_allocationPriority",
+     *         //   "clusterState": {},
      *         //   "connectionInfo": {},
      *         //   "createTime": "my_createTime",
      *         //   "description": "my_description",
@@ -6186,8 +6224,7 @@ export namespace gameservices_v1beta {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6255,7 +6292,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Patch;
         options = {};
       }
 
@@ -6314,35 +6352,40 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.realms.gameServerClusters.previewCreate(
-     *     {
-     *       // Required. The ID of the game server cluster resource to be created.
-     *       gameServerClusterId: 'placeholder-value',
-     *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`.
-     *       parent: 'projects/my-project/locations/my-location/realms/my-realm',
-     *       // Optional. The target timestamp to compute the preview.
-     *       previewTime: 'placeholder-value',
+     *   const res =
+     *     await gameservices.projects.locations.realms.gameServerClusters.previewCreate(
+     *       {
+     *         // Required. The ID of the game server cluster resource to be created.
+     *         gameServerClusterId: 'placeholder-value',
+     *         // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`.
+     *         parent: 'projects/my-project/locations/my-location/realms/my-realm',
+     *         // Optional. The target timestamp to compute the preview.
+     *         previewTime: 'placeholder-value',
+     *         // Optional. This field is deprecated, preview will always return KubernetesClusterState.
+     *         view: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "allocationPriority": "my_allocationPriority",
-     *         //   "connectionInfo": {},
-     *         //   "createTime": "my_createTime",
-     *         //   "description": "my_description",
-     *         //   "etag": "my_etag",
-     *         //   "labels": {},
-     *         //   "name": "my_name",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "allocationPriority": "my_allocationPriority",
+     *           //   "clusterState": {},
+     *           //   "connectionInfo": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "description": "my_description",
+     *           //   "etag": "my_etag",
+     *           //   "labels": {},
+     *           //   "name": "my_name",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
+     *   //   "clusterState": {},
      *   //   "etag": "my_etag",
      *   //   "targetState": {}
      *   // }
@@ -6410,7 +6453,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewcreate;
+        params =
+          {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewcreate;
         options = {};
       }
 
@@ -6473,15 +6517,15 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.realms.gameServerClusters.previewDelete(
-     *     {
-     *       // Required. The name of the game server cluster to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerClusters/{cluster\}`.
-     *       name:
-     *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
-     *       // Optional. The target timestamp to compute the preview.
-     *       previewTime: 'placeholder-value',
-     *     }
-     *   );
+     *   const res =
+     *     await gameservices.projects.locations.realms.gameServerClusters.previewDelete(
+     *       {
+     *         // Required. The name of the game server cluster to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerClusters/{cluster\}`.
+     *         name: 'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
+     *         // Optional. The target timestamp to compute the preview.
+     *         previewTime: 'placeholder-value',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6553,7 +6597,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewdelete;
+        params =
+          {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewdelete;
         options = {};
       }
 
@@ -6617,32 +6662,33 @@ export namespace gameservices_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gameservices.projects.locations.realms.gameServerClusters.previewUpdate(
-     *     {
-     *       // Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`. For example, `projects/my-project/locations/{location\}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
-     *       name:
-     *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
-     *       // Optional. The target timestamp to compute the preview.
-     *       previewTime: 'placeholder-value',
-     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     *       updateMask: 'placeholder-value',
+     *   const res =
+     *     await gameservices.projects.locations.realms.gameServerClusters.previewUpdate(
+     *       {
+     *         // Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`. For example, `projects/my-project/locations/{location\}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     *         name: 'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
+     *         // Optional. The target timestamp to compute the preview.
+     *         previewTime: 'placeholder-value',
+     *         // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
+     *         updateMask: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "allocationPriority": "my_allocationPriority",
-     *         //   "connectionInfo": {},
-     *         //   "createTime": "my_createTime",
-     *         //   "description": "my_description",
-     *         //   "etag": "my_etag",
-     *         //   "labels": {},
-     *         //   "name": "my_name",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "allocationPriority": "my_allocationPriority",
+     *           //   "clusterState": {},
+     *           //   "connectionInfo": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "description": "my_description",
+     *           //   "etag": "my_etag",
+     *           //   "labels": {},
+     *           //   "name": "my_name",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6714,7 +6760,8 @@ export namespace gameservices_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewupdate;
+        params =
+          {} as Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewupdate;
         options = {};
       }
 
@@ -6782,6 +6829,10 @@ export namespace gameservices_v1beta {
      * Required. The name of the game server cluster to retrieve, in the following form: `projects/{project\}/locations/{location\}/realms/{realm-id\}/gameServerClusters/{cluster\}`.
      */
     name?: string;
+    /**
+     * Optional. View for the returned GameServerCluster objects. When `FULL` is specified, the `cluster_state` field is also returned in the GameServerCluster object, which includes the state of the referenced Kubernetes cluster such as versions and provider info. The default/unset value is GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED, same as BASIC, which does not return the `cluster_state` field.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$List
     extends StandardParameters {
@@ -6805,6 +6856,10 @@ export namespace gameservices_v1beta {
      * Required. The parent resource name, in the following form: "projects/{project\}/locations/{location\}/realms/{realm\}".
      */
     parent?: string;
+    /**
+     * Optional. View for the returned GameServerCluster objects. When `FULL` is specified, the `cluster_state` field is also returned in the GameServerCluster object, which includes the state of the referenced Kubernetes cluster such as versions and provider info. The default/unset value is GAME_SERVER_CLUSTER_VIEW_UNSPECIFIED, same as BASIC, which does not return the `cluster_state` field.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Patch
     extends StandardParameters {
@@ -6836,6 +6891,10 @@ export namespace gameservices_v1beta {
      * Optional. The target timestamp to compute the preview.
      */
     previewTime?: string;
+    /**
+     * Optional. This field is deprecated, preview will always return KubernetesClusterState.
+     */
+    view?: string;
 
     /**
      * Request body metadata
