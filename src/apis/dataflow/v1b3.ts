@@ -6965,7 +6965,8 @@ export namespace dataflow_v1b3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Jobs$Getexecutiondetails;
+        params =
+          {} as Params$Resource$Projects$Locations$Jobs$Getexecutiondetails;
         options = {};
       }
 
@@ -8072,7 +8073,8 @@ export namespace dataflow_v1b3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture;
+        params =
+          {} as Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture;
         options = {};
       }
 
@@ -8642,7 +8644,8 @@ export namespace dataflow_v1b3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Jobs$Stages$Getexecutiondetails;
+        params =
+          {} as Params$Resource$Projects$Locations$Jobs$Stages$Getexecutiondetails;
         options = {};
       }
 
@@ -9001,7 +9004,8 @@ export namespace dataflow_v1b3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus;
+        params =
+          {} as Params$Resource$Projects$Locations$Jobs$Workitems$Reportstatus;
         options = {};
       }
 
