@@ -1208,7 +1208,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Getiampolicy;
         options = {};
       }
 
@@ -1634,7 +1635,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Setiampolicy;
         options = {};
       }
 
@@ -1697,8 +1699,8 @@ export namespace servicedirectory_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicedirectory.projects.locations.namespaces.testIamPermissions(
-     *     {
+     *   const res =
+     *     await servicedirectory.projects.locations.namespaces.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/namespaces/my-namespace',
@@ -1710,8 +1712,7 @@ export namespace servicedirectory_v1 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1782,7 +1783,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Testiampermissions;
         options = {};
       }
 
@@ -1931,9 +1933,10 @@ export namespace servicedirectory_v1 {
     endpoints: Resource$Projects$Locations$Namespaces$Services$Endpoints;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.endpoints = new Resource$Projects$Locations$Namespaces$Services$Endpoints(
-        this.context
-      );
+      this.endpoints =
+        new Resource$Projects$Locations$Namespaces$Services$Endpoints(
+          this.context
+        );
     }
 
     /**
@@ -1962,8 +1965,8 @@ export namespace servicedirectory_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicedirectory.projects.locations.namespaces.services.create(
-     *     {
+     *   const res =
+     *     await servicedirectory.projects.locations.namespaces.services.create({
      *       // Required. The resource name of the namespace this service will belong to.
      *       parent:
      *         'projects/my-project/locations/my-location/namespaces/my-namespace',
@@ -1979,8 +1982,7 @@ export namespace servicedirectory_v1 {
      *         //   "name": "my_name"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2046,7 +2048,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Services$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Services$Create;
         options = {};
       }
 
@@ -2109,13 +2112,11 @@ export namespace servicedirectory_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicedirectory.projects.locations.namespaces.services.delete(
-     *     {
+     *   const res =
+     *     await servicedirectory.projects.locations.namespaces.services.delete({
      *       // Required. The name of the service to delete.
-     *       name:
-     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2177,7 +2178,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Services$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Services$Delete;
         options = {};
       }
 
@@ -2240,8 +2242,7 @@ export namespace servicedirectory_v1 {
      *   const res = await servicedirectory.projects.locations.namespaces.services.get(
      *     {
      *       // Required. The name of the service to get.
-     *       name:
-     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *       name: 'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
      *     }
      *   );
      *   console.log(res.data);
@@ -2309,7 +2310,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Services$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Services$Get;
         options = {};
       }
 
@@ -2369,8 +2371,8 @@ export namespace servicedirectory_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicedirectory.projects.locations.namespaces.services.getIamPolicy(
-     *     {
+     *   const res =
+     *     await servicedirectory.projects.locations.namespaces.services.getIamPolicy({
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
@@ -2382,8 +2384,7 @@ export namespace servicedirectory_v1 {
      *         //   "options": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2449,7 +2450,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Services$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Services$Getiampolicy;
         options = {};
       }
 
@@ -2512,8 +2514,8 @@ export namespace servicedirectory_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicedirectory.projects.locations.namespaces.services.list(
-     *     {
+     *   const res =
+     *     await servicedirectory.projects.locations.namespaces.services.list({
      *       // Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name` or `annotations.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `annotations.owner` returns services that have a annotation with the key `owner`, this is the same as `annotations:owner` * `annotations.protocol=gRPC` returns services that have key/value `protocol=gRPC` * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/service-c` returns services that have name that is alphabetically later than the string, so "service-e" is returned but "service-a" is not * `annotations.owner!=sd AND annotations.foo=bar` returns services that have `owner` in annotation key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that service doesn't have a field called "doesnotexist". Since the filter does not match any services, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
      *       filter: 'placeholder-value',
      *       // Optional. The order to list results by. General `order_by` string syntax: ` () (,)` * `` allows value: `name` * `` ascending or descending order by ``. If this is left blank, `asc` is used Note that an empty `order_by` string results in default order, which is order by `name` in ascending order.
@@ -2525,8 +2527,7 @@ export namespace servicedirectory_v1 {
      *       // Required. The resource name of the namespace whose services you'd like to list.
      *       parent:
      *         'projects/my-project/locations/my-location/namespaces/my-namespace',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2596,7 +2597,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Services$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Services$List;
         options = {};
       }
 
@@ -2659,11 +2661,10 @@ export namespace servicedirectory_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicedirectory.projects.locations.namespaces.services.patch(
-     *     {
+     *   const res =
+     *     await servicedirectory.projects.locations.namespaces.services.patch({
      *       // Immutable. The resource name for the service in the format `projects/x/locations/x/namespaces/x/services/x`.
-     *       name:
-     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *       name: 'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
      *       // Required. List of fields to be updated in this request.
      *       updateMask: 'placeholder-value',
      *
@@ -2676,8 +2677,7 @@ export namespace servicedirectory_v1 {
      *         //   "name": "my_name"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2743,7 +2743,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Services$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Services$Patch;
         options = {};
       }
 
@@ -2803,11 +2804,10 @@ export namespace servicedirectory_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicedirectory.projects.locations.namespaces.services.resolve(
-     *     {
+     *   const res =
+     *     await servicedirectory.projects.locations.namespaces.services.resolve({
      *       // Required. The name of the service to resolve.
-     *       name:
-     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *       name: 'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -2817,8 +2817,7 @@ export namespace servicedirectory_v1 {
      *         //   "maxEndpoints": 0
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2889,7 +2888,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Services$Resolve;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Services$Resolve;
         options = {};
       }
 
@@ -2952,8 +2952,8 @@ export namespace servicedirectory_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicedirectory.projects.locations.namespaces.services.setIamPolicy(
-     *     {
+     *   const res =
+     *     await servicedirectory.projects.locations.namespaces.services.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
@@ -2965,8 +2965,7 @@ export namespace servicedirectory_v1 {
      *         //   "policy": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3032,7 +3031,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Services$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Services$Setiampolicy;
         options = {};
       }
 
@@ -3095,21 +3095,22 @@ export namespace servicedirectory_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicedirectory.projects.locations.namespaces.services.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *   const res =
+     *     await servicedirectory.projects.locations.namespaces.services.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3180,7 +3181,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Services$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Services$Testiampermissions;
         options = {};
       }
 
@@ -3368,26 +3370,27 @@ export namespace servicedirectory_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.create(
-     *     {
-     *       // Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61\}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-     *       endpointId: 'placeholder-value',
-     *       // Required. The resource name of the service that this endpoint provides.
-     *       parent:
-     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *   const res =
+     *     await servicedirectory.projects.locations.namespaces.services.endpoints.create(
+     *       {
+     *         // Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61\}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *         endpointId: 'placeholder-value',
+     *         // Required. The resource name of the service that this endpoint provides.
+     *         parent:
+     *           'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "address": "my_address",
-     *         //   "annotations": {},
-     *         //   "name": "my_name",
-     *         //   "port": 0
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "address": "my_address",
+     *           //   "annotations": {},
+     *           //   "name": "my_name",
+     *           //   "port": 0
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3454,7 +3457,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Create;
         options = {};
       }
 
@@ -3517,13 +3521,13 @@ export namespace servicedirectory_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.delete(
-     *     {
-     *       // Required. The name of the endpoint to delete.
-     *       name:
-     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service/endpoints/my-endpoint',
-     *     }
-     *   );
+     *   const res =
+     *     await servicedirectory.projects.locations.namespaces.services.endpoints.delete(
+     *       {
+     *         // Required. The name of the endpoint to delete.
+     *         name: 'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service/endpoints/my-endpoint',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3585,7 +3589,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Delete;
         options = {};
       }
 
@@ -3645,13 +3650,13 @@ export namespace servicedirectory_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.get(
-     *     {
-     *       // Required. The name of the endpoint to get.
-     *       name:
-     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service/endpoints/my-endpoint',
-     *     }
-     *   );
+     *   const res =
+     *     await servicedirectory.projects.locations.namespaces.services.endpoints.get(
+     *       {
+     *         // Required. The name of the endpoint to get.
+     *         name: 'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service/endpoints/my-endpoint',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3718,7 +3723,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Get;
         options = {};
       }
 
@@ -3778,21 +3784,22 @@ export namespace servicedirectory_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.list(
-     *     {
-     *       // Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name`, `address`, `port`, or `annotations.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `annotations.owner` returns endpoints that have a annotation with the key `owner`, this is the same as `annotations:owner` * `annotations.protocol=gRPC` returns endpoints that have key/value `protocol=gRPC` * `address=192.108.1.105` returns endpoints that have this address * `port\>8080` returns endpoints that have port number larger than 8080 * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c` returns endpoints that have name that is alphabetically later than the string, so "endpoint-e" is returned but "endpoint-a" is not * `annotations.owner!=sd AND annotations.foo=bar` returns endpoints that have `owner` in annotation key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that endpoint doesn't have a field called "doesnotexist". Since the filter does not match any endpoints, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
-     *       filter: 'placeholder-value',
-     *       // Optional. The order to list results by. General `order_by` string syntax: ` () (,)` * `` allows values: `name`, `address`, `port` * `` ascending or descending order by ``. If this is left blank, `asc` is used Note that an empty `order_by` string results in default order, which is order by `name` in ascending order.
-     *       orderBy: 'placeholder-value',
-     *       // Optional. The maximum number of items to return.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. The next_page_token value returned from a previous List request, if any.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the service whose endpoints you'd like to list.
-     *       parent:
-     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
-     *     }
-     *   );
+     *   const res =
+     *     await servicedirectory.projects.locations.namespaces.services.endpoints.list(
+     *       {
+     *         // Optional. The filter to list results by. General `filter` string syntax: ` ()` * `` can be `name`, `address`, `port`, or `annotations.` for map field * `` can be `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:`. Of which `:` means `HAS`, and is roughly the same as `=` * `` must be the same data type as field * `` can be `AND`, `OR`, `NOT` Examples of valid filters: * `annotations.owner` returns endpoints that have a annotation with the key `owner`, this is the same as `annotations:owner` * `annotations.protocol=gRPC` returns endpoints that have key/value `protocol=gRPC` * `address=192.108.1.105` returns endpoints that have this address * `port\>8080` returns endpoints that have port number larger than 8080 * `name\>projects/my-project/locations/us-east1/namespaces/my-namespace/services/my-service/endpoints/endpoint-c` returns endpoints that have name that is alphabetically later than the string, so "endpoint-e" is returned but "endpoint-a" is not * `annotations.owner!=sd AND annotations.foo=bar` returns endpoints that have `owner` in annotation key but value is not `sd` AND have key/value `foo=bar` * `doesnotexist.foo=bar` returns an empty list. Note that endpoint doesn't have a field called "doesnotexist". Since the filter does not match any endpoints, it returns no results For more information about filtering, see [API Filtering](https://aip.dev/160).
+     *         filter: 'placeholder-value',
+     *         // Optional. The order to list results by. General `order_by` string syntax: ` () (,)` * `` allows values: `name`, `address`, `port` * `` ascending or descending order by ``. If this is left blank, `asc` is used Note that an empty `order_by` string results in default order, which is order by `name` in ascending order.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. The maximum number of items to return.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. The next_page_token value returned from a previous List request, if any.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The resource name of the service whose endpoints you'd like to list.
+     *         parent:
+     *           'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3862,7 +3869,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$List;
         options = {};
       }
 
@@ -3925,26 +3933,26 @@ export namespace servicedirectory_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.patch(
-     *     {
-     *       // Immutable. The resource name for the endpoint in the format `projects/x/locations/x/namespaces/x/services/x/endpoints/x`.
-     *       name:
-     *         'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service/endpoints/my-endpoint',
-     *       // Required. List of fields to be updated in this request.
-     *       updateMask: 'placeholder-value',
+     *   const res =
+     *     await servicedirectory.projects.locations.namespaces.services.endpoints.patch(
+     *       {
+     *         // Immutable. The resource name for the endpoint in the format `projects/x/locations/x/namespaces/x/services/x/endpoints/x`.
+     *         name: 'projects/my-project/locations/my-location/namespaces/my-namespace/services/my-service/endpoints/my-endpoint',
+     *         // Required. List of fields to be updated in this request.
+     *         updateMask: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "address": "my_address",
-     *         //   "annotations": {},
-     *         //   "name": "my_name",
-     *         //   "port": 0
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "address": "my_address",
+     *           //   "annotations": {},
+     *           //   "name": "my_name",
+     *           //   "port": 0
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4011,7 +4019,8 @@ export namespace servicedirectory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Patch;
         options = {};
       }
 
