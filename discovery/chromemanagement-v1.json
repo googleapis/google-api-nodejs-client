@@ -142,7 +142,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "Token to specify the next page in the list.",
+                  "description": "Token to specify the page of the request to be returned.",
                   "location": "query",
                   "type": "string"
                 }
@@ -193,7 +193,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "Token to specify next page in the list.",
+                  "description": "Token to specify the page of the request to be returned.",
                   "location": "query",
                   "type": "string"
                 }
@@ -270,7 +270,7 @@
                   "type": "integer"
                 },
                 "pageToken": {
-                  "description": "Token to specify the next page in the list.",
+                  "description": "Token to specify the page of the request to be returned.",
                   "location": "query",
                   "type": "string"
                 }
@@ -288,7 +288,7 @@
       }
     }
   },
-  "revision": "20210322",
+  "revision": "20210519",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1BrowserVersion": {
@@ -370,7 +370,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Token to specify the next page in the list.",
+          "description": "Token to specify the next page of the request.",
           "type": "string"
         },
         "totalSize": {
@@ -393,7 +393,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Token to specify next page in the list.",
+          "description": "Token to specify the next page of the request.",
           "type": "string"
         },
         "totalSize": {
@@ -433,7 +433,7 @@
           "type": "array"
         },
         "nextPageToken": {
-          "description": "Token to specify the next page in the list.",
+          "description": "Token to specify the next page of the request.",
           "type": "string"
         },
         "totalSize": {
