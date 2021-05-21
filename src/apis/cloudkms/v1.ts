@@ -1967,7 +1967,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Testiampermissions;
         options = {};
       }
 
@@ -2091,9 +2092,10 @@ export namespace cloudkms_v1 {
     cryptoKeyVersions: Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.cryptoKeyVersions = new Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions(
-        this.context
-      );
+      this.cryptoKeyVersions =
+        new Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions(
+          this.context
+        );
     }
 
     /**
@@ -2218,7 +2220,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Create;
         options = {};
       }
 
@@ -2285,8 +2288,7 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.decrypt({
      *     // Required. The resource name of the CryptoKey to use for decryption. The server will choose the appropriate version.
-     *     name:
-     *       'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *     name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2365,7 +2367,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Decrypt;
         options = {};
       }
 
@@ -2432,8 +2435,7 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.encrypt({
      *     // Required. The resource name of the CryptoKey or CryptoKeyVersion to use for encryption. If a CryptoKey is specified, the server will use its primary version.
-     *     name:
-     *       'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/.*',
+     *     name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/.*',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2514,7 +2516,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Encrypt;
         options = {};
       }
 
@@ -2581,8 +2584,7 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.get({
      *     // Required. The name of the CryptoKey to get.
-     *     name:
-     *       'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *     name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
      *   });
      *   console.log(res.data);
      *
@@ -2654,7 +2656,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Get;
         options = {};
       }
 
@@ -2716,15 +2719,14 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.getIamPolicy(
-     *     {
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.getIamPolicy({
      *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2791,7 +2793,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Getiampolicy;
         options = {};
       }
 
@@ -2940,7 +2943,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$List;
         options = {};
       }
 
@@ -3007,8 +3011,7 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.patch({
      *     // Output only. The resource name for this CryptoKey in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
-     *     name:
-     *       'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *     name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
      *     // Required. List of fields to be updated in this request.
      *     updateMask: 'placeholder-value',
      *
@@ -3097,7 +3100,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Patch;
         options = {};
       }
 
@@ -3159,8 +3163,8 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy(
-     *     {
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
@@ -3173,8 +3177,7 @@ export namespace cloudkms_v1 {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3241,7 +3244,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Setiampolicy;
         options = {};
       }
 
@@ -3306,8 +3310,8 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.testIamPermissions(
-     *     {
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
@@ -3319,8 +3323,7 @@ export namespace cloudkms_v1 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3391,7 +3394,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Testiampermissions;
         options = {};
       }
 
@@ -3456,11 +3460,10 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion(
-     *     {
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion({
      *       // Required. The resource name of the CryptoKey to update.
-     *       name:
-     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *       name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -3469,8 +3472,7 @@ export namespace cloudkms_v1 {
      *         //   "cryptoKeyVersionId": "my_cryptoKeyVersionId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3543,7 +3545,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Updateprimaryversion;
         options = {};
       }
 
@@ -3757,22 +3760,22 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt(
-     *     {
-     *       // Required. The resource name of the CryptoKeyVersion to use for decryption.
-     *       name:
-     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricDecrypt(
+     *       {
+     *         // Required. The resource name of the CryptoKeyVersion to use for decryption.
+     *         name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "ciphertext": "my_ciphertext",
-     *         //   "ciphertextCrc32c": "my_ciphertextCrc32c"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "ciphertext": "my_ciphertext",
+     *           //   "ciphertextCrc32c": "my_ciphertextCrc32c"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3846,7 +3849,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricdecrypt;
         options = {};
       }
 
@@ -3911,22 +3915,22 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign(
-     *     {
-     *       // Required. The resource name of the CryptoKeyVersion to use for signing.
-     *       name:
-     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.asymmetricSign(
+     *       {
+     *         // Required. The resource name of the CryptoKeyVersion to use for signing.
+     *         name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "digest": {},
-     *         //   "digestCrc32c": "my_digestCrc32c"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "digest": {},
+     *           //   "digestCrc32c": "my_digestCrc32c"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4001,7 +4005,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Asymmetricsign;
         options = {};
       }
 
@@ -4066,33 +4071,34 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create(
-     *     {
-     *       // Required. The name of the CryptoKey associated with the CryptoKeyVersions.
-     *       parent:
-     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.create(
+     *       {
+     *         // Required. The name of the CryptoKey associated with the CryptoKeyVersions.
+     *         parent:
+     *           'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "algorithm": "my_algorithm",
-     *         //   "attestation": {},
-     *         //   "createTime": "my_createTime",
-     *         //   "destroyEventTime": "my_destroyEventTime",
-     *         //   "destroyTime": "my_destroyTime",
-     *         //   "externalProtectionLevelOptions": {},
-     *         //   "generateTime": "my_generateTime",
-     *         //   "importFailureReason": "my_importFailureReason",
-     *         //   "importJob": "my_importJob",
-     *         //   "importTime": "my_importTime",
-     *         //   "name": "my_name",
-     *         //   "protectionLevel": "my_protectionLevel",
-     *         //   "state": "my_state"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "algorithm": "my_algorithm",
+     *           //   "attestation": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "destroyEventTime": "my_destroyEventTime",
+     *           //   "destroyTime": "my_destroyTime",
+     *           //   "externalProtectionLevelOptions": {},
+     *           //   "generateTime": "my_generateTime",
+     *           //   "importFailureReason": "my_importFailureReason",
+     *           //   "importJob": "my_importJob",
+     *           //   "importTime": "my_importTime",
+     *           //   "name": "my_name",
+     *           //   "protectionLevel": "my_protectionLevel",
+     *           //   "state": "my_state"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4168,7 +4174,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Create;
         options = {};
       }
 
@@ -4233,19 +4240,19 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy(
-     *     {
-     *       // Required. The resource name of the CryptoKeyVersion to destroy.
-     *       name:
-     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.destroy(
+     *       {
+     *         // Required. The resource name of the CryptoKeyVersion to destroy.
+     *         name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4321,7 +4328,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Destroy;
         options = {};
       }
 
@@ -4386,13 +4394,13 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get(
-     *     {
-     *       // Required. The name of the CryptoKeyVersion to get.
-     *       name:
-     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
-     *     }
-     *   );
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.get(
+     *       {
+     *         // Required. The name of the CryptoKeyVersion to get.
+     *         name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4468,7 +4476,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Get;
         options = {};
       }
 
@@ -4530,13 +4539,13 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey(
-     *     {
-     *       // Required. The name of the CryptoKeyVersion public key to get.
-     *       name:
-     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
-     *     }
-     *   );
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.getPublicKey(
+     *       {
+     *         // Required. The name of the CryptoKeyVersion public key to get.
+     *         name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4604,7 +4613,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Getpublickey;
         options = {};
       }
 
@@ -4669,23 +4679,24 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import(
-     *     {
-     *       // Required. The name of the CryptoKey to be imported into.
-     *       parent:
-     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.import(
+     *       {
+     *         // Required. The name of the CryptoKey to be imported into.
+     *         parent:
+     *           'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "algorithm": "my_algorithm",
-     *         //   "importJob": "my_importJob",
-     *         //   "rsaAesWrappedKey": "my_rsaAesWrappedKey"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "algorithm": "my_algorithm",
+     *           //   "importJob": "my_importJob",
+     *           //   "rsaAesWrappedKey": "my_rsaAesWrappedKey"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4761,7 +4772,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Import;
         options = {};
       }
 
@@ -4826,23 +4838,24 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list(
-     *     {
-     *       // Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
-     *       filter: 'placeholder-value',
-     *       // Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
-     *       orderBy: 'placeholder-value',
-     *       // Optional. Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Optional pagination token, returned earlier via ListCryptoKeyVersionsResponse.next_page_token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the CryptoKey to list, in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
-     *       // The fields to include in the response.
-     *       view: 'placeholder-value',
-     *     }
-     *   );
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.list(
+     *       {
+     *         // Optional. Only include resources that match the filter in the response. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *         filter: 'placeholder-value',
+     *         // Optional. Specify how the results should be sorted. If not specified, the results will be sorted in the default order. For more information, see [Sorting and filtering list results](https://cloud.google.com/kms/docs/sorting-and-filtering).
+     *         orderBy: 'placeholder-value',
+     *         // Optional. Optional limit on the number of CryptoKeyVersions to include in the response. Further CryptoKeyVersions can subsequently be obtained by including the ListCryptoKeyVersionsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. Optional pagination token, returned earlier via ListCryptoKeyVersionsResponse.next_page_token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The resource name of the CryptoKey to list, in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey',
+     *         // The fields to include in the response.
+     *         view: 'placeholder-value',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4915,7 +4928,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$List;
         options = {};
       }
 
@@ -4982,35 +4996,35 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch(
-     *     {
-     *       // Output only. The resource name for this CryptoKeyVersion in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
-     *       name:
-     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
-     *       // Required. List of fields to be updated in this request.
-     *       updateMask: 'placeholder-value',
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.patch(
+     *       {
+     *         // Output only. The resource name for this CryptoKeyVersion in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x/cryptoKeyVersions/x`.
+     *         name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *         // Required. List of fields to be updated in this request.
+     *         updateMask: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "algorithm": "my_algorithm",
-     *         //   "attestation": {},
-     *         //   "createTime": "my_createTime",
-     *         //   "destroyEventTime": "my_destroyEventTime",
-     *         //   "destroyTime": "my_destroyTime",
-     *         //   "externalProtectionLevelOptions": {},
-     *         //   "generateTime": "my_generateTime",
-     *         //   "importFailureReason": "my_importFailureReason",
-     *         //   "importJob": "my_importJob",
-     *         //   "importTime": "my_importTime",
-     *         //   "name": "my_name",
-     *         //   "protectionLevel": "my_protectionLevel",
-     *         //   "state": "my_state"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "algorithm": "my_algorithm",
+     *           //   "attestation": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "destroyEventTime": "my_destroyEventTime",
+     *           //   "destroyTime": "my_destroyTime",
+     *           //   "externalProtectionLevelOptions": {},
+     *           //   "generateTime": "my_generateTime",
+     *           //   "importFailureReason": "my_importFailureReason",
+     *           //   "importJob": "my_importJob",
+     *           //   "importTime": "my_importTime",
+     *           //   "name": "my_name",
+     *           //   "protectionLevel": "my_protectionLevel",
+     *           //   "state": "my_state"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5086,7 +5100,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Patch;
         options = {};
       }
 
@@ -5148,19 +5163,19 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore(
-     *     {
-     *       // Required. The resource name of the CryptoKeyVersion to restore.
-     *       name:
-     *         'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.restore(
+     *       {
+     *         // Required. The resource name of the CryptoKeyVersion to restore.
+     *         name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/cryptoKeys/my-cryptoKey/cryptoKeyVersions/my-cryptoKeyVersion',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5236,7 +5251,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Cryptokeys$Cryptokeyversions$Restore;
         options = {};
       }
 
@@ -5533,7 +5549,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Importjobs$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Importjobs$Create;
         options = {};
       }
 
@@ -5600,8 +5617,7 @@ export namespace cloudkms_v1 {
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.keyRings.importJobs.get({
      *     // Required. The name of the ImportJob to get.
-     *     name:
-     *       'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
+     *     name: 'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
      *   });
      *   console.log(res.data);
      *
@@ -5675,7 +5691,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Importjobs$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Importjobs$Get;
         options = {};
       }
 
@@ -5737,15 +5754,14 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.importJobs.getIamPolicy(
-     *     {
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.importJobs.getIamPolicy({
      *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5812,7 +5828,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Importjobs$Getiampolicy;
         options = {};
       }
 
@@ -5959,7 +5976,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Importjobs$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Importjobs$List;
         options = {};
       }
 
@@ -6024,8 +6042,8 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.importJobs.setIamPolicy(
-     *     {
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.importJobs.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
@@ -6038,8 +6056,7 @@ export namespace cloudkms_v1 {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6106,7 +6123,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Importjobs$Setiampolicy;
         options = {};
       }
 
@@ -6171,8 +6189,8 @@ export namespace cloudkms_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudkms.projects.locations.keyRings.importJobs.testIamPermissions(
-     *     {
+     *   const res =
+     *     await cloudkms.projects.locations.keyRings.importJobs.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/keyRings/my-keyRing/importJobs/my-importJob',
@@ -6184,8 +6202,7 @@ export namespace cloudkms_v1 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6256,7 +6273,8 @@ export namespace cloudkms_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Keyrings$Importjobs$Testiampermissions;
         options = {};
       }
 
