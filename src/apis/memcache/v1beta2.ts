@@ -281,7 +281,7 @@ export namespace memcache_v1beta2 {
      */
     maintenanceSettings?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings;
     /**
-     * Unique name of the resource. It uses the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`
+     * Unique name of the resource. It uses the form: `projects/{project_id|project_number\}/locations/{location_id\}/instances/{instance_id\}` Note: Either project_id or project_number can be used, but keep it consistent with other APIs (e.g. RescheduleUpdate)
      */
     name?: string | null;
     /**
@@ -1059,7 +1059,7 @@ export namespace memcache_v1beta2 {
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service will select a default.
+     *     // The maximum number of results to return. If not set, the service selects a default.
      *     pageSize: 'placeholder-value',
      *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
@@ -1188,7 +1188,7 @@ export namespace memcache_v1beta2 {
      */
     name?: string;
     /**
-     * The maximum number of results to return. If not set, the service will select a default.
+     * The maximum number of results to return. If not set, the service selects a default.
      */
     pageSize?: number;
     /**
@@ -1309,7 +1309,8 @@ export namespace memcache_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Applyparameters;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Applyparameters;
         options = {};
       }
 
@@ -1451,7 +1452,8 @@ export namespace memcache_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Applysoftwareupdate;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Applysoftwareupdate;
         options = {};
       }
 
@@ -2324,7 +2326,8 @@ export namespace memcache_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Updateparameters;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Updateparameters;
         options = {};
       }
 
