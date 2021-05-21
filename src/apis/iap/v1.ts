@@ -470,9 +470,8 @@ export namespace iap_v1 {
     identityAwareProxyClients: Resource$Projects$Brands$Identityawareproxyclients;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.identityAwareProxyClients = new Resource$Projects$Brands$Identityawareproxyclients(
-        this.context
-      );
+      this.identityAwareProxyClients =
+        new Resource$Projects$Brands$Identityawareproxyclients(this.context);
     }
 
     /**
@@ -1025,7 +1024,8 @@ export namespace iap_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Brands$Identityawareproxyclients$Create;
+        params =
+          {} as Params$Resource$Projects$Brands$Identityawareproxyclients$Create;
         options = {};
       }
 
@@ -1089,8 +1089,7 @@ export namespace iap_v1 {
      *   // Do the magic
      *   const res = await iap.projects.brands.identityAwareProxyClients.delete({
      *     // Required. Name of the Identity Aware Proxy client to be deleted. In the following format: projects/{project_number/id\}/brands/{brand\}/identityAwareProxyClients/{client_id\}.
-     *     name:
-     *       'projects/my-project/brands/my-brand/identityAwareProxyClients/my-identityAwareProxyClient',
+     *     name: 'projects/my-project/brands/my-brand/identityAwareProxyClients/my-identityAwareProxyClient',
      *   });
      *   console.log(res.data);
      *
@@ -1153,7 +1152,8 @@ export namespace iap_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Brands$Identityawareproxyclients$Delete;
+        params =
+          {} as Params$Resource$Projects$Brands$Identityawareproxyclients$Delete;
         options = {};
       }
 
@@ -1214,8 +1214,7 @@ export namespace iap_v1 {
      *   // Do the magic
      *   const res = await iap.projects.brands.identityAwareProxyClients.get({
      *     // Required. Name of the Identity Aware Proxy client to be fetched. In the following format: projects/{project_number/id\}/brands/{brand\}/identityAwareProxyClients/{client_id\}.
-     *     name:
-     *       'projects/my-project/brands/my-brand/identityAwareProxyClients/my-identityAwareProxyClient',
+     *     name: 'projects/my-project/brands/my-brand/identityAwareProxyClients/my-identityAwareProxyClient',
      *   });
      *   console.log(res.data);
      *
@@ -1287,7 +1286,8 @@ export namespace iap_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Brands$Identityawareproxyclients$Get;
+        params =
+          {} as Params$Resource$Projects$Brands$Identityawareproxyclients$Get;
         options = {};
       }
 
@@ -1425,7 +1425,8 @@ export namespace iap_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Brands$Identityawareproxyclients$List;
+        params =
+          {} as Params$Resource$Projects$Brands$Identityawareproxyclients$List;
         options = {};
       }
 
@@ -1491,8 +1492,7 @@ export namespace iap_v1 {
      *   // Do the magic
      *   const res = await iap.projects.brands.identityAwareProxyClients.resetSecret({
      *     // Required. Name of the Identity Aware Proxy client to that will have its secret reset. In the following format: projects/{project_number/id\}/brands/{brand\}/identityAwareProxyClients/{client_id\}.
-     *     name:
-     *       'projects/my-project/brands/my-brand/identityAwareProxyClients/my-identityAwareProxyClient',
+     *     name: 'projects/my-project/brands/my-brand/identityAwareProxyClients/my-identityAwareProxyClient',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -1572,7 +1572,8 @@ export namespace iap_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret;
+        params =
+          {} as Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret;
         options = {};
       }
 
