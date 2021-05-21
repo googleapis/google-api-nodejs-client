@@ -1004,7 +1004,7 @@
       }
     }
   },
-  "revision": "20210405",
+  "revision": "20210510",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -4240,7 +4240,8 @@
               "PRIVATE_APPS",
               "WEB_APPS",
               "STORE_BUILDER",
-              "MANAGED_CONFIGURATIONS"
+              "MANAGED_CONFIGURATIONS",
+              "ZERO_TOUCH_CUSTOMER_MANAGEMENT"
             ],
             "enumDescriptions": [
               "Unspecified feature.",
@@ -4248,7 +4249,8 @@
               "The private apps page (https://developers.google.com/android/management/apps#private-apps).",
               "The Web Apps page (https://developers.google.com/android/management/apps#web-apps).",
               "The organize apps page (https://developers.google.com/android/management/apps#organize-apps).",
-              "The managed configurations page (https://developers.google.com/android/management/managed-configurations-iframe)."
+              "The managed configurations page (https://developers.google.com/android/management/managed-configurations-iframe).",
+              "The zero-touch iframe (https://developers.google.com/android/management/zero-touch-iframe)."
             ],
             "type": "string"
           },

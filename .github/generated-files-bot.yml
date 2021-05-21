@@ -11,3 +11,6 @@ generatedFiles:
   message: '`README.md` is managed by [`synthtool`](https://github.com/googleapis/synthtool). However, a partials file can be used to update the README, e.g.: https://github.com/googleapis/nodejs-storage/blob/master/.readme-partials.yaml'
 - path: 'samples/README.md'
   message: '`samples/README.md` is managed by [`synthtool`](https://github.com/googleapis/synthtool). However, a partials file can be used to update the README, e.g.: https://github.com/googleapis/nodejs-storage/blob/master/.readme-partials.yaml'
+ignoreAuthors:
+- 'gcf-owl-bot[bot]'
+- 'yoshi-automation'

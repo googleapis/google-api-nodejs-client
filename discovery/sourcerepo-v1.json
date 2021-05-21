@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         },
         "https://www.googleapis.com/auth/source.full_control": {
           "description": "Manage your source code repositories"
@@ -450,7 +450,7 @@
       }
     }
   },
-  "revision": "20200914",
+  "revision": "20210428",
   "rootUrl": "https://sourcerepo.googleapis.com/",
   "schemas": {
     "AuditConfig": {
