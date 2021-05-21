@@ -2393,8 +2393,7 @@ export namespace securitycenter_v1 {
      *   const res = await securitycenter.folders.sources.findings.updateSecurityMarks(
      *     {
      *       // The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
-     *       name:
-     *         'folders/my-folder/sources/my-source/findings/my-finding/securityMarks',
+     *       name: 'folders/my-folder/sources/my-source/findings/my-finding/securityMarks',
      *       // The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time.
      *       startTime: 'placeholder-value',
      *       // The FieldMask to use when updating the security marks resource. The field mask must not contain duplicate fields. If empty or set to "marks", all marks will be replaced. Individual marks can be updated using "marks.".
@@ -2478,7 +2477,8 @@ export namespace securitycenter_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Sources$Findings$Updatesecuritymarks;
+        params =
+          {} as Params$Resource$Folders$Sources$Findings$Updatesecuritymarks;
         options = {};
       }
 
@@ -3790,8 +3790,7 @@ export namespace securitycenter_v1 {
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.delete({
      *     // Required. Name of the notification config to delete. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]".
-     *     name:
-     *       'organizations/my-organization/notificationConfigs/my-notificationConfig',
+     *     name: 'organizations/my-organization/notificationConfigs/my-notificationConfig',
      *   });
      *   console.log(res.data);
      *
@@ -3916,8 +3915,7 @@ export namespace securitycenter_v1 {
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.get({
      *     // Required. Name of the notification config to get. Its format is "organizations/[organization_id]/notificationConfigs/[config_id]".
-     *     name:
-     *       'organizations/my-organization/notificationConfigs/my-notificationConfig',
+     *     name: 'organizations/my-organization/notificationConfigs/my-notificationConfig',
      *   });
      *   console.log(res.data);
      *
@@ -4195,8 +4193,7 @@ export namespace securitycenter_v1 {
      *   // Do the magic
      *   const res = await securitycenter.organizations.notificationConfigs.patch({
      *     // The relative resource name of this notification config. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/notificationConfigs/notify_public_bucket".
-     *     name:
-     *       'organizations/my-organization/notificationConfigs/my-notificationConfig',
+     *     name: 'organizations/my-organization/notificationConfigs/my-notificationConfig',
      *     // The FieldMask to use when updating the notification config. If empty all mutable fields will be updated.
      *     updateMask: 'placeholder-value',
      *
@@ -6832,11 +6829,10 @@ export namespace securitycenter_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.organizations.sources.findings.updateSecurityMarks(
-     *     {
+     *   const res =
+     *     await securitycenter.organizations.sources.findings.updateSecurityMarks({
      *       // The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
-     *       name:
-     *         'organizations/my-organization/sources/my-source/findings/my-finding/securityMarks',
+     *       name: 'organizations/my-organization/sources/my-source/findings/my-finding/securityMarks',
      *       // The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time.
      *       startTime: 'placeholder-value',
      *       // The FieldMask to use when updating the security marks resource. The field mask must not contain duplicate fields. If empty or set to "marks", all marks will be replaced. Individual marks can be updated using "marks.".
@@ -6851,8 +6847,7 @@ export namespace securitycenter_v1 {
      *         //   "name": "my_name"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6920,7 +6915,8 @@ export namespace securitycenter_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks;
+        params =
+          {} as Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks;
         options = {};
       }
 
@@ -8404,11 +8400,10 @@ export namespace securitycenter_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.projects.sources.findings.updateSecurityMarks(
-     *     {
+     *   const res =
+     *     await securitycenter.projects.sources.findings.updateSecurityMarks({
      *       // The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
-     *       name:
-     *         'projects/my-project/sources/my-source/findings/my-finding/securityMarks',
+     *       name: 'projects/my-project/sources/my-source/findings/my-finding/securityMarks',
      *       // The time at which the updated SecurityMarks take effect. If not set uses current server time. Updates will be applied to the SecurityMarks that are active immediately preceding this time.
      *       startTime: 'placeholder-value',
      *       // The FieldMask to use when updating the security marks resource. The field mask must not contain duplicate fields. If empty or set to "marks", all marks will be replaced. Individual marks can be updated using "marks.".
@@ -8423,8 +8418,7 @@ export namespace securitycenter_v1 {
      *         //   "name": "my_name"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -8492,7 +8486,8 @@ export namespace securitycenter_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Sources$Findings$Updatesecuritymarks;
+        params =
+          {} as Params$Resource$Projects$Sources$Findings$Updatesecuritymarks;
         options = {};
       }
 
