@@ -816,7 +816,7 @@ export namespace firestore_v1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the WGS84 standard. Values must be within normalized ranges.
+   * An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges.
    */
   export interface Schema$LatLng {
     /**
@@ -1784,8 +1784,7 @@ export namespace firestore_v1 {
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.fields.get({
      *     // Required. A name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_id\}`
-     *     name:
-     *       'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/fields/my-field',
+     *     name: 'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/fields/my-field',
      *   });
      *   console.log(res.data);
      *
@@ -1858,7 +1857,8 @@ export namespace firestore_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Databases$Collectiongroups$Fields$Get;
+        params =
+          {} as Params$Resource$Projects$Databases$Collectiongroups$Fields$Get;
         options = {};
       }
 
@@ -2002,7 +2002,8 @@ export namespace firestore_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Databases$Collectiongroups$Fields$List;
+        params =
+          {} as Params$Resource$Projects$Databases$Collectiongroups$Fields$List;
         options = {};
       }
 
@@ -2071,8 +2072,7 @@ export namespace firestore_v1 {
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.fields.patch({
      *     // Required. A field name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
-     *     name:
-     *       'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/fields/my-field',
+     *     name: 'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/fields/my-field',
      *     // A mask, relative to the field. If specified, only configuration specified by this field_mask will be updated in the field.
      *     updateMask: 'placeholder-value',
      *
@@ -2159,7 +2159,8 @@ export namespace firestore_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch;
+        params =
+          {} as Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch;
         options = {};
       }
 
@@ -2271,8 +2272,8 @@ export namespace firestore_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await firestore.projects.databases.collectionGroups.indexes.create(
-     *     {
+     *   const res =
+     *     await firestore.projects.databases.collectionGroups.indexes.create({
      *       // Required. A parent name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}`
      *       parent:
      *         'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup',
@@ -2287,8 +2288,7 @@ export namespace firestore_v1 {
      *         //   "state": "my_state"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2363,7 +2363,8 @@ export namespace firestore_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create;
+        params =
+          {} as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create;
         options = {};
       }
 
@@ -2428,13 +2429,11 @@ export namespace firestore_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await firestore.projects.databases.collectionGroups.indexes.delete(
-     *     {
+     *   const res =
+     *     await firestore.projects.databases.collectionGroups.indexes.delete({
      *       // Required. A name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/indexes/{index_id\}`
-     *       name:
-     *         'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/indexes/my-indexe',
-     *     }
-     *   );
+     *       name: 'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/indexes/my-indexe',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2496,7 +2495,8 @@ export namespace firestore_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete;
+        params =
+          {} as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete;
         options = {};
       }
 
@@ -2560,8 +2560,7 @@ export namespace firestore_v1 {
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.indexes.get({
      *     // Required. A name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/indexes/{index_id\}`
-     *     name:
-     *       'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/indexes/my-indexe',
+     *     name: 'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/indexes/my-indexe',
      *   });
      *   console.log(res.data);
      *
@@ -2636,7 +2635,8 @@ export namespace firestore_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get;
+        params =
+          {} as Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get;
         options = {};
       }
 
@@ -2780,7 +2780,8 @@ export namespace firestore_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Databases$Collectiongroups$Indexes$List;
+        params =
+          {} as Params$Resource$Projects$Databases$Collectiongroups$Indexes$List;
         options = {};
       }
 
@@ -3281,7 +3282,8 @@ export namespace firestore_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Databases$Documents$Begintransaction;
+        params =
+          {} as Params$Resource$Projects$Databases$Documents$Begintransaction;
         options = {};
       }
 
@@ -3574,7 +3576,8 @@ export namespace firestore_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Databases$Documents$Createdocument;
+        params =
+          {} as Params$Resource$Projects$Databases$Documents$Createdocument;
         options = {};
       }
 
@@ -4148,7 +4151,8 @@ export namespace firestore_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Databases$Documents$Listcollectionids;
+        params =
+          {} as Params$Resource$Projects$Databases$Documents$Listcollectionids;
         options = {};
       }
 
@@ -4446,7 +4450,8 @@ export namespace firestore_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Databases$Documents$Partitionquery;
+        params =
+          {} as Params$Resource$Projects$Databases$Documents$Partitionquery;
         options = {};
       }
 
