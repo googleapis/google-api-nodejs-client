@@ -717,9 +717,8 @@ export namespace run_v1beta1 {
     customresourcedefinitions: Resource$Namespaces$Customresourcedefinitions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.customresourcedefinitions = new Resource$Namespaces$Customresourcedefinitions(
-        this.context
-      );
+      this.customresourcedefinitions =
+        new Resource$Namespaces$Customresourcedefinitions(this.context);
     }
   }
 
@@ -757,8 +756,7 @@ export namespace run_v1beta1 {
      *   // Do the magic
      *   const res = await run.namespaces.customresourcedefinitions.get({
      *     // The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id\} with the project ID.
-     *     name:
-     *       'namespaces/my-namespace/customresourcedefinitions/my-customresourcedefinition',
+     *     name: 'namespaces/my-namespace/customresourcedefinitions/my-customresourcedefinition',
      *   });
      *   console.log(res.data);
      *
@@ -889,9 +887,8 @@ export namespace run_v1beta1 {
     customresourcedefinitions: Resource$Projects$Locations$Customresourcedefinitions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.customresourcedefinitions = new Resource$Projects$Locations$Customresourcedefinitions(
-        this.context
-      );
+      this.customresourcedefinitions =
+        new Resource$Projects$Locations$Customresourcedefinitions(this.context);
     }
   }
 
@@ -929,8 +926,7 @@ export namespace run_v1beta1 {
      *   // Do the magic
      *   const res = await run.projects.locations.customresourcedefinitions.get({
      *     // The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id\} with the project ID.
-     *     name:
-     *       'projects/my-project/locations/my-location/customresourcedefinitions/my-customresourcedefinition',
+     *     name: 'projects/my-project/locations/my-location/customresourcedefinitions/my-customresourcedefinition',
      *   });
      *   console.log(res.data);
      *
@@ -1003,7 +999,8 @@ export namespace run_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Customresourcedefinitions$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Customresourcedefinitions$Get;
         options = {};
       }
 
@@ -1154,7 +1151,8 @@ export namespace run_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Customresourcedefinitions$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Customresourcedefinitions$List;
         options = {};
       }
 
