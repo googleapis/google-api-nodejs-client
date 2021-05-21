@@ -1390,8 +1390,8 @@ export namespace cloudresourcemanager_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudresourcemanager.folders.listAvailableOrgPolicyConstraints(
-     *     {
+     *   const res =
+     *     await cloudresourcemanager.folders.listAvailableOrgPolicyConstraints({
      *       // Name of the resource to list `Constraints` for.
      *       resource: 'folders/my-folder',
      *
@@ -1403,8 +1403,7 @@ export namespace cloudresourcemanager_v1 {
      *         //   "pageToken": "my_pageToken"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1476,7 +1475,8 @@ export namespace cloudresourcemanager_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Listavailableorgpolicyconstraints;
+        params =
+          {} as Params$Resource$Folders$Listavailableorgpolicyconstraints;
         options = {};
       }
 
@@ -3357,8 +3357,8 @@ export namespace cloudresourcemanager_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudresourcemanager.organizations.listAvailableOrgPolicyConstraints(
-     *     {
+     *   const res =
+     *     await cloudresourcemanager.organizations.listAvailableOrgPolicyConstraints({
      *       // Name of the resource to list `Constraints` for.
      *       resource: 'organizations/my-organization',
      *
@@ -3370,8 +3370,7 @@ export namespace cloudresourcemanager_v1 {
      *         //   "pageToken": "my_pageToken"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3443,7 +3442,8 @@ export namespace cloudresourcemanager_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Listavailableorgpolicyconstraints;
+        params =
+          {} as Params$Resource$Organizations$Listavailableorgpolicyconstraints;
         options = {};
       }
 
@@ -5638,8 +5638,8 @@ export namespace cloudresourcemanager_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudresourcemanager.projects.listAvailableOrgPolicyConstraints(
-     *     {
+     *   const res =
+     *     await cloudresourcemanager.projects.listAvailableOrgPolicyConstraints({
      *       // Name of the resource to list `Constraints` for.
      *       resource: 'projects/my-project',
      *
@@ -5651,8 +5651,7 @@ export namespace cloudresourcemanager_v1 {
      *         //   "pageToken": "my_pageToken"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5724,7 +5723,8 @@ export namespace cloudresourcemanager_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Listavailableorgpolicyconstraints;
+        params =
+          {} as Params$Resource$Projects$Listavailableorgpolicyconstraints;
         options = {};
       }
 
