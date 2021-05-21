@@ -1567,7 +1567,7 @@ export namespace drive_v2 {
      */
     originalFilename?: string | null;
     /**
-     * Whether this revision is pinned to prevent automatic purging. This will only be populated and can only be modified on files with content stored in Drive, excluding Docs Editors files. Revisions can also be pinned when they are created through the drive.files.insert/update/copy by using the pinned query parameter. Pinned revisions are stored indefinitely using additional storage quota, up to a maximum of 200 revisions.
+     * Whether this revision is pinned to prevent automatic purging. If not set, the revision is automatically purged 30 days after newer content is uploaded. This field can only be modified on files with content stored in Drive, excluding Docs Editors files. Revisions can also be pinned when they are created through the drive.files.insert/update/copy by using the pinned query parameter. Pinned revisions are stored indefinitely using additional storage quota, up to a maximum of 200 revisions.
      */
     pinned?: boolean | null;
     /**
@@ -6690,8 +6690,10 @@ export namespace drive_v2 {
      *   const res = await drive.files.generateIds({
      *     // Maximum number of IDs to return.
      *     maxResults: 'placeholder-value',
-     *     // The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.
+     *     // The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'. (Default: 'drive')
      *     space: 'placeholder-value',
+     *     // The type of items which the IDs can be used for. Supported values are 'files' and 'shortcuts'. Note that 'shortcuts' are only supported in the drive 'space'. (Default: 'files')
+     *     type: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -9023,9 +9025,13 @@ export namespace drive_v2 {
      */
     maxResults?: number;
     /**
-     * The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.
+     * The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'. (Default: 'drive')
      */
     space?: string;
+    /**
+     * The type of items which the IDs can be used for. Supported values are 'files' and 'shortcuts'. Note that 'shortcuts' are only supported in the drive 'space'. (Default: 'files')
+     */
+    type?: string;
   }
   export interface Params$Resource$Files$Get extends StandardParameters {
     /**
