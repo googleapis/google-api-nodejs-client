@@ -140,9 +140,8 @@ export namespace displayvideo_v1 {
         this.context
       );
       this.customLists = new Resource$Customlists(this.context);
-      this.firstAndThirdPartyAudiences = new Resource$Firstandthirdpartyaudiences(
-        this.context
-      );
+      this.firstAndThirdPartyAudiences =
+        new Resource$Firstandthirdpartyaudiences(this.context);
       this.floodlightGroups = new Resource$Floodlightgroups(this.context);
       this.googleAudiences = new Resource$Googleaudiences(this.context);
       this.inventorySourceGroups = new Resource$Inventorysourcegroups(
@@ -4551,8 +4550,8 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.bulkEditAdvertiserAssignedTargetingOptions(
-     *     {
+     *   const res =
+     *     await displayvideo.advertisers.bulkEditAdvertiserAssignedTargetingOptions({
      *       // Required. The ID of the advertiser.
      *       advertiserId: '[^/]+',
      *
@@ -4564,8 +4563,7 @@ export namespace displayvideo_v1 {
      *         //   "deleteRequests": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4636,7 +4634,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions;
+        params =
+          {} as Params$Resource$Advertisers$Bulkeditadvertiserassignedtargetingoptions;
         options = {};
       }
 
@@ -4700,8 +4699,8 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.bulkListAdvertiserAssignedTargetingOptions(
-     *     {
+     *   const res =
+     *     await displayvideo.advertisers.bulkListAdvertiserAssignedTargetingOptions({
      *       // Required. The ID of the advertiser the line item belongs to.
      *       advertiserId: '[^/]+',
      *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`.. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` Examples: * targetingType with value TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_CHANNEL"` The length of this field should be no more than 500 characters.
@@ -4712,8 +4711,7 @@ export namespace displayvideo_v1 {
      *       pageSize: 'placeholder-value',
      *       // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      *       pageToken: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4785,7 +4783,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions;
+        params =
+          {} as Params$Resource$Advertisers$Bulklistadvertiserassignedtargetingoptions;
         options = {};
       }
 
@@ -5866,22 +5865,23 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.campaigns.bulkListCampaignAssignedTargetingOptions(
-     *     {
-     *       // Required. The ID of the advertiser the campaign belongs to.
-     *       advertiserId: '[^/]+',
-     *       // Required. The ID of the campaign to list assigned targeting options for.
-     *       campaignId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_LANGUAGE or TARGETING_TYPE_GENDER `targetingType="TARGETING_TYPE_LANGUAGE" OR targetingType="TARGETING_TYPE_GENDER"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     *       filter: 'placeholder-value',
-     *       // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     *       orderBy: 'placeholder-value',
-     *       // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *       pageSize: 'placeholder-value',
-     *       // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListCampaignAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *       pageToken: 'placeholder-value',
-     *     }
-     *   );
+     *   const res =
+     *     await displayvideo.advertisers.campaigns.bulkListCampaignAssignedTargetingOptions(
+     *       {
+     *         // Required. The ID of the advertiser the campaign belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Required. The ID of the campaign to list assigned targeting options for.
+     *         campaignId: '[^/]+',
+     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_LANGUAGE or TARGETING_TYPE_GENDER `targetingType="TARGETING_TYPE_LANGUAGE" OR targetingType="TARGETING_TYPE_GENDER"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     *         filter: 'placeholder-value',
+     *         // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     *         orderBy: 'placeholder-value',
+     *         // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         pageSize: 'placeholder-value',
+     *         // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListCampaignAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *         pageToken: 'placeholder-value',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5953,7 +5953,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions;
+        params =
+          {} as Params$Resource$Advertisers$Campaigns$Bulklistcampaignassignedtargetingoptions;
         options = {};
       }
 
@@ -6836,9 +6837,10 @@ export namespace displayvideo_v1 {
     assignedTargetingOptions: Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.assignedTargetingOptions = new Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions(
-        this.context
-      );
+      this.assignedTargetingOptions =
+        new Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions(
+          this.context
+        );
     }
   }
 
@@ -6874,18 +6876,19 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.campaigns.targetingTypes.assignedTargetingOptions.get(
-     *     {
-     *       // Required. The ID of the advertiser the campaign belongs to.
-     *       advertiserId: '[^/]+',
-     *       // Required. An identifier unique to the targeting type in this campaign that identifies the assigned targeting option being requested.
-     *       assignedTargetingOptionId: '[^/]+',
-     *       // Required. The ID of the campaign the assigned targeting option belongs to.
-     *       campaignId: '[^/]+',
-     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_VIEWABILITY`
-     *       targetingType: '[^/]+',
-     *     }
-     *   );
+     *   const res =
+     *     await displayvideo.advertisers.campaigns.targetingTypes.assignedTargetingOptions.get(
+     *       {
+     *         // Required. The ID of the advertiser the campaign belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Required. An identifier unique to the targeting type in this campaign that identifies the assigned targeting option being requested.
+     *         assignedTargetingOptionId: '[^/]+',
+     *         // Required. The ID of the campaign the assigned targeting option belongs to.
+     *         campaignId: '[^/]+',
+     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_VIEWABILITY`
+     *         targetingType: '[^/]+',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6994,7 +6997,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$Get;
+        params =
+          {} as Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$Get;
         options = {};
       }
 
@@ -7066,24 +7070,25 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.campaigns.targetingTypes.assignedTargetingOptions.list(
-     *     {
-     *       // Required. The ID of the advertiser the campaign belongs to.
-     *       advertiserId: '[^/]+',
-     *       // Required. The ID of the campaign to list assigned targeting options for.
-     *       campaignId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     *       filter: 'placeholder-value',
-     *       // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
-     *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCampaignAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *       pageToken: 'placeholder-value',
-     *       // Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_VIEWABILITY`
-     *       targetingType: '[^/]+',
-     *     }
-     *   );
+     *   const res =
+     *     await displayvideo.advertisers.campaigns.targetingTypes.assignedTargetingOptions.list(
+     *       {
+     *         // Required. The ID of the advertiser the campaign belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Required. The ID of the campaign to list assigned targeting options for.
+     *         campaignId: '[^/]+',
+     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     *         filter: 'placeholder-value',
+     *         // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     *         orderBy: 'placeholder-value',
+     *         // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         pageSize: 'placeholder-value',
+     *         // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListCampaignAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_AGE_RANGE` * `TARGETING_TYPE_AUTHORIZED_SELLER_STATUS` * `TARGETING_TYPE_CONTENT_INSTREAM_POSITION` * `TARGETING_TYPE_CONTENT_OUTSTREAM_POSITION` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_ENVIRONMENT` * `TARGETING_TYPE_EXCHANGE` * `TARGETING_TYPE_GENDER` * `TARGETING_TYPE_GEO_REGION` * `TARGETING_TYPE_HOUSEHOLD_INCOME` * `TARGETING_TYPE_INVENTORY_SOURCE` * `TARGETING_TYPE_INVENTORY_SOURCE_GROUP` * `TARGETING_TYPE_LANGUAGE` * `TARGETING_TYPE_ON_SCREEN_POSITION` * `TARGETING_TYPE_PARENTAL_STATUS` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION` * `TARGETING_TYPE_SUB_EXCHANGE` * `TARGETING_TYPE_THIRD_PARTY_VERIFIER` * `TARGETING_TYPE_VIEWABILITY`
+     *         targetingType: '[^/]+',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -7155,7 +7160,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$List;
+        params =
+          {} as Params$Resource$Advertisers$Campaigns$Targetingtypes$Assignedtargetingoptions$List;
         options = {};
       }
 
@@ -9750,9 +9756,8 @@ export namespace displayvideo_v1 {
     targetingTypes: Resource$Advertisers$Insertionorders$Targetingtypes;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.targetingTypes = new Resource$Advertisers$Insertionorders$Targetingtypes(
-        this.context
-      );
+      this.targetingTypes =
+        new Resource$Advertisers$Insertionorders$Targetingtypes(this.context);
     }
 
     /**
@@ -9781,22 +9786,23 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.insertionOrders.bulkListInsertionOrderAssignedTargetingOptions(
-     *     {
-     *       // Required. The ID of the advertiser the insertion order belongs to.
-     *       advertiserId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     *       filter: 'placeholder-value',
-     *       // Required. The ID of the insertion order to list assigned targeting options for.
-     *       insertionOrderId: '[^/]+',
-     *       // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     *       orderBy: 'placeholder-value',
-     *       // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *       pageSize: 'placeholder-value',
-     *       // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListInsertionOrderAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *       pageToken: 'placeholder-value',
-     *     }
-     *   );
+     *   const res =
+     *     await displayvideo.advertisers.insertionOrders.bulkListInsertionOrderAssignedTargetingOptions(
+     *       {
+     *         // Required. The ID of the advertiser the insertion order belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     *         filter: 'placeholder-value',
+     *         // Required. The ID of the insertion order to list assigned targeting options for.
+     *         insertionOrderId: '[^/]+',
+     *         // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     *         orderBy: 'placeholder-value',
+     *         // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is `5000`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         pageSize: 'placeholder-value',
+     *         // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListInsertionOrderAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *         pageToken: 'placeholder-value',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -9868,7 +9874,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions;
+        params =
+          {} as Params$Resource$Advertisers$Insertionorders$Bulklistinsertionorderassignedtargetingoptions;
         options = {};
       }
 
@@ -10768,9 +10775,10 @@ export namespace displayvideo_v1 {
     assignedTargetingOptions: Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.assignedTargetingOptions = new Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions(
-        this.context
-      );
+      this.assignedTargetingOptions =
+        new Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions(
+          this.context
+        );
     }
   }
 
@@ -10806,18 +10814,19 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.insertionOrders.targetingTypes.assignedTargetingOptions.get(
-     *     {
-     *       // Required. The ID of the advertiser the insertion order belongs to.
-     *       advertiserId: '[^/]+',
-     *       // Required. An identifier unique to the targeting type in this insertion order that identifies the assigned targeting option being requested.
-     *       assignedTargetingOptionId: '[^/]+',
-     *       // Required. The ID of the insertion order the assigned targeting option belongs to.
-     *       insertionOrderId: '[^/]+',
-     *       // Required. Identifies the type of this assigned targeting option.
-     *       targetingType: '[^/]+',
-     *     }
-     *   );
+     *   const res =
+     *     await displayvideo.advertisers.insertionOrders.targetingTypes.assignedTargetingOptions.get(
+     *       {
+     *         // Required. The ID of the advertiser the insertion order belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Required. An identifier unique to the targeting type in this insertion order that identifies the assigned targeting option being requested.
+     *         assignedTargetingOptionId: '[^/]+',
+     *         // Required. The ID of the insertion order the assigned targeting option belongs to.
+     *         insertionOrderId: '[^/]+',
+     *         // Required. Identifies the type of this assigned targeting option.
+     *         targetingType: '[^/]+',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -10926,7 +10935,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Get;
+        params =
+          {} as Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$Get;
         options = {};
       }
 
@@ -10998,24 +11008,25 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.insertionOrders.targetingTypes.assignedTargetingOptions.list(
-     *     {
-     *       // Required. The ID of the advertiser the insertion order belongs to.
-     *       advertiserId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     *       filter: 'placeholder-value',
-     *       // Required. The ID of the insertion order to list assigned targeting options for.
-     *       insertionOrderId: '[^/]+',
-     *       // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
-     *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInsertionOrderAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *       pageToken: 'placeholder-value',
-     *       // Required. Identifies the type of assigned targeting options to list.
-     *       targetingType: '[^/]+',
-     *     }
-     *   );
+     *   const res =
+     *     await displayvideo.advertisers.insertionOrders.targetingTypes.assignedTargetingOptions.list(
+     *       {
+     *         // Required. The ID of the advertiser the insertion order belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     *         filter: 'placeholder-value',
+     *         // Required. The ID of the insertion order to list assigned targeting options for.
+     *         insertionOrderId: '[^/]+',
+     *         // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     *         orderBy: 'placeholder-value',
+     *         // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         pageSize: 'placeholder-value',
+     *         // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListInsertionOrderAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Identifies the type of assigned targeting options to list.
+     *         targetingType: '[^/]+',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -11087,7 +11098,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$List;
+        params =
+          {} as Params$Resource$Advertisers$Insertionorders$Targetingtypes$Assignedtargetingoptions$List;
         options = {};
       }
 
@@ -11213,23 +11225,24 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.lineItems.bulkEditLineItemAssignedTargetingOptions(
-     *     {
-     *       // Required. The ID of the advertiser the line item belongs to.
-     *       advertiserId: '[^/]+',
-     *       // Required. The ID of the line item the assigned targeting option will belong to.
-     *       lineItemId: '[^/]+',
+     *   const res =
+     *     await displayvideo.advertisers.lineItems.bulkEditLineItemAssignedTargetingOptions(
+     *       {
+     *         // Required. The ID of the advertiser the line item belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Required. The ID of the line item the assigned targeting option will belong to.
+     *         lineItemId: '[^/]+',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "createRequests": [],
-     *         //   "deleteRequests": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "createRequests": [],
+     *           //   "deleteRequests": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -11300,7 +11313,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions;
+        params =
+          {} as Params$Resource$Advertisers$Lineitems$Bulkeditlineitemassignedtargetingoptions;
         options = {};
       }
 
@@ -11364,22 +11378,23 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.lineItems.bulkListLineItemAssignedTargetingOptions(
-     *     {
-     *       // Required. The ID of the advertiser the line item belongs to.
-     *       advertiserId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     *       filter: 'placeholder-value',
-     *       // Required. The ID of the line item to list assigned targeting options for.
-     *       lineItemId: '[^/]+',
-     *       // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
-     *       orderBy: 'placeholder-value',
-     *       // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *       pageSize: 'placeholder-value',
-     *       // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *       pageToken: 'placeholder-value',
-     *     }
-     *   );
+     *   const res =
+     *     await displayvideo.advertisers.lineItems.bulkListLineItemAssignedTargetingOptions(
+     *       {
+     *         // Required. The ID of the advertiser the line item belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR` on the same field. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `targetingType` - `inheritance` Examples: * AssignedTargetingOptions of targeting type TARGETING_TYPE_PROXIMITY_LOCATION_LIST or TARGETING_TYPE_CHANNEL `targetingType="TARGETING_TYPE_PROXIMITY_LOCATION_LIST" OR targetingType="TARGETING_TYPE_CHANNEL"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     *         filter: 'placeholder-value',
+     *         // Required. The ID of the line item to list assigned targeting options for.
+     *         lineItemId: '[^/]+',
+     *         // Field by which to sort the list. Acceptable values are: * `targetingType` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `targetingType desc`.
+     *         orderBy: 'placeholder-value',
+     *         // Requested page size. The size must be an integer between `1` and `5000`. If unspecified, the default is '5000'. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         pageSize: 'placeholder-value',
+     *         // A token that lets the client fetch the next page of results. Typically, this is the value of next_page_token returned from the previous call to `BulkListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *         pageToken: 'placeholder-value',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -11451,7 +11466,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions;
+        params =
+          {} as Params$Resource$Advertisers$Lineitems$Bulklistlineitemassignedtargetingoptions;
         options = {};
       }
 
@@ -12579,9 +12595,10 @@ export namespace displayvideo_v1 {
     assignedTargetingOptions: Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.assignedTargetingOptions = new Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions(
-        this.context
-      );
+      this.assignedTargetingOptions =
+        new Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions(
+          this.context
+        );
     }
   }
 
@@ -12617,64 +12634,65 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.create(
-     *     {
-     *       // Required. The ID of the advertiser the line item belongs to.
-     *       advertiserId: '[^/]+',
-     *       // Required. The ID of the line item the assigned targeting option will belong to.
-     *       lineItemId: '[^/]+',
-     *       // Required. Identifies the type of this assigned targeting option.
-     *       targetingType: '[^/]+',
+     *   const res =
+     *     await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.create(
+     *       {
+     *         // Required. The ID of the advertiser the line item belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Required. The ID of the line item the assigned targeting option will belong to.
+     *         lineItemId: '[^/]+',
+     *         // Required. Identifies the type of this assigned targeting option.
+     *         targetingType: '[^/]+',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "ageRangeDetails": {},
-     *         //   "appCategoryDetails": {},
-     *         //   "appDetails": {},
-     *         //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
-     *         //   "audienceGroupDetails": {},
-     *         //   "authorizedSellerStatusDetails": {},
-     *         //   "browserDetails": {},
-     *         //   "carrierAndIspDetails": {},
-     *         //   "categoryDetails": {},
-     *         //   "channelDetails": {},
-     *         //   "contentInstreamPositionDetails": {},
-     *         //   "contentOutstreamPositionDetails": {},
-     *         //   "dayAndTimeDetails": {},
-     *         //   "deviceMakeModelDetails": {},
-     *         //   "deviceTypeDetails": {},
-     *         //   "digitalContentLabelExclusionDetails": {},
-     *         //   "environmentDetails": {},
-     *         //   "exchangeDetails": {},
-     *         //   "genderDetails": {},
-     *         //   "geoRegionDetails": {},
-     *         //   "householdIncomeDetails": {},
-     *         //   "inheritance": "my_inheritance",
-     *         //   "inventorySourceDetails": {},
-     *         //   "inventorySourceGroupDetails": {},
-     *         //   "keywordDetails": {},
-     *         //   "languageDetails": {},
-     *         //   "name": "my_name",
-     *         //   "negativeKeywordListDetails": {},
-     *         //   "onScreenPositionDetails": {},
-     *         //   "operatingSystemDetails": {},
-     *         //   "parentalStatusDetails": {},
-     *         //   "proximityLocationListDetails": {},
-     *         //   "regionalLocationListDetails": {},
-     *         //   "sensitiveCategoryExclusionDetails": {},
-     *         //   "subExchangeDetails": {},
-     *         //   "targetingType": "my_targetingType",
-     *         //   "thirdPartyVerifierDetails": {},
-     *         //   "urlDetails": {},
-     *         //   "userRewardedContentDetails": {},
-     *         //   "videoPlayerSizeDetails": {},
-     *         //   "viewabilityDetails": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "ageRangeDetails": {},
+     *           //   "appCategoryDetails": {},
+     *           //   "appDetails": {},
+     *           //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *           //   "audienceGroupDetails": {},
+     *           //   "authorizedSellerStatusDetails": {},
+     *           //   "browserDetails": {},
+     *           //   "carrierAndIspDetails": {},
+     *           //   "categoryDetails": {},
+     *           //   "channelDetails": {},
+     *           //   "contentInstreamPositionDetails": {},
+     *           //   "contentOutstreamPositionDetails": {},
+     *           //   "dayAndTimeDetails": {},
+     *           //   "deviceMakeModelDetails": {},
+     *           //   "deviceTypeDetails": {},
+     *           //   "digitalContentLabelExclusionDetails": {},
+     *           //   "environmentDetails": {},
+     *           //   "exchangeDetails": {},
+     *           //   "genderDetails": {},
+     *           //   "geoRegionDetails": {},
+     *           //   "householdIncomeDetails": {},
+     *           //   "inheritance": "my_inheritance",
+     *           //   "inventorySourceDetails": {},
+     *           //   "inventorySourceGroupDetails": {},
+     *           //   "keywordDetails": {},
+     *           //   "languageDetails": {},
+     *           //   "name": "my_name",
+     *           //   "negativeKeywordListDetails": {},
+     *           //   "onScreenPositionDetails": {},
+     *           //   "operatingSystemDetails": {},
+     *           //   "parentalStatusDetails": {},
+     *           //   "proximityLocationListDetails": {},
+     *           //   "regionalLocationListDetails": {},
+     *           //   "sensitiveCategoryExclusionDetails": {},
+     *           //   "subExchangeDetails": {},
+     *           //   "targetingType": "my_targetingType",
+     *           //   "thirdPartyVerifierDetails": {},
+     *           //   "urlDetails": {},
+     *           //   "userRewardedContentDetails": {},
+     *           //   "videoPlayerSizeDetails": {},
+     *           //   "viewabilityDetails": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -12785,7 +12803,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create;
+        params =
+          {} as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Create;
         options = {};
       }
 
@@ -12847,18 +12866,19 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.delete(
-     *     {
-     *       // Required. The ID of the advertiser the line item belongs to.
-     *       advertiserId: '[^/]+',
-     *       // Required. The ID of the assigned targeting option to delete.
-     *       assignedTargetingOptionId: '[^/]+',
-     *       // Required. The ID of the line item the assigned targeting option belongs to.
-     *       lineItemId: '[^/]+',
-     *       // Required. Identifies the type of this assigned targeting option.
-     *       targetingType: '[^/]+',
-     *     }
-     *   );
+     *   const res =
+     *     await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.delete(
+     *       {
+     *         // Required. The ID of the advertiser the line item belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Required. The ID of the assigned targeting option to delete.
+     *         assignedTargetingOptionId: '[^/]+',
+     *         // Required. The ID of the line item the assigned targeting option belongs to.
+     *         lineItemId: '[^/]+',
+     *         // Required. Identifies the type of this assigned targeting option.
+     *         targetingType: '[^/]+',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -12920,7 +12940,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete;
+        params =
+          {} as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Delete;
         options = {};
       }
 
@@ -12992,18 +13013,19 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.get(
-     *     {
-     *       // Required. The ID of the advertiser the line item belongs to.
-     *       advertiserId: '[^/]+',
-     *       // Required. An identifier unique to the targeting type in this line item that identifies the assigned targeting option being requested.
-     *       assignedTargetingOptionId: '[^/]+',
-     *       // Required. The ID of the line item the assigned targeting option belongs to.
-     *       lineItemId: '[^/]+',
-     *       // Required. Identifies the type of this assigned targeting option.
-     *       targetingType: '[^/]+',
-     *     }
-     *   );
+     *   const res =
+     *     await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.get(
+     *       {
+     *         // Required. The ID of the advertiser the line item belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Required. An identifier unique to the targeting type in this line item that identifies the assigned targeting option being requested.
+     *         assignedTargetingOptionId: '[^/]+',
+     *         // Required. The ID of the line item the assigned targeting option belongs to.
+     *         lineItemId: '[^/]+',
+     *         // Required. Identifies the type of this assigned targeting option.
+     *         targetingType: '[^/]+',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -13112,7 +13134,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get;
+        params =
+          {} as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$Get;
         options = {};
       }
 
@@ -13184,24 +13207,25 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.list(
-     *     {
-     *       // Required. The ID of the advertiser the line item belongs to.
-     *       advertiserId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
-     *       filter: 'placeholder-value',
-     *       // Required. The ID of the line item to list assigned targeting options for.
-     *       lineItemId: '[^/]+',
-     *       // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
-     *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *       pageToken: 'placeholder-value',
-     *       // Required. Identifies the type of assigned targeting options to list.
-     *       targetingType: '[^/]+',
-     *     }
-     *   );
+     *   const res =
+     *     await displayvideo.advertisers.lineItems.targetingTypes.assignedTargetingOptions.list(
+     *       {
+     *         // Required. The ID of the advertiser the line item belongs to.
+     *         advertiserId: '[^/]+',
+     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` - `inheritance` Examples: * AssignedTargetingOptions with ID 1 or 2 `assignedTargetingOptionId="1" OR assignedTargetingOptionId="2"` * AssignedTargetingOptions with inheritance status of NOT_INHERITED or INHERITED_FROM_PARTNER `inheritance="NOT_INHERITED" OR inheritance="INHERITED_FROM_PARTNER"` The length of this field should be no more than 500 characters.
+     *         filter: 'placeholder-value',
+     *         // Required. The ID of the line item to list assigned targeting options for.
+     *         lineItemId: '[^/]+',
+     *         // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     *         orderBy: 'placeholder-value',
+     *         // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         pageSize: 'placeholder-value',
+     *         // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListLineItemAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Identifies the type of assigned targeting options to list.
+     *         targetingType: '[^/]+',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -13273,7 +13297,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List;
+        params =
+          {} as Params$Resource$Advertisers$Lineitems$Targetingtypes$Assignedtargetingoptions$List;
         options = {};
       }
 
@@ -13407,9 +13432,8 @@ export namespace displayvideo_v1 {
     assignedLocations: Resource$Advertisers$Locationlists$Assignedlocations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.assignedLocations = new Resource$Advertisers$Locationlists$Assignedlocations(
-        this.context
-      );
+      this.assignedLocations =
+        new Resource$Advertisers$Locationlists$Assignedlocations(this.context);
     }
 
     /**
@@ -14084,8 +14108,8 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.locationLists.assignedLocations.bulkEdit(
-     *     {
+     *   const res =
+     *     await displayvideo.advertisers.locationLists.assignedLocations.bulkEdit({
      *       // Required. The ID of the DV360 advertiser to which the location list belongs.
      *       advertiserId: 'placeholder-value',
      *       // Required. The ID of the location list to which these assignments are assigned.
@@ -14099,8 +14123,7 @@ export namespace displayvideo_v1 {
      *         //   "deletedAssignedLocations": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -14171,7 +14194,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit;
+        params =
+          {} as Params$Resource$Advertisers$Locationlists$Assignedlocations$Bulkedit;
         options = {};
       }
 
@@ -14235,8 +14259,8 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.locationLists.assignedLocations.create(
-     *     {
+     *   const res =
+     *     await displayvideo.advertisers.locationLists.assignedLocations.create({
      *       // Required. The ID of the DV360 advertiser to which the location list belongs.
      *       advertiserId: 'placeholder-value',
      *       // Required. The ID of the location list for which the assignment will be created.
@@ -14251,8 +14275,7 @@ export namespace displayvideo_v1 {
      *         //   "targetingOptionId": "my_targetingOptionId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -14318,7 +14341,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Locationlists$Assignedlocations$Create;
+        params =
+          {} as Params$Resource$Advertisers$Locationlists$Assignedlocations$Create;
         options = {};
       }
 
@@ -14380,16 +14404,15 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.locationLists.assignedLocations.delete(
-     *     {
+     *   const res =
+     *     await displayvideo.advertisers.locationLists.assignedLocations.delete({
      *       // Required. The ID of the DV360 advertiser to which the location list belongs.
      *       advertiserId: 'placeholder-value',
      *       // Required. The ID of the assigned location to delete.
      *       assignedLocationId: '[^/]+',
      *       // Required. The ID of the location list to which this assignment is assigned.
      *       locationListId: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -14451,7 +14474,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete;
+        params =
+          {} as Params$Resource$Advertisers$Locationlists$Assignedlocations$Delete;
         options = {};
       }
 
@@ -14517,8 +14541,8 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.locationLists.assignedLocations.list(
-     *     {
+     *   const res =
+     *     await displayvideo.advertisers.locationLists.assignedLocations.list({
      *       // Required. The ID of the DV360 advertiser to which the location list belongs.
      *       advertiserId: 'placeholder-value',
      *       // Allows filtering by location list assignment fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedLocationId` The length of this field should be no more than 500 characters.
@@ -14531,8 +14555,7 @@ export namespace displayvideo_v1 {
      *       pageSize: 'placeholder-value',
      *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAssignedLocations` method. If not specified, the first page of results will be returned.
      *       pageToken: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -14604,7 +14627,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Locationlists$Assignedlocations$List;
+        params =
+          {} as Params$Resource$Advertisers$Locationlists$Assignedlocations$List;
         options = {};
       }
 
@@ -15697,9 +15721,10 @@ export namespace displayvideo_v1 {
     negativeKeywords: Resource$Advertisers$Negativekeywordlists$Negativekeywords;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.negativeKeywords = new Resource$Advertisers$Negativekeywordlists$Negativekeywords(
-        this.context
-      );
+      this.negativeKeywords =
+        new Resource$Advertisers$Negativekeywordlists$Negativekeywords(
+          this.context
+        );
     }
 
     /**
@@ -16513,23 +16538,24 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.bulkEdit(
-     *     {
-     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
-     *       advertiserId: 'placeholder-value',
-     *       // Required. The ID of the parent negative keyword list to which the negative keywords belong.
-     *       negativeKeywordListId: '[^/]+',
+     *   const res =
+     *     await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.bulkEdit(
+     *       {
+     *         // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     *         advertiserId: 'placeholder-value',
+     *         // Required. The ID of the parent negative keyword list to which the negative keywords belong.
+     *         negativeKeywordListId: '[^/]+',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "createdNegativeKeywords": [],
-     *         //   "deletedNegativeKeywords": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "createdNegativeKeywords": [],
+     *           //   "deletedNegativeKeywords": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -16600,7 +16626,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit;
+        params =
+          {} as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Bulkedit;
         options = {};
       }
 
@@ -16664,23 +16691,24 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.create(
-     *     {
-     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
-     *       advertiserId: 'placeholder-value',
-     *       // Required. The ID of the parent negative keyword list in which the negative keyword will be created.
-     *       negativeKeywordListId: '[^/]+',
+     *   const res =
+     *     await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.create(
+     *       {
+     *         // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     *         advertiserId: 'placeholder-value',
+     *         // Required. The ID of the parent negative keyword list in which the negative keyword will be created.
+     *         negativeKeywordListId: '[^/]+',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "keywordValue": "my_keywordValue",
-     *         //   "name": "my_name"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "keywordValue": "my_keywordValue",
+     *           //   "name": "my_name"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -16745,7 +16773,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create;
+        params =
+          {} as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Create;
         options = {};
       }
 
@@ -16807,16 +16836,17 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.delete(
-     *     {
-     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
-     *       advertiserId: 'placeholder-value',
-     *       // Required. The keyword value of the negative keyword to delete.
-     *       keywordValue: '[^/]+',
-     *       // Required. The ID of the parent negative keyword list to which the negative keyword belongs.
-     *       negativeKeywordListId: '[^/]+',
-     *     }
-     *   );
+     *   const res =
+     *     await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.delete(
+     *       {
+     *         // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     *         advertiserId: 'placeholder-value',
+     *         // Required. The keyword value of the negative keyword to delete.
+     *         keywordValue: '[^/]+',
+     *         // Required. The ID of the parent negative keyword list to which the negative keyword belongs.
+     *         negativeKeywordListId: '[^/]+',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -16878,7 +16908,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete;
+        params =
+          {} as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Delete;
         options = {};
       }
 
@@ -16944,8 +16975,8 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.list(
-     *     {
+     *   const res =
+     *     await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.list({
      *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
      *       advertiserId: '[^/]+',
      *       // Allows filtering by negative keyword fields. Supported syntax: * Filter expressions for negative keyword currently can only contain at most one * restriction. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `CONTAINS (:)`. * Supported fields: - `keywordValue` Examples: * All negative keywords for which the keyword value contains "google": `keywordValue : "google"`
@@ -16958,8 +16989,7 @@ export namespace displayvideo_v1 {
      *       pageSize: 'placeholder-value',
      *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListNegativeKeywords` method. If not specified, the first page of results will be returned.
      *       pageToken: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -17031,7 +17061,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List;
+        params =
+          {} as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$List;
         options = {};
       }
 
@@ -17095,22 +17126,23 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.replace(
-     *     {
-     *       // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
-     *       advertiserId: 'placeholder-value',
-     *       // Required. The ID of the parent negative keyword list to which the negative keywords belong.
-     *       negativeKeywordListId: '[^/]+',
+     *   const res =
+     *     await displayvideo.advertisers.negativeKeywordLists.negativeKeywords.replace(
+     *       {
+     *         // Required. The ID of the DV360 advertiser to which the parent negative keyword list belongs.
+     *         advertiserId: 'placeholder-value',
+     *         // Required. The ID of the parent negative keyword list to which the negative keywords belong.
+     *         negativeKeywordListId: '[^/]+',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "newNegativeKeywords": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "newNegativeKeywords": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -17181,7 +17213,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace;
+        params =
+          {} as Params$Resource$Advertisers$Negativekeywordlists$Negativekeywords$Replace;
         options = {};
       }
 
@@ -17316,9 +17349,10 @@ export namespace displayvideo_v1 {
     assignedTargetingOptions: Resource$Advertisers$Targetingtypes$Assignedtargetingoptions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.assignedTargetingOptions = new Resource$Advertisers$Targetingtypes$Assignedtargetingoptions(
-        this.context
-      );
+      this.assignedTargetingOptions =
+        new Resource$Advertisers$Targetingtypes$Assignedtargetingoptions(
+          this.context
+        );
     }
   }
 
@@ -17354,62 +17388,63 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.create(
-     *     {
-     *       // Required. The ID of the advertiser.
-     *       advertiserId: '[^/]+',
-     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
-     *       targetingType: '[^/]+',
+     *   const res =
+     *     await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.create(
+     *       {
+     *         // Required. The ID of the advertiser.
+     *         advertiserId: '[^/]+',
+     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     *         targetingType: '[^/]+',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "ageRangeDetails": {},
-     *         //   "appCategoryDetails": {},
-     *         //   "appDetails": {},
-     *         //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
-     *         //   "audienceGroupDetails": {},
-     *         //   "authorizedSellerStatusDetails": {},
-     *         //   "browserDetails": {},
-     *         //   "carrierAndIspDetails": {},
-     *         //   "categoryDetails": {},
-     *         //   "channelDetails": {},
-     *         //   "contentInstreamPositionDetails": {},
-     *         //   "contentOutstreamPositionDetails": {},
-     *         //   "dayAndTimeDetails": {},
-     *         //   "deviceMakeModelDetails": {},
-     *         //   "deviceTypeDetails": {},
-     *         //   "digitalContentLabelExclusionDetails": {},
-     *         //   "environmentDetails": {},
-     *         //   "exchangeDetails": {},
-     *         //   "genderDetails": {},
-     *         //   "geoRegionDetails": {},
-     *         //   "householdIncomeDetails": {},
-     *         //   "inheritance": "my_inheritance",
-     *         //   "inventorySourceDetails": {},
-     *         //   "inventorySourceGroupDetails": {},
-     *         //   "keywordDetails": {},
-     *         //   "languageDetails": {},
-     *         //   "name": "my_name",
-     *         //   "negativeKeywordListDetails": {},
-     *         //   "onScreenPositionDetails": {},
-     *         //   "operatingSystemDetails": {},
-     *         //   "parentalStatusDetails": {},
-     *         //   "proximityLocationListDetails": {},
-     *         //   "regionalLocationListDetails": {},
-     *         //   "sensitiveCategoryExclusionDetails": {},
-     *         //   "subExchangeDetails": {},
-     *         //   "targetingType": "my_targetingType",
-     *         //   "thirdPartyVerifierDetails": {},
-     *         //   "urlDetails": {},
-     *         //   "userRewardedContentDetails": {},
-     *         //   "videoPlayerSizeDetails": {},
-     *         //   "viewabilityDetails": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "ageRangeDetails": {},
+     *           //   "appCategoryDetails": {},
+     *           //   "appDetails": {},
+     *           //   "assignedTargetingOptionId": "my_assignedTargetingOptionId",
+     *           //   "audienceGroupDetails": {},
+     *           //   "authorizedSellerStatusDetails": {},
+     *           //   "browserDetails": {},
+     *           //   "carrierAndIspDetails": {},
+     *           //   "categoryDetails": {},
+     *           //   "channelDetails": {},
+     *           //   "contentInstreamPositionDetails": {},
+     *           //   "contentOutstreamPositionDetails": {},
+     *           //   "dayAndTimeDetails": {},
+     *           //   "deviceMakeModelDetails": {},
+     *           //   "deviceTypeDetails": {},
+     *           //   "digitalContentLabelExclusionDetails": {},
+     *           //   "environmentDetails": {},
+     *           //   "exchangeDetails": {},
+     *           //   "genderDetails": {},
+     *           //   "geoRegionDetails": {},
+     *           //   "householdIncomeDetails": {},
+     *           //   "inheritance": "my_inheritance",
+     *           //   "inventorySourceDetails": {},
+     *           //   "inventorySourceGroupDetails": {},
+     *           //   "keywordDetails": {},
+     *           //   "languageDetails": {},
+     *           //   "name": "my_name",
+     *           //   "negativeKeywordListDetails": {},
+     *           //   "onScreenPositionDetails": {},
+     *           //   "operatingSystemDetails": {},
+     *           //   "parentalStatusDetails": {},
+     *           //   "proximityLocationListDetails": {},
+     *           //   "regionalLocationListDetails": {},
+     *           //   "sensitiveCategoryExclusionDetails": {},
+     *           //   "subExchangeDetails": {},
+     *           //   "targetingType": "my_targetingType",
+     *           //   "thirdPartyVerifierDetails": {},
+     *           //   "urlDetails": {},
+     *           //   "userRewardedContentDetails": {},
+     *           //   "videoPlayerSizeDetails": {},
+     *           //   "viewabilityDetails": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -17520,7 +17555,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create;
+        params =
+          {} as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Create;
         options = {};
       }
 
@@ -17582,16 +17618,17 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.delete(
-     *     {
-     *       // Required. The ID of the advertiser.
-     *       advertiserId: '[^/]+',
-     *       // Required. The ID of the assigned targeting option to delete.
-     *       assignedTargetingOptionId: '[^/]+',
-     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
-     *       targetingType: '[^/]+',
-     *     }
-     *   );
+     *   const res =
+     *     await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.delete(
+     *       {
+     *         // Required. The ID of the advertiser.
+     *         advertiserId: '[^/]+',
+     *         // Required. The ID of the assigned targeting option to delete.
+     *         assignedTargetingOptionId: '[^/]+',
+     *         // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     *         targetingType: '[^/]+',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -17653,7 +17690,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete;
+        params =
+          {} as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Delete;
         options = {};
       }
 
@@ -17723,16 +17761,15 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.get(
-     *     {
+     *   const res =
+     *     await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.get({
      *       // Required. The ID of the advertiser.
      *       advertiserId: '[^/]+',
      *       // Required. An identifier unique to the targeting type in this advertiser that identifies the assigned targeting option being requested.
      *       assignedTargetingOptionId: '[^/]+',
      *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      *       targetingType: '[^/]+',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -17841,7 +17878,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get;
+        params =
+          {} as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$Get;
         options = {};
       }
 
@@ -17911,22 +17949,23 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.list(
-     *     {
-     *       // Required. The ID of the advertiser.
-     *       advertiserId: '[^/]+',
-     *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
-     *       filter: 'placeholder-value',
-     *       // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
-     *       orderBy: 'placeholder-value',
-     *       // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
-     *       pageSize: 'placeholder-value',
-     *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
-     *       pageToken: 'placeholder-value',
-     *       // Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
-     *       targetingType: '[^/]+',
-     *     }
-     *   );
+     *   const res =
+     *     await displayvideo.advertisers.targetingTypes.assignedTargetingOptions.list(
+     *       {
+     *         // Required. The ID of the advertiser.
+     *         advertiserId: '[^/]+',
+     *         // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
+     *         filter: 'placeholder-value',
+     *         // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
+     *         orderBy: 'placeholder-value',
+     *         // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *         pageSize: 'placeholder-value',
+     *         // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
+     *         targetingType: '[^/]+',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -17998,7 +18037,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List;
+        params =
+          {} as Params$Resource$Advertisers$Targetingtypes$Assignedtargetingoptions$List;
         options = {};
       }
 
@@ -20117,9 +20157,10 @@ export namespace displayvideo_v1 {
     assignedInventorySources: Resource$Inventorysourcegroups$Assignedinventorysources;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.assignedInventorySources = new Resource$Inventorysourcegroups$Assignedinventorysources(
-        this.context
-      );
+      this.assignedInventorySources =
+        new Resource$Inventorysourcegroups$Assignedinventorysources(
+          this.context
+        );
     }
 
     /**
@@ -20970,8 +21011,8 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.bulkEdit(
-     *     {
+     *   const res =
+     *     await displayvideo.inventorySourceGroups.assignedInventorySources.bulkEdit({
      *       // Required. The ID of the inventory source group to which the assignments are assigned.
      *       inventorySourceGroupId: '[^/]+',
      *
@@ -20985,8 +21026,7 @@ export namespace displayvideo_v1 {
      *         //   "partnerId": "my_partnerId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -21057,7 +21097,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit;
+        params =
+          {} as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Bulkedit;
         options = {};
       }
 
@@ -21121,8 +21162,8 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.create(
-     *     {
+     *   const res =
+     *     await displayvideo.inventorySourceGroups.assignedInventorySources.create({
      *       // The ID of the advertiser that owns the parent inventory source group. The parent partner will not have access to this assigned inventory source.
      *       advertiserId: 'placeholder-value',
      *       // Required. The ID of the inventory source group to which the assignment will be assigned.
@@ -21139,8 +21180,7 @@ export namespace displayvideo_v1 {
      *         //   "name": "my_name"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -21213,7 +21253,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create;
+        params =
+          {} as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Create;
         options = {};
       }
 
@@ -21275,8 +21316,8 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.delete(
-     *     {
+     *   const res =
+     *     await displayvideo.inventorySourceGroups.assignedInventorySources.delete({
      *       // The ID of the advertiser that owns the parent inventory source group. The parent partner does not have access to this assigned inventory source.
      *       advertiserId: 'placeholder-value',
      *       // Required. The ID of the assigned inventory source to delete.
@@ -21285,8 +21326,7 @@ export namespace displayvideo_v1 {
      *       inventorySourceGroupId: '[^/]+',
      *       // The ID of the partner that owns the parent inventory source group. Only this partner has write access to this assigned inventory source.
      *       partnerId: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -21348,7 +21388,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete;
+        params =
+          {} as Params$Resource$Inventorysourcegroups$Assignedinventorysources$Delete;
         options = {};
       }
 
@@ -21410,8 +21451,8 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.inventorySourceGroups.assignedInventorySources.list(
-     *     {
+     *   const res =
+     *     await displayvideo.inventorySourceGroups.assignedInventorySources.list({
      *       // The ID of the advertiser that has access to the assignment. If the parent inventory source group is partner-owned, only advertisers to which the parent group is explicitly shared can access the assigned inventory source.
      *       advertiserId: 'placeholder-value',
      *       // Allows filtering by assigned inventory source fields. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedInventorySourceId` The length of this field should be no more than 500 characters.
@@ -21426,8 +21467,7 @@ export namespace displayvideo_v1 {
      *       pageToken: 'placeholder-value',
      *       // The ID of the partner that has access to the assignment. If the parent inventory source group is advertiser-owned, the assignment cannot be accessed via a partner.
      *       partnerId: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -21499,7 +21539,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Inventorysourcegroups$Assignedinventorysources$List;
+        params =
+          {} as Params$Resource$Inventorysourcegroups$Assignedinventorysources$List;
         options = {};
       }
 
@@ -22147,8 +22188,8 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.partners.bulkEditPartnerAssignedTargetingOptions(
-     *     {
+     *   const res =
+     *     await displayvideo.partners.bulkEditPartnerAssignedTargetingOptions({
      *       // Required. The ID of the partner.
      *       partnerId: '[^/]+',
      *
@@ -22160,8 +22201,7 @@ export namespace displayvideo_v1 {
      *         //   "deleteRequests": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -22232,7 +22272,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions;
+        params =
+          {} as Params$Resource$Partners$Bulkeditpartnerassignedtargetingoptions;
         options = {};
       }
 
@@ -24090,9 +24131,10 @@ export namespace displayvideo_v1 {
     assignedTargetingOptions: Resource$Partners$Targetingtypes$Assignedtargetingoptions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.assignedTargetingOptions = new Resource$Partners$Targetingtypes$Assignedtargetingoptions(
-        this.context
-      );
+      this.assignedTargetingOptions =
+        new Resource$Partners$Targetingtypes$Assignedtargetingoptions(
+          this.context
+        );
     }
   }
 
@@ -24128,8 +24170,8 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.partners.targetingTypes.assignedTargetingOptions.create(
-     *     {
+     *   const res =
+     *     await displayvideo.partners.targetingTypes.assignedTargetingOptions.create({
      *       // Required. The ID of the partner.
      *       partnerId: '[^/]+',
      *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
@@ -24182,8 +24224,7 @@ export namespace displayvideo_v1 {
      *         //   "viewabilityDetails": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -24294,7 +24335,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create;
+        params =
+          {} as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Create;
         options = {};
       }
 
@@ -24356,16 +24398,15 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.partners.targetingTypes.assignedTargetingOptions.delete(
-     *     {
+     *   const res =
+     *     await displayvideo.partners.targetingTypes.assignedTargetingOptions.delete({
      *       // Required. The ID of the assigned targeting option to delete.
      *       assignedTargetingOptionId: '[^/]+',
      *       // Required. The ID of the partner.
      *       partnerId: '[^/]+',
      *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
      *       targetingType: '[^/]+',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -24427,7 +24468,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete;
+        params =
+          {} as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Delete;
         options = {};
       }
 
@@ -24493,16 +24535,15 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.partners.targetingTypes.assignedTargetingOptions.get(
-     *     {
+     *   const res =
+     *     await displayvideo.partners.targetingTypes.assignedTargetingOptions.get({
      *       // Required. An identifier unique to the targeting type in this partner that identifies the assigned targeting option being requested.
      *       assignedTargetingOptionId: '[^/]+',
      *       // Required. The ID of the partner.
      *       partnerId: '[^/]+',
      *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
      *       targetingType: '[^/]+',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -24611,7 +24652,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get;
+        params =
+          {} as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$Get;
         options = {};
       }
 
@@ -24677,8 +24719,8 @@ export namespace displayvideo_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await displayvideo.partners.targetingTypes.assignedTargetingOptions.list(
-     *     {
+     *   const res =
+     *     await displayvideo.partners.targetingTypes.assignedTargetingOptions.list({
      *       // Allows filtering by assigned targeting option properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by the logical operator `OR`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `assignedTargetingOptionId` Examples: * AssignedTargetingOption with ID 123456 `assignedTargetingOptionId="123456"` The length of this field should be no more than 500 characters.
      *       filter: 'placeholder-value',
      *       // Field by which to sort the list. Acceptable values are: * `assignedTargetingOptionId` (default) The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `assignedTargetingOptionId desc`.
@@ -24691,8 +24733,7 @@ export namespace displayvideo_v1 {
      *       partnerId: '[^/]+',
      *       // Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL`
      *       targetingType: '[^/]+',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -24764,7 +24805,8 @@ export namespace displayvideo_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List;
+        params =
+          {} as Params$Resource$Partners$Targetingtypes$Assignedtargetingoptions$List;
         options = {};
       }
 
