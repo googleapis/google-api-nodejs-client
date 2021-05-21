@@ -819,7 +819,7 @@
       }
     }
   },
-  "revision": "20210415",
+  "revision": "20210514",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ArtifactObjects": {
@@ -1046,6 +1046,14 @@
           "description": "Output only. Stores timing information for phases of the build. Valid keys are: * BUILD: time to execute all build steps * PUSH: time to push all specified images. * FETCHSOURCE: time to fetch source. If the build does not specify source or images, these keys will not be included.",
           "readOnly": true,
           "type": "object"
+        },
+        "warnings": {
+          "description": "Output only. Non-fatal problems encountered during the execution of the build.",
+          "items": {
+            "$ref": "Warning"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -2172,6 +2180,33 @@
         },
         "path": {
           "description": "Path at which to mount the volume. Paths must be absolute and cannot conflict with other volume paths on the same build step or with certain reserved volume paths.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Warning": {
+      "description": "A non-fatal problem encountered during the execution of the build.",
+      "id": "Warning",
+      "properties": {
+        "priority": {
+          "description": "The priority for this warning.",
+          "enum": [
+            "PRIORITY_UNSPECIFIED",
+            "INFO",
+            "WARNING",
+            "ALERT"
+          ],
+          "enumDescriptions": [
+            "Should not be used.",
+            "e.g. deprecation warnings and alternative feature highlights.",
+            "e.g. automated detection of possible issues with the build.",
+            "e.g. alerts that a feature used in the build is pending removal"
+          ],
+          "type": "string"
+        },
+        "text": {
+          "description": "Explanation of the warning generated.",
           "type": "string"
         }
       },
