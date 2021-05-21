@@ -470,7 +470,7 @@ export namespace metastore_v1alpha {
    */
   export interface Schema$MetadataImport {
     /**
-     * Output only. The time when the metadata import was created.
+     * Output only. The time when the metadata import was started.
      */
     createTime?: string | null;
     /**
@@ -1537,9 +1537,8 @@ export namespace metastore_v1alpha {
       this.backups = new Resource$Projects$Locations$Services$Backups(
         this.context
       );
-      this.metadataImports = new Resource$Projects$Locations$Services$Metadataimports(
-        this.context
-      );
+      this.metadataImports =
+        new Resource$Projects$Locations$Services$Metadataimports(this.context);
     }
 
     /**
@@ -1942,7 +1941,8 @@ export namespace metastore_v1alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Services$Exportmetadata;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Exportmetadata;
         options = {};
       }
 
@@ -2948,7 +2948,8 @@ export namespace metastore_v1alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Services$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Testiampermissions;
         options = {};
       }
 
@@ -3246,7 +3247,8 @@ export namespace metastore_v1alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Services$Backups$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Backups$Create;
         options = {};
       }
 
@@ -3310,8 +3312,7 @@ export namespace metastore_v1alpha {
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.backups.delete({
      *     // Required. The relative resource name of the backup to delete, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}.
-     *     name:
-     *       'projects/my-project/locations/my-location/services/my-service/backups/my-backup',
+     *     name: 'projects/my-project/locations/my-location/services/my-service/backups/my-backup',
      *     // Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      *     requestId: 'placeholder-value',
      *   });
@@ -3382,7 +3383,8 @@ export namespace metastore_v1alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Services$Backups$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Backups$Delete;
         options = {};
       }
 
@@ -3443,8 +3445,7 @@ export namespace metastore_v1alpha {
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.backups.get({
      *     // Required. The relative resource name of the backup to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/backups/{backup_id\}.
-     *     name:
-     *       'projects/my-project/locations/my-location/services/my-service/backups/my-backup',
+     *     name: 'projects/my-project/locations/my-location/services/my-service/backups/my-backup',
      *   });
      *   console.log(res.data);
      *
@@ -3784,8 +3785,8 @@ export namespace metastore_v1alpha {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await metastore.projects.locations.services.metadataImports.create(
-     *     {
+     *   const res =
+     *     await metastore.projects.locations.services.metadataImports.create({
      *       // Required. The ID of the metadata import, which is used as the final component of the metadata import's name.This value must be between 1 and 64 characters long, begin with a letter, end with a letter or number, and consist of alpha-numeric ASCII characters or hyphens.
      *       metadataImportId: 'placeholder-value',
      *       // Required. The relative resource name of the service in which to create a metastore import, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}.
@@ -3805,8 +3806,7 @@ export namespace metastore_v1alpha {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3874,7 +3874,8 @@ export namespace metastore_v1alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Services$Metadataimports$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Metadataimports$Create;
         options = {};
       }
 
@@ -3938,8 +3939,7 @@ export namespace metastore_v1alpha {
      *   // Do the magic
      *   const res = await metastore.projects.locations.services.metadataImports.get({
      *     // Required. The relative resource name of the metadata import to retrieve, in the following form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{import_id\}.
-     *     name:
-     *       'projects/my-project/locations/my-location/services/my-service/metadataImports/my-metadataImport',
+     *     name: 'projects/my-project/locations/my-location/services/my-service/metadataImports/my-metadataImport',
      *   });
      *   console.log(res.data);
      *
@@ -4009,7 +4009,8 @@ export namespace metastore_v1alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Services$Metadataimports$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Metadataimports$Get;
         options = {};
       }
 
@@ -4152,7 +4153,8 @@ export namespace metastore_v1alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Services$Metadataimports$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Metadataimports$List;
         options = {};
       }
 
@@ -4217,8 +4219,7 @@ export namespace metastore_v1alpha {
      *   const res = await metastore.projects.locations.services.metadataImports.patch(
      *     {
      *       // Immutable. The relative resource name of the metadata import, of the form:projects/{project_number\}/locations/{location_id\}/services/{service_id\}/metadataImports/{metadata_import_id\}.
-     *       name:
-     *         'projects/my-project/locations/my-location/services/my-service/metadataImports/my-metadataImport',
+     *       name: 'projects/my-project/locations/my-location/services/my-service/metadataImports/my-metadataImport',
      *       // Optional. A request ID. Specify a unique request ID to allow the server to ignore the request if it has completed. The server will ignore subsequent requests that provide a duplicate request ID for at least 60 minutes after the first request.For example, if an initial request times out, followed by another request with the same request ID, the server ignores the second request to prevent the creation of duplicate commitments.The request ID must be a valid UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier#Format) A zero UUID (00000000-0000-0000-0000-000000000000) is not supported.
      *       requestId: 'placeholder-value',
      *       // Required. A field mask used to specify the fields to be overwritten in the metadata import resource by the update. Fields specified in the update_mask are relative to the resource (not to the full request). A field is overwritten if it is in the mask.
@@ -4305,7 +4306,8 @@ export namespace metastore_v1alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Services$Metadataimports$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Services$Metadataimports$Patch;
         options = {};
       }
 
