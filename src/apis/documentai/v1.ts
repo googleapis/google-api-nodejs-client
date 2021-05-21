@@ -659,6 +659,10 @@ export namespace documentai_v1 {
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta1BoundingPoly;
     /**
+     * Optional. Confidence of detected page element, if applicable. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
      * Optional. Deprecated. Use PageRef.bounding_poly instead.
      */
     layoutId?: string | null;
@@ -967,6 +971,10 @@ export namespace documentai_v1 {
      * The id of the parent provenance.
      */
     id?: number | null;
+    /**
+     * The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)
+     */
+    index?: number | null;
     /**
      * The index of the [Document.revisions] identifying the parent revision.
      */
@@ -1484,6 +1492,10 @@ export namespace documentai_v1 {
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta2BoundingPoly;
     /**
+     * Optional. Confidence of detected page element, if applicable. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
      * Optional. Deprecated. Use PageRef.bounding_poly instead.
      */
     layoutId?: string | null;
@@ -1792,6 +1804,10 @@ export namespace documentai_v1 {
      * The id of the parent provenance.
      */
     id?: number | null;
+    /**
+     * The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)
+     */
+    index?: number | null;
     /**
      * The index of the [Document.revisions] identifying the parent revision.
      */
@@ -2448,6 +2464,10 @@ export namespace documentai_v1 {
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1BoundingPoly;
     /**
+     * Optional. Confidence of detected page element, if applicable. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
      * Optional. Deprecated. Use PageRef.bounding_poly instead.
      */
     layoutId?: string | null;
@@ -2756,6 +2776,10 @@ export namespace documentai_v1 {
      * The id of the parent provenance.
      */
     id?: number | null;
+    /**
+     * The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)
+     */
+    index?: number | null;
     /**
      * The index of the [Document.revisions] identifying the parent revision.
      */
@@ -4252,12 +4276,14 @@ export namespace documentai_v1 {
     processorVersions: Resource$Projects$Locations$Processors$Processorversions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.humanReviewConfig = new Resource$Projects$Locations$Processors$Humanreviewconfig(
-        this.context
-      );
-      this.processorVersions = new Resource$Projects$Locations$Processors$Processorversions(
-        this.context
-      );
+      this.humanReviewConfig =
+        new Resource$Projects$Locations$Processors$Humanreviewconfig(
+          this.context
+        );
+      this.processorVersions =
+        new Resource$Projects$Locations$Processors$Processorversions(
+          this.context
+        );
     }
 
     /**
@@ -4374,7 +4400,8 @@ export namespace documentai_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Processors$Batchprocess;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Batchprocess;
         options = {};
       }
 
@@ -4617,21 +4644,22 @@ export namespace documentai_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await documentai.projects.locations.processors.humanReviewConfig.reviewDocument(
-     *     {
-     *       // Required. The resource name of the HumanReviewConfig that the document will be reviewed with.
-     *       humanReviewConfig:
-     *         'projects/my-project/locations/my-location/processors/my-processor/humanReviewConfig',
+     *   const res =
+     *     await documentai.projects.locations.processors.humanReviewConfig.reviewDocument(
+     *       {
+     *         // Required. The resource name of the HumanReviewConfig that the document will be reviewed with.
+     *         humanReviewConfig:
+     *           'projects/my-project/locations/my-location/processors/my-processor/humanReviewConfig',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "inlineDocument": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "inlineDocument": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4706,7 +4734,8 @@ export namespace documentai_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Processors$Humanreviewconfig$Reviewdocument;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Humanreviewconfig$Reviewdocument;
         options = {};
       }
 
@@ -4788,23 +4817,23 @@ export namespace documentai_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await documentai.projects.locations.processors.processorVersions.batchProcess(
-     *     {
-     *       // Required. The resource name of Processor or ProcessorVersion. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}
-     *       name:
-     *         'projects/my-project/locations/my-location/processors/my-processor/processorVersions/my-processorVersion',
+     *   const res =
+     *     await documentai.projects.locations.processors.processorVersions.batchProcess(
+     *       {
+     *         // Required. The resource name of Processor or ProcessorVersion. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}
+     *         name: 'projects/my-project/locations/my-location/processors/my-processor/processorVersions/my-processorVersion',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "documentOutputConfig": {},
-     *         //   "inputDocuments": {},
-     *         //   "skipHumanReview": false
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "documentOutputConfig": {},
+     *           //   "inputDocuments": {},
+     *           //   "skipHumanReview": false
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4879,7 +4908,8 @@ export namespace documentai_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Processorversions$Batchprocess;
         options = {};
       }
 
@@ -4941,11 +4971,10 @@ export namespace documentai_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await documentai.projects.locations.processors.processorVersions.process(
-     *     {
+     *   const res =
+     *     await documentai.projects.locations.processors.processorVersions.process({
      *       // Required. The resource name of the Processor or ProcessorVersion to use for processing. If a Processor is specified, the server will use its default version. Format: projects/{project\}/locations/{location\}/processors/{processor\}, or projects/{project\}/locations/{location\}/processors/{processor\}/processorVersions/{processorVersion\}
-     *       name:
-     *         'projects/my-project/locations/my-location/processors/my-processor/processorVersions/my-processorVersion',
+     *       name: 'projects/my-project/locations/my-location/processors/my-processor/processorVersions/my-processorVersion',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -4956,8 +4985,7 @@ export namespace documentai_v1 {
      *         //   "skipHumanReview": false
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5029,7 +5057,8 @@ export namespace documentai_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Processors$Processorversions$Process;
+        params =
+          {} as Params$Resource$Projects$Locations$Processors$Processorversions$Process;
         options = {};
       }
 
@@ -5693,7 +5722,8 @@ export namespace documentai_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Uiv1beta3$Projects$Locations$Operations$Get;
+        params =
+          {} as Params$Resource$Uiv1beta3$Projects$Locations$Operations$Get;
         options = {};
       }
 

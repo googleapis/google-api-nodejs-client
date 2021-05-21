@@ -625,6 +625,10 @@ export namespace documentai_v1beta2 {
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta1BoundingPoly;
     /**
+     * Optional. Confidence of detected page element, if applicable. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
      * Optional. Deprecated. Use PageRef.bounding_poly instead.
      */
     layoutId?: string | null;
@@ -933,6 +937,10 @@ export namespace documentai_v1beta2 {
      * The id of the parent provenance.
      */
     id?: number | null;
+    /**
+     * The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)
+     */
+    index?: number | null;
     /**
      * The index of the [Document.revisions] identifying the parent revision.
      */
@@ -1468,6 +1476,10 @@ export namespace documentai_v1beta2 {
      */
     boundingPoly?: Schema$GoogleCloudDocumentaiV1beta2BoundingPoly;
     /**
+     * Optional. Confidence of detected page element, if applicable. Range [0, 1].
+     */
+    confidence?: number | null;
+    /**
      * Optional. Deprecated. Use PageRef.bounding_poly instead.
      */
     layoutId?: string | null;
@@ -1776,6 +1788,10 @@ export namespace documentai_v1beta2 {
      * The id of the parent provenance.
      */
     id?: number | null;
+    /**
+     * The index of the parent revisions corresponding collection of items (eg. list of entities, properties within entities, etc.)
+     */
+    index?: number | null;
     /**
      * The index of the [Document.revisions] identifying the parent revision.
      */
@@ -3034,7 +3050,8 @@ export namespace documentai_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Documents$Batchprocess;
+        params =
+          {} as Params$Resource$Projects$Locations$Documents$Batchprocess;
         options = {};
       }
 
