@@ -4555,8 +4555,8 @@ export namespace bigtableadmin_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigtableadmin.projects.instances.clusters.partialUpdateCluster(
-     *     {
+     *   const res =
+     *     await bigtableadmin.projects.instances.clusters.partialUpdateCluster({
      *       // The unique name of the cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/a-z*`.
      *       name: 'projects/my-project/instances/my-instance/clusters/my-cluster',
      *       // Required. The subset of Cluster fields which should be replaced. Must be explicitly set.
@@ -4574,8 +4574,7 @@ export namespace bigtableadmin_v2 {
      *         //   "state": "my_state"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4645,7 +4644,8 @@ export namespace bigtableadmin_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Instances$Clusters$Partialupdatecluster;
+        params =
+          {} as Params$Resource$Projects$Instances$Clusters$Partialupdatecluster;
         options = {};
       }
 
@@ -5027,7 +5027,8 @@ export namespace bigtableadmin_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Instances$Clusters$Backups$Create;
+        params =
+          {} as Params$Resource$Projects$Instances$Clusters$Backups$Create;
         options = {};
       }
 
@@ -5098,8 +5099,7 @@ export namespace bigtableadmin_v2 {
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.delete({
      *     // Required. Name of the backup to delete. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/backups/{backup\}`.
-     *     name:
-     *       'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
+     *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
      *   });
      *   console.log(res.data);
      *
@@ -5162,7 +5162,8 @@ export namespace bigtableadmin_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Instances$Clusters$Backups$Delete;
+        params =
+          {} as Params$Resource$Projects$Instances$Clusters$Backups$Delete;
         options = {};
       }
 
@@ -5230,8 +5231,7 @@ export namespace bigtableadmin_v2 {
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.get({
      *     // Required. Name of the backup. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/backups/{backup\}`.
-     *     name:
-     *       'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
+     *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
      *   });
      *   console.log(res.data);
      *
@@ -5369,8 +5369,8 @@ export namespace bigtableadmin_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigtableadmin.projects.instances.clusters.backups.getIamPolicy(
-     *     {
+     *   const res =
+     *     await bigtableadmin.projects.instances.clusters.backups.getIamPolicy({
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
@@ -5382,8 +5382,7 @@ export namespace bigtableadmin_v2 {
      *         //   "options": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5450,7 +5449,8 @@ export namespace bigtableadmin_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Instances$Clusters$Backups$Getiampolicy;
         options = {};
       }
 
@@ -5669,8 +5669,7 @@ export namespace bigtableadmin_v2 {
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.clusters.backups.patch({
      *     // A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
-     *     name:
-     *       'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
+     *     name: 'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
      *     // Required. A mask specifying which fields (e.g. `expire_time`) in the Backup resource should be updated. This mask is relative to the Backup resource, not to the request message. The field mask must always be specified; this prevents any future fields from being erased accidentally by clients that do not know about them.
      *     updateMask: 'placeholder-value',
      *
@@ -5759,7 +5758,8 @@ export namespace bigtableadmin_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Instances$Clusters$Backups$Patch;
+        params =
+          {} as Params$Resource$Projects$Instances$Clusters$Backups$Patch;
         options = {};
       }
 
@@ -5825,8 +5825,8 @@ export namespace bigtableadmin_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigtableadmin.projects.instances.clusters.backups.setIamPolicy(
-     *     {
+     *   const res =
+     *     await bigtableadmin.projects.instances.clusters.backups.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
@@ -5839,8 +5839,7 @@ export namespace bigtableadmin_v2 {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5907,7 +5906,8 @@ export namespace bigtableadmin_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Instances$Clusters$Backups$Setiampolicy;
         options = {};
       }
 
@@ -5976,8 +5976,8 @@ export namespace bigtableadmin_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigtableadmin.projects.instances.clusters.backups.testIamPermissions(
-     *     {
+     *   const res =
+     *     await bigtableadmin.projects.instances.clusters.backups.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/instances/my-instance/clusters/my-cluster/backups/my-backup',
@@ -5989,8 +5989,7 @@ export namespace bigtableadmin_v2 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6061,7 +6060,8 @@ export namespace bigtableadmin_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Instances$Clusters$Backups$Testiampermissions;
         options = {};
       }
 
@@ -6325,7 +6325,8 @@ export namespace bigtableadmin_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Instances$Tables$Checkconsistency;
+        params =
+          {} as Params$Resource$Projects$Instances$Tables$Checkconsistency;
         options = {};
       }
 
@@ -6818,8 +6819,8 @@ export namespace bigtableadmin_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigtableadmin.projects.instances.tables.generateConsistencyToken(
-     *     {
+     *   const res =
+     *     await bigtableadmin.projects.instances.tables.generateConsistencyToken({
      *       // Required. The unique name of the Table for which to create a consistency token. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      *       name: 'projects/my-project/instances/my-instance/tables/my-table',
      *
@@ -6828,8 +6829,7 @@ export namespace bigtableadmin_v2 {
      *         // request body parameters
      *         // {}
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6900,7 +6900,8 @@ export namespace bigtableadmin_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Instances$Tables$Generateconsistencytoken;
+        params =
+          {} as Params$Resource$Projects$Instances$Tables$Generateconsistencytoken;
         options = {};
       }
 
@@ -7405,8 +7406,8 @@ export namespace bigtableadmin_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigtableadmin.projects.instances.tables.modifyColumnFamilies(
-     *     {
+     *   const res =
+     *     await bigtableadmin.projects.instances.tables.modifyColumnFamilies({
      *       // Required. The unique name of the table whose families should be modified. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      *       name: 'projects/my-project/instances/my-instance/tables/my-table',
      *
@@ -7417,8 +7418,7 @@ export namespace bigtableadmin_v2 {
      *         //   "modifications": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -7486,7 +7486,8 @@ export namespace bigtableadmin_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies;
+        params =
+          {} as Params$Resource$Projects$Instances$Tables$Modifycolumnfamilies;
         options = {};
       }
 
@@ -7934,7 +7935,8 @@ export namespace bigtableadmin_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Instances$Tables$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Instances$Tables$Testiampermissions;
         options = {};
       }
 
@@ -8302,7 +8304,7 @@ export namespace bigtableadmin_v2 {
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service will select a default.
+     *     // The maximum number of results to return. If not set, the service selects a default.
      *     pageSize: 'placeholder-value',
      *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
@@ -8432,7 +8434,7 @@ export namespace bigtableadmin_v2 {
      */
     name?: string;
     /**
-     * The maximum number of results to return. If not set, the service will select a default.
+     * The maximum number of results to return. If not set, the service selects a default.
      */
     pageSize?: number;
     /**
