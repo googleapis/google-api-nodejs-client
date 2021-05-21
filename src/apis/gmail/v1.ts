@@ -5512,9 +5512,8 @@ export namespace gmail_v1 {
       this.context = context;
       this.delegates = new Resource$Users$Settings$Delegates(this.context);
       this.filters = new Resource$Users$Settings$Filters(this.context);
-      this.forwardingAddresses = new Resource$Users$Settings$Forwardingaddresses(
-        this.context
-      );
+      this.forwardingAddresses =
+        new Resource$Users$Settings$Forwardingaddresses(this.context);
       this.sendAs = new Resource$Users$Settings$Sendas(this.context);
     }
 
@@ -8294,7 +8293,8 @@ export namespace gmail_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Users$Settings$Forwardingaddresses$Create;
+        params =
+          {} as Params$Resource$Users$Settings$Forwardingaddresses$Create;
         options = {};
       }
 
@@ -8417,7 +8417,8 @@ export namespace gmail_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Users$Settings$Forwardingaddresses$Delete;
+        params =
+          {} as Params$Resource$Users$Settings$Forwardingaddresses$Delete;
         options = {};
       }
 
@@ -10537,7 +10538,8 @@ export namespace gmail_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault;
+        params =
+          {} as Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault;
         options = {};
       }
 

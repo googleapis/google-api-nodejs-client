@@ -30,7 +30,7 @@
           "description": "View your email message metadata such as labels and headers, but not the email body"
         },
         "https://www.googleapis.com/auth/gmail.modify": {
-          "description": "View and modify but not delete your email"
+          "description": "Read, compose, and send emails from your Gmail account"
         },
         "https://www.googleapis.com/auth/gmail.readonly": {
           "description": "View your email messages and settings"
@@ -2682,7 +2682,7 @@
       }
     }
   },
-  "revision": "20210301",
+  "revision": "20210517",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {
