@@ -159,7 +159,7 @@ export namespace chromemanagement_v1 {
      */
     browserVersions?: Schema$GoogleChromeManagementV1BrowserVersion[];
     /**
-     * Token to specify the next page in the list.
+     * Token to specify the next page of the request.
      */
     nextPageToken?: string | null;
     /**
@@ -176,7 +176,7 @@ export namespace chromemanagement_v1 {
      */
     installedApps?: Schema$GoogleChromeManagementV1InstalledApp[];
     /**
-     * Token to specify next page in the list.
+     * Token to specify the next page of the request.
      */
     nextPageToken?: string | null;
     /**
@@ -206,7 +206,7 @@ export namespace chromemanagement_v1 {
      */
     devices?: Schema$GoogleChromeManagementV1Device[];
     /**
-     * Token to specify the next page in the list.
+     * Token to specify the next page of the request.
      */
     nextPageToken?: string | null;
     /**
@@ -316,7 +316,7 @@ export namespace chromemanagement_v1 {
      *     orgUnitId: 'placeholder-value',
      *     // Maximum number of results to return. Maximum and default are 100.
      *     pageSize: 'placeholder-value',
-     *     // Token to specify the next page in the list.
+     *     // Token to specify the page of the request to be returned.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -468,7 +468,7 @@ export namespace chromemanagement_v1 {
      *     orgUnitId: 'placeholder-value',
      *     // Maximum number of results to return. Maximum and default are 100.
      *     pageSize: 'placeholder-value',
-     *     // Token to specify next page in the list.
+     *     // Token to specify the page of the request to be returned.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -624,7 +624,7 @@ export namespace chromemanagement_v1 {
      *     orgUnitId: 'placeholder-value',
      *     // Maximum number of results to return. Maximum and default are 100.
      *     pageSize: 'placeholder-value',
-     *     // Token to specify the next page in the list.
+     *     // Token to specify the page of the request to be returned.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -699,7 +699,8 @@ export namespace chromemanagement_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Customers$Reports$Findinstalledappdevices;
+        params =
+          {} as Params$Resource$Customers$Reports$Findinstalledappdevices;
         options = {};
       }
 
@@ -757,7 +758,7 @@ export namespace chromemanagement_v1 {
      */
     pageSize?: number;
     /**
-     * Token to specify the next page in the list.
+     * Token to specify the page of the request to be returned.
      */
     pageToken?: string;
   }
@@ -784,7 +785,7 @@ export namespace chromemanagement_v1 {
      */
     pageSize?: number;
     /**
-     * Token to specify next page in the list.
+     * Token to specify the page of the request to be returned.
      */
     pageToken?: string;
   }
@@ -819,7 +820,7 @@ export namespace chromemanagement_v1 {
      */
     pageSize?: number;
     /**
-     * Token to specify the next page in the list.
+     * Token to specify the page of the request to be returned.
      */
     pageToken?: string;
   }
