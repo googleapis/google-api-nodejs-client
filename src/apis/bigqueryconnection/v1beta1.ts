@@ -827,8 +827,8 @@ export namespace bigqueryconnection_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigqueryconnection.projects.locations.connections.getIamPolicy(
-     *     {
+     *   const res =
+     *     await bigqueryconnection.projects.locations.connections.getIamPolicy({
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/connections/my-connection',
@@ -840,8 +840,7 @@ export namespace bigqueryconnection_v1beta1 {
      *         //   "options": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -908,7 +907,8 @@ export namespace bigqueryconnection_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Connections$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Getiampolicy;
         options = {};
       }
 
@@ -1269,8 +1269,8 @@ export namespace bigqueryconnection_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigqueryconnection.projects.locations.connections.setIamPolicy(
-     *     {
+     *   const res =
+     *     await bigqueryconnection.projects.locations.connections.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/connections/my-connection',
@@ -1283,8 +1283,7 @@ export namespace bigqueryconnection_v1beta1 {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1351,7 +1350,8 @@ export namespace bigqueryconnection_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Connections$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Setiampolicy;
         options = {};
       }
 
@@ -1417,8 +1417,8 @@ export namespace bigqueryconnection_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigqueryconnection.projects.locations.connections.testIamPermissions(
-     *     {
+     *   const res =
+     *     await bigqueryconnection.projects.locations.connections.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/connections/my-connection',
@@ -1430,8 +1430,7 @@ export namespace bigqueryconnection_v1beta1 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1502,7 +1501,8 @@ export namespace bigqueryconnection_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Connections$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Testiampermissions;
         options = {};
       }
 
@@ -1568,11 +1568,10 @@ export namespace bigqueryconnection_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigqueryconnection.projects.locations.connections.updateCredential(
-     *     {
+     *   const res =
+     *     await bigqueryconnection.projects.locations.connections.updateCredential({
      *       // Required. Name of the connection, for example: `projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}/credential`
-     *       name:
-     *         'projects/my-project/locations/my-location/connections/my-connection/credential',
+     *       name: 'projects/my-project/locations/my-location/connections/my-connection/credential',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -1581,8 +1580,7 @@ export namespace bigqueryconnection_v1beta1 {
      *         //   "cloudSql": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1644,7 +1642,8 @@ export namespace bigqueryconnection_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Connections$Updatecredential;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Updatecredential;
         options = {};
       }
 
