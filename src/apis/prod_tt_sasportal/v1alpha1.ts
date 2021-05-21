@@ -206,6 +206,10 @@ export namespace prod_tt_sasportal_v1alpha1 {
      */
     displayName?: string | null;
     /**
+     * Output only. The FRNs copied from its direct parent.
+     */
+    frns?: string[] | null;
+    /**
      * Output only. Resource name.
      */
     name?: string | null;
@@ -1232,6 +1236,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *       //   "allowedBillingModes": [],
      *       //   "defaultBillingMode": "my_defaultBillingMode",
      *       //   "displayName": "my_displayName",
+     *       //   "frns": [],
      *       //   "name": "my_name",
      *       //   "sasUserIds": []
      *       // }
@@ -1244,6 +1249,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }
@@ -1506,6 +1512,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }
@@ -1933,6 +1940,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *       //   "allowedBillingModes": [],
      *       //   "defaultBillingMode": "my_defaultBillingMode",
      *       //   "displayName": "my_displayName",
+     *       //   "frns": [],
      *       //   "name": "my_name",
      *       //   "sasUserIds": []
      *       // }
@@ -1945,6 +1953,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }
@@ -2307,8 +2316,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await prod_tt_sasportal.customers.deployments.devices.createSigned(
-     *     {
+     *   const res =
+     *     await prod_tt_sasportal.customers.deployments.devices.createSigned({
      *       // Required. The name of the parent resource.
      *       parent: 'customers/my-customer/deployments/my-deployment',
      *
@@ -2320,8 +2329,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *         //   "installerId": "my_installerId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2395,7 +2403,8 @@ export namespace prod_tt_sasportal_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Customers$Deployments$Devices$Createsigned;
+        params =
+          {} as Params$Resource$Customers$Deployments$Devices$Createsigned;
         options = {};
       }
 
@@ -4998,6 +5007,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *       //   "allowedBillingModes": [],
      *       //   "defaultBillingMode": "my_defaultBillingMode",
      *       //   "displayName": "my_displayName",
+     *       //   "frns": [],
      *       //   "name": "my_name",
      *       //   "sasUserIds": []
      *       // }
@@ -5010,6 +5020,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }
@@ -6163,6 +6174,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }
@@ -7816,6 +7828,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }
@@ -8243,6 +8256,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *       //   "allowedBillingModes": [],
      *       //   "defaultBillingMode": "my_defaultBillingMode",
      *       //   "displayName": "my_displayName",
+     *       //   "frns": [],
      *       //   "name": "my_name",
      *       //   "sasUserIds": []
      *       // }
@@ -8255,6 +8269,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }
@@ -11288,6 +11303,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *       //   "allowedBillingModes": [],
      *       //   "defaultBillingMode": "my_defaultBillingMode",
      *       //   "displayName": "my_displayName",
+     *       //   "frns": [],
      *       //   "name": "my_name",
      *       //   "sasUserIds": []
      *       // }
@@ -11300,6 +11316,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }
