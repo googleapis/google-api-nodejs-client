@@ -3749,9 +3749,8 @@ export namespace classroom_v1 {
     studentSubmissions: Resource$Courses$Coursework$Studentsubmissions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.studentSubmissions = new Resource$Courses$Coursework$Studentsubmissions(
-        this.context
-      );
+      this.studentSubmissions =
+        new Resource$Courses$Coursework$Studentsubmissions(this.context);
     }
 
     /**
@@ -4934,7 +4933,8 @@ export namespace classroom_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Courses$Coursework$Studentsubmissions$Get;
+        params =
+          {} as Params$Resource$Courses$Coursework$Studentsubmissions$Get;
         options = {};
       }
 
@@ -5090,7 +5090,8 @@ export namespace classroom_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Courses$Coursework$Studentsubmissions$List;
+        params =
+          {} as Params$Resource$Courses$Coursework$Studentsubmissions$List;
         options = {};
       }
 
@@ -5157,8 +5158,8 @@ export namespace classroom_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await classroom.courses.courseWork.studentSubmissions.modifyAttachments(
-     *     {
+     *   const res =
+     *     await classroom.courses.courseWork.studentSubmissions.modifyAttachments({
      *       // Identifier of the course. This identifier can be either the Classroom-assigned identifier or an alias.
      *       courseId: 'placeholder-value',
      *       // Identifier of the course work.
@@ -5173,8 +5174,7 @@ export namespace classroom_v1 {
      *         //   "addAttachments": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5259,7 +5259,8 @@ export namespace classroom_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments;
+        params =
+          {} as Params$Resource$Courses$Coursework$Studentsubmissions$Modifyattachments;
         options = {};
       }
 
@@ -5440,7 +5441,8 @@ export namespace classroom_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Courses$Coursework$Studentsubmissions$Patch;
+        params =
+          {} as Params$Resource$Courses$Coursework$Studentsubmissions$Patch;
         options = {};
       }
 
@@ -5577,7 +5579,8 @@ export namespace classroom_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim;
+        params =
+          {} as Params$Resource$Courses$Coursework$Studentsubmissions$Reclaim;
         options = {};
       }
 
@@ -5714,7 +5717,8 @@ export namespace classroom_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Courses$Coursework$Studentsubmissions$Return;
+        params =
+          {} as Params$Resource$Courses$Coursework$Studentsubmissions$Return;
         options = {};
       }
 
@@ -5851,7 +5855,8 @@ export namespace classroom_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Courses$Coursework$Studentsubmissions$Turnin;
+        params =
+          {} as Params$Resource$Courses$Coursework$Studentsubmissions$Turnin;
         options = {};
       }
 
