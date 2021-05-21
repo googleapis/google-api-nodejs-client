@@ -6554,7 +6554,8 @@ export namespace vision_v1p2beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Files$Asyncbatchannotate;
+        params =
+          {} as Params$Resource$Projects$Locations$Files$Asyncbatchannotate;
         options = {};
       }
 
@@ -6881,7 +6882,8 @@ export namespace vision_v1p2beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Images$Asyncbatchannotate;
+        params =
+          {} as Params$Resource$Projects$Locations$Images$Asyncbatchannotate;
         options = {};
       }
 
