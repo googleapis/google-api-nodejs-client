@@ -129,9 +129,8 @@ export namespace androidpublisher_v3 {
 
       this.edits = new Resource$Edits(this.context);
       this.inappproducts = new Resource$Inappproducts(this.context);
-      this.internalappsharingartifacts = new Resource$Internalappsharingartifacts(
-        this.context
-      );
+      this.internalappsharingartifacts =
+        new Resource$Internalappsharingartifacts(this.context);
       this.orders = new Resource$Orders(this.context);
       this.purchases = new Resource$Purchases(this.context);
       this.reviews = new Resource$Reviews(this.context);
