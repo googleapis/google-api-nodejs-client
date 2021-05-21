@@ -1895,8 +1895,8 @@ export namespace binaryauthorization_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await binaryauthorization.projects.attestors.validateAttestationOccurrence(
-     *     {
+     *   const res =
+     *     await binaryauthorization.projects.attestors.validateAttestationOccurrence({
      *       // Required. The resource name of the Attestor of the occurrence, in the format `projects/x/attestors/x`.
      *       attestor: 'projects/my-project/attestors/my-attestor',
      *
@@ -1909,8 +1909,7 @@ export namespace binaryauthorization_v1 {
      *         //   "occurrenceResourceUri": "my_occurrenceResourceUri"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1982,7 +1981,8 @@ export namespace binaryauthorization_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Attestors$Validateattestationoccurrence;
+        params =
+          {} as Params$Resource$Projects$Attestors$Validateattestationoccurrence;
         options = {};
       }
 
