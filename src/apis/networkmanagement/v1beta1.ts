@@ -194,15 +194,15 @@ export namespace networkmanagement_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * External IP address of Cloud SQL instance.
+     * External IP address of a Cloud SQL instance.
      */
     externalIp?: string | null;
     /**
-     * Internal IP address of Cloud SQL instance.
+     * Internal IP address of a Cloud SQL instance.
      */
     internalIp?: string | null;
     /**
-     * URI of a Cloud SQL instance network or empty string if instance does not have one.
+     * URI of a Cloud SQL instance network or empty string if the instance does not have one.
      */
     networkUri?: string | null;
     /**
@@ -480,23 +480,23 @@ export namespace networkmanagement_v1beta1 {
     vip?: string | null;
   }
   /**
-   * For display only. Metadata associated with a Google Kubernetes Engine cluster master.
+   * For display only. Metadata associated with a Google Kubernetes Engine (GKE) cluster master.
    */
   export interface Schema$GKEMasterInfo {
     /**
-     * URI of a Google Kubernetes Engine cluster network.
+     * URI of a GKE cluster network.
      */
     clusterNetworkUri?: string | null;
     /**
-     * URI of a Google Kubernetes Engine cluster.
+     * URI of a GKE cluster.
      */
     clusterUri?: string | null;
     /**
-     * External IP address of a Google Kubernetes Engine cluster master.
+     * External IP address of a GKE cluster master.
      */
     externalIp?: string | null;
     /**
-     * Internal IP address of a Google Kubernetes Engine cluster master.
+     * Internal IP address of a GKE cluster master.
      */
     internalIp?: string | null;
   }
@@ -911,7 +911,7 @@ export namespace networkmanagement_v1beta1 {
    */
   export interface Schema$Step {
     /**
-     * Display info of the final state "abort" and reason.
+     * Display information of the final state "abort" and reason.
      */
     abort?: Schema$AbortInfo;
     /**
@@ -919,11 +919,11 @@ export namespace networkmanagement_v1beta1 {
      */
     causesDrop?: boolean | null;
     /**
-     * Display info of a Cloud SQL instance.
+     * Display information of a Cloud SQL instance.
      */
     cloudSqlInstance?: Schema$CloudSQLInstanceInfo;
     /**
-     * Display info of the final state "deliver" and reason.
+     * Display information of the final state "deliver" and reason.
      */
     deliver?: Schema$DeliverInfo;
     /**
@@ -931,39 +931,39 @@ export namespace networkmanagement_v1beta1 {
      */
     description?: string | null;
     /**
-     * Display info of the final state "drop" and reason.
+     * Display information of the final state "drop" and reason.
      */
     drop?: Schema$DropInfo;
     /**
-     * Display info of the source and destination under analysis. The endpoint info in an intermediate state may differ with the initial input, as it might be modified by state like NAT, or Connection Proxy.
+     * Display information of the source and destination under analysis. The endpoint information in an intermediate state may differ with the initial input, as it might be modified by state like NAT, or Connection Proxy.
      */
     endpoint?: Schema$EndpointInfo;
     /**
-     * Display info of a Compute Engine firewall rule.
+     * Display information of a Compute Engine firewall rule.
      */
     firewall?: Schema$FirewallInfo;
     /**
-     * Display info of the final state "forward" and reason.
+     * Display information of the final state "forward" and reason.
      */
     forward?: Schema$ForwardInfo;
     /**
-     * Display info of a Compute Engine forwarding rule.
+     * Display information of a Compute Engine forwarding rule.
      */
     forwardingRule?: Schema$ForwardingRuleInfo;
     /**
-     * Display info of a Google Kubernetes Engine cluster master.
+     * Display information of a Google Kubernetes Engine cluster master.
      */
     gkeMaster?: Schema$GKEMasterInfo;
     /**
-     * Display info of a Compute Engine instance.
+     * Display information of a Compute Engine instance.
      */
     instance?: Schema$InstanceInfo;
     /**
-     * Display info of the load balancers.
+     * Display information of the load balancers.
      */
     loadBalancer?: Schema$LoadBalancerInfo;
     /**
-     * Display info of a GCP network.
+     * Display information of a Google Cloud network.
      */
     network?: Schema$NetworkInfo;
     /**
@@ -971,7 +971,7 @@ export namespace networkmanagement_v1beta1 {
      */
     projectId?: string | null;
     /**
-     * Display info of a Compute Engine route.
+     * Display information of a Compute Engine route.
      */
     route?: Schema$RouteInfo;
     /**
@@ -979,11 +979,11 @@ export namespace networkmanagement_v1beta1 {
      */
     state?: string | null;
     /**
-     * Display info of a Compute Engine VPN gateway.
+     * Display information of a Compute Engine VPN gateway.
      */
     vpnGateway?: Schema$VpnGatewayInfo;
     /**
-     * Display info of a Compute Engine VPN tunnel.
+     * Display information of a Compute Engine VPN tunnel.
      */
     vpnTunnel?: Schema$VpnTunnelInfo;
   }
@@ -1035,7 +1035,7 @@ export namespace networkmanagement_v1beta1 {
      */
     networkUri?: string | null;
     /**
-     * Name of a GCP region where this VPN gateway is configured.
+     * Name of a Google Cloud region where this VPN gateway is configured.
      */
     region?: string | null;
     /**
@@ -1060,7 +1060,7 @@ export namespace networkmanagement_v1beta1 {
      */
     networkUri?: string | null;
     /**
-     * Name of a GCP region where this VPN tunnel is configured.
+     * Name of a Google Cloud region where this VPN tunnel is configured.
      */
     region?: string | null;
     /**
@@ -1413,9 +1413,8 @@ export namespace networkmanagement_v1beta1 {
     operations: Resource$Projects$Locations$Global$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.connectivityTests = new Resource$Projects$Locations$Global$Connectivitytests(
-        this.context
-      );
+      this.connectivityTests =
+        new Resource$Projects$Locations$Global$Connectivitytests(this.context);
       this.operations = new Resource$Projects$Locations$Global$Operations(
         this.context
       );
@@ -1454,8 +1453,8 @@ export namespace networkmanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkmanagement.projects.locations.global.connectivityTests.create(
-     *     {
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.create({
      *       // Required. The parent resource of the Connectivity Test to create: `projects/{project_id\}/locations/global`
      *       parent: 'projects/my-project/locations/global',
      *       // Required. The logical name of the Connectivity Test in your project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the customer project
@@ -1479,8 +1478,7 @@ export namespace networkmanagement_v1beta1 {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1548,7 +1546,8 @@ export namespace networkmanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Create;
         options = {};
       }
 
@@ -1611,13 +1610,11 @@ export namespace networkmanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkmanagement.projects.locations.global.connectivityTests.delete(
-     *     {
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.delete({
      *       // Required. Connectivity Test resource name using the form: `projects/{project_id\}/locations/global/connectivityTests/{test_id\}`
-     *       name:
-     *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1685,7 +1682,8 @@ export namespace networkmanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Delete;
         options = {};
       }
 
@@ -1745,13 +1743,11 @@ export namespace networkmanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkmanagement.projects.locations.global.connectivityTests.get(
-     *     {
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.get({
      *       // Required. `ConnectivityTest` resource name using the form: `projects/{project_id\}/locations/global/connectivityTests/{test_id\}`
-     *       name:
-     *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1826,7 +1822,8 @@ export namespace networkmanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Get;
         options = {};
       }
 
@@ -1886,15 +1883,16 @@ export namespace networkmanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkmanagement.projects.locations.global.connectivityTests.getIamPolicy(
-     *     {
-     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
-     *     }
-     *   );
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.getIamPolicy(
+     *       {
+     *         // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *         'options.requestedPolicyVersion': 'placeholder-value',
+     *         // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -1961,7 +1959,8 @@ export namespace networkmanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Getiampolicy;
         options = {};
       }
 
@@ -2024,8 +2023,8 @@ export namespace networkmanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkmanagement.projects.locations.global.connectivityTests.list(
-     *     {
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.list({
      *       // Lists the `ConnectivityTests` that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form ` ` where operators: `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/proj-1/locations/global/connectivityTests/test-1 - Filter by labels: - Resources that have a key called `foo` labels.foo:* - Resources that have a key called `foo` whose value is `bar` labels.foo = bar
      *       filter: 'placeholder-value',
      *       // Field to use to sort the list.
@@ -2036,8 +2035,7 @@ export namespace networkmanagement_v1beta1 {
      *       pageToken: 'placeholder-value',
      *       // Required. The parent resource of the Connectivity Tests: `projects/{project_id\}/locations/global`
      *       parent: 'projects/my-project/locations/global',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2110,7 +2108,8 @@ export namespace networkmanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Connectivitytests$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Connectivitytests$List;
         options = {};
       }
 
@@ -2175,11 +2174,10 @@ export namespace networkmanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkmanagement.projects.locations.global.connectivityTests.patch(
-     *     {
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.patch({
      *       // Required. Unique name of the resource using the form: `projects/{project_id\}/locations/global/connectivityTests/{test\}`
-     *       name:
-     *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
+     *       name: 'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
      *       // Required. Mask of fields to update. At least one path must be supplied in this field.
      *       updateMask: 'placeholder-value',
      *
@@ -2201,8 +2199,7 @@ export namespace networkmanagement_v1beta1 {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2270,7 +2267,8 @@ export namespace networkmanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Patch;
         options = {};
       }
 
@@ -2330,19 +2328,17 @@ export namespace networkmanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkmanagement.projects.locations.global.connectivityTests.rerun(
-     *     {
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.rerun({
      *       // Required. Connectivity Test resource name using the form: `projects/{project_id\}/locations/global/connectivityTests/{test_id\}`
-     *       name:
-     *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
+     *       name: 'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
      *
      *       // Request body metadata
      *       requestBody: {
      *         // request body parameters
      *         // {}
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2410,7 +2406,8 @@ export namespace networkmanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Rerun;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Rerun;
         options = {};
       }
 
@@ -2473,22 +2470,23 @@ export namespace networkmanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkmanagement.projects.locations.global.connectivityTests.setIamPolicy(
-     *     {
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.setIamPolicy(
+     *       {
+     *         // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "policy": {},
-     *         //   "updateMask": "my_updateMask"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "policy": {},
+     *           //   "updateMask": "my_updateMask"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2555,7 +2553,8 @@ export namespace networkmanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Setiampolicy;
         options = {};
       }
 
@@ -2618,21 +2617,22 @@ export namespace networkmanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkmanagement.projects.locations.global.connectivityTests.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2703,7 +2703,8 @@ export namespace networkmanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Connectivitytests$Testiampermissions;
         options = {};
       }
 
@@ -2890,8 +2891,8 @@ export namespace networkmanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkmanagement.projects.locations.global.operations.cancel(
-     *     {
+     *   const res =
+     *     await networkmanagement.projects.locations.global.operations.cancel({
      *       // The name of the operation resource to be cancelled.
      *       name: 'projects/my-project/locations/global/operations/my-operation',
      *
@@ -2900,8 +2901,7 @@ export namespace networkmanagement_v1beta1 {
      *         // request body parameters
      *         // {}
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2963,7 +2963,8 @@ export namespace networkmanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Operations$Cancel;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Operations$Cancel;
         options = {};
       }
 
@@ -3026,12 +3027,11 @@ export namespace networkmanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkmanagement.projects.locations.global.operations.delete(
-     *     {
+     *   const res =
+     *     await networkmanagement.projects.locations.global.operations.delete({
      *       // The name of the operation resource to be deleted.
      *       name: 'projects/my-project/locations/global/operations/my-operation',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3093,7 +3093,8 @@ export namespace networkmanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Operations$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Operations$Delete;
         options = {};
       }
 
@@ -3365,7 +3366,8 @@ export namespace networkmanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Operations$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Operations$List;
         options = {};
       }
 
