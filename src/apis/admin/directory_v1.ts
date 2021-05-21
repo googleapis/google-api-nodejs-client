@@ -5206,7 +5206,8 @@ export namespace admin_directory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Customers$Chrome$Printers$Batchcreateprinters;
+        params =
+          {} as Params$Resource$Customers$Chrome$Printers$Batchcreateprinters;
         options = {};
       }
 
@@ -5351,7 +5352,8 @@ export namespace admin_directory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Customers$Chrome$Printers$Batchdeleteprinters;
+        params =
+          {} as Params$Resource$Customers$Chrome$Printers$Batchdeleteprinters;
         options = {};
       }
 
@@ -6064,7 +6066,8 @@ export namespace admin_directory_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Customers$Chrome$Printers$Listprintermodels;
+        params =
+          {} as Params$Resource$Customers$Chrome$Printers$Listprintermodels;
         options = {};
       }
 
