@@ -1631,7 +1631,8 @@ export namespace redis_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Getauthstring;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Getauthstring;
         options = {};
       }
 
