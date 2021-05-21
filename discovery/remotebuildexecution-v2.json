@@ -447,7 +447,7 @@
       }
     }
   },
-  "revision": "20210412",
+  "revision": "20210517",
   "rootUrl": "https://remotebuildexecution.googleapis.com/",
   "schemas": {
     "BuildBazelRemoteExecutionV2Action": {
@@ -1573,12 +1573,14 @@
           "enum": [
             "CONFIG_NONE",
             "CONFIG_MATCH",
-            "CONFIG_MISMATCH"
+            "CONFIG_MISMATCH",
+            "CONFIG_MISSING_CONTAINER"
           ],
           "enumDescriptions": [
             "Container Manager is disabled or not running for this execution.",
             "Container Manager is enabled and there was a matching container available for use during execution.",
-            "Container Manager is enabled, but there was no matching container available for execution."
+            "Container Manager is enabled, but there was no matching container available for execution.",
+            "Container Manager is enabled and we attempted to execute on a matching container, but the container was no longer running. The task was retried without an async container."
           ],
           "type": "string"
         },
@@ -1682,7 +1684,8 @@
             "DOCKER_TOO_MANY_SYMBOLIC_LINK_LEVELS",
             "LOCAL_CONTAINER_MANAGER_NOT_RUNNING",
             "DOCKER_IMAGE_VPCSC_PERMISSION_DENIED",
-            "WORKING_DIR_NOT_RELATIVE"
+            "WORKING_DIR_NOT_RELATIVE",
+            "DOCKER_MISSING_CONTAINER"
           ],
           "enumDescriptions": [
             "The command succeeded.",
@@ -1726,7 +1729,8 @@
             "Docker failed to create an overlay mount because of too many levels of symbolic links.",
             "The local Container Manager is not running.",
             "Docker failed because a request was denied by the organization's policy.",
-            "Working directory is not relative"
+            "Working directory is not relative",
+            "Docker cannot find the container specified in the command. This error is likely to only occur if an asynchronous container is not running when the command is run."
           ],
           "type": "string"
         },
@@ -1750,6 +1754,39 @@
         },
         "memoryUsage": {
           "$ref": "GoogleDevtoolsRemotebuildbotResourceUsageStat"
+        },
+        "totalDiskIoStats": {
+          "$ref": "GoogleDevtoolsRemotebuildbotResourceUsageIOStats"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleDevtoolsRemotebuildbotResourceUsageIOStats": {
+      "id": "GoogleDevtoolsRemotebuildbotResourceUsageIOStats",
+      "properties": {
+        "readBytesCount": {
+          "format": "uint64",
+          "type": "string"
+        },
+        "readCount": {
+          "format": "uint64",
+          "type": "string"
+        },
+        "readTimeMs": {
+          "format": "uint64",
+          "type": "string"
+        },
+        "writeBytesCount": {
+          "format": "uint64",
+          "type": "string"
+        },
+        "writeCount": {
+          "format": "uint64",
+          "type": "string"
+        },
+        "writeTimeMs": {
+          "format": "uint64",
+          "type": "string"
         }
       },
       "type": "object"
