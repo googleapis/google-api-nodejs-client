@@ -502,9 +502,8 @@ export namespace tpu_v1 {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
-      this.tensorflowVersions = new Resource$Projects$Locations$Tensorflowversions(
-        this.context
-      );
+      this.tensorflowVersions =
+        new Resource$Projects$Locations$Tensorflowversions(this.context);
     }
 
     /**
@@ -840,8 +839,7 @@ export namespace tpu_v1 {
      *   // Do the magic
      *   const res = await tpu.projects.locations.acceleratorTypes.get({
      *     // Required. The resource name.
-     *     name:
-     *       'projects/my-project/locations/my-location/acceleratorTypes/my-acceleratorType',
+     *     name: 'projects/my-project/locations/my-location/acceleratorTypes/my-acceleratorType',
      *   });
      *   console.log(res.data);
      *
@@ -2796,8 +2794,7 @@ export namespace tpu_v1 {
      *   // Do the magic
      *   const res = await tpu.projects.locations.tensorflowVersions.get({
      *     // Required. The resource name.
-     *     name:
-     *       'projects/my-project/locations/my-location/tensorflowVersions/my-tensorflowVersion',
+     *     name: 'projects/my-project/locations/my-location/tensorflowVersions/my-tensorflowVersion',
      *   });
      *   console.log(res.data);
      *
@@ -2866,7 +2863,8 @@ export namespace tpu_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Tensorflowversions$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Tensorflowversions$Get;
         options = {};
       }
 
@@ -3009,7 +3007,8 @@ export namespace tpu_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Tensorflowversions$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Tensorflowversions$List;
         options = {};
       }
 
