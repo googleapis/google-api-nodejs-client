@@ -746,6 +746,8 @@ export namespace monitoring_v1 {
      *   const res = await monitoring.projects.dashboards.create({
      *     // Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] The [PROJECT_ID_OR_NUMBER] must match the dashboard resource name.
      *     parent: 'projects/my-project',
+     *     // If set, validate the request and preview the review, but do not actually save it.
+     *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -1306,6 +1308,8 @@ export namespace monitoring_v1 {
      *   const res = await monitoring.projects.dashboards.patch({
      *     // Immutable. The resource name of the dashboard.
      *     name: 'projects/my-project/dashboards/my-dashboard',
+     *     // If set, validate the request and preview the review, but do not actually save it.
+     *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -1430,6 +1434,10 @@ export namespace monitoring_v1 {
      * Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] The [PROJECT_ID_OR_NUMBER] must match the dashboard resource name.
      */
     parent?: string;
+    /**
+     * If set, validate the request and preview the review, but do not actually save it.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
@@ -1471,6 +1479,10 @@ export namespace monitoring_v1 {
      * Immutable. The resource name of the dashboard.
      */
     name?: string;
+    /**
+     * If set, validate the request and preview the review, but do not actually save it.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata

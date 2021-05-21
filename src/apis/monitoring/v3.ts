@@ -2463,12 +2463,10 @@ export namespace monitoring_v3 {
       this.metricDescriptors = new Resource$Projects$Metricdescriptors(
         this.context
       );
-      this.monitoredResourceDescriptors = new Resource$Projects$Monitoredresourcedescriptors(
-        this.context
-      );
-      this.notificationChannelDescriptors = new Resource$Projects$Notificationchanneldescriptors(
-        this.context
-      );
+      this.monitoredResourceDescriptors =
+        new Resource$Projects$Monitoredresourcedescriptors(this.context);
+      this.notificationChannelDescriptors =
+        new Resource$Projects$Notificationchanneldescriptors(this.context);
       this.notificationChannels = new Resource$Projects$Notificationchannels(
         this.context
       );
@@ -5182,7 +5180,8 @@ export namespace monitoring_v3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Monitoredresourcedescriptors$Get;
+        params =
+          {} as Params$Resource$Projects$Monitoredresourcedescriptors$Get;
         options = {};
       }
 
@@ -5327,7 +5326,8 @@ export namespace monitoring_v3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Monitoredresourcedescriptors$List;
+        params =
+          {} as Params$Resource$Projects$Monitoredresourcedescriptors$List;
         options = {};
       }
 
@@ -5431,8 +5431,7 @@ export namespace monitoring_v3 {
      *   // Do the magic
      *   const res = await monitoring.projects.notificationChannelDescriptors.get({
      *     // Required. The channel type for which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[CHANNEL_TYPE]
-     *     name:
-     *       'projects/my-project/notificationChannelDescriptors/my-notificationChannelDescriptor',
+     *     name: 'projects/my-project/notificationChannelDescriptors/my-notificationChannelDescriptor',
      *   });
      *   console.log(res.data);
      *
@@ -5509,7 +5508,8 @@ export namespace monitoring_v3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Notificationchanneldescriptors$Get;
+        params =
+          {} as Params$Resource$Projects$Notificationchanneldescriptors$Get;
         options = {};
       }
 
@@ -5653,7 +5653,8 @@ export namespace monitoring_v3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Notificationchanneldescriptors$List;
+        params =
+          {} as Params$Resource$Projects$Notificationchanneldescriptors$List;
         options = {};
       }
 
@@ -6181,8 +6182,8 @@ export namespace monitoring_v3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await monitoring.projects.notificationChannels.getVerificationCode(
-     *     {
+     *   const res =
+     *     await monitoring.projects.notificationChannels.getVerificationCode({
      *       // Required. The notification channel for which a verification code is to be generated and retrieved. This must name a channel that is already verified; if the specified channel is not verified, the request will fail.
      *       name: 'projects/my-project/notificationChannels/my-notificationChannel',
      *
@@ -6193,8 +6194,7 @@ export namespace monitoring_v3 {
      *         //   "expireTime": "my_expireTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6266,7 +6266,8 @@ export namespace monitoring_v3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Notificationchannels$Getverificationcode;
+        params =
+          {} as Params$Resource$Projects$Notificationchannels$Getverificationcode;
         options = {};
       }
 
@@ -6645,8 +6646,8 @@ export namespace monitoring_v3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await monitoring.projects.notificationChannels.sendVerificationCode(
-     *     {
+     *   const res =
+     *     await monitoring.projects.notificationChannels.sendVerificationCode({
      *       // Required. The notification channel to which to send a verification code.
      *       name: 'projects/my-project/notificationChannels/my-notificationChannel',
      *
@@ -6655,8 +6656,7 @@ export namespace monitoring_v3 {
      *         // request body parameters
      *         // {}
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6718,7 +6718,8 @@ export namespace monitoring_v3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Notificationchannels$Sendverificationcode;
+        params =
+          {} as Params$Resource$Projects$Notificationchannels$Sendverificationcode;
         options = {};
       }
 
@@ -8388,9 +8389,8 @@ export namespace monitoring_v3 {
     serviceLevelObjectives: Resource$Services$Servicelevelobjectives;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.serviceLevelObjectives = new Resource$Services$Servicelevelobjectives(
-        this.context
-      );
+      this.serviceLevelObjectives =
+        new Resource$Services$Servicelevelobjectives(this.context);
     }
 
     /**
@@ -9367,8 +9367,7 @@ export namespace monitoring_v3 {
      *   // Do the magic
      *   const res = await monitoring.services.serviceLevelObjectives.delete({
      *     // Required. Resource name of the ServiceLevelObjective to delete. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
-     *     name:
-     *       '[^/]+/[^/]+/services/my-service/serviceLevelObjectives/my-serviceLevelObjective',
+     *     name: '[^/]+/[^/]+/services/my-service/serviceLevelObjectives/my-serviceLevelObjective',
      *   });
      *   console.log(res.data);
      *
@@ -9496,8 +9495,7 @@ export namespace monitoring_v3 {
      *   // Do the magic
      *   const res = await monitoring.services.serviceLevelObjectives.get({
      *     // Required. Resource name of the ServiceLevelObjective to get. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
-     *     name:
-     *       '[^/]+/[^/]+/services/my-service/serviceLevelObjectives/my-serviceLevelObjective',
+     *     name: '[^/]+/[^/]+/services/my-service/serviceLevelObjectives/my-serviceLevelObjective',
      *     // View of the ServiceLevelObjective to return. If DEFAULT, return the ServiceLevelObjective as originally defined. If EXPLICIT and the ServiceLevelObjective is defined in terms of a BasicSli, replace the BasicSli with a RequestBasedSli spelling out how the SLI is computed.
      *     view: 'placeholder-value',
      *   });
@@ -9789,8 +9787,7 @@ export namespace monitoring_v3 {
      *   // Do the magic
      *   const res = await monitoring.services.serviceLevelObjectives.patch({
      *     // Resource name for this ServiceLevelObjective. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
-     *     name:
-     *       '[^/]+/[^/]+/services/my-service/serviceLevelObjectives/my-serviceLevelObjective',
+     *     name: '[^/]+/[^/]+/services/my-service/serviceLevelObjectives/my-serviceLevelObjective',
      *     // A set of field paths defining which fields to use for the update.
      *     updateMask: 'placeholder-value',
      *
