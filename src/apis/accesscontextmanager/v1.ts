@@ -2394,8 +2394,8 @@ export namespace accesscontextmanager_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.commit(
-     *     {
+     *   const res =
+     *     await accesscontextmanager.accessPolicies.servicePerimeters.commit({
      *       // Required. Resource name for the parent Access Policy which owns all Service Perimeters in scope for the commit operation. Format: `accessPolicies/{policy_id\}`
      *       parent: 'accessPolicies/my-accessPolicie',
      *
@@ -2406,8 +2406,7 @@ export namespace accesscontextmanager_v1 {
      *         //   "etag": "my_etag"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2538,8 +2537,8 @@ export namespace accesscontextmanager_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.create(
-     *     {
+     *   const res =
+     *     await accesscontextmanager.accessPolicies.servicePerimeters.create({
      *       // Required. Resource name for the access policy which owns this Service Perimeter. Format: `accessPolicies/{policy_id\}`
      *       parent: 'accessPolicies/my-accessPolicie',
      *
@@ -2556,8 +2555,7 @@ export namespace accesscontextmanager_v1 {
      *         //   "useExplicitDryRunSpec": false
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2688,13 +2686,11 @@ export namespace accesscontextmanager_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.delete(
-     *     {
+     *   const res =
+     *     await accesscontextmanager.accessPolicies.servicePerimeters.delete({
      *       // Required. Resource name for the Service Perimeter. Format: `accessPolicies/{policy_id\}/servicePerimeters/{service_perimeter_id\}`
-     *       name:
-     *         'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
-     *     }
-     *   );
+     *       name: 'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2824,8 +2820,7 @@ export namespace accesscontextmanager_v1 {
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.get({
      *     // Required. Resource name for the Service Perimeter. Format: `accessPolicies/{policy_id\}/servicePerimeters/{service_perimeters_id\}`
-     *     name:
-     *       'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
+     *     name: 'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
      *   });
      *   console.log(res.data);
      *
@@ -3103,8 +3098,7 @@ export namespace accesscontextmanager_v1 {
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.patch(
      *     {
      *       // Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id\}/servicePerimeters/{short_name\}`
-     *       name:
-     *         'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
+     *       name: 'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
      *       // Required. Mask to control which fields get updated. Must be non-empty.
      *       updateMask: 'placeholder-value',
      *
@@ -3250,8 +3244,8 @@ export namespace accesscontextmanager_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.replaceAll(
-     *     {
+     *   const res =
+     *     await accesscontextmanager.accessPolicies.servicePerimeters.replaceAll({
      *       // Required. Resource name for the access policy which owns these Service Perimeters. Format: `accessPolicies/{policy_id\}`
      *       parent: 'accessPolicies/my-accessPolicie',
      *
@@ -3263,8 +3257,7 @@ export namespace accesscontextmanager_v1 {
      *         //   "servicePerimeters": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3332,7 +3325,8 @@ export namespace accesscontextmanager_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accesspolicies$Serviceperimeters$Replaceall;
+        params =
+          {} as Params$Resource$Accesspolicies$Serviceperimeters$Replaceall;
         options = {};
       }
 
@@ -4031,9 +4025,8 @@ export namespace accesscontextmanager_v1 {
     gcpUserAccessBindings: Resource$Organizations$Gcpuseraccessbindings;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.gcpUserAccessBindings = new Resource$Organizations$Gcpuseraccessbindings(
-        this.context
-      );
+      this.gcpUserAccessBindings =
+        new Resource$Organizations$Gcpuseraccessbindings(this.context);
     }
   }
 
@@ -4069,8 +4062,8 @@ export namespace accesscontextmanager_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await accesscontextmanager.organizations.gcpUserAccessBindings.create(
-     *     {
+     *   const res =
+     *     await accesscontextmanager.organizations.gcpUserAccessBindings.create({
      *       // Required. Example: "organizations/256"
      *       parent: 'organizations/my-organization',
      *
@@ -4083,8 +4076,7 @@ export namespace accesscontextmanager_v1 {
      *         //   "name": "my_name"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4152,7 +4144,8 @@ export namespace accesscontextmanager_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Gcpuseraccessbindings$Create;
+        params =
+          {} as Params$Resource$Organizations$Gcpuseraccessbindings$Create;
         options = {};
       }
 
@@ -4215,13 +4208,11 @@ export namespace accesscontextmanager_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await accesscontextmanager.organizations.gcpUserAccessBindings.delete(
-     *     {
+     *   const res =
+     *     await accesscontextmanager.organizations.gcpUserAccessBindings.delete({
      *       // Required. Example: "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
-     *       name:
-     *         'organizations/my-organization/gcpUserAccessBindings/my-gcpUserAccessBinding',
-     *     }
-     *   );
+     *       name: 'organizations/my-organization/gcpUserAccessBindings/my-gcpUserAccessBinding',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4289,7 +4280,8 @@ export namespace accesscontextmanager_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Gcpuseraccessbindings$Delete;
+        params =
+          {} as Params$Resource$Organizations$Gcpuseraccessbindings$Delete;
         options = {};
       }
 
@@ -4349,13 +4341,11 @@ export namespace accesscontextmanager_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await accesscontextmanager.organizations.gcpUserAccessBindings.get(
-     *     {
+     *   const res =
+     *     await accesscontextmanager.organizations.gcpUserAccessBindings.get({
      *       // Required. Example: "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
-     *       name:
-     *         'organizations/my-organization/gcpUserAccessBindings/my-gcpUserAccessBinding',
-     *     }
-     *   );
+     *       name: 'organizations/my-organization/gcpUserAccessBindings/my-gcpUserAccessBinding',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4486,16 +4476,15 @@ export namespace accesscontextmanager_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await accesscontextmanager.organizations.gcpUserAccessBindings.list(
-     *     {
+     *   const res =
+     *     await accesscontextmanager.organizations.gcpUserAccessBindings.list({
      *       // Optional. Maximum number of items to return. The server may return fewer items. If left blank, the server may return any number of items.
      *       pageSize: 'placeholder-value',
      *       // Optional. If left blank, returns the first page. To enumerate all items, use the next_page_token from your previous list operation.
      *       pageToken: 'placeholder-value',
      *       // Required. Example: "organizations/256"
      *       parent: 'organizations/my-organization',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4632,11 +4621,10 @@ export namespace accesscontextmanager_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await accesscontextmanager.organizations.gcpUserAccessBindings.patch(
-     *     {
+     *   const res =
+     *     await accesscontextmanager.organizations.gcpUserAccessBindings.patch({
      *       // Immutable. Assigned by the server during creation. The last segment has an arbitrary length and has only URI unreserved characters (as defined by [RFC 3986 Section 2.3](https://tools.ietf.org/html/rfc3986#section-2.3)). Should not be specified by the client during creation. Example: "organizations/256/gcpUserAccessBindings/b3-BhcX_Ud5N"
-     *       name:
-     *         'organizations/my-organization/gcpUserAccessBindings/my-gcpUserAccessBinding',
+     *       name: 'organizations/my-organization/gcpUserAccessBindings/my-gcpUserAccessBinding',
      *       // Required. Only the fields specified in this mask are updated. Because name and group_key cannot be changed, update_mask is required and must always be: update_mask { paths: "access_levels" \}
      *       updateMask: 'placeholder-value',
      *
@@ -4649,8 +4637,7 @@ export namespace accesscontextmanager_v1 {
      *         //   "name": "my_name"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4718,7 +4705,8 @@ export namespace accesscontextmanager_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Gcpuseraccessbindings$Patch;
+        params =
+          {} as Params$Resource$Organizations$Gcpuseraccessbindings$Patch;
         options = {};
       }
 
