@@ -1988,8 +1988,8 @@ export namespace accesscontextmanager_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.create(
-     *     {
+     *   const res =
+     *     await accesscontextmanager.accessPolicies.servicePerimeters.create({
      *       // Required. Resource name for the access policy which owns this Service Perimeter. Format: `accessPolicies/{policy_id\}`
      *       parent: 'accessPolicies/my-accessPolicie',
      *
@@ -2004,8 +2004,7 @@ export namespace accesscontextmanager_v1beta {
      *         //   "title": "my_title"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2136,13 +2135,11 @@ export namespace accesscontextmanager_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.delete(
-     *     {
+     *   const res =
+     *     await accesscontextmanager.accessPolicies.servicePerimeters.delete({
      *       // Required. Resource name for the Service Perimeter. Format: `accessPolicies/{policy_id\}/servicePerimeters/{service_perimeter_id\}`
-     *       name:
-     *         'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
-     *     }
-     *   );
+     *       name: 'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2272,8 +2269,7 @@ export namespace accesscontextmanager_v1beta {
      *   // Do the magic
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.get({
      *     // Required. Resource name for the Service Perimeter. Format: `accessPolicies/{policy_id\}/servicePerimeters/{service_perimeters_id\}`
-     *     name:
-     *       'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
+     *     name: 'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
      *   });
      *   console.log(res.data);
      *
@@ -2549,8 +2545,7 @@ export namespace accesscontextmanager_v1beta {
      *   const res = await accesscontextmanager.accessPolicies.servicePerimeters.patch(
      *     {
      *       // Required. Resource name for the ServicePerimeter. The `short_name` component must begin with a letter and only include alphanumeric and '_'. Format: `accessPolicies/{policy_id\}/servicePerimeters/{short_name\}`
-     *       name:
-     *         'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
+     *       name: 'accessPolicies/my-accessPolicie/servicePerimeters/my-servicePerimeter',
      *       // Required. Mask to control which fields get updated. Must be non-empty.
      *       updateMask: 'placeholder-value',
      *
