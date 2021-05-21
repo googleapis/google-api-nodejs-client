@@ -206,7 +206,7 @@ export namespace retail_v2alpha {
      */
     catalogItem?: string | null;
     /**
-     * GCS file path of the import source. Can be set for batch operation error.
+     * Cloud Storage file path of the import source. Can be set for batch operation error.
      */
     gcsPath?: string | null;
     /**
@@ -573,7 +573,7 @@ export namespace retail_v2alpha {
    */
   export interface Schema$GoogleCloudRetailV2alphaProduct {
     /**
-     * Highly encouraged. Extra product attributes to be included. For example, for products, this could include the store name, vendor, style, color, etc. These are very strong signals for recommendation model, thus we highly recommend providing the attributes here. Features that can take on one of a limited number of possible values. Two types of features can be set are: Textual features. some examples would be the brand/maker of a product, or country of a customer. Numerical features. Some examples would be the height/weight of a product, or age of a customer. For example: `{ "vendor": {"text": ["vendor123", "vendor456"]\}, "lengths_cm": {"numbers":[2.3, 15.4]\}, "heights_cm": {"numbers":[8.1, 6.4]\} \}`. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * Max entries count: 150 by default; 100 for Type.VARIANT. * The key must be a UTF-8 encoded string with a length limit of 128 characters.
+     * Highly encouraged. Extra product attributes to be included. For example, for products, this could include the store name, vendor, style, color, etc. These are very strong signals for recommendation model, thus we highly recommend providing the attributes here. Features that can take on one of a limited number of possible values. Two types of features can be set are: Textual features. some examples would be the brand/maker of a product, or country of a customer. Numerical features. Some examples would be the height/weight of a product, or age of a customer. For example: `{ "vendor": {"text": ["vendor123", "vendor456"]\}, "lengths_cm": {"numbers":[2.3, 15.4]\}, "heights_cm": {"numbers":[8.1, 6.4]\} \}`. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * Max entries count: 200 by default; 100 for Type.VARIANT. * The key must be a UTF-8 encoded string with a length limit of 128 characters.
      */
     attributes?: {
       [key: string]: Schema$GoogleCloudRetailV2alphaCustomAttribute;
@@ -627,7 +627,7 @@ export namespace retail_v2alpha {
      */
     title?: string | null;
     /**
-     * Immutable. The type of the product. This field is output-only. Default to Catalog.product_level_config.ingestion_product_type if unset.
+     * Immutable. The type of the product. Default to Catalog.product_level_config.ingestion_product_type if unset.
      */
     type?: string | null;
     /**
@@ -761,7 +761,7 @@ export namespace retail_v2alpha {
     rejoinedUserEventsCount?: string | null;
   }
   /**
-   * UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website. Next tag: 22
+   * UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website.
    */
   export interface Schema$GoogleCloudRetailV2alphaUserEvent {
     /**
@@ -1572,12 +1572,14 @@ export namespace retail_v2alpha {
     products: Resource$Projects$Locations$Catalogs$Branches$Products;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.operations = new Resource$Projects$Locations$Catalogs$Branches$Operations(
-        this.context
-      );
-      this.products = new Resource$Projects$Locations$Catalogs$Branches$Products(
-        this.context
-      );
+      this.operations =
+        new Resource$Projects$Locations$Catalogs$Branches$Operations(
+          this.context
+        );
+      this.products =
+        new Resource$Projects$Locations$Catalogs$Branches$Products(
+          this.context
+        );
     }
   }
 
@@ -1615,8 +1617,7 @@ export namespace retail_v2alpha {
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.branches.operations.get({
      *     // The name of the operation resource.
-     *     name:
-     *       'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/operations/my-operation',
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/operations/my-operation',
      *   });
      *   console.log(res.data);
      *
@@ -1692,7 +1693,8 @@ export namespace retail_v2alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Branches$Operations$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Branches$Operations$Get;
         options = {};
       }
 
@@ -1881,7 +1883,8 @@ export namespace retail_v2alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Create;
         options = {};
       }
 
@@ -1948,8 +1951,7 @@ export namespace retail_v2alpha {
      *   const res = await retail.projects.locations.catalogs.branches.products.delete(
      *     {
      *       // Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to delete the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Product to delete does not exist, a NOT_FOUND error is returned. The Product to delete can neither be a Product.Type.COLLECTION Product member nor a Product.Type.PRIMARY Product with more than one variants. Otherwise, an INVALID_ARGUMENT error is returned. All inventory information for the named Product will be deleted.
-     *       name:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
      *     }
      *   );
      *   console.log(res.data);
@@ -2016,7 +2018,8 @@ export namespace retail_v2alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Delete;
         options = {};
       }
 
@@ -2077,8 +2080,7 @@ export namespace retail_v2alpha {
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.branches.products.get({
      *     // Required. Full resource name of Product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/some_product_id`. If the caller does not have permission to access the Product, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested Product does not exist, a NOT_FOUND error is returned.
-     *     name:
-     *       'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
      *   });
      *   console.log(res.data);
      *
@@ -2164,7 +2166,8 @@ export namespace retail_v2alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Get;
         options = {};
       }
 
@@ -2316,7 +2319,8 @@ export namespace retail_v2alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Import;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Import;
         options = {};
       }
 
@@ -2382,8 +2386,7 @@ export namespace retail_v2alpha {
      *     // If set to true, and the Product is not found, a new Product will be created. In this situation, `update_mask` is ignored.
      *     allowMissing: 'placeholder-value',
      *     // Immutable. Full resource name of the product, such as `projects/x/locations/global/catalogs/default_catalog/branches/default_branch/products/product_id`. The branch ID must be "default_branch".
-     *     name:
-     *       'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/branches/my-branche/products/.*',
      *     // Indicates which fields in the provided Product to update. The immutable and output only fields are NOT supported. If not set, all supported fields (the fields that are neither immutable nor output only) are updated. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
      *     updateMask: 'placeholder-value',
      *
@@ -2493,7 +2496,8 @@ export namespace retail_v2alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Branches$Products$Patch;
         options = {};
       }
 
@@ -2626,8 +2630,7 @@ export namespace retail_v2alpha {
      *   // Do the magic
      *   const res = await retail.projects.locations.catalogs.operations.get({
      *     // The name of the operation resource.
-     *     name:
-     *       'projects/my-project/locations/my-location/catalogs/my-catalog/operations/my-operation',
+     *     name: 'projects/my-project/locations/my-location/catalogs/my-catalog/operations/my-operation',
      *   });
      *   console.log(res.data);
      *
@@ -2703,7 +2706,8 @@ export namespace retail_v2alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Operations$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Operations$Get;
         options = {};
       }
 
@@ -2843,7 +2847,8 @@ export namespace retail_v2alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Operations$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Operations$List;
         options = {};
       }
 
@@ -3033,7 +3038,8 @@ export namespace retail_v2alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Placements$Predict;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Placements$Predict;
         options = {};
       }
 
@@ -3195,7 +3201,8 @@ export namespace retail_v2alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Userevents$Collect;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Userevents$Collect;
         options = {};
       }
 
@@ -3344,7 +3351,8 @@ export namespace retail_v2alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Userevents$Import;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Userevents$Import;
         options = {};
       }
 
@@ -3493,7 +3501,8 @@ export namespace retail_v2alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Userevents$Purge;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Userevents$Purge;
         options = {};
       }
 
@@ -3641,7 +3650,8 @@ export namespace retail_v2alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Userevents$Rejoin;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Userevents$Rejoin;
         options = {};
       }
 
@@ -3815,7 +3825,8 @@ export namespace retail_v2alpha {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Userevents$Write;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Userevents$Write;
         options = {};
       }
 
