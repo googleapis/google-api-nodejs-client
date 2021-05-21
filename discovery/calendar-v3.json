@@ -1723,7 +1723,7 @@
       }
     }
   },
-  "revision": "20210424",
+  "revision": "20210518",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Acl": {
@@ -2104,7 +2104,7 @@
       "id": "ConferenceData",
       "properties": {
         "conferenceId": {
-          "description": "The ID of the conference.\nCan be used by developers to keep track of conferences, should not be displayed to users.\nValues for solution types:  \n- \"eventHangout\": unset.\n- \"eventNamedHangout\": the name of the Hangout.\n- \"hangoutsMeet\": the 10-letter meeting code, for example \"aaa-bbbb-ccc\".\n- \"addOn\": defined by 3P conference provider.  Optional.",
+          "description": "The ID of the conference.\nCan be used by developers to keep track of conferences, should not be displayed to users.\nThe ID value is formed differently for each conference solution type: `\n- eventHangout: ID is not set.\n- eventNamedHangout: ID is the name of the Hangout.\n- hangoutsMeet: ID is the 10-letter meeting code, for example aaa-bbbb-ccc.\n- addOn: ID is defined by the third-party provider.  Optional.",
           "type": "string"
         },
         "conferenceSolution": {
