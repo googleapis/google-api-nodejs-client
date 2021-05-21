@@ -465,7 +465,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     name?: string | null;
     /**
-     * Output only. A list of the URIs of all attached spokes
+     * Output only. A list of the URIs of all attached spokes. This field is deprecated and will not be included in future API versions. Call ListSpokes on each region instead.
      */
     spokes?: string[] | null;
     /**
@@ -1236,7 +1236,7 @@ export namespace networkconnectivity_v1alpha1 {
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service will select a default.
+     *     // The maximum number of results to return. If not set, the service selects a default.
      *     pageSize: 'placeholder-value',
      *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
@@ -1366,7 +1366,7 @@ export namespace networkconnectivity_v1alpha1 {
      */
     name?: string;
     /**
-     * The maximum number of results to return. If not set, the service will select a default.
+     * The maximum number of results to return. If not set, the service selects a default.
      */
     pageSize?: number;
     /**
@@ -1382,9 +1382,8 @@ export namespace networkconnectivity_v1alpha1 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.hubs = new Resource$Projects$Locations$Global$Hubs(this.context);
-      this.policyBasedRoutes = new Resource$Projects$Locations$Global$Policybasedroutes(
-        this.context
-      );
+      this.policyBasedRoutes =
+        new Resource$Projects$Locations$Global$Policybasedroutes(this.context);
     }
   }
 
@@ -1854,14 +1853,13 @@ export namespace networkconnectivity_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkconnectivity.projects.locations.global.hubs.getIamPolicy(
-     *     {
+     *   const res =
+     *     await networkconnectivity.projects.locations.global.hubs.getIamPolicy({
      *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource: 'projects/my-project/locations/global/hubs/my-hub',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1928,7 +1926,8 @@ export namespace networkconnectivity_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Hubs$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Hubs$Getiampolicy;
         options = {};
       }
 
@@ -2288,8 +2287,8 @@ export namespace networkconnectivity_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkconnectivity.projects.locations.global.hubs.setIamPolicy(
-     *     {
+     *   const res =
+     *     await networkconnectivity.projects.locations.global.hubs.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource: 'projects/my-project/locations/global/hubs/my-hub',
      *
@@ -2301,8 +2300,7 @@ export namespace networkconnectivity_v1alpha1 {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2369,7 +2367,8 @@ export namespace networkconnectivity_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Hubs$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Hubs$Setiampolicy;
         options = {};
       }
 
@@ -2432,20 +2431,21 @@ export namespace networkconnectivity_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkconnectivity.projects.locations.global.hubs.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource: 'projects/my-project/locations/global/hubs/my-hub',
+     *   const res =
+     *     await networkconnectivity.projects.locations.global.hubs.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource: 'projects/my-project/locations/global/hubs/my-hub',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2516,7 +2516,8 @@ export namespace networkconnectivity_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Hubs$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Hubs$Testiampermissions;
         options = {};
       }
 
@@ -2703,15 +2704,16 @@ export namespace networkconnectivity_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkconnectivity.projects.locations.global.policyBasedRoutes.getIamPolicy(
-     *     {
-     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/global/policyBasedRoutes/my-policyBasedRoute',
-     *     }
-     *   );
+     *   const res =
+     *     await networkconnectivity.projects.locations.global.policyBasedRoutes.getIamPolicy(
+     *       {
+     *         // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *         'options.requestedPolicyVersion': 'placeholder-value',
+     *         // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/global/policyBasedRoutes/my-policyBasedRoute',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2778,7 +2780,8 @@ export namespace networkconnectivity_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Policybasedroutes$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Policybasedroutes$Getiampolicy;
         options = {};
       }
 
@@ -2841,22 +2844,23 @@ export namespace networkconnectivity_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkconnectivity.projects.locations.global.policyBasedRoutes.setIamPolicy(
-     *     {
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/global/policyBasedRoutes/my-policyBasedRoute',
+     *   const res =
+     *     await networkconnectivity.projects.locations.global.policyBasedRoutes.setIamPolicy(
+     *       {
+     *         // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/global/policyBasedRoutes/my-policyBasedRoute',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "policy": {},
-     *         //   "updateMask": "my_updateMask"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "policy": {},
+     *           //   "updateMask": "my_updateMask"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2923,7 +2927,8 @@ export namespace networkconnectivity_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Policybasedroutes$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Policybasedroutes$Setiampolicy;
         options = {};
       }
 
@@ -2986,21 +2991,22 @@ export namespace networkconnectivity_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkconnectivity.projects.locations.global.policyBasedRoutes.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/global/policyBasedRoutes/my-policyBasedRoute',
+     *   const res =
+     *     await networkconnectivity.projects.locations.global.policyBasedRoutes.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/global/policyBasedRoutes/my-policyBasedRoute',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3071,7 +3077,8 @@ export namespace networkconnectivity_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Policybasedroutes$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Policybasedroutes$Testiampermissions;
         options = {};
       }
 
@@ -3177,15 +3184,14 @@ export namespace networkconnectivity_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkconnectivity.projects.locations.internalRanges.getIamPolicy(
-     *     {
+     *   const res =
+     *     await networkconnectivity.projects.locations.internalRanges.getIamPolicy({
      *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/internalRanges/my-internalRange',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3252,7 +3258,8 @@ export namespace networkconnectivity_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Internalranges$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Internalranges$Getiampolicy;
         options = {};
       }
 
@@ -3315,8 +3322,8 @@ export namespace networkconnectivity_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkconnectivity.projects.locations.internalRanges.setIamPolicy(
-     *     {
+     *   const res =
+     *     await networkconnectivity.projects.locations.internalRanges.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/internalRanges/my-internalRange',
@@ -3329,8 +3336,7 @@ export namespace networkconnectivity_v1alpha1 {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3397,7 +3403,8 @@ export namespace networkconnectivity_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Internalranges$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Internalranges$Setiampolicy;
         options = {};
       }
 
@@ -3460,21 +3467,22 @@ export namespace networkconnectivity_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkconnectivity.projects.locations.internalRanges.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/internalRanges/my-internalRange',
+     *   const res =
+     *     await networkconnectivity.projects.locations.internalRanges.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/internalRanges/my-internalRange',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3545,7 +3553,8 @@ export namespace networkconnectivity_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Internalranges$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Internalranges$Testiampermissions;
         options = {};
       }
 
@@ -5267,8 +5276,8 @@ export namespace networkconnectivity_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await networkconnectivity.projects.locations.spokes.testIamPermissions(
-     *     {
+     *   const res =
+     *     await networkconnectivity.projects.locations.spokes.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource: 'projects/my-project/locations/my-location/spokes/my-spoke',
      *
@@ -5279,8 +5288,7 @@ export namespace networkconnectivity_v1alpha1 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5351,7 +5359,8 @@ export namespace networkconnectivity_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Spokes$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Spokes$Testiampermissions;
         options = {};
       }
 
