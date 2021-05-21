@@ -706,7 +706,7 @@
       }
     }
   },
-  "revision": "20210423",
+  "revision": "20210514",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -815,7 +815,7 @@
           "type": "string"
         },
         "gcsPath": {
-          "description": "GCS file path of the import source. Can be set for batch operation error.",
+          "description": "Cloud Storage file path of the import source. Can be set for batch operation error.",
           "type": "string"
         },
         "lineNumber": {
@@ -1610,7 +1610,7 @@
           "additionalProperties": {
             "$ref": "GoogleCloudRetailV2betaCustomAttribute"
           },
-          "description": "Highly encouraged. Extra product attributes to be included. For example, for products, this could include the store name, vendor, style, color, etc. These are very strong signals for recommendation model, thus we highly recommend providing the attributes here. Features that can take on one of a limited number of possible values. Two types of features can be set are: Textual features. some examples would be the brand/maker of a product, or country of a customer. Numerical features. Some examples would be the height/weight of a product, or age of a customer. For example: `{ \"vendor\": {\"text\": [\"vendor123\", \"vendor456\"]}, \"lengths_cm\": {\"numbers\":[2.3, 15.4]}, \"heights_cm\": {\"numbers\":[8.1, 6.4]} }`. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * Max entries count: 150 by default; 100 for Type.VARIANT. * The key must be a UTF-8 encoded string with a length limit of 128 characters.",
+          "description": "Highly encouraged. Extra product attributes to be included. For example, for products, this could include the store name, vendor, style, color, etc. These are very strong signals for recommendation model, thus we highly recommend providing the attributes here. Features that can take on one of a limited number of possible values. Two types of features can be set are: Textual features. some examples would be the brand/maker of a product, or country of a customer. Numerical features. Some examples would be the height/weight of a product, or age of a customer. For example: `{ \"vendor\": {\"text\": [\"vendor123\", \"vendor456\"]}, \"lengths_cm\": {\"numbers\":[2.3, 15.4]}, \"heights_cm\": {\"numbers\":[8.1, 6.4]} }`. This field needs to pass all below criteria, otherwise an INVALID_ARGUMENT error is returned: * Max entries count: 200 by default; 100 for Type.VARIANT. * The key must be a UTF-8 encoded string with a length limit of 128 characters.",
           "type": "object"
         },
         "availability": {
@@ -1687,7 +1687,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Immutable. The type of the product. This field is output-only. Default to Catalog.product_level_config.ingestion_product_type if unset.",
+          "description": "Immutable. The type of the product. Default to Catalog.product_level_config.ingestion_product_type if unset.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "PRIMARY",
@@ -1876,7 +1876,7 @@
       "type": "object"
     },
     "GoogleCloudRetailV2betaUserEvent": {
-      "description": "UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website. Next tag: 22",
+      "description": "UserEvent captures all metadata information Retail API needs to know about how end users interact with customers' website.",
       "id": "GoogleCloudRetailV2betaUserEvent",
       "properties": {
         "attributes": {
