@@ -476,7 +476,7 @@ export namespace sheets_v4 {
      */
     positiveColorStyle?: Schema$ColorStyle;
     /**
-     * Text formatting options for baseline value.
+     * Text formatting options for baseline value. The link field is not supported.
      */
     textFormat?: Schema$TextFormat;
   }
@@ -485,7 +485,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$BasicChartAxis {
     /**
-     * The format of the title. Only valid if the axis is not associated with the domain.
+     * The format of the title. Only valid if the axis is not associated with the domain. The link field is not supported.
      */
     format?: Schema$TextFormat;
     /**
@@ -707,7 +707,7 @@ export namespace sheets_v4 {
      */
     dataFilters?: Schema$DataFilter[];
     /**
-     * How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     * How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      */
     dateTimeRenderOption?: string | null;
     /**
@@ -715,7 +715,7 @@ export namespace sheets_v4 {
      */
     majorDimension?: string | null;
     /**
-     * How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
+     * How values should be represented in the output. The default render option is FORMATTED_VALUE.
      */
     valueRenderOption?: string | null;
   }
@@ -779,7 +779,7 @@ export namespace sheets_v4 {
      */
     spreadsheetId?: string | null;
     /**
-     * The spreadsheet after updates were applied. This is only set if [BatchUpdateSpreadsheetRequest.include_spreadsheet_in_response] is `true`.
+     * The spreadsheet after updates were applied. This is only set if BatchUpdateSpreadsheetRequest.include_spreadsheet_in_response is `true`.
      */
     updatedSpreadsheet?: Schema$Spreadsheet;
   }
@@ -796,11 +796,11 @@ export namespace sheets_v4 {
      */
     includeValuesInResponse?: boolean | null;
     /**
-     * Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.
+     * Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      */
     responseDateTimeRenderOption?: string | null;
     /**
-     * Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
+     * Determines how values in the response should be rendered. The default render option is FORMATTED_VALUE.
      */
     responseValueRenderOption?: string | null;
     /**
@@ -850,11 +850,11 @@ export namespace sheets_v4 {
      */
     includeValuesInResponse?: boolean | null;
     /**
-     * Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.
+     * Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      */
     responseDateTimeRenderOption?: string | null;
     /**
-     * Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
+     * Determines how values in the response should be rendered. The default render option is FORMATTED_VALUE.
      */
     responseValueRenderOption?: string | null;
     /**
@@ -1035,7 +1035,7 @@ export namespace sheets_v4 {
      */
     bubbleSizes?: Schema$ChartData;
     /**
-     * The format of the text inside the bubbles. Strikethrough and underline are not supported.
+     * The format of the text inside the bubbles. Strikethrough, underline, and link are not supported.
      */
     bubbleTextStyle?: Schema$TextFormat;
     /**
@@ -1116,7 +1116,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$CellData {
     /**
-     * Output only. Information about a data source formula on the cell. The field is set if user_entered_value is a formula referencing some DATA_SOURCE sheet, e.g `=SUM(DataSheet!Column)`.
+     * Output only. Information about a data source formula on the cell. The field is set if user_entered_value is a formula referencing some DATA_SOURCE sheet, e.g. `=SUM(DataSheet!Column)`.
      */
     dataSourceFormula?: Schema$DataSourceFormula;
     /**
@@ -1140,7 +1140,7 @@ export namespace sheets_v4 {
      */
     formattedValue?: string | null;
     /**
-     * A hyperlink this cell points to, if any. If the cell contains multiple hyperlinks, this field will be empty. This field is read-only. To set it, use a `=HYPERLINK` formula in the userEnteredValue.formulaValue field.
+     * A hyperlink this cell points to, if any. If the cell contains multiple hyperlinks, this field will be empty. This field is read-only. To set it, use a `=HYPERLINK` formula in the userEnteredValue.formulaValue field. A cell-level link can also be set from the userEnteredFormat.textFormat field. Alternatively, set a hyperlink in the textFormatRun.format.link field that spans the entire cell.
      */
     hyperlink?: string | null;
     /**
@@ -1201,7 +1201,7 @@ export namespace sheets_v4 {
      */
     textDirection?: string | null;
     /**
-     * The format of the text in the cell (unless overridden by a format run).
+     * The format of the text in the cell (unless overridden by a format run). Setting a cell-level link will clear the cell's existing links. Setting a link in a format run will clear the cell-level link.
      */
     textFormat?: Schema$TextFormat;
     /**
@@ -1389,7 +1389,7 @@ export namespace sheets_v4 {
      */
     subtitle?: string | null;
     /**
-     * The subtitle text format. Strikethrough and underline are not supported.
+     * The subtitle text format. Strikethrough, underline, and link are not supported.
      */
     subtitleTextFormat?: Schema$TextFormat;
     /**
@@ -1401,7 +1401,7 @@ export namespace sheets_v4 {
      */
     title?: string | null;
     /**
-     * The title text format. Strikethrough and underline are not supported.
+     * The title text format. Strikethrough, underline, and link are not supported.
      */
     titleTextFormat?: Schema$TextFormat;
     /**
@@ -1640,7 +1640,7 @@ export namespace sheets_v4 {
      */
     placement?: string | null;
     /**
-     * The text format used for the data label.
+     * The text format used for the data label. The link field is not supported.
      */
     textFormat?: Schema$TextFormat;
     /**
@@ -2099,7 +2099,7 @@ export namespace sheets_v4 {
    */
   export interface Schema$DeleteSheetRequest {
     /**
-     * The ID of the sheet to delete. If the sheet is of SheetType.DATA_SOURCE type, the associated DataSource is also deleted.
+     * The ID of the sheet to delete. If the sheet is of DATA_SOURCE type, the associated DataSource is also deleted.
      */
     sheetId?: number | null;
   }
@@ -2391,7 +2391,7 @@ export namespace sheets_v4 {
      */
     formulaValue?: string | null;
     /**
-     * Represents a double value. Note: Dates, Times and DateTimes are represented as doubles in "serial number" format.
+     * Represents a double value. Note: Dates, Times and DateTimes are represented as doubles in SERIAL_NUMBER format.
      */
     numberValue?: number | null;
     /**
@@ -2815,7 +2815,7 @@ export namespace sheets_v4 {
      */
     position?: Schema$TextPosition;
     /**
-     * Text formatting options for key value.
+     * Text formatting options for key value. The link field is not supported.
      */
     textFormat?: Schema$TextFormat;
   }
@@ -4002,7 +4002,7 @@ export namespace sheets_v4 {
      */
     horizontalAlignment?: string | null;
     /**
-     * The text format of title in the slicer.
+     * The text format of title in the slicer. The link field is not supported.
      */
     textFormat?: Schema$TextFormat;
     /**
@@ -4373,7 +4373,7 @@ export namespace sheets_v4 {
      */
     sizeData?: Schema$ChartData;
     /**
-     * The text format for all labels on the chart.
+     * The text format for all labels on the chart. The link field is not supported.
      */
     textFormat?: Schema$TextFormat;
   }
@@ -6125,9 +6125,9 @@ export namespace sheets_v4 {
      *     insertDataOption: 'placeholder-value',
      *     // The A1 notation of a range to search for a logical table of data. Values are appended after the last row of the table.
      *     range: 'placeholder-value',
-     *     // Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     *     // Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      *     responseDateTimeRenderOption: 'placeholder-value',
-     *     // Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
+     *     // Determines how values in the response should be rendered. The default render option is FORMATTED_VALUE.
      *     responseValueRenderOption: 'placeholder-value',
      *     // The ID of the spreadsheet to update.
      *     spreadsheetId: 'placeholder-value',
@@ -6510,7 +6510,8 @@ export namespace sheets_v4 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Spreadsheets$Values$Batchclearbydatafilter;
+        params =
+          {} as Params$Resource$Spreadsheets$Values$Batchclearbydatafilter;
         options = {};
       }
 
@@ -6581,7 +6582,7 @@ export namespace sheets_v4 {
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.batchGet({
-     *     // How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     *     // How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      *     dateTimeRenderOption: 'placeholder-value',
      *     // The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      *     majorDimension: 'placeholder-value',
@@ -7129,7 +7130,8 @@ export namespace sheets_v4 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter;
+        params =
+          {} as Params$Resource$Spreadsheets$Values$Batchupdatebydatafilter;
         options = {};
       }
 
@@ -7344,7 +7346,7 @@ export namespace sheets_v4 {
      *
      *   // Do the magic
      *   const res = await sheets.spreadsheets.values.get({
-     *     // How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     *     // How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      *     dateTimeRenderOption: 'placeholder-value',
      *     // The major dimension that results should use. For example, if the spreadsheet data is: `A1=1,B1=2,A2=3,B2=4`, then requesting `range=A1:B2,majorDimension=ROWS` returns `[[1,2],[3,4]]`, whereas requesting `range=A1:B2,majorDimension=COLUMNS` returns `[[1,3],[2,4]]`.
      *     majorDimension: 'placeholder-value',
@@ -7352,7 +7354,7 @@ export namespace sheets_v4 {
      *     range: 'placeholder-value',
      *     // The ID of the spreadsheet to retrieve data from.
      *     spreadsheetId: 'placeholder-value',
-     *     // How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
+     *     // How values should be represented in the output. The default render option is FORMATTED_VALUE.
      *     valueRenderOption: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7490,9 +7492,9 @@ export namespace sheets_v4 {
      *     includeValuesInResponse: 'placeholder-value',
      *     // The A1 notation of the values to update.
      *     range: 'placeholder-value',
-     *     // Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.
+     *     // Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      *     responseDateTimeRenderOption: 'placeholder-value',
-     *     // Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
+     *     // Determines how values in the response should be rendered. The default render option is FORMATTED_VALUE.
      *     responseValueRenderOption: 'placeholder-value',
      *     // The ID of the spreadsheet to update.
      *     spreadsheetId: 'placeholder-value',
@@ -7633,11 +7635,11 @@ export namespace sheets_v4 {
      */
     range?: string;
     /**
-     * Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     * Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      */
     responseDateTimeRenderOption?: string;
     /**
-     * Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
+     * Determines how values in the response should be rendered. The default render option is FORMATTED_VALUE.
      */
     responseValueRenderOption?: string;
     /**
@@ -7681,7 +7683,7 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Batchget
     extends StandardParameters {
     /**
-     * How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     * How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      */
     dateTimeRenderOption?: string;
     /**
@@ -7756,7 +7758,7 @@ export namespace sheets_v4 {
   export interface Params$Resource$Spreadsheets$Values$Get
     extends StandardParameters {
     /**
-     * How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].
+     * How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      */
     dateTimeRenderOption?: string;
     /**
@@ -7772,7 +7774,7 @@ export namespace sheets_v4 {
      */
     spreadsheetId?: string;
     /**
-     * How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.
+     * How values should be represented in the output. The default render option is FORMATTED_VALUE.
      */
     valueRenderOption?: string;
   }
@@ -7787,11 +7789,11 @@ export namespace sheets_v4 {
      */
     range?: string;
     /**
-     * Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.
+     * Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.
      */
     responseDateTimeRenderOption?: string;
     /**
-     * Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.
+     * Determines how values in the response should be rendered. The default render option is FORMATTED_VALUE.
      */
     responseValueRenderOption?: string;
     /**

@@ -383,7 +383,7 @@
                   "type": "string"
                 },
                 "responseDateTimeRenderOption": {
-                  "description": "Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].",
+                  "description": "Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.",
                   "enum": [
                     "SERIAL_NUMBER",
                     "FORMATTED_STRING"
@@ -396,7 +396,7 @@
                   "type": "string"
                 },
                 "responseValueRenderOption": {
-                  "description": "Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.",
+                  "description": "Determines how values in the response should be rendered. The default render option is FORMATTED_VALUE.",
                   "enum": [
                     "FORMATTED_VALUE",
                     "UNFORMATTED_VALUE",
@@ -513,7 +513,7 @@
               ],
               "parameters": {
                 "dateTimeRenderOption": {
-                  "description": "How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].",
+                  "description": "How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.",
                   "enum": [
                     "SERIAL_NUMBER",
                     "FORMATTED_STRING"
@@ -714,7 +714,7 @@
               ],
               "parameters": {
                 "dateTimeRenderOption": {
-                  "description": "How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].",
+                  "description": "How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.",
                   "enum": [
                     "SERIAL_NUMBER",
                     "FORMATTED_STRING"
@@ -754,7 +754,7 @@
                   "type": "string"
                 },
                 "valueRenderOption": {
-                  "description": "How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.",
+                  "description": "How values should be represented in the output. The default render option is FORMATTED_VALUE.",
                   "enum": [
                     "FORMATTED_VALUE",
                     "UNFORMATTED_VALUE",
@@ -803,7 +803,7 @@
                   "type": "string"
                 },
                 "responseDateTimeRenderOption": {
-                  "description": "Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.",
+                  "description": "Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.",
                   "enum": [
                     "SERIAL_NUMBER",
                     "FORMATTED_STRING"
@@ -816,7 +816,7 @@
                   "type": "string"
                 },
                 "responseValueRenderOption": {
-                  "description": "Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.",
+                  "description": "Determines how values in the response should be rendered. The default render option is FORMATTED_VALUE.",
                   "enum": [
                     "FORMATTED_VALUE",
                     "UNFORMATTED_VALUE",
@@ -870,7 +870,7 @@
       }
     }
   },
-  "revision": "20210322",
+  "revision": "20210504",
   "rootUrl": "https://sheets.googleapis.com/",
   "schemas": {
     "AddBandingRequest": {
@@ -1309,7 +1309,7 @@
         },
         "textFormat": {
           "$ref": "TextFormat",
-          "description": "Text formatting options for baseline value."
+          "description": "Text formatting options for baseline value. The link field is not supported."
         }
       },
       "type": "object"
@@ -1320,7 +1320,7 @@
       "properties": {
         "format": {
           "$ref": "TextFormat",
-          "description": "The format of the title. Only valid if the axis is not associated with the domain."
+          "description": "The format of the title. Only valid if the axis is not associated with the domain. The link field is not supported."
         },
         "position": {
           "description": "The position of this axis.",
@@ -1701,7 +1701,7 @@
           "type": "array"
         },
         "dateTimeRenderOption": {
-          "description": "How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is [DateTimeRenderOption.SERIAL_NUMBER].",
+          "description": "How dates, times, and durations should be represented in the output. This is ignored if value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.",
           "enum": [
             "SERIAL_NUMBER",
             "FORMATTED_STRING"
@@ -1727,7 +1727,7 @@
           "type": "string"
         },
         "valueRenderOption": {
-          "description": "How values should be represented in the output. The default render option is ValueRenderOption.FORMATTED_VALUE.",
+          "description": "How values should be represented in the output. The default render option is FORMATTED_VALUE.",
           "enum": [
             "FORMATTED_VALUE",
             "UNFORMATTED_VALUE",
@@ -1825,7 +1825,7 @@
         },
         "updatedSpreadsheet": {
           "$ref": "Spreadsheet",
-          "description": "The spreadsheet after updates were applied. This is only set if [BatchUpdateSpreadsheetRequest.include_spreadsheet_in_response] is `true`."
+          "description": "The spreadsheet after updates were applied. This is only set if BatchUpdateSpreadsheetRequest.include_spreadsheet_in_response is `true`."
         }
       },
       "type": "object"
@@ -1846,7 +1846,7 @@
           "type": "boolean"
         },
         "responseDateTimeRenderOption": {
-          "description": "Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.",
+          "description": "Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.",
           "enum": [
             "SERIAL_NUMBER",
             "FORMATTED_STRING"
@@ -1858,7 +1858,7 @@
           "type": "string"
         },
         "responseValueRenderOption": {
-          "description": "Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.",
+          "description": "Determines how values in the response should be rendered. The default render option is FORMATTED_VALUE.",
           "enum": [
             "FORMATTED_VALUE",
             "UNFORMATTED_VALUE",
@@ -1942,7 +1942,7 @@
           "type": "boolean"
         },
         "responseDateTimeRenderOption": {
-          "description": "Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is DateTimeRenderOption.SERIAL_NUMBER.",
+          "description": "Determines how dates, times, and durations in the response should be rendered. This is ignored if response_value_render_option is FORMATTED_VALUE. The default dateTime render option is SERIAL_NUMBER.",
           "enum": [
             "SERIAL_NUMBER",
             "FORMATTED_STRING"
@@ -1954,7 +1954,7 @@
           "type": "string"
         },
         "responseValueRenderOption": {
-          "description": "Determines how values in the response should be rendered. The default render option is ValueRenderOption.FORMATTED_VALUE.",
+          "description": "Determines how values in the response should be rendered. The default render option is FORMATTED_VALUE.",
           "enum": [
             "FORMATTED_VALUE",
             "UNFORMATTED_VALUE",
@@ -2276,7 +2276,7 @@
         },
         "bubbleTextStyle": {
           "$ref": "TextFormat",
-          "description": "The format of the text inside the bubbles. Strikethrough and underline are not supported."
+          "description": "The format of the text inside the bubbles. Strikethrough, underline, and link are not supported."
         },
         "domain": {
           "$ref": "ChartData",
@@ -2388,7 +2388,7 @@
       "properties": {
         "dataSourceFormula": {
           "$ref": "DataSourceFormula",
-          "description": "Output only. Information about a data source formula on the cell. The field is set if user_entered_value is a formula referencing some DATA_SOURCE sheet, e.g `=SUM(DataSheet!Column)`.",
+          "description": "Output only. Information about a data source formula on the cell. The field is set if user_entered_value is a formula referencing some DATA_SOURCE sheet, e.g. `=SUM(DataSheet!Column)`.",
           "readOnly": true
         },
         "dataSourceTable": {
@@ -2412,7 +2412,7 @@
           "type": "string"
         },
         "hyperlink": {
-          "description": "A hyperlink this cell points to, if any. If the cell contains multiple hyperlinks, this field will be empty. This field is read-only. To set it, use a `=HYPERLINK` formula in the userEnteredValue.formulaValue field.",
+          "description": "A hyperlink this cell points to, if any. If the cell contains multiple hyperlinks, this field will be empty. This field is read-only. To set it, use a `=HYPERLINK` formula in the userEnteredValue.formulaValue field. A cell-level link can also be set from the userEnteredFormat.textFormat field. Alternatively, set a hyperlink in the textFormatRun.format.link field that spans the entire cell.",
           "type": "string"
         },
         "note": {
@@ -2511,7 +2511,7 @@
         },
         "textFormat": {
           "$ref": "TextFormat",
-          "description": "The format of the text in the cell (unless overridden by a format run)."
+          "description": "The format of the text in the cell (unless overridden by a format run). Setting a cell-level link will clear the cell's existing links. Setting a link in a format run will clear the cell-level link."
         },
         "textRotation": {
           "$ref": "TextRotation",
@@ -2544,7 +2544,7 @@
           ],
           "enumDescriptions": [
             "The default value, do not use.",
-            "Lines that are longer than the cell width will be written in the next cell over, so long as that cell is empty. If the next cell over is non-empty, this behaves the same as CLIP. The text will never wrap to the next line unless the user manually inserts a new line. Example: | First sentence. | | Manual newline that is very long. <- Text continues into next cell | Next newline. |",
+            "Lines that are longer than the cell width will be written in the next cell over, so long as that cell is empty. If the next cell over is non-empty, this behaves the same as `CLIP`. The text will never wrap to the next line unless the user manually inserts a new line. Example: | First sentence. | | Manual newline that is very long. <- Text continues into next cell | Next newline. |",
             "This wrap strategy represents the old Google Sheets wrap strategy where words that are longer than a line are clipped rather than broken. This strategy is not supported on all platforms and is being phased out. Example: | Cell has a | | loooooooooo| <- Word is clipped. | word. |",
             "Lines that are longer than the cell width will be clipped. The text will never wrap to the next line unless the user manually inserts a new line. Example: | First sentence. | | Manual newline t| <- Text is clipped | Next newline. |",
             "Words that are longer than a line are wrapped at the character level rather than clipped. Example: | Cell has a | | loooooooooo| <- Word is broken. | ong word. |"
@@ -2835,7 +2835,7 @@
         },
         "subtitleTextFormat": {
           "$ref": "TextFormat",
-          "description": "The subtitle text format. Strikethrough and underline are not supported."
+          "description": "The subtitle text format. Strikethrough, underline, and link are not supported."
         },
         "subtitleTextPosition": {
           "$ref": "TextPosition",
@@ -2847,7 +2847,7 @@
         },
         "titleTextFormat": {
           "$ref": "TextFormat",
-          "description": "The title text format. Strikethrough and underline are not supported."
+          "description": "The title text format. Strikethrough, underline, and link are not supported."
         },
         "titleTextPosition": {
           "$ref": "TextPosition",
@@ -3053,7 +3053,7 @@
             "Paste values, formulas, formats, and merges.",
             "Paste the values ONLY without formats, formulas, or merges.",
             "Paste the format and data validation only.",
-            "Like PASTE_NORMAL but without borders.",
+            "Like `PASTE_NORMAL` but without borders.",
             "Paste the formulas only.",
             "Paste the data validation only.",
             "Paste the conditional formatting rules only."
@@ -3123,7 +3123,7 @@
             "Paste values, formulas, formats, and merges.",
             "Paste the values ONLY without formats, formulas, or merges.",
             "Paste the format and data validation only.",
-            "Like PASTE_NORMAL but without borders.",
+            "Like `PASTE_NORMAL` but without borders.",
             "Paste the formulas only.",
             "Paste the data validation only.",
             "Paste the conditional formatting rules only."
@@ -3305,7 +3305,7 @@
         },
         "textFormat": {
           "$ref": "TextFormat",
-          "description": "The text format used for the data label."
+          "description": "The text format used for the data label. The link field is not supported."
         },
         "type": {
           "description": "The type of the data label.",
@@ -3984,7 +3984,7 @@
       "id": "DeleteSheetRequest",
       "properties": {
         "sheetId": {
-          "description": "The ID of the sheet to delete. If the sheet is of SheetType.DATA_SOURCE type, the associated DataSource is also deleted.",
+          "description": "The ID of the sheet to delete. If the sheet is of DATA_SOURCE type, the associated DataSource is also deleted.",
           "format": "int32",
           "type": "integer"
         }
@@ -4425,7 +4425,7 @@
           "type": "string"
         },
         "numberValue": {
-          "description": "Represents a double value. Note: Dates, Times and DateTimes are represented as doubles in \"serial number\" format.",
+          "description": "Represents a double value. Note: Dates, Times and DateTimes are represented as doubles in SERIAL_NUMBER format.",
           "format": "double",
           "type": "number"
         },
@@ -4937,8 +4937,8 @@
             "The interpolation point uses the minimum value in the cells over the range of the conditional format.",
             "The interpolation point uses the maximum value in the cells over the range of the conditional format.",
             "The interpolation point uses exactly the value in InterpolationPoint.value.",
-            "The interpolation point is the given percentage over all the cells in the range of the conditional format. This is equivalent to NUMBER if the value was: `=(MAX(FLATTEN(range)) * (value / 100)) + (MIN(FLATTEN(range)) * (1 - (value / 100)))` (where errors in the range are ignored when flattening).",
-            "The interpolation point is the given percentile over all the cells in the range of the conditional format. This is equivalent to NUMBER if the value was: `=PERCENTILE(FLATTEN(range), value / 100)` (where errors in the range are ignored when flattening)."
+            "The interpolation point is the given percentage over all the cells in the range of the conditional format. This is equivalent to `NUMBER` if the value was: `=(MAX(FLATTEN(range)) * (value / 100)) + (MIN(FLATTEN(range)) * (1 - (value / 100)))` (where errors in the range are ignored when flattening).",
+            "The interpolation point is the given percentile over all the cells in the range of the conditional format. This is equivalent to `NUMBER` if the value was: `=PERCENTILE(FLATTEN(range), value / 100)` (where errors in the range are ignored when flattening)."
           ],
           "type": "string"
         },
@@ -4993,7 +4993,7 @@
         },
         "textFormat": {
           "$ref": "TextFormat",
-          "description": "Text formatting options for key value."
+          "description": "Text formatting options for key value. The link field is not supported."
         }
       },
       "type": "object"
@@ -5356,7 +5356,7 @@
             "Paste values, formulas, formats, and merges.",
             "Paste the values ONLY without formats, formulas, or merges.",
             "Paste the format and data validation only.",
-            "Like PASTE_NORMAL but without borders.",
+            "Like `PASTE_NORMAL` but without borders.",
             "Paste the formulas only.",
             "Paste the data validation only.",
             "Paste the conditional formatting rules only."
@@ -6617,7 +6617,7 @@
         },
         "textFormat": {
           "$ref": "TextFormat",
-          "description": "The text format of title in the slicer."
+          "description": "The text format of title in the slicer. The link field is not supported."
         },
         "title": {
           "description": "The title of the slicer.",
@@ -7139,7 +7139,7 @@
         },
         "textFormat": {
           "$ref": "TextFormat",
-          "description": "The text format for all labels on the chart."
+          "description": "The text format for all labels on the chart. The link field is not supported."
         }
       },
       "type": "object"
