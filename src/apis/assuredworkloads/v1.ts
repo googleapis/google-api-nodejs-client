@@ -145,6 +145,10 @@ export namespace assuredworkloads_v1 {
      * Optional. The parent of the workload.
      */
     parent?: string | null;
+    /**
+     * Optional. Resource properties in the input that are used for creating/customizing workload resources.
+     */
+    resourceSettings?: Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings[];
   }
   /**
    * An Workload object for managing highly regulated workloads of cloud customers.
@@ -278,6 +282,10 @@ export namespace assuredworkloads_v1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings {
     /**
+     * User-assigned resource display name. If not empty it will be used to create a resource with the specified name.
+     */
+    displayName?: string | null;
+    /**
      * Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail.
      */
     resourceId?: string | null;
@@ -399,6 +407,10 @@ export namespace assuredworkloads_v1 {
    * Represent the custom settings for the resources to be created.
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1WorkloadResourceSettings {
+    /**
+     * User-assigned resource display name. If not empty it will be used to create a resource with the specified name.
+     */
+    displayName?: string | null;
     /**
      * Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail.
      */
@@ -526,8 +538,7 @@ export namespace assuredworkloads_v1 {
      *   // Do the magic
      *   const res = await assuredworkloads.organizations.locations.operations.get({
      *     // The name of the operation resource.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/operations/my-operation',
+     *     name: 'organizations/my-organization/locations/my-location/operations/my-operation',
      *   });
      *   console.log(res.data);
      *
@@ -1008,8 +1019,7 @@ export namespace assuredworkloads_v1 {
      *     // Optional. The etag of the workload. If this is provided, it must match the server's etag.
      *     etag: 'placeholder-value',
      *     // Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
-     *     name:
-     *       'organizations/my-organization/locations/my-location/workloads/my-workload',
+     *     name: 'organizations/my-organization/locations/my-location/workloads/my-workload',
      *   });
      *   console.log(res.data);
      *
@@ -1137,8 +1147,7 @@ export namespace assuredworkloads_v1 {
      *   // Do the magic
      *   const res = await assuredworkloads.organizations.locations.workloads.get({
      *     // Required. The resource name of the Workload to fetch. This is the workloads's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
-     *     name:
-     *       'organizations/my-organization/locations/my-location/workloads/my-workload',
+     *     name: 'organizations/my-organization/locations/my-location/workloads/my-workload',
      *   });
      *   console.log(res.data);
      *
@@ -1430,8 +1439,7 @@ export namespace assuredworkloads_v1 {
      *   // Do the magic
      *   const res = await assuredworkloads.organizations.locations.workloads.patch({
      *     // Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/workloads/my-workload',
+     *     name: 'organizations/my-organization/locations/my-location/workloads/my-workload',
      *     // Required. The list of fields to be updated.
      *     updateMask: 'placeholder-value',
      *

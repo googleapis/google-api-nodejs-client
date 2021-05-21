@@ -351,7 +351,7 @@
       }
     }
   },
-  "revision": "20210415",
+  "revision": "20210513",
   "rootUrl": "https://assuredworkloads.googleapis.com/",
   "schemas": {
     "GoogleCloudAssuredworkloadsV1CreateWorkloadOperationMetadata": {
@@ -548,6 +548,10 @@
       "description": "Represent the custom settings for the resources to be created.",
       "id": "GoogleCloudAssuredworkloadsV1WorkloadResourceSettings",
       "properties": {
+        "displayName": {
+          "description": "User-assigned resource display name. If not empty it will be used to create a resource with the specified name.",
+          "type": "string"
+        },
         "resourceId": {
           "description": "Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail.",
           "type": "string"
@@ -611,6 +615,13 @@
         "parent": {
           "description": "Optional. The parent of the workload.",
           "type": "string"
+        },
+        "resourceSettings": {
+          "description": "Optional. Resource properties in the input that are used for creating/customizing workload resources.",
+          "items": {
+            "$ref": "GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -807,6 +818,10 @@
       "description": "Represent the custom settings for the resources to be created.",
       "id": "GoogleCloudAssuredworkloadsV1beta1WorkloadResourceSettings",
       "properties": {
+        "displayName": {
+          "description": "User-assigned resource display name. If not empty it will be used to create a resource with the specified name.",
+          "type": "string"
+        },
         "resourceId": {
           "description": "Resource identifier. For a project this represents project_id. If the project is already taken, the workload creation will fail.",
           "type": "string"
