@@ -785,7 +785,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Binddevicetogateway;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Binddevicetogateway;
         options = {};
       }
 
@@ -1345,7 +1346,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Getiampolicy;
         options = {};
       }
 
@@ -1787,7 +1789,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Setiampolicy;
         options = {};
       }
 
@@ -1935,7 +1938,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Testiampermissions;
         options = {};
       }
 
@@ -2000,8 +2004,8 @@ export namespace cloudiot_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudiot.projects.locations.registries.unbindDeviceFromGateway(
-     *     {
+     *   const res =
+     *     await cloudiot.projects.locations.registries.unbindDeviceFromGateway({
      *       // Required. The name of the registry. For example, `projects/example-project/locations/us-central1/registries/my-registry`.
      *       parent:
      *         'projects/my-project/locations/my-location/registries/my-registrie',
@@ -2014,8 +2018,7 @@ export namespace cloudiot_v1 {
      *         //   "gatewayId": "my_gatewayId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2084,7 +2087,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Unbinddevicefromgateway;
         options = {};
       }
 
@@ -2247,9 +2251,10 @@ export namespace cloudiot_v1 {
     states: Resource$Projects$Locations$Registries$Devices$States;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.configVersions = new Resource$Projects$Locations$Registries$Devices$Configversions(
-        this.context
-      );
+      this.configVersions =
+        new Resource$Projects$Locations$Registries$Devices$Configversions(
+          this.context
+        );
       this.states = new Resource$Projects$Locations$Registries$Devices$States(
         this.context
       );
@@ -2391,7 +2396,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Devices$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Devices$Create;
         options = {};
       }
 
@@ -2458,8 +2464,7 @@ export namespace cloudiot_v1 {
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.devices.delete({
      *     // Required. The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id\}`.
-     *     name:
-     *       'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
+     *     name: 'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
      *   });
      *   console.log(res.data);
      *
@@ -2522,7 +2527,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Devices$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Devices$Delete;
         options = {};
       }
 
@@ -2588,8 +2594,7 @@ export namespace cloudiot_v1 {
      *     // The fields of the `Device` resource to be returned in the response. If the field mask is unset or empty, all fields are returned. Fields have to be provided in snake_case format, for example: `last_heartbeat_time`.
      *     fieldMask: 'placeholder-value',
      *     // Required. The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id\}`.
-     *     name:
-     *       'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
+     *     name: 'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
      *   });
      *   console.log(res.data);
      *
@@ -2670,7 +2675,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Devices$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Devices$Get;
         options = {};
       }
 
@@ -2819,7 +2825,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Devices$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Devices$List;
         options = {};
       }
 
@@ -2884,22 +2891,22 @@ export namespace cloudiot_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudiot.projects.locations.registries.devices.modifyCloudToDeviceConfig(
-     *     {
-     *       // Required. The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id\}`.
-     *       name:
-     *         'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
+     *   const res =
+     *     await cloudiot.projects.locations.registries.devices.modifyCloudToDeviceConfig(
+     *       {
+     *         // Required. The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id\}`.
+     *         name: 'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "binaryData": "my_binaryData",
-     *         //   "versionToUpdate": "my_versionToUpdate"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "binaryData": "my_binaryData",
+     *           //   "versionToUpdate": "my_versionToUpdate"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2968,7 +2975,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Devices$Modifycloudtodeviceconfig;
         options = {};
       }
 
@@ -3035,8 +3043,7 @@ export namespace cloudiot_v1 {
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.devices.patch({
      *     // The resource path name. For example, `projects/p1/locations/us-central1/registries/registry0/devices/dev0` or `projects/p1/locations/us-central1/registries/registry0/devices/{num_id\}`. When `name` is populated as a response from the service, it always ends in the device numeric ID.
-     *     name:
-     *       'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
+     *     name: 'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
      *     // Required. Only updates the `device` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. Mutable top-level fields: `credentials`, `blocked`, and `metadata`
      *     updateMask: 'placeholder-value',
      *
@@ -3143,7 +3150,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Devices$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Devices$Patch;
         options = {};
       }
 
@@ -3205,11 +3213,10 @@ export namespace cloudiot_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudiot.projects.locations.registries.devices.sendCommandToDevice(
-     *     {
+     *   const res =
+     *     await cloudiot.projects.locations.registries.devices.sendCommandToDevice({
      *       // Required. The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id\}`.
-     *       name:
-     *         'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
+     *       name: 'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -3219,8 +3226,7 @@ export namespace cloudiot_v1 {
      *         //   "subfolder": "my_subfolder"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3289,7 +3295,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Devices$Sendcommandtodevice;
         options = {};
       }
 
@@ -3471,15 +3478,13 @@ export namespace cloudiot_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudiot.projects.locations.registries.devices.configVersions.list(
-     *     {
+     *   const res =
+     *     await cloudiot.projects.locations.registries.devices.configVersions.list({
      *       // Required. The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id\}`.
-     *       name:
-     *         'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
+     *       name: 'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
      *       // The number of versions to list. Versions are listed in decreasing order of the version number. The maximum number of versions retained is 10. If this value is zero, it will return all the versions available.
      *       numVersions: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3550,7 +3555,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Devices$Configversions$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Devices$Configversions$List;
         options = {};
       }
 
@@ -3638,8 +3644,7 @@ export namespace cloudiot_v1 {
      *   // Do the magic
      *   const res = await cloudiot.projects.locations.registries.devices.states.list({
      *     // Required. The name of the device. For example, `projects/p0/locations/us-central1/registries/registry0/devices/device0` or `projects/p0/locations/us-central1/registries/registry0/devices/{num_id\}`.
-     *     name:
-     *       'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
+     *     name: 'projects/my-project/locations/my-location/registries/my-registrie/devices/my-device',
      *     // The number of states to list. States are listed in descending order of update time. The maximum number of states retained is 10. If this value is zero, it will return all the states available.
      *     numStates: 'placeholder-value',
      *   });
@@ -3711,7 +3716,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Devices$States$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Devices$States$List;
         options = {};
       }
 
@@ -3874,7 +3880,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Groups$Getiampolicy;
         options = {};
       }
 
@@ -4017,7 +4024,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Groups$Setiampolicy;
         options = {};
       }
 
@@ -4082,8 +4090,8 @@ export namespace cloudiot_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudiot.projects.locations.registries.groups.testIamPermissions(
-     *     {
+     *   const res =
+     *     await cloudiot.projects.locations.registries.groups.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/registries/my-registrie/groups/my-group',
@@ -4095,8 +4103,7 @@ export namespace cloudiot_v1 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4167,7 +4174,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Groups$Testiampermissions;
         options = {};
       }
 
@@ -4364,7 +4372,8 @@ export namespace cloudiot_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registries$Groups$Devices$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Registries$Groups$Devices$List;
         options = {};
       }
 
