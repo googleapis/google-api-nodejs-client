@@ -1802,6 +1802,10 @@ export namespace bigquery_v2 {
      */
     ddlAffectedRowAccessPolicyCount?: string | null;
     /**
+     * [Output-only] The DDL destination table. Present only for ALTER TABLE RENAME TO queries. Note that ddl_target_table is used just for its type information.
+     */
+    ddlDestinationTable?: Schema$TableReference;
+    /**
      * The DDL operation performed, possibly dependent on the pre-existence of the DDL target. Possible values (new values might be added in the future): "CREATE": The query created the DDL target. "SKIP": No-op. Example cases: the query is CREATE TABLE IF NOT EXISTS while the table already exists, or the query is DROP TABLE IF EXISTS while the table does not exist. "REPLACE": The query replaced the DDL target. Example case: the query is CREATE OR REPLACE TABLE, and the table already exists. "DROP": The query deleted the DDL target.
      */
     ddlOperationPerformed?: string | null;
