@@ -14,7 +14,7 @@
   "canonicalName": "OrgPolicy API",
   "description": "The Org Policy API allows users to configure governance ruleson their GCP resources across the Cloud Resource Hierarchy.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://cloud.google.com/resource-manager/docs/organization-policy/understanding-constraints",
+  "documentationLink": "https://cloud.google.com/orgpolicy/docs/reference/rest/index.html",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -751,7 +751,7 @@
       }
     }
   },
-  "revision": "20210322",
+  "revision": "20210519",
   "rootUrl": "https://orgpolicy.googleapis.com/",
   "schemas": {
     "GoogleCloudOrgpolicyV2Constraint": {

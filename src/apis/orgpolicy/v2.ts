@@ -2081,7 +2081,8 @@ export namespace orgpolicy_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Policies$Geteffectivepolicy;
+        params =
+          {} as Params$Resource$Organizations$Policies$Geteffectivepolicy;
         options = {};
       }
 
