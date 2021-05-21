@@ -976,7 +976,7 @@ export namespace gkehub_v1beta1 {
     }
 
     /**
-     * Adds a new Membership.
+     * Creates a new Membership. **This is currently only supported for GKE clusters on Google Cloud**. To register other clusters, follow the instructions at https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
      * @example
      * ```js
      * // Before running the sample:
@@ -1133,7 +1133,7 @@ export namespace gkehub_v1beta1 {
     }
 
     /**
-     * Removes a Membership.
+     * Removes a Membership. **This is currently only supported for GKE clusters on Google Cloud**. To unregister other clusters, follow the instructions at https://cloud.google.com/anthos/multicluster-management/connect/unregistering-a-cluster.
      * @example
      * ```js
      * // Before running the sample:
@@ -1265,7 +1265,7 @@ export namespace gkehub_v1beta1 {
     }
 
     /**
-     * Generates the manifest for deployment of the GKE connect agent.
+     * Generates the manifest for deployment of the GKE connect agent. **This method is used internally by Google-provided libraries.** Most clients should not need to call this method directly.
      * @example
      * ```js
      * // Before running the sample:
@@ -1290,8 +1290,8 @@ export namespace gkehub_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gkehub.projects.locations.memberships.generateConnectManifest(
-     *     {
+     *   const res =
+     *     await gkehub.projects.locations.memberships.generateConnectManifest({
      *       // Do not set.
      *       'connectAgent.name': 'placeholder-value',
      *       // Optional. Namespace for GKE Connect agent resources. Defaults to `gke-connect`. The Connect Agent is authorized automatically when run in the default namespace. Otherwise, explicit authorization must be granted with an additional IAM binding.
@@ -1303,14 +1303,12 @@ export namespace gkehub_v1beta1 {
      *       // Optional. If true, generate the resources for upgrade only. Some resources generated only for installation (e.g. secrets) will be excluded.
      *       isUpgrade: 'placeholder-value',
      *       // Required. The Membership resource name the Agent will associate with, in the format `projects/x/locations/x/memberships/x`.
-     *       name:
-     *         'projects/my-project/locations/my-location/memberships/my-membership',
+     *       name: 'projects/my-project/locations/my-location/memberships/my-membership',
      *       // Optional. The registry to fetch the connect agent image from. Defaults to gcr.io/gkeconnect.
      *       registry: 'placeholder-value',
      *       // Optional. The Connect agent version to use. Defaults to the most current version.
      *       version: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1381,7 +1379,8 @@ export namespace gkehub_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest;
         options = {};
       }
 
@@ -1445,17 +1444,15 @@ export namespace gkehub_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gkehub.projects.locations.memberships.generateExclusivityManifest(
-     *     {
+     *   const res =
+     *     await gkehub.projects.locations.memberships.generateExclusivityManifest({
      *       // Optional. The YAML manifest of the membership CRD retrieved by `kubectl get customresourcedefinitions membership`. Leave empty if the resource does not exist.
      *       crdManifest: 'placeholder-value',
      *       // Optional. The YAML manifest of the membership CR retrieved by `kubectl get memberships membership`. Leave empty if the resource does not exist.
      *       crManifest: 'placeholder-value',
      *       // Required. The Membership resource name in the format `projects/x/locations/x/memberships/x`.
-     *       name:
-     *         'projects/my-project/locations/my-location/memberships/my-membership',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/memberships/my-membership',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1527,7 +1524,8 @@ export namespace gkehub_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Memberships$Generateexclusivitymanifest;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Generateexclusivitymanifest;
         options = {};
       }
 
@@ -1801,7 +1799,8 @@ export namespace gkehub_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Memberships$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Getiampolicy;
         options = {};
       }
 
@@ -2241,7 +2240,8 @@ export namespace gkehub_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Memberships$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Setiampolicy;
         options = {};
       }
 
@@ -2386,7 +2386,8 @@ export namespace gkehub_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Memberships$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Testiampermissions;
         options = {};
       }
 
@@ -2526,7 +2527,8 @@ export namespace gkehub_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Memberships$Validateexclusivity;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Validateexclusivity;
         options = {};
       }
 
