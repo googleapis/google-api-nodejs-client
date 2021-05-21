@@ -357,10 +357,6 @@ export namespace mybusinessaccountmanagement_v1 {
      * Required. Name of the account resource to transfer the location to (for example, "accounts/{account\}").
      */
     destinationAccount?: string | null;
-    /**
-     * Required. The name of the location to transfer. `locations/{location_id\}`.
-     */
-    name?: string | null;
   }
 
   export class Resource$Accounts {
@@ -2091,15 +2087,15 @@ export namespace mybusinessaccountmanagement_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await mybusinessaccountmanagement.locations.transferLocation({
-     *     locationsId: 'placeholder-value',
+     *   const res = await mybusinessaccountmanagement.locations.transfer({
+     *     // Required. The name of the location to transfer. `locations/{location_id\}`.
+     *     name: 'locations/my-location',
      *
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "destinationAccount": "my_destinationAccount",
-     *       //   "name": "my_name"
+     *       //   "destinationAccount": "my_destinationAccount"
      *       // }
      *     },
      *   });
@@ -2121,32 +2117,32 @@ export namespace mybusinessaccountmanagement_v1 {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    transferLocation(
-      params: Params$Resource$Locations$Transferlocation,
+    transfer(
+      params: Params$Resource$Locations$Transfer,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
-    transferLocation(
-      params?: Params$Resource$Locations$Transferlocation,
+    transfer(
+      params?: Params$Resource$Locations$Transfer,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Empty>;
-    transferLocation(
-      params: Params$Resource$Locations$Transferlocation,
+    transfer(
+      params: Params$Resource$Locations$Transfer,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    transferLocation(
-      params: Params$Resource$Locations$Transferlocation,
+    transfer(
+      params: Params$Resource$Locations$Transfer,
       options: MethodOptions | BodyResponseCallback<Schema$Empty>,
       callback: BodyResponseCallback<Schema$Empty>
     ): void;
-    transferLocation(
-      params: Params$Resource$Locations$Transferlocation,
+    transfer(
+      params: Params$Resource$Locations$Transfer,
       callback: BodyResponseCallback<Schema$Empty>
     ): void;
-    transferLocation(callback: BodyResponseCallback<Schema$Empty>): void;
-    transferLocation(
+    transfer(callback: BodyResponseCallback<Schema$Empty>): void;
+    transfer(
       paramsOrCallback?:
-        | Params$Resource$Locations$Transferlocation
+        | Params$Resource$Locations$Transfer
         | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -2159,12 +2155,12 @@ export namespace mybusinessaccountmanagement_v1 {
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Locations$Transferlocation;
+        {}) as Params$Resource$Locations$Transfer;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Locations$Transferlocation;
+        params = {} as Params$Resource$Locations$Transfer;
         options = {};
       }
 
@@ -2179,16 +2175,17 @@ export namespace mybusinessaccountmanagement_v1 {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/v1/locations/{locationsId}:transferLocation'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}:transfer').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
           },
           options
         ),
         params,
-        requiredParams: ['locationsId'],
-        pathParams: ['locationsId'],
+        requiredParams: ['name'],
+        pathParams: ['name'],
         context: this.context,
       };
       if (callback) {
@@ -2202,12 +2199,12 @@ export namespace mybusinessaccountmanagement_v1 {
     }
   }
 
-  export interface Params$Resource$Locations$Transferlocation
+  export interface Params$Resource$Locations$Transfer
     extends StandardParameters {
     /**
-     *
+     * Required. The name of the location to transfer. `locations/{location_id\}`.
      */
-    locationsId?: string;
+    name?: string;
 
     /**
      * Request body metadata
