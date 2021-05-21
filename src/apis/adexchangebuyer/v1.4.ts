@@ -1438,6 +1438,7 @@ export namespace adexchangebuyer_v1_4 {
      * Exchange where this publisher profile is from. E.g. AdX, Rubicon etc...
      */
     exchange?: string | null;
+    forecastInventory?: string | null;
     /**
      * Link to publisher's Google+ page.
      */
@@ -1476,11 +1477,11 @@ export namespace adexchangebuyer_v1_4 {
      */
     programmaticContact?: string | null;
     /**
-     * The list of app IDs represented in this pubisher profile. Empty if this is a parent profile. Deprecated in favor of publisher_app.
+     * The list of app IDs represented in this publisher profile. Empty if this is a parent profile. Deprecated in favor of publisher_app.
      */
     publisherAppIds?: string[] | null;
     /**
-     * The list of apps represented in this pubisher profile. Empty if this is a parent profile.
+     * The list of apps represented in this publisher profile. Empty if this is a parent profile.
      */
     publisherApps?: Schema$MobileApplication[];
     /**

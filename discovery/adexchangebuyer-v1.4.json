@@ -15,7 +15,7 @@
   "description": "Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/ad-exchange/buyer-rest",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/jgvyhwo-2198NR_j9usHx-LJ-6E\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/dq_VdRrNx25JV3zCpSyRAHMO4WQ\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/doubleclick-16.gif",
     "x32": "https://www.google.com/images/icons/product/doubleclick-32.gif"
@@ -1255,7 +1255,7 @@
       }
     }
   },
-  "revision": "20201004",
+  "revision": "20210519",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "Account": {
@@ -3399,6 +3399,9 @@
           "description": "Exchange where this publisher profile is from. E.g. AdX, Rubicon etc...",
           "type": "string"
         },
+        "forecastInventory": {
+          "type": "string"
+        },
         "googlePlusLink": {
           "description": "Link to publisher's Google+ page.",
           "type": "string"
@@ -3441,7 +3444,7 @@
           "type": "string"
         },
         "publisherAppIds": {
-          "description": "The list of app IDs represented in this pubisher profile. Empty if this is a parent profile. Deprecated in favor of publisher_app.",
+          "description": "The list of app IDs represented in this publisher profile. Empty if this is a parent profile. Deprecated in favor of publisher_app.",
           "items": {
             "format": "int64",
             "type": "string"
@@ -3449,7 +3452,7 @@
           "type": "array"
         },
         "publisherApps": {
-          "description": "The list of apps represented in this pubisher profile. Empty if this is a parent profile.",
+          "description": "The list of apps represented in this publisher profile. Empty if this is a parent profile.",
           "items": {
             "$ref": "MobileApplication"
           },
