@@ -4067,14 +4067,13 @@ export namespace containeranalysis_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await containeranalysis.projects.occurrences.getVulnerabilitySummary(
-     *     {
+     *   const res =
+     *     await containeranalysis.projects.occurrences.getVulnerabilitySummary({
      *       // The filter expression.
      *       filter: 'placeholder-value',
      *       // Required. The name of the project to get a vulnerability summary for in the form of `projects/[PROJECT_ID]`.
      *       parent: 'projects/my-project',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4145,7 +4144,8 @@ export namespace containeranalysis_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Occurrences$Getvulnerabilitysummary;
+        params =
+          {} as Params$Resource$Projects$Occurrences$Getvulnerabilitysummary;
         options = {};
       }
 

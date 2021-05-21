@@ -3622,14 +3622,13 @@ export namespace containeranalysis_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await containeranalysis.projects.occurrences.getVulnerabilitySummary(
-     *     {
+     *   const res =
+     *     await containeranalysis.projects.occurrences.getVulnerabilitySummary({
      *       // The filter expression.
      *       filter: 'placeholder-value',
      *       // This contains the project Id for example: projects/{project_id\}
      *       parent: 'projects/my-project',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3700,7 +3699,8 @@ export namespace containeranalysis_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Occurrences$Getvulnerabilitysummary;
+        params =
+          {} as Params$Resource$Projects$Occurrences$Getvulnerabilitysummary;
         options = {};
       }
 
