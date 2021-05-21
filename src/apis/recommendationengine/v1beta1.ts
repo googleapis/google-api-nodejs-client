@@ -606,7 +606,7 @@ export namespace recommendationengine_v1beta1 {
      */
     pageToken?: string | null;
     /**
-     * Optional. Additional domain specific parameters for the predictions. Allowed values: * `returnCatalogItem`: Boolean. If set to true, the associated catalogItem object will be returned in the `PredictResponse.PredictionResult.itemMetadata` object in the method response. * `returnItemScore`: Boolean. If set to true, the prediction 'score' corresponding to each returned item will be set in the `metadata` field in the prediction response. The given 'score' indicates the probability of an item being clicked/purchased given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular items instead of empty if your filter blocks all prediction results.
+     * Optional. Additional domain specific parameters for the predictions. Allowed values: * `returnCatalogItem`: Boolean. If set to true, the associated catalogItem object will be returned in the `PredictResponse.PredictionResult.itemMetadata` object in the method response. * `returnItemScore`: Boolean. If set to true, the prediction 'score' corresponding to each returned item will be set in the `metadata` field in the prediction response. The given 'score' indicates the probability of an item being clicked/purchased given the user's context and history. * `strictFiltering`: Boolean. True by default. If set to false, the service will return generic (unfiltered) popular items instead of empty if your filter blocks all prediction results. * `priceRerankLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-price-reranking', 'low-price-reranking', 'medium-price-reranking', 'high-price-reranking'\}. This gives request level control and adjust prediction results based on product price. * `diversityLevel`: String. Default empty. If set to be non-empty, then it needs to be one of {'no-diversity', 'low-diversity', 'medium-diversity', 'high-diversity', 'auto-diversity'\}. This gives request level control and adjust prediction results based on product category.
      */
     params?: {[key: string]: any} | null;
     /**
@@ -1404,8 +1404,8 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.catalogItems.create(
-     *     {
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.catalogItems.create({
      *       // Required. The parent catalog resource name, such as `projects/x/locations/global/catalogs/default_catalog`.
      *       parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
      *
@@ -1424,8 +1424,7 @@ export namespace recommendationengine_v1beta1 {
      *         //   "title": "my_title"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1504,7 +1503,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Catalogitems$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Catalogitems$Create;
         options = {};
       }
 
@@ -1569,13 +1569,11 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.catalogItems.delete(
-     *     {
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.catalogItems.delete({
      *       // Required. Full resource name of catalog item, such as `projects/x/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`.
-     *       name:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/catalogItems/.*',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/catalogItems/.*',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1640,7 +1638,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Catalogitems$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Catalogitems$Delete;
         options = {};
       }
 
@@ -1700,13 +1699,11 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.catalogItems.get(
-     *     {
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.catalogItems.get({
      *       // Required. Full resource name of catalog item, such as `projects/x/locations/global/catalogs/default_catalog/catalogitems/some_catalog_item_id`.
-     *       name:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/catalogItems/.*',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/catalogItems/.*',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1785,7 +1782,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Catalogitems$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Catalogitems$Get;
         options = {};
       }
 
@@ -1847,8 +1845,8 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.catalogItems.import(
-     *     {
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.catalogItems.import({
      *       // Required. `projects/1234/locations/global/catalogs/default_catalog` If no updateMask is specified, requires catalogItems.create permission. If updateMask is specified, requires catalogItems.update permission.
      *       parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
      *
@@ -1862,8 +1860,7 @@ export namespace recommendationengine_v1beta1 {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1938,7 +1935,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Catalogitems$Import;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Catalogitems$Import;
         options = {};
       }
 
@@ -2001,8 +1999,8 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.catalogItems.list(
-     *     {
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.catalogItems.list({
      *       // Optional. A filter to apply on the list results.
      *       filter: 'placeholder-value',
      *       // Optional. Maximum number of results to return per page. If zero, the service will choose a reasonable default.
@@ -2011,8 +2009,7 @@ export namespace recommendationengine_v1beta1 {
      *       pageToken: 'placeholder-value',
      *       // Required. The parent catalog resource name, such as `projects/x/locations/global/catalogs/default_catalog`.
      *       parent: 'projects/my-project/locations/my-location/catalogs/my-catalog',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2084,7 +2081,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Catalogitems$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Catalogitems$List;
         options = {};
       }
 
@@ -2149,11 +2147,10 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.catalogItems.patch(
-     *     {
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.catalogItems.patch({
      *       // Required. Full resource name of catalog item, such as `projects/x/locations/global/catalogs/default_catalog/catalogItems/some_catalog_item_id`.
-     *       name:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/catalogItems/.*',
+     *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/catalogItems/.*',
      *       // Optional. Indicates which fields in the provided 'item' to update. If not set, will by default update all fields.
      *       updateMask: 'placeholder-value',
      *
@@ -2172,8 +2169,7 @@ export namespace recommendationengine_v1beta1 {
      *         //   "title": "my_title"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2252,7 +2248,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Catalogitems$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Catalogitems$Patch;
         options = {};
       }
 
@@ -2371,18 +2368,22 @@ export namespace recommendationengine_v1beta1 {
     userEvents: Resource$Projects$Locations$Catalogs$Eventstores$Userevents;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.operations = new Resource$Projects$Locations$Catalogs$Eventstores$Operations(
-        this.context
-      );
-      this.placements = new Resource$Projects$Locations$Catalogs$Eventstores$Placements(
-        this.context
-      );
-      this.predictionApiKeyRegistrations = new Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations(
-        this.context
-      );
-      this.userEvents = new Resource$Projects$Locations$Catalogs$Eventstores$Userevents(
-        this.context
-      );
+      this.operations =
+        new Resource$Projects$Locations$Catalogs$Eventstores$Operations(
+          this.context
+        );
+      this.placements =
+        new Resource$Projects$Locations$Catalogs$Eventstores$Placements(
+          this.context
+        );
+      this.predictionApiKeyRegistrations =
+        new Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations(
+          this.context
+        );
+      this.userEvents =
+        new Resource$Projects$Locations$Catalogs$Eventstores$Userevents(
+          this.context
+        );
     }
   }
 
@@ -2418,13 +2419,13 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.eventStores.operations.get(
-     *     {
-     *       // The name of the operation resource.
-     *       name:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore/operations/my-operation',
-     *     }
-     *   );
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.eventStores.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore/operations/my-operation',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2499,7 +2500,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Operations$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Operations$Get;
         options = {};
       }
 
@@ -2559,19 +2561,19 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.eventStores.operations.list(
-     *     {
-     *       // The standard list filter.
-     *       filter: 'placeholder-value',
-     *       // The name of the operation's parent resource.
-     *       name:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
-     *       // The standard list page size.
-     *       pageSize: 'placeholder-value',
-     *       // The standard list page token.
-     *       pageToken: 'placeholder-value',
-     *     }
-     *   );
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.eventStores.operations.list(
+     *       {
+     *         // The standard list filter.
+     *         filter: 'placeholder-value',
+     *         // The name of the operation's parent resource.
+     *         name: 'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
+     *         // The standard list page size.
+     *         pageSize: 'placeholder-value',
+     *         // The standard list page token.
+     *         pageToken: 'placeholder-value',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2643,7 +2645,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Operations$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Operations$List;
         options = {};
       }
 
@@ -2742,27 +2745,27 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.eventStores.placements.predict(
-     *     {
-     *       // Required. Full resource name of the format: `{name=projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/x\}` The id of the recommendation engine placement. This id is used to identify the set of models that will be used to make the prediction. We currently support three placements with the following IDs by default: * `shopping_cart`: Predicts items frequently bought together with one or more catalog items in the same shopping session. Commonly displayed after `add-to-cart` events, on product detail pages, or on the shopping cart page. * `home_page`: Predicts the next product that a user will most likely engage with or purchase based on the shopping or viewing history of the specified `userId` or `visitorId`. For example - Recommendations for you. * `product_detail`: Predicts the next product that a user will most likely engage with or purchase. The prediction is based on the shopping or viewing history of the specified `userId` or `visitorId` and its relevance to a specified `CatalogItem`. Typically used on product detail pages. For example - More items like this. * `recently_viewed_default`: Returns up to 75 items recently viewed by the specified `userId` or `visitorId`, most recent ones first. Returns nothing if neither of them has viewed any items yet. For example - Recently viewed. The full list of available placements can be seen at https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
-     *       name:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore/placements/my-placement',
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.eventStores.placements.predict(
+     *       {
+     *         // Required. Full resource name of the format: `{name=projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/placements/x\}` The id of the recommendation engine placement. This id is used to identify the set of models that will be used to make the prediction. We currently support three placements with the following IDs by default: * `shopping_cart`: Predicts items frequently bought together with one or more catalog items in the same shopping session. Commonly displayed after `add-to-cart` events, on product detail pages, or on the shopping cart page. * `home_page`: Predicts the next product that a user will most likely engage with or purchase based on the shopping or viewing history of the specified `userId` or `visitorId`. For example - Recommendations for you. * `product_detail`: Predicts the next product that a user will most likely engage with or purchase. The prediction is based on the shopping or viewing history of the specified `userId` or `visitorId` and its relevance to a specified `CatalogItem`. Typically used on product detail pages. For example - More items like this. * `recently_viewed_default`: Returns up to 75 items recently viewed by the specified `userId` or `visitorId`, most recent ones first. Returns nothing if neither of them has viewed any items yet. For example - Recently viewed. The full list of available placements can be seen at https://console.cloud.google.com/recommendation/datafeeds/default_catalog/dashboard
+     *         name: 'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore/placements/my-placement',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "dryRun": false,
-     *         //   "filter": "my_filter",
-     *         //   "labels": {},
-     *         //   "pageSize": 0,
-     *         //   "pageToken": "my_pageToken",
-     *         //   "params": {},
-     *         //   "userEvent": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "dryRun": false,
+     *           //   "filter": "my_filter",
+     *           //   "labels": {},
+     *           //   "pageSize": 0,
+     *           //   "pageToken": "my_pageToken",
+     *           //   "params": {},
+     *           //   "userEvent": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2838,7 +2841,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Placements$Predict;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Placements$Predict;
         options = {};
       }
 
@@ -2923,21 +2927,22 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.eventStores.predictionApiKeyRegistrations.create(
-     *     {
-     *       // Required. The parent resource path. `projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.eventStores.predictionApiKeyRegistrations.create(
+     *       {
+     *         // Required. The parent resource path. `projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "predictionApiKeyRegistration": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "predictionApiKeyRegistration": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3008,7 +3013,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Create;
         options = {};
       }
 
@@ -3072,13 +3078,13 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.eventStores.predictionApiKeyRegistrations.delete(
-     *     {
-     *       // Required. The API key to unregister including full resource path. `projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/`
-     *       name:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore/predictionApiKeyRegistrations/my-predictionApiKeyRegistration',
-     *     }
-     *   );
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.eventStores.predictionApiKeyRegistrations.delete(
+     *       {
+     *         // Required. The API key to unregister including full resource path. `projects/x/locations/global/catalogs/default_catalog/eventStores/default_event_store/predictionApiKeyRegistrations/`
+     *         name: 'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore/predictionApiKeyRegistrations/my-predictionApiKeyRegistration',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3143,7 +3149,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Delete;
         options = {};
       }
 
@@ -3203,17 +3210,18 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.eventStores.predictionApiKeyRegistrations.list(
-     *     {
-     *       // Optional. Maximum number of results to return per page. If unset, the service will choose a reasonable default.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. The previous `ListPredictionApiKeyRegistration.nextPageToken`.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The parent placement resource name such as `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
-     *       parent:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
-     *     }
-     *   );
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.eventStores.predictionApiKeyRegistrations.list(
+     *       {
+     *         // Optional. Maximum number of results to return per page. If unset, the service will choose a reasonable default.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. The previous `ListPredictionApiKeyRegistration.nextPageToken`.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent placement resource name such as `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
+     *         parent:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3285,7 +3293,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$List;
         options = {};
       }
 
@@ -3391,19 +3400,20 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.eventStores.userEvents.collect(
-     *     {
-     *       // Optional. The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
-     *       ets: 'placeholder-value',
-     *       // Required. The parent eventStore name, such as `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
-     *       // Optional. The url including cgi-parameters but excluding the hash fragment. The URL must be truncated to 1.5K bytes to conservatively be under the 2K bytes. This is often more useful than the referer url, because many browsers only send the domain for 3rd party requests.
-     *       uri: 'placeholder-value',
-     *       // Required. URL encoded UserEvent proto.
-     *       userEvent: 'placeholder-value',
-     *     }
-     *   );
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.eventStores.userEvents.collect(
+     *       {
+     *         // Optional. The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
+     *         ets: 'placeholder-value',
+     *         // Required. The parent eventStore name, such as `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
+     *         // Optional. The url including cgi-parameters but excluding the hash fragment. The URL must be truncated to 1.5K bytes to conservatively be under the 2K bytes. This is often more useful than the referer url, because many browsers only send the domain for 3rd party requests.
+     *         uri: 'placeholder-value',
+     *         // Required. URL encoded UserEvent proto.
+     *         userEvent: 'placeholder-value',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3472,7 +3482,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Collect;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Collect;
         options = {};
       }
 
@@ -3535,23 +3546,24 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.eventStores.userEvents.import(
-     *     {
-     *       // Required. `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
-     *       parent:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.eventStores.userEvents.import(
+     *       {
+     *         // Required. `projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store`
+     *         parent:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "errorsConfig": {},
-     *         //   "inputConfig": {},
-     *         //   "requestId": "my_requestId"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "errorsConfig": {},
+     *           //   "inputConfig": {},
+     *           //   "requestId": "my_requestId"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3626,7 +3638,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Import;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Import;
         options = {};
       }
 
@@ -3689,19 +3702,20 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.eventStores.userEvents.list(
-     *     {
-     *       // Optional. Filtering expression to specify restrictions over returned events. This is a sequence of terms, where each term applies some kind of a restriction to the returned user events. Use this expression to restrict results to a specific time range, or filter events by eventType. eg: eventTime \> "2012-04-23T18:25:43.511Z" eventsMissingCatalogItems eventTime<"2012-04-23T18:25:43.511Z" eventType=search We expect only 3 types of fields: * eventTime: this can be specified a maximum of 2 times, once with a less than operator and once with a greater than operator. The eventTime restrict should result in one contiguous valid eventTime range. * eventType: only 1 eventType restriction can be specified. * eventsMissingCatalogItems: specififying this will restrict results to events for which catalog items were not found in the catalog. The default behavior is to return only those events for which catalog items were found. Some examples of valid filters expressions: * Example 1: eventTime \> "2012-04-23T18:25:43.511Z" eventTime < "2012-04-23T18:30:43.511Z" * Example 2: eventTime \> "2012-04-23T18:25:43.511Z" eventType = detail-page-view * Example 3: eventsMissingCatalogItems eventType = search eventTime < "2018-04-23T18:30:43.511Z" * Example 4: eventTime \> "2012-04-23T18:25:43.511Z" * Example 5: eventType = search * Example 6: eventsMissingCatalogItems
-     *       filter: 'placeholder-value',
-     *       // Optional. Maximum number of results to return per page. If zero, the service will choose a reasonable default.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. The previous ListUserEventsResponse.next_page_token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The parent eventStore resource name, such as `projects/x/locations/x/catalogs/default_catalog/eventStores/default_event_store`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
-     *     }
-     *   );
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.eventStores.userEvents.list(
+     *       {
+     *         // Optional. Filtering expression to specify restrictions over returned events. This is a sequence of terms, where each term applies some kind of a restriction to the returned user events. Use this expression to restrict results to a specific time range, or filter events by eventType. eg: eventTime \> "2012-04-23T18:25:43.511Z" eventsMissingCatalogItems eventTime<"2012-04-23T18:25:43.511Z" eventType=search We expect only 3 types of fields: * eventTime: this can be specified a maximum of 2 times, once with a less than operator and once with a greater than operator. The eventTime restrict should result in one contiguous valid eventTime range. * eventType: only 1 eventType restriction can be specified. * eventsMissingCatalogItems: specififying this will restrict results to events for which catalog items were not found in the catalog. The default behavior is to return only those events for which catalog items were found. Some examples of valid filters expressions: * Example 1: eventTime \> "2012-04-23T18:25:43.511Z" eventTime < "2012-04-23T18:30:43.511Z" * Example 2: eventTime \> "2012-04-23T18:25:43.511Z" eventType = detail-page-view * Example 3: eventsMissingCatalogItems eventType = search eventTime < "2018-04-23T18:30:43.511Z" * Example 4: eventTime \> "2012-04-23T18:25:43.511Z" * Example 5: eventType = search * Example 6: eventsMissingCatalogItems
+     *         filter: 'placeholder-value',
+     *         // Optional. Maximum number of results to return per page. If zero, the service will choose a reasonable default.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. The previous ListUserEventsResponse.next_page_token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent eventStore resource name, such as `projects/x/locations/x/catalogs/default_catalog/eventStores/default_event_store`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3773,7 +3787,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$List;
         options = {};
       }
 
@@ -3838,22 +3853,23 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.eventStores.userEvents.purge(
-     *     {
-     *       // Required. The resource name of the event_store under which the events are created. The format is `projects/${projectId\}/locations/global/catalogs/${catalogId\}/eventStores/${eventStoreId\}`
-     *       parent:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.eventStores.userEvents.purge(
+     *       {
+     *         // Required. The resource name of the event_store under which the events are created. The format is `projects/${projectId\}/locations/global/catalogs/${catalogId\}/eventStores/${eventStoreId\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "filter": "my_filter",
-     *         //   "force": false
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "filter": "my_filter",
+     *           //   "force": false
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3928,7 +3944,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Purge;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Purge;
         options = {};
       }
 
@@ -3991,21 +4008,22 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.eventStores.userEvents.rejoin(
-     *     {
-     *       // Required. Full resource name of user event, such as `projects/x/locations/x/catalogs/default_catalog/eventStores/default_event_store`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.eventStores.userEvents.rejoin(
+     *       {
+     *         // Required. Full resource name of user event, such as `projects/x/locations/x/catalogs/default_catalog/eventStores/default_event_store`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "userEventRejoinScope": "my_userEventRejoinScope"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "userEventRejoinScope": "my_userEventRejoinScope"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4080,7 +4098,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Rejoin;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Rejoin;
         options = {};
       }
 
@@ -4143,26 +4162,27 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.eventStores.userEvents.write(
-     *     {
-     *       // Required. The parent eventStore resource name, such as "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
-     *       parent:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.eventStores.userEvents.write(
+     *       {
+     *         // Required. The parent eventStore resource name, such as "projects/1234/locations/global/catalogs/default_catalog/eventStores/default_event_store".
+     *         parent:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/eventStores/my-eventStore',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "eventDetail": {},
-     *         //   "eventSource": "my_eventSource",
-     *         //   "eventTime": "my_eventTime",
-     *         //   "eventType": "my_eventType",
-     *         //   "productEventDetail": {},
-     *         //   "userInfo": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "eventDetail": {},
+     *           //   "eventSource": "my_eventSource",
+     *           //   "eventTime": "my_eventTime",
+     *           //   "eventType": "my_eventType",
+     *           //   "productEventDetail": {},
+     *           //   "userInfo": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4238,7 +4258,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Write;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Write;
         options = {};
       }
 
@@ -4397,13 +4418,11 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.operations.get(
-     *     {
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.operations.get({
      *       // The name of the operation resource.
-     *       name:
-     *         'projects/my-project/locations/my-location/catalogs/my-catalog/operations/my-operation',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/catalogs/my-catalog/operations/my-operation',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4478,7 +4497,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Operations$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Operations$Get;
         options = {};
       }
 
@@ -4538,8 +4558,8 @@ export namespace recommendationengine_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommendationengine.projects.locations.catalogs.operations.list(
-     *     {
+     *   const res =
+     *     await recommendationengine.projects.locations.catalogs.operations.list({
      *       // The standard list filter.
      *       filter: 'placeholder-value',
      *       // The name of the operation's parent resource.
@@ -4548,8 +4568,7 @@ export namespace recommendationengine_v1beta1 {
      *       pageSize: 'placeholder-value',
      *       // The standard list page token.
      *       pageToken: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4621,7 +4640,8 @@ export namespace recommendationengine_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Catalogs$Operations$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Operations$List;
         options = {};
       }
 
