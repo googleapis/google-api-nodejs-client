@@ -1192,7 +1192,7 @@ export namespace dlp_v2 {
      */
     condition?: Schema$GooglePrivacyDlpV2RecordCondition;
     /**
-     * Required. Input field(s) to apply the transformation to.
+     * Required. Input field(s) to apply the transformation to. When you have columns that reference their position within a list, omit the index from the FieldId. FieldId name matching ignores the index. For example, instead of "contact.nums[0].type", use "contact.nums.type".
      */
     fields?: Schema$GooglePrivacyDlpV2FieldId[];
     /**
@@ -3706,8 +3706,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.organizations.deidentifyTemplates.delete({
      *     // Required. Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-     *     name:
-     *       'organizations/my-organization/deidentifyTemplates/my-deidentifyTemplate',
+     *     name: 'organizations/my-organization/deidentifyTemplates/my-deidentifyTemplate',
      *   });
      *   console.log(res.data);
      *
@@ -3834,8 +3833,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.organizations.deidentifyTemplates.get({
      *     // Required. Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-     *     name:
-     *       'organizations/my-organization/deidentifyTemplates/my-deidentifyTemplate',
+     *     name: 'organizations/my-organization/deidentifyTemplates/my-deidentifyTemplate',
      *   });
      *   console.log(res.data);
      *
@@ -4122,8 +4120,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.organizations.deidentifyTemplates.patch({
      *     // Required. Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-     *     name:
-     *       'organizations/my-organization/deidentifyTemplates/my-deidentifyTemplate',
+     *     name: 'organizations/my-organization/deidentifyTemplates/my-deidentifyTemplate',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -5101,19 +5098,16 @@ export namespace dlp_v2 {
     storedInfoTypes: Resource$Organizations$Locations$Storedinfotypes;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.deidentifyTemplates = new Resource$Organizations$Locations$Deidentifytemplates(
-        this.context
-      );
+      this.deidentifyTemplates =
+        new Resource$Organizations$Locations$Deidentifytemplates(this.context);
       this.dlpJobs = new Resource$Organizations$Locations$Dlpjobs(this.context);
-      this.inspectTemplates = new Resource$Organizations$Locations$Inspecttemplates(
-        this.context
-      );
+      this.inspectTemplates =
+        new Resource$Organizations$Locations$Inspecttemplates(this.context);
       this.jobTriggers = new Resource$Organizations$Locations$Jobtriggers(
         this.context
       );
-      this.storedInfoTypes = new Resource$Organizations$Locations$Storedinfotypes(
-        this.context
-      );
+      this.storedInfoTypes =
+        new Resource$Organizations$Locations$Storedinfotypes(this.context);
     }
   }
 
@@ -5238,7 +5232,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Deidentifytemplates$Create;
+        params =
+          {} as Params$Resource$Organizations$Locations$Deidentifytemplates$Create;
         options = {};
       }
 
@@ -5304,8 +5299,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.delete({
      *     // Required. Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
+     *     name: 'organizations/my-organization/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
      *   });
      *   console.log(res.data);
      *
@@ -5371,7 +5365,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Deidentifytemplates$Delete;
+        params =
+          {} as Params$Resource$Organizations$Locations$Deidentifytemplates$Delete;
         options = {};
       }
 
@@ -5432,8 +5427,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.get({
      *     // Required. Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
+     *     name: 'organizations/my-organization/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
      *   });
      *   console.log(res.data);
      *
@@ -5510,7 +5504,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Deidentifytemplates$Get;
+        params =
+          {} as Params$Resource$Organizations$Locations$Deidentifytemplates$Get;
         options = {};
       }
 
@@ -5654,7 +5649,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Deidentifytemplates$List;
+        params =
+          {} as Params$Resource$Organizations$Locations$Deidentifytemplates$List;
         options = {};
       }
 
@@ -5720,8 +5716,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.organizations.locations.deidentifyTemplates.patch({
      *     // Required. Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
+     *     name: 'organizations/my-organization/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -5807,7 +5802,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Deidentifytemplates$Patch;
+        params =
+          {} as Params$Resource$Organizations$Locations$Deidentifytemplates$Patch;
         options = {};
       }
 
@@ -6216,7 +6212,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Inspecttemplates$Create;
+        params =
+          {} as Params$Resource$Organizations$Locations$Inspecttemplates$Create;
         options = {};
       }
 
@@ -6282,8 +6279,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.delete({
      *     // Required. Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/inspectTemplates/my-inspectTemplate',
+     *     name: 'organizations/my-organization/locations/my-location/inspectTemplates/my-inspectTemplate',
      *   });
      *   console.log(res.data);
      *
@@ -6349,7 +6345,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Inspecttemplates$Delete;
+        params =
+          {} as Params$Resource$Organizations$Locations$Inspecttemplates$Delete;
         options = {};
       }
 
@@ -6410,8 +6407,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.get({
      *     // Required. Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/inspectTemplates/my-inspectTemplate',
+     *     name: 'organizations/my-organization/locations/my-location/inspectTemplates/my-inspectTemplate',
      *   });
      *   console.log(res.data);
      *
@@ -6488,7 +6484,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Inspecttemplates$Get;
+        params =
+          {} as Params$Resource$Organizations$Locations$Inspecttemplates$Get;
         options = {};
       }
 
@@ -6632,7 +6629,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Inspecttemplates$List;
+        params =
+          {} as Params$Resource$Organizations$Locations$Inspecttemplates$List;
         options = {};
       }
 
@@ -6698,8 +6696,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.organizations.locations.inspectTemplates.patch({
      *     // Required. Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/inspectTemplates/my-inspectTemplate',
+     *     name: 'organizations/my-organization/locations/my-location/inspectTemplates/my-inspectTemplate',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -6785,7 +6782,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Inspecttemplates$Patch;
+        params =
+          {} as Params$Resource$Organizations$Locations$Inspecttemplates$Patch;
         options = {};
       }
 
@@ -7008,7 +7006,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Jobtriggers$Create;
+        params =
+          {} as Params$Resource$Organizations$Locations$Jobtriggers$Create;
         options = {};
       }
 
@@ -7074,8 +7073,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.organizations.locations.jobTriggers.delete({
      *     // Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/jobTriggers/my-jobTrigger',
+     *     name: 'organizations/my-organization/locations/my-location/jobTriggers/my-jobTrigger',
      *   });
      *   console.log(res.data);
      *
@@ -7141,7 +7139,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Jobtriggers$Delete;
+        params =
+          {} as Params$Resource$Organizations$Locations$Jobtriggers$Delete;
         options = {};
       }
 
@@ -7202,8 +7201,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.organizations.locations.jobTriggers.get({
      *     // Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/jobTriggers/my-jobTrigger',
+     *     name: 'organizations/my-organization/locations/my-location/jobTriggers/my-jobTrigger',
      *   });
      *   console.log(res.data);
      *
@@ -7496,8 +7494,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.organizations.locations.jobTriggers.patch({
      *     // Required. Resource name of the project and the triggeredJob, for example `projects/dlp-test-project/jobTriggers/53234423`.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/jobTriggers/my-jobTrigger',
+     *     name: 'organizations/my-organization/locations/my-location/jobTriggers/my-jobTrigger',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -7587,7 +7584,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Jobtriggers$Patch;
+        params =
+          {} as Params$Resource$Organizations$Locations$Jobtriggers$Patch;
         options = {};
       }
 
@@ -7807,7 +7805,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Storedinfotypes$Create;
+        params =
+          {} as Params$Resource$Organizations$Locations$Storedinfotypes$Create;
         options = {};
       }
 
@@ -7873,8 +7872,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.delete({
      *     // Required. Resource name of the organization and storedInfoType to be deleted, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/storedInfoTypes/my-storedInfoType',
+     *     name: 'organizations/my-organization/locations/my-location/storedInfoTypes/my-storedInfoType',
      *   });
      *   console.log(res.data);
      *
@@ -7940,7 +7938,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Storedinfotypes$Delete;
+        params =
+          {} as Params$Resource$Organizations$Locations$Storedinfotypes$Delete;
         options = {};
       }
 
@@ -8001,8 +8000,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.get({
      *     // Required. Resource name of the organization and storedInfoType to be read, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/storedInfoTypes/my-storedInfoType',
+     *     name: 'organizations/my-organization/locations/my-location/storedInfoTypes/my-storedInfoType',
      *   });
      *   console.log(res.data);
      *
@@ -8076,7 +8074,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Storedinfotypes$Get;
+        params =
+          {} as Params$Resource$Organizations$Locations$Storedinfotypes$Get;
         options = {};
       }
 
@@ -8220,7 +8219,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Storedinfotypes$List;
+        params =
+          {} as Params$Resource$Organizations$Locations$Storedinfotypes$List;
         options = {};
       }
 
@@ -8286,8 +8286,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.organizations.locations.storedInfoTypes.patch({
      *     // Required. Resource name of organization and storedInfoType to be updated, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
-     *     name:
-     *       'organizations/my-organization/locations/my-location/storedInfoTypes/my-storedInfoType',
+     *     name: 'organizations/my-organization/locations/my-location/storedInfoTypes/my-storedInfoType',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -8370,7 +8369,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Storedinfotypes$Patch;
+        params =
+          {} as Params$Resource$Organizations$Locations$Storedinfotypes$Patch;
         options = {};
       }
 
@@ -13274,9 +13274,8 @@ export namespace dlp_v2 {
     constructor(context: APIRequestContext) {
       this.context = context;
       this.content = new Resource$Projects$Locations$Content(this.context);
-      this.deidentifyTemplates = new Resource$Projects$Locations$Deidentifytemplates(
-        this.context
-      );
+      this.deidentifyTemplates =
+        new Resource$Projects$Locations$Deidentifytemplates(this.context);
       this.dlpJobs = new Resource$Projects$Locations$Dlpjobs(this.context);
       this.image = new Resource$Projects$Locations$Image(this.context);
       this.inspectTemplates = new Resource$Projects$Locations$Inspecttemplates(
@@ -13909,7 +13908,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Deidentifytemplates$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Deidentifytemplates$Create;
         options = {};
       }
 
@@ -13975,8 +13975,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.delete({
      *     // Required. Resource name of the organization and deidentify template to be deleted, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-     *     name:
-     *       'projects/my-project/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
+     *     name: 'projects/my-project/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
      *   });
      *   console.log(res.data);
      *
@@ -14042,7 +14041,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Deidentifytemplates$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Deidentifytemplates$Delete;
         options = {};
       }
 
@@ -14103,8 +14103,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.get({
      *     // Required. Resource name of the organization and deidentify template to be read, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-     *     name:
-     *       'projects/my-project/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
+     *     name: 'projects/my-project/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
      *   });
      *   console.log(res.data);
      *
@@ -14181,7 +14180,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Deidentifytemplates$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Deidentifytemplates$Get;
         options = {};
       }
 
@@ -14325,7 +14325,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Deidentifytemplates$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Deidentifytemplates$List;
         options = {};
       }
 
@@ -14391,8 +14392,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.projects.locations.deidentifyTemplates.patch({
      *     // Required. Resource name of organization and deidentify template to be updated, for example `organizations/433245324/deidentifyTemplates/432452342` or projects/project-id/deidentifyTemplates/432452342.
-     *     name:
-     *       'projects/my-project/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
+     *     name: 'projects/my-project/locations/my-location/deidentifyTemplates/my-deidentifyTemplate',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -14478,7 +14478,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Deidentifytemplates$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Deidentifytemplates$Patch;
         options = {};
       }
 
@@ -15954,7 +15955,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Inspecttemplates$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Inspecttemplates$Create;
         options = {};
       }
 
@@ -16020,8 +16022,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.delete({
      *     // Required. Resource name of the organization and inspectTemplate to be deleted, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
-     *     name:
-     *       'projects/my-project/locations/my-location/inspectTemplates/my-inspectTemplate',
+     *     name: 'projects/my-project/locations/my-location/inspectTemplates/my-inspectTemplate',
      *   });
      *   console.log(res.data);
      *
@@ -16087,7 +16088,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Inspecttemplates$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Inspecttemplates$Delete;
         options = {};
       }
 
@@ -16148,8 +16150,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.get({
      *     // Required. Resource name of the organization and inspectTemplate to be read, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
-     *     name:
-     *       'projects/my-project/locations/my-location/inspectTemplates/my-inspectTemplate',
+     *     name: 'projects/my-project/locations/my-location/inspectTemplates/my-inspectTemplate',
      *   });
      *   console.log(res.data);
      *
@@ -16436,8 +16437,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.projects.locations.inspectTemplates.patch({
      *     // Required. Resource name of organization and inspectTemplate to be updated, for example `organizations/433245324/inspectTemplates/432452342` or projects/project-id/inspectTemplates/432452342.
-     *     name:
-     *       'projects/my-project/locations/my-location/inspectTemplates/my-inspectTemplate',
+     *     name: 'projects/my-project/locations/my-location/inspectTemplates/my-inspectTemplate',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -16523,7 +16523,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Inspecttemplates$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Inspecttemplates$Patch;
         options = {};
       }
 
@@ -17312,7 +17313,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect;
+        params =
+          {} as Params$Resource$Projects$Locations$Jobtriggers$Hybridinspect;
         options = {};
       }
 
@@ -17861,7 +17863,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Storedinfotypes$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Storedinfotypes$Create;
         options = {};
       }
 
@@ -17927,8 +17930,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.delete({
      *     // Required. Resource name of the organization and storedInfoType to be deleted, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
-     *     name:
-     *       'projects/my-project/locations/my-location/storedInfoTypes/my-storedInfoType',
+     *     name: 'projects/my-project/locations/my-location/storedInfoTypes/my-storedInfoType',
      *   });
      *   console.log(res.data);
      *
@@ -17994,7 +17996,8 @@ export namespace dlp_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Storedinfotypes$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Storedinfotypes$Delete;
         options = {};
       }
 
@@ -18055,8 +18058,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.get({
      *     // Required. Resource name of the organization and storedInfoType to be read, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
-     *     name:
-     *       'projects/my-project/locations/my-location/storedInfoTypes/my-storedInfoType',
+     *     name: 'projects/my-project/locations/my-location/storedInfoTypes/my-storedInfoType',
      *   });
      *   console.log(res.data);
      *
@@ -18340,8 +18342,7 @@ export namespace dlp_v2 {
      *   // Do the magic
      *   const res = await dlp.projects.locations.storedInfoTypes.patch({
      *     // Required. Resource name of organization and storedInfoType to be updated, for example `organizations/433245324/storedInfoTypes/432452342` or projects/project-id/storedInfoTypes/432452342.
-     *     name:
-     *       'projects/my-project/locations/my-location/storedInfoTypes/my-storedInfoType',
+     *     name: 'projects/my-project/locations/my-location/storedInfoTypes/my-storedInfoType',
      *
      *     // Request body metadata
      *     requestBody: {

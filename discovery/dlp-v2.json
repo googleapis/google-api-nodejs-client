@@ -3367,7 +3367,7 @@
       }
     }
   },
-  "revision": "20210410",
+  "revision": "20210508",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -4866,7 +4866,7 @@
           "description": "Only apply the transformation if the condition evaluates to true for the given `RecordCondition`. The conditions are allowed to reference fields that are not used in the actual transformation. Example Use Cases: - Apply a different bucket transformation to an age column if the zip code column for the same record is within a specific range. - Redact a field if the date of birth field is greater than 85."
         },
         "fields": {
-          "description": "Required. Input field(s) to apply the transformation to.",
+          "description": "Required. Input field(s) to apply the transformation to. When you have columns that reference their position within a list, omit the index from the FieldId. FieldId name matching ignores the index. For example, instead of \"contact.nums[0].type\", use \"contact.nums.type\".",
           "items": {
             "$ref": "GooglePrivacyDlpV2FieldId"
           },
