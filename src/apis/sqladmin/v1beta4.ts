@@ -7929,7 +7929,8 @@ export namespace sqladmin_v1beta4 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Instances$Verifyexternalsyncsettings;
+        params =
+          {} as Params$Resource$Projects$Instances$Verifyexternalsyncsettings;
         options = {};
       }
 
