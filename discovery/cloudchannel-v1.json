@@ -316,7 +316,7 @@
               ]
             },
             "get": {
-              "description": "Returns a requested ChannelPartnerLink resource. You must be a distributor to call this method. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: ChannelPartnerLink resource not found because of an invalid channel partner link name. Return value: The ChannelPartnerLink resource.",
+              "description": "Returns the requested ChannelPartnerLink resource. You must be a distributor to call this method. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: ChannelPartnerLink resource not found because of an invalid channel partner link name. Return value: The ChannelPartnerLink resource.",
               "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}",
               "httpMethod": "GET",
               "id": "cloudchannel.accounts.channelPartnerLinks.get",
@@ -467,7 +467,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes the given Customer permanently and irreversibly. Possible error codes: * PERMISSION_DENIED: The account making the request does not own this customer. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * FAILED_PRECONDITION: The customer has existing entitlements. * NOT_FOUND: No Customer resource found for the name in the request.",
+                  "description": "Deletes the given Customer permanently. Possible error codes: * PERMISSION_DENIED: The account making the request does not own this customer. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * FAILED_PRECONDITION: The customer has existing entitlements. * NOT_FOUND: No Customer resource found for the name in the request.",
                   "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/customers/{customersId}",
                   "httpMethod": "DELETE",
                   "id": "cloudchannel.accounts.channelPartnerLinks.customers.delete",
@@ -492,7 +492,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Returns a requested Customer resource. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer resource doesn't exist. Usually the result of an invalid name parameter. Return value: The Customer resource.",
+                  "description": "Returns the requested Customer resource. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer resource doesn't exist. Usually the result of an invalid name parameter. Return value: The Customer resource.",
                   "flatPath": "v1/accounts/{accountsId}/channelPartnerLinks/{channelPartnerLinksId}/customers/{customersId}",
                   "httpMethod": "GET",
                   "id": "cloudchannel.accounts.channelPartnerLinks.customers.get",
@@ -621,7 +621,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes the given Customer permanently and irreversibly. Possible error codes: * PERMISSION_DENIED: The account making the request does not own this customer. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * FAILED_PRECONDITION: The customer has existing entitlements. * NOT_FOUND: No Customer resource found for the name in the request.",
+              "description": "Deletes the given Customer permanently. Possible error codes: * PERMISSION_DENIED: The account making the request does not own this customer. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * FAILED_PRECONDITION: The customer has existing entitlements. * NOT_FOUND: No Customer resource found for the name in the request.",
               "flatPath": "v1/accounts/{accountsId}/customers/{customersId}",
               "httpMethod": "DELETE",
               "id": "cloudchannel.accounts.customers.delete",
@@ -646,7 +646,7 @@
               ]
             },
             "get": {
-              "description": "Returns a requested Customer resource. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer resource doesn't exist. Usually the result of an invalid name parameter. Return value: The Customer resource.",
+              "description": "Returns the requested Customer resource. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer resource doesn't exist. Usually the result of an invalid name parameter. Return value: The Customer resource.",
               "flatPath": "v1/accounts/{accountsId}/customers/{customersId}",
               "httpMethod": "GET",
               "id": "cloudchannel.accounts.customers.get",
@@ -1119,7 +1119,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Returns a requested Entitlement resource. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer entitlement was not found. Return value: The requested Entitlement resource.",
+                  "description": "Returns the requested Entitlement resource. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer entitlement was not found. Return value: The requested Entitlement resource.",
                   "flatPath": "v1/accounts/{accountsId}/customers/{customersId}/entitlements/{entitlementsId}",
                   "httpMethod": "GET",
                   "id": "cloudchannel.accounts.customers.entitlements.get",
@@ -1533,7 +1533,7 @@
       }
     }
   },
-  "revision": "20210429",
+  "revision": "20210514",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -1851,28 +1851,28 @@
       "id": "GoogleCloudChannelV1ContactInfo",
       "properties": {
         "displayName": {
-          "description": "Output only. Display name of the contact in the customer account. Populated by combining customer first name and last name.",
+          "description": "Output only. The customer account contact's display name, formatted as a combination of the customer's first and last name.",
           "readOnly": true,
           "type": "string"
         },
         "email": {
-          "description": "Email of the contact in the customer account. Email is required for entitlements that need creation of admin.google.com accounts. The email will be the username used in credentials to access the admin.google.com account.",
+          "description": "The customer account's contact email. Required for entitlements that create admin.google.com accounts, and serves as the customer's username for those accounts.",
           "type": "string"
         },
         "firstName": {
-          "description": "First name of the contact in the customer account.",
+          "description": "The customer account contact's first name.",
           "type": "string"
         },
         "lastName": {
-          "description": "Last name of the contact in the customer account.",
+          "description": "The customer account contact's last name.",
           "type": "string"
         },
         "phone": {
-          "description": "Phone number of the contact in the customer account.",
+          "description": "The customer account's contact phone number.",
           "type": "string"
         },
         "title": {
-          "description": "Optional. Job title of the contact in the customer account.",
+          "description": "Optional. The customer account contact's job title.",
           "type": "string"
         }
       },
@@ -1898,7 +1898,7 @@
       "id": "GoogleCloudChannelV1Customer",
       "properties": {
         "alternateEmail": {
-          "description": "Secondary contact email. Alternate email and primary contact email are required to have different domains if primary contact email is present. When creating admin.google.com accounts, users get notified credentials at this email. This email address is also used as a recovery email.",
+          "description": "Secondary contact email. You need to provide an alternate email to create different domains if a primary contact email already exists. Users will receive a notification with credentials when you create an admin.google.com account. Secondary emails are also recovery email addresses.",
           "type": "string"
         },
         "channelPartnerId": {
@@ -1906,7 +1906,7 @@
           "type": "string"
         },
         "cloudIdentityId": {
-          "description": "Output only. Customer's cloud_identity_id. Populated only if a Cloud Identity resource exists for this customer.",
+          "description": "Output only. The customer's Cloud Identity ID if the customer has a Cloud Identity resource.",
           "readOnly": true,
           "type": "string"
         },
@@ -1916,13 +1916,13 @@
           "readOnly": true
         },
         "createTime": {
-          "description": "Output only. The time at which the customer is created.",
+          "description": "Output only. Time when the customer was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "domain": {
-          "description": "Required. Primary domain used by the customer. Domain of primary contact email is required to be same as the provided domain.",
+          "description": "Required. The customer's primary domain. Must match the primary contact email's domain.",
           "type": "string"
         },
         "languageCode": {
@@ -1940,14 +1940,14 @@
         },
         "orgPostalAddress": {
           "$ref": "GoogleTypePostalAddress",
-          "description": "Required. Address of the organization of the customer entity. Region and zip codes are required to enforce US laws and embargoes. Valid address lines are required for all customers. Language code is discarded. Use the Customer-level language code to set the customer's language."
+          "description": "Required. The organization address for the customer. To enforce US laws and embargoes, we require a region and zip code. You must provide valid addresses for every customer. To set the customer's language, use the Customer-level language code."
         },
         "primaryContactInfo": {
           "$ref": "GoogleCloudChannelV1ContactInfo",
           "description": "Primary contact info."
         },
         "updateTime": {
-          "description": "Output only. The time at which the customer is updated.",
+          "description": "Output only. Time when the customer was updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
