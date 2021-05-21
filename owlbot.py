@@ -12,16 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import synthtool as s
-import synthtool.gcp as gcp
-import subprocess
-import logging
+import synthtool.languages.node as node
 
-logging.basicConfig(level=logging.DEBUG)
-AUTOSYNTH_MULTIPLE_COMMITS = True
-common_templates = gcp.CommonTemplates()
-templates = common_templates.node_library()
-s.copy(templates, excludes=[
+node.owlbot_main(templates_excludes=[
   ".github/CONTRIBUTING.md",
   "README.md",
   ".eslintignore",
@@ -30,6 +23,3 @@ s.copy(templates, excludes=[
   '.kokoro/publish.sh',
   '.kokoro/release/publish.cfg'
 ])
-subprocess.run(['npm', 'install'])
-subprocess.run(['npm', 'run', 'update-disclaimers'])
-subprocess.run(['npm', 'run', 'submit-prs'])
