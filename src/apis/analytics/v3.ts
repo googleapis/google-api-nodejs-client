@@ -3301,9 +3301,8 @@ export namespace analytics_v3 {
       );
       this.uploads = new Resource$Management$Uploads(this.context);
       this.webproperties = new Resource$Management$Webproperties(this.context);
-      this.webPropertyAdWordsLinks = new Resource$Management$Webpropertyadwordslinks(
-        this.context
-      );
+      this.webPropertyAdWordsLinks =
+        new Resource$Management$Webpropertyadwordslinks(this.context);
       this.webpropertyUserLinks = new Resource$Management$Webpropertyuserlinks(
         this.context
       );
@@ -16009,7 +16008,8 @@ export namespace analytics_v3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Management$Webpropertyadwordslinks$Delete;
+        params =
+          {} as Params$Resource$Management$Webpropertyadwordslinks$Delete;
         options = {};
       }
 
@@ -16316,7 +16316,8 @@ export namespace analytics_v3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Management$Webpropertyadwordslinks$Insert;
+        params =
+          {} as Params$Resource$Management$Webpropertyadwordslinks$Insert;
         options = {};
       }
 
@@ -16779,7 +16780,8 @@ export namespace analytics_v3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Management$Webpropertyadwordslinks$Update;
+        params =
+          {} as Params$Resource$Management$Webpropertyadwordslinks$Update;
         options = {};
       }
 
