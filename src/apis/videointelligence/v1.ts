@@ -3455,12 +3455,11 @@ export namespace videointelligence_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await videointelligence.operations.projects.locations.operations.cancel(
-     *     {
+     *   const res =
+     *     await videointelligence.operations.projects.locations.operations.cancel({
      *       // The name of the operation resource to be cancelled.
      *       name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3527,7 +3526,8 @@ export namespace videointelligence_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$Projects$Locations$Operations$Cancel;
+        params =
+          {} as Params$Resource$Operations$Projects$Locations$Operations$Cancel;
         options = {};
       }
 
@@ -3590,12 +3590,11 @@ export namespace videointelligence_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await videointelligence.operations.projects.locations.operations.delete(
-     *     {
+     *   const res =
+     *     await videointelligence.operations.projects.locations.operations.delete({
      *       // The name of the operation resource to be deleted.
      *       name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3662,7 +3661,8 @@ export namespace videointelligence_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$Projects$Locations$Operations$Delete;
+        params =
+          {} as Params$Resource$Operations$Projects$Locations$Operations$Delete;
         options = {};
       }
 
@@ -3725,12 +3725,11 @@ export namespace videointelligence_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await videointelligence.operations.projects.locations.operations.get(
-     *     {
+     *   const res =
+     *     await videointelligence.operations.projects.locations.operations.get({
      *       // The name of the operation resource.
      *       name: 'projects/my-project/locations/my-location/operations/my-operation',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3805,7 +3804,8 @@ export namespace videointelligence_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$Projects$Locations$Operations$Get;
+        params =
+          {} as Params$Resource$Operations$Projects$Locations$Operations$Get;
         options = {};
       }
 
