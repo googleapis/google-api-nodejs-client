@@ -438,7 +438,7 @@ export namespace serviceconsumermanagement_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
-   * `Endpoint` describes a network endpoint of a service that serves a set of APIs. It is commonly known as a service endpoint. A service may expose any number of service endpoints, and all service endpoints share the same service definition, such as quota limits and monitoring metrics. Example service configuration: name: library-example.googleapis.com endpoints: # Below entry makes 'google.example.library.v1.Library' # API be served from endpoint address library-example.googleapis.com. # It also allows HTTP OPTIONS calls to be passed to the backend, for # it to decide whether the subsequent cross-origin request is # allowed to proceed. - name: library-example.googleapis.com allow_cors: true
+   * `Endpoint` describes a network address of a service that serves a set of APIs. It is commonly known as a service endpoint. A service may expose any number of service endpoints, and all service endpoints share the same service definition, such as quota limits and monitoring metrics. Example: type: google.api.Service name: library-example.googleapis.com endpoints: # Declares network address `https://library-example.googleapis.com` # for service `library-example.googleapis.com`. The `https` scheme # is implicit for all service endpoints. Other schemes may be # supported in the future. - name: library-example.googleapis.com allow_cors: false - name: content-staging-library-example.googleapis.com # Allows HTTP OPTIONS calls to be passed to the API frontend, for it # to decide whether the subsequent cross-origin request is allowed # to proceed. allow_cors: true
    */
   export interface Schema$Endpoint {
     /**
@@ -1791,8 +1791,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.get(
      *     {
      *       // The resource name of the quota metric, returned by a ListConsumerQuotaMetrics call. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus`
-     *       name:
-     *         'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric',
+     *       name: 'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric',
      *       // Specifies the level of detail for quota information in the response.
      *       view: 'placeholder-value',
      *     }
@@ -1932,22 +1931,23 @@ export namespace serviceconsumermanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.importProducerOverrides(
-     *     {
-     *       // The resource name of the consumer. An example name would be: `services/compute.googleapis.com/projects/123`
-     *       parent: 'services/my-service/[^/]+/[^/]+',
+     *   const res =
+     *     await serviceconsumermanagement.services.consumerQuotaMetrics.importProducerOverrides(
+     *       {
+     *         // The resource name of the consumer. An example name would be: `services/compute.googleapis.com/projects/123`
+     *         parent: 'services/my-service/[^/]+/[^/]+',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "force": false,
-     *         //   "forceOnly": [],
-     *         //   "inlineSource": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "force": false,
+     *           //   "forceOnly": [],
+     *           //   "inlineSource": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2017,7 +2017,8 @@ export namespace serviceconsumermanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Consumerquotametrics$Importproduceroverrides;
+        params =
+          {} as Params$Resource$Services$Consumerquotametrics$Importproduceroverrides;
         options = {};
       }
 
@@ -2080,8 +2081,8 @@ export namespace serviceconsumermanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.list(
-     *     {
+     *   const res =
+     *     await serviceconsumermanagement.services.consumerQuotaMetrics.list({
      *       // Requested size of the next page of data.
      *       pageSize: 'placeholder-value',
      *       // Token identifying which result to start with; returned by a previous list call.
@@ -2090,8 +2091,7 @@ export namespace serviceconsumermanagement_v1beta1 {
      *       parent: 'services/my-service/[^/]+/[^/]+',
      *       // Specifies the level of detail for quota information in the response.
      *       view: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2251,9 +2251,10 @@ export namespace serviceconsumermanagement_v1beta1 {
     producerOverrides: Resource$Services$Consumerquotametrics$Limits$Produceroverrides;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.producerOverrides = new Resource$Services$Consumerquotametrics$Limits$Produceroverrides(
-        this.context
-      );
+      this.producerOverrides =
+        new Resource$Services$Consumerquotametrics$Limits$Produceroverrides(
+          this.context
+        );
     }
 
     /**
@@ -2282,15 +2283,13 @@ export namespace serviceconsumermanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.limits.get(
-     *     {
+     *   const res =
+     *     await serviceconsumermanagement.services.consumerQuotaMetrics.limits.get({
      *       // The resource name of the quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
-     *       name:
-     *         'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
+     *       name: 'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
      *       // Specifies the level of detail for quota information in the response.
      *       view: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2442,30 +2441,31 @@ export namespace serviceconsumermanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.create(
-     *     {
-     *       // Whether to force the creation of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
-     *       force: 'placeholder-value',
-     *       // The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.
-     *       forceOnly: 'placeholder-value',
-     *       // The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
-     *       parent:
-     *         'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
+     *   const res =
+     *     await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.create(
+     *       {
+     *         // Whether to force the creation of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
+     *         force: 'placeholder-value',
+     *         // The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.
+     *         forceOnly: 'placeholder-value',
+     *         // The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     *         parent:
+     *           'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "adminOverrideAncestor": "my_adminOverrideAncestor",
-     *         //   "dimensions": {},
-     *         //   "metric": "my_metric",
-     *         //   "name": "my_name",
-     *         //   "overrideValue": "my_overrideValue",
-     *         //   "unit": "my_unit"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "adminOverrideAncestor": "my_adminOverrideAncestor",
+     *           //   "dimensions": {},
+     *           //   "metric": "my_metric",
+     *           //   "name": "my_name",
+     *           //   "overrideValue": "my_overrideValue",
+     *           //   "unit": "my_unit"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2533,7 +2533,8 @@ export namespace serviceconsumermanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Create;
+        params =
+          {} as Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Create;
         options = {};
       }
 
@@ -2596,17 +2597,17 @@ export namespace serviceconsumermanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.delete(
-     *     {
-     *       // Whether to force the deletion of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
-     *       force: 'placeholder-value',
-     *       // The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.
-     *       forceOnly: 'placeholder-value',
-     *       // The resource name of the override to delete. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerOverrides/4a3f2c1d`
-     *       name:
-     *         'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit/producerOverrides/my-producerOverride',
-     *     }
-     *   );
+     *   const res =
+     *     await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.delete(
+     *       {
+     *         // Whether to force the deletion of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
+     *         force: 'placeholder-value',
+     *         // The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.
+     *         forceOnly: 'placeholder-value',
+     *         // The resource name of the override to delete. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerOverrides/4a3f2c1d`
+     *         name: 'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit/producerOverrides/my-producerOverride',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2674,7 +2675,8 @@ export namespace serviceconsumermanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Delete;
+        params =
+          {} as Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Delete;
         options = {};
       }
 
@@ -2734,17 +2736,18 @@ export namespace serviceconsumermanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.list(
-     *     {
-     *       // Requested size of the next page of data.
-     *       pageSize: 'placeholder-value',
-     *       // Token identifying which result to start with; returned by a previous list call.
-     *       pageToken: 'placeholder-value',
-     *       // The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
-     *       parent:
-     *         'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
-     *     }
-     *   );
+     *   const res =
+     *     await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.list(
+     *       {
+     *         // Requested size of the next page of data.
+     *         pageSize: 'placeholder-value',
+     *         // Token identifying which result to start with; returned by a previous list call.
+     *         pageToken: 'placeholder-value',
+     *         // The resource name of the parent quota limit, returned by a ListConsumerQuotaMetrics or GetConsumerQuotaMetric call. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion`
+     *         parent:
+     *           'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2816,7 +2819,8 @@ export namespace serviceconsumermanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$List;
+        params =
+          {} as Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$List;
         options = {};
       }
 
@@ -2881,32 +2885,32 @@ export namespace serviceconsumermanagement_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.patch(
-     *     {
-     *       // Whether to force the update of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
-     *       force: 'placeholder-value',
-     *       // The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.
-     *       forceOnly: 'placeholder-value',
-     *       // The resource name of the override to update. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerOverrides/4a3f2c1d`
-     *       name:
-     *         'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit/producerOverrides/my-producerOverride',
-     *       // Update only the specified fields. If unset, all modifiable fields will be updated.
-     *       updateMask: 'placeholder-value',
+     *   const res =
+     *     await serviceconsumermanagement.services.consumerQuotaMetrics.limits.producerOverrides.patch(
+     *       {
+     *         // Whether to force the update of the quota override. Setting the force parameter to 'true' ignores all quota safety checks that would fail the request. QuotaSafetyCheck lists all such validations.
+     *         force: 'placeholder-value',
+     *         // The list of quota safety checks to ignore before the override mutation. Unlike 'force' field that ignores all the quota safety checks, the 'force_only' field ignores only the specified checks; other checks are still enforced. The 'force' and 'force_only' fields cannot both be set.
+     *         forceOnly: 'placeholder-value',
+     *         // The resource name of the override to update. An example name would be: `services/compute.googleapis.com/projects/123/consumerQuotaMetrics/compute.googleapis.com%2Fcpus/limits/%2Fproject%2Fregion/producerOverrides/4a3f2c1d`
+     *         name: 'services/my-service/[^/]+/[^/]+/consumerQuotaMetrics/my-consumerQuotaMetric/limits/my-limit/producerOverrides/my-producerOverride',
+     *         // Update only the specified fields. If unset, all modifiable fields will be updated.
+     *         updateMask: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "adminOverrideAncestor": "my_adminOverrideAncestor",
-     *         //   "dimensions": {},
-     *         //   "metric": "my_metric",
-     *         //   "name": "my_name",
-     *         //   "overrideValue": "my_overrideValue",
-     *         //   "unit": "my_unit"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "adminOverrideAncestor": "my_adminOverrideAncestor",
+     *           //   "dimensions": {},
+     *           //   "metric": "my_metric",
+     *           //   "name": "my_name",
+     *           //   "overrideValue": "my_overrideValue",
+     *           //   "unit": "my_unit"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2974,7 +2978,8 @@ export namespace serviceconsumermanagement_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Patch;
+        params =
+          {} as Params$Resource$Services$Consumerquotametrics$Limits$Produceroverrides$Patch;
         options = {};
       }
 
