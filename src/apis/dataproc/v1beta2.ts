@@ -1885,12 +1885,10 @@ export namespace dataproc_v1beta2 {
     workflowTemplates: Resource$Projects$Locations$Workflowtemplates;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.autoscalingPolicies = new Resource$Projects$Locations$Autoscalingpolicies(
-        this.context
-      );
-      this.workflowTemplates = new Resource$Projects$Locations$Workflowtemplates(
-        this.context
-      );
+      this.autoscalingPolicies =
+        new Resource$Projects$Locations$Autoscalingpolicies(this.context);
+      this.workflowTemplates =
+        new Resource$Projects$Locations$Workflowtemplates(this.context);
     }
   }
 
@@ -2012,7 +2010,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Create;
         options = {};
       }
 
@@ -2076,8 +2075,7 @@ export namespace dataproc_v1beta2 {
      *   // Do the magic
      *   const res = await dataproc.projects.locations.autoscalingPolicies.delete({
      *     // Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.delete, the resource name of the policy has the following format: projects/{project_id\}/regions/{region\}/autoscalingPolicies/{policy_id\} For projects.locations.autoscalingPolicies.delete, the resource name of the policy has the following format: projects/{project_id\}/locations/{location\}/autoscalingPolicies/{policy_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
+     *     name: 'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
      *   });
      *   console.log(res.data);
      *
@@ -2140,7 +2138,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Delete;
         options = {};
       }
 
@@ -2201,8 +2200,7 @@ export namespace dataproc_v1beta2 {
      *   // Do the magic
      *   const res = await dataproc.projects.locations.autoscalingPolicies.get({
      *     // Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.get, the resource name of the policy has the following format: projects/{project_id\}/regions/{region\}/autoscalingPolicies/{policy_id\} For projects.locations.autoscalingPolicies.get, the resource name of the policy has the following format: projects/{project_id\}/locations/{location\}/autoscalingPolicies/{policy_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
+     *     name: 'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
      *   });
      *   console.log(res.data);
      *
@@ -2274,7 +2272,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Get;
         options = {};
       }
 
@@ -2333,15 +2332,14 @@ export namespace dataproc_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await dataproc.projects.locations.autoscalingPolicies.getIamPolicy(
-     *     {
+     *   const res =
+     *     await dataproc.projects.locations.autoscalingPolicies.getIamPolicy({
      *       // Optional. The policy format version to be returned.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2407,7 +2405,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Getiampolicy;
         options = {};
       }
 
@@ -2548,7 +2547,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoscalingpolicies$List;
         options = {};
       }
 
@@ -2612,8 +2612,8 @@ export namespace dataproc_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await dataproc.projects.locations.autoscalingPolicies.setIamPolicy(
-     *     {
+     *   const res =
+     *     await dataproc.projects.locations.autoscalingPolicies.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
@@ -2625,8 +2625,7 @@ export namespace dataproc_v1beta2 {
      *         //   "policy": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2692,7 +2691,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Setiampolicy;
         options = {};
       }
 
@@ -2754,8 +2754,8 @@ export namespace dataproc_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await dataproc.projects.locations.autoscalingPolicies.testIamPermissions(
-     *     {
+     *   const res =
+     *     await dataproc.projects.locations.autoscalingPolicies.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
@@ -2767,8 +2767,7 @@ export namespace dataproc_v1beta2 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2839,7 +2838,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Testiampermissions;
         options = {};
       }
 
@@ -2903,8 +2903,7 @@ export namespace dataproc_v1beta2 {
      *   // Do the magic
      *   const res = await dataproc.projects.locations.autoscalingPolicies.update({
      *     // Output only. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id\}/regions/{region\}/autoscalingPolicies/{policy_id\} For projects.locations.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id\}/locations/{location\}/autoscalingPolicies/{policy_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
+     *     name: 'projects/my-project/locations/my-location/autoscalingPolicies/my-autoscalingPolicie',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2988,7 +2987,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Update;
+        params =
+          {} as Params$Resource$Projects$Locations$Autoscalingpolicies$Update;
         options = {};
       }
 
@@ -3236,7 +3236,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflowtemplates$Create;
         options = {};
       }
 
@@ -3300,8 +3301,7 @@ export namespace dataproc_v1beta2 {
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.delete({
      *     // Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.delete, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
+     *     name: 'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
      *     // Optional. The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
      *     version: 'placeholder-value',
      *   });
@@ -3366,7 +3366,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflowtemplates$Delete;
         options = {};
       }
 
@@ -3427,8 +3428,7 @@ export namespace dataproc_v1beta2 {
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.get({
      *     // Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.get, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates.get, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
+     *     name: 'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
      *     // Optional. The version of workflow template to retrieve. Only previously instantiated versions can be retrieved.If unspecified, retrieves the current version.
      *     version: 'placeholder-value',
      *   });
@@ -3635,7 +3635,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflowtemplates$Getiampolicy;
         options = {};
       }
 
@@ -3699,8 +3700,7 @@ export namespace dataproc_v1beta2 {
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.instantiate({
      *     // Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
+     *     name: 'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -3780,7 +3780,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Instantiate;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflowtemplates$Instantiate;
         options = {};
       }
 
@@ -3842,8 +3843,8 @@ export namespace dataproc_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await dataproc.projects.locations.workflowTemplates.instantiateInline(
-     *     {
+     *   const res =
+     *     await dataproc.projects.locations.workflowTemplates.instantiateInline({
      *       // Deprecated. Please use request_id field instead.
      *       instanceId: 'placeholder-value',
      *       // Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,instantiateinline, the resource name of the region has the following format: projects/{project_id\}/regions/{region\} For projects.locations.workflowTemplates.instantiateinline, the resource name of the location has the following format: projects/{project_id\}/locations/{location\}
@@ -3867,8 +3868,7 @@ export namespace dataproc_v1beta2 {
      *         //   "version": 0
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3936,7 +3936,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflowtemplates$Instantiateinline;
         options = {};
       }
 
@@ -4076,7 +4077,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflowtemplates$List;
         options = {};
       }
 
@@ -4218,7 +4220,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflowtemplates$Setiampolicy;
         options = {};
       }
 
@@ -4280,8 +4283,8 @@ export namespace dataproc_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await dataproc.projects.locations.workflowTemplates.testIamPermissions(
-     *     {
+     *   const res =
+     *     await dataproc.projects.locations.workflowTemplates.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
@@ -4293,8 +4296,7 @@ export namespace dataproc_v1beta2 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4365,7 +4367,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflowtemplates$Testiampermissions;
         options = {};
       }
 
@@ -4429,8 +4432,7 @@ export namespace dataproc_v1beta2 {
      *   // Do the magic
      *   const res = await dataproc.projects.locations.workflowTemplates.update({
      *     // Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
+     *     name: 'projects/my-project/locations/my-location/workflowTemplates/my-workflowTemplate',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -4521,7 +4523,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workflowtemplates$Update;
+        params =
+          {} as Params$Resource$Projects$Locations$Workflowtemplates$Update;
         options = {};
       }
 
@@ -4693,9 +4696,8 @@ export namespace dataproc_v1beta2 {
     workflowTemplates: Resource$Projects$Regions$Workflowtemplates;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.autoscalingPolicies = new Resource$Projects$Regions$Autoscalingpolicies(
-        this.context
-      );
+      this.autoscalingPolicies =
+        new Resource$Projects$Regions$Autoscalingpolicies(this.context);
       this.clusters = new Resource$Projects$Regions$Clusters(this.context);
       this.jobs = new Resource$Projects$Regions$Jobs(this.context);
       this.operations = new Resource$Projects$Regions$Operations(this.context);
@@ -4823,7 +4825,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Create;
+        params =
+          {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Create;
         options = {};
       }
 
@@ -4887,8 +4890,7 @@ export namespace dataproc_v1beta2 {
      *   // Do the magic
      *   const res = await dataproc.projects.regions.autoscalingPolicies.delete({
      *     // Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.delete, the resource name of the policy has the following format: projects/{project_id\}/regions/{region\}/autoscalingPolicies/{policy_id\} For projects.locations.autoscalingPolicies.delete, the resource name of the policy has the following format: projects/{project_id\}/locations/{location\}/autoscalingPolicies/{policy_id\}
-     *     name:
-     *       'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
+     *     name: 'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
      *   });
      *   console.log(res.data);
      *
@@ -4951,7 +4953,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Delete;
+        params =
+          {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Delete;
         options = {};
       }
 
@@ -5012,8 +5015,7 @@ export namespace dataproc_v1beta2 {
      *   // Do the magic
      *   const res = await dataproc.projects.regions.autoscalingPolicies.get({
      *     // Required. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies.get, the resource name of the policy has the following format: projects/{project_id\}/regions/{region\}/autoscalingPolicies/{policy_id\} For projects.locations.autoscalingPolicies.get, the resource name of the policy has the following format: projects/{project_id\}/locations/{location\}/autoscalingPolicies/{policy_id\}
-     *     name:
-     *       'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
+     *     name: 'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
      *   });
      *   console.log(res.data);
      *
@@ -5216,7 +5218,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Getiampolicy;
         options = {};
       }
 
@@ -5357,7 +5360,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$List;
+        params =
+          {} as Params$Resource$Projects$Regions$Autoscalingpolicies$List;
         options = {};
       }
 
@@ -5499,7 +5503,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Setiampolicy;
         options = {};
       }
 
@@ -5561,8 +5566,8 @@ export namespace dataproc_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await dataproc.projects.regions.autoscalingPolicies.testIamPermissions(
-     *     {
+     *   const res =
+     *     await dataproc.projects.regions.autoscalingPolicies.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
@@ -5574,8 +5579,7 @@ export namespace dataproc_v1beta2 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5646,7 +5650,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Testiampermissions;
         options = {};
       }
 
@@ -5710,8 +5715,7 @@ export namespace dataproc_v1beta2 {
      *   // Do the magic
      *   const res = await dataproc.projects.regions.autoscalingPolicies.update({
      *     // Output only. The "resource name" of the autoscaling policy, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id\}/regions/{region\}/autoscalingPolicies/{policy_id\} For projects.locations.autoscalingPolicies, the resource name of the policy has the following format: projects/{project_id\}/locations/{location\}/autoscalingPolicies/{policy_id\}
-     *     name:
-     *       'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
+     *     name: 'projects/my-project/regions/my-region/autoscalingPolicies/my-autoscalingPolicie',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -5795,7 +5799,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Update;
+        params =
+          {} as Params$Resource$Projects$Regions$Autoscalingpolicies$Update;
         options = {};
       }
 
@@ -6743,7 +6748,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Clusters$Injectcredentials;
+        params =
+          {} as Params$Resource$Projects$Regions$Clusters$Injectcredentials;
         options = {};
       }
 
@@ -7619,7 +7625,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Clusters$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Regions$Clusters$Testiampermissions;
         options = {};
       }
 
@@ -10452,7 +10459,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Operations$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Regions$Operations$Testiampermissions;
         options = {};
       }
 
@@ -10690,7 +10698,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Create;
+        params =
+          {} as Params$Resource$Projects$Regions$Workflowtemplates$Create;
         options = {};
       }
 
@@ -10754,8 +10763,7 @@ export namespace dataproc_v1beta2 {
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.delete({
      *     // Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.delete, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
-     *     name:
-     *       'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
+     *     name: 'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
      *     // Optional. The version of workflow template to delete. If specified, will only delete the template if the current server version matches specified version.
      *     version: 'placeholder-value',
      *   });
@@ -10820,7 +10828,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Delete;
+        params =
+          {} as Params$Resource$Projects$Regions$Workflowtemplates$Delete;
         options = {};
       }
 
@@ -10881,8 +10890,7 @@ export namespace dataproc_v1beta2 {
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.get({
      *     // Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.get, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates.get, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
-     *     name:
-     *       'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
+     *     name: 'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
      *     // Optional. The version of workflow template to retrieve. Only previously instantiated versions can be retrieved.If unspecified, retrieves the current version.
      *     version: 'placeholder-value',
      *   });
@@ -11089,7 +11097,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Regions$Workflowtemplates$Getiampolicy;
         options = {};
       }
 
@@ -11153,8 +11162,7 @@ export namespace dataproc_v1beta2 {
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.instantiate({
      *     // Required. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates.instantiate, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
-     *     name:
-     *       'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
+     *     name: 'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -11234,7 +11242,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Instantiate;
+        params =
+          {} as Params$Resource$Projects$Regions$Workflowtemplates$Instantiate;
         options = {};
       }
 
@@ -11296,8 +11305,8 @@ export namespace dataproc_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await dataproc.projects.regions.workflowTemplates.instantiateInline(
-     *     {
+     *   const res =
+     *     await dataproc.projects.regions.workflowTemplates.instantiateInline({
      *       // Deprecated. Please use request_id field instead.
      *       instanceId: 'placeholder-value',
      *       // Required. The resource name of the region or location, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates,instantiateinline, the resource name of the region has the following format: projects/{project_id\}/regions/{region\} For projects.locations.workflowTemplates.instantiateinline, the resource name of the location has the following format: projects/{project_id\}/locations/{location\}
@@ -11321,8 +11330,7 @@ export namespace dataproc_v1beta2 {
      *         //   "version": 0
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -11390,7 +11398,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline;
+        params =
+          {} as Params$Resource$Projects$Regions$Workflowtemplates$Instantiateinline;
         options = {};
       }
 
@@ -11672,7 +11681,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Regions$Workflowtemplates$Setiampolicy;
         options = {};
       }
 
@@ -11734,8 +11744,8 @@ export namespace dataproc_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await dataproc.projects.regions.workflowTemplates.testIamPermissions(
-     *     {
+     *   const res =
+     *     await dataproc.projects.regions.workflowTemplates.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
@@ -11747,8 +11757,7 @@ export namespace dataproc_v1beta2 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -11819,7 +11828,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Regions$Workflowtemplates$Testiampermissions;
         options = {};
       }
 
@@ -11883,8 +11893,7 @@ export namespace dataproc_v1beta2 {
      *   // Do the magic
      *   const res = await dataproc.projects.regions.workflowTemplates.update({
      *     // Output only. The resource name of the workflow template, as described in https://cloud.google.com/apis/design/resource_names. For projects.regions.workflowTemplates, the resource name of the template has the following format: projects/{project_id\}/regions/{region\}/workflowTemplates/{template_id\} For projects.locations.workflowTemplates, the resource name of the template has the following format: projects/{project_id\}/locations/{location\}/workflowTemplates/{template_id\}
-     *     name:
-     *       'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
+     *     name: 'projects/my-project/regions/my-region/workflowTemplates/my-workflowTemplate',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -11975,7 +11984,8 @@ export namespace dataproc_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Regions$Workflowtemplates$Update;
+        params =
+          {} as Params$Resource$Projects$Regions$Workflowtemplates$Update;
         options = {};
       }
 

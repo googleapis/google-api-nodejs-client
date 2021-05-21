@@ -2260,7 +2260,7 @@
       }
     }
   },
-  "revision": "20210421",
+  "revision": "20210507",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2387,7 +2387,7 @@
           "type": "string"
         },
         "doneTime": {
-          "description": "The time when the operation was finished.",
+          "description": "The time when the operation finished.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -2787,7 +2787,7 @@
       "type": "object"
     },
     "ConfidentialInstanceConfig": {
-      "description": "Confidential Instance Config for clusters using Confidential VMs (https://cloud.google.com/compute/confidential-vm/docs) NEXT ID: 2",
+      "description": "Confidential Instance Config for clusters using Confidential VMs (https://cloud.google.com/compute/confidential-vm/docs)",
       "id": "ConfidentialInstanceConfig",
       "properties": {
         "enableConfidentialCompute": {
@@ -2901,7 +2901,7 @@
       "properties": {
         "confidentialInstanceConfig": {
           "$ref": "ConfidentialInstanceConfig",
-          "description": "Optional. Confidential Instance Config for clusters using Confidential VMs (https://cloud.google.com/compute/confidential-vm/docs)"
+          "description": "Optional. Confidential Instance Config for clusters using Confidential VMs (https://cloud.google.com/compute/confidential-vm/docs)."
         },
         "internalIpOnly": {
           "description": "Optional. If true, all instances in the cluster will only have internal IP addresses. By default, clusters are not restricted to internal IP addresses, and will have ephemeral external IP addresses assigned to each instance. This internal_ip_only restriction can only be enabled for subnetwork enabled networks, and all off-cluster dependencies must be configured to be accessible without external IP addresses.",
