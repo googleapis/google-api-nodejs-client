@@ -1767,8 +1767,8 @@ export namespace androiddeviceprovisioning_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await androiddeviceprovisioning.customers.devices.applyConfiguration(
-     *     {
+     *   const res =
+     *     await androiddeviceprovisioning.customers.devices.applyConfiguration({
      *       // Required. The customer managing the device. An API resource name in the format `customers/[CUSTOMER_ID]`.
      *       parent: 'customers/my-customer',
      *
@@ -1780,8 +1780,7 @@ export namespace androiddeviceprovisioning_v1 {
      *         //   "device": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2180,8 +2179,8 @@ export namespace androiddeviceprovisioning_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await androiddeviceprovisioning.customers.devices.removeConfiguration(
-     *     {
+     *   const res =
+     *     await androiddeviceprovisioning.customers.devices.removeConfiguration({
      *       // Required. The customer managing the device in the format `customers/[CUSTOMER_ID]`.
      *       parent: 'customers/my-customer',
      *
@@ -2192,8 +2191,7 @@ export namespace androiddeviceprovisioning_v1 {
      *         //   "device": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4281,8 +4279,8 @@ export namespace androiddeviceprovisioning_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await androiddeviceprovisioning.partners.devices.updateMetadataAsync(
-     *     {
+     *   const res =
+     *     await androiddeviceprovisioning.partners.devices.updateMetadataAsync({
      *       // Required. The reseller partner ID.
      *       partnerId: '[^/]+',
      *
@@ -4293,8 +4291,7 @@ export namespace androiddeviceprovisioning_v1 {
      *         //   "updates": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
