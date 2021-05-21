@@ -674,6 +674,10 @@ export namespace container_v1beta1 {
      */
     desiredDefaultSnatStatus?: Schema$DefaultSnatStatus;
     /**
+     * DNSConfig contains clusterDNS config for this cluster.
+     */
+    desiredDnsConfig?: Schema$DNSConfig;
+    /**
      * The desired image type for the node pool. NOTE: Set the "desired_node_pool" field as well.
      */
     desiredImageType?: string | null;
@@ -903,6 +907,23 @@ export namespace container_v1beta1 {
      * Whether NodeLocal DNSCache is enabled for this cluster.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * DNSConfig contains the desired set of options for configuring clusterDNS.
+   */
+  export interface Schema$DNSConfig {
+    /**
+     * cluster_dns indicates which in-cluster DNS provider should be used.
+     */
+    clusterDns?: string | null;
+    /**
+     * cluster_dns_domain is the suffix used for all cluster service records.
+     */
+    clusterDnsDomain?: string | null;
+    /**
+     * cluster_dns_scope indicates the scope of access to cluster DNS records.
+     */
+    clusterDnsScope?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
@@ -1373,6 +1394,10 @@ export namespace container_v1beta1 {
      * Whether the cluster disables default in-node sNAT rules. In-node sNAT rules will be disabled when default_snat_status is disabled. When disabled is set to false, default IP masquerade rules will be applied to the nodes to prevent sNAT on cluster internal traffic.
      */
     defaultSnatStatus?: Schema$DefaultSnatStatus;
+    /**
+     * DNSConfig contains clusterDNS config for this cluster.
+     */
+    dnsConfig?: Schema$DNSConfig;
     /**
      * Whether Intra-node visibility is enabled for this cluster. This makes same node pod to pod traffic visible for VPC network.
      */
@@ -2736,9 +2761,8 @@ export namespace container_v1beta1 {
     usableSubnetworks: Resource$Projects$Aggregated$Usablesubnetworks;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.usableSubnetworks = new Resource$Projects$Aggregated$Usablesubnetworks(
-        this.context
-      );
+      this.usableSubnetworks =
+        new Resource$Projects$Aggregated$Usablesubnetworks(this.context);
     }
   }
 
@@ -2855,7 +2879,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Aggregated$Usablesubnetworks$List;
+        params =
+          {} as Params$Resource$Projects$Aggregated$Usablesubnetworks$List;
         options = {};
       }
 
@@ -3354,7 +3379,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Completeiprotation;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Completeiprotation;
         options = {};
       }
 
@@ -4433,7 +4459,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Setlegacyabac;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Setlegacyabac;
         options = {};
       }
 
@@ -4900,7 +4927,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy;
         options = {};
       }
 
@@ -5056,7 +5084,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Setmasterauth;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Setmasterauth;
         options = {};
       }
 
@@ -5211,7 +5240,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Setmonitoring;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Setmonitoring;
         options = {};
       }
 
@@ -5366,7 +5396,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy;
         options = {};
       }
 
@@ -5522,7 +5553,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Setresourcelabels;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Setresourcelabels;
         options = {};
       }
 
@@ -5677,7 +5709,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Startiprotation;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Startiprotation;
         options = {};
       }
 
@@ -6375,7 +6408,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Create;
         options = {};
       }
 
@@ -6441,8 +6475,7 @@ export namespace container_v1beta1 {
      *     // Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     *     name:
-     *       'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *     // Required. Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
      *     nodePoolId: 'placeholder-value',
      *     // Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
@@ -6527,7 +6560,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Delete;
         options = {};
       }
 
@@ -6590,8 +6624,7 @@ export namespace container_v1beta1 {
      *     // Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
      *     clusterId: 'placeholder-value',
      *     // The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     *     name:
-     *       'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *     // Required. Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
      *     nodePoolId: 'placeholder-value',
      *     // Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
@@ -6677,7 +6710,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Get;
         options = {};
       }
 
@@ -6814,7 +6848,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Nodepools$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Nodepools$List;
         options = {};
       }
 
@@ -6878,8 +6913,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.nodePools.rollback({
      *     // The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     *     name:
-     *       'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -6970,7 +7004,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback;
         options = {};
       }
 
@@ -7032,11 +7067,10 @@ export namespace container_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await container.projects.locations.clusters.nodePools.setAutoscaling(
-     *     {
+     *   const res =
+     *     await container.projects.locations.clusters.nodePools.setAutoscaling({
      *       // The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     *       name:
-     *         'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *       name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -7050,8 +7084,7 @@ export namespace container_v1beta1 {
      *         //   "zone": "my_zone"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -7129,7 +7162,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling;
         options = {};
       }
 
@@ -7191,11 +7225,10 @@ export namespace container_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await container.projects.locations.clusters.nodePools.setManagement(
-     *     {
+     *   const res =
+     *     await container.projects.locations.clusters.nodePools.setManagement({
      *       // The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     *       name:
-     *         'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *       name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -7209,8 +7242,7 @@ export namespace container_v1beta1 {
      *         //   "zone": "my_zone"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -7288,7 +7320,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement;
         options = {};
       }
 
@@ -7352,8 +7385,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.nodePools.setSize({
      *     // The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     *     name:
-     *       'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -7445,7 +7477,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize;
         options = {};
       }
 
@@ -7509,8 +7542,7 @@ export namespace container_v1beta1 {
      *   // Do the magic
      *   const res = await container.projects.locations.clusters.nodePools.update({
      *     // The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     *     name:
-     *       'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -7611,7 +7643,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Update;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Nodepools$Update;
         options = {};
       }
 
@@ -7899,7 +7932,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration;
         options = {};
       }
 
@@ -8876,7 +8910,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Zones$Clusters$Completeiprotation;
+        params =
+          {} as Params$Resource$Projects$Zones$Clusters$Completeiprotation;
         options = {};
       }
 
@@ -10630,7 +10665,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy;
+        params =
+          {} as Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy;
         options = {};
       }
 
@@ -11766,7 +11802,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling;
+        params =
+          {} as Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling;
         options = {};
       }
 
@@ -12529,7 +12566,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback;
+        params =
+          {} as Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback;
         options = {};
       }
 
@@ -12691,7 +12729,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement;
+        params =
+          {} as Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement;
         options = {};
       }
 
@@ -12853,7 +12892,8 @@ export namespace container_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize;
+        params =
+          {} as Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize;
         options = {};
       }
 
