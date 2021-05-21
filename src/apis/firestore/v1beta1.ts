@@ -702,7 +702,7 @@ export namespace firestore_v1beta1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the WGS84 standard. Values must be within normalized ranges.
+   * An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges.
    */
   export interface Schema$LatLng {
     /**
@@ -1987,7 +1987,8 @@ export namespace firestore_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Databases$Documents$Begintransaction;
+        params =
+          {} as Params$Resource$Projects$Databases$Documents$Begintransaction;
         options = {};
       }
 
@@ -2280,7 +2281,8 @@ export namespace firestore_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Databases$Documents$Createdocument;
+        params =
+          {} as Params$Resource$Projects$Databases$Documents$Createdocument;
         options = {};
       }
 
@@ -2854,7 +2856,8 @@ export namespace firestore_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Databases$Documents$Listcollectionids;
+        params =
+          {} as Params$Resource$Projects$Databases$Documents$Listcollectionids;
         options = {};
       }
 
@@ -3152,7 +3155,8 @@ export namespace firestore_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Databases$Documents$Partitionquery;
+        params =
+          {} as Params$Resource$Projects$Databases$Documents$Partitionquery;
         options = {};
       }
 
