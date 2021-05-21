@@ -221,7 +221,7 @@
                   "type": "string"
                 },
                 "subscriptionId": {
-                  "description": "Required. Identifies the subscription resource on the Partner side. If a subscription was previously created with the same subscription_id, we will directly return that one.",
+                  "description": "Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.",
                   "location": "query",
                   "type": "string"
                 }
@@ -323,7 +323,7 @@
                   "type": "string"
                 },
                 "subscriptionId": {
-                  "description": "Required. Identifies the subscription resource on the Partner side. If a subscription was previously created with the same subscription_id, we will directly return that one.",
+                  "description": "Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.",
                   "location": "query",
                   "type": "string"
                 }
@@ -366,7 +366,7 @@
       }
     }
   },
-  "revision": "20210501",
+  "revision": "20210520",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest": {
@@ -385,6 +385,7 @@
             "CANCELLATION_REASON_ACCIDENTAL_PURCHASE",
             "CANCELLATION_REASON_PAST_DUE",
             "CANCELLATION_REASON_ACCOUNT_CLOSED",
+            "CANCELLATION_REASON_UPGRADE_DOWNGRADE",
             "CANCELLATION_REASON_OTHER"
           ],
           "enumDescriptions": [
@@ -394,6 +395,7 @@
             "Accidential purchase.",
             "Payment is past due.",
             "User account closed.",
+            "Used for notification only, do not use in Cancel API. Cancallation due to upgrade or downgrade.",
             "Other reason."
           ],
           "type": "string"
@@ -670,7 +672,7 @@
           "type": "string"
         },
         "partnerUserToken": {
-          "description": "Required. Identifier of the end-user in partner’s system.",
+          "description": "Required. Identifier of the end-user in partner’s system. The value is restricted to 63 ASCII characters at the maximum.",
           "type": "string"
         },
         "products": {
@@ -739,6 +741,7 @@
             "CANCELLATION_REASON_ACCIDENTAL_PURCHASE",
             "CANCELLATION_REASON_PAST_DUE",
             "CANCELLATION_REASON_ACCOUNT_CLOSED",
+            "CANCELLATION_REASON_UPGRADE_DOWNGRADE",
             "CANCELLATION_REASON_OTHER"
           ],
           "enumDescriptions": [
@@ -748,6 +751,7 @@
             "Accidential purchase.",
             "Payment is past due.",
             "User account closed.",
+            "Used for notification only, do not use in Cancel API. Cancallation due to upgrade or downgrade.",
             "Other reason."
           ],
           "type": "string"

@@ -316,7 +316,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     name?: string | null;
     /**
-     * Required. Identifier of the end-user in partner’s system.
+     * Required. Identifier of the end-user in partner’s system. The value is restricted to 63 ASCII characters at the maximum.
      */
     partnerUserToken?: string | null;
     /**
@@ -916,7 +916,7 @@ export namespace paymentsresellersubscription_v1 {
      *   const res = await paymentsresellersubscription.partners.subscriptions.create({
      *     // Required. The parent resource name, which is the identifier of the partner. It will have the format of "partners/{partner_id\}".
      *     parent: 'partners/my-partner',
-     *     // Required. Identifies the subscription resource on the Partner side. If a subscription was previously created with the same subscription_id, we will directly return that one.
+     *     // Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.
      *     subscriptionId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1531,11 +1531,11 @@ export namespace paymentsresellersubscription_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await paymentsresellersubscription.partners.subscriptions.provision(
-     *     {
+     *   const res =
+     *     await paymentsresellersubscription.partners.subscriptions.provision({
      *       // Required. The parent resource name, which is the identifier of the partner. It will have the format of "partners/{partner_id\}".
      *       parent: 'partners/my-partner',
-     *       // Required. Identifies the subscription resource on the Partner side. If a subscription was previously created with the same subscription_id, we will directly return that one.
+     *       // Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.
      *       subscriptionId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -1557,8 +1557,7 @@ export namespace paymentsresellersubscription_v1 {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1707,8 +1706,8 @@ export namespace paymentsresellersubscription_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await paymentsresellersubscription.partners.subscriptions.undoCancel(
-     *     {
+     *   const res =
+     *     await paymentsresellersubscription.partners.subscriptions.undoCancel({
      *       // Required. The name of the subscription resource whose pending cancellation needs to be undone. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}"
      *       name: 'partners/my-partner/subscriptions/my-subscription',
      *
@@ -1717,8 +1716,7 @@ export namespace paymentsresellersubscription_v1 {
      *         // request body parameters
      *         // {}
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1849,7 +1847,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     parent?: string;
     /**
-     * Required. Identifies the subscription resource on the Partner side. If a subscription was previously created with the same subscription_id, we will directly return that one.
+     * Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.
      */
     subscriptionId?: string;
 
@@ -1896,7 +1894,7 @@ export namespace paymentsresellersubscription_v1 {
      */
     parent?: string;
     /**
-     * Required. Identifies the subscription resource on the Partner side. If a subscription was previously created with the same subscription_id, we will directly return that one.
+     * Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.
      */
     subscriptionId?: string;
 
