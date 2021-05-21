@@ -12,7 +12,7 @@
           "description": "See any Cloud Identity Groups that you can access, including group members and their emails"
         },
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         }
       }
     }
@@ -758,7 +758,7 @@
           ]
         },
         "list": {
-          "description": "Lists the `Group`s under a customer or namespace.",
+          "description": "Lists the `Group` resources under a customer or namespace.",
           "flatPath": "v1/groups",
           "httpMethod": "GET",
           "id": "cloudidentity.groups.list",
@@ -776,7 +776,7 @@
               "type": "string"
             },
             "parent": {
-              "description": "Required. The parent resource under which to list all `Group`s. Must be of the form `identitysources/{identity_source_id}` for external- identity-mapped groups or `customers/{customer_id}` for Google Groups.",
+              "description": "Required. The parent resource under which to list all `Group` resources. Must be of the form `identitysources/{identity_source_id}` for external- identity-mapped groups or `customers/{customer_id}` for Google Groups. The `customer_id` must begin with \"C\" (for example, 'C046psxkn').",
               "location": "query",
               "type": "string"
             },
@@ -870,7 +870,7 @@
           ]
         },
         "search": {
-          "description": "Searches for `Group`s matching a specified query.",
+          "description": "Searches for `Group` resources matching a specified query.",
           "flatPath": "v1/groups:search",
           "httpMethod": "GET",
           "id": "cloudidentity.groups.search",
@@ -888,7 +888,7 @@
               "type": "string"
             },
             "query": {
-              "description": "Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).",
+              "description": "Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`). The `customer_id` must begin with \"C\" (for example, 'C046psxkn').",
               "location": "query",
               "type": "string"
             },
@@ -1215,7 +1215,7 @@
                   "type": "string"
                 },
                 "query": {
-                  "description": "Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Certain groups are uniquely identified by both a 'member_key_id' and a 'member_key_namespace', which requires an additional query input: 'member_key_namespace'. Example query: `member_key_id == 'member_key_id_value' && in labels`",
+                  "description": "Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Identity-mapped groups are uniquely identified by both a `member_key_id` and a `member_key_namespace`, which requires an additional query input: `member_key_namespace`. Example query: `member_key_id == 'member_key_id_value' && in labels`",
                   "location": "query",
                   "type": "string"
                 }
@@ -1273,7 +1273,7 @@
       }
     }
   },
-  "revision": "20210310",
+  "revision": "20210510",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "CheckTransitiveMembershipResponse": {
@@ -1945,7 +1945,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the DeviceUser in format: `devices/{device_id}/deviceUsers/{user_id}`, where user_id is the ID of the user associated with the user session.",
+          "description": "Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the DeviceUser in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where `device_user_id` uniquely identifies a user's use of a device.",
           "readOnly": true,
           "type": "string"
         },
@@ -2125,7 +2125,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Required. One or more label entries that apply to the Group. Currently supported labels contain a key with an empty value. Google Groups are the default type of group and have a label with a key of `cloudidentity.googleapis.com/groups.discussion_forum` and an empty value. Existing Google Groups can have an additional label with a key of `cloudidentity.googleapis.com/groups.security` and an empty value added to them. **This is an immutable change and the security label cannot be removed once added.** Dynamic groups have a label with a key of `cloudidentity.googleapis.com/groups.dynamic`. Identity-mapped groups for Cloud Search have a label with a key of `system/groups/external` and an empty value. Examples: {\"cloudidentity.googleapis.com/groups.discussion_forum\": \"\"} or {\"system/groups/external\": \"\"}.",
+          "description": "Required. One or more label entries that apply to the Group. Currently supported labels contain a key with an empty value. Google Groups are the default type of group and have a label with a key of `cloudidentity.googleapis.com/groups.discussion_forum` and an empty value. Existing Google Groups can have an additional label with a key of `cloudidentity.googleapis.com/groups.security` and an empty value added to them. **This is an immutable change and the security label cannot be removed once added.** Dynamic groups have a label with a key of `cloudidentity.googleapis.com/groups.dynamic`. Identity-mapped groups for Cloud Search have a label with a key of `system/groups/external` and an empty value.",
           "type": "object"
         },
         "name": {
@@ -2134,7 +2134,7 @@
           "type": "string"
         },
         "parent": {
-          "description": "Required. Immutable. The resource name of the entity under which this `Group` resides in the Cloud Identity resource hierarchy. Must be of the form `identitysources/{identity_source_id}` for external- identity-mapped groups or `customers/{customer_id}` for Google Groups.",
+          "description": "Required. Immutable. The resource name of the entity under which this `Group` resides in the Cloud Identity resource hierarchy. Must be of the form `identitysources/{identity_source_id}` for external- identity-mapped groups or `customers/{customer_id}` for Google Groups. The `customer_id` must begin with \"C\" (for example, 'C046psxkn').",
           "type": "string"
         },
         "updateTime": {
@@ -2258,7 +2258,7 @@
       "id": "MemberRelation",
       "properties": {
         "member": {
-          "description": "Resource name for this member if member is a GROUP, otherwise it is empty.",
+          "description": "Resource name for this member.",
           "type": "string"
         },
         "preferredMemberKey": {
@@ -2327,6 +2327,7 @@
             "USER",
             "SERVICE_ACCOUNT",
             "GROUP",
+            "SHARED_DRIVE",
             "OTHER"
           ],
           "enumDescriptions": [
@@ -2334,6 +2335,7 @@
             "Represents user type.",
             "Represents service account type.",
             "Represents group type.",
+            "Represents Shared drive.",
             "Represents other type."
           ],
           "readOnly": true,
@@ -2460,7 +2462,7 @@
       "id": "SearchGroupsResponse",
       "properties": {
         "groups": {
-          "description": "The `Group`s that match the search query.",
+          "description": "The `Group` resources that match the search query.",
           "items": {
             "$ref": "Group"
           },
@@ -2552,7 +2554,7 @@
       "id": "UpdateMembershipRolesParams",
       "properties": {
         "fieldMask": {
-          "description": "The fully-qualified names of fields to update. May only contain the field `expiry_detail`.",
+          "description": "The fully-qualified names of fields to update. May only contain the field `expiry_detail.expire_time`.",
           "format": "google-fieldmask",
           "type": "string"
         },
