@@ -156,6 +156,10 @@ export namespace recommender_v1 {
      * Use with CategoryType.COST
      */
     costProjection?: Schema$GoogleCloudRecommenderV1CostProjection;
+    /**
+     * Use with CategoryType.SECURITY
+     */
+    securityProjection?: Schema$GoogleCloudRecommenderV1SecurityProjection;
   }
   /**
    * An insight along with the information used to derive the insight. The insight may have associated recomendations as well.
@@ -197,6 +201,10 @@ export namespace recommender_v1 {
      * Observation period that led to the insight. The source data used to generate the insight ends at last_refresh_time and begins at (last_refresh_time - observation_period).
      */
     observationPeriod?: string | null;
+    /**
+     * Insight's severity.
+     */
+    severity?: string | null;
     /**
      * Information state and metadata.
      */
@@ -399,6 +407,10 @@ export namespace recommender_v1 {
      */
     primaryImpact?: Schema$GoogleCloudRecommenderV1Impact;
     /**
+     * Recommendation's priority.
+     */
+    priority?: string | null;
+    /**
      * Contains an identifier for a subtype of recommendations produced for the same recommender. Subtype is a function of content and impact, meaning a new subtype might be added when significant changes to `content` or `primary_impact.category` are introduced. See the Recommenders section to see a list of subtypes for a given Recommender. Examples: For recommender = "google.iam.policy.Recommender", recommender_subtype can be one of "REMOVE_ROLE"/"REPLACE_ROLE"
      */
     recommenderSubtype?: string | null;
@@ -437,6 +449,15 @@ export namespace recommender_v1 {
      * A map of metadata for the state, provided by user or automations systems.
      */
     stateMetadata?: {[key: string]: string} | null;
+  }
+  /**
+   * Contains various ways of describing the impact on Security.
+   */
+  export interface Schema$GoogleCloudRecommenderV1SecurityProjection {
+    /**
+     * Additional security impact details that is provided by the recommender.
+     */
+    details?: {[key: string]: any} | null;
   }
   /**
    * Contains various matching options for values for a GCP resource field.
@@ -494,9 +515,10 @@ export namespace recommender_v1 {
     insights: Resource$Billingaccounts$Locations$Insighttypes$Insights;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.insights = new Resource$Billingaccounts$Locations$Insighttypes$Insights(
-        this.context
-      );
+      this.insights =
+        new Resource$Billingaccounts$Locations$Insighttypes$Insights(
+          this.context
+        );
     }
   }
 
@@ -532,13 +554,11 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.billingAccounts.locations.insightTypes.insights.get(
-     *     {
+     *   const res =
+     *     await recommender.billingAccounts.locations.insightTypes.insights.get({
      *       // Required. Name of the insight.
-     *       name:
-     *         'billingAccounts/my-billingAccount/locations/my-location/insightTypes/my-insightType/insights/my-insight',
-     *     }
-     *   );
+     *       name: 'billingAccounts/my-billingAccount/locations/my-location/insightTypes/my-insightType/insights/my-insight',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -552,6 +572,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "observationPeriod": "my_observationPeriod",
+     *   //   "severity": "my_severity",
      *   //   "stateInfo": {},
      *   //   "targetResources": []
      *   // }
@@ -619,7 +640,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Get;
         options = {};
       }
 
@@ -680,9 +702,9 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.billingAccounts.locations.insightTypes.insights.list(
-     *     {
-     *       // Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
+     *   const res =
+     *     await recommender.billingAccounts.locations.insightTypes.insights.list({
+     *       // Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)
      *       filter: 'placeholder-value',
      *       // Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
      *       pageSize: 'placeholder-value',
@@ -691,8 +713,7 @@ export namespace recommender_v1 {
      *       // Required. The container resource on which to execute the request. Acceptable formats: 1. `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` 2. `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` 3. `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` 4. `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ INSIGHT_TYPE_ID refers to supported insight types: https://cloud.google.com/recommender/docs/insights/insight-types.
      *       parent:
      *         'billingAccounts/my-billingAccount/locations/my-location/insightTypes/my-insightType',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -764,7 +785,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List;
         options = {};
       }
 
@@ -828,22 +850,22 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.billingAccounts.locations.insightTypes.insights.markAccepted(
-     *     {
-     *       // Required. Name of the insight.
-     *       name:
-     *         'billingAccounts/my-billingAccount/locations/my-location/insightTypes/my-insightType/insights/my-insight',
+     *   const res =
+     *     await recommender.billingAccounts.locations.insightTypes.insights.markAccepted(
+     *       {
+     *         // Required. Name of the insight.
+     *         name: 'billingAccounts/my-billingAccount/locations/my-location/insightTypes/my-insightType/insights/my-insight',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "etag": "my_etag",
-     *         //   "stateMetadata": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "stateMetadata": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -857,6 +879,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "observationPeriod": "my_observationPeriod",
+     *   //   "severity": "my_severity",
      *   //   "stateInfo": {},
      *   //   "targetResources": []
      *   // }
@@ -924,7 +947,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$Markaccepted;
         options = {};
       }
 
@@ -973,7 +997,7 @@ export namespace recommender_v1 {
   export interface Params$Resource$Billingaccounts$Locations$Insighttypes$Insights$List
     extends StandardParameters {
     /**
-     * Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
+     * Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
     filter?: string;
     /**
@@ -1007,9 +1031,10 @@ export namespace recommender_v1 {
     recommendations: Resource$Billingaccounts$Locations$Recommenders$Recommendations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.recommendations = new Resource$Billingaccounts$Locations$Recommenders$Recommendations(
-        this.context
-      );
+      this.recommendations =
+        new Resource$Billingaccounts$Locations$Recommenders$Recommendations(
+          this.context
+        );
     }
   }
 
@@ -1045,13 +1070,13 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.billingAccounts.locations.recommenders.recommendations.get(
-     *     {
-     *       // Required. Name of the recommendation.
-     *       name:
-     *         'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
-     *     }
-     *   );
+     *   const res =
+     *     await recommender.billingAccounts.locations.recommenders.recommendations.get(
+     *       {
+     *         // Required. Name of the recommendation.
+     *         name: 'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -1064,6 +1089,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -1131,7 +1157,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Get;
         options = {};
       }
 
@@ -1192,19 +1219,20 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.billingAccounts.locations.recommenders.recommendations.list(
-     *     {
-     *       // Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
-     *       filter: 'placeholder-value',
-     *       // Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The container resource on which to execute the request. Acceptable formats: 1. `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 2. `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 3. `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 4. `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ RECOMMENDER_ID refers to supported recommenders: https://cloud.google.com/recommender/docs/recommenders.
-     *       parent:
-     *         'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender',
-     *     }
-     *   );
+     *   const res =
+     *     await recommender.billingAccounts.locations.recommenders.recommendations.list(
+     *       {
+     *         // Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)
+     *         filter: 'placeholder-value',
+     *         // Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The container resource on which to execute the request. Acceptable formats: 1. `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 2. `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 3. `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 4. `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ RECOMMENDER_ID refers to supported recommenders: https://cloud.google.com/recommender/docs/recommenders.
+     *         parent:
+     *           'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -1276,7 +1304,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List;
         options = {};
       }
 
@@ -1340,22 +1369,22 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.billingAccounts.locations.recommenders.recommendations.markClaimed(
-     *     {
-     *       // Required. Name of the recommendation.
-     *       name:
-     *         'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *   const res =
+     *     await recommender.billingAccounts.locations.recommenders.recommendations.markClaimed(
+     *       {
+     *         // Required. Name of the recommendation.
+     *         name: 'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "etag": "my_etag",
-     *         //   "stateMetadata": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "stateMetadata": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -1368,6 +1397,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -1435,7 +1465,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markclaimed;
         options = {};
       }
 
@@ -1499,22 +1530,22 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.billingAccounts.locations.recommenders.recommendations.markFailed(
-     *     {
-     *       // Required. Name of the recommendation.
-     *       name:
-     *         'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *   const res =
+     *     await recommender.billingAccounts.locations.recommenders.recommendations.markFailed(
+     *       {
+     *         // Required. Name of the recommendation.
+     *         name: 'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "etag": "my_etag",
-     *         //   "stateMetadata": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "stateMetadata": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -1527,6 +1558,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -1594,7 +1626,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Markfailed;
         options = {};
       }
 
@@ -1658,22 +1691,22 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.billingAccounts.locations.recommenders.recommendations.markSucceeded(
-     *     {
-     *       // Required. Name of the recommendation.
-     *       name:
-     *         'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *   const res =
+     *     await recommender.billingAccounts.locations.recommenders.recommendations.markSucceeded(
+     *       {
+     *         // Required. Name of the recommendation.
+     *         name: 'billingAccounts/my-billingAccount/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "etag": "my_etag",
-     *         //   "stateMetadata": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "stateMetadata": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -1686,6 +1719,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -1753,7 +1787,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$Marksucceeded;
         options = {};
       }
 
@@ -1802,7 +1837,7 @@ export namespace recommender_v1 {
   export interface Params$Resource$Billingaccounts$Locations$Recommenders$Recommendations$List
     extends StandardParameters {
     /**
-     * Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
+     * Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
     filter?: string;
     /**
@@ -1924,8 +1959,7 @@ export namespace recommender_v1 {
      *   // Do the magic
      *   const res = await recommender.folders.locations.insightTypes.insights.get({
      *     // Required. Name of the insight.
-     *     name:
-     *       'folders/my-folder/locations/my-location/insightTypes/my-insightType/insights/my-insight',
+     *     name: 'folders/my-folder/locations/my-location/insightTypes/my-insightType/insights/my-insight',
      *   });
      *   console.log(res.data);
      *
@@ -1940,6 +1974,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "observationPeriod": "my_observationPeriod",
+     *   //   "severity": "my_severity",
      *   //   "stateInfo": {},
      *   //   "targetResources": []
      *   // }
@@ -2007,7 +2042,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Locations$Insighttypes$Insights$Get;
+        params =
+          {} as Params$Resource$Folders$Locations$Insighttypes$Insights$Get;
         options = {};
       }
 
@@ -2069,7 +2105,7 @@ export namespace recommender_v1 {
      *
      *   // Do the magic
      *   const res = await recommender.folders.locations.insightTypes.insights.list({
-     *     // Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
+     *     // Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
      *     pageSize: 'placeholder-value',
@@ -2150,7 +2186,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Locations$Insighttypes$Insights$List;
+        params =
+          {} as Params$Resource$Folders$Locations$Insighttypes$Insights$List;
         options = {};
       }
 
@@ -2214,11 +2251,10 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.folders.locations.insightTypes.insights.markAccepted(
-     *     {
+     *   const res =
+     *     await recommender.folders.locations.insightTypes.insights.markAccepted({
      *       // Required. Name of the insight.
-     *       name:
-     *         'folders/my-folder/locations/my-location/insightTypes/my-insightType/insights/my-insight',
+     *       name: 'folders/my-folder/locations/my-location/insightTypes/my-insightType/insights/my-insight',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -2228,8 +2264,7 @@ export namespace recommender_v1 {
      *         //   "stateMetadata": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2243,6 +2278,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "observationPeriod": "my_observationPeriod",
+     *   //   "severity": "my_severity",
      *   //   "stateInfo": {},
      *   //   "targetResources": []
      *   // }
@@ -2310,7 +2346,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Locations$Insighttypes$Insights$Markaccepted;
+        params =
+          {} as Params$Resource$Folders$Locations$Insighttypes$Insights$Markaccepted;
         options = {};
       }
 
@@ -2359,7 +2396,7 @@ export namespace recommender_v1 {
   export interface Params$Resource$Folders$Locations$Insighttypes$Insights$List
     extends StandardParameters {
     /**
-     * Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
+     * Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
     filter?: string;
     /**
@@ -2393,9 +2430,10 @@ export namespace recommender_v1 {
     recommendations: Resource$Folders$Locations$Recommenders$Recommendations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.recommendations = new Resource$Folders$Locations$Recommenders$Recommendations(
-        this.context
-      );
+      this.recommendations =
+        new Resource$Folders$Locations$Recommenders$Recommendations(
+          this.context
+        );
     }
   }
 
@@ -2431,13 +2469,11 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.folders.locations.recommenders.recommendations.get(
-     *     {
+     *   const res =
+     *     await recommender.folders.locations.recommenders.recommendations.get({
      *       // Required. Name of the recommendation.
-     *       name:
-     *         'folders/my-folder/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
-     *     }
-     *   );
+     *       name: 'folders/my-folder/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2450,6 +2486,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -2517,7 +2554,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Locations$Recommenders$Recommendations$Get;
+        params =
+          {} as Params$Resource$Folders$Locations$Recommenders$Recommendations$Get;
         options = {};
       }
 
@@ -2578,9 +2616,9 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.folders.locations.recommenders.recommendations.list(
-     *     {
-     *       // Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
+     *   const res =
+     *     await recommender.folders.locations.recommenders.recommendations.list({
+     *       // Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)
      *       filter: 'placeholder-value',
      *       // Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
      *       pageSize: 'placeholder-value',
@@ -2589,8 +2627,7 @@ export namespace recommender_v1 {
      *       // Required. The container resource on which to execute the request. Acceptable formats: 1. `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 2. `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 3. `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 4. `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ RECOMMENDER_ID refers to supported recommenders: https://cloud.google.com/recommender/docs/recommenders.
      *       parent:
      *         'folders/my-folder/locations/my-location/recommenders/my-recommender',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2662,7 +2699,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Locations$Recommenders$Recommendations$List;
+        params =
+          {} as Params$Resource$Folders$Locations$Recommenders$Recommendations$List;
         options = {};
       }
 
@@ -2726,22 +2764,22 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.folders.locations.recommenders.recommendations.markClaimed(
-     *     {
-     *       // Required. Name of the recommendation.
-     *       name:
-     *         'folders/my-folder/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *   const res =
+     *     await recommender.folders.locations.recommenders.recommendations.markClaimed(
+     *       {
+     *         // Required. Name of the recommendation.
+     *         name: 'folders/my-folder/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "etag": "my_etag",
-     *         //   "stateMetadata": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "stateMetadata": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2754,6 +2792,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -2821,7 +2860,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Locations$Recommenders$Recommendations$Markclaimed;
+        params =
+          {} as Params$Resource$Folders$Locations$Recommenders$Recommendations$Markclaimed;
         options = {};
       }
 
@@ -2885,22 +2925,22 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.folders.locations.recommenders.recommendations.markFailed(
-     *     {
-     *       // Required. Name of the recommendation.
-     *       name:
-     *         'folders/my-folder/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *   const res =
+     *     await recommender.folders.locations.recommenders.recommendations.markFailed(
+     *       {
+     *         // Required. Name of the recommendation.
+     *         name: 'folders/my-folder/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "etag": "my_etag",
-     *         //   "stateMetadata": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "stateMetadata": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2913,6 +2953,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -2980,7 +3021,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Locations$Recommenders$Recommendations$Markfailed;
+        params =
+          {} as Params$Resource$Folders$Locations$Recommenders$Recommendations$Markfailed;
         options = {};
       }
 
@@ -3044,22 +3086,22 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.folders.locations.recommenders.recommendations.markSucceeded(
-     *     {
-     *       // Required. Name of the recommendation.
-     *       name:
-     *         'folders/my-folder/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *   const res =
+     *     await recommender.folders.locations.recommenders.recommendations.markSucceeded(
+     *       {
+     *         // Required. Name of the recommendation.
+     *         name: 'folders/my-folder/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "etag": "my_etag",
-     *         //   "stateMetadata": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "stateMetadata": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3072,6 +3114,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -3139,7 +3182,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Locations$Recommenders$Recommendations$Marksucceeded;
+        params =
+          {} as Params$Resource$Folders$Locations$Recommenders$Recommendations$Marksucceeded;
         options = {};
       }
 
@@ -3188,7 +3232,7 @@ export namespace recommender_v1 {
   export interface Params$Resource$Folders$Locations$Recommenders$Recommendations$List
     extends StandardParameters {
     /**
-     * Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
+     * Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
     filter?: string;
     /**
@@ -3270,9 +3314,10 @@ export namespace recommender_v1 {
     insights: Resource$Organizations$Locations$Insighttypes$Insights;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.insights = new Resource$Organizations$Locations$Insighttypes$Insights(
-        this.context
-      );
+      this.insights =
+        new Resource$Organizations$Locations$Insighttypes$Insights(
+          this.context
+        );
     }
   }
 
@@ -3308,13 +3353,11 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.organizations.locations.insightTypes.insights.get(
-     *     {
+     *   const res =
+     *     await recommender.organizations.locations.insightTypes.insights.get({
      *       // Required. Name of the insight.
-     *       name:
-     *         'organizations/my-organization/locations/my-location/insightTypes/my-insightType/insights/my-insight',
-     *     }
-     *   );
+     *       name: 'organizations/my-organization/locations/my-location/insightTypes/my-insightType/insights/my-insight',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3328,6 +3371,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "observationPeriod": "my_observationPeriod",
+     *   //   "severity": "my_severity",
      *   //   "stateInfo": {},
      *   //   "targetResources": []
      *   // }
@@ -3395,7 +3439,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Insighttypes$Insights$Get;
+        params =
+          {} as Params$Resource$Organizations$Locations$Insighttypes$Insights$Get;
         options = {};
       }
 
@@ -3456,9 +3501,9 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.organizations.locations.insightTypes.insights.list(
-     *     {
-     *       // Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
+     *   const res =
+     *     await recommender.organizations.locations.insightTypes.insights.list({
+     *       // Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)
      *       filter: 'placeholder-value',
      *       // Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
      *       pageSize: 'placeholder-value',
@@ -3467,8 +3512,7 @@ export namespace recommender_v1 {
      *       // Required. The container resource on which to execute the request. Acceptable formats: 1. `projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` 2. `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` 3. `folders/[FOLDER_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` 4. `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ INSIGHT_TYPE_ID refers to supported insight types: https://cloud.google.com/recommender/docs/insights/insight-types.
      *       parent:
      *         'organizations/my-organization/locations/my-location/insightTypes/my-insightType',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3540,7 +3584,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Insighttypes$Insights$List;
+        params =
+          {} as Params$Resource$Organizations$Locations$Insighttypes$Insights$List;
         options = {};
       }
 
@@ -3604,22 +3649,22 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.organizations.locations.insightTypes.insights.markAccepted(
-     *     {
-     *       // Required. Name of the insight.
-     *       name:
-     *         'organizations/my-organization/locations/my-location/insightTypes/my-insightType/insights/my-insight',
+     *   const res =
+     *     await recommender.organizations.locations.insightTypes.insights.markAccepted(
+     *       {
+     *         // Required. Name of the insight.
+     *         name: 'organizations/my-organization/locations/my-location/insightTypes/my-insightType/insights/my-insight',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "etag": "my_etag",
-     *         //   "stateMetadata": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "stateMetadata": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3633,6 +3678,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "observationPeriod": "my_observationPeriod",
+     *   //   "severity": "my_severity",
      *   //   "stateInfo": {},
      *   //   "targetResources": []
      *   // }
@@ -3700,7 +3746,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Insighttypes$Insights$Markaccepted;
+        params =
+          {} as Params$Resource$Organizations$Locations$Insighttypes$Insights$Markaccepted;
         options = {};
       }
 
@@ -3749,7 +3796,7 @@ export namespace recommender_v1 {
   export interface Params$Resource$Organizations$Locations$Insighttypes$Insights$List
     extends StandardParameters {
     /**
-     * Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
+     * Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
     filter?: string;
     /**
@@ -3783,9 +3830,10 @@ export namespace recommender_v1 {
     recommendations: Resource$Organizations$Locations$Recommenders$Recommendations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.recommendations = new Resource$Organizations$Locations$Recommenders$Recommendations(
-        this.context
-      );
+      this.recommendations =
+        new Resource$Organizations$Locations$Recommenders$Recommendations(
+          this.context
+        );
     }
   }
 
@@ -3821,13 +3869,11 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.organizations.locations.recommenders.recommendations.get(
-     *     {
+     *   const res =
+     *     await recommender.organizations.locations.recommenders.recommendations.get({
      *       // Required. Name of the recommendation.
-     *       name:
-     *         'organizations/my-organization/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
-     *     }
-     *   );
+     *       name: 'organizations/my-organization/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3840,6 +3886,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -3907,7 +3954,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Recommenders$Recommendations$Get;
+        params =
+          {} as Params$Resource$Organizations$Locations$Recommenders$Recommendations$Get;
         options = {};
       }
 
@@ -3968,19 +4016,20 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.organizations.locations.recommenders.recommendations.list(
-     *     {
-     *       // Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
-     *       filter: 'placeholder-value',
-     *       // Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The container resource on which to execute the request. Acceptable formats: 1. `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 2. `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 3. `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 4. `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ RECOMMENDER_ID refers to supported recommenders: https://cloud.google.com/recommender/docs/recommenders.
-     *       parent:
-     *         'organizations/my-organization/locations/my-location/recommenders/my-recommender',
-     *     }
-     *   );
+     *   const res =
+     *     await recommender.organizations.locations.recommenders.recommendations.list(
+     *       {
+     *         // Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)
+     *         filter: 'placeholder-value',
+     *         // Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The container resource on which to execute the request. Acceptable formats: 1. `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 2. `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 3. `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 4. `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ RECOMMENDER_ID refers to supported recommenders: https://cloud.google.com/recommender/docs/recommenders.
+     *         parent:
+     *           'organizations/my-organization/locations/my-location/recommenders/my-recommender',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4052,7 +4101,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Recommenders$Recommendations$List;
+        params =
+          {} as Params$Resource$Organizations$Locations$Recommenders$Recommendations$List;
         options = {};
       }
 
@@ -4116,22 +4166,22 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.organizations.locations.recommenders.recommendations.markClaimed(
-     *     {
-     *       // Required. Name of the recommendation.
-     *       name:
-     *         'organizations/my-organization/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *   const res =
+     *     await recommender.organizations.locations.recommenders.recommendations.markClaimed(
+     *       {
+     *         // Required. Name of the recommendation.
+     *         name: 'organizations/my-organization/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "etag": "my_etag",
-     *         //   "stateMetadata": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "stateMetadata": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4144,6 +4194,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -4211,7 +4262,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markclaimed;
+        params =
+          {} as Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markclaimed;
         options = {};
       }
 
@@ -4275,22 +4327,22 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.organizations.locations.recommenders.recommendations.markFailed(
-     *     {
-     *       // Required. Name of the recommendation.
-     *       name:
-     *         'organizations/my-organization/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *   const res =
+     *     await recommender.organizations.locations.recommenders.recommendations.markFailed(
+     *       {
+     *         // Required. Name of the recommendation.
+     *         name: 'organizations/my-organization/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "etag": "my_etag",
-     *         //   "stateMetadata": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "stateMetadata": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4303,6 +4355,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -4370,7 +4423,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markfailed;
+        params =
+          {} as Params$Resource$Organizations$Locations$Recommenders$Recommendations$Markfailed;
         options = {};
       }
 
@@ -4434,22 +4488,22 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.organizations.locations.recommenders.recommendations.markSucceeded(
-     *     {
-     *       // Required. Name of the recommendation.
-     *       name:
-     *         'organizations/my-organization/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *   const res =
+     *     await recommender.organizations.locations.recommenders.recommendations.markSucceeded(
+     *       {
+     *         // Required. Name of the recommendation.
+     *         name: 'organizations/my-organization/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "etag": "my_etag",
-     *         //   "stateMetadata": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "stateMetadata": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4462,6 +4516,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -4529,7 +4584,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Recommenders$Recommendations$Marksucceeded;
+        params =
+          {} as Params$Resource$Organizations$Locations$Recommenders$Recommendations$Marksucceeded;
         options = {};
       }
 
@@ -4578,7 +4634,7 @@ export namespace recommender_v1 {
   export interface Params$Resource$Organizations$Locations$Recommenders$Recommendations$List
     extends StandardParameters {
     /**
-     * Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
+     * Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
     filter?: string;
     /**
@@ -4700,8 +4756,7 @@ export namespace recommender_v1 {
      *   // Do the magic
      *   const res = await recommender.projects.locations.insightTypes.insights.get({
      *     // Required. Name of the insight.
-     *     name:
-     *       'projects/my-project/locations/my-location/insightTypes/my-insightType/insights/my-insight',
+     *     name: 'projects/my-project/locations/my-location/insightTypes/my-insightType/insights/my-insight',
      *   });
      *   console.log(res.data);
      *
@@ -4716,6 +4771,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "observationPeriod": "my_observationPeriod",
+     *   //   "severity": "my_severity",
      *   //   "stateInfo": {},
      *   //   "targetResources": []
      *   // }
@@ -4783,7 +4839,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Insighttypes$Insights$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Insighttypes$Insights$Get;
         options = {};
       }
 
@@ -4845,7 +4902,7 @@ export namespace recommender_v1 {
      *
      *   // Do the magic
      *   const res = await recommender.projects.locations.insightTypes.insights.list({
-     *     // Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
+     *     // Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
      *     pageSize: 'placeholder-value',
@@ -4926,7 +4983,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Insighttypes$Insights$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Insighttypes$Insights$List;
         options = {};
       }
 
@@ -4990,11 +5048,10 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.projects.locations.insightTypes.insights.markAccepted(
-     *     {
+     *   const res =
+     *     await recommender.projects.locations.insightTypes.insights.markAccepted({
      *       // Required. Name of the insight.
-     *       name:
-     *         'projects/my-project/locations/my-location/insightTypes/my-insightType/insights/my-insight',
+     *       name: 'projects/my-project/locations/my-location/insightTypes/my-insightType/insights/my-insight',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -5004,8 +5061,7 @@ export namespace recommender_v1 {
      *         //   "stateMetadata": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5019,6 +5075,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "observationPeriod": "my_observationPeriod",
+     *   //   "severity": "my_severity",
      *   //   "stateInfo": {},
      *   //   "targetResources": []
      *   // }
@@ -5086,7 +5143,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted;
+        params =
+          {} as Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted;
         options = {};
       }
 
@@ -5135,7 +5193,7 @@ export namespace recommender_v1 {
   export interface Params$Resource$Projects$Locations$Insighttypes$Insights$List
     extends StandardParameters {
     /**
-     * Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
+     * Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
     filter?: string;
     /**
@@ -5169,9 +5227,10 @@ export namespace recommender_v1 {
     recommendations: Resource$Projects$Locations$Recommenders$Recommendations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.recommendations = new Resource$Projects$Locations$Recommenders$Recommendations(
-        this.context
-      );
+      this.recommendations =
+        new Resource$Projects$Locations$Recommenders$Recommendations(
+          this.context
+        );
     }
   }
 
@@ -5207,13 +5266,11 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.projects.locations.recommenders.recommendations.get(
-     *     {
+     *   const res =
+     *     await recommender.projects.locations.recommenders.recommendations.get({
      *       // Required. Name of the recommendation.
-     *       name:
-     *         'projects/my-project/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5226,6 +5283,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -5293,7 +5351,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Recommenders$Recommendations$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Recommenders$Recommendations$Get;
         options = {};
       }
 
@@ -5354,9 +5413,9 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.projects.locations.recommenders.recommendations.list(
-     *     {
-     *       // Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
+     *   const res =
+     *     await recommender.projects.locations.recommenders.recommendations.list({
+     *       // Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)
      *       filter: 'placeholder-value',
      *       // Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
      *       pageSize: 'placeholder-value',
@@ -5365,8 +5424,7 @@ export namespace recommender_v1 {
      *       // Required. The container resource on which to execute the request. Acceptable formats: 1. `projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 2. `billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 3. `folders/[FOLDER_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` 4. `organizations/[ORGANIZATION_ID]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]` LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ RECOMMENDER_ID refers to supported recommenders: https://cloud.google.com/recommender/docs/recommenders.
      *       parent:
      *         'projects/my-project/locations/my-location/recommenders/my-recommender',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5438,7 +5496,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Recommenders$Recommendations$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Recommenders$Recommendations$List;
         options = {};
       }
 
@@ -5502,22 +5561,22 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.projects.locations.recommenders.recommendations.markClaimed(
-     *     {
-     *       // Required. Name of the recommendation.
-     *       name:
-     *         'projects/my-project/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *   const res =
+     *     await recommender.projects.locations.recommenders.recommendations.markClaimed(
+     *       {
+     *         // Required. Name of the recommendation.
+     *         name: 'projects/my-project/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "etag": "my_etag",
-     *         //   "stateMetadata": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "stateMetadata": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5530,6 +5589,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -5597,7 +5657,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed;
+        params =
+          {} as Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed;
         options = {};
       }
 
@@ -5661,22 +5722,22 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.projects.locations.recommenders.recommendations.markFailed(
-     *     {
-     *       // Required. Name of the recommendation.
-     *       name:
-     *         'projects/my-project/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *   const res =
+     *     await recommender.projects.locations.recommenders.recommendations.markFailed(
+     *       {
+     *         // Required. Name of the recommendation.
+     *         name: 'projects/my-project/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "etag": "my_etag",
-     *         //   "stateMetadata": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "stateMetadata": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5689,6 +5750,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -5756,7 +5818,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed;
+        params =
+          {} as Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed;
         options = {};
       }
 
@@ -5820,22 +5883,22 @@ export namespace recommender_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await recommender.projects.locations.recommenders.recommendations.markSucceeded(
-     *     {
-     *       // Required. Name of the recommendation.
-     *       name:
-     *         'projects/my-project/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
+     *   const res =
+     *     await recommender.projects.locations.recommenders.recommendations.markSucceeded(
+     *       {
+     *         // Required. Name of the recommendation.
+     *         name: 'projects/my-project/locations/my-location/recommenders/my-recommender/recommendations/my-recommendation',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "etag": "my_etag",
-     *         //   "stateMetadata": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "stateMetadata": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5848,6 +5911,7 @@ export namespace recommender_v1 {
      *   //   "lastRefreshTime": "my_lastRefreshTime",
      *   //   "name": "my_name",
      *   //   "primaryImpact": {},
+     *   //   "priority": "my_priority",
      *   //   "recommenderSubtype": "my_recommenderSubtype",
      *   //   "stateInfo": {}
      *   // }
@@ -5915,7 +5979,8 @@ export namespace recommender_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded;
+        params =
+          {} as Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded;
         options = {};
       }
 
@@ -5964,7 +6029,7 @@ export namespace recommender_v1 {
   export interface Params$Resource$Projects$Locations$Recommenders$Recommendations$List
     extends StandardParameters {
     /**
-     * Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
+     * Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)
      */
     filter?: string;
     /**
