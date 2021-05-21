@@ -287,7 +287,7 @@
       }
     }
   },
-  "revision": "20210303",
+  "revision": "20210512",
   "rootUrl": "https://manufacturers.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -447,7 +447,10 @@
         },
         "sizeType": {
           "description": "The size type of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#sizetype.",
-          "type": "string"
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "suggestedRetailPrice": {
           "$ref": "Price",
