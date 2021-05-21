@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/Ksil8aMte9Wb7BMjA_3uaIrQVnc\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/flD37epa4K_hC-bv7s4sOJoeJlI\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -1027,7 +1027,13 @@
             },
             "space": {
               "default": "drive",
-              "description": "The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.",
+              "description": "The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'. (Default: 'drive')",
+              "location": "query",
+              "type": "string"
+            },
+            "type": {
+              "default": "files",
+              "description": "The type of items which the IDs can be used for. Supported values are 'files' and 'shortcuts'. Note that 'shortcuts' are only supported in the drive 'space'. (Default: 'files')",
               "location": "query",
               "type": "string"
             }
@@ -2185,7 +2191,7 @@
       }
     }
   },
-  "revision": "20210419",
+  "revision": "20210516",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -2986,6 +2992,7 @@
             "type": "string"
           },
           "description": "Links for exporting Docs Editors files to specific formats.",
+          "readOnly": true,
           "type": "object"
         },
         "fileExtension": {

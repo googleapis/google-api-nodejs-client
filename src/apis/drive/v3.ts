@@ -5000,8 +5000,10 @@ export namespace drive_v3 {
      *   const res = await drive.files.generateIds({
      *     // The number of IDs to return.
      *     count: 'placeholder-value',
-     *     // The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.
+     *     // The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'. (Default: 'drive')
      *     space: 'placeholder-value',
+     *     // The type of items which the IDs can be used for. Supported values are 'files' and 'shortcuts'. Note that 'shortcuts' are only supported in the drive 'space'. (Default: 'files')
+     *     type: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -6051,9 +6053,13 @@ export namespace drive_v3 {
      */
     count?: number;
     /**
-     * The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'.
+     * The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'. (Default: 'drive')
      */
     space?: string;
+    /**
+     * The type of items which the IDs can be used for. Supported values are 'files' and 'shortcuts'. Note that 'shortcuts' are only supported in the drive 'space'. (Default: 'files')
+     */
+    type?: string;
   }
   export interface Params$Resource$Files$Get extends StandardParameters {
     /**
