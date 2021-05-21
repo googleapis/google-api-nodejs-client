@@ -1569,8 +1569,8 @@ export namespace cloudfunctions_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudfunctions.projects.locations.functions.generateDownloadUrl(
-     *     {
+     *   const res =
+     *     await cloudfunctions.projects.locations.functions.generateDownloadUrl({
      *       // The name of function for which source code Google Cloud Storage signed URL should be generated.
      *       name: 'projects/my-project/locations/my-location/functions/my-function',
      *
@@ -1581,8 +1581,7 @@ export namespace cloudfunctions_v1 {
      *         //   "versionId": "my_versionId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1653,7 +1652,8 @@ export namespace cloudfunctions_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Functions$Generatedownloadurl;
+        params =
+          {} as Params$Resource$Projects$Locations$Functions$Generatedownloadurl;
         options = {};
       }
 
@@ -1716,8 +1716,8 @@ export namespace cloudfunctions_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudfunctions.projects.locations.functions.generateUploadUrl(
-     *     {
+     *   const res =
+     *     await cloudfunctions.projects.locations.functions.generateUploadUrl({
      *       // The project and location in which the Google Cloud Storage signed URL should be generated, specified in the format `projects/x/locations/x`.
      *       parent: 'projects/my-project/locations/my-location',
      *
@@ -1726,8 +1726,7 @@ export namespace cloudfunctions_v1 {
      *         // request body parameters
      *         // {}
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1798,7 +1797,8 @@ export namespace cloudfunctions_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Functions$Generateuploadurl;
+        params =
+          {} as Params$Resource$Projects$Locations$Functions$Generateuploadurl;
         options = {};
       }
 
@@ -2084,7 +2084,8 @@ export namespace cloudfunctions_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Functions$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Functions$Getiampolicy;
         options = {};
       }
 
@@ -2533,7 +2534,8 @@ export namespace cloudfunctions_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Functions$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Functions$Setiampolicy;
         options = {};
       }
 
@@ -2596,8 +2598,8 @@ export namespace cloudfunctions_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudfunctions.projects.locations.functions.testIamPermissions(
-     *     {
+     *   const res =
+     *     await cloudfunctions.projects.locations.functions.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/functions/my-function',
@@ -2609,8 +2611,7 @@ export namespace cloudfunctions_v1 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2681,7 +2682,8 @@ export namespace cloudfunctions_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Functions$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Functions$Testiampermissions;
         options = {};
       }
 
