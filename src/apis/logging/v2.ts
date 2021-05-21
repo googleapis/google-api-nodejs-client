@@ -137,9 +137,8 @@ export namespace logging_v2 {
       this.folders = new Resource$Folders(this.context);
       this.locations = new Resource$Locations(this.context);
       this.logs = new Resource$Logs(this.context);
-      this.monitoredResourceDescriptors = new Resource$Monitoredresourcedescriptors(
-        this.context
-      );
+      this.monitoredResourceDescriptors =
+        new Resource$Monitoredresourcedescriptors(this.context);
       this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
       this.sinks = new Resource$Sinks(this.context);
@@ -548,15 +547,15 @@ export namespace logging_v2 {
      */
     jsonPayload?: {[key: string]: any} | null;
     /**
-     * Optional. A set of user-defined (key, value) data that provides additional information about the log entry.Cloud Logging truncates label keys that exceed 512 B and label values that exceed 64 KB upon their associated log entry being written. The truncation is indicated by an ellipsis at the end of the character string.
+     * Optional. A map of key, value pairs that provides additional information about the log entry. The labels can be user-defined or system-defined.User-defined labels are arbitrary key, value pairs that you can use to classify logs.System-defined labels are defined by GCP services for platform logs. They have two components - a service namespace component and the attribute name. For example: compute.googleapis.com/resource_name.Cloud Logging truncates label keys that exceed 512 B and label values that exceed 64 KB upon their associated log entry being written. The truncation is indicated by an ellipsis at the end of the character string.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The resource name of the log to which this log entry belongs: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" A project number may be used in place of PROJECT_ID. The project number is translated to its corresponding PROJECT_ID internally and the log_name field will contain PROJECT_ID in queries and exports.[LOG_ID] must be URL-encoded within log_name. Example: "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity". [LOG_ID] must be less than 512 characters long and can only include the following characters: upper and lower case alphanumeric characters, forward-slash, underscore, hyphen, and period.For backward compatibility, if log_name begins with a forward-slash, such as /projects/..., then the log entry is ingested as usual but the forward-slash is removed. Listing the log entry will not show the leading slash and filtering for a log name with a leading slash will never return any results.
+     * Required. The resource name of the log to which this log entry belongs: "projects/[PROJECT_ID]/logs/[LOG_ID]" "organizations/[ORGANIZATION_ID]/logs/[LOG_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/logs/[LOG_ID]" "folders/[FOLDER_ID]/logs/[LOG_ID]" A project number may be used in place of PROJECT_ID. The project number is translated to its corresponding PROJECT_ID internally and the log_name field will contain PROJECT_ID in queries and exports.[LOG_ID] must be URL-encoded within log_name. Example: "organizations/1234567890/logs/cloudresourcemanager.googleapis.com%2Factivity".[LOG_ID] must be less than 512 characters long and can only include the following characters: upper and lower case alphanumeric characters, forward-slash, underscore, hyphen, and period.For backward compatibility, if log_name begins with a forward-slash, such as /projects/..., then the log entry is ingested as usual, but the forward-slash is removed. Listing the log entry will not show the leading slash and filtering for a log name with a leading slash will never return any results.
      */
     logName?: string | null;
     /**
-     * Output only. Deprecated. Additional metadata about the monitored resource.Only k8s_container, k8s_pod, and k8s_node MonitoredResources have this field populated for GKE versions older than 1.12.6. For GKE versions 1.12.6 and above, the metadata field has been deprecated. The Kubernetes pod labels that used to be in metadata.userLabels will now be present in the labels field with a key prefix of k8s-pod/. The system labels that were present in the metadata.systemLabels field will no longer be available in the log entry.
+     * Output only. Deprecated. This field is not used by Logging. Any value written to it is cleared.
      */
     metadata?: Schema$MonitoredResourceMetadata;
     /**
@@ -708,6 +707,10 @@ export namespace logging_v2 {
      * Optional. A description of this metric, which is used in documentation. The maximum length of the description is 8000 characters.
      */
     description?: string | null;
+    /**
+     * Optional. If set to True, then this metric is disabled and it does not generate any points.
+     */
+    disabled?: boolean | null;
     /**
      * Required. An advanced logs filter (https://cloud.google.com/logging/docs/view/advanced_filters) which is used to match log entries. Example: "resource.type=gae_app AND severity\>=ERROR" The maximum length of the filter is 20000 characters.
      */
@@ -2793,8 +2796,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.billingAccounts.locations.buckets.delete({
      *     // Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
-     *     name:
-     *       'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket',
+     *     name: 'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket',
      *   });
      *   console.log(res.data);
      *
@@ -3063,8 +3065,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.billingAccounts.locations.buckets.patch({
      *     // Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
-     *     name:
-     *       'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket',
+     *     name: 'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket',
      *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
      *     updateMask: 'placeholder-value',
      *
@@ -3217,8 +3218,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.billingAccounts.locations.buckets.undelete({
      *     // Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
-     *     name:
-     *       'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket',
+     *     name: 'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -3287,7 +3287,8 @@ export namespace logging_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Locations$Buckets$Undelete;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Buckets$Undelete;
         options = {};
       }
 
@@ -3512,7 +3513,8 @@ export namespace logging_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Locations$Buckets$Views$Create;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Buckets$Views$Create;
         options = {};
       }
 
@@ -3579,8 +3581,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.billingAccounts.locations.buckets.views.delete({
      *     // Required. The full resource name of the view to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id".
-     *     name:
-     *       'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket/views/my-view',
+     *     name: 'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket/views/my-view',
      *   });
      *   console.log(res.data);
      *
@@ -3643,7 +3644,8 @@ export namespace logging_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Locations$Buckets$Views$Delete;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Buckets$Views$Delete;
         options = {};
       }
 
@@ -3783,7 +3785,8 @@ export namespace logging_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Locations$Buckets$Views$List;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Buckets$Views$List;
         options = {};
       }
 
@@ -3850,8 +3853,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.billingAccounts.locations.buckets.views.patch({
      *     // Required. The full resource name of the view to update "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id".
-     *     name:
-     *       'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket/views/my-view',
+     *     name: 'billingAccounts/my-billingAccount/locations/my-location/buckets/my-bucket/views/my-view',
      *     // Optional. Field mask that specifies the fields in view that need an update. A field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      *     updateMask: 'placeholder-value',
      *
@@ -3934,7 +3936,8 @@ export namespace logging_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Billingaccounts$Locations$Buckets$Views$Patch;
+        params =
+          {} as Params$Resource$Billingaccounts$Locations$Buckets$Views$Patch;
         options = {};
       }
 
@@ -8763,8 +8766,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.folders.locations.buckets.views.delete({
      *     // Required. The full resource name of the view to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id".
-     *     name:
-     *       'folders/my-folder/locations/my-location/buckets/my-bucket/views/my-view',
+     *     name: 'folders/my-folder/locations/my-location/buckets/my-bucket/views/my-view',
      *   });
      *   console.log(res.data);
      *
@@ -8893,8 +8895,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.folders.locations.buckets.views.get({
      *     // Required. The resource name of the policy: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id".
-     *     name:
-     *       'folders/my-folder/locations/my-location/buckets/my-bucket/views/my-view',
+     *     name: 'folders/my-folder/locations/my-location/buckets/my-bucket/views/my-view',
      *   });
      *   console.log(res.data);
      *
@@ -9169,8 +9170,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.folders.locations.buckets.views.patch({
      *     // Required. The full resource name of the view to update "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id".
-     *     name:
-     *       'folders/my-folder/locations/my-location/buckets/my-bucket/views/my-view',
+     *     name: 'folders/my-folder/locations/my-location/buckets/my-bucket/views/my-view',
      *     // Optional. Field mask that specifies the fields in view that need an update. A field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      *     updateMask: 'placeholder-value',
      *
@@ -14728,8 +14728,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.organizations.locations.buckets.delete({
      *     // Required. The full resource name of the bucket to delete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
-     *     name:
-     *       'organizations/my-organization/locations/my-location/buckets/my-bucket',
+     *     name: 'organizations/my-organization/locations/my-location/buckets/my-bucket',
      *   });
      *   console.log(res.data);
      *
@@ -14858,8 +14857,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.organizations.locations.buckets.get({
      *     // Required. The resource name of the bucket: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
-     *     name:
-     *       'organizations/my-organization/locations/my-location/buckets/my-bucket',
+     *     name: 'organizations/my-organization/locations/my-location/buckets/my-bucket',
      *   });
      *   console.log(res.data);
      *
@@ -15137,8 +15135,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.organizations.locations.buckets.patch({
      *     // Required. The full resource name of the bucket to update. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id". Also requires permission "resourcemanager.projects.updateLiens" to set the locked property
-     *     name:
-     *       'organizations/my-organization/locations/my-location/buckets/my-bucket',
+     *     name: 'organizations/my-organization/locations/my-location/buckets/my-bucket',
      *     // Required. Field mask that specifies the fields in bucket that need an update. A bucket field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=retention_days.
      *     updateMask: 'placeholder-value',
      *
@@ -15291,8 +15288,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.organizations.locations.buckets.undelete({
      *     // Required. The full resource name of the bucket to undelete. "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id".
-     *     name:
-     *       'organizations/my-organization/locations/my-location/buckets/my-bucket',
+     *     name: 'organizations/my-organization/locations/my-location/buckets/my-bucket',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -15593,7 +15589,8 @@ export namespace logging_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Buckets$Views$Create;
+        params =
+          {} as Params$Resource$Organizations$Locations$Buckets$Views$Create;
         options = {};
       }
 
@@ -15660,8 +15657,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.organizations.locations.buckets.views.delete({
      *     // Required. The full resource name of the view to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id".
-     *     name:
-     *       'organizations/my-organization/locations/my-location/buckets/my-bucket/views/my-view',
+     *     name: 'organizations/my-organization/locations/my-location/buckets/my-bucket/views/my-view',
      *   });
      *   console.log(res.data);
      *
@@ -15724,7 +15720,8 @@ export namespace logging_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Buckets$Views$Delete;
+        params =
+          {} as Params$Resource$Organizations$Locations$Buckets$Views$Delete;
         options = {};
       }
 
@@ -15790,8 +15787,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.organizations.locations.buckets.views.get({
      *     // Required. The resource name of the policy: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id".
-     *     name:
-     *       'organizations/my-organization/locations/my-location/buckets/my-bucket/views/my-view',
+     *     name: 'organizations/my-organization/locations/my-location/buckets/my-bucket/views/my-view',
      *   });
      *   console.log(res.data);
      *
@@ -15860,7 +15856,8 @@ export namespace logging_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Buckets$Views$Get;
+        params =
+          {} as Params$Resource$Organizations$Locations$Buckets$Views$Get;
         options = {};
       }
 
@@ -16000,7 +15997,8 @@ export namespace logging_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Buckets$Views$List;
+        params =
+          {} as Params$Resource$Organizations$Locations$Buckets$Views$List;
         options = {};
       }
 
@@ -16067,8 +16065,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.organizations.locations.buckets.views.patch({
      *     // Required. The full resource name of the view to update "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id".
-     *     name:
-     *       'organizations/my-organization/locations/my-location/buckets/my-bucket/views/my-view',
+     *     name: 'organizations/my-organization/locations/my-location/buckets/my-bucket/views/my-view',
      *     // Optional. Field mask that specifies the fields in view that need an update. A field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      *     updateMask: 'placeholder-value',
      *
@@ -16151,7 +16148,8 @@ export namespace logging_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Locations$Buckets$Views$Patch;
+        params =
+          {} as Params$Resource$Organizations$Locations$Buckets$Views$Patch;
         options = {};
       }
 
@@ -19767,8 +19765,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.projects.locations.buckets.views.delete({
      *     // Required. The full resource name of the view to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id".
-     *     name:
-     *       'projects/my-project/locations/my-location/buckets/my-bucket/views/my-view',
+     *     name: 'projects/my-project/locations/my-location/buckets/my-bucket/views/my-view',
      *   });
      *   console.log(res.data);
      *
@@ -19897,8 +19894,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.projects.locations.buckets.views.get({
      *     // Required. The resource name of the policy: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id".
-     *     name:
-     *       'projects/my-project/locations/my-location/buckets/my-bucket/views/my-view',
+     *     name: 'projects/my-project/locations/my-location/buckets/my-bucket/views/my-view',
      *   });
      *   console.log(res.data);
      *
@@ -20173,8 +20169,7 @@ export namespace logging_v2 {
      *   // Do the magic
      *   const res = await logging.projects.locations.buckets.views.patch({
      *     // Required. The full resource name of the view to update "projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]" Example: "projects/my-project-id/locations/my-location/buckets/my-bucket-id/views/my-view-id".
-     *     name:
-     *       'projects/my-project/locations/my-location/buckets/my-bucket/views/my-view',
+     *     name: 'projects/my-project/locations/my-location/buckets/my-bucket/views/my-view',
      *     // Optional. Field mask that specifies the fields in view that need an update. A field will be overwritten if, and only if, it is in the update mask. name and output only fields cannot be updated.For a detailed FieldMask definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.FieldMaskExample: updateMask=filter.
      *     updateMask: 'placeholder-value',
      *
@@ -20699,6 +20694,7 @@ export namespace logging_v2 {
      *       //   "bucketOptions": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "disabled": false,
      *       //   "filter": "my_filter",
      *       //   "labelExtractors": {},
      *       //   "metricDescriptor": {},
@@ -20716,6 +20712,7 @@ export namespace logging_v2 {
      *   //   "bucketOptions": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "disabled": false,
      *   //   "filter": "my_filter",
      *   //   "labelExtractors": {},
      *   //   "metricDescriptor": {},
@@ -20987,6 +20984,7 @@ export namespace logging_v2 {
      *   //   "bucketOptions": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "disabled": false,
      *   //   "filter": "my_filter",
      *   //   "labelExtractors": {},
      *   //   "metricDescriptor": {},
@@ -21270,6 +21268,7 @@ export namespace logging_v2 {
      *       //   "bucketOptions": {},
      *       //   "createTime": "my_createTime",
      *       //   "description": "my_description",
+     *       //   "disabled": false,
      *       //   "filter": "my_filter",
      *       //   "labelExtractors": {},
      *       //   "metricDescriptor": {},
@@ -21287,6 +21286,7 @@ export namespace logging_v2 {
      *   //   "bucketOptions": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "disabled": false,
      *   //   "filter": "my_filter",
      *   //   "labelExtractors": {},
      *   //   "metricDescriptor": {},
