@@ -176,7 +176,7 @@
                 "INCLUDE_DOWNLOAD_URL"
               ],
               "enumDescriptions": [
-                "Server reponses do not include the download URL for the photo bytes. The default value.",
+                "Server responses do not include the download URL for the photo bytes. The default value.",
                 "Server responses include the download URL for the photo bytes."
               ],
               "location": "query",
@@ -289,7 +289,7 @@
                 "INCLUDE_DOWNLOAD_URL"
               ],
               "enumDescriptions": [
-                "Server reponses do not include the download URL for the photo bytes. The default value.",
+                "Server responses do not include the download URL for the photo bytes. The default value.",
                 "Server responses include the download URL for the photo bytes."
               ],
               "location": "query",
@@ -357,7 +357,7 @@
                 "INCLUDE_DOWNLOAD_URL"
               ],
               "enumDescriptions": [
-                "Server reponses do not include the download URL for the photo bytes. The default value.",
+                "Server responses do not include the download URL for the photo bytes. The default value.",
                 "Server responses include the download URL for the photo bytes."
               ],
               "location": "query",
@@ -375,7 +375,7 @@
       }
     }
   },
-  "revision": "20210421",
+  "revision": "20210519",
   "rootUrl": "https://streetviewpublish.googleapis.com/",
   "schemas": {
     "BatchDeletePhotosRequest": {

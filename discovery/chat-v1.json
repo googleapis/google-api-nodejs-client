@@ -601,7 +601,7 @@
       }
     }
   },
-  "revision": "20210417",
+  "revision": "20210508",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -634,8 +634,8 @@
           "enumDescriptions": [
             "Default type; will be handled as NEW_MESSAGE.",
             "Post as a new message in the topic.",
-            "Update the bot's own message. (Only after CARD_CLICKED events.)",
-            "Privately ask the user for additional auth or config."
+            "Update the bot's message. This is only permitted on a CARD_CLICKED event where the message sender type is BOT.",
+            "Update a message, with cards only. (Only after a MESSAGE event with a matched url, or a CARD_CLICKED event on a human created message)."
           ],
           "type": "string"
         },

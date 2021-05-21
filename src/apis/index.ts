@@ -90,6 +90,10 @@ import {
   VERSIONS as assuredworkloadsVersions,
   assuredworkloads,
 } from './assuredworkloads';
+import {
+  VERSIONS as baremetalsolutionVersions,
+  baremetalsolution,
+} from './baremetalsolution';
 import {VERSIONS as bigqueryVersions, bigquery} from './bigquery';
 import {
   VERSIONS as bigqueryconnectionVersions,
@@ -382,6 +386,10 @@ import {
   realtimebidding,
 } from './realtimebidding';
 import {
+  VERSIONS as recaptchaenterpriseVersions,
+  recaptchaenterprise,
+} from './recaptchaenterprise';
+import {
   VERSIONS as recommendationengineVersions,
   recommendationengine,
 } from './recommendationengine';
@@ -537,6 +545,7 @@ export const APIS: APIList = {
   area120tables: area120tablesVersions,
   artifactregistry: artifactregistryVersions,
   assuredworkloads: assuredworkloadsVersions,
+  baremetalsolution: baremetalsolutionVersions,
   bigquery: bigqueryVersions,
   bigqueryconnection: bigqueryconnectionVersions,
   bigquerydatatransfer: bigquerydatatransferVersions,
@@ -669,6 +678,7 @@ export const APIS: APIList = {
   pubsub: pubsubVersions,
   pubsublite: pubsubliteVersions,
   realtimebidding: realtimebiddingVersions,
+  recaptchaenterprise: recaptchaenterpriseVersions,
   recommendationengine: recommendationengineVersions,
   recommender: recommenderVersions,
   redis: redisVersions,
@@ -755,6 +765,7 @@ export class GeneratedAPIs {
   area120tables = area120tables;
   artifactregistry = artifactregistry;
   assuredworkloads = assuredworkloads;
+  baremetalsolution = baremetalsolution;
   bigquery = bigquery;
   bigqueryconnection = bigqueryconnection;
   bigquerydatatransfer = bigquerydatatransfer;
@@ -887,6 +898,7 @@ export class GeneratedAPIs {
   pubsub = pubsub;
   pubsublite = pubsublite;
   realtimebidding = realtimebidding;
+  recaptchaenterprise = recaptchaenterprise;
   recommendationengine = recommendationengine;
   recommender = recommender;
   redis = redis;

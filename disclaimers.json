@@ -4,36 +4,12 @@
     "package": "@google-cloud/access-approval"
   },
   {
-    "api": "aiplatform",
-    "package": "@google-cloud/aiplatform"
-  },
-  {
-    "api": "notebooks",
-    "package": "@google-cloud/notebooks"
-  },
-  {
-    "api": "apigateway",
-    "package": "@google-cloud/api-gateway"
-  },
-  {
     "api": "appengine",
     "package": "@google-cloud/appengine-admin"
   },
   {
-    "api": "area120tables",
-    "package": "@google/area120-tables"
-  },
-  {
-    "api": "artifactregistry",
-    "package": "@google-cloud/artifact-registry"
-  },
-  {
     "api": "cloudasset",
     "package": "@google-cloud/asset"
-  },
-  {
-    "api": "assuredworkloads",
-    "package": "@google-cloud/assured-workloads"
   },
   {
     "api": "automl",
@@ -52,16 +28,8 @@
     "package": "@google-cloud/billing-budgets"
   },
   {
-    "api": "binaryauthorization",
-    "package": "@google-cloud/binary-authorization"
-  },
-  {
     "api": "cloudbuild",
     "package": "@google-cloud/cloudbuild"
-  },
-  {
-    "api": "privateca",
-    "package": "@google-cloud/security-private-ca"
   },
   {
     "api": "cloudchannel",
@@ -72,24 +40,12 @@
     "package": "@google-cloud/datacatalog"
   },
   {
-    "api": "datalabeling",
-    "package": "@google-cloud/datalabeling"
-  },
-  {
     "api": "dlp",
     "package": "@google-cloud/dlp"
   },
   {
-    "api": "dataqna",
-    "package": "@google-cloud/data-qna"
-  },
-  {
     "api": "dataproc",
     "package": "@google-cloud/dataproc"
-  },
-  {
-    "api": "metastore",
-    "package": "@google-cloud/dataproc-metastore"
   },
   {
     "api": "datastore",
@@ -112,18 +68,6 @@
     "package": "@google-cloud/dns"
   },
   {
-    "api": "documentai",
-    "package": "@google-cloud/documentai"
-  },
-  {
-    "api": "domains",
-    "package": "@google-cloud/domains"
-  },
-  {
-    "api": "clouderrorreporting",
-    "package": "@google-cloud/error-reporting"
-  },
-  {
     "api": "firestore",
     "package": "@google-cloud/firestore"
   },
@@ -138,18 +82,6 @@
   {
     "api": "gameservices",
     "package": "@google-cloud/game-servers"
-  },
-  {
-    "api": "gkehub",
-    "package": "@google-cloud/gke-hub"
-  },
-  {
-    "api": "analyticsadmin",
-    "package": "@google-analytics/admin"
-  },
-  {
-    "api": "analyticsdata",
-    "package": "@google-analytics/data"
   },
   {
     "api": "bigquery",
@@ -170,10 +102,6 @@
   {
     "api": "bigquerystorage",
     "package": "@google-cloud/bigquery-storage"
-  },
-  {
-    "api": "compute",
-    "package": "@google-cloud/compute"
   },
   {
     "api": "containeranalysis",
@@ -220,10 +148,6 @@
     "package": "@google-cloud/managed-identities"
   },
   {
-    "api": "mediatranslation",
-    "package": "@google-cloud/media-translation"
-  },
-  {
     "api": "memcache",
     "package": "@google-cloud/memcache"
   },
@@ -236,10 +160,6 @@
     "package": "@google-cloud/language"
   },
   {
-    "api": "networkconnectivity",
-    "package": "@google-cloud/network-connectivity"
-  },
-  {
     "api": "orgpolicy",
     "package": "@google-cloud/org-policy"
   },
@@ -250,10 +170,6 @@
   {
     "api": "oslogin",
     "package": "@google-cloud/os-login"
-  },
-  {
-    "api": "phishingprotection",
-    "package": "@google-cloud/phishing-protection"
   },
   {
     "api": "cloudprofiler",
@@ -276,16 +192,8 @@
     "package": "@google-cloud/redis"
   },
   {
-    "api": "cloudresourcemanager",
-    "package": "@google-cloud/resource"
-  },
-  {
     "api": "retail",
     "package": "@google-cloud/retail"
-  },
-  {
-    "api": "runtimeconfig",
-    "package": "@google-cloud/rcloadenv"
   },
   {
     "api": "cloudscheduler",
@@ -320,16 +228,8 @@
     "package": "@google-cloud/speech"
   },
   {
-    "api": "clouddebugger",
-    "package": "@google-cloud/debug-agent"
-  },
-  {
     "api": "monitoring",
     "package": "@google-cloud/monitoring"
-  },
-  {
-    "api": "cloudtrace",
-    "package": "@google-cloud/trace-agent"
   },
   {
     "api": "storage-api",
@@ -346,10 +246,6 @@
   {
     "api": "texttospeech",
     "package": "@google-cloud/text-to-speech"
-  },
-  {
-    "api": "transcoder",
-    "package": "@google-cloud/video-transcoder"
   },
   {
     "api": "translate",
@@ -370,6 +266,110 @@
   {
     "api": "websecurityscanner",
     "package": "@google-cloud/web-security-scanner"
+  },
+  {
+    "api": "aiplatform",
+    "package": "@google-cloud/aiplatform"
+  },
+  {
+    "api": "notebooks",
+    "package": "@google-cloud/notebooks"
+  },
+  {
+    "api": "apigateway",
+    "package": "@google-cloud/api-gateway"
+  },
+  {
+    "api": "area120tables",
+    "package": "@google/area120-tables"
+  },
+  {
+    "api": "artifactregistry",
+    "package": "@google-cloud/artifact-registry"
+  },
+  {
+    "api": "assuredworkloads",
+    "package": "@google-cloud/assured-workloads"
+  },
+  {
+    "api": "binaryauthorization",
+    "package": "@google-cloud/binary-authorization"
+  },
+  {
+    "api": "privateca",
+    "package": "@google-cloud/security-private-ca"
+  },
+  {
+    "api": "datalabeling",
+    "package": "@google-cloud/datalabeling"
+  },
+  {
+    "api": "dataqna",
+    "package": "@google-cloud/data-qna"
+  },
+  {
+    "api": "metastore",
+    "package": "@google-cloud/dataproc-metastore"
+  },
+  {
+    "api": "documentai",
+    "package": "@google-cloud/documentai"
+  },
+  {
+    "api": "domains",
+    "package": "@google-cloud/domains"
+  },
+  {
+    "api": "clouderrorreporting",
+    "package": "@google-cloud/error-reporting"
+  },
+  {
+    "api": "gkehub",
+    "package": "@google-cloud/gke-hub"
+  },
+  {
+    "api": "analyticsadmin",
+    "package": "@google-analytics/admin"
+  },
+  {
+    "api": "analyticsdata",
+    "package": "@google-analytics/data"
+  },
+  {
+    "api": "compute",
+    "package": "@google-cloud/compute"
+  },
+  {
+    "api": "mediatranslation",
+    "package": "@google-cloud/media-translation"
+  },
+  {
+    "api": "networkconnectivity",
+    "package": "@google-cloud/network-connectivity"
+  },
+  {
+    "api": "phishingprotection",
+    "package": "@google-cloud/phishing-protection"
+  },
+  {
+    "api": "cloudresourcemanager",
+    "package": "@google-cloud/resource"
+  },
+  {
+    "api": "runtimeconfig",
+    "package": "@google-cloud/rcloadenv"
+  },
+  {
+    "api": "clouddebugger",
+    "package": "@google-cloud/debug-agent"
+  },
+  {
+    "api": "cloudtrace",
+    "package": "@google-cloud/trace-agent"
+  },
+  {
+    "api": "transcoder",
+    "package": "@google-cloud/video-transcoder"
   },
   {
     "api": "workflows",

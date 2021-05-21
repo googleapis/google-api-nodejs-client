@@ -3,7 +3,7 @@
     "oauth2": {
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
-          "description": "View and manage your data across Google Cloud Platform services"
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
         },
         "https://www.googleapis.com/auth/firebase": {
           "description": "View and administer all your Firebase data and settings"
@@ -477,7 +477,7 @@
       }
     }
   },
-  "revision": "20200807",
+  "revision": "20210508",
   "rootUrl": "https://firebaserules.googleapis.com/",
   "schemas": {
     "Arg": {

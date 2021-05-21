@@ -6986,7 +6986,7 @@
       }
     }
   },
-  "revision": "20210422",
+  "revision": "20210513",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -8879,13 +8879,15 @@
             "STATE_UNSPECIFIED",
             "CREATING",
             "ACTIVE",
-            "DELETING"
+            "DELETING",
+            "UPDATING"
           ],
           "enumDescriptions": [
             "Resource is in an unspecified state.",
             "Resource is being created.",
             "Resource is provisioned and ready to use.",
-            "The resource is being deleted."
+            "The resource is being deleted.",
+            "The resource is being updated."
           ],
           "readOnly": true,
           "type": "string"
@@ -9027,13 +9029,15 @@
             "STATE_UNSPECIFIED",
             "CREATING",
             "ACTIVE",
-            "DELETING"
+            "DELETING",
+            "UPDATING"
           ],
           "enumDescriptions": [
             "Resource is in an unspecified state.",
             "Resource is being created.",
             "Resource is provisioned and ready to use.",
-            "The resource is being deleted."
+            "The resource is being deleted.",
+            "The resource is being updated."
           ],
           "readOnly": true,
           "type": "string"
@@ -9399,13 +9403,15 @@
             "STATE_UNSPECIFIED",
             "CREATING",
             "ACTIVE",
-            "DELETING"
+            "DELETING",
+            "UPDATING"
           ],
           "enumDescriptions": [
             "Resource is in an unspecified state.",
             "Resource is being created.",
             "Resource is provisioned and ready to use.",
-            "The resource is being deleted."
+            "The resource is being deleted.",
+            "The resource is being updated."
           ],
           "readOnly": true,
           "type": "string"
@@ -10370,13 +10376,15 @@
             "STATE_UNSPECIFIED",
             "CREATING",
             "ACTIVE",
-            "DELETING"
+            "DELETING",
+            "UPDATING"
           ],
           "enumDescriptions": [
             "Resource is in an unspecified state.",
             "Resource is being created.",
             "Resource is provisioned and ready to use.",
-            "The resource is being deleted."
+            "The resource is being deleted.",
+            "The resource is being updated."
           ],
           "readOnly": true,
           "type": "string"
@@ -11094,7 +11102,7 @@
           "type": "array"
         },
         "jsonSpec": {
-          "description": "The json content of the resource revision.",
+          "description": "The json content of the resource revision. Large specs should be sent individually via the spec field to avoid hitting request size limits.",
           "type": "string"
         },
         "replicas": {
