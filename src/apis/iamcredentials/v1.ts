@@ -340,7 +340,8 @@ export namespace iamcredentials_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Serviceaccounts$Generateaccesstoken;
+        params =
+          {} as Params$Resource$Projects$Serviceaccounts$Generateaccesstoken;
         options = {};
       }
 
