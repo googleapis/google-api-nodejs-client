@@ -510,6 +510,36 @@
             "locations": {
               "resources": {
                 "subscriptions": {
+                  "methods": {
+                    "commitCursor": {
+                      "description": "Updates the committed cursor.",
+                      "flatPath": "v1/cursor/projects/{projectsId}/locations/{locationsId}/subscriptions/{subscriptionsId}:commitCursor",
+                      "httpMethod": "POST",
+                      "id": "pubsublite.cursor.projects.locations.subscriptions.commitCursor",
+                      "parameterOrder": [
+                        "subscription"
+                      ],
+                      "parameters": {
+                        "subscription": {
+                          "description": "The subscription for which to update the cursor.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/subscriptions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/cursor/{+subscription}:commitCursor",
+                      "request": {
+                        "$ref": "CommitCursorRequest"
+                      },
+                      "response": {
+                        "$ref": "CommitCursorResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
                   "resources": {
                     "cursors": {
                       "methods": {
@@ -622,6 +652,34 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "computeTimeCursor": {
+                      "description": "Compute the corresponding cursor for a publish or event time in a topic partition.",
+                      "flatPath": "v1/topicStats/projects/{projectsId}/locations/{locationsId}/topics/{topicsId}:computeTimeCursor",
+                      "httpMethod": "POST",
+                      "id": "pubsublite.topicStats.projects.locations.topics.computeTimeCursor",
+                      "parameterOrder": [
+                        "topic"
+                      ],
+                      "parameters": {
+                        "topic": {
+                          "description": "Required. The topic for which we should compute the cursor.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/topics/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/topicStats/{+topic}:computeTimeCursor",
+                      "request": {
+                        "$ref": "ComputeTimeCursorRequest"
+                      },
+                      "response": {
+                        "$ref": "ComputeTimeCursorResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   }
                 }
@@ -632,7 +690,7 @@
       }
     }
   },
-  "revision": "20210322",
+  "revision": "20210513",
   "rootUrl": "https://pubsublite.googleapis.com/",
   "schemas": {
     "Capacity": {
@@ -650,6 +708,28 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "CommitCursorRequest": {
+      "description": "Request for CommitCursor.",
+      "id": "CommitCursorRequest",
+      "properties": {
+        "cursor": {
+          "$ref": "Cursor",
+          "description": "The new value for the committed cursor."
+        },
+        "partition": {
+          "description": "The partition for which to update the cursor. Partitions are zero indexed, so `partition` must be in the range [0, topic.num_partitions).",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CommitCursorResponse": {
+      "description": "Response for CommitCursor.",
+      "id": "CommitCursorResponse",
+      "properties": {},
       "type": "object"
     },
     "ComputeHeadCursorRequest": {
@@ -718,6 +798,33 @@
           "description": "The minimum publish timestamp across these messages. Note that publish timestamps within a partition are not guaranteed to be non-decreasing. The timestamp will be unset if there are no messages.",
           "format": "google-datetime",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ComputeTimeCursorRequest": {
+      "description": "Compute the corresponding cursor for a publish or event time in a topic partition.",
+      "id": "ComputeTimeCursorRequest",
+      "properties": {
+        "partition": {
+          "description": "Required. The partition for which we should compute the cursor.",
+          "format": "int64",
+          "type": "string"
+        },
+        "target": {
+          "$ref": "TimeTarget",
+          "description": "Required. The target publish or event time. Specifying a future time will return an unset cursor."
+        }
+      },
+      "type": "object"
+    },
+    "ComputeTimeCursorResponse": {
+      "description": "Response containing the cursor corresponding to a publish or event time in a topic partition.",
+      "id": "ComputeTimeCursorResponse",
+      "properties": {
+        "cursor": {
+          "$ref": "Cursor",
+          "description": "If present, the cursor references the first message with time greater than or equal to the specified target time. If such a message cannot be found, the cursor will be unset (i.e. `cursor` is not present)."
         }
       },
       "type": "object"
@@ -901,6 +1008,23 @@
         },
         "topic": {
           "description": "The name of the topic this subscription is attached to. Structured like: projects/{project_number}/locations/{location}/topics/{topic_id}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TimeTarget": {
+      "description": "A target publish or event time. Can be used for seeking to or retrieving the corresponding cursor.",
+      "id": "TimeTarget",
+      "properties": {
+        "eventTime": {
+          "description": "Request the cursor of the first message with event time greater than or equal to `event_time`. If messages are missing an event time, the publish time is used as a fallback. As event times are user supplied, subsequent messages may have event times less than `event_time` and should be filtered by the client, if necessary.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "publishTime": {
+          "description": "Request the cursor of the first message with publish time greater than or equal to `publish_time`. All messages thereafter are guaranteed to have publish times >= `publish_time`.",
+          "format": "google-datetime",
           "type": "string"
         }
       },

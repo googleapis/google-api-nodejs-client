@@ -143,6 +143,23 @@ export namespace pubsublite_v1 {
     subscribeMibPerSec?: number | null;
   }
   /**
+   * Request for CommitCursor.
+   */
+  export interface Schema$CommitCursorRequest {
+    /**
+     * The new value for the committed cursor.
+     */
+    cursor?: Schema$Cursor;
+    /**
+     * The partition for which to update the cursor. Partitions are zero indexed, so `partition` must be in the range [0, topic.num_partitions).
+     */
+    partition?: string | null;
+  }
+  /**
+   * Response for CommitCursor.
+   */
+  export interface Schema$CommitCursorResponse {}
+  /**
    * Compute the current head cursor for a partition.
    */
   export interface Schema$ComputeHeadCursorRequest {
@@ -197,6 +214,28 @@ export namespace pubsublite_v1 {
      * The minimum publish timestamp across these messages. Note that publish timestamps within a partition are not guaranteed to be non-decreasing. The timestamp will be unset if there are no messages.
      */
     minimumPublishTime?: string | null;
+  }
+  /**
+   * Compute the corresponding cursor for a publish or event time in a topic partition.
+   */
+  export interface Schema$ComputeTimeCursorRequest {
+    /**
+     * Required. The partition for which we should compute the cursor.
+     */
+    partition?: string | null;
+    /**
+     * Required. The target publish or event time. Specifying a future time will return an unset cursor.
+     */
+    target?: Schema$TimeTarget;
+  }
+  /**
+   * Response containing the cursor corresponding to a publish or event time in a topic partition.
+   */
+  export interface Schema$ComputeTimeCursorResponse {
+    /**
+     * If present, the cursor references the first message with time greater than or equal to the specified target time. If such a message cannot be found, the cursor will be unset (i.e. `cursor` is not present).
+     */
+    cursor?: Schema$Cursor;
   }
   /**
    * A cursor that describes the position of a message within a topic partition.
@@ -331,6 +370,19 @@ export namespace pubsublite_v1 {
      * The name of the topic this subscription is attached to. Structured like: projects/{project_number\}/locations/{location\}/topics/{topic_id\}
      */
     topic?: string | null;
+  }
+  /**
+   * A target publish or event time. Can be used for seeking to or retrieving the corresponding cursor.
+   */
+  export interface Schema$TimeTarget {
+    /**
+     * Request the cursor of the first message with event time greater than or equal to `event_time`. If messages are missing an event time, the publish time is used as a fallback. As event times are user supplied, subsequent messages may have event times less than `event_time` and should be filtered by the client, if necessary.
+     */
+    eventTime?: string | null;
+    /**
+     * Request the cursor of the first message with publish time greater than or equal to `publish_time`. All messages thereafter are guaranteed to have publish times \>= `publish_time`.
+     */
+    publishTime?: string | null;
   }
   /**
    * Metadata about a topic resource.
@@ -505,7 +557,8 @@ export namespace pubsublite_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Admin$Projects$Locations$Subscriptions$Create;
+        params =
+          {} as Params$Resource$Admin$Projects$Locations$Subscriptions$Create;
         options = {};
       }
 
@@ -569,8 +622,7 @@ export namespace pubsublite_v1 {
      *   // Do the magic
      *   const res = await pubsublite.admin.projects.locations.subscriptions.delete({
      *     // Required. The name of the subscription to delete.
-     *     name:
-     *       'projects/my-project/locations/my-location/subscriptions/my-subscription',
+     *     name: 'projects/my-project/locations/my-location/subscriptions/my-subscription',
      *   });
      *   console.log(res.data);
      *
@@ -633,7 +685,8 @@ export namespace pubsublite_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Admin$Projects$Locations$Subscriptions$Delete;
+        params =
+          {} as Params$Resource$Admin$Projects$Locations$Subscriptions$Delete;
         options = {};
       }
 
@@ -694,8 +747,7 @@ export namespace pubsublite_v1 {
      *   // Do the magic
      *   const res = await pubsublite.admin.projects.locations.subscriptions.get({
      *     // Required. The name of the subscription whose configuration to return.
-     *     name:
-     *       'projects/my-project/locations/my-location/subscriptions/my-subscription',
+     *     name: 'projects/my-project/locations/my-location/subscriptions/my-subscription',
      *   });
      *   console.log(res.data);
      *
@@ -762,7 +814,8 @@ export namespace pubsublite_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Admin$Projects$Locations$Subscriptions$Get;
+        params =
+          {} as Params$Resource$Admin$Projects$Locations$Subscriptions$Get;
         options = {};
       }
 
@@ -900,7 +953,8 @@ export namespace pubsublite_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Admin$Projects$Locations$Subscriptions$List;
+        params =
+          {} as Params$Resource$Admin$Projects$Locations$Subscriptions$List;
         options = {};
       }
 
@@ -964,8 +1018,7 @@ export namespace pubsublite_v1 {
      *   // Do the magic
      *   const res = await pubsublite.admin.projects.locations.subscriptions.patch({
      *     // The name of the subscription. Structured like: projects/{project_number\}/locations/{location\}/subscriptions/{subscription_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/subscriptions/my-subscription',
+     *     name: 'projects/my-project/locations/my-location/subscriptions/my-subscription',
      *     // Required. A mask specifying the subscription fields to change.
      *     updateMask: 'placeholder-value',
      *
@@ -1044,7 +1097,8 @@ export namespace pubsublite_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Admin$Projects$Locations$Subscriptions$Patch;
+        params =
+          {} as Params$Resource$Admin$Projects$Locations$Subscriptions$Patch;
         options = {};
       }
 
@@ -1149,9 +1203,10 @@ export namespace pubsublite_v1 {
     subscriptions: Resource$Admin$Projects$Locations$Topics$Subscriptions;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.subscriptions = new Resource$Admin$Projects$Locations$Topics$Subscriptions(
-        this.context
-      );
+      this.subscriptions =
+        new Resource$Admin$Projects$Locations$Topics$Subscriptions(
+          this.context
+        );
     }
 
     /**
@@ -1642,7 +1697,8 @@ export namespace pubsublite_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Admin$Projects$Locations$Topics$Getpartitions;
+        params =
+          {} as Params$Resource$Admin$Projects$Locations$Topics$Getpartitions;
         options = {};
       }
 
@@ -2057,16 +2113,15 @@ export namespace pubsublite_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await pubsublite.admin.projects.locations.topics.subscriptions.list(
-     *     {
+     *   const res =
+     *     await pubsublite.admin.projects.locations.topics.subscriptions.list({
      *       // Required. The name of the topic whose subscriptions to list.
      *       name: 'projects/my-project/locations/my-location/topics/my-topic',
      *       // The maximum number of subscriptions to return. The service may return fewer than this value. If unset or zero, all subscriptions for the given topic will be returned.
      *       pageSize: 'placeholder-value',
      *       // A page token, received from a previous `ListTopicSubscriptions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTopicSubscriptions` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2138,7 +2193,8 @@ export namespace pubsublite_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Admin$Projects$Locations$Topics$Subscriptions$List;
+        params =
+          {} as Params$Resource$Admin$Projects$Locations$Topics$Subscriptions$List;
         options = {};
       }
 
@@ -2227,10 +2283,170 @@ export namespace pubsublite_v1 {
     cursors: Resource$Cursor$Projects$Locations$Subscriptions$Cursors;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.cursors = new Resource$Cursor$Projects$Locations$Subscriptions$Cursors(
-        this.context
-      );
+      this.cursors =
+        new Resource$Cursor$Projects$Locations$Subscriptions$Cursors(
+          this.context
+        );
     }
+
+    /**
+     * Updates the committed cursor.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsublite = google.pubsublite('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await pubsublite.cursor.projects.locations.subscriptions.commitCursor({
+     *       // The subscription for which to update the cursor.
+     *       subscription:
+     *         'projects/my-project/locations/my-location/subscriptions/my-subscription',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "cursor": {},
+     *         //   "partition": "my_partition"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    commitCursor(
+      params: Params$Resource$Cursor$Projects$Locations$Subscriptions$Commitcursor,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    commitCursor(
+      params?: Params$Resource$Cursor$Projects$Locations$Subscriptions$Commitcursor,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$CommitCursorResponse>;
+    commitCursor(
+      params: Params$Resource$Cursor$Projects$Locations$Subscriptions$Commitcursor,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    commitCursor(
+      params: Params$Resource$Cursor$Projects$Locations$Subscriptions$Commitcursor,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CommitCursorResponse>,
+      callback: BodyResponseCallback<Schema$CommitCursorResponse>
+    ): void;
+    commitCursor(
+      params: Params$Resource$Cursor$Projects$Locations$Subscriptions$Commitcursor,
+      callback: BodyResponseCallback<Schema$CommitCursorResponse>
+    ): void;
+    commitCursor(
+      callback: BodyResponseCallback<Schema$CommitCursorResponse>
+    ): void;
+    commitCursor(
+      paramsOrCallback?:
+        | Params$Resource$Cursor$Projects$Locations$Subscriptions$Commitcursor
+        | BodyResponseCallback<Schema$CommitCursorResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CommitCursorResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CommitCursorResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$CommitCursorResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Cursor$Projects$Locations$Subscriptions$Commitcursor;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Cursor$Projects$Locations$Subscriptions$Commitcursor;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsublite.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/cursor/{+subscription}:commitCursor').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['subscription'],
+        pathParams: ['subscription'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CommitCursorResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CommitCursorResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Cursor$Projects$Locations$Subscriptions$Commitcursor
+    extends StandardParameters {
+    /**
+     * The subscription for which to update the cursor.
+     */
+    subscription?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CommitCursorRequest;
   }
 
   export class Resource$Cursor$Projects$Locations$Subscriptions$Cursors {
@@ -2265,8 +2481,8 @@ export namespace pubsublite_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await pubsublite.cursor.projects.locations.subscriptions.cursors.list(
-     *     {
+     *   const res =
+     *     await pubsublite.cursor.projects.locations.subscriptions.cursors.list({
      *       // The maximum number of cursors to return. The service may return fewer than this value. If unset or zero, all cursors for the parent will be returned.
      *       pageSize: 'placeholder-value',
      *       // A page token, received from a previous `ListPartitionCursors` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPartitionCursors` must match the call that provided the page token.
@@ -2274,8 +2490,7 @@ export namespace pubsublite_v1 {
      *       // Required. The subscription for which to retrieve cursors. Structured like `projects/{project_number\}/locations/{location\}/subscriptions/{subscription_id\}`.
      *       parent:
      *         'projects/my-project/locations/my-location/subscriptions/my-subscription',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2347,7 +2562,8 @@ export namespace pubsublite_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Cursor$Projects$Locations$Subscriptions$Cursors$List;
+        params =
+          {} as Params$Resource$Cursor$Projects$Locations$Subscriptions$Cursors$List;
         options = {};
       }
 
@@ -2463,8 +2679,8 @@ export namespace pubsublite_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await pubsublite.topicStats.projects.locations.topics.computeHeadCursor(
-     *     {
+     *   const res =
+     *     await pubsublite.topicStats.projects.locations.topics.computeHeadCursor({
      *       // Required. The topic for which we should compute the head cursor.
      *       topic: 'projects/my-project/locations/my-location/topics/my-topic',
      *
@@ -2475,8 +2691,7 @@ export namespace pubsublite_v1 {
      *         //   "partition": "my_partition"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2547,7 +2762,8 @@ export namespace pubsublite_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor;
+        params =
+          {} as Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor;
         options = {};
       }
 
@@ -2608,8 +2824,8 @@ export namespace pubsublite_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await pubsublite.topicStats.projects.locations.topics.computeMessageStats(
-     *     {
+     *   const res =
+     *     await pubsublite.topicStats.projects.locations.topics.computeMessageStats({
      *       // Required. The topic for which we should compute message stats.
      *       topic: 'projects/my-project/locations/my-location/topics/my-topic',
      *
@@ -2622,8 +2838,7 @@ export namespace pubsublite_v1 {
      *         //   "startCursor": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2697,7 +2912,8 @@ export namespace pubsublite_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats;
+        params =
+          {} as Params$Resource$Topicstats$Projects$Locations$Topics$Computemessagestats;
         options = {};
       }
 
@@ -2731,6 +2947,152 @@ export namespace pubsublite_v1 {
         return createAPIRequest<Schema$ComputeMessageStatsResponse>(parameters);
       }
     }
+
+    /**
+     * Compute the corresponding cursor for a publish or event time in a topic partition.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/pubsublite.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const pubsublite = google.pubsublite('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await pubsublite.topicStats.projects.locations.topics.computeTimeCursor({
+     *       // Required. The topic for which we should compute the cursor.
+     *       topic: 'projects/my-project/locations/my-location/topics/my-topic',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "partition": "my_partition",
+     *         //   "target": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cursor": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    computeTimeCursor(
+      params: Params$Resource$Topicstats$Projects$Locations$Topics$Computetimecursor,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    computeTimeCursor(
+      params?: Params$Resource$Topicstats$Projects$Locations$Topics$Computetimecursor,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ComputeTimeCursorResponse>;
+    computeTimeCursor(
+      params: Params$Resource$Topicstats$Projects$Locations$Topics$Computetimecursor,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    computeTimeCursor(
+      params: Params$Resource$Topicstats$Projects$Locations$Topics$Computetimecursor,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ComputeTimeCursorResponse>,
+      callback: BodyResponseCallback<Schema$ComputeTimeCursorResponse>
+    ): void;
+    computeTimeCursor(
+      params: Params$Resource$Topicstats$Projects$Locations$Topics$Computetimecursor,
+      callback: BodyResponseCallback<Schema$ComputeTimeCursorResponse>
+    ): void;
+    computeTimeCursor(
+      callback: BodyResponseCallback<Schema$ComputeTimeCursorResponse>
+    ): void;
+    computeTimeCursor(
+      paramsOrCallback?:
+        | Params$Resource$Topicstats$Projects$Locations$Topics$Computetimecursor
+        | BodyResponseCallback<Schema$ComputeTimeCursorResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ComputeTimeCursorResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ComputeTimeCursorResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ComputeTimeCursorResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Topicstats$Projects$Locations$Topics$Computetimecursor;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Topicstats$Projects$Locations$Topics$Computetimecursor;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://pubsublite.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/topicStats/{+topic}:computeTimeCursor'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['topic'],
+        pathParams: ['topic'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ComputeTimeCursorResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ComputeTimeCursorResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Topicstats$Projects$Locations$Topics$Computeheadcursor
@@ -2756,5 +3118,17 @@ export namespace pubsublite_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ComputeMessageStatsRequest;
+  }
+  export interface Params$Resource$Topicstats$Projects$Locations$Topics$Computetimecursor
+    extends StandardParameters {
+    /**
+     * Required. The topic for which we should compute the cursor.
+     */
+    topic?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ComputeTimeCursorRequest;
   }
 }
