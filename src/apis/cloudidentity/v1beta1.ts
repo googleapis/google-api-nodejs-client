@@ -440,7 +440,7 @@ export namespace cloudidentity_v1beta1 {
      */
     managementState?: string | null;
     /**
-     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the DeviceUser in format: `devices/{device_id\}/deviceUsers/{user_id\}`, where user_id is the ID of the user associated with the user session.
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the DeviceUser in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where `device_user_id` uniquely identifies a user's use of a device.
      */
     name?: string | null;
     /**
@@ -804,7 +804,7 @@ export namespace cloudidentity_v1beta1 {
      */
     managementState?: string | null;
     /**
-     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the DeviceUser in format: `devices/{device_id\}/deviceUsers/{user_id\}`, where user_id is the ID of the user associated with the user session.
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the DeviceUser in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where `device_user_id` uniquely identifies a user's use of a device.
      */
     name?: string | null;
     /**
@@ -867,7 +867,7 @@ export namespace cloudidentity_v1beta1 {
      */
     groupKey?: Schema$EntityKey;
     /**
-     * Required. One or more label entries that apply to the Group. Currently supported labels contain a key with an empty value. Google Groups are the default type of group and have a label with a key of `cloudidentity.googleapis.com/groups.discussion_forum` and an empty value. Existing Google Groups can have an additional label with a key of `cloudidentity.googleapis.com/groups.security` and an empty value added to them. **This is an immutable change and the security label cannot be removed once added.** Dynamic groups have a label with a key of `cloudidentity.googleapis.com/groups.dynamic`. Identity-mapped groups for Cloud Search have a label with a key of `system/groups/external` and an empty value. Examples: {"cloudidentity.googleapis.com/groups.discussion_forum": ""\} or {"system/groups/external": ""\}.
+     * Required. One or more label entries that apply to the Group. Currently supported labels contain a key with an empty value. Google Groups are the default type of group and have a label with a key of `cloudidentity.googleapis.com/groups.discussion_forum` and an empty value. Existing Google Groups can have an additional label with a key of `cloudidentity.googleapis.com/groups.security` and an empty value added to them. **This is an immutable change and the security label cannot be removed once added.** Dynamic groups have a label with a key of `cloudidentity.googleapis.com/groups.dynamic`. Identity-mapped groups for Cloud Search have a label with a key of `system/groups/external` and an empty value.
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -875,7 +875,7 @@ export namespace cloudidentity_v1beta1 {
      */
     name?: string | null;
     /**
-     * Required. Immutable. The resource name of the entity under which this `Group` resides in the Cloud Identity resource hierarchy. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups.
+     * Required. Immutable. The resource name of the entity under which this `Group` resides in the Cloud Identity resource hierarchy. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups. The `customer_id` must begin with "C" (for example, 'C046psxkn').
      */
     parent?: string | null;
     /**
@@ -965,7 +965,7 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$ListGroupsResponse {
     /**
-     * The `Group`s under the specified `parent`.
+     * The `Group` resources under the specified `parent`.
      */
     groups?: Schema$Group[];
     /**
@@ -1039,7 +1039,7 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$MemberRelation {
     /**
-     * Resource name for this member if member is a GROUP, otherwise it is empty.
+     * Resource name for this member.
      */
     member?: string | null;
     /**
@@ -1170,7 +1170,7 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$SearchGroupsResponse {
     /**
-     * The `Group`s that match the search query.
+     * The `Group` resources that match the search query.
      */
     groups?: Schema$Group[];
     /**
@@ -1239,7 +1239,7 @@ export namespace cloudidentity_v1beta1 {
    */
   export interface Schema$UpdateMembershipRolesParams {
     /**
-     * The fully-qualified names of fields to update. May only contain the field `expiry_detail`.
+     * The fully-qualified names of fields to update. May only contain the field `expiry_detail.expire_time`.
      */
     fieldMask?: string | null;
     /**
@@ -1453,7 +1453,7 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
-     * Retrieves a UserInvitation resource. **Note:** New consumer accounts with the customer’s verified domain created within the previous 48 hours will not appear in the result. This delay also applies to newly-verified domains.
+     * Retrieves a UserInvitation resource. **Note:** New consumer accounts with the customer's verified domain created within the previous 48 hours will not appear in the result. This delay also applies to newly-verified domains.
      * @example
      * ```js
      * // Before running the sample:
@@ -1583,7 +1583,7 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
-     * Verifies whether a user account is eligible to receive a UserInvitation (is an unmanaged account). Eligibility is based on the following criteria: * the email address is a consumer account and it’s the primary email address of the account, and * the domain of the email address matches an existing verified Google Workspace or Cloud Identity domain If both conditions are met, the user is eligible. **Note:** This method is not supported for Workspace Essentials customers.
+     * Verifies whether a user account is eligible to receive a UserInvitation (is an unmanaged account). Eligibility is based on the following criteria: * the email address is a consumer account and it's the primary email address of the account, and * the domain of the email address matches an existing verified Google Workspace or Cloud Identity domain If both conditions are met, the user is eligible. **Note:** This method is not supported for Workspace Essentials customers.
      * @example
      * ```js
      * // Before running the sample:
@@ -1682,7 +1682,8 @@ export namespace cloudidentity_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Customers$Userinvitations$Isinvitableuser;
+        params =
+          {} as Params$Resource$Customers$Userinvitations$Isinvitableuser;
         options = {};
       }
 
@@ -1720,7 +1721,7 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
-     * Retrieves a list of UserInvitation resources. **Note:** New consumer accounts with the customer’s verified domain created within the previous 48 hours will not appear in the result. This delay also applies to newly-verified domains.
+     * Retrieves a list of UserInvitation resources. **Note:** New consumer accounts with the customer's verified domain created within the previous 48 hours will not appear in the result. This delay also applies to newly-verified domains.
      * @example
      * ```js
      * // Before running the sample:
@@ -4258,8 +4259,7 @@ export namespace cloudidentity_v1beta1 {
      *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
      *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientStates/{partner_id\}`, where `device_id` is the unique ID assigned to the Device, `device_user_id` is the unique ID assigned to the User and `partner_id` identifies the partner storing the data. To get the client state for devices belonging to your own organization, the `partnerId` is in the format: `customerId-*anystring*`. Where the `customerId` is your organization's customer ID and `anystring` is any suffix. This suffix is used in setting up Custom Access Levels in Context-Aware Access. You may use `my_customer` instead of the customer ID for devices managed by your own organization. You may specify `-` in place of the `{device_id\}`, so the ClientState resource name can be: `devices/-/deviceUsers/{device_user_resource_id\}/clientStates/{partner_id\}`.
-     *     name:
-     *       'devices/my-device/deviceUsers/my-deviceUser/clientStates/my-clientState',
+     *     name: 'devices/my-device/deviceUsers/my-deviceUser/clientStates/my-clientState',
      *   });
      *   console.log(res.data);
      *
@@ -4399,8 +4399,7 @@ export namespace cloudidentity_v1beta1 {
      *     // Optional. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
      *     // Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientState/{partner_id\}`, where partner_id corresponds to the partner storing the data.
-     *     name:
-     *       'devices/my-device/deviceUsers/my-deviceUser/clientStates/my-clientState',
+     *     name: 'devices/my-device/deviceUsers/my-deviceUser/clientStates/my-clientState',
      *     // Optional. Comma-separated list of fully qualified names of fields to be updated. If not specified, all updatable fields in ClientState are updated.
      *     updateMask: 'placeholder-value',
      *
@@ -4988,7 +4987,7 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
-     * Lists the `Group`s under a customer or namespace.
+     * Lists the `Group` resources under a customer or namespace.
      * @example
      * ```js
      * // Before running the sample:
@@ -5022,7 +5021,7 @@ export namespace cloudidentity_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous list request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource under which to list all `Group`s. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups.
+     *     // Required. The parent resource under which to list all `Group` resources. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups. The `customer_id` must begin with "C" (for example, 'C046psxkn').
      *     parent: 'placeholder-value',
      *     // The level of detail to be returned. If unspecified, defaults to `View.BASIC`.
      *     view: 'placeholder-value',
@@ -5422,7 +5421,7 @@ export namespace cloudidentity_v1beta1 {
     }
 
     /**
-     * Searches for `Group`s matching a specified query.
+     * Searches for `Group` resources matching a specified query.
      * @example
      * ```js
      * // Before running the sample:
@@ -5456,7 +5455,7 @@ export namespace cloudidentity_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous search request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id\}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).
+     *     // Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id\}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`). The `customer_id` must begin with "C" (for example, 'C046psxkn').
      *     query: 'placeholder-value',
      *     // The level of detail to be returned. If unspecified, defaults to `View.BASIC`.
      *     view: 'placeholder-value',
@@ -5600,7 +5599,7 @@ export namespace cloudidentity_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource under which to list all `Group`s. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups.
+     * Required. The parent resource under which to list all `Group` resources. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups. The `customer_id` must begin with "C" (for example, 'C046psxkn').
      */
     parent?: string;
     /**
@@ -5643,7 +5642,7 @@ export namespace cloudidentity_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id\}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).
+     * Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id\}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`). The `customer_id` must begin with "C" (for example, 'C046psxkn').
      */
     query?: string;
     /**
@@ -5764,7 +5763,8 @@ export namespace cloudidentity_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Groups$Memberships$Checktransitivemembership;
+        params =
+          {} as Params$Resource$Groups$Memberships$Checktransitivemembership;
         options = {};
       }
 
@@ -6846,7 +6846,7 @@ export namespace cloudidentity_v1beta1 {
      *     pageToken: 'placeholder-value',
      *     // [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id\}`, where `group_id` is always '-' as this API will search across all groups for a given member.
      *     parent: 'groups/my-group',
-     *     // Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Certain groups are uniquely identified by both a 'member_key_id' and a 'member_key_namespace', which requires an additional query input: 'member_key_namespace'. Example query: `member_key_id == 'member_key_id_value' && in labels`
+     *     // Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Identity-mapped groups are uniquely identified by both a `member_key_id` and a `member_key_namespace`, which requires an additional query input: `member_key_namespace`. Example query: `member_key_id == 'member_key_id_value' && in labels`
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6920,7 +6920,8 @@ export namespace cloudidentity_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Groups$Memberships$Searchtransitivegroups;
+        params =
+          {} as Params$Resource$Groups$Memberships$Searchtransitivegroups;
         options = {};
       }
 
@@ -6988,16 +6989,15 @@ export namespace cloudidentity_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudidentity.groups.memberships.searchTransitiveMemberships(
-     *     {
+     *   const res =
+     *     await cloudidentity.groups.memberships.searchTransitiveMemberships({
      *       // The default page size is 200 (max 1000).
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
      *       // [Resource name](https://cloud.google.com/apis/design/resource_names) of the group to search transitive memberships in. Format: `groups/{group_id\}`, where `group_id` is the unique ID assigned to the Group.
      *       parent: 'groups/my-group',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -7069,7 +7069,8 @@ export namespace cloudidentity_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Groups$Memberships$Searchtransitivememberships;
+        params =
+          {} as Params$Resource$Groups$Memberships$Searchtransitivememberships;
         options = {};
       }
 
@@ -7218,7 +7219,7 @@ export namespace cloudidentity_v1beta1 {
      */
     parent?: string;
     /**
-     * Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Certain groups are uniquely identified by both a 'member_key_id' and a 'member_key_namespace', which requires an additional query input: 'member_key_namespace'. Example query: `member_key_id == 'member_key_id_value' && in labels`
+     * Required. A CEL expression that MUST include member specification AND label(s). This is a `required` field. Users can search on label attributes of groups. CONTAINS match ('in') is supported on labels. Identity-mapped groups are uniquely identified by both a `member_key_id` and a `member_key_namespace`, which requires an additional query input: `member_key_namespace`. Example query: `member_key_id == 'member_key_id_value' && in labels`
      */
     query?: string;
   }
