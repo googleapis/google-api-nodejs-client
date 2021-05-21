@@ -463,7 +463,7 @@ export namespace gkehub_v1beta {
     errorMessage?: string | null;
   }
   /**
-   * Configuration for a single cluster. Intended to parallel the ConfigManagement CR.
+   * **Anthos Config Management**: Configuration for a single cluster. Intended to parallel the ConfigManagement CR.
    */
   export interface Schema$ConfigManagementMembershipSpec {
     /**
@@ -488,7 +488,7 @@ export namespace gkehub_v1beta {
     version?: string | null;
   }
   /**
-   * State for Anthos Config Management
+   * **Anthos Config Management**: State for a single cluster.
    */
   export interface Schema$ConfigManagementMembershipState {
     /**
@@ -842,7 +842,7 @@ export namespace gkehub_v1beta {
     state?: Schema$FeatureState;
   }
   /**
-   * Metering per-Membership Feature State.
+   * **Metering**: Per-Membership Feature State.
    */
   export interface Schema$MeteringMembershipState {
     /**
@@ -855,7 +855,7 @@ export namespace gkehub_v1beta {
     preciseLastMeasuredClusterVcpuCapacity?: number | null;
   }
   /**
-   * FeatureSpec contains the input for the MultiClusterIngress feature.
+   * **Multi-cluster Ingress**: The configuration for the MultiClusterIngress feature.
    */
   export interface Schema$MultiClusterIngressFeatureSpec {
     /**
@@ -2408,7 +2408,8 @@ export namespace gkehub_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Features$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Features$Testiampermissions;
         options = {};
       }
 
@@ -2671,7 +2672,8 @@ export namespace gkehub_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Memberships$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Getiampolicy;
         options = {};
       }
 
@@ -2813,7 +2815,8 @@ export namespace gkehub_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Memberships$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Setiampolicy;
         options = {};
       }
 
@@ -2958,7 +2961,8 @@ export namespace gkehub_v1beta {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Memberships$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Memberships$Testiampermissions;
         options = {};
       }
 

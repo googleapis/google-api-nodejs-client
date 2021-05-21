@@ -670,7 +670,7 @@
       }
     }
   },
-  "revision": "20210423",
+  "revision": "20210512",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -750,7 +750,7 @@
       "type": "object"
     },
     "CloudAuditLoggingFeatureSpec": {
-      "description": "Spec for Audit Logging Allowlisting.",
+      "description": "**Cloud Audit Logging**: Spec for Audit Logging Allowlisting.",
       "id": "CloudAuditLoggingFeatureSpec",
       "properties": {
         "allowlistedServiceAccounts": {
@@ -1232,7 +1232,7 @@
       "type": "object"
     },
     "ConfigManagementMembershipSpec": {
-      "description": "Configuration for a single cluster. Intended to parallel the ConfigManagement CR.",
+      "description": "**Anthos Config Management**: Configuration for a single cluster. Intended to parallel the ConfigManagement CR.",
       "id": "ConfigManagementMembershipSpec",
       "properties": {
         "binauthz": {
@@ -1259,7 +1259,7 @@
       "type": "object"
     },
     "ConfigManagementMembershipState": {
-      "description": "State for Anthos Config Management",
+      "description": "**Anthos Config Management**: State for a single cluster.",
       "id": "ConfigManagementMembershipState",
       "properties": {
         "binauthzState": {
@@ -1773,7 +1773,7 @@
       "type": "object"
     },
     "MeteringMembershipState": {
-      "description": "Metering per-Membership Feature State.",
+      "description": "**Metering**: Per-Membership Feature State.",
       "id": "MeteringMembershipState",
       "properties": {
         "lastMeasurementTime": {
@@ -1790,7 +1790,7 @@
       "type": "object"
     },
     "MultiClusterIngressFeatureSpec": {
-      "description": "FeatureSpec contains the input for the MultiClusterIngress feature.",
+      "description": "**Multi-cluster Ingress**: The configuration for the MultiClusterIngress feature.",
       "id": "MultiClusterIngressFeatureSpec",
       "properties": {
         "billing": {
@@ -1986,7 +1986,7 @@
       "type": "object"
     },
     "ServiceMeshFeatureState": {
-      "description": "FeatureState describes the state of the Service Mesh Hub Feature as analyzed by the Service Mesh Hub Controller, for the whole Hub.",
+      "description": "**Service Mesh**: State for the whole Hub, as analyzed by the Service Mesh Hub Controller.",
       "id": "ServiceMeshFeatureState",
       "properties": {
         "analysisMessages": {
@@ -2001,7 +2001,7 @@
       "type": "object"
     },
     "ServiceMeshMembershipState": {
-      "description": "MembershipState describes the state of the Service Mesh Hub Feature as analyzed by the Service Mesh Hub Controller, for single Membership.",
+      "description": "**Service Mesh**: State for a single Membership, as analyzed by the Service Mesh Hub Controller.",
       "id": "ServiceMeshMembershipState",
       "properties": {
         "analysisMessages": {

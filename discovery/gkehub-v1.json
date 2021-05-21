@@ -180,7 +180,7 @@
             "memberships": {
               "methods": {
                 "create": {
-                  "description": "Adds a new Membership.",
+                  "description": "Creates a new Membership. **This is currently only supported for GKE clusters on Google Cloud**. To register other clusters, follow the instructions at https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/memberships",
                   "httpMethod": "POST",
                   "id": "gkehub.projects.locations.memberships.create",
@@ -218,7 +218,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Removes a Membership.",
+                  "description": "Removes a Membership. **This is currently only supported for GKE clusters on Google Cloud**. To unregister other clusters, follow the instructions at https://cloud.google.com/anthos/multicluster-management/connect/unregistering-a-cluster.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/memberships/{membershipsId}",
                   "httpMethod": "DELETE",
                   "id": "gkehub.projects.locations.memberships.delete",
@@ -248,7 +248,7 @@
                   ]
                 },
                 "generateConnectManifest": {
-                  "description": "Generates the manifest for deployment of the GKE connect agent.",
+                  "description": "Generates the manifest for deployment of the GKE connect agent. **This method is used internally by Google-provided libraries.** Most clients should not need to call this method directly.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/memberships/{membershipsId}:generateConnectManifest",
                   "httpMethod": "GET",
                   "id": "gkehub.projects.locations.memberships.generateConnectManifest",
@@ -631,7 +631,7 @@
       }
     }
   },
-  "revision": "20210409",
+  "revision": "20210507",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
