@@ -4685,8 +4685,7 @@ export namespace ml_v1 {
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.trials.addMeasurement({
      *     // Required. The trial name.
-     *     name:
-     *       'projects/my-project/locations/my-location/studies/my-studie/trials/my-trial',
+     *     name: 'projects/my-project/locations/my-location/studies/my-studie/trials/my-trial',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -4775,7 +4774,8 @@ export namespace ml_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement;
+        params =
+          {} as Params$Resource$Projects$Locations$Studies$Trials$Addmeasurement;
         options = {};
       }
 
@@ -4837,19 +4837,17 @@ export namespace ml_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await ml.projects.locations.studies.trials.checkEarlyStoppingState(
-     *     {
+     *   const res =
+     *     await ml.projects.locations.studies.trials.checkEarlyStoppingState({
      *       // Required. The trial name.
-     *       name:
-     *         'projects/my-project/locations/my-location/studies/my-studie/trials/my-trial',
+     *       name: 'projects/my-project/locations/my-location/studies/my-studie/trials/my-trial',
      *
      *       // Request body metadata
      *       requestBody: {
      *         // request body parameters
      *         // {}
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4924,7 +4922,8 @@ export namespace ml_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate;
+        params =
+          {} as Params$Resource$Projects$Locations$Studies$Trials$Checkearlystoppingstate;
         options = {};
       }
 
@@ -4990,8 +4989,7 @@ export namespace ml_v1 {
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.trials.complete({
      *     // Required. The trial name.metat
-     *     name:
-     *       'projects/my-project/locations/my-location/studies/my-studie/trials/my-trial',
+     *     name: 'projects/my-project/locations/my-location/studies/my-studie/trials/my-trial',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -5082,7 +5080,8 @@ export namespace ml_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Studies$Trials$Complete;
+        params =
+          {} as Params$Resource$Projects$Locations$Studies$Trials$Complete;
         options = {};
       }
 
@@ -5306,8 +5305,7 @@ export namespace ml_v1 {
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.trials.delete({
      *     // Required. The trial name.
-     *     name:
-     *       'projects/my-project/locations/my-location/studies/my-studie/trials/my-trial',
+     *     name: 'projects/my-project/locations/my-location/studies/my-studie/trials/my-trial',
      *   });
      *   console.log(res.data);
      *
@@ -5436,8 +5434,7 @@ export namespace ml_v1 {
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.trials.get({
      *     // Required. The trial name.
-     *     name:
-     *       'projects/my-project/locations/my-location/studies/my-studie/trials/my-trial',
+     *     name: 'projects/my-project/locations/my-location/studies/my-studie/trials/my-trial',
      *   });
      *   console.log(res.data);
      *
@@ -5793,7 +5790,8 @@ export namespace ml_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials;
+        params =
+          {} as Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials;
         options = {};
       }
 
@@ -5859,8 +5857,7 @@ export namespace ml_v1 {
      *   // Do the magic
      *   const res = await ml.projects.locations.studies.trials.stop({
      *     // Required. The trial name.
-     *     name:
-     *       'projects/my-project/locations/my-location/studies/my-studie/trials/my-trial',
+     *     name: 'projects/my-project/locations/my-location/studies/my-studie/trials/my-trial',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -6091,7 +6088,8 @@ export namespace ml_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Studies$Trials$Suggest;
+        params =
+          {} as Params$Resource$Projects$Locations$Studies$Trials$Suggest;
         options = {};
       }
 
