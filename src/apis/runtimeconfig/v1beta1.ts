@@ -1792,8 +1792,8 @@ export namespace runtimeconfig_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await runtimeconfig.projects.configs.operations.testIamPermissions(
-     *     {
+     *   const res =
+     *     await runtimeconfig.projects.configs.operations.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource: 'projects/my-project/configs/my-config/operations/.*',
      *
@@ -1804,8 +1804,7 @@ export namespace runtimeconfig_v1beta1 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1876,7 +1875,8 @@ export namespace runtimeconfig_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Configs$Operations$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Configs$Operations$Testiampermissions;
         options = {};
       }
 
@@ -2615,7 +2615,8 @@ export namespace runtimeconfig_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Configs$Variables$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Configs$Variables$Testiampermissions;
         options = {};
       }
 
@@ -3713,7 +3714,8 @@ export namespace runtimeconfig_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Configs$Waiters$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Configs$Waiters$Testiampermissions;
         options = {};
       }
 
