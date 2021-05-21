@@ -778,7 +778,7 @@ export namespace cloudtasks_v2 {
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
      *     name: 'projects/my-project',
-     *     // The maximum number of results to return. If not set, the service will select a default.
+     *     // The maximum number of results to return. If not set, the service selects a default.
      *     pageSize: 'placeholder-value',
      *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      *     pageToken: 'placeholder-value',
@@ -907,7 +907,7 @@ export namespace cloudtasks_v2 {
      */
     name?: string;
     /**
-     * The maximum number of results to return. If not set, the service will select a default.
+     * The maximum number of results to return. If not set, the service selects a default.
      */
     pageSize?: number;
     /**
@@ -2416,7 +2416,8 @@ export namespace cloudtasks_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Queues$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Queues$Testiampermissions;
         options = {};
       }
 
@@ -2769,8 +2770,7 @@ export namespace cloudtasks_v2 {
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.tasks.delete({
      *     // Required. The task name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
-     *     name:
-     *       'projects/my-project/locations/my-location/queues/my-queue/tasks/my-task',
+     *     name: 'projects/my-project/locations/my-location/queues/my-queue/tasks/my-task',
      *   });
      *   console.log(res.data);
      *
@@ -2894,8 +2894,7 @@ export namespace cloudtasks_v2 {
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.tasks.get({
      *     // Required. The task name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
-     *     name:
-     *       'projects/my-project/locations/my-location/queues/my-queue/tasks/my-task',
+     *     name: 'projects/my-project/locations/my-location/queues/my-queue/tasks/my-task',
      *     // The response_view specifies which subset of the Task will be returned. By default response_view is BASIC; not all information is retrieved by default because some data, such as payloads, might be desirable to return only when needed because of its large size or because of the sensitivity of data that it contains. Authorization for FULL requires `cloudtasks.tasks.fullView` [Google IAM](https://cloud.google.com/iam/) permission on the Task resource.
      *     responseView: 'placeholder-value',
      *   });
@@ -3172,8 +3171,7 @@ export namespace cloudtasks_v2 {
      *   // Do the magic
      *   const res = await cloudtasks.projects.locations.queues.tasks.run({
      *     // Required. The task name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID/tasks/TASK_ID`
-     *     name:
-     *       'projects/my-project/locations/my-location/queues/my-queue/tasks/my-task',
+     *     name: 'projects/my-project/locations/my-location/queues/my-queue/tasks/my-task',
      *
      *     // Request body metadata
      *     requestBody: {
