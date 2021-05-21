@@ -1933,7 +1933,8 @@ export namespace pubsub_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Subscriptions$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Subscriptions$Testiampermissions;
         options = {};
       }
 
