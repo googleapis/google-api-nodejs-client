@@ -199,7 +199,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "A string for filtering Operations. In v2alpha1, the following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels.\"key with space\" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true. In v1 and v1alpha2, the following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `>=` and/or `<=` operators. * status: Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only one status may be specified. * labels.key where key is a label key. Examples: * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`",
+                  "description": "A string for filtering Operations. In v2alpha1, the following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels.\"key with space\" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true. Examples: * `projectId = my-project AND createTime >= 1432140000` * `projectId = my-project AND createTime >= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`",
                   "location": "query",
                   "type": "string"
                 },
@@ -301,7 +301,7 @@
       }
     }
   },
-  "revision": "20210420",
+  "revision": "20210512",
   "rootUrl": "https://genomics.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -490,32 +490,6 @@
           },
           "description": "The metadata that describes the operation assigned to the worker.",
           "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "ComputeEngine": {
-      "description": "Describes a Compute Engine resource that is being managed by a running pipeline.",
-      "id": "ComputeEngine",
-      "properties": {
-        "diskNames": {
-          "description": "The names of the disks that were created for this pipeline.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "instanceName": {
-          "description": "The instance on which the operation is running.",
-          "type": "string"
-        },
-        "machineType": {
-          "description": "The machine type of the instance.",
-          "type": "string"
-        },
-        "zone": {
-          "description": "The availability zone in which the instance resides.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -872,87 +846,6 @@
       },
       "type": "object"
     },
-    "OperationEvent": {
-      "description": "An event that occurred during an Operation.",
-      "id": "OperationEvent",
-      "properties": {
-        "description": {
-          "description": "Required description of event.",
-          "type": "string"
-        },
-        "endTime": {
-          "description": "Optional time of when event finished. An event can have a start time and no finish time. If an event has a finish time, there must be a start time.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "startTime": {
-          "description": "Optional time of when event started.",
-          "format": "google-datetime",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "OperationMetadata": {
-      "description": "Metadata describing an Operation.",
-      "id": "OperationMetadata",
-      "properties": {
-        "clientId": {
-          "description": "This field is deprecated. Use `labels` instead. Optionally provided by the caller when submitting the request that creates the operation.",
-          "type": "string"
-        },
-        "createTime": {
-          "description": "The time at which the job was submitted to the Genomics service.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "endTime": {
-          "description": "The time at which the job stopped running.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "events": {
-          "description": "Optional event messages that were generated during the job's execution. This also contains any warnings that were generated during import or export.",
-          "items": {
-            "$ref": "OperationEvent"
-          },
-          "type": "array"
-        },
-        "labels": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Optionally provided by the caller when submitting the request that creates the operation.",
-          "type": "object"
-        },
-        "projectId": {
-          "description": "The Google Cloud Project in which the job is scoped.",
-          "type": "string"
-        },
-        "request": {
-          "additionalProperties": {
-            "description": "Properties of the object. Contains field @type with type URL.",
-            "type": "any"
-          },
-          "description": "The original request that started the operation. Note that this will be in current version of the API. If the operation was started with v1beta2 API and a GetOperation is performed on v1 API, a v1 request will be returned.",
-          "type": "object"
-        },
-        "runtimeMetadata": {
-          "additionalProperties": {
-            "description": "Properties of the object. Contains field @type with type URL.",
-            "type": "any"
-          },
-          "description": "Runtime metadata on this Operation.",
-          "type": "object"
-        },
-        "startTime": {
-          "description": "The time at which the job began to run.",
-          "format": "google-datetime",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "PersistentDisk": {
       "description": "Configuration for a persistent disk to be attached to the VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations.",
       "id": "PersistentDisk",
@@ -1084,17 +977,6 @@
       "description": "The response to the RunPipeline method, returned in the operation's result field on success.",
       "id": "RunPipelineResponse",
       "properties": {},
-      "type": "object"
-    },
-    "RuntimeMetadata": {
-      "description": "Runtime metadata that will be populated in the runtimeMetadata field of the Operation associated with a RunPipeline execution.",
-      "id": "RuntimeMetadata",
-      "properties": {
-        "computeEngine": {
-          "$ref": "ComputeEngine",
-          "description": "Execution information specific to Google Compute Engine."
-        }
-      },
       "type": "object"
     },
     "Secret": {
