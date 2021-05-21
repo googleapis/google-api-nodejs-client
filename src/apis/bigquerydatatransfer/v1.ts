@@ -1485,19 +1485,17 @@ export namespace bigquerydatatransfer_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigquerydatatransfer.projects.locations.dataSources.checkValidCreds(
-     *     {
+     *   const res =
+     *     await bigquerydatatransfer.projects.locations.dataSources.checkValidCreds({
      *       // Required. The data source in the form: `projects/{project_id\}/dataSources/{data_source_id\}` or `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`.
-     *       name:
-     *         'projects/my-project/locations/my-location/dataSources/my-dataSource',
+     *       name: 'projects/my-project/locations/my-location/dataSources/my-dataSource',
      *
      *       // Request body metadata
      *       requestBody: {
      *         // request body parameters
      *         // {}
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1568,7 +1566,8 @@ export namespace bigquerydatatransfer_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasources$Checkvalidcreds;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasources$Checkvalidcreds;
         options = {};
       }
 
@@ -1969,8 +1968,8 @@ export namespace bigquerydatatransfer_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.create(
-     *     {
+     *   const res =
+     *     await bigquerydatatransfer.projects.locations.transferConfigs.create({
      *       // Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      *       authorizationCode: 'placeholder-value',
      *       // Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id\}/locations/{location_id\} or projects/{project_id\}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
@@ -2002,8 +2001,7 @@ export namespace bigquerydatatransfer_v1 {
      *         //   "userId": "my_userId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2082,7 +2080,8 @@ export namespace bigquerydatatransfer_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Transferconfigs$Create;
         options = {};
       }
 
@@ -2148,13 +2147,11 @@ export namespace bigquerydatatransfer_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.delete(
-     *     {
+     *   const res =
+     *     await bigquerydatatransfer.projects.locations.transferConfigs.delete({
      *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
-     *       name:
-     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2216,7 +2213,8 @@ export namespace bigquerydatatransfer_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Transferconfigs$Delete;
         options = {};
       }
 
@@ -2283,8 +2281,7 @@ export namespace bigquerydatatransfer_v1 {
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.get(
      *     {
      *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
-     *       name:
-     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *       name: 'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
      *     }
      *   );
      *   console.log(res.data);
@@ -2429,8 +2426,8 @@ export namespace bigquerydatatransfer_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.list(
-     *     {
+     *   const res =
+     *     await bigquerydatatransfer.projects.locations.transferConfigs.list({
      *       // When specified, only configurations of requested data sources are returned.
      *       dataSourceIds: 'placeholder-value',
      *       // Page size. The default page size is the maximum value of 1000 results.
@@ -2439,8 +2436,7 @@ export namespace bigquerydatatransfer_v1 {
      *       pageToken: 'placeholder-value',
      *       // Required. The BigQuery project id for which data sources should be returned: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
      *       parent: 'projects/my-project/locations/my-location',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2575,13 +2571,12 @@ export namespace bigquerydatatransfer_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.patch(
-     *     {
+     *   const res =
+     *     await bigquerydatatransfer.projects.locations.transferConfigs.patch({
      *       // Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      *       authorizationCode: 'placeholder-value',
      *       // The resource name of the transfer config. Transfer config names have the form `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. Where `config_id` is usually a uuid, even though it is not guaranteed or required. The name is ignored when creating a transfer config.
-     *       name:
-     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *       name: 'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
      *       // Optional service account name. If this field is set and "service_account_name" is set in update_mask, transfer config will be updated to use this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
      *       serviceAccountName: 'placeholder-value',
      *       // Required. Required list of fields to be updated in this request.
@@ -2611,8 +2606,7 @@ export namespace bigquerydatatransfer_v1 {
      *         //   "userId": "my_userId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2754,8 +2748,8 @@ export namespace bigquerydatatransfer_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns(
-     *     {
+     *   const res =
+     *     await bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns({
      *       // Required. Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      *       parent:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
@@ -2768,8 +2762,7 @@ export namespace bigquerydatatransfer_v1 {
      *         //   "startTime": "my_startTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2840,7 +2833,8 @@ export namespace bigquerydatatransfer_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns;
+        params =
+          {} as Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns;
         options = {};
       }
 
@@ -2908,22 +2902,23 @@ export namespace bigquerydatatransfer_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns(
-     *     {
-     *       // Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
+     *   const res =
+     *     await bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns(
+     *       {
+     *         // Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "requestedRunTime": "my_requestedRunTime",
-     *         //   "requestedTimeRange": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "requestedRunTime": "my_requestedRunTime",
+     *           //   "requestedTimeRange": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2994,7 +2989,8 @@ export namespace bigquerydatatransfer_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns;
+        params =
+          {} as Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns;
         options = {};
       }
 
@@ -3149,9 +3145,10 @@ export namespace bigquerydatatransfer_v1 {
     transferLogs: Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.transferLogs = new Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs(
-        this.context
-      );
+      this.transferLogs =
+        new Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs(
+          this.context
+        );
     }
 
     /**
@@ -3183,13 +3180,11 @@ export namespace bigquerydatatransfer_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.delete(
-     *     {
+     *   const res =
+     *     await bigquerydatatransfer.projects.locations.transferConfigs.runs.delete({
      *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
-     *       name:
-     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3251,7 +3246,8 @@ export namespace bigquerydatatransfer_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete;
         options = {};
       }
 
@@ -3315,13 +3311,11 @@ export namespace bigquerydatatransfer_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.get(
-     *     {
+     *   const res =
+     *     await bigquerydatatransfer.projects.locations.transferConfigs.runs.get({
      *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
-     *       name:
-     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3399,7 +3393,8 @@ export namespace bigquerydatatransfer_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Runs$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Transferconfigs$Runs$Get;
         options = {};
       }
 
@@ -3463,8 +3458,8 @@ export namespace bigquerydatatransfer_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.list(
-     *     {
+     *   const res =
+     *     await bigquerydatatransfer.projects.locations.transferConfigs.runs.list({
      *       // Page size. The default page size is the maximum value of 1000 results.
      *       pageSize: 'placeholder-value',
      *       // Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
@@ -3476,8 +3471,7 @@ export namespace bigquerydatatransfer_v1 {
      *       runAttempt: 'placeholder-value',
      *       // When specified, only transfer runs with requested states are returned.
      *       states: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3547,7 +3541,8 @@ export namespace bigquerydatatransfer_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Runs$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Transferconfigs$Runs$List;
         options = {};
       }
 
@@ -3656,19 +3651,20 @@ export namespace bigquerydatatransfer_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list(
-     *     {
-     *       // Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
-     *       messageTypes: 'placeholder-value',
-     *       // Page size. The default page size is the maximum value of 1000 results.
-     *       pageSize: 'placeholder-value',
-     *       // Pagination token, which can be used to request a specific page of `ListTransferLogsRequest` list results. For multiple-page results, `ListTransferLogsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     *       pageToken: 'placeholder-value',
-     *       // Required. Transfer run name in the form: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
-     *       parent:
-     *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
-     *     }
-     *   );
+     *   const res =
+     *     await bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list(
+     *       {
+     *         // Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
+     *         messageTypes: 'placeholder-value',
+     *         // Page size. The default page size is the maximum value of 1000 results.
+     *         pageSize: 'placeholder-value',
+     *         // Pagination token, which can be used to request a specific page of `ListTransferLogsRequest` list results. For multiple-page results, `ListTransferLogsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Transfer run name in the form: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3738,7 +3734,8 @@ export namespace bigquerydatatransfer_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List;
         options = {};
       }
 
@@ -4753,8 +4750,8 @@ export namespace bigquerydatatransfer_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigquerydatatransfer.projects.transferConfigs.startManualRuns(
-     *     {
+     *   const res =
+     *     await bigquerydatatransfer.projects.transferConfigs.startManualRuns({
      *       // Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      *       parent: 'projects/my-project/transferConfigs/my-transferConfig',
      *
@@ -4766,8 +4763,7 @@ export namespace bigquerydatatransfer_v1 {
      *         //   "requestedTimeRange": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4993,9 +4989,8 @@ export namespace bigquerydatatransfer_v1 {
     transferLogs: Resource$Projects$Transferconfigs$Runs$Transferlogs;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.transferLogs = new Resource$Projects$Transferconfigs$Runs$Transferlogs(
-        this.context
-      );
+      this.transferLogs =
+        new Resource$Projects$Transferconfigs$Runs$Transferlogs(this.context);
     }
 
     /**
@@ -5491,8 +5486,8 @@ export namespace bigquerydatatransfer_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list(
-     *     {
+     *   const res =
+     *     await bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list({
      *       // Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
      *       messageTypes: 'placeholder-value',
      *       // Page size. The default page size is the maximum value of 1000 results.
@@ -5502,8 +5497,7 @@ export namespace bigquerydatatransfer_v1 {
      *       // Required. Transfer run name in the form: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      *       parent:
      *         'projects/my-project/transferConfigs/my-transferConfig/runs/my-run',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5573,7 +5567,8 @@ export namespace bigquerydatatransfer_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List;
+        params =
+          {} as Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List;
         options = {};
       }
 
