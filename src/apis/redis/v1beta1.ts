@@ -276,6 +276,14 @@ export namespace redis_v1beta1 {
      */
     locationId?: string | null;
     /**
+     * Optional. The maintenance policy for the instance. If not provided, maintenance events can be performed at any time.
+     */
+    maintenancePolicy?: Schema$MaintenancePolicy;
+    /**
+     * Output only. Date and time of upcoming maintenance events which have been scheduled.
+     */
+    maintenanceSchedule?: Schema$MaintenanceSchedule;
+    /**
      * Required. Redis memory size in GiB.
      */
     memorySizeGb?: number | null;
@@ -402,6 +410,48 @@ export namespace redis_v1beta1 {
     name?: string | null;
   }
   /**
+   * Maintenance policy for an instance.
+   */
+  export interface Schema$MaintenancePolicy {
+    /**
+     * Output only. The time when the policy was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Description of what this policy is for. Create/Update methods return INVALID_ARGUMENT if the length is greater than 512.
+     */
+    description?: string | null;
+    /**
+     * Output only. The time when the policy was last updated.
+     */
+    updateTime?: string | null;
+    /**
+     * Optional. Maintenance window that is applied to resources covered by this policy. Minimum 1. For the current version, the maximum number of weekly_window is expected to be one.
+     */
+    weeklyMaintenanceWindow?: Schema$WeeklyMaintenanceWindow[];
+  }
+  /**
+   * Upcoming maintenance schedule. If no maintenance is scheduled, fields are not populated.
+   */
+  export interface Schema$MaintenanceSchedule {
+    /**
+     * If the scheduled maintenance can be rescheduled, default is true.
+     */
+    canReschedule?: boolean | null;
+    /**
+     * Output only. The end time of any upcoming scheduled maintenance for this instance.
+     */
+    endTime?: string | null;
+    /**
+     * Output only. The time deadline any schedule start time cannot go beyond, including reschedule.
+     */
+    scheduleDeadlineTime?: string | null;
+    /**
+     * Output only. The start time of any upcoming scheduled maintenance for this instance.
+     */
+    startTime?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -436,6 +486,19 @@ export namespace redis_v1beta1 {
     gcsDestination?: Schema$GcsDestination;
   }
   /**
+   * Request for RescheduleMaintenance.
+   */
+  export interface Schema$RescheduleMaintenanceRequest {
+    /**
+     * Required. If reschedule type is SPECIFIC_TIME, must set up schedule_time as well.
+     */
+    rescheduleType?: string | null;
+    /**
+     * Optional. Timestamp when the maintenance shall be rescheduled to if reschedule_type=SPECIFIC_TIME, in RFC 3339 format, for example `2012-11-15T16:19:00.094Z`.
+     */
+    scheduleTime?: string | null;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -451,6 +514,27 @@ export namespace redis_v1beta1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$TimeOfDay {
+    /**
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Minutes of hour of day. Must be from 0 to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
   }
   /**
    * TlsCertificate Resource
@@ -485,6 +569,23 @@ export namespace redis_v1beta1 {
      * Required. Specifies the target version of Redis software to upgrade to.
      */
     redisVersion?: string | null;
+  }
+  /**
+   * Time window in which disruptive maintenance updates occur. Non-disruptive updates can occur inside or outside this window.
+   */
+  export interface Schema$WeeklyMaintenanceWindow {
+    /**
+     * Required. The day of week that maintenance updates occur.
+     */
+    day?: string | null;
+    /**
+     * Output only. Duration of the maintenance window. The current window is fixed at 3 hours.
+     */
+    duration?: string | null;
+    /**
+     * Required. Start time of the window in UTC time.
+     */
+    startTime?: Schema$TimeOfDay;
   }
 
   export class Resource$Projects {
@@ -859,6 +960,8 @@ export namespace redis_v1beta1 {
      *       //   "host": "my_host",
      *       //   "labels": {},
      *       //   "locationId": "my_locationId",
+     *       //   "maintenancePolicy": {},
+     *       //   "maintenanceSchedule": {},
      *       //   "memorySizeGb": 0,
      *       //   "name": "my_name",
      *       //   "persistenceIamIdentity": "my_persistenceIamIdentity",
@@ -1433,6 +1536,8 @@ export namespace redis_v1beta1 {
      *   //   "host": "my_host",
      *   //   "labels": {},
      *   //   "locationId": "my_locationId",
+     *   //   "maintenancePolicy": {},
+     *   //   "maintenanceSchedule": {},
      *   //   "memorySizeGb": 0,
      *   //   "name": "my_name",
      *   //   "persistenceIamIdentity": "my_persistenceIamIdentity",
@@ -1634,7 +1739,8 @@ export namespace redis_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Getauthstring;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Getauthstring;
         options = {};
       }
 
@@ -1997,6 +2103,8 @@ export namespace redis_v1beta1 {
      *       //   "host": "my_host",
      *       //   "labels": {},
      *       //   "locationId": "my_locationId",
+     *       //   "maintenancePolicy": {},
+     *       //   "maintenanceSchedule": {},
      *       //   "memorySizeGb": 0,
      *       //   "name": "my_name",
      *       //   "persistenceIamIdentity": "my_persistenceIamIdentity",
@@ -2094,6 +2202,151 @@ export namespace redis_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Reschedule maintenance for a given instance in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/redis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const redis = google.redis('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await redis.projects.locations.instances.rescheduleMaintenance({
+     *     // Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "rescheduleType": "my_rescheduleType",
+     *       //   "scheduleTime": "my_scheduleTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    rescheduleMaintenance(
+      params: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    rescheduleMaintenance(
+      params?: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    rescheduleMaintenance(
+      params: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    rescheduleMaintenance(
+      params: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleMaintenance(
+      params: Params$Resource$Projects$Locations$Instances$Reschedulemaintenance,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleMaintenance(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    rescheduleMaintenance(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Reschedulemaintenance
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Reschedulemaintenance;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Reschedulemaintenance;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:rescheduleMaintenance').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
           },
           options
         ),
@@ -2357,6 +2610,18 @@ export namespace redis_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$Instance;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Reschedulemaintenance
+    extends StandardParameters {
+    /**
+     * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RescheduleMaintenanceRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Upgrade
     extends StandardParameters {
