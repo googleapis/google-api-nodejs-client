@@ -713,6 +713,15 @@ export namespace remotebuildexecution_v1alpha {
     cpuUsedPercent?: number | null;
     diskUsage?: Schema$GoogleDevtoolsRemotebuildbotResourceUsageStat;
     memoryUsage?: Schema$GoogleDevtoolsRemotebuildbotResourceUsageStat;
+    totalDiskIoStats?: Schema$GoogleDevtoolsRemotebuildbotResourceUsageIOStats;
+  }
+  export interface Schema$GoogleDevtoolsRemotebuildbotResourceUsageIOStats {
+    readBytesCount?: string | null;
+    readCount?: string | null;
+    readTimeMs?: string | null;
+    writeBytesCount?: string | null;
+    writeCount?: string | null;
+    writeTimeMs?: string | null;
   }
   export interface Schema$GoogleDevtoolsRemotebuildbotResourceUsageStat {
     total?: string | null;
