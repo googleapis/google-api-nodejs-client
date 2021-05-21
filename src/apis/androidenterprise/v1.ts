@@ -142,15 +142,12 @@ export namespace androidenterprise_v1 {
       this.grouplicenses = new Resource$Grouplicenses(this.context);
       this.grouplicenseusers = new Resource$Grouplicenseusers(this.context);
       this.installs = new Resource$Installs(this.context);
-      this.managedconfigurationsfordevice = new Resource$Managedconfigurationsfordevice(
-        this.context
-      );
-      this.managedconfigurationsforuser = new Resource$Managedconfigurationsforuser(
-        this.context
-      );
-      this.managedconfigurationssettings = new Resource$Managedconfigurationssettings(
-        this.context
-      );
+      this.managedconfigurationsfordevice =
+        new Resource$Managedconfigurationsfordevice(this.context);
+      this.managedconfigurationsforuser =
+        new Resource$Managedconfigurationsforuser(this.context);
+      this.managedconfigurationssettings =
+        new Resource$Managedconfigurationssettings(this.context);
       this.permissions = new Resource$Permissions(this.context);
       this.products = new Resource$Products(this.context);
       this.serviceaccountkeys = new Resource$Serviceaccountkeys(this.context);
