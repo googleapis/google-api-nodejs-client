@@ -426,7 +426,7 @@ export namespace iam_v1 {
      */
     allowedAudiences?: string[] | null;
     /**
-     * Required. The OIDC issuer URL.
+     * Required. The OIDC issuer URL. Must be an HTTPS endpoint.
      */
     issuerUri?: string | null;
   }
@@ -2352,9 +2352,8 @@ export namespace iam_v1 {
     workloadIdentityPools: Resource$Projects$Locations$Workloadidentitypools;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.workloadIdentityPools = new Resource$Projects$Locations$Workloadidentitypools(
-        this.context
-      );
+      this.workloadIdentityPools =
+        new Resource$Projects$Locations$Workloadidentitypools(this.context);
     }
   }
 
@@ -2364,12 +2363,14 @@ export namespace iam_v1 {
     providers: Resource$Projects$Locations$Workloadidentitypools$Providers;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.operations = new Resource$Projects$Locations$Workloadidentitypools$Operations(
-        this.context
-      );
-      this.providers = new Resource$Projects$Locations$Workloadidentitypools$Providers(
-        this.context
-      );
+      this.operations =
+        new Resource$Projects$Locations$Workloadidentitypools$Operations(
+          this.context
+        );
+      this.providers =
+        new Resource$Projects$Locations$Workloadidentitypools$Providers(
+          this.context
+        );
     }
 
     /**
@@ -2483,7 +2484,8 @@ export namespace iam_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadidentitypools$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Create;
         options = {};
       }
 
@@ -2547,8 +2549,7 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res = await iam.projects.locations.workloadIdentityPools.delete({
      *     // Required. The name of the pool to delete.
-     *     name:
-     *       'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
+     *     name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
      *   });
      *   console.log(res.data);
      *
@@ -2617,7 +2618,8 @@ export namespace iam_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadidentitypools$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Delete;
         options = {};
       }
 
@@ -2678,8 +2680,7 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res = await iam.projects.locations.workloadIdentityPools.get({
      *     // Required. The name of the pool to retrieve.
-     *     name:
-     *       'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
+     *     name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
      *   });
      *   console.log(res.data);
      *
@@ -2753,7 +2754,8 @@ export namespace iam_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadidentitypools$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Get;
         options = {};
       }
 
@@ -2893,7 +2895,8 @@ export namespace iam_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadidentitypools$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$List;
         options = {};
       }
 
@@ -2959,8 +2962,7 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res = await iam.projects.locations.workloadIdentityPools.patch({
      *     // Output only. The resource name of the pool.
-     *     name:
-     *       'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
+     *     name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
      *     // Required. The list of fields update.
      *     updateMask: 'placeholder-value',
      *
@@ -3043,7 +3045,8 @@ export namespace iam_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadidentitypools$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Patch;
         options = {};
       }
 
@@ -3104,8 +3107,7 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res = await iam.projects.locations.workloadIdentityPools.undelete({
      *     // Required. The name of the pool to undelete.
-     *     name:
-     *       'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
+     *     name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -3180,7 +3182,8 @@ export namespace iam_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadidentitypools$Undelete;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Undelete;
         options = {};
       }
 
@@ -3330,8 +3333,7 @@ export namespace iam_v1 {
      *   const res = await iam.projects.locations.workloadIdentityPools.operations.get(
      *     {
      *       // The name of the operation resource.
-     *       name:
-     *         'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/operations/my-operation',
+     *       name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/operations/my-operation',
      *     }
      *   );
      *   console.log(res.data);
@@ -3401,7 +3403,8 @@ export namespace iam_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadidentitypools$Operations$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Operations$Get;
         options = {};
       }
 
@@ -3448,9 +3451,10 @@ export namespace iam_v1 {
     operations: Resource$Projects$Locations$Workloadidentitypools$Providers$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.operations = new Resource$Projects$Locations$Workloadidentitypools$Providers$Operations(
-        this.context
-      );
+      this.operations =
+        new Resource$Projects$Locations$Workloadidentitypools$Providers$Operations(
+          this.context
+        );
     }
 
     /**
@@ -3479,8 +3483,8 @@ export namespace iam_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await iam.projects.locations.workloadIdentityPools.providers.create(
-     *     {
+     *   const res =
+     *     await iam.projects.locations.workloadIdentityPools.providers.create({
      *       // Required. The pool to create this provider in.
      *       parent:
      *         'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool',
@@ -3502,8 +3506,7 @@ export namespace iam_v1 {
      *         //   "state": "my_state"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3571,7 +3574,8 @@ export namespace iam_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Create;
         options = {};
       }
 
@@ -3633,13 +3637,11 @@ export namespace iam_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await iam.projects.locations.workloadIdentityPools.providers.delete(
-     *     {
+     *   const res =
+     *     await iam.projects.locations.workloadIdentityPools.providers.delete({
      *       // Required. The name of the provider to delete.
-     *       name:
-     *         'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3707,7 +3709,8 @@ export namespace iam_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Delete;
         options = {};
       }
 
@@ -3768,8 +3771,7 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res = await iam.projects.locations.workloadIdentityPools.providers.get({
      *     // Required. The name of the provider to retrieve.
-     *     name:
-     *       'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider',
+     *     name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider',
      *   });
      *   console.log(res.data);
      *
@@ -3849,7 +3851,8 @@ export namespace iam_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Get;
         options = {};
       }
 
@@ -3994,7 +3997,8 @@ export namespace iam_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$List;
         options = {};
       }
 
@@ -4058,11 +4062,10 @@ export namespace iam_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await iam.projects.locations.workloadIdentityPools.providers.patch(
-     *     {
+     *   const res =
+     *     await iam.projects.locations.workloadIdentityPools.providers.patch({
      *       // Output only. The resource name of the provider.
-     *       name:
-     *         'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider',
+     *       name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider',
      *       // Required. The list of fields to update.
      *       updateMask: 'placeholder-value',
      *
@@ -4081,8 +4084,7 @@ export namespace iam_v1 {
      *         //   "state": "my_state"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4150,7 +4152,8 @@ export namespace iam_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Patch;
         options = {};
       }
 
@@ -4209,19 +4212,17 @@ export namespace iam_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await iam.projects.locations.workloadIdentityPools.providers.undelete(
-     *     {
+     *   const res =
+     *     await iam.projects.locations.workloadIdentityPools.providers.undelete({
      *       // Required. The name of the provider to undelete.
-     *       name:
-     *         'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider',
+     *       name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider',
      *
      *       // Request body metadata
      *       requestBody: {
      *         // request body parameters
      *         // {}
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4289,7 +4290,8 @@ export namespace iam_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Undelete;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Undelete;
         options = {};
       }
 
@@ -4436,13 +4438,13 @@ export namespace iam_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await iam.projects.locations.workloadIdentityPools.providers.operations.get(
-     *     {
-     *       // The name of the operation resource.
-     *       name:
-     *         'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider/operations/my-operation',
-     *     }
-     *   );
+     *   const res =
+     *     await iam.projects.locations.workloadIdentityPools.providers.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider/operations/my-operation',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4510,7 +4512,8 @@ export namespace iam_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Operations$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Operations$Get;
         options = {};
       }
 
@@ -7101,7 +7104,8 @@ export namespace iam_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Serviceaccounts$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Serviceaccounts$Testiampermissions;
         options = {};
       }
 

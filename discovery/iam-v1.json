@@ -1696,7 +1696,7 @@
       }
     }
   },
-  "revision": "20210422",
+  "revision": "20210519",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AdminAuditData": {
@@ -2135,7 +2135,7 @@
           "type": "array"
         },
         "issuerUri": {
-          "description": "Required. The OIDC issuer URL.",
+          "description": "Required. The OIDC issuer URL. Must be an HTTPS endpoint.",
           "type": "string"
         }
       },
