@@ -367,9 +367,8 @@ export namespace bigqueryreservation_v1 {
     reservations: Resource$Projects$Locations$Reservations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.capacityCommitments = new Resource$Projects$Locations$Capacitycommitments(
-        this.context
-      );
+      this.capacityCommitments =
+        new Resource$Projects$Locations$Capacitycommitments(this.context);
       this.reservations = new Resource$Projects$Locations$Reservations(
         this.context
       );
@@ -1051,8 +1050,8 @@ export namespace bigqueryreservation_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigqueryreservation.projects.locations.capacityCommitments.create(
-     *     {
+     *   const res =
+     *     await bigqueryreservation.projects.locations.capacityCommitments.create({
      *       // The optional capacity commitment ID. Capacity commitment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters. NOTE: this ID won't be kept if the capacity commitment is split or merged.
      *       capacityCommitmentId: 'placeholder-value',
      *       // If true, fail the request if another project in the organization has a capacity commitment.
@@ -1074,8 +1073,7 @@ export namespace bigqueryreservation_v1 {
      *         //   "state": "my_state"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1149,7 +1147,8 @@ export namespace bigqueryreservation_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Capacitycommitments$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Capacitycommitments$Create;
         options = {};
       }
 
@@ -1215,13 +1214,11 @@ export namespace bigqueryreservation_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigqueryreservation.projects.locations.capacityCommitments.delete(
-     *     {
+     *   const res =
+     *     await bigqueryreservation.projects.locations.capacityCommitments.delete({
      *       // Required. Resource name of the capacity commitment to delete. E.g., `projects/myproject/locations/US/capacityCommitments/123`
-     *       name:
-     *         'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1283,7 +1280,8 @@ export namespace bigqueryreservation_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Capacitycommitments$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Capacitycommitments$Delete;
         options = {};
       }
 
@@ -1346,13 +1344,11 @@ export namespace bigqueryreservation_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigqueryreservation.projects.locations.capacityCommitments.get(
-     *     {
+     *   const res =
+     *     await bigqueryreservation.projects.locations.capacityCommitments.get({
      *       // Required. Resource name of the capacity commitment to retrieve. E.g., `projects/myproject/locations/US/capacityCommitments/123`
-     *       name:
-     *         'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1426,7 +1422,8 @@ export namespace bigqueryreservation_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Capacitycommitments$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Capacitycommitments$Get;
         options = {};
       }
 
@@ -1489,16 +1486,15 @@ export namespace bigqueryreservation_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigqueryreservation.projects.locations.capacityCommitments.list(
-     *     {
+     *   const res =
+     *     await bigqueryreservation.projects.locations.capacityCommitments.list({
      *       // The maximum number of items to return.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous List request, if any.
      *       pageToken: 'placeholder-value',
      *       // Required. Resource name of the parent reservation. E.g., `projects/myproject/locations/US`
      *       parent: 'projects/my-project/locations/my-location',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1570,7 +1566,8 @@ export namespace bigqueryreservation_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Capacitycommitments$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Capacitycommitments$List;
         options = {};
       }
 
@@ -1638,8 +1635,8 @@ export namespace bigqueryreservation_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigqueryreservation.projects.locations.capacityCommitments.merge(
-     *     {
+     *   const res =
+     *     await bigqueryreservation.projects.locations.capacityCommitments.merge({
      *       // Parent resource that identifies admin project and location e.g., `projects/myproject/locations/us`
      *       parent: 'projects/my-project/locations/my-location',
      *
@@ -1650,8 +1647,7 @@ export namespace bigqueryreservation_v1 {
      *         //   "capacityCommitmentIds": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1725,7 +1721,8 @@ export namespace bigqueryreservation_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Capacitycommitments$Merge;
+        params =
+          {} as Params$Resource$Projects$Locations$Capacitycommitments$Merge;
         options = {};
       }
 
@@ -1791,11 +1788,10 @@ export namespace bigqueryreservation_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigqueryreservation.projects.locations.capacityCommitments.patch(
-     *     {
+     *   const res =
+     *     await bigqueryreservation.projects.locations.capacityCommitments.patch({
      *       // Output only. The resource name of the capacity commitment, e.g., `projects/myproject/locations/US/capacityCommitments/123`
-     *       name:
-     *         'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
+     *       name: 'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
      *       // Standard field mask for the set of fields to be updated.
      *       updateMask: 'placeholder-value',
      *
@@ -1813,8 +1809,7 @@ export namespace bigqueryreservation_v1 {
      *         //   "state": "my_state"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1888,7 +1883,8 @@ export namespace bigqueryreservation_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Capacitycommitments$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Capacitycommitments$Patch;
         options = {};
       }
 
@@ -1951,11 +1947,10 @@ export namespace bigqueryreservation_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigqueryreservation.projects.locations.capacityCommitments.split(
-     *     {
+     *   const res =
+     *     await bigqueryreservation.projects.locations.capacityCommitments.split({
      *       // Required. The resource name e.g.,: `projects/myproject/locations/US/capacityCommitments/123`
-     *       name:
-     *         'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
+     *       name: 'projects/my-project/locations/my-location/capacityCommitments/my-capacityCommitment',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -1964,8 +1959,7 @@ export namespace bigqueryreservation_v1 {
      *         //   "slotCount": "my_slotCount"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2037,7 +2031,8 @@ export namespace bigqueryreservation_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Capacitycommitments$Split;
+        params =
+          {} as Params$Resource$Projects$Locations$Capacitycommitments$Split;
         options = {};
       }
 
@@ -2169,9 +2164,8 @@ export namespace bigqueryreservation_v1 {
     assignments: Resource$Projects$Locations$Reservations$Assignments;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.assignments = new Resource$Projects$Locations$Reservations$Assignments(
-        this.context
-      );
+      this.assignments =
+        new Resource$Projects$Locations$Reservations$Assignments(this.context);
     }
 
     /**
@@ -2356,8 +2350,7 @@ export namespace bigqueryreservation_v1 {
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.delete({
      *     // Required. Resource name of the reservation to retrieve. E.g., `projects/myproject/locations/US/reservations/team1-prod`
-     *     name:
-     *       'projects/my-project/locations/my-location/reservations/my-reservation',
+     *     name: 'projects/my-project/locations/my-location/reservations/my-reservation',
      *   });
      *   console.log(res.data);
      *
@@ -2485,8 +2478,7 @@ export namespace bigqueryreservation_v1 {
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.get({
      *     // Required. Resource name of the reservation to retrieve. E.g., `projects/myproject/locations/US/reservations/team1-prod`
-     *     name:
-     *       'projects/my-project/locations/my-location/reservations/my-reservation',
+     *     name: 'projects/my-project/locations/my-location/reservations/my-reservation',
      *   });
      *   console.log(res.data);
      *
@@ -2763,8 +2755,7 @@ export namespace bigqueryreservation_v1 {
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.patch({
      *     // The resource name of the reservation, e.g., `projects/x/locations/x/reservations/team1-prod`.
-     *     name:
-     *       'projects/my-project/locations/my-location/reservations/my-reservation',
+     *     name: 'projects/my-project/locations/my-location/reservations/my-reservation',
      *     // Standard field mask for the set of fields to be updated.
      *     updateMask: 'placeholder-value',
      *
@@ -2979,26 +2970,27 @@ export namespace bigqueryreservation_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigqueryreservation.projects.locations.reservations.assignments.create(
-     *     {
-     *       // The optional assignment ID. Assignment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters.
-     *       assignmentId: 'placeholder-value',
-     *       // Required. The parent resource name of the assignment E.g. `projects/myproject/locations/US/reservations/team1-prod`
-     *       parent:
-     *         'projects/my-project/locations/my-location/reservations/my-reservation',
+     *   const res =
+     *     await bigqueryreservation.projects.locations.reservations.assignments.create(
+     *       {
+     *         // The optional assignment ID. Assignment name will be generated automatically if this field is empty. This field must only contain lower case alphanumeric characters or dash. Max length is 64 characters.
+     *         assignmentId: 'placeholder-value',
+     *         // Required. The parent resource name of the assignment E.g. `projects/myproject/locations/US/reservations/team1-prod`
+     *         parent:
+     *           'projects/my-project/locations/my-location/reservations/my-reservation',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "assignee": "my_assignee",
-     *         //   "jobType": "my_jobType",
-     *         //   "name": "my_name",
-     *         //   "state": "my_state"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "assignee": "my_assignee",
+     *           //   "jobType": "my_jobType",
+     *           //   "name": "my_name",
+     *           //   "state": "my_state"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3065,7 +3057,8 @@ export namespace bigqueryreservation_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Reservations$Assignments$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Reservations$Assignments$Create;
         options = {};
       }
 
@@ -3131,13 +3124,13 @@ export namespace bigqueryreservation_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigqueryreservation.projects.locations.reservations.assignments.delete(
-     *     {
-     *       // Required. Name of the resource, e.g. `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
-     *       name:
-     *         'projects/my-project/locations/my-location/reservations/my-reservation/assignments/my-assignment',
-     *     }
-     *   );
+     *   const res =
+     *     await bigqueryreservation.projects.locations.reservations.assignments.delete(
+     *       {
+     *         // Required. Name of the resource, e.g. `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
+     *         name: 'projects/my-project/locations/my-location/reservations/my-reservation/assignments/my-assignment',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3199,7 +3192,8 @@ export namespace bigqueryreservation_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Reservations$Assignments$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Reservations$Assignments$Delete;
         options = {};
       }
 
@@ -3262,8 +3256,8 @@ export namespace bigqueryreservation_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigqueryreservation.projects.locations.reservations.assignments.list(
-     *     {
+     *   const res =
+     *     await bigqueryreservation.projects.locations.reservations.assignments.list({
      *       // The maximum number of items to return per page.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous List request, if any.
@@ -3271,8 +3265,7 @@ export namespace bigqueryreservation_v1 {
      *       // Required. The parent resource name e.g.: `projects/myproject/locations/US/reservations/team1-prod` Or: `projects/myproject/locations/US/reservations/-`
      *       parent:
      *         'projects/my-project/locations/my-location/reservations/my-reservation',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3342,7 +3335,8 @@ export namespace bigqueryreservation_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Reservations$Assignments$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Reservations$Assignments$List;
         options = {};
       }
 
@@ -3408,11 +3402,10 @@ export namespace bigqueryreservation_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await bigqueryreservation.projects.locations.reservations.assignments.move(
-     *     {
+     *   const res =
+     *     await bigqueryreservation.projects.locations.reservations.assignments.move({
      *       // Required. The resource name of the assignment, e.g. `projects/myproject/locations/US/reservations/team1-prod/assignments/123`
-     *       name:
-     *         'projects/my-project/locations/my-location/reservations/my-reservation/assignments/my-assignment',
+     *       name: 'projects/my-project/locations/my-location/reservations/my-reservation/assignments/my-assignment',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -3421,8 +3414,7 @@ export namespace bigqueryreservation_v1 {
      *         //   "destinationId": "my_destinationId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3489,7 +3481,8 @@ export namespace bigqueryreservation_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Reservations$Assignments$Move;
+        params =
+          {} as Params$Resource$Projects$Locations$Reservations$Assignments$Move;
         options = {};
       }
 
