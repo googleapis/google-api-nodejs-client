@@ -54,10 +54,10 @@ describe(__filename, () => {
   it('should run synth', async () => {
     changeSets = [
       {
-        api: ({
+        api: {
           id: 'blogger:v1',
           name: 'blogger',
-        } as {}) as Schema,
+        } as {} as Schema,
         changes: [
           {
             action: 'ADDED',
@@ -89,10 +89,10 @@ describe(__filename, () => {
   it('should create a changelog', () => {
     const changeSets: ChangeSet[] = [
       {
-        api: ({
+        api: {
           id: 'fake',
           name: 'fake',
-        } as {}) as Schema,
+        } as {} as Schema,
         changes: [
           {
             action: 'ADDED',
@@ -109,10 +109,10 @@ describe(__filename, () => {
     it('should get semverity for an add', async () => {
       const changeSets: ChangeSet[] = [
         {
-          api: ({
+          api: {
             id: 'fake',
             name: 'fake',
-          } as {}) as Schema,
+          } as {} as Schema,
           changes: [
             {
               action: 'ADDED',
@@ -128,10 +128,10 @@ describe(__filename, () => {
     it('should get semverity for a delete', async () => {
       const changeSets: ChangeSet[] = [
         {
-          api: ({
+          api: {
             id: 'fake',
             name: 'fake',
-          } as {}) as Schema,
+          } as {} as Schema,
           changes: [
             {
               action: 'DELETED',
@@ -147,10 +147,10 @@ describe(__filename, () => {
     it('should get semverity for an update', async () => {
       const changeSets: ChangeSet[] = [
         {
-          api: ({
+          api: {
             id: 'fake',
             name: 'fake',
-          } as {}) as Schema,
+          } as {} as Schema,
           changes: [
             {
               action: 'CHANGED',
@@ -166,10 +166,10 @@ describe(__filename, () => {
     it('should choose the most impactful change', async () => {
       const changeSets: ChangeSet[] = [
         {
-          api: ({
+          api: {
             id: 'fake',
             name: 'fake',
-          } as {}) as Schema,
+          } as {} as Schema,
           changes: [
             {
               action: 'ADDED',

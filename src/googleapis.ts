@@ -131,6 +131,6 @@ export class GoogleApis extends GeneratedAPIs {
     const endpointCreator = await this._discovery.discoverAPI(apiPath);
     const ep = endpointCreator(options, this);
     ep.google = this; // for drive.google.transporter
-    return (Object.freeze(ep) as {}) as T;
+    return Object.freeze(ep) as {} as T;
   }
 }
