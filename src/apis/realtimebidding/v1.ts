@@ -2370,7 +2370,8 @@ export namespace realtimebidding_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps;
+        params =
+          {} as Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps;
         options = {};
       }
 
@@ -2432,8 +2433,8 @@ export namespace realtimebidding_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await realtimebidding.bidders.pretargetingConfigs.addTargetedPublishers(
-     *     {
+     *   const res =
+     *     await realtimebidding.bidders.pretargetingConfigs.addTargetedPublishers({
      *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
      *       pretargetingConfig:
      *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
@@ -2446,8 +2447,7 @@ export namespace realtimebidding_v1 {
      *         //   "targetingMode": "my_targetingMode"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2538,7 +2538,8 @@ export namespace realtimebidding_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers;
+        params =
+          {} as Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers;
         options = {};
       }
 
@@ -2600,8 +2601,8 @@ export namespace realtimebidding_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await realtimebidding.bidders.pretargetingConfigs.addTargetedSites(
-     *     {
+     *   const res =
+     *     await realtimebidding.bidders.pretargetingConfigs.addTargetedSites({
      *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
      *       pretargetingConfig:
      *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
@@ -2614,8 +2615,7 @@ export namespace realtimebidding_v1 {
      *         //   "targetingMode": "my_targetingMode"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2706,7 +2706,8 @@ export namespace realtimebidding_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites;
+        params =
+          {} as Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites;
         options = {};
       }
 
@@ -3558,8 +3559,8 @@ export namespace realtimebidding_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await realtimebidding.bidders.pretargetingConfigs.removeTargetedApps(
-     *     {
+     *   const res =
+     *     await realtimebidding.bidders.pretargetingConfigs.removeTargetedApps({
      *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
      *       pretargetingConfig:
      *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
@@ -3571,8 +3572,7 @@ export namespace realtimebidding_v1 {
      *         //   "appIds": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3663,7 +3663,8 @@ export namespace realtimebidding_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps;
+        params =
+          {} as Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps;
         options = {};
       }
 
@@ -3725,8 +3726,8 @@ export namespace realtimebidding_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await realtimebidding.bidders.pretargetingConfigs.removeTargetedPublishers(
-     *     {
+     *   const res =
+     *     await realtimebidding.bidders.pretargetingConfigs.removeTargetedPublishers({
      *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
      *       pretargetingConfig:
      *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
@@ -3738,8 +3739,7 @@ export namespace realtimebidding_v1 {
      *         //   "publisherIds": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3830,7 +3830,8 @@ export namespace realtimebidding_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers;
+        params =
+          {} as Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers;
         options = {};
       }
 
@@ -3892,8 +3893,8 @@ export namespace realtimebidding_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await realtimebidding.bidders.pretargetingConfigs.removeTargetedSites(
-     *     {
+     *   const res =
+     *     await realtimebidding.bidders.pretargetingConfigs.removeTargetedSites({
      *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
      *       pretargetingConfig:
      *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
@@ -3905,8 +3906,7 @@ export namespace realtimebidding_v1 {
      *         //   "sites": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3997,7 +3997,8 @@ export namespace realtimebidding_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites;
+        params =
+          {} as Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites;
         options = {};
       }
 
