@@ -925,9 +925,10 @@ export namespace privateca_v1beta1 {
    */
   export interface Schema$ReconciliationOperationMetadata {
     /**
-     * If set to TRUE, the resource has to be deleted. When using this bit, the CLH should fail the operation.
+     * DEPRECATED. Use exclusive_action instead.
      */
     deleteResource?: boolean | null;
+    exclusiveAction?: string | null;
   }
   /**
    * Request message for CertificateAuthorityService.RestoreCertificateAuthority.
@@ -1273,9 +1274,8 @@ export namespace privateca_v1beta1 {
     reusableConfigs: Resource$Projects$Locations$Reusableconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.certificateAuthorities = new Resource$Projects$Locations$Certificateauthorities(
-        this.context
-      );
+      this.certificateAuthorities =
+        new Resource$Projects$Locations$Certificateauthorities(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -1589,12 +1589,14 @@ export namespace privateca_v1beta1 {
     certificates: Resource$Projects$Locations$Certificateauthorities$Certificates;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.certificateRevocationLists = new Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists(
-        this.context
-      );
-      this.certificates = new Resource$Projects$Locations$Certificateauthorities$Certificates(
-        this.context
-      );
+      this.certificateRevocationLists =
+        new Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists(
+          this.context
+        );
+      this.certificates =
+        new Resource$Projects$Locations$Certificateauthorities$Certificates(
+          this.context
+        );
     }
 
     /**
@@ -1623,11 +1625,10 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.activate(
-     *     {
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.activate({
      *       // Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/certificateAuthorities/x`.
-     *       name:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
+     *       name: 'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -1638,8 +1639,7 @@ export namespace privateca_v1beta1 {
      *         //   "subordinateConfig": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1707,7 +1707,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Activate;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Activate;
         options = {};
       }
 
@@ -1869,7 +1870,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Create;
         options = {};
       }
 
@@ -1933,8 +1935,7 @@ export namespace privateca_v1beta1 {
      *   const res = await privateca.projects.locations.certificateAuthorities.disable(
      *     {
      *       // Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/certificateAuthorities/x`.
-     *       name:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
+     *       name: 'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -2012,7 +2013,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Disable;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Disable;
         options = {};
       }
 
@@ -2076,8 +2078,7 @@ export namespace privateca_v1beta1 {
      *   // Do the magic
      *   const res = await privateca.projects.locations.certificateAuthorities.enable({
      *     // Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/certificateAuthorities/x`.
-     *     name:
-     *       'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
+     *     name: 'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2154,7 +2155,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Enable;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Enable;
         options = {};
       }
 
@@ -2218,8 +2220,7 @@ export namespace privateca_v1beta1 {
      *   // Do the magic
      *   const res = await privateca.projects.locations.certificateAuthorities.fetch({
      *     // Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/certificateAuthorities/x`.
-     *     name:
-     *       'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
+     *     name: 'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
      *   });
      *   console.log(res.data);
      *
@@ -2291,7 +2292,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Fetch;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Fetch;
         options = {};
       }
 
@@ -2357,8 +2359,7 @@ export namespace privateca_v1beta1 {
      *   // Do the magic
      *   const res = await privateca.projects.locations.certificateAuthorities.get({
      *     // Required. The name of the CertificateAuthority to get.
-     *     name:
-     *       'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
+     *     name: 'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
      *   });
      *   console.log(res.data);
      *
@@ -2445,7 +2446,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Get;
         options = {};
       }
 
@@ -2504,15 +2506,14 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.getIamPolicy(
-     *     {
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.getIamPolicy({
      *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2579,7 +2580,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Getiampolicy;
         options = {};
       }
 
@@ -2725,7 +2727,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$List;
         options = {};
       }
 
@@ -2790,8 +2793,7 @@ export namespace privateca_v1beta1 {
      *   // Do the magic
      *   const res = await privateca.projects.locations.certificateAuthorities.patch({
      *     // Output only. The resource name for this CertificateAuthority in the format `projects/x/locations/x/certificateAuthorities/x`.
-     *     name:
-     *       'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
+     *     name: 'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
      *     // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *     requestId: 'placeholder-value',
      *     // Required. A list of fields to be updated in this request.
@@ -2889,7 +2891,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Patch;
         options = {};
       }
 
@@ -2951,8 +2954,7 @@ export namespace privateca_v1beta1 {
      *   const res = await privateca.projects.locations.certificateAuthorities.restore(
      *     {
      *       // Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/certificateAuthorities/x`.
-     *       name:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
+     *       name: 'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -3030,7 +3032,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Restore;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Restore;
         options = {};
       }
 
@@ -3092,11 +3095,10 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.scheduleDelete(
-     *     {
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.scheduleDelete({
      *       // Required. The resource name for this CertificateAuthority in the format `projects/x/locations/x/certificateAuthorities/x`.
-     *       name:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
+     *       name: 'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -3106,8 +3108,7 @@ export namespace privateca_v1beta1 {
      *         //   "requestId": "my_requestId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3175,7 +3176,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Scheduledelete;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Scheduledelete;
         options = {};
       }
 
@@ -3237,8 +3239,8 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.setIamPolicy(
-     *     {
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
@@ -3251,8 +3253,7 @@ export namespace privateca_v1beta1 {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3319,7 +3320,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Setiampolicy;
         options = {};
       }
 
@@ -3381,21 +3383,22 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3466,7 +3469,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Testiampermissions;
         options = {};
       }
 
@@ -3708,13 +3712,13 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.certificateRevocationLists.get(
-     *     {
-     *       // Required. The name of the CertificateRevocationList to get.
-     *       name:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
-     *     }
-     *   );
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.certificateRevocationLists.get(
+     *       {
+     *         // Required. The name of the CertificateRevocationList to get.
+     *         name: 'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3791,7 +3795,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Get;
         options = {};
       }
 
@@ -3850,15 +3855,16 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.certificateRevocationLists.getIamPolicy(
-     *     {
-     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *       'options.requestedPolicyVersion': 'placeholder-value',
-     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
-     *     }
-     *   );
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.certificateRevocationLists.getIamPolicy(
+     *       {
+     *         // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *         'options.requestedPolicyVersion': 'placeholder-value',
+     *         // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3925,7 +3931,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Getiampolicy;
         options = {};
       }
 
@@ -3987,21 +3994,22 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.certificateRevocationLists.list(
-     *     {
-     *       // Optional. Only include resources that match the filter in the response.
-     *       filter: 'placeholder-value',
-     *       // Optional. Specify how the results should be sorted.
-     *       orderBy: 'placeholder-value',
-     *       // Optional. Limit on the number of CertificateRevocationLists to include in the response. Further CertificateRevocationLists can subsequently be obtained by including the ListCertificateRevocationListsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Pagination token, returned earlier via ListCertificateRevocationListsResponse.next_page_token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the location associated with the CertificateRevocationLists, in the format `projects/x/locations/x/certificateauthorities/x`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
-     *     }
-     *   );
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.certificateRevocationLists.list(
+     *       {
+     *         // Optional. Only include resources that match the filter in the response.
+     *         filter: 'placeholder-value',
+     *         // Optional. Specify how the results should be sorted.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. Limit on the number of CertificateRevocationLists to include in the response. Further CertificateRevocationLists can subsequently be obtained by including the ListCertificateRevocationListsResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. Pagination token, returned earlier via ListCertificateRevocationListsResponse.next_page_token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The resource name of the location associated with the CertificateRevocationLists, in the format `projects/x/locations/x/certificateauthorities/x`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4074,7 +4082,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$List;
         options = {};
       }
 
@@ -4137,33 +4146,33 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.certificateRevocationLists.patch(
-     *     {
-     *       // Output only. The resource path for this CertificateRevocationList in the format `projects/x/locations/x/certificateAuthorities/x/ certificateRevocationLists/x`.
-     *       name:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
-     *       // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *       requestId: 'placeholder-value',
-     *       // Required. A list of fields to be updated in this request.
-     *       updateMask: 'placeholder-value',
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.certificateRevocationLists.patch(
+     *       {
+     *         // Output only. The resource path for this CertificateRevocationList in the format `projects/x/locations/x/certificateAuthorities/x/ certificateRevocationLists/x`.
+     *         name: 'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
+     *         // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         requestId: 'placeholder-value',
+     *         // Required. A list of fields to be updated in this request.
+     *         updateMask: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "accessUrl": "my_accessUrl",
-     *         //   "createTime": "my_createTime",
-     *         //   "labels": {},
-     *         //   "name": "my_name",
-     *         //   "pemCrl": "my_pemCrl",
-     *         //   "revokedCertificates": [],
-     *         //   "sequenceNumber": "my_sequenceNumber",
-     *         //   "state": "my_state",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "accessUrl": "my_accessUrl",
+     *           //   "createTime": "my_createTime",
+     *           //   "labels": {},
+     *           //   "name": "my_name",
+     *           //   "pemCrl": "my_pemCrl",
+     *           //   "revokedCertificates": [],
+     *           //   "sequenceNumber": "my_sequenceNumber",
+     *           //   "state": "my_state",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4231,7 +4240,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Patch;
         options = {};
       }
 
@@ -4290,22 +4300,23 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.certificateRevocationLists.setIamPolicy(
-     *     {
-     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.certificateRevocationLists.setIamPolicy(
+     *       {
+     *         // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "policy": {},
-     *         //   "updateMask": "my_updateMask"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "policy": {},
+     *           //   "updateMask": "my_updateMask"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4372,7 +4383,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Setiampolicy;
         options = {};
       }
 
@@ -4434,21 +4446,22 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.certificateRevocationLists.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.certificateRevocationLists.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4519,7 +4532,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$Testiampermissions;
         options = {};
       }
 
@@ -4674,35 +4688,36 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.certificates.create(
-     *     {
-     *       // Optional. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`. This field is required when using a CertificateAuthority in the Enterprise CertificateAuthority.Tier, but is optional and its value is ignored otherwise.
-     *       certificateId: 'placeholder-value',
-     *       // Required. The resource name of the location and CertificateAuthority associated with the Certificate, in the format `projects/x/locations/x/certificateAuthorities/x`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
-     *       // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *       requestId: 'placeholder-value',
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.certificates.create(
+     *       {
+     *         // Optional. It must be unique within a location and match the regular expression `[a-zA-Z0-9_-]{1,63\}`. This field is required when using a CertificateAuthority in the Enterprise CertificateAuthority.Tier, but is optional and its value is ignored otherwise.
+     *         certificateId: 'placeholder-value',
+     *         // Required. The resource name of the location and CertificateAuthority associated with the Certificate, in the format `projects/x/locations/x/certificateAuthorities/x`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
+     *         // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         requestId: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "certificateDescription": {},
-     *         //   "config": {},
-     *         //   "createTime": "my_createTime",
-     *         //   "labels": {},
-     *         //   "lifetime": "my_lifetime",
-     *         //   "name": "my_name",
-     *         //   "pemCertificate": "my_pemCertificate",
-     *         //   "pemCertificateChain": [],
-     *         //   "pemCsr": "my_pemCsr",
-     *         //   "revocationDetails": {},
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "certificateDescription": {},
+     *           //   "config": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "labels": {},
+     *           //   "lifetime": "my_lifetime",
+     *           //   "name": "my_name",
+     *           //   "pemCertificate": "my_pemCertificate",
+     *           //   "pemCertificateChain": [],
+     *           //   "pemCsr": "my_pemCsr",
+     *           //   "revocationDetails": {},
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4776,7 +4791,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificates$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificates$Create;
         options = {};
       }
 
@@ -4838,13 +4854,11 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.certificates.get(
-     *     {
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.certificates.get({
      *       // Required. The name of the Certificate to get.
-     *       name:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificates/my-certificate',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificates/my-certificate',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4918,7 +4932,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificates$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificates$Get;
         options = {};
       }
 
@@ -4977,21 +4992,22 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.certificates.list(
-     *     {
-     *       // Optional. Only include resources that match the filter in the response. For details on supported filters and syntax, see [Certificates Filtering documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#filtering_support).
-     *       filter: 'placeholder-value',
-     *       // Optional. Specify how the results should be sorted. For details on supported fields and syntax, see [Certificates Sorting documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#sorting_support).
-     *       orderBy: 'placeholder-value',
-     *       // Optional. Limit on the number of Certificates to include in the response. Further Certificates can subsequently be obtained by including the ListCertificatesResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Pagination token, returned earlier via ListCertificatesResponse.next_page_token.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the location associated with the Certificates, in the format `projects/x/locations/x/certificateauthorities/x`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
-     *     }
-     *   );
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.certificates.list(
+     *       {
+     *         // Optional. Only include resources that match the filter in the response. For details on supported filters and syntax, see [Certificates Filtering documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#filtering_support).
+     *         filter: 'placeholder-value',
+     *         // Optional. Specify how the results should be sorted. For details on supported fields and syntax, see [Certificates Sorting documentation](https://cloud.google.com/certificate-authority-service/docs/sorting-filtering-certificates#sorting_support).
+     *         orderBy: 'placeholder-value',
+     *         // Optional. Limit on the number of Certificates to include in the response. Further Certificates can subsequently be obtained by including the ListCertificatesResponse.next_page_token in a subsequent request. If unspecified, the server will pick an appropriate default.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. Pagination token, returned earlier via ListCertificatesResponse.next_page_token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The resource name of the location associated with the Certificates, in the format `projects/x/locations/x/certificateauthorities/x`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5062,7 +5078,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificates$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificates$List;
         options = {};
       }
 
@@ -5124,35 +5141,35 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.certificates.patch(
-     *     {
-     *       // Output only. The resource path for this Certificate in the format `projects/x/locations/x/certificateAuthorities/x/certificates/x`.
-     *       name:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificates/my-certificate',
-     *       // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *       requestId: 'placeholder-value',
-     *       // Required. A list of fields to be updated in this request.
-     *       updateMask: 'placeholder-value',
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.certificates.patch(
+     *       {
+     *         // Output only. The resource path for this Certificate in the format `projects/x/locations/x/certificateAuthorities/x/certificates/x`.
+     *         name: 'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificates/my-certificate',
+     *         // Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         requestId: 'placeholder-value',
+     *         // Required. A list of fields to be updated in this request.
+     *         updateMask: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "certificateDescription": {},
-     *         //   "config": {},
-     *         //   "createTime": "my_createTime",
-     *         //   "labels": {},
-     *         //   "lifetime": "my_lifetime",
-     *         //   "name": "my_name",
-     *         //   "pemCertificate": "my_pemCertificate",
-     *         //   "pemCertificateChain": [],
-     *         //   "pemCsr": "my_pemCsr",
-     *         //   "revocationDetails": {},
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "certificateDescription": {},
+     *           //   "config": {},
+     *           //   "createTime": "my_createTime",
+     *           //   "labels": {},
+     *           //   "lifetime": "my_lifetime",
+     *           //   "name": "my_name",
+     *           //   "pemCertificate": "my_pemCertificate",
+     *           //   "pemCertificateChain": [],
+     *           //   "pemCsr": "my_pemCsr",
+     *           //   "revocationDetails": {},
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5226,7 +5243,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificates$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificates$Patch;
         options = {};
       }
 
@@ -5285,22 +5303,22 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.certificateAuthorities.certificates.revoke(
-     *     {
-     *       // Required. The resource name for this Certificate in the format `projects/x/locations/x/certificateAuthorities/x/certificates/x`.
-     *       name:
-     *         'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificates/my-certificate',
+     *   const res =
+     *     await privateca.projects.locations.certificateAuthorities.certificates.revoke(
+     *       {
+     *         // Required. The resource name for this Certificate in the format `projects/x/locations/x/certificateAuthorities/x/certificates/x`.
+     *         name: 'projects/my-project/locations/my-location/certificateAuthorities/my-certificateAuthoritie/certificates/my-certificate',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "reason": "my_reason",
-     *         //   "requestId": "my_requestId"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "reason": "my_reason",
+     *           //   "requestId": "my_requestId"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5374,7 +5392,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificates$Revoke;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificateauthorities$Certificates$Revoke;
         options = {};
       }
 
@@ -6109,8 +6128,7 @@ export namespace privateca_v1beta1 {
      *   // Do the magic
      *   const res = await privateca.projects.locations.reusableConfigs.get({
      *     // Required. The name of the ReusableConfigs to get.
-     *     name:
-     *       'projects/my-project/locations/my-location/reusableConfigs/my-reusableConfig',
+     *     name: 'projects/my-project/locations/my-location/reusableConfigs/my-reusableConfig',
      *   });
      *   console.log(res.data);
      *
@@ -6312,7 +6330,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Reusableconfigs$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Reusableconfigs$Getiampolicy;
         options = {};
       }
 
@@ -6600,7 +6619,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Reusableconfigs$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Reusableconfigs$Setiampolicy;
         options = {};
       }
 
@@ -6662,8 +6682,8 @@ export namespace privateca_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await privateca.projects.locations.reusableConfigs.testIamPermissions(
-     *     {
+     *   const res =
+     *     await privateca.projects.locations.reusableConfigs.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/reusableConfigs/my-reusableConfig',
@@ -6675,8 +6695,7 @@ export namespace privateca_v1beta1 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6747,7 +6766,8 @@ export namespace privateca_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Reusableconfigs$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Reusableconfigs$Testiampermissions;
         options = {};
       }
 
