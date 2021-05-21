@@ -117,9 +117,8 @@ export namespace storage_v1 {
       );
       this.buckets = new Resource$Buckets(this.context);
       this.channels = new Resource$Channels(this.context);
-      this.defaultObjectAccessControls = new Resource$Defaultobjectaccesscontrols(
-        this.context
-      );
+      this.defaultObjectAccessControls =
+        new Resource$Defaultobjectaccesscontrols(this.context);
       this.notifications = new Resource$Notifications(this.context);
       this.objectAccessControls = new Resource$Objectaccesscontrols(
         this.context
