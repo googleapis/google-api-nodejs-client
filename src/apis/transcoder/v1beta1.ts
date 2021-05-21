@@ -1852,8 +1852,7 @@ export namespace transcoder_v1beta1 {
      *   // Do the magic
      *   const res = await transcoder.projects.locations.jobTemplates.delete({
      *     // Required. The name of the job template to delete. `projects/{project\}/locations/{location\}/jobTemplates/{job_template\}`
-     *     name:
-     *       'projects/my-project/locations/my-location/jobTemplates/my-jobTemplate',
+     *     name: 'projects/my-project/locations/my-location/jobTemplates/my-jobTemplate',
      *   });
      *   console.log(res.data);
      *
@@ -1977,8 +1976,7 @@ export namespace transcoder_v1beta1 {
      *   // Do the magic
      *   const res = await transcoder.projects.locations.jobTemplates.get({
      *     // Required. The name of the job template to retrieve. Format: `projects/{project\}/locations/{location\}/jobTemplates/{job_template\}`
-     *     name:
-     *       'projects/my-project/locations/my-location/jobTemplates/my-jobTemplate',
+     *     name: 'projects/my-project/locations/my-location/jobTemplates/my-jobTemplate',
      *   });
      *   console.log(res.data);
      *
