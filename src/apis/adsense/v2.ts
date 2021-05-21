@@ -1906,7 +1906,8 @@ export namespace adsense_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Adclients$Adunits$Listlinkedcustomchannels;
+        params =
+          {} as Params$Resource$Accounts$Adclients$Adunits$Listlinkedcustomchannels;
         options = {};
       }
 
@@ -2027,8 +2028,7 @@ export namespace adsense_v2 {
      *   // Do the magic
      *   const res = await adsense.accounts.adclients.customchannels.get({
      *     // Required. Name of the custom channel. Format: accounts/{account\}/adclients/{adclient\}/customchannels/{customchannel\}
-     *     name:
-     *       'accounts/my-account/adclients/my-adclient/customchannels/my-customchannel',
+     *     name: 'accounts/my-account/adclients/my-adclient/customchannels/my-customchannel',
      *   });
      *   console.log(res.data);
      *
@@ -2383,7 +2383,8 @@ export namespace adsense_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Adclients$Customchannels$Listlinkedadunits;
+        params =
+          {} as Params$Resource$Accounts$Adclients$Customchannels$Listlinkedadunits;
         options = {};
       }
 
