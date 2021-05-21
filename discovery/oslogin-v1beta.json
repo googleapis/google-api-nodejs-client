@@ -141,6 +141,21 @@
               "description": "A system ID for filtering the results of the request.",
               "location": "query",
               "type": "string"
+            },
+            "view": {
+              "description": "The view configures whether to retrieve security keys information.",
+              "enum": [
+                "LOGIN_PROFILE_VIEW_UNSPECIFIED",
+                "BASIC",
+                "SECURITY_KEY"
+              ],
+              "enumDescriptions": [
+                "The default login profile view. The API defaults to the BASIC view.",
+                "Includes POSIX and SSH key information.",
+                "Include security key information for the user."
+              ],
+              "location": "query",
+              "type": "string"
             }
           },
           "path": "v1beta/{+name}/loginProfile",
@@ -172,6 +187,21 @@
             },
             "projectId": {
               "description": "The project ID of the Google Cloud Platform project.",
+              "location": "query",
+              "type": "string"
+            },
+            "view": {
+              "description": "The view configures whether to retrieve security keys information.",
+              "enum": [
+                "LOGIN_PROFILE_VIEW_UNSPECIFIED",
+                "BASIC",
+                "SECURITY_KEY"
+              ],
+              "enumDescriptions": [
+                "The default login profile view. The API defaults to the BASIC view.",
+                "Includes POSIX and SSH key information.",
+                "Include security key information for the user."
+              ],
               "location": "query",
               "type": "string"
             }
@@ -314,7 +344,7 @@
       }
     }
   },
-  "revision": "20210329",
+  "revision": "20210508",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {
