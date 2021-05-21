@@ -2832,8 +2832,8 @@ export namespace cloudsearch_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudsearch.debug.identitysources.items.listForunmappedidentity(
-     *     {
+     *   const res =
+     *     await cloudsearch.debug.identitysources.items.listForunmappedidentity({
      *       // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
      *       'debugOptions.enableDebugging': 'placeholder-value',
      *
@@ -2846,8 +2846,7 @@ export namespace cloudsearch_v1 {
      *       parent: 'identitysources/my-identitysource',
      *
      *       userResourceName: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2919,7 +2918,8 @@ export namespace cloudsearch_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity;
+        params =
+          {} as Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity;
         options = {};
       }
 
@@ -3901,7 +3901,8 @@ export namespace cloudsearch_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Indexing$Datasources$Items$Deletequeueitems;
+        params =
+          {} as Params$Resource$Indexing$Datasources$Items$Deletequeueitems;
         options = {};
       }
 
