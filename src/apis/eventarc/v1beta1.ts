@@ -2502,7 +2502,8 @@ export namespace eventarc_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Triggers$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Triggers$Testiampermissions;
         options = {};
       }
 
