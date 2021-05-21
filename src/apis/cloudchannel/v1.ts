@@ -634,27 +634,27 @@ export namespace cloudchannel_v1 {
    */
   export interface Schema$GoogleCloudChannelV1ContactInfo {
     /**
-     * Output only. Display name of the contact in the customer account. Populated by combining customer first name and last name.
+     * Output only. The customer account contact's display name, formatted as a combination of the customer's first and last name.
      */
     displayName?: string | null;
     /**
-     * Email of the contact in the customer account. Email is required for entitlements that need creation of admin.google.com accounts. The email will be the username used in credentials to access the admin.google.com account.
+     * The customer account's contact email. Required for entitlements that create admin.google.com accounts, and serves as the customer's username for those accounts.
      */
     email?: string | null;
     /**
-     * First name of the contact in the customer account.
+     * The customer account contact's first name.
      */
     firstName?: string | null;
     /**
-     * Last name of the contact in the customer account.
+     * The customer account contact's last name.
      */
     lastName?: string | null;
     /**
-     * Phone number of the contact in the customer account.
+     * The customer account's contact phone number.
      */
     phone?: string | null;
     /**
-     * Optional. Job title of the contact in the customer account.
+     * Optional. The customer account contact's job title.
      */
     title?: string | null;
   }
@@ -676,7 +676,7 @@ export namespace cloudchannel_v1 {
    */
   export interface Schema$GoogleCloudChannelV1Customer {
     /**
-     * Secondary contact email. Alternate email and primary contact email are required to have different domains if primary contact email is present. When creating admin.google.com accounts, users get notified credentials at this email. This email address is also used as a recovery email.
+     * Secondary contact email. You need to provide an alternate email to create different domains if a primary contact email already exists. Users will receive a notification with credentials when you create an admin.google.com account. Secondary emails are also recovery email addresses.
      */
     alternateEmail?: string | null;
     /**
@@ -684,7 +684,7 @@ export namespace cloudchannel_v1 {
      */
     channelPartnerId?: string | null;
     /**
-     * Output only. Customer's cloud_identity_id. Populated only if a Cloud Identity resource exists for this customer.
+     * Output only. The customer's Cloud Identity ID if the customer has a Cloud Identity resource.
      */
     cloudIdentityId?: string | null;
     /**
@@ -692,11 +692,11 @@ export namespace cloudchannel_v1 {
      */
     cloudIdentityInfo?: Schema$GoogleCloudChannelV1CloudIdentityInfo;
     /**
-     * Output only. The time at which the customer is created.
+     * Output only. Time when the customer was created.
      */
     createTime?: string | null;
     /**
-     * Required. Primary domain used by the customer. Domain of primary contact email is required to be same as the provided domain.
+     * Required. The customer's primary domain. Must match the primary contact email's domain.
      */
     domain?: string | null;
     /**
@@ -712,7 +712,7 @@ export namespace cloudchannel_v1 {
      */
     orgDisplayName?: string | null;
     /**
-     * Required. Address of the organization of the customer entity. Region and zip codes are required to enforce US laws and embargoes. Valid address lines are required for all customers. Language code is discarded. Use the Customer-level language code to set the customer's language.
+     * Required. The organization address for the customer. To enforce US laws and embargoes, we require a region and zip code. You must provide valid addresses for every customer. To set the customer's language, use the Customer-level language code.
      */
     orgPostalAddress?: Schema$GoogleTypePostalAddress;
     /**
@@ -720,7 +720,7 @@ export namespace cloudchannel_v1 {
      */
     primaryContactInfo?: Schema$GoogleCloudChannelV1ContactInfo;
     /**
-     * Output only. The time at which the customer is updated.
+     * Output only. Time when the customer was updated.
      */
     updateTime?: string | null;
   }
@@ -2870,7 +2870,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Returns a requested ChannelPartnerLink resource. You must be a distributor to call this method. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: ChannelPartnerLink resource not found because of an invalid channel partner link name. Return value: The ChannelPartnerLink resource.
+     * Returns the requested ChannelPartnerLink resource. You must be a distributor to call this method. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: ChannelPartnerLink resource not found because of an invalid channel partner link name. Return value: The ChannelPartnerLink resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -3501,7 +3501,8 @@ export namespace cloudchannel_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Channelpartnerlinks$Customers$Create;
+        params =
+          {} as Params$Resource$Accounts$Channelpartnerlinks$Customers$Create;
         options = {};
       }
 
@@ -3540,7 +3541,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Deletes the given Customer permanently and irreversibly. Possible error codes: * PERMISSION_DENIED: The account making the request does not own this customer. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * FAILED_PRECONDITION: The customer has existing entitlements. * NOT_FOUND: No Customer resource found for the name in the request.
+     * Deletes the given Customer permanently. Possible error codes: * PERMISSION_DENIED: The account making the request does not own this customer. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * FAILED_PRECONDITION: The customer has existing entitlements. * NOT_FOUND: No Customer resource found for the name in the request.
      * @example
      * ```js
      * // Before running the sample:
@@ -3567,8 +3568,7 @@ export namespace cloudchannel_v1 {
      *   // Do the magic
      *   const res = await cloudchannel.accounts.channelPartnerLinks.customers.delete({
      *     // Required. The resource name of the customer to delete.
-     *     name:
-     *       'accounts/my-account/channelPartnerLinks/my-channelPartnerLink/customers/my-customer',
+     *     name: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink/customers/my-customer',
      *   });
      *   console.log(res.data);
      *
@@ -3634,7 +3634,8 @@ export namespace cloudchannel_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Channelpartnerlinks$Customers$Delete;
+        params =
+          {} as Params$Resource$Accounts$Channelpartnerlinks$Customers$Delete;
         options = {};
       }
 
@@ -3668,7 +3669,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Returns a requested Customer resource. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer resource doesn't exist. Usually the result of an invalid name parameter. Return value: The Customer resource.
+     * Returns the requested Customer resource. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer resource doesn't exist. Usually the result of an invalid name parameter. Return value: The Customer resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -3695,8 +3696,7 @@ export namespace cloudchannel_v1 {
      *   // Do the magic
      *   const res = await cloudchannel.accounts.channelPartnerLinks.customers.get({
      *     // Required. The resource name of the customer to retrieve. Name uses the format: accounts/{account_id\}/customers/{customer_id\}
-     *     name:
-     *       'accounts/my-account/channelPartnerLinks/my-channelPartnerLink/customers/my-customer',
+     *     name: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink/customers/my-customer',
      *   });
      *   console.log(res.data);
      *
@@ -3779,7 +3779,8 @@ export namespace cloudchannel_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Channelpartnerlinks$Customers$Get;
+        params =
+          {} as Params$Resource$Accounts$Channelpartnerlinks$Customers$Get;
         options = {};
       }
 
@@ -3919,7 +3920,8 @@ export namespace cloudchannel_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Channelpartnerlinks$Customers$List;
+        params =
+          {} as Params$Resource$Accounts$Channelpartnerlinks$Customers$List;
         options = {};
       }
 
@@ -3985,8 +3987,7 @@ export namespace cloudchannel_v1 {
      *   // Do the magic
      *   const res = await cloudchannel.accounts.channelPartnerLinks.customers.patch({
      *     // Output only. Resource name of the customer. Format: accounts/{account_id\}/customers/{customer_id\}
-     *     name:
-     *       'accounts/my-account/channelPartnerLinks/my-channelPartnerLink/customers/my-customer',
+     *     name: 'accounts/my-account/channelPartnerLinks/my-channelPartnerLink/customers/my-customer',
      *     // The update mask that applies to the resource. Optional.
      *     updateMask: 'placeholder-value',
      *
@@ -4090,7 +4091,8 @@ export namespace cloudchannel_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Channelpartnerlinks$Customers$Patch;
+        params =
+          {} as Params$Resource$Accounts$Channelpartnerlinks$Customers$Patch;
         options = {};
       }
 
@@ -4363,7 +4365,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Deletes the given Customer permanently and irreversibly. Possible error codes: * PERMISSION_DENIED: The account making the request does not own this customer. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * FAILED_PRECONDITION: The customer has existing entitlements. * NOT_FOUND: No Customer resource found for the name in the request.
+     * Deletes the given Customer permanently. Possible error codes: * PERMISSION_DENIED: The account making the request does not own this customer. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * FAILED_PRECONDITION: The customer has existing entitlements. * NOT_FOUND: No Customer resource found for the name in the request.
      * @example
      * ```js
      * // Before running the sample:
@@ -4490,7 +4492,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Returns a requested Customer resource. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer resource doesn't exist. Usually the result of an invalid name parameter. Return value: The Customer resource.
+     * Returns the requested Customer resource. Possible error codes: * PERMISSION_DENIED: The reseller account making the request is different from the reseller account in the API request. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer resource doesn't exist. Usually the result of an invalid name parameter. Return value: The Customer resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -5361,7 +5363,8 @@ export namespace cloudchannel_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Customers$Provisioncloudidentity;
+        params =
+          {} as Params$Resource$Accounts$Customers$Provisioncloudidentity;
         options = {};
       }
 
@@ -5573,8 +5576,8 @@ export namespace cloudchannel_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.transferEntitlementsToGoogle(
-     *     {
+     *   const res =
+     *     await cloudchannel.accounts.customers.transferEntitlementsToGoogle({
      *       // Required. The resource name of the reseller's customer account where the entitlements transfer from. Parent uses the format: accounts/{account_id\}/customers/{customer_id\}
      *       parent: 'accounts/my-account/customers/my-customer',
      *
@@ -5586,8 +5589,7 @@ export namespace cloudchannel_v1 {
      *         //   "requestId": "my_requestId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5662,7 +5664,8 @@ export namespace cloudchannel_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Customers$Transferentitlementstogoogle;
+        params =
+          {} as Params$Resource$Accounts$Customers$Transferentitlementstogoogle;
         options = {};
       }
 
@@ -5888,8 +5891,7 @@ export namespace cloudchannel_v1 {
      *   // Do the magic
      *   const res = await cloudchannel.accounts.customers.entitlements.activate({
      *     // Required. The resource name of the entitlement to activate. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *     name:
-     *       'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
+     *     name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -6037,8 +6039,7 @@ export namespace cloudchannel_v1 {
      *   // Do the magic
      *   const res = await cloudchannel.accounts.customers.entitlements.cancel({
      *     // Required. The resource name of the entitlement to cancel. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *     name:
-     *       'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
+     *     name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -6183,8 +6184,7 @@ export namespace cloudchannel_v1 {
      *   // Do the magic
      *   const res = await cloudchannel.accounts.customers.entitlements.changeOffer({
      *     // Required. The resource name of the entitlement to update. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *     name:
-     *       'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
+     *     name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -6271,7 +6271,8 @@ export namespace cloudchannel_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Customers$Entitlements$Changeoffer;
+        params =
+          {} as Params$Resource$Accounts$Customers$Entitlements$Changeoffer;
         options = {};
       }
 
@@ -6333,11 +6334,10 @@ export namespace cloudchannel_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.entitlements.changeParameters(
-     *     {
+     *   const res =
+     *     await cloudchannel.accounts.customers.entitlements.changeParameters({
      *       // Required. The name of the entitlement to update. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *       name:
-     *         'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
+     *       name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -6348,8 +6348,7 @@ export namespace cloudchannel_v1 {
      *         //   "requestId": "my_requestId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6424,7 +6423,8 @@ export namespace cloudchannel_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Customers$Entitlements$Changeparameters;
+        params =
+          {} as Params$Resource$Accounts$Customers$Entitlements$Changeparameters;
         options = {};
       }
 
@@ -6486,11 +6486,10 @@ export namespace cloudchannel_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.entitlements.changeRenewalSettings(
-     *     {
+     *   const res =
+     *     await cloudchannel.accounts.customers.entitlements.changeRenewalSettings({
      *       // Required. The name of the entitlement to update. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *       name:
-     *         'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
+     *       name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -6500,8 +6499,7 @@ export namespace cloudchannel_v1 {
      *         //   "requestId": "my_requestId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6576,7 +6574,8 @@ export namespace cloudchannel_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Customers$Entitlements$Changerenewalsettings;
+        params =
+          {} as Params$Resource$Accounts$Customers$Entitlements$Changerenewalsettings;
         options = {};
       }
 
@@ -6762,7 +6761,7 @@ export namespace cloudchannel_v1 {
     }
 
     /**
-     * Returns a requested Entitlement resource. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer entitlement was not found. Return value: The requested Entitlement resource.
+     * Returns the requested Entitlement resource. Possible error codes: * PERMISSION_DENIED: The customer doesn't belong to the reseller. * INVALID_ARGUMENT: Required request parameters are missing or invalid. * NOT_FOUND: The customer entitlement was not found. Return value: The requested Entitlement resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -6789,8 +6788,7 @@ export namespace cloudchannel_v1 {
      *   // Do the magic
      *   const res = await cloudchannel.accounts.customers.entitlements.get({
      *     // Required. The resource name of the entitlement to retrieve. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *     name:
-     *       'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
+     *     name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
      *   });
      *   console.log(res.data);
      *
@@ -7160,7 +7158,8 @@ export namespace cloudchannel_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Customers$Entitlements$Lookupoffer;
+        params =
+          {} as Params$Resource$Accounts$Customers$Entitlements$Lookupoffer;
         options = {};
       }
 
@@ -7222,11 +7221,10 @@ export namespace cloudchannel_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await cloudchannel.accounts.customers.entitlements.startPaidService(
-     *     {
+     *   const res =
+     *     await cloudchannel.accounts.customers.entitlements.startPaidService({
      *       // Required. The name of the entitlement to start a paid service for. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *       name:
-     *         'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
+     *       name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -7235,8 +7233,7 @@ export namespace cloudchannel_v1 {
      *         //   "requestId": "my_requestId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -7311,7 +7308,8 @@ export namespace cloudchannel_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Customers$Entitlements$Startpaidservice;
+        params =
+          {} as Params$Resource$Accounts$Customers$Entitlements$Startpaidservice;
         options = {};
       }
 
@@ -7375,8 +7373,7 @@ export namespace cloudchannel_v1 {
      *   // Do the magic
      *   const res = await cloudchannel.accounts.customers.entitlements.suspend({
      *     // Required. The resource name of the entitlement to suspend. Name uses the format: accounts/{account_id\}/customers/{customer_id\}/entitlements/{entitlement_id\}
-     *     name:
-     *       'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
+     *     name: 'accounts/my-account/customers/my-customer/entitlements/my-entitlement',
      *
      *     // Request body metadata
      *     requestBody: {
