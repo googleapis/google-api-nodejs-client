@@ -156,7 +156,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "The maximum number of results to return. If not set, the service will select a default.",
+                  "description": "The maximum number of results to return. If not set, the service selects a default.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -1029,7 +1029,7 @@
       }
     }
   },
-  "revision": "20210331",
+  "revision": "20210511",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AttributeValue": {
@@ -1491,7 +1491,7 @@
           "type": "string"
         },
         "spokes": {
-          "description": "Output only. A list of the URIs of all attached spokes",
+          "description": "Output only. A list of the URIs of all attached spokes. This field is deprecated and will not be included in future API versions. Call ListSpokes on each region instead.",
           "items": {
             "type": "string"
           },
@@ -2064,7 +2064,7 @@
             "Decreases available quota by the cost specified for the operation. If cost is higher than available quota, operation fails and returns error.",
             "Decreases available quota by the cost specified for the operation. If cost is higher than available quota, operation does not fail and available quota goes down to zero but it returns error.",
             "Does not change any available quota. Only checks if there is enough quota. No lock is placed on the checked tokens neither.",
-            "Increases available quota by the operation cost specified for the operation."
+            "DEPRECATED: Increases available quota by the operation cost specified for the operation."
           ],
           "type": "string"
         }
