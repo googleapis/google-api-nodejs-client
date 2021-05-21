@@ -1429,6 +1429,10 @@ export namespace healthcare_v1 {
     resourceAttributes?: {[key: string]: string} | null;
   }
   /**
+   * Response for successful QueryAccessibleData operations. This structure is included in the response upon operation completion.
+   */
+  export interface Schema$QueryAccessibleDataResponse {}
+  /**
    * Define how to redact sensitive values. Default behaviour is erase. For example, "My name is Jane." becomes "My name is ."
    */
   export interface Schema$RedactConfig {}
@@ -2077,9 +2081,8 @@ export namespace healthcare_v1 {
     operations: Resource$Projects$Locations$Datasets$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.consentStores = new Resource$Projects$Locations$Datasets$Consentstores(
-        this.context
-      );
+      this.consentStores =
+        new Resource$Projects$Locations$Datasets$Consentstores(this.context);
       this.dicomStores = new Resource$Projects$Locations$Datasets$Dicomstores(
         this.context
       );
@@ -3292,7 +3295,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Testiampermissions;
         options = {};
       }
 
@@ -3446,18 +3450,22 @@ export namespace healthcare_v1 {
     userDataMappings: Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.attributeDefinitions = new Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions(
-        this.context
-      );
-      this.consentArtifacts = new Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts(
-        this.context
-      );
-      this.consents = new Resource$Projects$Locations$Datasets$Consentstores$Consents(
-        this.context
-      );
-      this.userDataMappings = new Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings(
-        this.context
-      );
+      this.attributeDefinitions =
+        new Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions(
+          this.context
+        );
+      this.consentArtifacts =
+        new Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts(
+          this.context
+        );
+      this.consents =
+        new Resource$Projects$Locations$Datasets$Consentstores$Consents(
+          this.context
+        );
+      this.userDataMappings =
+        new Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings(
+          this.context
+        );
     }
 
     /**
@@ -3486,8 +3494,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.checkDataAccess(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.checkDataAccess({
      *       // Required. Name of the consent store where the requested data_id is stored, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`.
      *       consentStore:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
@@ -3502,8 +3510,7 @@ export namespace healthcare_v1 {
      *         //   "responseView": "my_responseView"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3575,7 +3582,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Checkdataaccess;
         options = {};
       }
 
@@ -3722,7 +3730,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Create;
         options = {};
       }
 
@@ -3787,8 +3796,7 @@ export namespace healthcare_v1 {
      *   const res = await healthcare.projects.locations.datasets.consentStores.delete(
      *     {
      *       // Required. The resource name of the consent store to delete.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *     }
      *   );
      *   console.log(res.data);
@@ -3852,7 +3860,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Delete;
         options = {};
       }
 
@@ -3911,27 +3920,28 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.evaluateUserConsents(
-     *     {
-     *       // Required. Name of the consent store to retrieve User data mappings from.
-     *       consentStore:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.evaluateUserConsents(
+     *       {
+     *         // Required. Name of the consent store to retrieve User data mappings from.
+     *         consentStore:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "consentList": {},
-     *         //   "pageSize": 0,
-     *         //   "pageToken": "my_pageToken",
-     *         //   "requestAttributes": {},
-     *         //   "resourceAttributes": {},
-     *         //   "responseView": "my_responseView",
-     *         //   "userId": "my_userId"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "consentList": {},
+     *           //   "pageSize": 0,
+     *           //   "pageToken": "my_pageToken",
+     *           //   "requestAttributes": {},
+     *           //   "resourceAttributes": {},
+     *           //   "responseView": "my_responseView",
+     *           //   "userId": "my_userId"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4003,7 +4013,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Evaluateuserconsents;
         options = {};
       }
 
@@ -4069,8 +4080,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.get({
      *     // Required. The resource name of the consent store to get.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *   });
      *   console.log(res.data);
      *
@@ -4138,7 +4148,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Get;
         options = {};
       }
 
@@ -4197,15 +4208,14 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.getIamPolicy(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.getIamPolicy({
      *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4272,7 +4282,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Getiampolicy;
         options = {};
       }
 
@@ -4415,7 +4426,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$List;
         options = {};
       }
 
@@ -4479,8 +4491,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.consentStores.patch({
      *     // Resource name of the consent store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}`. Cannot be changed after creation.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *     // Required. The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Only the `labels`, `default_consent_ttl`, and `enable_consent_create_on_update` fields are allowed to be updated.
      *     updateMask: 'placeholder-value',
      *
@@ -4561,7 +4572,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Patch;
         options = {};
       }
 
@@ -4620,23 +4632,24 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.queryAccessibleData(
-     *     {
-     *       // Required. Name of the consent store to retrieve User data mappings from.
-     *       consentStore:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.queryAccessibleData(
+     *       {
+     *         // Required. Name of the consent store to retrieve User data mappings from.
+     *         consentStore:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "gcsDestination": {},
-     *         //   "requestAttributes": {},
-     *         //   "resourceAttributes": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "gcsDestination": {},
+     *           //   "requestAttributes": {},
+     *           //   "resourceAttributes": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4704,7 +4717,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Queryaccessibledata;
         options = {};
       }
 
@@ -4766,8 +4780,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.setIamPolicy(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
@@ -4780,8 +4794,7 @@ export namespace healthcare_v1 {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4848,7 +4861,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Setiampolicy;
         options = {};
       }
 
@@ -4910,21 +4924,22 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4995,7 +5010,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Testiampermissions;
         options = {};
       }
 
@@ -5201,28 +5217,29 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.create(
-     *     {
-     *       // Required. The ID of the Attribute definition to create. The string must match the following regex: `_a-zA-Z{0,255\}` and must not be a reserved keyword within the Common Expression Language as listed on https://github.com/google/cel-spec/blob/master/doc/langdef.md.
-     *       attributeDefinitionId: 'placeholder-value',
-     *       // Required. The name of the consent store that this Attribute definition belongs to.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.create(
+     *       {
+     *         // Required. The ID of the Attribute definition to create. The string must match the following regex: `_a-zA-Z{0,255\}` and must not be a reserved keyword within the Common Expression Language as listed on https://github.com/google/cel-spec/blob/master/doc/langdef.md.
+     *         attributeDefinitionId: 'placeholder-value',
+     *         // Required. The name of the consent store that this Attribute definition belongs to.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "allowedValues": [],
-     *         //   "category": "my_category",
-     *         //   "consentDefaultValues": [],
-     *         //   "dataMappingDefaultValue": "my_dataMappingDefaultValue",
-     *         //   "description": "my_description",
-     *         //   "name": "my_name"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "allowedValues": [],
+     *           //   "category": "my_category",
+     *           //   "consentDefaultValues": [],
+     *           //   "dataMappingDefaultValue": "my_dataMappingDefaultValue",
+     *           //   "description": "my_description",
+     *           //   "name": "my_name"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5294,7 +5311,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Create;
         options = {};
       }
 
@@ -5356,13 +5374,13 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.delete(
-     *     {
-     *       // Required. The resource name of the Attribute definition to delete. To preserve referential integrity, Attribute definitions referenced by a User data mapping or the latest revision of a Consent cannot be deleted.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/attributeDefinitions/my-attributeDefinition',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.delete(
+     *       {
+     *         // Required. The resource name of the Attribute definition to delete. To preserve referential integrity, Attribute definitions referenced by a User data mapping or the latest revision of a Consent cannot be deleted.
+     *         name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/attributeDefinitions/my-attributeDefinition',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5424,7 +5442,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Delete;
         options = {};
       }
 
@@ -5483,13 +5502,13 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.get(
-     *     {
-     *       // Required. The resource name of the Attribute definition to get.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/attributeDefinitions/my-attributeDefinition',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.get(
+     *       {
+     *         // Required. The resource name of the Attribute definition to get.
+     *         name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/attributeDefinitions/my-attributeDefinition',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5561,7 +5580,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Get;
         options = {};
       }
 
@@ -5620,19 +5640,20 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.list(
-     *     {
-     *       // Optional. Restricts the attributes returned to those matching a filter. The only field available for filtering is `category`. For example, `filter=category=\"REQUEST\"`.
-     *       filter: 'placeholder-value',
-     *       // Optional. Limit on the number of Attribute definitions to return in a single response. If not specified, 100 is used. May not be larger than 1000.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Token to retrieve the next page of results or empty to get the first page.
-     *       pageToken: 'placeholder-value',
-     *       // Required. Name of the consent store to retrieve Attribute definitions from.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.list(
+     *       {
+     *         // Optional. Restricts the attributes returned to those matching a filter. The only field available for filtering is `category`. For example, `filter=category=\"REQUEST\"`.
+     *         filter: 'placeholder-value',
+     *         // Optional. Limit on the number of Attribute definitions to return in a single response. If not specified, 100 is used. May not be larger than 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. Token to retrieve the next page of results or empty to get the first page.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Name of the consent store to retrieve Attribute definitions from.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5704,7 +5725,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$List;
         options = {};
       }
 
@@ -5768,28 +5790,28 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.patch(
-     *     {
-     *       // Resource name of the Attribute definition, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/attributeDefinitions/{attribute_definition_id\}`. Cannot be changed after creation.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/attributeDefinitions/my-attributeDefinition',
-     *       // Required. The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Only the `description`, `allowed_values`, `consent_default_values` and `data_mapping_default_value` fields can be updated. The updated `allowed_values` must contain all values from the previous `allowed_values`.
-     *       updateMask: 'placeholder-value',
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.attributeDefinitions.patch(
+     *       {
+     *         // Resource name of the Attribute definition, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/attributeDefinitions/{attribute_definition_id\}`. Cannot be changed after creation.
+     *         name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/attributeDefinitions/my-attributeDefinition',
+     *         // Required. The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Only the `description`, `allowed_values`, `consent_default_values` and `data_mapping_default_value` fields can be updated. The updated `allowed_values` must contain all values from the previous `allowed_values`.
+     *         updateMask: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "allowedValues": [],
-     *         //   "category": "my_category",
-     *         //   "consentDefaultValues": [],
-     *         //   "dataMappingDefaultValue": "my_dataMappingDefaultValue",
-     *         //   "description": "my_description",
-     *         //   "name": "my_name"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "allowedValues": [],
+     *           //   "category": "my_category",
+     *           //   "consentDefaultValues": [],
+     *           //   "dataMappingDefaultValue": "my_dataMappingDefaultValue",
+     *           //   "description": "my_description",
+     *           //   "name": "my_name"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5861,7 +5883,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Attributedefinitions$Patch;
         options = {};
       }
 
@@ -5993,28 +6016,29 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.consentArtifacts.create(
-     *     {
-     *       // Required. The name of the consent store this Consent artifact belongs to.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.consentArtifacts.create(
+     *       {
+     *         // Required. The name of the consent store this Consent artifact belongs to.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "consentContentScreenshots": [],
-     *         //   "consentContentVersion": "my_consentContentVersion",
-     *         //   "guardianSignature": {},
-     *         //   "metadata": {},
-     *         //   "name": "my_name",
-     *         //   "userId": "my_userId",
-     *         //   "userSignature": {},
-     *         //   "witnessSignature": {}
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "consentContentScreenshots": [],
+     *           //   "consentContentVersion": "my_consentContentVersion",
+     *           //   "guardianSignature": {},
+     *           //   "metadata": {},
+     *           //   "name": "my_name",
+     *           //   "userId": "my_userId",
+     *           //   "userSignature": {},
+     *           //   "witnessSignature": {}
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6085,7 +6109,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Create;
         options = {};
       }
 
@@ -6147,13 +6172,13 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.consentArtifacts.delete(
-     *     {
-     *       // Required. The resource name of the Consent artifact to delete. To preserve referential integrity, Consent artifacts referenced by the latest revision of a Consent cannot be deleted.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consentArtifacts/my-consentArtifact',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.consentArtifacts.delete(
+     *       {
+     *         // Required. The resource name of the Consent artifact to delete. To preserve referential integrity, Consent artifacts referenced by the latest revision of a Consent cannot be deleted.
+     *         name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consentArtifacts/my-consentArtifact',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6215,7 +6240,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Delete;
         options = {};
       }
 
@@ -6274,13 +6300,13 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.consentArtifacts.get(
-     *     {
-     *       // Required. The resource name of the Consent artifact to retrieve.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consentArtifacts/my-consentArtifact',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.consentArtifacts.get(
+     *       {
+     *         // Required. The resource name of the Consent artifact to retrieve.
+     *         name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consentArtifacts/my-consentArtifact',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6351,7 +6377,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$Get;
         options = {};
       }
 
@@ -6410,19 +6437,20 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.consentArtifacts.list(
-     *     {
-     *       // Optional. Restricts the artifacts returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. The fields available for filtering are: - user_id. For example, `filter=user_id=\"user123\"`. - consent_content_version - metadata. For example, `filter=Metadata(\"testkey\")=\"value\"` or `filter=HasMetadata(\"testkey\")`.
-     *       filter: 'placeholder-value',
-     *       // Optional. Limit on the number of consent artifacts to return in a single response. If not specified, 100 is used. May not be larger than 1000.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. The next_page_token value returned from the previous List request, if any.
-     *       pageToken: 'placeholder-value',
-     *       // Required. Name of the consent store to retrieve consent artifacts from.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.consentArtifacts.list(
+     *       {
+     *         // Optional. Restricts the artifacts returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. The fields available for filtering are: - user_id. For example, `filter=user_id=\"user123\"`. - consent_content_version - metadata. For example, `filter=Metadata(\"testkey\")=\"value\"` or `filter=HasMetadata(\"testkey\")`.
+     *         filter: 'placeholder-value',
+     *         // Optional. Limit on the number of consent artifacts to return in a single response. If not specified, 100 is used. May not be larger than 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. The next_page_token value returned from the previous List request, if any.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Name of the consent store to retrieve consent artifacts from.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6494,7 +6522,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consentartifacts$List;
         options = {};
       }
 
@@ -6611,23 +6640,23 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.activate(
-     *     {
-     *       // Required. The resource name of the Consent to activate, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.consents.activate(
+     *       {
+     *         // Required. The resource name of the Consent to activate, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
+     *         name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "consentArtifact": "my_consentArtifact",
-     *         //   "expireTime": "my_expireTime",
-     *         //   "ttl": "my_ttl"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "consentArtifact": "my_consentArtifact",
+     *           //   "expireTime": "my_expireTime",
+     *           //   "ttl": "my_ttl"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6700,7 +6729,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Activate;
         options = {};
       }
 
@@ -6762,8 +6792,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.create(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.consents.create({
      *       // Required. Name of the consent store.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
@@ -6784,8 +6814,7 @@ export namespace healthcare_v1 {
      *         //   "userId": "my_userId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6858,7 +6887,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Create;
         options = {};
       }
 
@@ -6920,13 +6950,11 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.delete(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.consents.delete({
      *       // Required. The resource name of the Consent to delete, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6988,7 +7016,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Delete;
         options = {};
       }
 
@@ -7047,13 +7076,13 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.deleteRevision(
-     *     {
-     *       // Required. The resource name of the Consent revision to delete, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}@{revision_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is not specified in the name.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.consents.deleteRevision(
+     *       {
+     *         // Required. The resource name of the Consent revision to delete, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}@{revision_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is not specified in the name.
+     *         name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -7115,7 +7144,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Deleterevision;
         options = {};
       }
 
@@ -7177,13 +7207,11 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.get(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.consents.get({
      *       // Required. The resource name of the Consent to retrieve, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. In order to retrieve a previous revision of the Consent, also provide the revision ID: `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}@{revision_id\}`
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -7256,7 +7284,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Get;
         options = {};
       }
 
@@ -7315,8 +7344,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.list(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.consents.list({
      *       // Optional. Restricts the Consents returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. The fields available for filtering are: - user_id. For example, `filter='user_id="user123"'`. - consent_artifact - state - revision_create_time - metadata. For example, `filter=Metadata(\"testkey\")=\"value\"` or `filter=HasMetadata(\"testkey\")`.
      *       filter: 'placeholder-value',
      *       // Optional. Limit on the number of Consents to return in a single response. If not specified, 100 is used. May not be larger than 1000.
@@ -7326,8 +7355,7 @@ export namespace healthcare_v1 {
      *       // Required. Name of the consent store to retrieve Consents from.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -7397,7 +7425,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$List;
         options = {};
       }
 
@@ -7459,19 +7488,19 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.listRevisions(
-     *     {
-     *       // Optional. Restricts the revisions returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Fields available for filtering are: - user_id. For example, `filter='user_id="user123"'`. - consent_artifact - state - revision_create_time - metadata. For example, `filter=Metadata(\"testkey\")=\"value\"` or `filter=HasMetadata(\"testkey\")`.
-     *       filter: 'placeholder-value',
-     *       // Required. The resource name of the Consent to retrieve revisions for.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
-     *       // Optional. Limit on the number of revisions to return in a single response. If not specified, 100 is used. May not be larger than 1000.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Token to retrieve the next page of results or empty if there are no more results in the list.
-     *       pageToken: 'placeholder-value',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.consents.listRevisions(
+     *       {
+     *         // Optional. Restricts the revisions returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Fields available for filtering are: - user_id. For example, `filter='user_id="user123"'`. - consent_artifact - state - revision_create_time - metadata. For example, `filter=Metadata(\"testkey\")=\"value\"` or `filter=HasMetadata(\"testkey\")`.
+     *         filter: 'placeholder-value',
+     *         // Required. The resource name of the Consent to retrieve revisions for.
+     *         name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *         // Optional. Limit on the number of revisions to return in a single response. If not specified, 100 is used. May not be larger than 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. Token to retrieve the next page of results or empty if there are no more results in the list.
+     *         pageToken: 'placeholder-value',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -7543,7 +7572,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Listrevisions;
         options = {};
       }
 
@@ -7607,11 +7637,10 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.patch(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.consents.patch({
      *       // Resource name of the Consent, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. Cannot be changed after creation.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
      *       // Required. The update mask to apply to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Only the `user_id`, `policies`, `consent_artifact`, and `metadata` fields can be updated.
      *       updateMask: 'placeholder-value',
      *
@@ -7631,8 +7660,7 @@ export namespace healthcare_v1 {
      *         //   "userId": "my_userId"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -7705,7 +7733,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Patch;
         options = {};
       }
 
@@ -7764,11 +7793,10 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.reject(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.consents.reject({
      *       // Required. The resource name of the Consent to reject, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -7777,8 +7805,7 @@ export namespace healthcare_v1 {
      *         //   "consentArtifact": "my_consentArtifact"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -7851,7 +7878,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Reject;
         options = {};
       }
 
@@ -7910,11 +7938,10 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.consents.revoke(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.consents.revoke({
      *       // Required. The resource name of the Consent to revoke, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/consents/{consent_id\}`. An INVALID_ARGUMENT error occurs if `revision_id` is specified in the name.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/consents/my-consent',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -7923,8 +7950,7 @@ export namespace healthcare_v1 {
      *         //   "consentArtifact": "my_consentArtifact"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -7997,7 +8023,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Consents$Revoke;
         options = {};
       }
 
@@ -8187,19 +8214,19 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.archive(
-     *     {
-     *       // Required. The resource name of the User data mapping to archive.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.userDataMappings.archive(
+     *       {
+     *         // Required. The resource name of the User data mapping to archive.
+     *         name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -8268,7 +8295,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Archive;
         options = {};
       }
 
@@ -8332,26 +8360,27 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.create(
-     *     {
-     *       // Required. Name of the consent store.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.userDataMappings.create(
+     *       {
+     *         // Required. Name of the consent store.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "archiveTime": "my_archiveTime",
-     *         //   "archived": false,
-     *         //   "dataId": "my_dataId",
-     *         //   "name": "my_name",
-     *         //   "resourceAttributes": [],
-     *         //   "userId": "my_userId"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "archiveTime": "my_archiveTime",
+     *           //   "archived": false,
+     *           //   "dataId": "my_dataId",
+     *           //   "name": "my_name",
+     *           //   "resourceAttributes": [],
+     *           //   "userId": "my_userId"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -8420,7 +8449,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Create;
         options = {};
       }
 
@@ -8482,13 +8512,13 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.delete(
-     *     {
-     *       // Required. The resource name of the User data mapping to delete.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.userDataMappings.delete(
+     *       {
+     *         // Required. The resource name of the User data mapping to delete.
+     *         name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -8550,7 +8580,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Delete;
         options = {};
       }
 
@@ -8609,13 +8640,13 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.get(
-     *     {
-     *       // Required. The resource name of the User data mapping to retrieve.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.userDataMappings.get(
+     *       {
+     *         // Required. The resource name of the User data mapping to retrieve.
+     *         name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -8684,7 +8715,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Get;
         options = {};
       }
 
@@ -8743,19 +8775,20 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.list(
-     *     {
-     *       // Optional. Restricts the User data mappings returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. The fields available for filtering are: - data_id - user_id. For example, `filter=user_id=\"user123\"`. - archived - archive_time
-     *       filter: 'placeholder-value',
-     *       // Optional. Limit on the number of User data mappings to return in a single response. If not specified, 100 is used. May not be larger than 1000.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. Token to retrieve the next page of results, or empty to get the first page.
-     *       pageToken: 'placeholder-value',
-     *       // Required. Name of the consent store to retrieve User data mappings from.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.userDataMappings.list(
+     *       {
+     *         // Optional. Restricts the User data mappings returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. The fields available for filtering are: - data_id - user_id. For example, `filter=user_id=\"user123\"`. - archived - archive_time
+     *         filter: 'placeholder-value',
+     *         // Optional. Limit on the number of User data mappings to return in a single response. If not specified, 100 is used. May not be larger than 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. Token to retrieve the next page of results, or empty to get the first page.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Name of the consent store to retrieve User data mappings from.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -8827,7 +8860,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$List;
         options = {};
       }
 
@@ -8891,28 +8925,28 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.consentStores.userDataMappings.patch(
-     *     {
-     *       // Resource name of the User data mapping, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/userDataMappings/{user_data_mapping_id\}`.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
-     *       // Required. The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Only the `data_id`, `user_id` and `resource_attributes` fields can be updated.
-     *       updateMask: 'placeholder-value',
+     *   const res =
+     *     await healthcare.projects.locations.datasets.consentStores.userDataMappings.patch(
+     *       {
+     *         // Resource name of the User data mapping, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/consentStores/{consent_store_id\}/userDataMappings/{user_data_mapping_id\}`.
+     *         name: 'projects/my-project/locations/my-location/datasets/my-dataset/consentStores/my-consentStore/userDataMappings/my-userDataMapping',
+     *         // Required. The update mask that applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask. Only the `data_id`, `user_id` and `resource_attributes` fields can be updated.
+     *         updateMask: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "archiveTime": "my_archiveTime",
-     *         //   "archived": false,
-     *         //   "dataId": "my_dataId",
-     *         //   "name": "my_name",
-     *         //   "resourceAttributes": [],
-     *         //   "userId": "my_userId"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "archiveTime": "my_archiveTime",
+     *           //   "archived": false,
+     *           //   "dataId": "my_dataId",
+     *           //   "name": "my_name",
+     *           //   "resourceAttributes": [],
+     *           //   "userId": "my_userId"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -8981,7 +9015,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Consentstores$Userdatamappings$Patch;
         options = {};
       }
 
@@ -9094,9 +9129,10 @@ export namespace healthcare_v1 {
     studies: Resource$Projects$Locations$Datasets$Dicomstores$Studies;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.studies = new Resource$Projects$Locations$Datasets$Dicomstores$Studies(
-        this.context
-      );
+      this.studies =
+        new Resource$Projects$Locations$Datasets$Dicomstores$Studies(
+          this.context
+        );
     }
 
     /**
@@ -9206,7 +9242,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Create;
         options = {};
       }
 
@@ -9268,8 +9305,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.deidentify(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.deidentify({
      *       // Source DICOM store resource name. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      *       sourceStore:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
@@ -9283,8 +9320,7 @@ export namespace healthcare_v1 {
      *         //   "filterConfig": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -9352,7 +9388,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Deidentify;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Deidentify;
         options = {};
       }
 
@@ -9416,8 +9453,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.delete({
      *     // The resource name of the DICOM store to delete.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *   });
      *   console.log(res.data);
      *
@@ -9480,7 +9516,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Delete;
         options = {};
       }
 
@@ -9541,8 +9578,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.export({
      *     // The DICOM store resource name from which to export the data. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -9620,7 +9656,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Export;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Export;
         options = {};
       }
 
@@ -9681,8 +9718,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.get({
      *     // The resource name of the DICOM store to get.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *   });
      *   console.log(res.data);
      *
@@ -9749,7 +9785,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Get;
         options = {};
       }
 
@@ -9808,15 +9845,14 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.getIamPolicy(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.getIamPolicy({
      *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -9883,7 +9919,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Getiampolicy;
         options = {};
       }
 
@@ -9947,8 +9984,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.import({
      *     // The name of the DICOM store resource into which the data is imported. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -10025,7 +10061,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Import;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Import;
         options = {};
       }
 
@@ -10163,7 +10200,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$List;
         options = {};
       }
 
@@ -10227,8 +10265,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.dicomStores.patch({
      *     // Resource name of the DICOM store, of the form `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *     // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
      *
@@ -10307,7 +10344,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Patch;
         options = {};
       }
 
@@ -10366,15 +10404,16 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.searchForInstances(
-     *     {
-     *       // The path of the SearchForInstancesRequest DICOMweb request. For example, `instances`, `series/{series_uid\}/instances`, or `studies/{study_uid\}/instances`.
-     *       dicomWebPath: 'instances',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.searchForInstances(
+     *       {
+     *         // The path of the SearchForInstancesRequest DICOMweb request. For example, `instances`, `series/{series_uid\}/instances`, or `studies/{study_uid\}/instances`.
+     *         dicomWebPath: 'instances',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -10440,7 +10479,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforinstances;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforinstances;
         options = {};
       }
 
@@ -10502,15 +10542,14 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.searchForSeries(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.searchForSeries({
      *       // The path of the SearchForSeries DICOMweb request. For example, `series` or `studies/{study_uid\}/series`.
      *       dicomWebPath: 'series',
      *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -10576,7 +10615,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforseries;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforseries;
         options = {};
       }
 
@@ -10638,15 +10678,14 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.searchForStudies(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.searchForStudies({
      *       // The path of the SearchForStudies DICOMweb request. For example, `studies`.
      *       dicomWebPath: 'studies',
      *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -10712,7 +10751,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforstudies;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Searchforstudies;
         options = {};
       }
 
@@ -10774,8 +10814,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.setIamPolicy(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
@@ -10788,8 +10828,7 @@ export namespace healthcare_v1 {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -10856,7 +10895,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Setiampolicy;
         options = {};
       }
 
@@ -10918,8 +10958,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.storeInstances(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.storeInstances({
      *       // The path of the StoreInstances DICOMweb request. For example, `studies/[{study_uid\}]`. Note that the `study_uid` is optional.
      *       dicomWebPath: 'studies',
      *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
@@ -10935,8 +10975,7 @@ export namespace healthcare_v1 {
      *         //   "extensions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -11002,7 +11041,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Storeinstances;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Storeinstances;
         options = {};
       }
 
@@ -11064,21 +11104,22 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -11149,7 +11190,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Testiampermissions;
         options = {};
       }
 
@@ -11377,9 +11419,10 @@ export namespace healthcare_v1 {
     series: Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.series = new Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series(
-        this.context
-      );
+      this.series =
+        new Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series(
+          this.context
+        );
     }
 
     /**
@@ -11408,15 +11451,14 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.delete(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.delete({
      *       // The path of the DeleteStudy request. For example, `studies/{study_uid\}`.
      *       dicomWebPath: 'studies/my-studie',
      *
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -11484,7 +11526,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Delete;
         options = {};
       }
 
@@ -11546,15 +11589,16 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.retrieveMetadata(
-     *     {
-     *       // The path of the RetrieveStudyMetadata DICOMweb request. For example, `studies/{study_uid\}/metadata`.
-     *       dicomWebPath: 'studies/my-studie/metadata',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.retrieveMetadata(
+     *       {
+     *         // The path of the RetrieveStudyMetadata DICOMweb request. For example, `studies/{study_uid\}/metadata`.
+     *         dicomWebPath: 'studies/my-studie/metadata',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -11620,7 +11664,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Retrievemetadata;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Retrievemetadata;
         options = {};
       }
 
@@ -11682,15 +11727,16 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.retrieveStudy(
-     *     {
-     *       // The path of the RetrieveStudy DICOMweb request. For example, `studies/{study_uid\}`.
-     *       dicomWebPath: 'studies/my-studie',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.retrieveStudy(
+     *       {
+     *         // The path of the RetrieveStudy DICOMweb request. For example, `studies/{study_uid\}`.
+     *         dicomWebPath: 'studies/my-studie',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -11756,7 +11802,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Retrievestudy;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Retrievestudy;
         options = {};
       }
 
@@ -11818,15 +11865,16 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.searchForInstances(
-     *     {
-     *       // The path of the SearchForInstancesRequest DICOMweb request. For example, `instances`, `series/{series_uid\}/instances`, or `studies/{study_uid\}/instances`.
-     *       dicomWebPath: 'studies/my-studie/instances',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.searchForInstances(
+     *       {
+     *         // The path of the SearchForInstancesRequest DICOMweb request. For example, `instances`, `series/{series_uid\}/instances`, or `studies/{study_uid\}/instances`.
+     *         dicomWebPath: 'studies/my-studie/instances',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -11892,7 +11940,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Searchforinstances;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Searchforinstances;
         options = {};
       }
 
@@ -11954,15 +12003,16 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.searchForSeries(
-     *     {
-     *       // The path of the SearchForSeries DICOMweb request. For example, `series` or `studies/{study_uid\}/series`.
-     *       dicomWebPath: 'studies/my-studie/series',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.searchForSeries(
+     *       {
+     *         // The path of the SearchForSeries DICOMweb request. For example, `series` or `studies/{study_uid\}/series`.
+     *         dicomWebPath: 'studies/my-studie/series',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -12028,7 +12078,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Searchforseries;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Searchforseries;
         options = {};
       }
 
@@ -12090,25 +12141,26 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.storeInstances(
-     *     {
-     *       // The path of the StoreInstances DICOMweb request. For example, `studies/[{study_uid\}]`. Note that the `study_uid` is optional.
-     *       dicomWebPath: 'studies/my-studie',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.storeInstances(
+     *       {
+     *         // The path of the StoreInstances DICOMweb request. For example, `studies/[{study_uid\}]`. Note that the `study_uid` is optional.
+     *         dicomWebPath: 'studies/my-studie',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "contentType": "my_contentType",
-     *         //   "data": "my_data",
-     *         //   "extensions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "contentType": "my_contentType",
+     *           //   "data": "my_data",
+     *           //   "extensions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -12174,7 +12226,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Storeinstances;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Storeinstances;
         options = {};
       }
 
@@ -12288,9 +12341,10 @@ export namespace healthcare_v1 {
     instances: Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.instances = new Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances(
-        this.context
-      );
+      this.instances =
+        new Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances(
+          this.context
+        );
     }
 
     /**
@@ -12319,15 +12373,16 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.delete(
-     *     {
-     *       // The path of the DeleteSeries request. For example, `studies/{study_uid\}/series/{series_uid\}`.
-     *       dicomWebPath: 'studies/my-studie/series/my-serie',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.series.delete(
+     *       {
+     *         // The path of the DeleteSeries request. For example, `studies/{study_uid\}/series/{series_uid\}`.
+     *         dicomWebPath: 'studies/my-studie/series/my-serie',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -12395,7 +12450,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Delete;
         options = {};
       }
 
@@ -12457,15 +12513,16 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveMetadata(
-     *     {
-     *       // The path of the RetrieveSeriesMetadata DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/metadata`.
-     *       dicomWebPath: 'studies/my-studie/series/my-serie/metadata',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveMetadata(
+     *       {
+     *         // The path of the RetrieveSeriesMetadata DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/metadata`.
+     *         dicomWebPath: 'studies/my-studie/series/my-serie/metadata',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -12531,7 +12588,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Retrievemetadata;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Retrievemetadata;
         options = {};
       }
 
@@ -12593,15 +12651,16 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveSeries(
-     *     {
-     *       // The path of the RetrieveSeries DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}`.
-     *       dicomWebPath: 'studies/my-studie/series/my-serie',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.series.retrieveSeries(
+     *       {
+     *         // The path of the RetrieveSeries DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}`.
+     *         dicomWebPath: 'studies/my-studie/series/my-serie',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -12667,7 +12726,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Retrieveseries;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Retrieveseries;
         options = {};
       }
 
@@ -12729,15 +12789,16 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.searchForInstances(
-     *     {
-     *       // The path of the SearchForInstancesRequest DICOMweb request. For example, `instances`, `series/{series_uid\}/instances`, or `studies/{study_uid\}/instances`.
-     *       dicomWebPath: 'studies/my-studie/series/my-serie/instances',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.series.searchForInstances(
+     *       {
+     *         // The path of the SearchForInstancesRequest DICOMweb request. For example, `instances`, `series/{series_uid\}/instances`, or `studies/{study_uid\}/instances`.
+     *         dicomWebPath: 'studies/my-studie/series/my-serie/instances',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -12803,7 +12864,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Searchforinstances;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Searchforinstances;
         options = {};
       }
 
@@ -12890,9 +12952,10 @@ export namespace healthcare_v1 {
     frames: Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.frames = new Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames(
-        this.context
-      );
+      this.frames =
+        new Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames(
+          this.context
+        );
     }
 
     /**
@@ -12921,15 +12984,16 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.delete(
-     *     {
-     *       // The path of the DeleteInstance request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`.
-     *       dicomWebPath: 'studies/my-studie/series/my-serie/instances/my-instance',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.delete(
+     *       {
+     *         // The path of the DeleteInstance request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`.
+     *         dicomWebPath: 'studies/my-studie/series/my-serie/instances/my-instance',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -12991,7 +13055,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Delete;
         options = {};
       }
 
@@ -13053,15 +13118,16 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveInstance(
-     *     {
-     *       // The path of the RetrieveInstance DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`.
-     *       dicomWebPath: 'studies/my-studie/series/my-serie/instances/my-instance',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveInstance(
+     *       {
+     *         // The path of the RetrieveInstance DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}`.
+     *         dicomWebPath: 'studies/my-studie/series/my-serie/instances/my-instance',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -13127,7 +13193,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrieveinstance;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrieveinstance;
         options = {};
       }
 
@@ -13189,16 +13256,17 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveMetadata(
-     *     {
-     *       // The path of the RetrieveInstanceMetadata DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/metadata`.
-     *       dicomWebPath:
-     *         'studies/my-studie/series/my-serie/instances/my-instance/metadata',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveMetadata(
+     *       {
+     *         // The path of the RetrieveInstanceMetadata DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/metadata`.
+     *         dicomWebPath:
+     *           'studies/my-studie/series/my-serie/instances/my-instance/metadata',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -13264,7 +13332,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrievemetadata;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrievemetadata;
         options = {};
       }
 
@@ -13326,16 +13395,17 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveRendered(
-     *     {
-     *       // The path of the RetrieveRenderedInstance DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/rendered`.
-     *       dicomWebPath:
-     *         'studies/my-studie/series/my-serie/instances/my-instance/rendered',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.retrieveRendered(
+     *       {
+     *         // The path of the RetrieveRenderedInstance DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/rendered`.
+     *         dicomWebPath:
+     *           'studies/my-studie/series/my-serie/instances/my-instance/rendered',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -13401,7 +13471,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrieverendered;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Retrieverendered;
         options = {};
       }
 
@@ -13515,16 +13586,17 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveFrames(
-     *     {
-     *       // The path of the RetrieveFrames DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/frames/{frame_list\}`.
-     *       dicomWebPath:
-     *         'studies/my-studie/series/my-serie/instances/my-instance/frames/my-frame',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveFrames(
+     *       {
+     *         // The path of the RetrieveFrames DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/frames/{frame_list\}`.
+     *         dicomWebPath:
+     *           'studies/my-studie/series/my-serie/instances/my-instance/frames/my-frame',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -13590,7 +13662,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames$Retrieveframes;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames$Retrieveframes;
         options = {};
       }
 
@@ -13652,16 +13725,17 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveRendered(
-     *     {
-     *       // The path of the RetrieveRenderedFrames DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/frames/{frame_list\}/rendered`.
-     *       dicomWebPath:
-     *         'studies/my-studie/series/my-serie/instances/my-instance/frames/my-frame/rendered',
-     *       // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
-     *       parent:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
-     *     }
-     *   );
+     *   const res =
+     *     await healthcare.projects.locations.datasets.dicomStores.studies.series.instances.frames.retrieveRendered(
+     *       {
+     *         // The path of the RetrieveRenderedFrames DICOMweb request. For example, `studies/{study_uid\}/series/{series_uid\}/instances/{instance_uid\}/frames/{frame_list\}/rendered`.
+     *         dicomWebPath:
+     *           'studies/my-studie/series/my-serie/instances/my-instance/frames/my-frame/rendered',
+     *         // The name of the DICOM store that is being accessed. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/dicomStores/{dicom_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/dicomStores/my-dicomStore',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -13727,7 +13801,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames$Retrieverendered;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Dicomstores$Studies$Series$Instances$Frames$Retrieverendered;
         options = {};
       }
 
@@ -13916,7 +13991,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Create;
         options = {};
       }
 
@@ -13978,8 +14054,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.fhirStores.deidentify(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.fhirStores.deidentify({
      *       // Source FHIR store resource name. For example, `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
      *       sourceStore:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
@@ -13993,8 +14069,7 @@ export namespace healthcare_v1 {
      *         //   "resourceFilter": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -14062,7 +14137,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Deidentify;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Deidentify;
         options = {};
       }
 
@@ -14126,8 +14202,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.delete({
      *     // The resource name of the FHIR store to delete.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
      *   });
      *   console.log(res.data);
      *
@@ -14190,7 +14265,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Delete;
         options = {};
       }
 
@@ -14251,8 +14327,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.export({
      *     // The name of the FHIR store to export resource from, in the format of `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -14330,7 +14405,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Export;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Export;
         options = {};
       }
 
@@ -14391,8 +14467,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.get({
      *     // The resource name of the FHIR store to get.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
      *   });
      *   console.log(res.data);
      *
@@ -14465,7 +14540,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Get;
         options = {};
       }
 
@@ -14524,15 +14600,14 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.fhirStores.getIamPolicy(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.fhirStores.getIamPolicy({
      *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -14599,7 +14674,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Getiampolicy;
         options = {};
       }
 
@@ -14663,8 +14739,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.import({
      *     // The name of the FHIR store to import FHIR resources to, in the format of `projects/{project_id\}/locations/{location_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -14742,7 +14817,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Import;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Import;
         options = {};
       }
 
@@ -14880,7 +14956,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$List;
         options = {};
       }
 
@@ -14944,8 +15021,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.fhirStores.patch({
      *     // Output only. Resource name of the FHIR store, of the form `projects/{project_id\}/datasets/{dataset_id\}/fhirStores/{fhir_store_id\}`.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
      *     // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
      *
@@ -15036,7 +15112,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Patch;
         options = {};
       }
 
@@ -15095,8 +15172,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.fhirStores.setIamPolicy(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.fhirStores.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
@@ -15109,8 +15186,7 @@ export namespace healthcare_v1 {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -15177,7 +15253,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Setiampolicy;
         options = {};
       }
 
@@ -15239,8 +15316,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.fhirStores.testIamPermissions(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.fhirStores.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
@@ -15252,8 +15329,7 @@ export namespace healthcare_v1 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -15324,7 +15400,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Testiampermissions;
         options = {};
       }
 
@@ -15530,13 +15607,11 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.capabilities(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.fhirStores.fhir.capabilities({
      *       // Name of the FHIR store to retrieve the capabilities for.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -15602,7 +15677,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Capabilities;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Capabilities;
         options = {};
       }
 
@@ -15664,8 +15740,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.create(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.fhirStores.fhir.create({
      *       // The name of the FHIR store this resource belongs to.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
@@ -15681,8 +15757,7 @@ export namespace healthcare_v1 {
      *         //   "extensions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -15748,7 +15823,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Create;
         options = {};
       }
 
@@ -15810,13 +15886,11 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.delete(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.fhirStores.fhir.delete({
      *       // The name of the resource to delete.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -15882,7 +15956,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Delete;
         options = {};
       }
 
@@ -15941,8 +16016,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.executeBundle(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.fhirStores.fhir.executeBundle({
      *       // Name of the FHIR store in which this bundle will be executed.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
@@ -15956,8 +16031,7 @@ export namespace healthcare_v1 {
      *         //   "extensions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -16023,7 +16097,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Executebundle;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Executebundle;
         options = {};
       }
 
@@ -16082,11 +16157,10 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.history(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.fhirStores.fhir.history({
      *       // The name of the resource to retrieve.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
      *       // Only include resource versions that were current at some point during the time period specified in the date time value. The date parameter format is yyyy-mm-ddThh:mm:ss[Z|(+|-)hh:mm] Clients may specify any of the following: * An entire year: `_at=2019` * An entire month: `_at=2019-01` * A specific day: `_at=2019-01-20` * A specific second: `_at=2018-12-31T23:59:58Z`
      *       _at: 'placeholder-value',
      *       // The maximum number of search results on a page. If not specified, 100 is used. May not be larger than 1000.
@@ -16095,8 +16169,7 @@ export namespace healthcare_v1 {
      *       _page_token: 'placeholder-value',
      *       // Only include resource versions that were created at or after the given instant in time. The instant in time uses the format YYYY-MM-DDThh:mm:ss.sss+zz:zz (for example 2015-02-07T13:28:17.239+02:00 or 2017-01-01T00:00:00Z). The time must be specified to the second and include a time zone.
      *       _since: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -16162,7 +16235,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$History;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$History;
         options = {};
       }
 
@@ -16224,11 +16298,10 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.patch(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.fhirStores.fhir.patch({
      *       // The name of the resource to update.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -16239,8 +16312,7 @@ export namespace healthcare_v1 {
      *         //   "extensions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -16306,7 +16378,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patch;
         options = {};
       }
 
@@ -16371,8 +16444,7 @@ export namespace healthcare_v1 {
      *       // The response includes records prior to the end date. If no end date is provided, all records subsequent to the start date are in scope.
      *       end: 'placeholder-value',
      *       // Name of the `Patient` resource for which the information is required.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/Patient/[^/]+',
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/Patient/[^/]+',
      *       // The response includes records subsequent to the start date. If no start date is provided, all records prior to the end date are in scope.
      *       start: 'placeholder-value',
      *       // Maximum number of resources in a page. If not specified, 100 is used. May not be larger than 1000.
@@ -16449,7 +16521,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patienteverything;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Patienteverything;
         options = {};
       }
 
@@ -16514,8 +16587,7 @@ export namespace healthcare_v1 {
      *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.read(
      *     {
      *       // The name of the resource to retrieve.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
      *     }
      *   );
      *   console.log(res.data);
@@ -16583,7 +16655,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Read;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Read;
         options = {};
       }
 
@@ -16646,8 +16719,7 @@ export namespace healthcare_v1 {
      *     (await healthcare.projects.locations.datasets.fhirStores.fhir.Resource) -
      *     purge({
      *       // The name of the resource to purge.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
      *     });
      *   console.log(res.data);
      *
@@ -16710,7 +16782,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcepurge;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Resourcepurge;
         options = {};
       }
 
@@ -16769,8 +16842,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.search(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.fhirStores.fhir.search({
      *       // Name of the FHIR store to retrieve resources from.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore',
@@ -16782,8 +16855,7 @@ export namespace healthcare_v1 {
      *         //   "resourceType": "my_resourceType"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -16849,7 +16921,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Search;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Search;
         options = {};
       }
 
@@ -16993,7 +17066,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Searchtype;
         options = {};
       }
 
@@ -17054,11 +17128,10 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.update(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.fhirStores.fhir.update({
      *       // The name of the resource to update.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -17069,8 +17142,7 @@ export namespace healthcare_v1 {
      *         //   "extensions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -17136,7 +17208,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Update;
         options = {};
       }
 
@@ -17195,13 +17268,11 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.fhirStores.fhir.vread(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.fhirStores.fhir.vread({
      *       // The name of the resource version to retrieve.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+/_history/[^/]+',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/fhirStores/my-fhirStore/fhir/[^/]+/[^/]+/_history/[^/]+',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -17267,7 +17338,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Vread;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Fhirstores$Fhir$Vread;
         options = {};
       }
 
@@ -17476,9 +17548,10 @@ export namespace healthcare_v1 {
     messages: Resource$Projects$Locations$Datasets$Hl7v2stores$Messages;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.messages = new Resource$Projects$Locations$Datasets$Hl7v2stores$Messages(
-        this.context
-      );
+      this.messages =
+        new Resource$Projects$Locations$Datasets$Hl7v2stores$Messages(
+          this.context
+        );
     }
 
     /**
@@ -17592,7 +17665,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Create;
         options = {};
       }
 
@@ -17656,8 +17730,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.delete({
      *     // The resource name of the HL7v2 store to delete.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
      *   });
      *   console.log(res.data);
      *
@@ -17720,7 +17793,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Delete;
         options = {};
       }
 
@@ -17781,8 +17855,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.get({
      *     // The resource name of the HL7v2 store to get.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
      *   });
      *   console.log(res.data);
      *
@@ -17851,7 +17924,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Get;
         options = {};
       }
 
@@ -17910,15 +17984,14 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.getIamPolicy(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.hl7V2Stores.getIamPolicy({
      *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -17985,7 +18058,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Getiampolicy;
         options = {};
       }
 
@@ -18126,7 +18200,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$List;
         options = {};
       }
 
@@ -18190,8 +18265,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.patch({
      *     // Resource name of the HL7v2 store, of the form `projects/{project_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7v2_store_id\}`.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
      *     // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
      *
@@ -18274,7 +18348,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Patch;
         options = {};
       }
 
@@ -18333,8 +18408,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.setIamPolicy(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.hl7V2Stores.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
@@ -18347,8 +18422,7 @@ export namespace healthcare_v1 {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -18415,7 +18489,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Setiampolicy;
         options = {};
       }
 
@@ -18477,21 +18552,22 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
+     *   const res =
+     *     await healthcare.projects.locations.datasets.hl7V2Stores.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -18562,7 +18638,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Testiampermissions;
         options = {};
       }
 
@@ -18732,8 +18809,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.create(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.hl7V2Stores.messages.create({
      *       // The name of the dataset this message belongs to.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
@@ -18745,8 +18822,7 @@ export namespace healthcare_v1 {
      *         //   "message": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -18819,7 +18895,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Create;
         options = {};
       }
 
@@ -18881,13 +18958,11 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.delete(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.hl7V2Stores.messages.delete({
      *       // The resource name of the HL7v2 message to delete.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store/messages/my-message',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store/messages/my-message',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -18949,7 +19024,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Delete;
         options = {};
       }
 
@@ -19008,15 +19084,13 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.get(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.hl7V2Stores.messages.get({
      *       // The resource name of the HL7v2 message to retrieve.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store/messages/my-message',
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store/messages/my-message',
      *       // Specifies which parts of the Message resource to return in the response. When unspecified, equivalent to FULL.
      *       view: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -19089,7 +19163,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Get;
         options = {};
       }
 
@@ -19148,8 +19223,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.ingest(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.hl7V2Stores.messages.ingest({
      *       // The name of the HL7v2 store this message belongs to.
      *       parent:
      *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
@@ -19161,8 +19236,7 @@ export namespace healthcare_v1 {
      *         //   "message": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -19232,7 +19306,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Ingest;
         options = {};
       }
 
@@ -19294,8 +19369,8 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.list(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.hl7V2Stores.messages.list({
      *       // Restricts messages returned to those matching a filter. The following syntax is available: * A string field value can be written as text inside quotation marks, for example `"query text"`. The only valid relational operation for text fields is equality (`=`), where text is searched within the field, rather than having the field be equal to the text. For example, `"Comment = great"` returns messages with `great` in the comment field. * A number field value can be written as an integer, a decimal, or an exponential. The valid relational operators for number fields are the equality operator (`=`), along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * A date field value must be written in `yyyy-mm-dd` form. Fields with date and time use the RFC3339 time format. Leading zeros are required for one-digit months and days. The valid relational operators for date fields are the equality operator (`=`) , along with the less than/greater than operators (`<`, `<=`, `\>`, `\>=`). Note that there is no inequality (`!=`) operator. You can prepend the `NOT` operator to an expression to negate it. * Multiple field query expressions can be combined in one query by adding `AND` or `OR` operators between the expressions. If a boolean operator appears within a quoted string, it is not treated as special, it's just another part of the character string to be matched. You can prepend the `NOT` operator to an expression to negate it. Fields/functions available for filtering are: * `message_type`, from the MSH-9.1 field. For example, `NOT message_type = "ADT"`. * `send_date` or `sendDate`, the YYYY-MM-DD date the message was sent in the dataset's time_zone, from the MSH-7 segment. For example, `send_date < "2017-01-02"`. * `send_time`, the timestamp when the message was sent, using the RFC3339 time format for comparisons, from the MSH-7 segment. For example, `send_time < "2017-01-02T00:00:00-05:00"`. * `create_time`, the timestamp when the message was created in the HL7v2 store. Use the RFC3339 time format for comparisons. For example, `create_time < "2017-01-02T00:00:00-05:00"`. * `send_facility`, the care center that the message came from, from the MSH-4 segment. For example, `send_facility = "ABC"`. * `PatientId(value, type)`, which matches if the message lists a patient having an ID of the given value and type in the PID-2, PID-3, or PID-4 segments. For example, `PatientId("123456", "MRN")`. * `labels.x`, a string value of the label with key `x` as set using the Message.labels map. For example, `labels."priority"="high"`. The operator `:*` can be used to assert the existence of a label. For example, `labels."priority":*`.
      *       filter: 'placeholder-value',
      *       // Orders messages returned by the specified order_by clause. Syntax: https://cloud.google.com/apis/design/design_patterns#sorting_order Fields available for ordering are: * `send_time`
@@ -19309,8 +19384,7 @@ export namespace healthcare_v1 {
      *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store',
      *       // Specifies the parts of the Message to return in the response. When unspecified, equivalent to BASIC. Setting this to anything other than BASIC with a `page_size` larger than the default can generate a large response, which impacts the performance of this method.
      *       view: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -19380,7 +19454,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$List;
         options = {};
       }
 
@@ -19442,11 +19517,10 @@ export namespace healthcare_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await healthcare.projects.locations.datasets.hl7V2Stores.messages.patch(
-     *     {
+     *   const res =
+     *     await healthcare.projects.locations.datasets.hl7V2Stores.messages.patch({
      *       // Resource name of the Message, of the form `projects/{project_id\}/datasets/{dataset_id\}/hl7V2Stores/{hl7_v2_store_id\}/messages/{message_id\}`. Assigned by the server.
-     *       name:
-     *         'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store/messages/my-message',
+     *       name: 'projects/my-project/locations/my-location/datasets/my-dataset/hl7V2Stores/my-hl7V2Store/messages/my-message',
      *       // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
@@ -19466,8 +19540,7 @@ export namespace healthcare_v1 {
      *         //   "sendTime": "my_sendTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -19540,7 +19613,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Hl7v2stores$Messages$Patch;
         options = {};
       }
 
@@ -19694,8 +19768,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.operations.cancel({
      *     // The name of the operation resource to be cancelled.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/operations/my-operation',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/operations/my-operation',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -19764,7 +19837,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Operations$Cancel;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Operations$Cancel;
         options = {};
       }
 
@@ -19825,8 +19899,7 @@ export namespace healthcare_v1 {
      *   // Do the magic
      *   const res = await healthcare.projects.locations.datasets.operations.get({
      *     // The name of the operation resource.
-     *     name:
-     *       'projects/my-project/locations/my-location/datasets/my-dataset/operations/my-operation',
+     *     name: 'projects/my-project/locations/my-location/datasets/my-dataset/operations/my-operation',
      *   });
      *   console.log(res.data);
      *
@@ -19895,7 +19968,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Operations$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Operations$Get;
         options = {};
       }
 
@@ -20033,7 +20107,8 @@ export namespace healthcare_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Datasets$Operations$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasets$Operations$List;
         options = {};
       }
 

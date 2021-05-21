@@ -4837,7 +4837,7 @@
       }
     }
   },
-  "revision": "20210414",
+  "revision": "20210507",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -4868,6 +4868,23 @@
         "documentContent": {
           "description": "document_content is a document to be annotated.",
           "type": "string"
+        },
+        "licensedVocabularies": {
+          "description": "A list of licensed vocabularies to use in the request, in addition to the default unlicensed vocabularies.",
+          "items": {
+            "enum": [
+              "LICENSED_VOCABULARY_UNSPECIFIED",
+              "ICD10CM",
+              "SNOMEDCT_US"
+            ],
+            "enumDescriptions": [
+              "No licensed vocabulary specified.",
+              "ICD-10-CM vocabulary",
+              "SNOMED CT (US version) vocabulary"
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -7376,7 +7393,7 @@
       "properties": {
         "gcsDestination": {
           "$ref": "GoogleCloudHealthcareV1beta1ConsentGcsDestination",
-          "description": "The Cloud Storage destination. The Cloud Healthcare API service account must have the `roles/storage.objectAdmin` Cloud IAM role for this Cloud Storage location."
+          "description": "The Cloud Storage destination. The Cloud Healthcare API service account must have the `roles/storage.objectAdmin` Cloud IAM role for this Cloud Storage location. The object name is in the following format: query-accessible-data-result-{operation_id}.txt where each line contains a single data_id."
         },
         "requestAttributes": {
           "additionalProperties": {
@@ -7393,6 +7410,12 @@
           "type": "object"
         }
       },
+      "type": "object"
+    },
+    "QueryAccessibleDataResponse": {
+      "description": "Response for successful QueryAccessibleData operations. This structure is included in the response upon operation completion.",
+      "id": "QueryAccessibleDataResponse",
+      "properties": {},
       "type": "object"
     },
     "RedactConfig": {
