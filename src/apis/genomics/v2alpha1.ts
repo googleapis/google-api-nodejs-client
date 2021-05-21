@@ -250,27 +250,6 @@ export namespace genomics_v2alpha1 {
     metadata?: {[key: string]: any} | null;
   }
   /**
-   * Describes a Compute Engine resource that is being managed by a running pipeline.
-   */
-  export interface Schema$ComputeEngine {
-    /**
-     * The names of the disks that were created for this pipeline.
-     */
-    diskNames?: string[] | null;
-    /**
-     * The instance on which the operation is running.
-     */
-    instanceName?: string | null;
-    /**
-     * The machine type of the instance.
-     */
-    machineType?: string | null;
-    /**
-     * The availability zone in which the instance resides.
-     */
-    zone?: string | null;
-  }
-  /**
    * An event generated when a container is forcibly terminated by the worker. Currently, this only occurs when the container outlives the timeout specified by the user.
    */
   export interface Schema$ContainerKilledEvent {
@@ -514,64 +493,6 @@ export namespace genomics_v2alpha1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * An event that occurred during an Operation.
-   */
-  export interface Schema$OperationEvent {
-    /**
-     * Required description of event.
-     */
-    description?: string | null;
-    /**
-     * Optional time of when event finished. An event can have a start time and no finish time. If an event has a finish time, there must be a start time.
-     */
-    endTime?: string | null;
-    /**
-     * Optional time of when event started.
-     */
-    startTime?: string | null;
-  }
-  /**
-   * Metadata describing an Operation.
-   */
-  export interface Schema$OperationMetadata {
-    /**
-     * This field is deprecated. Use `labels` instead. Optionally provided by the caller when submitting the request that creates the operation.
-     */
-    clientId?: string | null;
-    /**
-     * The time at which the job was submitted to the Genomics service.
-     */
-    createTime?: string | null;
-    /**
-     * The time at which the job stopped running.
-     */
-    endTime?: string | null;
-    /**
-     * Optional event messages that were generated during the job's execution. This also contains any warnings that were generated during import or export.
-     */
-    events?: Schema$OperationEvent[];
-    /**
-     * Optionally provided by the caller when submitting the request that creates the operation.
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * The Google Cloud Project in which the job is scoped.
-     */
-    projectId?: string | null;
-    /**
-     * The original request that started the operation. Note that this will be in current version of the API. If the operation was started with v1beta2 API and a GetOperation is performed on v1 API, a v1 request will be returned.
-     */
-    request?: {[key: string]: any} | null;
-    /**
-     * Runtime metadata on this Operation.
-     */
-    runtimeMetadata?: {[key: string]: any} | null;
-    /**
-     * The time at which the job began to run.
-     */
-    startTime?: string | null;
-  }
-  /**
    * Configuration for a persistent disk to be attached to the VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations.
    */
   export interface Schema$PersistentDisk {
@@ -673,15 +594,6 @@ export namespace genomics_v2alpha1 {
    * The response to the RunPipeline method, returned in the operation's result field on success.
    */
   export interface Schema$RunPipelineResponse {}
-  /**
-   * Runtime metadata that will be populated in the runtimeMetadata field of the Operation associated with a RunPipeline execution.
-   */
-  export interface Schema$RuntimeMetadata {
-    /**
-     * Execution information specific to Google Compute Engine.
-     */
-    computeEngine?: Schema$ComputeEngine;
-  }
   /**
    * Holds encrypted information that is only decrypted and stored in RAM by the worker VM when running the pipeline.
    */
@@ -1361,7 +1273,7 @@ export namespace genomics_v2alpha1 {
      *
      *   // Do the magic
      *   const res = await genomics.projects.operations.list({
-     *     // A string for filtering Operations. In v2alpha1, the following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true. In v1 and v1alpha2, the following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `\>=` and/or `<=` operators. * status: Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only one status may be specified. * labels.key where key is a label key. Examples: * `projectId = my-project AND createTime \>= 1432140000` * `projectId = my-project AND createTime \>= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
+     *     // A string for filtering Operations. In v2alpha1, the following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true. Examples: * `projectId = my-project AND createTime \>= 1432140000` * `projectId = my-project AND createTime \>= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
      *     filter: 'placeholder-value',
      *     // The name of the operation's parent resource.
      *     name: 'projects/my-project/operations',
@@ -1495,7 +1407,7 @@ export namespace genomics_v2alpha1 {
   export interface Params$Resource$Projects$Operations$List
     extends StandardParameters {
     /**
-     * A string for filtering Operations. In v2alpha1, the following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true. In v1 and v1alpha2, the following filter fields are supported: * projectId: Required. Corresponds to OperationMetadata.projectId. * createTime: The time this job was created, in seconds from the [epoch](http://en.wikipedia.org/wiki/Unix_time). Can use `\>=` and/or `<=` operators. * status: Can be `RUNNING`, `SUCCESS`, `FAILURE`, or `CANCELED`. Only one status may be specified. * labels.key where key is a label key. Examples: * `projectId = my-project AND createTime \>= 1432140000` * `projectId = my-project AND createTime \>= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
+     * A string for filtering Operations. In v2alpha1, the following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true. Examples: * `projectId = my-project AND createTime \>= 1432140000` * `projectId = my-project AND createTime \>= 1432140000 AND createTime <= 1432150000 AND status = RUNNING` * `projectId = my-project AND labels.color = *` * `projectId = my-project AND labels.color = red`
      */
     filter?: string;
     /**
