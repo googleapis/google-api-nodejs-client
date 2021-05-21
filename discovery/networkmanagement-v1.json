@@ -591,7 +591,7 @@
       }
     }
   },
-  "revision": "20210408",
+  "revision": "20210506",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -728,15 +728,15 @@
           "type": "string"
         },
         "externalIp": {
-          "description": "External IP address of Cloud SQL instance.",
+          "description": "External IP address of a Cloud SQL instance.",
           "type": "string"
         },
         "internalIp": {
-          "description": "Internal IP address of Cloud SQL instance.",
+          "description": "Internal IP address of a Cloud SQL instance.",
           "type": "string"
         },
         "networkUri": {
-          "description": "URI of a Cloud SQL instance network or empty string if instance does not have one.",
+          "description": "URI of a Cloud SQL instance network or empty string if the instance does not have one.",
           "type": "string"
         },
         "region": {
@@ -834,7 +834,7 @@
           "enumDescriptions": [
             "Target not specified.",
             "Target is a Compute Engine instance.",
-            "Target is the Internet.",
+            "Target is the internet.",
             "Target is a Google API.",
             "Target is a Google Kubernetes Engine cluster master.",
             "Target is a Cloud SQL instance."
@@ -876,19 +876,19 @@
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
-            "Destination external address cannot be resolved to a known target. If the address is used in a GCP project, provide the project ID as test input.",
-            "A Compute Engine instance can only send or receive a packet with a foreign IP if ip_forward is enabled.",
+            "Destination external address cannot be resolved to a known target. If the address is used in a Google Cloud project, provide the project ID as test input.",
+            "A Compute Engine instance can only send or receive a packet with a foreign IP address if ip_forward is enabled.",
             "Dropped due to a firewall rule, unless allowed due to connection tracking.",
             "Dropped due to no routes.",
             "Dropped due to invalid route. Route's next hop is a blackhole.",
             "Packet is sent to a wrong (unintended) network. Example: you trace a packet from VM1:Network1 to VM2:Network2, however, the route configured in Network1 sends the packet destined for VM2's IP addresss to Network3.",
-            "Packet with internal destination address sent to Internet gateway.",
-            "Instance with only an internal IP tries to access Google API and Services, but private Google access is not enabled.",
-            "Instance with only internal IP tries to access external hosts, but Cloud NAT is not enabled in the subnet, unless special configurations on a VM allows this connection. See [Special Configurations for VM instances](https://cloud.google.com/vpc/docs/special-configurations) for more details.",
+            "Packet with internal destination address sent to the internet gateway.",
+            "Instance with only an internal IP address tries to access Google API and services, but private Google access is not enabled.",
+            "Instance with only an internal IP address tries to access external hosts, but Cloud NAT is not enabled in the subnet, unless special configurations on a VM allow this connection. For more details, see [Special configurations for VM instances](https://cloud.google.com/vpc/docs/special-configurations).",
             "Destination internal address cannot be resolved to a known target. If this is a shared VPC scenario, verify if the service project ID is provided as test input. Otherwise, verify if the IP address is being used in the project.",
             "Forwarding rule's protocol and ports do not match the packet header.",
             "Forwarding rule does not have backends configured.",
-            "Firewalls block the health check probes to the backends and cause the backends to be unavailable for traffic from the load balancer. See [Health check firewall rules](https://cloud.google.com/load-balancing/docs/health-checks#firewall_rules) for more details.",
+            "Firewalls block the health check probes to the backends and cause the backends to be unavailable for traffic from the load balancer. For more details, see [Health check firewall rules](https://cloud.google.com/load-balancing/docs/health-checks#firewall_rules).",
             "Packet is sent from or to a Compute Engine instance that is not in a running state.",
             "The type of traffic is blocked and the user cannot configure a firewall rule to enable it. See [Always blocked traffic](https://cloud.google.com/vpc/docs/firewalls#blockedtraffic) for more details.",
             "Access to Google Kubernetes Engine cluster master's endpoint is not authorized. See [Access to the cluster endpoints](https://cloud.google.com/kubernetes-engine/docs/how-to/private-clusters#access_to_the_cluster_endpoints) for more details.",
@@ -917,6 +917,14 @@
       "description": "Source or destination of the Connectivity Test.",
       "id": "Endpoint",
       "properties": {
+        "cloudSqlInstance": {
+          "description": "A [Cloud SQL](https://cloud.google.com/sql) instance URI.",
+          "type": "string"
+        },
+        "gkeMasterCluster": {
+          "description": "A cluster URI for [Google Kubernetes Engine master](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).",
+          "type": "string"
+        },
         "instance": {
           "description": "A Compute Engine instance URI.",
           "type": "string"
@@ -1107,7 +1115,7 @@
             "Forwarded to a Cloud Interconnect connection.",
             "Forwarded to a Google Kubernetes Engine Container cluster master.",
             "Forwarded to the next hop of a custom route imported from a peering VPC.",
-            "Forwarded to a Cloud SQL Instance."
+            "Forwarded to a Cloud SQL instance."
           ],
           "type": "string"
         }
@@ -1150,23 +1158,23 @@
       "type": "object"
     },
     "GKEMasterInfo": {
-      "description": "For display only. Metadata associated with a Google Kubernetes Engine cluster master.",
+      "description": "For display only. Metadata associated with a Google Kubernetes Engine (GKE) cluster master.",
       "id": "GKEMasterInfo",
       "properties": {
         "clusterNetworkUri": {
-          "description": "URI of a Google Kubernetes Engine cluster network.",
+          "description": "URI of a GKE cluster network.",
           "type": "string"
         },
         "clusterUri": {
-          "description": "URI of a Google Kubernetes Engine cluster.",
+          "description": "URI of a GKE cluster.",
           "type": "string"
         },
         "externalIp": {
-          "description": "External IP address of a Google Kubernetes Engine cluster master.",
+          "description": "External IP address of a GKE cluster master.",
           "type": "string"
         },
         "internalIp": {
-          "description": "Internal IP address of a Google Kubernetes Engine cluster master.",
+          "description": "Internal IP address of a GKE cluster master.",
           "type": "string"
         }
       },
@@ -1627,7 +1635,7 @@
             "Next hop is a peering VPC.",
             "Next hop is an interconnect.",
             "Next hop is a VPN tunnel.",
-            "Next hop is a VPN Gateway. This scenario only happens when tracing connectivity from an on-premises network to GCP through a VPN. The analysis simulates a packet departing from the on-premises network through a VPN tunnel and arriving at a Cloud VPN gateway.",
+            "Next hop is a VPN gateway. This scenario only happens when tracing connectivity from an on-premises network to Google Cloud through a VPN. The analysis simulates a packet departing from the on-premises network through a VPN tunnel and arriving at a Cloud VPN gateway.",
             "Next hop is an internet gateway.",
             "Next hop is blackhole; that is, the next hop either does not exist or is not running.",
             "Next hop is the forwarding rule of an Internal Load Balancer."
@@ -1653,7 +1661,7 @@
           "enumDescriptions": [
             "Unspecified type. Default value.",
             "Route is a subnet route automatically created by the system.",
-            "Static route created by the user including the default route to the Internet.",
+            "Static route created by the user, including the default route to the internet.",
             "Dynamic route exchanged between BGP peers.",
             "A subnet route received from peering network.",
             "A static route received from peering network.",
@@ -1717,7 +1725,7 @@
       "properties": {
         "abort": {
           "$ref": "AbortInfo",
-          "description": "Display info of the final state \"abort\" and reason."
+          "description": "Display information of the final state \"abort\" and reason."
         },
         "causesDrop": {
           "description": "This is a step that leads to the final state Drop.",
@@ -1725,11 +1733,11 @@
         },
         "cloudSqlInstance": {
           "$ref": "CloudSQLInstanceInfo",
-          "description": "Display info of a Cloud SQL instance."
+          "description": "Display information of a Cloud SQL instance."
         },
         "deliver": {
           "$ref": "DeliverInfo",
-          "description": "Display info of the final state \"deliver\" and reason."
+          "description": "Display information of the final state \"deliver\" and reason."
         },
         "description": {
           "description": "A description of the step. Usually this is a summary of the state.",
@@ -1737,39 +1745,39 @@
         },
         "drop": {
           "$ref": "DropInfo",
-          "description": "Display info of the final state \"drop\" and reason."
+          "description": "Display information of the final state \"drop\" and reason."
         },
         "endpoint": {
           "$ref": "EndpointInfo",
-          "description": "Display info of the source and destination under analysis. The endpoint info in an intermediate state may differ with the initial input, as it might be modified by state like NAT, or Connection Proxy."
+          "description": "Display information of the source and destination under analysis. The endpoint information in an intermediate state may differ with the initial input, as it might be modified by state like NAT, or Connection Proxy."
         },
         "firewall": {
           "$ref": "FirewallInfo",
-          "description": "Display info of a Compute Engine firewall rule."
+          "description": "Display information of a Compute Engine firewall rule."
         },
         "forward": {
           "$ref": "ForwardInfo",
-          "description": "Display info of the final state \"forward\" and reason."
+          "description": "Display information of the final state \"forward\" and reason."
         },
         "forwardingRule": {
           "$ref": "ForwardingRuleInfo",
-          "description": "Display info of a Compute Engine forwarding rule."
+          "description": "Display information of a Compute Engine forwarding rule."
         },
         "gkeMaster": {
           "$ref": "GKEMasterInfo",
-          "description": "Display info of a Google Kubernetes Engine cluster master."
+          "description": "Display information of a Google Kubernetes Engine cluster master."
         },
         "instance": {
           "$ref": "InstanceInfo",
-          "description": "Display info of a Compute Engine instance."
+          "description": "Display information of a Compute Engine instance."
         },
         "loadBalancer": {
           "$ref": "LoadBalancerInfo",
-          "description": "Display info of the load balancers."
+          "description": "Display information of the load balancers."
         },
         "network": {
           "$ref": "NetworkInfo",
-          "description": "Display info of a GCP network."
+          "description": "Display information of a Google Cloud network."
         },
         "projectId": {
           "description": "Project ID that contains the configuration this step is validating.",
@@ -1777,7 +1785,7 @@
         },
         "route": {
           "$ref": "RouteInfo",
-          "description": "Display info of a Compute Engine route."
+          "description": "Display information of a Compute Engine route."
         },
         "state": {
           "description": "Each step is in one of the pre-defined states.",
@@ -1808,11 +1816,11 @@
           ],
           "enumDescriptions": [
             "Unspecified state.",
-            "Initial state: packet originating from a Compute Engine instance. An InstanceInfo will be populated with starting instance info.",
-            "Initial state: packet originating from Internet. The endpoint info will be populated.",
-            "Initial state: packet originating from a VPC or on-premises network with internal source IP. If the source is a VPC network visible to the user, a NetworkInfo will be populated with details of the network.",
-            "Initial state: packet originating from a Google Kubernetes Engine cluster master. A GKEMasterInfo will be populated with starting instance info.",
-            "Initial state: packet originating from a Cloud SQL instance. A CloudSQLInstanceInfo will be populated with starting instance info.",
+            "Initial state: packet originating from a Compute Engine instance. An InstanceInfo is populated with starting instance information.",
+            "Initial state: packet originating from the internet. The endpoint information is populated.",
+            "Initial state: packet originating from a VPC or on-premises network with internal source IP. If the source is a VPC network visible to the user, a NetworkInfo is populated with details of the network.",
+            "Initial state: packet originating from a Google Kubernetes Engine cluster master. A GKEMasterInfo is populated with starting instance information.",
+            "Initial state: packet originating from a Cloud SQL instance. A CloudSQLInstanceInfo is populated with starting instance information.",
             "Config checking state: verify ingress firewall rule.",
             "Config checking state: verify egress firewall rule.",
             "Config checking state: verify route.",
@@ -1835,11 +1843,11 @@
         },
         "vpnGateway": {
           "$ref": "VpnGatewayInfo",
-          "description": "Display info of a Compute Engine VPN gateway."
+          "description": "Display information of a Compute Engine VPN gateway."
         },
         "vpnTunnel": {
           "$ref": "VpnTunnelInfo",
-          "description": "Display info of a Compute Engine VPN tunnel."
+          "description": "Display information of a Compute Engine VPN tunnel."
         }
       },
       "type": "object"
@@ -1907,7 +1915,7 @@
           "type": "string"
         },
         "region": {
-          "description": "Name of a GCP region where this VPN gateway is configured.",
+          "description": "Name of a Google Cloud region where this VPN gateway is configured.",
           "type": "string"
         },
         "uri": {
@@ -1934,7 +1942,7 @@
           "type": "string"
         },
         "region": {
-          "description": "Name of a GCP region where this VPN tunnel is configured.",
+          "description": "Name of a Google Cloud region where this VPN tunnel is configured.",
           "type": "string"
         },
         "remoteGateway": {
