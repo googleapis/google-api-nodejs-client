@@ -3029,8 +3029,7 @@ export namespace tagmanager_v2 {
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.delete({
      *     // GTM Environment's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/environments/{environment_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/environments/my-environment',
+     *     path: 'accounts/my-account/containers/my-container/environments/my-environment',
      *   });
      *   console.log(res.data);
      * }
@@ -3155,8 +3154,7 @@ export namespace tagmanager_v2 {
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.get({
      *     // GTM Environment's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/environments/{environment_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/environments/my-environment',
+     *     path: 'accounts/my-account/containers/my-container/environments/my-environment',
      *   });
      *   console.log(res.data);
      *
@@ -3439,8 +3437,7 @@ export namespace tagmanager_v2 {
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.environments.reauthorize({
      *     // GTM Environment's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/environments/{environment_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/environments/my-environment',
+     *     path: 'accounts/my-account/containers/my-container/environments/my-environment',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -3541,7 +3538,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Environments$Reauthorize;
+        params =
+          {} as Params$Resource$Accounts$Containers$Environments$Reauthorize;
         options = {};
       }
 
@@ -3607,8 +3605,7 @@ export namespace tagmanager_v2 {
      *     // When provided, this fingerprint must match the fingerprint of the environment in storage.
      *     fingerprint: 'placeholder-value',
      *     // GTM Environment's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/environments/{environment_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/environments/my-environment',
+     *     path: 'accounts/my-account/containers/my-container/environments/my-environment',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -5041,7 +5038,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Version_headers$Latest;
+        params =
+          {} as Params$Resource$Accounts$Containers$Version_headers$Latest;
         options = {};
       }
 
@@ -5258,9 +5256,10 @@ export namespace tagmanager_v2 {
     zones: Resource$Accounts$Containers$Workspaces$Zones;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.built_in_variables = new Resource$Accounts$Containers$Workspaces$Built_in_variables(
-        this.context
-      );
+      this.built_in_variables =
+        new Resource$Accounts$Containers$Workspaces$Built_in_variables(
+          this.context
+        );
       this.folders = new Resource$Accounts$Containers$Workspaces$Folders(
         this.context
       );
@@ -5546,7 +5545,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Create_version;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Create_version;
         options = {};
       }
 
@@ -6229,7 +6229,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Quick_preview;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Quick_preview;
         options = {};
       }
 
@@ -6366,7 +6367,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Resolve_conflict;
         options = {};
       }
 
@@ -6826,15 +6828,14 @@ export namespace tagmanager_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.create(
-     *     {
+     *   const res =
+     *     await tagmanager.accounts.containers.workspaces.built_in_variables.create({
      *       // GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
      *       parent:
      *         'accounts/my-account/containers/my-container/workspaces/my-workspace',
      *       // The types of built-in variables to enable.
      *       type: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6905,7 +6906,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Create;
         options = {};
       }
 
@@ -6968,15 +6970,13 @@ export namespace tagmanager_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.delete(
-     *     {
+     *   const res =
+     *     await tagmanager.accounts.containers.workspaces.built_in_variables.delete({
      *       // GTM BuiltInVariable's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/built_in_variables
-     *       path:
-     *         'accounts/my-account/containers/my-container/workspaces/my-workspace/built_in_variables',
+     *       path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/built_in_variables',
      *       // The types of built-in variables to delete.
      *       type: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      * }
      *
@@ -7033,7 +7033,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Delete;
         options = {};
       }
 
@@ -7098,15 +7099,14 @@ export namespace tagmanager_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.list(
-     *     {
+     *   const res =
+     *     await tagmanager.accounts.containers.workspaces.built_in_variables.list({
      *       // Continuation token for fetching the next page of results.
      *       pageToken: 'placeholder-value',
      *       // GTM Workspace's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}
      *       parent:
      *         'accounts/my-account/containers/my-container/workspaces/my-workspace',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -7178,7 +7178,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$List;
         options = {};
       }
 
@@ -7241,15 +7242,13 @@ export namespace tagmanager_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.workspaces.built_in_variables.revert(
-     *     {
+     *   const res =
+     *     await tagmanager.accounts.containers.workspaces.built_in_variables.revert({
      *       // GTM BuiltInVariable's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/built_in_variables
-     *       path:
-     *         'accounts/my-account/containers/my-container/workspaces/my-workspace',
+     *       path: 'accounts/my-account/containers/my-container/workspaces/my-workspace',
      *       // The type of built-in variable to revert.
      *       type: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -7320,7 +7319,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Built_in_variables$Revert;
         options = {};
       }
 
@@ -7527,7 +7527,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Create;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Create;
         options = {};
       }
 
@@ -7591,8 +7592,7 @@ export namespace tagmanager_v2 {
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.delete({
      *     // GTM Folder's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/folders/{folder_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
      *   });
      *   console.log(res.data);
      * }
@@ -7650,7 +7650,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Delete;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Delete;
         options = {};
       }
 
@@ -7719,8 +7720,7 @@ export namespace tagmanager_v2 {
      *     // Continuation token for fetching the next page of results.
      *     pageToken: 'placeholder-value',
      *     // GTM Folder's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/folders/{folder_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
      *   });
      *   console.log(res.data);
      *
@@ -7788,7 +7788,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Entities;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Entities;
         options = {};
       }
 
@@ -7855,8 +7856,7 @@ export namespace tagmanager_v2 {
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.folders.get({
      *     // GTM Folder's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/folders/{folder_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
      *   });
      *   console.log(res.data);
      *
@@ -7929,7 +7929,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Get;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Get;
         options = {};
       }
 
@@ -8068,7 +8069,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$List;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Folders$List;
         options = {};
       }
 
@@ -8130,35 +8132,35 @@ export namespace tagmanager_v2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder(
-     *     {
-     *       // GTM Folder's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/folders/{folder_id\}
-     *       path:
-     *         'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
-     *       // The tags to be moved to the folder.
-     *       tagId: 'placeholder-value',
-     *       // The triggers to be moved to the folder.
-     *       triggerId: 'placeholder-value',
-     *       // The variables to be moved to the folder.
-     *       variableId: 'placeholder-value',
+     *   const res =
+     *     await tagmanager.accounts.containers.workspaces.folders.move_entities_to_folder(
+     *       {
+     *         // GTM Folder's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/folders/{folder_id\}
+     *         path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *         // The tags to be moved to the folder.
+     *         tagId: 'placeholder-value',
+     *         // The triggers to be moved to the folder.
+     *         triggerId: 'placeholder-value',
+     *         // The variables to be moved to the folder.
+     *         variableId: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "accountId": "my_accountId",
-     *         //   "containerId": "my_containerId",
-     *         //   "fingerprint": "my_fingerprint",
-     *         //   "folderId": "my_folderId",
-     *         //   "name": "my_name",
-     *         //   "notes": "my_notes",
-     *         //   "path": "my_path",
-     *         //   "tagManagerUrl": "my_tagManagerUrl",
-     *         //   "workspaceId": "my_workspaceId"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "accountId": "my_accountId",
+     *           //   "containerId": "my_containerId",
+     *           //   "fingerprint": "my_fingerprint",
+     *           //   "folderId": "my_folderId",
+     *           //   "name": "my_name",
+     *           //   "notes": "my_notes",
+     *           //   "path": "my_path",
+     *           //   "tagManagerUrl": "my_tagManagerUrl",
+     *           //   "workspaceId": "my_workspaceId"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      * }
      *
@@ -8215,7 +8217,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Move_entities_to_folder;
         options = {};
       }
 
@@ -8280,8 +8283,7 @@ export namespace tagmanager_v2 {
      *     // When provided, this fingerprint must match the fingerprint of the tag in storage.
      *     fingerprint: 'placeholder-value',
      *     // GTM Folder's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/folders/{folder_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
      *   });
      *   console.log(res.data);
      *
@@ -8351,7 +8353,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Revert;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Revert;
         options = {};
       }
 
@@ -8417,8 +8420,7 @@ export namespace tagmanager_v2 {
      *     // When provided, this fingerprint must match the fingerprint of the folder in storage.
      *     fingerprint: 'placeholder-value',
      *     // GTM Folder's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/folders/{folder_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/folders/my-folder',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -8507,7 +8509,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Update;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Folders$Update;
         options = {};
       }
 
@@ -8802,7 +8805,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Tags$Create;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Tags$Create;
         options = {};
       }
 
@@ -8866,8 +8870,7 @@ export namespace tagmanager_v2 {
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.tags.delete({
      *     // GTM Tag's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/tags/{tag_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
      *   });
      *   console.log(res.data);
      * }
@@ -8925,7 +8928,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Tags$Delete;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Tags$Delete;
         options = {};
       }
 
@@ -8992,8 +8996,7 @@ export namespace tagmanager_v2 {
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.tags.get({
      *     // GTM Tag's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/tags/{tag_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
      *   });
      *   console.log(res.data);
      *
@@ -9285,8 +9288,7 @@ export namespace tagmanager_v2 {
      *     // When provided, this fingerprint must match the fingerprint of thetag in storage.
      *     fingerprint: 'placeholder-value',
      *     // GTM Tag's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/tags/{tag_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
      *   });
      *   console.log(res.data);
      *
@@ -9354,7 +9356,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Tags$Revert;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Tags$Revert;
         options = {};
       }
 
@@ -9420,8 +9423,7 @@ export namespace tagmanager_v2 {
      *     // When provided, this fingerprint must match the fingerprint of the tag in storage.
      *     fingerprint: 'placeholder-value',
      *     // GTM Tag's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/tags/{tag_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/tags/my-tag',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -9544,7 +9546,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Tags$Update;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Tags$Update;
         options = {};
       }
 
@@ -9772,7 +9775,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Create;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Create;
         options = {};
       }
 
@@ -9836,8 +9840,7 @@ export namespace tagmanager_v2 {
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.templates.delete({
      *     // GTM Custom Template's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/templates/{template_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
      *   });
      *   console.log(res.data);
      * }
@@ -9895,7 +9898,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Delete;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Delete;
         options = {};
       }
 
@@ -9962,8 +9966,7 @@ export namespace tagmanager_v2 {
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.templates.get({
      *     // GTM Custom Template's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/templates/{template_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
      *   });
      *   console.log(res.data);
      *
@@ -10037,7 +10040,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Get;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Get;
         options = {};
       }
 
@@ -10178,7 +10182,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Templates$List;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Templates$List;
         options = {};
       }
 
@@ -10244,8 +10249,7 @@ export namespace tagmanager_v2 {
      *     // When provided, this fingerprint must match the fingerprint of the template in storage.
      *     fingerprint: 'placeholder-value',
      *     // GTM Custom Template's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/templates/{template_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
      *   });
      *   console.log(res.data);
      *
@@ -10315,7 +10319,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Revert;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Revert;
         options = {};
       }
 
@@ -10381,8 +10386,7 @@ export namespace tagmanager_v2 {
      *     // When provided, this fingerprint must match the fingerprint of the templates in storage.
      *     fingerprint: 'placeholder-value',
      *     // GTM Custom Template's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/templates/{template_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/templates/my-template',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -10473,7 +10477,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Update;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Templates$Update;
         options = {};
       }
 
@@ -10745,7 +10750,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$Create;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$Create;
         options = {};
       }
 
@@ -10809,8 +10815,7 @@ export namespace tagmanager_v2 {
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.delete({
      *     // GTM Trigger's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/triggers/{trigger_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
      *   });
      *   console.log(res.data);
      * }
@@ -10868,7 +10873,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$Delete;
         options = {};
       }
 
@@ -10935,8 +10941,7 @@ export namespace tagmanager_v2 {
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.triggers.get({
      *     // GTM Trigger's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/triggers/{trigger_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
      *   });
      *   console.log(res.data);
      *
@@ -11032,7 +11037,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$Get;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$Get;
         options = {};
       }
 
@@ -11173,7 +11179,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$List;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$List;
         options = {};
       }
 
@@ -11239,8 +11246,7 @@ export namespace tagmanager_v2 {
      *     // When provided, this fingerprint must match the fingerprint of the trigger in storage.
      *     fingerprint: 'placeholder-value',
      *     // GTM Trigger's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/triggers/{trigger_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
      *   });
      *   console.log(res.data);
      *
@@ -11310,7 +11316,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$Revert;
         options = {};
       }
 
@@ -11376,8 +11383,7 @@ export namespace tagmanager_v2 {
      *     // When provided, this fingerprint must match the fingerprint of the trigger in storage.
      *     fingerprint: 'placeholder-value',
      *     // GTM Trigger's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/triggers/{trigger_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/triggers/my-trigger',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -11512,7 +11518,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$Update;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Triggers$Update;
         options = {};
       }
 
@@ -11754,7 +11761,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Variables$Create;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Variables$Create;
         options = {};
       }
 
@@ -11818,8 +11826,7 @@ export namespace tagmanager_v2 {
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.variables.delete({
      *     // GTM Variable's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/variables/{variable_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
      *   });
      *   console.log(res.data);
      * }
@@ -11877,7 +11884,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Variables$Delete;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Variables$Delete;
         options = {};
       }
 
@@ -11944,8 +11952,7 @@ export namespace tagmanager_v2 {
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.variables.get({
      *     // GTM Variable's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/variables/{variable_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
      *   });
      *   console.log(res.data);
      *
@@ -12026,7 +12033,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Variables$Get;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Variables$Get;
         options = {};
       }
 
@@ -12167,7 +12175,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Variables$List;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Variables$List;
         options = {};
       }
 
@@ -12233,8 +12242,7 @@ export namespace tagmanager_v2 {
      *     // When provided, this fingerprint must match the fingerprint of the variable in storage.
      *     fingerprint: 'placeholder-value',
      *     // GTM Variable's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/variables/{variable_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
      *   });
      *   console.log(res.data);
      *
@@ -12304,7 +12312,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Variables$Revert;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Variables$Revert;
         options = {};
       }
 
@@ -12370,8 +12379,7 @@ export namespace tagmanager_v2 {
      *     // When provided, this fingerprint must match the fingerprint of the variable in storage.
      *     fingerprint: 'placeholder-value',
      *     // GTM Variable's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/variables/{variable_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/variables/my-variable',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -12476,7 +12484,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Variables$Update;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Variables$Update;
         options = {};
       }
 
@@ -12708,7 +12717,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Zones$Create;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Zones$Create;
         options = {};
       }
 
@@ -12772,8 +12782,7 @@ export namespace tagmanager_v2 {
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.zones.delete({
      *     // GTM Zone's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/zones/{zone_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
      *   });
      *   console.log(res.data);
      * }
@@ -12831,7 +12840,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Zones$Delete;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Zones$Delete;
         options = {};
       }
 
@@ -12898,8 +12908,7 @@ export namespace tagmanager_v2 {
      *   // Do the magic
      *   const res = await tagmanager.accounts.containers.workspaces.zones.get({
      *     // GTM Zone's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/zones/{zone_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
      *   });
      *   console.log(res.data);
      *
@@ -13114,7 +13123,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Zones$List;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Zones$List;
         options = {};
       }
 
@@ -13180,8 +13190,7 @@ export namespace tagmanager_v2 {
      *     // When provided, this fingerprint must match the fingerprint of the zone in storage.
      *     fingerprint: 'placeholder-value',
      *     // GTM Zone's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/zones/{zone_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
      *   });
      *   console.log(res.data);
      *
@@ -13249,7 +13258,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Zones$Revert;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Zones$Revert;
         options = {};
       }
 
@@ -13315,8 +13325,7 @@ export namespace tagmanager_v2 {
      *     // When provided, this fingerprint must match the fingerprint of the zone in storage.
      *     fingerprint: 'placeholder-value',
      *     // GTM Zone's API relative path. Example: accounts/{account_id\}/containers/{container_id\}/workspaces/{workspace_id\}/zones/{zone_id\}
-     *     path:
-     *       'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
+     *     path: 'accounts/my-account/containers/my-container/workspaces/my-workspace/zones/my-zone',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -13411,7 +13420,8 @@ export namespace tagmanager_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Workspaces$Zones$Update;
+        params =
+          {} as Params$Resource$Accounts$Containers$Workspaces$Zones$Update;
         options = {};
       }
 

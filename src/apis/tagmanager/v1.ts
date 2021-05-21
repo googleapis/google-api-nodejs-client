@@ -1446,9 +1446,8 @@ export namespace tagmanager_v1 {
       this.move_folders = new Resource$Accounts$Containers$Move_folders(
         this.context
       );
-      this.reauthorize_environments = new Resource$Accounts$Containers$Reauthorize_environments(
-        this.context
-      );
+      this.reauthorize_environments =
+        new Resource$Accounts$Containers$Reauthorize_environments(this.context);
       this.tags = new Resource$Accounts$Containers$Tags(this.context);
       this.triggers = new Resource$Accounts$Containers$Triggers(this.context);
       this.variables = new Resource$Accounts$Containers$Variables(this.context);
@@ -3968,7 +3967,8 @@ export namespace tagmanager_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Folders$Entities$List;
+        params =
+          {} as Params$Resource$Accounts$Containers$Folders$Entities$List;
         options = {};
       }
 
@@ -4237,8 +4237,8 @@ export namespace tagmanager_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await tagmanager.accounts.containers.reauthorize_environments.update(
-     *     {
+     *   const res =
+     *     await tagmanager.accounts.containers.reauthorize_environments.update({
      *       // The GTM Account ID.
      *       accountId: 'placeholder-value',
      *       // The GTM Container ID.
@@ -4264,8 +4264,7 @@ export namespace tagmanager_v1 {
      *         //   "url": "my_url"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4340,7 +4339,8 @@ export namespace tagmanager_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Containers$Reauthorize_environments$Update;
+        params =
+          {} as Params$Resource$Accounts$Containers$Reauthorize_environments$Update;
         options = {};
       }
 
