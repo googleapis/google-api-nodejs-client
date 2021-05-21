@@ -874,9 +874,8 @@ export namespace datamigration_v1beta1 {
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.connectionProfiles = new Resource$Projects$Locations$Connectionprofiles(
-        this.context
-      );
+      this.connectionProfiles =
+        new Resource$Projects$Locations$Connectionprofiles(this.context);
       this.migrationJobs = new Resource$Projects$Locations$Migrationjobs(
         this.context
       );
@@ -1310,7 +1309,8 @@ export namespace datamigration_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Connectionprofiles$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectionprofiles$Create;
         options = {};
       }
 
@@ -1377,8 +1377,7 @@ export namespace datamigration_v1beta1 {
      *     // In case of force delete, the CloudSQL replica database is also deleted (only for CloudSQL connection profile).
      *     force: 'placeholder-value',
      *     // Required. Name of the connection profile resource to delete.
-     *     name:
-     *       'projects/my-project/locations/my-location/connectionProfiles/my-connectionProfile',
+     *     name: 'projects/my-project/locations/my-location/connectionProfiles/my-connectionProfile',
      *     // A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     requestId: 'placeholder-value',
      *   });
@@ -1449,7 +1448,8 @@ export namespace datamigration_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Connectionprofiles$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectionprofiles$Delete;
         options = {};
       }
 
@@ -1511,8 +1511,7 @@ export namespace datamigration_v1beta1 {
      *   // Do the magic
      *   const res = await datamigration.projects.locations.connectionProfiles.get({
      *     // Required. Name of the connection profile resource to get.
-     *     name:
-     *       'projects/my-project/locations/my-location/connectionProfiles/my-connectionProfile',
+     *     name: 'projects/my-project/locations/my-location/connectionProfiles/my-connectionProfile',
      *   });
      *   console.log(res.data);
      *
@@ -1589,7 +1588,8 @@ export namespace datamigration_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Connectionprofiles$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectionprofiles$Get;
         options = {};
       }
 
@@ -1649,15 +1649,14 @@ export namespace datamigration_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datamigration.projects.locations.connectionProfiles.getIamPolicy(
-     *     {
+     *   const res =
+     *     await datamigration.projects.locations.connectionProfiles.getIamPolicy({
      *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/connectionProfiles/my-connectionProfile',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1724,7 +1723,8 @@ export namespace datamigration_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Connectionprofiles$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectionprofiles$Getiampolicy;
         options = {};
       }
 
@@ -1871,7 +1871,8 @@ export namespace datamigration_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Connectionprofiles$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectionprofiles$List;
         options = {};
       }
 
@@ -1938,8 +1939,7 @@ export namespace datamigration_v1beta1 {
      *   // Do the magic
      *   const res = await datamigration.projects.locations.connectionProfiles.patch({
      *     // The name of this connection profile resource in the form of projects/{project\}/locations/{location\}/instances/{instance\}.
-     *     name:
-     *       'projects/my-project/locations/my-location/connectionProfiles/my-connectionProfile',
+     *     name: 'projects/my-project/locations/my-location/connectionProfiles/my-connectionProfile',
      *     // A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     requestId: 'placeholder-value',
      *     // Required. Field mask is used to specify the fields to be overwritten in the connection profile resource by the update.
@@ -2029,7 +2029,8 @@ export namespace datamigration_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Connectionprofiles$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectionprofiles$Patch;
         options = {};
       }
 
@@ -2089,8 +2090,8 @@ export namespace datamigration_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datamigration.projects.locations.connectionProfiles.setIamPolicy(
-     *     {
+     *   const res =
+     *     await datamigration.projects.locations.connectionProfiles.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/connectionProfiles/my-connectionProfile',
@@ -2103,8 +2104,7 @@ export namespace datamigration_v1beta1 {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2171,7 +2171,8 @@ export namespace datamigration_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Connectionprofiles$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectionprofiles$Setiampolicy;
         options = {};
       }
 
@@ -2234,21 +2235,22 @@ export namespace datamigration_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datamigration.projects.locations.connectionProfiles.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/connectionProfiles/my-connectionProfile',
+     *   const res =
+     *     await datamigration.projects.locations.connectionProfiles.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/connectionProfiles/my-connectionProfile',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2319,7 +2321,8 @@ export namespace datamigration_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Connectionprofiles$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Connectionprofiles$Testiampermissions;
         options = {};
       }
 
@@ -2678,8 +2681,7 @@ export namespace datamigration_v1beta1 {
      *     // The destination CloudSQL connection profile is always deleted with the migration job. In case of force delete, the destination CloudSQL replica database is also deleted.
      *     force: 'placeholder-value',
      *     // Required. Name of the migration job resource to delete.
-     *     name:
-     *       'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
+     *     name: 'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
      *     // A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     requestId: 'placeholder-value',
      *   });
@@ -2810,8 +2812,8 @@ export namespace datamigration_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datamigration.projects.locations.migrationJobs.generateSshScript(
-     *     {
+     *   const res =
+     *     await datamigration.projects.locations.migrationJobs.generateSshScript({
      *       // Name of the migration job resource to generate the SSH script.
      *       migrationJob:
      *         'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
@@ -2826,8 +2828,7 @@ export namespace datamigration_v1beta1 {
      *         //   "vmSelectionConfig": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2891,7 +2892,8 @@ export namespace datamigration_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Migrationjobs$Generatesshscript;
+        params =
+          {} as Params$Resource$Projects$Locations$Migrationjobs$Generatesshscript;
         options = {};
       }
 
@@ -2955,8 +2957,7 @@ export namespace datamigration_v1beta1 {
      *   // Do the magic
      *   const res = await datamigration.projects.locations.migrationJobs.get({
      *     // Required. Name of the migration job resource to get.
-     *     name:
-     *       'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
+     *     name: 'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
      *   });
      *   console.log(res.data);
      *
@@ -3174,7 +3175,8 @@ export namespace datamigration_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Migrationjobs$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Migrationjobs$Getiampolicy;
         options = {};
       }
 
@@ -3386,8 +3388,7 @@ export namespace datamigration_v1beta1 {
      *   // Do the magic
      *   const res = await datamigration.projects.locations.migrationJobs.patch({
      *     // The name (URI) of this migration job resource, in the form of: projects/{project\}/locations/{location\}/instances/{instance\}.
-     *     name:
-     *       'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
+     *     name: 'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
      *     // A unique id used to identify the request. If the server receives two requests with the same id, then the second request will be ignored. It is recommended to always set this value to a UUID. The id must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      *     requestId: 'placeholder-value',
      *     // Required. Field mask is used to specify the fields to be overwritten in the migration job resource by the update.
@@ -3548,8 +3549,7 @@ export namespace datamigration_v1beta1 {
      *   // Do the magic
      *   const res = await datamigration.projects.locations.migrationJobs.promote({
      *     // Name of the migration job resource to promote.
-     *     name:
-     *       'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
+     *     name: 'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -3689,8 +3689,7 @@ export namespace datamigration_v1beta1 {
      *   // Do the magic
      *   const res = await datamigration.projects.locations.migrationJobs.restart({
      *     // Name of the migration job resource to restart.
-     *     name:
-     *       'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
+     *     name: 'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -3830,8 +3829,7 @@ export namespace datamigration_v1beta1 {
      *   // Do the magic
      *   const res = await datamigration.projects.locations.migrationJobs.resume({
      *     // Name of the migration job resource to resume.
-     *     name:
-     *       'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
+     *     name: 'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -4051,7 +4049,8 @@ export namespace datamigration_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Migrationjobs$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Migrationjobs$Setiampolicy;
         options = {};
       }
 
@@ -4116,8 +4115,7 @@ export namespace datamigration_v1beta1 {
      *   // Do the magic
      *   const res = await datamigration.projects.locations.migrationJobs.start({
      *     // Name of the migration job resource to start.
-     *     name:
-     *       'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
+     *     name: 'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -4257,8 +4255,7 @@ export namespace datamigration_v1beta1 {
      *   // Do the magic
      *   const res = await datamigration.projects.locations.migrationJobs.stop({
      *     // Name of the migration job resource to stop.
-     *     name:
-     *       'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
+     *     name: 'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -4396,8 +4393,8 @@ export namespace datamigration_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datamigration.projects.locations.migrationJobs.testIamPermissions(
-     *     {
+     *   const res =
+     *     await datamigration.projects.locations.migrationJobs.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
@@ -4409,8 +4406,7 @@ export namespace datamigration_v1beta1 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4481,7 +4477,8 @@ export namespace datamigration_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Migrationjobs$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Migrationjobs$Testiampermissions;
         options = {};
       }
 
@@ -4546,8 +4543,7 @@ export namespace datamigration_v1beta1 {
      *   // Do the magic
      *   const res = await datamigration.projects.locations.migrationJobs.verify({
      *     // Name of the migration job resource to verify.
-     *     name:
-     *       'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
+     *     name: 'projects/my-project/locations/my-location/migrationJobs/my-migrationJob',
      *
      *     // Request body metadata
      *     requestBody: {

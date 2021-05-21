@@ -364,7 +364,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of this connection profile resource in the form of projects/{project}/locations/{location}/instances/{instance}.",
+                      "description": "The name of this connection profile resource in the form of projects/{project}/locations/{location}/connectionProfiles/{instance}.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/connectionProfiles/[^/]+$",
                       "required": true,
@@ -1049,7 +1049,7 @@
       }
     }
   },
-  "revision": "20210422",
+  "revision": "20210513",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1307,7 +1307,7 @@
           "description": "A MySQL database connection profile."
         },
         "name": {
-          "description": "The name of this connection profile resource in the form of projects/{project}/locations/{location}/instances/{instance}.",
+          "description": "The name of this connection profile resource in the form of projects/{project}/locations/{location}/connectionProfiles/{instance}.",
           "type": "string"
         },
         "postgresql": {
@@ -2076,7 +2076,7 @@
           "type": "boolean"
         },
         "privateNetwork": {
-          "description": "The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, `/projects/myProject/global/networks/default`. This setting can be updated, but it cannot be removed after it is set.",
+          "description": "The resource link for the VPC network from which the Cloud SQL instance is accessible for private IP. For example, `projects/myProject/global/networks/default`. This setting can be updated, but it cannot be removed after it is set.",
           "type": "string"
         },
         "requireSsl": {
