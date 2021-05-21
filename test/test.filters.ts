@@ -49,7 +49,7 @@ describe(__filename, () => {
     const expected = 'projects/my-project';
     const result = filters.unRegex(path);
     assert.strictEqual(result, expected);
-    assert.strictEqual(filters.unRegex((1 as {}) as string), '');
+    assert.strictEqual(filters.unRegex(1 as {} as string), '');
   });
 
   it('should remove double slashes from urls', () => {
@@ -59,11 +59,11 @@ describe(__filename, () => {
   });
 
   it('should find resource params', () => {
-    const withResource = ({
+    const withResource = {
       parameters: {
         resource: {},
       },
-    } as {}) as SchemaMethod;
+    } as {} as SchemaMethod;
     assert.strictEqual(filters.hasResourceParam(withResource), true);
     const withoutResource1 = {} as SchemaMethod;
     assert.strictEqual(filters.hasResourceParam(withoutResource1), false);
@@ -84,12 +84,12 @@ describe(__filename, () => {
     let emptyParams: SchemaParameters;
     assert.deepStrictEqual(filters.getPathParams(emptyParams!), []);
 
-    const params = ({
+    const params = {
       1: {
         location: 'path',
       },
       2: {},
-    } as {}) as SchemaParameters;
+    } as {} as SchemaParameters;
     const expected = ['1'];
     assert.deepStrictEqual(filters.getPathParams(params), expected);
   });
