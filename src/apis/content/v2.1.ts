@@ -3307,9 +3307,13 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderreturnsLineItem {
     /**
-     * The ID of the line item. This value is assigned by Google when an order is created.
+     * The ID of the line item. This value is assigned by Google when an order is created. Either lineItemId or productId is required.
      */
     lineItemId?: string | null;
+    /**
+     * The ID of the product to cancel. This is the REST ID used in the products service. Either lineItemId or productId is required.
+     */
+    productId?: string | null;
     /**
      * The quantity of this line item.
      */
@@ -4060,7 +4064,7 @@ export namespace content_v2_1 {
      */
     customerShippingFee?: Schema$PriceAmount;
     /**
-     * Required. The delivery postal code, as a continuous string without spaces or dashes, e.g. "95016".
+     * Required. The delivery postal code, as a continuous string without spaces or dashes, e.g. "95016". This field will be anonymized in returned OrderTrackingSignal creation response.
      */
     deliveryPostalCode?: string | null;
     /**
@@ -4080,7 +4084,7 @@ export namespace content_v2_1 {
      */
     orderCreatedTime?: Schema$DateTime;
     /**
-     * Required. The ID of the order on the merchant side.
+     * Required. The ID of the order on the merchant side. This field will be hashed in returned OrderTrackingSignal creation response.
      */
     orderId?: string | null;
     /**
@@ -4134,7 +4138,7 @@ export namespace content_v2_1 {
      */
     quantity?: string | null;
     /**
-     * Required. The shipment ID.
+     * Required. The shipment ID. This field will be hashed in returned OrderTrackingSignal creation response.
      */
     shipmentId?: string | null;
   }
@@ -4163,7 +4167,7 @@ export namespace content_v2_1 {
      */
     latestDeliveryPromiseTime?: Schema$DateTime;
     /**
-     * The origin postal code, as a continuous string without spaces or dashes, e.g. "95016".
+     * The origin postal code, as a continuous string without spaces or dashes, e.g. "95016". This field will be anonymized in returned OrderTrackingSignal creation response.
      */
     originPostalCode?: string | null;
     /**
@@ -4171,7 +4175,7 @@ export namespace content_v2_1 {
      */
     originRegionCode?: string | null;
     /**
-     * Required. The shipment ID.
+     * Required. The shipment ID. This field will be hashed in returned OrderTrackingSignal creation response.
      */
     shipmentId?: string | null;
     /**
@@ -4638,7 +4642,7 @@ export namespace content_v2_1 {
     value?: string | null;
   }
   /**
-   *  Required product attributes are primarily defined by the products data specification. See the Products Data Specification Help Center article for information. Some attributes are country-specific, so make sure you select the appropriate country in the drop-down selector at the top of the page. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.
+   *  Required product attributes are primarily defined by the products data specification. See the Products Data Specification Help Center article for information. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.
    */
   export interface Schema$Product {
     /**
@@ -5017,7 +5021,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry. Acceptable values are: - "`delete`" - "`get`" - "`insert`"
+     * The method of the batch entry. Acceptable values are: - "`delete`" - "`get`" - "`insert`" - "`update`"
      */
     method?: string | null;
     /**
@@ -5028,6 +5032,10 @@ export namespace content_v2_1 {
      * The ID of the product to get or delete. Only defined if the method is `get` or `delete`.
      */
     productId?: string | null;
+    /**
+     * The list of product attributes to be updated. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged. Only defined if the method is `update`.
+     */
+    updateMask?: string | null;
   }
   export interface Schema$ProductsCustomBatchResponse {
     /**
@@ -5610,7 +5618,7 @@ export namespace content_v2_1 {
      */
     applicationCount?: string | null;
     /**
-     * Stats specific to buybox winning rules for product report.
+     * Stats specific to buybox winning rules for product report (deprecated).
      */
     buyboxWinningProductStats?: Schema$RepricingProductReportBuyboxWinningProductStats;
     /**
@@ -5779,7 +5787,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$RepricingRuleReport {
     /**
-     * Stats specific to buybox winning rules for rule report.
+     * Stats specific to buybox winning rules for rule report (deprecated).
      */
     buyboxWinningRuleStats?: Schema$RepricingRuleReportBuyboxWinningRuleStats;
     /**
@@ -6278,6 +6286,23 @@ export namespace content_v2_1 {
      */
     state?: string | null;
   }
+  /**
+   * Return shipping label for a Buy on Google merchant-managed return.
+   */
+  export interface Schema$ReturnShippingLabel {
+    /**
+     * Name of the carrier.
+     */
+    carrier?: string | null;
+    /**
+     * The URL for the return shipping label in PDF format
+     */
+    labelUri?: string | null;
+    /**
+     * The tracking id of this return label.
+     */
+    trackingId?: string | null;
+  }
   export interface Schema$Row {
     /**
      * The list of cells that constitute the row. Must have the same length as `columnHeaders` for two-dimensional tables, a length of 1 for one-dimensional tables. Required.
@@ -6449,7 +6474,7 @@ export namespace content_v2_1 {
   export interface Schema$SettlementTransactionAmount {
     commission?: Schema$SettlementTransactionAmountCommission;
     /**
-     * The description of the event. Acceptable values are: - "`taxWithhold`" - "`principal`" - "`principalAdjustment`" - "`shippingFee`" - "`merchantRemittedSalesTax`" - "`googleRemittedSalesTax`" - "`merchantCoupon`" - "`merchantCouponTax`" - "`merchantRemittedDisposalTax`" - "`googleRemittedDisposalTax`" - "`merchantRemittedRedemptionFee`" - "`googleRemittedRedemptionFee`" - "`eeeEcoFee`" - "`furnitureEcoFee`" - "`copyPrivateFee`" - "`eeeEcoFeeCommission`" - "`furnitureEcoFeeCommission`" - "`copyPrivateFeeCommission`" - "`principalRefund`" - "`principalRefundTax`" - "`itemCommission`" - "`adjustmentCommission`" - "`shippingFeeCommission`" - "`commissionRefund`" - "`damaged`" - "`damagedOrDefectiveItem`" - "`expiredItem`" - "`faultyItem`" - "`incorrectItemReceived`" - "`itemMissing`" - "`qualityNotExpected`" - "`receivedTooLate`" - "`storePackageMissing`" - "`transitPackageMissing`" - "`unsuccessfulDeliveryUndeliverable`" - "`wrongChargeInStore`" - "`wrongItem`" - "`returns`" - "`undeliverable`" - "`issueRelatedRefundAndReplacementAmountDescription`" - "`refundFromMerchant`" - "`returnLabelShippingFee`" - "`lumpSumCorrection`" - "`pspFee`"
+     * The description of the event. Acceptable values are: - "`taxWithhold`" - "`principal`" - "`principalAdjustment`" - "`shippingFee`" - "`merchantRemittedSalesTax`" - "`googleRemittedSalesTax`" - "`merchantCoupon`" - "`merchantCouponTax`" - "`merchantRemittedDisposalTax`" - "`googleRemittedDisposalTax`" - "`merchantRemittedRedemptionFee`" - "`googleRemittedRedemptionFee`" - "`eeeEcoFee`" - "`furnitureEcoFee`" - "`copyPrivateFee`" - "`eeeEcoFeeCommission`" - "`furnitureEcoFeeCommission`" - "`copyPrivateFeeCommission`" - "`principalRefund`" - "`principalRefundTax`" - "`itemCommission`" - "`adjustmentCommission`" - "`shippingFeeCommission`" - "`commissionRefund`" - "`damaged`" - "`damagedOrDefectiveItem`" - "`expiredItem`" - "`faultyItem`" - "`incorrectItemReceived`" - "`itemMissing`" - "`qualityNotExpected`" - "`receivedTooLate`" - "`storePackageMissing`" - "`transitPackageMissing`" - "`unsuccessfulDeliveryUndeliverable`" - "`wrongChargeInStore`" - "`wrongItem`" - "`returns`" - "`undeliverable`" - "`issueRelatedRefundAndReplacementAmountDescription`" - "`refundFromMerchant`" - "`returnLabelShippingFee`" - "`lumpSumCorrection`" - "`pspFee`" - "`principalRefundDoesNotFit`" - "`principalRefundOrderedWrongItem`" - "`principalRefundQualityNotExpected`" - "`principalRefundBetterPriceFound`" - "`principalRefundNoLongerNeeded`" - "`principalRefundChangedMind`" - "`principalRefundReceivedTooLate`" - "`principalRefundIncorrectItemReceived`" - "`principalRefundDamagedOrDefectiveItem`" - "`principalRefundDidNotMatchDescription`" - "`principalRefundExpiredItem`"
      */
     description?: string | null;
     /**
@@ -8227,7 +8252,7 @@ export namespace content_v2_1 {
      *   const res = await content.accounts.listlinks({
      *     // The ID of the account for which to list links.
      *     accountId: 'placeholder-value',
-     *     // The maximum number of links to return in the response, used for pagination.
+     *     // The maximum number of links to return in the response, used for pagination. The minimum allowed value is 5 results per page. If provided value is lower than 5, it will be automatically increased to 5.
      *     maxResults: 'placeholder-value',
      *     // The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
      *     merchantId: 'placeholder-value',
@@ -8764,7 +8789,7 @@ export namespace content_v2_1 {
      */
     accountId?: string;
     /**
-     * The maximum number of links to return in the response, used for pagination.
+     * The maximum number of links to return in the response, used for pagination. The minimum allowed value is 5 results per page. If provided value is lower than 5, it will be automatically increased to 5.
      */
     maxResults?: number;
     /**
@@ -16104,7 +16129,8 @@ export namespace content_v2_1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Liasettings$Setinventoryverificationcontact;
+        params =
+          {} as Params$Resource$Liasettings$Setinventoryverificationcontact;
         options = {};
       }
 
@@ -17623,8 +17649,10 @@ export namespace content_v2_1 {
 
   export class Resource$Orderreturns {
     context: APIRequestContext;
+    labels: Resource$Orderreturns$Labels;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.labels = new Resource$Orderreturns$Labels(this.context);
     }
 
     /**
@@ -18483,6 +18511,177 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$OrderreturnsProcessRequest;
+  }
+
+  export class Resource$Orderreturns$Labels {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Links a return shipping label to a return id. You can only create one return label per return id. Since the label is sent to the buyer, the linked return label cannot be updated or deleted. If you try to create multiple return shipping labels for a single return id, every create request except the first will fail.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.orderreturns.labels.create({
+     *     // Required. The merchant the Return Shipping Label belongs to.
+     *     merchantId: 'placeholder-value',
+     *     // Required. Provide the Google-generated merchant order return ID.
+     *     returnId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "carrier": "my_carrier",
+     *       //   "labelUri": "my_labelUri",
+     *       //   "trackingId": "my_trackingId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "carrier": "my_carrier",
+     *   //   "labelUri": "my_labelUri",
+     *   //   "trackingId": "my_trackingId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Orderreturns$Labels$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Orderreturns$Labels$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ReturnShippingLabel>;
+    create(
+      params: Params$Resource$Orderreturns$Labels$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Orderreturns$Labels$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ReturnShippingLabel>,
+      callback: BodyResponseCallback<Schema$ReturnShippingLabel>
+    ): void;
+    create(
+      params: Params$Resource$Orderreturns$Labels$Create,
+      callback: BodyResponseCallback<Schema$ReturnShippingLabel>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$ReturnShippingLabel>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Orderreturns$Labels$Create
+        | BodyResponseCallback<Schema$ReturnShippingLabel>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ReturnShippingLabel>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ReturnShippingLabel>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ReturnShippingLabel>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Orderreturns$Labels$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Orderreturns$Labels$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/content/v2.1/{merchantId}/orderreturns/{returnId}/labels'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'returnId'],
+        pathParams: ['merchantId', 'returnId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ReturnShippingLabel>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ReturnShippingLabel>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Orderreturns$Labels$Create
+    extends StandardParameters {
+    /**
+     * Required. The merchant the Return Shipping Label belongs to.
+     */
+    merchantId?: string;
+    /**
+     * Required. Provide the Google-generated merchant order return ID.
+     */
+    returnId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ReturnShippingLabel;
   }
 
   export class Resource$Orders {
@@ -24179,6 +24378,306 @@ export namespace content_v2_1 {
         return createAPIRequest<Schema$ProductsListResponse>(parameters);
       }
     }
+
+    /**
+     * Updates an existing product in your Merchant Center account. Only updates attributes provided in the request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.products.update({
+     *     // The ID of the account that contains the product. This account cannot be a multi-client account.
+     *     merchantId: 'placeholder-value',
+     *     // The REST ID of the product for which to update.
+     *     productId: 'placeholder-value',
+     *     // The list of product attributes to be updated. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "additionalImageLinks": [],
+     *       //   "additionalSizeType": "my_additionalSizeType",
+     *       //   "adsGrouping": "my_adsGrouping",
+     *       //   "adsLabels": [],
+     *       //   "adsRedirect": "my_adsRedirect",
+     *       //   "adult": false,
+     *       //   "ageGroup": "my_ageGroup",
+     *       //   "availability": "my_availability",
+     *       //   "availabilityDate": "my_availabilityDate",
+     *       //   "brand": "my_brand",
+     *       //   "canonicalLink": "my_canonicalLink",
+     *       //   "channel": "my_channel",
+     *       //   "color": "my_color",
+     *       //   "condition": "my_condition",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "costOfGoodsSold": {},
+     *       //   "customAttributes": [],
+     *       //   "customLabel0": "my_customLabel0",
+     *       //   "customLabel1": "my_customLabel1",
+     *       //   "customLabel2": "my_customLabel2",
+     *       //   "customLabel3": "my_customLabel3",
+     *       //   "customLabel4": "my_customLabel4",
+     *       //   "description": "my_description",
+     *       //   "displayAdsId": "my_displayAdsId",
+     *       //   "displayAdsLink": "my_displayAdsLink",
+     *       //   "displayAdsSimilarIds": [],
+     *       //   "displayAdsTitle": "my_displayAdsTitle",
+     *       //   "displayAdsValue": {},
+     *       //   "energyEfficiencyClass": "my_energyEfficiencyClass",
+     *       //   "excludedDestinations": [],
+     *       //   "expirationDate": "my_expirationDate",
+     *       //   "gender": "my_gender",
+     *       //   "googleProductCategory": "my_googleProductCategory",
+     *       //   "gtin": "my_gtin",
+     *       //   "id": "my_id",
+     *       //   "identifierExists": false,
+     *       //   "imageLink": "my_imageLink",
+     *       //   "includedDestinations": [],
+     *       //   "installment": {},
+     *       //   "isBundle": false,
+     *       //   "itemGroupId": "my_itemGroupId",
+     *       //   "kind": "my_kind",
+     *       //   "link": "my_link",
+     *       //   "loyaltyPoints": {},
+     *       //   "material": "my_material",
+     *       //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
+     *       //   "maxHandlingTime": "my_maxHandlingTime",
+     *       //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
+     *       //   "minHandlingTime": "my_minHandlingTime",
+     *       //   "mobileLink": "my_mobileLink",
+     *       //   "mpn": "my_mpn",
+     *       //   "multipack": "my_multipack",
+     *       //   "offerId": "my_offerId",
+     *       //   "pattern": "my_pattern",
+     *       //   "price": {},
+     *       //   "productDetails": [],
+     *       //   "productHighlights": [],
+     *       //   "productTypes": [],
+     *       //   "promotionIds": [],
+     *       //   "salePrice": {},
+     *       //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
+     *       //   "sellOnGoogleQuantity": "my_sellOnGoogleQuantity",
+     *       //   "shipping": [],
+     *       //   "shippingHeight": {},
+     *       //   "shippingLabel": "my_shippingLabel",
+     *       //   "shippingLength": {},
+     *       //   "shippingWeight": {},
+     *       //   "shippingWidth": {},
+     *       //   "shoppingAdsExcludedCountries": [],
+     *       //   "sizeSystem": "my_sizeSystem",
+     *       //   "sizeType": "my_sizeType",
+     *       //   "sizes": [],
+     *       //   "source": "my_source",
+     *       //   "subscriptionCost": {},
+     *       //   "targetCountry": "my_targetCountry",
+     *       //   "taxCategory": "my_taxCategory",
+     *       //   "taxes": [],
+     *       //   "title": "my_title",
+     *       //   "transitTimeLabel": "my_transitTimeLabel",
+     *       //   "unitPricingBaseMeasure": {},
+     *       //   "unitPricingMeasure": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "additionalImageLinks": [],
+     *   //   "additionalSizeType": "my_additionalSizeType",
+     *   //   "adsGrouping": "my_adsGrouping",
+     *   //   "adsLabels": [],
+     *   //   "adsRedirect": "my_adsRedirect",
+     *   //   "adult": false,
+     *   //   "ageGroup": "my_ageGroup",
+     *   //   "availability": "my_availability",
+     *   //   "availabilityDate": "my_availabilityDate",
+     *   //   "brand": "my_brand",
+     *   //   "canonicalLink": "my_canonicalLink",
+     *   //   "channel": "my_channel",
+     *   //   "color": "my_color",
+     *   //   "condition": "my_condition",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "costOfGoodsSold": {},
+     *   //   "customAttributes": [],
+     *   //   "customLabel0": "my_customLabel0",
+     *   //   "customLabel1": "my_customLabel1",
+     *   //   "customLabel2": "my_customLabel2",
+     *   //   "customLabel3": "my_customLabel3",
+     *   //   "customLabel4": "my_customLabel4",
+     *   //   "description": "my_description",
+     *   //   "displayAdsId": "my_displayAdsId",
+     *   //   "displayAdsLink": "my_displayAdsLink",
+     *   //   "displayAdsSimilarIds": [],
+     *   //   "displayAdsTitle": "my_displayAdsTitle",
+     *   //   "displayAdsValue": {},
+     *   //   "energyEfficiencyClass": "my_energyEfficiencyClass",
+     *   //   "excludedDestinations": [],
+     *   //   "expirationDate": "my_expirationDate",
+     *   //   "gender": "my_gender",
+     *   //   "googleProductCategory": "my_googleProductCategory",
+     *   //   "gtin": "my_gtin",
+     *   //   "id": "my_id",
+     *   //   "identifierExists": false,
+     *   //   "imageLink": "my_imageLink",
+     *   //   "includedDestinations": [],
+     *   //   "installment": {},
+     *   //   "isBundle": false,
+     *   //   "itemGroupId": "my_itemGroupId",
+     *   //   "kind": "my_kind",
+     *   //   "link": "my_link",
+     *   //   "loyaltyPoints": {},
+     *   //   "material": "my_material",
+     *   //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
+     *   //   "maxHandlingTime": "my_maxHandlingTime",
+     *   //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
+     *   //   "minHandlingTime": "my_minHandlingTime",
+     *   //   "mobileLink": "my_mobileLink",
+     *   //   "mpn": "my_mpn",
+     *   //   "multipack": "my_multipack",
+     *   //   "offerId": "my_offerId",
+     *   //   "pattern": "my_pattern",
+     *   //   "price": {},
+     *   //   "productDetails": [],
+     *   //   "productHighlights": [],
+     *   //   "productTypes": [],
+     *   //   "promotionIds": [],
+     *   //   "salePrice": {},
+     *   //   "salePriceEffectiveDate": "my_salePriceEffectiveDate",
+     *   //   "sellOnGoogleQuantity": "my_sellOnGoogleQuantity",
+     *   //   "shipping": [],
+     *   //   "shippingHeight": {},
+     *   //   "shippingLabel": "my_shippingLabel",
+     *   //   "shippingLength": {},
+     *   //   "shippingWeight": {},
+     *   //   "shippingWidth": {},
+     *   //   "shoppingAdsExcludedCountries": [],
+     *   //   "sizeSystem": "my_sizeSystem",
+     *   //   "sizeType": "my_sizeType",
+     *   //   "sizes": [],
+     *   //   "source": "my_source",
+     *   //   "subscriptionCost": {},
+     *   //   "targetCountry": "my_targetCountry",
+     *   //   "taxCategory": "my_taxCategory",
+     *   //   "taxes": [],
+     *   //   "title": "my_title",
+     *   //   "transitTimeLabel": "my_transitTimeLabel",
+     *   //   "unitPricingBaseMeasure": {},
+     *   //   "unitPricingMeasure": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Products$Update,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    update(
+      params?: Params$Resource$Products$Update,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Product>;
+    update(
+      params: Params$Resource$Products$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Products$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$Product>,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
+    update(
+      params: Params$Resource$Products$Update,
+      callback: BodyResponseCallback<Schema$Product>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$Product>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Products$Update
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Product>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Product> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Products$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Products$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/products/{productId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'productId'],
+        pathParams: ['merchantId', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Product>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Product>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Products$Custombatch
@@ -24240,6 +24739,25 @@ export namespace content_v2_1 {
      * The token returned by the previous request.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Products$Update extends StandardParameters {
+    /**
+     * The ID of the account that contains the product. This account cannot be a multi-client account.
+     */
+    merchantId?: string;
+    /**
+     * The REST ID of the product for which to update.
+     */
+    productId?: string;
+    /**
+     * The list of product attributes to be updated. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Product;
   }
 
   export class Resource$Productstatuses {
@@ -30986,7 +31504,8 @@ export namespace content_v2_1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Shippingsettings$Getsupportedpickupservices;
+        params =
+          {} as Params$Resource$Shippingsettings$Getsupportedpickupservices;
         options = {};
       }
 

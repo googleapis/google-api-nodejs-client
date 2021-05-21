@@ -3298,7 +3298,7 @@
       }
     }
   },
-  "revision": "20210424",
+  "revision": "20210514",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -8554,7 +8554,7 @@
       "type": "object"
     },
     "Product": {
-      "description": " Required product attributes are primarily defined by the products data specification. See the Products Data Specification Help Center article for information. Some attributes are country-specific, so make sure you select the appropriate country in the drop-down selector at the top of the page. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.",
+      "description": " Required product attributes are primarily defined by the products data specification. See the Products Data Specification Help Center article for information. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.",
       "id": "Product",
       "properties": {
         "additionalImageLinks": {

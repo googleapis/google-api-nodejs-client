@@ -4149,7 +4149,7 @@ export namespace content_v2 {
     value?: string | null;
   }
   /**
-   *  Required product attributes are primarily defined by the products data specification. See the Products Data Specification Help Center article for information. Some attributes are country-specific, so make sure you select the appropriate country in the drop-down selector at the top of the page. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.
+   *  Required product attributes are primarily defined by the products data specification. See the Products Data Specification Help Center article for information. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.
    */
   export interface Schema$Product {
     /**
@@ -11082,7 +11082,8 @@ export namespace content_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Liasettings$Setinventoryverificationcontact;
+        params =
+          {} as Params$Resource$Liasettings$Setinventoryverificationcontact;
         options = {};
       }
 
@@ -19547,7 +19548,8 @@ export namespace content_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Shippingsettings$Getsupportedpickupservices;
+        params =
+          {} as Params$Resource$Shippingsettings$Getsupportedpickupservices;
         options = {};
       }
 

@@ -397,7 +397,7 @@
               "type": "string"
             },
             "maxResults": {
-              "description": "The maximum number of links to return in the response, used for pagination.",
+              "description": "The maximum number of links to return in the response, used for pagination. The minimum allowed value is 5 results per page. If provided value is lower than 5, it will be automatically increased to 5.",
               "format": "uint32",
               "location": "query",
               "type": "integer"
@@ -2672,6 +2672,47 @@
             "https://www.googleapis.com/auth/content"
           ]
         }
+      },
+      "resources": {
+        "labels": {
+          "methods": {
+            "create": {
+              "description": "Links a return shipping label to a return id. You can only create one return label per return id. Since the label is sent to the buyer, the linked return label cannot be updated or deleted. If you try to create multiple return shipping labels for a single return id, every create request except the first will fail.",
+              "flatPath": "{merchantId}/orderreturns/{returnId}/labels",
+              "httpMethod": "POST",
+              "id": "content.orderreturns.labels.create",
+              "parameterOrder": [
+                "merchantId",
+                "returnId"
+              ],
+              "parameters": {
+                "merchantId": {
+                  "description": "Required. The merchant the Return Shipping Label belongs to.",
+                  "format": "int64",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "returnId": {
+                  "description": "Required. Provide the Google-generated merchant order return ID.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "{merchantId}/orderreturns/{returnId}/labels",
+              "request": {
+                "$ref": "ReturnShippingLabel"
+              },
+              "response": {
+                "$ref": "ReturnShippingLabel"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        }
       }
     },
     "orders": {
@@ -3892,6 +3933,47 @@
           "path": "{merchantId}/products",
           "response": {
             "$ref": "ProductsListResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "update": {
+          "description": "Updates an existing product in your Merchant Center account. Only updates attributes provided in the request.",
+          "flatPath": "{merchantId}/products/{productId}",
+          "httpMethod": "PATCH",
+          "id": "content.products.update",
+          "parameterOrder": [
+            "merchantId",
+            "productId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "The ID of the account that contains the product. This account cannot be a multi-client account.",
+              "format": "uint64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "productId": {
+              "description": "The REST ID of the product for which to update.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "The list of product attributes to be updated. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "{merchantId}/products/{productId}",
+          "request": {
+            "$ref": "Product"
+          },
+          "response": {
+            "$ref": "Product"
           },
           "scopes": [
             "https://www.googleapis.com/auth/content"
@@ -5403,7 +5485,7 @@
       }
     }
   },
-  "revision": "20210424",
+  "revision": "20210514",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -9481,7 +9563,7 @@
           "description": "The shipping fee of the order; this value should be set to zero in the case of free shipping."
         },
         "deliveryPostalCode": {
-          "description": "Required. The delivery postal code, as a continuous string without spaces or dashes, e.g. \"95016\".",
+          "description": "Required. The delivery postal code, as a continuous string without spaces or dashes, e.g. \"95016\". This field will be anonymized in returned OrderTrackingSignal creation response.",
           "type": "string"
         },
         "deliveryRegionCode": {
@@ -9505,7 +9587,7 @@
           "description": "Required. The time when the order was created on the merchant side. Include the year and timezone string, if available."
         },
         "orderId": {
-          "description": "Required. The ID of the order on the merchant side.",
+          "description": "Required. The ID of the order on the merchant side. This field will be hashed in returned OrderTrackingSignal creation response.",
           "type": "string"
         },
         "orderTrackingSignalId": {
@@ -9573,7 +9655,7 @@
           "type": "string"
         },
         "shipmentId": {
-          "description": "Required. The shipment ID.",
+          "description": "Required. The shipment ID. This field will be hashed in returned OrderTrackingSignal creation response.",
           "type": "string"
         }
       },
@@ -9604,7 +9686,7 @@
           "description": "The latest delivery promised time. Include the year and timezone string, if available. This field is required, if one of the following fields is absent: tracking_id or carrier_name."
         },
         "originPostalCode": {
-          "description": "The origin postal code, as a continuous string without spaces or dashes, e.g. \"95016\".",
+          "description": "The origin postal code, as a continuous string without spaces or dashes, e.g. \"95016\". This field will be anonymized in returned OrderTrackingSignal creation response.",
           "type": "string"
         },
         "originRegionCode": {
@@ -9612,7 +9694,7 @@
           "type": "string"
         },
         "shipmentId": {
-          "description": "Required. The shipment ID.",
+          "description": "Required. The shipment ID. This field will be hashed in returned OrderTrackingSignal creation response.",
           "type": "string"
         },
         "shippedTime": {
@@ -9867,7 +9949,11 @@
       "id": "OrderreturnsLineItem",
       "properties": {
         "lineItemId": {
-          "description": "The ID of the line item. This value is assigned by Google when an order is created.",
+          "description": "The ID of the line item. This value is assigned by Google when an order is created. Either lineItemId or productId is required.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "The ID of the product to cancel. This is the REST ID used in the products service. Either lineItemId or productId is required.",
           "type": "string"
         },
         "quantity": {
@@ -11333,7 +11419,7 @@
       "type": "object"
     },
     "Product": {
-      "description": " Required product attributes are primarily defined by the products data specification. See the Products Data Specification Help Center article for information. Some attributes are country-specific, so make sure you select the appropriate country in the drop-down selector at the top of the page. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.",
+      "description": " Required product attributes are primarily defined by the products data specification. See the Products Data Specification Help Center article for information. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.",
       "id": "Product",
       "properties": {
         "additionalImageLinks": {
@@ -12074,7 +12160,7 @@
           "type": "string"
         },
         "method": {
-          "description": "The method of the batch entry. Acceptable values are: - \"`delete`\" - \"`get`\" - \"`insert`\" ",
+          "description": "The method of the batch entry. Acceptable values are: - \"`delete`\" - \"`get`\" - \"`insert`\" - \"`update`\" ",
           "type": "string"
         },
         "product": {
@@ -12083,6 +12169,11 @@
         },
         "productId": {
           "description": "The ID of the product to get or delete. Only defined if the method is `get` or `delete`.",
+          "type": "string"
+        },
+        "updateMask": {
+          "description": "The list of product attributes to be updated. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged. Only defined if the method is `update`.",
+          "format": "google-fieldmask",
           "type": "string"
         }
       },
@@ -12568,7 +12659,7 @@
         },
         "buyboxWinningProductStats": {
           "$ref": "RepricingProductReportBuyboxWinningProductStats",
-          "description": "Stats specific to buybox winning rules for product report."
+          "description": "Stats specific to buybox winning rules for product report (deprecated)."
         },
         "date": {
           "$ref": "Date",
@@ -12807,7 +12898,7 @@
       "properties": {
         "buyboxWinningRuleStats": {
           "$ref": "RepricingRuleReportBuyboxWinningRuleStats",
-          "description": "Stats specific to buybox winning rules for rule report."
+          "description": "Stats specific to buybox winning rules for rule report (deprecated)."
         },
         "date": {
           "$ref": "Date",
@@ -13338,6 +13429,25 @@
       },
       "type": "object"
     },
+    "ReturnShippingLabel": {
+      "description": "Return shipping label for a Buy on Google merchant-managed return.",
+      "id": "ReturnShippingLabel",
+      "properties": {
+        "carrier": {
+          "description": "Name of the carrier.",
+          "type": "string"
+        },
+        "labelUri": {
+          "description": "The URL for the return shipping label in PDF format",
+          "type": "string"
+        },
+        "trackingId": {
+          "description": "The tracking id of this return label.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ReturnaddressCustomBatchRequest": {
       "id": "ReturnaddressCustomBatchRequest",
       "properties": {
@@ -13745,7 +13855,7 @@
           "$ref": "SettlementTransactionAmountCommission"
         },
         "description": {
-          "description": "The description of the event. Acceptable values are: - \"`taxWithhold`\" - \"`principal`\" - \"`principalAdjustment`\" - \"`shippingFee`\" - \"`merchantRemittedSalesTax`\" - \"`googleRemittedSalesTax`\" - \"`merchantCoupon`\" - \"`merchantCouponTax`\" - \"`merchantRemittedDisposalTax`\" - \"`googleRemittedDisposalTax`\" - \"`merchantRemittedRedemptionFee`\" - \"`googleRemittedRedemptionFee`\" - \"`eeeEcoFee`\" - \"`furnitureEcoFee`\" - \"`copyPrivateFee`\" - \"`eeeEcoFeeCommission`\" - \"`furnitureEcoFeeCommission`\" - \"`copyPrivateFeeCommission`\" - \"`principalRefund`\" - \"`principalRefundTax`\" - \"`itemCommission`\" - \"`adjustmentCommission`\" - \"`shippingFeeCommission`\" - \"`commissionRefund`\" - \"`damaged`\" - \"`damagedOrDefectiveItem`\" - \"`expiredItem`\" - \"`faultyItem`\" - \"`incorrectItemReceived`\" - \"`itemMissing`\" - \"`qualityNotExpected`\" - \"`receivedTooLate`\" - \"`storePackageMissing`\" - \"`transitPackageMissing`\" - \"`unsuccessfulDeliveryUndeliverable`\" - \"`wrongChargeInStore`\" - \"`wrongItem`\" - \"`returns`\" - \"`undeliverable`\" - \"`issueRelatedRefundAndReplacementAmountDescription`\" - \"`refundFromMerchant`\" - \"`returnLabelShippingFee`\" - \"`lumpSumCorrection`\" - \"`pspFee`\" ",
+          "description": "The description of the event. Acceptable values are: - \"`taxWithhold`\" - \"`principal`\" - \"`principalAdjustment`\" - \"`shippingFee`\" - \"`merchantRemittedSalesTax`\" - \"`googleRemittedSalesTax`\" - \"`merchantCoupon`\" - \"`merchantCouponTax`\" - \"`merchantRemittedDisposalTax`\" - \"`googleRemittedDisposalTax`\" - \"`merchantRemittedRedemptionFee`\" - \"`googleRemittedRedemptionFee`\" - \"`eeeEcoFee`\" - \"`furnitureEcoFee`\" - \"`copyPrivateFee`\" - \"`eeeEcoFeeCommission`\" - \"`furnitureEcoFeeCommission`\" - \"`copyPrivateFeeCommission`\" - \"`principalRefund`\" - \"`principalRefundTax`\" - \"`itemCommission`\" - \"`adjustmentCommission`\" - \"`shippingFeeCommission`\" - \"`commissionRefund`\" - \"`damaged`\" - \"`damagedOrDefectiveItem`\" - \"`expiredItem`\" - \"`faultyItem`\" - \"`incorrectItemReceived`\" - \"`itemMissing`\" - \"`qualityNotExpected`\" - \"`receivedTooLate`\" - \"`storePackageMissing`\" - \"`transitPackageMissing`\" - \"`unsuccessfulDeliveryUndeliverable`\" - \"`wrongChargeInStore`\" - \"`wrongItem`\" - \"`returns`\" - \"`undeliverable`\" - \"`issueRelatedRefundAndReplacementAmountDescription`\" - \"`refundFromMerchant`\" - \"`returnLabelShippingFee`\" - \"`lumpSumCorrection`\" - \"`pspFee`\" - \"`principalRefundDoesNotFit`\" - \"`principalRefundOrderedWrongItem`\" - \"`principalRefundQualityNotExpected`\" - \"`principalRefundBetterPriceFound`\" - \"`principalRefundNoLongerNeeded`\" - \"`principalRefundChangedMind`\" - \"`principalRefundReceivedTooLate`\" - \"`principalRefundIncorrectItemReceived`\" - \"`principalRefundDamagedOrDefectiveItem`\" - \"`principalRefundDidNotMatchDescription`\" - \"`principalRefundExpiredItem`\" ",
           "type": "string"
         },
         "transactionAmount": {
