@@ -256,7 +256,7 @@ export namespace manufacturers_v1 {
     /**
      * The size type of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#sizetype.
      */
-    sizeType?: string | null;
+    sizeType?: string[] | null;
     /**
      * The suggested retail price (MSRP) of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#price.
      */
@@ -965,7 +965,7 @@ export namespace manufacturers_v1 {
      *       //   "scent": "my_scent",
      *       //   "size": "my_size",
      *       //   "sizeSystem": "my_sizeSystem",
-     *       //   "sizeType": "my_sizeType",
+     *       //   "sizeType": [],
      *       //   "suggestedRetailPrice": {},
      *       //   "targetClientId": "my_targetClientId",
      *       //   "theme": "my_theme",
