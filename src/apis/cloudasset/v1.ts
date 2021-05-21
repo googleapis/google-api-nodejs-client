@@ -113,6 +113,7 @@ export namespace cloudasset_v1 {
    */
   export class Cloudasset {
     context: APIRequestContext;
+    assets: Resource$Assets;
     feeds: Resource$Feeds;
     operations: Resource$Operations;
     v1: Resource$V1;
@@ -123,6 +124,7 @@ export namespace cloudasset_v1 {
         google,
       };
 
+      this.assets = new Resource$Assets(this.context);
       this.feeds = new Resource$Feeds(this.context);
       this.operations = new Resource$Operations(this.context);
       this.v1 = new Resource$V1(this.context);
@@ -1279,6 +1281,23 @@ export namespace cloudasset_v1 {
      */
     updateTime?: string | null;
   }
+  /**
+   * ListAssets response.
+   */
+  export interface Schema$ListAssetsResponse {
+    /**
+     * Assets.
+     */
+    assets?: Schema$Asset[];
+    /**
+     * Token to retrieve the next page of results. It expires 72 hours after the page token for the first page is generated. Set to empty if there are no remaining results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Time the snapshot was taken.
+     */
+    readTime?: string | null;
+  }
   export interface Schema$ListFeedsResponse {
     /**
      * A list of feeds.
@@ -1483,7 +1502,7 @@ export namespace cloudasset_v1 {
      */
     assetType?: string | null;
     /**
-     * The create timestamp of this resource, at which the resource was created. The granularity is in seconds. Timestamp.nanos will always be 0. This field is available only when the resource's proto contains it. To search against `create_time`: * use a field query (value in seconds). Example: `createTime \>= 1594294238`
+     * The create timestamp of this resource, at which the resource was created. The granularity is in seconds. Timestamp.nanos will always be 0. This field is available only when the resource's proto contains it. To search against `create_time`: * use a field query. - value in seconds since unix epoch. Example: `createTime \> 1609459200` - value in date string. Example: `createTime \> 2021-01-01` - value in date-time string (must be quoted). Example: `createTime \> "2021-01-01T00:00:00"`
      */
     createTime?: string | null;
     /**
@@ -1539,7 +1558,7 @@ export namespace cloudasset_v1 {
      */
     state?: string | null;
     /**
-     * The last update timestamp of this resource, at which the resource was last modified or deleted. The granularity is in seconds. Timestamp.nanos will always be 0. This field is available only when the resource's proto contains it. To search against `update_time`: * use a field query (value in seconds). Example: `updateTime < 1594294238`
+     * The last update timestamp of this resource, at which the resource was last modified or deleted. The granularity is in seconds. Timestamp.nanos will always be 0. This field is available only when the resource's proto contains it. To search against `update_time`: * use a field query. - value in seconds since unix epoch. Example: `updateTime < 1609459200` - value in date string. Example: `updateTime < 2021-01-01` - value in date-time string (must be quoted). Example: `updateTime < "2021-01-01T00:00:00"`
      */
     updateTime?: string | null;
   }
@@ -1795,6 +1814,183 @@ export namespace cloudasset_v1 {
      * Any summary information provided about this patch.
      */
     summary?: string | null;
+  }
+
+  export class Resource$Assets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists assets with time and resource types and returns paged results in response.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.assets.list({
+     *     // A list of asset types to take a snapshot for. For example: "compute.googleapis.com/Disk". Regular expression is also supported. For example: * "compute.googleapis.com.*" snapshots resources whose asset type starts with "compute.googleapis.com". * ".*Instance" snapshots resources whose asset type ends with "Instance". * ".*Instance.*" snapshots resources whose asset type contains "Instance". See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported asset type, an INVALID_ARGUMENT error will be returned. If specified, only matching assets will be returned, otherwise, it will snapshot all asset types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types.
+     *     assetTypes: 'placeholder-value',
+     *     // Asset content type. If not specified, no content but the asset name will be returned.
+     *     contentType: 'placeholder-value',
+     *     // The maximum number of assets to be returned in a single response. Default is 100, minimum is 1, and maximum is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // The `next_page_token` returned from the previous `ListAssetsResponse`, or unspecified for the first `ListAssetsRequest`. It is a continuation of a prior `ListAssets` call, and the API should return the next page of assets.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of the organization or project the assets belong to. Format: "organizations/[organization-number]" (such as "organizations/123"), "projects/[project-number]" (such as "projects/my-project-id"), or "projects/[project-id]" (such as "projects/12345").
+     *     parent: '[^/]+/[^/]+',
+     *     // Timestamp to take an asset snapshot. This can only be set to a timestamp between the current time and the current time minus 35 days (inclusive). If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.
+     *     readTime: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assets": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "readTime": "my_readTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Assets$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Assets$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListAssetsResponse>;
+    list(
+      params: Params$Resource$Assets$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Assets$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListAssetsResponse>,
+      callback: BodyResponseCallback<Schema$ListAssetsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Assets$List,
+      callback: BodyResponseCallback<Schema$ListAssetsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListAssetsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Assets$List
+        | BodyResponseCallback<Schema$ListAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListAssetsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListAssetsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListAssetsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Assets$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Assets$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/assets').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListAssetsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListAssetsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Assets$List extends StandardParameters {
+    /**
+     * A list of asset types to take a snapshot for. For example: "compute.googleapis.com/Disk". Regular expression is also supported. For example: * "compute.googleapis.com.*" snapshots resources whose asset type starts with "compute.googleapis.com". * ".*Instance" snapshots resources whose asset type ends with "Instance". * ".*Instance.*" snapshots resources whose asset type contains "Instance". See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported asset type, an INVALID_ARGUMENT error will be returned. If specified, only matching assets will be returned, otherwise, it will snapshot all asset types. See [Introduction to Cloud Asset Inventory](https://cloud.google.com/asset-inventory/docs/overview) for all supported asset types.
+     */
+    assetTypes?: string[];
+    /**
+     * Asset content type. If not specified, no content but the asset name will be returned.
+     */
+    contentType?: string;
+    /**
+     * The maximum number of assets to be returned in a single response. Default is 100, minimum is 1, and maximum is 1000.
+     */
+    pageSize?: number;
+    /**
+     * The `next_page_token` returned from the previous `ListAssetsResponse`, or unspecified for the first `ListAssetsRequest`. It is a continuation of a prior `ListAssets` call, and the API should return the next page of assets.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the organization or project the assets belong to. Format: "organizations/[organization-number]" (such as "organizations/123"), "projects/[project-number]" (such as "projects/my-project-id"), or "projects/[project-id]" (such as "projects/12345").
+     */
+    parent?: string;
+    /**
+     * Timestamp to take an asset snapshot. This can only be set to a timestamp between the current time and the current time minus 35 days (inclusive). If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.
+     */
+    readTime?: string;
   }
 
   export class Resource$Feeds {
