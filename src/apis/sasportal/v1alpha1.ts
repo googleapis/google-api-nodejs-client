@@ -2383,7 +2383,8 @@ export namespace sasportal_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Customers$Deployments$Devices$Createsigned;
+        params =
+          {} as Params$Resource$Customers$Deployments$Devices$Createsigned;
         options = {};
       }
 
