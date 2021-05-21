@@ -7459,7 +7459,8 @@ export namespace vision_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Files$Asyncbatchannotate;
+        params =
+          {} as Params$Resource$Projects$Locations$Files$Asyncbatchannotate;
         options = {};
       }
 
@@ -7785,7 +7786,8 @@ export namespace vision_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Images$Asyncbatchannotate;
+        params =
+          {} as Params$Resource$Projects$Locations$Images$Asyncbatchannotate;
         options = {};
       }
 
@@ -8000,9 +8002,8 @@ export namespace vision_v1 {
     referenceImages: Resource$Projects$Locations$Products$Referenceimages;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.referenceImages = new Resource$Projects$Locations$Products$Referenceimages(
-        this.context
-      );
+      this.referenceImages =
+        new Resource$Projects$Locations$Products$Referenceimages(this.context);
     }
 
     /**
@@ -9041,7 +9042,8 @@ export namespace vision_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Products$Referenceimages$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Products$Referenceimages$Create;
         options = {};
       }
 
@@ -9108,8 +9110,7 @@ export namespace vision_v1 {
      *   // Do the magic
      *   const res = await vision.projects.locations.products.referenceImages.delete({
      *     // Required. The resource name of the reference image to delete. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
-     *     name:
-     *       'projects/my-project/locations/my-location/products/my-product/referenceImages/my-referenceImage',
+     *     name: 'projects/my-project/locations/my-location/products/my-product/referenceImages/my-referenceImage',
      *   });
      *   console.log(res.data);
      *
@@ -9172,7 +9173,8 @@ export namespace vision_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Products$Referenceimages$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Products$Referenceimages$Delete;
         options = {};
       }
 
@@ -9236,8 +9238,7 @@ export namespace vision_v1 {
      *   // Do the magic
      *   const res = await vision.projects.locations.products.referenceImages.get({
      *     // Required. The resource name of the ReferenceImage to get. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
-     *     name:
-     *       'projects/my-project/locations/my-location/products/my-product/referenceImages/my-referenceImage',
+     *     name: 'projects/my-project/locations/my-location/products/my-product/referenceImages/my-referenceImage',
      *   });
      *   console.log(res.data);
      *
@@ -9304,7 +9305,8 @@ export namespace vision_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Products$Referenceimages$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Products$Referenceimages$Get;
         options = {};
       }
 
@@ -9446,7 +9448,8 @@ export namespace vision_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Products$Referenceimages$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Products$Referenceimages$List;
         options = {};
       }
 
@@ -9641,7 +9644,8 @@ export namespace vision_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Productsets$Addproduct;
+        params =
+          {} as Params$Resource$Projects$Locations$Productsets$Addproduct;
         options = {};
       }
 
@@ -10617,7 +10621,8 @@ export namespace vision_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Productsets$Removeproduct;
+        params =
+          {} as Params$Resource$Projects$Locations$Productsets$Removeproduct;
         options = {};
       }
 
@@ -10866,7 +10871,8 @@ export namespace vision_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Productsets$Products$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Productsets$Products$List;
         options = {};
       }
 
