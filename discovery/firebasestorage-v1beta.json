@@ -238,7 +238,7 @@
       }
     }
   },
-  "revision": "20210329",
+  "revision": "20210517",
   "rootUrl": "https://firebasestorage.googleapis.com/",
   "schemas": {
     "AddFirebaseRequest": {
@@ -254,6 +254,11 @@
         "name": {
           "description": "Resource name of the bucket.",
           "type": "string"
+        },
+        "reconciling": {
+          "description": "Output only. Represents whether a bucket is being moved to a new location, in which case reconciling is set to true.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
