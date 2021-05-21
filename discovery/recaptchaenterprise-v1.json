@@ -1,0 +1,841 @@
+{
+  "auth": {
+    "oauth2": {
+      "scopes": {
+        "https://www.googleapis.com/auth/cloud-platform": {
+          "description": "See, edit, configure, and delete your Google Cloud Platform data"
+        }
+      }
+    }
+  },
+  "basePath": "",
+  "baseUrl": "https://recaptchaenterprise.googleapis.com/",
+  "batchPath": "batch",
+  "canonicalName": "Recaptcha Enterprise",
+  "description": "",
+  "discoveryVersion": "v1",
+  "documentationLink": "https://cloud.google.com/recaptcha-enterprise/",
+  "fullyEncodeReservedExpansion": true,
+  "icons": {
+    "x16": "http://www.google.com/images/icons/product/search-16.gif",
+    "x32": "http://www.google.com/images/icons/product/search-32.gif"
+  },
+  "id": "recaptchaenterprise:v1",
+  "kind": "discovery#restDescription",
+  "mtlsRootUrl": "https://recaptchaenterprise.mtls.googleapis.com/",
+  "name": "recaptchaenterprise",
+  "ownerDomain": "google.com",
+  "ownerName": "Google",
+  "parameters": {
+    "$.xgafv": {
+      "description": "V1 error format.",
+      "enum": [
+        "1",
+        "2"
+      ],
+      "enumDescriptions": [
+        "v1 error format",
+        "v2 error format"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "access_token": {
+      "description": "OAuth access token.",
+      "location": "query",
+      "type": "string"
+    },
+    "alt": {
+      "default": "json",
+      "description": "Data format for response.",
+      "enum": [
+        "json",
+        "media",
+        "proto"
+      ],
+      "enumDescriptions": [
+        "Responses with Content-Type of application/json",
+        "Media download with context-dependent Content-Type",
+        "Responses with Content-Type of application/x-protobuf"
+      ],
+      "location": "query",
+      "type": "string"
+    },
+    "callback": {
+      "description": "JSONP",
+      "location": "query",
+      "type": "string"
+    },
+    "fields": {
+      "description": "Selector specifying which fields to include in a partial response.",
+      "location": "query",
+      "type": "string"
+    },
+    "key": {
+      "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+      "location": "query",
+      "type": "string"
+    },
+    "oauth_token": {
+      "description": "OAuth 2.0 token for the current user.",
+      "location": "query",
+      "type": "string"
+    },
+    "prettyPrint": {
+      "default": "true",
+      "description": "Returns response with indentations and line breaks.",
+      "location": "query",
+      "type": "boolean"
+    },
+    "quotaUser": {
+      "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.",
+      "location": "query",
+      "type": "string"
+    },
+    "uploadType": {
+      "description": "Legacy upload protocol for media (e.g. \"media\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    },
+    "upload_protocol": {
+      "description": "Upload protocol for media (e.g. \"raw\", \"multipart\").",
+      "location": "query",
+      "type": "string"
+    }
+  },
+  "protocol": "rest",
+  "resources": {
+    "projects": {
+      "resources": {
+        "assessments": {
+          "methods": {
+            "annotate": {
+              "description": "Annotates a previously created Assessment to provide additional information on whether the event turned out to be authentic or fraudulent.",
+              "flatPath": "v1/projects/{projectsId}/assessments/{assessmentsId}:annotate",
+              "httpMethod": "POST",
+              "id": "recaptchaenterprise.projects.assessments.annotate",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The resource name of the Assessment, in the format \"projects/{project}/assessments/{assessment}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/assessments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:annotate",
+              "request": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "create": {
+              "description": "Creates an Assessment of the likelihood an event is legitimate.",
+              "flatPath": "v1/projects/{projectsId}/assessments",
+              "httpMethod": "POST",
+              "id": "recaptchaenterprise.projects.assessments.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The name of the project in which the assessment will be created, in the format \"projects/{project}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/assessments",
+              "request": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1Assessment"
+              },
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1Assessment"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "keys": {
+          "methods": {
+            "create": {
+              "description": "Creates a new reCAPTCHA Enterprise key.",
+              "flatPath": "v1/projects/{projectsId}/keys",
+              "httpMethod": "POST",
+              "id": "recaptchaenterprise.projects.keys.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The name of the project in which the key will be created, in the format \"projects/{project}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/keys",
+              "request": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1Key"
+              },
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1Key"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes the specified key.",
+              "flatPath": "v1/projects/{projectsId}/keys/{keysId}",
+              "httpMethod": "DELETE",
+              "id": "recaptchaenterprise.projects.keys.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the key to be deleted, in the format \"projects/{project}/keys/{key}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/keys/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Returns the specified key.",
+              "flatPath": "v1/projects/{projectsId}/keys/{keysId}",
+              "httpMethod": "GET",
+              "id": "recaptchaenterprise.projects.keys.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the requested key, in the format \"projects/{project}/keys/{key}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/keys/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1Key"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "getMetrics": {
+              "description": "Get some aggregated metrics for a Key. This data can be used to build dashboards.",
+              "flatPath": "v1/projects/{projectsId}/keys/{keysId}/metrics",
+              "httpMethod": "GET",
+              "id": "recaptchaenterprise.projects.keys.getMetrics",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the requested metrics, in the format \"projects/{project}/keys/{key}/metrics\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/keys/[^/]+/metrics$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1Metrics"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Returns the list of all keys that belong to a project.",
+              "flatPath": "v1/projects/{projectsId}/keys",
+              "httpMethod": "GET",
+              "id": "recaptchaenterprise.projects.keys.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of keys to return. Default is 10. Max limit is 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. The next_page_token value returned from a previous. ListKeysRequest, if any.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the project that contains the keys that will be listed, in the format \"projects/{project}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/keys",
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1ListKeysResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "migrate": {
+              "description": "Migrates an existing key from reCAPTCHA to reCAPTCHA Enterprise. Once a key is migrated, it can be used from either product. SiteVerify requests are billed as CreateAssessment calls. You must be authenticated as one of the current owners of the reCAPTCHA Site Key, and your user must have the reCAPTCHA Enterprise Admin IAM role in the destination project.",
+              "flatPath": "v1/projects/{projectsId}/keys/{keysId}:migrate",
+              "httpMethod": "POST",
+              "id": "recaptchaenterprise.projects.keys.migrate",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the key to be migrated, in the format \"projects/{project}/keys/{key}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/keys/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:migrate",
+              "request": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1Key"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates the specified key.",
+              "flatPath": "v1/projects/{projectsId}/keys/{keysId}",
+              "httpMethod": "PATCH",
+              "id": "recaptchaenterprise.projects.keys.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "The resource name for the Key in the format \"projects/{project}/keys/{key}\".",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/keys/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. The mask to control which fields of the key get updated. If the mask is not present, all fields will be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1Key"
+              },
+              "response": {
+                "$ref": "GoogleCloudRecaptchaenterpriseV1Key"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "revision": "20210514",
+  "rootUrl": "https://recaptchaenterprise.googleapis.com/",
+  "schemas": {
+    "GoogleCloudRecaptchaenterpriseV1AndroidKeySettings": {
+      "description": "Settings specific to keys that can be used by Android apps.",
+      "id": "GoogleCloudRecaptchaenterpriseV1AndroidKeySettings",
+      "properties": {
+        "allowedPackageNames": {
+          "description": "Android package names of apps allowed to use the key. Example: 'com.companyname.appname'",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest": {
+      "description": "The request message to annotate an Assessment.",
+      "id": "GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentRequest",
+      "properties": {
+        "annotation": {
+          "description": "Optional. The annotation that will be assigned to the Event. This field can be left empty to provide reasons that apply to an event without concluding whether the event is legitimate or fraudulent.",
+          "enum": [
+            "ANNOTATION_UNSPECIFIED",
+            "LEGITIMATE",
+            "FRAUDULENT",
+            "PASSWORD_CORRECT",
+            "PASSWORD_INCORRECT"
+          ],
+          "enumDescriptions": [
+            "Default unspecified type.",
+            "Provides information that the event turned out to be legitimate.",
+            "Provides information that the event turned out to be fraudulent.",
+            "Provides information that the event was related to a login event in which the user typed the correct password. Deprecated, prefer indicating CORRECT_PASSWORD through the reasons field instead.",
+            "Provides information that the event was related to a login event in which the user typed the incorrect password. Deprecated, prefer indicating INCORRECT_PASSWORD through the reasons field instead."
+          ],
+          "type": "string"
+        },
+        "reasons": {
+          "description": "Optional. Optional reasons for the annotation that will be assigned to the Event.",
+          "items": {
+            "enum": [
+              "REASON_UNSPECIFIED",
+              "CHARGEBACK",
+              "PAYMENT_HEURISTICS",
+              "PASSED_TWO_FACTOR",
+              "FAILED_TWO_FACTOR",
+              "CORRECT_PASSWORD",
+              "INCORRECT_PASSWORD"
+            ],
+            "enumDescriptions": [
+              "Default unspecified reason.",
+              "Indicates a chargeback for fraud was issued for the transaction associated with the assessment.",
+              "Indicates the transaction associated with the assessment is suspected of being fraudulent based on the payment method, billing details, shipping address or other transaction information.",
+              "Indicates that the user passed a 2FA challenge.",
+              "Indicates that the user failed a 2FA challenge.",
+              "Indicates the user provided the correct password.",
+              "Indicates the user provided an incorrect password."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse": {
+      "description": "Empty response for AnnotateAssessment.",
+      "id": "GoogleCloudRecaptchaenterpriseV1AnnotateAssessmentResponse",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1Assessment": {
+      "description": "A recaptcha assessment resource.",
+      "id": "GoogleCloudRecaptchaenterpriseV1Assessment",
+      "properties": {
+        "event": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1Event",
+          "description": "The event being assessed."
+        },
+        "name": {
+          "description": "Output only. The resource name for the Assessment in the format \"projects/{project}/assessments/{assessment}\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "riskAnalysis": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1RiskAnalysis",
+          "description": "Output only. The risk analysis result for the event being assessed.",
+          "readOnly": true
+        },
+        "tokenProperties": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1TokenProperties",
+          "description": "Output only. Properties of the provided event token.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ChallengeMetrics": {
+      "description": "Metrics related to challenges.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ChallengeMetrics",
+      "properties": {
+        "failedCount": {
+          "description": "Count of submitted challenge solutions that were incorrect or otherwise deemed suspicious such that a subsequent challenge was triggered.",
+          "format": "int64",
+          "type": "string"
+        },
+        "nocaptchaCount": {
+          "description": "Count of nocaptchas (successful verification without a challenge) issued.",
+          "format": "int64",
+          "type": "string"
+        },
+        "pageloadCount": {
+          "description": "Count of reCAPTCHA checkboxes or badges rendered. This is mostly equivalent to a count of pageloads for pages that include reCAPTCHA.",
+          "format": "int64",
+          "type": "string"
+        },
+        "passedCount": {
+          "description": "Count of nocaptchas (successful verification without a challenge) plus submitted challenge solutions that were correct and resulted in verification.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1Event": {
+      "id": "GoogleCloudRecaptchaenterpriseV1Event",
+      "properties": {
+        "expectedAction": {
+          "description": "Optional. The expected action for this type of event. This should be the same action provided at token generation time on client-side platforms already integrated with recaptcha enterprise.",
+          "type": "string"
+        },
+        "siteKey": {
+          "description": "Optional. The site key that was used to invoke reCAPTCHA on your site and generate the token.",
+          "type": "string"
+        },
+        "token": {
+          "description": "Optional. The user response token provided by the reCAPTCHA client-side integration on your site.",
+          "type": "string"
+        },
+        "userAgent": {
+          "description": "Optional. The user agent present in the request from the user's device related to this event.",
+          "type": "string"
+        },
+        "userIpAddress": {
+          "description": "Optional. The IP address in the request from the user's device related to this event.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1IOSKeySettings": {
+      "description": "Settings specific to keys that can be used by iOS apps.",
+      "id": "GoogleCloudRecaptchaenterpriseV1IOSKeySettings",
+      "properties": {
+        "allowedBundleIds": {
+          "description": "iOS bundle ids of apps allowed to use the key. Example: 'com.companyname.productname.appname'",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1Key": {
+      "description": "A key used to identify and configure applications (web and/or mobile) that use reCAPTCHA Enterprise.",
+      "id": "GoogleCloudRecaptchaenterpriseV1Key",
+      "properties": {
+        "androidSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1AndroidKeySettings",
+          "description": "Settings for keys that can be used by Android apps."
+        },
+        "createTime": {
+          "description": "The timestamp corresponding to the creation of this Key.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Human-readable display name of this key. Modifiable by user.",
+          "type": "string"
+        },
+        "iosSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1IOSKeySettings",
+          "description": "Settings for keys that can be used by iOS apps."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "See Creating and managing labels.",
+          "type": "object"
+        },
+        "name": {
+          "description": "The resource name for the Key in the format \"projects/{project}/keys/{key}\".",
+          "type": "string"
+        },
+        "testingOptions": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1TestingOptions",
+          "description": "Options for user acceptance testing."
+        },
+        "webSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1WebKeySettings",
+          "description": "Settings for keys that can be used by websites."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ListKeysResponse": {
+      "description": "Response to request to list keys in a project.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ListKeysResponse",
+      "properties": {
+        "keys": {
+          "description": "Key details.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1Key"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results. It is set to empty if no keys remain in results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1Metrics": {
+      "description": "Metrics for a single Key.",
+      "id": "GoogleCloudRecaptchaenterpriseV1Metrics",
+      "properties": {
+        "challengeMetrics": {
+          "description": "Metrics will be continuous and in order by dates, and in the granularity of day. Only challenge-based keys (CHECKBOX, INVISIBLE), will have challenge-based data.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1ChallengeMetrics"
+          },
+          "type": "array"
+        },
+        "scoreMetrics": {
+          "description": "Metrics will be continuous and in order by dates, and in the granularity of day. All Key types should have score-based data.",
+          "items": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1ScoreMetrics"
+          },
+          "type": "array"
+        },
+        "startTime": {
+          "description": "Inclusive start time aligned to a day (UTC).",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest": {
+      "description": "The migrate key request message.",
+      "id": "GoogleCloudRecaptchaenterpriseV1MigrateKeyRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1RiskAnalysis": {
+      "description": "Risk analysis result for an event.",
+      "id": "GoogleCloudRecaptchaenterpriseV1RiskAnalysis",
+      "properties": {
+        "reasons": {
+          "description": "Reasons contributing to the risk analysis verdict.",
+          "items": {
+            "enum": [
+              "CLASSIFICATION_REASON_UNSPECIFIED",
+              "AUTOMATION",
+              "UNEXPECTED_ENVIRONMENT",
+              "TOO_MUCH_TRAFFIC",
+              "UNEXPECTED_USAGE_PATTERNS",
+              "LOW_CONFIDENCE_SCORE"
+            ],
+            "enumDescriptions": [
+              "Default unspecified type.",
+              "Interactions matched the behavior of an automated agent.",
+              "The event originated from an illegitimate environment.",
+              "Traffic volume from the event source is higher than normal.",
+              "Interactions with the site were significantly different than expected patterns.",
+              "Too little traffic has been received from this site thus far to generate quality risk analysis."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "score": {
+          "description": "Legitimate event score from 0.0 to 1.0. (1.0 means very likely legitimate traffic while 0.0 means very likely non-legitimate traffic).",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ScoreDistribution": {
+      "description": "Score distribution.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ScoreDistribution",
+      "properties": {
+        "scoreBuckets": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "Map key is score value multiplied by 100. The scores are discrete values between [0, 1]. The maximum number of buckets is on order of a few dozen, but typically much lower (ie. 10).",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1ScoreMetrics": {
+      "description": "Metrics related to scoring.",
+      "id": "GoogleCloudRecaptchaenterpriseV1ScoreMetrics",
+      "properties": {
+        "actionMetrics": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1ScoreDistribution"
+          },
+          "description": "Action-based metrics. The map key is the action name which specified by the site owners at time of the \"execute\" client-side call. Populated only for SCORE keys.",
+          "type": "object"
+        },
+        "overallMetrics": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1ScoreDistribution",
+          "description": "Aggregated score metrics for all traffic."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1TestingOptions": {
+      "description": "Options for user acceptance testing.",
+      "id": "GoogleCloudRecaptchaenterpriseV1TestingOptions",
+      "properties": {
+        "testingChallenge": {
+          "description": "For challenge-based keys only (CHECKBOX, INVISIBLE), all challenge requests for this site will return nocaptcha if NOCAPTCHA, or an unsolvable challenge if CHALLENGE.",
+          "enum": [
+            "TESTING_CHALLENGE_UNSPECIFIED",
+            "NOCAPTCHA",
+            "CHALLENGE"
+          ],
+          "enumDescriptions": [
+            "Perform the normal risk analysis and return either nocaptcha or a challenge depending on risk and trust factors.",
+            "Challenge requests for this key will always return a nocaptcha, which does not require a solution.",
+            "Challenge requests for this key will always return an unsolvable challenge."
+          ],
+          "type": "string"
+        },
+        "testingScore": {
+          "description": "All assessments for this Key will return this score. Must be between 0 (likely not legitimate) and 1 (likely legitimate) inclusive.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1TokenProperties": {
+      "id": "GoogleCloudRecaptchaenterpriseV1TokenProperties",
+      "properties": {
+        "action": {
+          "description": "Action name provided at token generation.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "The timestamp corresponding to the generation of the token.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "hostname": {
+          "description": "The hostname of the page on which the token was generated.",
+          "type": "string"
+        },
+        "invalidReason": {
+          "description": "Reason associated with the response when valid = false.",
+          "enum": [
+            "INVALID_REASON_UNSPECIFIED",
+            "UNKNOWN_INVALID_REASON",
+            "MALFORMED",
+            "EXPIRED",
+            "DUPE",
+            "MISSING",
+            "BROWSER_ERROR"
+          ],
+          "enumDescriptions": [
+            "Default unspecified type.",
+            "If the failure reason was not accounted for.",
+            "The provided user verification token was malformed.",
+            "The user verification token had expired.",
+            "The user verification had already been seen.",
+            "The user verification token was not present.",
+            "A retriable error (such as network failure) occurred on the browser. Could easily be simulated by an attacker."
+          ],
+          "type": "string"
+        },
+        "valid": {
+          "description": "Whether the provided user response token is valid. When valid = false, the reason could be specified in invalid_reason or it could also be due to a user failing to solve a challenge or a sitekey mismatch (i.e the sitekey used to generate the token was different than the one specified in the assessment).",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1WebKeySettings": {
+      "description": "Settings specific to keys that can be used by websites.",
+      "id": "GoogleCloudRecaptchaenterpriseV1WebKeySettings",
+      "properties": {
+        "allowAllDomains": {
+          "description": "If set to true, it means allowed_domains will not be enforced.",
+          "type": "boolean"
+        },
+        "allowAmpTraffic": {
+          "description": "Required. Whether this key can be used on AMP (Accelerated Mobile Pages) websites. This can only be set for the SCORE integration type.",
+          "type": "boolean"
+        },
+        "allowedDomains": {
+          "description": "Domains or subdomains of websites allowed to use the key. All subdomains of an allowed domain are automatically allowed. A valid domain requires a host and must not include any path, port, query or fragment. Examples: 'example.com' or 'subdomain.example.com'",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "challengeSecurityPreference": {
+          "description": "Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for IntegrationTypes CHECKBOX and INVISIBLE.",
+          "enum": [
+            "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED",
+            "USABILITY",
+            "BALANCE",
+            "SECURITY"
+          ],
+          "enumDescriptions": [
+            "Default type that indicates this enum hasn't been specified.",
+            "Key tends to show fewer and easier challenges.",
+            "Key tends to show balanced (in amount and difficulty) challenges.",
+            "Key tends to show more and harder challenges."
+          ],
+          "type": "string"
+        },
+        "integrationType": {
+          "description": "Required. Describes how this key is integrated with the website.",
+          "enum": [
+            "INTEGRATION_TYPE_UNSPECIFIED",
+            "SCORE",
+            "CHECKBOX",
+            "INVISIBLE"
+          ],
+          "enumDescriptions": [
+            "Default type that indicates this enum hasn't been specified. This is not a valid IntegrationType, one of the other types must be specified instead.",
+            "Only used to produce scores. It doesn't display the \"I'm not a robot\" checkbox and never shows captcha challenges.",
+            "Displays the \"I'm not a robot\" checkbox and may show captcha challenges after it is checked.",
+            "Doesn't display the \"I'm not a robot\" checkbox, but may show captcha challenges after risk analysis."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleProtobufEmpty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "id": "GoogleProtobufEmpty",
+      "properties": {},
+      "type": "object"
+    }
+  },
+  "servicePath": "",
+  "title": "reCAPTCHA Enterprise API",
+  "version": "v1",
+  "version_module": true
+}
