@@ -2548,9 +2548,8 @@ export namespace toolresults_v1beta3 {
       this.clusters = new Resource$Projects$Histories$Executions$Clusters(
         this.context
       );
-      this.environments = new Resource$Projects$Histories$Executions$Environments(
-        this.context
-      );
+      this.environments =
+        new Resource$Projects$Histories$Executions$Environments(this.context);
       this.steps = new Resource$Projects$Histories$Executions$Steps(
         this.context
       );
@@ -3340,7 +3339,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Clusters$Get;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Clusters$Get;
         options = {};
       }
 
@@ -3480,7 +3480,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Clusters$List;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Clusters$List;
         options = {};
       }
 
@@ -3669,7 +3670,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Environments$Get;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Environments$Get;
         options = {};
       }
 
@@ -3822,7 +3824,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Environments$List;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Environments$List;
         options = {};
       }
 
@@ -3910,18 +3913,22 @@ export namespace toolresults_v1beta3 {
     thumbnails: Resource$Projects$Histories$Executions$Steps$Thumbnails;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.perfMetricsSummary = new Resource$Projects$Histories$Executions$Steps$Perfmetricssummary(
-        this.context
-      );
-      this.perfSampleSeries = new Resource$Projects$Histories$Executions$Steps$Perfsampleseries(
-        this.context
-      );
-      this.testCases = new Resource$Projects$Histories$Executions$Steps$Testcases(
-        this.context
-      );
-      this.thumbnails = new Resource$Projects$Histories$Executions$Steps$Thumbnails(
-        this.context
-      );
+      this.perfMetricsSummary =
+        new Resource$Projects$Histories$Executions$Steps$Perfmetricssummary(
+          this.context
+        );
+      this.perfSampleSeries =
+        new Resource$Projects$Histories$Executions$Steps$Perfsampleseries(
+          this.context
+        );
+      this.testCases =
+        new Resource$Projects$Histories$Executions$Steps$Testcases(
+          this.context
+        );
+      this.thumbnails =
+        new Resource$Projects$Histories$Executions$Steps$Thumbnails(
+          this.context
+        );
     }
 
     /**
@@ -3950,15 +3957,15 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.projects.histories.executions.steps.accessibilityClusters(
-     *     {
-     *       // The accepted format is the canonical Unicode format with hyphen as a delimiter. Language must be lowercase, Language Script - Capitalized, Region - UPPERCASE. See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for details. Required.
-     *       locale: 'placeholder-value',
-     *       // A full resource name of the step. For example, projects/my-project/histories/bh.1234567890abcdef/executions/ 1234567890123456789/steps/bs.1234567890abcdef Required.
-     *       name:
-     *         'projects/my-project/histories/my-historie/executions/my-execution/steps/my-step',
-     *     }
-     *   );
+     *   const res =
+     *     await toolresults.projects.histories.executions.steps.accessibilityClusters(
+     *       {
+     *         // The accepted format is the canonical Unicode format with hyphen as a delimiter. Language must be lowercase, Language Script - Capitalized, Region - UPPERCASE. See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for details. Required.
+     *         locale: 'placeholder-value',
+     *         // A full resource name of the step. For example, projects/my-project/histories/bh.1234567890abcdef/executions/ 1234567890123456789/steps/bs.1234567890abcdef Required.
+     *         name: 'projects/my-project/histories/my-historie/executions/my-execution/steps/my-step',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4030,7 +4037,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters;
         options = {};
       }
 
@@ -4202,7 +4210,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Create;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Steps$Create;
         options = {};
       }
 
@@ -4413,18 +4422,19 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.projects.histories.executions.steps.getPerfMetricsSummary(
-     *     {
-     *       // A tool results execution ID.
-     *       executionId: 'placeholder-value',
-     *       // A tool results history ID.
-     *       historyId: 'placeholder-value',
-     *       // The cloud project
-     *       projectId: 'placeholder-value',
-     *       // A tool results step ID.
-     *       stepId: 'placeholder-value',
-     *     }
-     *   );
+     *   const res =
+     *     await toolresults.projects.histories.executions.steps.getPerfMetricsSummary(
+     *       {
+     *         // A tool results execution ID.
+     *         executionId: 'placeholder-value',
+     *         // A tool results history ID.
+     *         historyId: 'placeholder-value',
+     *         // The cloud project
+     *         projectId: 'placeholder-value',
+     *         // A tool results step ID.
+     *         stepId: 'placeholder-value',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4500,7 +4510,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary;
         options = {};
       }
 
@@ -4814,7 +4825,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Patch;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Steps$Patch;
         options = {};
       }
 
@@ -4876,8 +4888,8 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.projects.histories.executions.steps.publishXunitXmlFiles(
-     *     {
+     *   const res =
+     *     await toolresults.projects.histories.executions.steps.publishXunitXmlFiles({
      *       // A Execution id. Required.
      *       executionId: 'placeholder-value',
      *       // A History id. Required.
@@ -4894,8 +4906,7 @@ export namespace toolresults_v1beta3 {
      *         //   "xunitXmlFiles": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4973,7 +4984,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles;
         options = {};
       }
 
@@ -5191,33 +5203,34 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.projects.histories.executions.steps.perfMetricsSummary.create(
-     *     {
-     *       // A tool results execution ID.
-     *       executionId: 'placeholder-value',
-     *       // A tool results history ID.
-     *       historyId: 'placeholder-value',
-     *       // The cloud project
-     *       projectId: 'placeholder-value',
-     *       // A tool results step ID.
-     *       stepId: 'placeholder-value',
+     *   const res =
+     *     await toolresults.projects.histories.executions.steps.perfMetricsSummary.create(
+     *       {
+     *         // A tool results execution ID.
+     *         executionId: 'placeholder-value',
+     *         // A tool results history ID.
+     *         historyId: 'placeholder-value',
+     *         // The cloud project
+     *         projectId: 'placeholder-value',
+     *         // A tool results step ID.
+     *         stepId: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "appStartTime": {},
-     *         //   "executionId": "my_executionId",
-     *         //   "graphicsStats": {},
-     *         //   "historyId": "my_historyId",
-     *         //   "perfEnvironment": {},
-     *         //   "perfMetrics": [],
-     *         //   "projectId": "my_projectId",
-     *         //   "stepId": "my_stepId"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "appStartTime": {},
+     *           //   "executionId": "my_executionId",
+     *           //   "graphicsStats": {},
+     *           //   "historyId": "my_historyId",
+     *           //   "perfEnvironment": {},
+     *           //   "perfMetrics": [],
+     *           //   "projectId": "my_projectId",
+     *           //   "stepId": "my_stepId"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5291,7 +5304,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create;
         options = {};
       }
 
@@ -5358,9 +5372,10 @@ export namespace toolresults_v1beta3 {
     samples: Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.samples = new Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples(
-        this.context
-      );
+      this.samples =
+        new Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples(
+          this.context
+        );
     }
 
     /**
@@ -5389,31 +5404,32 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.projects.histories.executions.steps.perfSampleSeries.create(
-     *     {
-     *       // A tool results execution ID.
-     *       executionId: 'placeholder-value',
-     *       // A tool results history ID.
-     *       historyId: 'placeholder-value',
-     *       // The cloud project
-     *       projectId: 'placeholder-value',
-     *       // A tool results step ID.
-     *       stepId: 'placeholder-value',
+     *   const res =
+     *     await toolresults.projects.histories.executions.steps.perfSampleSeries.create(
+     *       {
+     *         // A tool results execution ID.
+     *         executionId: 'placeholder-value',
+     *         // A tool results history ID.
+     *         historyId: 'placeholder-value',
+     *         // The cloud project
+     *         projectId: 'placeholder-value',
+     *         // A tool results step ID.
+     *         stepId: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "basicPerfSampleSeries": {},
-     *         //   "executionId": "my_executionId",
-     *         //   "historyId": "my_historyId",
-     *         //   "projectId": "my_projectId",
-     *         //   "sampleSeriesId": "my_sampleSeriesId",
-     *         //   "stepId": "my_stepId"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "basicPerfSampleSeries": {},
+     *           //   "executionId": "my_executionId",
+     *           //   "historyId": "my_historyId",
+     *           //   "projectId": "my_projectId",
+     *           //   "sampleSeriesId": "my_sampleSeriesId",
+     *           //   "stepId": "my_stepId"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5482,7 +5498,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create;
         options = {};
       }
 
@@ -5544,8 +5561,8 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.projects.histories.executions.steps.perfSampleSeries.get(
-     *     {
+     *   const res =
+     *     await toolresults.projects.histories.executions.steps.perfSampleSeries.get({
      *       // A tool results execution ID.
      *       executionId: 'placeholder-value',
      *       // A tool results history ID.
@@ -5556,8 +5573,7 @@ export namespace toolresults_v1beta3 {
      *       sampleSeriesId: 'placeholder-value',
      *       // A tool results step ID.
      *       stepId: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5626,7 +5642,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get;
         options = {};
       }
 
@@ -5700,20 +5717,21 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.projects.histories.executions.steps.perfSampleSeries.list(
-     *     {
-     *       // A tool results execution ID.
-     *       executionId: 'placeholder-value',
-     *       // Specify one or more PerfMetricType values such as CPU to filter the result
-     *       filter: 'placeholder-value',
-     *       // A tool results history ID.
-     *       historyId: 'placeholder-value',
-     *       // The cloud project
-     *       projectId: 'placeholder-value',
-     *       // A tool results step ID.
-     *       stepId: 'placeholder-value',
-     *     }
-     *   );
+     *   const res =
+     *     await toolresults.projects.histories.executions.steps.perfSampleSeries.list(
+     *       {
+     *         // A tool results execution ID.
+     *         executionId: 'placeholder-value',
+     *         // Specify one or more PerfMetricType values such as CPU to filter the result
+     *         filter: 'placeholder-value',
+     *         // A tool results history ID.
+     *         historyId: 'placeholder-value',
+     *         // The cloud project
+     *         projectId: 'placeholder-value',
+     *         // A tool results step ID.
+     *         stepId: 'placeholder-value',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -5784,7 +5802,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List;
         options = {};
       }
 
@@ -5926,28 +5945,29 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.projects.histories.executions.steps.perfSampleSeries.samples.batchCreate(
-     *     {
-     *       // A tool results execution ID.
-     *       executionId: 'placeholder-value',
-     *       // A tool results history ID.
-     *       historyId: 'placeholder-value',
-     *       // The cloud project
-     *       projectId: 'placeholder-value',
-     *       // A sample series id
-     *       sampleSeriesId: 'placeholder-value',
-     *       // A tool results step ID.
-     *       stepId: 'placeholder-value',
+     *   const res =
+     *     await toolresults.projects.histories.executions.steps.perfSampleSeries.samples.batchCreate(
+     *       {
+     *         // A tool results execution ID.
+     *         executionId: 'placeholder-value',
+     *         // A tool results history ID.
+     *         historyId: 'placeholder-value',
+     *         // The cloud project
+     *         projectId: 'placeholder-value',
+     *         // A sample series id
+     *         sampleSeriesId: 'placeholder-value',
+     *         // A tool results step ID.
+     *         stepId: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "perfSamples": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "perfSamples": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6018,7 +6038,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate;
         options = {};
       }
 
@@ -6094,24 +6115,25 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.projects.histories.executions.steps.perfSampleSeries.samples.list(
-     *     {
-     *       // A tool results execution ID.
-     *       executionId: 'placeholder-value',
-     *       // A tool results history ID.
-     *       historyId: 'placeholder-value',
-     *       // The default page size is 500 samples, and the maximum size is 5000. If the page_size is greater than 5000, the effective page size will be 5000
-     *       pageSize: 'placeholder-value',
-     *       // Optional, the next_page_token returned in the previous response
-     *       pageToken: 'placeholder-value',
-     *       // The cloud project
-     *       projectId: 'placeholder-value',
-     *       // A sample series id
-     *       sampleSeriesId: 'placeholder-value',
-     *       // A tool results step ID.
-     *       stepId: 'placeholder-value',
-     *     }
-     *   );
+     *   const res =
+     *     await toolresults.projects.histories.executions.steps.perfSampleSeries.samples.list(
+     *       {
+     *         // A tool results execution ID.
+     *         executionId: 'placeholder-value',
+     *         // A tool results history ID.
+     *         historyId: 'placeholder-value',
+     *         // The default page size is 500 samples, and the maximum size is 5000. If the page_size is greater than 5000, the effective page size will be 5000
+     *         pageSize: 'placeholder-value',
+     *         // Optional, the next_page_token returned in the previous response
+     *         pageToken: 'placeholder-value',
+     *         // The cloud project
+     *         projectId: 'placeholder-value',
+     *         // A sample series id
+     *         sampleSeriesId: 'placeholder-value',
+     *         // A tool results step ID.
+     *         stepId: 'placeholder-value',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6181,7 +6203,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List;
         options = {};
       }
 
@@ -6322,8 +6345,8 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.projects.histories.executions.steps.testCases.get(
-     *     {
+     *   const res =
+     *     await toolresults.projects.histories.executions.steps.testCases.get({
      *       // A Execution id Required.
      *       executionId: 'placeholder-value',
      *       // A History id. Required.
@@ -6334,8 +6357,7 @@ export namespace toolresults_v1beta3 {
      *       stepId: 'placeholder-value',
      *       // A Test Case id. Required.
      *       testCaseId: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6407,7 +6429,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get;
         options = {};
       }
 
@@ -6481,8 +6504,8 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.projects.histories.executions.steps.testCases.list(
-     *     {
+     *   const res =
+     *     await toolresults.projects.histories.executions.steps.testCases.list({
      *       // A Execution id Required.
      *       executionId: 'placeholder-value',
      *       // A History id. Required.
@@ -6495,8 +6518,7 @@ export namespace toolresults_v1beta3 {
      *       projectId: 'placeholder-value',
      *       // A Step id. Note: This step must include a TestExecutionStep. Required.
      *       stepId: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6566,7 +6588,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Testcases$List;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Steps$Testcases$List;
         options = {};
       }
 
@@ -6686,8 +6709,8 @@ export namespace toolresults_v1beta3 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await toolresults.projects.histories.executions.steps.thumbnails.list(
-     *     {
+     *   const res =
+     *     await toolresults.projects.histories.executions.steps.thumbnails.list({
      *       // An Execution id. Required.
      *       executionId: 'placeholder-value',
      *       // A History id. Required.
@@ -6700,8 +6723,7 @@ export namespace toolresults_v1beta3 {
      *       projectId: 'placeholder-value',
      *       // A Step id. Required.
      *       stepId: 'placeholder-value',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6773,7 +6795,8 @@ export namespace toolresults_v1beta3 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List;
+        params =
+          {} as Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List;
         options = {};
       }
 
