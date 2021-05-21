@@ -1310,7 +1310,8 @@ export namespace civicinfo_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Representatives$Representativeinfobyaddress;
+        params =
+          {} as Params$Resource$Representatives$Representativeinfobyaddress;
         options = {};
       }
 
@@ -1454,7 +1455,8 @@ export namespace civicinfo_v2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Representatives$Representativeinfobydivision;
+        params =
+          {} as Params$Resource$Representatives$Representativeinfobydivision;
         options = {};
       }
 
