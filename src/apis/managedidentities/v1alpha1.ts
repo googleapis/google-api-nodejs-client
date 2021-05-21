@@ -1331,9 +1331,10 @@ export namespace managedidentities_v1alpha1 {
     sqlIntegrations: Resource$Projects$Locations$Global$Domains$Sqlintegrations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.sqlIntegrations = new Resource$Projects$Locations$Global$Domains$Sqlintegrations(
-        this.context
-      );
+      this.sqlIntegrations =
+        new Resource$Projects$Locations$Global$Domains$Sqlintegrations(
+          this.context
+        );
     }
 
     /**
@@ -1362,8 +1363,8 @@ export namespace managedidentities_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.attachTrust(
-     *     {
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.attachTrust({
      *       // The resource domain name, project name and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      *       name: 'projects/my-project/locations/global/domains/my-domain',
      *
@@ -1374,8 +1375,7 @@ export namespace managedidentities_v1alpha1 {
      *         //   "trust": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1443,7 +1443,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Domains$Attachtrust;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Attachtrust;
         options = {};
       }
 
@@ -1793,8 +1794,8 @@ export namespace managedidentities_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.detachTrust(
-     *     {
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.detachTrust({
      *       // The resource domain name, project name, and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      *       name: 'projects/my-project/locations/global/domains/my-domain',
      *
@@ -1805,8 +1806,7 @@ export namespace managedidentities_v1alpha1 {
      *         //   "trust": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1874,7 +1874,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Domains$Detachtrust;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Detachtrust;
         options = {};
       }
 
@@ -2076,14 +2077,13 @@ export namespace managedidentities_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.getIamPolicy(
-     *     {
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.getIamPolicy({
      *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource: 'projects/my-project/locations/global/domains/my-domain',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2149,7 +2149,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Domains$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Getiampolicy;
         options = {};
       }
 
@@ -2508,8 +2509,8 @@ export namespace managedidentities_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.reconfigureTrust(
-     *     {
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.reconfigureTrust({
      *       // The resource domain name, project name and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      *       name: 'projects/my-project/locations/global/domains/my-domain',
      *
@@ -2520,8 +2521,7 @@ export namespace managedidentities_v1alpha1 {
      *         //   "trust": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2589,7 +2589,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Domains$Reconfiguretrust;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Reconfiguretrust;
         options = {};
       }
 
@@ -2652,18 +2653,19 @@ export namespace managedidentities_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.resetAdminPassword(
-     *     {
-     *       // The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
-     *       name: 'projects/my-project/locations/global/domains/my-domain',
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.resetAdminPassword(
+     *       {
+     *         // The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
+     *         name: 'projects/my-project/locations/global/domains/my-domain',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {}
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2734,7 +2736,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Domains$Resetadminpassword;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Resetadminpassword;
         options = {};
       }
 
@@ -2797,8 +2800,8 @@ export namespace managedidentities_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.setIamPolicy(
-     *     {
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource: 'projects/my-project/locations/global/domains/my-domain',
      *
@@ -2809,8 +2812,7 @@ export namespace managedidentities_v1alpha1 {
      *         //   "policy": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2876,7 +2878,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Domains$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Setiampolicy;
         options = {};
       }
 
@@ -2939,20 +2942,21 @@ export namespace managedidentities_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource: 'projects/my-project/locations/global/domains/my-domain',
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource: 'projects/my-project/locations/global/domains/my-domain',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3023,7 +3027,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Domains$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Testiampermissions;
         options = {};
       }
 
@@ -3086,8 +3091,8 @@ export namespace managedidentities_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.validateTrust(
-     *     {
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.validateTrust({
      *       // The resource domain name, project name, and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      *       name: 'projects/my-project/locations/global/domains/my-domain',
      *
@@ -3098,8 +3103,7 @@ export namespace managedidentities_v1alpha1 {
      *         //   "trust": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3167,7 +3171,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Domains$Validatetrust;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Validatetrust;
         options = {};
       }
 
@@ -3402,13 +3407,13 @@ export namespace managedidentities_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.sqlIntegrations.get(
-     *     {
-     *       // Required. MangedOU resource name using the form: `projects/{project_id\}/locations/global/domains/x/sqlIntegrations/{name\}`
-     *       name:
-     *         'projects/my-project/locations/global/domains/my-domain/sqlIntegrations/my-sqlIntegration',
-     *     }
-     *   );
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.sqlIntegrations.get(
+     *       {
+     *         // Required. MangedOU resource name using the form: `projects/{project_id\}/locations/global/domains/x/sqlIntegrations/{name\}`
+     *         name: 'projects/my-project/locations/global/domains/my-domain/sqlIntegrations/my-sqlIntegration',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3476,7 +3481,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get;
         options = {};
       }
 
@@ -3536,20 +3542,21 @@ export namespace managedidentities_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.domains.sqlIntegrations.list(
-     *     {
-     *       // Optional. Filter specifying constraints of a list operation. For example, `SqlIntegration.name="sql"`.
-     *       filter: 'placeholder-value',
-     *       // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
-     *       orderBy: 'placeholder-value',
-     *       // Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response'ANIZATIONs next_page_token to determine if there are more instances left to be queried.
-     *       pageSize: 'placeholder-value',
-     *       // Optional. The next_page_token value returned from a previous List request, if any.
-     *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the SqlIntegrations using the form: `projects/{project_id\}/locations/global/domains/x`
-     *       parent: 'projects/my-project/locations/global/domains/my-domain',
-     *     }
-     *   );
+     *   const res =
+     *     await managedidentities.projects.locations.global.domains.sqlIntegrations.list(
+     *       {
+     *         // Optional. Filter specifying constraints of a list operation. For example, `SqlIntegration.name="sql"`.
+     *         filter: 'placeholder-value',
+     *         // Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
+     *         orderBy: 'placeholder-value',
+     *         // Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response'ANIZATIONs next_page_token to determine if there are more instances left to be queried.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. The next_page_token value returned from a previous List request, if any.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The resource name of the SqlIntegrations using the form: `projects/{project_id\}/locations/global/domains/x`
+     *         parent: 'projects/my-project/locations/global/domains/my-domain',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3622,7 +3629,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List;
         options = {};
       }
 
@@ -3723,8 +3731,8 @@ export namespace managedidentities_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.operations.cancel(
-     *     {
+     *   const res =
+     *     await managedidentities.projects.locations.global.operations.cancel({
      *       // The name of the operation resource to be cancelled.
      *       name: 'projects/my-project/locations/global/operations/my-operation',
      *
@@ -3733,8 +3741,7 @@ export namespace managedidentities_v1alpha1 {
      *         // request body parameters
      *         // {}
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3796,7 +3803,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Operations$Cancel;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Operations$Cancel;
         options = {};
       }
 
@@ -3859,12 +3867,11 @@ export namespace managedidentities_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.operations.delete(
-     *     {
+     *   const res =
+     *     await managedidentities.projects.locations.global.operations.delete({
      *       // The name of the operation resource to be deleted.
      *       name: 'projects/my-project/locations/global/operations/my-operation',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3926,7 +3933,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Operations$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Operations$Delete;
         options = {};
       }
 
@@ -4198,7 +4206,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Operations$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Operations$List;
         options = {};
       }
 
@@ -4314,14 +4323,13 @@ export namespace managedidentities_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.peerings.getIamPolicy(
-     *     {
+     *   const res =
+     *     await managedidentities.projects.locations.global.peerings.getIamPolicy({
      *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource: 'projects/my-project/locations/global/peerings/my-peering',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4387,7 +4395,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Peerings$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Peerings$Getiampolicy;
         options = {};
       }
 
@@ -4450,8 +4459,8 @@ export namespace managedidentities_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.peerings.setIamPolicy(
-     *     {
+     *   const res =
+     *     await managedidentities.projects.locations.global.peerings.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource: 'projects/my-project/locations/global/peerings/my-peering',
      *
@@ -4462,8 +4471,7 @@ export namespace managedidentities_v1alpha1 {
      *         //   "policy": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4529,7 +4537,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Peerings$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Peerings$Setiampolicy;
         options = {};
       }
 
@@ -4592,20 +4601,21 @@ export namespace managedidentities_v1alpha1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await managedidentities.projects.locations.global.peerings.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource: 'projects/my-project/locations/global/peerings/my-peering',
+     *   const res =
+     *     await managedidentities.projects.locations.global.peerings.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource: 'projects/my-project/locations/global/peerings/my-peering',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4676,7 +4686,8 @@ export namespace managedidentities_v1alpha1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Global$Peerings$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Global$Peerings$Testiampermissions;
         options = {};
       }
 
