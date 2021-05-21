@@ -1021,7 +1021,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The agent to list all intents from. Format: `projects//agent`.",
+                          "description": "Required. The agent to list all intents from. Format: `projects//agent` or `projects//locations//agent`. Alternatively, you can specify the environment to list intents for. Format: `projects//agent/environments/` or `projects//locations//agent/environments/`. Note: training phrases of the intents will not be returned for non-draft environment.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/agent/environments/[^/]+$",
                           "required": true,
@@ -1636,7 +1636,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The agent to list all intents from. Format: `projects//agent`.",
+                      "description": "Required. The agent to list all intents from. Format: `projects//agent` or `projects//locations//agent`. Alternatively, you can specify the environment to list intents for. Format: `projects//agent/environments/` or `projects//locations//agent/environments/`. Note: training phrases of the intents will not be returned for non-draft environment.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/agent$",
                       "required": true,
@@ -3657,7 +3657,7 @@
                   ]
                 },
                 "import": {
-                  "description": "Create documents by importing data from external sources.",
+                  "description": "Create documents by importing data from external sources. Dialogflow supports up to 350 documents in each request. If you try to import more, Dialogflow will return an error.",
                   "flatPath": "v2beta1/projects/{projectsId}/knowledgeBases/{knowledgeBasesId}/documents:import",
                   "httpMethod": "POST",
                   "id": "dialogflow.projects.knowledgeBases.documents.import",
@@ -4667,6 +4667,65 @@
                     }
                   },
                   "resources": {
+                    "intents": {
+                      "methods": {
+                        "list": {
+                          "description": "Returns the list of all intents in the specified agent.",
+                          "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/agent/environments/{environmentsId}/intents",
+                          "httpMethod": "GET",
+                          "id": "dialogflow.projects.locations.agent.environments.intents.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "intentView": {
+                              "description": "Optional. The resource view to apply to the returned intent.",
+                              "enum": [
+                                "INTENT_VIEW_UNSPECIFIED",
+                                "INTENT_VIEW_FULL"
+                              ],
+                              "enumDescriptions": [
+                                "Training phrases field is not populated in the response.",
+                                "All fields are populated."
+                              ],
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "languageCode": {
+                              "description": "Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. The next_page_token value returned from a previous list request.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The agent to list all intents from. Format: `projects//agent` or `projects//locations//agent`. Alternatively, you can specify the environment to list intents for. Format: `projects//agent/environments/` or `projects//locations//agent/environments/`. Note: training phrases of the intents will not be returned for non-draft environment.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agent/environments/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v2beta1/{+parent}/intents",
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowV2beta1ListIntentsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        }
+                      }
+                    },
                     "users": {
                       "resources": {
                         "sessions": {
@@ -5264,7 +5323,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The agent to list all intents from. Format: `projects//agent`.",
+                          "description": "Required. The agent to list all intents from. Format: `projects//agent` or `projects//locations//agent`. Alternatively, you can specify the environment to list intents for. Format: `projects//agent/environments/` or `projects//locations//agent/environments/`. Note: training phrases of the intents will not be returned for non-draft environment.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/agent$",
                           "required": true,
@@ -6849,7 +6908,7 @@
                       ]
                     },
                     "import": {
-                      "description": "Create documents by importing data from external sources.",
+                      "description": "Create documents by importing data from external sources. Dialogflow supports up to 350 documents in each request. If you try to import more, Dialogflow will return an error.",
                       "flatPath": "v2beta1/projects/{projectsId}/locations/{locationsId}/knowledgeBases/{knowledgeBasesId}/documents:import",
                       "httpMethod": "POST",
                       "id": "dialogflow.projects.locations.knowledgeBases.documents.import",
@@ -7188,7 +7247,7 @@
       }
     }
   },
-  "revision": "20210426",
+  "revision": "20210517",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -11818,7 +11877,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2beta1Agent": {
-      "description": "A Dialogflow agent is a virtual agent that handles conversations with your end-users. It is a natural language understanding module that understands the nuances of human language. Dialogflow translates end-user text or audio during a conversation to structured data that your apps and services can understand. You design and build a Dialogflow agent to handle the types of conversations required for your system. For more information about agents, see the [Agent guide](https://cloud.google.com/dialogflow/docs/agents-overview).",
+      "description": "A Dialogflow agent is a virtual agent that handles conversations with your end-users. It is a natural language understanding module that understands the nuances of human language. Dialogflow translates end-user text or audio during a conversation to structured data that your apps and services can understand. You design and build a Dialogflow agent to handle the types of conversations required for your system. For more information about agents, see the [Agent guide](https://cloud.google.com/dialogflow/docs/agents-overview). ",
       "id": "GoogleCloudDialogflowV2beta1Agent",
       "properties": {
         "apiVersion": {
@@ -12210,7 +12269,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "The collection of current Dialogflow CX agent session parameters at the time of this response.",
+          "description": "The collection of current Dialogflow CX agent session parameters at the time of this response. Deprecated: Use `parameters` instead.",
           "type": "object"
         },
         "detectIntentResponse": {
@@ -12224,6 +12283,19 @@
         "intent": {
           "description": "Name of the intent if an intent is matched for the query. For a V2 query, the value format is `projects//locations/ /agent/intents/`. For a V3 query, the value format is `projects//locations/ /agents//intents/`.",
           "type": "string"
+        },
+        "matchConfidence": {
+          "description": "The confidence of the match. Values range from 0.0 (completely uncertain) to 1.0 (completely certain). This value is for informational purpose only and is only used to help match the best intent within the classification threshold. This value may change for the same end-user expression at any time due to a model retraining or change in implementation.",
+          "format": "float",
+          "type": "number"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The collection of current parameters at the time of this response.",
+          "type": "object"
         },
         "responseMessages": {
           "description": "Response messages from the automated agent.",
