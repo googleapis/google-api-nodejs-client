@@ -148,7 +148,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:\"DISMISSED\" or state:\"ACTIVE\"",
+                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -250,7 +250,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:\"DISMISSED\" or state_info.state:\"FAILED\"",
+                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -416,7 +416,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:\"DISMISSED\" or state:\"ACTIVE\"",
+                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -518,7 +518,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:\"DISMISSED\" or state_info.state:\"FAILED\"",
+                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -684,7 +684,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:\"DISMISSED\" or state:\"ACTIVE\"",
+                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -786,7 +786,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:\"DISMISSED\" or state_info.state:\"FAILED\"",
+                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -952,7 +952,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:\"DISMISSED\" or state:\"ACTIVE\"",
+                          "description": "Optional. Filter expression to restrict the insights returned. Supported filter fields: * `stateInfo.state` * `insightSubtype` * `severity` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `insightSubtype = PERMISSIONS_USAGE` * `severity = CRITICAL OR severity = HIGH` * `stateInfo.state = ACTIVE AND (severity = CRITICAL OR severity = HIGH)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -1054,7 +1054,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:\"DISMISSED\" or state_info.state:\"FAILED\"",
+                          "description": "Filter expression to restrict the recommendations returned. Supported filter fields: * `state_info.state` * `recommenderSubtype` * `priority` Examples: * `stateInfo.state = ACTIVE OR stateInfo.state = DISMISSED` * `recommenderSubtype = REMOVE_ROLE OR recommenderSubtype = REPLACE_ROLE` * `priority = P1 OR priority = P2` * `stateInfo.state = ACTIVE AND (priority = P1 OR priority = P2)` (These expressions are based on the filter language described at https://google.aip.dev/160)",
                           "location": "query",
                           "type": "string"
                         },
@@ -1178,7 +1178,7 @@
       }
     }
   },
-  "revision": "20210319",
+  "revision": "20210514",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1beta1CostProjection": {
@@ -1222,6 +1222,10 @@
         "costProjection": {
           "$ref": "GoogleCloudRecommenderV1beta1CostProjection",
           "description": "Use with CategoryType.COST"
+        },
+        "securityProjection": {
+          "$ref": "GoogleCloudRecommenderV1beta1SecurityProjection",
+          "description": "Use with CategoryType.SECURITY"
         }
       },
       "type": "object"
@@ -1287,6 +1291,24 @@
         "observationPeriod": {
           "description": "Observation period that led to the insight. The source data used to generate the insight ends at last_refresh_time and begins at (last_refresh_time - observation_period).",
           "format": "google-duration",
+          "type": "string"
+        },
+        "severity": {
+          "description": "Insight's severity.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL"
+          ],
+          "enumDescriptions": [
+            "Insight has unspecified severity.",
+            "Insight has low severity.",
+            "Insight has medium severity.",
+            "Insight has high severity.",
+            "Insight has critical severity."
+          ],
           "type": "string"
         },
         "stateInfo": {
@@ -1562,6 +1584,24 @@
           "$ref": "GoogleCloudRecommenderV1beta1Impact",
           "description": "The primary impact that this recommendation can have while trying to optimize for one category."
         },
+        "priority": {
+          "description": "Recommendation's priority.",
+          "enum": [
+            "PRIORITY_UNSPECIFIED",
+            "P4",
+            "P3",
+            "P2",
+            "P1"
+          ],
+          "enumDescriptions": [
+            "Recommendation has unspecified priority.",
+            "Recommendation has P4 priority (lowest priority).",
+            "Recommendation has P3 priority (second lowest priority).",
+            "Recommendation has P2 priority (second highest priority).",
+            "Recommendation has P1 priority (highest priority)."
+          ],
+          "type": "string"
+        },
         "recommenderSubtype": {
           "description": "Contains an identifier for a subtype of recommendations produced for the same recommender. Subtype is a function of content and impact, meaning a new subtype might be added when significant changes to `content` or `primary_impact.category` are introduced. See the Recommenders section to see a list of subtypes for a given Recommender. Examples: For recommender = \"google.iam.policy.Recommender\", recommender_subtype can be one of \"REMOVE_ROLE\"/\"REPLACE_ROLE\"",
           "type": "string"
@@ -1627,6 +1667,21 @@
             "type": "string"
           },
           "description": "A map of metadata for the state, provided by user or automations systems.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecommenderV1beta1SecurityProjection": {
+      "description": "Contains various ways of describing the impact on Security.",
+      "id": "GoogleCloudRecommenderV1beta1SecurityProjection",
+      "properties": {
+        "details": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "This field can be used by the recommender to define details specific to security impact.",
           "type": "object"
         }
       },
