@@ -133,6 +133,11 @@
                   "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "validateOnly": {
+                  "description": "If set, validate the request and preview the review, but do not actually save it.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+parent}/dashboards",
@@ -255,6 +260,11 @@
                   "pattern": "^projects/[^/]+/dashboards/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "validateOnly": {
+                  "description": "If set, validate the request and preview the review, but do not actually save it.",
+                  "location": "query",
+                  "type": "boolean"
                 }
               },
               "path": "v1/{+name}",
@@ -275,7 +285,7 @@
       }
     }
   },
-  "revision": "20210430",
+  "revision": "20210514",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
