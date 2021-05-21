@@ -591,18 +591,14 @@ export namespace securitycenter_v1beta2 {
     webSecurityScannerSettings: Resource$Folders$Websecurityscannersettings;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.containerThreatDetectionSettings = new Resource$Folders$Containerthreatdetectionsettings(
-        this.context
-      );
-      this.eventThreatDetectionSettings = new Resource$Folders$Eventthreatdetectionsettings(
-        this.context
-      );
-      this.securityHealthAnalyticsSettings = new Resource$Folders$Securityhealthanalyticssettings(
-        this.context
-      );
-      this.webSecurityScannerSettings = new Resource$Folders$Websecurityscannersettings(
-        this.context
-      );
+      this.containerThreatDetectionSettings =
+        new Resource$Folders$Containerthreatdetectionsettings(this.context);
+      this.eventThreatDetectionSettings =
+        new Resource$Folders$Eventthreatdetectionsettings(this.context);
+      this.securityHealthAnalyticsSettings =
+        new Resource$Folders$Securityhealthanalyticssettings(this.context);
+      this.webSecurityScannerSettings =
+        new Resource$Folders$Websecurityscannersettings(this.context);
     }
 
     /**
@@ -709,7 +705,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Getcontainerthreatdetectionsettings;
+        params =
+          {} as Params$Resource$Folders$Getcontainerthreatdetectionsettings;
         options = {};
       }
 
@@ -988,7 +985,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Getsecurityhealthanalyticssettings;
+        params =
+          {} as Params$Resource$Folders$Getsecurityhealthanalyticssettings;
         options = {};
       }
 
@@ -1187,8 +1185,8 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.folders.updateContainerThreatDetectionSettings(
-     *     {
+     *   const res =
+     *     await securitycenter.folders.updateContainerThreatDetectionSettings({
      *       // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name: 'folders/my-folder/containerThreatDetectionSettings',
      *       // The list of fields to be updated.
@@ -1205,8 +1203,7 @@ export namespace securitycenter_v1beta2 {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1281,7 +1278,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Updatecontainerthreatdetectionsettings;
+        params =
+          {} as Params$Resource$Folders$Updatecontainerthreatdetectionsettings;
         options = {};
       }
 
@@ -1433,7 +1431,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Updateeventthreatdetectionsettings;
+        params =
+          {} as Params$Resource$Folders$Updateeventthreatdetectionsettings;
         options = {};
       }
 
@@ -1495,8 +1494,8 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.folders.updateSecurityHealthAnalyticsSettings(
-     *     {
+     *   const res =
+     *     await securitycenter.folders.updateSecurityHealthAnalyticsSettings({
      *       // The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      *       name: 'folders/my-folder/securityHealthAnalyticsSettings',
      *       // The list of fields to be updated.
@@ -1513,8 +1512,7 @@ export namespace securitycenter_v1beta2 {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1589,7 +1587,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Updatesecurityhealthanalyticssettings;
+        params =
+          {} as Params$Resource$Folders$Updatesecurityhealthanalyticssettings;
         options = {};
       }
 
@@ -1901,12 +1900,11 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.folders.containerThreatDetectionSettings.calculate(
-     *     {
+     *   const res =
+     *     await securitycenter.folders.containerThreatDetectionSettings.calculate({
      *       // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name: 'folders/my-folder/containerThreatDetectionSettings',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1981,7 +1979,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Containerthreatdetectionsettings$Calculate;
+        params =
+          {} as Params$Resource$Folders$Containerthreatdetectionsettings$Calculate;
         options = {};
       }
 
@@ -2061,12 +2060,11 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.folders.eventThreatDetectionSettings.calculate(
-     *     {
+     *   const res =
+     *     await securitycenter.folders.eventThreatDetectionSettings.calculate({
      *       // Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      *       name: 'folders/my-folder/eventThreatDetectionSettings',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2140,7 +2138,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Eventthreatdetectionsettings$Calculate;
+        params =
+          {} as Params$Resource$Folders$Eventthreatdetectionsettings$Calculate;
         options = {};
       }
 
@@ -2220,12 +2219,11 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.folders.securityHealthAnalyticsSettings.calculate(
-     *     {
+     *   const res =
+     *     await securitycenter.folders.securityHealthAnalyticsSettings.calculate({
      *       // Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      *       name: 'folders/my-folder/securityHealthAnalyticsSettings',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2300,7 +2298,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Securityhealthanalyticssettings$Calculate;
+        params =
+          {} as Params$Resource$Folders$Securityhealthanalyticssettings$Calculate;
         options = {};
       }
 
@@ -2459,7 +2458,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Folders$Websecurityscannersettings$Calculate;
+        params =
+          {} as Params$Resource$Folders$Websecurityscannersettings$Calculate;
         options = {};
       }
 
@@ -2513,18 +2513,18 @@ export namespace securitycenter_v1beta2 {
     webSecurityScannerSettings: Resource$Organizations$Websecurityscannersettings;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.containerThreatDetectionSettings = new Resource$Organizations$Containerthreatdetectionsettings(
-        this.context
-      );
-      this.eventThreatDetectionSettings = new Resource$Organizations$Eventthreatdetectionsettings(
-        this.context
-      );
-      this.securityHealthAnalyticsSettings = new Resource$Organizations$Securityhealthanalyticssettings(
-        this.context
-      );
-      this.webSecurityScannerSettings = new Resource$Organizations$Websecurityscannersettings(
-        this.context
-      );
+      this.containerThreatDetectionSettings =
+        new Resource$Organizations$Containerthreatdetectionsettings(
+          this.context
+        );
+      this.eventThreatDetectionSettings =
+        new Resource$Organizations$Eventthreatdetectionsettings(this.context);
+      this.securityHealthAnalyticsSettings =
+        new Resource$Organizations$Securityhealthanalyticssettings(
+          this.context
+        );
+      this.webSecurityScannerSettings =
+        new Resource$Organizations$Websecurityscannersettings(this.context);
     }
 
     /**
@@ -2553,12 +2553,11 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.organizations.getContainerThreatDetectionSettings(
-     *     {
+     *   const res =
+     *     await securitycenter.organizations.getContainerThreatDetectionSettings({
      *       // Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name: 'organizations/my-organization/containerThreatDetectionSettings',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2633,7 +2632,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Getcontainerthreatdetectionsettings;
+        params =
+          {} as Params$Resource$Organizations$Getcontainerthreatdetectionsettings;
         options = {};
       }
 
@@ -2695,12 +2695,11 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.organizations.getEventThreatDetectionSettings(
-     *     {
+     *   const res =
+     *     await securitycenter.organizations.getEventThreatDetectionSettings({
      *       // Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      *       name: 'organizations/my-organization/eventThreatDetectionSettings',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2774,7 +2773,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Geteventthreatdetectionsettings;
+        params =
+          {} as Params$Resource$Organizations$Geteventthreatdetectionsettings;
         options = {};
       }
 
@@ -2972,12 +2972,11 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.organizations.getSecurityHealthAnalyticsSettings(
-     *     {
+     *   const res =
+     *     await securitycenter.organizations.getSecurityHealthAnalyticsSettings({
      *       // Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      *       name: 'organizations/my-organization/securityHealthAnalyticsSettings',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3052,7 +3051,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Getsecurityhealthanalyticssettings;
+        params =
+          {} as Params$Resource$Organizations$Getsecurityhealthanalyticssettings;
         options = {};
       }
 
@@ -3320,7 +3320,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Getwebsecurityscannersettings;
+        params =
+          {} as Params$Resource$Organizations$Getwebsecurityscannersettings;
         options = {};
       }
 
@@ -3380,8 +3381,8 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.organizations.updateContainerThreatDetectionSettings(
-     *     {
+     *   const res =
+     *     await securitycenter.organizations.updateContainerThreatDetectionSettings({
      *       // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name: 'organizations/my-organization/containerThreatDetectionSettings',
      *       // The list of fields to be updated.
@@ -3398,8 +3399,7 @@ export namespace securitycenter_v1beta2 {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3474,7 +3474,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Updatecontainerthreatdetectionsettings;
+        params =
+          {} as Params$Resource$Organizations$Updatecontainerthreatdetectionsettings;
         options = {};
       }
 
@@ -3536,8 +3537,8 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.organizations.updateEventThreatDetectionSettings(
-     *     {
+     *   const res =
+     *     await securitycenter.organizations.updateEventThreatDetectionSettings({
      *       // The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      *       name: 'organizations/my-organization/eventThreatDetectionSettings',
      *       // The list of fields to be updated.
@@ -3553,8 +3554,7 @@ export namespace securitycenter_v1beta2 {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3628,7 +3628,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Updateeventthreatdetectionsettings;
+        params =
+          {} as Params$Resource$Organizations$Updateeventthreatdetectionsettings;
         options = {};
       }
 
@@ -3690,8 +3691,8 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.organizations.updateSecurityHealthAnalyticsSettings(
-     *     {
+     *   const res =
+     *     await securitycenter.organizations.updateSecurityHealthAnalyticsSettings({
      *       // The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      *       name: 'organizations/my-organization/securityHealthAnalyticsSettings',
      *       // The list of fields to be updated.
@@ -3708,8 +3709,7 @@ export namespace securitycenter_v1beta2 {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3784,7 +3784,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Updatesecurityhealthanalyticssettings;
+        params =
+          {} as Params$Resource$Organizations$Updatesecurityhealthanalyticssettings;
         options = {};
       }
 
@@ -3846,8 +3847,8 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.organizations.updateWebSecurityScannerSettings(
-     *     {
+     *   const res =
+     *     await securitycenter.organizations.updateWebSecurityScannerSettings({
      *       // The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      *       name: 'organizations/my-organization/webSecurityScannerSettings',
      *       // The list of fields to be updated.
@@ -3863,8 +3864,7 @@ export namespace securitycenter_v1beta2 {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3938,7 +3938,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Updatewebsecurityscannersettings;
+        params =
+          {} as Params$Resource$Organizations$Updatewebsecurityscannersettings;
         options = {};
       }
 
@@ -4112,12 +4113,13 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.organizations.containerThreatDetectionSettings.calculate(
-     *     {
-     *       // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *       name: 'organizations/my-organization/containerThreatDetectionSettings',
-     *     }
-     *   );
+     *   const res =
+     *     await securitycenter.organizations.containerThreatDetectionSettings.calculate(
+     *       {
+     *         // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
+     *         name: 'organizations/my-organization/containerThreatDetectionSettings',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4192,7 +4194,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Containerthreatdetectionsettings$Calculate;
+        params =
+          {} as Params$Resource$Organizations$Containerthreatdetectionsettings$Calculate;
         options = {};
       }
 
@@ -4272,12 +4275,11 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.organizations.eventThreatDetectionSettings.calculate(
-     *     {
+     *   const res =
+     *     await securitycenter.organizations.eventThreatDetectionSettings.calculate({
      *       // Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      *       name: 'organizations/my-organization/eventThreatDetectionSettings',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4351,7 +4353,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Eventthreatdetectionsettings$Calculate;
+        params =
+          {} as Params$Resource$Organizations$Eventthreatdetectionsettings$Calculate;
         options = {};
       }
 
@@ -4431,12 +4434,13 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.organizations.securityHealthAnalyticsSettings.calculate(
-     *     {
-     *       // Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
-     *       name: 'organizations/my-organization/securityHealthAnalyticsSettings',
-     *     }
-     *   );
+     *   const res =
+     *     await securitycenter.organizations.securityHealthAnalyticsSettings.calculate(
+     *       {
+     *         // Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
+     *         name: 'organizations/my-organization/securityHealthAnalyticsSettings',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4511,7 +4515,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Securityhealthanalyticssettings$Calculate;
+        params =
+          {} as Params$Resource$Organizations$Securityhealthanalyticssettings$Calculate;
         options = {};
       }
 
@@ -4591,12 +4596,11 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.organizations.webSecurityScannerSettings.calculate(
-     *     {
+     *   const res =
+     *     await securitycenter.organizations.webSecurityScannerSettings.calculate({
      *       // Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      *       name: 'organizations/my-organization/webSecurityScannerSettings',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4670,7 +4674,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Websecurityscannersettings$Calculate;
+        params =
+          {} as Params$Resource$Organizations$Websecurityscannersettings$Calculate;
         options = {};
       }
 
@@ -4725,19 +4730,15 @@ export namespace securitycenter_v1beta2 {
     webSecurityScannerSettings: Resource$Projects$Websecurityscannersettings;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.containerThreatDetectionSettings = new Resource$Projects$Containerthreatdetectionsettings(
-        this.context
-      );
-      this.eventThreatDetectionSettings = new Resource$Projects$Eventthreatdetectionsettings(
-        this.context
-      );
+      this.containerThreatDetectionSettings =
+        new Resource$Projects$Containerthreatdetectionsettings(this.context);
+      this.eventThreatDetectionSettings =
+        new Resource$Projects$Eventthreatdetectionsettings(this.context);
       this.locations = new Resource$Projects$Locations(this.context);
-      this.securityHealthAnalyticsSettings = new Resource$Projects$Securityhealthanalyticssettings(
-        this.context
-      );
-      this.webSecurityScannerSettings = new Resource$Projects$Websecurityscannersettings(
-        this.context
-      );
+      this.securityHealthAnalyticsSettings =
+        new Resource$Projects$Securityhealthanalyticssettings(this.context);
+      this.webSecurityScannerSettings =
+        new Resource$Projects$Websecurityscannersettings(this.context);
     }
 
     /**
@@ -4846,7 +4847,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Getcontainerthreatdetectionsettings;
+        params =
+          {} as Params$Resource$Projects$Getcontainerthreatdetectionsettings;
         options = {};
       }
 
@@ -5125,7 +5127,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Getsecurityhealthanalyticssettings;
+        params =
+          {} as Params$Resource$Projects$Getsecurityhealthanalyticssettings;
         options = {};
       }
 
@@ -5324,8 +5327,8 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.projects.updateContainerThreatDetectionSettings(
-     *     {
+     *   const res =
+     *     await securitycenter.projects.updateContainerThreatDetectionSettings({
      *       // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name: 'projects/my-project/containerThreatDetectionSettings',
      *       // The list of fields to be updated.
@@ -5342,8 +5345,7 @@ export namespace securitycenter_v1beta2 {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5418,7 +5420,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Updatecontainerthreatdetectionsettings;
+        params =
+          {} as Params$Resource$Projects$Updatecontainerthreatdetectionsettings;
         options = {};
       }
 
@@ -5570,7 +5573,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Updateeventthreatdetectionsettings;
+        params =
+          {} as Params$Resource$Projects$Updateeventthreatdetectionsettings;
         options = {};
       }
 
@@ -5632,8 +5636,8 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.projects.updateSecurityHealthAnalyticsSettings(
-     *     {
+     *   const res =
+     *     await securitycenter.projects.updateSecurityHealthAnalyticsSettings({
      *       // The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      *       name: 'projects/my-project/securityHealthAnalyticsSettings',
      *       // The list of fields to be updated.
@@ -5650,8 +5654,7 @@ export namespace securitycenter_v1beta2 {
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5726,7 +5729,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Updatesecurityhealthanalyticssettings;
+        params =
+          {} as Params$Resource$Projects$Updatesecurityhealthanalyticssettings;
         options = {};
       }
 
@@ -5878,7 +5882,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Updatewebsecurityscannersettings;
+        params =
+          {} as Params$Resource$Projects$Updatewebsecurityscannersettings;
         options = {};
       }
 
@@ -6038,12 +6043,11 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.projects.containerThreatDetectionSettings.calculate(
-     *     {
+     *   const res =
+     *     await securitycenter.projects.containerThreatDetectionSettings.calculate({
      *       // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name: 'projects/my-project/containerThreatDetectionSettings',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6118,7 +6122,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Containerthreatdetectionsettings$Calculate;
+        params =
+          {} as Params$Resource$Projects$Containerthreatdetectionsettings$Calculate;
         options = {};
       }
 
@@ -6198,12 +6203,11 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.projects.eventThreatDetectionSettings.calculate(
-     *     {
+     *   const res =
+     *     await securitycenter.projects.eventThreatDetectionSettings.calculate({
      *       // Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      *       name: 'projects/my-project/eventThreatDetectionSettings',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6277,7 +6281,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Eventthreatdetectionsettings$Calculate;
+        params =
+          {} as Params$Resource$Projects$Eventthreatdetectionsettings$Calculate;
         options = {};
       }
 
@@ -6339,9 +6344,10 @@ export namespace securitycenter_v1beta2 {
     containerThreatDetectionSettings: Resource$Projects$Locations$Clusters$Containerthreatdetectionsettings;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.containerThreatDetectionSettings = new Resource$Projects$Locations$Clusters$Containerthreatdetectionsettings(
-        this.context
-      );
+      this.containerThreatDetectionSettings =
+        new Resource$Projects$Locations$Clusters$Containerthreatdetectionsettings(
+          this.context
+        );
     }
 
     /**
@@ -6370,13 +6376,13 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.projects.locations.clusters.getContainerThreatDetectionSettings(
-     *     {
-     *       // Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *       name:
-     *         'projects/my-project/locations/my-location/clusters/my-cluster/containerThreatDetectionSettings',
-     *     }
-     *   );
+     *   const res =
+     *     await securitycenter.projects.locations.clusters.getContainerThreatDetectionSettings(
+     *       {
+     *         // Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
+     *         name: 'projects/my-project/locations/my-location/clusters/my-cluster/containerThreatDetectionSettings',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6451,7 +6457,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Getcontainerthreatdetectionsettings;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Getcontainerthreatdetectionsettings;
         options = {};
       }
 
@@ -6513,27 +6520,27 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.projects.locations.clusters.updateContainerThreatDetectionSettings(
-     *     {
-     *       // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *       name:
-     *         'projects/my-project/locations/my-location/clusters/my-cluster/containerThreatDetectionSettings',
-     *       // The list of fields to be updated.
-     *       updateMask: 'placeholder-value',
+     *   const res =
+     *     await securitycenter.projects.locations.clusters.updateContainerThreatDetectionSettings(
+     *       {
+     *         // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
+     *         name: 'projects/my-project/locations/my-location/clusters/my-cluster/containerThreatDetectionSettings',
+     *         // The list of fields to be updated.
+     *         updateMask: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "modules": {},
-     *         //   "name": "my_name",
-     *         //   "serviceAccount": "my_serviceAccount",
-     *         //   "serviceEnablementState": "my_serviceEnablementState",
-     *         //   "updateTime": "my_updateTime"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "modules": {},
+     *           //   "name": "my_name",
+     *           //   "serviceAccount": "my_serviceAccount",
+     *           //   "serviceEnablementState": "my_serviceEnablementState",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6608,7 +6615,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Updatecontainerthreatdetectionsettings;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Updatecontainerthreatdetectionsettings;
         options = {};
       }
 
@@ -6701,13 +6709,13 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.projects.locations.clusters.containerThreatDetectionSettings.calculate(
-     *     {
-     *       // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
-     *       name:
-     *         'projects/my-project/locations/my-location/clusters/my-cluster/containerThreatDetectionSettings',
-     *     }
-     *   );
+     *   const res =
+     *     await securitycenter.projects.locations.clusters.containerThreatDetectionSettings.calculate(
+     *       {
+     *         // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
+     *         name: 'projects/my-project/locations/my-location/clusters/my-cluster/containerThreatDetectionSettings',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -6782,7 +6790,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Clusters$Containerthreatdetectionsettings$Calculate;
+        params =
+          {} as Params$Resource$Projects$Locations$Clusters$Containerthreatdetectionsettings$Calculate;
         options = {};
       }
 
@@ -6862,12 +6871,11 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.projects.securityHealthAnalyticsSettings.calculate(
-     *     {
+     *   const res =
+     *     await securitycenter.projects.securityHealthAnalyticsSettings.calculate({
      *       // Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      *       name: 'projects/my-project/securityHealthAnalyticsSettings',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6942,7 +6950,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Securityhealthanalyticssettings$Calculate;
+        params =
+          {} as Params$Resource$Projects$Securityhealthanalyticssettings$Calculate;
         options = {};
       }
 
@@ -7022,12 +7031,11 @@ export namespace securitycenter_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.projects.webSecurityScannerSettings.calculate(
-     *     {
+     *   const res =
+     *     await securitycenter.projects.webSecurityScannerSettings.calculate({
      *       // Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      *       name: 'projects/my-project/webSecurityScannerSettings',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -7101,7 +7109,8 @@ export namespace securitycenter_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Websecurityscannersettings$Calculate;
+        params =
+          {} as Params$Resource$Projects$Websecurityscannersettings$Calculate;
         options = {};
       }
 

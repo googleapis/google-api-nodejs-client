@@ -4436,11 +4436,10 @@ export namespace securitycenter_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await securitycenter.organizations.sources.findings.updateSecurityMarks(
-     *     {
+     *   const res =
+     *     await securitycenter.organizations.sources.findings.updateSecurityMarks({
      *       // The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
-     *       name:
-     *         'organizations/my-organization/sources/my-source/findings/my-finding/securityMarks',
+     *       name: 'organizations/my-organization/sources/my-source/findings/my-finding/securityMarks',
      *       // The time at which the updated SecurityMarks take effect.
      *       startTime: 'placeholder-value',
      *       // The FieldMask to use when updating the security marks resource.
@@ -4454,8 +4453,7 @@ export namespace securitycenter_v1beta1 {
      *         //   "name": "my_name"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4527,7 +4525,8 @@ export namespace securitycenter_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks;
+        params =
+          {} as Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks;
         options = {};
       }
 
