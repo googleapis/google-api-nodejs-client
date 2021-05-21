@@ -1740,7 +1740,7 @@
       }
     }
   },
-  "revision": "20210423",
+  "revision": "20210513",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
@@ -2608,6 +2608,11 @@
         },
         "gkeClustersPerManagedZone": {
           "description": "Maximum allowed number of GKE clusters to which a privately scoped zone can be attached.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "gkeClustersPerResponsePolicy": {
+          "description": "Maximum allowed number of GKE clusters per response policy.",
           "format": "int32",
           "type": "integer"
         },
