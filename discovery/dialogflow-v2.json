@@ -1021,7 +1021,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The agent to list all intents from. Format: `projects//agent`.",
+                          "description": "Required. The agent to list all intents from. Format: `projects//agent` or `projects//locations//agent`. Alternatively, you can specify the environment to list intents for. Format: `projects//agent/environments/` or `projects//locations//agent/environments/`. Note: training phrases of the intents will not be returned for non-draft environment.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/agent/environments/[^/]+$",
                           "required": true,
@@ -1636,7 +1636,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The agent to list all intents from. Format: `projects//agent`.",
+                      "description": "Required. The agent to list all intents from. Format: `projects//agent` or `projects//locations//agent`. Alternatively, you can specify the environment to list intents for. Format: `projects//agent/environments/` or `projects//locations//agent/environments/`. Note: training phrases of the intents will not be returned for non-draft environment.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/agent$",
                       "required": true,
@@ -4458,6 +4458,65 @@
                     }
                   },
                   "resources": {
+                    "intents": {
+                      "methods": {
+                        "list": {
+                          "description": "Returns the list of all intents in the specified agent.",
+                          "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/agent/environments/{environmentsId}/intents",
+                          "httpMethod": "GET",
+                          "id": "dialogflow.projects.locations.agent.environments.intents.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "intentView": {
+                              "description": "Optional. The resource view to apply to the returned intent.",
+                              "enum": [
+                                "INTENT_VIEW_UNSPECIFIED",
+                                "INTENT_VIEW_FULL"
+                              ],
+                              "enumDescriptions": [
+                                "Training phrases field is not populated in the response.",
+                                "All fields are populated."
+                              ],
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "languageCode": {
+                              "description": "Optional. The language used to access language-specific data. If not specified, the agent's default language is used. For more information, see [Multilingual intent and entity data](https://cloud.google.com/dialogflow/docs/agents-multilingual#intent-entity).",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "pageSize": {
+                              "description": "Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. The next_page_token value returned from a previous list request.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The agent to list all intents from. Format: `projects//agent` or `projects//locations//agent`. Alternatively, you can specify the environment to list intents for. Format: `projects//agent/environments/` or `projects//locations//agent/environments/`. Note: training phrases of the intents will not be returned for non-draft environment.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agent/environments/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v2/{+parent}/intents",
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowV2ListIntentsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        }
+                      }
+                    },
                     "users": {
                       "resources": {
                         "sessions": {
@@ -5055,7 +5114,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The agent to list all intents from. Format: `projects//agent`.",
+                          "description": "Required. The agent to list all intents from. Format: `projects//agent` or `projects//locations//agent`. Alternatively, you can specify the environment to list intents for. Format: `projects//agent/environments/` or `projects//locations//agent/environments/`. Note: training phrases of the intents will not be returned for non-draft environment.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/agent$",
                           "required": true,
@@ -6856,7 +6915,7 @@
       }
     }
   },
-  "revision": "20210426",
+  "revision": "20210517",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -9862,7 +9921,7 @@
       "type": "object"
     },
     "GoogleCloudDialogflowV2Agent": {
-      "description": "A Dialogflow agent is a virtual agent that handles conversations with your end-users. It is a natural language understanding module that understands the nuances of human language. Dialogflow translates end-user text or audio during a conversation to structured data that your apps and services can understand. You design and build a Dialogflow agent to handle the types of conversations required for your system. For more information about agents, see the [Agent guide](https://cloud.google.com/dialogflow/docs/agents-overview).",
+      "description": "A Dialogflow agent is a virtual agent that handles conversations with your end-users. It is a natural language understanding module that understands the nuances of human language. Dialogflow translates end-user text or audio during a conversation to structured data that your apps and services can understand. You design and build a Dialogflow agent to handle the types of conversations required for your system. For more information about agents, see the [Agent guide](https://cloud.google.com/dialogflow/docs/agents-overview). ",
       "id": "GoogleCloudDialogflowV2Agent",
       "properties": {
         "apiVersion": {
@@ -10227,7 +10286,7 @@
       "properties": {
         "detectIntentResponse": {
           "$ref": "GoogleCloudDialogflowV2DetectIntentResponse",
-          "description": "Response of the Dialogflow Sessions.DetectIntent call."
+          "description": "Required. Response of the Dialogflow Sessions.DetectIntent call."
         }
       },
       "type": "object"

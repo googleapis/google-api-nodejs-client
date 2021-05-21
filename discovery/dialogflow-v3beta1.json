@@ -3483,7 +3483,7 @@
       }
     }
   },
-  "revision": "20210426",
+  "revision": "20210517",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -7109,7 +7109,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "Additional parameters to be put into session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value",
+          "description": "Additional parameters to be put into session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. You can reference the session parameters in the agent with the following format: $session.params.parameter-id. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: depending on parameter value type, could be one of string, number, boolean, null, list or map - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value",
           "type": "object"
         },
         "payload": {
@@ -7117,7 +7117,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "This field can be used to pass custom data into the webhook associated with the agent. Arbitrary JSON objects are supported. Some integrations that query a Dialogflow agent may provide additional information in the payload. In particular, for the Dialogflow Phone Gateway integration, this field has the form: { \"telephony\": { \"caller_id\": \"+18558363987\" } } ",
+          "description": "This field can be used to pass custom data into the webhook associated with the agent. Arbitrary JSON objects are supported. Some integrations that query a Dialogflow agent may provide additional information in the payload. In particular, for the Dialogflow Phone Gateway integration, this field has the form: ``` { \"telephony\": { \"caller_id\": \"+18558363987\" } } ```",
           "type": "object"
         },
         "sessionEntityTypes": {
@@ -7510,14 +7510,14 @@
             ],
             "enumDescriptions": [
               "Unspecified. Do not use.",
-              "Dialogflow history. This does not include Stackdriver log, which is owned by the user not Dialogflow."
+              "Dialogflow history. This does not include Cloud logging, which is owned by the user - not Dialogflow."
             ],
             "type": "string"
           },
           "type": "array"
         },
         "redactionScope": {
-          "description": "Defines on what data we apply redaction. Note that we don't redact data to which we don't have access, e.g., Stackdriver logs.",
+          "description": "Defines the data for which Dialogflow applies redaction. Dialogflow does not redact data that it does not have access to – for example, Cloud logging.",
           "enum": [
             "REDACTION_SCOPE_UNSPECIFIED",
             "REDACT_DISK_STORAGE"
@@ -7541,7 +7541,7 @@
           "type": "string"
         },
         "retentionWindowDays": {
-          "description": "Retains the data for the specified number of days. User must Set a value lower than Dialogflow's default 30d TTL. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use Dialogflow's default TTL.",
+          "description": "Retains data in interaction logging for the specified number of days. This does not apply to Cloud logging, which is owned by the user - not Dialogflow. User must Set a value lower than Dialogflow's default 30d TTL. Setting a value higher than that has no effect. A missing value or setting to 0 also means we use Dialogflow's default TTL. Note: Interaction logging is a limited access feature. Talk to your Google representative to check availability for you.",
           "format": "int32",
           "type": "integer"
         }
@@ -8289,6 +8289,10 @@
           "description": "The unique identifier of the webhook. Required for the Webhooks.UpdateWebhook method. Webhooks.CreateWebhook populates the name automatically. Format: `projects//locations//agents//webhooks/`.",
           "type": "string"
         },
+        "serviceDirectory": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig",
+          "description": "Configuration for a [Service Directory](https://cloud.google.com/service-directory) service."
+        },
         "timeout": {
           "description": "Webhook execution timeout. Execution is considered failed if Dialogflow doesn't receive a response from webhook at the end of the timeout period. Defaults to 5 seconds, maximum allowed timeout is 30 seconds.",
           "format": "google-duration",
@@ -8518,6 +8522,21 @@
             "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessage"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig": {
+      "description": "Represents configuration for a [Service Directory](https://cloud.google.com/service-directory) service.",
+      "id": "GoogleCloudDialogflowCxV3beta1WebhookServiceDirectoryConfig",
+      "properties": {
+        "genericWebService": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1WebhookGenericWebService",
+          "description": "Generic Service configuration of this webhook."
+        },
+        "service": {
+          "description": "Required. The name of [Service Directory](https://cloud.google.com/service-directory) service. Format: `projects//locations//namespaces//services/`. `Location ID` of the service directory must be the same as the location of the agent.",
+          "type": "string"
         }
       },
       "type": "object"
