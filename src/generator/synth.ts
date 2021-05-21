@@ -100,8 +100,7 @@ export async function synth(options: SynthOptions = {}) {
       headers: {
         Authorization: `token ${token}`,
       },
-      url:
-        'https://api.github.com/repos/googleapis/google-api-nodejs-client/pulls',
+      url: 'https://api.github.com/repos/googleapis/google-api-nodejs-client/pulls',
       data: {
         title: `${prefix}: run the generator`,
         head: branch,
