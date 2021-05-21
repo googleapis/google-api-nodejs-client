@@ -653,6 +653,10 @@ export namespace dns_v1beta2 {
      * Maximum allowed number of GKE clusters to which a privately scoped zone can be attached.
      */
     gkeClustersPerManagedZone?: number | null;
+    /**
+     * Maximum allowed number of GKE clusters per response policy.
+     */
+    gkeClustersPerResponsePolicy?: number | null;
     kind?: string | null;
     /**
      * Maximum allowed number of managed zones in the project.
