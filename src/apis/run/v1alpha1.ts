@@ -345,7 +345,7 @@ export namespace run_v1alpha1 {
      */
     value?: string | null;
     /**
-     * Cloud Run fully managed: not supported Cloud Run on GKE: supported Source for the environment variable's value. Cannot be used if value is not empty. +optional
+     * Cloud Run fully managed: supported Source for the environment variable's value. Only supports secret_key_ref. Cloud Run for Anthos: supported Source for the environment variable's value. Cannot be used if value is not empty. +optional
      */
     valueFrom?: Schema$EnvVarSource;
   }
@@ -358,7 +358,7 @@ export namespace run_v1alpha1 {
      */
     configMapKeyRef?: Schema$ConfigMapKeySelector;
     /**
-     * Cloud Run fully managed: not supported Cloud Run on GKE: supported Selects a key of a secret in the pod's namespace +optional
+     * Cloud Run fully managed: supported. Selects a key (version) of a secret in Secret Manager. Cloud Run for Anthos: supported. Selects a key of a secret in the pod's namespace. +optional
      */
     secretKeyRef?: Schema$SecretKeySelector;
   }
@@ -643,7 +643,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$KeyToPath {
     /**
-     * The key to project.
+     * Cloud Run fully managed: supported The Cloud Secret Manager secret version. Can be 'latest' for the latest value or an integer for a specific version. Cloud Run for Anthos: supported The key to project.
      */
     key?: string | null;
     /**
@@ -651,7 +651,7 @@ export namespace run_v1alpha1 {
      */
     mode?: number | null;
     /**
-     * The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+     * Cloud Run fully managed: supported Cloud Run for Anthos: supported The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
      */
     path?: string | null;
   }
@@ -894,11 +894,11 @@ export namespace run_v1alpha1 {
     optional?: boolean | null;
   }
   /**
-   * Cloud Run fully managed: not supported Cloud Run on GKE: supported SecretKeySelector selects a key of a Secret.
+   * Cloud Run fully managed: supported Cloud Run on GKE: supported SecretKeySelector selects a key of a Secret.
    */
   export interface Schema$SecretKeySelector {
     /**
-     * Cloud Run fully managed: not supported Cloud Run on GKE: supported The key of the secret to select from. Must be a valid secret key.
+     * Cloud Run fully managed: supported A Cloud Secret Manager secret version. Must be 'latest' for the latest version or an integer for a specific version. Cloud Run for Anthos: supported The key of the secret to select from. Must be a valid secret key.
      */
     key?: string | null;
     /**
@@ -906,7 +906,7 @@ export namespace run_v1alpha1 {
      */
     localObjectReference?: Schema$LocalObjectReference;
     /**
-     * Cloud Run fully managed: not supported Cloud Run on GKE: supported The name of the secret in the pod's namespace to select from.
+     * Cloud Run fully managed: supported The name of the secret in Cloud Secret Manager. By default, the secret is assumed to be in the same project. If the secret is in another project, you must define an alias. An alias definition has the form: :projects//secrets/. If multiple alias definitions are needed, they must be separated by commas. The alias definitions must be set on the run.googleapis.com/secrets annotation. Cloud Run for Anthos: supported The name of the secret in the pod's namespace to select from.
      */
     name?: string | null;
     /**
@@ -923,7 +923,7 @@ export namespace run_v1alpha1 {
      */
     defaultMode?: number | null;
     /**
-     * If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional.
+     * Cloud Run fully managed: supported If unspecified, the volume will expose a file whose name is the secret_name. If specified, the key will be used as the version to fetch from Cloud Secret Manager and the path will be the name of the file exposed in the volume. When items are defined, they must specify a key and a path. Cloud Run for Anthos: supported If unspecified, each key-value pair in the Data field of the referenced Secret will be projected into the volume as a file whose name is the key and content is the value. If specified, the listed keys will be projected into the specified paths, and unlisted keys will not be present. If a key is specified which is not present in the Secret, the volume setup will error unless it is marked optional.
      */
     items?: Schema$KeyToPath[];
     /**
@@ -931,7 +931,7 @@ export namespace run_v1alpha1 {
      */
     optional?: boolean | null;
     /**
-     * Name of the secret in the container's namespace to use.
+     * Cloud Run fully managed: supported The name of the secret in Cloud Secret Manager. By default, the secret is assumed to be in the same project. If the secret is in another project, you must define an alias. An alias definition has the form: :projects//secrets/. If multiple alias definitions are needed, they must be separated by commas. The alias definitions must be set on the run.googleapis.com/secrets annotation. Cloud Run for Anthos: supported Name of the secret in the container's namespace to use.
      */
     secretName?: string | null;
   }
