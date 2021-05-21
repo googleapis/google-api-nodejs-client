@@ -126,6 +126,53 @@ export namespace translate_v3beta1 {
   }
 
   /**
+   * Input configuration for BatchTranslateDocument request.
+   */
+  export interface Schema$BatchDocumentInputConfig {
+    /**
+     * Google Cloud Storage location for the source input. This can be a single file (for example, `gs://translation-test/input.docx`) or a wildcard (for example, `gs://translation-test/x`). File mime type is determined based on extension. Supported mime type includes: - `pdf`, application/pdf - `docx`, application/vnd.openxmlformats-officedocument.wordprocessingml.document - `pptx`, application/vnd.openxmlformats-officedocument.presentationml.presentation - `xlsx`, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet The max file size to support for `.docx`, `.pptx` and `.xlsx` is 100MB. The max file size to support for `.pdf` is 1GB and the max page limit is 1000 pages. The max file size to support for all input documents is 1GB.
+     */
+    gcsSource?: Schema$GcsSource;
+  }
+  /**
+   * Output configuration for BatchTranslateDocument request.
+   */
+  export interface Schema$BatchDocumentOutputConfig {
+    /**
+     * Google Cloud Storage destination for output content. For every single input document (for example, gs://a/b/c.[extension]), we generate at most 2 * n output files. (n is the # of target_language_codes in the BatchTranslateDocumentRequest). While the input documents are being processed, we write/update an index file `index.csv` under `gcs_destination.output_uri_prefix` (for example, gs://translation_output/index.csv) The index file is generated/updated as new files are being translated. The format is: input_document,target_language_code,translation_output,error_output, glossary_translation_output,glossary_error_output `input_document` is one file we matched using gcs_source.input_uri. `target_language_code` is provided in the request. `translation_output` contains the translations. (details provided below) `error_output` contains the error message during processing of the file. Both translations_file and errors_file could be empty strings if we have no content to output. `glossary_translation_output` and `glossary_error_output` are the translated output/error when we apply glossaries. They could also be empty if we have no content to output. Once a row is present in index.csv, the input/output matching never changes. Callers should also expect all the content in input_file are processed and ready to be consumed (that is, no partial output file is written). Since index.csv will be keeping updated during the process, please make sure there is no custom retention policy applied on the output bucket that may avoid file updating. (https://cloud.google.com/storage/docs/bucket-lock?hl=en#retention-policy) The naming format of translation output files follows (for target language code [trg]): `translation_output`: gs://translation_output/a_b_c_[trg]_translation.[extension] `glossary_translation_output`: gs://translation_test/a_b_c_[trg]_glossary_translation.[extension] The output document will maintain the same file format as the input document. The naming format of error output files follows (for target language code [trg]): `error_output`: gs://translation_test/a_b_c_[trg]_errors.txt `glossary_error_output`: gs://translation_test/a_b_c_[trg]_glossary_translation.txt The error output is a txt file containing error details.
+     */
+    gcsDestination?: Schema$GcsDestination;
+  }
+  /**
+   * The BatchTranslateDocument request.
+   */
+  export interface Schema$BatchTranslateDocumentRequest {
+    /**
+     * Optional. Glossaries to be applied. It's keyed by target language code.
+     */
+    glossaries?: {[key: string]: Schema$TranslateTextGlossaryConfig} | null;
+    /**
+     * Required. Input configurations. The total number of files matched should be <= 100. The total content size to translate should be <= 100M Unicode codepoints. The files must use UTF-8 encoding.
+     */
+    inputConfigs?: Schema$BatchDocumentInputConfig[];
+    /**
+     * Optional. The models to use for translation. Map's key is target language code. Map's value is the model name. Value can be a built-in general model, or an AutoML Translation model. The value format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, `projects/{project-number-or-id\}/locations/{location-id\}/models/general/base` If the map is empty or a specific model is not requested for a language pair, then default google model (nmt) is used.
+     */
+    models?: {[key: string]: string} | null;
+    /**
+     * Required. Output configuration. If 2 input configs match to the same file (that is, same input path), we don't generate output for duplicate inputs.
+     */
+    outputConfig?: Schema$BatchDocumentOutputConfig;
+    /**
+     * Required. The BCP-47 language code of the input document if known, for example, "en-US" or "sr-Latn". Supported language codes are listed in Language Support (https://cloud.google.com/translate/docs/languages).
+     */
+    sourceLanguageCode?: string | null;
+    /**
+     * Required. The BCP-47 language code to use for translation of the input document. Specify up to 10 language codes here.
+     */
+    targetLanguageCodes?: string[] | null;
+  }
+  /**
    * The batch translation request.
    */
   export interface Schema$BatchTranslateTextRequest {
@@ -204,6 +251,53 @@ export namespace translate_v3beta1 {
      * A list of detected languages sorted by detection confidence in descending order. The most probable language first.
      */
     languages?: Schema$DetectedLanguage[];
+  }
+  /**
+   * A document translation request input config.
+   */
+  export interface Schema$DocumentInputConfig {
+    /**
+     * Document's content represented as a stream of bytes.
+     */
+    content?: string | null;
+    /**
+     * Google Cloud Storage location. This must be a single file. For example: gs://example_bucket/example_file.pdf
+     */
+    gcsSource?: Schema$GcsSource;
+    /**
+     * Specifies the input document's mime_type. If not specified it will be determined using the file extension for gcs_source provided files. For a file provided through bytes content the mime_type must be provided. Currently supported mime types are: - application/pdf - application/vnd.openxmlformats-officedocument.wordprocessingml.document - application/vnd.openxmlformats-officedocument.presentationml.presentation - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+     */
+    mimeType?: string | null;
+  }
+  /**
+   * A document translation request output config.
+   */
+  export interface Schema$DocumentOutputConfig {
+    /**
+     * Optional. Google Cloud Storage destination for the translation output, e.g., `gs://my_bucket/my_directory/`. The destination directory provided does not have to be empty, but the bucket must exist. If a file with the same name as the output file already exists in the destination an error will be returned. For a DocumentInputConfig.contents provided document, the output file will have the name "output_[trg]_translations.[ext]", where - [trg] corresponds to the translated file's language code, - [ext] corresponds to the translated file's extension according to its mime type. For a DocumentInputConfig.gcs_uri provided document, the output file will have a name according to its URI. For example: an input file with URI: "gs://a/b/c.[extension]" stored in a gcs_destination bucket with name "my_bucket" will have an output URI: "gs://my_bucket/a_b_c_[trg]_translations.[ext]", where - [trg] corresponds to the translated file's language code, - [ext] corresponds to the translated file's extension according to its mime type. If the document was directly provided through the request, then the output document will have the format: "gs://my_bucket/translated_document_[trg]_translations.[ext], where - [trg] corresponds to the translated file's language code, - [ext] corresponds to the translated file's extension according to its mime type. If a glossary was provided, then the output URI for the glossary translation will be equal to the default output URI but have `glossary_translations` instead of `translations`. For the previous example, its glossary URI would be: "gs://my_bucket/a_b_c_[trg]_glossary_translations.[ext]". Thus the max number of output files will be 2 (Translated document, Glossary translated document). Callers should expect no partial outputs. If there is any error during document translation, no output will be stored in the Cloud Storage bucket.
+     */
+    gcsDestination?: Schema$GcsDestination;
+    /**
+     * Optional. Specifies the translated document's mime_type. If not specified, the translated file's mime type will be the same as the input file's mime type. Currently only support the output mime type to be the same as input mime type. - application/pdf - application/vnd.openxmlformats-officedocument.wordprocessingml.document - application/vnd.openxmlformats-officedocument.presentationml.presentation - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+     */
+    mimeType?: string | null;
+  }
+  /**
+   * A translated document message.
+   */
+  export interface Schema$DocumentTranslation {
+    /**
+     * The array of translated documents. It is expected to be size 1 for now. We may produce multiple translated documents in the future for other type of file formats.
+     */
+    byteStreamOutputs?: string[] | null;
+    /**
+     * The detected language for the input document. If the user did not provide the source language for the input document, this field will have the language code automatically detected. If the source language was passed, auto-detection of the language does not occur and this field is empty.
+     */
+    detectedLanguageCode?: string | null;
+    /**
+     * The translated document's mime type.
+     */
+    mimeType?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
@@ -448,6 +542,60 @@ export namespace translate_v3beta1 {
      * A list of supported language responses. This list contains an entry for each language the Translation API supports.
      */
     languages?: Schema$SupportedLanguage[];
+  }
+  /**
+   * A document translation request.
+   */
+  export interface Schema$TranslateDocumentRequest {
+    /**
+     * Required. Input configurations.
+     */
+    documentInputConfig?: Schema$DocumentInputConfig;
+    /**
+     * Optional. Output configurations. Defines if the output file should be stored within Cloud Storage as well as the desired output format. If not provided the translated file will only be returned through a byte-stream and its output mime type will be the same as the input file's mime type.
+     */
+    documentOutputConfig?: Schema$DocumentOutputConfig;
+    /**
+     * Optional. Glossary to be applied. The glossary must be within the same region (have the same location-id) as the model, otherwise an INVALID_ARGUMENT (400) error is returned.
+     */
+    glossaryConfig?: Schema$TranslateTextGlossaryConfig;
+    /**
+     * Optional. The labels with user-defined metadata for the request. Label keys and values can be no longer than 63 characters (Unicode codepoints), can only contain lowercase letters, numeric characters, underscores and dashes. International characters are allowed. Label values are optional. Label keys must start with a letter. See https://cloud.google.com/translate/docs/advanced/labels for more information.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Optional. The `model` type requested for this translation. The format depends on model type: - AutoML Translation models: `projects/{project-number-or-id\}/locations/{location-id\}/models/{model-id\}` - General (built-in) models: `projects/{project-number-or-id\}/locations/{location-id\}/models/general/nmt`, `projects/{project-number-or-id\}/locations/{location-id\}/models/general/base` If not provided, the default Google model (NMT) will be used for translation.
+     */
+    model?: string | null;
+    /**
+     * Optional. The BCP-47 language code of the input document if known, for example, "en-US" or "sr-Latn". Supported language codes are listed in Language Support. If the source language isn't specified, the API attempts to identify the source language automatically and returns the source language within the response. Source language must be specified if the request contains a glossary or a custom model.
+     */
+    sourceLanguageCode?: string | null;
+    /**
+     * Required. The BCP-47 language code to use for translation of the input document, set to one of the language codes listed in Language Support.
+     */
+    targetLanguageCode?: string | null;
+  }
+  /**
+   * A translated document response message.
+   */
+  export interface Schema$TranslateDocumentResponse {
+    /**
+     * Translated document.
+     */
+    documentTranslation?: Schema$DocumentTranslation;
+    /**
+     * The `glossary_config` used for this translation.
+     */
+    glossaryConfig?: Schema$TranslateTextGlossaryConfig;
+    /**
+     * The document's translation output if a glossary is provided in the request. This can be the same as [TranslateDocumentResponse.document_translation] if no glossary terms apply.
+     */
+    glossaryDocumentTranslation?: Schema$DocumentTranslation;
+    /**
+     * Only present when 'model' is present in the request. 'model' is normalized to have a project number. For example: If the 'model' field in TranslateDocumentRequest is: `projects/{project-id\}/locations/{location-id\}/models/general/nmt` then `model` here would be normalized to `projects/{project-number\}/locations/{location-id\}/models/general/nmt`.
+     */
+    model?: string | null;
   }
   /**
    * Configures which glossary should be used for a specific target language, and defines options for applying that glossary.
@@ -1042,6 +1190,154 @@ export namespace translate_v3beta1 {
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
+    }
+
+    /**
+     * Translates a large volume of document in asynchronous batch mode. This function provides real-time output as the inputs are being processed. If caller cancels a request, the partial results (for an input file, it's all or nothing) may still be available on the specified output location. This call returns immediately and you can use google.longrunning.Operation.name to poll the status of the call.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.batchTranslateDocument({
+     *     // Required. Location to make a regional call. Format: `projects/{project-number-or-id\}/locations/{location-id\}`. The `global` location is not supported for batch translation. Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "glossaries": {},
+     *       //   "inputConfigs": [],
+     *       //   "models": {},
+     *       //   "outputConfig": {},
+     *       //   "sourceLanguageCode": "my_sourceLanguageCode",
+     *       //   "targetLanguageCodes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchTranslateDocument(
+      params: Params$Resource$Projects$Locations$Batchtranslatedocument,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    batchTranslateDocument(
+      params?: Params$Resource$Projects$Locations$Batchtranslatedocument,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    batchTranslateDocument(
+      params: Params$Resource$Projects$Locations$Batchtranslatedocument,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchTranslateDocument(
+      params: Params$Resource$Projects$Locations$Batchtranslatedocument,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    batchTranslateDocument(
+      params: Params$Resource$Projects$Locations$Batchtranslatedocument,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    batchTranslateDocument(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    batchTranslateDocument(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Batchtranslatedocument
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Batchtranslatedocument;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Batchtranslatedocument;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v3beta1/{+parent}:batchTranslateDocument'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
     }
 
     /**
@@ -1760,6 +2056,162 @@ export namespace translate_v3beta1 {
     }
 
     /**
+     * Translates documents in synchronous mode.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/translate.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const translate = google.translate('v3beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-translation',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await translate.projects.locations.translateDocument({
+     *     // Required. Location to make a regional call. Format: `projects/{project-number-or-id\}/locations/{location-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have the same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "documentInputConfig": {},
+     *       //   "documentOutputConfig": {},
+     *       //   "glossaryConfig": {},
+     *       //   "labels": {},
+     *       //   "model": "my_model",
+     *       //   "sourceLanguageCode": "my_sourceLanguageCode",
+     *       //   "targetLanguageCode": "my_targetLanguageCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "documentTranslation": {},
+     *   //   "glossaryConfig": {},
+     *   //   "glossaryDocumentTranslation": {},
+     *   //   "model": "my_model"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    translateDocument(
+      params: Params$Resource$Projects$Locations$Translatedocument,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    translateDocument(
+      params?: Params$Resource$Projects$Locations$Translatedocument,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TranslateDocumentResponse>;
+    translateDocument(
+      params: Params$Resource$Projects$Locations$Translatedocument,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    translateDocument(
+      params: Params$Resource$Projects$Locations$Translatedocument,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TranslateDocumentResponse>,
+      callback: BodyResponseCallback<Schema$TranslateDocumentResponse>
+    ): void;
+    translateDocument(
+      params: Params$Resource$Projects$Locations$Translatedocument,
+      callback: BodyResponseCallback<Schema$TranslateDocumentResponse>
+    ): void;
+    translateDocument(
+      callback: BodyResponseCallback<Schema$TranslateDocumentResponse>
+    ): void;
+    translateDocument(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Translatedocument
+        | BodyResponseCallback<Schema$TranslateDocumentResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TranslateDocumentResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TranslateDocumentResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TranslateDocumentResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Translatedocument;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Translatedocument;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://translation.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3beta1/{+parent}:translateDocument').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TranslateDocumentResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TranslateDocumentResponse>(parameters);
+      }
+    }
+
+    /**
      * Translates input text and returns translated text.
      * @example
      * ```js
@@ -1914,6 +2366,18 @@ export namespace translate_v3beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Batchtranslatedocument
+    extends StandardParameters {
+    /**
+     * Required. Location to make a regional call. Format: `projects/{project-number-or-id\}/locations/{location-id\}`. The `global` location is not supported for batch translation. Only AutoML Translation models or glossaries within the same region (have the same location-id) can be used, otherwise an INVALID_ARGUMENT (400) error is returned.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchTranslateDocumentRequest;
+  }
   export interface Params$Resource$Projects$Locations$Batchtranslatetext
     extends StandardParameters {
     /**
@@ -1978,6 +2442,18 @@ export namespace translate_v3beta1 {
      * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Translatedocument
+    extends StandardParameters {
+    /**
+     * Required. Location to make a regional call. Format: `projects/{project-number-or-id\}/locations/{location-id\}`. For global calls, use `projects/{project-number-or-id\}/locations/global`. Non-global location is required for requests using AutoML models or custom glossaries. Models and glossaries must be within the same region (have the same location-id), otherwise an INVALID_ARGUMENT (400) error is returned.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TranslateDocumentRequest;
   }
   export interface Params$Resource$Projects$Locations$Translatetext
     extends StandardParameters {
