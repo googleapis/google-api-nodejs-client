@@ -1887,8 +1887,7 @@ export namespace notebooks_v1 {
      *   // Do the magic
      *   const res = await notebooks.projects.locations.environments.delete({
      *     // Required. Format: `projects/{project_id\}/locations/{location\}/environments/{environment_id\}`
-     *     name:
-     *       'projects/my-project/locations/my-location/environments/my-environment',
+     *     name: 'projects/my-project/locations/my-location/environments/my-environment',
      *   });
      *   console.log(res.data);
      *
@@ -2018,8 +2017,7 @@ export namespace notebooks_v1 {
      *   // Do the magic
      *   const res = await notebooks.projects.locations.environments.get({
      *     // Required. Format: `projects/{project_id\}/locations/{location\}/environments/{environment_id\}`
-     *     name:
-     *       'projects/my-project/locations/my-location/environments/my-environment',
+     *     name: 'projects/my-project/locations/my-location/environments/my-environment',
      *   });
      *   console.log(res.data);
      *
@@ -3494,7 +3492,8 @@ export namespace notebooks_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Getiampolicy;
         options = {};
       }
 
@@ -3631,7 +3630,8 @@ export namespace notebooks_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Getinstancehealth;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Getinstancehealth;
         options = {};
       }
 
@@ -3771,7 +3771,8 @@ export namespace notebooks_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Isupgradeable;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Isupgradeable;
         options = {};
       }
 
@@ -4612,7 +4613,8 @@ export namespace notebooks_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Setaccelerator;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Setaccelerator;
         options = {};
       }
 
@@ -4751,7 +4753,8 @@ export namespace notebooks_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Setiampolicy;
         options = {};
       }
 
@@ -5033,7 +5036,8 @@ export namespace notebooks_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Setmachinetype;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Setmachinetype;
         options = {};
       }
 
@@ -5449,7 +5453,8 @@ export namespace notebooks_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Testiampermissions;
         options = {};
       }
 
@@ -5511,8 +5516,8 @@ export namespace notebooks_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await notebooks.projects.locations.instances.updateShieldedInstanceConfig(
-     *     {
+     *   const res =
+     *     await notebooks.projects.locations.instances.updateShieldedInstanceConfig({
      *       // Required. Format: `projects/{project_id\}/locations/{location\}/instances/{instance_id\}`
      *       name: 'projects/my-project/locations/my-location/instances/my-instance',
      *
@@ -5523,8 +5528,7 @@ export namespace notebooks_v1 {
      *         //   "shieldedInstanceConfig": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5594,7 +5598,8 @@ export namespace notebooks_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Updateshieldedinstanceconfig;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Updateshieldedinstanceconfig;
         options = {};
       }
 
@@ -5874,7 +5879,8 @@ export namespace notebooks_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Upgradeinternal;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Upgradeinternal;
         options = {};
       }
 
