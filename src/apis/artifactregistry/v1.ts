@@ -132,15 +132,19 @@ export namespace artifactregistry_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * DockerImage represents a docker artifact.
+   * DockerImage represents a docker artifact. The following fields are returned as untyped metadata in the Version resource, using camelcase keys (i.e. metadata.imageSizeBytes): - imageSizeBytes - mediaType - buildTime
    */
   export interface Schema$DockerImage {
     /**
-     * Calculated size of the image.
+     * The time this image was built. This field is returned as the 'metadata.buildTime' field in the Version resource. The build time is returned to the client as an RFC 3339 string, which can be easily used with the JavaScript Date constructor and keeps the Version timestamps returned via OnePlatform consistent, as JSON marshals google.protobuf.Timestamp into an RFC 3339 string. (http://google3/cloud/containers/artifacts/metadata/v1beta2/builder/data.go?l=158-159&rcl=364878183).
+     */
+    buildTime?: string | null;
+    /**
+     * Calculated size of the image. This field is returned as the 'metadata.imageSizeBytes' field in the Version resource.
      */
     imageSizeBytes?: string | null;
     /**
-     * Media type of this image, e.g. "application/vnd.docker.distribution.manifest.v2+json".
+     * Media type of this image, e.g. "application/vnd.docker.distribution.manifest.v2+json". This field is returned as the 'metadata.mediaType' field in the Version resource.
      */
     mediaType?: string | null;
     /**
@@ -885,9 +889,8 @@ export namespace artifactregistry_v1 {
     dockerImages: Resource$Projects$Locations$Repositories$Dockerimages;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.dockerImages = new Resource$Projects$Locations$Repositories$Dockerimages(
-        this.context
-      );
+      this.dockerImages =
+        new Resource$Projects$Locations$Repositories$Dockerimages(this.context);
     }
 
     /**
@@ -921,8 +924,7 @@ export namespace artifactregistry_v1 {
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.get({
      *     // Required. The name of the repository to retrieve.
-     *     name:
-     *       'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
      *   });
      *   console.log(res.data);
      *
@@ -1229,8 +1231,8 @@ export namespace artifactregistry_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.dockerImages.list(
-     *     {
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.dockerImages.list({
      *       // The maximum number of artifacts to return.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request, if any.
@@ -1238,8 +1240,7 @@ export namespace artifactregistry_v1 {
      *       // Required. The name of the parent resource whose docker images will be listed.
      *       parent:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1309,7 +1310,8 @@ export namespace artifactregistry_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Dockerimages$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Dockerimages$List;
         options = {};
       }
 

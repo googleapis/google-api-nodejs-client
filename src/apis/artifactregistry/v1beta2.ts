@@ -1343,8 +1343,7 @@ export namespace artifactregistry_v1beta2 {
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.delete({
      *     // The name of the repository to delete.
-     *     name:
-     *       'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
      *   });
      *   console.log(res.data);
      *
@@ -1478,8 +1477,7 @@ export namespace artifactregistry_v1beta2 {
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.get({
      *     // The name of the repository to retrieve.
-     *     name:
-     *       'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
      *   });
      *   console.log(res.data);
      *
@@ -1613,15 +1611,14 @@ export namespace artifactregistry_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.getIamPolicy(
-     *     {
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.getIamPolicy({
      *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1687,7 +1684,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Getiampolicy;
         options = {};
       }
 
@@ -1895,8 +1893,7 @@ export namespace artifactregistry_v1beta2 {
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.patch({
      *     // The name of the repository, for example: "projects/p1/locations/us-central1/repositories/repo1".
-     *     name:
-     *       'projects/my-project/locations/my-location/repositories/my-repositorie',
+     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie',
      *     // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
      *
@@ -2043,8 +2040,8 @@ export namespace artifactregistry_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.setIamPolicy(
-     *     {
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie',
@@ -2056,8 +2053,7 @@ export namespace artifactregistry_v1beta2 {
      *         //   "policy": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2123,7 +2119,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Setiampolicy;
         options = {};
       }
 
@@ -2189,8 +2186,8 @@ export namespace artifactregistry_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.testIamPermissions(
-     *     {
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie',
@@ -2202,8 +2199,7 @@ export namespace artifactregistry_v1beta2 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2274,7 +2270,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Testiampermissions;
         options = {};
       }
 
@@ -2446,8 +2443,7 @@ export namespace artifactregistry_v1beta2 {
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.files.get({
      *     // The name of the file to retrieve.
-     *     name:
-     *       'projects/my-project/locations/my-location/repositories/my-repositorie/files/.*',
+     *     name: 'projects/my-project/locations/my-location/repositories/my-repositorie/files/.*',
      *   });
      *   console.log(res.data);
      *
@@ -2517,7 +2513,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Files$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Files$Get;
         options = {};
       }
 
@@ -2660,7 +2657,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Files$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Files$List;
         options = {};
       }
 
@@ -2734,9 +2732,10 @@ export namespace artifactregistry_v1beta2 {
       this.tags = new Resource$Projects$Locations$Repositories$Packages$Tags(
         this.context
       );
-      this.versions = new Resource$Projects$Locations$Repositories$Packages$Versions(
-        this.context
-      );
+      this.versions =
+        new Resource$Projects$Locations$Repositories$Packages$Versions(
+          this.context
+        );
     }
 
     /**
@@ -2765,13 +2764,11 @@ export namespace artifactregistry_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.packages.delete(
-     *     {
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.delete({
      *       // The name of the package to delete.
-     *       name:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2839,7 +2836,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Packages$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Packages$Delete;
         options = {};
       }
 
@@ -2902,13 +2900,11 @@ export namespace artifactregistry_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.packages.get(
-     *     {
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.get({
      *       // The name of the package to retrieve.
-     *       name:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2975,7 +2971,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Packages$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Packages$Get;
         options = {};
       }
 
@@ -3038,8 +3035,8 @@ export namespace artifactregistry_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.packages.list(
-     *     {
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.list({
      *       // The maximum number of packages to return. Maximum page size is 10,000.
      *       pageSize: 'placeholder-value',
      *       // The next_page_token value returned from a previous list request, if any.
@@ -3047,8 +3044,7 @@ export namespace artifactregistry_v1beta2 {
      *       // The name of the parent resource whose packages will be listed.
      *       parent:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3118,7 +3114,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Packages$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Packages$List;
         options = {};
       }
 
@@ -3218,24 +3215,25 @@ export namespace artifactregistry_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.packages.tags.create(
-     *     {
-     *       // The name of the parent resource where the tag will be created.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
-     *       // The tag id to use for this repository.
-     *       tagId: 'placeholder-value',
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.tags.create(
+     *       {
+     *         // The name of the parent resource where the tag will be created.
+     *         parent:
+     *           'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
+     *         // The tag id to use for this repository.
+     *         tagId: 'placeholder-value',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "name": "my_name",
-     *         //   "version": "my_version"
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "name": "my_name",
+     *           //   "version": "my_version"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3300,7 +3298,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create;
         options = {};
       }
 
@@ -3363,13 +3362,13 @@ export namespace artifactregistry_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.packages.tags.delete(
-     *     {
-     *       // The name of the tag to delete.
-     *       name:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/tags/my-tag',
-     *     }
-     *   );
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.tags.delete(
+     *       {
+     *         // The name of the tag to delete.
+     *         name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/tags/my-tag',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3431,7 +3430,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete;
         options = {};
       }
 
@@ -3494,13 +3494,11 @@ export namespace artifactregistry_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.packages.tags.get(
-     *     {
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.tags.get({
      *       // The name of the tag to retrieve.
-     *       name:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/tags/my-tag',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/tags/my-tag',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3565,7 +3563,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get;
         options = {};
       }
 
@@ -3628,8 +3627,8 @@ export namespace artifactregistry_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.packages.tags.list(
-     *     {
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.tags.list({
      *       // An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `version` An example of using a filter: * `version="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --\> Tags that are applied to the version `1.0` in package `pkg1`.
      *       filter: 'placeholder-value',
      *       // The maximum number of tags to return. Maximum page size is 10,000.
@@ -3639,8 +3638,7 @@ export namespace artifactregistry_v1beta2 {
      *       // The name of the parent resource whose tags will be listed.
      *       parent:
      *         'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3705,7 +3703,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Packages$Tags$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Packages$Tags$List;
         options = {};
       }
 
@@ -3768,11 +3767,10 @@ export namespace artifactregistry_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.packages.tags.patch(
-     *     {
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.tags.patch({
      *       // The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1".
-     *       name:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/tags/my-tag',
+     *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/tags/my-tag',
      *       // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
      *
@@ -3784,8 +3782,7 @@ export namespace artifactregistry_v1beta2 {
      *         //   "version": "my_version"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3850,7 +3847,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch;
         options = {};
       }
 
@@ -3983,15 +3981,15 @@ export namespace artifactregistry_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.packages.versions.delete(
-     *     {
-     *       // By default, a version that is tagged may not be deleted. If force=true, the version and any tags pointing to the version are deleted.
-     *       force: 'placeholder-value',
-     *       // The name of the version to delete.
-     *       name:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/versions/my-version',
-     *     }
-     *   );
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.versions.delete(
+     *       {
+     *         // By default, a version that is tagged may not be deleted. If force=true, the version and any tags pointing to the version are deleted.
+     *         force: 'placeholder-value',
+     *         // The name of the version to delete.
+     *         name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/versions/my-version',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4059,7 +4057,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete;
         options = {};
       }
 
@@ -4122,15 +4121,15 @@ export namespace artifactregistry_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.packages.versions.get(
-     *     {
-     *       // The name of the version to retrieve.
-     *       name:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/versions/my-version',
-     *       // The view that should be returned in the response.
-     *       view: 'placeholder-value',
-     *     }
-     *   );
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.versions.get(
+     *       {
+     *         // The name of the version to retrieve.
+     *         name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/versions/my-version',
+     *         // The view that should be returned in the response.
+     *         view: 'placeholder-value',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4199,7 +4198,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get;
         options = {};
       }
 
@@ -4262,21 +4262,22 @@ export namespace artifactregistry_v1beta2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await artifactregistry.projects.locations.repositories.packages.versions.list(
-     *     {
-     *       // Optional. Sorting field and order
-     *       orderBy: 'placeholder-value',
-     *       // The maximum number of versions to return. Maximum page size is 10,000.
-     *       pageSize: 'placeholder-value',
-     *       // The next_page_token value returned from a previous list request, if any.
-     *       pageToken: 'placeholder-value',
-     *       // The name of the parent resource whose versions will be listed.
-     *       parent:
-     *         'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
-     *       // The view that should be returned in the response.
-     *       view: 'placeholder-value',
-     *     }
-     *   );
+     *   const res =
+     *     await artifactregistry.projects.locations.repositories.packages.versions.list(
+     *       {
+     *         // Optional. Sorting field and order
+     *         orderBy: 'placeholder-value',
+     *         // The maximum number of versions to return. Maximum page size is 10,000.
+     *         pageSize: 'placeholder-value',
+     *         // The next_page_token value returned from a previous list request, if any.
+     *         pageToken: 'placeholder-value',
+     *         // The name of the parent resource whose versions will be listed.
+     *         parent:
+     *           'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package',
+     *         // The view that should be returned in the response.
+     *         view: 'placeholder-value',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -4346,7 +4347,8 @@ export namespace artifactregistry_v1beta2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Repositories$Packages$Versions$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Repositories$Packages$Versions$List;
         options = {};
       }
 
