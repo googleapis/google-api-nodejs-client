@@ -1431,8 +1431,8 @@ export namespace domains_v1alpha2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await domains.projects.locations.registrations.configureContactSettings(
-     *     {
+     *   const res =
+     *     await domains.projects.locations.registrations.configureContactSettings({
      *       // Required. The name of the `Registration` whose contact settings are being updated, in the format `projects/x/locations/x/registrations/x`.
      *       registration:
      *         'projects/my-project/locations/my-location/registrations/my-registration',
@@ -1447,8 +1447,7 @@ export namespace domains_v1alpha2 {
      *         //   "validateOnly": false
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1518,7 +1517,8 @@ export namespace domains_v1alpha2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registrations$Configurecontactsettings;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Configurecontactsettings;
         options = {};
       }
 
@@ -1579,8 +1579,8 @@ export namespace domains_v1alpha2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await domains.projects.locations.registrations.configureDnsSettings(
-     *     {
+     *   const res =
+     *     await domains.projects.locations.registrations.configureDnsSettings({
      *       // Required. The name of the `Registration` whose DNS settings are being updated, in the format `projects/x/locations/x/registrations/x`.
      *       registration:
      *         'projects/my-project/locations/my-location/registrations/my-registration',
@@ -1594,8 +1594,7 @@ export namespace domains_v1alpha2 {
      *         //   "validateOnly": false
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1665,7 +1664,8 @@ export namespace domains_v1alpha2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registrations$Configurednssettings;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Configurednssettings;
         options = {};
       }
 
@@ -1726,8 +1726,8 @@ export namespace domains_v1alpha2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await domains.projects.locations.registrations.configureManagementSettings(
-     *     {
+     *   const res =
+     *     await domains.projects.locations.registrations.configureManagementSettings({
      *       // Required. The name of the `Registration` whose management settings are being updated, in the format `projects/x/locations/x/registrations/x`.
      *       registration:
      *         'projects/my-project/locations/my-location/registrations/my-registration',
@@ -1740,8 +1740,7 @@ export namespace domains_v1alpha2 {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -1811,7 +1810,8 @@ export namespace domains_v1alpha2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registrations$Configuremanagementsettings;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Configuremanagementsettings;
         options = {};
       }
 
@@ -1874,8 +1874,7 @@ export namespace domains_v1alpha2 {
      *   // Do the magic
      *   const res = await domains.projects.locations.registrations.delete({
      *     // Required. The name of the `Registration` to delete, in the format `projects/x/locations/x/registrations/x`.
-     *     name:
-     *       'projects/my-project/locations/my-location/registrations/my-registration',
+     *     name: 'projects/my-project/locations/my-location/registrations/my-registration',
      *   });
      *   console.log(res.data);
      *
@@ -2005,8 +2004,7 @@ export namespace domains_v1alpha2 {
      *   // Do the magic
      *   const res = await domains.projects.locations.registrations.export({
      *     // Required. The name of the `Registration` to export, in the format `projects/x/locations/x/registrations/x`.
-     *     name:
-     *       'projects/my-project/locations/my-location/registrations/my-registration',
+     *     name: 'projects/my-project/locations/my-location/registrations/my-registration',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -2145,8 +2143,7 @@ export namespace domains_v1alpha2 {
      *   // Do the magic
      *   const res = await domains.projects.locations.registrations.get({
      *     // Required. The name of the `Registration` to get, in the format `projects/x/locations/x/registrations/x`.
-     *     name:
-     *       'projects/my-project/locations/my-location/registrations/my-registration',
+     *     name: 'projects/my-project/locations/my-location/registrations/my-registration',
      *   });
      *   console.log(res.data);
      *
@@ -2354,7 +2351,8 @@ export namespace domains_v1alpha2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registrations$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Getiampolicy;
         options = {};
       }
 
@@ -2561,8 +2559,7 @@ export namespace domains_v1alpha2 {
      *   // Do the magic
      *   const res = await domains.projects.locations.registrations.patch({
      *     // Output only. Name of the `Registration` resource, in the format `projects/x/locations/x/registrations/`.
-     *     name:
-     *       'projects/my-project/locations/my-location/registrations/my-registration',
+     *     name: 'projects/my-project/locations/my-location/registrations/my-registration',
      *     // Required. The field mask describing which fields to update as a comma-separated list. For example, if only the labels are being updated, the `update_mask` would be `"labels"`.
      *     updateMask: 'placeholder-value',
      *
@@ -2794,7 +2791,8 @@ export namespace domains_v1alpha2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registrations$Register;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Register;
         options = {};
       }
 
@@ -2855,8 +2853,8 @@ export namespace domains_v1alpha2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await domains.projects.locations.registrations.resetAuthorizationCode(
-     *     {
+     *   const res =
+     *     await domains.projects.locations.registrations.resetAuthorizationCode({
      *       // Required. The name of the `Registration` whose authorization code is being reset, in the format `projects/x/locations/x/registrations/x`.
      *       registration:
      *         'projects/my-project/locations/my-location/registrations/my-registration',
@@ -2866,8 +2864,7 @@ export namespace domains_v1alpha2 {
      *         // request body parameters
      *         // {}
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2936,7 +2933,8 @@ export namespace domains_v1alpha2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registrations$Resetauthorizationcode;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Resetauthorizationcode;
         options = {};
       }
 
@@ -2997,13 +2995,12 @@ export namespace domains_v1alpha2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await domains.projects.locations.registrations.retrieveAuthorizationCode(
-     *     {
+     *   const res =
+     *     await domains.projects.locations.registrations.retrieveAuthorizationCode({
      *       // Required. The name of the `Registration` whose authorization code is being retrieved, in the format `projects/x/locations/x/registrations/x`.
      *       registration:
      *         'projects/my-project/locations/my-location/registrations/my-registration',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3072,7 +3069,8 @@ export namespace domains_v1alpha2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registrations$Retrieveauthorizationcode;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Retrieveauthorizationcode;
         options = {};
       }
 
@@ -3133,14 +3131,13 @@ export namespace domains_v1alpha2 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await domains.projects.locations.registrations.retrieveRegisterParameters(
-     *     {
+     *   const res =
+     *     await domains.projects.locations.registrations.retrieveRegisterParameters({
      *       // Required. The domain name. Unicode domain names must be expressed in Punycode format.
      *       domainName: 'placeholder-value',
      *       // Required. The location. Must be in the format `projects/x/locations/x`.
      *       location: 'projects/my-project/locations/my-location',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3211,7 +3208,8 @@ export namespace domains_v1alpha2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registrations$Retrieveregisterparameters;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Retrieveregisterparameters;
         options = {};
       }
 
@@ -3351,7 +3349,8 @@ export namespace domains_v1alpha2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registrations$Searchdomains;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Searchdomains;
         options = {};
       }
 
@@ -3492,7 +3491,8 @@ export namespace domains_v1alpha2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registrations$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Setiampolicy;
         options = {};
       }
 
@@ -3639,7 +3639,8 @@ export namespace domains_v1alpha2 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Registrations$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Registrations$Testiampermissions;
         options = {};
       }
 
