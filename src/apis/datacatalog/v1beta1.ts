@@ -297,6 +297,10 @@ export namespace datacatalog_v1beta1 {
      */
     type?: string | null;
     /**
+     * Output only. Statistics on the usage level of the resource.
+     */
+    usageSignal?: Schema$GoogleCloudDatacatalogV1beta1UsageSignal;
+    /**
      * This field indicates the entry's source system that Data Catalog does not integrate with. `user_specified_system` strings must begin with a letter or underscore and can only contain letters, numbers, and underscores; are case insensitive; must be at least 1 character and at most 64 characters long.
      */
     userSpecifiedSystem?: string | null;
@@ -831,6 +835,42 @@ export namespace datacatalog_v1beta1 {
     taxonomyTimestamps?: Schema$GoogleCloudDatacatalogV1beta1SystemTimestamps;
   }
   /**
+   * The set of all usage signals that we store in Data Catalog.
+   */
+  export interface Schema$GoogleCloudDatacatalogV1beta1UsageSignal {
+    /**
+     * The timestamp of the end of the usage statistics duration.
+     */
+    updateTime?: string | null;
+    /**
+     * Usage statistics over each of the pre-defined time ranges, supported strings for time ranges are {"24H", "7D", "30D"\}.
+     */
+    usageWithinTimeRange?: {
+      [key: string]: Schema$GoogleCloudDatacatalogV1beta1UsageStats;
+    } | null;
+  }
+  /**
+   * Detailed counts on the entry's usage. Caveats: - Only BigQuery tables have usage stats - The usage stats only inlude BigQuery query jobs - The usage stats might be underestimated, e.g. wildcard table references are not yet counted in usage computation https://cloud.google.com/bigquery/docs/querying-wildcard-tables
+   */
+  export interface Schema$GoogleCloudDatacatalogV1beta1UsageStats {
+    /**
+     * The number of times that the underlying entry was attempted to be used but was cancelled by the user.
+     */
+    totalCancellations?: number | null;
+    /**
+     * The number of times that the underlying entry was successfully used.
+     */
+    totalCompletions?: number | null;
+    /**
+     * Total time spent (in milliseconds) during uses the resulted in completions.
+     */
+    totalExecutionTimeForCompletionsMillis?: number | null;
+    /**
+     * The number of times that the underlying entry was attempted to be used but failed.
+     */
+    totalFailures?: number | null;
+  }
+  /**
    * Table view specification.
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1ViewSpec {
@@ -1099,6 +1139,7 @@ export namespace datacatalog_v1beta1 {
      *   //   "schema": {},
      *   //   "sourceSystemTimestamps": {},
      *   //   "type": "my_type",
+     *   //   "usageSignal": {},
      *   //   "userSpecifiedSystem": "my_userSpecifiedSystem",
      *   //   "userSpecifiedType": "my_userSpecifiedType"
      *   // }
@@ -1781,7 +1822,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Getiampolicy;
         options = {};
       }
 
@@ -2215,7 +2257,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Setiampolicy;
         options = {};
       }
 
@@ -2277,8 +2320,8 @@ export namespace datacatalog_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.testIamPermissions(
-     *     {
+     *   const res =
+     *     await datacatalog.projects.locations.entryGroups.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
@@ -2290,8 +2333,7 @@ export namespace datacatalog_v1beta1 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2362,7 +2404,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Testiampermissions;
         options = {};
       }
 
@@ -2563,6 +2606,7 @@ export namespace datacatalog_v1beta1 {
      *       //   "schema": {},
      *       //   "sourceSystemTimestamps": {},
      *       //   "type": "my_type",
+     *       //   "usageSignal": {},
      *       //   "userSpecifiedSystem": "my_userSpecifiedSystem",
      *       //   "userSpecifiedType": "my_userSpecifiedType"
      *       // }
@@ -2583,6 +2627,7 @@ export namespace datacatalog_v1beta1 {
      *   //   "schema": {},
      *   //   "sourceSystemTimestamps": {},
      *   //   "type": "my_type",
+     *   //   "usageSignal": {},
      *   //   "userSpecifiedSystem": "my_userSpecifiedSystem",
      *   //   "userSpecifiedType": "my_userSpecifiedType"
      *   // }
@@ -2650,7 +2695,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Create;
         options = {};
       }
 
@@ -2716,8 +2762,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.delete({
      *     // Required. The name of the entry. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
      *   });
      *   console.log(res.data);
      *
@@ -2780,7 +2825,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Delete;
         options = {};
       }
 
@@ -2841,8 +2887,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.get({
      *     // Required. The name of the entry. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
      *   });
      *   console.log(res.data);
      *
@@ -2859,6 +2904,7 @@ export namespace datacatalog_v1beta1 {
      *   //   "schema": {},
      *   //   "sourceSystemTimestamps": {},
      *   //   "type": "my_type",
+     *   //   "usageSignal": {},
      *   //   "userSpecifiedSystem": "my_userSpecifiedSystem",
      *   //   "userSpecifiedType": "my_userSpecifiedType"
      *   // }
@@ -2926,7 +2972,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Get;
         options = {};
       }
 
@@ -2987,8 +3034,8 @@ export namespace datacatalog_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.entries.getIamPolicy(
-     *     {
+     *   const res =
+     *     await datacatalog.projects.locations.entryGroups.entries.getIamPolicy({
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
@@ -3000,8 +3047,7 @@ export namespace datacatalog_v1beta1 {
      *         //   "options": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3067,7 +3113,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Getiampolicy;
         options = {};
       }
 
@@ -3211,7 +3258,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Entries$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$List;
         options = {};
       }
 
@@ -3277,8 +3325,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.entries.patch({
      *     // Output only. The Data Catalog resource name of the entry in URL format. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\} Note that this Entry and its child resources may not actually be stored in the location in this name.
-     *     name:
-     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
      *     // Names of fields whose values to overwrite on an entry. If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied. The following fields are modifiable: * For entries with type `DATA_STREAM`: * `schema` * For entries with type `FILESET`: * `schema` * `display_name` * `description` * `gcs_fileset_spec` * `gcs_fileset_spec.file_patterns` * For entries with `user_specified_type`: * `schema` * `display_name` * `description` * `user_specified_type` * `user_specified_system` * `linked_resource` * `source_system_timestamps`
      *     updateMask: 'placeholder-value',
      *
@@ -3297,6 +3344,7 @@ export namespace datacatalog_v1beta1 {
      *       //   "schema": {},
      *       //   "sourceSystemTimestamps": {},
      *       //   "type": "my_type",
+     *       //   "usageSignal": {},
      *       //   "userSpecifiedSystem": "my_userSpecifiedSystem",
      *       //   "userSpecifiedType": "my_userSpecifiedType"
      *       // }
@@ -3317,6 +3365,7 @@ export namespace datacatalog_v1beta1 {
      *   //   "schema": {},
      *   //   "sourceSystemTimestamps": {},
      *   //   "type": "my_type",
+     *   //   "usageSignal": {},
      *   //   "userSpecifiedSystem": "my_userSpecifiedSystem",
      *   //   "userSpecifiedType": "my_userSpecifiedType"
      *   // }
@@ -3384,7 +3433,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Patch;
         options = {};
       }
 
@@ -3445,21 +3495,22 @@ export namespace datacatalog_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.entries.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
+     *   const res =
+     *     await datacatalog.projects.locations.entryGroups.entries.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3530,7 +3581,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Testiampermissions;
         options = {};
       }
 
@@ -3689,8 +3741,8 @@ export namespace datacatalog_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.entries.tags.create(
-     *     {
+     *   const res =
+     *     await datacatalog.projects.locations.entryGroups.entries.tags.create({
      *       // Required. The name of the resource to attach this tag to. Tags can be attached to Entries. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\} Note that this Tag and its child resources may not actually be stored in the location in this name.
      *       parent:
      *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
@@ -3706,8 +3758,7 @@ export namespace datacatalog_v1beta1 {
      *         //   "templateDisplayName": "my_templateDisplayName"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3782,7 +3833,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Create;
         options = {};
       }
 
@@ -3846,13 +3898,11 @@ export namespace datacatalog_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.entries.tags.delete(
-     *     {
+     *   const res =
+     *     await datacatalog.projects.locations.entryGroups.entries.tags.delete({
      *       // Required. The name of the tag to delete. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\}/tags/{tag_id\}
-     *       name:
-     *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie/tags/my-tag',
-     *     }
-     *   );
+     *       name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie/tags/my-tag',
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -3914,7 +3964,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Delete;
         options = {};
       }
 
@@ -3973,8 +4024,8 @@ export namespace datacatalog_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.entries.tags.list(
-     *     {
+     *   const res =
+     *     await datacatalog.projects.locations.entryGroups.entries.tags.list({
      *       // The maximum number of tags to return. Default is 10. Max limit is 1000.
      *       pageSize: 'placeholder-value',
      *       // Token that specifies which page is requested. If empty, the first page is returned.
@@ -3982,8 +4033,7 @@ export namespace datacatalog_v1beta1 {
      *       // Required. The name of the Data Catalog resource to list the tags of. The resource could be an Entry or an EntryGroup. Examples: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\} * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\}
      *       parent:
      *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4055,7 +4105,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$List;
         options = {};
       }
 
@@ -4119,11 +4170,10 @@ export namespace datacatalog_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datacatalog.projects.locations.entryGroups.entries.tags.patch(
-     *     {
+     *   const res =
+     *     await datacatalog.projects.locations.entryGroups.entries.tags.patch({
      *       // The resource name of the tag in URL format. Example: * projects/{project_id\}/locations/{location\}/entrygroups/{entry_group_id\}/entries/{entry_id\}/tags/{tag_id\} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
-     *       name:
-     *         'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie/tags/my-tag',
+     *       name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/my-entrie/tags/my-tag',
      *       // Note: Currently, this parameter can only take `"fields"` as value. Names of fields whose values to overwrite on a tag. Currently, a tag has the only modifiable field with the name `fields`. In general, if this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied.
      *       updateMask: 'placeholder-value',
      *
@@ -4138,8 +4188,7 @@ export namespace datacatalog_v1beta1 {
      *         //   "templateDisplayName": "my_templateDisplayName"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -4214,7 +4263,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Entries$Tags$Patch;
         options = {};
       }
 
@@ -4424,7 +4474,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Tags$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Tags$Create;
         options = {};
       }
 
@@ -4490,8 +4541,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.tags.delete({
      *     // Required. The name of the tag to delete. Example: * projects/{project_id\}/locations/{location\}/entryGroups/{entry_group_id\}/entries/{entry_id\}/tags/{tag_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup/tags/my-tag',
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/tags/my-tag',
      *   });
      *   console.log(res.data);
      *
@@ -4554,7 +4604,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Tags$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Tags$Delete;
         options = {};
       }
 
@@ -4759,8 +4810,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.entryGroups.tags.patch({
      *     // The resource name of the tag in URL format. Example: * projects/{project_id\}/locations/{location\}/entrygroups/{entry_group_id\}/entries/{entry_id\}/tags/{tag_id\} where `tag_id` is a system-generated identifier. Note that this Tag may not actually be stored in the location in this name.
-     *     name:
-     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup/tags/my-tag',
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/tags/my-tag',
      *     // Note: Currently, this parameter can only take `"fields"` as value. Names of fields whose values to overwrite on a tag. Currently, a tag has the only modifiable field with the name `fields`. In general, if this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied.
      *     updateMask: 'placeholder-value',
      *
@@ -4850,7 +4900,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Entrygroups$Tags$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Entrygroups$Tags$Patch;
         options = {};
       }
 
@@ -5129,8 +5180,7 @@ export namespace datacatalog_v1beta1 {
      *     // Required. Currently, this field must always be set to `true`. This confirms the deletion of any possible tags using this template. `force = false` will be supported in the future.
      *     force: 'placeholder-value',
      *     // Required. The name of the tag template to delete. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
+     *     name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
      *   });
      *   console.log(res.data);
      *
@@ -5254,8 +5304,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.get({
      *     // Required. The name of the tag template. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
+     *     name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
      *   });
      *   console.log(res.data);
      *
@@ -5468,7 +5517,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Tagtemplates$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Tagtemplates$Getiampolicy;
         options = {};
       }
 
@@ -5532,8 +5582,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.patch({
      *     // The resource name of the tag template in URL format. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\} Note that this TagTemplate and its child resources may not actually be stored in the location in this name.
-     *     name:
-     *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
+     *     name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
      *     // Names of fields whose values to overwrite on a tag template. Currently, only `display_name` can be overwritten. In general, if this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied.
      *     updateMask: 'placeholder-value',
      *
@@ -5758,7 +5807,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Tagtemplates$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Tagtemplates$Setiampolicy;
         options = {};
       }
 
@@ -5820,8 +5870,8 @@ export namespace datacatalog_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datacatalog.projects.locations.tagTemplates.testIamPermissions(
-     *     {
+     *   const res =
+     *     await datacatalog.projects.locations.tagTemplates.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate',
@@ -5833,8 +5883,7 @@ export namespace datacatalog_v1beta1 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -5905,7 +5954,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Tagtemplates$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Tagtemplates$Testiampermissions;
         options = {};
       }
 
@@ -6034,9 +6084,10 @@ export namespace datacatalog_v1beta1 {
     enumValues: Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.enumValues = new Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues(
-        this.context
-      );
+      this.enumValues =
+        new Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues(
+          this.context
+        );
     }
 
     /**
@@ -6160,7 +6211,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Tagtemplates$Fields$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Tagtemplates$Fields$Create;
         options = {};
       }
 
@@ -6228,8 +6280,7 @@ export namespace datacatalog_v1beta1 {
      *     // Required. Currently, this field must always be set to `true`. This confirms the deletion of this field from any tags using this field. `force = false` will be supported in the future.
      *     force: 'placeholder-value',
      *     // Required. The name of the tag template field to delete. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\}/fields/{tag_template_field_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field',
+     *     name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field',
      *   });
      *   console.log(res.data);
      *
@@ -6292,7 +6343,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Tagtemplates$Fields$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Tagtemplates$Fields$Delete;
         options = {};
       }
 
@@ -6353,8 +6405,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.fields.patch({
      *     // Required. The name of the tag template field. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\}/fields/{tag_template_field_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field',
+     *     name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field',
      *     // Optional. Names of fields whose values to overwrite on an individual field of a tag template. The following fields are modifiable: * `display_name` * `type.enum_type` * `is_required` If this parameter is absent or empty, all modifiable fields are overwritten. If such fields are non-required and omitted in the request body, their values are emptied with one exception: when updating an enum type, the provided values are merged with the existing values. Therefore, enum values can only be added, existing enum values cannot be deleted or renamed. Additionally, updating a template field from optional to required is *not* allowed.
      *     updateMask: 'placeholder-value',
      *
@@ -6446,7 +6497,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Tagtemplates$Fields$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Tagtemplates$Fields$Patch;
         options = {};
       }
 
@@ -6509,8 +6561,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.tagTemplates.fields.rename({
      *     // Required. The name of the tag template. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\}/fields/{tag_template_field_id\}
-     *     name:
-     *       'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field',
+     *     name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -6595,7 +6646,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Tagtemplates$Fields$Rename;
+        params =
+          {} as Params$Resource$Projects$Locations$Tagtemplates$Fields$Rename;
         options = {};
       }
 
@@ -6722,11 +6774,10 @@ export namespace datacatalog_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datacatalog.projects.locations.tagTemplates.fields.enumValues.rename(
-     *     {
+     *   const res =
+     *     await datacatalog.projects.locations.tagTemplates.fields.enumValues.rename({
      *       // Required. The name of the enum field value. Example: * projects/{project_id\}/locations/{location\}/tagTemplates/{tag_template_id\}/fields/{tag_template_field_id\}/enumValues/{enum_value_display_name\}
-     *       name:
-     *         'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field/enumValues/my-enumValue',
+     *       name: 'projects/my-project/locations/my-location/tagTemplates/my-tagTemplate/fields/my-field/enumValues/my-enumValue',
      *
      *       // Request body metadata
      *       requestBody: {
@@ -6735,8 +6786,7 @@ export namespace datacatalog_v1beta1 {
      *         //   "newEnumValueDisplayName": "my_newEnumValueDisplayName"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -6812,7 +6862,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename;
+        params =
+          {} as Params$Resource$Projects$Locations$Tagtemplates$Fields$Enumvalues$Rename;
         options = {};
       }
 
@@ -7540,7 +7591,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Taxonomies$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Taxonomies$Getiampolicy;
         options = {};
       }
 
@@ -8124,7 +8176,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Taxonomies$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Taxonomies$Setiampolicy;
         options = {};
       }
 
@@ -8186,8 +8239,8 @@ export namespace datacatalog_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.testIamPermissions(
-     *     {
+     *   const res =
+     *     await datacatalog.projects.locations.taxonomies.testIamPermissions({
      *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie',
@@ -8199,8 +8252,7 @@ export namespace datacatalog_v1beta1 {
      *         //   "permissions": []
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -8271,7 +8323,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Taxonomies$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Taxonomies$Testiampermissions;
         options = {};
       }
 
@@ -8554,7 +8607,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$Create;
+        params =
+          {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$Create;
         options = {};
       }
 
@@ -8621,8 +8675,7 @@ export namespace datacatalog_v1beta1 {
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.delete(
      *     {
      *       // Required. Resource name of the policy tag to be deleted. All of its descendant policy tags will also be deleted.
-     *       name:
-     *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
+     *       name: 'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
      *     }
      *   );
      *   console.log(res.data);
@@ -8686,7 +8739,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$Delete;
+        params =
+          {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$Delete;
         options = {};
       }
 
@@ -8747,8 +8801,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.get({
      *     // Required. Resource name of the requested policy tag.
-     *     name:
-     *       'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
+     *     name: 'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
      *   });
      *   console.log(res.data);
      *
@@ -8824,7 +8877,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$Get;
+        params =
+          {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$Get;
         options = {};
       }
 
@@ -8885,8 +8939,8 @@ export namespace datacatalog_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.policyTags.getIamPolicy(
-     *     {
+     *   const res =
+     *     await datacatalog.projects.locations.taxonomies.policyTags.getIamPolicy({
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
@@ -8898,8 +8952,7 @@ export namespace datacatalog_v1beta1 {
      *         //   "options": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -8965,7 +9018,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$Getiampolicy;
         options = {};
       }
 
@@ -9106,7 +9160,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$List;
+        params =
+          {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$List;
         options = {};
       }
 
@@ -9172,8 +9227,7 @@ export namespace datacatalog_v1beta1 {
      *   // Do the magic
      *   const res = await datacatalog.projects.locations.taxonomies.policyTags.patch({
      *     // Output only. Resource name of this policy tag, whose format is: "projects/{project_number\}/locations/{location_id\}/taxonomies/{taxonomy_id\}/policyTags/{id\}".
-     *     name:
-     *       'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
+     *     name: 'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
      *     // The update mask applies to the resource. Only display_name, description and parent_policy_tag can be updated and thus can be listed in the mask. If update_mask is not provided, all allowed fields (i.e. display_name, description and parent) will be updated. For more information including the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If not set, defaults to all of the fields that are allowed to update.
      *     updateMask: 'placeholder-value',
      *
@@ -9263,7 +9317,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$Patch;
+        params =
+          {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$Patch;
         options = {};
       }
 
@@ -9324,8 +9379,8 @@ export namespace datacatalog_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.policyTags.setIamPolicy(
-     *     {
+     *   const res =
+     *     await datacatalog.projects.locations.taxonomies.policyTags.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
@@ -9337,8 +9392,7 @@ export namespace datacatalog_v1beta1 {
      *         //   "policy": {}
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -9404,7 +9458,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$Setiampolicy;
         options = {};
       }
 
@@ -9466,21 +9521,22 @@ export namespace datacatalog_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datacatalog.projects.locations.taxonomies.policyTags.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
+     *   const res =
+     *     await datacatalog.projects.locations.taxonomies.policyTags.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/taxonomies/my-taxonomie/policyTags/my-policyTag',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -9551,7 +9607,8 @@ export namespace datacatalog_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Taxonomies$Policytags$Testiampermissions;
         options = {};
       }
 

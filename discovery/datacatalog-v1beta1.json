@@ -1808,7 +1808,7 @@
       }
     }
   },
-  "revision": "20210325",
+  "revision": "20210510",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2044,6 +2044,11 @@
             "An entry type which is a set of files or objects. Example: Cloud Storage fileset."
           ],
           "type": "string"
+        },
+        "usageSignal": {
+          "$ref": "GoogleCloudDatacatalogV1beta1UsageSignal",
+          "description": "Output only. Statistics on the usage level of the resource.",
+          "readOnly": true
         },
         "userSpecifiedSystem": {
           "description": "This field indicates the entry's source system that Data Catalog does not integrate with. `user_specified_system` strings must begin with a letter or underscore and can only contain letters, numbers, and underscores; are case insensitive; must be at least 1 character and at most 64 characters long.",
@@ -2787,6 +2792,52 @@
           "$ref": "GoogleCloudDatacatalogV1beta1SystemTimestamps",
           "description": "Output only. Timestamps about this taxonomy. Only create_time and update_time are used.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1beta1UsageSignal": {
+      "description": "The set of all usage signals that we store in Data Catalog.",
+      "id": "GoogleCloudDatacatalogV1beta1UsageSignal",
+      "properties": {
+        "updateTime": {
+          "description": "The timestamp of the end of the usage statistics duration.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "usageWithinTimeRange": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDatacatalogV1beta1UsageStats"
+          },
+          "description": "Usage statistics over each of the pre-defined time ranges, supported strings for time ranges are {\"24H\", \"7D\", \"30D\"}.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDatacatalogV1beta1UsageStats": {
+      "description": "Detailed counts on the entry's usage. Caveats: - Only BigQuery tables have usage stats - The usage stats only inlude BigQuery query jobs - The usage stats might be underestimated, e.g. wildcard table references are not yet counted in usage computation https://cloud.google.com/bigquery/docs/querying-wildcard-tables",
+      "id": "GoogleCloudDatacatalogV1beta1UsageStats",
+      "properties": {
+        "totalCancellations": {
+          "description": "The number of times that the underlying entry was attempted to be used but was cancelled by the user.",
+          "format": "float",
+          "type": "number"
+        },
+        "totalCompletions": {
+          "description": "The number of times that the underlying entry was successfully used.",
+          "format": "float",
+          "type": "number"
+        },
+        "totalExecutionTimeForCompletionsMillis": {
+          "description": "Total time spent (in milliseconds) during uses the resulted in completions.",
+          "format": "float",
+          "type": "number"
+        },
+        "totalFailures": {
+          "description": "The number of times that the underlying entry was attempted to be used but failed.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
