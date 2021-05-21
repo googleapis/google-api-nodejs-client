@@ -196,9 +196,8 @@ export namespace dfareporting_v3_3 {
       );
       this.advertisers = new Resource$Advertisers(this.context);
       this.browsers = new Resource$Browsers(this.context);
-      this.campaignCreativeAssociations = new Resource$Campaigncreativeassociations(
-        this.context
-      );
+      this.campaignCreativeAssociations =
+        new Resource$Campaigncreativeassociations(this.context);
       this.campaigns = new Resource$Campaigns(this.context);
       this.changeLogs = new Resource$Changelogs(this.context);
       this.cities = new Resource$Cities(this.context);
