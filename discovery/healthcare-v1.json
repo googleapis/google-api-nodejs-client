@@ -3659,13 +3659,15 @@
                                 "RAW_ONLY",
                                 "PARSED_ONLY",
                                 "FULL",
+                                "SCHEMATIZED_ONLY",
                                 "BASIC"
                               ],
                               "enumDescriptions": [
                                 "Not specified, equivalent to FULL.",
-                                "Server responses include all the message fields except parsed_data field.",
-                                "Server responses include all the message fields except data field.",
+                                "Server responses include all the message fields except parsed_data field, and schematized_data fields.",
+                                "Server responses include all the message fields except data field, and schematized_data fields.",
                                 "Server responses include all the message fields.",
+                                "Server responses include all the message fields except data and parsed_data fields.",
                                 "Server responses include only the name field."
                               ],
                               "location": "query",
@@ -3752,13 +3754,15 @@
                                 "RAW_ONLY",
                                 "PARSED_ONLY",
                                 "FULL",
+                                "SCHEMATIZED_ONLY",
                                 "BASIC"
                               ],
                               "enumDescriptions": [
                                 "Not specified, equivalent to FULL.",
-                                "Server responses include all the message fields except parsed_data field.",
-                                "Server responses include all the message fields except data field.",
+                                "Server responses include all the message fields except parsed_data field, and schematized_data fields.",
+                                "Server responses include all the message fields except data field, and schematized_data fields.",
                                 "Server responses include all the message fields.",
+                                "Server responses include all the message fields except data and parsed_data fields.",
                                 "Server responses include only the name field."
                               ],
                               "location": "query",
@@ -3916,7 +3920,7 @@
       }
     }
   },
-  "revision": "20210414",
+  "revision": "20210507",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "ActivateConsentRequest": {
@@ -5773,6 +5777,12 @@
           "type": "object"
         }
       },
+      "type": "object"
+    },
+    "QueryAccessibleDataResponse": {
+      "description": "Response for successful QueryAccessibleData operations. This structure is included in the response upon operation completion.",
+      "id": "QueryAccessibleDataResponse",
+      "properties": {},
       "type": "object"
     },
     "RedactConfig": {
