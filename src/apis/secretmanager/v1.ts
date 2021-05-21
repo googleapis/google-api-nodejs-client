@@ -229,11 +229,21 @@ export namespace secretmanager_v1 {
   /**
    * Request message for SecretManagerService.DestroySecretVersion.
    */
-  export interface Schema$DestroySecretVersionRequest {}
+  export interface Schema$DestroySecretVersionRequest {
+    /**
+     * Optional. Etag of the SecretVersion. The request succeeds if it matches the etag of the currently stored secret version object. If the etag is omitted, the request succeeds.
+     */
+    etag?: string | null;
+  }
   /**
    * Request message for SecretManagerService.DisableSecretVersion.
    */
-  export interface Schema$DisableSecretVersionRequest {}
+  export interface Schema$DisableSecretVersionRequest {
+    /**
+     * Optional. Etag of the SecretVersion. The request succeeds if it matches the etag of the currently stored secret version object. If the etag is omitted, the request succeeds.
+     */
+    etag?: string | null;
+  }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
@@ -241,7 +251,12 @@ export namespace secretmanager_v1 {
   /**
    * Request message for SecretManagerService.EnableSecretVersion.
    */
-  export interface Schema$EnableSecretVersionRequest {}
+  export interface Schema$EnableSecretVersionRequest {
+    /**
+     * Optional. Etag of the SecretVersion. The request succeeds if it matches the etag of the currently stored secret version object. If the etag is omitted, the request succeeds.
+     */
+    etag?: string | null;
+  }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -430,6 +445,10 @@ export namespace secretmanager_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Etag of the currently stored Secret.
+     */
+    etag?: string | null;
+    /**
      * Optional. Timestamp in UTC when the Secret is scheduled to expire. This is always provided on output, regardless of what was sent on input.
      */
     expireTime?: string | null;
@@ -479,6 +498,10 @@ export namespace secretmanager_v1 {
      * Output only. The time this SecretVersion was destroyed. Only present if state is DESTROYED.
      */
     destroyTime?: string | null;
+    /**
+     * Output only. Etag of the currently stored SecretVersion.
+     */
+    etag?: string | null;
     /**
      * Output only. The resource name of the SecretVersion in the format `projects/x/secrets/x/versions/x`. SecretVersion IDs in a Secret start at 1 and are incremented for each subsequent version of the secret.
      */
@@ -921,6 +944,7 @@ export namespace secretmanager_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "replicationStatus": {},
      *   //   "state": "my_state"
@@ -1056,6 +1080,7 @@ export namespace secretmanager_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "etag": "my_etag",
      *       //   "expireTime": "my_expireTime",
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -1071,6 +1096,7 @@ export namespace secretmanager_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
      *   //   "expireTime": "my_expireTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -1200,6 +1226,8 @@ export namespace secretmanager_v1 {
      *
      *   // Do the magic
      *   const res = await secretmanager.projects.secrets.delete({
+     *     // Optional. Etag of the Secret. The request succeeds if it matches the etag of the currently stored secret object. If the etag is omitted, the request succeeds.
+     *     etag: 'placeholder-value',
      *     // Required. The resource name of the Secret to delete in the format `projects/x/secrets/x`.
      *     name: 'projects/my-project/secrets/my-secret',
      *   });
@@ -1333,6 +1361,7 @@ export namespace secretmanager_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
      *   //   "expireTime": "my_expireTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -1743,6 +1772,7 @@ export namespace secretmanager_v1 {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "etag": "my_etag",
      *       //   "expireTime": "my_expireTime",
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -1758,6 +1788,7 @@ export namespace secretmanager_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "etag": "my_etag",
      *   //   "expireTime": "my_expireTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -2176,6 +2207,10 @@ export namespace secretmanager_v1 {
   export interface Params$Resource$Projects$Secrets$Delete
     extends StandardParameters {
     /**
+     * Optional. Etag of the Secret. The request succeeds if it matches the etag of the currently stored secret object. If the etag is omitted, the request succeeds.
+     */
+    etag?: string;
+    /**
      * Required. The resource name of the Secret to delete in the format `projects/x/secrets/x`.
      */
     name?: string;
@@ -2428,7 +2463,9 @@ export namespace secretmanager_v1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "etag": "my_etag"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -2437,6 +2474,7 @@ export namespace secretmanager_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "replicationStatus": {},
      *   //   "state": "my_state"
@@ -2568,7 +2606,9 @@ export namespace secretmanager_v1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "etag": "my_etag"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -2577,6 +2617,7 @@ export namespace secretmanager_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "replicationStatus": {},
      *   //   "state": "my_state"
@@ -2708,7 +2749,9 @@ export namespace secretmanager_v1 {
      *     // Request body metadata
      *     requestBody: {
      *       // request body parameters
-     *       // {}
+     *       // {
+     *       //   "etag": "my_etag"
+     *       // }
      *     },
      *   });
      *   console.log(res.data);
@@ -2717,6 +2760,7 @@ export namespace secretmanager_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "replicationStatus": {},
      *   //   "state": "my_state"
@@ -2848,6 +2892,7 @@ export namespace secretmanager_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "destroyTime": "my_destroyTime",
+     *   //   "etag": "my_etag",
      *   //   "name": "my_name",
      *   //   "replicationStatus": {},
      *   //   "state": "my_state"
