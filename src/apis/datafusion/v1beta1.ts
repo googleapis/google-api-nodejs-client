@@ -1607,7 +1607,8 @@ export namespace datafusion_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Getiampolicy;
         options = {};
       }
 
@@ -2196,7 +2197,8 @@ export namespace datafusion_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Setiampolicy;
         options = {};
       }
 
@@ -2340,7 +2342,8 @@ export namespace datafusion_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Testiampermissions;
         options = {};
       }
 
@@ -2677,15 +2680,14 @@ export namespace datafusion_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datafusion.projects.locations.instances.namespaces.getIamPolicy(
-     *     {
+     *   const res =
+     *     await datafusion.projects.locations.instances.namespaces.getIamPolicy({
      *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *       'options.requestedPolicyVersion': 'placeholder-value',
      *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/instances/my-instance/namespaces/my-namespace',
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2752,7 +2754,8 @@ export namespace datafusion_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Namespaces$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Namespaces$Getiampolicy;
         options = {};
       }
 
@@ -2814,8 +2817,8 @@ export namespace datafusion_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datafusion.projects.locations.instances.namespaces.setIamPolicy(
-     *     {
+     *   const res =
+     *     await datafusion.projects.locations.instances.namespaces.setIamPolicy({
      *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
      *       resource:
      *         'projects/my-project/locations/my-location/instances/my-instance/namespaces/my-namespace',
@@ -2828,8 +2831,7 @@ export namespace datafusion_v1beta1 {
      *         //   "updateMask": "my_updateMask"
      *         // }
      *       },
-     *     }
-     *   );
+     *     });
      *   console.log(res.data);
      *
      *   // Example response
@@ -2896,7 +2898,8 @@ export namespace datafusion_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Namespaces$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Namespaces$Setiampolicy;
         options = {};
       }
 
@@ -2958,21 +2961,22 @@ export namespace datafusion_v1beta1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await datafusion.projects.locations.instances.namespaces.testIamPermissions(
-     *     {
-     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *       resource:
-     *         'projects/my-project/locations/my-location/instances/my-instance/namespaces/my-namespace',
+     *   const res =
+     *     await datafusion.projects.locations.instances.namespaces.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/instances/my-instance/namespaces/my-namespace',
      *
-     *       // Request body metadata
-     *       requestBody: {
-     *         // request body parameters
-     *         // {
-     *         //   "permissions": []
-     *         // }
-     *       },
-     *     }
-     *   );
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -3043,7 +3047,8 @@ export namespace datafusion_v1beta1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Namespaces$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Namespaces$Testiampermissions;
         options = {};
       }
 

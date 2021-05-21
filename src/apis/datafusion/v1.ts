@@ -1447,7 +1447,8 @@ export namespace datafusion_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Getiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Getiampolicy;
         options = {};
       }
 
@@ -2036,7 +2037,8 @@ export namespace datafusion_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Setiampolicy;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Setiampolicy;
         options = {};
       }
 
@@ -2180,7 +2182,8 @@ export namespace datafusion_v1 {
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Instances$Testiampermissions;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Testiampermissions;
         options = {};
       }
 
