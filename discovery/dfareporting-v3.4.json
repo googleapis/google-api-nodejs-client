@@ -9670,7 +9670,7 @@
       }
     }
   },
-  "revision": "20210210",
+  "revision": "20210521",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -12972,9 +12972,11 @@
               "HTML5_FEATURE_UNSUPPORTED",
               "CLICK_TAG_IN_GWD",
               "CLICK_TAG_HARD_CODED",
-              "SVG_INVALID"
+              "SVG_INVALID",
+              "CLICK_TAG_IN_RICH_MEDIA"
             ],
             "enumDescriptions": [
+              "",
               "",
               "",
               "",
@@ -20474,9 +20476,11 @@
             "ACCOUNT_BY_DEFAULT",
             "SUBACCOUNT_AND_ACCOUNT_BY_DEFAULT",
             "ACCOUNT_ALWAYS",
-            "SUBACCOUNT_AND_ACCOUNT_ALWAYS"
+            "SUBACCOUNT_AND_ACCOUNT_ALWAYS",
+            "USER_PROFILE_ONLY"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
