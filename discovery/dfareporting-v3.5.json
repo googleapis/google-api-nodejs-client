@@ -14,8 +14,8 @@
       }
     }
   },
-  "basePath": "/dfareporting/v3.3/",
-  "baseUrl": "https://dfareporting.googleapis.com/dfareporting/v3.3/",
+  "basePath": "",
+  "baseUrl": "https://dfareporting.googleapis.com/",
   "batchPath": "batch",
   "canonicalName": "Dfareporting",
   "description": "Build applications to efficiently manage large or complex trafficking, reporting, and attribution workflows for Campaign Manager 360.",
@@ -25,7 +25,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "dfareporting:v3.3",
+  "id": "dfareporting:v3.5",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://dfareporting.mtls.googleapis.com/",
   "name": "dfareporting",
@@ -114,7 +114,7 @@
       "methods": {
         "get": {
           "description": "Gets the account's active ad summary by account ID.",
-          "flatPath": "userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}",
           "httpMethod": "GET",
           "id": "dfareporting.accountActiveAdSummaries.get",
           "parameterOrder": [
@@ -137,7 +137,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/accountActiveAdSummaries/{summaryAccountId}",
           "response": {
             "$ref": "AccountActiveAdSummary"
           },
@@ -151,7 +151,7 @@
       "methods": {
         "get": {
           "description": "Gets one account permission group by ID.",
-          "flatPath": "userprofiles/{profileId}/accountPermissionGroups/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/accountPermissionGroups/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.accountPermissionGroups.get",
           "parameterOrder": [
@@ -174,7 +174,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/accountPermissionGroups/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/accountPermissionGroups/{id}",
           "response": {
             "$ref": "AccountPermissionGroup"
           },
@@ -184,7 +184,7 @@
         },
         "list": {
           "description": "Retrieves the list of account permission groups.",
-          "flatPath": "userprofiles/{profileId}/accountPermissionGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/accountPermissionGroups",
           "httpMethod": "GET",
           "id": "dfareporting.accountPermissionGroups.list",
           "parameterOrder": [
@@ -199,7 +199,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/accountPermissionGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/accountPermissionGroups",
           "response": {
             "$ref": "AccountPermissionGroupsListResponse"
           },
@@ -213,7 +213,7 @@
       "methods": {
         "get": {
           "description": "Gets one account permission by ID.",
-          "flatPath": "userprofiles/{profileId}/accountPermissions/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/accountPermissions/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.accountPermissions.get",
           "parameterOrder": [
@@ -236,7 +236,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/accountPermissions/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/accountPermissions/{id}",
           "response": {
             "$ref": "AccountPermission"
           },
@@ -246,7 +246,7 @@
         },
         "list": {
           "description": "Retrieves the list of account permissions.",
-          "flatPath": "userprofiles/{profileId}/accountPermissions",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/accountPermissions",
           "httpMethod": "GET",
           "id": "dfareporting.accountPermissions.list",
           "parameterOrder": [
@@ -261,7 +261,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/accountPermissions",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/accountPermissions",
           "response": {
             "$ref": "AccountPermissionsListResponse"
           },
@@ -275,7 +275,7 @@
       "methods": {
         "get": {
           "description": "Gets one account user profile by ID.",
-          "flatPath": "userprofiles/{profileId}/accountUserProfiles/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/accountUserProfiles/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.accountUserProfiles.get",
           "parameterOrder": [
@@ -298,7 +298,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/accountUserProfiles/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/accountUserProfiles/{id}",
           "response": {
             "$ref": "AccountUserProfile"
           },
@@ -308,7 +308,7 @@
         },
         "insert": {
           "description": "Inserts a new account user profile.",
-          "flatPath": "userprofiles/{profileId}/accountUserProfiles",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/accountUserProfiles",
           "httpMethod": "POST",
           "id": "dfareporting.accountUserProfiles.insert",
           "parameterOrder": [
@@ -323,7 +323,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/accountUserProfiles",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/accountUserProfiles",
           "request": {
             "$ref": "AccountUserProfile"
           },
@@ -336,7 +336,7 @@
         },
         "list": {
           "description": "Retrieves a list of account user profiles, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/accountUserProfiles",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/accountUserProfiles",
           "httpMethod": "GET",
           "id": "dfareporting.accountUserProfiles.list",
           "parameterOrder": [
@@ -422,7 +422,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/accountUserProfiles",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/accountUserProfiles",
           "response": {
             "$ref": "AccountUserProfilesListResponse"
           },
@@ -432,7 +432,7 @@
         },
         "patch": {
           "description": "Updates an existing account user profile. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/accountUserProfiles",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/accountUserProfiles",
           "httpMethod": "PATCH",
           "id": "dfareporting.accountUserProfiles.patch",
           "parameterOrder": [
@@ -455,7 +455,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/accountUserProfiles",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/accountUserProfiles",
           "request": {
             "$ref": "AccountUserProfile"
           },
@@ -468,7 +468,7 @@
         },
         "update": {
           "description": "Updates an existing account user profile.",
-          "flatPath": "userprofiles/{profileId}/accountUserProfiles",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/accountUserProfiles",
           "httpMethod": "PUT",
           "id": "dfareporting.accountUserProfiles.update",
           "parameterOrder": [
@@ -483,7 +483,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/accountUserProfiles",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/accountUserProfiles",
           "request": {
             "$ref": "AccountUserProfile"
           },
@@ -500,7 +500,7 @@
       "methods": {
         "get": {
           "description": "Gets one account by ID.",
-          "flatPath": "userprofiles/{profileId}/accounts/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/accounts/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.accounts.get",
           "parameterOrder": [
@@ -523,7 +523,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/accounts/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/accounts/{id}",
           "response": {
             "$ref": "Account"
           },
@@ -533,7 +533,7 @@
         },
         "list": {
           "description": "Retrieves the list of accounts, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/accounts",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/accounts",
           "httpMethod": "GET",
           "id": "dfareporting.accounts.list",
           "parameterOrder": [
@@ -607,7 +607,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/accounts",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/accounts",
           "response": {
             "$ref": "AccountsListResponse"
           },
@@ -617,7 +617,7 @@
         },
         "patch": {
           "description": "Updates an existing account. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/accounts",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/accounts",
           "httpMethod": "PATCH",
           "id": "dfareporting.accounts.patch",
           "parameterOrder": [
@@ -640,7 +640,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/accounts",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/accounts",
           "request": {
             "$ref": "Account"
           },
@@ -653,7 +653,7 @@
         },
         "update": {
           "description": "Updates an existing account.",
-          "flatPath": "userprofiles/{profileId}/accounts",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/accounts",
           "httpMethod": "PUT",
           "id": "dfareporting.accounts.update",
           "parameterOrder": [
@@ -668,7 +668,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/accounts",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/accounts",
           "request": {
             "$ref": "Account"
           },
@@ -685,7 +685,7 @@
       "methods": {
         "get": {
           "description": "Gets one ad by ID.",
-          "flatPath": "userprofiles/{profileId}/ads/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/ads/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.ads.get",
           "parameterOrder": [
@@ -708,7 +708,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/ads/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/ads/{id}",
           "response": {
             "$ref": "Ad"
           },
@@ -718,7 +718,7 @@
         },
         "insert": {
           "description": "Inserts a new ad.",
-          "flatPath": "userprofiles/{profileId}/ads",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/ads",
           "httpMethod": "POST",
           "id": "dfareporting.ads.insert",
           "parameterOrder": [
@@ -733,7 +733,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/ads",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/ads",
           "request": {
             "$ref": "Ad"
           },
@@ -746,7 +746,7 @@
         },
         "list": {
           "description": "Retrieves a list of ads, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/ads",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/ads",
           "httpMethod": "GET",
           "id": "dfareporting.ads.list",
           "parameterOrder": [
@@ -949,7 +949,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/ads",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/ads",
           "response": {
             "$ref": "AdsListResponse"
           },
@@ -959,7 +959,7 @@
         },
         "patch": {
           "description": "Updates an existing ad. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/ads",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/ads",
           "httpMethod": "PATCH",
           "id": "dfareporting.ads.patch",
           "parameterOrder": [
@@ -982,7 +982,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/ads",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/ads",
           "request": {
             "$ref": "Ad"
           },
@@ -995,7 +995,7 @@
         },
         "update": {
           "description": "Updates an existing ad.",
-          "flatPath": "userprofiles/{profileId}/ads",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/ads",
           "httpMethod": "PUT",
           "id": "dfareporting.ads.update",
           "parameterOrder": [
@@ -1010,7 +1010,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/ads",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/ads",
           "request": {
             "$ref": "Ad"
           },
@@ -1027,7 +1027,7 @@
       "methods": {
         "delete": {
           "description": "Deletes an existing advertiser group.",
-          "flatPath": "userprofiles/{profileId}/advertiserGroups/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups/{id}",
           "httpMethod": "DELETE",
           "id": "dfareporting.advertiserGroups.delete",
           "parameterOrder": [
@@ -1050,14 +1050,14 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertiserGroups/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups/{id}",
           "scopes": [
             "https://www.googleapis.com/auth/dfatrafficking"
           ]
         },
         "get": {
           "description": "Gets one advertiser group by ID.",
-          "flatPath": "userprofiles/{profileId}/advertiserGroups/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.advertiserGroups.get",
           "parameterOrder": [
@@ -1080,7 +1080,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertiserGroups/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups/{id}",
           "response": {
             "$ref": "AdvertiserGroup"
           },
@@ -1090,7 +1090,7 @@
         },
         "insert": {
           "description": "Inserts a new advertiser group.",
-          "flatPath": "userprofiles/{profileId}/advertiserGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups",
           "httpMethod": "POST",
           "id": "dfareporting.advertiserGroups.insert",
           "parameterOrder": [
@@ -1105,7 +1105,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertiserGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups",
           "request": {
             "$ref": "AdvertiserGroup"
           },
@@ -1118,7 +1118,7 @@
         },
         "list": {
           "description": "Retrieves a list of advertiser groups, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/advertiserGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups",
           "httpMethod": "GET",
           "id": "dfareporting.advertiserGroups.list",
           "parameterOrder": [
@@ -1187,7 +1187,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertiserGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups",
           "response": {
             "$ref": "AdvertiserGroupsListResponse"
           },
@@ -1197,7 +1197,7 @@
         },
         "patch": {
           "description": "Updates an existing advertiser group. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/advertiserGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups",
           "httpMethod": "PATCH",
           "id": "dfareporting.advertiserGroups.patch",
           "parameterOrder": [
@@ -1220,7 +1220,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertiserGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups",
           "request": {
             "$ref": "AdvertiserGroup"
           },
@@ -1233,7 +1233,7 @@
         },
         "update": {
           "description": "Updates an existing advertiser group.",
-          "flatPath": "userprofiles/{profileId}/advertiserGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups",
           "httpMethod": "PUT",
           "id": "dfareporting.advertiserGroups.update",
           "parameterOrder": [
@@ -1248,7 +1248,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertiserGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertiserGroups",
           "request": {
             "$ref": "AdvertiserGroup"
           },
@@ -1265,7 +1265,7 @@
       "methods": {
         "get": {
           "description": "Gets one landing page by ID.",
-          "flatPath": "userprofiles/{profileId}/advertiserLandingPages/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertiserLandingPages/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.advertiserLandingPages.get",
           "parameterOrder": [
@@ -1288,7 +1288,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertiserLandingPages/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertiserLandingPages/{id}",
           "response": {
             "$ref": "LandingPage"
           },
@@ -1298,7 +1298,7 @@
         },
         "insert": {
           "description": "Inserts a new landing page.",
-          "flatPath": "userprofiles/{profileId}/advertiserLandingPages",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertiserLandingPages",
           "httpMethod": "POST",
           "id": "dfareporting.advertiserLandingPages.insert",
           "parameterOrder": [
@@ -1313,7 +1313,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertiserLandingPages",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertiserLandingPages",
           "request": {
             "$ref": "LandingPage"
           },
@@ -1326,7 +1326,7 @@
         },
         "list": {
           "description": "Retrieves a list of landing pages.",
-          "flatPath": "userprofiles/{profileId}/advertiserLandingPages",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertiserLandingPages",
           "httpMethod": "GET",
           "id": "dfareporting.advertiserLandingPages.list",
           "parameterOrder": [
@@ -1420,7 +1420,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertiserLandingPages",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertiserLandingPages",
           "response": {
             "$ref": "AdvertiserLandingPagesListResponse"
           },
@@ -1430,7 +1430,7 @@
         },
         "patch": {
           "description": "Updates an existing advertiser landing page. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/advertiserLandingPages",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertiserLandingPages",
           "httpMethod": "PATCH",
           "id": "dfareporting.advertiserLandingPages.patch",
           "parameterOrder": [
@@ -1453,7 +1453,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertiserLandingPages",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertiserLandingPages",
           "request": {
             "$ref": "LandingPage"
           },
@@ -1466,7 +1466,7 @@
         },
         "update": {
           "description": "Updates an existing landing page.",
-          "flatPath": "userprofiles/{profileId}/advertiserLandingPages",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertiserLandingPages",
           "httpMethod": "PUT",
           "id": "dfareporting.advertiserLandingPages.update",
           "parameterOrder": [
@@ -1481,7 +1481,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertiserLandingPages",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertiserLandingPages",
           "request": {
             "$ref": "LandingPage"
           },
@@ -1498,7 +1498,7 @@
       "methods": {
         "get": {
           "description": "Gets one advertiser by ID.",
-          "flatPath": "userprofiles/{profileId}/advertisers/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertisers/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.advertisers.get",
           "parameterOrder": [
@@ -1521,7 +1521,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertisers/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertisers/{id}",
           "response": {
             "$ref": "Advertiser"
           },
@@ -1531,7 +1531,7 @@
         },
         "insert": {
           "description": "Inserts a new advertiser.",
-          "flatPath": "userprofiles/{profileId}/advertisers",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertisers",
           "httpMethod": "POST",
           "id": "dfareporting.advertisers.insert",
           "parameterOrder": [
@@ -1546,7 +1546,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertisers",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertisers",
           "request": {
             "$ref": "Advertiser"
           },
@@ -1559,7 +1559,7 @@
         },
         "list": {
           "description": "Retrieves a list of advertisers, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/advertisers",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertisers",
           "httpMethod": "GET",
           "id": "dfareporting.advertisers.list",
           "parameterOrder": [
@@ -1671,7 +1671,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertisers",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertisers",
           "response": {
             "$ref": "AdvertisersListResponse"
           },
@@ -1681,7 +1681,7 @@
         },
         "patch": {
           "description": "Updates an existing advertiser. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/advertisers",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertisers",
           "httpMethod": "PATCH",
           "id": "dfareporting.advertisers.patch",
           "parameterOrder": [
@@ -1704,7 +1704,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertisers",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertisers",
           "request": {
             "$ref": "Advertiser"
           },
@@ -1717,7 +1717,7 @@
         },
         "update": {
           "description": "Updates an existing advertiser.",
-          "flatPath": "userprofiles/{profileId}/advertisers",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/advertisers",
           "httpMethod": "PUT",
           "id": "dfareporting.advertisers.update",
           "parameterOrder": [
@@ -1732,7 +1732,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/advertisers",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/advertisers",
           "request": {
             "$ref": "Advertiser"
           },
@@ -1749,7 +1749,7 @@
       "methods": {
         "list": {
           "description": "Retrieves a list of browsers.",
-          "flatPath": "userprofiles/{profileId}/browsers",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/browsers",
           "httpMethod": "GET",
           "id": "dfareporting.browsers.list",
           "parameterOrder": [
@@ -1764,7 +1764,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/browsers",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/browsers",
           "response": {
             "$ref": "BrowsersListResponse"
           },
@@ -1778,7 +1778,7 @@
       "methods": {
         "insert": {
           "description": "Associates a creative with the specified campaign. This method creates a default ad with dimensions matching the creative in the campaign if such a default ad does not exist already.",
-          "flatPath": "userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations",
           "httpMethod": "POST",
           "id": "dfareporting.campaignCreativeAssociations.insert",
           "parameterOrder": [
@@ -1801,7 +1801,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations",
           "request": {
             "$ref": "CampaignCreativeAssociation"
           },
@@ -1814,7 +1814,7 @@
         },
         "list": {
           "description": "Retrieves the list of creative IDs associated with the specified campaign. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations",
           "httpMethod": "GET",
           "id": "dfareporting.campaignCreativeAssociations.list",
           "parameterOrder": [
@@ -1865,7 +1865,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/campaigns/{campaignId}/campaignCreativeAssociations",
           "response": {
             "$ref": "CampaignCreativeAssociationsListResponse"
           },
@@ -1879,7 +1879,7 @@
       "methods": {
         "get": {
           "description": "Gets one campaign by ID.",
-          "flatPath": "userprofiles/{profileId}/campaigns/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/campaigns/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.campaigns.get",
           "parameterOrder": [
@@ -1902,7 +1902,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/campaigns/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/campaigns/{id}",
           "response": {
             "$ref": "Campaign"
           },
@@ -1912,7 +1912,7 @@
         },
         "insert": {
           "description": "Inserts a new campaign.",
-          "flatPath": "userprofiles/{profileId}/campaigns",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/campaigns",
           "httpMethod": "POST",
           "id": "dfareporting.campaigns.insert",
           "parameterOrder": [
@@ -1927,7 +1927,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/campaigns",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/campaigns",
           "request": {
             "$ref": "Campaign"
           },
@@ -1940,7 +1940,7 @@
         },
         "list": {
           "description": "Retrieves a list of campaigns, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/campaigns",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/campaigns",
           "httpMethod": "GET",
           "id": "dfareporting.campaigns.list",
           "parameterOrder": [
@@ -2052,7 +2052,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/campaigns",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/campaigns",
           "response": {
             "$ref": "CampaignsListResponse"
           },
@@ -2062,7 +2062,7 @@
         },
         "patch": {
           "description": "Updates an existing campaign. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/campaigns",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/campaigns",
           "httpMethod": "PATCH",
           "id": "dfareporting.campaigns.patch",
           "parameterOrder": [
@@ -2085,7 +2085,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/campaigns",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/campaigns",
           "request": {
             "$ref": "Campaign"
           },
@@ -2098,7 +2098,7 @@
         },
         "update": {
           "description": "Updates an existing campaign.",
-          "flatPath": "userprofiles/{profileId}/campaigns",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/campaigns",
           "httpMethod": "PUT",
           "id": "dfareporting.campaigns.update",
           "parameterOrder": [
@@ -2113,7 +2113,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/campaigns",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/campaigns",
           "request": {
             "$ref": "Campaign"
           },
@@ -2130,7 +2130,7 @@
       "methods": {
         "get": {
           "description": "Gets one change log by ID.",
-          "flatPath": "userprofiles/{profileId}/changeLogs/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/changeLogs/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.changeLogs.get",
           "parameterOrder": [
@@ -2153,7 +2153,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/changeLogs/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/changeLogs/{id}",
           "response": {
             "$ref": "ChangeLog"
           },
@@ -2163,7 +2163,7 @@
         },
         "list": {
           "description": "Retrieves a list of change logs. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/changeLogs",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/changeLogs",
           "httpMethod": "GET",
           "id": "dfareporting.changeLogs.list",
           "parameterOrder": [
@@ -2360,7 +2360,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/changeLogs",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/changeLogs",
           "response": {
             "$ref": "ChangeLogsListResponse"
           },
@@ -2374,7 +2374,7 @@
       "methods": {
         "list": {
           "description": "Retrieves a list of cities, possibly filtered.",
-          "flatPath": "userprofiles/{profileId}/cities",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/cities",
           "httpMethod": "GET",
           "id": "dfareporting.cities.list",
           "parameterOrder": [
@@ -2415,7 +2415,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/cities",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/cities",
           "response": {
             "$ref": "CitiesListResponse"
           },
@@ -2429,7 +2429,7 @@
       "methods": {
         "get": {
           "description": "Gets one connection type by ID.",
-          "flatPath": "userprofiles/{profileId}/connectionTypes/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/connectionTypes/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.connectionTypes.get",
           "parameterOrder": [
@@ -2452,7 +2452,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/connectionTypes/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/connectionTypes/{id}",
           "response": {
             "$ref": "ConnectionType"
           },
@@ -2462,7 +2462,7 @@
         },
         "list": {
           "description": "Retrieves a list of connection types.",
-          "flatPath": "userprofiles/{profileId}/connectionTypes",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/connectionTypes",
           "httpMethod": "GET",
           "id": "dfareporting.connectionTypes.list",
           "parameterOrder": [
@@ -2477,7 +2477,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/connectionTypes",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/connectionTypes",
           "response": {
             "$ref": "ConnectionTypesListResponse"
           },
@@ -2491,7 +2491,7 @@
       "methods": {
         "delete": {
           "description": "Deletes an existing content category.",
-          "flatPath": "userprofiles/{profileId}/contentCategories/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/contentCategories/{id}",
           "httpMethod": "DELETE",
           "id": "dfareporting.contentCategories.delete",
           "parameterOrder": [
@@ -2514,14 +2514,14 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/contentCategories/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/contentCategories/{id}",
           "scopes": [
             "https://www.googleapis.com/auth/dfatrafficking"
           ]
         },
         "get": {
           "description": "Gets one content category by ID.",
-          "flatPath": "userprofiles/{profileId}/contentCategories/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/contentCategories/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.contentCategories.get",
           "parameterOrder": [
@@ -2544,7 +2544,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/contentCategories/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/contentCategories/{id}",
           "response": {
             "$ref": "ContentCategory"
           },
@@ -2554,7 +2554,7 @@
         },
         "insert": {
           "description": "Inserts a new content category.",
-          "flatPath": "userprofiles/{profileId}/contentCategories",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/contentCategories",
           "httpMethod": "POST",
           "id": "dfareporting.contentCategories.insert",
           "parameterOrder": [
@@ -2569,7 +2569,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/contentCategories",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/contentCategories",
           "request": {
             "$ref": "ContentCategory"
           },
@@ -2582,7 +2582,7 @@
         },
         "list": {
           "description": "Retrieves a list of content categories, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/contentCategories",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/contentCategories",
           "httpMethod": "GET",
           "id": "dfareporting.contentCategories.list",
           "parameterOrder": [
@@ -2651,7 +2651,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/contentCategories",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/contentCategories",
           "response": {
             "$ref": "ContentCategoriesListResponse"
           },
@@ -2661,7 +2661,7 @@
         },
         "patch": {
           "description": "Updates an existing content category. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/contentCategories",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/contentCategories",
           "httpMethod": "PATCH",
           "id": "dfareporting.contentCategories.patch",
           "parameterOrder": [
@@ -2684,7 +2684,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/contentCategories",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/contentCategories",
           "request": {
             "$ref": "ContentCategory"
           },
@@ -2697,7 +2697,7 @@
         },
         "update": {
           "description": "Updates an existing content category.",
-          "flatPath": "userprofiles/{profileId}/contentCategories",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/contentCategories",
           "httpMethod": "PUT",
           "id": "dfareporting.contentCategories.update",
           "parameterOrder": [
@@ -2712,7 +2712,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/contentCategories",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/contentCategories",
           "request": {
             "$ref": "ContentCategory"
           },
@@ -2729,7 +2729,7 @@
       "methods": {
         "batchinsert": {
           "description": "Inserts conversions.",
-          "flatPath": "userprofiles/{profileId}/conversions/batchinsert",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/conversions/batchinsert",
           "httpMethod": "POST",
           "id": "dfareporting.conversions.batchinsert",
           "parameterOrder": [
@@ -2744,7 +2744,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/conversions/batchinsert",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/conversions/batchinsert",
           "request": {
             "$ref": "ConversionsBatchInsertRequest"
           },
@@ -2757,7 +2757,7 @@
         },
         "batchupdate": {
           "description": "Updates existing conversions.",
-          "flatPath": "userprofiles/{profileId}/conversions/batchupdate",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/conversions/batchupdate",
           "httpMethod": "POST",
           "id": "dfareporting.conversions.batchupdate",
           "parameterOrder": [
@@ -2772,7 +2772,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/conversions/batchupdate",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/conversions/batchupdate",
           "request": {
             "$ref": "ConversionsBatchUpdateRequest"
           },
@@ -2789,7 +2789,7 @@
       "methods": {
         "get": {
           "description": "Gets one country by ID.",
-          "flatPath": "userprofiles/{profileId}/countries/{dartId}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/countries/{dartId}",
           "httpMethod": "GET",
           "id": "dfareporting.countries.get",
           "parameterOrder": [
@@ -2812,7 +2812,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/countries/{dartId}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/countries/{dartId}",
           "response": {
             "$ref": "Country"
           },
@@ -2822,7 +2822,7 @@
         },
         "list": {
           "description": "Retrieves a list of countries.",
-          "flatPath": "userprofiles/{profileId}/countries",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/countries",
           "httpMethod": "GET",
           "id": "dfareporting.countries.list",
           "parameterOrder": [
@@ -2837,7 +2837,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/countries",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/countries",
           "response": {
             "$ref": "CountriesListResponse"
           },
@@ -2851,7 +2851,7 @@
       "methods": {
         "insert": {
           "description": "Inserts a new creative asset.",
-          "flatPath": "userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets",
           "httpMethod": "POST",
           "id": "dfareporting.creativeAssets.insert",
           "mediaUpload": {
@@ -2862,7 +2862,7 @@
             "protocols": {
               "simple": {
                 "multipart": true,
-                "path": "/upload/dfareporting/v3.3/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets"
+                "path": "/upload/dfareporting/v3.5/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets"
               }
             }
           },
@@ -2886,7 +2886,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeAssets/{advertiserId}/creativeAssets",
           "request": {
             "$ref": "CreativeAssetMetadata"
           },
@@ -2904,7 +2904,7 @@
       "methods": {
         "delete": {
           "description": "Deletes an existing creative field value.",
-          "flatPath": "userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}",
           "httpMethod": "DELETE",
           "id": "dfareporting.creativeFieldValues.delete",
           "parameterOrder": [
@@ -2935,14 +2935,14 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}",
           "scopes": [
             "https://www.googleapis.com/auth/dfatrafficking"
           ]
         },
         "get": {
           "description": "Gets one creative field value by ID.",
-          "flatPath": "userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.creativeFieldValues.get",
           "parameterOrder": [
@@ -2973,7 +2973,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues/{id}",
           "response": {
             "$ref": "CreativeFieldValue"
           },
@@ -2983,7 +2983,7 @@
         },
         "insert": {
           "description": "Inserts a new creative field value.",
-          "flatPath": "userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
           "httpMethod": "POST",
           "id": "dfareporting.creativeFieldValues.insert",
           "parameterOrder": [
@@ -3006,7 +3006,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
           "request": {
             "$ref": "CreativeFieldValue"
           },
@@ -3019,7 +3019,7 @@
         },
         "list": {
           "description": "Retrieves a list of creative field values, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
           "httpMethod": "GET",
           "id": "dfareporting.creativeFieldValues.list",
           "parameterOrder": [
@@ -3096,7 +3096,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
           "response": {
             "$ref": "CreativeFieldValuesListResponse"
           },
@@ -3106,7 +3106,7 @@
         },
         "patch": {
           "description": "Updates an existing creative field value. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
           "httpMethod": "PATCH",
           "id": "dfareporting.creativeFieldValues.patch",
           "parameterOrder": [
@@ -3137,7 +3137,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
           "request": {
             "$ref": "CreativeFieldValue"
           },
@@ -3150,7 +3150,7 @@
         },
         "update": {
           "description": "Updates an existing creative field value.",
-          "flatPath": "userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
           "httpMethod": "PUT",
           "id": "dfareporting.creativeFieldValues.update",
           "parameterOrder": [
@@ -3173,7 +3173,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{creativeFieldId}/creativeFieldValues",
           "request": {
             "$ref": "CreativeFieldValue"
           },
@@ -3190,7 +3190,7 @@
       "methods": {
         "delete": {
           "description": "Deletes an existing creative field.",
-          "flatPath": "userprofiles/{profileId}/creativeFields/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{id}",
           "httpMethod": "DELETE",
           "id": "dfareporting.creativeFields.delete",
           "parameterOrder": [
@@ -3213,14 +3213,14 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeFields/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{id}",
           "scopes": [
             "https://www.googleapis.com/auth/dfatrafficking"
           ]
         },
         "get": {
           "description": "Gets one creative field by ID.",
-          "flatPath": "userprofiles/{profileId}/creativeFields/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.creativeFields.get",
           "parameterOrder": [
@@ -3243,7 +3243,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeFields/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields/{id}",
           "response": {
             "$ref": "CreativeField"
           },
@@ -3253,7 +3253,7 @@
         },
         "insert": {
           "description": "Inserts a new creative field.",
-          "flatPath": "userprofiles/{profileId}/creativeFields",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields",
           "httpMethod": "POST",
           "id": "dfareporting.creativeFields.insert",
           "parameterOrder": [
@@ -3268,7 +3268,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeFields",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields",
           "request": {
             "$ref": "CreativeField"
           },
@@ -3281,7 +3281,7 @@
         },
         "list": {
           "description": "Retrieves a list of creative fields, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/creativeFields",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields",
           "httpMethod": "GET",
           "id": "dfareporting.creativeFields.list",
           "parameterOrder": [
@@ -3357,7 +3357,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeFields",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields",
           "response": {
             "$ref": "CreativeFieldsListResponse"
           },
@@ -3367,7 +3367,7 @@
         },
         "patch": {
           "description": "Updates an existing creative field. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/creativeFields",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields",
           "httpMethod": "PATCH",
           "id": "dfareporting.creativeFields.patch",
           "parameterOrder": [
@@ -3390,7 +3390,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeFields",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields",
           "request": {
             "$ref": "CreativeField"
           },
@@ -3403,7 +3403,7 @@
         },
         "update": {
           "description": "Updates an existing creative field.",
-          "flatPath": "userprofiles/{profileId}/creativeFields",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields",
           "httpMethod": "PUT",
           "id": "dfareporting.creativeFields.update",
           "parameterOrder": [
@@ -3418,7 +3418,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeFields",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeFields",
           "request": {
             "$ref": "CreativeField"
           },
@@ -3435,7 +3435,7 @@
       "methods": {
         "get": {
           "description": "Gets one creative group by ID.",
-          "flatPath": "userprofiles/{profileId}/creativeGroups/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeGroups/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.creativeGroups.get",
           "parameterOrder": [
@@ -3458,7 +3458,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeGroups/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeGroups/{id}",
           "response": {
             "$ref": "CreativeGroup"
           },
@@ -3468,7 +3468,7 @@
         },
         "insert": {
           "description": "Inserts a new creative group.",
-          "flatPath": "userprofiles/{profileId}/creativeGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeGroups",
           "httpMethod": "POST",
           "id": "dfareporting.creativeGroups.insert",
           "parameterOrder": [
@@ -3483,7 +3483,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeGroups",
           "request": {
             "$ref": "CreativeGroup"
           },
@@ -3496,7 +3496,7 @@
         },
         "list": {
           "description": "Retrieves a list of creative groups, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/creativeGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeGroups",
           "httpMethod": "GET",
           "id": "dfareporting.creativeGroups.list",
           "parameterOrder": [
@@ -3580,7 +3580,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeGroups",
           "response": {
             "$ref": "CreativeGroupsListResponse"
           },
@@ -3590,7 +3590,7 @@
         },
         "patch": {
           "description": "Updates an existing creative group. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/creativeGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeGroups",
           "httpMethod": "PATCH",
           "id": "dfareporting.creativeGroups.patch",
           "parameterOrder": [
@@ -3613,7 +3613,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeGroups",
           "request": {
             "$ref": "CreativeGroup"
           },
@@ -3626,7 +3626,7 @@
         },
         "update": {
           "description": "Updates an existing creative group.",
-          "flatPath": "userprofiles/{profileId}/creativeGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creativeGroups",
           "httpMethod": "PUT",
           "id": "dfareporting.creativeGroups.update",
           "parameterOrder": [
@@ -3641,7 +3641,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creativeGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creativeGroups",
           "request": {
             "$ref": "CreativeGroup"
           },
@@ -3658,7 +3658,7 @@
       "methods": {
         "get": {
           "description": "Gets one creative by ID.",
-          "flatPath": "userprofiles/{profileId}/creatives/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creatives/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.creatives.get",
           "parameterOrder": [
@@ -3681,7 +3681,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creatives/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creatives/{id}",
           "response": {
             "$ref": "Creative"
           },
@@ -3691,7 +3691,7 @@
         },
         "insert": {
           "description": "Inserts a new creative.",
-          "flatPath": "userprofiles/{profileId}/creatives",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creatives",
           "httpMethod": "POST",
           "id": "dfareporting.creatives.insert",
           "parameterOrder": [
@@ -3706,7 +3706,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creatives",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creatives",
           "request": {
             "$ref": "Creative"
           },
@@ -3719,7 +3719,7 @@
         },
         "list": {
           "description": "Retrieves a list of creatives, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/creatives",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creatives",
           "httpMethod": "GET",
           "id": "dfareporting.creatives.list",
           "parameterOrder": [
@@ -3904,7 +3904,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creatives",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creatives",
           "response": {
             "$ref": "CreativesListResponse"
           },
@@ -3914,7 +3914,7 @@
         },
         "patch": {
           "description": "Updates an existing creative. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/creatives",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creatives",
           "httpMethod": "PATCH",
           "id": "dfareporting.creatives.patch",
           "parameterOrder": [
@@ -3937,7 +3937,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creatives",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creatives",
           "request": {
             "$ref": "Creative"
           },
@@ -3950,7 +3950,7 @@
         },
         "update": {
           "description": "Updates an existing creative.",
-          "flatPath": "userprofiles/{profileId}/creatives",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/creatives",
           "httpMethod": "PUT",
           "id": "dfareporting.creatives.update",
           "parameterOrder": [
@@ -3965,7 +3965,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/creatives",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/creatives",
           "request": {
             "$ref": "Creative"
           },
@@ -3982,7 +3982,7 @@
       "methods": {
         "query": {
           "description": "Retrieves list of report dimension values for a list of filters.",
-          "flatPath": "userprofiles/{profileId}/dimensionvalues/query",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/dimensionvalues/query",
           "httpMethod": "POST",
           "id": "dfareporting.dimensionValues.query",
           "parameterOrder": [
@@ -4011,7 +4011,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/dimensionvalues/query",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/dimensionvalues/query",
           "request": {
             "$ref": "DimensionValueRequest"
           },
@@ -4028,7 +4028,7 @@
       "methods": {
         "get": {
           "description": "Gets one directory site by ID.",
-          "flatPath": "userprofiles/{profileId}/directorySites/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/directorySites/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.directorySites.get",
           "parameterOrder": [
@@ -4051,7 +4051,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/directorySites/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/directorySites/{id}",
           "response": {
             "$ref": "DirectorySite"
           },
@@ -4061,7 +4061,7 @@
         },
         "insert": {
           "description": "Inserts a new directory site.",
-          "flatPath": "userprofiles/{profileId}/directorySites",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/directorySites",
           "httpMethod": "POST",
           "id": "dfareporting.directorySites.insert",
           "parameterOrder": [
@@ -4076,7 +4076,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/directorySites",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/directorySites",
           "request": {
             "$ref": "DirectorySite"
           },
@@ -4089,7 +4089,7 @@
         },
         "list": {
           "description": "Retrieves a list of directory sites, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/directorySites",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/directorySites",
           "httpMethod": "GET",
           "id": "dfareporting.directorySites.list",
           "parameterOrder": [
@@ -4183,7 +4183,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/directorySites",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/directorySites",
           "response": {
             "$ref": "DirectorySitesListResponse"
           },
@@ -4197,7 +4197,7 @@
       "methods": {
         "delete": {
           "description": "Deletes an existing dynamic targeting key.",
-          "flatPath": "userprofiles/{profileId}/dynamicTargetingKeys/{objectId}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}",
           "httpMethod": "DELETE",
           "id": "dfareporting.dynamicTargetingKeys.delete",
           "parameterOrder": [
@@ -4246,14 +4246,14 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/dynamicTargetingKeys/{objectId}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/dynamicTargetingKeys/{objectId}",
           "scopes": [
             "https://www.googleapis.com/auth/dfatrafficking"
           ]
         },
         "insert": {
           "description": "Inserts a new dynamic targeting key. Keys must be created at the advertiser level before being assigned to the advertiser's ads, creatives, or placements. There is a maximum of 1000 keys per advertiser, out of which a maximum of 20 keys can be assigned per ad, creative, or placement.",
-          "flatPath": "userprofiles/{profileId}/dynamicTargetingKeys",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/dynamicTargetingKeys",
           "httpMethod": "POST",
           "id": "dfareporting.dynamicTargetingKeys.insert",
           "parameterOrder": [
@@ -4268,7 +4268,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/dynamicTargetingKeys",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/dynamicTargetingKeys",
           "request": {
             "$ref": "DynamicTargetingKey"
           },
@@ -4281,7 +4281,7 @@
         },
         "list": {
           "description": "Retrieves a list of dynamic targeting keys.",
-          "flatPath": "userprofiles/{profileId}/dynamicTargetingKeys",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/dynamicTargetingKeys",
           "httpMethod": "GET",
           "id": "dfareporting.dynamicTargetingKeys.list",
           "parameterOrder": [
@@ -4331,7 +4331,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/dynamicTargetingKeys",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/dynamicTargetingKeys",
           "response": {
             "$ref": "DynamicTargetingKeysListResponse"
           },
@@ -4345,7 +4345,7 @@
       "methods": {
         "delete": {
           "description": "Deletes an existing event tag.",
-          "flatPath": "userprofiles/{profileId}/eventTags/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/eventTags/{id}",
           "httpMethod": "DELETE",
           "id": "dfareporting.eventTags.delete",
           "parameterOrder": [
@@ -4368,14 +4368,14 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/eventTags/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/eventTags/{id}",
           "scopes": [
             "https://www.googleapis.com/auth/dfatrafficking"
           ]
         },
         "get": {
           "description": "Gets one event tag by ID.",
-          "flatPath": "userprofiles/{profileId}/eventTags/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/eventTags/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.eventTags.get",
           "parameterOrder": [
@@ -4398,7 +4398,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/eventTags/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/eventTags/{id}",
           "response": {
             "$ref": "EventTag"
           },
@@ -4408,7 +4408,7 @@
         },
         "insert": {
           "description": "Inserts a new event tag.",
-          "flatPath": "userprofiles/{profileId}/eventTags",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/eventTags",
           "httpMethod": "POST",
           "id": "dfareporting.eventTags.insert",
           "parameterOrder": [
@@ -4423,7 +4423,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/eventTags",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/eventTags",
           "request": {
             "$ref": "EventTag"
           },
@@ -4436,7 +4436,7 @@
         },
         "list": {
           "description": "Retrieves a list of event tags, possibly filtered.",
-          "flatPath": "userprofiles/{profileId}/eventTags",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/eventTags",
           "httpMethod": "GET",
           "id": "dfareporting.eventTags.list",
           "parameterOrder": [
@@ -4535,7 +4535,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/eventTags",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/eventTags",
           "response": {
             "$ref": "EventTagsListResponse"
           },
@@ -4545,7 +4545,7 @@
         },
         "patch": {
           "description": "Updates an existing event tag. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/eventTags",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/eventTags",
           "httpMethod": "PATCH",
           "id": "dfareporting.eventTags.patch",
           "parameterOrder": [
@@ -4568,7 +4568,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/eventTags",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/eventTags",
           "request": {
             "$ref": "EventTag"
           },
@@ -4581,7 +4581,7 @@
         },
         "update": {
           "description": "Updates an existing event tag.",
-          "flatPath": "userprofiles/{profileId}/eventTags",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/eventTags",
           "httpMethod": "PUT",
           "id": "dfareporting.eventTags.update",
           "parameterOrder": [
@@ -4596,7 +4596,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/eventTags",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/eventTags",
           "request": {
             "$ref": "EventTag"
           },
@@ -4613,7 +4613,7 @@
       "methods": {
         "get": {
           "description": "Retrieves a report file by its report ID and file ID. This method supports media download.",
-          "flatPath": "reports/{reportId}/files/{fileId}",
+          "flatPath": "dfareporting/v3.5/reports/{reportId}/files/{fileId}",
           "httpMethod": "GET",
           "id": "dfareporting.files.get",
           "parameterOrder": [
@@ -4636,7 +4636,7 @@
               "type": "string"
             }
           },
-          "path": "reports/{reportId}/files/{fileId}",
+          "path": "dfareporting/v3.5/reports/{reportId}/files/{fileId}",
           "response": {
             "$ref": "File"
           },
@@ -4647,7 +4647,7 @@
         },
         "list": {
           "description": "Lists files for a user profile.",
-          "flatPath": "userprofiles/{profileId}/files",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/files",
           "httpMethod": "GET",
           "id": "dfareporting.files.list",
           "parameterOrder": [
@@ -4720,7 +4720,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/files",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/files",
           "response": {
             "$ref": "FileList"
           },
@@ -4734,7 +4734,7 @@
       "methods": {
         "delete": {
           "description": "Deletes an existing floodlight activity.",
-          "flatPath": "userprofiles/{profileId}/floodlightActivities/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities/{id}",
           "httpMethod": "DELETE",
           "id": "dfareporting.floodlightActivities.delete",
           "parameterOrder": [
@@ -4757,14 +4757,14 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightActivities/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities/{id}",
           "scopes": [
             "https://www.googleapis.com/auth/dfatrafficking"
           ]
         },
         "generatetag": {
           "description": "Generates a tag for a floodlight activity.",
-          "flatPath": "userprofiles/{profileId}/floodlightActivities/generatetag",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities/generatetag",
           "httpMethod": "POST",
           "id": "dfareporting.floodlightActivities.generatetag",
           "parameterOrder": [
@@ -4785,7 +4785,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightActivities/generatetag",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities/generatetag",
           "response": {
             "$ref": "FloodlightActivitiesGenerateTagResponse"
           },
@@ -4795,7 +4795,7 @@
         },
         "get": {
           "description": "Gets one floodlight activity by ID.",
-          "flatPath": "userprofiles/{profileId}/floodlightActivities/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.floodlightActivities.get",
           "parameterOrder": [
@@ -4818,7 +4818,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightActivities/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities/{id}",
           "response": {
             "$ref": "FloodlightActivity"
           },
@@ -4828,7 +4828,7 @@
         },
         "insert": {
           "description": "Inserts a new floodlight activity.",
-          "flatPath": "userprofiles/{profileId}/floodlightActivities",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities",
           "httpMethod": "POST",
           "id": "dfareporting.floodlightActivities.insert",
           "parameterOrder": [
@@ -4843,7 +4843,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightActivities",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities",
           "request": {
             "$ref": "FloodlightActivity"
           },
@@ -4856,7 +4856,7 @@
         },
         "list": {
           "description": "Retrieves a list of floodlight activities, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/floodlightActivities",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities",
           "httpMethod": "GET",
           "id": "dfareporting.floodlightActivities.list",
           "parameterOrder": [
@@ -4972,7 +4972,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightActivities",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities",
           "response": {
             "$ref": "FloodlightActivitiesListResponse"
           },
@@ -4982,7 +4982,7 @@
         },
         "patch": {
           "description": "Updates an existing floodlight activity. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/floodlightActivities",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities",
           "httpMethod": "PATCH",
           "id": "dfareporting.floodlightActivities.patch",
           "parameterOrder": [
@@ -5005,7 +5005,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightActivities",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities",
           "request": {
             "$ref": "FloodlightActivity"
           },
@@ -5018,7 +5018,7 @@
         },
         "update": {
           "description": "Updates an existing floodlight activity.",
-          "flatPath": "userprofiles/{profileId}/floodlightActivities",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities",
           "httpMethod": "PUT",
           "id": "dfareporting.floodlightActivities.update",
           "parameterOrder": [
@@ -5033,7 +5033,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightActivities",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivities",
           "request": {
             "$ref": "FloodlightActivity"
           },
@@ -5050,7 +5050,7 @@
       "methods": {
         "get": {
           "description": "Gets one floodlight activity group by ID.",
-          "flatPath": "userprofiles/{profileId}/floodlightActivityGroups/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivityGroups/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.floodlightActivityGroups.get",
           "parameterOrder": [
@@ -5073,7 +5073,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightActivityGroups/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivityGroups/{id}",
           "response": {
             "$ref": "FloodlightActivityGroup"
           },
@@ -5083,7 +5083,7 @@
         },
         "insert": {
           "description": "Inserts a new floodlight activity group.",
-          "flatPath": "userprofiles/{profileId}/floodlightActivityGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivityGroups",
           "httpMethod": "POST",
           "id": "dfareporting.floodlightActivityGroups.insert",
           "parameterOrder": [
@@ -5098,7 +5098,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightActivityGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivityGroups",
           "request": {
             "$ref": "FloodlightActivityGroup"
           },
@@ -5111,7 +5111,7 @@
         },
         "list": {
           "description": "Retrieves a list of floodlight activity groups, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/floodlightActivityGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivityGroups",
           "httpMethod": "GET",
           "id": "dfareporting.floodlightActivityGroups.list",
           "parameterOrder": [
@@ -5205,7 +5205,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightActivityGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivityGroups",
           "response": {
             "$ref": "FloodlightActivityGroupsListResponse"
           },
@@ -5215,7 +5215,7 @@
         },
         "patch": {
           "description": "Updates an existing floodlight activity group. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/floodlightActivityGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivityGroups",
           "httpMethod": "PATCH",
           "id": "dfareporting.floodlightActivityGroups.patch",
           "parameterOrder": [
@@ -5238,7 +5238,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightActivityGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivityGroups",
           "request": {
             "$ref": "FloodlightActivityGroup"
           },
@@ -5251,7 +5251,7 @@
         },
         "update": {
           "description": "Updates an existing floodlight activity group.",
-          "flatPath": "userprofiles/{profileId}/floodlightActivityGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivityGroups",
           "httpMethod": "PUT",
           "id": "dfareporting.floodlightActivityGroups.update",
           "parameterOrder": [
@@ -5266,7 +5266,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightActivityGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightActivityGroups",
           "request": {
             "$ref": "FloodlightActivityGroup"
           },
@@ -5283,7 +5283,7 @@
       "methods": {
         "get": {
           "description": "Gets one floodlight configuration by ID.",
-          "flatPath": "userprofiles/{profileId}/floodlightConfigurations/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightConfigurations/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.floodlightConfigurations.get",
           "parameterOrder": [
@@ -5306,7 +5306,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightConfigurations/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightConfigurations/{id}",
           "response": {
             "$ref": "FloodlightConfiguration"
           },
@@ -5316,7 +5316,7 @@
         },
         "list": {
           "description": "Retrieves a list of floodlight configurations, possibly filtered.",
-          "flatPath": "userprofiles/{profileId}/floodlightConfigurations",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightConfigurations",
           "httpMethod": "GET",
           "id": "dfareporting.floodlightConfigurations.list",
           "parameterOrder": [
@@ -5338,7 +5338,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightConfigurations",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightConfigurations",
           "response": {
             "$ref": "FloodlightConfigurationsListResponse"
           },
@@ -5348,7 +5348,7 @@
         },
         "patch": {
           "description": "Updates an existing floodlight configuration. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/floodlightConfigurations",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightConfigurations",
           "httpMethod": "PATCH",
           "id": "dfareporting.floodlightConfigurations.patch",
           "parameterOrder": [
@@ -5371,7 +5371,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightConfigurations",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightConfigurations",
           "request": {
             "$ref": "FloodlightConfiguration"
           },
@@ -5384,7 +5384,7 @@
         },
         "update": {
           "description": "Updates an existing floodlight configuration.",
-          "flatPath": "userprofiles/{profileId}/floodlightConfigurations",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/floodlightConfigurations",
           "httpMethod": "PUT",
           "id": "dfareporting.floodlightConfigurations.update",
           "parameterOrder": [
@@ -5399,7 +5399,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/floodlightConfigurations",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/floodlightConfigurations",
           "request": {
             "$ref": "FloodlightConfiguration"
           },
@@ -5416,7 +5416,7 @@
       "methods": {
         "get": {
           "description": "Gets one inventory item by ID.",
-          "flatPath": "userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.inventoryItems.get",
           "parameterOrder": [
@@ -5447,7 +5447,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/inventoryItems/{id}",
           "response": {
             "$ref": "InventoryItem"
           },
@@ -5457,7 +5457,7 @@
         },
         "list": {
           "description": "Retrieves a list of inventory items, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/projects/{projectId}/inventoryItems",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/inventoryItems",
           "httpMethod": "GET",
           "id": "dfareporting.inventoryItems.list",
           "parameterOrder": [
@@ -5561,7 +5561,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/projects/{projectId}/inventoryItems",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/inventoryItems",
           "response": {
             "$ref": "InventoryItemsListResponse"
           },
@@ -5575,7 +5575,7 @@
       "methods": {
         "list": {
           "description": "Retrieves a list of languages.",
-          "flatPath": "userprofiles/{profileId}/languages",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/languages",
           "httpMethod": "GET",
           "id": "dfareporting.languages.list",
           "parameterOrder": [
@@ -5590,7 +5590,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/languages",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/languages",
           "response": {
             "$ref": "LanguagesListResponse"
           },
@@ -5604,7 +5604,7 @@
       "methods": {
         "list": {
           "description": "Retrieves a list of metros.",
-          "flatPath": "userprofiles/{profileId}/metros",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/metros",
           "httpMethod": "GET",
           "id": "dfareporting.metros.list",
           "parameterOrder": [
@@ -5619,7 +5619,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/metros",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/metros",
           "response": {
             "$ref": "MetrosListResponse"
           },
@@ -5633,7 +5633,7 @@
       "methods": {
         "get": {
           "description": "Gets one mobile app by ID.",
-          "flatPath": "userprofiles/{profileId}/mobileApps/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/mobileApps/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.mobileApps.get",
           "parameterOrder": [
@@ -5655,7 +5655,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/mobileApps/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/mobileApps/{id}",
           "response": {
             "$ref": "MobileApp"
           },
@@ -5665,7 +5665,7 @@
         },
         "list": {
           "description": "Retrieves list of available mobile apps.",
-          "flatPath": "userprofiles/{profileId}/mobileApps",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/mobileApps",
           "httpMethod": "GET",
           "id": "dfareporting.mobileApps.list",
           "parameterOrder": [
@@ -5721,7 +5721,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/mobileApps",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/mobileApps",
           "response": {
             "$ref": "MobileAppsListResponse"
           },
@@ -5735,7 +5735,7 @@
       "methods": {
         "get": {
           "description": "Gets one mobile carrier by ID.",
-          "flatPath": "userprofiles/{profileId}/mobileCarriers/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/mobileCarriers/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.mobileCarriers.get",
           "parameterOrder": [
@@ -5758,7 +5758,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/mobileCarriers/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/mobileCarriers/{id}",
           "response": {
             "$ref": "MobileCarrier"
           },
@@ -5768,7 +5768,7 @@
         },
         "list": {
           "description": "Retrieves a list of mobile carriers.",
-          "flatPath": "userprofiles/{profileId}/mobileCarriers",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/mobileCarriers",
           "httpMethod": "GET",
           "id": "dfareporting.mobileCarriers.list",
           "parameterOrder": [
@@ -5783,7 +5783,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/mobileCarriers",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/mobileCarriers",
           "response": {
             "$ref": "MobileCarriersListResponse"
           },
@@ -5797,7 +5797,7 @@
       "methods": {
         "get": {
           "description": "Gets one operating system version by ID.",
-          "flatPath": "userprofiles/{profileId}/operatingSystemVersions/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/operatingSystemVersions/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.operatingSystemVersions.get",
           "parameterOrder": [
@@ -5820,7 +5820,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/operatingSystemVersions/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/operatingSystemVersions/{id}",
           "response": {
             "$ref": "OperatingSystemVersion"
           },
@@ -5830,7 +5830,7 @@
         },
         "list": {
           "description": "Retrieves a list of operating system versions.",
-          "flatPath": "userprofiles/{profileId}/operatingSystemVersions",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/operatingSystemVersions",
           "httpMethod": "GET",
           "id": "dfareporting.operatingSystemVersions.list",
           "parameterOrder": [
@@ -5845,7 +5845,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/operatingSystemVersions",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/operatingSystemVersions",
           "response": {
             "$ref": "OperatingSystemVersionsListResponse"
           },
@@ -5859,7 +5859,7 @@
       "methods": {
         "get": {
           "description": "Gets one operating system by DART ID.",
-          "flatPath": "userprofiles/{profileId}/operatingSystems/{dartId}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/operatingSystems/{dartId}",
           "httpMethod": "GET",
           "id": "dfareporting.operatingSystems.get",
           "parameterOrder": [
@@ -5882,7 +5882,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/operatingSystems/{dartId}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/operatingSystems/{dartId}",
           "response": {
             "$ref": "OperatingSystem"
           },
@@ -5892,7 +5892,7 @@
         },
         "list": {
           "description": "Retrieves a list of operating systems.",
-          "flatPath": "userprofiles/{profileId}/operatingSystems",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/operatingSystems",
           "httpMethod": "GET",
           "id": "dfareporting.operatingSystems.list",
           "parameterOrder": [
@@ -5907,7 +5907,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/operatingSystems",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/operatingSystems",
           "response": {
             "$ref": "OperatingSystemsListResponse"
           },
@@ -5921,7 +5921,7 @@
       "methods": {
         "get": {
           "description": "Gets one order document by ID.",
-          "flatPath": "userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.orderDocuments.get",
           "parameterOrder": [
@@ -5952,7 +5952,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/orderDocuments/{id}",
           "response": {
             "$ref": "OrderDocument"
           },
@@ -5962,7 +5962,7 @@
         },
         "list": {
           "description": "Retrieves a list of order documents, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/projects/{projectId}/orderDocuments",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/orderDocuments",
           "httpMethod": "GET",
           "id": "dfareporting.orderDocuments.list",
           "parameterOrder": [
@@ -6058,7 +6058,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/projects/{projectId}/orderDocuments",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/orderDocuments",
           "response": {
             "$ref": "OrderDocumentsListResponse"
           },
@@ -6072,7 +6072,7 @@
       "methods": {
         "get": {
           "description": "Gets one order by ID.",
-          "flatPath": "userprofiles/{profileId}/projects/{projectId}/orders/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/orders/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.orders.get",
           "parameterOrder": [
@@ -6103,7 +6103,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/projects/{projectId}/orders/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/orders/{id}",
           "response": {
             "$ref": "Order"
           },
@@ -6113,7 +6113,7 @@
         },
         "list": {
           "description": "Retrieves a list of orders, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/projects/{projectId}/orders",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/orders",
           "httpMethod": "GET",
           "id": "dfareporting.orders.list",
           "parameterOrder": [
@@ -6197,7 +6197,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/projects/{projectId}/orders",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/projects/{projectId}/orders",
           "response": {
             "$ref": "OrdersListResponse"
           },
@@ -6211,7 +6211,7 @@
       "methods": {
         "get": {
           "description": "Gets one placement group by ID.",
-          "flatPath": "userprofiles/{profileId}/placementGroups/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placementGroups/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.placementGroups.get",
           "parameterOrder": [
@@ -6234,7 +6234,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placementGroups/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placementGroups/{id}",
           "response": {
             "$ref": "PlacementGroup"
           },
@@ -6244,7 +6244,7 @@
         },
         "insert": {
           "description": "Inserts a new placement group.",
-          "flatPath": "userprofiles/{profileId}/placementGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placementGroups",
           "httpMethod": "POST",
           "id": "dfareporting.placementGroups.insert",
           "parameterOrder": [
@@ -6259,7 +6259,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placementGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placementGroups",
           "request": {
             "$ref": "PlacementGroup"
           },
@@ -6272,7 +6272,7 @@
         },
         "list": {
           "description": "Retrieves a list of placement groups, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/placementGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placementGroups",
           "httpMethod": "GET",
           "id": "dfareporting.placementGroups.list",
           "parameterOrder": [
@@ -6443,7 +6443,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placementGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placementGroups",
           "response": {
             "$ref": "PlacementGroupsListResponse"
           },
@@ -6453,7 +6453,7 @@
         },
         "patch": {
           "description": "Updates an existing placement group. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/placementGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placementGroups",
           "httpMethod": "PATCH",
           "id": "dfareporting.placementGroups.patch",
           "parameterOrder": [
@@ -6476,7 +6476,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placementGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placementGroups",
           "request": {
             "$ref": "PlacementGroup"
           },
@@ -6489,7 +6489,7 @@
         },
         "update": {
           "description": "Updates an existing placement group.",
-          "flatPath": "userprofiles/{profileId}/placementGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placementGroups",
           "httpMethod": "PUT",
           "id": "dfareporting.placementGroups.update",
           "parameterOrder": [
@@ -6504,7 +6504,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placementGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placementGroups",
           "request": {
             "$ref": "PlacementGroup"
           },
@@ -6521,7 +6521,7 @@
       "methods": {
         "delete": {
           "description": "Deletes an existing placement strategy.",
-          "flatPath": "userprofiles/{profileId}/placementStrategies/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placementStrategies/{id}",
           "httpMethod": "DELETE",
           "id": "dfareporting.placementStrategies.delete",
           "parameterOrder": [
@@ -6544,14 +6544,14 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placementStrategies/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placementStrategies/{id}",
           "scopes": [
             "https://www.googleapis.com/auth/dfatrafficking"
           ]
         },
         "get": {
           "description": "Gets one placement strategy by ID.",
-          "flatPath": "userprofiles/{profileId}/placementStrategies/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placementStrategies/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.placementStrategies.get",
           "parameterOrder": [
@@ -6574,7 +6574,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placementStrategies/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placementStrategies/{id}",
           "response": {
             "$ref": "PlacementStrategy"
           },
@@ -6584,7 +6584,7 @@
         },
         "insert": {
           "description": "Inserts a new placement strategy.",
-          "flatPath": "userprofiles/{profileId}/placementStrategies",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placementStrategies",
           "httpMethod": "POST",
           "id": "dfareporting.placementStrategies.insert",
           "parameterOrder": [
@@ -6599,7 +6599,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placementStrategies",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placementStrategies",
           "request": {
             "$ref": "PlacementStrategy"
           },
@@ -6612,7 +6612,7 @@
         },
         "list": {
           "description": "Retrieves a list of placement strategies, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/placementStrategies",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placementStrategies",
           "httpMethod": "GET",
           "id": "dfareporting.placementStrategies.list",
           "parameterOrder": [
@@ -6681,7 +6681,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placementStrategies",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placementStrategies",
           "response": {
             "$ref": "PlacementStrategiesListResponse"
           },
@@ -6691,7 +6691,7 @@
         },
         "patch": {
           "description": "Updates an existing placement strategy. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/placementStrategies",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placementStrategies",
           "httpMethod": "PATCH",
           "id": "dfareporting.placementStrategies.patch",
           "parameterOrder": [
@@ -6714,7 +6714,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placementStrategies",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placementStrategies",
           "request": {
             "$ref": "PlacementStrategy"
           },
@@ -6727,7 +6727,7 @@
         },
         "update": {
           "description": "Updates an existing placement strategy.",
-          "flatPath": "userprofiles/{profileId}/placementStrategies",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placementStrategies",
           "httpMethod": "PUT",
           "id": "dfareporting.placementStrategies.update",
           "parameterOrder": [
@@ -6742,7 +6742,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placementStrategies",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placementStrategies",
           "request": {
             "$ref": "PlacementStrategy"
           },
@@ -6759,7 +6759,7 @@
       "methods": {
         "generatetags": {
           "description": "Generates tags for a placement.",
-          "flatPath": "userprofiles/{profileId}/placements/generatetags",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placements/generatetags",
           "httpMethod": "POST",
           "id": "dfareporting.placements.generatetags",
           "parameterOrder": [
@@ -6835,7 +6835,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placements/generatetags",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placements/generatetags",
           "response": {
             "$ref": "PlacementsGenerateTagsResponse"
           },
@@ -6845,7 +6845,7 @@
         },
         "get": {
           "description": "Gets one placement by ID.",
-          "flatPath": "userprofiles/{profileId}/placements/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placements/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.placements.get",
           "parameterOrder": [
@@ -6868,7 +6868,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placements/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placements/{id}",
           "response": {
             "$ref": "Placement"
           },
@@ -6878,7 +6878,7 @@
         },
         "insert": {
           "description": "Inserts a new placement.",
-          "flatPath": "userprofiles/{profileId}/placements",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placements",
           "httpMethod": "POST",
           "id": "dfareporting.placements.insert",
           "parameterOrder": [
@@ -6893,7 +6893,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placements",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placements",
           "request": {
             "$ref": "Placement"
           },
@@ -6906,7 +6906,7 @@
         },
         "list": {
           "description": "Retrieves a list of placements, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/placements",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placements",
           "httpMethod": "GET",
           "id": "dfareporting.placements.list",
           "parameterOrder": [
@@ -7113,7 +7113,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placements",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placements",
           "response": {
             "$ref": "PlacementsListResponse"
           },
@@ -7123,7 +7123,7 @@
         },
         "patch": {
           "description": "Updates an existing placement. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/placements",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placements",
           "httpMethod": "PATCH",
           "id": "dfareporting.placements.patch",
           "parameterOrder": [
@@ -7146,7 +7146,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placements",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placements",
           "request": {
             "$ref": "Placement"
           },
@@ -7159,7 +7159,7 @@
         },
         "update": {
           "description": "Updates an existing placement.",
-          "flatPath": "userprofiles/{profileId}/placements",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/placements",
           "httpMethod": "PUT",
           "id": "dfareporting.placements.update",
           "parameterOrder": [
@@ -7174,7 +7174,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/placements",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/placements",
           "request": {
             "$ref": "Placement"
           },
@@ -7191,7 +7191,7 @@
       "methods": {
         "get": {
           "description": "Gets one platform type by ID.",
-          "flatPath": "userprofiles/{profileId}/platformTypes/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/platformTypes/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.platformTypes.get",
           "parameterOrder": [
@@ -7214,7 +7214,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/platformTypes/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/platformTypes/{id}",
           "response": {
             "$ref": "PlatformType"
           },
@@ -7224,7 +7224,7 @@
         },
         "list": {
           "description": "Retrieves a list of platform types.",
-          "flatPath": "userprofiles/{profileId}/platformTypes",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/platformTypes",
           "httpMethod": "GET",
           "id": "dfareporting.platformTypes.list",
           "parameterOrder": [
@@ -7239,7 +7239,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/platformTypes",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/platformTypes",
           "response": {
             "$ref": "PlatformTypesListResponse"
           },
@@ -7253,7 +7253,7 @@
       "methods": {
         "get": {
           "description": "Gets one postal code by ID.",
-          "flatPath": "userprofiles/{profileId}/postalCodes/{code}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/postalCodes/{code}",
           "httpMethod": "GET",
           "id": "dfareporting.postalCodes.get",
           "parameterOrder": [
@@ -7275,7 +7275,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/postalCodes/{code}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/postalCodes/{code}",
           "response": {
             "$ref": "PostalCode"
           },
@@ -7285,7 +7285,7 @@
         },
         "list": {
           "description": "Retrieves a list of postal codes.",
-          "flatPath": "userprofiles/{profileId}/postalCodes",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/postalCodes",
           "httpMethod": "GET",
           "id": "dfareporting.postalCodes.list",
           "parameterOrder": [
@@ -7300,7 +7300,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/postalCodes",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/postalCodes",
           "response": {
             "$ref": "PostalCodesListResponse"
           },
@@ -7314,7 +7314,7 @@
       "methods": {
         "get": {
           "description": "Gets one project by ID.",
-          "flatPath": "userprofiles/{profileId}/projects/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/projects/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.projects.get",
           "parameterOrder": [
@@ -7337,7 +7337,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/projects/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/projects/{id}",
           "response": {
             "$ref": "Project"
           },
@@ -7347,7 +7347,7 @@
         },
         "list": {
           "description": "Retrieves a list of projects, possibly filtered. This method supports paging .",
-          "flatPath": "userprofiles/{profileId}/projects",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/projects",
           "httpMethod": "GET",
           "id": "dfareporting.projects.list",
           "parameterOrder": [
@@ -7423,7 +7423,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/projects",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/projects",
           "response": {
             "$ref": "ProjectsListResponse"
           },
@@ -7437,7 +7437,7 @@
       "methods": {
         "list": {
           "description": "Retrieves a list of regions.",
-          "flatPath": "userprofiles/{profileId}/regions",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/regions",
           "httpMethod": "GET",
           "id": "dfareporting.regions.list",
           "parameterOrder": [
@@ -7452,7 +7452,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/regions",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/regions",
           "response": {
             "$ref": "RegionsListResponse"
           },
@@ -7466,7 +7466,7 @@
       "methods": {
         "get": {
           "description": "Gets one remarketing list share by remarketing list ID.",
-          "flatPath": "userprofiles/{profileId}/remarketingListShares/{remarketingListId}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/remarketingListShares/{remarketingListId}",
           "httpMethod": "GET",
           "id": "dfareporting.remarketingListShares.get",
           "parameterOrder": [
@@ -7489,7 +7489,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/remarketingListShares/{remarketingListId}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/remarketingListShares/{remarketingListId}",
           "response": {
             "$ref": "RemarketingListShare"
           },
@@ -7499,7 +7499,7 @@
         },
         "patch": {
           "description": "Updates an existing remarketing list share. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/remarketingListShares",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/remarketingListShares",
           "httpMethod": "PATCH",
           "id": "dfareporting.remarketingListShares.patch",
           "parameterOrder": [
@@ -7522,7 +7522,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/remarketingListShares",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/remarketingListShares",
           "request": {
             "$ref": "RemarketingListShare"
           },
@@ -7535,7 +7535,7 @@
         },
         "update": {
           "description": "Updates an existing remarketing list share.",
-          "flatPath": "userprofiles/{profileId}/remarketingListShares",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/remarketingListShares",
           "httpMethod": "PUT",
           "id": "dfareporting.remarketingListShares.update",
           "parameterOrder": [
@@ -7550,7 +7550,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/remarketingListShares",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/remarketingListShares",
           "request": {
             "$ref": "RemarketingListShare"
           },
@@ -7567,7 +7567,7 @@
       "methods": {
         "get": {
           "description": "Gets one remarketing list by ID.",
-          "flatPath": "userprofiles/{profileId}/remarketingLists/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/remarketingLists/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.remarketingLists.get",
           "parameterOrder": [
@@ -7590,7 +7590,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/remarketingLists/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/remarketingLists/{id}",
           "response": {
             "$ref": "RemarketingList"
           },
@@ -7600,7 +7600,7 @@
         },
         "insert": {
           "description": "Inserts a new remarketing list.",
-          "flatPath": "userprofiles/{profileId}/remarketingLists",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/remarketingLists",
           "httpMethod": "POST",
           "id": "dfareporting.remarketingLists.insert",
           "parameterOrder": [
@@ -7615,7 +7615,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/remarketingLists",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/remarketingLists",
           "request": {
             "$ref": "RemarketingList"
           },
@@ -7628,7 +7628,7 @@
         },
         "list": {
           "description": "Retrieves a list of remarketing lists, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/remarketingLists",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/remarketingLists",
           "httpMethod": "GET",
           "id": "dfareporting.remarketingLists.list",
           "parameterOrder": [
@@ -7709,7 +7709,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/remarketingLists",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/remarketingLists",
           "response": {
             "$ref": "RemarketingListsListResponse"
           },
@@ -7719,7 +7719,7 @@
         },
         "patch": {
           "description": "Updates an existing remarketing list. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/remarketingLists",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/remarketingLists",
           "httpMethod": "PATCH",
           "id": "dfareporting.remarketingLists.patch",
           "parameterOrder": [
@@ -7742,7 +7742,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/remarketingLists",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/remarketingLists",
           "request": {
             "$ref": "RemarketingList"
           },
@@ -7755,7 +7755,7 @@
         },
         "update": {
           "description": "Updates an existing remarketing list.",
-          "flatPath": "userprofiles/{profileId}/remarketingLists",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/remarketingLists",
           "httpMethod": "PUT",
           "id": "dfareporting.remarketingLists.update",
           "parameterOrder": [
@@ -7770,7 +7770,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/remarketingLists",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/remarketingLists",
           "request": {
             "$ref": "RemarketingList"
           },
@@ -7787,7 +7787,7 @@
       "methods": {
         "delete": {
           "description": "Deletes a report by its ID.",
-          "flatPath": "userprofiles/{profileId}/reports/{reportId}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}",
           "httpMethod": "DELETE",
           "id": "dfareporting.reports.delete",
           "parameterOrder": [
@@ -7810,14 +7810,14 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/reports/{reportId}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}",
           "scopes": [
             "https://www.googleapis.com/auth/dfareporting"
           ]
         },
         "get": {
           "description": "Retrieves a report by its ID.",
-          "flatPath": "userprofiles/{profileId}/reports/{reportId}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}",
           "httpMethod": "GET",
           "id": "dfareporting.reports.get",
           "parameterOrder": [
@@ -7840,7 +7840,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/reports/{reportId}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}",
           "response": {
             "$ref": "Report"
           },
@@ -7850,7 +7850,7 @@
         },
         "insert": {
           "description": "Creates a report.",
-          "flatPath": "userprofiles/{profileId}/reports",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/reports",
           "httpMethod": "POST",
           "id": "dfareporting.reports.insert",
           "parameterOrder": [
@@ -7865,7 +7865,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/reports",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/reports",
           "request": {
             "$ref": "Report"
           },
@@ -7878,7 +7878,7 @@
         },
         "list": {
           "description": "Retrieves list of reports.",
-          "flatPath": "userprofiles/{profileId}/reports",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/reports",
           "httpMethod": "GET",
           "id": "dfareporting.reports.list",
           "parameterOrder": [
@@ -7951,7 +7951,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/reports",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/reports",
           "response": {
             "$ref": "ReportList"
           },
@@ -7961,7 +7961,7 @@
         },
         "patch": {
           "description": "Updates an existing report. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/reports/{reportId}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}",
           "httpMethod": "PATCH",
           "id": "dfareporting.reports.patch",
           "parameterOrder": [
@@ -7984,7 +7984,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/reports/{reportId}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}",
           "request": {
             "$ref": "Report"
           },
@@ -7997,7 +7997,7 @@
         },
         "run": {
           "description": "Runs a report.",
-          "flatPath": "userprofiles/{profileId}/reports/{reportId}/run",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}/run",
           "httpMethod": "POST",
           "id": "dfareporting.reports.run",
           "parameterOrder": [
@@ -8026,7 +8026,7 @@
               "type": "boolean"
             }
           },
-          "path": "userprofiles/{profileId}/reports/{reportId}/run",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}/run",
           "response": {
             "$ref": "File"
           },
@@ -8036,7 +8036,7 @@
         },
         "update": {
           "description": "Updates a report.",
-          "flatPath": "userprofiles/{profileId}/reports/{reportId}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}",
           "httpMethod": "PUT",
           "id": "dfareporting.reports.update",
           "parameterOrder": [
@@ -8059,7 +8059,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/reports/{reportId}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}",
           "request": {
             "$ref": "Report"
           },
@@ -8076,7 +8076,7 @@
           "methods": {
             "query": {
               "description": "Returns the fields that are compatible to be selected in the respective sections of a report criteria, given the fields already selected in the input report and user permissions.",
-              "flatPath": "userprofiles/{profileId}/reports/compatiblefields/query",
+              "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/reports/compatiblefields/query",
               "httpMethod": "POST",
               "id": "dfareporting.reports.compatibleFields.query",
               "parameterOrder": [
@@ -8091,7 +8091,7 @@
                   "type": "string"
                 }
               },
-              "path": "userprofiles/{profileId}/reports/compatiblefields/query",
+              "path": "dfareporting/v3.5/userprofiles/{profileId}/reports/compatiblefields/query",
               "request": {
                 "$ref": "Report"
               },
@@ -8108,7 +8108,7 @@
           "methods": {
             "get": {
               "description": "Retrieves a report file by its report ID and file ID. This method supports media download.",
-              "flatPath": "userprofiles/{profileId}/reports/{reportId}/files/{fileId}",
+              "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}/files/{fileId}",
               "httpMethod": "GET",
               "id": "dfareporting.reports.files.get",
               "parameterOrder": [
@@ -8139,7 +8139,7 @@
                   "type": "string"
                 }
               },
-              "path": "userprofiles/{profileId}/reports/{reportId}/files/{fileId}",
+              "path": "dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}/files/{fileId}",
               "response": {
                 "$ref": "File"
               },
@@ -8150,7 +8150,7 @@
             },
             "list": {
               "description": "Lists files for a report.",
-              "flatPath": "userprofiles/{profileId}/reports/{reportId}/files",
+              "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}/files",
               "httpMethod": "GET",
               "id": "dfareporting.reports.files.list",
               "parameterOrder": [
@@ -8215,7 +8215,7 @@
                   "type": "string"
                 }
               },
-              "path": "userprofiles/{profileId}/reports/{reportId}/files",
+              "path": "dfareporting/v3.5/userprofiles/{profileId}/reports/{reportId}/files",
               "response": {
                 "$ref": "FileList"
               },
@@ -8231,7 +8231,7 @@
       "methods": {
         "get": {
           "description": "Gets one site by ID.",
-          "flatPath": "userprofiles/{profileId}/sites/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/sites/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.sites.get",
           "parameterOrder": [
@@ -8254,7 +8254,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/sites/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/sites/{id}",
           "response": {
             "$ref": "Site"
           },
@@ -8264,7 +8264,7 @@
         },
         "insert": {
           "description": "Inserts a new site.",
-          "flatPath": "userprofiles/{profileId}/sites",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/sites",
           "httpMethod": "POST",
           "id": "dfareporting.sites.insert",
           "parameterOrder": [
@@ -8279,7 +8279,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/sites",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/sites",
           "request": {
             "$ref": "Site"
           },
@@ -8292,7 +8292,7 @@
         },
         "list": {
           "description": "Retrieves a list of sites, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/sites",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/sites",
           "httpMethod": "GET",
           "id": "dfareporting.sites.list",
           "parameterOrder": [
@@ -8411,7 +8411,7 @@
               "type": "boolean"
             }
           },
-          "path": "userprofiles/{profileId}/sites",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/sites",
           "response": {
             "$ref": "SitesListResponse"
           },
@@ -8421,7 +8421,7 @@
         },
         "patch": {
           "description": "Updates an existing site. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/sites",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/sites",
           "httpMethod": "PATCH",
           "id": "dfareporting.sites.patch",
           "parameterOrder": [
@@ -8444,7 +8444,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/sites",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/sites",
           "request": {
             "$ref": "Site"
           },
@@ -8457,7 +8457,7 @@
         },
         "update": {
           "description": "Updates an existing site.",
-          "flatPath": "userprofiles/{profileId}/sites",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/sites",
           "httpMethod": "PUT",
           "id": "dfareporting.sites.update",
           "parameterOrder": [
@@ -8472,7 +8472,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/sites",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/sites",
           "request": {
             "$ref": "Site"
           },
@@ -8489,7 +8489,7 @@
       "methods": {
         "get": {
           "description": "Gets one size by ID.",
-          "flatPath": "userprofiles/{profileId}/sizes/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/sizes/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.sizes.get",
           "parameterOrder": [
@@ -8512,7 +8512,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/sizes/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/sizes/{id}",
           "response": {
             "$ref": "Size"
           },
@@ -8522,7 +8522,7 @@
         },
         "insert": {
           "description": "Inserts a new size.",
-          "flatPath": "userprofiles/{profileId}/sizes",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/sizes",
           "httpMethod": "POST",
           "id": "dfareporting.sizes.insert",
           "parameterOrder": [
@@ -8537,7 +8537,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/sizes",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/sizes",
           "request": {
             "$ref": "Size"
           },
@@ -8550,7 +8550,7 @@
         },
         "list": {
           "description": "Retrieves a list of sizes, possibly filtered. Retrieved sizes are globally unique and may include values not currently in use by your account. Due to this, the list of sizes returned by this method may differ from the list seen in the Trafficking UI.",
-          "flatPath": "userprofiles/{profileId}/sizes",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/sizes",
           "httpMethod": "GET",
           "id": "dfareporting.sizes.list",
           "parameterOrder": [
@@ -8593,7 +8593,7 @@
               "type": "integer"
             }
           },
-          "path": "userprofiles/{profileId}/sizes",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/sizes",
           "response": {
             "$ref": "SizesListResponse"
           },
@@ -8607,7 +8607,7 @@
       "methods": {
         "get": {
           "description": "Gets one subaccount by ID.",
-          "flatPath": "userprofiles/{profileId}/subaccounts/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/subaccounts/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.subaccounts.get",
           "parameterOrder": [
@@ -8630,7 +8630,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/subaccounts/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/subaccounts/{id}",
           "response": {
             "$ref": "Subaccount"
           },
@@ -8640,7 +8640,7 @@
         },
         "insert": {
           "description": "Inserts a new subaccount.",
-          "flatPath": "userprofiles/{profileId}/subaccounts",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/subaccounts",
           "httpMethod": "POST",
           "id": "dfareporting.subaccounts.insert",
           "parameterOrder": [
@@ -8655,7 +8655,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/subaccounts",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/subaccounts",
           "request": {
             "$ref": "Subaccount"
           },
@@ -8668,7 +8668,7 @@
         },
         "list": {
           "description": "Gets a list of subaccounts, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/subaccounts",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/subaccounts",
           "httpMethod": "GET",
           "id": "dfareporting.subaccounts.list",
           "parameterOrder": [
@@ -8737,7 +8737,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/subaccounts",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/subaccounts",
           "response": {
             "$ref": "SubaccountsListResponse"
           },
@@ -8747,7 +8747,7 @@
         },
         "patch": {
           "description": "Updates an existing subaccount. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/subaccounts",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/subaccounts",
           "httpMethod": "PATCH",
           "id": "dfareporting.subaccounts.patch",
           "parameterOrder": [
@@ -8770,7 +8770,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/subaccounts",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/subaccounts",
           "request": {
             "$ref": "Subaccount"
           },
@@ -8783,7 +8783,7 @@
         },
         "update": {
           "description": "Updates an existing subaccount.",
-          "flatPath": "userprofiles/{profileId}/subaccounts",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/subaccounts",
           "httpMethod": "PUT",
           "id": "dfareporting.subaccounts.update",
           "parameterOrder": [
@@ -8798,7 +8798,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/subaccounts",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/subaccounts",
           "request": {
             "$ref": "Subaccount"
           },
@@ -8815,7 +8815,7 @@
       "methods": {
         "get": {
           "description": "Gets one remarketing list by ID.",
-          "flatPath": "userprofiles/{profileId}/targetableRemarketingLists/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/targetableRemarketingLists/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.targetableRemarketingLists.get",
           "parameterOrder": [
@@ -8838,7 +8838,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/targetableRemarketingLists/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/targetableRemarketingLists/{id}",
           "response": {
             "$ref": "TargetableRemarketingList"
           },
@@ -8848,7 +8848,7 @@
         },
         "list": {
           "description": "Retrieves a list of targetable remarketing lists, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/targetableRemarketingLists",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/targetableRemarketingLists",
           "httpMethod": "GET",
           "id": "dfareporting.targetableRemarketingLists.list",
           "parameterOrder": [
@@ -8923,7 +8923,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/targetableRemarketingLists",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/targetableRemarketingLists",
           "response": {
             "$ref": "TargetableRemarketingListsListResponse"
           },
@@ -8937,7 +8937,7 @@
       "methods": {
         "get": {
           "description": "Gets one targeting template by ID.",
-          "flatPath": "userprofiles/{profileId}/targetingTemplates/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/targetingTemplates/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.targetingTemplates.get",
           "parameterOrder": [
@@ -8960,7 +8960,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/targetingTemplates/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/targetingTemplates/{id}",
           "response": {
             "$ref": "TargetingTemplate"
           },
@@ -8970,7 +8970,7 @@
         },
         "insert": {
           "description": "Inserts a new targeting template.",
-          "flatPath": "userprofiles/{profileId}/targetingTemplates",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/targetingTemplates",
           "httpMethod": "POST",
           "id": "dfareporting.targetingTemplates.insert",
           "parameterOrder": [
@@ -8985,7 +8985,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/targetingTemplates",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/targetingTemplates",
           "request": {
             "$ref": "TargetingTemplate"
           },
@@ -8998,7 +8998,7 @@
         },
         "list": {
           "description": "Retrieves a list of targeting templates, optionally filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/targetingTemplates",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/targetingTemplates",
           "httpMethod": "GET",
           "id": "dfareporting.targetingTemplates.list",
           "parameterOrder": [
@@ -9073,7 +9073,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/targetingTemplates",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/targetingTemplates",
           "response": {
             "$ref": "TargetingTemplatesListResponse"
           },
@@ -9083,7 +9083,7 @@
         },
         "patch": {
           "description": "Updates an existing targeting template. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/targetingTemplates",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/targetingTemplates",
           "httpMethod": "PATCH",
           "id": "dfareporting.targetingTemplates.patch",
           "parameterOrder": [
@@ -9106,7 +9106,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/targetingTemplates",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/targetingTemplates",
           "request": {
             "$ref": "TargetingTemplate"
           },
@@ -9119,7 +9119,7 @@
         },
         "update": {
           "description": "Updates an existing targeting template.",
-          "flatPath": "userprofiles/{profileId}/targetingTemplates",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/targetingTemplates",
           "httpMethod": "PUT",
           "id": "dfareporting.targetingTemplates.update",
           "parameterOrder": [
@@ -9134,7 +9134,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/targetingTemplates",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/targetingTemplates",
           "request": {
             "$ref": "TargetingTemplate"
           },
@@ -9151,7 +9151,7 @@
       "methods": {
         "get": {
           "description": "Gets one user profile by ID.",
-          "flatPath": "userprofiles/{profileId}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}",
           "httpMethod": "GET",
           "id": "dfareporting.userProfiles.get",
           "parameterOrder": [
@@ -9166,7 +9166,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}",
           "response": {
             "$ref": "UserProfile"
           },
@@ -9178,12 +9178,12 @@
         },
         "list": {
           "description": "Retrieves list of user profiles for a user.",
-          "flatPath": "userprofiles",
+          "flatPath": "dfareporting/v3.5/userprofiles",
           "httpMethod": "GET",
           "id": "dfareporting.userProfiles.list",
           "parameterOrder": [],
           "parameters": {},
-          "path": "userprofiles",
+          "path": "dfareporting/v3.5/userprofiles",
           "response": {
             "$ref": "UserProfileList"
           },
@@ -9199,7 +9199,7 @@
       "methods": {
         "get": {
           "description": "Gets one user role permission group by ID.",
-          "flatPath": "userprofiles/{profileId}/userRolePermissionGroups/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/userRolePermissionGroups/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.userRolePermissionGroups.get",
           "parameterOrder": [
@@ -9222,7 +9222,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/userRolePermissionGroups/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/userRolePermissionGroups/{id}",
           "response": {
             "$ref": "UserRolePermissionGroup"
           },
@@ -9232,7 +9232,7 @@
         },
         "list": {
           "description": "Gets a list of all supported user role permission groups.",
-          "flatPath": "userprofiles/{profileId}/userRolePermissionGroups",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/userRolePermissionGroups",
           "httpMethod": "GET",
           "id": "dfareporting.userRolePermissionGroups.list",
           "parameterOrder": [
@@ -9247,7 +9247,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/userRolePermissionGroups",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/userRolePermissionGroups",
           "response": {
             "$ref": "UserRolePermissionGroupsListResponse"
           },
@@ -9261,7 +9261,7 @@
       "methods": {
         "get": {
           "description": "Gets one user role permission by ID.",
-          "flatPath": "userprofiles/{profileId}/userRolePermissions/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/userRolePermissions/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.userRolePermissions.get",
           "parameterOrder": [
@@ -9284,7 +9284,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/userRolePermissions/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/userRolePermissions/{id}",
           "response": {
             "$ref": "UserRolePermission"
           },
@@ -9294,7 +9294,7 @@
         },
         "list": {
           "description": "Gets a list of user role permissions, possibly filtered.",
-          "flatPath": "userprofiles/{profileId}/userRolePermissions",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/userRolePermissions",
           "httpMethod": "GET",
           "id": "dfareporting.userRolePermissions.list",
           "parameterOrder": [
@@ -9316,7 +9316,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/userRolePermissions",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/userRolePermissions",
           "response": {
             "$ref": "UserRolePermissionsListResponse"
           },
@@ -9330,7 +9330,7 @@
       "methods": {
         "delete": {
           "description": "Deletes an existing user role.",
-          "flatPath": "userprofiles/{profileId}/userRoles/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/userRoles/{id}",
           "httpMethod": "DELETE",
           "id": "dfareporting.userRoles.delete",
           "parameterOrder": [
@@ -9353,14 +9353,14 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/userRoles/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/userRoles/{id}",
           "scopes": [
             "https://www.googleapis.com/auth/dfatrafficking"
           ]
         },
         "get": {
           "description": "Gets one user role by ID.",
-          "flatPath": "userprofiles/{profileId}/userRoles/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/userRoles/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.userRoles.get",
           "parameterOrder": [
@@ -9383,7 +9383,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/userRoles/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/userRoles/{id}",
           "response": {
             "$ref": "UserRole"
           },
@@ -9393,7 +9393,7 @@
         },
         "insert": {
           "description": "Inserts a new user role.",
-          "flatPath": "userprofiles/{profileId}/userRoles",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/userRoles",
           "httpMethod": "POST",
           "id": "dfareporting.userRoles.insert",
           "parameterOrder": [
@@ -9408,7 +9408,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/userRoles",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/userRoles",
           "request": {
             "$ref": "UserRole"
           },
@@ -9421,7 +9421,7 @@
         },
         "list": {
           "description": "Retrieves a list of user roles, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{profileId}/userRoles",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/userRoles",
           "httpMethod": "GET",
           "id": "dfareporting.userRoles.list",
           "parameterOrder": [
@@ -9501,7 +9501,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/userRoles",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/userRoles",
           "response": {
             "$ref": "UserRolesListResponse"
           },
@@ -9511,7 +9511,7 @@
         },
         "patch": {
           "description": "Updates an existing user role. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/userRoles",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/userRoles",
           "httpMethod": "PATCH",
           "id": "dfareporting.userRoles.patch",
           "parameterOrder": [
@@ -9534,7 +9534,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/userRoles",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/userRoles",
           "request": {
             "$ref": "UserRole"
           },
@@ -9547,7 +9547,7 @@
         },
         "update": {
           "description": "Updates an existing user role.",
-          "flatPath": "userprofiles/{profileId}/userRoles",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/userRoles",
           "httpMethod": "PUT",
           "id": "dfareporting.userRoles.update",
           "parameterOrder": [
@@ -9562,7 +9562,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/userRoles",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/userRoles",
           "request": {
             "$ref": "UserRole"
           },
@@ -9579,7 +9579,7 @@
       "methods": {
         "get": {
           "description": "Gets one video format by ID.",
-          "flatPath": "userprofiles/{profileId}/videoFormats/{id}",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/videoFormats/{id}",
           "httpMethod": "GET",
           "id": "dfareporting.videoFormats.get",
           "parameterOrder": [
@@ -9602,7 +9602,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/videoFormats/{id}",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/videoFormats/{id}",
           "response": {
             "$ref": "VideoFormat"
           },
@@ -9612,7 +9612,7 @@
         },
         "list": {
           "description": "Lists available video formats.",
-          "flatPath": "userprofiles/{profileId}/videoFormats",
+          "flatPath": "dfareporting/v3.5/userprofiles/{profileId}/videoFormats",
           "httpMethod": "GET",
           "id": "dfareporting.videoFormats.list",
           "parameterOrder": [
@@ -9627,7 +9627,7 @@
               "type": "string"
             }
           },
-          "path": "userprofiles/{profileId}/videoFormats",
+          "path": "dfareporting/v3.5/userprofiles/{profileId}/videoFormats",
           "response": {
             "$ref": "VideoFormatsListResponse"
           },
@@ -10303,21 +10303,8 @@
       "description": "Campaign ad blocking settings.",
       "id": "AdBlockingConfiguration",
       "properties": {
-        "clickThroughUrl": {
-          "description": "Click-through URL used by brand-neutral ads. This is a required field when overrideClickThroughUrl is set to true.",
-          "type": "string"
-        },
-        "creativeBundleId": {
-          "description": "ID of a creative bundle to use for this campaign. If set, brand-neutral ads will select creatives from this bundle. Otherwise, a default transparent pixel will be used.",
-          "format": "int64",
-          "type": "string"
-        },
         "enabled": {
           "description": "Whether this campaign has enabled ad blocking. When true, ad blocking is enabled for placements in the campaign, but this may be overridden by site and placement settings. When false, ad blocking is disabled for all placements under the campaign, regardless of site and placement settings.",
-          "type": "boolean"
-        },
-        "overrideClickThroughUrl": {
-          "description": "Whether the brand-neutral ad's click-through URL comes from the campaign's creative bundle or the override URL. Must be set to true if ad blocking is enabled and no creative bundle is configured.",
           "type": "boolean"
         }
       },
@@ -10459,6 +10446,10 @@
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#advertiser\".",
           "type": "string"
+        },
+        "measurementPartnerLink": {
+          "$ref": "MeasurementPartnerAdvertiserLink",
+          "description": "Measurement partner advertiser link for tag wrapping."
         },
         "name": {
           "description": "Name of this advertiser. This is a required field and must be less than 256 characters long and unique among advertisers of the same account.",
@@ -10793,6 +10784,10 @@
           "$ref": "LastModifiedInfo",
           "description": "Information about the most recent modification of this campaign. This is a read-only field."
         },
+        "measurementPartnerLink": {
+          "$ref": "MeasurementPartnerCampaignLink",
+          "description": "Measurement partner campaign link for tag wrapping."
+        },
         "name": {
           "description": "Name of this campaign. This is a required field and must be less than 256 characters long and unique among campaigns of the same advertiser.",
           "type": "string"
@@ -10966,6 +10961,54 @@
         },
         "nextPageToken": {
           "description": "Pagination token to be used for the next list operation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ChannelGrouping": {
+      "description": "Represents a DfaReporting channel grouping.",
+      "id": "ChannelGrouping",
+      "properties": {
+        "fallbackName": {
+          "description": "ChannelGrouping fallback name.",
+          "type": "string"
+        },
+        "kind": {
+          "description": "The kind of resource this is, in this case dfareporting#channelGrouping.",
+          "type": "string"
+        },
+        "name": {
+          "description": "ChannelGrouping name.",
+          "type": "string"
+        },
+        "rules": {
+          "description": "The rules contained within this channel grouping.",
+          "items": {
+            "$ref": "ChannelGroupingRule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ChannelGroupingRule": {
+      "description": "Represents a DfaReporting channel grouping rule.",
+      "id": "ChannelGroupingRule",
+      "properties": {
+        "disjunctiveMatchStatements": {
+          "description": "The disjunctive match statements contained within this rule.",
+          "items": {
+            "$ref": "DisjunctiveMatchStatement"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "description": "The kind of resource this is, in this case dfareporting#channelGroupingRule.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Rule name.",
           "type": "string"
         }
       },
@@ -11152,6 +11195,14 @@
           "description": "The kind of resource this is, in this case dfareporting#compatibleFields.",
           "type": "string"
         },
+        "pathAttributionReportCompatibleFields": {
+          "$ref": "PathReportCompatibleFields",
+          "description": "Contains items that are compatible to be selected for a report of type \"PATH_ATTRIBUTION\"."
+        },
+        "pathReportCompatibleFields": {
+          "$ref": "PathReportCompatibleFields",
+          "description": "Contains items that are compatible to be selected for a report of type \"PATH\"."
+        },
         "pathToConversionReportCompatibleFields": {
           "$ref": "PathToConversionReportCompatibleFields",
           "description": "Contains items that are compatible to be selected for a report of type \"PATH_TO_CONVERSION\"."
@@ -11267,12 +11318,16 @@
           },
           "type": "array"
         },
+        "dclid": {
+          "description": "The display click ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId, mobileDeviceId and gclid. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or mobileDeviceId or gclid is a required field.",
+          "type": "string"
+        },
         "encryptedUserId": {
-          "description": "The alphanumeric encrypted user ID. When set, encryptionInfo should also be specified. This field is mutually exclusive with encryptedUserIdCandidates[], matchId, mobileDeviceId and gclid. This or encryptedUserIdCandidates[] or matchId or mobileDeviceId or gclid is a required field.",
+          "description": "The alphanumeric encrypted user ID. When set, encryptionInfo should also be specified. This field is mutually exclusive with encryptedUserIdCandidates[], matchId, mobileDeviceId, gclid and dclid. This or encryptedUserIdCandidates[] or matchId or mobileDeviceId or gclid or dclid is a required field.",
           "type": "string"
         },
         "encryptedUserIdCandidates": {
-          "description": "A list of the alphanumeric encrypted user IDs. Any user ID with exposure prior to the conversion timestamp will be used in the inserted conversion. If no such user ID is found then the conversion will be rejected with INVALID_ARGUMENT error. When set, encryptionInfo should also be specified. This field may only be used when calling batchinsert; it is not supported by batchupdate. This field is mutually exclusive with encryptedUserId, matchId, mobileDeviceId and gclid. This or encryptedUserId or matchId or mobileDeviceId or gclid is a required field.",
+          "description": "A list of the alphanumeric encrypted user IDs. Any user ID with exposure prior to the conversion timestamp will be used in the inserted conversion. If no such user ID is found then the conversion will be rejected with INVALID_ARGUMENT error. When set, encryptionInfo should also be specified. This field may only be used when calling batchinsert; it is not supported by batchupdate. This field is mutually exclusive with encryptedUserId, matchId, mobileDeviceId, gclid and dclid. This or encryptedUserId or matchId or mobileDeviceId or gclid or dclid is a required field.",
           "items": {
             "type": "string"
           },
@@ -11289,7 +11344,7 @@
           "type": "string"
         },
         "gclid": {
-          "description": "The Google click ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId and mobileDeviceId. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or mobileDeviceId is a required field.",
+          "description": "The Google click ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId, mobileDeviceId and dclid. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or mobileDeviceId or dclid is a required field.",
           "type": "string"
         },
         "kind": {
@@ -11301,11 +11356,11 @@
           "type": "boolean"
         },
         "matchId": {
-          "description": "The match ID field. A match ID is your own first-party identifier that has been synced with Google using the match ID feature in Floodlight. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[],mobileDeviceId and gclid. This or encryptedUserId or encryptedUserIdCandidates[] or mobileDeviceId or gclid is a required field.",
+          "description": "The match ID field. A match ID is your own first-party identifier that has been synced with Google using the match ID feature in Floodlight. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[],mobileDeviceId, gclid and dclid. This or encryptedUserId or encryptedUserIdCandidates[] or mobileDeviceId or gclid or dclid is a required field.",
           "type": "string"
         },
         "mobileDeviceId": {
-          "description": "The mobile device ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId and gclid. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or gclid is a required field.",
+          "description": "The mobile device ID. This field is mutually exclusive with encryptedUserId, encryptedUserIdCandidates[], matchId, gclid and dclid. This or encryptedUserId or encryptedUserIdCandidates[] or matchId or gclid or dclid is a required field.",
           "type": "string"
         },
         "nonPersonalizedAd": {
@@ -11911,6 +11966,10 @@
         "name": {
           "description": "Name of the creative. This is a required field and must be less than 256 characters long. Applicable to all creative types.",
           "type": "string"
+        },
+        "obaIcon": {
+          "$ref": "ObaIcon",
+          "description": "Online behavioral advertising icon to be added to the creative. Applicable to the following creative types: all INSTREAM_VIDEO."
         },
         "overrideCss": {
           "description": "Override CSS value for rich media creatives. Applicable to the following creative types: all RICH_MEDIA.",
@@ -12632,6 +12691,13 @@
           },
           "type": "array"
         },
+        "counterCustomEvents": {
+          "description": "List of counter events configured for the asset. This is a read-only, auto-generated field and only applicable to a rich media asset.",
+          "items": {
+            "$ref": "CreativeCustomEvent"
+          },
+          "type": "array"
+        },
         "detectedFeatures": {
           "description": "List of feature dependencies for the creative asset that are detected by Campaign Manager. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative correctly. This is a read-only, auto-generated field.",
           "items": {
@@ -12775,6 +12841,13 @@
           },
           "type": "array"
         },
+        "exitCustomEvents": {
+          "description": "List of exit events configured for the asset. This is a read-only, auto-generated field and only applicable to a rich media asset.",
+          "items": {
+            "$ref": "CreativeCustomEvent"
+          },
+          "type": "array"
+        },
         "id": {
           "description": "Numeric ID of the asset. This is a read-only, auto-generated field.",
           "format": "int64",
@@ -12787,6 +12860,17 @@
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#creativeAssetMetadata\".",
           "type": "string"
+        },
+        "richMedia": {
+          "description": "True if the uploaded asset is a rich media asset. This is a read-only, auto-generated field.",
+          "type": "boolean"
+        },
+        "timerCustomEvents": {
+          "description": "List of timer events configured for the asset. This is a read-only, auto-generated field and only applicable to a rich media asset.",
+          "items": {
+            "$ref": "CreativeCustomEvent"
+          },
+          "type": "array"
         },
         "warnedValidationRules": {
           "description": "Rules validated during code generation that generated a warning. This is a read-only, auto-generated field. Possible values are: - \"ADMOB_REFERENCED\" - \"ASSET_FORMAT_UNSUPPORTED_DCM\" - \"ASSET_INVALID\" - \"CLICK_TAG_HARD_CODED\" - \"CLICK_TAG_INVALID\" - \"CLICK_TAG_IN_GWD\" - \"CLICK_TAG_MISSING\" - \"CLICK_TAG_MORE_THAN_ONE\" - \"CLICK_TAG_NON_TOP_LEVEL\" - \"COMPONENT_UNSUPPORTED_DCM\" - \"ENABLER_UNSUPPORTED_METHOD_DCM\" - \"EXTERNAL_FILE_REFERENCED\" - \"FILE_DETAIL_EMPTY\" - \"FILE_TYPE_INVALID\" - \"GWD_PROPERTIES_INVALID\" - \"HTML5_FEATURE_UNSUPPORTED\" - \"LINKED_FILE_NOT_FOUND\" - \"MAX_FLASH_VERSION_11\" - \"MRAID_REFERENCED\" - \"NOT_SSL_COMPLIANT\" - \"ORPHANED_ASSET\" - \"PRIMARY_HTML_MISSING\" - \"SVG_INVALID\" - \"ZIP_INVALID\" ",
@@ -14074,10 +14158,6 @@
       "description": "DirectorySites contains properties of a website from the Site Directory. Sites need to be added to an account via the Sites resource before they can be assigned to a placement.",
       "id": "DirectorySite",
       "properties": {
-        "active": {
-          "description": "Whether this directory site is active.",
-          "type": "boolean"
-        },
         "id": {
           "description": "ID of this directory site. This is a read-only, auto-generated field.",
           "format": "int64",
@@ -14182,6 +14262,24 @@
         },
         "nextPageToken": {
           "description": "Pagination token to be used for the next list operation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DisjunctiveMatchStatement": {
+      "description": "Represents a Disjunctive Match Statement resource, which is a conjunction (and) of disjunctive (or) boolean statements.",
+      "id": "DisjunctiveMatchStatement",
+      "properties": {
+        "eventFilters": {
+          "description": "The event filters contained within this disjunctive match statement.",
+          "items": {
+            "$ref": "EventFilter"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "description": "The kind of resource this is, in this case dfareporting#disjunctiveMatchStatement.",
           "type": "string"
         }
       },
@@ -14293,6 +14391,21 @@
       },
       "type": "object"
     },
+    "EventFilter": {
+      "description": "Represents a DfaReporting event filter.",
+      "id": "EventFilter",
+      "properties": {
+        "dimensionFilter": {
+          "$ref": "PathReportDimensionValue",
+          "description": "The dimension filter contained within this EventFilter."
+        },
+        "kind": {
+          "description": "The kind of resource this is, in this case dfareporting#eventFilter.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EventTag": {
       "description": "Contains properties of an event tag.",
       "id": "EventTag",
@@ -14344,8 +14457,8 @@
         "siteFilterType": {
           "description": "Site filter type for this event tag. If no type is specified then the event tag will be applied to all sites.",
           "enum": [
-            "WHITELIST",
-            "BLACKLIST"
+            "ALLOWLIST",
+            "BLOCKLIST"
           ],
           "enumDescriptions": [
             "",
@@ -14632,6 +14745,10 @@
           "$ref": "DimensionValue",
           "description": "Dimension value for the ID of the advertiser. This is a read-only, auto-generated field."
         },
+        "attributionEnabled": {
+          "description": "Whether the activity is enabled for attribution.",
+          "type": "boolean"
+        },
         "cacheBustingType": {
           "description": "Code type used for cache busting in the generated tag. Applicable only when floodlightActivityGroupType is COUNTER and countingMethod is STANDARD_COUNTING or UNIQUE_COUNTING.",
           "enum": [
@@ -14727,10 +14844,6 @@
           ],
           "type": "string"
         },
-        "hidden": {
-          "description": "Whether this activity is archived.",
-          "type": "boolean"
-        },
         "id": {
           "description": "ID of this floodlight activity. This is a read-only, auto-generated field.",
           "format": "int64",
@@ -14770,6 +14883,22 @@
         "sslRequired": {
           "description": "Whether this floodlight activity must be SSL-compliant.",
           "type": "boolean"
+        },
+        "status": {
+          "description": "The status of the activity. This can only be set to ACTIVE or ARCHIVED_AND_DISABLED. The ARCHIVED status is no longer supported and cannot be set for Floodlight activities. The DISABLED_POLICY status indicates that a Floodlight activity is violating Google policy. Contact your account manager for more information.",
+          "enum": [
+            "ACTIVE",
+            "ARCHIVED_AND_DISABLED",
+            "ARCHIVED",
+            "DISABLED_POLICY"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         },
         "subaccountId": {
           "description": "Subaccount ID of this floodlight activity. This is a read-only field that can be left blank.",
@@ -15793,6 +15922,165 @@
       },
       "type": "object"
     },
+    "MeasurementPartnerAdvertiserLink": {
+      "id": "MeasurementPartnerAdvertiserLink",
+      "properties": {
+        "linkStatus": {
+          "description": ".",
+          "enum": [
+            "MEASUREMENT_PARTNER_UNLINKED",
+            "MEASUREMENT_PARTNER_LINKED",
+            "MEASUREMENT_PARTNER_LINK_PENDING",
+            "MEASUREMENT_PARTNER_LINK_FAILURE",
+            "MEASUREMENT_PARTNER_LINK_OPT_OUT",
+            "MEASUREMENT_PARTNER_LINK_OPT_OUT_PENDING",
+            "MEASUREMENT_PARTNER_LINK_WRAPPING_PENDING",
+            "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "measurementPartner": {
+          "description": "Measurement partner used for tag wrapping.",
+          "enum": [
+            "NONE",
+            "INTEGRAL_AD_SCIENCE"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "partnerAdvertiserId": {
+          "description": ".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MeasurementPartnerCampaignLink": {
+      "id": "MeasurementPartnerCampaignLink",
+      "properties": {
+        "linkStatus": {
+          "description": ".",
+          "enum": [
+            "MEASUREMENT_PARTNER_UNLINKED",
+            "MEASUREMENT_PARTNER_LINKED",
+            "MEASUREMENT_PARTNER_LINK_PENDING",
+            "MEASUREMENT_PARTNER_LINK_FAILURE",
+            "MEASUREMENT_PARTNER_LINK_OPT_OUT",
+            "MEASUREMENT_PARTNER_LINK_OPT_OUT_PENDING",
+            "MEASUREMENT_PARTNER_LINK_WRAPPING_PENDING",
+            "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "measurementPartner": {
+          "description": "Measurement partner used for tag wrapping.",
+          "enum": [
+            "NONE",
+            "INTEGRAL_AD_SCIENCE"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "partnerCampaignId": {
+          "description": "Partner campaign ID needed for establishing linking with Measurement partner.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MeasurementPartnerWrappingData": {
+      "description": "Placement tag wrapping",
+      "id": "MeasurementPartnerWrappingData",
+      "properties": {
+        "linkStatus": {
+          "description": "Placement wrapping status.",
+          "enum": [
+            "MEASUREMENT_PARTNER_UNLINKED",
+            "MEASUREMENT_PARTNER_LINKED",
+            "MEASUREMENT_PARTNER_LINK_PENDING",
+            "MEASUREMENT_PARTNER_LINK_FAILURE",
+            "MEASUREMENT_PARTNER_LINK_OPT_OUT",
+            "MEASUREMENT_PARTNER_LINK_OPT_OUT_PENDING",
+            "MEASUREMENT_PARTNER_LINK_WRAPPING_PENDING",
+            "MEASUREMENT_PARTNER_MODE_CHANGE_PENDING"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "measurementPartner": {
+          "description": "Measurement partner used for wrapping the placement.",
+          "enum": [
+            "NONE",
+            "INTEGRAL_AD_SCIENCE"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "tagWrappingMode": {
+          "description": "Measurement mode for the wrapped placement.",
+          "enum": [
+            "NONE",
+            "BLOCKING",
+            "MONITORING",
+            "MONITORING_ONLY",
+            "VIDEO_PIXEL_MONITORING",
+            "TRACKING"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "wrappedTag": {
+          "description": "Tag provided by the measurement partner during wrapping.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Metric": {
       "description": "Represents a metric.",
       "id": "Metric",
@@ -15966,6 +16254,45 @@
             "$ref": "MobileCarrier"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ObaIcon": {
+      "description": "Online Behavioral Advertiser icon.",
+      "id": "ObaIcon",
+      "properties": {
+        "iconClickThroughUrl": {
+          "description": "URL to redirect to when an OBA icon is clicked.",
+          "type": "string"
+        },
+        "iconClickTrackingUrl": {
+          "description": "URL to track click when an OBA icon is clicked.",
+          "type": "string"
+        },
+        "iconViewTrackingUrl": {
+          "description": "URL to track view when an OBA icon is clicked.",
+          "type": "string"
+        },
+        "program": {
+          "description": "Identifies the industry initiative that the icon supports. For example, AdChoices.",
+          "type": "string"
+        },
+        "resourceUrl": {
+          "description": "OBA icon resource URL. Campaign Manager only supports image and JavaScript icons. Learn more",
+          "type": "string"
+        },
+        "size": {
+          "$ref": "Size",
+          "description": "OBA icon size."
+        },
+        "xPosition": {
+          "description": "OBA icon x coordinate position. Accepted values are left or right.",
+          "type": "string"
+        },
+        "yPosition": {
+          "description": "OBA icon y coordinate position. Accepted values are top or bottom.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -16438,6 +16765,124 @@
       },
       "type": "object"
     },
+    "PathFilter": {
+      "description": "Represents a DfaReporting path filter.",
+      "id": "PathFilter",
+      "properties": {
+        "eventFilters": {
+          "description": "Event filters in path report.",
+          "items": {
+            "$ref": "EventFilter"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "description": "The kind of resource this is, in this case dfareporting#pathFilter.",
+          "type": "string"
+        },
+        "pathMatchPosition": {
+          "description": "Determines how the 'value' field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, '*' is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions ('dfa:paidSearch*') allow a matchType other than EXACT.",
+          "enum": [
+            "PATH_MATCH_POSITION_UNSPECIFIED",
+            "ANY",
+            "FIRST",
+            "LAST"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PathReportCompatibleFields": {
+      "description": "Represents fields that are compatible to be selected for a report of type \"PATH\".",
+      "id": "PathReportCompatibleFields",
+      "properties": {
+        "channelGroupings": {
+          "description": "Dimensions which are compatible to be selected in the \"channelGroupings\" section of the report.",
+          "items": {
+            "$ref": "Dimension"
+          },
+          "type": "array"
+        },
+        "dimensions": {
+          "description": "Dimensions which are compatible to be selected in the \"dimensions\" section of the report.",
+          "items": {
+            "$ref": "Dimension"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "description": "The kind of resource this is, in this case dfareporting#pathReportCompatibleFields.",
+          "type": "string"
+        },
+        "metrics": {
+          "description": "Metrics which are compatible to be selected in the \"metricNames\" section of the report.",
+          "items": {
+            "$ref": "Metric"
+          },
+          "type": "array"
+        },
+        "pathFilters": {
+          "description": "Dimensions which are compatible to be selected in the \"pathFilters\" section of the report.",
+          "items": {
+            "$ref": "Dimension"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PathReportDimensionValue": {
+      "description": "Represents a PathReportDimensionValue resource.",
+      "id": "PathReportDimensionValue",
+      "properties": {
+        "dimensionName": {
+          "description": "The name of the dimension.",
+          "type": "string"
+        },
+        "ids": {
+          "description": "The possible ID's associated with the value if available.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "description": "The kind of resource this is, in this case dfareporting#pathReportDimensionValue.",
+          "type": "string"
+        },
+        "matchType": {
+          "description": "Determines how the 'value' field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, '*' is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions ('dfa:paidSearch*') allow a matchType other than EXACT.",
+          "enum": [
+            "EXACT",
+            "BEGINS_WITH",
+            "CONTAINS",
+            "WILDCARD_EXPRESSION"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "values": {
+          "description": "The possible values of the dimension.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "PathToConversionReportCompatibleFields": {
       "description": "Represents fields that are compatible to be selected for a report of type \"PATH_TO_CONVERSION\".",
       "id": "PathToConversionReportCompatibleFields",
@@ -16593,6 +17038,10 @@
         "name": {
           "description": "Name of this placement.This is a required field and must be less than or equal to 256 characters long.",
           "type": "string"
+        },
+        "partnerWrappingData": {
+          "$ref": "MeasurementPartnerWrappingData",
+          "description": "Measurement partner provided settings for a wrapped placement."
         },
         "paymentApproved": {
           "description": "Whether payment was approved for this placement. This is a read-only field relevant only to publisher-paid placements.",
@@ -16754,6 +17203,10 @@
             ""
           ],
           "type": "string"
+        },
+        "wrappingOptOut": {
+          "description": "Whether this placement opts out of tag wrapping.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -17267,10 +17720,6 @@
             ""
           ],
           "type": "string"
-        },
-        "disregardOverdelivery": {
-          "description": "Whether cap costs are ignored by ad serving.",
-          "type": "boolean"
         },
         "endDate": {
           "format": "date",
@@ -18056,6 +18505,98 @@
           "format": "int64",
           "type": "string"
         },
+        "pathAttributionCriteria": {
+          "description": "The report criteria for a report of type \"PATH_ATTRIBUTION\".",
+          "properties": {
+            "activityFilters": {
+              "description": "The list of 'dfa:activity' values to filter on.",
+              "items": {
+                "$ref": "DimensionValue"
+              },
+              "type": "array"
+            },
+            "customChannelGrouping": {
+              "$ref": "ChannelGrouping",
+              "description": "Channel Grouping."
+            },
+            "dateRange": {
+              "$ref": "DateRange",
+              "description": "The date range this report should be run for."
+            },
+            "dimensions": {
+              "description": "The list of dimensions the report should include.",
+              "items": {
+                "$ref": "SortedDimension"
+              },
+              "type": "array"
+            },
+            "floodlightConfigId": {
+              "$ref": "DimensionValue",
+              "description": "The floodlight ID for which to show data in this report. All advertisers associated with that ID will automatically be added. The dimension of the value needs to be 'dfa:floodlightConfigId'."
+            },
+            "metricNames": {
+              "description": "The list of names of metrics the report should include.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "pathFilters": {
+              "description": "Path Filters.",
+              "items": {
+                "$ref": "PathFilter"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
+        "pathCriteria": {
+          "description": "The report criteria for a report of type \"PATH\".",
+          "properties": {
+            "activityFilters": {
+              "description": "The list of 'dfa:activity' values to filter on.",
+              "items": {
+                "$ref": "DimensionValue"
+              },
+              "type": "array"
+            },
+            "customChannelGrouping": {
+              "$ref": "ChannelGrouping",
+              "description": "Channel Grouping."
+            },
+            "dateRange": {
+              "$ref": "DateRange",
+              "description": "The date range this report should be run for."
+            },
+            "dimensions": {
+              "description": "The list of dimensions the report should include.",
+              "items": {
+                "$ref": "SortedDimension"
+              },
+              "type": "array"
+            },
+            "floodlightConfigId": {
+              "$ref": "DimensionValue",
+              "description": "The floodlight ID for which to show data in this report. All advertisers associated with that ID will automatically be added. The dimension of the value needs to be 'dfa:floodlightConfigId'."
+            },
+            "metricNames": {
+              "description": "The list of names of metrics the report should include.",
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "pathFilters": {
+              "description": "Path Filters.",
+              "items": {
+                "$ref": "PathFilter"
+              },
+              "type": "array"
+            }
+          },
+          "type": "object"
+        },
         "pathToConversionCriteria": {
           "description": "The report criteria for a report of type \"PATH_TO_CONVERSION\".",
           "properties": {
@@ -18303,9 +18844,13 @@
             "REACH",
             "PATH_TO_CONVERSION",
             "CROSS_DIMENSION_REACH",
-            "FLOODLIGHT"
+            "FLOODLIGHT",
+            "PATH",
+            "PATH_ATTRIBUTION"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -18679,6 +19224,14 @@
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#siteVideoSettings\".",
           "type": "string"
+        },
+        "obaEnabled": {
+          "description": "Whether OBA icons are enabled for this placement.",
+          "type": "boolean"
+        },
+        "obaSettings": {
+          "$ref": "ObaIcon",
+          "description": "Settings for the OBA icon of video creatives served to this site. This will act as default for new placements created under this site."
         },
         "orientation": {
           "description": "Orientation of a site template used for video. This will act as default for new placements created under this site.",
@@ -19366,7 +19919,7 @@
           "description": "Registry used for the Ad ID value.",
           "enum": [
             "OTHER",
-            "AD_ID.ORG",
+            "AD_ID_OFFICIAL",
             "CLEARCAST",
             "DCM"
           ],
@@ -19935,9 +20488,22 @@
           "$ref": "CompanionSetting",
           "description": "Settings for the companion creatives of video creatives served to this placement."
         },
+        "durationSeconds": {
+          "description": "Duration of a video placement in seconds.",
+          "format": "int32",
+          "type": "integer"
+        },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#videoSettings\".",
           "type": "string"
+        },
+        "obaEnabled": {
+          "description": "Whether OBA icons are enabled for this placement.",
+          "type": "boolean"
+        },
+        "obaSettings": {
+          "$ref": "ObaIcon",
+          "description": "Settings for the OBA icon of video creatives served to this placement. If this object is provided, the creative-level OBA settings will be overridden."
         },
         "orientation": {
           "description": "Orientation of a video placement. If this value is set, placement will return assets matching the specified orientation.",
@@ -19965,7 +20531,7 @@
       "type": "object"
     }
   },
-  "servicePath": "dfareporting/v3.3/",
+  "servicePath": "",
   "title": "Campaign Manager 360 API",
-  "version": "v3.3"
+  "version": "v3.5"
 }
