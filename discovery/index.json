@@ -1880,6 +1880,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/doubleclick-advertisers/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "dfareporting:v3.5",
+      "name": "dfareporting",
+      "version": "v3.5",
+      "title": "Campaign Manager 360 API",
+      "description": "Build applications to efficiently manage large or complex trafficking, reporting, and attribution workflows for Campaign Manager 360.",
+      "discoveryRestUrl": "https://dfareporting.googleapis.com/$discovery/rest?version=v3.5",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/doubleclick-advertisers/",
       "preferred": true
     },
     {
