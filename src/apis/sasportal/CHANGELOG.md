@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.0.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/sasportal-v1.0.0...sasportal-v1.0.1) (2021-05-23)
+
+
+### Bug Fixes
+
+* **sasportal:** update the API ([31a5a0c](https://www.github.com/googleapis/google-api-nodejs-client/commit/31a5a0cc2625fb0f24e8c7d31dd03efae9c78659))
+
 ## [1.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/sasportal-v0.1.0...sasportal-v1.0.0) (2021-03-18)
 
 

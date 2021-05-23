@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v0.2.0...manufacturers-v0.3.0) (2021-05-23)
+
+
+### Features
+
+* **manufacturers:** update the API ([1afb77f](https://www.github.com/googleapis/google-api-nodejs-client/commit/1afb77ff4c7015e9f86b50e149ac89d4d53b21ef))
+
 ## [0.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v0.1.0...manufacturers-v0.2.0) (2021-03-18)
 
 

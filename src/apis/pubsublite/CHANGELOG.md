@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/pubsublite-v0.2.0...pubsublite-v0.3.0) (2021-05-23)
+
+
+### Features
+
+* **pubsublite:** update the API ([1ec199f](https://www.github.com/googleapis/google-api-nodejs-client/commit/1ec199faa170cf769efc8cfd9dcbadb9b6373e5d))
+
 ## [0.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/pubsublite-v0.1.0...pubsublite-v0.2.0) (2021-03-18)
 
 

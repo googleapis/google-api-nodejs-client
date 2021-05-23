@@ -1,5 +1,18 @@
 # Changelog
 
+## [2.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v1.0.0...servicenetworking-v2.0.0) (2021-05-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **servicenetworking:** This release has breaking changes.
+
+### Features
+
+* **servicenetworking:** update the API ([ce8fd37](https://www.github.com/googleapis/google-api-nodejs-client/commit/ce8fd3777ea090f453f88bbde160d615318a6e87))
+* **servicenetworking:** update the API ([d678d59](https://www.github.com/googleapis/google-api-nodejs-client/commit/d678d599d2d17612438dcb91056de307b3b70f2f))
+* **servicenetworking:** update the API ([14a1d35](https://www.github.com/googleapis/google-api-nodejs-client/commit/14a1d35dfa100efa59c94d74aa0248f85e70262f))
+
 ## [1.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v0.3.0...servicenetworking-v1.0.0) (2021-04-21)
 
 
