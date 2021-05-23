@@ -164,6 +164,10 @@ export namespace gkehub_v1 {
      */
     issuer?: string | null;
     /**
+     * Optional. OIDC verification keys for this Membership in JWKS format (RFC 7517). When this field is set, OIDC discovery will NOT be performed on `issuer`, and instead OIDC tokens will be validated using this field.
+     */
+    oidcJwks?: string | null;
+    /**
      * Output only. The name of the workload identity pool in which `issuer` will be recognized. There is a single Workload Identity Pool per Hub that is shared between all Memberships that belong to that Hub. For a Hub hosted in {PROJECT_ID\}, the workload pool format is `{PROJECT_ID\}.hub.id.goog`, although this is subject to change in newer versions of this API.
      */
     workloadIdentityPool?: string | null;
