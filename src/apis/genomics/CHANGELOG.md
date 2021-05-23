@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/genomics-v0.3.0...genomics-v1.0.0) (2021-05-23)
+
+
+### ⚠ BREAKING CHANGES
+
+* **genomics:** This release has breaking changes.
+
+### Features
+
+* **genomics:** update the API ([841467a](https://www.github.com/googleapis/google-api-nodejs-client/commit/841467a014409b8653b31eda39d05ecad4757ad8))
+
 ## [0.3.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/genomics-v0.2.0...genomics-v0.3.0) (2021-04-23)
 
 
