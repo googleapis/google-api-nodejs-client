@@ -179,6 +179,15 @@ export namespace cloudasset_v1 {
     serviceAccountImpersonationAnalysis?: Schema$IamPolicyAnalysis[];
   }
   /**
+   * The response message for resource move analysis.
+   */
+  export interface Schema$AnalyzeMoveResponse {
+    /**
+     * The list of analyses returned from performing the intended resource move analysis. The analysis is grouped by different Cloud services.
+     */
+    moveAnalysis?: Schema$MoveAnalysis[];
+  }
+  /**
    * An asset in Google Cloud. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy), or a relationship (e.g. an INSTANCE_TO_INSTANCEGROUP relationship). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
    */
   export interface Schema$Asset {
@@ -1305,6 +1314,45 @@ export namespace cloudasset_v1 {
     feeds?: Schema$Feed[];
   }
   /**
+   * A message to group the analysis information.
+   */
+  export interface Schema$MoveAnalysis {
+    /**
+     * Analysis result of moving the target resource.
+     */
+    analysis?: Schema$MoveAnalysisResult;
+    /**
+     * The user friendly display name of the analysis. E.g. IAM, Organization Policy etc.
+     */
+    displayName?: string | null;
+    /**
+     * Description of error encountered when performing the analysis.
+     */
+    error?: Schema$Status;
+  }
+  /**
+   * An analysis result including blockers and warnings.
+   */
+  export interface Schema$MoveAnalysisResult {
+    /**
+     * Blocking information that would prevent the target resource from moving to the specified destination at runtime.
+     */
+    blockers?: Schema$MoveImpact[];
+    /**
+     * Warning information indicating that moving the target resource to the specified destination might be unsafe. This can include important policy information and configuration changes, but will not block moves at runtime.
+     */
+    warnings?: Schema$MoveImpact[];
+  }
+  /**
+   * A message to group impacts of moving the target resource.
+   */
+  export interface Schema$MoveImpact {
+    /**
+     * User friendly impact detail in a free form message.
+     */
+    detail?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -1857,7 +1905,7 @@ export namespace cloudasset_v1 {
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` returned from the previous `ListAssetsResponse`, or unspecified for the first `ListAssetsRequest`. It is a continuation of a prior `ListAssets` call, and the API should return the next page of assets.
      *     pageToken: 'placeholder-value',
-     *     // Required. Name of the organization or project the assets belong to. Format: "organizations/[organization-number]" (such as "organizations/123"), "projects/[project-number]" (such as "projects/my-project-id"), or "projects/[project-id]" (such as "projects/12345").
+     *     // Required. Name of the organization or project the assets belong to. Format: "organizations/[organization-number]" (such as "organizations/123"), "projects/[project-id]" (such as "projects/my-project-id"), or "projects/[project-number]" (such as "projects/12345").
      *     parent: '[^/]+/[^/]+',
      *     // Timestamp to take an asset snapshot. This can only be set to a timestamp between the current time and the current time minus 35 days (inclusive). If not specified, the current time will be used. Due to delays in resource data collection and indexing, there is a volatile window during which running the same query may get different results.
      *     readTime: 'placeholder-value',
@@ -1984,7 +2032,7 @@ export namespace cloudasset_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the organization or project the assets belong to. Format: "organizations/[organization-number]" (such as "organizations/123"), "projects/[project-number]" (such as "projects/my-project-id"), or "projects/[project-id]" (such as "projects/12345").
+     * Required. Name of the organization or project the assets belong to. Format: "organizations/[organization-number]" (such as "organizations/123"), "projects/[project-id]" (such as "projects/my-project-id"), or "projects/[project-number]" (such as "projects/12345").
      */
     parent?: string;
     /**
@@ -3163,6 +3211,143 @@ export namespace cloudasset_v1 {
     }
 
     /**
+     * Analyze moving a resource to a specified destination without kicking off the actual move. The analysis is best effort depending on the user's permissions of viewing different hierarchical policies and configurations. The policies and configuration are subject to change before the actual resource migration takes place.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.analyzeMove({
+     *     // Required. Name of the GCP Folder or Organization to reparent the target resource. The analysis will be performed against hypothetically moving the resource to this specified desitination parent. This can only be a Folder number (such as "folders/123") or an Organization number (such as "organizations/123").
+     *     destinationParent: 'placeholder-value',
+     *     // Required. Name of the resource to perform the analysis against. Only GCP Project are supported as of today. Hence, this can only be Project ID (such as "projects/my-project-id") or a Project Number (such as "projects/12345").
+     *     resource: '[^/]+/[^/]+',
+     *     // Analysis view indicating what information should be included in the analysis response. If unspecified, the default view is FULL.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "moveAnalysis": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    analyzeMove(
+      params: Params$Resource$V1$Analyzemove,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeMove(
+      params?: Params$Resource$V1$Analyzemove,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnalyzeMoveResponse>;
+    analyzeMove(
+      params: Params$Resource$V1$Analyzemove,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    analyzeMove(
+      params: Params$Resource$V1$Analyzemove,
+      options: MethodOptions | BodyResponseCallback<Schema$AnalyzeMoveResponse>,
+      callback: BodyResponseCallback<Schema$AnalyzeMoveResponse>
+    ): void;
+    analyzeMove(
+      params: Params$Resource$V1$Analyzemove,
+      callback: BodyResponseCallback<Schema$AnalyzeMoveResponse>
+    ): void;
+    analyzeMove(
+      callback: BodyResponseCallback<Schema$AnalyzeMoveResponse>
+    ): void;
+    analyzeMove(
+      paramsOrCallback?:
+        | Params$Resource$V1$Analyzemove
+        | BodyResponseCallback<Schema$AnalyzeMoveResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyzeMoveResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyzeMoveResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnalyzeMoveResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$V1$Analyzemove;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Analyzemove;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:analyzeMove').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnalyzeMoveResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AnalyzeMoveResponse>(parameters);
+      }
+    }
+
+    /**
      * Batch gets the update history of assets that overlap a time window. For IAM_POLICY content, this API outputs history when the asset and its attached IAM POLICY both exist. This can create gaps in the output history. Otherwise, this API outputs history with asset in both non-delete or deleted status. If a specified asset does not exist, this API returns an INVALID_ARGUMENT error.
      * @example
      * ```js
@@ -3625,7 +3810,7 @@ export namespace cloudasset_v1 {
      *   const res = await cloudasset.searchAllResources({
      *     // Optional. A list of asset types that this request searches for. If empty, it will search all the [searchable asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#searchable_asset_types). Regular expressions are also supported. For example: * "compute.googleapis.com.*" snapshots resources whose asset type starts with "compute.googleapis.com". * ".*Instance" snapshots resources whose asset type ends with "Instance". * ".*Instance.*" snapshots resources whose asset type contains "Instance". See [RE2](https://github.com/google/re2/wiki/Syntax) for all supported regular expression syntax. If the regular expression does not match any supported asset type, an INVALID_ARGUMENT error will be returned.
      *     assetTypes: 'placeholder-value',
-     *     // Optional. A comma separated list of fields specifying the sorting order of the results. The default order is ascending. Add " DESC" after the field name to indicate descending order. Redundant space characters are ignored. Example: "location DESC, name". Only string fields in the response are sortable, including `name`, `displayName`, `description`, `location`. All the other fields such as repeated fields (e.g., `networkTags`), map fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`) are not supported.
+     *     // Optional. A comma-separated list of fields specifying the sorting order of the results. The default order is ascending. Add " DESC" after the field name to indicate descending order. Redundant space characters are ignored. Example: "location DESC, name". Only singular primitive fields in the response are sortable: * name * assetType * project * displayName * description * location * kmsKey * createTime * updateTime * state * parentFullResourceName * parentAssetType All the other fields such as repeated fields (e.g., `networkTags`), map fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`) are not supported.
      *     orderBy: 'placeholder-value',
      *     // Optional. The page size for search result pagination. Page size is capped at 500 even if a larger value is given. If set to zero, server will pick an appropriate default. Returned results may be fewer than requested. When this happens, there could be more results as long as `next_page_token` is returned.
      *     pageSize: 'placeholder-value',
@@ -3811,6 +3996,20 @@ export namespace cloudasset_v1 {
      */
     requestBody?: Schema$AnalyzeIamPolicyLongrunningRequest;
   }
+  export interface Params$Resource$V1$Analyzemove extends StandardParameters {
+    /**
+     * Required. Name of the GCP Folder or Organization to reparent the target resource. The analysis will be performed against hypothetically moving the resource to this specified desitination parent. This can only be a Folder number (such as "folders/123") or an Organization number (such as "organizations/123").
+     */
+    destinationParent?: string;
+    /**
+     * Required. Name of the resource to perform the analysis against. Only GCP Project are supported as of today. Hence, this can only be Project ID (such as "projects/my-project-id") or a Project Number (such as "projects/12345").
+     */
+    resource?: string;
+    /**
+     * Analysis view indicating what information should be included in the analysis response. If unspecified, the default view is FULL.
+     */
+    view?: string;
+  }
   export interface Params$Resource$V1$Batchgetassetshistory
     extends StandardParameters {
     /**
@@ -3871,7 +4070,7 @@ export namespace cloudasset_v1 {
      */
     assetTypes?: string[];
     /**
-     * Optional. A comma separated list of fields specifying the sorting order of the results. The default order is ascending. Add " DESC" after the field name to indicate descending order. Redundant space characters are ignored. Example: "location DESC, name". Only string fields in the response are sortable, including `name`, `displayName`, `description`, `location`. All the other fields such as repeated fields (e.g., `networkTags`), map fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`) are not supported.
+     * Optional. A comma-separated list of fields specifying the sorting order of the results. The default order is ascending. Add " DESC" after the field name to indicate descending order. Redundant space characters are ignored. Example: "location DESC, name". Only singular primitive fields in the response are sortable: * name * assetType * project * displayName * description * location * kmsKey * createTime * updateTime * state * parentFullResourceName * parentAssetType All the other fields such as repeated fields (e.g., `networkTags`), map fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`) are not supported.
      */
     orderBy?: string;
     /**

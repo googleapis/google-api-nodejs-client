@@ -153,7 +153,7 @@
               "type": "string"
             },
             "parent": {
-              "description": "Required. Name of the organization or project the assets belong to. Format: \"organizations/[organization-number]\" (such as \"organizations/123\"), \"projects/[project-number]\" (such as \"projects/my-project-id\"), or \"projects/[project-id]\" (such as \"projects/12345\").",
+              "description": "Required. Name of the organization or project the assets belong to. Format: \"organizations/[organization-number]\" (such as \"organizations/123\"), \"projects/[project-id]\" (such as \"projects/my-project-id\"), or \"projects/[project-number]\" (such as \"projects/12345\").",
               "location": "path",
               "pattern": "^[^/]+/[^/]+$",
               "required": true,
@@ -177,7 +177,7 @@
       }
     }
   },
-  "revision": "20210426",
+  "revision": "20210518",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AnalyzeIamPolicyLongrunningResponse": {
