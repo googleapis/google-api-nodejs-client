@@ -883,7 +883,7 @@
       }
     }
   },
-  "revision": "20210422",
+  "revision": "20210512",
   "rootUrl": "https://servicedirectory.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -922,6 +922,12 @@
           "description": "Optional. An IPv4 or IPv6 address. Service Directory rejects bad addresses like: * `8.8.8` * `8.8.8.8:53` * `test:bad:address` * `[::1]` * `[::1]:8080` Limited to 45 characters.",
           "type": "string"
         },
+        "createTime": {
+          "description": "Output only. The timestamp when the endpoint was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "metadata": {
           "additionalProperties": {
             "type": "string"
@@ -941,6 +947,12 @@
           "description": "Optional. Service Directory rejects values outside of `[0, 65535]`.",
           "format": "int32",
           "type": "integer"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the endpoint was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1101,6 +1113,12 @@
       "description": "A container for services. Namespaces allow administrators to group services together and define permissions for a collection of services.",
       "id": "Namespace",
       "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when the namespace was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -1110,6 +1128,12 @@
         },
         "name": {
           "description": "Immutable. The resource name for the namespace in the format `projects/*/locations/*/namespaces/*`.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the namespace was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1169,6 +1193,12 @@
       "description": "An individual service. A service contains a name and optional metadata. A service must exist before endpoints can be added to it.",
       "id": "Service",
       "properties": {
+        "createTime": {
+          "description": "Output only. The timestamp when the service was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "endpoints": {
           "description": "Output only. Endpoints associated with this service. Returned on LookupService.ResolveService. Control plane clients should use RegistrationService.ListEndpoints.",
           "items": {
@@ -1186,6 +1216,12 @@
         },
         "name": {
           "description": "Immutable. The resource name for the service in the format `projects/*/locations/*/namespaces/*/services/*`.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the service was last updated. Note: endpoints being created/deleted/updated within the service are not considered service updates for the purpose of this timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },

@@ -155,6 +155,10 @@ export namespace servicedirectory_v1beta1 {
      */
     address?: string | null;
     /**
+     * Output only. The timestamp when the endpoint was created.
+     */
+    createTime?: string | null;
+    /**
      * Optional. Metadata for the endpoint. This data can be consumed by service clients. Restrictions: * The entire metadata dictionary may contain up to 512 characters, spread accoss all key-value pairs. Metadata that goes beyond this limit are rejected * Valid metadata keys have two segments: an optional prefix and name, separated by a slash (/). The name segment is required and must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (.), not longer than 253 characters in total, followed by a slash (/). Metadata that fails to meet these requirements are rejected * The `(*.)google.com/` and `(*.)googleapis.com/` prefixes are reserved for system metadata managed by Service Directory. If the user tries to write to these keyspaces, those entries are silently ignored by the system Note: This field is equivalent to the `annotations` field in the v1 API. They have the same syntax and read/write to the same location in Service Directory.
      */
     metadata?: {[key: string]: string} | null;
@@ -170,6 +174,10 @@ export namespace servicedirectory_v1beta1 {
      * Optional. Service Directory rejects values outside of `[0, 65535]`.
      */
     port?: number | null;
+    /**
+     * Output only. The timestamp when the endpoint was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -292,6 +300,10 @@ export namespace servicedirectory_v1beta1 {
    */
   export interface Schema$Namespace {
     /**
+     * Output only. The timestamp when the namespace was created.
+     */
+    createTime?: string | null;
+    /**
      * Optional. Resource labels associated with this namespace. No more than 64 user labels can be associated with a given resource. Label keys and values can be no longer than 63 characters.
      */
     labels?: {[key: string]: string} | null;
@@ -299,6 +311,10 @@ export namespace servicedirectory_v1beta1 {
      * Immutable. The resource name for the namespace in the format `projects/x/locations/x/namespaces/x`.
      */
     name?: string | null;
+    /**
+     * Output only. The timestamp when the namespace was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
@@ -341,6 +357,10 @@ export namespace servicedirectory_v1beta1 {
    */
   export interface Schema$Service {
     /**
+     * Output only. The timestamp when the service was created.
+     */
+    createTime?: string | null;
+    /**
      * Output only. Endpoints associated with this service. Returned on LookupService.ResolveService. Control plane clients should use RegistrationService.ListEndpoints.
      */
     endpoints?: Schema$Endpoint[];
@@ -352,6 +372,10 @@ export namespace servicedirectory_v1beta1 {
      * Immutable. The resource name for the service in the format `projects/x/locations/x/namespaces/x/services/x`.
      */
     name?: string | null;
+    /**
+     * Output only. The timestamp when the service was last updated. Note: endpoints being created/deleted/updated within the service are not considered service updates for the purpose of this timestamp.
+     */
+    updateTime?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -747,8 +771,10 @@ export namespace servicedirectory_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "createTime": "my_createTime",
      *       //   "labels": {},
-     *       //   "name": "my_name"
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
      *   });
@@ -756,8 +782,10 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "createTime": "my_createTime",
      *   //   "labels": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -1012,8 +1040,10 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "createTime": "my_createTime",
      *   //   "labels": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -1430,8 +1460,10 @@ export namespace servicedirectory_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "createTime": "my_createTime",
      *       //   "labels": {},
-     *       //   "name": "my_name"
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
      *   });
@@ -1439,8 +1471,10 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "createTime": "my_createTime",
      *   //   "labels": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -1981,9 +2015,11 @@ export namespace servicedirectory_v1beta1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "createTime": "my_createTime",
      *         //   "endpoints": [],
      *         //   "metadata": {},
-     *         //   "name": "my_name"
+     *         //   "name": "my_name",
+     *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
      *     });
@@ -1991,9 +2027,11 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "createTime": "my_createTime",
      *   //   "endpoints": [],
      *   //   "metadata": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -2253,9 +2291,11 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "createTime": "my_createTime",
      *   //   "endpoints": [],
      *   //   "metadata": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -2676,9 +2716,11 @@ export namespace servicedirectory_v1beta1 {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "createTime": "my_createTime",
      *         //   "endpoints": [],
      *         //   "metadata": {},
-     *         //   "name": "my_name"
+     *         //   "name": "my_name",
+     *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
      *     });
@@ -2686,9 +2728,11 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "createTime": "my_createTime",
      *   //   "endpoints": [],
      *   //   "metadata": {},
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -3388,10 +3432,12 @@ export namespace servicedirectory_v1beta1 {
      *           // request body parameters
      *           // {
      *           //   "address": "my_address",
+     *           //   "createTime": "my_createTime",
      *           //   "metadata": {},
      *           //   "name": "my_name",
      *           //   "network": "my_network",
-     *           //   "port": 0
+     *           //   "port": 0,
+     *           //   "updateTime": "my_updateTime"
      *           // }
      *         },
      *       }
@@ -3401,10 +3447,12 @@ export namespace servicedirectory_v1beta1 {
      *   // Example response
      *   // {
      *   //   "address": "my_address",
+     *   //   "createTime": "my_createTime",
      *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
-     *   //   "port": 0
+     *   //   "port": 0,
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -3668,10 +3716,12 @@ export namespace servicedirectory_v1beta1 {
      *   // Example response
      *   // {
      *   //   "address": "my_address",
+     *   //   "createTime": "my_createTime",
      *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
-     *   //   "port": 0
+     *   //   "port": 0,
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -3953,10 +4003,12 @@ export namespace servicedirectory_v1beta1 {
      *           // request body parameters
      *           // {
      *           //   "address": "my_address",
+     *           //   "createTime": "my_createTime",
      *           //   "metadata": {},
      *           //   "name": "my_name",
      *           //   "network": "my_network",
-     *           //   "port": 0
+     *           //   "port": 0,
+     *           //   "updateTime": "my_updateTime"
      *           // }
      *         },
      *       }
@@ -3966,10 +4018,12 @@ export namespace servicedirectory_v1beta1 {
      *   // Example response
      *   // {
      *   //   "address": "my_address",
+     *   //   "createTime": "my_createTime",
      *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "network": "my_network",
-     *   //   "port": 0
+     *   //   "port": 0,
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
