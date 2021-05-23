@@ -155,7 +155,7 @@
               "type": "string"
             },
             "parent": {
-              "description": "Required. Name of the organization or project the assets belong to. Format: \"organizations/[organization-number]\" (such as \"organizations/123\"), \"projects/[project-number]\" (such as \"projects/my-project-id\"), or \"projects/[project-id]\" (such as \"projects/12345\").",
+              "description": "Required. Name of the organization or project the assets belong to. Format: \"organizations/[organization-number]\" (such as \"organizations/123\"), \"projects/[project-id]\" (such as \"projects/my-project-id\"), or \"projects/[project-number]\" (such as \"projects/12345\").",
               "location": "path",
               "pattern": "^[^/]+/[^/]+$",
               "required": true,
@@ -461,6 +461,51 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "analyzeMove": {
+          "description": "Analyze moving a resource to a specified destination without kicking off the actual move. The analysis is best effort depending on the user's permissions of viewing different hierarchical policies and configurations. The policies and configuration are subject to change before the actual resource migration takes place.",
+          "flatPath": "v1/{v1Id}/{v1Id1}:analyzeMove",
+          "httpMethod": "GET",
+          "id": "cloudasset.analyzeMove",
+          "parameterOrder": [
+            "resource"
+          ],
+          "parameters": {
+            "destinationParent": {
+              "description": "Required. Name of the GCP Folder or Organization to reparent the target resource. The analysis will be performed against hypothetically moving the resource to this specified desitination parent. This can only be a Folder number (such as \"folders/123\") or an Organization number (such as \"organizations/123\").",
+              "location": "query",
+              "type": "string"
+            },
+            "resource": {
+              "description": "Required. Name of the resource to perform the analysis against. Only GCP Project are supported as of today. Hence, this can only be Project ID (such as \"projects/my-project-id\") or a Project Number (such as \"projects/12345\").",
+              "location": "path",
+              "pattern": "^[^/]+/[^/]+$",
+              "required": true,
+              "type": "string"
+            },
+            "view": {
+              "description": "Analysis view indicating what information should be included in the analysis response. If unspecified, the default view is FULL.",
+              "enum": [
+                "ANALYSIS_VIEW_UNSPECIFIED",
+                "FULL",
+                "BASIC"
+              ],
+              "enumDescriptions": [
+                "The default/unset value. The API will default to the FULL view.",
+                "Full analysis including all level of impacts of the specified resource move.",
+                "Basic analysis only including blockers which will prevent the specified resource move at runtime."
+              ],
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+resource}:analyzeMove",
+          "response": {
+            "$ref": "AnalyzeMoveResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "batchGetAssetsHistory": {
           "description": "Batch gets the update history of assets that overlap a time window. For IAM_POLICY content, this API outputs history when the asset and its attached IAM POLICY both exist. This can create gaps in the output history. Otherwise, this API outputs history with asset in both non-delete or deleted status. If a specified asset does not exist, this API returns an INVALID_ARGUMENT error.",
           "flatPath": "v1/{v1Id}/{v1Id1}:batchGetAssetsHistory",
@@ -610,7 +655,7 @@
               "type": "string"
             },
             "orderBy": {
-              "description": "Optional. A comma separated list of fields specifying the sorting order of the results. The default order is ascending. Add \" DESC\" after the field name to indicate descending order. Redundant space characters are ignored. Example: \"location DESC, name\". Only string fields in the response are sortable, including `name`, `displayName`, `description`, `location`. All the other fields such as repeated fields (e.g., `networkTags`), map fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`) are not supported.",
+              "description": "Optional. A comma-separated list of fields specifying the sorting order of the results. The default order is ascending. Add \" DESC\" after the field name to indicate descending order. Redundant space characters are ignored. Example: \"location DESC, name\". Only singular primitive fields in the response are sortable: * name * assetType * project * displayName * description * location * kmsKey * createTime * updateTime * state * parentFullResourceName * parentAssetType All the other fields such as repeated fields (e.g., `networkTags`), map fields (e.g., `labels`) and struct fields (e.g., `additionalAttributes`) are not supported.",
               "location": "query",
               "type": "string"
             },
@@ -649,7 +694,7 @@
       }
     }
   },
-  "revision": "20210507",
+  "revision": "20210518",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -710,6 +755,20 @@
           "description": "The service account impersonation analysis if AnalyzeIamPolicyRequest.analyze_service_account_impersonation is enabled.",
           "items": {
             "$ref": "IamPolicyAnalysis"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AnalyzeMoveResponse": {
+      "description": "The response message for resource move analysis.",
+      "id": "AnalyzeMoveResponse",
+      "properties": {
+        "moveAnalysis": {
+          "description": "The list of analyses returned from performing the intended resource move analysis. The analysis is grouped by different Cloud services.",
+          "items": {
+            "$ref": "MoveAnalysis"
           },
           "type": "array"
         }
@@ -2339,6 +2398,57 @@
             "$ref": "Feed"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MoveAnalysis": {
+      "description": "A message to group the analysis information.",
+      "id": "MoveAnalysis",
+      "properties": {
+        "analysis": {
+          "$ref": "MoveAnalysisResult",
+          "description": "Analysis result of moving the target resource."
+        },
+        "displayName": {
+          "description": "The user friendly display name of the analysis. E.g. IAM, Organization Policy etc.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "Status",
+          "description": "Description of error encountered when performing the analysis."
+        }
+      },
+      "type": "object"
+    },
+    "MoveAnalysisResult": {
+      "description": "An analysis result including blockers and warnings.",
+      "id": "MoveAnalysisResult",
+      "properties": {
+        "blockers": {
+          "description": "Blocking information that would prevent the target resource from moving to the specified destination at runtime.",
+          "items": {
+            "$ref": "MoveImpact"
+          },
+          "type": "array"
+        },
+        "warnings": {
+          "description": "Warning information indicating that moving the target resource to the specified destination might be unsafe. This can include important policy information and configuration changes, but will not block moves at runtime.",
+          "items": {
+            "$ref": "MoveImpact"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MoveImpact": {
+      "description": "A message to group impacts of moving the target resource.",
+      "id": "MoveImpact",
+      "properties": {
+        "detail": {
+          "description": "User friendly impact detail in a free form message.",
+          "type": "string"
         }
       },
       "type": "object"
