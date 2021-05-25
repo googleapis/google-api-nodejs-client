@@ -21,6 +21,7 @@
   "description": "Build applications to efficiently manage large or complex trafficking, reporting, and attribution workflows for Campaign Manager 360.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/doubleclick-advertisers/",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -9638,7 +9639,7 @@
       }
     }
   },
-  "revision": "20210521",
+  "revision": "20210524",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
