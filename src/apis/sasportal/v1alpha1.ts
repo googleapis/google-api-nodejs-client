@@ -206,6 +206,10 @@ export namespace sasportal_v1alpha1 {
      */
     displayName?: string | null;
     /**
+     * Output only. The FRNs copied from its direct parent.
+     */
+    frns?: string[] | null;
+    /**
      * Output only. Resource name.
      */
     name?: string | null;
@@ -1229,6 +1233,7 @@ export namespace sasportal_v1alpha1 {
      *       //   "allowedBillingModes": [],
      *       //   "defaultBillingMode": "my_defaultBillingMode",
      *       //   "displayName": "my_displayName",
+     *       //   "frns": [],
      *       //   "name": "my_name",
      *       //   "sasUserIds": []
      *       // }
@@ -1241,6 +1246,7 @@ export namespace sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }
@@ -1501,6 +1507,7 @@ export namespace sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }
@@ -1925,6 +1932,7 @@ export namespace sasportal_v1alpha1 {
      *       //   "allowedBillingModes": [],
      *       //   "defaultBillingMode": "my_defaultBillingMode",
      *       //   "displayName": "my_displayName",
+     *       //   "frns": [],
      *       //   "name": "my_name",
      *       //   "sasUserIds": []
      *       // }
@@ -1937,6 +1945,7 @@ export namespace sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }
@@ -4970,6 +4979,7 @@ export namespace sasportal_v1alpha1 {
      *       //   "allowedBillingModes": [],
      *       //   "defaultBillingMode": "my_defaultBillingMode",
      *       //   "displayName": "my_displayName",
+     *       //   "frns": [],
      *       //   "name": "my_name",
      *       //   "sasUserIds": []
      *       // }
@@ -4982,6 +4992,7 @@ export namespace sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }
@@ -6128,6 +6139,7 @@ export namespace sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }
@@ -7770,6 +7782,7 @@ export namespace sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }
@@ -8194,6 +8207,7 @@ export namespace sasportal_v1alpha1 {
      *       //   "allowedBillingModes": [],
      *       //   "defaultBillingMode": "my_defaultBillingMode",
      *       //   "displayName": "my_displayName",
+     *       //   "frns": [],
      *       //   "name": "my_name",
      *       //   "sasUserIds": []
      *       // }
@@ -8206,6 +8220,7 @@ export namespace sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }
@@ -11220,6 +11235,7 @@ export namespace sasportal_v1alpha1 {
      *       //   "allowedBillingModes": [],
      *       //   "defaultBillingMode": "my_defaultBillingMode",
      *       //   "displayName": "my_displayName",
+     *       //   "frns": [],
      *       //   "name": "my_name",
      *       //   "sasUserIds": []
      *       // }
@@ -11232,6 +11248,7 @@ export namespace sasportal_v1alpha1 {
      *   //   "allowedBillingModes": [],
      *   //   "defaultBillingMode": "my_defaultBillingMode",
      *   //   "displayName": "my_displayName",
+     *   //   "frns": [],
      *   //   "name": "my_name",
      *   //   "sasUserIds": []
      *   // }

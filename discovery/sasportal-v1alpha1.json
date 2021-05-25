@@ -2483,7 +2483,7 @@
       }
     }
   },
-  "revision": "20210403",
+  "revision": "20210520",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -2596,6 +2596,14 @@
         "displayName": {
           "description": "The deployment's display name.",
           "type": "string"
+        },
+        "frns": {
+          "description": "Output only. The FRNs copied from its direct parent.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "name": {
           "description": "Output only. Resource name.",
