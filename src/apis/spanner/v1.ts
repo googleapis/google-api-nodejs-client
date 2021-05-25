@@ -114,6 +114,7 @@ export namespace spanner_v1 {
   export class Spanner {
     context: APIRequestContext;
     projects: Resource$Projects;
+    scans: Resource$Scans;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -122,6 +123,7 @@ export namespace spanner_v1 {
       };
 
       this.projects = new Resource$Projects(this.context);
+      this.scans = new Resource$Scans(this.context);
     }
   }
 
@@ -304,6 +306,27 @@ export namespace spanner_v1 {
     mutationCount?: string | null;
   }
   /**
+   * A message representing context for a KeyRangeInfo, including a label, value, unit, and severity.
+   */
+  export interface Schema$ContextValue {
+    /**
+     * The label for the context value. e.g. "latency".
+     */
+    label?: Schema$LocalizedString;
+    /**
+     * The severity of this context.
+     */
+    severity?: string | null;
+    /**
+     * The unit of the context value.
+     */
+    unit?: string | null;
+    /**
+     * The value for the context.
+     */
+    value?: number | null;
+  }
+  /**
    * Metadata type for the operation returned by CreateBackup.
    */
   export interface Schema$CreateBackupMetadata {
@@ -442,6 +465,44 @@ export namespace spanner_v1 {
      * Required. The table whose rows will be deleted.
      */
     table?: string | null;
+  }
+  /**
+   * A message representing a derived metric.
+   */
+  export interface Schema$DerivedMetric {
+    /**
+     * The name of the denominator metric. e.g. "rows".
+     */
+    denominator?: Schema$LocalizedString;
+    /**
+     * The name of the numerator metric. e.g. "latency".
+     */
+    numerator?: Schema$LocalizedString;
+  }
+  /**
+   * A message representing the key visualizer diagnostic messages.
+   */
+  export interface Schema$DiagnosticMessage {
+    /**
+     * Information about this diagnostic information.
+     */
+    info?: Schema$LocalizedString;
+    /**
+     * The metric.
+     */
+    metric?: Schema$LocalizedString;
+    /**
+     * Whether this message is specific only for the current metric. By default Diagnostics are shown for all metrics, regardless which metric is the currently selected metric in the UI. However occasionally a metric will generate so many messages that the resulting visual clutter becomes overwhelming. In this case setting this to true, will show the diagnostic messages for that metric only if it is the currently selected metric.
+     */
+    metricSpecific?: boolean | null;
+    /**
+     * The severity of the diagnostic message.
+     */
+    severity?: string | null;
+    /**
+     * The short message.
+     */
+    shortMessage?: Schema$LocalizedString;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
@@ -614,6 +675,24 @@ export namespace spanner_v1 {
     requestedPolicyVersion?: number | null;
   }
   /**
+   * A message representing a (sparse) collection of hot keys for specific key buckets.
+   */
+  export interface Schema$IndexedHotKey {
+    /**
+     * A (sparse) mapping from key bucket index to the index of the specific hot row key for that key bucket. The index of the hot row key can be translated to the actual row key via the ScanData.VisualizationData.indexed_keys repeated field.
+     */
+    sparseHotKeys?: {[key: string]: number} | null;
+  }
+  /**
+   * A message representing a (sparse) collection of KeyRangeInfos for specific key buckets.
+   */
+  export interface Schema$IndexedKeyRangeInfos {
+    /**
+     * A (sparse) mapping from key bucket index to the KeyRangeInfos for that key bucket.
+     */
+    keyRangeInfos?: {[key: string]: Schema$KeyRangeInfos} | null;
+  }
+  /**
    * An isolated set of Cloud Spanner resources on which databases can be hosted.
    */
   export interface Schema$Instance {
@@ -683,6 +762,56 @@ export namespace spanner_v1 {
      * If the start is open, then the range excludes rows whose first `len(start_open)` key columns exactly match `start_open`.
      */
     startOpen?: any[] | null;
+  }
+  /**
+   * A message representing information for a key range (possibly one key).
+   */
+  export interface Schema$KeyRangeInfo {
+    /**
+     * The list of context values for this key range.
+     */
+    contextValues?: Schema$ContextValue[];
+    /**
+     * The index of the end key in indexed_keys.
+     */
+    endKeyIndex?: number | null;
+    /**
+     * Information about this key range, for all metrics.
+     */
+    info?: Schema$LocalizedString;
+    /**
+     * The number of keys this range covers.
+     */
+    keysCount?: string | null;
+    /**
+     * The name of the metric. e.g. "latency".
+     */
+    metric?: Schema$LocalizedString;
+    /**
+     * The index of the start key in indexed_keys.
+     */
+    startKeyIndex?: number | null;
+    /**
+     * The unit of the metric. This is an unstructured field and will be mapped as is to the user.
+     */
+    unit?: Schema$LocalizedString;
+    /**
+     * The value of the metric.
+     */
+    value?: number | null;
+  }
+  /**
+   * A message representing a list of specific information for multiple key ranges.
+   */
+  export interface Schema$KeyRangeInfos {
+    /**
+     * The list individual KeyRangeInfos.
+     */
+    infos?: Schema$KeyRangeInfo[];
+    /**
+     * The total size of the list of all KeyRangeInfos. This may be larger than the number of repeated messages above. If that is the case, this number may be used to determine how many are not being shown.
+     */
+    totalSize?: number | null;
   }
   /**
    * `KeySet` defines a collection of Cloud Spanner keys and/or key ranges. All the keys are expected to be in the same table or index. The keys need not be sorted in any particular way. If the same key is specified multiple times in the set (for example if two ranges, two keys, or a key and a range overlap), Cloud Spanner behaves as if the key were only specified once.
@@ -797,6 +926,19 @@ export namespace spanner_v1 {
     operations?: Schema$Operation[];
   }
   /**
+   * Response method from the ListScans method.
+   */
+  export interface Schema$ListScansResponse {
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Available scans based on the list query parameters.
+     */
+    scans?: Schema$Scan[];
+  }
+  /**
    * The response for ListSessions.
    */
   export interface Schema$ListSessionsResponse {
@@ -808,6 +950,94 @@ export namespace spanner_v1 {
      * The list of requested sessions.
      */
     sessions?: Schema$Session[];
+  }
+  /**
+   * A message representing a user-facing string whose value may need to be translated before being displayed.
+   */
+  export interface Schema$LocalizedString {
+    /**
+     * A map of arguments used when creating the localized message. Keys represent parameter names which may be used by the localized version when substituting dynamic values.
+     */
+    args?: {[key: string]: string} | null;
+    /**
+     * The canonical English version of this message. If no token is provided or the front-end has no message associated with the token, this text will be displayed as-is.
+     */
+    message?: string | null;
+    /**
+     * The token identifying the message, e.g. 'METRIC_READ_CPU'. This should be unique within the service.
+     */
+    token?: string | null;
+  }
+  /**
+   * A message representing the actual monitoring data, values for each key bucket over time, of a metric.
+   */
+  export interface Schema$Metric {
+    /**
+     * The aggregation function used to aggregate each key bucket
+     */
+    aggregation?: string | null;
+    /**
+     * The category of the metric, e.g. "Activity", "Alerts", "Reads", etc.
+     */
+    category?: Schema$LocalizedString;
+    /**
+     * The references to numerator and denominator metrics for a derived metric.
+     */
+    derived?: Schema$DerivedMetric;
+    /**
+     * The displayed label of the metric.
+     */
+    displayLabel?: Schema$LocalizedString;
+    /**
+     * Whether the metric has any non-zero data.
+     */
+    hasNonzeroData?: boolean | null;
+    /**
+     * The value that is considered hot for the metric. On a per metric basis hotness signals high utilization and something that might potentially be a cause for concern by the end user. hot_value is used to calibrate and scale visual color scales.
+     */
+    hotValue?: number | null;
+    /**
+     * The (sparse) mapping from time index to an IndexedHotKey message, representing those time intervals for which there are hot keys.
+     */
+    indexedHotKeys?: {[key: string]: Schema$IndexedHotKey} | null;
+    /**
+     * The (sparse) mapping from time interval index to an IndexedKeyRangeInfos message, representing those time intervals for which there are informational messages concerning key ranges.
+     */
+    indexedKeyRangeInfos?: {[key: string]: Schema$IndexedKeyRangeInfos} | null;
+    /**
+     * Information about the metric.
+     */
+    info?: Schema$LocalizedString;
+    /**
+     * The data for the metric as a matrix.
+     */
+    matrix?: Schema$MetricMatrix;
+    /**
+     * The unit of the metric.
+     */
+    unit?: Schema$LocalizedString;
+    /**
+     * Whether the metric is visible to the end user.
+     */
+    visible?: boolean | null;
+  }
+  /**
+   * A message representing a matrix of floats.
+   */
+  export interface Schema$MetricMatrix {
+    /**
+     * The rows of the matrix.
+     */
+    rows?: Schema$MetricMatrixRow[];
+  }
+  /**
+   * A message representing a row of a matrix of floats.
+   */
+  export interface Schema$MetricMatrixRow {
+    /**
+     * The columns of the row.
+     */
+    cols?: number[] | null;
   }
   /**
    * A modification to one or more Cloud Spanner rows. Mutations can be applied to a Cloud Spanner database by sending them in a Commit call.
@@ -1056,6 +1286,31 @@ export namespace spanner_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * A message representing a key prefix node in the key prefix hierarchy. for eg. Bigtable keyspaces are lexicographically ordered mappings of keys to values. Keys often have a shared prefix structure where users use the keys to organize data. Eg ///employee In this case Keysight will possibly use one node for a company and reuse it for all employees that fall under the company. Doing so improves legibility in the UI.
+   */
+  export interface Schema$PrefixNode {
+    /**
+     * Whether this corresponds to a data_source name.
+     */
+    dataSourceNode?: boolean | null;
+    /**
+     * The depth in the prefix hierarchy.
+     */
+    depth?: number | null;
+    /**
+     * The index of the end key bucket of the range that this node spans.
+     */
+    endIndex?: number | null;
+    /**
+     * The index of the start key bucket of the range that this node spans.
+     */
+    startIndex?: number | null;
+    /**
+     * The string represented by the prefix node.
+     */
+    word?: string | null;
   }
   /**
    * Query optimizer configuration.
@@ -1317,6 +1572,48 @@ export namespace spanner_v1 {
     transactionId?: string | null;
   }
   /**
+   * Scan is a structure which describes Cloud Key Visualizer scan information.
+   */
+  export interface Schema$Scan {
+    /**
+     * Additional information provided by the implementer.
+     */
+    details?: {[key: string]: any} | null;
+    /**
+     * The upper bound for when the scan is defined.
+     */
+    endTime?: string | null;
+    /**
+     * The unique name of the scan, specific to the Database service implementing this interface.
+     */
+    name?: string | null;
+    /**
+     * Output only. Cloud Key Visualizer scan data. Note, this field is not available to the ListScans method.
+     */
+    scanData?: Schema$ScanData;
+    /**
+     * A range of time (inclusive) for when the scan is defined. The lower bound for when the scan is defined.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * ScanData contains Cloud Key Visualizer scan data used by the caller to construct a visualization.
+   */
+  export interface Schema$ScanData {
+    /**
+     * Cloud Key Visualizer scan data. The range of time this information covers is captured via the above time range fields. Note, this field is not available to the ListScans method.
+     */
+    data?: Schema$VisualizationData;
+    /**
+     * The upper bound for when the contained data is defined.
+     */
+    endTime?: string | null;
+    /**
+     * A range of time (inclusive) for when the contained data is defined. The lower bound for when the contained data is defined.
+     */
+    startTime?: string | null;
+  }
+  /**
    * A session in the Cloud Spanner API.
    */
   export interface Schema$Session {
@@ -1555,6 +1852,48 @@ export namespace spanner_v1 {
      * Required. The instance to update, which must always include the instance name. Otherwise, only fields mentioned in field_mask need be included.
      */
     instance?: Schema$Instance;
+  }
+  export interface Schema$VisualizationData {
+    /**
+     * The token signifying the end of a data_source.
+     */
+    dataSourceEndToken?: string | null;
+    /**
+     * The token delimiting a datasource name from the rest of a key in a data_source.
+     */
+    dataSourceSeparatorToken?: string | null;
+    /**
+     * The list of messages (info, alerts, ...)
+     */
+    diagnosticMessages?: Schema$DiagnosticMessage[];
+    /**
+     * We discretize the entire keyspace into buckets. Assuming each bucket has an inclusive keyrange and covers keys from k(i) ... k(n). In this case k(n) would be an end key for a given range. end_key_string is the collection of all such end keys
+     */
+    endKeyStrings?: string[] | null;
+    /**
+     * Whether this scan contains PII.
+     */
+    hasPii?: boolean | null;
+    /**
+     * Keys of key ranges that contribute significantly to a given metric Can be thought of as heavy hitters.
+     */
+    indexedKeys?: string[] | null;
+    /**
+     * The token delimiting the key prefixes.
+     */
+    keySeparator?: string | null;
+    /**
+     * The unit for the key: e.g. 'key' or 'chunk'.
+     */
+    keyUnit?: string | null;
+    /**
+     * The list of data objects for each metric.
+     */
+    metrics?: Schema$Metric[];
+    /**
+     * The list of extracted key prefix nodes used in the key prefix hierarchy.
+     */
+    prefixNodes?: Schema$PrefixNode[];
   }
   /**
    * Arguments to insert, update, insert_or_update, and replace operations.
@@ -6053,6 +6392,145 @@ export namespace spanner_v1 {
     }
 
     /**
+     * Request a specific scan with Database-specific data for Cloud Key Visualizer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/spanner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const spanner = google.spanner('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/spanner.data',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await spanner.projects.instances.databases.getScans({
+     *     // The upper bound for the time range to retrieve Scan data for.
+     *     endTime: 'placeholder-value',
+     *     // Required. The unique name of the scan containing the requested information, specific to the Database service implementing this interface.
+     *     name: 'projects/my-project/instances/my-instance/databases/my-database',
+     *     // These fields restrict the Database-specific information returned in the `Scan.data` field. If a `View` is provided that does not include the `Scan.data` field, these are ignored. This range of time must be entirely contained within the defined time range of the targeted scan. The lower bound for the time range to retrieve Scan data for.
+     *     startTime: 'placeholder-value',
+     *     // Specifies which parts of the Scan should be returned in the response. Note, if left unspecified, the FULL view is assumed.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "details": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "name": "my_name",
+     *   //   "scanData": {},
+     *   //   "startTime": "my_startTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getScans(
+      params: Params$Resource$Projects$Instances$Databases$Getscans,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getScans(
+      params?: Params$Resource$Projects$Instances$Databases$Getscans,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Scan>;
+    getScans(
+      params: Params$Resource$Projects$Instances$Databases$Getscans,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getScans(
+      params: Params$Resource$Projects$Instances$Databases$Getscans,
+      options: MethodOptions | BodyResponseCallback<Schema$Scan>,
+      callback: BodyResponseCallback<Schema$Scan>
+    ): void;
+    getScans(
+      params: Params$Resource$Projects$Instances$Databases$Getscans,
+      callback: BodyResponseCallback<Schema$Scan>
+    ): void;
+    getScans(callback: BodyResponseCallback<Schema$Scan>): void;
+    getScans(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Instances$Databases$Getscans
+        | BodyResponseCallback<Schema$Scan>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Scan>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Scan>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Scan> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Instances$Databases$Getscans;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Instances$Databases$Getscans;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/scans').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Scan>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Scan>(parameters);
+      }
+    }
+
+    /**
      * Lists Cloud Spanner databases.
      * @example
      * ```js
@@ -6821,6 +7299,25 @@ export namespace spanner_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Instances$Databases$Getscans
+    extends StandardParameters {
+    /**
+     * The upper bound for the time range to retrieve Scan data for.
+     */
+    endTime?: string;
+    /**
+     * Required. The unique name of the scan containing the requested information, specific to the Database service implementing this interface.
+     */
+    name?: string;
+    /**
+     * These fields restrict the Database-specific information returned in the `Scan.data` field. If a `View` is provided that does not include the `Scan.data` field, these are ignored. This range of time must be entirely contained within the defined time range of the targeted scan. The lower bound for the time range to retrieve Scan data for.
+     */
+    startTime?: string;
+    /**
+     * Specifies which parts of the Scan should be returned in the response. Note, if left unspecified, the FULL view is assumed.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Instances$Databases$List
     extends StandardParameters {
@@ -10439,5 +10936,175 @@ export namespace spanner_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Scans {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Return available scans given a Database-specific resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/spanner.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const spanner = google.spanner('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/spanner.data',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await spanner.scans.list({
+     *     // A filter expression to restrict the results based on information present in the available Scan collection. The filter applies to all fields within the Scan message except for `data`.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The unique name of the parent resource, specific to the Database service implementing this interface.
+     *     parent: 'scans',
+     *     // Specifies which parts of the Scan should be returned in the response. Note, only the SUMMARY view (the default) is currently supported for ListScans.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "scans": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Scans$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Scans$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListScansResponse>;
+    list(
+      params: Params$Resource$Scans$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Scans$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListScansResponse>,
+      callback: BodyResponseCallback<Schema$ListScansResponse>
+    ): void;
+    list(
+      params: Params$Resource$Scans$List,
+      callback: BodyResponseCallback<Schema$ListScansResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListScansResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Scans$List
+        | BodyResponseCallback<Schema$ListScansResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListScansResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListScansResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListScansResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Scans$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Scans$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://spanner.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListScansResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListScansResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Scans$List extends StandardParameters {
+    /**
+     * A filter expression to restrict the results based on information present in the available Scan collection. The filter applies to all fields within the Scan message except for `data`.
+     */
+    filter?: string;
+    /**
+     * The maximum number of items to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous List request, if any.
+     */
+    pageToken?: string;
+    /**
+     * Required. The unique name of the parent resource, specific to the Database service implementing this interface.
+     */
+    parent?: string;
+    /**
+     * Specifies which parts of the Scan should be returned in the response. Note, only the SUMMARY view (the default) is currently supported for ListScans.
+     */
+    view?: string;
   }
 }

@@ -1067,6 +1067,59 @@
                     "https://www.googleapis.com/auth/spanner.admin"
                   ]
                 },
+                "getScans": {
+                  "description": "Request a specific scan with Database-specific data for Cloud Key Visualizer.",
+                  "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases/{databasesId}/scans",
+                  "httpMethod": "GET",
+                  "id": "spanner.projects.instances.databases.getScans",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "endTime": {
+                      "description": "The upper bound for the time range to retrieve Scan data for.",
+                      "format": "google-datetime",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "name": {
+                      "description": "Required. The unique name of the scan containing the requested information, specific to the Database service implementing this interface.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/instances/[^/]+/databases/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "startTime": {
+                      "description": "These fields restrict the Database-specific information returned in the `Scan.data` field. If a `View` is provided that does not include the `Scan.data` field, these are ignored. This range of time must be entirely contained within the defined time range of the targeted scan. The lower bound for the time range to retrieve Scan data for.",
+                      "format": "google-datetime",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Specifies which parts of the Scan should be returned in the response. Note, if left unspecified, the FULL view is assumed.",
+                      "enum": [
+                        "VIEW_UNSPECIFIED",
+                        "SUMMARY",
+                        "FULL"
+                      ],
+                      "enumDescriptions": [
+                        "Not specified, equivalent to SUMMARY.",
+                        "Server responses only include `name`, `details`, `start_time` and `end_time`. The default value. Note, the ListScans method may only use this view type, others view types are not supported.",
+                        "Full representation of the scan is returned in the server response, including `data`."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}/scans",
+                  "response": {
+                    "$ref": "Scan"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/spanner.data"
+                  ]
+                },
                 "list": {
                   "description": "Lists Cloud Spanner databases.",
                   "flatPath": "v1/projects/{projectsId}/instances/{instancesId}/databases",
@@ -1921,9 +1974,70 @@
           }
         }
       }
+    },
+    "scans": {
+      "methods": {
+        "list": {
+          "description": "Return available scans given a Database-specific resource name.",
+          "flatPath": "v1/scans",
+          "httpMethod": "GET",
+          "id": "spanner.scans.list",
+          "parameterOrder": [
+            "parent"
+          ],
+          "parameters": {
+            "filter": {
+              "description": "A filter expression to restrict the results based on information present in the available Scan collection. The filter applies to all fields within the Scan message except for `data`.",
+              "location": "query",
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The maximum number of items to return.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "The next_page_token value returned from a previous List request, if any.",
+              "location": "query",
+              "type": "string"
+            },
+            "parent": {
+              "description": "Required. The unique name of the parent resource, specific to the Database service implementing this interface.",
+              "location": "path",
+              "pattern": "^scans$",
+              "required": true,
+              "type": "string"
+            },
+            "view": {
+              "description": "Specifies which parts of the Scan should be returned in the response. Note, only the SUMMARY view (the default) is currently supported for ListScans.",
+              "enum": [
+                "VIEW_UNSPECIFIED",
+                "SUMMARY",
+                "FULL"
+              ],
+              "enumDescriptions": [
+                "Not specified, equivalent to SUMMARY.",
+                "Server responses only include `name`, `details`, `start_time` and `end_time`. The default value. Note, the ListScans method may only use this view type, others view types are not supported.",
+                "Full representation of the scan is returned in the server response, including `data`."
+              ],
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1/{+parent}",
+          "response": {
+            "$ref": "ListScansResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/spanner.data"
+          ]
+        }
+      }
     }
   },
-  "revision": "20210428",
+  "revision": "20210517",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -2162,6 +2276,44 @@
       },
       "type": "object"
     },
+    "ContextValue": {
+      "description": "A message representing context for a KeyRangeInfo, including a label, value, unit, and severity.",
+      "id": "ContextValue",
+      "properties": {
+        "label": {
+          "$ref": "LocalizedString",
+          "description": "The label for the context value. e.g. \"latency\"."
+        },
+        "severity": {
+          "description": "The severity of this context.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "INFO",
+            "WARNING",
+            "ERROR",
+            "FATAL"
+          ],
+          "enumDescriptions": [
+            "Required default value.",
+            "Lowest severity level \"Info\".",
+            "Middle severity level \"Warning\".",
+            "Severity level signaling an error \"Error\"",
+            "Severity level signaling a non recoverable error \"Fatal\""
+          ],
+          "type": "string"
+        },
+        "unit": {
+          "description": "The unit of the context value.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The value for the context.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "CreateBackupMetadata": {
       "description": "Metadata type for the operation returned by CreateBackup.",
       "id": "CreateBackupMetadata",
@@ -2345,6 +2497,62 @@
         "table": {
           "description": "Required. The table whose rows will be deleted.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DerivedMetric": {
+      "description": "A message representing a derived metric.",
+      "id": "DerivedMetric",
+      "properties": {
+        "denominator": {
+          "$ref": "LocalizedString",
+          "description": "The name of the denominator metric. e.g. \"rows\"."
+        },
+        "numerator": {
+          "$ref": "LocalizedString",
+          "description": "The name of the numerator metric. e.g. \"latency\"."
+        }
+      },
+      "type": "object"
+    },
+    "DiagnosticMessage": {
+      "description": "A message representing the key visualizer diagnostic messages.",
+      "id": "DiagnosticMessage",
+      "properties": {
+        "info": {
+          "$ref": "LocalizedString",
+          "description": "Information about this diagnostic information."
+        },
+        "metric": {
+          "$ref": "LocalizedString",
+          "description": "The metric."
+        },
+        "metricSpecific": {
+          "description": "Whether this message is specific only for the current metric. By default Diagnostics are shown for all metrics, regardless which metric is the currently selected metric in the UI. However occasionally a metric will generate so many messages that the resulting visual clutter becomes overwhelming. In this case setting this to true, will show the diagnostic messages for that metric only if it is the currently selected metric.",
+          "type": "boolean"
+        },
+        "severity": {
+          "description": "The severity of the diagnostic message.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "INFO",
+            "WARNING",
+            "ERROR",
+            "FATAL"
+          ],
+          "enumDescriptions": [
+            "Required default value.",
+            "Lowest severity level \"Info\".",
+            "Middle severity level \"Warning\".",
+            "Severity level signaling an error \"Error\"",
+            "Severity level signaling a non recoverable error \"Fatal\""
+          ],
+          "type": "string"
+        },
+        "shortMessage": {
+          "$ref": "LocalizedString",
+          "description": "The short message."
         }
       },
       "type": "object"
@@ -2585,6 +2793,35 @@
       },
       "type": "object"
     },
+    "IndexedHotKey": {
+      "description": "A message representing a (sparse) collection of hot keys for specific key buckets.",
+      "id": "IndexedHotKey",
+      "properties": {
+        "sparseHotKeys": {
+          "additionalProperties": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "description": "A (sparse) mapping from key bucket index to the index of the specific hot row key for that key bucket. The index of the hot row key can be translated to the actual row key via the ScanData.VisualizationData.indexed_keys repeated field.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "IndexedKeyRangeInfos": {
+      "description": "A message representing a (sparse) collection of KeyRangeInfos for specific key buckets.",
+      "id": "IndexedKeyRangeInfos",
+      "properties": {
+        "keyRangeInfos": {
+          "additionalProperties": {
+            "$ref": "KeyRangeInfos"
+          },
+          "description": "A (sparse) mapping from key bucket index to the KeyRangeInfos for that key bucket.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "Instance": {
       "description": "An isolated set of Cloud Spanner resources on which databases can be hosted.",
       "id": "Instance",
@@ -2691,6 +2928,71 @@
             "type": "any"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "KeyRangeInfo": {
+      "description": "A message representing information for a key range (possibly one key).",
+      "id": "KeyRangeInfo",
+      "properties": {
+        "contextValues": {
+          "description": "The list of context values for this key range.",
+          "items": {
+            "$ref": "ContextValue"
+          },
+          "type": "array"
+        },
+        "endKeyIndex": {
+          "description": "The index of the end key in indexed_keys.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "info": {
+          "$ref": "LocalizedString",
+          "description": "Information about this key range, for all metrics."
+        },
+        "keysCount": {
+          "description": "The number of keys this range covers.",
+          "format": "int64",
+          "type": "string"
+        },
+        "metric": {
+          "$ref": "LocalizedString",
+          "description": "The name of the metric. e.g. \"latency\"."
+        },
+        "startKeyIndex": {
+          "description": "The index of the start key in indexed_keys.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "unit": {
+          "$ref": "LocalizedString",
+          "description": "The unit of the metric. This is an unstructured field and will be mapped as is to the user."
+        },
+        "value": {
+          "description": "The value of the metric.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "KeyRangeInfos": {
+      "description": "A message representing a list of specific information for multiple key ranges.",
+      "id": "KeyRangeInfos",
+      "properties": {
+        "infos": {
+          "description": "The list individual KeyRangeInfos.",
+          "items": {
+            "$ref": "KeyRangeInfo"
+          },
+          "type": "array"
+        },
+        "totalSize": {
+          "description": "The total size of the list of all KeyRangeInfos. This may be larger than the number of repeated messages above. If that is the case, this number may be used to determine how many are not being shown.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -2856,6 +3158,24 @@
       },
       "type": "object"
     },
+    "ListScansResponse": {
+      "description": "Response method from the ListScans method.",
+      "id": "ListScansResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "scans": {
+          "description": "Available scans based on the list query parameters.",
+          "items": {
+            "$ref": "Scan"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListSessionsResponse": {
       "description": "The response for ListSessions.",
       "id": "ListSessionsResponse",
@@ -2868,6 +3188,129 @@
           "description": "The list of requested sessions.",
           "items": {
             "$ref": "Session"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "LocalizedString": {
+      "description": "A message representing a user-facing string whose value may need to be translated before being displayed.",
+      "id": "LocalizedString",
+      "properties": {
+        "args": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A map of arguments used when creating the localized message. Keys represent parameter names which may be used by the localized version when substituting dynamic values.",
+          "type": "object"
+        },
+        "message": {
+          "description": "The canonical English version of this message. If no token is provided or the front-end has no message associated with the token, this text will be displayed as-is.",
+          "type": "string"
+        },
+        "token": {
+          "description": "The token identifying the message, e.g. 'METRIC_READ_CPU'. This should be unique within the service.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Metric": {
+      "description": "A message representing the actual monitoring data, values for each key bucket over time, of a metric.",
+      "id": "Metric",
+      "properties": {
+        "aggregation": {
+          "description": "The aggregation function used to aggregate each key bucket",
+          "enum": [
+            "AGGREGATION_UNSPECIFIED",
+            "MAX",
+            "SUM"
+          ],
+          "enumDescriptions": [
+            "Required default value.",
+            "Use the maximum of all values.",
+            "Use the sum of all values."
+          ],
+          "type": "string"
+        },
+        "category": {
+          "$ref": "LocalizedString",
+          "description": "The category of the metric, e.g. \"Activity\", \"Alerts\", \"Reads\", etc."
+        },
+        "derived": {
+          "$ref": "DerivedMetric",
+          "description": "The references to numerator and denominator metrics for a derived metric."
+        },
+        "displayLabel": {
+          "$ref": "LocalizedString",
+          "description": "The displayed label of the metric."
+        },
+        "hasNonzeroData": {
+          "description": "Whether the metric has any non-zero data.",
+          "type": "boolean"
+        },
+        "hotValue": {
+          "description": "The value that is considered hot for the metric. On a per metric basis hotness signals high utilization and something that might potentially be a cause for concern by the end user. hot_value is used to calibrate and scale visual color scales.",
+          "format": "float",
+          "type": "number"
+        },
+        "indexedHotKeys": {
+          "additionalProperties": {
+            "$ref": "IndexedHotKey"
+          },
+          "description": "The (sparse) mapping from time index to an IndexedHotKey message, representing those time intervals for which there are hot keys.",
+          "type": "object"
+        },
+        "indexedKeyRangeInfos": {
+          "additionalProperties": {
+            "$ref": "IndexedKeyRangeInfos"
+          },
+          "description": "The (sparse) mapping from time interval index to an IndexedKeyRangeInfos message, representing those time intervals for which there are informational messages concerning key ranges.",
+          "type": "object"
+        },
+        "info": {
+          "$ref": "LocalizedString",
+          "description": "Information about the metric."
+        },
+        "matrix": {
+          "$ref": "MetricMatrix",
+          "description": "The data for the metric as a matrix."
+        },
+        "unit": {
+          "$ref": "LocalizedString",
+          "description": "The unit of the metric."
+        },
+        "visible": {
+          "description": "Whether the metric is visible to the end user.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "MetricMatrix": {
+      "description": "A message representing a matrix of floats.",
+      "id": "MetricMatrix",
+      "properties": {
+        "rows": {
+          "description": "The rows of the matrix.",
+          "items": {
+            "$ref": "MetricMatrixRow"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "MetricMatrixRow": {
+      "description": "A message representing a row of a matrix of floats.",
+      "id": "MetricMatrixRow",
+      "properties": {
+        "cols": {
+          "description": "The columns of the row.",
+          "items": {
+            "format": "float",
+            "type": "number"
           },
           "type": "array"
         }
@@ -3202,6 +3645,36 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PrefixNode": {
+      "description": "A message representing a key prefix node in the key prefix hierarchy. for eg. Bigtable keyspaces are lexicographically ordered mappings of keys to values. Keys often have a shared prefix structure where users use the keys to organize data. Eg ///employee In this case Keysight will possibly use one node for a company and reuse it for all employees that fall under the company. Doing so improves legibility in the UI.",
+      "id": "PrefixNode",
+      "properties": {
+        "dataSourceNode": {
+          "description": "Whether this corresponds to a data_source name.",
+          "type": "boolean"
+        },
+        "depth": {
+          "description": "The depth in the prefix hierarchy.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "endIndex": {
+          "description": "The index of the end key bucket of the range that this node spans.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startIndex": {
+          "description": "The index of the start key bucket of the range that this node spans.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "word": {
+          "description": "The string represented by the prefix node.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3576,6 +4049,61 @@
       },
       "type": "object"
     },
+    "Scan": {
+      "description": "Scan is a structure which describes Cloud Key Visualizer scan information.",
+      "id": "Scan",
+      "properties": {
+        "details": {
+          "additionalProperties": {
+            "description": "Properties of the object. Contains field @type with type URL.",
+            "type": "any"
+          },
+          "description": "Additional information provided by the implementer.",
+          "type": "object"
+        },
+        "endTime": {
+          "description": "The upper bound for when the scan is defined.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "The unique name of the scan, specific to the Database service implementing this interface.",
+          "type": "string"
+        },
+        "scanData": {
+          "$ref": "ScanData",
+          "description": "Output only. Cloud Key Visualizer scan data. Note, this field is not available to the ListScans method.",
+          "readOnly": true
+        },
+        "startTime": {
+          "description": "A range of time (inclusive) for when the scan is defined. The lower bound for when the scan is defined.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ScanData": {
+      "description": "ScanData contains Cloud Key Visualizer scan data used by the caller to construct a visualization.",
+      "id": "ScanData",
+      "properties": {
+        "data": {
+          "$ref": "VisualizationData",
+          "description": "Cloud Key Visualizer scan data. The range of time this information covers is captured via the above time range fields. Note, this field is not available to the ListScans method."
+        },
+        "endTime": {
+          "description": "The upper bound for when the contained data is defined.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "A range of time (inclusive) for when the contained data is defined. The lower bound for when the contained data is defined.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Session": {
       "description": "A session in the Cloud Spanner API.",
       "id": "Session",
@@ -3927,6 +4455,77 @@
         "instance": {
           "$ref": "Instance",
           "description": "Required. The instance to update, which must always include the instance name. Otherwise, only fields mentioned in field_mask need be included."
+        }
+      },
+      "type": "object"
+    },
+    "VisualizationData": {
+      "id": "VisualizationData",
+      "properties": {
+        "dataSourceEndToken": {
+          "description": "The token signifying the end of a data_source.",
+          "type": "string"
+        },
+        "dataSourceSeparatorToken": {
+          "description": "The token delimiting a datasource name from the rest of a key in a data_source.",
+          "type": "string"
+        },
+        "diagnosticMessages": {
+          "description": "The list of messages (info, alerts, ...)",
+          "items": {
+            "$ref": "DiagnosticMessage"
+          },
+          "type": "array"
+        },
+        "endKeyStrings": {
+          "description": "We discretize the entire keyspace into buckets. Assuming each bucket has an inclusive keyrange and covers keys from k(i) ... k(n). In this case k(n) would be an end key for a given range. end_key_string is the collection of all such end keys",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "hasPii": {
+          "description": "Whether this scan contains PII.",
+          "type": "boolean"
+        },
+        "indexedKeys": {
+          "description": "Keys of key ranges that contribute significantly to a given metric Can be thought of as heavy hitters.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "keySeparator": {
+          "description": "The token delimiting the key prefixes.",
+          "type": "string"
+        },
+        "keyUnit": {
+          "description": "The unit for the key: e.g. 'key' or 'chunk'.",
+          "enum": [
+            "KEY_UNIT_UNSPECIFIED",
+            "KEY",
+            "CHUNK"
+          ],
+          "enumDescriptions": [
+            "Required default value",
+            "Each entry corresponds to one key",
+            "Each entry corresponds to a chunk of keys"
+          ],
+          "type": "string"
+        },
+        "metrics": {
+          "description": "The list of data objects for each metric.",
+          "items": {
+            "$ref": "Metric"
+          },
+          "type": "array"
+        },
+        "prefixNodes": {
+          "description": "The list of extracted key prefix nodes used in the key prefix hierarchy.",
+          "items": {
+            "$ref": "PrefixNode"
+          },
+          "type": "array"
         }
       },
       "type": "object"
