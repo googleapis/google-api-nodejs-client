@@ -3962,7 +3962,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "The list of product attributes to be updated. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.",
+              "description": "The comma-separated list of product attributes to be updated. Example: `\"title,salePrice\"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -4417,7 +4417,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Optional. The field mask indicating the fields to update.",
+              "description": "Optional. The comma-separated field mask indicating the fields to update. Example: `\"displayName,postalCodeArea.regionCode\"`.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -5485,7 +5485,7 @@
       }
     }
   },
-  "revision": "20210514",
+  "revision": "20210519",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -12172,7 +12172,7 @@
           "type": "string"
         },
         "updateMask": {
-          "description": "The list of product attributes to be updated. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged. Only defined if the method is `update`.",
+          "description": "The comma-separated list of product attributes to be updated. Example: `\"title,salePrice\"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged. Only defined if the method is `update`.",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -14682,7 +14682,7 @@
           "type": "string"
         },
         "value": {
-          "description": "Required. The weight represented as a number.",
+          "description": "Required. The weight represented as a number. The weight can have a maximum precision of four decimal places.",
           "type": "string"
         }
       },
