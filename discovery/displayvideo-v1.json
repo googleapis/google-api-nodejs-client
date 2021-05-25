@@ -753,7 +753,8 @@
                             "TARGETING_TYPE_GEO_REGION",
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
-                            "TARGETING_TYPE_SUB_EXCHANGE"
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -793,7 +794,8 @@
                             "Target ads to a specific regional location (for example, a city or state).",
                             "Purchase impressions from a group of deals and auction packages.",
                             "Purchase impressions from specific exchanges.",
-                            "Purchase impressions from specific sub-exchanges."
+                            "Purchase impressions from specific sub-exchanges.",
+                            "Target ads to a specific native content position."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -897,7 +899,8 @@
                             "TARGETING_TYPE_GEO_REGION",
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
-                            "TARGETING_TYPE_SUB_EXCHANGE"
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -937,7 +940,8 @@
                             "Target ads to a specific regional location (for example, a city or state).",
                             "Purchase impressions from a group of deals and auction packages.",
                             "Purchase impressions from specific exchanges.",
-                            "Purchase impressions from specific sub-exchanges."
+                            "Purchase impressions from specific sub-exchanges.",
+                            "Target ads to a specific native content position."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -1897,7 +1901,8 @@
                             "TARGETING_TYPE_GEO_REGION",
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
-                            "TARGETING_TYPE_SUB_EXCHANGE"
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -1937,7 +1942,8 @@
                             "Target ads to a specific regional location (for example, a city or state).",
                             "Purchase impressions from a group of deals and auction packages.",
                             "Purchase impressions from specific exchanges.",
-                            "Purchase impressions from specific sub-exchanges."
+                            "Purchase impressions from specific sub-exchanges.",
+                            "Target ads to a specific native content position."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2041,7 +2047,8 @@
                             "TARGETING_TYPE_GEO_REGION",
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
-                            "TARGETING_TYPE_SUB_EXCHANGE"
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2081,7 +2088,8 @@
                             "Target ads to a specific regional location (for example, a city or state).",
                             "Purchase impressions from a group of deals and auction packages.",
                             "Purchase impressions from specific exchanges.",
-                            "Purchase impressions from specific sub-exchanges."
+                            "Purchase impressions from specific sub-exchanges.",
+                            "Target ads to a specific native content position."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2100,6 +2108,100 @@
                   }
                 }
               }
+            }
+          }
+        },
+        "invoices": {
+          "methods": {
+            "list": {
+              "description": "List invoices for an advertiser.",
+              "flatPath": "v1/advertisers/{advertisersId}/invoices",
+              "httpMethod": "GET",
+              "id": "displayvideo.advertisers.invoices.list",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser to list invoices for.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "issueMonth": {
+                  "description": "Required. Month for which invoices are needed in the format YYYYMM.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "loiSapinInvoiceType": {
+                  "description": "Select type of invoice to query for Loi Sapin advertisers. Otherwise its ignored.",
+                  "enum": [
+                    "LOI_SAPIN_INVOICE_TYPE_UNSPECIFIED",
+                    "LOI_SAPIN_INVOICE_TYPE_MEDIA",
+                    "LOI_SAPIN_INVOICE_TYPE_PLATFORM"
+                  ],
+                  "enumDescriptions": [
+                    "Value is not specified.",
+                    "Invoices with Media cost.",
+                    "Invoices with Platform fee."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A token identifying a page of results the server should return. Typically, this is the value of [ListInvoicesResponse.next_page_token] returned from the previous call to `ListInvoice` method. If not specified, the first page of results will be returned.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/advertisers/{+advertiserId}/invoices",
+              "response": {
+                "$ref": "ListInvoicesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video",
+                "https://www.googleapis.com/auth/display-video-mediaplanning"
+              ]
+            },
+            "lookupInvoiceCurrency": {
+              "description": "Lookup invoice currency for an advertiser.",
+              "flatPath": "v1/advertisers/{advertisersId}/invoices:lookupInvoiceCurrency",
+              "httpMethod": "GET",
+              "id": "displayvideo.advertisers.invoices.lookupInvoiceCurrency",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser to lookup currency for.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "invoiceMonth": {
+                  "description": "Month for which currency is needed in the format YYYYMM. If not set Api would return currency based on current settings.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/advertisers/{+advertiserId}/invoices:lookupInvoiceCurrency",
+              "response": {
+                "$ref": "LookupInvoiceCurrencyResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video",
+                "https://www.googleapis.com/auth/display-video-mediaplanning"
+              ]
             }
           }
         },
@@ -2491,7 +2593,8 @@
                             "TARGETING_TYPE_GEO_REGION",
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
-                            "TARGETING_TYPE_SUB_EXCHANGE"
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2531,7 +2634,8 @@
                             "Target ads to a specific regional location (for example, a city or state).",
                             "Purchase impressions from a group of deals and auction packages.",
                             "Purchase impressions from specific exchanges.",
-                            "Purchase impressions from specific sub-exchanges."
+                            "Purchase impressions from specific sub-exchanges.",
+                            "Target ads to a specific native content position."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2625,7 +2729,8 @@
                             "TARGETING_TYPE_GEO_REGION",
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
-                            "TARGETING_TYPE_SUB_EXCHANGE"
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2665,7 +2770,8 @@
                             "Target ads to a specific regional location (for example, a city or state).",
                             "Purchase impressions from a group of deals and auction packages.",
                             "Purchase impressions from specific exchanges.",
-                            "Purchase impressions from specific sub-exchanges."
+                            "Purchase impressions from specific sub-exchanges.",
+                            "Target ads to a specific native content position."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2756,7 +2862,8 @@
                             "TARGETING_TYPE_GEO_REGION",
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
-                            "TARGETING_TYPE_SUB_EXCHANGE"
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2796,7 +2903,8 @@
                             "Target ads to a specific regional location (for example, a city or state).",
                             "Purchase impressions from a group of deals and auction packages.",
                             "Purchase impressions from specific exchanges.",
-                            "Purchase impressions from specific sub-exchanges."
+                            "Purchase impressions from specific sub-exchanges.",
+                            "Target ads to a specific native content position."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -2900,7 +3008,8 @@
                             "TARGETING_TYPE_GEO_REGION",
                             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                             "TARGETING_TYPE_EXCHANGE",
-                            "TARGETING_TYPE_SUB_EXCHANGE"
+                            "TARGETING_TYPE_SUB_EXCHANGE",
+                            "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                           ],
                           "enumDescriptions": [
                             "Default value when type is not specified or is unknown in this version.",
@@ -2940,7 +3049,8 @@
                             "Target ads to a specific regional location (for example, a city or state).",
                             "Purchase impressions from a group of deals and auction packages.",
                             "Purchase impressions from specific exchanges.",
-                            "Purchase impressions from specific sub-exchanges."
+                            "Purchase impressions from specific sub-exchanges.",
+                            "Target ads to a specific native content position."
                           ],
                           "location": "path",
                           "pattern": "^[^/]+$",
@@ -3990,7 +4100,8 @@
                         "TARGETING_TYPE_GEO_REGION",
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
-                        "TARGETING_TYPE_SUB_EXCHANGE"
+                        "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4030,7 +4141,8 @@
                         "Target ads to a specific regional location (for example, a city or state).",
                         "Purchase impressions from a group of deals and auction packages.",
                         "Purchase impressions from specific exchanges.",
-                        "Purchase impressions from specific sub-exchanges."
+                        "Purchase impressions from specific sub-exchanges.",
+                        "Target ads to a specific native content position."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -4115,7 +4227,8 @@
                         "TARGETING_TYPE_GEO_REGION",
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
-                        "TARGETING_TYPE_SUB_EXCHANGE"
+                        "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4155,7 +4268,8 @@
                         "Target ads to a specific regional location (for example, a city or state).",
                         "Purchase impressions from a group of deals and auction packages.",
                         "Purchase impressions from specific exchanges.",
-                        "Purchase impressions from specific sub-exchanges."
+                        "Purchase impressions from specific sub-exchanges.",
+                        "Target ads to a specific native content position."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -4237,7 +4351,8 @@
                         "TARGETING_TYPE_GEO_REGION",
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
-                        "TARGETING_TYPE_SUB_EXCHANGE"
+                        "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4277,7 +4392,8 @@
                         "Target ads to a specific regional location (for example, a city or state).",
                         "Purchase impressions from a group of deals and auction packages.",
                         "Purchase impressions from specific exchanges.",
-                        "Purchase impressions from specific sub-exchanges."
+                        "Purchase impressions from specific sub-exchanges.",
+                        "Target ads to a specific native content position."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -4372,7 +4488,8 @@
                         "TARGETING_TYPE_GEO_REGION",
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
-                        "TARGETING_TYPE_SUB_EXCHANGE"
+                        "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -4412,7 +4529,8 @@
                         "Target ads to a specific regional location (for example, a city or state).",
                         "Purchase impressions from a group of deals and auction packages.",
                         "Purchase impressions from specific exchanges.",
-                        "Purchase impressions from specific sub-exchanges."
+                        "Purchase impressions from specific sub-exchanges.",
+                        "Target ads to a specific native content position."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -6030,7 +6148,8 @@
                         "TARGETING_TYPE_GEO_REGION",
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
-                        "TARGETING_TYPE_SUB_EXCHANGE"
+                        "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -6070,7 +6189,8 @@
                         "Target ads to a specific regional location (for example, a city or state).",
                         "Purchase impressions from a group of deals and auction packages.",
                         "Purchase impressions from specific exchanges.",
-                        "Purchase impressions from specific sub-exchanges."
+                        "Purchase impressions from specific sub-exchanges.",
+                        "Target ads to a specific native content position."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -6155,7 +6275,8 @@
                         "TARGETING_TYPE_GEO_REGION",
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
-                        "TARGETING_TYPE_SUB_EXCHANGE"
+                        "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -6195,7 +6316,8 @@
                         "Target ads to a specific regional location (for example, a city or state).",
                         "Purchase impressions from a group of deals and auction packages.",
                         "Purchase impressions from specific exchanges.",
-                        "Purchase impressions from specific sub-exchanges."
+                        "Purchase impressions from specific sub-exchanges.",
+                        "Target ads to a specific native content position."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -6277,7 +6399,8 @@
                         "TARGETING_TYPE_GEO_REGION",
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
-                        "TARGETING_TYPE_SUB_EXCHANGE"
+                        "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -6317,7 +6440,8 @@
                         "Target ads to a specific regional location (for example, a city or state).",
                         "Purchase impressions from a group of deals and auction packages.",
                         "Purchase impressions from specific exchanges.",
-                        "Purchase impressions from specific sub-exchanges."
+                        "Purchase impressions from specific sub-exchanges.",
+                        "Target ads to a specific native content position."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -6412,7 +6536,8 @@
                         "TARGETING_TYPE_GEO_REGION",
                         "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                         "TARGETING_TYPE_EXCHANGE",
-                        "TARGETING_TYPE_SUB_EXCHANGE"
+                        "TARGETING_TYPE_SUB_EXCHANGE",
+                        "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                       ],
                       "enumDescriptions": [
                         "Default value when type is not specified or is unknown in this version.",
@@ -6452,7 +6577,8 @@
                         "Target ads to a specific regional location (for example, a city or state).",
                         "Purchase impressions from a group of deals and auction packages.",
                         "Purchase impressions from specific exchanges.",
-                        "Purchase impressions from specific sub-exchanges."
+                        "Purchase impressions from specific sub-exchanges.",
+                        "Target ads to a specific native content position."
                       ],
                       "location": "path",
                       "pattern": "^[^/]+$",
@@ -6595,7 +6721,8 @@
                     "TARGETING_TYPE_GEO_REGION",
                     "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                     "TARGETING_TYPE_EXCHANGE",
-                    "TARGETING_TYPE_SUB_EXCHANGE"
+                    "TARGETING_TYPE_SUB_EXCHANGE",
+                    "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -6635,7 +6762,8 @@
                     "Target ads to a specific regional location (for example, a city or state).",
                     "Purchase impressions from a group of deals and auction packages.",
                     "Purchase impressions from specific exchanges.",
-                    "Purchase impressions from specific sub-exchanges."
+                    "Purchase impressions from specific sub-exchanges.",
+                    "Target ads to a specific native content position."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -6727,7 +6855,8 @@
                     "TARGETING_TYPE_GEO_REGION",
                     "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                     "TARGETING_TYPE_EXCHANGE",
-                    "TARGETING_TYPE_SUB_EXCHANGE"
+                    "TARGETING_TYPE_SUB_EXCHANGE",
+                    "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -6767,7 +6896,8 @@
                     "Target ads to a specific regional location (for example, a city or state).",
                     "Purchase impressions from a group of deals and auction packages.",
                     "Purchase impressions from specific exchanges.",
-                    "Purchase impressions from specific sub-exchanges."
+                    "Purchase impressions from specific sub-exchanges.",
+                    "Target ads to a specific native content position."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -6832,7 +6962,8 @@
                     "TARGETING_TYPE_GEO_REGION",
                     "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
                     "TARGETING_TYPE_EXCHANGE",
-                    "TARGETING_TYPE_SUB_EXCHANGE"
+                    "TARGETING_TYPE_SUB_EXCHANGE",
+                    "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
                   ],
                   "enumDescriptions": [
                     "Default value when type is not specified or is unknown in this version.",
@@ -6872,7 +7003,8 @@
                     "Target ads to a specific regional location (for example, a city or state).",
                     "Purchase impressions from a group of deals and auction packages.",
                     "Purchase impressions from specific exchanges.",
-                    "Purchase impressions from specific sub-exchanges."
+                    "Purchase impressions from specific sub-exchanges.",
+                    "Target ads to a specific native content position."
                   ],
                   "location": "path",
                   "pattern": "^[^/]+$",
@@ -7071,7 +7203,7 @@
       }
     }
   },
-  "revision": "20210422",
+  "revision": "20210520",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -7294,6 +7426,10 @@
           "description": "Required. Immutable. The unique ID of the partner that the advertiser belongs to.",
           "format": "int64",
           "type": "string"
+        },
+        "prismaEnabled": {
+          "description": "Whether integration with Mediaocean (Prisma) is enabled. By enabling this: On behalf of my company, I authorize Mediaocean (Prisma) to send budget segment plans to Google, and I authorize Google to send corresponding reporting and invoices from DV360 to Mediaocean for the purposes of budget planning, billing, and reconciliation for this advertiser.",
+          "type": "boolean"
         },
         "servingConfig": {
           "$ref": "AdvertiserTargetingConfig",
@@ -7794,6 +7930,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "nativeContentPositionDetails": {
+          "$ref": "NativeContentPositionAssignedTargetingOptionDetails",
+          "description": "Native content position details. This field will be populated when the targeting_type is `TARGETING_TYPE_NATIVE_CONTENT_POSITION`."
+        },
         "negativeKeywordListDetails": {
           "$ref": "NegativeKeywordListAssignedTargetingOptionDetails",
           "description": "Keyword details. This field will be populated when the targeting_type is `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST`. A maximum of 4 negative keyword lists can be assigned to a resource."
@@ -7866,7 +8006,8 @@
             "TARGETING_TYPE_GEO_REGION",
             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
             "TARGETING_TYPE_EXCHANGE",
-            "TARGETING_TYPE_SUB_EXCHANGE"
+            "TARGETING_TYPE_SUB_EXCHANGE",
+            "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -7906,7 +8047,8 @@
             "Target ads to a specific regional location (for example, a city or state).",
             "Purchase impressions from a group of deals and auction packages.",
             "Purchase impressions from specific exchanges.",
-            "Purchase impressions from specific sub-exchanges."
+            "Purchase impressions from specific sub-exchanges.",
+            "Target ads to a specific native content position."
           ],
           "readOnly": true,
           "type": "string"
@@ -8179,6 +8321,41 @@
       "properties": {
         "displayName": {
           "description": "Output only. The display name of the browser.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BudgetSummary": {
+      "description": "Represents a summarized budget information associated with this invoice.",
+      "id": "BudgetSummary",
+      "properties": {
+        "externalBudgetId": {
+          "description": "Output only. External budget id.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "preTaxAmountMicros": {
+          "description": "Output only. The pre-tax amount for this budget, in micros of the invoice's currency. For example if currency_code is `USD`, then 1000000 micros is one US dollar.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "prismaCpeCode": {
+          "$ref": "PrismaCpeCode",
+          "description": "Output only. Codes specific to the MediaOcean Prisma tool.",
+          "readOnly": true
+        },
+        "taxAmountMicros": {
+          "description": "Output only. The tax amount for this budget, in micros of the invoice's currency. For example if currency_code is `USD`, then 1000000 micros is one US dollar.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalAmountMicros": {
+          "description": "Output only. The total amount of charges for this budget, in micros of the invoice's currency. For example if currency_code is `USD`, then 1000000 micros is one US dollar.",
+          "format": "int64",
           "readOnly": true,
           "type": "string"
         }
@@ -8563,6 +8740,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "campaignBudgets": {
+          "description": "The list of budgets available to this campaign. Setting no budget gives an unlimited campaign budget.",
+          "items": {
+            "$ref": "CampaignBudget"
+          },
+          "type": "array"
+        },
         "campaignFlight": {
           "$ref": "CampaignFlight",
           "description": "Required. The planned spend and duration of the campaign."
@@ -8615,6 +8799,71 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CampaignBudget": {
+      "description": "Settings that control how the campaign budget is allocated.",
+      "id": "CampaignBudget",
+      "properties": {
+        "budgetAmountMicros": {
+          "description": "Required. The budget amount the insertion order will spend for the given date_range. The amount is in micros. Must be greater than 0. For example, 500000000 represents 500 standard units of the currency.",
+          "format": "int64",
+          "type": "string"
+        },
+        "budgetId": {
+          "description": "The unique ID of the campaign budget. If not included, budget is assumed to be new.",
+          "format": "int64",
+          "type": "string"
+        },
+        "budgetUnit": {
+          "description": "Required. Immutable. The budget unit specifies whether the budget is currency based or impression based.",
+          "enum": [
+            "BUDGET_UNIT_UNSPECIFIED",
+            "BUDGET_UNIT_CURRENCY",
+            "BUDGET_UNIT_IMPRESSIONS"
+          ],
+          "enumDescriptions": [
+            "Type value is not specified or is unknown in this version.",
+            "Budgeting in currency amounts.",
+            "Budgeting in impression amounts."
+          ],
+          "type": "string"
+        },
+        "dateRange": {
+          "$ref": "DateRange",
+          "description": "Required. The flight start and end time settings of the segment. Both `start_date` and `end_date` must be before the year 2037."
+        },
+        "displayName": {
+          "description": "Required. The display name of the budget. Must be UTF-8 encoded with a maximum size of 240 bytes.",
+          "type": "string"
+        },
+        "externalBudgetId": {
+          "description": "Immutable. Must be unique under the campaign. If set, all impressions served against this budget will include this ID on the invoice if the customer has opted into budget-segment-level billing.",
+          "type": "string"
+        },
+        "externalBudgetSource": {
+          "description": "Required. The external source of the budget segment.",
+          "enum": [
+            "EXTERNAL_BUDGET_SOURCE_UNSPECIFIED",
+            "EXTERNAL_BUDGET_SOURCE_NONE",
+            "EXTERNAL_BUDGET_SOURCE_MEDIA_OCEAN"
+          ],
+          "enumDescriptions": [
+            "External budget source value is not specified or unknown in this version.",
+            "Budget has no external source.",
+            "Budget source is MediaOcean."
+          ],
+          "type": "string"
+        },
+        "invoiceGroupingId": {
+          "description": "Immutable. If set, all external_budget_id sharing the same invoice_grouping_id will include this ID on the invoice if the customer has opted into budget-segment-level billing.",
+          "type": "string"
+        },
+        "prismaConfig": {
+          "$ref": "PrismaConfig",
+          "description": "Required for MediaOcean budgets. Additional metadata set by the MediaOcean Prisma tool."
         }
       },
       "type": "object"
@@ -9168,7 +9417,8 @@
             "TARGETING_TYPE_GEO_REGION",
             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
             "TARGETING_TYPE_EXCHANGE",
-            "TARGETING_TYPE_SUB_EXCHANGE"
+            "TARGETING_TYPE_SUB_EXCHANGE",
+            "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -9208,7 +9458,8 @@
             "Target ads to a specific regional location (for example, a city or state).",
             "Purchase impressions from a group of deals and auction packages.",
             "Purchase impressions from specific exchanges.",
-            "Purchase impressions from specific sub-exchanges."
+            "Purchase impressions from specific sub-exchanges.",
+            "Target ads to a specific native content position."
           ],
           "type": "string"
         }
@@ -9945,7 +10196,8 @@
             "TARGETING_TYPE_GEO_REGION",
             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
             "TARGETING_TYPE_EXCHANGE",
-            "TARGETING_TYPE_SUB_EXCHANGE"
+            "TARGETING_TYPE_SUB_EXCHANGE",
+            "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -9985,7 +10237,8 @@
             "Target ads to a specific regional location (for example, a city or state).",
             "Purchase impressions from a group of deals and auction packages.",
             "Purchase impressions from specific exchanges.",
-            "Purchase impressions from specific sub-exchanges."
+            "Purchase impressions from specific sub-exchanges.",
+            "Target ads to a specific native content position."
           ],
           "type": "string"
         }
@@ -10655,7 +10908,8 @@
             "EXCHANGE_NEXSTAR_DIGITAL",
             "EXCHANGE_WAZE",
             "EXCHANGE_SOUNDCAST",
-            "EXCHANGE_SHARETHROUGH"
+            "EXCHANGE_SHARETHROUGH",
+            "EXCHANGE_MEDIANET"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -10720,7 +10974,8 @@
             "Nexstar Digital.",
             "Waze.",
             "SoundCast.",
-            "Sharethrough."
+            "Sharethrough.",
+            "Media.net."
           ],
           "type": "string"
         },
@@ -10811,7 +11066,8 @@
             "EXCHANGE_NEXSTAR_DIGITAL",
             "EXCHANGE_WAZE",
             "EXCHANGE_SOUNDCAST",
-            "EXCHANGE_SHARETHROUGH"
+            "EXCHANGE_SHARETHROUGH",
+            "EXCHANGE_MEDIANET"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -10876,7 +11132,8 @@
             "Nexstar Digital.",
             "Waze.",
             "SoundCast.",
-            "Sharethrough."
+            "Sharethrough.",
+            "Media.net."
           ],
           "type": "string"
         },
@@ -10968,7 +11225,8 @@
             "EXCHANGE_NEXSTAR_DIGITAL",
             "EXCHANGE_WAZE",
             "EXCHANGE_SOUNDCAST",
-            "EXCHANGE_SHARETHROUGH"
+            "EXCHANGE_SHARETHROUGH",
+            "EXCHANGE_MEDIANET"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -11033,7 +11291,8 @@
             "Nexstar Digital.",
             "Waze.",
             "SoundCast.",
-            "Sharethrough."
+            "Sharethrough.",
+            "Media.net."
           ],
           "readOnly": true,
           "type": "string"
@@ -11260,7 +11519,7 @@
             "RECENCY_21_DAYS",
             "RECENCY_28_DAYS",
             "RECENCY_30_DAYS",
-            "RECENCY_40_DAYS",
+            "RECENCY_45_DAYS",
             "RECENCY_60_DAYS",
             "RECENCY_90_DAYS",
             "RECENCY_120_DAYS",
@@ -11291,7 +11550,7 @@
             "Recency is 21 days.",
             "Recency is 28 days.",
             "Recency is 30 days.",
-            "Recency is 40 days.",
+            "Recency is 45 days.",
             "Recency is 60 days.",
             "Recency is 90 days.",
             "Recency is 120 days.",
@@ -12399,7 +12658,8 @@
             "EXCHANGE_NEXSTAR_DIGITAL",
             "EXCHANGE_WAZE",
             "EXCHANGE_SOUNDCAST",
-            "EXCHANGE_SHARETHROUGH"
+            "EXCHANGE_SHARETHROUGH",
+            "EXCHANGE_MEDIANET"
           ],
           "enumDescriptions": [
             "Exchange is not specified or is unknown in this version.",
@@ -12464,7 +12724,8 @@
             "Nexstar Digital.",
             "Waze.",
             "SoundCast.",
-            "Sharethrough."
+            "Sharethrough.",
+            "Media.net."
           ],
           "type": "string"
         },
@@ -12669,6 +12930,133 @@
         "duration": {
           "description": "The duration requirements for the video creatives that can be assigned to the inventory source.",
           "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Invoice": {
+      "description": "A single Invoice.",
+      "id": "Invoice",
+      "properties": {
+        "budgetInvoiceGroupingId": {
+          "description": "Output only. Budget invoice grouping ID associated with the budget segment in the insertion order.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "budgetSummaries": {
+          "description": "Output only. The list of summarized budget information associated with this invoice.",
+          "items": {
+            "$ref": "BudgetSummary"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "correctedInvoiceId": {
+          "description": "Output only. The originally issued invoice that is being adjusted by this invoice, if applicable. If there is a corrected invoice, the replaced_invoice_ids field will be empty. May appear on invoice PDF as `Reference invoice number`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "currencyCode": {
+          "description": "Output only. Invoice currency code in ISO 4217 format.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Output only. Display name of the invoice.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dueDate": {
+          "$ref": "Date",
+          "description": "Output only. The invoice due date.",
+          "readOnly": true
+        },
+        "invoiceId": {
+          "description": "Output only. The unique ID of the invoice.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "invoiceType": {
+          "description": "Output only. The type of invoice document.",
+          "enum": [
+            "INVOICE_TYPE_UNSPECIFIED",
+            "INVOICE_TYPE_CREDIT",
+            "INVOICE_TYPE_INVOICE"
+          ],
+          "enumDescriptions": [
+            "Not specified or is unknown in this version.",
+            "An Invoice with a negative amount.",
+            "An Invoice with a positive amount."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "issueDate": {
+          "$ref": "Date",
+          "description": "Output only. The date when the invoice was issued.",
+          "readOnly": true
+        },
+        "name": {
+          "description": "Output only. The resource name of the invoice.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "nonBudgetMicros": {
+          "description": "Output only. The total amount of costs or adjustments not tied to a particular budget, in micros of the invoice's currency. For example if currency_code is `USD`, then 1000000 micros is one US dollar.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "paymentsAccountId": {
+          "description": "Output only. The ID of the payments account the invoice belongs to. Appears on the invoice PDF as `Billing Account Number`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "paymentsProfileId": {
+          "description": "Output only. The ID of the payments profile the invoice belongs to. Appears on the invoice PDF as `Billing ID`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "pdfUrl": {
+          "description": "Output only. The URL to download a PDF copy of the invoice. Note that this URL is user specific and requires a valid OAuth 2.0 access token to access. The access token must be provided in an `Authorization: Bearer` HTTP header and be authorized for one of the following scopes: * `https://www.googleapis.com/auth/display-video-mediaplanning` * `https://www.googleapis.com/auth/display-video` The URL will only be usable for 7 days from when the api is called.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "purchaseOrderNumber": {
+          "description": "Output only. Purchase order number associated with the invoice.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "replacedInvoiceIds": {
+          "description": "Output only. The originally issued invoice(s) that is being cancelled by this invoice, if applicable. If there are any replaced invoices, the corrected_invoice_id field will be empty. May appear on invoice PDF as `Replaced invoice numbers`. Note: There may be multiple replaced invoices due to consolidation of multiple invoices into a single invoice.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "serviceDateRange": {
+          "$ref": "DateRange",
+          "description": "Output only. Service start and end dates which are covered by this invoice.",
+          "readOnly": true
+        },
+        "subtotalAmountMicros": {
+          "description": "Output only. The pre-tax subtotal amount, in micros of the invoice's currency. For example if currency_code is `USD`, then 1000000 micros is one US dollar.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalAmountMicros": {
+          "description": "Output only. The invoice total amount, in micros of the invoice's currency. For example if currency_code is `USD`, then 1000000 micros is one US dollar.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalTaxAmountMicros": {
+          "description": "Output only. The sum of all taxes in invoice, in micros of the invoice's currency. For example if currency_code is `USD`, then 1000000 micros is one US dollar.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -13293,6 +13681,24 @@
       },
       "type": "object"
     },
+    "ListInvoicesResponse": {
+      "description": "Response message for InvoiceService.ListInvoices.",
+      "id": "ListInvoicesResponse",
+      "properties": {
+        "invoices": {
+          "description": "The list of invoices. This list will be absent if empty.",
+          "items": {
+            "$ref": "Invoice"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass this value in the [ListInvoicesRequest.page_token] field in the subsequent call to `ListInvoices` method to retrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListLineItemAssignedTargetingOptionsResponse": {
       "description": "Response message for ListLineItemAssignedTargetingOptions.",
       "id": "ListLineItemAssignedTargetingOptionsResponse",
@@ -13543,6 +13949,18 @@
       },
       "type": "object"
     },
+    "LookupInvoiceCurrencyResponse": {
+      "description": "Response message for InvoiceService.LookupInvoiceCurrency.",
+      "id": "LookupInvoiceCurrencyResponse",
+      "properties": {
+        "currencyCode": {
+          "description": "Output only. Invoice currency code in ISO 4217 format.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ManualTrigger": {
       "description": "A single manual trigger in Display & Video 360.",
       "id": "ManualTrigger",
@@ -13704,6 +14122,66 @@
         "units": {
           "description": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NativeContentPositionAssignedTargetingOptionDetails": {
+      "description": "Details for native content position assigned targeting option. This will be populated in the native_content_position_details field when targeting_type is `TARGETING_TYPE_NATIVE_CONTENT_POSITION`. Explicitly targeting all options is not supported. Remove all native content position targeting options to achieve this effect.",
+      "id": "NativeContentPositionAssignedTargetingOptionDetails",
+      "properties": {
+        "contentPosition": {
+          "description": "Output only. The content position.",
+          "enum": [
+            "NATIVE_CONTENT_POSITION_UNSPECIFIED",
+            "NATIVE_CONTENT_POSITION_UNKNOWN",
+            "NATIVE_CONTENT_POSITION_IN_ARTICLE",
+            "NATIVE_CONTENT_POSITION_IN_FEED",
+            "NATIVE_CONTENT_POSITION_PERIPHERAL",
+            "NATIVE_CONTENT_POSITION_RECOMMENDATION"
+          ],
+          "enumDescriptions": [
+            "Native content position is not specified in this version. This enum is a place holder for a default value and does not represent a real native content position.",
+            "The native content position is unknown.",
+            "Native content position is in-article, i.e., ads appear between the paragraphs of pages.",
+            "Native content position is in-feed, i.e., ads appear in a scrollable stream of content. A feed is typically editorial (e.g. a list of articles or news) or listings (e.g. a list of products or services).",
+            "Native content position is peripheral, i.e., ads appear outside of core content on pages, such as the right- or left-hand side of the page.",
+            "Native content position is recommendation, i.e., ads appear in sections for recommended content."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "targetingOptionId": {
+          "description": "Required. The targeting_option_id field when targeting_type is `TARGETING_TYPE_NATIVE_CONTENT_POSITION`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NativeContentPositionTargetingOptionDetails": {
+      "description": "Represents a targetable native content position. This will be populated in the native_content_position_details field when targeting_type is `TARGETING_TYPE_NATIVE_CONTENT_POSITION`.",
+      "id": "NativeContentPositionTargetingOptionDetails",
+      "properties": {
+        "contentPosition": {
+          "description": "Output only. The content position.",
+          "enum": [
+            "NATIVE_CONTENT_POSITION_UNSPECIFIED",
+            "NATIVE_CONTENT_POSITION_UNKNOWN",
+            "NATIVE_CONTENT_POSITION_IN_ARTICLE",
+            "NATIVE_CONTENT_POSITION_IN_FEED",
+            "NATIVE_CONTENT_POSITION_PERIPHERAL",
+            "NATIVE_CONTENT_POSITION_RECOMMENDATION"
+          ],
+          "enumDescriptions": [
+            "Native content position is not specified in this version. This enum is a place holder for a default value and does not represent a real native content position.",
+            "The native content position is unknown.",
+            "Native content position is in-article, i.e., ads appear between the paragraphs of pages.",
+            "Native content position is in-feed, i.e., ads appear in a scrollable stream of content. A feed is typically editorial (e.g. a list of articles or news) or listings (e.g. a list of products or services).",
+            "Native content position is peripheral, i.e., ads appear outside of core content on pages, such as the right- or left-hand side of the page.",
+            "Native content position is recommendation, i.e., ads appear in sections for recommended content."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -14469,6 +14947,62 @@
       },
       "type": "object"
     },
+    "PrismaConfig": {
+      "description": "Settings specific to the MediaOcean Prisma tool.",
+      "id": "PrismaConfig",
+      "properties": {
+        "prismaCpeCode": {
+          "$ref": "PrismaCpeCode",
+          "description": "Required. Google Payments Center supports searching and filtering on this code."
+        },
+        "prismaType": {
+          "description": "Required. The Prisma type.",
+          "enum": [
+            "PRISMA_TYPE_UNSPECIFIED",
+            "PRISMA_TYPE_DISPLAY",
+            "PRISMA_TYPE_SEARCH",
+            "PRISMA_TYPE_VIDEO",
+            "PRISMA_TYPE_AUDIO",
+            "PRISMA_TYPE_SOCIAL",
+            "PRISMA_TYPE_FEE"
+          ],
+          "enumDescriptions": [
+            "Type is not specified or unknown in this version.",
+            "Display type.",
+            "Search type.",
+            "Video type.",
+            "Audio type.",
+            "Social type.",
+            "Fee type."
+          ],
+          "type": "string"
+        },
+        "supplier": {
+          "description": "Required. The entity allocated this budget (DSP, site, etc.).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PrismaCpeCode": {
+      "description": "Google Payments Center supports searching and filtering on the component fields of this code.",
+      "id": "PrismaCpeCode",
+      "properties": {
+        "prismaClientCode": {
+          "description": "The Prisma client code.",
+          "type": "string"
+        },
+        "prismaEstimateCode": {
+          "description": "The Prisma estimate code.",
+          "type": "string"
+        },
+        "prismaProductCode": {
+          "description": "The Prisma product code.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProximityLocationListAssignedTargetingOptionDetails": {
       "description": "Targeting details for proximity location list. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_PROXIMITY_LOCATION_LIST`.",
       "id": "ProximityLocationListAssignedTargetingOptionDetails",
@@ -15134,6 +15668,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "nativeContentPositionDetails": {
+          "$ref": "NativeContentPositionTargetingOptionDetails",
+          "description": "Native content position details."
+        },
         "onScreenPositionDetails": {
           "$ref": "OnScreenPositionTargetingOptionDetails",
           "description": "On screen position details."
@@ -15199,7 +15737,8 @@
             "TARGETING_TYPE_GEO_REGION",
             "TARGETING_TYPE_INVENTORY_SOURCE_GROUP",
             "TARGETING_TYPE_EXCHANGE",
-            "TARGETING_TYPE_SUB_EXCHANGE"
+            "TARGETING_TYPE_SUB_EXCHANGE",
+            "TARGETING_TYPE_NATIVE_CONTENT_POSITION"
           ],
           "enumDescriptions": [
             "Default value when type is not specified or is unknown in this version.",
@@ -15239,7 +15778,8 @@
             "Target ads to a specific regional location (for example, a city or state).",
             "Purchase impressions from a group of deals and auction packages.",
             "Purchase impressions from specific exchanges.",
-            "Purchase impressions from specific sub-exchanges."
+            "Purchase impressions from specific sub-exchanges.",
+            "Target ads to a specific native content position."
           ],
           "readOnly": true,
           "type": "string"
