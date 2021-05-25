@@ -5033,7 +5033,7 @@ export namespace content_v2_1 {
      */
     productId?: string | null;
     /**
-     * The list of product attributes to be updated. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged. Only defined if the method is `update`.
+     * The comma-separated list of product attributes to be updated. Example: `"title,salePrice"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged. Only defined if the method is `update`.
      */
     updateMask?: string | null;
   }
@@ -7061,7 +7061,7 @@ export namespace content_v2_1 {
      */
     unit?: string | null;
     /**
-     * Required. The weight represented as a number.
+     * Required. The weight represented as a number. The weight can have a maximum precision of four decimal places.
      */
     value?: string | null;
   }
@@ -24410,7 +24410,7 @@ export namespace content_v2_1 {
      *     merchantId: 'placeholder-value',
      *     // The REST ID of the product for which to update.
      *     productId: 'placeholder-value',
-     *     // The list of product attributes to be updated. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.
+     *     // The comma-separated list of product attributes to be updated. Example: `"title,salePrice"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -24750,7 +24750,7 @@ export namespace content_v2_1 {
      */
     productId?: string;
     /**
-     * The list of product attributes to be updated. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.
+     * The comma-separated list of product attributes to be updated. Example: `"title,salePrice"`. Attributes specified in the update mask without a value specified in the body will be deleted from the product. Only top-level product attributes can be updated. If not defined, product attributes with set values will be updated and other attributes will stay unchanged.
      */
     updateMask?: string;
 
@@ -26662,7 +26662,7 @@ export namespace content_v2_1 {
      *     merchantId: 'placeholder-value',
      *     // Required. The id of the region to update.
      *     regionId: 'placeholder-value',
-     *     // Optional. The field mask indicating the fields to update.
+     *     // Optional. The comma-separated field mask indicating the fields to update. Example: `"displayName,postalCodeArea.regionCode"`.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -26843,7 +26843,7 @@ export namespace content_v2_1 {
      */
     regionId?: string;
     /**
-     * Optional. The field mask indicating the fields to update.
+     * Optional. The comma-separated field mask indicating the fields to update. Example: `"displayName,postalCodeArea.regionCode"`.
      */
     updateMask?: string;
 
