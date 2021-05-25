@@ -180,7 +180,7 @@ export namespace artifactregistry_v1beta1 {
      */
     hashes?: Schema$Hash[];
     /**
-     * The name of the file, for example: "projects/p1/locations/us-central1/repositories/repo1/files/a/b/c.txt".
+     * The name of the file, for example: "projects/p1/locations/us-central1/repositories/repo1/files/a%2Fb%2Fc.txt". If the file ID part contains slashes, they are escaped.
      */
     name?: string | null;
     /**
@@ -363,7 +363,7 @@ export namespace artifactregistry_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * The name of the package, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1".
+     * The name of the package, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1". If the package ID part contains slashes, the slashes are escaped.
      */
     name?: string | null;
     /**
@@ -452,7 +452,7 @@ export namespace artifactregistry_v1beta1 {
    */
   export interface Schema$Tag {
     /**
-     * The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1".
+     * The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package or tag ID parts contain slashes, the slashes are escaped.
      */
     name?: string | null;
     /**
@@ -491,7 +491,7 @@ export namespace artifactregistry_v1beta1 {
      */
     description?: string | null;
     /**
-     * The name of the version, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1".
+     * The name of the version, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1". If the package or version ID parts contain slashes, the slashes are escaped.
      */
     name?: string | null;
     /**
@@ -3765,7 +3765,7 @@ export namespace artifactregistry_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await artifactregistry.projects.locations.repositories.packages.tags.patch({
-     *       // The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1".
+     *       // The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package or tag ID parts contain slashes, the slashes are escaped.
      *       name: 'projects/my-project/locations/my-location/repositories/my-repositorie/packages/my-package/tags/my-tag',
      *       // The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
      *       updateMask: 'placeholder-value',
@@ -3931,7 +3931,7 @@ export namespace artifactregistry_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch
     extends StandardParameters {
     /**
-     * The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1".
+     * The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1". If the package or tag ID parts contain slashes, the slashes are escaped.
      */
     name?: string;
     /**
