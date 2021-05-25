@@ -717,7 +717,7 @@
                         "RISK_ANALYSIS_JOB"
                       ],
                       "enumDescriptions": [
-                        "Unused",
+                        "Defaults to INSPECT_JOB.",
                         "The job inspected Google Cloud for sensitive data.",
                         "The job executed a Risk Analysis computation."
                       ],
@@ -1011,6 +1011,21 @@
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of jobs. Will use `DlpJobType.INSPECT` if not set.",
+                      "enum": [
+                        "DLP_JOB_TYPE_UNSPECIFIED",
+                        "INSPECT_JOB",
+                        "RISK_ANALYSIS_JOB"
+                      ],
+                      "enumDescriptions": [
+                        "Defaults to INSPECT_JOB.",
+                        "The job inspected Google Cloud for sensitive data.",
+                        "The job executed a Risk Analysis computation."
+                      ],
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -1772,7 +1787,7 @@
                     "RISK_ANALYSIS_JOB"
                   ],
                   "enumDescriptions": [
-                    "Unused",
+                    "Defaults to INSPECT_JOB.",
                     "The job inspected Google Cloud for sensitive data.",
                     "The job executed a Risk Analysis computation."
                   ],
@@ -2126,6 +2141,21 @@
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "type": {
+                  "description": "The type of jobs. Will use `DlpJobType.INSPECT` if not set.",
+                  "enum": [
+                    "DLP_JOB_TYPE_UNSPECIFIED",
+                    "INSPECT_JOB",
+                    "RISK_ANALYSIS_JOB"
+                  ],
+                  "enumDescriptions": [
+                    "Defaults to INSPECT_JOB.",
+                    "The job inspected Google Cloud for sensitive data.",
+                    "The job executed a Risk Analysis computation."
+                  ],
+                  "location": "query",
                   "type": "string"
                 }
               },
@@ -2627,7 +2657,7 @@
                         "RISK_ANALYSIS_JOB"
                       ],
                       "enumDescriptions": [
-                        "Unused",
+                        "Defaults to INSPECT_JOB.",
                         "The job inspected Google Cloud for sensitive data.",
                         "The job executed a Risk Analysis computation."
                       ],
@@ -3010,6 +3040,21 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "type": {
+                      "description": "The type of jobs. Will use `DlpJobType.INSPECT` if not set.",
+                      "enum": [
+                        "DLP_JOB_TYPE_UNSPECIFIED",
+                        "INSPECT_JOB",
+                        "RISK_ANALYSIS_JOB"
+                      ],
+                      "enumDescriptions": [
+                        "Defaults to INSPECT_JOB.",
+                        "The job inspected Google Cloud for sensitive data.",
+                        "The job executed a Risk Analysis computation."
+                      ],
+                      "location": "query",
+                      "type": "string"
                     }
                   },
                   "path": "v2/{+parent}/jobTriggers",
@@ -3367,7 +3412,7 @@
       }
     }
   },
-  "revision": "20210508",
+  "revision": "20210522",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -4723,7 +4768,7 @@
             "RISK_ANALYSIS_JOB"
           ],
           "enumDescriptions": [
-            "Unused",
+            "Defaults to INSPECT_JOB.",
             "The job inspected Google Cloud for sensitive data.",
             "The job executed a Risk Analysis computation."
           ],

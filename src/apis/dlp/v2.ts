@@ -7356,6 +7356,8 @@ export namespace dlp_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'organizations/my-organization/locations/my-location',
+     *     // The type of jobs. Will use `DlpJobType.INSPECT` if not set.
+     *     type: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -7673,6 +7675,10 @@ export namespace dlp_v2 {
      * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
+    /**
+     * The type of jobs. Will use `DlpJobType.INSPECT` if not set.
+     */
+    type?: string;
   }
   export interface Params$Resource$Organizations$Locations$Jobtriggers$Patch
     extends StandardParameters {
@@ -12920,6 +12926,8 @@ export namespace dlp_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project',
+     *     // The type of jobs. Will use `DlpJobType.INSPECT` if not set.
+     *     type: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -13248,6 +13256,10 @@ export namespace dlp_v2 {
      * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
+    /**
+     * The type of jobs. Will use `DlpJobType.INSPECT` if not set.
+     */
+    type?: string;
   }
   export interface Params$Resource$Projects$Jobtriggers$Patch
     extends StandardParameters {
@@ -17391,6 +17403,8 @@ export namespace dlp_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      *     parent: 'projects/my-project/locations/my-location',
+     *     // The type of jobs. Will use `DlpJobType.INSPECT` if not set.
+     *     type: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -17731,6 +17745,10 @@ export namespace dlp_v2 {
      * Required. Parent resource name. The format of this value varies depending on whether you have [specified a processing location](https://cloud.google.com/dlp/docs/specifying-location): + Projects scope, location specified: `projects/`PROJECT_ID`/locations/`LOCATION_ID + Projects scope, no location specified (defaults to global): `projects/`PROJECT_ID The following example `parent` string specifies a parent project with the identifier `example-project`, and specifies the `europe-west3` location for processing data: parent=projects/example-project/locations/europe-west3
      */
     parent?: string;
+    /**
+     * The type of jobs. Will use `DlpJobType.INSPECT` if not set.
+     */
+    type?: string;
   }
   export interface Params$Resource$Projects$Locations$Jobtriggers$Patch
     extends StandardParameters {
