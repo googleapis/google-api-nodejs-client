@@ -239,6 +239,10 @@ export namespace displayvideo_v1 {
      */
     partnerId?: string | null;
     /**
+     * Whether integration with Mediaocean (Prisma) is enabled. By enabling this: On behalf of my company, I authorize Mediaocean (Prisma) to send budget segment plans to Google, and I authorize Google to send corresponding reporting and invoices from DV360 to Mediaocean for the purposes of budget planning, billing, and reconciliation for this advertiser.
+     */
+    prismaEnabled?: boolean | null;
+    /**
      * Targeting settings related to ad serving of the advertiser.
      */
     servingConfig?: Schema$AdvertiserTargetingConfig;
@@ -571,6 +575,10 @@ export namespace displayvideo_v1 {
      */
     name?: string | null;
     /**
+     * Native content position details. This field will be populated when the targeting_type is `TARGETING_TYPE_NATIVE_CONTENT_POSITION`.
+     */
+    nativeContentPositionDetails?: Schema$NativeContentPositionAssignedTargetingOptionDetails;
+    /**
      * Keyword details. This field will be populated when the targeting_type is `TARGETING_TYPE_NEGATIVE_KEYWORD_LIST`. A maximum of 4 negative keyword lists can be assigned to a resource.
      */
     negativeKeywordListDetails?: Schema$NegativeKeywordListAssignedTargetingOptionDetails;
@@ -791,6 +799,31 @@ export namespace displayvideo_v1 {
      * Output only. The display name of the browser.
      */
     displayName?: string | null;
+  }
+  /**
+   * Represents a summarized budget information associated with this invoice.
+   */
+  export interface Schema$BudgetSummary {
+    /**
+     * Output only. External budget id.
+     */
+    externalBudgetId?: string | null;
+    /**
+     * Output only. The pre-tax amount for this budget, in micros of the invoice's currency. For example if currency_code is `USD`, then 1000000 micros is one US dollar.
+     */
+    preTaxAmountMicros?: string | null;
+    /**
+     * Output only. Codes specific to the MediaOcean Prisma tool.
+     */
+    prismaCpeCode?: Schema$PrismaCpeCode;
+    /**
+     * Output only. The tax amount for this budget, in micros of the invoice's currency. For example if currency_code is `USD`, then 1000000 micros is one US dollar.
+     */
+    taxAmountMicros?: string | null;
+    /**
+     * Output only. The total amount of charges for this budget, in micros of the invoice's currency. For example if currency_code is `USD`, then 1000000 micros is one US dollar.
+     */
+    totalAmountMicros?: string | null;
   }
   /**
    * Request message for BulkEditAdvertiserAssignedTargetingOptions.
@@ -1027,6 +1060,10 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string | null;
     /**
+     * The list of budgets available to this campaign. Setting no budget gives an unlimited campaign budget.
+     */
+    campaignBudgets?: Schema$CampaignBudget[];
+    /**
      * Required. The planned spend and duration of the campaign.
      */
     campaignFlight?: Schema$CampaignFlight;
@@ -1058,6 +1095,47 @@ export namespace displayvideo_v1 {
      * Output only. The timestamp when the campaign was last updated. Assigned by the system.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Settings that control how the campaign budget is allocated.
+   */
+  export interface Schema$CampaignBudget {
+    /**
+     * Required. The budget amount the insertion order will spend for the given date_range. The amount is in micros. Must be greater than 0. For example, 500000000 represents 500 standard units of the currency.
+     */
+    budgetAmountMicros?: string | null;
+    /**
+     * The unique ID of the campaign budget. If not included, budget is assumed to be new.
+     */
+    budgetId?: string | null;
+    /**
+     * Required. Immutable. The budget unit specifies whether the budget is currency based or impression based.
+     */
+    budgetUnit?: string | null;
+    /**
+     * Required. The flight start and end time settings of the segment. Both `start_date` and `end_date` must be before the year 2037.
+     */
+    dateRange?: Schema$DateRange;
+    /**
+     * Required. The display name of the budget. Must be UTF-8 encoded with a maximum size of 240 bytes.
+     */
+    displayName?: string | null;
+    /**
+     * Immutable. Must be unique under the campaign. If set, all impressions served against this budget will include this ID on the invoice if the customer has opted into budget-segment-level billing.
+     */
+    externalBudgetId?: string | null;
+    /**
+     * Required. The external source of the budget segment.
+     */
+    externalBudgetSource?: string | null;
+    /**
+     * Immutable. If set, all external_budget_id sharing the same invoice_grouping_id will include this ID on the invoice if the customer has opted into budget-segment-level billing.
+     */
+    invoiceGroupingId?: string | null;
+    /**
+     * Required for MediaOcean budgets. Additional metadata set by the MediaOcean Prisma tool.
+     */
+    prismaConfig?: Schema$PrismaConfig;
   }
   /**
    * Settings that track the planned spend and duration of a campaign.
@@ -2710,6 +2788,91 @@ export namespace displayvideo_v1 {
     duration?: string | null;
   }
   /**
+   * A single Invoice.
+   */
+  export interface Schema$Invoice {
+    /**
+     * Output only. Budget invoice grouping ID associated with the budget segment in the insertion order.
+     */
+    budgetInvoiceGroupingId?: string | null;
+    /**
+     * Output only. The list of summarized budget information associated with this invoice.
+     */
+    budgetSummaries?: Schema$BudgetSummary[];
+    /**
+     * Output only. The originally issued invoice that is being adjusted by this invoice, if applicable. If there is a corrected invoice, the replaced_invoice_ids field will be empty. May appear on invoice PDF as `Reference invoice number`.
+     */
+    correctedInvoiceId?: string | null;
+    /**
+     * Output only. Invoice currency code in ISO 4217 format.
+     */
+    currencyCode?: string | null;
+    /**
+     * Output only. Display name of the invoice.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The invoice due date.
+     */
+    dueDate?: Schema$Date;
+    /**
+     * Output only. The unique ID of the invoice.
+     */
+    invoiceId?: string | null;
+    /**
+     * Output only. The type of invoice document.
+     */
+    invoiceType?: string | null;
+    /**
+     * Output only. The date when the invoice was issued.
+     */
+    issueDate?: Schema$Date;
+    /**
+     * Output only. The resource name of the invoice.
+     */
+    name?: string | null;
+    /**
+     * Output only. The total amount of costs or adjustments not tied to a particular budget, in micros of the invoice's currency. For example if currency_code is `USD`, then 1000000 micros is one US dollar.
+     */
+    nonBudgetMicros?: string | null;
+    /**
+     * Output only. The ID of the payments account the invoice belongs to. Appears on the invoice PDF as `Billing Account Number`.
+     */
+    paymentsAccountId?: string | null;
+    /**
+     * Output only. The ID of the payments profile the invoice belongs to. Appears on the invoice PDF as `Billing ID`.
+     */
+    paymentsProfileId?: string | null;
+    /**
+     * Output only. The URL to download a PDF copy of the invoice. Note that this URL is user specific and requires a valid OAuth 2.0 access token to access. The access token must be provided in an `Authorization: Bearer` HTTP header and be authorized for one of the following scopes: * `https://www.googleapis.com/auth/display-video-mediaplanning` * `https://www.googleapis.com/auth/display-video` The URL will only be usable for 7 days from when the api is called.
+     */
+    pdfUrl?: string | null;
+    /**
+     * Output only. Purchase order number associated with the invoice.
+     */
+    purchaseOrderNumber?: string | null;
+    /**
+     * Output only. The originally issued invoice(s) that is being cancelled by this invoice, if applicable. If there are any replaced invoices, the corrected_invoice_id field will be empty. May appear on invoice PDF as `Replaced invoice numbers`. Note: There may be multiple replaced invoices due to consolidation of multiple invoices into a single invoice.
+     */
+    replacedInvoiceIds?: string[] | null;
+    /**
+     * Output only. Service start and end dates which are covered by this invoice.
+     */
+    serviceDateRange?: Schema$DateRange;
+    /**
+     * Output only. The pre-tax subtotal amount, in micros of the invoice's currency. For example if currency_code is `USD`, then 1000000 micros is one US dollar.
+     */
+    subtotalAmountMicros?: string | null;
+    /**
+     * Output only. The invoice total amount, in micros of the invoice's currency. For example if currency_code is `USD`, then 1000000 micros is one US dollar.
+     */
+    totalAmountMicros?: string | null;
+    /**
+     * Output only. The sum of all taxes in invoice, in micros of the invoice's currency. For example if currency_code is `USD`, then 1000000 micros is one US dollar.
+     */
+    totalTaxAmountMicros?: string | null;
+  }
+  /**
    * Details for assigned keyword targeting option. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_KEYWORD`.
    */
   export interface Schema$KeywordAssignedTargetingOptionDetails {
@@ -3068,6 +3231,19 @@ export namespace displayvideo_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for InvoiceService.ListInvoices.
+   */
+  export interface Schema$ListInvoicesResponse {
+    /**
+     * The list of invoices. This list will be absent if empty.
+     */
+    invoices?: Schema$Invoice[];
+    /**
+     * A token to retrieve the next page of results. Pass this value in the [ListInvoicesRequest.page_token] field in the subsequent call to `ListInvoices` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for ListLineItemAssignedTargetingOptions.
    */
   export interface Schema$ListLineItemAssignedTargetingOptionsResponse {
@@ -3231,6 +3407,15 @@ export namespace displayvideo_v1 {
     impressionDays?: number | null;
   }
   /**
+   * Response message for InvoiceService.LookupInvoiceCurrency.
+   */
+  export interface Schema$LookupInvoiceCurrencyResponse {
+    /**
+     * Output only. Invoice currency code in ISO 4217 format.
+     */
+    currencyCode?: string | null;
+  }
+  /**
    * A single manual trigger in Display & Video 360.
    */
   export interface Schema$ManualTrigger {
@@ -3330,6 +3515,28 @@ export namespace displayvideo_v1 {
      * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      */
     units?: string | null;
+  }
+  /**
+   * Details for native content position assigned targeting option. This will be populated in the native_content_position_details field when targeting_type is `TARGETING_TYPE_NATIVE_CONTENT_POSITION`. Explicitly targeting all options is not supported. Remove all native content position targeting options to achieve this effect.
+   */
+  export interface Schema$NativeContentPositionAssignedTargetingOptionDetails {
+    /**
+     * Output only. The content position.
+     */
+    contentPosition?: string | null;
+    /**
+     * Required. The targeting_option_id field when targeting_type is `TARGETING_TYPE_NATIVE_CONTENT_POSITION`.
+     */
+    targetingOptionId?: string | null;
+  }
+  /**
+   * Represents a targetable native content position. This will be populated in the native_content_position_details field when targeting_type is `TARGETING_TYPE_NATIVE_CONTENT_POSITION`.
+   */
+  export interface Schema$NativeContentPositionTargetingOptionDetails {
+    /**
+     * Output only. The content position.
+     */
+    contentPosition?: string | null;
   }
   /**
    * A negatively targeted keyword that belongs to a negative keyword list.
@@ -3705,6 +3912,40 @@ export namespace displayvideo_v1 {
     performanceGoalType?: string | null;
   }
   /**
+   * Settings specific to the MediaOcean Prisma tool.
+   */
+  export interface Schema$PrismaConfig {
+    /**
+     * Required. Google Payments Center supports searching and filtering on this code.
+     */
+    prismaCpeCode?: Schema$PrismaCpeCode;
+    /**
+     * Required. The Prisma type.
+     */
+    prismaType?: string | null;
+    /**
+     * Required. The entity allocated this budget (DSP, site, etc.).
+     */
+    supplier?: string | null;
+  }
+  /**
+   * Google Payments Center supports searching and filtering on the component fields of this code.
+   */
+  export interface Schema$PrismaCpeCode {
+    /**
+     * The Prisma client code.
+     */
+    prismaClientCode?: string | null;
+    /**
+     * The Prisma estimate code.
+     */
+    prismaEstimateCode?: string | null;
+    /**
+     * The Prisma product code.
+     */
+    prismaProductCode?: string | null;
+  }
+  /**
    * Targeting details for proximity location list. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_PROXIMITY_LOCATION_LIST`.
    */
   export interface Schema$ProximityLocationListAssignedTargetingOptionDetails {
@@ -4066,6 +4307,10 @@ export namespace displayvideo_v1 {
      */
     name?: string | null;
     /**
+     * Native content position details.
+     */
+    nativeContentPositionDetails?: Schema$NativeContentPositionTargetingOptionDetails;
+    /**
      * On screen position details.
      */
     onScreenPositionDetails?: Schema$OnScreenPositionTargetingOptionDetails;
@@ -4354,6 +4599,7 @@ export namespace displayvideo_v1 {
     channels: Resource$Advertisers$Channels;
     creatives: Resource$Advertisers$Creatives;
     insertionOrders: Resource$Advertisers$Insertionorders;
+    invoices: Resource$Advertisers$Invoices;
     lineItems: Resource$Advertisers$Lineitems;
     locationLists: Resource$Advertisers$Locationlists;
     manualTriggers: Resource$Advertisers$Manualtriggers;
@@ -4368,6 +4614,7 @@ export namespace displayvideo_v1 {
       this.insertionOrders = new Resource$Advertisers$Insertionorders(
         this.context
       );
+      this.invoices = new Resource$Advertisers$Invoices(this.context);
       this.lineItems = new Resource$Advertisers$Lineitems(this.context);
       this.locationLists = new Resource$Advertisers$Locationlists(this.context);
       this.manualTriggers = new Resource$Advertisers$Manualtriggers(
@@ -4863,6 +5110,7 @@ export namespace displayvideo_v1 {
      *       //   "integrationDetails": {},
      *       //   "name": "my_name",
      *       //   "partnerId": "my_partnerId",
+     *       //   "prismaEnabled": false,
      *       //   "servingConfig": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -4882,6 +5130,7 @@ export namespace displayvideo_v1 {
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "partnerId": "my_partnerId",
+     *   //   "prismaEnabled": false,
      *   //   "servingConfig": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -5146,6 +5395,7 @@ export namespace displayvideo_v1 {
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "partnerId": "my_partnerId",
+     *   //   "prismaEnabled": false,
      *   //   "servingConfig": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -5426,6 +5676,7 @@ export namespace displayvideo_v1 {
      *       //   "integrationDetails": {},
      *       //   "name": "my_name",
      *       //   "partnerId": "my_partnerId",
+     *       //   "prismaEnabled": false,
      *       //   "servingConfig": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -5445,6 +5696,7 @@ export namespace displayvideo_v1 {
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "partnerId": "my_partnerId",
+     *   //   "prismaEnabled": false,
      *   //   "servingConfig": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -6030,6 +6282,7 @@ export namespace displayvideo_v1 {
      *       // request body parameters
      *       // {
      *       //   "advertiserId": "my_advertiserId",
+     *       //   "campaignBudgets": [],
      *       //   "campaignFlight": {},
      *       //   "campaignGoal": {},
      *       //   "campaignId": "my_campaignId",
@@ -6046,6 +6299,7 @@ export namespace displayvideo_v1 {
      *   // Example response
      *   // {
      *   //   "advertiserId": "my_advertiserId",
+     *   //   "campaignBudgets": [],
      *   //   "campaignFlight": {},
      *   //   "campaignGoal": {},
      *   //   "campaignId": "my_campaignId",
@@ -6319,6 +6573,7 @@ export namespace displayvideo_v1 {
      *   // Example response
      *   // {
      *   //   "advertiserId": "my_advertiserId",
+     *   //   "campaignBudgets": [],
      *   //   "campaignFlight": {},
      *   //   "campaignGoal": {},
      *   //   "campaignId": "my_campaignId",
@@ -6608,6 +6863,7 @@ export namespace displayvideo_v1 {
      *       // request body parameters
      *       // {
      *       //   "advertiserId": "my_advertiserId",
+     *       //   "campaignBudgets": [],
      *       //   "campaignFlight": {},
      *       //   "campaignGoal": {},
      *       //   "campaignId": "my_campaignId",
@@ -6624,6 +6880,7 @@ export namespace displayvideo_v1 {
      *   // Example response
      *   // {
      *   //   "advertiserId": "my_advertiserId",
+     *   //   "campaignBudgets": [],
      *   //   "campaignFlight": {},
      *   //   "campaignGoal": {},
      *   //   "campaignId": "my_campaignId",
@@ -6920,6 +7177,7 @@ export namespace displayvideo_v1 {
      *   //   "keywordDetails": {},
      *   //   "languageDetails": {},
      *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
@@ -10858,6 +11116,7 @@ export namespace displayvideo_v1 {
      *   //   "keywordDetails": {},
      *   //   "languageDetails": {},
      *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
@@ -11187,6 +11446,338 @@ export namespace displayvideo_v1 {
      * Required. Identifies the type of assigned targeting options to list.
      */
     targetingType?: string;
+  }
+
+  export class Resource$Advertisers$Invoices {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * List invoices for an advertiser.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.invoices.list({
+     *     // Required. The ID of the advertiser to list invoices for.
+     *     advertiserId: '[^/]+',
+     *     // Required. Month for which invoices are needed in the format YYYYMM.
+     *     issueMonth: 'placeholder-value',
+     *     // Select type of invoice to query for Loi Sapin advertisers. Otherwise its ignored.
+     *     loiSapinInvoiceType: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of [ListInvoicesResponse.next_page_token] returned from the previous call to `ListInvoice` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "invoices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Advertisers$Invoices$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Advertisers$Invoices$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListInvoicesResponse>;
+    list(
+      params: Params$Resource$Advertisers$Invoices$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Invoices$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInvoicesResponse>,
+      callback: BodyResponseCallback<Schema$ListInvoicesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Invoices$List,
+      callback: BodyResponseCallback<Schema$ListInvoicesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListInvoicesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Invoices$List
+        | BodyResponseCallback<Schema$ListInvoicesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInvoicesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInvoicesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListInvoicesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Invoices$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Invoices$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/advertisers/{+advertiserId}/invoices').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListInvoicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListInvoicesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Lookup invoice currency for an advertiser.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/display-video',
+     *       'https://www.googleapis.com/auth/display-video-mediaplanning',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.invoices.lookupInvoiceCurrency({
+     *     // Required. The ID of the advertiser to lookup currency for.
+     *     advertiserId: '[^/]+',
+     *     // Month for which currency is needed in the format YYYYMM. If not set Api would return currency based on current settings.
+     *     invoiceMonth: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "currencyCode": "my_currencyCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    lookupInvoiceCurrency(
+      params: Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    lookupInvoiceCurrency(
+      params?: Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$LookupInvoiceCurrencyResponse>;
+    lookupInvoiceCurrency(
+      params: Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    lookupInvoiceCurrency(
+      params: Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LookupInvoiceCurrencyResponse>,
+      callback: BodyResponseCallback<Schema$LookupInvoiceCurrencyResponse>
+    ): void;
+    lookupInvoiceCurrency(
+      params: Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency,
+      callback: BodyResponseCallback<Schema$LookupInvoiceCurrencyResponse>
+    ): void;
+    lookupInvoiceCurrency(
+      callback: BodyResponseCallback<Schema$LookupInvoiceCurrencyResponse>
+    ): void;
+    lookupInvoiceCurrency(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency
+        | BodyResponseCallback<Schema$LookupInvoiceCurrencyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LookupInvoiceCurrencyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LookupInvoiceCurrencyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$LookupInvoiceCurrencyResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/invoices:lookupInvoiceCurrency'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LookupInvoiceCurrencyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LookupInvoiceCurrencyResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Invoices$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser to list invoices for.
+     */
+    advertiserId?: string;
+    /**
+     * Required. Month for which invoices are needed in the format YYYYMM.
+     */
+    issueMonth?: string;
+    /**
+     * Select type of invoice to query for Loi Sapin advertisers. Otherwise its ignored.
+     */
+    loiSapinInvoiceType?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of [ListInvoicesResponse.next_page_token] returned from the previous call to `ListInvoice` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Advertisers$Invoices$Lookupinvoicecurrency
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser to lookup currency for.
+     */
+    advertiserId?: string;
+    /**
+     * Month for which currency is needed in the format YYYYMM. If not set Api would return currency based on current settings.
+     */
+    invoiceMonth?: string;
   }
 
   export class Resource$Advertisers$Lineitems {
@@ -12675,6 +13266,7 @@ export namespace displayvideo_v1 {
      *           //   "keywordDetails": {},
      *           //   "languageDetails": {},
      *           //   "name": "my_name",
+     *           //   "nativeContentPositionDetails": {},
      *           //   "negativeKeywordListDetails": {},
      *           //   "onScreenPositionDetails": {},
      *           //   "operatingSystemDetails": {},
@@ -12724,6 +13316,7 @@ export namespace displayvideo_v1 {
      *   //   "keywordDetails": {},
      *   //   "languageDetails": {},
      *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
@@ -13057,6 +13650,7 @@ export namespace displayvideo_v1 {
      *   //   "keywordDetails": {},
      *   //   "languageDetails": {},
      *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
@@ -17427,6 +18021,7 @@ export namespace displayvideo_v1 {
      *           //   "keywordDetails": {},
      *           //   "languageDetails": {},
      *           //   "name": "my_name",
+     *           //   "nativeContentPositionDetails": {},
      *           //   "negativeKeywordListDetails": {},
      *           //   "onScreenPositionDetails": {},
      *           //   "operatingSystemDetails": {},
@@ -17476,6 +18071,7 @@ export namespace displayvideo_v1 {
      *   //   "keywordDetails": {},
      *   //   "languageDetails": {},
      *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
@@ -17801,6 +18397,7 @@ export namespace displayvideo_v1 {
      *   //   "keywordDetails": {},
      *   //   "languageDetails": {},
      *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
@@ -24208,6 +24805,7 @@ export namespace displayvideo_v1 {
      *         //   "keywordDetails": {},
      *         //   "languageDetails": {},
      *         //   "name": "my_name",
+     *         //   "nativeContentPositionDetails": {},
      *         //   "negativeKeywordListDetails": {},
      *         //   "onScreenPositionDetails": {},
      *         //   "operatingSystemDetails": {},
@@ -24256,6 +24854,7 @@ export namespace displayvideo_v1 {
      *   //   "keywordDetails": {},
      *   //   "languageDetails": {},
      *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
@@ -24575,6 +25174,7 @@ export namespace displayvideo_v1 {
      *   //   "keywordDetails": {},
      *   //   "languageDetails": {},
      *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
      *   //   "negativeKeywordListDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
@@ -25300,6 +25900,7 @@ export namespace displayvideo_v1 {
      *   //   "householdIncomeDetails": {},
      *   //   "languageDetails": {},
      *   //   "name": "my_name",
+     *   //   "nativeContentPositionDetails": {},
      *   //   "onScreenPositionDetails": {},
      *   //   "operatingSystemDetails": {},
      *   //   "parentalStatusDetails": {},
