@@ -4,6 +4,24 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [74.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v74.0.0...googleapis-v74.1.0) (2021-05-25)
+
+
+### Features
+
+* **displayvideo:** update the API ([41f6d99](https://www.github.com/googleapis/google-api-nodejs-client/commit/41f6d994c9d8dd57f0c4d3f632d528382e99755e))
+* **dlp:** update the API ([bd7b97a](https://www.github.com/googleapis/google-api-nodejs-client/commit/bd7b97aad0cedc9dabb6a659c47f1df475f3a889))
+* regenerate index files ([a3f0e26](https://www.github.com/googleapis/google-api-nodejs-client/commit/a3f0e26d0462afa6a8d3ecc90fedfa2e3a10a7d1))
+* **sasportal:** update the API ([8033548](https://www.github.com/googleapis/google-api-nodejs-client/commit/8033548bf5c8af9b1a66636cc5906121046fef03))
+* **spanner:** update the API ([e0af60f](https://www.github.com/googleapis/google-api-nodejs-client/commit/e0af60f62134b062404fd58e92265181c044064f))
+
+
+### Bug Fixes
+
+* **artifactregistry:** update the API ([50a58a0](https://www.github.com/googleapis/google-api-nodejs-client/commit/50a58a06d48088b73c563d39a510b978076b595c))
+* **content:** update the API ([cc7f85a](https://www.github.com/googleapis/google-api-nodejs-client/commit/cc7f85ac8847e173150e0ead9a4299533ef33392))
+* **jobs:** update the API ([7d640be](https://www.github.com/googleapis/google-api-nodejs-client/commit/7d640be29cf3ef782d0a4dec71cc1854c0da9a29))
+
 ## [74.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v73.0.0...googleapis-v74.0.0) (2021-05-23)
 
 
