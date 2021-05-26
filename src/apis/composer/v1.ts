@@ -139,6 +139,23 @@ export namespace composer_v1 {
     value?: string | null;
   }
   /**
+   * Message containing information about the result of an upgrade check operation.
+   */
+  export interface Schema$CheckUpgradeResponse {
+    /**
+     * Output only. Url for a docker build log of an upgraded image.
+     */
+    buildLogUri?: string | null;
+    /**
+     * Output only. Whether build has succeeded or failed on modules conflicts.
+     */
+    containsPypiModulesConflict?: string | null;
+    /**
+     * Output only. Extract from a docker image build log containing information about pypi modules conflicts.
+     */
+    pypiConflictBuildLogExtract?: string | null;
+  }
+  /**
    * The configuration of Cloud SQL instance that is used by the Apache Airflow software.
    */
   export interface Schema$DatabaseConfig {
