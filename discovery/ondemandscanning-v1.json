@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20210410",
+  "revision": "20210524",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -643,6 +643,22 @@
           "description": "The ID(s) of the command(s) that this command depends on.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ComplianceOccurrence": {
+      "description": "An indication that the compliance checks in the associated ComplianceNote were not satisfied for particular resources or a specified reason.",
+      "id": "ComplianceOccurrence",
+      "properties": {
+        "nonComplianceReason": {
+          "type": "string"
+        },
+        "nonCompliantFiles": {
+          "items": {
+            "$ref": "NonCompliantFile"
           },
           "type": "array"
         }
@@ -974,6 +990,25 @@
       },
       "type": "object"
     },
+    "NonCompliantFile": {
+      "description": "Details about files that caused a compliance check to fail.",
+      "id": "NonCompliantFile",
+      "properties": {
+        "displayCommand": {
+          "description": "Command to display the non-compliant files.",
+          "type": "string"
+        },
+        "path": {
+          "description": "display_command is a single command that can be used to display a list of non compliant files. When there is no such command, we can also iterate a list of non compliant file using 'path'. Empty if `display_command` is set.",
+          "type": "string"
+        },
+        "reason": {
+          "description": "Explains why a file is non compliant for a CIS check.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Occurrence": {
       "description": "An instance of an analysis type that has been found on a resource.",
       "id": "Occurrence",
@@ -985,6 +1020,10 @@
         "build": {
           "$ref": "BuildOccurrence",
           "description": "Describes a verifiable build."
+        },
+        "compliance": {
+          "$ref": "ComplianceOccurrence",
+          "description": "Describes a compliance violation on a linked resource."
         },
         "createTime": {
           "description": "Output only. The time this occurrence was created.",
