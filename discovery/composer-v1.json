@@ -406,7 +406,7 @@
       }
     }
   },
-  "revision": "20210413",
+  "revision": "20210518",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AllowedIpRange": {
@@ -419,6 +419,38 @@
         },
         "value": {
           "description": "IP address or range, defined using CIDR notation, of requests that this rule applies to. Examples: `192.168.1.1` or `192.168.0.0/16` or `2001:db8::/32` or `2001:0db8:0000:0042:0000:8a2e:0370:7334`. IP range prefixes should be properly truncated. For example, `1.2.3.4/24` should be truncated to `1.2.3.0/24`. Similarly, for IPv6, `2001:db8::1/32` should be truncated to `2001:db8::/32`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CheckUpgradeResponse": {
+      "description": "Message containing information about the result of an upgrade check operation.",
+      "id": "CheckUpgradeResponse",
+      "properties": {
+        "buildLogUri": {
+          "description": "Output only. Url for a docker build log of an upgraded image.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "containsPypiModulesConflict": {
+          "description": "Output only. Whether build has succeeded or failed on modules conflicts.",
+          "enum": [
+            "CONFLICT_RESULT_UNSPECIFIED",
+            "CONFLICT",
+            "NO_CONFLICT"
+          ],
+          "enumDescriptions": [
+            "It is unknown whether build had conflicts or not.",
+            "There were python packages conflicts.",
+            "There were no python packages conflicts."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "pypiConflictBuildLogExtract": {
+          "description": "Output only. Extract from a docker image build log containing information about pypi modules conflicts.",
+          "readOnly": true,
           "type": "string"
         }
       },
