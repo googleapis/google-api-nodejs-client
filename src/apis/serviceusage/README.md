@@ -4,6 +4,15 @@
 
 > Enables services that service consumers want to use on Google Cloud Platform, lists the available or enabled services, or disables services that service consumers no longer use.
 
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@google-cloud/serviceusage](https://www.npmjs.com/package/@google-cloud/serviceusage) instead.
+The [@google-cloud/serviceusage](https://www.npmjs.com/package/@google-cloud/serviceusage) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh
