@@ -1569,6 +1569,19 @@ export namespace adexchangebuyer2_v2beta1 {
     operatingSystemVersionCriteria?: Schema$CriteriaTargeting;
   }
   /**
+   * Request message to pause serving for finalized deals.
+   */
+  export interface Schema$PauseProposalDealsRequest {
+    /**
+     * The external_deal_id's of the deals to be paused. If empty, all the deals in the proposal will be paused.
+     */
+    externalDealIds?: string[] | null;
+    /**
+     * The reason why the deals are being paused. This human readable message will be displayed in the seller's UI. (Max length: 1000 unicode code units.)
+     */
+    reason?: string | null;
+  }
+  /**
    * Request message to pause serving for an already-finalized proposal.
    */
   export interface Schema$PauseProposalRequest {
@@ -1904,6 +1917,15 @@ export namespace adexchangebuyer2_v2beta1 {
      * The association between a creative and a deal that should be removed.
      */
     association?: Schema$CreativeDealAssociation;
+  }
+  /**
+   * Request message to resume (unpause) serving for already-finalized deals.
+   */
+  export interface Schema$ResumeProposalDealsRequest {
+    /**
+     * The external_deal_id's of the deals to resume. If empty, all the deals in the proposal will be resumed.
+     */
+    externalDealIds?: string[] | null;
   }
   /**
    * Request message to resume (unpause) serving for an already-finalized proposal.
@@ -5512,6 +5534,323 @@ export namespace adexchangebuyer2_v2beta1 {
         return createAPIRequest<Schema$ListProposalsResponse>(parameters);
       }
     }
+
+    /**
+     * Update given deals to pause serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to true for all listed deals in the request. Currently, this method only applies to PG and PD deals. For PA deals, please call accounts.proposals.pause endpoint. It is a no-op to pause already-paused deals. It is an error to call PauseProposalDeals for deals which are not part of the proposal of proposal_id or which are not finalized or renegotiating.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.finalizedProposals.pause({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // The proposal_id of the proposal containing the deals.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "externalDealIds": [],
+     *       //   "reason": "my_reason"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "deals": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "seller": {},
+     *   //   "sellerContacts": [],
+     *   //   "termsAndConditions": "my_termsAndConditions",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    pause(
+      params: Params$Resource$Accounts$Finalizedproposals$Pause,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    pause(
+      params?: Params$Resource$Accounts$Finalizedproposals$Pause,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Proposal>;
+    pause(
+      params: Params$Resource$Accounts$Finalizedproposals$Pause,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    pause(
+      params: Params$Resource$Accounts$Finalizedproposals$Pause,
+      options: MethodOptions | BodyResponseCallback<Schema$Proposal>,
+      callback: BodyResponseCallback<Schema$Proposal>
+    ): void;
+    pause(
+      params: Params$Resource$Accounts$Finalizedproposals$Pause,
+      callback: BodyResponseCallback<Schema$Proposal>
+    ): void;
+    pause(callback: BodyResponseCallback<Schema$Proposal>): void;
+    pause(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Finalizedproposals$Pause
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Finalizedproposals$Pause;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Finalizedproposals$Pause;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2beta1/accounts/{accountId}/finalizedProposals/{proposalId}:pause'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['accountId', 'proposalId'],
+        pathParams: ['accountId', 'proposalId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Proposal>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Proposal>(parameters);
+      }
+    }
+
+    /**
+     * Update given deals to resume serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to false for all listed deals in the request. Currently, this method only applies to PG and PD deals. For PA deals, please call accounts.proposals.resume endpoint. It is a no-op to resume already-running deals. It is an error to call ResumeProposalDeals for deals which are not part of the proposal of proposal_id or which are not finalized or renegotiating.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adexchangebuyer2.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const adexchangebuyer2 = google.adexchangebuyer2('v2beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adexchange.buyer'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adexchangebuyer2.accounts.finalizedProposals.resume({
+     *     // Account ID of the buyer.
+     *     accountId: 'placeholder-value',
+     *     // The proposal_id of the proposal containing the deals.
+     *     proposalId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "externalDealIds": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "billedBuyer": {},
+     *   //   "buyer": {},
+     *   //   "buyerContacts": [],
+     *   //   "buyerPrivateData": {},
+     *   //   "deals": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "isRenegotiating": false,
+     *   //   "isSetupComplete": false,
+     *   //   "lastUpdaterOrCommentorRole": "my_lastUpdaterOrCommentorRole",
+     *   //   "notes": [],
+     *   //   "originatorRole": "my_originatorRole",
+     *   //   "privateAuctionId": "my_privateAuctionId",
+     *   //   "proposalId": "my_proposalId",
+     *   //   "proposalRevision": "my_proposalRevision",
+     *   //   "proposalState": "my_proposalState",
+     *   //   "seller": {},
+     *   //   "sellerContacts": [],
+     *   //   "termsAndConditions": "my_termsAndConditions",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resume(
+      params: Params$Resource$Accounts$Finalizedproposals$Resume,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    resume(
+      params?: Params$Resource$Accounts$Finalizedproposals$Resume,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Proposal>;
+    resume(
+      params: Params$Resource$Accounts$Finalizedproposals$Resume,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resume(
+      params: Params$Resource$Accounts$Finalizedproposals$Resume,
+      options: MethodOptions | BodyResponseCallback<Schema$Proposal>,
+      callback: BodyResponseCallback<Schema$Proposal>
+    ): void;
+    resume(
+      params: Params$Resource$Accounts$Finalizedproposals$Resume,
+      callback: BodyResponseCallback<Schema$Proposal>
+    ): void;
+    resume(callback: BodyResponseCallback<Schema$Proposal>): void;
+    resume(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Finalizedproposals$Resume
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Proposal>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Proposal> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Finalizedproposals$Resume;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Finalizedproposals$Resume;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adexchangebuyer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v2beta1/accounts/{accountId}/finalizedProposals/{proposalId}:resume'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['accountId', 'proposalId'],
+        pathParams: ['accountId', 'proposalId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Proposal>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Proposal>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Accounts$Finalizedproposals$List
@@ -5536,6 +5875,38 @@ export namespace adexchangebuyer2_v2beta1 {
      * The page token as returned from ListProposalsResponse.
      */
     pageToken?: string;
+  }
+  export interface Params$Resource$Accounts$Finalizedproposals$Pause
+    extends StandardParameters {
+    /**
+     * Account ID of the buyer.
+     */
+    accountId?: string;
+    /**
+     * The proposal_id of the proposal containing the deals.
+     */
+    proposalId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PauseProposalDealsRequest;
+  }
+  export interface Params$Resource$Accounts$Finalizedproposals$Resume
+    extends StandardParameters {
+    /**
+     * Account ID of the buyer.
+     */
+    accountId?: string;
+    /**
+     * The proposal_id of the proposal containing the deals.
+     */
+    proposalId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResumeProposalDealsRequest;
   }
 
   export class Resource$Accounts$Products {
