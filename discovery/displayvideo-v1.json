@@ -7203,7 +7203,7 @@
       }
     }
   },
-  "revision": "20210520",
+  "revision": "20210524",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -11519,6 +11519,7 @@
             "RECENCY_21_DAYS",
             "RECENCY_28_DAYS",
             "RECENCY_30_DAYS",
+            "RECENCY_40_DAYS",
             "RECENCY_45_DAYS",
             "RECENCY_60_DAYS",
             "RECENCY_90_DAYS",
@@ -11550,6 +11551,7 @@
             "Recency is 21 days.",
             "Recency is 28 days.",
             "Recency is 30 days.",
+            "Recency is 40 days.",
             "Recency is 45 days.",
             "Recency is 60 days.",
             "Recency is 90 days.",

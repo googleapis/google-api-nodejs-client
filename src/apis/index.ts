@@ -235,6 +235,10 @@ import {VERSIONS as fcmVersions, fcm} from './fcm';
 import {VERSIONS as fileVersions, file} from './file';
 import {VERSIONS as firebaseVersions, firebase} from './firebase';
 import {
+  VERSIONS as firebaseappcheckVersions,
+  firebaseappcheck,
+} from './firebaseappcheck';
+import {
   VERSIONS as firebasedatabaseVersions,
   firebasedatabase,
 } from './firebasedatabase';
@@ -614,6 +618,7 @@ export const APIS: APIList = {
   fcm: fcmVersions,
   file: fileVersions,
   firebase: firebaseVersions,
+  firebaseappcheck: firebaseappcheckVersions,
   firebasedatabase: firebasedatabaseVersions,
   firebasedynamiclinks: firebasedynamiclinksVersions,
   firebasehosting: firebasehostingVersions,
@@ -834,6 +839,7 @@ export class GeneratedAPIs {
   fcm = fcm;
   file = file;
   firebase = firebase;
+  firebaseappcheck = firebaseappcheck;
   firebasedatabase = firebasedatabase;
   firebasedynamiclinks = firebasedynamiclinks;
   firebasehosting = firebasehosting;
