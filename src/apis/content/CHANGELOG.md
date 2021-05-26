@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.3.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/content-v1.3.1...content-v1.3.2) (2021-05-26)
+
+
+### Bug Fixes
+
+* **content:** update the API ([40ff1e8](https://www.github.com/googleapis/google-api-nodejs-client/commit/40ff1e8e2bed401834acaa25d0b87311fe916c3f))
+
 ### [1.3.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/content-v1.3.0...content-v1.3.1) (2021-05-25)
 
 

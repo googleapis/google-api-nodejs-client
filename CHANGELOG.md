@@ -4,6 +4,26 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [74.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v74.1.0...googleapis-v74.2.0) (2021-05-26)
+
+
+### Features
+
+* **adexchangebuyer2:** update the API ([4a96b4a](https://www.github.com/googleapis/google-api-nodejs-client/commit/4a96b4afaf08bdce4202649c67a283306d92d60d))
+* **composer:** update the API ([7f73c56](https://www.github.com/googleapis/google-api-nodejs-client/commit/7f73c56c03ecbe232025e42cb6b30ad77ade72c6))
+* **dialogflow:** update the API ([cfc0878](https://www.github.com/googleapis/google-api-nodejs-client/commit/cfc0878f322e37c58048e3a3dfb1135435b31f98))
+* **ondemandscanning:** update the API ([3c2bd4b](https://www.github.com/googleapis/google-api-nodejs-client/commit/3c2bd4b96f7e1f87e4bf82f7c6729764e8d6e954))
+* regenerate index files ([282aa1b](https://www.github.com/googleapis/google-api-nodejs-client/commit/282aa1bb637bc26755d5ca74894d7db938a6cdcc))
+
+
+### Bug Fixes
+
+* **content:** update the API ([40ff1e8](https://www.github.com/googleapis/google-api-nodejs-client/commit/40ff1e8e2bed401834acaa25d0b87311fe916c3f))
+* **firebaseappcheck:** update the API ([1697660](https://www.github.com/googleapis/google-api-nodejs-client/commit/169766097d28075cfda73be27c873066464d2160))
+* **osconfig:** update the API ([25f0074](https://www.github.com/googleapis/google-api-nodejs-client/commit/25f00745091feaf6718140c3b996cb609a0d6b68))
+* **serviceusage:** update the API ([30d2b08](https://www.github.com/googleapis/google-api-nodejs-client/commit/30d2b08a4685ce8dc0dec6b0c87ddca618e68b72))
+* **sts:** update the API ([d3fbf32](https://www.github.com/googleapis/google-api-nodejs-client/commit/d3fbf32a9137a5be176cc50ca621cd3e66bb2c25))
+
 ## [74.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v74.0.0...googleapis-v74.1.0) (2021-05-25)
 
 
