@@ -900,6 +900,74 @@
               "scopes": [
                 "https://www.googleapis.com/auth/adexchange.buyer"
               ]
+            },
+            "pause": {
+              "description": "Update given deals to pause serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to true for all listed deals in the request. Currently, this method only applies to PG and PD deals. For PA deals, please call accounts.proposals.pause endpoint. It is a no-op to pause already-paused deals. It is an error to call PauseProposalDeals for deals which are not part of the proposal of proposal_id or which are not finalized or renegotiating.",
+              "flatPath": "v2beta1/accounts/{accountId}/finalizedProposals/{proposalId}:pause",
+              "httpMethod": "POST",
+              "id": "adexchangebuyer2.accounts.finalizedProposals.pause",
+              "parameterOrder": [
+                "accountId",
+                "proposalId"
+              ],
+              "parameters": {
+                "accountId": {
+                  "description": "Account ID of the buyer.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "proposalId": {
+                  "description": "The proposal_id of the proposal containing the deals.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2beta1/accounts/{accountId}/finalizedProposals/{proposalId}:pause",
+              "request": {
+                "$ref": "PauseProposalDealsRequest"
+              },
+              "response": {
+                "$ref": "Proposal"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/adexchange.buyer"
+              ]
+            },
+            "resume": {
+              "description": "Update given deals to resume serving. This method will set the `DealServingMetadata.DealPauseStatus.has_buyer_paused` bit to false for all listed deals in the request. Currently, this method only applies to PG and PD deals. For PA deals, please call accounts.proposals.resume endpoint. It is a no-op to resume already-running deals. It is an error to call ResumeProposalDeals for deals which are not part of the proposal of proposal_id or which are not finalized or renegotiating.",
+              "flatPath": "v2beta1/accounts/{accountId}/finalizedProposals/{proposalId}:resume",
+              "httpMethod": "POST",
+              "id": "adexchangebuyer2.accounts.finalizedProposals.resume",
+              "parameterOrder": [
+                "accountId",
+                "proposalId"
+              ],
+              "parameters": {
+                "accountId": {
+                  "description": "Account ID of the buyer.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "proposalId": {
+                  "description": "The proposal_id of the proposal containing the deals.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2beta1/accounts/{accountId}/finalizedProposals/{proposalId}:resume",
+              "request": {
+                "$ref": "ResumeProposalDealsRequest"
+              },
+              "response": {
+                "$ref": "Proposal"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/adexchange.buyer"
+              ]
             }
           }
         },
@@ -2500,7 +2568,7 @@
       }
     }
   },
-  "revision": "20210429",
+  "revision": "20210525",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -5140,6 +5208,24 @@
       },
       "type": "object"
     },
+    "PauseProposalDealsRequest": {
+      "description": "Request message to pause serving for finalized deals.",
+      "id": "PauseProposalDealsRequest",
+      "properties": {
+        "externalDealIds": {
+          "description": "The external_deal_id's of the deals to be paused. If empty, all the deals in the proposal will be paused.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "reason": {
+          "description": "The reason why the deals are being paused. This human readable message will be displayed in the seller's UI. (Max length: 1000 unicode code units.)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PauseProposalRequest": {
       "description": "Request message to pause serving for an already-finalized proposal.",
       "id": "PauseProposalRequest",
@@ -5655,6 +5741,20 @@
         "association": {
           "$ref": "CreativeDealAssociation",
           "description": "The association between a creative and a deal that should be removed."
+        }
+      },
+      "type": "object"
+    },
+    "ResumeProposalDealsRequest": {
+      "description": "Request message to resume (unpause) serving for already-finalized deals.",
+      "id": "ResumeProposalDealsRequest",
+      "properties": {
+        "externalDealIds": {
+          "description": "The external_deal_id's of the deals to resume. If empty, all the deals in the proposal will be resumed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
