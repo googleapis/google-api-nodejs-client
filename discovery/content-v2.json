@@ -3298,7 +3298,7 @@
       }
     }
   },
-  "revision": "20210514",
+  "revision": "20210519",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -10313,7 +10313,7 @@
           "type": "string"
         },
         "value": {
-          "description": "Required. The weight represented as a number.",
+          "description": "Required. The weight represented as a number. The weight can have a maximum precision of four decimal places.",
           "type": "string"
         }
       },

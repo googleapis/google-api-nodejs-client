@@ -5481,7 +5481,7 @@ export namespace content_v2 {
      */
     unit?: string | null;
     /**
-     * Required. The weight represented as a number.
+     * Required. The weight represented as a number. The weight can have a maximum precision of four decimal places.
      */
     value?: string | null;
   }
