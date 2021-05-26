@@ -359,6 +359,13 @@ export namespace ondemandscanning_v1beta1 {
     waitFor?: string[] | null;
   }
   /**
+   * An indication that the compliance checks in the associated ComplianceNote were not satisfied for particular resources or a specified reason.
+   */
+  export interface Schema$ComplianceOccurrence {
+    nonComplianceReason?: string | null;
+    nonCompliantFiles?: Schema$NonCompliantFile[];
+  }
+  /**
    * The period during which some deployable was active in a runtime.
    */
   export interface Schema$DeploymentOccurrence {
@@ -590,6 +597,23 @@ export namespace ondemandscanning_v1beta1 {
     version?: Schema$Version;
   }
   /**
+   * Details about files that caused a compliance check to fail.
+   */
+  export interface Schema$NonCompliantFile {
+    /**
+     * Command to display the non-compliant files.
+     */
+    displayCommand?: string | null;
+    /**
+     * display_command is a single command that can be used to display a list of non compliant files. When there is no such command, we can also iterate a list of non compliant file using 'path'. Empty if `display_command` is set.
+     */
+    path?: string | null;
+    /**
+     * Explains why a file is non compliant for a CIS check.
+     */
+    reason?: string | null;
+  }
+  /**
    * An instance of an analysis type that has been found on a resource.
    */
   export interface Schema$Occurrence {
@@ -601,6 +625,10 @@ export namespace ondemandscanning_v1beta1 {
      * Describes a verifiable build.
      */
     build?: Schema$BuildOccurrence;
+    /**
+     * Describes a compliance violation on a linked resource.
+     */
+    compliance?: Schema$ComplianceOccurrence;
     /**
      * Output only. The time this occurrence was created.
      */
