@@ -60,7 +60,7 @@ describe(__filename, () => {
       .callsFake((path, content) => {
         assert.ok(path);
         assert.strictEqual(
-          JSON.stringify(JSON.parse(content)),
+          JSON.stringify(JSON.parse(content as string)),
           JSON.stringify(expected)
         );
       });
