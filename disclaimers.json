@@ -4,6 +4,10 @@
     "package": "@google-cloud/access-approval"
   },
   {
+    "api": "apigateway",
+    "package": "@google-cloud/api-gateway"
+  },
+  {
     "api": "appengine",
     "package": "@google-cloud/appengine-admin"
   },
@@ -268,16 +272,12 @@
     "package": "@google-cloud/web-security-scanner"
   },
   {
-    "api": "aiplatform",
-    "package": "@google-cloud/aiplatform"
+    "api": "workflows",
+    "package": "@google-cloud/workflows"
   },
   {
     "api": "notebooks",
     "package": "@google-cloud/notebooks"
-  },
-  {
-    "api": "apigateway",
-    "package": "@google-cloud/api-gateway"
   },
   {
     "api": "area120tables",
@@ -360,6 +360,10 @@
     "package": "@google-cloud/rcloadenv"
   },
   {
+    "api": "serviceusage",
+    "package": "@google-cloud/serviceusage"
+  },
+  {
     "api": "clouddebugger",
     "package": "@google-cloud/debug-agent"
   },
@@ -372,7 +376,7 @@
     "package": "@google-cloud/video-transcoder"
   },
   {
-    "api": "workflows",
-    "package": "@google-cloud/workflows"
+    "api": "aiplatform",
+    "package": "@google-cloud/aiplatform"
   }
 ]
