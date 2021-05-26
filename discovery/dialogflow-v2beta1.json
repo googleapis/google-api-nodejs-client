@@ -7247,7 +7247,7 @@
       }
     }
   },
-  "revision": "20210517",
+  "revision": "20210524",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -7288,6 +7288,43 @@
           "description": "The test case results. The detailed conversation turns are empty in this response.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3TestCaseResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ContinuousTestResult": {
+      "description": "Represents a result from running a test case in an agent environment.",
+      "id": "GoogleCloudDialogflowCxV3ContinuousTestResult",
+      "properties": {
+        "name": {
+          "description": "The resource name for the continuous test result. Format: `projects//locations//agents//environments//continuousTestResults/`.",
+          "type": "string"
+        },
+        "result": {
+          "description": "The result of this continuous test run, i.e. whether all the tests in this continuous test run pass or not.",
+          "enum": [
+            "AGGREGATED_TEST_RESULT_UNSPECIFIED",
+            "PASSED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Not specified. Should never be used.",
+            "All the tests passed.",
+            "At least one test did not pass."
+          ],
+          "type": "string"
+        },
+        "runTime": {
+          "description": "Time when the continuous testing run starts.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "testCaseResults": {
+          "description": "A list of individual test case results names in this continuous test run.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -8293,6 +8330,31 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3RunContinuousTestMetadata": {
+      "description": "Metadata returned for the Environments.RunContinuousTest long running operation.",
+      "id": "GoogleCloudDialogflowCxV3RunContinuousTestMetadata",
+      "properties": {
+        "errors": {
+          "description": "The test errors.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3TestError"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3RunContinuousTestResponse": {
+      "description": "The response message for Environments.RunContinuousTest.",
+      "id": "GoogleCloudDialogflowCxV3RunContinuousTestResponse",
+      "properties": {
+        "continuousTestResult": {
+          "$ref": "GoogleCloudDialogflowCxV3ContinuousTestResult",
+          "description": "The result for a continuous test run."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3RunTestCaseMetadata": {
       "description": "Metadata returned for the TestCases.RunTestCase long running operation.",
       "id": "GoogleCloudDialogflowCxV3RunTestCaseMetadata",
@@ -8789,6 +8851,43 @@
           "description": "The test case results. The detailed conversation turns are empty in this response.",
           "items": {
             "$ref": "GoogleCloudDialogflowCxV3beta1TestCaseResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1ContinuousTestResult": {
+      "description": "Represents a result from running a test case in an agent environment.",
+      "id": "GoogleCloudDialogflowCxV3beta1ContinuousTestResult",
+      "properties": {
+        "name": {
+          "description": "The resource name for the continuous test result. Format: `projects//locations//agents//environments//continuousTestResults/`.",
+          "type": "string"
+        },
+        "result": {
+          "description": "The result of this continuous test run, i.e. whether all the tests in this continuous test run pass or not.",
+          "enum": [
+            "AGGREGATED_TEST_RESULT_UNSPECIFIED",
+            "PASSED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Not specified. Should never be used.",
+            "All the tests passed.",
+            "At least one test did not pass."
+          ],
+          "type": "string"
+        },
+        "runTime": {
+          "description": "Time when the continuous testing run starts.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "testCaseResults": {
+          "description": "A list of individual test case results names in this continuous test run.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
@@ -9790,6 +9889,31 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1RunContinuousTestMetadata": {
+      "description": "Metadata returned for the Environments.RunContinuousTest long running operation.",
+      "id": "GoogleCloudDialogflowCxV3beta1RunContinuousTestMetadata",
+      "properties": {
+        "errors": {
+          "description": "The test errors.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1TestError"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1RunContinuousTestResponse": {
+      "description": "The response message for Environments.RunContinuousTest.",
+      "id": "GoogleCloudDialogflowCxV3beta1RunContinuousTestResponse",
+      "properties": {
+        "continuousTestResult": {
+          "$ref": "GoogleCloudDialogflowCxV3beta1ContinuousTestResult",
+          "description": "The result for a continuous test run."
         }
       },
       "type": "object"
@@ -11603,6 +11727,10 @@
         },
         "allRequiredParamsPresent": {
           "description": "This field is set to: - `false` if the matched intent has required parameters and not all of the required parameter values have been collected. - `true` if all required parameter values have been collected, or if the matched intent doesn't contain any required parameters.",
+          "type": "boolean"
+        },
+        "cancelsSlotFilling": {
+          "description": "Indicates whether the conversational query triggers a cancellation for slot filling.",
           "type": "boolean"
         },
         "diagnosticInfo": {
@@ -15627,6 +15755,10 @@
         },
         "allRequiredParamsPresent": {
           "description": "This field is set to: - `false` if the matched intent has required parameters and not all of the required parameter values have been collected. - `true` if all required parameter values have been collected, or if the matched intent doesn't contain any required parameters.",
+          "type": "boolean"
+        },
+        "cancelsSlotFilling": {
+          "description": "Indicates whether the conversational query triggers a cancellation for slot filling.",
           "type": "boolean"
         },
         "diagnosticInfo": {

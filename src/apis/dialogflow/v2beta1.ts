@@ -188,6 +188,27 @@ export namespace dialogflow_v2beta1 {
     results?: Schema$GoogleCloudDialogflowCxV3beta1TestCaseResult[];
   }
   /**
+   * Represents a result from running a test case in an agent environment.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ContinuousTestResult {
+    /**
+     * The resource name for the continuous test result. Format: `projects//locations//agents//environments//continuousTestResults/`.
+     */
+    name?: string | null;
+    /**
+     * The result of this continuous test run, i.e. whether all the tests in this continuous test run pass or not.
+     */
+    result?: string | null;
+    /**
+     * Time when the continuous testing run starts.
+     */
+    runTime?: string | null;
+    /**
+     * A list of individual test case results names in this continuous test run.
+     */
+    testCaseResults?: string[] | null;
+  }
+  /**
    * One interaction between a human and virtual agent. The human provides some input and the virtual agent provides a response.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationTurn {
@@ -926,6 +947,24 @@ export namespace dialogflow_v2beta1 {
     text?: string[] | null;
   }
   /**
+   * Metadata returned for the Environments.RunContinuousTest long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1RunContinuousTestMetadata {
+    /**
+     * The test errors.
+     */
+    errors?: Schema$GoogleCloudDialogflowCxV3beta1TestError[];
+  }
+  /**
+   * The response message for Environments.RunContinuousTest.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1RunContinuousTestResponse {
+    /**
+     * The result for a continuous test run.
+     */
+    continuousTestResult?: Schema$GoogleCloudDialogflowCxV3beta1ContinuousTestResult;
+  }
+  /**
    * Metadata returned for the TestCases.RunTestCase long running operation.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1RunTestCaseMetadata {}
@@ -1274,6 +1313,27 @@ export namespace dialogflow_v2beta1 {
      * The list of rich message responses to present to the user.
      */
     messages?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
+  }
+  /**
+   * Represents a result from running a test case in an agent environment.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ContinuousTestResult {
+    /**
+     * The resource name for the continuous test result. Format: `projects//locations//agents//environments//continuousTestResults/`.
+     */
+    name?: string | null;
+    /**
+     * The result of this continuous test run, i.e. whether all the tests in this continuous test run pass or not.
+     */
+    result?: string | null;
+    /**
+     * Time when the continuous testing run starts.
+     */
+    runTime?: string | null;
+    /**
+     * A list of individual test case results names in this continuous test run.
+     */
+    testCaseResults?: string[] | null;
   }
   /**
    * One interaction between a human and virtual agent. The human provides some input and the virtual agent provides a response.
@@ -2012,6 +2072,24 @@ export namespace dialogflow_v2beta1 {
      * Required. A collection of text responses.
      */
     text?: string[] | null;
+  }
+  /**
+   * Metadata returned for the Environments.RunContinuousTest long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3RunContinuousTestMetadata {
+    /**
+     * The test errors.
+     */
+    errors?: Schema$GoogleCloudDialogflowCxV3TestError[];
+  }
+  /**
+   * The response message for Environments.RunContinuousTest.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3RunContinuousTestResponse {
+    /**
+     * The result for a continuous test run.
+     */
+    continuousTestResult?: Schema$GoogleCloudDialogflowCxV3ContinuousTestResult;
   }
   /**
    * Metadata returned for the TestCases.RunTestCase long running operation.
@@ -5090,6 +5168,10 @@ export namespace dialogflow_v2beta1 {
      */
     allRequiredParamsPresent?: boolean | null;
     /**
+     * Indicates whether the conversational query triggers a cancellation for slot filling.
+     */
+    cancelsSlotFilling?: boolean | null;
+    /**
      * Free-form diagnostic information for the associated detect intent request. The fields of this data can change without notice, so you should not write code that depends on its structure. The data may contain: - webhook call latency - webhook errors
      */
     diagnosticInfo?: {[key: string]: any} | null;
@@ -6624,6 +6706,10 @@ export namespace dialogflow_v2beta1 {
      * This field is set to: - `false` if the matched intent has required parameters and not all of the required parameter values have been collected. - `true` if all required parameter values have been collected, or if the matched intent doesn't contain any required parameters.
      */
     allRequiredParamsPresent?: boolean | null;
+    /**
+     * Indicates whether the conversational query triggers a cancellation for slot filling.
+     */
+    cancelsSlotFilling?: boolean | null;
     /**
      * Free-form diagnostic information for the associated detect intent request. The fields of this data can change without notice, so you should not write code that depends on its structure. The data may contain: - webhook call latency - webhook errors
      */
