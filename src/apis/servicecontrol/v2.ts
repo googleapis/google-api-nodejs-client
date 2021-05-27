@@ -544,6 +544,14 @@ export namespace servicecontrol_v2 {
    */
   export interface Schema$ResourceInfo {
     /**
+     * Optional. The identifier of the container of this resource. For Google Cloud APIs, the resource container must be one of the following formats: - `projects/` - `folders/` - `organizations/` For the policy enforcement on the container level (VPCSC and Location Policy check), this field takes precedence on the container extracted from name when presents.
+     */
+    container?: string | null;
+    /**
+     * Optional. The location of the resource. The value must be a valid zone, region or multiregion. For example: "europe-west4" or "northamerica-northeast1-a"
+     */
+    location?: string | null;
+    /**
      * The name of the resource referenced in the request.
      */
     name?: string | null;
