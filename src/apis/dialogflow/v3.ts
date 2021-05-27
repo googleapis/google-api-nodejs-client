@@ -276,6 +276,27 @@ export namespace dialogflow_v3 {
     results?: Schema$GoogleCloudDialogflowCxV3beta1TestCaseResult[];
   }
   /**
+   * Represents a result from running a test case in an agent environment.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1ContinuousTestResult {
+    /**
+     * The resource name for the continuous test result. Format: `projects//locations//agents//environments//continuousTestResults/`.
+     */
+    name?: string | null;
+    /**
+     * The result of this continuous test run, i.e. whether all the tests in this continuous test run pass or not.
+     */
+    result?: string | null;
+    /**
+     * Time when the continuous testing run starts.
+     */
+    runTime?: string | null;
+    /**
+     * A list of individual test case results names in this continuous test run.
+     */
+    testCaseResults?: string[] | null;
+  }
+  /**
    * One interaction between a human and virtual agent. The human provides some input and the virtual agent provides a response.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationTurn {
@@ -1014,6 +1035,24 @@ export namespace dialogflow_v3 {
     text?: string[] | null;
   }
   /**
+   * Metadata returned for the Environments.RunContinuousTest long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1RunContinuousTestMetadata {
+    /**
+     * The test errors.
+     */
+    errors?: Schema$GoogleCloudDialogflowCxV3beta1TestError[];
+  }
+  /**
+   * The response message for Environments.RunContinuousTest.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1RunContinuousTestResponse {
+    /**
+     * The result for a continuous test run.
+     */
+    continuousTestResult?: Schema$GoogleCloudDialogflowCxV3beta1ContinuousTestResult;
+  }
+  /**
    * Metadata returned for the TestCases.RunTestCase long running operation.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1RunTestCaseMetadata {}
@@ -1383,6 +1422,27 @@ export namespace dialogflow_v3 {
      * Transition (excluding transition route groups) coverage.
      */
     transitionCoverage?: Schema$GoogleCloudDialogflowCxV3TransitionCoverage;
+  }
+  /**
+   * Represents a result from running a test case in an agent environment.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ContinuousTestResult {
+    /**
+     * The resource name for the continuous test result. Format: `projects//locations//agents//environments//continuousTestResults/`.
+     */
+    name?: string | null;
+    /**
+     * The result of this continuous test run, i.e. whether all the tests in this continuous test run pass or not.
+     */
+    result?: string | null;
+    /**
+     * Time when the continuous testing run starts.
+     */
+    runTime?: string | null;
+    /**
+     * A list of individual test case results names in this continuous test run.
+     */
+    testCaseResults?: string[] | null;
   }
   /**
    * One interaction between a human and virtual agent. The human provides some input and the virtual agent provides a response.
@@ -2350,6 +2410,19 @@ export namespace dialogflow_v3 {
     nextPageToken?: string | null;
   }
   /**
+   * The response message for Environments.ListTestCaseResults.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse {
+    /**
+     * The list of continuous test results.
+     */
+    continuousTestResults?: Schema$GoogleCloudDialogflowCxV3ContinuousTestResult[];
+    /**
+     * Token to retrieve the next page of results, or empty if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The response message for EntityTypes.ListEntityTypes.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ListEntityTypesResponse {
@@ -3026,6 +3099,28 @@ export namespace dialogflow_v3 {
      * Agent restore mode. If not specified, `KEEP` is assumed.
      */
     restoreOption?: string | null;
+  }
+  /**
+   * Metadata returned for the Environments.RunContinuousTest long running operation.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3RunContinuousTestMetadata {
+    /**
+     * The test errors.
+     */
+    errors?: Schema$GoogleCloudDialogflowCxV3TestError[];
+  }
+  /**
+   * The request message for Environments.RunContinuousTest.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3RunContinuousTestRequest {}
+  /**
+   * The response message for Environments.RunContinuousTest.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3RunContinuousTestResponse {
+    /**
+     * The result for a continuous test run.
+     */
+    continuousTestResult?: Schema$GoogleCloudDialogflowCxV3ContinuousTestResult;
   }
   /**
    * Metadata returned for the TestCases.RunTestCase long running operation.
@@ -5075,6 +5170,10 @@ export namespace dialogflow_v3 {
      */
     allRequiredParamsPresent?: boolean | null;
     /**
+     * Indicates whether the conversational query triggers a cancellation for slot filling.
+     */
+    cancelsSlotFilling?: boolean | null;
+    /**
      * Free-form diagnostic information for the associated detect intent request. The fields of this data can change without notice, so you should not write code that depends on its structure. The data may contain: - webhook call latency - webhook errors
      */
     diagnosticInfo?: {[key: string]: any} | null;
@@ -6214,6 +6313,10 @@ export namespace dialogflow_v3 {
      * This field is set to: - `false` if the matched intent has required parameters and not all of the required parameter values have been collected. - `true` if all required parameter values have been collected, or if the matched intent doesn't contain any required parameters.
      */
     allRequiredParamsPresent?: boolean | null;
+    /**
+     * Indicates whether the conversational query triggers a cancellation for slot filling.
+     */
+    cancelsSlotFilling?: boolean | null;
     /**
      * Free-form diagnostic information for the associated detect intent request. The fields of this data can change without notice, so you should not write code that depends on its structure. The data may contain: - webhook call latency - webhook errors
      */
@@ -8921,10 +9024,15 @@ export namespace dialogflow_v3 {
 
   export class Resource$Projects$Locations$Agents$Environments {
     context: APIRequestContext;
+    continuousTestResults: Resource$Projects$Locations$Agents$Environments$Continuoustestresults;
     experiments: Resource$Projects$Locations$Agents$Environments$Experiments;
     sessions: Resource$Projects$Locations$Agents$Environments$Sessions;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.continuousTestResults =
+        new Resource$Projects$Locations$Agents$Environments$Continuoustestresults(
+          this.context
+        );
       this.experiments =
         new Resource$Projects$Locations$Agents$Environments$Experiments(
           this.context
@@ -9816,6 +9924,158 @@ export namespace dialogflow_v3 {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
+
+    /**
+     * Kicks off a continuous test under the specified Environment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dialogflow.projects.locations.agents.environments.runContinuousTest({
+     *       // Required. Format: `projects//locations//agents//environments/`.
+     *       environment:
+     *         'projects/my-project/locations/my-location/agents/my-agent/environments/my-environment',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    runContinuousTest(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Runcontinuoustest,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    runContinuousTest(
+      params?: Params$Resource$Projects$Locations$Agents$Environments$Runcontinuoustest,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningOperation>;
+    runContinuousTest(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Runcontinuoustest,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    runContinuousTest(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Runcontinuoustest,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    runContinuousTest(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Runcontinuoustest,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    runContinuousTest(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    runContinuousTest(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Environments$Runcontinuoustest
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningOperation>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Environments$Runcontinuoustest;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Environments$Runcontinuoustest;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+environment}:runContinuousTest').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['environment'],
+        pathParams: ['environment'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Agents$Environments$Create
@@ -9889,6 +10149,192 @@ export namespace dialogflow_v3 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDialogflowCxV3Environment;
+  }
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Runcontinuoustest
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects//locations//agents//environments/`.
+     */
+    environment?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDialogflowCxV3RunContinuousTestRequest;
+  }
+
+  export class Resource$Projects$Locations$Agents$Environments$Continuoustestresults {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Fetches a list of continuous test results for a given environment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dialogflow = google.dialogflow('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/dialogflow',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dialogflow.projects.locations.agents.environments.continuousTestResults.list(
+     *       {
+     *         // The maximum number of items to return in a single page. By default 100 and at most 1000.
+     *         pageSize: 'placeholder-value',
+     *         // The next_page_token value returned from a previous list request.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The environment to list results for. Format: `projects//locations//agents// environments/`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/agents/my-agent/environments/my-environment',
+     *       }
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "continuousTestResults": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Continuoustestresults$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Agents$Environments$Continuoustestresults$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Continuoustestresults$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Continuoustestresults$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Agents$Environments$Continuoustestresults$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Agents$Environments$Continuoustestresults$List
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Agents$Environments$Continuoustestresults$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Agents$Environments$Continuoustestresults$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dialogflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v3/{+parent}/continuousTestResults').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDialogflowCxV3ListContinuousTestResultsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Agents$Environments$Continuoustestresults$List
+    extends StandardParameters {
+    /**
+     * The maximum number of items to return in a single page. By default 100 and at most 1000.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value returned from a previous list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The environment to list results for. Format: `projects//locations//agents// environments/`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Agents$Environments$Experiments {
