@@ -48,6 +48,10 @@
     "package": "@google-cloud/dlp"
   },
   {
+    "api": "datamigration",
+    "package": "@google-cloud/dms"
+  },
+  {
     "api": "dataproc",
     "package": "@google-cloud/dataproc"
   },
@@ -224,6 +228,10 @@
     "package": "@google-cloud/service-management"
   },
   {
+    "api": "serviceusage",
+    "package": "@google-cloud/service-usage"
+  },
+  {
     "api": "spanner",
     "package": "@google-cloud/spanner"
   },
@@ -324,6 +332,10 @@
     "package": "@google-cloud/error-reporting"
   },
   {
+    "api": "essentialcontacts",
+    "package": "@google-cloud/essential-contacts"
+  },
+  {
     "api": "gkehub",
     "package": "@google-cloud/gke-hub"
   },
@@ -358,10 +370,6 @@
   {
     "api": "runtimeconfig",
     "package": "@google-cloud/rcloadenv"
-  },
-  {
-    "api": "serviceusage",
-    "package": "@google-cloud/serviceusage"
   },
   {
     "api": "clouddebugger",
