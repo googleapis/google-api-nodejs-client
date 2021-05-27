@@ -959,7 +959,7 @@
       }
     }
   },
-  "revision": "20210517",
+  "revision": "20210525",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AdminQuotaPolicy": {
@@ -1179,11 +1179,6 @@
         "jwtAudience": {
           "description": "The JWT audience is used when generating a JWT ID token for the backend. This ID token will be added in the HTTP \"authorization\" header, and sent to the backend.",
           "type": "string"
-        },
-        "minDeadline": {
-          "description": "Minimum deadline in seconds needed for this method. Calls having deadline value lower than this will be rejected.",
-          "format": "double",
-          "type": "number"
         },
         "operationDeadline": {
           "description": "The number of seconds to wait for the completion of a long running operation. The default is no deadline.",

@@ -139,7 +139,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists insights for a Cloud project. Requires the recommender.*.list IAM permission for the specified insight type.",
+                      "description": "Lists insights for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified insight type.",
                       "flatPath": "v1/billingAccounts/{billingAccountsId}/locations/{locationsId}/insightTypes/{insightTypesId}/insights",
                       "httpMethod": "GET",
                       "id": "recommender.billingAccounts.locations.insightTypes.insights.list",
@@ -241,7 +241,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists recommendations for a Cloud project. Requires the recommender.*.list IAM permission for the specified recommender.",
+                      "description": "Lists recommendations for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified recommender.",
                       "flatPath": "v1/billingAccounts/{billingAccountsId}/locations/{locationsId}/recommenders/{recommendersId}/recommendations",
                       "httpMethod": "GET",
                       "id": "recommender.billingAccounts.locations.recommenders.recommendations.list",
@@ -407,7 +407,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists insights for a Cloud project. Requires the recommender.*.list IAM permission for the specified insight type.",
+                      "description": "Lists insights for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified insight type.",
                       "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/insightTypes/{insightTypesId}/insights",
                       "httpMethod": "GET",
                       "id": "recommender.folders.locations.insightTypes.insights.list",
@@ -509,7 +509,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists recommendations for a Cloud project. Requires the recommender.*.list IAM permission for the specified recommender.",
+                      "description": "Lists recommendations for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified recommender.",
                       "flatPath": "v1/folders/{foldersId}/locations/{locationsId}/recommenders/{recommendersId}/recommendations",
                       "httpMethod": "GET",
                       "id": "recommender.folders.locations.recommenders.recommendations.list",
@@ -675,7 +675,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists insights for a Cloud project. Requires the recommender.*.list IAM permission for the specified insight type.",
+                      "description": "Lists insights for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified insight type.",
                       "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/insightTypes/{insightTypesId}/insights",
                       "httpMethod": "GET",
                       "id": "recommender.organizations.locations.insightTypes.insights.list",
@@ -777,7 +777,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists recommendations for a Cloud project. Requires the recommender.*.list IAM permission for the specified recommender.",
+                      "description": "Lists recommendations for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified recommender.",
                       "flatPath": "v1/organizations/{organizationsId}/locations/{locationsId}/recommenders/{recommendersId}/recommendations",
                       "httpMethod": "GET",
                       "id": "recommender.organizations.locations.recommenders.recommendations.list",
@@ -943,7 +943,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists insights for a Cloud project. Requires the recommender.*.list IAM permission for the specified insight type.",
+                      "description": "Lists insights for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified insight type.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/insightTypes/{insightTypesId}/insights",
                       "httpMethod": "GET",
                       "id": "recommender.projects.locations.insightTypes.insights.list",
@@ -1045,7 +1045,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists recommendations for a Cloud project. Requires the recommender.*.list IAM permission for the specified recommender.",
+                      "description": "Lists recommendations for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified recommender.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/recommenders/{recommendersId}/recommendations",
                       "httpMethod": "GET",
                       "id": "recommender.projects.locations.recommenders.recommendations.list",
@@ -1178,7 +1178,7 @@
       }
     }
   },
-  "revision": "20210514",
+  "revision": "20210522",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1CostProjection": {
@@ -1479,7 +1479,7 @@
       "id": "GoogleCloudRecommenderV1Operation",
       "properties": {
         "action": {
-          "description": "Type of this operation. Contains one of 'and', 'remove', 'replace', 'move', 'copy', 'test' and custom operations. This field is case-insensitive and always populated.",
+          "description": "Type of this operation. Contains one of 'add', 'remove', 'replace', 'move', 'copy', 'test' and custom operations. This field is case-insensitive and always populated.",
           "type": "string"
         },
         "path": {

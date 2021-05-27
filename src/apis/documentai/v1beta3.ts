@@ -3181,7 +3181,7 @@ export namespace documentai_v1beta3 {
      */
     description?: string | null;
     /**
-     * For some entity types there are only a few possible values. They can be specified here.
+     * If specified, lists all the possible values for this entity.
      */
     enumValues?: string[] | null;
     /**
@@ -3307,6 +3307,19 @@ export namespace documentai_v1beta3 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  /**
+   * The response message for Operations.ListOperations.
+   */
+  export interface Schema$GoogleLongrunningListOperationsResponse {
+    /**
+     * The standard List next-page token.
+     */
+    nextPageToken?: string | null;
+    /**
+     * A list of operations that matches the specified filter in the request.
+     */
+    operations?: Schema$GoogleLongrunningOperation[];
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -3998,6 +4011,136 @@ export namespace documentai_v1beta3 {
     }
 
     /**
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.operations.cancelOperation({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancelOperation(
+      params: Params$Resource$Projects$Locations$Operations$Canceloperation,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    cancelOperation(
+      params?: Params$Resource$Projects$Locations$Operations$Canceloperation,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleProtobufEmpty>;
+    cancelOperation(
+      params: Params$Resource$Projects$Locations$Operations$Canceloperation,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancelOperation(
+      params: Params$Resource$Projects$Locations$Operations$Canceloperation,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    cancelOperation(
+      params: Params$Resource$Projects$Locations$Operations$Canceloperation,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    cancelOperation(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    cancelOperation(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$Canceloperation
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleProtobufEmpty>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$Canceloperation;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Operations$Canceloperation;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * ```js
@@ -4133,14 +4276,182 @@ export namespace documentai_v1beta3 {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
       }
     }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/documentai.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const documentai = google.documentai('v1beta3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await documentai.projects.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location/operations',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Operations$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Operations$List,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Operations$List
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleLongrunningListOperationsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://documentai.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta3/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Operations$Canceloperation
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Operations$Get
     extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Operations$List
+    extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
   }
 
   export class Resource$Projects$Locations$Processors {

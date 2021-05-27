@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/TmUt2NFOg_XZQOZew3cS35WAWvY\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/opvaAGdr1PM_WVOLZQA35SZFjfE\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -10577,7 +10577,7 @@
               "type": "string"
             },
             "secureTags": {
-              "description": "Secure tags to apply to this instance. These can be later modified by the update method. Maximum number of secure tags allowed is 50.",
+              "description": "DEPRECATED: Please use resource.secure_tag instead. Secure tags to apply to this instance. These can be later modified by the update method. Maximum number of secure tags allowed is 50.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -11916,7 +11916,7 @@
           ],
           "parameters": {
             "clearSecureTag": {
-              "description": "Whether to clear secure tags from the instance.\n\nThis property is mutually exclusive with the secure_tag property; you can only specify one or the other, but not both.",
+              "description": "Whether to clear secure tags from the instance.\n\nThis property if set to true will clear secure tags regardless of the resource.secure_tags.",
               "location": "query",
               "type": "boolean"
             },
@@ -11974,7 +11974,7 @@
               "type": "string"
             },
             "secureTags": {
-              "description": "Secure tags to apply to this instance. Maximum number of secure tags allowed is 50.",
+              "description": "DEPRECATED: Please use resource.secure_tag instead. Secure tags to apply to this instance. Maximum number of secure tags allowed is 50.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -36581,7 +36581,7 @@
       }
     }
   },
-  "revision": "20210505",
+  "revision": "20210518",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -37170,7 +37170,7 @@
           "type": "integer"
         },
         "purpose": {
-          "description": "The purpose of this resource, which can be one of the following values:  \n- `GCE_ENDPOINT` for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources. \n- `DNS_RESOLVER` for a DNS resolver address in a subnetwork \n- `VPC_PEERING` for addresses that are reserved for VPC peer networks. \n- `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT. \n- `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec-encrypted Cloud Interconnect configuration. These addresses are regional resources.",
+          "description": "The purpose of this resource, which can be one of the following values:  \n- `GCE_ENDPOINT` for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources. \n- `DNS_RESOLVER` for a DNS resolver address in a subnetwork \n- `VPC_PEERING` for addresses that are reserved for VPC peer networks. \n- `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT. \n- `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec-encrypted Cloud Interconnect configuration. These addresses are regional resources. Not currently available publicly.",
           "enum": [
             "DNS_RESOLVER",
             "GCE_ENDPOINT",
@@ -37577,6 +37577,11 @@
         "enableNestedVirtualization": {
           "description": "Whether to enable nested virtualization or not (default is false).",
           "type": "boolean"
+        },
+        "numaNodeCount": {
+          "description": "The number of vNUMA nodes.",
+          "format": "int32",
+          "type": "integer"
         },
         "threadsPerCore": {
           "description": "The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.",
@@ -38836,6 +38841,18 @@
           "$ref": "BackendBucketCdnPolicy",
           "description": "Cloud CDN configuration for this BackendBucket."
         },
+        "compressionMode": {
+          "description": "Compress text responses using Brotli or gzip compression, based on the client?s Accept-Encoding header.",
+          "enum": [
+            "AUTOMATIC",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "creationTimestamp": {
           "description": "[Output Only] Creation timestamp in RFC3339 text format.",
           "type": "string"
@@ -39153,6 +39170,18 @@
         },
         "circuitBreakers": {
           "$ref": "CircuitBreakers"
+        },
+        "compressionMode": {
+          "description": "Compress text responses using Brotli or gzip compression, based on the client?s Accept-Encoding header.",
+          "enum": [
+            "AUTOMATIC",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
         },
         "connectionDraining": {
           "$ref": "ConnectionDraining"
@@ -40314,7 +40343,7 @@
           "type": "array"
         },
         "secureTags": {
-          "description": "Secure tags to apply to this instance. These can be later modified by the update method. Maximum number of secure tags allowed is 50.",
+          "description": "DEPRECATED: Please use instance_properties.secure_tag instead. Secure tags to apply to this instance. These can be later modified by the update method. Maximum number of secure tags allowed is 50.",
           "items": {
             "type": "string"
           },
@@ -42636,7 +42665,7 @@
           "type": "string"
         },
         "interfaces": {
-          "description": "List of interfaces for this external VPN gateway.",
+          "description": "List of interfaces for this external VPN gateway.\n\nIf your peer-side gateway is an on-premises gateway and non-AWS cloud providers? gateway, at most two interfaces can be provided for an external VPN gateway. If your peer side is an AWS virtual private gateway, four interfaces should be provided for an external VPN gateway.",
           "items": {
             "$ref": "ExternalVpnGatewayInterface"
           },
@@ -42695,7 +42724,7 @@
       "id": "ExternalVpnGatewayInterface",
       "properties": {
         "id": {
-          "description": "The numeric ID of this interface. The allowed input values for this id for different redundancy types of external VPN gateway: SINGLE_IP_INTERNALLY_REDUNDANT - 0 TWO_IPS_REDUNDANCY - 0, 1 FOUR_IPS_REDUNDANCY - 0, 1, 2, 3",
+          "description": "The numeric ID of this interface. The allowed input values for this id for different redundancy types of external VPN gateway: \n- SINGLE_IP_INTERNALLY_REDUNDANT - 0 \n- TWO_IPS_REDUNDANCY - 0, 1 \n- FOUR_IPS_REDUNDANCY - 0, 1, 2, 3",
           "format": "uint32",
           "type": "integer"
         },
@@ -43537,7 +43566,7 @@
       "id": "FixedOrPercent",
       "properties": {
         "calculated": {
-          "description": "[Output Only] Absolute value of VM instances calculated based on the specific mode.\n\n \n- If the value is fixed, then the calculated value is equal to the fixed value. \n- If the value is a percent, then the calculated value is percent/100 * targetSize. For example, the calculated value of a 80% of a managed instance group with 150 instances would be (80/100 * 150) = 120 VM instances. If there is a remainder, the number is rounded up.",
+          "description": "[Output Only] Absolute value of VM instances calculated based on the specific mode.\n\n \n- If the value is fixed, then the calculated value is equal to the fixed value. \n- If the value is a percent, then the calculated value is percent/100 * targetSize. For example, the calculated value of a 80% of a managed instance group with 150 instances would be (80/100 * 150) = 120 VM instances. If there is a remainder, the number is rounded.",
           "format": "int32",
           "type": "integer"
         },
@@ -48562,7 +48591,7 @@
         },
         "maxUnavailable": {
           "$ref": "FixedOrPercent",
-          "description": "Maximum number of instances that can be unavailable when autohealing. When 'percent' is used, the value is rounded UP. The instance is considered available if all of the following conditions are satisfied: 1. Instance's status is RUNNING. 2. Instance's currentAction is NONE (in particular its liveness health check result was observed to be HEALTHY at least once as it passed VERIFYING). 3. There is no outgoing action on an instance triggered by IGM.\n\nBy default, number of concurrently autohealed instances is smaller than the managed instance group target size. However, if a zonal managed instance group has only one instance, or a regional managed instance group has only one instance per zone, autohealing will recreate these instances when they become unhealthy."
+          "description": "Maximum number of instances that can be unavailable when autohealing. When 'percent' is used, the value is rounded if necessary. The instance is considered available if all of the following conditions are satisfied: 1. Instance's status is RUNNING. 2. Instance's currentAction is NONE (in particular its liveness health check result was observed to be HEALTHY at least once as it passed VERIFYING). 3. There is no outgoing action on an instance triggered by IGM.\n\nBy default, number of concurrently autohealed instances is smaller than the managed instance group target size. However, if a zonal managed instance group has only one instance, or a regional managed instance group has only one instance per zone, autohealing will recreate these instances when they become unhealthy."
         }
       },
       "type": "object"
@@ -48781,11 +48810,11 @@
         },
         "maxSurge": {
           "$ref": "FixedOrPercent",
-          "description": "The maximum number of instances that can be created above the specified targetSize during the update process. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded up if necessary. The default value for maxSurge is a fixed value equal to the number of zones in which the managed instance group operates.\n\nAt least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge."
+          "description": "The maximum number of instances that can be created above the specified targetSize during the update process. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded if necessary. The default value for maxSurge is a fixed value equal to the number of zones in which the managed instance group operates.\n\nAt least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge."
         },
         "maxUnavailable": {
           "$ref": "FixedOrPercent",
-          "description": "The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:\n\n \n- The instance's status is RUNNING. \n- If there is a health check on the instance group, the instance's health check status must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded up if necessary. The default value for maxUnavailable is a fixed value equal to the number of zones in which the managed instance group operates.\n\nAt least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable."
+          "description": "The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:\n\n \n- The instance's status is RUNNING. \n- If there is a health check on the instance group, the instance's health check status must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded if necessary. The default value for maxUnavailable is a fixed value equal to the number of zones in which the managed instance group operates.\n\nAt least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable."
         },
         "minReadySec": {
           "description": "Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600].",
@@ -48868,7 +48897,7 @@
         },
         "targetSize": {
           "$ref": "FixedOrPercent",
-          "description": "Specifies the intended number of instances to be created from the instanceTemplate. The final number of instances created from the template will be equal to:  \n- If expressed as a fixed number, the minimum of either targetSize.fixed or instanceGroupManager.targetSize is used. \n- if expressed as a percent, the targetSize would be (targetSize.percent/100 * InstanceGroupManager.targetSize) If there is a remainder, the number is rounded up.  If unset, this version will update any remaining instances not updated by another version. Read Starting a canary update for more information."
+          "description": "Specifies the intended number of instances to be created from the instanceTemplate. The final number of instances created from the template will be equal to:  \n- If expressed as a fixed number, the minimum of either targetSize.fixed or instanceGroupManager.targetSize is used. \n- if expressed as a percent, the targetSize would be (targetSize.percent/100 * InstanceGroupManager.targetSize) If there is a remainder, the number is rounded.  If unset, this version will update any remaining instances not updated by another version. Read Starting a canary update for more information."
         }
       },
       "type": "object"
@@ -50104,7 +50133,7 @@
           "description": "Specifies the scheduling options for the instances that are created from these properties."
         },
         "secureTags": {
-          "description": "Secure tags to apply to this instance. Maximum number of secure tags allowed is 50.",
+          "description": "[Input Only] Secure tags to apply to this instance. Maximum number of secure tags allowed is 50.",
           "items": {
             "type": "string"
           },
@@ -51219,7 +51248,7 @@
           "type": "string"
         },
         "encryption": {
-          "description": "Indicates the user-supplied encryption option of this interconnect attachment: \n- NONE is the default value, which means that the attachment carries unencrypted traffic. VMs can send traffic to, or receive traffic from, this type of attachment. \n- IPSEC indicates that the attachment carries only traffic encrypted by an IPsec device such as an HA VPN gateway. VMs cannot directly send traffic to, or receive traffic from, such an attachment. To use IPsec-encrypted Cloud Interconnect, create the attachment using this option. \nNot currently available in all Interconnect locations.",
+          "description": "Indicates the user-supplied encryption option of this VLAN attachment (interconnectAttachment). Can only be specified at attachment creation for PARTNER or DEDICATED attachments. Possible values are: \n- NONE - This is the default value, which means that the VLAN attachment carries unencrypted traffic. VMs are able to send traffic to, or receive traffic from, such a VLAN attachment. \n- IPSEC - The VLAN attachment carries only encrypted traffic that is encrypted by an IPsec device, such as an HA VPN gateway or third-party IPsec VPN. VMs cannot directly send traffic to, or receive traffic from, such a VLAN attachment. To use IPsec-encrypted Cloud Interconnect, the VLAN attachment must be created with this option. \nNot currently available publicly.",
           "enum": [
             "IPSEC",
             "NONE"
@@ -51244,7 +51273,7 @@
           "type": "string"
         },
         "ipsecInternalAddresses": {
-          "description": "URL of addresses that have been reserved for the interconnect attachment, Used only for interconnect attachment that has the encryption option as IPSEC. The addresses must be RFC 1918 IP address ranges. When creating HA VPN gateway over the interconnect attachment, if the attachment is configured to use an RFC 1918 IP address, then the VPN gateway's IP address will be allocated from the IP address range specified here. For example, if the HA VPN gateway's interface 0 is paired to this interconnect attachment, then an RFC 1918 IP address for the VPN gateway interface 0 will be allocated from the IP address specified for this interconnect attachment. If this field is not specified for interconnect attachment that has encryption option as IPSEC, later on when creating HA VPN gateway on this interconnect attachment, the HA VPN gateway's IP address will be allocated from regional external IP address pool.\nNot currently available in all Interconnect locations.",
+          "description": "List of URL of addresses that have been reserved for the VLAN attachment. Used only for the VLAN attachment that has the encryption option as IPSEC. The addresses must be regional internal IP address ranges. When creating an HA VPN gateway over the VLAN attachment, if the attachment is configured to use a regional internal IP address, then the VPN gateway's IP address is allocated from the IP address range specified here. For example, if the HA VPN gateway's interface 0 is paired to this VLAN attachment, then a regional internal IP address for the VPN gateway interface 0 will be allocated from the IP address specified for this VLAN attachment. If this field is not specified when creating the VLAN attachment, then later on when creating an HA VPN gateway on this VLAN attachment, the HA VPN gateway's IP address is allocated from the regional external IP address pool.\nNot currently available publicly.",
           "items": {
             "type": "string"
           },
@@ -55408,7 +55437,20 @@
       "id": "NetworkInterfaceSubInterface",
       "properties": {
         "ipAddress": {
-          "description": "An IPv4 internal IP address to assign to the instance for this subinterface.",
+          "description": "An IPv4 internal IP address to assign to the instance for this subinterface. If specified, ip_allocation_mode should be set to ALLOCATE_IP.",
+          "type": "string"
+        },
+        "ipAllocationMode": {
+          "enum": [
+            "ALLOCATE_IP",
+            "DO_NOT_ALLOCATE_IP",
+            "UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
           "type": "string"
         },
         "subnetwork": {
@@ -55857,6 +55899,10 @@
         "selfLinkWithId": {
           "description": "[Output Only] Server-defined URL for this resource with the resource id.",
           "type": "string"
+        },
+        "shareSettings": {
+          "$ref": "ShareSettings",
+          "description": "Share-settings for the node group"
         },
         "size": {
           "description": "[Output Only] The total number of nodes in the node group.",
@@ -60372,6 +60418,7 @@
             "COMMITTED_NVIDIA_P4_GPUS",
             "COMMITTED_NVIDIA_T4_GPUS",
             "COMMITTED_NVIDIA_V100_GPUS",
+            "COMMITTED_P2D_CPUS",
             "CPUS",
             "CPUS_ALL_REGIONS",
             "DISKS_TOTAL_GB",
@@ -60426,6 +60473,7 @@
             "NVIDIA_T4_GPUS",
             "NVIDIA_T4_VWS_GPUS",
             "NVIDIA_V100_GPUS",
+            "P2D_CPUS",
             "PACKET_MIRRORINGS",
             "PD_EXTREME_TOTAL_PROVISIONED_IOPS",
             "PREEMPTIBLE_CPUS",
@@ -60475,6 +60523,8 @@
             "XPN_SERVICE_PROJECTS"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -62138,7 +62188,7 @@
           "type": "string"
         },
         "values": {
-          "description": "Corresponds to the label values of a reservation resource.",
+          "description": "Corresponds to the label values of a reservation resource. This can be either a name to a reservation in the same project or \"projects/different-project/reservations/some-reservation-name\" to target a shared reservation in the same zone but in a different project.",
           "items": {
             "type": "string"
           },
@@ -63727,7 +63777,7 @@
           "type": "string"
         },
         "encryptedInterconnectRouter": {
-          "description": "Field to indicate if a router is dedicated to use with encrypted Interconnect Attachment (IPsec-encrypted Cloud Interconnect feature).\nNot currently available in all Interconnect locations.",
+          "description": "Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments).\nNot currently available publicly.",
           "type": "boolean"
         },
         "id": {
@@ -63973,7 +64023,7 @@
           "type": "integer"
         },
         "keepaliveInterval": {
-          "description": "The interval in seconds between BGP keepalive messages that are sent to the peer.\nNot currently available publicly.\nHold time is three times the interval at which keepalive messages are sent, and the hold time is the maximum number of seconds allowed to elapse between successive keepalive messages that BGP receives from a peer.\nBGP will use the smaller of either the local hold time value or the peer's hold time value as the hold time for the BGP connection between the two peers.\nIf set, this value must be between 20 and 60. The default is 20.",
+          "description": "The interval in seconds between BGP keepalive messages that are sent to the peer.\nHold time is three times the interval at which keepalive messages are sent, and the hold time is the maximum number of seconds allowed to elapse between successive keepalive messages that BGP receives from a peer.\nBGP will use the smaller of either the local hold time value or the peer's hold time value as the hold time for the BGP connection between the two peers.\nIf set, this value must be between 20 and 60. The default is 20.",
           "format": "uint32",
           "type": "integer"
         }
@@ -64029,7 +64079,7 @@
           "description": "BFD configuration for the BGP peering.\nNot currently available publicly."
         },
         "enable": {
-          "description": "The status of the BGP peer connection.\nNot currently available publicly.\nIf set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.",
+          "description": "The status of the BGP peer connection.\nIf set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.",
           "enum": [
             "FALSE",
             "TRUE"
@@ -65162,6 +65212,11 @@
           "format": "int32",
           "type": "integer"
         },
+        "hostErrorTimeoutSeconds": {
+          "description": "Specify the time in seconds for host error detection, the value must be within the range of [90, 330] with the increment of 30, if unset, the default behavior of host error recovery will be used.",
+          "format": "int32",
+          "type": "integer"
+        },
         "latencyTolerant": {
           "description": "Defines whether the instance is tolerant of higher cpu latency. This can only be set during instance creation, or when the instance is not currently running. It must not be set if the preemptible option is also set.",
           "type": "boolean"
@@ -65524,6 +65579,9 @@
         "adaptiveProtectionConfig": {
           "$ref": "SecurityPolicyAdaptiveProtectionConfig"
         },
+        "advancedOptionsConfig": {
+          "$ref": "SecurityPolicyAdvancedOptionsConfig"
+        },
         "associations": {
           "description": "A list of associations that belong to this policy.",
           "items": {
@@ -65653,6 +65711,34 @@
           "enum": [
             "PREMIUM",
             "STANDARD"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecurityPolicyAdvancedOptionsConfig": {
+      "id": "SecurityPolicyAdvancedOptionsConfig",
+      "properties": {
+        "jsonParsing": {
+          "enum": [
+            "DISABLED",
+            "STANDARD"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "logLevel": {
+          "enum": [
+            "NORMAL",
+            "VERBOSE"
           ],
           "enumDescriptions": [
             "",
@@ -72667,7 +72753,7 @@
           "type": "string"
         },
         "nextPageToken": {
-          "description": "[Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.",
+          "description": "[Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results. In special cases listUsable may return 0 subnetworks and nextPageToken which still should be used to get the next page of results.",
           "type": "string"
         },
         "selfLink": {
@@ -73054,7 +73140,7 @@
           "type": "string"
         },
         "vpnInterfaces": {
-          "description": "A list of interfaces on this VPN gateway.",
+          "description": "The list of VPN interfaces associated with this VPN gateway.",
           "items": {
             "$ref": "VpnGatewayVpnGatewayInterface"
           },
@@ -73396,16 +73482,16 @@
       "id": "VpnGatewayVpnGatewayInterface",
       "properties": {
         "id": {
-          "description": "The numeric ID of this VPN gateway interface.",
+          "description": "[Output Only] Numeric identifier for this VPN interface associated with the VPN gateway.",
           "format": "uint32",
           "type": "integer"
         },
         "interconnectAttachment": {
-          "description": "URL of the interconnect attachment resource. When the value of this field is present, the VPN Gateway will be used for IPsec-encrypted Cloud Interconnect; all Egress or Ingress traffic for this VPN Gateway interface will go through the specified interconnect attachment resource.\nNot currently available in all Interconnect locations.",
+          "description": "URL of the VLAN attachment (interconnectAttachment) resource for this VPN gateway interface. When the value of this field is present, the VPN gateway is used for IPsec-encrypted Cloud Interconnect; all egress or ingress traffic for this VPN gateway interface goes through the specified VLAN attachment resource.\nNot currently available publicly.",
           "type": "string"
         },
         "ipAddress": {
-          "description": "[Output Only] The external IP address for this VPN gateway interface.",
+          "description": "[Output Only] IP address for this VPN interface associated with the VPN gateway. The IP address could be either a regional external IP address or a regional internal IP address. The two IP addresses for a VPN gateway must be all regional external or regional internal IP addresses. There cannot be a mix of regional external IP addresses and regional internal IP addresses. For IPsec-encrypted Cloud Interconnect, the IP addresses for both interfaces could either be regional internal IP addresses or regional external IP addresses. For regular (non IPsec-encrypted Cloud Interconnect) HA VPN tunnels, the IP address must be a regional external IP address.",
           "type": "string"
         }
       },

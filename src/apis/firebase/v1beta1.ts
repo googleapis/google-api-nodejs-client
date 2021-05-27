@@ -137,14 +137,6 @@ export namespace firebase_v1beta1 {
      * Deprecated. Instead, to set a Project's default GCP resource location, call [`FinalizeDefaultLocation`](../projects.defaultLocation/finalize) after you add Firebase resources to the GCP `Project`. The ID of the Project's default GCP resource location. The location must be one of the available [GCP resource locations](https://firebase.google.com/docs/projects/locations).
      */
     locationId?: string | null;
-    /**
-     * Deprecated. Instead, to link a Project with a Google Analytics account, call [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics) after you add Firebase resources to the GCP `Project`. The region code (CLDR) that the account will use for Google Analytics data For example: US, GB, or DE In Java, use `com.google.i18n.identifiers.RegionCode`.
-     */
-    regionCode?: string | null;
-    /**
-     * Deprecated. Instead, to link a Project with a Google Analytics account, call [`AddGoogleAnalytics`](../../v1beta1/projects/addGoogleAnalytics) after you add Firebase resources to the GCP `Project`. The time zone that the account will use for Google Analytics data. For example: America/Los_Angeles or Africa/Abidjan
-     */
-    timeZone?: string | null;
   }
   export interface Schema$AddGoogleAnalyticsRequest {
     /**
@@ -1024,9 +1016,7 @@ export namespace firebase_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "locationId": "my_locationId",
-     *       //   "regionCode": "my_regionCode",
-     *       //   "timeZone": "my_timeZone"
+     *       //   "locationId": "my_locationId"
      *       // }
      *     },
      *   });

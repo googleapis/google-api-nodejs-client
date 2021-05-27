@@ -319,7 +319,7 @@ export namespace recommender_v1 {
    */
   export interface Schema$GoogleCloudRecommenderV1Operation {
     /**
-     * Type of this operation. Contains one of 'and', 'remove', 'replace', 'move', 'copy', 'test' and custom operations. This field is case-insensitive and always populated.
+     * Type of this operation. Contains one of 'add', 'remove', 'replace', 'move', 'copy', 'test' and custom operations. This field is case-insensitive and always populated.
      */
     action?: string | null;
     /**
@@ -677,7 +677,7 @@ export namespace recommender_v1 {
     }
 
     /**
-     * Lists insights for a Cloud project. Requires the recommender.*.list IAM permission for the specified insight type.
+     * Lists insights for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified insight type.
      * @example
      * ```js
      * // Before running the sample:
@@ -1194,7 +1194,7 @@ export namespace recommender_v1 {
     }
 
     /**
-     * Lists recommendations for a Cloud project. Requires the recommender.*.list IAM permission for the specified recommender.
+     * Lists recommendations for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified recommender.
      * @example
      * ```js
      * // Before running the sample:
@@ -2079,7 +2079,7 @@ export namespace recommender_v1 {
     }
 
     /**
-     * Lists insights for a Cloud project. Requires the recommender.*.list IAM permission for the specified insight type.
+     * Lists insights for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified insight type.
      * @example
      * ```js
      * // Before running the sample:
@@ -2591,7 +2591,7 @@ export namespace recommender_v1 {
     }
 
     /**
-     * Lists recommendations for a Cloud project. Requires the recommender.*.list IAM permission for the specified recommender.
+     * Lists recommendations for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified recommender.
      * @example
      * ```js
      * // Before running the sample:
@@ -3476,7 +3476,7 @@ export namespace recommender_v1 {
     }
 
     /**
-     * Lists insights for a Cloud project. Requires the recommender.*.list IAM permission for the specified insight type.
+     * Lists insights for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified insight type.
      * @example
      * ```js
      * // Before running the sample:
@@ -3991,7 +3991,7 @@ export namespace recommender_v1 {
     }
 
     /**
-     * Lists recommendations for a Cloud project. Requires the recommender.*.list IAM permission for the specified recommender.
+     * Lists recommendations for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified recommender.
      * @example
      * ```js
      * // Before running the sample:
@@ -4876,7 +4876,7 @@ export namespace recommender_v1 {
     }
 
     /**
-     * Lists insights for a Cloud project. Requires the recommender.*.list IAM permission for the specified insight type.
+     * Lists insights for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified insight type.
      * @example
      * ```js
      * // Before running the sample:
@@ -5388,7 +5388,7 @@ export namespace recommender_v1 {
     }
 
     /**
-     * Lists recommendations for a Cloud project. Requires the recommender.*.list IAM permission for the specified recommender.
+     * Lists recommendations for the specified Cloud Resource. Requires the recommender.*.list IAM permission for the specified recommender.
      * @example
      * ```js
      * // Before running the sample:
