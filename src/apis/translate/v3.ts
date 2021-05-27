@@ -522,7 +522,7 @@ export namespace translate_v3 {
      */
     model?: string | null;
     /**
-     * Text translated into the target language.
+     * Text translated into the target language. If an error occurs during translation, this field might be excluded from the response.
      */
     translatedText?: string | null;
   }

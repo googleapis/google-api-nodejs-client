@@ -687,7 +687,7 @@
       }
     }
   },
-  "revision": "20210412",
+  "revision": "20210521",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchTranslateTextRequest": {
@@ -1217,7 +1217,7 @@
           "type": "string"
         },
         "translatedText": {
-          "description": "Text translated into the target language.",
+          "description": "Text translated into the target language. If an error occurs during translation, this field might be excluded from the response.",
           "type": "string"
         }
       },
