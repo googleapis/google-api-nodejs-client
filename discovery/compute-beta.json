@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/5FjkLId7LoXhu3jcOOJByyOp5jw\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/WyhrzZ6yGpSD4Diq4FRe28Fl47g\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -1320,6 +1320,46 @@
             "https://www.googleapis.com/auth/compute"
           ]
         },
+        "setEdgeSecurityPolicy": {
+          "description": "Sets the edge security policy for the specified backend bucket.",
+          "httpMethod": "POST",
+          "id": "compute.backendBuckets.setEdgeSecurityPolicy",
+          "parameterOrder": [
+            "project",
+            "backendBucket"
+          ],
+          "parameters": {
+            "backendBucket": {
+              "description": "Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/backendBuckets/{backendBucket}/setEdgeSecurityPolicy",
+          "request": {
+            "$ref": "SecurityPolicyReference"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "setIamPolicy": {
           "description": "Sets the access control policy on the specified resource. Replaces any existing policy.",
           "httpMethod": "POST",
@@ -1808,6 +1848,46 @@
           "path": "projects/{project}/global/backendServices/{backendService}",
           "request": {
             "$ref": "BackendService"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "setEdgeSecurityPolicy": {
+          "description": "Sets the edge security policy for the specified backend service.",
+          "httpMethod": "POST",
+          "id": "compute.backendServices.setEdgeSecurityPolicy",
+          "parameterOrder": [
+            "project",
+            "backendService"
+          ],
+          "parameters": {
+            "backendService": {
+              "description": "Name of the BackendService resource to which the edge security policy should be set. The name should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/backendServices/{backendService}/setEdgeSecurityPolicy",
+          "request": {
+            "$ref": "SecurityPolicyReference"
           },
           "response": {
             "$ref": "Operation"
@@ -31224,7 +31304,7 @@
       }
     }
   },
-  "revision": "20210505",
+  "revision": "20210518",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -31787,7 +31867,7 @@
           "type": "integer"
         },
         "purpose": {
-          "description": "The purpose of this resource, which can be one of the following values:  \n- `GCE_ENDPOINT` for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources. \n- `DNS_RESOLVER` for a DNS resolver address in a subnetwork \n- `VPC_PEERING` for addresses that are reserved for VPC peer networks. \n- `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT. \n- `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec-encrypted Cloud Interconnect configuration. These addresses are regional resources.",
+          "description": "The purpose of this resource, which can be one of the following values:  \n- `GCE_ENDPOINT` for addresses that are used by VM instances, alias IP ranges, internal load balancers, and similar resources. \n- `DNS_RESOLVER` for a DNS resolver address in a subnetwork \n- `VPC_PEERING` for addresses that are reserved for VPC peer networks. \n- `NAT_AUTO` for addresses that are external IP addresses automatically reserved for Cloud NAT. \n- `IPSEC_INTERCONNECT` for addresses created from a private IP range that are reserved for a VLAN attachment in an IPsec-encrypted Cloud Interconnect configuration. These addresses are regional resources. Not currently available publicly.",
           "enum": [
             "DNS_RESOLVER",
             "GCE_ENDPOINT",
@@ -33349,6 +33429,18 @@
           "$ref": "BackendBucketCdnPolicy",
           "description": "Cloud CDN configuration for this BackendBucket."
         },
+        "compressionMode": {
+          "description": "Compress text responses using Brotli or gzip compression, based on the client?s Accept-Encoding header.",
+          "enum": [
+            "AUTOMATIC",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "creationTimestamp": {
           "description": "[Output Only] Creation timestamp in RFC3339 text format.",
           "type": "string"
@@ -33362,6 +33454,10 @@
         },
         "description": {
           "description": "An optional textual description of the resource; provided by the client when the resource is created.",
+          "type": "string"
+        },
+        "edgeSecurityPolicy": {
+          "description": "[Output Only] The resource URL for the edge security policy associated with this backend bucket.",
           "type": "string"
         },
         "enableCdn": {
@@ -33659,6 +33755,18 @@
         "circuitBreakers": {
           "$ref": "CircuitBreakers"
         },
+        "compressionMode": {
+          "description": "Compress text responses using Brotli or gzip compression, based on the client?s Accept-Encoding header.",
+          "enum": [
+            "AUTOMATIC",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
         "connectionDraining": {
           "$ref": "ConnectionDraining"
         },
@@ -33689,6 +33797,10 @@
         },
         "description": {
           "description": "An optional description of this resource. Provide this property when you create the resource.",
+          "type": "string"
+        },
+        "edgeSecurityPolicy": {
+          "description": "[Output Only] The resource URL for the edge security policy associated with this backend service.",
           "type": "string"
         },
         "enableCDN": {
@@ -36934,7 +37046,7 @@
           "type": "string"
         },
         "interfaces": {
-          "description": "List of interfaces for this external VPN gateway.",
+          "description": "List of interfaces for this external VPN gateway.\n\nIf your peer-side gateway is an on-premises gateway and non-AWS cloud providers? gateway, at most two interfaces can be provided for an external VPN gateway. If your peer side is an AWS virtual private gateway, four interfaces should be provided for an external VPN gateway.",
           "items": {
             "$ref": "ExternalVpnGatewayInterface"
           },
@@ -36993,7 +37105,7 @@
       "id": "ExternalVpnGatewayInterface",
       "properties": {
         "id": {
-          "description": "The numeric ID of this interface. The allowed input values for this id for different redundancy types of external VPN gateway: SINGLE_IP_INTERNALLY_REDUNDANT - 0 TWO_IPS_REDUNDANCY - 0, 1 FOUR_IPS_REDUNDANCY - 0, 1, 2, 3",
+          "description": "The numeric ID of this interface. The allowed input values for this id for different redundancy types of external VPN gateway: \n- SINGLE_IP_INTERNALLY_REDUNDANT - 0 \n- TWO_IPS_REDUNDANCY - 0, 1 \n- FOUR_IPS_REDUNDANCY - 0, 1, 2, 3",
           "format": "uint32",
           "type": "integer"
         },
@@ -37790,7 +37902,7 @@
       "id": "FixedOrPercent",
       "properties": {
         "calculated": {
-          "description": "[Output Only] Absolute value of VM instances calculated based on the specific mode.\n\n \n- If the value is fixed, then the calculated value is equal to the fixed value. \n- If the value is a percent, then the calculated value is percent/100 * targetSize. For example, the calculated value of a 80% of a managed instance group with 150 instances would be (80/100 * 150) = 120 VM instances. If there is a remainder, the number is rounded up.",
+          "description": "[Output Only] Absolute value of VM instances calculated based on the specific mode.\n\n \n- If the value is fixed, then the calculated value is equal to the fixed value. \n- If the value is a percent, then the calculated value is percent/100 * targetSize. For example, the calculated value of a 80% of a managed instance group with 150 instances would be (80/100 * 150) = 120 VM instances. If there is a remainder, the number is rounded.",
           "format": "int32",
           "type": "integer"
         },
@@ -41886,11 +41998,11 @@
         },
         "maxSurge": {
           "$ref": "FixedOrPercent",
-          "description": "The maximum number of instances that can be created above the specified targetSize during the update process. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded up if necessary. The default value for maxSurge is a fixed value equal to the number of zones in which the managed instance group operates.\n\nAt least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge."
+          "description": "The maximum number of instances that can be created above the specified targetSize during the update process. This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded if necessary. The default value for maxSurge is a fixed value equal to the number of zones in which the managed instance group operates.\n\nAt least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxSurge."
         },
         "maxUnavailable": {
           "$ref": "FixedOrPercent",
-          "description": "The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:\n\n \n- The instance's status is RUNNING. \n- If there is a health check on the instance group, the instance's health check status must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded up if necessary. The default value for maxUnavailable is a fixed value equal to the number of zones in which the managed instance group operates.\n\nAt least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable."
+          "description": "The maximum number of instances that can be unavailable during the update process. An instance is considered available if all of the following conditions are satisfied:\n\n \n- The instance's status is RUNNING. \n- If there is a health check on the instance group, the instance's health check status must be HEALTHY at least once. If there is no health check on the group, then the instance only needs to have a status of RUNNING to be considered available.  This value can be either a fixed number or, if the group has 10 or more instances, a percentage. If you set a percentage, the number of instances is rounded if necessary. The default value for maxUnavailable is a fixed value equal to the number of zones in which the managed instance group operates.\n\nAt least one of either maxSurge or maxUnavailable must be greater than 0. Learn more about maxUnavailable."
         },
         "minReadySec": {
           "description": "Minimum number of seconds to wait for after a newly created instance becomes available. This value must be from range [0, 3600].",
@@ -41969,7 +42081,7 @@
         },
         "targetSize": {
           "$ref": "FixedOrPercent",
-          "description": "Specifies the intended number of instances to be created from the instanceTemplate. The final number of instances created from the template will be equal to:  \n- If expressed as a fixed number, the minimum of either targetSize.fixed or instanceGroupManager.targetSize is used. \n- if expressed as a percent, the targetSize would be (targetSize.percent/100 * InstanceGroupManager.targetSize) If there is a remainder, the number is rounded up.  If unset, this version will update any remaining instances not updated by another version. Read Starting a canary update for more information."
+          "description": "Specifies the intended number of instances to be created from the instanceTemplate. The final number of instances created from the template will be equal to:  \n- If expressed as a fixed number, the minimum of either targetSize.fixed or instanceGroupManager.targetSize is used. \n- if expressed as a percent, the targetSize would be (targetSize.percent/100 * InstanceGroupManager.targetSize) If there is a remainder, the number is rounded.  If unset, this version will update any remaining instances not updated by another version. Read Starting a canary update for more information."
         }
       },
       "type": "object"
@@ -43937,7 +44049,7 @@
           "type": "string"
         },
         "encryption": {
-          "description": "Indicates the user-supplied encryption option of this interconnect attachment: \n- NONE is the default value, which means that the attachment carries unencrypted traffic. VMs can send traffic to, or receive traffic from, this type of attachment. \n- IPSEC indicates that the attachment carries only traffic encrypted by an IPsec device such as an HA VPN gateway. VMs cannot directly send traffic to, or receive traffic from, such an attachment. To use IPsec-encrypted Cloud Interconnect, create the attachment using this option. \nNot currently available in all Interconnect locations.",
+          "description": "Indicates the user-supplied encryption option of this VLAN attachment (interconnectAttachment). Can only be specified at attachment creation for PARTNER or DEDICATED attachments. Possible values are: \n- NONE - This is the default value, which means that the VLAN attachment carries unencrypted traffic. VMs are able to send traffic to, or receive traffic from, such a VLAN attachment. \n- IPSEC - The VLAN attachment carries only encrypted traffic that is encrypted by an IPsec device, such as an HA VPN gateway or third-party IPsec VPN. VMs cannot directly send traffic to, or receive traffic from, such a VLAN attachment. To use IPsec-encrypted Cloud Interconnect, the VLAN attachment must be created with this option. \nNot currently available publicly.",
           "enum": [
             "IPSEC",
             "NONE"
@@ -43962,7 +44074,7 @@
           "type": "string"
         },
         "ipsecInternalAddresses": {
-          "description": "URL of addresses that have been reserved for the interconnect attachment, Used only for interconnect attachment that has the encryption option as IPSEC. The addresses must be RFC 1918 IP address ranges. When creating HA VPN gateway over the interconnect attachment, if the attachment is configured to use an RFC 1918 IP address, then the VPN gateway's IP address will be allocated from the IP address range specified here. For example, if the HA VPN gateway's interface 0 is paired to this interconnect attachment, then an RFC 1918 IP address for the VPN gateway interface 0 will be allocated from the IP address specified for this interconnect attachment. If this field is not specified for interconnect attachment that has encryption option as IPSEC, later on when creating HA VPN gateway on this interconnect attachment, the HA VPN gateway's IP address will be allocated from regional external IP address pool.\nNot currently available in all Interconnect locations.",
+          "description": "List of URL of addresses that have been reserved for the VLAN attachment. Used only for the VLAN attachment that has the encryption option as IPSEC. The addresses must be regional internal IP address ranges. When creating an HA VPN gateway over the VLAN attachment, if the attachment is configured to use a regional internal IP address, then the VPN gateway's IP address is allocated from the IP address range specified here. For example, if the HA VPN gateway's interface 0 is paired to this VLAN attachment, then a regional internal IP address for the VPN gateway interface 0 will be allocated from the IP address specified for this VLAN attachment. If this field is not specified when creating the VLAN attachment, then later on when creating an HA VPN gateway on this VLAN attachment, the HA VPN gateway's IP address is allocated from the regional external IP address pool.\nNot currently available publicly.",
           "items": {
             "type": "string"
           },
@@ -51717,6 +51829,7 @@
             "COMMITTED_NVIDIA_P4_GPUS",
             "COMMITTED_NVIDIA_T4_GPUS",
             "COMMITTED_NVIDIA_V100_GPUS",
+            "COMMITTED_P2D_CPUS",
             "CPUS",
             "CPUS_ALL_REGIONS",
             "DISKS_TOTAL_GB",
@@ -51765,6 +51878,7 @@
             "NVIDIA_T4_GPUS",
             "NVIDIA_T4_VWS_GPUS",
             "NVIDIA_V100_GPUS",
+            "P2D_CPUS",
             "PACKET_MIRRORINGS",
             "PD_EXTREME_TOTAL_PROVISIONED_IOPS",
             "PREEMPTIBLE_CPUS",
@@ -51812,6 +51926,8 @@
             "XPN_SERVICE_PROJECTS"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -53320,7 +53436,7 @@
           "type": "string"
         },
         "values": {
-          "description": "Corresponds to the label values of a reservation resource.",
+          "description": "Corresponds to the label values of a reservation resource. This can be either a name to a reservation in the same project or \"projects/different-project/reservations/some-reservation-name\" to target a shared reservation in the same zone but in a different project.",
           "items": {
             "type": "string"
           },
@@ -54752,7 +54868,7 @@
           "type": "string"
         },
         "encryptedInterconnectRouter": {
-          "description": "Field to indicate if a router is dedicated to use with encrypted Interconnect Attachment (IPsec-encrypted Cloud Interconnect feature).\nNot currently available in all Interconnect locations.",
+          "description": "Indicates if a router is dedicated for use with encrypted VLAN attachments (interconnectAttachments).\nNot currently available publicly.",
           "type": "boolean"
         },
         "id": {
@@ -54990,7 +55106,7 @@
           "type": "integer"
         },
         "keepaliveInterval": {
-          "description": "The interval in seconds between BGP keepalive messages that are sent to the peer.\nNot currently available publicly.\nHold time is three times the interval at which keepalive messages are sent, and the hold time is the maximum number of seconds allowed to elapse between successive keepalive messages that BGP receives from a peer.\nBGP will use the smaller of either the local hold time value or the peer's hold time value as the hold time for the BGP connection between the two peers.\nIf set, this value must be between 20 and 60. The default is 20.",
+          "description": "The interval in seconds between BGP keepalive messages that are sent to the peer.\nHold time is three times the interval at which keepalive messages are sent, and the hold time is the maximum number of seconds allowed to elapse between successive keepalive messages that BGP receives from a peer.\nBGP will use the smaller of either the local hold time value or the peer's hold time value as the hold time for the BGP connection between the two peers.\nIf set, this value must be between 20 and 60. The default is 20.",
           "format": "uint32",
           "type": "integer"
         }
@@ -55042,7 +55158,7 @@
           "description": "BFD configuration for the BGP peering.\nNot currently available publicly."
         },
         "enable": {
-          "description": "The status of the BGP peer connection.\nNot currently available publicly.\nIf set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.",
+          "description": "The status of the BGP peer connection.\nIf set to FALSE, any active session with the peer is terminated and all associated routing information is removed. If set to TRUE, the peer connection can be established with routing information. The default is TRUE.",
           "enum": [
             "FALSE",
             "TRUE"
@@ -56006,6 +56122,11 @@
           "description": "Specifies whether the instance should be automatically restarted if it is terminated by Compute Engine (not terminated by a user). You can only set the automatic restart option for standard instances. Preemptible instances cannot be automatically restarted.\n\nBy default, this is set to true so an instance is automatically restarted if it is terminated by Compute Engine.",
           "type": "boolean"
         },
+        "hostErrorTimeoutSeconds": {
+          "description": "Specify the time in seconds for host error detection, the value must be within the range of [90, 330] with the increment of 30, if unset, the default behavior of host error recovery will be used.",
+          "format": "int32",
+          "type": "integer"
+        },
         "locationHint": {
           "description": "An opaque location hint used to place the instance close to other resources. This field is for use by internal tools that use the public API.",
           "type": "string"
@@ -56129,6 +56250,9 @@
         "adaptiveProtectionConfig": {
           "$ref": "SecurityPolicyAdaptiveProtectionConfig"
         },
+        "advancedOptionsConfig": {
+          "$ref": "SecurityPolicyAdvancedOptionsConfig"
+        },
         "associations": {
           "description": "A list of associations that belong to this policy.",
           "items": {
@@ -56209,9 +56333,11 @@
           "description": "The type indicates the intended use of the security policy. CLOUD_ARMOR policies apply to backend services. FIREWALL policies apply to organizations.",
           "enum": [
             "CLOUD_ARMOR",
+            "CLOUD_ARMOR_EDGE",
             "FIREWALL"
           ],
           "enumDescriptions": [
+            "",
             "",
             ""
           ],
@@ -56244,6 +56370,34 @@
           "enum": [
             "PREMIUM",
             "STANDARD"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecurityPolicyAdvancedOptionsConfig": {
+      "id": "SecurityPolicyAdvancedOptionsConfig",
+      "properties": {
+        "jsonParsing": {
+          "enum": [
+            "DISABLED",
+            "STANDARD"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "logLevel": {
+          "enum": [
+            "NORMAL",
+            "VERBOSE"
           ],
           "enumDescriptions": [
             "",
@@ -62685,7 +62839,7 @@
           "type": "string"
         },
         "nextPageToken": {
-          "description": "[Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results.",
+          "description": "[Output Only] This token allows you to get the next page of results for list requests. If the number of results is larger than maxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue paging through the results. In special cases listUsable may return 0 subnetworks and nextPageToken which still should be used to get the next page of results.",
           "type": "string"
         },
         "selfLink": {
@@ -63029,7 +63183,7 @@
           "type": "string"
         },
         "vpnInterfaces": {
-          "description": "A list of interfaces on this VPN gateway.",
+          "description": "The list of VPN interfaces associated with this VPN gateway.",
           "items": {
             "$ref": "VpnGatewayVpnGatewayInterface"
           },
@@ -63371,16 +63525,16 @@
       "id": "VpnGatewayVpnGatewayInterface",
       "properties": {
         "id": {
-          "description": "The numeric ID of this VPN gateway interface.",
+          "description": "[Output Only] Numeric identifier for this VPN interface associated with the VPN gateway.",
           "format": "uint32",
           "type": "integer"
         },
         "interconnectAttachment": {
-          "description": "URL of the interconnect attachment resource. When the value of this field is present, the VPN Gateway will be used for IPsec-encrypted Cloud Interconnect; all Egress or Ingress traffic for this VPN Gateway interface will go through the specified interconnect attachment resource.\nNot currently available in all Interconnect locations.",
+          "description": "URL of the VLAN attachment (interconnectAttachment) resource for this VPN gateway interface. When the value of this field is present, the VPN gateway is used for IPsec-encrypted Cloud Interconnect; all egress or ingress traffic for this VPN gateway interface goes through the specified VLAN attachment resource.\nNot currently available publicly.",
           "type": "string"
         },
         "ipAddress": {
-          "description": "[Output Only] The external IP address for this VPN gateway interface.",
+          "description": "[Output Only] IP address for this VPN interface associated with the VPN gateway. The IP address could be either a regional external IP address or a regional internal IP address. The two IP addresses for a VPN gateway must be all regional external or regional internal IP addresses. There cannot be a mix of regional external IP addresses and regional internal IP addresses. For IPsec-encrypted Cloud Interconnect, the IP addresses for both interfaces could either be regional internal IP addresses or regional external IP addresses. For regular (non IPsec-encrypted Cloud Interconnect) HA VPN tunnels, the IP address must be a regional external IP address.",
           "type": "string"
         }
       },
