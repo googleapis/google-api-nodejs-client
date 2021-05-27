@@ -301,10 +301,6 @@ export namespace servicemanagement_v1 {
      */
     jwtAudience?: string | null;
     /**
-     * Minimum deadline in seconds needed for this method. Calls having deadline value lower than this will be rejected.
-     */
-    minDeadline?: number | null;
-    /**
      * The number of seconds to wait for the completion of a long running operation. The default is no deadline.
      */
     operationDeadline?: number | null;
