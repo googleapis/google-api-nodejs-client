@@ -1004,7 +1004,7 @@
       }
     }
   },
-  "revision": "20210510",
+  "revision": "20210524",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -2347,6 +2347,12 @@
           "type": "array"
         }
       },
+      "type": "object"
+    },
+    "IssueCommandResponse": {
+      "description": "Response on issuing a command. This is currently empty as a placeholder.",
+      "id": "IssueCommandResponse",
+      "properties": {},
       "type": "object"
     },
     "KeyedAppState": {

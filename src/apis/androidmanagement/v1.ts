@@ -935,6 +935,10 @@ export namespace androidmanagement_v1 {
     skinTemperatures?: number[] | null;
   }
   /**
+   * Response on issuing a command. This is currently empty as a placeholder.
+   */
+  export interface Schema$IssueCommandResponse {}
+  /**
    * Keyed app state reported by the app.
    */
   export interface Schema$KeyedAppState {
