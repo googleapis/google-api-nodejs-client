@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/sheets-v0.3.1...sheets-v1.0.0) (2021-06-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* * fix(admin): update the API
+
+### Features
+
+* run the generator ([#2627](https://www.github.com/googleapis/google-api-nodejs-client/issues/2627)) ([475f6e8](https://www.github.com/googleapis/google-api-nodejs-client/commit/475f6e87bce7f2a95986d4c2859ff6104e841167))
+
 ### [0.3.1](https://www.github.com/googleapis/google-api-nodejs-client/compare/sheets-v0.3.0...sheets-v0.3.1) (2021-05-23)
 
 

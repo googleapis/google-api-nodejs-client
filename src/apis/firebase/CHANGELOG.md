@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/firebase-v1.0.0...firebase-v2.0.0) (2021-06-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* **firebase:** This release has breaking changes.
+
+### Features
+
+* **firebase:** update the API ([2c86c6a](https://www.github.com/googleapis/google-api-nodejs-client/commit/2c86c6afca3a3e3cf0dfb170a33c8a72002ab26b))
+
 ## [1.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/firebase-v0.1.0...firebase-v1.0.0) (2021-03-18)
 
 

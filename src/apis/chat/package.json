@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/chat",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "chat",
   "main": "build/index.js",
   "types": "build/index.d.ts",
