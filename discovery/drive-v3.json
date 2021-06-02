@@ -35,7 +35,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/flD37epa4K_hC-bv7s4sOJoeJlI\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/KFxZC8gV5KZAPkrIpQvAsqAcIFE\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -2191,7 +2191,7 @@
       }
     }
   },
-  "revision": "20210516",
+  "revision": "20210524",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3192,7 +3192,7 @@
           "type": "boolean"
         },
         "owners": {
-          "description": "The owners of the file. Currently, only certain legacy files may have more than one owner. Not populated for items in shared drives.",
+          "description": "The owner of this file. Only certain legacy files may have more than one owner. This field isn't populated for items in shared drives.",
           "items": {
             "$ref": "User"
           },
