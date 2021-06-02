@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20210505",
+  "revision": "20210517",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2937,6 +2937,10 @@
           "description": "[Output only] The size of the address space on each node for hosting containers. This is provisioned from within the `container_ipv4_cidr` range. This field will only be set when cluster is in route-based network mode.",
           "format": "int32",
           "type": "integer"
+        },
+        "nodePoolDefaults": {
+          "$ref": "NodePoolDefaults",
+          "description": "Default NodePool settings for the entire cluster. These settings are overridden if specified on the specific NodePool object."
         },
         "nodePools": {
           "description": "The node pools associated with this cluster. This field should not be set if \"node_config\" or \"initial_node_count\" are specified.",
@@ -3452,6 +3456,28 @@
             "Secrets in etcd are stored in plain text (at etcd level) - this is unrelated to Compute Engine level full disk encryption."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Date": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "id": "Date",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4296,6 +4322,12 @@
       },
       "type": "object"
     },
+    "NodeConfigDefaults": {
+      "description": "Subset of NodeConfig message that has defaults.",
+      "id": "NodeConfigDefaults",
+      "properties": {},
+      "type": "object"
+    },
     "NodeKubeletConfig": {
       "description": "Node kubelet configs.",
       "id": "NodeKubeletConfig",
@@ -4488,6 +4520,17 @@
           "description": "Minimum number of nodes in the NodePool. Must be >= 1 and <= max_node_count.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "NodePoolDefaults": {
+      "description": "Subset of Nodepool message that has defaults.",
+      "id": "NodePoolDefaults",
+      "properties": {
+        "nodeConfigDefaults": {
+          "$ref": "NodeConfigDefaults",
+          "description": "Subset of NodeConfig message that has defaults."
         }
       },
       "type": "object"
@@ -5032,6 +5075,13 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "windowsVersionMaps": {
+          "additionalProperties": {
+            "$ref": "WindowsVersions"
+          },
+          "description": "Maps of Kubernetes version and supported Windows server versions.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -5533,7 +5583,8 @@
             "GKE_SERVICE_ACCOUNT_DELETED",
             "GCE_QUOTA_EXCEEDED",
             "SET_BY_OPERATOR",
-            "CLOUD_KMS_KEY_ERROR"
+            "CLOUD_KMS_KEY_ERROR",
+            "CA_EXPIRING"
           ],
           "enumDescriptions": [
             "UNKNOWN indicates a generic condition.",
@@ -5541,7 +5592,8 @@
             "GKE_SERVICE_ACCOUNT_DELETED indicates that the user deleted their robot service account.",
             "Google Compute Engine quota was exceeded.",
             "Cluster state was manually changed by an SRE due to a system logic error.",
-            "Unable to perform an encrypt operation against the CloudKMS key used for etcd level encryption. More codes TBA"
+            "Unable to perform an encrypt operation against the CloudKMS key used for etcd level encryption.",
+            "Cluster CA is expiring soon. More codes TBA"
           ],
           "type": "string"
         },
@@ -5874,6 +5926,39 @@
         "enabled": {
           "description": "Enables vertical pod autoscaling.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "WindowsVersion": {
+      "description": "Windows server version.",
+      "id": "WindowsVersion",
+      "properties": {
+        "imageType": {
+          "description": "Windows server image type",
+          "type": "string"
+        },
+        "osVersion": {
+          "description": "Windows server build number",
+          "type": "string"
+        },
+        "supportEndDate": {
+          "$ref": "Date",
+          "description": "Mainstream support end date"
+        }
+      },
+      "type": "object"
+    },
+    "WindowsVersions": {
+      "description": "Windows server versions.",
+      "id": "WindowsVersions",
+      "properties": {
+        "windowsVersions": {
+          "description": "List of Windows server versions.",
+          "items": {
+            "$ref": "WindowsVersion"
+          },
+          "type": "array"
         }
       },
       "type": "object"
