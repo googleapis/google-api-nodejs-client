@@ -4,6 +4,43 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [75.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v74.2.0...googleapis-v75.0.0) (2021-06-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* * fix(admin): update the API
+* **serviceusage:** This release has breaking changes.
+* **servicenetworking:** This release has breaking changes.
+* **servicemanagement:** This release has breaking changes.
+* **serviceconsumermanagement:** This release has breaking changes.
+* **firebase:** This release has breaking changes.
+* **documentai:** This release has breaking changes.
+
+### Features
+
+* **compute:** update the API ([f15253c](https://www.github.com/googleapis/google-api-nodejs-client/commit/f15253c9bb3341680f0be74c1436041b394d6111))
+* **dialogflow:** update the API ([e19625b](https://www.github.com/googleapis/google-api-nodejs-client/commit/e19625b9d9579d199f5faad5d54b2e49b9e77370))
+* **documentai:** update the API ([a178a99](https://www.github.com/googleapis/google-api-nodejs-client/commit/a178a996e8999f590e276fbb98a6552e48eb645d))
+* **firebase:** update the API ([2c86c6a](https://www.github.com/googleapis/google-api-nodejs-client/commit/2c86c6afca3a3e3cf0dfb170a33c8a72002ab26b))
+* **prod_tt_sasportal:** update the API ([f038f3a](https://www.github.com/googleapis/google-api-nodejs-client/commit/f038f3a6174ba94e1638c39b881bb25371724c4a))
+* regenerate index files ([41d16af](https://www.github.com/googleapis/google-api-nodejs-client/commit/41d16af7df5e9fd1af27c21442fc72ec6d185e8b))
+* run the generator ([#2627](https://www.github.com/googleapis/google-api-nodejs-client/issues/2627)) ([475f6e8](https://www.github.com/googleapis/google-api-nodejs-client/commit/475f6e87bce7f2a95986d4c2859ff6104e841167))
+* **serviceconsumermanagement:** update the API ([4b2765d](https://www.github.com/googleapis/google-api-nodejs-client/commit/4b2765dc82252d385cb1b3aa1198c2245402da41))
+* **servicecontrol:** update the API ([3b4a00e](https://www.github.com/googleapis/google-api-nodejs-client/commit/3b4a00e623e8617ee03b57ed3884e34d28c8383e))
+* **servicemanagement:** update the API ([cd004ef](https://www.github.com/googleapis/google-api-nodejs-client/commit/cd004ef18b5abd8bab060da944fc08a272edbceb))
+* **servicenetworking:** update the API ([6ad61f1](https://www.github.com/googleapis/google-api-nodejs-client/commit/6ad61f1b4d236a2c8c30f0fb240f03667c0363ca))
+* **serviceusage:** update the API ([819d548](https://www.github.com/googleapis/google-api-nodejs-client/commit/819d5488ce8385f910012d79d1475ea500b25063))
+
+
+### Bug Fixes
+
+* **datamigration:** update the API ([51b1531](https://www.github.com/googleapis/google-api-nodejs-client/commit/51b1531df4482be43231056928f450982aa85cfc))
+* **essentialcontacts:** update the API ([2486a7e](https://www.github.com/googleapis/google-api-nodejs-client/commit/2486a7eaf4f363e53742cc3ea11dd8c9a7dff003))
+* **logging:** update the API ([d504802](https://www.github.com/googleapis/google-api-nodejs-client/commit/d5048020d77194498fe798f6ba17f683e3355ffa))
+* **recommender:** update the API ([2fd1ce3](https://www.github.com/googleapis/google-api-nodejs-client/commit/2fd1ce31bae8a3098f376e9fd1b26ea11e3b3d43))
+* **translate:** update the API ([75fe3c4](https://www.github.com/googleapis/google-api-nodejs-client/commit/75fe3c46c52fe1a7a3320b46f88b291dadefaa97))
+
 ## [74.2.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/googleapis-v74.1.0...googleapis-v74.2.0) (2021-05-26)
 
 
