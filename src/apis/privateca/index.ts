@@ -14,25 +14,38 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {privateca_v1} from './v1';
 import {privateca_v1beta1} from './v1beta1';
 
 export const VERSIONS = {
+  v1: privateca_v1.Privateca,
   v1beta1: privateca_v1beta1.Privateca,
 };
 
+export function privateca(version: 'v1'): privateca_v1.Privateca;
+export function privateca(
+  options: privateca_v1.Options
+): privateca_v1.Privateca;
 export function privateca(version: 'v1beta1'): privateca_v1beta1.Privateca;
 export function privateca(
   options: privateca_v1beta1.Options
 ): privateca_v1beta1.Privateca;
-export function privateca<T = privateca_v1beta1.Privateca>(
+export function privateca<
+  T = privateca_v1.Privateca | privateca_v1beta1.Privateca
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta1' | privateca_v1beta1.Options
+  versionOrOptions:
+    | 'v1'
+    | privateca_v1.Options
+    | 'v1beta1'
+    | privateca_v1beta1.Options
 ) {
   return getAPI<T>('privateca', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {privateca_v1};
 export {privateca_v1beta1};
 export {
   AuthPlus,
