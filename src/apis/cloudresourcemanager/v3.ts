@@ -477,7 +477,7 @@ export namespace cloudresourcemanager_v3 {
      */
     nextPageToken?: string | null;
     /**
-     * A possibly paginated list of TagBindings for the specified TagValue or resource.
+     * A possibly paginated list of TagBindings for the specified resource.
      */
     tagBindings?: Schema$TagBinding[];
   }

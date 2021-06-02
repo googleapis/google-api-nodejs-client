@@ -1612,7 +1612,7 @@
       }
     }
   },
-  "revision": "20210411",
+  "revision": "20210601",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2116,7 +2116,7 @@
           "type": "string"
         },
         "tagBindings": {
-          "description": "A possibly paginated list of TagBindings for the specified TagValue or resource.",
+          "description": "A possibly paginated list of TagBindings for the specified resource.",
           "items": {
             "$ref": "TagBinding"
           },
