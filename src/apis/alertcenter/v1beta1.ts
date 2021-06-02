@@ -246,7 +246,7 @@ export namespace alertcenter_v1beta1 {
      */
     startTime?: string | null;
     /**
-     * Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [Google Workspace Alert types](/admin-sdk/alertcenter/reference/alert-types).
+     * Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [Google Workspace Alert types](https://developers.google.com/admin-sdk/alertcenter/reference/alert-types).
      */
     type?: string | null;
     /**
@@ -689,7 +689,7 @@ export namespace alertcenter_v1beta1 {
     userDefinedDetector?: Schema$UserDefinedDetectorInfo;
   }
   /**
-   * Settings for callback notifications. For more details see [Google Workspace Alert Notification](/admin-sdk/alertcenter/guides/notifications).
+   * Settings for callback notifications. For more details see [Google Workspace Alert Notification](https://developers.google.com/admin-sdk/alertcenter/guides/notifications).
    */
   export interface Schema$Notification {
     /**
@@ -1696,7 +1696,7 @@ export namespace alertcenter_v1beta1 {
      *   const res = await alertcenter.alerts.list({
      *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
-     *     // Optional. A query string for filtering alert results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
+     *     // Optional. A query string for filtering alert results. For more details, see [Query filters](https://developers.google.com/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
      *     filter: 'placeholder-value',
      *     // Optional. The sort order of the list results. If not specified results may be returned in arbitrary order. You can sort the results in descending order based on the creation timestamp using `order_by="create_time desc"`. Currently, supported sorting are `create_time asc`, `create_time desc`, `update_time desc`
      *     orderBy: 'placeholder-value',
@@ -2004,7 +2004,7 @@ export namespace alertcenter_v1beta1 {
      */
     customerId?: string;
     /**
-     * Optional. A query string for filtering alert results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
+     * Optional. A query string for filtering alert results. For more details, see [Query filters](https://developers.google.com/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
      */
     filter?: string;
     /**
@@ -2218,7 +2218,7 @@ export namespace alertcenter_v1beta1 {
      *     alertId: 'placeholder-value',
      *     // Optional. The unique identifier of the Google Workspace organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.
      *     customerId: 'placeholder-value',
-     *     // Optional. A query string for filtering alert feedback results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
+     *     // Optional. A query string for filtering alert feedback results. For more details, see [Query filters](https://developers.google.com/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
      *     filter: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2355,7 +2355,7 @@ export namespace alertcenter_v1beta1 {
      */
     customerId?: string;
     /**
-     * Optional. A query string for filtering alert feedback results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
+     * Optional. A query string for filtering alert feedback results. For more details, see [Query filters](https://developers.google.com/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
      */
     filter?: string;
   }

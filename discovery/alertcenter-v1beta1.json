@@ -243,7 +243,7 @@
               "type": "string"
             },
             "filter": {
-              "description": "Optional. A query string for filtering alert results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.list).",
+              "description": "Optional. A query string for filtering alert results. For more details, see [Query filters](https://developers.google.com/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/admin-sdk/alertcenter/reference/filter-fields#alerts.list).",
               "location": "query",
               "type": "string"
             },
@@ -356,7 +356,7 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Optional. A query string for filtering alert feedback results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).",
+                  "description": "Optional. A query string for filtering alert feedback results. For more details, see [Query filters](https://developers.google.com/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](https://developers.google.com/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).",
                   "location": "query",
                   "type": "string"
                 }
@@ -423,7 +423,7 @@
       }
     }
   },
-  "revision": "20210512",
+  "revision": "20210525",
   "rootUrl": "https://alertcenter.googleapis.com/",
   "schemas": {
     "AccountWarning": {
@@ -567,7 +567,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [Google Workspace Alert types](/admin-sdk/alertcenter/reference/alert-types).",
+          "description": "Required. The type of the alert. This is output only after alert is created. For a list of available alert types see [Google Workspace Alert types](https://developers.google.com/admin-sdk/alertcenter/reference/alert-types).",
           "type": "string"
         },
         "updateTime": {
@@ -1153,7 +1153,7 @@
       "type": "object"
     },
     "Notification": {
-      "description": "Settings for callback notifications. For more details see [Google Workspace Alert Notification](/admin-sdk/alertcenter/guides/notifications).",
+      "description": "Settings for callback notifications. For more details see [Google Workspace Alert Notification](https://developers.google.com/admin-sdk/alertcenter/guides/notifications).",
       "id": "Notification",
       "properties": {
         "cloudPubsubTopic": {
