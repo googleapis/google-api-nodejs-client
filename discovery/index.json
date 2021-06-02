@@ -2936,6 +2936,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "ideahub:v1alpha",
+      "name": "ideahub",
+      "version": "v1alpha",
+      "title": "Idea Hub API",
+      "description": "",
+      "discoveryRestUrl": "https://ideahub.googleapis.com/$discovery/rest?version=v1alpha",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://console.cloud.google.com/apis/library/ideahub.googleapis.com",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "identitytoolkit:v3",
       "name": "identitytoolkit",
       "version": "v3",
@@ -3723,6 +3738,21 @@
       "title": "Certificate Authority API",
       "description": "The Certificate Authority Service API is a highly-available, scalable service that enables you to simplify and automate the management of private certificate authorities (CAs) while staying in control of your private keys.\"",
       "discoveryRestUrl": "https://privateca.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "privateca:v1",
+      "name": "privateca",
+      "version": "v1",
+      "title": "Certificate Authority API",
+      "description": "The Certificate Authority Service API is a highly-available, scalable service that enables you to simplify and automate the management of private certificate authorities (CAs) while staying in control of your private keys.\"",
+      "discoveryRestUrl": "https://privateca.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"

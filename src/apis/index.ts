@@ -294,6 +294,7 @@ import {
   iamcredentials,
 } from './iamcredentials';
 import {VERSIONS as iapVersions, iap} from './iap';
+import {VERSIONS as ideahubVersions, ideahub} from './ideahub';
 import {
   VERSIONS as identitytoolkitVersions,
   identitytoolkit,
@@ -642,6 +643,7 @@ export const APIS: APIList = {
   iam: iamVersions,
   iamcredentials: iamcredentialsVersions,
   iap: iapVersions,
+  ideahub: ideahubVersions,
   identitytoolkit: identitytoolkitVersions,
   indexing: indexingVersions,
   jobs: jobsVersions,
@@ -863,6 +865,7 @@ export class GeneratedAPIs {
   iam = iam;
   iamcredentials = iamcredentials;
   iap = iap;
+  ideahub = ideahub;
   identitytoolkit = identitytoolkit;
   indexing = indexing;
   jobs = jobs;
