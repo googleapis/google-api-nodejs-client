@@ -1140,7 +1140,7 @@
       }
     }
   },
-  "revision": "20210323",
+  "revision": "20210529",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
     "ActivatePretargetingConfigRequest": {
@@ -2394,6 +2394,10 @@
         },
         "videoUrl": {
           "description": "The URL to fetch a native video ad.",
+          "type": "string"
+        },
+        "videoVastXml": {
+          "description": "The contents of a VAST document for a native video ad.",
           "type": "string"
         }
       },
