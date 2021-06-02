@@ -670,7 +670,7 @@
       }
     }
   },
-  "revision": "20210512",
+  "revision": "20210521",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1069,6 +1069,22 @@
             "Deployment was attempted to be installed, but has errors"
           ],
           "type": "string"
+        },
+        "gatekeeperMutation": {
+          "description": "Status of the pod serving the mutation webhook.",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -1349,6 +1365,10 @@
         },
         "logDeniesEnabled": {
           "description": "Logs all denies and dry run failures.",
+          "type": "boolean"
+        },
+        "mutationEnabled": {
+          "description": "Enable users to try out mutation for PolicyController.",
           "type": "boolean"
         },
         "referentialRulesEnabled": {

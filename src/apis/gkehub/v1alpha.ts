@@ -359,6 +359,10 @@ export namespace gkehub_v1alpha {
      * Status of gatekeeper-controller-manager pod.
      */
     gatekeeperControllerManagerState?: string | null;
+    /**
+     * Status of the pod serving the mutation webhook.
+     */
+    gatekeeperMutation?: string | null;
   }
   /**
    * Git repo configuration for a single cluster.
@@ -574,6 +578,10 @@ export namespace gkehub_v1alpha {
      * Logs all denies and dry run failures.
      */
     logDeniesEnabled?: boolean | null;
+    /**
+     * Enable users to try out mutation for PolicyController.
+     */
+    mutationEnabled?: boolean | null;
     /**
      * Enables the ability to use Constraint Templates that reference to objects other than the object currently being evaluated.
      */
