@@ -815,10 +815,6 @@ export namespace retail_v2alpha {
      */
     searchQuery?: string | null;
     /**
-     * Represents the user sessions to aggregate user behavior within a time period. If not set, heuristics will be used to autogenerate one.
-     */
-    sessionId?: string | null;
-    /**
      * Complete URL (window.location.href) of the user's current page. When using the client side event reporting with JavaScript pixel and Google Tag Manager, this value is filled in automatically. Maximum length 5,000 characters.
      */
     uri?: string | null;
@@ -3733,7 +3729,6 @@ export namespace retail_v2alpha {
      *       //   "purchaseTransaction": {},
      *       //   "referrerUri": "my_referrerUri",
      *       //   "searchQuery": "my_searchQuery",
-     *       //   "sessionId": "my_sessionId",
      *       //   "uri": "my_uri",
      *       //   "userInfo": {},
      *       //   "visitorId": "my_visitorId"
@@ -3756,7 +3751,6 @@ export namespace retail_v2alpha {
      *   //   "purchaseTransaction": {},
      *   //   "referrerUri": "my_referrerUri",
      *   //   "searchQuery": "my_searchQuery",
-     *   //   "sessionId": "my_sessionId",
      *   //   "uri": "my_uri",
      *   //   "userInfo": {},
      *   //   "visitorId": "my_visitorId"

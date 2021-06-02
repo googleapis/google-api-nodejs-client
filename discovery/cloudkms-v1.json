@@ -694,7 +694,7 @@
                       ]
                     },
                     "updatePrimaryVersion": {
-                      "description": "Update the version of a CryptoKey that will be used in Encrypt. Returns an error if called on an asymmetric key.",
+                      "description": "Update the version of a CryptoKey that will be used in Encrypt. Returns an error if called on a key whose purpose is not ENCRYPT_DECRYPT.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}:updatePrimaryVersion",
                       "httpMethod": "POST",
                       "id": "cloudkms.projects.locations.keyRings.cryptoKeys.updatePrimaryVersion",
@@ -1259,7 +1259,7 @@
       }
     }
   },
-  "revision": "20210410",
+  "revision": "20210522",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {

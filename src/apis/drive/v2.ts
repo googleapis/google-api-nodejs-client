@@ -1112,7 +1112,7 @@ export namespace drive_v2 {
      */
     ownerNames?: string[] | null;
     /**
-     * The owner(s) of this file. Not populated for items in shared drives.
+     * The owner of this file. Only certain legacy files may have more than one owner. This field isn't populated for items in shared drives.
      */
     owners?: Schema$User[];
     /**

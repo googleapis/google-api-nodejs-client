@@ -1831,7 +1831,7 @@ export namespace admin_directory_v1 {
      */
     agreedToTerms?: boolean | null;
     /**
-     * Output only. List of the user's alias email addresses.
+     * Output only. A list of the user's alias email addresses.
      */
     aliases?: string[] | null;
     /**

@@ -523,6 +523,10 @@ export namespace container_v1beta1 {
      */
     nodeIpv4CidrSize?: number | null;
     /**
+     * Default NodePool settings for the entire cluster. These settings are overridden if specified on the specific NodePool object.
+     */
+    nodePoolDefaults?: Schema$NodePoolDefaults;
+    /**
      * The node pools associated with this cluster. This field should not be set if "node_config" or "initial_node_count" are specified.
      */
     nodePools?: Schema$NodePool[];
@@ -889,6 +893,23 @@ export namespace container_v1beta1 {
      * Denotes the state of etcd encryption.
      */
     state?: string | null;
+  }
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
   }
   /**
    * DefaultSnatStatus contains the desired state of whether default sNAT should be disabled on the cluster.
@@ -1548,6 +1569,10 @@ export namespace container_v1beta1 {
     workloadMetadataConfig?: Schema$WorkloadMetadataConfig;
   }
   /**
+   * Subset of NodeConfig message that has defaults.
+   */
+  export interface Schema$NodeConfigDefaults {}
+  /**
    * Node kubelet configs.
    */
   export interface Schema$NodeKubeletConfig {
@@ -1696,6 +1721,15 @@ export namespace container_v1beta1 {
      * Minimum number of nodes in the NodePool. Must be \>= 1 and <= max_node_count.
      */
     minNodeCount?: number | null;
+  }
+  /**
+   * Subset of Nodepool message that has defaults.
+   */
+  export interface Schema$NodePoolDefaults {
+    /**
+     * Subset of NodeConfig message that has defaults.
+     */
+    nodeConfigDefaults?: Schema$NodeConfigDefaults;
   }
   /**
    * Kubernetes taint is comprised of three fields: key, value, and effect. Effect can only be one of three types: NoSchedule, PreferNoSchedule or NoExecute. See [here](https://kubernetes.io/docs/concepts/configuration/taint-and-toleration) for more information, including usage and the valid values.
@@ -2042,6 +2076,10 @@ export namespace container_v1beta1 {
      * List of valid node upgrade target versions, in descending order.
      */
     validNodeVersions?: string[] | null;
+    /**
+     * Maps of Kubernetes version and supported Windows server versions.
+     */
+    windowsVersionMaps?: {[key: string]: Schema$WindowsVersions} | null;
   }
   /**
    * SetAddonsRequest sets the addons associated with the cluster.
@@ -2704,6 +2742,32 @@ export namespace container_v1beta1 {
     enabled?: boolean | null;
   }
   /**
+   * Windows server version.
+   */
+  export interface Schema$WindowsVersion {
+    /**
+     * Windows server image type
+     */
+    imageType?: string | null;
+    /**
+     * Windows server build number
+     */
+    osVersion?: string | null;
+    /**
+     * Mainstream support end date
+     */
+    supportEndDate?: Schema$Date;
+  }
+  /**
+   * Windows server versions.
+   */
+  export interface Schema$WindowsVersions {
+    /**
+     * List of Windows server versions.
+     */
+    windowsVersions?: Schema$WindowsVersion[];
+  }
+  /**
    * Configuration for issuance of mTLS keys and certificates to Kubernetes pods.
    */
   export interface Schema$WorkloadCertificates {
@@ -2993,7 +3057,8 @@ export namespace container_v1beta1 {
      *   //   "defaultImageType": "my_defaultImageType",
      *   //   "validImageTypes": [],
      *   //   "validMasterVersions": [],
-     *   //   "validNodeVersions": []
+     *   //   "validNodeVersions": [],
+     *   //   "windowsVersionMaps": {}
      *   // }
      * }
      *
@@ -3798,6 +3863,7 @@ export namespace container_v1beta1 {
      *   //   "networkPolicy": {},
      *   //   "nodeConfig": {},
      *   //   "nodeIpv4CidrSize": 0,
+     *   //   "nodePoolDefaults": {},
      *   //   "nodePools": [],
      *   //   "notificationConfig": {},
      *   //   "podSecurityPolicyConfig": {},
@@ -8507,7 +8573,8 @@ export namespace container_v1beta1 {
      *   //   "defaultImageType": "my_defaultImageType",
      *   //   "validImageTypes": [],
      *   //   "validMasterVersions": [],
-     *   //   "validNodeVersions": []
+     *   //   "validNodeVersions": [],
+     *   //   "windowsVersionMaps": {}
      *   // }
      * }
      *
@@ -9333,6 +9400,7 @@ export namespace container_v1beta1 {
      *   //   "networkPolicy": {},
      *   //   "nodeConfig": {},
      *   //   "nodeIpv4CidrSize": 0,
+     *   //   "nodePoolDefaults": {},
      *   //   "nodePools": [],
      *   //   "notificationConfig": {},
      *   //   "podSecurityPolicyConfig": {},

@@ -798,6 +798,10 @@ export namespace realtimebidding_v1 {
      * The URL to fetch a native video ad.
      */
     videoUrl?: string | null;
+    /**
+     * The contents of a VAST document for a native video ad.
+     */
+    videoVastXml?: string | null;
   }
   /**
    * Generic targeting used for targeting dimensions that contain a list of included and excluded numeric IDs used in app, user list, geo, and vertical id targeting.

@@ -3639,7 +3639,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderShipment {
     /**
-     * The carrier handling the shipment. For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. *Note:* You can also use unsupported carriers, but emails to customers will not include the carrier name or tracking URL, and there will be no automatic order status updates. Supported carriers for US are: - "`ups`" (United Parcel Service) *automatic status updates* - "`usps`" (United States Postal Service) *automatic status updates* - "`fedex`" (FedEx) *automatic status updates * - "`dhl`" (DHL eCommerce) *automatic status updates* (US only) - "`ontrac`" (OnTrac) *automatic status updates * - "`dhl express`" (DHL Express) - "`deliv`" (Deliv) - "`dynamex`" (TForce) - "`lasership`" (LaserShip) - "`mpx`" (Military Parcel Xpress) - "`uds`" (United Delivery Service) - "`efw`" (Estes Forwarding Worldwide) - "`jd logistics`" (JD Logistics) - "`yunexpress`" (YunExpress) - "`china post`" (China Post) - "`china ems`" (China Post Express Mail Service) - "`singapore post`" (Singapore Post) - "`pos malaysia`" (Pos Malaysia) - "`postnl`" (PostNL) - "`ptt`" (PTT Turkish Post) - "`eub`" (ePacket) - "`chukou1`" (Chukou1 Logistics) - "`bestex`" (Best Express) - "`canada post`" (Canada Post) - "`purolator`" (Purolator) - "`canpar`" (Canpar) - "`india post`" (India Post) - "`blue dart`" (Blue Dart) - "`delhivery`" (Delhivery) - "`dtdc`" (DTDC) - "`tpc india`" (TPC India) Supported carriers for FR are: - "`la poste`" (La Poste) *automatic status updates * - "`colissimo`" (Colissimo by La Poste) *automatic status updates* - "`ups`" (United Parcel Service) *automatic status updates * - "`chronopost`" (Chronopost by La Poste) - "`gls`" (General Logistics Systems France) - "`dpd`" (DPD Group by GeoPost) - "`bpost`" (Belgian Post Group) - "`colis prive`" (Colis Privé) - "`boxtal`" (Boxtal) - "`geodis`" (GEODIS) - "`tnt`" (TNT) - "`db schenker`" (DB Schenker) - "`aramex`" (Aramex)
+     * The carrier handling the shipment. For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. *Note:* You can also use unsupported carriers, but emails to customers will not include the carrier name or tracking URL, and there will be no automatic order status updates. Supported carriers for US are: - "`ups`" (United Parcel Service) *automatic status updates* - "`usps`" (United States Postal Service) *automatic status updates* - "`fedex`" (FedEx) *automatic status updates * - "`dhl`" (DHL eCommerce) *automatic status updates* (US only) - "`ontrac`" (OnTrac) *automatic status updates * - "`dhl express`" (DHL Express) - "`deliv`" (Deliv) - "`dynamex`" (TForce) - "`lasership`" (LaserShip) - "`mpx`" (Military Parcel Xpress) - "`uds`" (United Delivery Service) - "`efw`" (Estes Forwarding Worldwide) - "`jd logistics`" (JD Logistics) - "`yunexpress`" (YunExpress) - "`china post`" (China Post) - "`china ems`" (China Post Express Mail Service) - "`singapore post`" (Singapore Post) - "`pos malaysia`" (Pos Malaysia) - "`postnl`" (PostNL) - "`ptt`" (PTT Turkish Post) - "`eub`" (ePacket) - "`chukou1`" (Chukou1 Logistics) - "`bestex`" (Best Express) - "`canada post`" (Canada Post) - "`purolator`" (Purolator) - "`canpar`" (Canpar) - "`india post`" (India Post) - "`blue dart`" (Blue Dart) - "`delhivery`" (Delhivery) - "`dtdc`" (DTDC) - "`tpc india`" (TPC India) - "`lso`" (Lone Star Overnight) - "`tww`" (Team Worldwide) Supported carriers for FR are: - "`la poste`" (La Poste) *automatic status updates * - "`colissimo`" (Colissimo by La Poste) *automatic status updates* - "`ups`" (United Parcel Service) *automatic status updates * - "`chronopost`" (Chronopost by La Poste) - "`gls`" (General Logistics Systems France) - "`dpd`" (DPD Group by GeoPost) - "`bpost`" (Belgian Post Group) - "`colis prive`" (Colis Privé) - "`boxtal`" (Boxtal) - "`geodis`" (GEODIS) - "`tnt`" (TNT) - "`db schenker`" (DB Schenker) - "`aramex`" (Aramex)
      */
     carrier?: string | null;
     /**
@@ -4818,6 +4818,10 @@ export namespace content_v2_1 {
      */
     link?: string | null;
     /**
+     * Link template for merchant hosted local storefront.
+     */
+    linkTemplate?: string | null;
+    /**
      * Loyalty points that users receive after purchasing the item. Japan only.
      */
     loyaltyPoints?: Schema$LoyaltyPoints;
@@ -4846,6 +4850,10 @@ export namespace content_v2_1 {
      */
     mobileLink?: string | null;
     /**
+     * Link template for merchant hosted local storefront optimized for mobile devices.
+     */
+    mobileLinkTemplate?: string | null;
+    /**
      * Manufacturer Part Number (MPN) of the item.
      */
     mpn?: string | null;
@@ -4861,6 +4869,14 @@ export namespace content_v2_1 {
      * The item's pattern (e.g. polka dots).
      */
     pattern?: string | null;
+    /**
+     * The pick up option for the item. Acceptable values are: - "`buy`" - "`reserve`" - "`ship to store`" - "`not supported`"
+     */
+    pickupMethod?: string | null;
+    /**
+     * Item store pickup timeline. Acceptable values are: - "`same day`" - "`next day`" - "`2-day`" - "`3-day`" - "`4-day`" - "`5-day`" - "`6-day`" - "`7-day`" - "`multi-week`"
+     */
+    pickupSla?: string | null;
     /**
      * Price of the item.
      */
@@ -23809,6 +23825,7 @@ export namespace content_v2_1 {
      *   //   "itemGroupId": "my_itemGroupId",
      *   //   "kind": "my_kind",
      *   //   "link": "my_link",
+     *   //   "linkTemplate": "my_linkTemplate",
      *   //   "loyaltyPoints": {},
      *   //   "material": "my_material",
      *   //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
@@ -23816,10 +23833,13 @@ export namespace content_v2_1 {
      *   //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
      *   //   "minHandlingTime": "my_minHandlingTime",
      *   //   "mobileLink": "my_mobileLink",
+     *   //   "mobileLinkTemplate": "my_mobileLinkTemplate",
      *   //   "mpn": "my_mpn",
      *   //   "multipack": "my_multipack",
      *   //   "offerId": "my_offerId",
      *   //   "pattern": "my_pattern",
+     *   //   "pickupMethod": "my_pickupMethod",
+     *   //   "pickupSla": "my_pickupSla",
      *   //   "price": {},
      *   //   "productDetails": [],
      *   //   "productHighlights": [],
@@ -24019,6 +24039,7 @@ export namespace content_v2_1 {
      *       //   "itemGroupId": "my_itemGroupId",
      *       //   "kind": "my_kind",
      *       //   "link": "my_link",
+     *       //   "linkTemplate": "my_linkTemplate",
      *       //   "loyaltyPoints": {},
      *       //   "material": "my_material",
      *       //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
@@ -24026,10 +24047,13 @@ export namespace content_v2_1 {
      *       //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
      *       //   "minHandlingTime": "my_minHandlingTime",
      *       //   "mobileLink": "my_mobileLink",
+     *       //   "mobileLinkTemplate": "my_mobileLinkTemplate",
      *       //   "mpn": "my_mpn",
      *       //   "multipack": "my_multipack",
      *       //   "offerId": "my_offerId",
      *       //   "pattern": "my_pattern",
+     *       //   "pickupMethod": "my_pickupMethod",
+     *       //   "pickupSla": "my_pickupSla",
      *       //   "price": {},
      *       //   "productDetails": [],
      *       //   "productHighlights": [],
@@ -24107,6 +24131,7 @@ export namespace content_v2_1 {
      *   //   "itemGroupId": "my_itemGroupId",
      *   //   "kind": "my_kind",
      *   //   "link": "my_link",
+     *   //   "linkTemplate": "my_linkTemplate",
      *   //   "loyaltyPoints": {},
      *   //   "material": "my_material",
      *   //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
@@ -24114,10 +24139,13 @@ export namespace content_v2_1 {
      *   //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
      *   //   "minHandlingTime": "my_minHandlingTime",
      *   //   "mobileLink": "my_mobileLink",
+     *   //   "mobileLinkTemplate": "my_mobileLinkTemplate",
      *   //   "mpn": "my_mpn",
      *   //   "multipack": "my_multipack",
      *   //   "offerId": "my_offerId",
      *   //   "pattern": "my_pattern",
+     *   //   "pickupMethod": "my_pickupMethod",
+     *   //   "pickupSla": "my_pickupSla",
      *   //   "price": {},
      *   //   "productDetails": [],
      *   //   "productHighlights": [],
@@ -24460,6 +24488,7 @@ export namespace content_v2_1 {
      *       //   "itemGroupId": "my_itemGroupId",
      *       //   "kind": "my_kind",
      *       //   "link": "my_link",
+     *       //   "linkTemplate": "my_linkTemplate",
      *       //   "loyaltyPoints": {},
      *       //   "material": "my_material",
      *       //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
@@ -24467,10 +24496,13 @@ export namespace content_v2_1 {
      *       //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
      *       //   "minHandlingTime": "my_minHandlingTime",
      *       //   "mobileLink": "my_mobileLink",
+     *       //   "mobileLinkTemplate": "my_mobileLinkTemplate",
      *       //   "mpn": "my_mpn",
      *       //   "multipack": "my_multipack",
      *       //   "offerId": "my_offerId",
      *       //   "pattern": "my_pattern",
+     *       //   "pickupMethod": "my_pickupMethod",
+     *       //   "pickupSla": "my_pickupSla",
      *       //   "price": {},
      *       //   "productDetails": [],
      *       //   "productHighlights": [],
@@ -24548,6 +24580,7 @@ export namespace content_v2_1 {
      *   //   "itemGroupId": "my_itemGroupId",
      *   //   "kind": "my_kind",
      *   //   "link": "my_link",
+     *   //   "linkTemplate": "my_linkTemplate",
      *   //   "loyaltyPoints": {},
      *   //   "material": "my_material",
      *   //   "maxEnergyEfficiencyClass": "my_maxEnergyEfficiencyClass",
@@ -24555,10 +24588,13 @@ export namespace content_v2_1 {
      *   //   "minEnergyEfficiencyClass": "my_minEnergyEfficiencyClass",
      *   //   "minHandlingTime": "my_minHandlingTime",
      *   //   "mobileLink": "my_mobileLink",
+     *   //   "mobileLinkTemplate": "my_mobileLinkTemplate",
      *   //   "mpn": "my_mpn",
      *   //   "multipack": "my_multipack",
      *   //   "offerId": "my_offerId",
      *   //   "pattern": "my_pattern",
+     *   //   "pickupMethod": "my_pickupMethod",
+     *   //   "pickupSla": "my_pickupSla",
      *   //   "price": {},
      *   //   "productDetails": [],
      *   //   "productHighlights": [],

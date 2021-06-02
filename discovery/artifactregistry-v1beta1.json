@@ -971,7 +971,7 @@
       }
     }
   },
-  "revision": "20210517",
+  "revision": "20210524",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1347,11 +1347,19 @@
           "description": "The format of packages that are stored in the repository.",
           "enum": [
             "FORMAT_UNSPECIFIED",
-            "DOCKER"
+            "DOCKER",
+            "MAVEN",
+            "NPM",
+            "PYPI",
+            "PYTHON"
           ],
           "enumDescriptions": [
             "Unspecified package format.",
-            "Docker package format."
+            "Docker package format.",
+            "Maven package format.",
+            "NPM package format.",
+            "PyPI package format.",
+            "Python package format."
           ],
           "type": "string"
         },

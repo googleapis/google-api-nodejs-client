@@ -2459,7 +2459,7 @@
       }
     }
   },
-  "revision": "20210505",
+  "revision": "20210517",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -5137,7 +5137,8 @@
             "GKE_SERVICE_ACCOUNT_DELETED",
             "GCE_QUOTA_EXCEEDED",
             "SET_BY_OPERATOR",
-            "CLOUD_KMS_KEY_ERROR"
+            "CLOUD_KMS_KEY_ERROR",
+            "CA_EXPIRING"
           ],
           "enumDescriptions": [
             "UNKNOWN indicates a generic condition.",
@@ -5145,7 +5146,8 @@
             "GKE_SERVICE_ACCOUNT_DELETED indicates that the user deleted their robot service account.",
             "Google Compute Engine quota was exceeded.",
             "Cluster state was manually changed by an SRE due to a system logic error.",
-            "Unable to perform an encrypt operation against the CloudKMS key used for etcd level encryption. More codes TBA"
+            "Unable to perform an encrypt operation against the CloudKMS key used for etcd level encryption.",
+            "Cluster CA is expiring soon."
           ],
           "type": "string"
         },

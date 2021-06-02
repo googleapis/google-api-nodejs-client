@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20210524",
+  "revision": "20210525",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -2014,13 +2014,11 @@
               "METRIC_CM360_POST_CLICK_REVENUE_CROSS_ENVIRONMENT",
               "METRIC_CM360_POST_VIEW_REVENUE_CROSS_ENVIRONMENT",
               "METRIC_PERCENTAGE_FROM_CURRENT_IO_GOAL",
-              "METRIC_OMID_CAPABLE",
               "METRIC_DUPLICATE_FLOODLIGHT_IMPRESSIONS",
               "METRIC_COOKIE_CONSENTED_FLOODLIGHT_IMPRESSIONS",
               "METRIC_COOKIE_UNCONSENTED_FLOODLIGHT_IMPRESSIONS"
             ],
             "enumDescriptions": [
-              "",
               "",
               "",
               "",

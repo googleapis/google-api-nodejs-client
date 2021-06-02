@@ -36,7 +36,7 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace gkehub_v1 {
+export namespace privateca_v1 {
   export interface Options extends GlobalOptions {
     version: 'v1';
   }
@@ -101,17 +101,17 @@ export namespace gkehub_v1 {
   }
 
   /**
-   * GKE Hub
+   * Certificate Authority API
    *
-   *
+   * The Certificate Authority Service API is a highly-available, scalable service that enables you to simplify and automate the management of private certificate authorities (CAs) while staying in control of your private keys.&quot;
    *
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const gkehub = google.gkehub('v1');
+   * const privateca = google.privateca('v1');
    * ```
    */
-  export class Gkehub {
+  export class Privateca {
     context: APIRequestContext;
     projects: Resource$Projects;
 
@@ -152,27 +152,6 @@ export namespace gkehub_v1 {
     logType?: string | null;
   }
   /**
-   * Authority encodes how Google will recognize identities from this Membership. See the workload identity documentation for more details: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity
-   */
-  export interface Schema$Authority {
-    /**
-     * Output only. An identity provider that reflects the `issuer` in the workload identity pool.
-     */
-    identityProvider?: string | null;
-    /**
-     * Optional. A JSON Web Token (JWT) issuer URI. `issuer` must start with `https://` and be a valid URL with length <2000 characters. If set, then Google will allow valid OIDC tokens from this issuer to authenticate within the workload_identity_pool. OIDC discovery will be performed on this URI to validate tokens from the issuer. Clearing `issuer` disables Workload Identity. `issuer` cannot be directly modified; it must be cleared (and Workload Identity disabled) before using a new issuer (and re-enabling Workload Identity).
-     */
-    issuer?: string | null;
-    /**
-     * Optional. OIDC verification keys for this Membership in JWKS format (RFC 7517). When this field is set, OIDC discovery will NOT be performed on `issuer`, and instead OIDC tokens will be validated using this field.
-     */
-    oidcJwks?: string | null;
-    /**
-     * Output only. The name of the workload identity pool in which `issuer` will be recognized. There is a single Workload Identity Pool per Hub that is shared between all Memberships that belong to that Hub. For a Hub hosted in {PROJECT_ID\}, the workload pool format is `{PROJECT_ID\}.hub.id.goog`, although this is subject to change in newer versions of this API.
-     */
-    workloadIdentityPool?: string | null;
-  }
-  /**
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
@@ -193,19 +172,6 @@ export namespace gkehub_v1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
-  /**
-   * ConnectAgentResource represents a Kubernetes resource manifest for Connect Agent deployment.
-   */
-  export interface Schema$ConnectAgentResource {
-    /**
-     * YAML manifest of the resource.
-     */
-    manifest?: string | null;
-    /**
-     * Kubernetes type of the resource.
-     */
-    type?: Schema$TypeMeta;
-  }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
@@ -232,70 +198,6 @@ export namespace gkehub_v1 {
     title?: string | null;
   }
   /**
-   * GenerateConnectManifestResponse contains manifest information for installing/upgrading a Connect agent.
-   */
-  export interface Schema$GenerateConnectManifestResponse {
-    /**
-     * The ordered list of Kubernetes resources that need to be applied to the cluster for GKE Connect agent installation/upgrade.
-     */
-    manifest?: Schema$ConnectAgentResource[];
-  }
-  /**
-   * GkeCluster contains information specific to GKE clusters.
-   */
-  export interface Schema$GkeCluster {
-    /**
-     * Immutable. Self-link of the GCP resource for the GKE cluster. For example: //container.googleapis.com/projects/my-project/locations/us-west1-a/clusters/my-cluster Zonal clusters are also supported.
-     */
-    resourceLink?: string | null;
-  }
-  /**
-   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
-   */
-  export interface Schema$GoogleRpcStatus {
-    /**
-     * The status code, which should be an enum value of google.rpc.Code.
-     */
-    code?: number | null;
-    /**
-     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
-     */
-    details?: Array<{[key: string]: any}> | null;
-    /**
-     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
-     */
-    message?: string | null;
-  }
-  /**
-   * KubernetesMetadata provides informational metadata for Memberships representing Kubernetes clusters.
-   */
-  export interface Schema$KubernetesMetadata {
-    /**
-     * Output only. Kubernetes API server version string as reported by `/version`.
-     */
-    kubernetesApiServerVersion?: string | null;
-    /**
-     * Output only. The total memory capacity as reported by the sum of all Kubernetes nodes resources, defined in MB.
-     */
-    memoryMb?: number | null;
-    /**
-     * Output only. Node count as reported by Kubernetes nodes resources.
-     */
-    nodeCount?: number | null;
-    /**
-     * Output only. Node providerID as reported by the first node in the list of nodes on the Kubernetes endpoint. On Kubernetes platforms that support zero-node clusters (like GKE-on-GCP), the node_count will be zero and the node_provider_id will be empty.
-     */
-    nodeProviderId?: string | null;
-    /**
-     * Output only. The time at which these details were last updated. This update_time is different from the Membership-level update_time since EndpointDetails are updated internally for API consumers.
-     */
-    updateTime?: string | null;
-    /**
-     * Output only. vCPU count as reported by Kubernetes nodes resources.
-     */
-    vcpuCount?: number | null;
-  }
-  /**
    * The response message for Locations.ListLocations.
    */
   export interface Schema$ListLocationsResponse {
@@ -307,23 +209,6 @@ export namespace gkehub_v1 {
      * The standard List next-page token.
      */
     nextPageToken?: string | null;
-  }
-  /**
-   * Response message for the `GkeHub.ListMemberships` method.
-   */
-  export interface Schema$ListMembershipsResponse {
-    /**
-     * A token to request the next page of resources from the `ListMemberships` method. The value of an empty string means that there are no more resources to return.
-     */
-    nextPageToken?: string | null;
-    /**
-     * The list of matching Memberships.
-     */
-    resources?: Schema$Membership[];
-    /**
-     * List of locations that could not be reached while fetching this list.
-     */
-    unreachable?: string[] | null;
   }
   /**
    * The response message for Operations.ListOperations.
@@ -364,81 +249,6 @@ export namespace gkehub_v1 {
     name?: string | null;
   }
   /**
-   * Membership contains information about a member cluster.
-   */
-  export interface Schema$Membership {
-    /**
-     * Optional. How to identify workloads from this Membership. See the documentation on Workload Identity for more details: https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity
-     */
-    authority?: Schema$Authority;
-    /**
-     * Output only. When the Membership was created.
-     */
-    createTime?: string | null;
-    /**
-     * Output only. When the Membership was deleted.
-     */
-    deleteTime?: string | null;
-    /**
-     * Output only. Description of this membership, limited to 63 characters. Must match the regex: `a-zA-Z0-9*` This field is present for legacy purposes.
-     */
-    description?: string | null;
-    /**
-     * Optional. Endpoint information to reach this member.
-     */
-    endpoint?: Schema$MembershipEndpoint;
-    /**
-     * Optional. An externally-generated and managed ID for this Membership. This ID may be modified after creation, but this is not recommended. The ID must match the regex: `a-zA-Z0-9*` If this Membership represents a Kubernetes cluster, this value should be set to the UID of the `kube-system` namespace object.
-     */
-    externalId?: string | null;
-    /**
-     * Optional. GCP labels for this membership.
-     */
-    labels?: {[key: string]: string} | null;
-    /**
-     * Output only. For clusters using Connect, the timestamp of the most recent connection established with Google Cloud. This time is updated every several minutes, not continuously. For clusters that do not use GKE Connect, or that have never connected successfully, this field will be unset.
-     */
-    lastConnectionTime?: string | null;
-    /**
-     * Output only. The full, unique name of this Membership resource in the format `projects/x/locations/x/memberships/{membership_id\}`, set during creation. `membership_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.
-     */
-    name?: string | null;
-    /**
-     * Output only. State of the Membership resource.
-     */
-    state?: Schema$MembershipState;
-    /**
-     * Output only. Google-generated UUID for this resource. This is unique across all Membership resources. If a Membership resource is deleted and another resource with the same name is created, it gets a different unique_id.
-     */
-    uniqueId?: string | null;
-    /**
-     * Output only. When the Membership was last updated.
-     */
-    updateTime?: string | null;
-  }
-  /**
-   * MembershipEndpoint contains information needed to contact a Kubernetes API, endpoint and any additional Kubernetes metadata.
-   */
-  export interface Schema$MembershipEndpoint {
-    /**
-     * Optional. GKE-specific information. Only present if this Membership is a GKE cluster.
-     */
-    gkeCluster?: Schema$GkeCluster;
-    /**
-     * Output only. Useful Kubernetes-specific metadata.
-     */
-    kubernetesMetadata?: Schema$KubernetesMetadata;
-  }
-  /**
-   * MembershipState describes the state of a Membership resource.
-   */
-  export interface Schema$MembershipState {
-    /**
-     * Output only. The current state of the Membership resource.
-     */
-    code?: string | null;
-  }
-  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -449,7 +259,7 @@ export namespace gkehub_v1 {
     /**
      * The error result of the operation in case of failure or cancellation.
      */
-    error?: Schema$GoogleRpcStatus;
+    error?: Schema$Status;
     /**
      * Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any.
      */
@@ -472,10 +282,6 @@ export namespace gkehub_v1 {
      */
     apiVersion?: string | null;
     /**
-     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
-     */
-    cancelRequested?: boolean | null;
-    /**
      * Output only. The time the operation was created.
      */
     createTime?: string | null;
@@ -484,9 +290,13 @@ export namespace gkehub_v1 {
      */
     endTime?: string | null;
     /**
+     * Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     */
+    requestedCancellation?: boolean | null;
+    /**
      * Output only. Human-readable status of the operation, if any.
      */
-    statusDetail?: string | null;
+    statusMessage?: string | null;
     /**
      * Output only. Server-defined resource path for the target of the operation.
      */
@@ -518,6 +328,16 @@ export namespace gkehub_v1 {
     version?: number | null;
   }
   /**
+   * Operation metadata returned by the CLH during resource state reconciliation.
+   */
+  export interface Schema$ReconciliationOperationMetadata {
+    /**
+     * DEPRECATED. Use exclusive_action instead.
+     */
+    deleteResource?: boolean | null;
+    exclusiveAction?: string | null;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -529,6 +349,23 @@ export namespace gkehub_v1 {
      * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"`
      */
     updateMask?: string | null;
+  }
+  /**
+   * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
+   */
+  export interface Schema$Status {
+    /**
+     * The status code, which should be an enum value of google.rpc.Code.
+     */
+    code?: number | null;
+    /**
+     * A list of messages that carry the error details. There is a common set of message types for APIs to use.
+     */
+    details?: Array<{[key: string]: any}> | null;
+    /**
+     * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
+     */
+    message?: string | null;
   }
   /**
    * Request message for `TestIamPermissions` method.
@@ -548,19 +385,6 @@ export namespace gkehub_v1 {
      */
     permissions?: string[] | null;
   }
-  /**
-   * TypeMeta is the type information needed for content unmarshalling of Kubernetes resources in the manifest.
-   */
-  export interface Schema$TypeMeta {
-    /**
-     * APIVersion of the resource (e.g. v1).
-     */
-    apiVersion?: string | null;
-    /**
-     * Kind of the resource (e.g. Deployment).
-     */
-    kind?: string | null;
-  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -573,15 +397,14 @@ export namespace gkehub_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
-    features: Resource$Projects$Locations$Features;
-    memberships: Resource$Projects$Locations$Memberships;
+    caPools: Resource$Projects$Locations$Capools;
+    certificateTemplates: Resource$Projects$Locations$Certificatetemplates;
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.features = new Resource$Projects$Locations$Features(this.context);
-      this.memberships = new Resource$Projects$Locations$Memberships(
-        this.context
-      );
+      this.caPools = new Resource$Projects$Locations$Capools(this.context);
+      this.certificateTemplates =
+        new Resource$Projects$Locations$Certificatetemplates(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -593,14 +416,14 @@ export namespace gkehub_v1 {
      * ```js
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
+     * const privateca = google.privateca('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -613,7 +436,7 @@ export namespace gkehub_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gkehub.projects.locations.get({
+     *   const res = await privateca.projects.locations.get({
      *     // Resource name for the location.
      *     name: 'projects/my-project/locations/my-location',
      *   });
@@ -693,7 +516,7 @@ export namespace gkehub_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://privateca.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -723,14 +546,14 @@ export namespace gkehub_v1 {
      * ```js
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
+     * const privateca = google.privateca('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -743,7 +566,7 @@ export namespace gkehub_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gkehub.projects.locations.list({
+     *   const res = await privateca.projects.locations.list({
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
      *     // The resource that owns the locations collection, if applicable.
@@ -831,7 +654,7 @@ export namespace gkehub_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://privateca.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -886,10 +709,15 @@ export namespace gkehub_v1 {
     pageToken?: string;
   }
 
-  export class Resource$Projects$Locations$Features {
+  export class Resource$Projects$Locations$Capools {
     context: APIRequestContext;
+    certificateAuthorities: Resource$Projects$Locations$Capools$Certificateauthorities;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.certificateAuthorities =
+        new Resource$Projects$Locations$Capools$Certificateauthorities(
+          this.context
+        );
     }
 
     /**
@@ -898,14 +726,14 @@ export namespace gkehub_v1 {
      * ```js
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
+     * const privateca = google.privateca('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -918,11 +746,11 @@ export namespace gkehub_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gkehub.projects.locations.features.getIamPolicy({
+     *   const res = await privateca.projects.locations.caPools.getIamPolicy({
      *     // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      *     'options.requestedPolicyVersion': 'placeholder-value',
      *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/features/my-feature',
+     *     resource: 'projects/my-project/locations/my-location/caPools/my-caPool',
      *   });
      *   console.log(res.data);
      *
@@ -948,31 +776,31 @@ export namespace gkehub_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
-      params: Params$Resource$Projects$Locations$Features$Getiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Getiampolicy,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     getIamPolicy(
-      params?: Params$Resource$Projects$Locations$Features$Getiampolicy,
+      params?: Params$Resource$Projects$Locations$Capools$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-      params: Params$Resource$Projects$Locations$Features$Getiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     getIamPolicy(
-      params: Params$Resource$Projects$Locations$Features$Getiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
       callback: BodyResponseCallback<Schema$Policy>
     ): void;
     getIamPolicy(
-      params: Params$Resource$Projects$Locations$Features$Getiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Getiampolicy,
       callback: BodyResponseCallback<Schema$Policy>
     ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Features$Getiampolicy
+        | Params$Resource$Projects$Locations$Capools$Getiampolicy
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -985,12 +813,12 @@ export namespace gkehub_v1 {
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Features$Getiampolicy;
+        {}) as Params$Resource$Projects$Locations$Capools$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Features$Getiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Capools$Getiampolicy;
         options = {};
       }
 
@@ -999,7 +827,7 @@ export namespace gkehub_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://privateca.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1032,14 +860,14 @@ export namespace gkehub_v1 {
      * ```js
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
+     * const privateca = google.privateca('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1052,9 +880,9 @@ export namespace gkehub_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gkehub.projects.locations.features.setIamPolicy({
+     *   const res = await privateca.projects.locations.caPools.setIamPolicy({
      *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/features/my-feature',
+     *     resource: 'projects/my-project/locations/my-location/caPools/my-caPool',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -1089,31 +917,31 @@ export namespace gkehub_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
-      params: Params$Resource$Projects$Locations$Features$Setiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Setiampolicy,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     setIamPolicy(
-      params?: Params$Resource$Projects$Locations$Features$Setiampolicy,
+      params?: Params$Resource$Projects$Locations$Capools$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-      params: Params$Resource$Projects$Locations$Features$Setiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     setIamPolicy(
-      params: Params$Resource$Projects$Locations$Features$Setiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
       callback: BodyResponseCallback<Schema$Policy>
     ): void;
     setIamPolicy(
-      params: Params$Resource$Projects$Locations$Features$Setiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Setiampolicy,
       callback: BodyResponseCallback<Schema$Policy>
     ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Features$Setiampolicy
+        | Params$Resource$Projects$Locations$Capools$Setiampolicy
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -1126,12 +954,12 @@ export namespace gkehub_v1 {
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Features$Setiampolicy;
+        {}) as Params$Resource$Projects$Locations$Capools$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Features$Setiampolicy;
+        params = {} as Params$Resource$Projects$Locations$Capools$Setiampolicy;
         options = {};
       }
 
@@ -1140,7 +968,7 @@ export namespace gkehub_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://privateca.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1173,14 +1001,14 @@ export namespace gkehub_v1 {
      * ```js
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
+     * const privateca = google.privateca('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1193,9 +1021,9 @@ export namespace gkehub_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gkehub.projects.locations.features.testIamPermissions({
+     *   const res = await privateca.projects.locations.caPools.testIamPermissions({
      *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *     resource: 'projects/my-project/locations/my-location/features/my-feature',
+     *     resource: 'projects/my-project/locations/my-location/caPools/my-caPool',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -1226,27 +1054,27 @@ export namespace gkehub_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
-      params: Params$Resource$Projects$Locations$Features$Testiampermissions,
+      params: Params$Resource$Projects$Locations$Capools$Testiampermissions,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     testIamPermissions(
-      params?: Params$Resource$Projects$Locations$Features$Testiampermissions,
+      params?: Params$Resource$Projects$Locations$Capools$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-      params: Params$Resource$Projects$Locations$Features$Testiampermissions,
+      params: Params$Resource$Projects$Locations$Capools$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     testIamPermissions(
-      params: Params$Resource$Projects$Locations$Features$Testiampermissions,
+      params: Params$Resource$Projects$Locations$Capools$Testiampermissions,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
-      params: Params$Resource$Projects$Locations$Features$Testiampermissions,
+      params: Params$Resource$Projects$Locations$Capools$Testiampermissions,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -1254,7 +1082,7 @@ export namespace gkehub_v1 {
     ): void;
     testIamPermissions(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Features$Testiampermissions
+        | Params$Resource$Projects$Locations$Capools$Testiampermissions
         | BodyResponseCallback<Schema$TestIamPermissionsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -1270,13 +1098,13 @@ export namespace gkehub_v1 {
       | GaxiosPromise<Schema$TestIamPermissionsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Features$Testiampermissions;
+        {}) as Params$Resource$Projects$Locations$Capools$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Projects$Locations$Features$Testiampermissions;
+          {} as Params$Resource$Projects$Locations$Capools$Testiampermissions;
         options = {};
       }
 
@@ -1285,7 +1113,7 @@ export namespace gkehub_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://privateca.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1313,7 +1141,7 @@ export namespace gkehub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Features$Getiampolicy
+  export interface Params$Resource$Projects$Locations$Capools$Getiampolicy
     extends StandardParameters {
     /**
      * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -1324,7 +1152,7 @@ export namespace gkehub_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Features$Setiampolicy
+  export interface Params$Resource$Projects$Locations$Capools$Setiampolicy
     extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
@@ -1336,7 +1164,7 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Features$Testiampermissions
+  export interface Params$Resource$Projects$Locations$Capools$Testiampermissions
     extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
@@ -1349,314 +1177,38 @@ export namespace gkehub_v1 {
     requestBody?: Schema$TestIamPermissionsRequest;
   }
 
-  export class Resource$Projects$Locations$Memberships {
+  export class Resource$Projects$Locations$Capools$Certificateauthorities {
+    context: APIRequestContext;
+    certificateRevocationLists: Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.certificateRevocationLists =
+        new Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists(
+          this.context
+        );
+    }
+  }
+
+  export class Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
     }
 
     /**
-     * Creates a new Membership. **This is currently only supported for GKE clusters on Google Cloud**. To register other clusters, follow the instructions at https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
      * ```js
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await gkehub.projects.locations.memberships.create({
-     *     // Required. Client chosen ID for the membership. `membership_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.
-     *     membershipId: 'placeholder-value',
-     *     // Required. The parent (project and location) where the Memberships will be created. Specified in the format `projects/x/locations/x`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authority": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "deleteTime": "my_deleteTime",
-     *       //   "description": "my_description",
-     *       //   "endpoint": {},
-     *       //   "externalId": "my_externalId",
-     *       //   "labels": {},
-     *       //   "lastConnectionTime": "my_lastConnectionTime",
-     *       //   "name": "my_name",
-     *       //   "state": {},
-     *       //   "uniqueId": "my_uniqueId",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    create(
-      params: Params$Resource$Projects$Locations$Memberships$Create,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    create(
-      params?: Params$Resource$Projects$Locations$Memberships$Create,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    create(
-      params: Params$Resource$Projects$Locations$Memberships$Create,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Memberships$Create,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    create(
-      params: Params$Resource$Projects$Locations$Memberships$Create,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    create(callback: BodyResponseCallback<Schema$Operation>): void;
-    create(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memberships$Create
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memberships$Create;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Memberships$Create;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/memberships').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * Removes a Membership. **This is currently only supported for GKE clusters on Google Cloud**. To unregister other clusters, follow the instructions at https://cloud.google.com/anthos/multicluster-management/connect/unregistering-a-cluster.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await gkehub.projects.locations.memberships.delete({
-     *     // Required. The Membership resource name in the format `projects/x/locations/x/memberships/x`.
-     *     name: 'projects/my-project/locations/my-location/memberships/my-membership',
-     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Projects$Locations$Memberships$Delete,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    delete(
-      params?: Params$Resource$Projects$Locations$Memberships$Delete,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    delete(
-      params: Params$Resource$Projects$Locations$Memberships$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Memberships$Delete,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(
-      params: Params$Resource$Projects$Locations$Memberships$Delete,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    delete(callback: BodyResponseCallback<Schema$Operation>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memberships$Delete
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memberships$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Memberships$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'DELETE',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
-     * Generates the manifest for deployment of the GKE connect agent. **This method is used internally by Google-provided libraries.** Most clients should not need to call this method directly.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
+     * const privateca = google.privateca('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1670,301 +1222,15 @@ export namespace gkehub_v1 {
      *
      *   // Do the magic
      *   const res =
-     *     await gkehub.projects.locations.memberships.generateConnectManifest({
-     *       // Optional. The image pull secret content for the registry, if not public.
-     *       imagePullSecretContent: 'placeholder-value',
-     *       // Optional. If true, generate the resources for upgrade only. Some resources generated only for installation (e.g. secrets) will be excluded.
-     *       isUpgrade: 'placeholder-value',
-     *       // Required. The Membership resource name the Agent will associate with, in the format `projects/x/locations/x/memberships/x`.
-     *       name: 'projects/my-project/locations/my-location/memberships/my-membership',
-     *       // Optional. Namespace for GKE Connect agent resources. Defaults to `gke-connect`. The Connect Agent is authorized automatically when run in the default namespace. Otherwise, explicit authorization must be granted with an additional IAM binding.
-     *       namespace: 'placeholder-value',
-     *       // Optional. URI of a proxy if connectivity from the agent to gkeconnect.googleapis.com requires the use of a proxy. Format must be in the form `http(s)://{proxy_address\}`, depending on the HTTP/HTTPS protocol supported by the proxy. This will direct the connect agent's outbound traffic through a HTTP(S) proxy.
-     *       proxy: 'placeholder-value',
-     *       // Optional. The registry to fetch the connect agent image from. Defaults to gcr.io/gkeconnect.
-     *       registry: 'placeholder-value',
-     *       // Optional. The Connect agent version to use. Defaults to the most current version.
-     *       version: 'placeholder-value',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "manifest": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    generateConnectManifest(
-      params: Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    generateConnectManifest(
-      params?: Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$GenerateConnectManifestResponse>;
-    generateConnectManifest(
-      params: Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    generateConnectManifest(
-      params: Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GenerateConnectManifestResponse>,
-      callback: BodyResponseCallback<Schema$GenerateConnectManifestResponse>
-    ): void;
-    generateConnectManifest(
-      params: Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest,
-      callback: BodyResponseCallback<Schema$GenerateConnectManifestResponse>
-    ): void;
-    generateConnectManifest(
-      callback: BodyResponseCallback<Schema$GenerateConnectManifestResponse>
-    ): void;
-    generateConnectManifest(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest
-        | BodyResponseCallback<Schema$GenerateConnectManifestResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GenerateConnectManifestResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GenerateConnectManifestResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$GenerateConnectManifestResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}:generateConnectManifest').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GenerateConnectManifestResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GenerateConnectManifestResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
-     * Gets the details of a Membership.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await gkehub.projects.locations.memberships.get({
-     *     // Required. The Membership resource name in the format `projects/x/locations/x/memberships/x`.
-     *     name: 'projects/my-project/locations/my-location/memberships/my-membership',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "authority": {},
-     *   //   "createTime": "my_createTime",
-     *   //   "deleteTime": "my_deleteTime",
-     *   //   "description": "my_description",
-     *   //   "endpoint": {},
-     *   //   "externalId": "my_externalId",
-     *   //   "labels": {},
-     *   //   "lastConnectionTime": "my_lastConnectionTime",
-     *   //   "name": "my_name",
-     *   //   "state": {},
-     *   //   "uniqueId": "my_uniqueId",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Memberships$Get,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    get(
-      params?: Params$Resource$Projects$Locations$Memberships$Get,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Membership>;
-    get(
-      params: Params$Resource$Projects$Locations$Memberships$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Memberships$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Membership>,
-      callback: BodyResponseCallback<Schema$Membership>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Memberships$Get,
-      callback: BodyResponseCallback<Schema$Membership>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Membership>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memberships$Get
-        | BodyResponseCallback<Schema$Membership>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Membership>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Membership>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Membership> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memberships$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Memberships$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Membership>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Membership>(parameters);
-      }
-    }
-
-    /**
-     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await gkehub.projects.locations.memberships.getIamPolicy({
-     *     // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     *     'options.requestedPolicyVersion': 'placeholder-value',
-     *     // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     *     resource:
-     *       'projects/my-project/locations/my-location/memberships/my-membership',
-     *   });
+     *     await privateca.projects.locations.caPools.certificateAuthorities.certificateRevocationLists.getIamPolicy(
+     *       {
+     *         // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *         'options.requestedPolicyVersion': 'placeholder-value',
+     *         // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -1989,31 +1255,31 @@ export namespace gkehub_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
-      params: Params$Resource$Projects$Locations$Memberships$Getiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Getiampolicy,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     getIamPolicy(
-      params?: Params$Resource$Projects$Locations$Memberships$Getiampolicy,
+      params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Getiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
     getIamPolicy(
-      params: Params$Resource$Projects$Locations$Memberships$Getiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Getiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     getIamPolicy(
-      params: Params$Resource$Projects$Locations$Memberships$Getiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Getiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
       callback: BodyResponseCallback<Schema$Policy>
     ): void;
     getIamPolicy(
-      params: Params$Resource$Projects$Locations$Memberships$Getiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Getiampolicy,
       callback: BodyResponseCallback<Schema$Policy>
     ): void;
     getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     getIamPolicy(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memberships$Getiampolicy
+        | Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Getiampolicy
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -2026,13 +1292,13 @@ export namespace gkehub_v1 {
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memberships$Getiampolicy;
+        {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Getiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Projects$Locations$Memberships$Getiampolicy;
+          {} as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Getiampolicy;
         options = {};
       }
 
@@ -2041,7 +1307,7 @@ export namespace gkehub_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://privateca.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2069,316 +1335,19 @@ export namespace gkehub_v1 {
     }
 
     /**
-     * Lists Memberships in a given project and location.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await gkehub.projects.locations.memberships.list({
-     *     // Optional. Lists Memberships that match the filter expression, following the syntax outlined in https://google.aip.dev/160. Examples: - Name is `bar` in project `foo-proj` and location `global`: name = "projects/foo-proj/locations/global/membership/bar" - Memberships that have a label called `foo`: labels.foo:* - Memberships that have a label called `foo` whose value is `bar`: labels.foo = bar - Memberships in the CREATING state: state = CREATING
-     *     filter: 'placeholder-value',
-     *     // Optional. One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.
-     *     orderBy: 'placeholder-value',
-     *     // Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
-     *     pageSize: 'placeholder-value',
-     *     // Optional. Token returned by previous call to `ListMemberships` which specifies the position in the list from where to continue listing the resources.
-     *     pageToken: 'placeholder-value',
-     *     // Required. The parent (project and location) where the Memberships will be listed. Specified in the format `projects/x/locations/x`.
-     *     parent: 'projects/my-project/locations/my-location',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "resources": [],
-     *   //   "unreachable": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$Locations$Memberships$List,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    list(
-      params?: Params$Resource$Projects$Locations$Memberships$List,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$ListMembershipsResponse>;
-    list(
-      params: Params$Resource$Projects$Locations$Memberships$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Memberships$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListMembershipsResponse>,
-      callback: BodyResponseCallback<Schema$ListMembershipsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$Locations$Memberships$List,
-      callback: BodyResponseCallback<Schema$ListMembershipsResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListMembershipsResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memberships$List
-        | BodyResponseCallback<Schema$ListMembershipsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListMembershipsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListMembershipsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$ListMembershipsResponse>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memberships$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Memberships$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+parent}/memberships').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListMembershipsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListMembershipsResponse>(parameters);
-      }
-    }
-
-    /**
-     * Updates an existing Membership.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await gkehub.projects.locations.memberships.patch({
-     *     // Required. The Membership resource name in the format `projects/x/locations/x/memberships/x`.
-     *     name: 'projects/my-project/locations/my-location/memberships/my-membership',
-     *     // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     *     requestId: 'placeholder-value',
-     *     // Required. Mask of fields to update.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "authority": {},
-     *       //   "createTime": "my_createTime",
-     *       //   "deleteTime": "my_deleteTime",
-     *       //   "description": "my_description",
-     *       //   "endpoint": {},
-     *       //   "externalId": "my_externalId",
-     *       //   "labels": {},
-     *       //   "lastConnectionTime": "my_lastConnectionTime",
-     *       //   "name": "my_name",
-     *       //   "state": {},
-     *       //   "uniqueId": "my_uniqueId",
-     *       //   "updateTime": "my_updateTime"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "done": false,
-     *   //   "error": {},
-     *   //   "metadata": {},
-     *   //   "name": "my_name",
-     *   //   "response": {}
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Projects$Locations$Memberships$Patch,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    patch(
-      params?: Params$Resource$Projects$Locations$Memberships$Patch,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$Operation>;
-    patch(
-      params: Params$Resource$Projects$Locations$Memberships$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Memberships$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    patch(
-      params: Params$Resource$Projects$Locations$Memberships$Patch,
-      callback: BodyResponseCallback<Schema$Operation>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Operation>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memberships$Patch
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Operation>
-        | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memberships$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Memberships$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Operation>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Operation>(parameters);
-      }
-    }
-
-    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * ```js
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
+     * const privateca = google.privateca('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2391,20 +1360,23 @@ export namespace gkehub_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gkehub.projects.locations.memberships.setIamPolicy({
-     *     // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     *     resource:
-     *       'projects/my-project/locations/my-location/memberships/my-membership',
+     *   const res =
+     *     await privateca.projects.locations.caPools.certificateAuthorities.certificateRevocationLists.setIamPolicy(
+     *       {
+     *         // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
      *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "policy": {},
-     *       //   "updateMask": "my_updateMask"
-     *       // }
-     *     },
-     *   });
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "policy": {},
+     *           //   "updateMask": "my_updateMask"
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2429,31 +1401,31 @@ export namespace gkehub_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
-      params: Params$Resource$Projects$Locations$Memberships$Setiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Setiampolicy,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     setIamPolicy(
-      params?: Params$Resource$Projects$Locations$Memberships$Setiampolicy,
+      params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Setiampolicy,
       options?: MethodOptions
     ): GaxiosPromise<Schema$Policy>;
     setIamPolicy(
-      params: Params$Resource$Projects$Locations$Memberships$Setiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Setiampolicy,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     setIamPolicy(
-      params: Params$Resource$Projects$Locations$Memberships$Setiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Setiampolicy,
       options: MethodOptions | BodyResponseCallback<Schema$Policy>,
       callback: BodyResponseCallback<Schema$Policy>
     ): void;
     setIamPolicy(
-      params: Params$Resource$Projects$Locations$Memberships$Setiampolicy,
+      params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Setiampolicy,
       callback: BodyResponseCallback<Schema$Policy>
     ): void;
     setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
     setIamPolicy(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memberships$Setiampolicy
+        | Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Setiampolicy
         | BodyResponseCallback<Schema$Policy>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -2466,13 +1438,13 @@ export namespace gkehub_v1 {
         | BodyResponseCallback<Readable>
     ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memberships$Setiampolicy;
+        {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Setiampolicy;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Projects$Locations$Memberships$Setiampolicy;
+          {} as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Setiampolicy;
         options = {};
       }
 
@@ -2481,7 +1453,7 @@ export namespace gkehub_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://privateca.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2514,14 +1486,14 @@ export namespace gkehub_v1 {
      * ```js
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
+     * const privateca = google.privateca('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2534,19 +1506,22 @@ export namespace gkehub_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gkehub.projects.locations.memberships.testIamPermissions({
-     *     // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     *     resource:
-     *       'projects/my-project/locations/my-location/memberships/my-membership',
+     *   const res =
+     *     await privateca.projects.locations.caPools.certificateAuthorities.certificateRevocationLists.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/caPools/my-caPool/certificateAuthorities/my-certificateAuthoritie/certificateRevocationLists/my-certificateRevocationList',
      *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "permissions": []
-     *       // }
-     *     },
-     *   });
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       }
+     *     );
      *   console.log(res.data);
      *
      *   // Example response
@@ -2568,27 +1543,27 @@ export namespace gkehub_v1 {
      * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
-      params: Params$Resource$Projects$Locations$Memberships$Testiampermissions,
+      params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Testiampermissions,
       options: StreamMethodOptions
     ): GaxiosPromise<Readable>;
     testIamPermissions(
-      params?: Params$Resource$Projects$Locations$Memberships$Testiampermissions,
+      params?: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Testiampermissions,
       options?: MethodOptions
     ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
     testIamPermissions(
-      params: Params$Resource$Projects$Locations$Memberships$Testiampermissions,
+      params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Testiampermissions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
     testIamPermissions(
-      params: Params$Resource$Projects$Locations$Memberships$Testiampermissions,
+      params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Testiampermissions,
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
-      params: Params$Resource$Projects$Locations$Memberships$Testiampermissions,
+      params: Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Testiampermissions,
       callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
     ): void;
     testIamPermissions(
@@ -2596,7 +1571,7 @@ export namespace gkehub_v1 {
     ): void;
     testIamPermissions(
       paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Memberships$Testiampermissions
+        | Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Testiampermissions
         | BodyResponseCallback<Schema$TestIamPermissionsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
@@ -2612,13 +1587,13 @@ export namespace gkehub_v1 {
       | GaxiosPromise<Schema$TestIamPermissionsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Memberships$Testiampermissions;
+        {}) as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Testiampermissions;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
         params =
-          {} as Params$Resource$Projects$Locations$Memberships$Testiampermissions;
+          {} as Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Testiampermissions;
         options = {};
       }
 
@@ -2627,7 +1602,7 @@ export namespace gkehub_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://privateca.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2655,76 +1630,7 @@ export namespace gkehub_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Memberships$Create
-    extends StandardParameters {
-    /**
-     * Required. Client chosen ID for the membership. `membership_id` must be a valid RFC 1123 compliant DNS label: 1. At most 63 characters in length 2. It must consist of lower case alphanumeric characters or `-` 3. It must start and end with an alphanumeric character Which can be expressed as the regex: `[a-z0-9]([-a-z0-9]*[a-z0-9])?`, with a maximum length of 63 characters.
-     */
-    membershipId?: string;
-    /**
-     * Required. The parent (project and location) where the Memberships will be created. Specified in the format `projects/x/locations/x`.
-     */
-    parent?: string;
-    /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Membership;
-  }
-  export interface Params$Resource$Projects$Locations$Memberships$Delete
-    extends StandardParameters {
-    /**
-     * Required. The Membership resource name in the format `projects/x/locations/x/memberships/x`.
-     */
-    name?: string;
-    /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Memberships$Generateconnectmanifest
-    extends StandardParameters {
-    /**
-     * Optional. The image pull secret content for the registry, if not public.
-     */
-    imagePullSecretContent?: string;
-    /**
-     * Optional. If true, generate the resources for upgrade only. Some resources generated only for installation (e.g. secrets) will be excluded.
-     */
-    isUpgrade?: boolean;
-    /**
-     * Required. The Membership resource name the Agent will associate with, in the format `projects/x/locations/x/memberships/x`.
-     */
-    name?: string;
-    /**
-     * Optional. Namespace for GKE Connect agent resources. Defaults to `gke-connect`. The Connect Agent is authorized automatically when run in the default namespace. Otherwise, explicit authorization must be granted with an additional IAM binding.
-     */
-    namespace?: string;
-    /**
-     * Optional. URI of a proxy if connectivity from the agent to gkeconnect.googleapis.com requires the use of a proxy. Format must be in the form `http(s)://{proxy_address\}`, depending on the HTTP/HTTPS protocol supported by the proxy. This will direct the connect agent's outbound traffic through a HTTP(S) proxy.
-     */
-    proxy?: string;
-    /**
-     * Optional. The registry to fetch the connect agent image from. Defaults to gcr.io/gkeconnect.
-     */
-    registry?: string;
-    /**
-     * Optional. The Connect agent version to use. Defaults to the most current version.
-     */
-    version?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Memberships$Get
-    extends StandardParameters {
-    /**
-     * Required. The Membership resource name in the format `projects/x/locations/x/memberships/x`.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Memberships$Getiampolicy
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Getiampolicy
     extends StandardParameters {
     /**
      * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -2735,50 +1641,7 @@ export namespace gkehub_v1 {
      */
     resource?: string;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$List
-    extends StandardParameters {
-    /**
-     * Optional. Lists Memberships that match the filter expression, following the syntax outlined in https://google.aip.dev/160. Examples: - Name is `bar` in project `foo-proj` and location `global`: name = "projects/foo-proj/locations/global/membership/bar" - Memberships that have a label called `foo`: labels.foo:* - Memberships that have a label called `foo` whose value is `bar`: labels.foo = bar - Memberships in the CREATING state: state = CREATING
-     */
-    filter?: string;
-    /**
-     * Optional. One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.
-     */
-    orderBy?: string;
-    /**
-     * Optional. When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.
-     */
-    pageSize?: number;
-    /**
-     * Optional. Token returned by previous call to `ListMemberships` which specifies the position in the list from where to continue listing the resources.
-     */
-    pageToken?: string;
-    /**
-     * Required. The parent (project and location) where the Memberships will be listed. Specified in the format `projects/x/locations/x`.
-     */
-    parent?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Memberships$Patch
-    extends StandardParameters {
-    /**
-     * Required. The Membership resource name in the format `projects/x/locations/x/memberships/x`.
-     */
-    name?: string;
-    /**
-     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
-     */
-    requestId?: string;
-    /**
-     * Required. Mask of fields to update.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Membership;
-  }
-  export interface Params$Resource$Projects$Locations$Memberships$Setiampolicy
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Setiampolicy
     extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
@@ -2790,7 +1653,478 @@ export namespace gkehub_v1 {
      */
     requestBody?: Schema$SetIamPolicyRequest;
   }
-  export interface Params$Resource$Projects$Locations$Memberships$Testiampermissions
+  export interface Params$Resource$Projects$Locations$Capools$Certificateauthorities$Certificaterevocationlists$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Certificatetemplates {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const privateca = google.privateca('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await privateca.projects.locations.certificateTemplates.getIamPolicy({
+     *       // Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/certificateTemplates/my-certificateTemplate',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Certificatetemplates$Getiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getIamPolicy(
+      params?: Params$Resource$Projects$Locations$Certificatetemplates$Getiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Certificatetemplates$Getiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Certificatetemplates$Getiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(
+      params: Params$Resource$Projects$Locations$Certificatetemplates$Getiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    getIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    getIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Certificatetemplates$Getiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Certificatetemplates$Getiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificatetemplates$Getiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://privateca.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:getIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const privateca = google.privateca('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await privateca.projects.locations.certificateTemplates.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/certificateTemplates/my-certificateTemplate',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Certificatetemplates$Setiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    setIamPolicy(
+      params?: Params$Resource$Projects$Locations$Certificatetemplates$Setiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Policy>;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Certificatetemplates$Setiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Certificatetemplates$Setiampolicy,
+      options: MethodOptions | BodyResponseCallback<Schema$Policy>,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(
+      params: Params$Resource$Projects$Locations$Certificatetemplates$Setiampolicy,
+      callback: BodyResponseCallback<Schema$Policy>
+    ): void;
+    setIamPolicy(callback: BodyResponseCallback<Schema$Policy>): void;
+    setIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Certificatetemplates$Setiampolicy
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Policy>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Policy> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Certificatetemplates$Setiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificatetemplates$Setiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://privateca.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:setIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Policy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Policy>(parameters);
+      }
+    }
+
+    /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const privateca = google.privateca('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await privateca.projects.locations.certificateTemplates.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/certificateTemplates/my-certificateTemplate',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Certificatetemplates$Testiampermissions,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    testIamPermissions(
+      params?: Params$Resource$Projects$Locations$Certificatetemplates$Testiampermissions,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TestIamPermissionsResponse>;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Certificatetemplates$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Certificatetemplates$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Projects$Locations$Certificatetemplates$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Certificatetemplates$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TestIamPermissionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Certificatetemplates$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Certificatetemplates$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://privateca.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+resource}:testIamPermissions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Certificatetemplates$Getiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     */
+    'options.requestedPolicyVersion'?: number;
+    /**
+     * REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Certificatetemplates$Setiampolicy
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Certificatetemplates$Testiampermissions
     extends StandardParameters {
     /**
      * REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
@@ -2815,14 +2149,14 @@ export namespace gkehub_v1 {
      * ```js
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
+     * const privateca = google.privateca('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2835,7 +2169,7 @@ export namespace gkehub_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gkehub.projects.locations.operations.cancel({
+     *   const res = await privateca.projects.locations.operations.cancel({
      *     // The name of the operation resource to be cancelled.
      *     name: 'projects/my-project/locations/my-location/operations/my-operation',
      *
@@ -2915,7 +2249,7 @@ export namespace gkehub_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://privateca.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2945,14 +2279,14 @@ export namespace gkehub_v1 {
      * ```js
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
+     * const privateca = google.privateca('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2965,7 +2299,7 @@ export namespace gkehub_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gkehub.projects.locations.operations.delete({
+     *   const res = await privateca.projects.locations.operations.delete({
      *     // The name of the operation resource to be deleted.
      *     name: 'projects/my-project/locations/my-location/operations/my-operation',
      *   });
@@ -3039,7 +2373,7 @@ export namespace gkehub_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://privateca.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3069,14 +2403,14 @@ export namespace gkehub_v1 {
      * ```js
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
+     * const privateca = google.privateca('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3089,7 +2423,7 @@ export namespace gkehub_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gkehub.projects.locations.operations.get({
+     *   const res = await privateca.projects.locations.operations.get({
      *     // The name of the operation resource.
      *     name: 'projects/my-project/locations/my-location/operations/my-operation',
      *   });
@@ -3169,7 +2503,7 @@ export namespace gkehub_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://privateca.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3199,14 +2533,14 @@ export namespace gkehub_v1 {
      * ```js
      * // Before running the sample:
      * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/gkehub.googleapis.com
+     * //   https://console.developers.google.com/apis/api/privateca.googleapis.com
      * // - Login into gcloud by running:
      * //   `$ gcloud auth application-default login`
      * // - Install the npm module by running:
      * //   `$ npm install googleapis`
      *
      * const {google} = require('googleapis');
-     * const gkehub = google.gkehub('v1');
+     * const privateca = google.privateca('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3219,7 +2553,7 @@ export namespace gkehub_v1 {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await gkehub.projects.locations.operations.list({
+     *   const res = await privateca.projects.locations.operations.list({
      *     // The standard list filter.
      *     filter: 'placeholder-value',
      *     // The name of the operation's parent resource.
@@ -3307,7 +2641,7 @@ export namespace gkehub_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://gkehub.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://privateca.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {

@@ -3432,7 +3432,7 @@ export namespace cloudkms_v1 {
     }
 
     /**
-     * Update the version of a CryptoKey that will be used in Encrypt. Returns an error if called on an asymmetric key.
+     * Update the version of a CryptoKey that will be used in Encrypt. Returns an error if called on a key whose purpose is not ENCRYPT_DECRYPT.
      * @example
      * ```js
      * // Before running the sample:

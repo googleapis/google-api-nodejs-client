@@ -4417,7 +4417,7 @@
       }
     }
   },
-  "revision": "20210427",
+  "revision": "20210531",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -6882,7 +6882,7 @@
           "type": "boolean"
         },
         "aliases": {
-          "description": "Output only. List of the user's alias email addresses.",
+          "description": "Output only. A list of the user's alias email addresses.",
           "items": {
             "type": "string"
           },
