@@ -733,7 +733,7 @@ export namespace dataflow_v1b3 {
      */
     debugOptions?: Schema$DebugOptions;
     /**
-     * The list of experiments to enable. This field should be used for SDK related experiments and not for service related experiments. The proper field for service related experiments is service_options. For more details see the rationale at go/user-specified-service-options.
+     * The list of experiments to enable. This field should be used for SDK related experiments and not for service related experiments. The proper field for service related experiments is service_options.
      */
     experiments?: string[] | null;
     /**
@@ -757,7 +757,7 @@ export namespace dataflow_v1b3 {
      */
     serviceKmsKeyName?: string | null;
     /**
-     * The list of service options to enable. This field should be used for service related experiments only. These experiments, when graduating to GA, should be replaced by dedicated fields or become default (i.e. always on). For more details see the rationale at go/user-specified-service-options.
+     * The list of service options to enable. This field should be used for service related experiments only. These experiments, when graduating to GA, should be replaced by dedicated fields or become default (i.e. always on).
      */
     serviceOptions?: string[] | null;
     /**
@@ -914,6 +914,10 @@ export namespace dataflow_v1b3 {
      * The initial number of Google Compute Engine instances for the job.
      */
     numWorkers?: number | null;
+    /**
+     * Docker registry location of container image to use for the 'worker harness. Default is the container for the version of the SDK. Note this field is only valid for portable pipelines.
+     */
+    sdkContainerImage?: string | null;
     /**
      * The email address of the service account to run the job as.
      */
