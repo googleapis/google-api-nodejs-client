@@ -335,6 +335,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationTurnUserInput {
     /**
+     * Whether sentiment analysis is enabled.
+     */
+    enableSentimentAnalysis?: boolean | null;
+    /**
      * Parameters that need to be injected into the conversation during intent detection.
      */
     injectedParameters?: {[key: string]: any} | null;
@@ -1709,7 +1713,7 @@ export namespace dialogflow_v3beta1 {
      */
     analyzeQueryTextSentiment?: boolean | null;
     /**
-     * The unique identifier of the page to override the current page in the session. Format: `projects//locations//agents//pages/`. If `current_page` is specified, the previous state of the session will be ignored by Dialogflow, including the previous page and the previous session parameters. In most cases, current_page and parameters should be configured together to direct a session to a specific state.
+     * The unique identifier of the page to override the current page in the session. Format: `projects//locations//agents//flows//pages/`. If `current_page` is specified, the previous state of the session will be ignored by Dialogflow, including the previous page and the previous session parameters. In most cases, current_page and parameters should be configured together to direct a session to a specific state.
      */
     currentPage?: string | null;
     /**
@@ -2803,6 +2807,10 @@ export namespace dialogflow_v3beta1 {
    * The input from the human user.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ConversationTurnUserInput {
+    /**
+     * Whether sentiment analysis is enabled.
+     */
+    enableSentimentAnalysis?: boolean | null;
     /**
      * Parameters that need to be injected into the conversation during intent detection.
      */

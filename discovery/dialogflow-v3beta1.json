@@ -3553,7 +3553,7 @@
       }
     }
   },
-  "revision": "20210524",
+  "revision": "20210601",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -3656,6 +3656,10 @@
       "description": "The input from the human user.",
       "id": "GoogleCloudDialogflowCxV3ConversationTurnUserInput",
       "properties": {
+        "enableSentimentAnalysis": {
+          "description": "Whether sentiment analysis is enabled.",
+          "type": "boolean"
+        },
         "injectedParameters": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -5350,6 +5354,10 @@
       "description": "The input from the human user.",
       "id": "GoogleCloudDialogflowCxV3beta1ConversationTurnUserInput",
       "properties": {
+        "enableSentimentAnalysis": {
+          "description": "Whether sentiment analysis is enabled.",
+          "type": "boolean"
+        },
         "injectedParameters": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -7280,7 +7288,7 @@
           "type": "boolean"
         },
         "currentPage": {
-          "description": "The unique identifier of the page to override the current page in the session. Format: `projects//locations//agents//pages/`. If `current_page` is specified, the previous state of the session will be ignored by Dialogflow, including the previous page and the previous session parameters. In most cases, current_page and parameters should be configured together to direct a session to a specific state.",
+          "description": "The unique identifier of the page to override the current page in the session. Format: `projects//locations//agents//flows//pages/`. If `current_page` is specified, the previous state of the session will be ignored by Dialogflow, including the previous page and the previous session parameters. In most cases, current_page and parameters should be configured together to direct a session to a specific state.",
           "type": "string"
         },
         "disableWebhook": {
