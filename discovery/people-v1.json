@@ -159,7 +159,7 @@
               "type": "integer"
             },
             "resourceNames": {
-              "description": "Required. The resource names of the contact groups to get.",
+              "description": "Required. The resource names of the contact groups to get. There is a maximum of 200 resource names.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -730,7 +730,7 @@
               "type": "string"
             },
             "resourceNames": {
-              "description": "Required. The resource names of the people to provide information about. It's repeatable. The URL query parameter should be resourceNames=<name1>&resourceNames=<name2>&... - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify `people/{account_id}`. - To get information about a contact, specify the resource name that identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list). You can include up to 200 resource names in one request.",
+              "description": "Required. The resource names of the people to provide information about. It's repeatable. The URL query parameter should be resourceNames=<name1>&resourceNames=<name2>&... - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify `people/{account_id}`. - To get information about a contact, specify the resource name that identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list). There is a maximum of 200 resource names.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -1154,7 +1154,7 @@
       }
     }
   },
-  "revision": "20210519",
+  "revision": "20210602",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
