@@ -1104,10 +1104,6 @@ export namespace bigquery_v2 {
      */
     csvOptions?: Schema$CsvOptions;
     /**
-     * [Optional] Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. Example: Suppose the value of this field is ["NUMERIC", "BIGNUMERIC"]. If (precision,scale) is: (38,9) -\> NUMERIC; (39,9) -\> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); (38,10) -\> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); (76,38) -\> BIGNUMERIC; (77,38) -\> BIGNUMERIC (error if value exeeds supported range). This field cannot contain duplicate types. The order of the types in this field is ignored. For example, ["BIGNUMERIC", "NUMERIC"] is the same as ["NUMERIC", "BIGNUMERIC"] and NUMERIC always takes precedence over BIGNUMERIC. Defaults to ["NUMERIC", "STRING"] for ORC and ["NUMERIC"] for the other file formats.
-     */
-    decimalTargetTypes?: string[] | null;
-    /**
      * [Optional] Additional options if sourceFormat is set to GOOGLE_SHEETS.
      */
     googleSheetsOptions?: Schema$GoogleSheetsOptions;
@@ -1444,7 +1440,7 @@ export namespace bigquery_v2 {
      */
     createDisposition?: string | null;
     /**
-     * [Optional] Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. Example: Suppose the value of this field is ["NUMERIC", "BIGNUMERIC"]. If (precision,scale) is: (38,9) -\> NUMERIC; (39,9) -\> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); (38,10) -\> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); (76,38) -\> BIGNUMERIC; (77,38) -\> BIGNUMERIC (error if value exeeds supported range). This field cannot contain duplicate types. The order of the types in this field is ignored. For example, ["BIGNUMERIC", "NUMERIC"] is the same as ["NUMERIC", "BIGNUMERIC"] and NUMERIC always takes precedence over BIGNUMERIC. Defaults to ["NUMERIC", "STRING"] for ORC and ["NUMERIC"] for the other file formats.
+     * Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC ([Preview](/products/#product-launch-stages)), and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. Example: Suppose the value of this field is ["NUMERIC", "BIGNUMERIC"]. If (precision,scale) is: * (38,9) -\> NUMERIC; * (39,9) -\> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); * (38,10) -\> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); * (76,38) -\> BIGNUMERIC; * (77,38) -\> BIGNUMERIC (error if value exeeds supported range). This field cannot contain duplicate types. The order of the types in this field is ignored. For example, ["BIGNUMERIC", "NUMERIC"] is the same as ["NUMERIC", "BIGNUMERIC"] and NUMERIC always takes precedence over BIGNUMERIC. Defaults to ["NUMERIC", "STRING"] for ORC and ["NUMERIC"] for the other file formats.
      */
     decimalTargetTypes?: string[] | null;
     /**
@@ -1790,7 +1786,7 @@ export namespace bigquery_v2 {
     /**
      * [Output-only] [Alpha] Information of the multi-statement transaction if this job is part of one.
      */
-    transactionInfo?: Schema$TransactionInfo;
+    transactionInfoTemplate?: Schema$TransactionInfo;
   }
   export interface Schema$JobStatistics2 {
     /**
@@ -1829,10 +1825,6 @@ export namespace bigquery_v2 {
      * [Output-only] The DDL target table. Present only for CREATE/DROP TABLE/VIEW and DROP ALL ROW ACCESS POLICIES queries.
      */
     ddlTargetTable?: Schema$TableReference;
-    /**
-     * [Output-only] Detailed statistics for DML statements Present only for DML statements INSERT, UPDATE, DELETE or TRUNCATE.
-     */
-    dmlStats?: any | null;
     /**
      * [Output-only] The original estimate of bytes processed for the job.
      */
@@ -2307,10 +2299,6 @@ export namespace bigquery_v2 {
      */
     cacheHit?: boolean | null;
     /**
-     * [Output-only] Detailed statistics for DML statements Present only for DML statements INSERT, UPDATE, DELETE or TRUNCATE.
-     */
-    dmlStats?: any | null;
-    /**
      * [Output-only] The first errors or warnings encountered during the running of the job. The final message includes the number of errors that caused the process to stop. Errors here do not necessarily mean that the job has completed or was unsuccessful.
      */
     errors?: Schema$ErrorProto[];
@@ -2623,11 +2611,11 @@ export namespace bigquery_v2 {
   }
   export interface Schema$SnapshotDefinition {
     /**
-     * [Required] Reference describing the ID of the table that was snapshot.
+     * [Required] Reference describing the ID of the table that is snapshotted.
      */
     baseTableReference?: Schema$TableReference;
     /**
-     * [Required] The time at which the base table was snapshot. This value is reported in the JSON response using RFC3339 format.
+     * [Required] The time at which the base table was snapshot.
      */
     snapshotTime?: string | null;
   }
@@ -5231,7 +5219,6 @@ export namespace bigquery_v2 {
      *   // Example response
      *   // {
      *   //   "cacheHit": false,
-     *   //   "dmlStats": {},
      *   //   "errors": [],
      *   //   "jobComplete": false,
      *   //   "jobReference": {},
