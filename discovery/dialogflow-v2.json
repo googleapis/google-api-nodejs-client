@@ -6915,7 +6915,7 @@
       }
     }
   },
-  "revision": "20210524",
+  "revision": "20210601",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AudioInput": {
@@ -7018,6 +7018,10 @@
       "description": "The input from the human user.",
       "id": "GoogleCloudDialogflowCxV3ConversationTurnUserInput",
       "properties": {
+        "enableSentimentAnalysis": {
+          "description": "Whether sentiment analysis is enabled.",
+          "type": "boolean"
+        },
         "injectedParameters": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -8581,6 +8585,10 @@
       "description": "The input from the human user.",
       "id": "GoogleCloudDialogflowCxV3beta1ConversationTurnUserInput",
       "properties": {
+        "enableSentimentAnalysis": {
+          "description": "Whether sentiment analysis is enabled.",
+          "type": "boolean"
+        },
         "injectedParameters": {
           "additionalProperties": {
             "description": "Properties of the object.",

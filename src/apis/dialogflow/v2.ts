@@ -226,6 +226,10 @@ export namespace dialogflow_v2 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ConversationTurnUserInput {
     /**
+     * Whether sentiment analysis is enabled.
+     */
+    enableSentimentAnalysis?: boolean | null;
+    /**
      * Parameters that need to be injected into the conversation during intent detection.
      */
     injectedParameters?: {[key: string]: any} | null;
@@ -1352,6 +1356,10 @@ export namespace dialogflow_v2 {
    * The input from the human user.
    */
   export interface Schema$GoogleCloudDialogflowCxV3ConversationTurnUserInput {
+    /**
+     * Whether sentiment analysis is enabled.
+     */
+    enableSentimentAnalysis?: boolean | null;
     /**
      * Parameters that need to be injected into the conversation during intent detection.
      */
