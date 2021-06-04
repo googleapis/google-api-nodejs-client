@@ -640,6 +640,10 @@ export namespace sasportal_v1alpha1 {
    */
   export interface Schema$SasPortalSetPolicyRequest {
     /**
+     * Optional. Set the field as true when we would like to disable the onboarding notification.
+     */
+    disableNotification?: boolean | null;
+    /**
      * Required. The policy to be applied to the `resource`.
      */
     policy?: Schema$SasPortalPolicy;
@@ -12521,6 +12525,7 @@ export namespace sasportal_v1alpha1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "disableNotification": false,
      *       //   "policy": {},
      *       //   "resource": "my_resource"
      *       // }
