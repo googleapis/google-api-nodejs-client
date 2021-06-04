@@ -1328,7 +1328,7 @@
       }
     }
   },
-  "revision": "20210326",
+  "revision": "20210527",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Config": {
@@ -1427,13 +1427,15 @@
             "TYPE_UNSPECIFIED",
             "STANDARD",
             "TRIAL",
-            "ALPHA"
+            "ALPHA",
+            "DEMO"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
             "The standard subscription.",
             "The trial subscription.",
-            "The alpha subscription."
+            "The alpha subscription.",
+            "The demo subscription for channel partners."
           ],
           "type": "string"
         }

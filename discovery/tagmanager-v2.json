@@ -3125,7 +3125,7 @@
       }
     }
   },
-  "revision": "20210303",
+  "revision": "20210602",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -4970,6 +4970,9 @@
             "windowLoaded",
             "customEvent",
             "triggerGroup",
+            "init",
+            "consentInit",
+            "serverPageview",
             "always",
             "firebaseAppException",
             "firebaseAppUpdate",
@@ -4998,6 +5001,9 @@
             "elementVisibility"
           ],
           "enumDescriptions": [
+            "",
+            "",
+            "",
             "",
             "",
             "",
