@@ -1647,7 +1647,7 @@ export namespace people_v1 {
      *     groupFields: 'placeholder-value',
      *     // Optional. Specifies the maximum number of members to return for each group. Defaults to 0 if not set, which will return zero members.
      *     maxMembers: 'placeholder-value',
-     *     // Required. The resource names of the contact groups to get.
+     *     // Required. The resource names of the contact groups to get. There is a maximum of 200 resource names.
      *     resourceNames: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2475,7 +2475,7 @@ export namespace people_v1 {
      */
     maxMembers?: number;
     /**
-     * Required. The resource names of the contact groups to get.
+     * Required. The resource names of the contact groups to get. There is a maximum of 200 resource names.
      */
     resourceNames?: string[];
   }
@@ -4361,7 +4361,7 @@ export namespace people_v1 {
      *     personFields: 'placeholder-value',
      *     // Required. Comma-separated list of person fields to be included in the response. Each path should start with `person.`: for example, `person.names` or `person.photos`.
      *     'requestMask.includeField': 'placeholder-value',
-     *     // Required. The resource names of the people to provide information about. It's repeatable. The URL query parameter should be resourceNames=<name1\>&resourceNames=<name2\>&... - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify `people/{account_id\}`. - To get information about a contact, specify the resource name that identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list). You can include up to 200 resource names in one request.
+     *     // Required. The resource names of the people to provide information about. It's repeatable. The URL query parameter should be resourceNames=<name1\>&resourceNames=<name2\>&... - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify `people/{account_id\}`. - To get information about a contact, specify the resource name that identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list). There is a maximum of 200 resource names.
      *     resourceNames: 'placeholder-value',
      *     // Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.
      *     sources: 'placeholder-value',
@@ -5358,7 +5358,7 @@ export namespace people_v1 {
      */
     'requestMask.includeField'?: string;
     /**
-     * Required. The resource names of the people to provide information about. It's repeatable. The URL query parameter should be resourceNames=<name1\>&resourceNames=<name2\>&... - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify `people/{account_id\}`. - To get information about a contact, specify the resource name that identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list). You can include up to 200 resource names in one request.
+     * Required. The resource names of the people to provide information about. It's repeatable. The URL query parameter should be resourceNames=<name1\>&resourceNames=<name2\>&... - To get information about the authenticated user, specify `people/me`. - To get information about a google account, specify `people/{account_id\}`. - To get information about a contact, specify the resource name that identifies the contact as returned by [`people.connections.list`](/people/api/rest/v1/people.connections/list). There is a maximum of 200 resource names.
      */
     resourceNames?: string[];
     /**
