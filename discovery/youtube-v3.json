@@ -3764,7 +3764,7 @@
       }
     }
   },
-  "revision": "20210417",
+  "revision": "20210602",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -9977,6 +9977,9 @@
     "TestItem": {
       "id": "TestItem",
       "properties": {
+        "featuredPart": {
+          "type": "boolean"
+        },
         "gaia": {
           "format": "int64",
           "type": "string"

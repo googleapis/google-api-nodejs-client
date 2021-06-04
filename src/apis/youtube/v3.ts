@@ -3506,6 +3506,7 @@ export namespace youtube_v3 {
     stickerId?: string | null;
   }
   export interface Schema$TestItem {
+    featuredPart?: boolean | null;
     gaia?: string | null;
     id?: string | null;
     snippet?: Schema$TestItemTestItemSnippet;
@@ -14463,6 +14464,7 @@ export namespace youtube_v3 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "featuredPart": false,
      *       //   "gaia": "my_gaia",
      *       //   "id": "my_id",
      *       //   "snippet": {}
@@ -14473,6 +14475,7 @@ export namespace youtube_v3 {
      *
      *   // Example response
      *   // {
+     *   //   "featuredPart": false,
      *   //   "gaia": "my_gaia",
      *   //   "id": "my_id",
      *   //   "snippet": {}
