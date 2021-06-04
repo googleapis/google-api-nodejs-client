@@ -2483,7 +2483,7 @@
       }
     }
   },
-  "revision": "20210520",
+  "revision": "20210527",
   "rootUrl": "https://sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {
@@ -3250,6 +3250,10 @@
       "description": "Request message for `SetPolicy` method.",
       "id": "SasPortalSetPolicyRequest",
       "properties": {
+        "disableNotification": {
+          "description": "Optional. Set the field as true when we would like to disable the onboarding notification.",
+          "type": "boolean"
+        },
         "policy": {
           "$ref": "SasPortalPolicy",
           "description": "Required. The policy to be applied to the `resource`."
