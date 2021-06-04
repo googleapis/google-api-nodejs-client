@@ -116,7 +116,7 @@
       }
     }
   },
-  "revision": "20200803",
+  "revision": "20210602",
   "rootUrl": "https://chromeuxreport.googleapis.com/",
   "schemas": {
     "Bin": {
@@ -228,7 +228,7 @@
           "type": "string"
         },
         "metrics": {
-          "description": "The metrics that should be included in the response. If none are specified then any metrics found will be returned. Allowed values: [\"first_contentful_paint\", \"first_input_delay\", \"largest_contentful_paint\", \"cumulative_layout_shift\"]",
+          "description": "The metrics that should be included in the response. If none are specified then any metrics found will be returned. Allowed values: [\"first_contentful_paint\", \"first_input_delay\", \"largest_contentful_paint\", \"cumulative_layout_shift\", \"experimental_uncapped_cumulative_layout_shift\"]",
           "items": {
             "type": "string"
           },

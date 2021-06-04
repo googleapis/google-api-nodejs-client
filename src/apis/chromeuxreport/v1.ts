@@ -198,7 +198,7 @@ export namespace chromeuxreport_v1 {
      */
     formFactor?: string | null;
     /**
-     * The metrics that should be included in the response. If none are specified then any metrics found will be returned. Allowed values: ["first_contentful_paint", "first_input_delay", "largest_contentful_paint", "cumulative_layout_shift"]
+     * The metrics that should be included in the response. If none are specified then any metrics found will be returned. Allowed values: ["first_contentful_paint", "first_input_delay", "largest_contentful_paint", "cumulative_layout_shift", "experimental_uncapped_cumulative_layout_shift"]
      */
     metrics?: string[] | null;
     /**
