@@ -214,6 +214,10 @@ export namespace container_v1 {
      */
     diskType?: string | null;
     /**
+     * The image type to use for NAP created node.
+     */
+    imageType?: string | null;
+    /**
      * Specifies the node management options for NAP created node-pools.
      */
     management?: Schema$NodeManagement;
