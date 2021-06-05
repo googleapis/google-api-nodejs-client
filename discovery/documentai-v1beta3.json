@@ -601,7 +601,7 @@
       }
     }
   },
-  "revision": "20210520",
+  "revision": "20210527",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata": {
@@ -3558,9 +3558,37 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3DeleteProcessorMetadata": {
+      "description": "The long running operation metadata for delete processor method.",
+      "id": "GoogleCloudDocumentaiV1beta3DeleteProcessorMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DisableProcessorMetadata": {
+      "description": "The long running operation metadata for disable processor method.",
+      "id": "GoogleCloudDocumentaiV1beta3DisableProcessorMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3DisableProcessorRequest": {
       "description": "Request message for the disable processor method.",
       "id": "GoogleCloudDocumentaiV1beta3DisableProcessorRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3DisableProcessorResponse": {
+      "description": "Response message for the disable processor method. Intentionally empty proto for adding fields in future.",
+      "id": "GoogleCloudDocumentaiV1beta3DisableProcessorResponse",
       "properties": {},
       "type": "object"
     },
@@ -4536,9 +4564,26 @@
       },
       "type": "object"
     },
+    "GoogleCloudDocumentaiV1beta3EnableProcessorMetadata": {
+      "description": "The long running operation metadata for enable processor method.",
+      "id": "GoogleCloudDocumentaiV1beta3EnableProcessorMetadata",
+      "properties": {
+        "commonMetadata": {
+          "$ref": "GoogleCloudDocumentaiV1beta3CommonOperationMetadata",
+          "description": "The basic metadata of the long running operation."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiV1beta3EnableProcessorRequest": {
       "description": "Request message for the enable processor method.",
       "id": "GoogleCloudDocumentaiV1beta3EnableProcessorRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1beta3EnableProcessorResponse": {
+      "description": "Response message for the enable processor method. Intentionally empty proto for adding fields in future.",
+      "id": "GoogleCloudDocumentaiV1beta3EnableProcessorResponse",
       "properties": {},
       "type": "object"
     },
@@ -4876,12 +4921,16 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1beta3ReviewDocumentRequest": {
-      "description": "Request message for review document method.",
+      "description": "Request message for review document method. Next Id: 5.",
       "id": "GoogleCloudDocumentaiV1beta3ReviewDocumentRequest",
       "properties": {
         "document": {
           "$ref": "GoogleCloudDocumentaiV1beta3Document",
           "description": "The document that needs human review."
+        },
+        "enableSchemaValidation": {
+          "description": "Whether the validation should be performed on the ad-hoc review request.",
+          "type": "boolean"
         },
         "inlineDocument": {
           "$ref": "GoogleCloudDocumentaiV1beta3Document",

@@ -2250,6 +2250,41 @@ export namespace documentai_v1beta2 {
     updateTime?: string | null;
   }
   /**
+   * The long running operation metadata for delete processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DeleteProcessorMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for disable processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DisableProcessorMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * Response message for the disable processor method. Intentionally empty proto for adding fields in future.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DisableProcessorResponse {}
+  /**
+   * The long running operation metadata for enable processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3EnableProcessorMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * Response message for the enable processor method. Intentionally empty proto for adding fields in future.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3EnableProcessorResponse {}
+  /**
    * The status of human review on a processed document.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3HumanReviewStatus {
