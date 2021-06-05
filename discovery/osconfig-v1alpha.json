@@ -610,7 +610,7 @@
       }
     }
   },
-  "revision": "20210507",
+  "revision": "20210527",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "CVSSv3": {
@@ -1617,6 +1617,10 @@
       "description": "Step performed by the OS Config agent for configuring an `OSPolicyResource` to its desired state.",
       "id": "OSPolicyResourceConfigStep",
       "properties": {
+        "errorMessage": {
+          "description": "An error message recorded during the execution of this step. Only populated when outcome is FAILED.",
+          "type": "string"
+        },
         "outcome": {
           "description": "Outcome of the configuration step.",
           "enum": [

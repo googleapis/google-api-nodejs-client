@@ -803,6 +803,10 @@ export namespace osconfig_v1alpha {
    */
   export interface Schema$OSPolicyResourceConfigStep {
     /**
+     * An error message recorded during the execution of this step. Only populated when outcome is FAILED.
+     */
+    errorMessage?: string | null;
+    /**
      * Outcome of the configuration step.
      */
     outcome?: string | null;
