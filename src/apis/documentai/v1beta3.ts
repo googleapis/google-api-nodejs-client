@@ -2178,9 +2178,31 @@ export namespace documentai_v1beta3 {
     updateTime?: string | null;
   }
   /**
+   * The long running operation metadata for delete processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DeleteProcessorMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
+   * The long running operation metadata for disable processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DisableProcessorMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
    * Request message for the disable processor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3DisableProcessorRequest {}
+  /**
+   * Response message for the disable processor method. Intentionally empty proto for adding fields in future.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3DisableProcessorResponse {}
   /**
    * Document represents the canonical document resource in Document Understanding AI. It is an interchange format that provides insights into documents and allows for collaboration between users and Document Understanding AI to iterate and optimize for quality.
    */
@@ -2892,9 +2914,22 @@ export namespace documentai_v1beta3 {
     textAnchor?: Schema$GoogleCloudDocumentaiV1beta3DocumentTextAnchor;
   }
   /**
+   * The long running operation metadata for enable processor method.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3EnableProcessorMetadata {
+    /**
+     * The basic metadata of the long running operation.
+     */
+    commonMetadata?: Schema$GoogleCloudDocumentaiV1beta3CommonOperationMetadata;
+  }
+  /**
    * Request message for the enable processor method.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3EnableProcessorRequest {}
+  /**
+   * Response message for the enable processor method. Intentionally empty proto for adding fields in future.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1beta3EnableProcessorResponse {}
   /**
    * Response message for fetch processor types.
    */
@@ -3130,13 +3165,17 @@ export namespace documentai_v1beta3 {
     updateTime?: string | null;
   }
   /**
-   * Request message for review document method.
+   * Request message for review document method. Next Id: 5.
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ReviewDocumentRequest {
     /**
      * The document that needs human review.
      */
     document?: Schema$GoogleCloudDocumentaiV1beta3Document;
+    /**
+     * Whether the validation should be performed on the ad-hoc review request.
+     */
+    enableSchemaValidation?: boolean | null;
     /**
      * An inline document proto.
      */
@@ -5634,6 +5673,7 @@ export namespace documentai_v1beta3 {
      *           // request body parameters
      *           // {
      *           //   "document": {},
+     *           //   "enableSchemaValidation": false,
      *           //   "inlineDocument": {}
      *           // }
      *         },
