@@ -312,7 +312,7 @@
       }
     }
   },
-  "revision": "20210430",
+  "revision": "20210527",
   "rootUrl": "https://lifesciences.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1134,6 +1134,10 @@
         "preemptible": {
           "description": "If true, allocate a preemptible VM.",
           "type": "boolean"
+        },
+        "reservation": {
+          "description": "If specified, the VM will only be allocated inside the matching reservation. It will fail if the VM parameters don't match the reservation.",
+          "type": "string"
         },
         "serviceAccount": {
           "$ref": "ServiceAccount",
