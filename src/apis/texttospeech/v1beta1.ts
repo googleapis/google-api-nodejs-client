@@ -212,7 +212,7 @@ export namespace texttospeech_v1beta1 {
      */
     audioContent?: string | null;
     /**
-     * A link between a position in the original request input and a corresponding time in the output audio. It's only supported via of SSML input.
+     * A link between a position in the original request input and a corresponding time in the output audio. It's only supported via `` of SSML input.
      */
     timepoints?: Schema$Timepoint[];
   }
@@ -221,7 +221,7 @@ export namespace texttospeech_v1beta1 {
    */
   export interface Schema$Timepoint {
     /**
-     * Timepoint name as received from the client within tag.
+     * Timepoint name as received from the client within `` tag.
      */
     markName?: string | null;
     /**

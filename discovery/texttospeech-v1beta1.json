@@ -153,7 +153,7 @@
       }
     }
   },
-  "revision": "20210326",
+  "revision": "20210528",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AudioConfig": {
@@ -258,7 +258,7 @@
             ],
             "enumDescriptions": [
               "Not specified. No timepoint information will be returned.",
-              "Timepoint information of tags in SSML input will be returned."
+              "Timepoint information of `` tags in SSML input will be returned."
             ],
             "type": "string"
           },
@@ -289,7 +289,7 @@
           "type": "string"
         },
         "timepoints": {
-          "description": "A link between a position in the original request input and a corresponding time in the output audio. It's only supported via of SSML input.",
+          "description": "A link between a position in the original request input and a corresponding time in the output audio. It's only supported via `` of SSML input.",
           "items": {
             "$ref": "Timepoint"
           },
@@ -303,7 +303,7 @@
       "id": "Timepoint",
       "properties": {
         "markName": {
-          "description": "Timepoint name as received from the client within tag.",
+          "description": "Timepoint name as received from the client within `` tag.",
           "type": "string"
         },
         "timeSeconds": {
