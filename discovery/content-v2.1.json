@@ -5485,7 +5485,7 @@
       }
     }
   },
-  "revision": "20210526",
+  "revision": "20210603",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -8594,6 +8594,16 @@
       "description": "Performance metrics. Values are only set for metrics requested explicitly in the request's search query.",
       "id": "Metrics",
       "properties": {
+        "aos": {
+          "description": "Average order size - the average number of items in an order. **This metric cannot be segmented by product dimensions.**",
+          "format": "double",
+          "type": "number"
+        },
+        "aovMicros": {
+          "description": "Average order value - the average value (total price of items) of all placed orders. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by product dimensions.**",
+          "format": "double",
+          "type": "number"
+        },
         "clicks": {
           "description": "Number of clicks.",
           "format": "int64",
@@ -8604,10 +8614,85 @@
           "format": "double",
           "type": "number"
         },
+        "daysToShip": {
+          "description": "Average number of days between an order being placed and the order being fully shipped, reported on the last shipment date. **This metric cannot be segmented by product dimensions.**",
+          "format": "double",
+          "type": "number"
+        },
         "impressions": {
           "description": "Number of times merchant's products are shown.",
           "format": "int64",
           "type": "string"
+        },
+        "itemDaysToShip": {
+          "description": "Average number of days between an item being ordered and the item being",
+          "format": "double",
+          "type": "number"
+        },
+        "itemFillRate": {
+          "description": "Percentage of shipped items in relation to all finalized items (shipped or rejected by the merchant; unshipped items are not taken into account), reported on the order date. Item fill rate is lowered by merchant rejections.",
+          "format": "double",
+          "type": "number"
+        },
+        "orderedItemSalesMicros": {
+          "description": "Total price of ordered items. Excludes shipping, taxes (US only), and customer cancellations that happened within 30 minutes of placing the order. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.",
+          "format": "int64",
+          "type": "string"
+        },
+        "orderedItems": {
+          "description": "Number of ordered items. Excludes customer cancellations that happened within 30 minutes of placing the order.",
+          "format": "int64",
+          "type": "string"
+        },
+        "orders": {
+          "description": "Number of placed orders. Excludes customer cancellations that happened within 30 minutes of placing the order. **This metric cannot be segmented by product dimensions.**",
+          "format": "int64",
+          "type": "string"
+        },
+        "rejectedItems": {
+          "description": "Number of ordered items canceled by the merchant, reported on the order date.",
+          "format": "int64",
+          "type": "string"
+        },
+        "returnRate": {
+          "description": "Total price of returned items divided by the total price of shipped items, reported on the order date. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.",
+          "format": "double",
+          "type": "number"
+        },
+        "returnedItems": {
+          "description": "Number of ordered items sent back for return, reported on the date when the merchant accepted the return.",
+          "format": "int64",
+          "type": "string"
+        },
+        "returnsMicros": {
+          "description": "Total price of ordered items sent back for return, reported on the date when the merchant accepted the return. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.",
+          "format": "int64",
+          "type": "string"
+        },
+        "shippedItemSalesMicros": {
+          "description": "Total price of shipped items, reported on the order date. Excludes shipping and taxes (US only). The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.",
+          "format": "int64",
+          "type": "string"
+        },
+        "shippedItems": {
+          "description": "Number of shipped items, reported on the shipment date.",
+          "format": "int64",
+          "type": "string"
+        },
+        "shippedOrders": {
+          "description": "Number of fully shipped orders, reported on the last shipment date. **This metric cannot be segmented by product dimensions.**",
+          "format": "int64",
+          "type": "string"
+        },
+        "unshippedItems": {
+          "description": "Number of ordered items not shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped items over the days in the queried period.",
+          "format": "double",
+          "type": "number"
+        },
+        "unshippedOrders": {
+          "description": "Number of orders not shipped or partially shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped orders over the days in the queried period. **This metric cannot be segmented by product dimensions.**",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -11614,7 +11699,7 @@
           "type": "string"
         },
         "linkTemplate": {
-          "description": "Link template for merchant hosted local storefront.",
+          "description": "URL template for merchant hosted local storefront.",
           "type": "string"
         },
         "loyaltyPoints": {
@@ -11648,7 +11733,7 @@
           "type": "string"
         },
         "mobileLinkTemplate": {
-          "description": "Link template for merchant hosted local storefront optimized for mobile devices.",
+          "description": "URL template for merchant hosted local storefront optimized for mobile devices.",
           "type": "string"
         },
         "mpn": {
@@ -13717,12 +13802,80 @@
       "description": "Dimensions according to which metrics are segmented in the response. Values of product dimensions, e.g., offer id, reflect the state of a product at the time of the corresponding event, e.g., impression or order. Segment fields cannot be selected in queries without also selecting at least one metric field. Values are only set for dimensions requested explicitly in the request's search query.",
       "id": "Segments",
       "properties": {
+        "brand": {
+          "description": "Brand of the product.",
+          "type": "string"
+        },
+        "categoryL1": {
+          "description": "Product category (1st level) in Google's product taxonomy.",
+          "type": "string"
+        },
+        "categoryL2": {
+          "description": "Product category (2nd level) in Google's product taxonomy.",
+          "type": "string"
+        },
+        "categoryL3": {
+          "description": "Product category (3rd level) in Google's product taxonomy.",
+          "type": "string"
+        },
+        "categoryL4": {
+          "description": "Product category (4th level) in Google's product taxonomy.",
+          "type": "string"
+        },
+        "categoryL5": {
+          "description": "Product category (5th level) in Google's product taxonomy.",
+          "type": "string"
+        },
+        "currencyCode": {
+          "description": "Currency in which price metrics are represented, e.g., if you select `ordered_item_sales_micros`, the returned value will be represented by this currency.",
+          "type": "string"
+        },
+        "customLabel0": {
+          "description": "Custom label 0 for custom grouping of products.",
+          "type": "string"
+        },
+        "customLabel1": {
+          "description": "Custom label 1 for custom grouping of products.",
+          "type": "string"
+        },
+        "customLabel2": {
+          "description": "Custom label 2 for custom grouping of products.",
+          "type": "string"
+        },
+        "customLabel3": {
+          "description": "Custom label 3 for custom grouping of products.",
+          "type": "string"
+        },
+        "customLabel4": {
+          "description": "Custom label 4 for custom grouping of products.",
+          "type": "string"
+        },
         "date": {
           "$ref": "Date",
           "description": "Date in the merchant timezone to which metrics apply."
         },
         "offerId": {
           "description": "Merchant-provided id of the product.",
+          "type": "string"
+        },
+        "productTypeL1": {
+          "description": "Product category (1st level) in merchant's own product taxonomy.",
+          "type": "string"
+        },
+        "productTypeL2": {
+          "description": "Product category (2nd level) in merchant's own product taxonomy.",
+          "type": "string"
+        },
+        "productTypeL3": {
+          "description": "Product category (3rd level) in merchant's own product taxonomy.",
+          "type": "string"
+        },
+        "productTypeL4": {
+          "description": "Product category (4th level) in merchant's own product taxonomy.",
+          "type": "string"
+        },
+        "productTypeL5": {
+          "description": "Product category (5th level) in merchant's own product taxonomy.",
           "type": "string"
         },
         "program": {
@@ -13742,6 +13895,14 @@
             "Buy on Google Listing."
           ],
           "type": "string"
+        },
+        "title": {
+          "description": "Title of the product.",
+          "type": "string"
+        },
+        "week": {
+          "$ref": "Date",
+          "description": "First day of the week (Monday) of the metrics date in the merchant timezone."
         }
       },
       "type": "object"

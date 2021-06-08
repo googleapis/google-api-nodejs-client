@@ -2453,6 +2453,14 @@ export namespace content_v2_1 {
    */
   export interface Schema$Metrics {
     /**
+     * Average order size - the average number of items in an order. **This metric cannot be segmented by product dimensions.**
+     */
+    aos?: number | null;
+    /**
+     * Average order value - the average value (total price of items) of all placed orders. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response. **This metric cannot be segmented by product dimensions.**
+     */
+    aovMicros?: number | null;
+    /**
      * Number of clicks.
      */
     clicks?: string | null;
@@ -2461,9 +2469,69 @@ export namespace content_v2_1 {
      */
     ctr?: number | null;
     /**
+     * Average number of days between an order being placed and the order being fully shipped, reported on the last shipment date. **This metric cannot be segmented by product dimensions.**
+     */
+    daysToShip?: number | null;
+    /**
      * Number of times merchant's products are shown.
      */
     impressions?: string | null;
+    /**
+     * Average number of days between an item being ordered and the item being
+     */
+    itemDaysToShip?: number | null;
+    /**
+     * Percentage of shipped items in relation to all finalized items (shipped or rejected by the merchant; unshipped items are not taken into account), reported on the order date. Item fill rate is lowered by merchant rejections.
+     */
+    itemFillRate?: number | null;
+    /**
+     * Number of ordered items. Excludes customer cancellations that happened within 30 minutes of placing the order.
+     */
+    orderedItems?: string | null;
+    /**
+     * Total price of ordered items. Excludes shipping, taxes (US only), and customer cancellations that happened within 30 minutes of placing the order. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.
+     */
+    orderedItemSalesMicros?: string | null;
+    /**
+     * Number of placed orders. Excludes customer cancellations that happened within 30 minutes of placing the order. **This metric cannot be segmented by product dimensions.**
+     */
+    orders?: string | null;
+    /**
+     * Number of ordered items canceled by the merchant, reported on the order date.
+     */
+    rejectedItems?: string | null;
+    /**
+     * Number of ordered items sent back for return, reported on the date when the merchant accepted the return.
+     */
+    returnedItems?: string | null;
+    /**
+     * Total price of returned items divided by the total price of shipped items, reported on the order date. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.
+     */
+    returnRate?: number | null;
+    /**
+     * Total price of ordered items sent back for return, reported on the date when the merchant accepted the return. The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.
+     */
+    returnsMicros?: string | null;
+    /**
+     * Number of shipped items, reported on the shipment date.
+     */
+    shippedItems?: string | null;
+    /**
+     * Total price of shipped items, reported on the order date. Excludes shipping and taxes (US only). The currency of the returned value is stored in the currency_code segment. If this metric is selected, 'segments.currency_code' is automatically added to the SELECT clause in the search query (unless it is explicitly selected by the user) and the currency_code segment is populated in the response.
+     */
+    shippedItemSalesMicros?: string | null;
+    /**
+     * Number of fully shipped orders, reported on the last shipment date. **This metric cannot be segmented by product dimensions.**
+     */
+    shippedOrders?: string | null;
+    /**
+     * Number of ordered items not shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped items over the days in the queried period.
+     */
+    unshippedItems?: number | null;
+    /**
+     * Number of orders not shipped or partially shipped up until the end of the queried day. If a multi-day period is specified in the search query, the returned value is the average number of unshipped orders over the days in the queried period. **This metric cannot be segmented by product dimensions.**
+     */
+    unshippedOrders?: number | null;
   }
   export interface Schema$MinimumOrderValueTable {
     storeCodeSetWithMovs?: Schema$MinimumOrderValueTableStoreCodeSetWithMov[];
@@ -4818,7 +4886,7 @@ export namespace content_v2_1 {
      */
     link?: string | null;
     /**
-     * Link template for merchant hosted local storefront.
+     * URL template for merchant hosted local storefront.
      */
     linkTemplate?: string | null;
     /**
@@ -4850,7 +4918,7 @@ export namespace content_v2_1 {
      */
     mobileLink?: string | null;
     /**
-     * Link template for merchant hosted local storefront optimized for mobile devices.
+     * URL template for merchant hosted local storefront optimized for mobile devices.
      */
     mobileLinkTemplate?: string | null;
     /**
@@ -6360,6 +6428,54 @@ export namespace content_v2_1 {
    */
   export interface Schema$Segments {
     /**
+     * Brand of the product.
+     */
+    brand?: string | null;
+    /**
+     * Product category (1st level) in Google's product taxonomy.
+     */
+    categoryL1?: string | null;
+    /**
+     * Product category (2nd level) in Google's product taxonomy.
+     */
+    categoryL2?: string | null;
+    /**
+     * Product category (3rd level) in Google's product taxonomy.
+     */
+    categoryL3?: string | null;
+    /**
+     * Product category (4th level) in Google's product taxonomy.
+     */
+    categoryL4?: string | null;
+    /**
+     * Product category (5th level) in Google's product taxonomy.
+     */
+    categoryL5?: string | null;
+    /**
+     * Currency in which price metrics are represented, e.g., if you select `ordered_item_sales_micros`, the returned value will be represented by this currency.
+     */
+    currencyCode?: string | null;
+    /**
+     * Custom label 0 for custom grouping of products.
+     */
+    customLabel0?: string | null;
+    /**
+     * Custom label 1 for custom grouping of products.
+     */
+    customLabel1?: string | null;
+    /**
+     * Custom label 2 for custom grouping of products.
+     */
+    customLabel2?: string | null;
+    /**
+     * Custom label 3 for custom grouping of products.
+     */
+    customLabel3?: string | null;
+    /**
+     * Custom label 4 for custom grouping of products.
+     */
+    customLabel4?: string | null;
+    /**
      * Date in the merchant timezone to which metrics apply.
      */
     date?: Schema$Date;
@@ -6368,9 +6484,37 @@ export namespace content_v2_1 {
      */
     offerId?: string | null;
     /**
+     * Product category (1st level) in merchant's own product taxonomy.
+     */
+    productTypeL1?: string | null;
+    /**
+     * Product category (2nd level) in merchant's own product taxonomy.
+     */
+    productTypeL2?: string | null;
+    /**
+     * Product category (3rd level) in merchant's own product taxonomy.
+     */
+    productTypeL3?: string | null;
+    /**
+     * Product category (4th level) in merchant's own product taxonomy.
+     */
+    productTypeL4?: string | null;
+    /**
+     * Product category (5th level) in merchant's own product taxonomy.
+     */
+    productTypeL5?: string | null;
+    /**
      * Program to which metrics apply, e.g., Free Product Listing.
      */
     program?: string | null;
+    /**
+     * Title of the product.
+     */
+    title?: string | null;
+    /**
+     * First day of the week (Monday) of the metrics date in the merchant timezone.
+     */
+    week?: Schema$Date;
   }
   export interface Schema$Service {
     /**
