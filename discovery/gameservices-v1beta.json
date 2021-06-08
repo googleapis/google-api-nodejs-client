@@ -1357,7 +1357,7 @@
       }
     }
   },
-  "revision": "20210520",
+  "revision": "20210527",
   "rootUrl": "https://gameservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2082,8 +2082,8 @@
             "The combination of Agones and Kubernetes versions is supported by Google Cloud Game Servers.",
             "The installed version of Agones is not supported by Google Cloud Game Servers.",
             "The installed version of Agones is supported by Google Cloud Game Servers, but the installed version of Kubernetes is not recommended or supported by the version of Agones.",
-            "The installed version of Agones is not recognized, where the Agones controller's image name does not have version string as {major}.{minor}(.{patch}).",
-            "The server version of Kubernetes cluster is not recognized, where the API server didn't return parsable version info on path/version.",
+            "The installed version of Agones is not recognized because the Agones controller's image name does not have a version string reported as {major}.{minor}(.{patch}).",
+            "The server version of Kubernetes cluster is not recognized because the API server didn't return parsable version info on path/version.",
             "Failed to read or verify the version of Agones or Kubernetes. See version_installed_error_message for details.",
             "Agones is not installed."
           ],

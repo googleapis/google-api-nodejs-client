@@ -3590,11 +3590,6 @@
                           "description": "Flag that specifies whether to enable sequenced rollout. If set to `true`, a best-effort attempt will be made to roll out the routing rules corresponding to this deployment and the environment changes to add this deployment in a safe order. This reduces the risk of downtime that could be caused by changing the environment group's routing before the new destination for the affected traffic is ready to receive it. This should only be necessary if the new deployment will be capturing traffic from another environment under a shared environment group or if traffic will be rerouted to a different environment due to a base path removal. The [GenerateDeployChangeReport API](GenerateDeployChangeReport) may be used to examine routing changes before issuing the deployment request, and its response will indicate if a sequenced rollout is recommended for the deployment.",
                           "location": "query",
                           "type": "boolean"
-                        },
-                        "serviceAccount": {
-                          "description": "Google Cloud IAM service account. The service account represents the identity of the deployed proxy, and determines what permissions it has. The format must be `{ACCOUNT_ID}@{PROJECT}.iam.gserviceaccount.com`.",
-                          "location": "query",
-                          "type": "string"
                         }
                       },
                       "path": "v1/{+name}/deployments",
@@ -4994,11 +4989,6 @@
                           "description": "Flag that specifies whether the new deployment replaces other deployed revisions of the shared flow in the environment. Set `override` to `true` to replace other deployed revisions. By default, `override` is `false` and the deployment is rejected if other revisions of the shared flow are deployed in the environment.",
                           "location": "query",
                           "type": "boolean"
-                        },
-                        "serviceAccount": {
-                          "description": "Google Cloud IAM service account. The service account represents the identity of the deployed proxy, and determines what permissions it has. The format must be `{ACCOUNT_ID}@{PROJECT}.iam.gserviceaccount.com`.",
-                          "location": "query",
-                          "type": "string"
                         }
                       },
                       "path": "v1/{+name}/deployments",
@@ -6996,7 +6986,7 @@
       }
     }
   },
-  "revision": "20210522",
+  "revision": "20210528",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -8421,10 +8411,6 @@
             "$ref": "GoogleCloudApigeeV1DeploymentChangeReportRoutingConflict"
           },
           "type": "array"
-        },
-        "serviceAccount": {
-          "description": "The full resource name of Cloud IAM Service Account that this deployment is using, eg, `projects/-/serviceAccounts/{email}`.",
-          "type": "string"
         },
         "state": {
           "description": "Current state of the deployment. This field is not populated in List APIs.",
