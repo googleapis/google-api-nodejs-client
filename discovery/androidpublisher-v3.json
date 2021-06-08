@@ -2676,7 +2676,7 @@
       }
     }
   },
-  "revision": "20210528",
+  "revision": "20210605",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Apk": {
@@ -3716,7 +3716,7 @@
           "type": "string"
         },
         "orderId": {
-          "description": "The order id of the latest recurring order associated with the purchase of the subscription.",
+          "description": "The order id of the latest recurring order associated with the purchase of the subscription. If the subscription was canceled because payment was declined, this will be the order id from the payment declined order.",
           "type": "string"
         },
         "paymentState": {
