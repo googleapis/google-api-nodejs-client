@@ -3026,6 +3026,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "keep:v1",
+      "name": "keep",
+      "version": "v1",
+      "title": "Google Keep API",
+      "description": "Allows clients to create, read, and write their Google Keep Notes.",
+      "discoveryRestUrl": "https://keep.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://support.google.com/keep",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "kgsearch:v1",
       "name": "kgsearch",
       "version": "v1",
