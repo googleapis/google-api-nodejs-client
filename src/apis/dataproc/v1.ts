@@ -826,7 +826,11 @@ export namespace dataproc_v1 {
      */
     instanceName?: string | null;
     /**
-     * The public key used for sharing data with this instance.
+     * The public ECIES key used for sharing data with this instance.
+     */
+    publicEciesKey?: string | null;
+    /**
+     * The public RSA key used for sharing data with this instance.
      */
     publicKey?: string | null;
   }
