@@ -970,7 +970,7 @@ export namespace androidpublisher_v3 {
      */
     obfuscatedExternalProfileId?: string | null;
     /**
-     * The order id of the latest recurring order associated with the purchase of the subscription.
+     * The order id of the latest recurring order associated with the purchase of the subscription. If the subscription was canceled because payment was declined, this will be the order id from the payment declined order.
      */
     orderId?: string | null;
     /**
