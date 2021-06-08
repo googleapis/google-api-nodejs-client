@@ -2260,7 +2260,7 @@
       }
     }
   },
-  "revision": "20210507",
+  "revision": "20210521",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3241,8 +3241,12 @@
           "description": "The user-friendly name of the Compute Engine instance.",
           "type": "string"
         },
+        "publicEciesKey": {
+          "description": "The public ECIES key used for sharing data with this instance.",
+          "type": "string"
+        },
         "publicKey": {
-          "description": "The public key used for sharing data with this instance.",
+          "description": "The public RSA key used for sharing data with this instance.",
           "type": "string"
         }
       },
