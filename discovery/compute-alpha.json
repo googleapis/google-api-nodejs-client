@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/opvaAGdr1PM_WVOLZQA35SZFjfE\"",
+  "etag": "\"uWj2hSb4GVjzdDlAnRd2gbM1ZQ8/ksyaV5YKfA979wY3Lj02bT9wTcE\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -1729,6 +1729,46 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "getIamPolicy": {
+          "description": "Gets the access control policy for a resource. May be empty if no such policy or resource exists.",
+          "httpMethod": "GET",
+          "id": "compute.backendServices.getIamPolicy",
+          "parameterOrder": [
+            "project",
+            "resource"
+          ],
+          "parameters": {
+            "optionsRequestedPolicyVersion": {
+              "description": "Requested IAM Policy version.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/backendServices/{resource}/getIamPolicy",
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
         "insert": {
           "description": "Creates a BackendService resource in the specified project using the data included in the request. For more information, see  Backend services overview.",
           "httpMethod": "POST",
@@ -1891,6 +1931,42 @@
           },
           "response": {
             "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "setIamPolicy": {
+          "description": "Sets the access control policy on the specified resource. Replaces any existing policy.",
+          "httpMethod": "POST",
+          "id": "compute.backendServices.setIamPolicy",
+          "parameterOrder": [
+            "project",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/backendServices/{resource}/setIamPolicy",
+          "request": {
+            "$ref": "GlobalSetPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -3408,7 +3484,7 @@
           ]
         },
         "list": {
-          "description": "Lists all the policies that have been configured for the specified project.",
+          "description": "Lists all the policies that have been configured for the specified folder or organization.",
           "httpMethod": "GET",
           "id": "compute.firewallPolicies.list",
           "parameters": {
@@ -10744,6 +10820,52 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "performMaintenance": {
+          "description": "Perform a manual maintenance on the instance.",
+          "httpMethod": "POST",
+          "id": "compute.instances.performMaintenance",
+          "parameterOrder": [
+            "project",
+            "zone",
+            "instance"
+          ],
+          "parameters": {
+            "instance": {
+              "description": "Name of the instance scoping this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "zone": {
+              "description": "The name of the zone for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/zones/{zone}/instances/{instance}/performMaintenance",
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "removeResourcePolicies": {
           "description": "Removes resource policies from an instance.",
           "httpMethod": "POST",
@@ -14921,6 +15043,18 @@
               "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
               "required": true,
               "type": "string"
+            },
+            "maxPriority": {
+              "description": "When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "minPriority": {
+              "description": "When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
             },
             "project": {
               "description": "Project ID for this request.",
@@ -19736,6 +19870,54 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "getIamPolicy": {
+          "description": "Gets the access control policy for a resource. May be empty if no such policy or resource exists.",
+          "httpMethod": "GET",
+          "id": "compute.regionBackendServices.getIamPolicy",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "optionsRequestedPolicyVersion": {
+              "description": "Requested IAM Policy version.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/backendServices/{resource}/getIamPolicy",
+          "response": {
+            "$ref": "Policy"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute",
+            "https://www.googleapis.com/auth/compute.readonly"
+          ]
+        },
         "insert": {
           "description": "Creates a regional BackendService resource in the specified project using the data included in the request. For more information, see  Backend services overview.",
           "httpMethod": "POST",
@@ -19882,6 +20064,50 @@
           },
           "response": {
             "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "setIamPolicy": {
+          "description": "Sets the access control policy on the specified resource. Replaces any existing policy.",
+          "httpMethod": "POST",
+          "id": "compute.regionBackendServices.setIamPolicy",
+          "parameterOrder": [
+            "project",
+            "region",
+            "resource"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            },
+            "resource": {
+              "description": "Name or id of the resource for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/backendServices/{resource}/setIamPolicy",
+          "request": {
+            "$ref": "RegionSetPolicyRequest"
+          },
+          "response": {
+            "$ref": "Policy"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -23736,6 +23962,42 @@
             "https://www.googleapis.com/auth/cloud-platform",
             "https://www.googleapis.com/auth/compute"
           ]
+        },
+        "recommendLocations": {
+          "description": "Returns recommended locations (zones in a region) for specified sets of homogenous instances.",
+          "httpMethod": "POST",
+          "id": "compute.regionInstances.recommendLocations",
+          "parameterOrder": [
+            "project",
+            "region"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "region": {
+              "description": "The name of the region for this request.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/regions/{region}/instances/recommendLocations",
+          "request": {
+            "$ref": "RegionInstancesRecommendLocationsResource"
+          },
+          "response": {
+            "$ref": "RegionInstancesRecommendLocationsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
         }
       }
     },
@@ -24430,6 +24692,18 @@
               "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
               "required": true,
               "type": "string"
+            },
+            "maxPriority": {
+              "description": "When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "minPriority": {
+              "description": "When rule.priority is not specified, auto choose a unused priority between minPriority and maxPriority>. This field is exclusive with rule.priority.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
             },
             "project": {
               "description": "Project ID for this request.",
@@ -36581,7 +36855,7 @@
       }
     }
   },
-  "revision": "20210518",
+  "revision": "20210525",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -39372,7 +39646,7 @@
           "type": "string"
         },
         "sessionAffinity": {
-          "description": "Type of session affinity to use. The default is NONE.\n\nWhen the loadBalancingScheme is EXTERNAL: * For Network Load Balancing, the possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or  CLIENT_IP_PORT_PROTO. * For all other load balancers that use loadBalancingScheme=EXTERNAL, the possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. * You can use GENERATED_COOKIE if the protocol is HTTP, HTTP2, or HTTPS.\n\nWhen the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.\n\nWhen the loadBalancingScheme is INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.\n\nNot supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.",
+          "description": "Type of session affinity to use. The default is NONE.\n\nWhen the loadBalancingScheme is EXTERNAL:\n\n* For Network Load Balancing, the possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or  CLIENT_IP_PORT_PROTO. * For all other load balancers that use loadBalancingScheme=EXTERNAL, the possible values are NONE, CLIENT_IP, or GENERATED_COOKIE. * You can use GENERATED_COOKIE if the protocol is HTTP, HTTP2, or HTTPS.\n\nWhen the loadBalancingScheme is INTERNAL, possible values are NONE, CLIENT_IP, CLIENT_IP_PROTO, or CLIENT_IP_PORT_PROTO.\n\nWhen the loadBalancingScheme is INTERNAL_SELF_MANAGED, or INTERNAL_MANAGED, possible values are NONE, CLIENT_IP, GENERATED_COOKIE, HEADER_FIELD, or HTTP_COOKIE.\n\nNot supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true.",
           "enum": [
             "CLIENT_IP",
             "CLIENT_IP_NO_DESTINATION",
@@ -40679,11 +40953,9 @@
             "GENERAL_PURPOSE_N2",
             "GENERAL_PURPOSE_N2D",
             "MEMORY_OPTIMIZED",
-            "MEMORY_OPTIMIZED_REGIONAL_EXTENSION",
             "TYPE_UNSPECIFIED"
           ],
           "enumDescriptions": [
-            "",
             "",
             "",
             "",
@@ -46605,7 +46877,7 @@
         },
         "faultInjectionPolicy": {
           "$ref": "HttpFaultInjection",
-          "description": "The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure. As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a percentage of requests before sending those request to the backend service. Similarly requests from clients can be aborted by the Loadbalancer for a percentage of requests.\ntimeout and retry_policy will be ignored by clients that are configured with a fault_injection_policy."
+          "description": "The specification for fault injection introduced into traffic to test the resiliency of clients to backend service failure. As part of fault injection, when clients send requests to a backend service, delays can be introduced by Loadbalancer on a percentage of requests before sending those request to the backend service. Similarly requests from clients can be aborted by the Loadbalancer for a percentage of requests. For the requests impacted by fault injection,\ntimeout and retry_policy will be ignored by clients that are configured with a fault_injection_policy."
         },
         "maxStreamDuration": {
           "$ref": "Duration",
@@ -52359,7 +52631,7 @@
           "type": "string"
         },
         "state": {
-          "description": "State of this notification, which can take one of the following values: \n- ACTIVE: This outage notification is active. The event could be in the past, present, or future. See start_time and end_time for scheduling. \n- CANCELLED: The outage associated with this notification was cancelled before the outage was due to start. Note that the versions of this enum prefixed with \"NS_\" have been deprecated in favor of the unprefixed values.",
+          "description": "State of this notification, which can take one of the following values: \n- ACTIVE: This outage notification is active. The event could be in the past, present, or future. See start_time and end_time for scheduling. \n- CANCELLED: The outage associated with this notification was cancelled before the outage was due to start. \n- COMPLETED: The outage associated with this notification is complete.  Note that the versions of this enum prefixed with \"NS_\" have been deprecated in favor of the unprefixed values.",
           "enum": [
             "ACTIVE",
             "CANCELLED",
@@ -53053,6 +53325,22 @@
           },
           "description": "Location configurations mapped by location name. Currently only zone names are supported and must be represented as valid internal URLs, such as zones/us-central1-a.",
           "type": "object"
+        },
+        "targetShape": {
+          "description": "Strategy for distributing VMs across zones in a region.",
+          "enum": [
+            "ANY",
+            "ANY_SINGLE_ZONE",
+            "BALANCED",
+            "TARGET_SHAPE_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -59988,9 +60276,11 @@
           "enum": [
             "ANNOUNCED",
             "DELETING",
-            "INITIALIZING"
+            "INITIALIZING",
+            "READY_TO_ANNOUNCE"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             ""
@@ -61876,6 +62166,64 @@
       },
       "type": "object"
     },
+    "RegionInstancesRecommendLocationsResource": {
+      "description": "A transient resource used in compute.regionInstances.recommendLocations. This resource is not saved anywhere and used only to process the request.",
+      "id": "RegionInstancesRecommendLocationsResource",
+      "properties": {
+        "instanceSpecs": {
+          "additionalProperties": {
+            "$ref": "BulkInsertInstanceResource"
+          },
+          "description": "Specification of named homogeneous instance sets to find location for.\nKeys of this map are arbitrary (but must be different), defined by the caller used only in the response. They must follow RFC 1035 name standard. Specifically, they must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.\nValues are trimmed BulkInsertInstanceResource messages, without the following fields:  \n- min_count\n- predefined_name\n- name_pattern\n- per_instance_properties\n- instance\n- secure_tag\n- location_policy",
+          "type": "object"
+        },
+        "locationPolicy": {
+          "$ref": "LocationPolicy",
+          "description": "Location policy to indicate allowed zones for instances, together with the shape of the distribution."
+        }
+      },
+      "type": "object"
+    },
+    "RegionInstancesRecommendLocationsResponse": {
+      "description": "Response for for compute.regionInstances.recommendLocations.",
+      "id": "RegionInstancesRecommendLocationsResponse",
+      "properties": {
+        "recommendedLocations": {
+          "additionalProperties": {
+            "$ref": "RegionInstancesRecommendLocationsResponseRecommendationsForInstanceSpecs"
+          },
+          "description": "Instance count recommendations, keys are instance spec names.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "RegionInstancesRecommendLocationsResponseRecommendation": {
+      "description": "Instance count recommendation for a single zone.",
+      "id": "RegionInstancesRecommendLocationsResponseRecommendation",
+      "properties": {
+        "instanceCount": {
+          "description": "Count of instances recommended.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "RegionInstancesRecommendLocationsResponseRecommendationsForInstanceSpecs": {
+      "description": "Instance count recommendations for a single instance specification.",
+      "id": "RegionInstancesRecommendLocationsResponseRecommendationsForInstanceSpecs",
+      "properties": {
+        "locations": {
+          "additionalProperties": {
+            "$ref": "RegionInstancesRecommendLocationsResponseRecommendation"
+          },
+          "description": "Instance count recommendations, keys are zone names.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "RegionInstantSnapshotsExportRequest": {
       "id": "RegionInstantSnapshotsExportRequest",
       "properties": {
@@ -63385,6 +63733,9 @@
       "properties": {
         "scheduling": {
           "$ref": "ResourceStatusScheduling"
+        },
+        "upcomingMaintenance": {
+          "$ref": "ResourceStatusUpcomingMaintenance"
         }
       },
       "type": "object"
@@ -63396,6 +63747,16 @@
           "description": "Specifies the availability domain (AD), which this instance should be scheduled on. The AD belongs to the spread GroupPlacementPolicy resource policy that has been assigned to the instance. Specify a value between 1-max count of availability domains in your GroupPlacementPolicy. See go/placement-policy-extension for more details.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceStatusUpcomingMaintenance": {
+      "id": "ResourceStatusUpcomingMaintenance",
+      "properties": {
+        "canReschedule": {
+          "description": "Indicates if the maintenance can be customer triggered. See go/sf-ctm-design for more details",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -64266,7 +64627,7 @@
           "type": "string"
         },
         "subnetwork": {
-          "description": "The URL of the subnetwork resource that this interface belongs to, which must be in the same region as the Cloud Router. When you establish a BGP session to a VM instance using this interface, the VM instance must belong to the same subnetwork as the subnetwork specified here.",
+          "description": "The URI of the subnetwork resource that this interface belongs to, which must be in the same region as the Cloud Router. When you establish a BGP session to a VM instance using this interface, the VM instance must belong to the same subnetwork as the subnetwork specified here.",
           "type": "string"
         }
       },
@@ -68473,9 +68834,11 @@
             "INTERNAL_HTTPS_LOAD_BALANCER",
             "PRIVATE",
             "PRIVATE_RFC_1918",
-            "PRIVATE_SERVICE_CONNECT"
+            "PRIVATE_SERVICE_CONNECT",
+            "REGIONAL_MANAGED_PROXY"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -68994,7 +69357,7 @@
       "type": "object"
     },
     "Subsetting": {
-      "description": "Subsetting configuration for this BackendService. Currently this is applicable only for Internal TCP/UDP load balancing and Internal HTTP(S) load balancing.",
+      "description": "Subsetting configuration for this BackendService. Currently this is applicable only for Internal TCP/UDP load balancing, Internal HTTP(S) load balancing and Traffic Director.",
       "id": "Subsetting",
       "properties": {
         "policy": {
