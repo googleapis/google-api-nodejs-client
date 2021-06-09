@@ -438,7 +438,7 @@
           ]
         },
         "search": {
-          "description": "Provides a list of contacts in the authenticated user's other contacts that matches the search query. The query matches on a contact's `names`, `emailAddresses`, and `phoneNumbers` fields that are from the OTHER_CONTACT source.",
+          "description": "Provides a list of contacts in the authenticated user's other contacts that matches the search query. The query matches on a contact's `names`, `emailAddresses`, and `phoneNumbers` fields that are from the OTHER_CONTACT source. **IMPORTANT**: Before searching, clients should send a warmup request with an empty query to update the cache. See https://developers.google.com/people/v1/other-contacts#search_the_users_other_contacts",
           "flatPath": "v1/otherContacts:search",
           "httpMethod": "GET",
           "id": "people.otherContacts.search",
@@ -824,8 +824,8 @@
               ],
               "enumDescriptions": [
                 "Unspecified.",
-                "G Suite domain shared contact.",
-                "G Suite domain profile."
+                "Google Workspace domain shared contact.",
+                "Google Workspace domain profile."
               ],
               "location": "query",
               "repeated": true,
@@ -846,7 +846,7 @@
           ]
         },
         "searchContacts": {
-          "description": "Provides a list of contacts in the authenticated user's grouped contacts that matches the search query. The query matches on a contact's `names`, `nickNames`, `emailAddresses`, `phoneNumbers`, and `organizations` fields that are from the CONTACT\" source.",
+          "description": "Provides a list of contacts in the authenticated user's grouped contacts that matches the search query. The query matches on a contact's `names`, `nickNames`, `emailAddresses`, `phoneNumbers`, and `organizations` fields that are from the CONTACT\" source. **IMPORTANT**: Before searching, clients should send a warmup request with an empty query to update the cache. See https://developers.google.com/people/v1/contacts#search_the_users_contacts",
           "flatPath": "v1/people:searchContacts",
           "httpMethod": "GET",
           "id": "people.people.searchContacts",
@@ -949,8 +949,8 @@
               ],
               "enumDescriptions": [
                 "Unspecified.",
-                "G Suite domain shared contact.",
-                "G Suite domain profile."
+                "Google Workspace domain shared contact.",
+                "Google Workspace domain profile."
               ],
               "location": "query",
               "repeated": true,
@@ -1154,7 +1154,7 @@
       }
     }
   },
-  "revision": "20210602",
+  "revision": "20210607",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1717,11 +1717,11 @@
       "type": "object"
     },
     "DomainMembership": {
-      "description": "A G Suite Domain membership.",
+      "description": "A Google Workspace Domain membership.",
       "id": "DomainMembership",
       "properties": {
         "inViewerDomain": {
-          "description": "True if the person is in the viewer's G Suite domain.",
+          "description": "True if the person is in the viewer's Google Workspace domain.",
           "type": "boolean"
         }
       },
@@ -2714,7 +2714,7 @@
           "enumDescriptions": [
             "Unspecified.",
             "Person.",
-            "[Currents Page.](https://gsuite.google.com/products/currents/)"
+            "[Currents Page.](https://workspace.google.com/products/currents/)"
           ],
           "readOnly": true,
           "type": "string"
@@ -2823,7 +2823,7 @@
           "enumDescriptions": [
             "Unspecified.",
             "Person.",
-            "[Currents Page.](https://gsuite.google.com/products/currents/)"
+            "[Currents Page.](https://workspace.google.com/products/currents/)"
           ],
           "readOnly": true,
           "type": "string"
@@ -2841,7 +2841,7 @@
               "The user type is not known.",
               "The user is a Google user.",
               "The user is a Currents user.",
-              "The user is a G Suite user."
+              "The user is a Google Workspace user."
             ],
             "type": "string"
           },
@@ -3053,10 +3053,10 @@
             "Unspecified.",
             "[Google Account](https://accounts.google.com).",
             "[Google profile](https://profiles.google.com). You can view the profile at [https://profiles.google.com/](https://profiles.google.com/){id}, where {id} is the source id.",
-            "[G Suite domain profile](https://support.google.com/a/answer/1628008).",
+            "[Google Workspace domain profile](https://support.google.com/a/answer/1628008).",
             "[Google contact](https://contacts.google.com). You can view the contact at [https://contact.google.com/](https://contact.google.com/){id}, where {id} is the source id.",
             "[Google \"Other contact\"](https://contacts.google.com/other).",
-            "[G Suite domain shared contact](https://support.google.com/a/answer/9281635)."
+            "[Google Workspace domain shared contact](https://support.google.com/a/answer/9281635)."
           ],
           "type": "string"
         },
