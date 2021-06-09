@@ -304,6 +304,19 @@ export namespace containeranalysis_v1alpha1 {
     signature?: Schema$BuildSignature;
   }
   /**
+   * A compliance check that is a CIS benchmark.
+   */
+  export interface Schema$CisBenchmark {
+    /**
+     * The profile level of this CIS benchmark check.
+     */
+    profileLevel?: number | null;
+    /**
+     * The severity level of this CIS benchmark check.
+     */
+    severity?: string | null;
+  }
+  /**
    * Command describes a step performed as part of the build pipeline.
    */
   export interface Schema$Command {
@@ -331,6 +344,65 @@ export namespace containeranalysis_v1alpha1 {
      * The ID(s) of the Command(s) that this Command depends on.
      */
     waitFor?: string[] | null;
+  }
+  /**
+   * ComplianceNote encapsulates all information about a specific compliance check.
+   */
+  export interface Schema$ComplianceNote {
+    /**
+     * Right now we only have one compliance type, but we may add additional types in the future.
+     */
+    cisBenchmark?: Schema$CisBenchmark;
+    /**
+     * A description about this compliance check.
+     */
+    description?: string | null;
+    /**
+     * A rationale for the existence of this compliance check.
+     */
+    rationale?: string | null;
+    /**
+     * A description of remediation steps if the compliance check fails.
+     */
+    remediation?: string | null;
+    /**
+     * Serialized scan instructions with a predefined format.
+     */
+    scanInstructions?: string | null;
+    /**
+     * The title that identifies this compliance check.
+     */
+    title?: string | null;
+    /**
+     * The OS and config versions the benchmark applies to.
+     */
+    version?: Schema$ComplianceVersion[];
+  }
+  /**
+   * An indication that the compliance checks in the associated ComplianceNote were not satisfied for particular resources or a specified reason.
+   */
+  export interface Schema$ComplianceOccurrence {
+    /**
+     * The reason for non compliance of these files.
+     */
+    nonComplianceReason?: string | null;
+    /**
+     * A list of files which are violating compliance checks.
+     */
+    nonCompliantFiles?: Schema$NonCompliantFile[];
+  }
+  /**
+   * Describes the CIS benchmark version that is applicable to a given OS and os version.
+   */
+  export interface Schema$ComplianceVersion {
+    /**
+     * The CPE URI (https://cpe.mitre.org/specification/) this benchmark is applicable to.
+     */
+    cpeUri?: string | null;
+    /**
+     * The version of the benchmark. This is set to the version of the OS-specific CIS document the benchmark is defined in.
+     */
+    version?: string | null;
   }
   /**
    * Request for creating an operation
@@ -831,6 +903,23 @@ export namespace containeranalysis_v1alpha1 {
     version?: Schema$Version;
   }
   /**
+   * Details about files that caused a compliance check to fail.
+   */
+  export interface Schema$NonCompliantFile {
+    /**
+     * Command to display the non-compliant files.
+     */
+    displayCommand?: string | null;
+    /**
+     * display_command is a single command that can be used to display a list of non compliant files. When there is no such command, we can also iterate a list of non compliant file using 'path'. Empty if `display_command` is set.
+     */
+    path?: string | null;
+    /**
+     * Explains why a file is non compliant for a CIS check.
+     */
+    reason?: string | null;
+  }
+  /**
    * Provides a detailed description of a `Note`.
    */
   export interface Schema$Note {
@@ -846,6 +935,10 @@ export namespace containeranalysis_v1alpha1 {
      * Build provenance type for a verifiable build.
      */
     buildType?: Schema$BuildType;
+    /**
+     * A note describing a compliance check.
+     */
+    compliance?: Schema$ComplianceNote;
     /**
      * Output only. The time this note was created. This field can be used as a filter in list requests.
      */
@@ -911,6 +1004,10 @@ export namespace containeranalysis_v1alpha1 {
      * Build details for a verifiable build.
      */
     buildDetails?: Schema$BuildDetails;
+    /**
+     * Describes whether or not a resource passes compliance checks.
+     */
+    compliance?: Schema$ComplianceOccurrence;
     /**
      * Output only. The time this `Occurrence` was created.
      */
@@ -1454,6 +1551,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "attestationAuthority": {},
      *       //   "baseImage": {},
      *       //   "buildType": {},
+     *       //   "compliance": {},
      *       //   "createTime": "my_createTime",
      *       //   "deployable": {},
      *       //   "discovery": {},
@@ -1477,6 +1575,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "buildType": {},
+     *   //   "compliance": {},
      *   //   "createTime": "my_createTime",
      *   //   "deployable": {},
      *   //   "discovery": {},
@@ -1747,6 +1846,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "buildType": {},
+     *   //   "compliance": {},
      *   //   "createTime": "my_createTime",
      *   //   "deployable": {},
      *   //   "discovery": {},
@@ -2173,6 +2273,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "attestationAuthority": {},
      *       //   "baseImage": {},
      *       //   "buildType": {},
+     *       //   "compliance": {},
      *       //   "createTime": "my_createTime",
      *       //   "deployable": {},
      *       //   "discovery": {},
@@ -2196,6 +2297,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "buildType": {},
+     *   //   "compliance": {},
      *   //   "createTime": "my_createTime",
      *   //   "deployable": {},
      *   //   "discovery": {},
@@ -2912,6 +3014,7 @@ export namespace containeranalysis_v1alpha1 {
      *       // {
      *       //   "attestation": {},
      *       //   "buildDetails": {},
+     *       //   "compliance": {},
      *       //   "createTime": "my_createTime",
      *       //   "deployment": {},
      *       //   "derivedImage": {},
@@ -2935,6 +3038,7 @@ export namespace containeranalysis_v1alpha1 {
      *   // {
      *   //   "attestation": {},
      *   //   "buildDetails": {},
+     *   //   "compliance": {},
      *   //   "createTime": "my_createTime",
      *   //   "deployment": {},
      *   //   "derivedImage": {},
@@ -3205,6 +3309,7 @@ export namespace containeranalysis_v1alpha1 {
      *   // {
      *   //   "attestation": {},
      *   //   "buildDetails": {},
+     *   //   "compliance": {},
      *   //   "createTime": "my_createTime",
      *   //   "deployment": {},
      *   //   "derivedImage": {},
@@ -3488,6 +3593,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "buildType": {},
+     *   //   "compliance": {},
      *   //   "createTime": "my_createTime",
      *   //   "deployable": {},
      *   //   "discovery": {},
@@ -3922,6 +4028,7 @@ export namespace containeranalysis_v1alpha1 {
      *       // {
      *       //   "attestation": {},
      *       //   "buildDetails": {},
+     *       //   "compliance": {},
      *       //   "createTime": "my_createTime",
      *       //   "deployment": {},
      *       //   "derivedImage": {},
@@ -3945,6 +4052,7 @@ export namespace containeranalysis_v1alpha1 {
      *   // {
      *   //   "attestation": {},
      *   //   "buildDetails": {},
+     *   //   "compliance": {},
      *   //   "createTime": "my_createTime",
      *   //   "deployment": {},
      *   //   "derivedImage": {},
@@ -5306,6 +5414,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "attestationAuthority": {},
      *       //   "baseImage": {},
      *       //   "buildType": {},
+     *       //   "compliance": {},
      *       //   "createTime": "my_createTime",
      *       //   "deployable": {},
      *       //   "discovery": {},
@@ -5329,6 +5438,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "buildType": {},
+     *   //   "compliance": {},
      *   //   "createTime": "my_createTime",
      *   //   "deployable": {},
      *   //   "discovery": {},
@@ -5599,6 +5709,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "buildType": {},
+     *   //   "compliance": {},
      *   //   "createTime": "my_createTime",
      *   //   "deployable": {},
      *   //   "discovery": {},
@@ -6025,6 +6136,7 @@ export namespace containeranalysis_v1alpha1 {
      *       //   "attestationAuthority": {},
      *       //   "baseImage": {},
      *       //   "buildType": {},
+     *       //   "compliance": {},
      *       //   "createTime": "my_createTime",
      *       //   "deployable": {},
      *       //   "discovery": {},
@@ -6048,6 +6160,7 @@ export namespace containeranalysis_v1alpha1 {
      *   //   "attestationAuthority": {},
      *   //   "baseImage": {},
      *   //   "buildType": {},
+     *   //   "compliance": {},
      *   //   "createTime": "my_createTime",
      *   //   "deployable": {},
      *   //   "discovery": {},
