@@ -620,10 +620,6 @@ export namespace analyticsadmin_v1alpha {
      */
     createTime?: string | null;
     /**
-     * Maximum user access to the GA4 property allowed to admins of the linked Firebase project.
-     */
-    maximumUserAccess?: string | null;
-    /**
      * Output only. Example format: properties/1234/firebaseLinks/5678
      */
     name?: string | null;
@@ -8815,7 +8811,6 @@ export namespace analyticsadmin_v1alpha {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
-     *       //   "maximumUserAccess": "my_maximumUserAccess",
      *       //   "name": "my_name",
      *       //   "project": "my_project"
      *       // }
@@ -8826,7 +8821,6 @@ export namespace analyticsadmin_v1alpha {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
-     *   //   "maximumUserAccess": "my_maximumUserAccess",
      *   //   "name": "my_name",
      *   //   "project": "my_project"
      *   // }
@@ -9245,7 +9239,6 @@ export namespace analyticsadmin_v1alpha {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
-     *       //   "maximumUserAccess": "my_maximumUserAccess",
      *       //   "name": "my_name",
      *       //   "project": "my_project"
      *       // }
@@ -9256,7 +9249,6 @@ export namespace analyticsadmin_v1alpha {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
-     *   //   "maximumUserAccess": "my_maximumUserAccess",
      *   //   "name": "my_name",
      *   //   "project": "my_project"
      *   // }
