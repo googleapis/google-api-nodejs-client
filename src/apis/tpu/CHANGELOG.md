@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.3.3](https://www.github.com/googleapis/google-api-nodejs-client/compare/tpu-v0.3.2...tpu-v0.3.3) (2021-06-09)
+
+
+### Bug Fixes
+
+* **tpu:** update the API ([6541ade](https://www.github.com/googleapis/google-api-nodejs-client/commit/6541ade6fbd06d7117c10d15ac162f9fda7f687c))
+
 ### [0.3.2](https://www.github.com/googleapis/google-api-nodejs-client/compare/tpu-v0.3.1...tpu-v0.3.2) (2021-05-23)
 
 

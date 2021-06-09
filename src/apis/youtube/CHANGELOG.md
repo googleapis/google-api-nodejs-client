@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/youtube-v2.0.0...youtube-v2.1.0) (2021-06-09)
+
+
+### Features
+
+* **youtube:** update the API ([2eb77c3](https://www.github.com/googleapis/google-api-nodejs-client/commit/2eb77c3bd9f93006f4024716f47dd56655d63573))
+
 ## [2.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/youtube-v1.0.0...youtube-v2.0.0) (2021-04-21)
 
 
