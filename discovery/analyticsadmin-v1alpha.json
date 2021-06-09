@@ -2796,7 +2796,7 @@
       }
     }
   },
-  "revision": "20210520",
+  "revision": "20210608",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -3462,24 +3462,6 @@
           "description": "Output only. Time when this FirebaseLink was originally created.",
           "format": "google-datetime",
           "readOnly": true,
-          "type": "string"
-        },
-        "maximumUserAccess": {
-          "description": "Maximum user access to the GA4 property allowed to admins of the linked Firebase project.",
-          "enum": [
-            "MAXIMUM_USER_ACCESS_UNSPECIFIED",
-            "NO_ACCESS",
-            "READ_AND_ANALYZE",
-            "EDITOR_WITHOUT_LINK_MANAGEMENT",
-            "EDITOR_INCLUDING_LINK_MANAGEMENT"
-          ],
-          "enumDescriptions": [
-            "Unspecified maximum user access.",
-            "Firebase users have no access to the Analytics property.",
-            "Firebase users have Read & Analyze access to the Analytics property.",
-            "Firebase users have edit access to the Analytics property, but may not manage the Firebase link.",
-            "Firebase users have edit access to the Analytics property and may manage the Firebase link."
-          ],
           "type": "string"
         },
         "name": {
