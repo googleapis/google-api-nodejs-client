@@ -716,6 +716,10 @@ export namespace genomics_v2alpha1 {
      */
     preemptible?: boolean | null;
     /**
+     * If specified, the VM will only be allocated inside the matching reservation. It will fail if the VM parameters don't match the reservation.
+     */
+    reservation?: string | null;
+    /**
      * The service account to install on the VM. This account does not need any permissions other than those required by the pipeline.
      */
     serviceAccount?: Schema$ServiceAccount;

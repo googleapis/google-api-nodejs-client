@@ -301,7 +301,7 @@
       }
     }
   },
-  "revision": "20210512",
+  "revision": "20210605",
   "rootUrl": "https://genomics.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1140,6 +1140,10 @@
         "preemptible": {
           "description": "If true, allocate a preemptible VM.",
           "type": "boolean"
+        },
+        "reservation": {
+          "description": "If specified, the VM will only be allocated inside the matching reservation. It will fail if the VM parameters don't match the reservation.",
+          "type": "string"
         },
         "serviceAccount": {
           "$ref": "ServiceAccount",
