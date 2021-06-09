@@ -364,12 +364,20 @@
     "package": "@google-cloud/phishing-protection"
   },
   {
+    "api": "privatecatalog",
+    "package": "@google-cloud/private-catalog"
+  },
+  {
     "api": "cloudresourcemanager",
-    "package": "@google-cloud/resource"
+    "package": "@google-cloud/resource-manager"
   },
   {
     "api": "runtimeconfig",
     "package": "@google-cloud/rcloadenv"
+  },
+  {
+    "api": "shell",
+    "package": "@google-cloud/shell"
   },
   {
     "api": "clouddebugger",
@@ -380,11 +388,19 @@
     "package": "@google-cloud/trace-agent"
   },
   {
+    "api": "tpu",
+    "package": "@google-cloud/tpu"
+  },
+  {
     "api": "transcoder",
     "package": "@google-cloud/video-transcoder"
   },
   {
     "api": "aiplatform",
     "package": "@google-cloud/aiplatform"
+  },
+  {
+    "api": "vpcaccess",
+    "package": "@google-cloud/vpc-access"
   }
 ]
