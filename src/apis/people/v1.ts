@@ -521,11 +521,11 @@ export namespace people_v1 {
     person?: Schema$Person;
   }
   /**
-   * A G Suite Domain membership.
+   * A Google Workspace Domain membership.
    */
   export interface Schema$DomainMembership {
     /**
-     * True if the person is in the viewer's G Suite domain.
+     * True if the person is in the viewer's Google Workspace domain.
      */
     inViewerDomain?: boolean | null;
   }
@@ -3044,7 +3044,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Provides a list of contacts in the authenticated user's other contacts that matches the search query. The query matches on a contact's `names`, `emailAddresses`, and `phoneNumbers` fields that are from the OTHER_CONTACT source.
+     * Provides a list of contacts in the authenticated user's other contacts that matches the search query. The query matches on a contact's `names`, `emailAddresses`, and `phoneNumbers` fields that are from the OTHER_CONTACT source. **IMPORTANT**: Before searching, clients should send a warmup request with an empty query to update the cache. See https://developers.google.com/people/v1/other-contacts#search_the_users_other_contacts
      * @example
      * ```js
      * // Before running the sample:
@@ -4619,7 +4619,7 @@ export namespace people_v1 {
     }
 
     /**
-     * Provides a list of contacts in the authenticated user's grouped contacts that matches the search query. The query matches on a contact's `names`, `nickNames`, `emailAddresses`, `phoneNumbers`, and `organizations` fields that are from the CONTACT" source.
+     * Provides a list of contacts in the authenticated user's grouped contacts that matches the search query. The query matches on a contact's `names`, `nickNames`, `emailAddresses`, `phoneNumbers`, and `organizations` fields that are from the CONTACT" source. **IMPORTANT**: Before searching, clients should send a warmup request with an empty query to update the cache. See https://developers.google.com/people/v1/contacts#search_the_users_contacts
      * @example
      * ```js
      * // Before running the sample:
