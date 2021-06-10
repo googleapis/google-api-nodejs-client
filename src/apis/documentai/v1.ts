@@ -625,6 +625,10 @@ export namespace documentai_v1 {
      */
     paragraphs?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageParagraph[];
     /**
+     * The history of this page.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance;
+    /**
      * A list of visually detected tables on the page.
      */
     tables?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageTable[];
@@ -671,7 +675,7 @@ export namespace documentai_v1 {
      */
     layoutType?: string | null;
     /**
-     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.
+     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.
      */
     page?: string | null;
   }
@@ -738,6 +742,10 @@ export namespace documentai_v1 {
      * A list of detected languages for name together with confidence.
      */
     nameDetectedLanguages?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage[];
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance;
     /**
      * A list of detected languages for value together with confidence.
      */
@@ -1458,6 +1466,10 @@ export namespace documentai_v1 {
      */
     paragraphs?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageParagraph[];
     /**
+     * The history of this page.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance;
+    /**
      * A list of visually detected tables on the page.
      */
     tables?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageTable[];
@@ -1504,7 +1516,7 @@ export namespace documentai_v1 {
      */
     layoutType?: string | null;
     /**
-     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.
+     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.
      */
     page?: string | null;
   }
@@ -1571,6 +1583,10 @@ export namespace documentai_v1 {
      * A list of detected languages for name together with confidence.
      */
     nameDetectedLanguages?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage[];
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance;
     /**
      * A list of detected languages for value together with confidence.
      */
@@ -2465,6 +2481,10 @@ export namespace documentai_v1 {
      */
     paragraphs?: Schema$GoogleCloudDocumentaiV1DocumentPageParagraph[];
     /**
+     * The history of this page.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1DocumentProvenance;
+    /**
      * A list of visually detected tables on the page.
      */
     tables?: Schema$GoogleCloudDocumentaiV1DocumentPageTable[];
@@ -2511,7 +2531,7 @@ export namespace documentai_v1 {
      */
     layoutType?: string | null;
     /**
-     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.
+     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.
      */
     page?: string | null;
   }
@@ -2578,6 +2598,10 @@ export namespace documentai_v1 {
      * A list of detected languages for name together with confidence.
      */
     nameDetectedLanguages?: Schema$GoogleCloudDocumentaiV1DocumentPageDetectedLanguage[];
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1DocumentProvenance;
     /**
      * A list of detected languages for value together with confidence.
      */
@@ -3082,7 +3106,7 @@ export namespace documentai_v1 {
     commonMetadata?: Schema$GoogleCloudDocumentaiV1CommonOperationMetadata;
   }
   /**
-   * Request message for review document method. Next Id: 5.
+   * Request message for review document method. Next Id: 6.
    */
   export interface Schema$GoogleCloudDocumentaiV1ReviewDocumentRequest {
     /**
@@ -3093,6 +3117,10 @@ export namespace documentai_v1 {
      * An inline document proto.
      */
     inlineDocument?: Schema$GoogleCloudDocumentaiV1Document;
+    /**
+     * The priority of the human review task.
+     */
+    priority?: string | null;
   }
   /**
    * Response message for review document method.
@@ -4685,7 +4713,8 @@ export namespace documentai_v1 {
      *           // request body parameters
      *           // {
      *           //   "enableSchemaValidation": false,
-     *           //   "inlineDocument": {}
+     *           //   "inlineDocument": {},
+     *           //   "priority": "my_priority"
      *           // }
      *         },
      *       }
