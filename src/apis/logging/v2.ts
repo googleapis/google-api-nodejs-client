@@ -13300,7 +13300,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.updateCmekSettings({
-     *     // Required. The resource name for the CMEK settings to update. < "projects/PROJECT_ID/cmekSettings" "organizations/ORGANIZATION_ID/cmekSettings" "billingAccounts/BILLING_ACCOUNT_ID/cmekSettings" "folders/FOLDER_ID/cmekSettings"Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     // Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
      *     name: 'organizations/my-organization',
      *     // Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
      *     updateMask: 'placeholder-value',
@@ -13429,7 +13429,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Updatecmeksettings
     extends StandardParameters {
     /**
-     * Required. The resource name for the CMEK settings to update. < "projects/PROJECT_ID/cmekSettings" "organizations/ORGANIZATION_ID/cmekSettings" "billingAccounts/BILLING_ACCOUNT_ID/cmekSettings" "folders/FOLDER_ID/cmekSettings"Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     * Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
      */
     name?: string;
     /**
@@ -23407,7 +23407,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.updateCmekSettings({
-     *     // Required. The resource name for the CMEK settings to update. < "projects/PROJECT_ID/cmekSettings" "organizations/ORGANIZATION_ID/cmekSettings" "billingAccounts/BILLING_ACCOUNT_ID/cmekSettings" "folders/FOLDER_ID/cmekSettings"Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     *     // Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
      *     name: '[^/]+/[^/]+',
      *     // Optional. Field mask identifying which fields from cmek_settings should be updated. A field will be overwritten if and only if it is in the update mask. Output only fields cannot be updated.See FieldMask for more information.Example: "updateMask=kmsKeyName"
      *     updateMask: 'placeholder-value',
@@ -23536,7 +23536,7 @@ export namespace logging_v2 {
   export interface Params$Resource$V2$Updatecmeksettings
     extends StandardParameters {
     /**
-     * Required. The resource name for the CMEK settings to update. < "projects/PROJECT_ID/cmekSettings" "organizations/ORGANIZATION_ID/cmekSettings" "billingAccounts/BILLING_ACCOUNT_ID/cmekSettings" "folders/FOLDER_ID/cmekSettings"Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
+     * Required. The resource name for the CMEK settings to update. "projects/[PROJECT_ID]/cmekSettings" "organizations/[ORGANIZATION_ID]/cmekSettings" "billingAccounts/[BILLING_ACCOUNT_ID]/cmekSettings" "folders/[FOLDER_ID]/cmekSettings" Example: "organizations/12345/cmekSettings".Note: CMEK for the Logs Router can currently only be configured for GCP organizations. Once configured, it applies to all projects and folders in the GCP organization.
      */
     name?: string;
     /**
