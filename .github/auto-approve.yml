@@ -1,0 +1,7 @@
+rules:
+- author: "release-please[bot]"
+  title: "^chore: release"
+  changedFiles:
+  - "package\\.json$"
+  - "CHANGELOG\\.md$"
+  maxFiles: 3

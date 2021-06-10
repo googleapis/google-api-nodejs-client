@@ -288,6 +288,10 @@
     "package": "@google-cloud/notebooks"
   },
   {
+    "api": "apigeeconnect",
+    "package": "@google-cloud/apigee-connect"
+  },
+  {
     "api": "area120tables",
     "package": "@google/area120-tables"
   },

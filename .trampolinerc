@@ -20,7 +20,8 @@ required_envvars+=(
 
 # Add env vars which are passed down into the container here.
 pass_down_envvars+=(
-    "AUTORELEASE_PR"
+    "AUTORELEASE_PR",
+    "VERSION"
 )
 
 # Prevent unintentional override on the default image.
