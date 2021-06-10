@@ -43,9 +43,7 @@
     "predownload": "npm run build-tools",
     "download": "node build/src/generator/download.js",
     "preupdate-disclaimers": "npm run build-tools",
-    "update-disclaimers": "node build/src/generator/disclaimer.js",
-    "api-extractor": "api-extractor run --local",
-    "api-documenter": "api-documenter yaml --input-folder=temp"
+    "update-disclaimers": "node build/src/generator/disclaimer.js"
   },
   "author": "Google Inc.",
   "keywords": [
@@ -61,8 +59,6 @@
   },
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.10",
-    "@microsoft/api-documenter": "^7.8.10",
-    "@microsoft/api-extractor": "^7.8.10",
     "@types/execa": "^0.9.0",
     "@types/mkdirp": "^1.0.0",
     "@types/mocha": "^8.0.0",
