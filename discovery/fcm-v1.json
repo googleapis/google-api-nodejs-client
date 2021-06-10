@@ -142,7 +142,7 @@
       }
     }
   },
-  "revision": "20210317",
+  "revision": "20210607",
   "rootUrl": "https://fcm.googleapis.com/",
   "schemas": {
     "AndroidConfig": {
@@ -366,7 +366,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "HTTP request headers defined in Apple Push Notification Service. Refer to [APNs request headers](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns) for supported headers, e.g. \"apns-priority\": \"10\".",
+          "description": "HTTP request headers defined in Apple Push Notification Service. Refer to [APNs request headers](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/sending_notification_requests_to_apns) for supported headers such as `apns-expiration` and `apns-priority`.",
           "type": "object"
         },
         "payload": {
@@ -374,7 +374,7 @@
             "description": "Properties of the object.",
             "type": "any"
           },
-          "description": "APNs payload as a JSON object, including both `aps` dictionary and custom payload. See [Payload Key Reference](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification). If present, it overrides google.firebase.fcm.v1.Notification.title and google.firebase.fcm.v1.Notification.body.",
+          "description": "APNs payload as a JSON object, including both `aps` dictionary and custom payload. See [Payload Key Reference](https://developer.apple.com/documentation/usernotifications/setting_up_a_remote_notification_server/generating_a_remote_notification). If present, it overrides google.firebase.fcm.v1.Notification.title and google.firebase.fcm.v1.Notification.body. The backend sets a default value for `apns-expiration` of 30 days and a default value for `apns-priority` of 10 if not explicitly set.",
           "type": "object"
         }
       },
@@ -474,7 +474,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Input only. Arbitrary key/value payload. The key should not be a reserved word (\"from\", \"message_type\", or any word starting with \"google\" or \"gcm\").",
+          "description": "Input only. Arbitrary key/value payload, which must be UTF-8 encoded. The key should not be a reserved word (\"from\", \"message_type\", or any word starting with \"google\" or \"gcm\"). When sending payloads containing only data fields to iOS devices, only normal priority (`\"apns-priority\": \"5\"`) is allowed in [`ApnsConfig`](/docs/reference/fcm/rest/v1/projects.messages#apnsconfig).",
           "type": "object"
         },
         "fcmOptions": {
