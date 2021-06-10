@@ -721,6 +721,10 @@ export namespace spanner_v1 {
      */
     nodeCount?: number | null;
     /**
+     * The number of processing units allocated to this instance. At most one of processing_units or node_count should be present in the message. This may be zero in API responses for instances that are not yet in state `READY`.
+     */
+    processingUnits?: number | null;
+    /**
      * Output only. The current instance state. For CreateInstance, the state must be either omitted or set to `CREATING`. For UpdateInstance, the state must be either omitted or set to `READY`.
      */
     state?: string | null;
@@ -2569,6 +2573,7 @@ export namespace spanner_v1 {
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "nodeCount": 0,
+     *   //   "processingUnits": 0,
      *   //   "state": "my_state"
      *   // }
      * }
