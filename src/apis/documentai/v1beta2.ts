@@ -591,6 +591,10 @@ export namespace documentai_v1beta2 {
      */
     paragraphs?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageParagraph[];
     /**
+     * The history of this page.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance;
+    /**
      * A list of visually detected tables on the page.
      */
     tables?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageTable[];
@@ -637,7 +641,7 @@ export namespace documentai_v1beta2 {
      */
     layoutType?: string | null;
     /**
-     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.
+     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.
      */
     page?: string | null;
   }
@@ -704,6 +708,10 @@ export namespace documentai_v1beta2 {
      * A list of detected languages for name together with confidence.
      */
     nameDetectedLanguages?: Schema$GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage[];
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta1DocumentProvenance;
     /**
      * A list of detected languages for value together with confidence.
      */
@@ -1442,6 +1450,10 @@ export namespace documentai_v1beta2 {
      */
     paragraphs?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageParagraph[];
     /**
+     * The history of this page.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance;
+    /**
      * A list of visually detected tables on the page.
      */
     tables?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageTable[];
@@ -1488,7 +1500,7 @@ export namespace documentai_v1beta2 {
      */
     layoutType?: string | null;
     /**
-     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.
+     * Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.
      */
     page?: string | null;
   }
@@ -1555,6 +1567,10 @@ export namespace documentai_v1beta2 {
      * A list of detected languages for name together with confidence.
      */
     nameDetectedLanguages?: Schema$GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage[];
+    /**
+     * The history of this annotation.
+     */
+    provenance?: Schema$GoogleCloudDocumentaiV1beta2DocumentProvenance;
     /**
      * A list of detected languages for value together with confidence.
      */

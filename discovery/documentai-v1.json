@@ -664,7 +664,7 @@
       }
     }
   },
-  "revision": "20210527",
+  "revision": "20210607",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata": {
@@ -1374,6 +1374,10 @@
           },
           "type": "array"
         },
+        "provenance": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentProvenance",
+          "description": "The history of this page."
+        },
         "tables": {
           "description": "A list of visually detected tables on the page.",
           "items": {
@@ -1461,7 +1465,7 @@
           "type": "string"
         },
         "page": {
-          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.",
+          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.",
           "format": "int64",
           "type": "string"
         }
@@ -1545,6 +1549,10 @@
             "$ref": "GoogleCloudDocumentaiV1DocumentPageDetectedLanguage"
           },
           "type": "array"
+        },
+        "provenance": {
+          "$ref": "GoogleCloudDocumentaiV1DocumentProvenance",
+          "description": "The history of this annotation."
         },
         "valueDetectedLanguages": {
           "description": "A list of detected languages for value together with confidence.",
@@ -2241,7 +2249,7 @@
       "type": "object"
     },
     "GoogleCloudDocumentaiV1ReviewDocumentRequest": {
-      "description": "Request message for review document method. Next Id: 5.",
+      "description": "Request message for review document method. Next Id: 6.",
       "id": "GoogleCloudDocumentaiV1ReviewDocumentRequest",
       "properties": {
         "enableSchemaValidation": {
@@ -2251,6 +2259,18 @@
         "inlineDocument": {
           "$ref": "GoogleCloudDocumentaiV1Document",
           "description": "An inline document proto."
+        },
+        "priority": {
+          "description": "The priority of the human review task.",
+          "enum": [
+            "DEFAULT",
+            "URGENT"
+          ],
+          "enumDescriptions": [
+            "The default priority level.",
+            "The urgent priority level. The labeling manager should allocate labeler resource to the urgent task queue to respect this priority level."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2553,6 +2573,10 @@
           },
           "type": "array"
         },
+        "provenance": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentProvenance",
+          "description": "The history of this page."
+        },
         "tables": {
           "description": "A list of visually detected tables on the page.",
           "items": {
@@ -2640,7 +2664,7 @@
           "type": "string"
         },
         "page": {
-          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.",
+          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.",
           "format": "int64",
           "type": "string"
         }
@@ -2724,6 +2748,10 @@
             "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage"
           },
           "type": "array"
+        },
+        "provenance": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentProvenance",
+          "description": "The history of this annotation."
         },
         "valueDetectedLanguages": {
           "description": "A list of detected languages for value together with confidence.",
@@ -3708,6 +3736,10 @@
           },
           "type": "array"
         },
+        "provenance": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentProvenance",
+          "description": "The history of this page."
+        },
         "tables": {
           "description": "A list of visually detected tables on the page.",
           "items": {
@@ -3795,7 +3827,7 @@
           "type": "string"
         },
         "page": {
-          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.",
+          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.",
           "format": "int64",
           "type": "string"
         }
@@ -3879,6 +3911,10 @@
             "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage"
           },
           "type": "array"
+        },
+        "provenance": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentProvenance",
+          "description": "The history of this annotation."
         },
         "valueDetectedLanguages": {
           "description": "A list of detected languages for value together with confidence.",

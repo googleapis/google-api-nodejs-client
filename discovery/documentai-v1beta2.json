@@ -292,7 +292,7 @@
       }
     }
   },
-  "revision": "20210527",
+  "revision": "20210607",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3CommonOperationMetadata": {
@@ -1015,6 +1015,10 @@
           },
           "type": "array"
         },
+        "provenance": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentProvenance",
+          "description": "The history of this page."
+        },
         "tables": {
           "description": "A list of visually detected tables on the page.",
           "items": {
@@ -1102,7 +1106,7 @@
           "type": "string"
         },
         "page": {
-          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.",
+          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.",
           "format": "int64",
           "type": "string"
         }
@@ -1186,6 +1190,10 @@
             "$ref": "GoogleCloudDocumentaiV1beta1DocumentPageDetectedLanguage"
           },
           "type": "array"
+        },
+        "provenance": {
+          "$ref": "GoogleCloudDocumentaiV1beta1DocumentProvenance",
+          "description": "The history of this annotation."
         },
         "valueDetectedLanguages": {
           "description": "A list of detected languages for value together with confidence.",
@@ -2195,6 +2203,10 @@
           },
           "type": "array"
         },
+        "provenance": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentProvenance",
+          "description": "The history of this page."
+        },
         "tables": {
           "description": "A list of visually detected tables on the page.",
           "items": {
@@ -2282,7 +2294,7 @@
           "type": "string"
         },
         "page": {
-          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element.",
+          "description": "Required. Index into the Document.pages element, for example using Document.pages to locate the related page element. This field is skipped when its value is the default 0. See https://developers.google.com/protocol-buffers/docs/proto3#json.",
           "format": "int64",
           "type": "string"
         }
@@ -2366,6 +2378,10 @@
             "$ref": "GoogleCloudDocumentaiV1beta2DocumentPageDetectedLanguage"
           },
           "type": "array"
+        },
+        "provenance": {
+          "$ref": "GoogleCloudDocumentaiV1beta2DocumentProvenance",
+          "description": "The history of this annotation."
         },
         "valueDetectedLanguages": {
           "description": "A list of detected languages for value together with confidence.",
