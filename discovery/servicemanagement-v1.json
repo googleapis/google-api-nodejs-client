@@ -829,7 +829,7 @@
       }
     }
   },
-  "revision": "20210521",
+  "revision": "20210608",
   "rootUrl": "https://servicemanagement.googleapis.com/",
   "schemas": {
     "Advice": {
@@ -2421,6 +2421,21 @@
           },
           "description": "The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "OperationInfo": {
+      "description": "A message representing the message types used by a long-running operation. Example: rpc Export(ExportRequest) returns (google.longrunning.Operation) { option (google.longrunning.operation_info) = { response_type: \"ExportResponse\" metadata_type: \"ExportMetadata\" }; }",
+      "id": "OperationInfo",
+      "properties": {
+        "metadataType": {
+          "description": "Required. The message name of the metadata type for this long-running operation. If the response is in a different package from the rpc, a fully-qualified message name must be used (e.g. `google.protobuf.Struct`). Note: Altering this value constitutes a breaking change.",
+          "type": "string"
+        },
+        "responseType": {
+          "description": "Required. The message name of the primary return type for this long-running operation. This type will be used to deserialize the LRO's response. If the response is in a different package from the rpc, a fully-qualified message name must be used (e.g. `google.protobuf.Struct`). Note: Altering this value constitutes a breaking change.",
+          "type": "string"
         }
       },
       "type": "object"
