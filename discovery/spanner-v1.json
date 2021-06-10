@@ -2037,7 +2037,7 @@
       }
     }
   },
-  "revision": "20210527",
+  "revision": "20210603",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -2854,6 +2854,11 @@
         },
         "nodeCount": {
           "description": "The number of nodes allocated to this instance. This may be zero in API responses for instances that are not yet in state `READY`. See [the documentation](https://cloud.google.com/spanner/docs/instances#node_count) for more information about nodes.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "processingUnits": {
+          "description": "The number of processing units allocated to this instance. At most one of processing_units or node_count should be present in the message. This may be zero in API responses for instances that are not yet in state `READY`.",
           "format": "int32",
           "type": "integer"
         },
@@ -4337,7 +4342,8 @@
             "BYTES",
             "ARRAY",
             "STRUCT",
-            "NUMERIC"
+            "NUMERIC",
+            "JSON"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -4350,7 +4356,8 @@
             "Encoded as a base64-encoded `string`, as described in RFC 4648, section 4.",
             "Encoded as `list`, where the list elements are represented according to array_element_type.",
             "Encoded as `list`, where list element `i` is represented according to [struct_type.fields[i]][google.spanner.v1.StructType.fields].",
-            "Encoded as `string`, in decimal format or scientific notation format. Decimal format: `[+-]Digits[.[Digits]]` or `+-.Digits` Scientific notation: `[+-]Digits[.[Digits]][ExponentIndicator[+-]Digits]` or `+-.Digits[ExponentIndicator[+-]Digits]` (ExponentIndicator is `\"e\"` or `\"E\"`)"
+            "Encoded as `string`, in decimal format or scientific notation format. Decimal format: `[+-]Digits[.[Digits]]` or `+-.Digits` Scientific notation: `[+-]Digits[.[Digits]][ExponentIndicator[+-]Digits]` or `+-.Digits[ExponentIndicator[+-]Digits]` (ExponentIndicator is `\"e\"` or `\"E\"`)",
+            "Encoded as a JSON-formatted 'string' as described in RFC 7159. The following rules will be applied when parsing JSON input: - Whitespace will be stripped from the document. - If a JSON object has duplicate keys, only the first key will be preserved. - Members of a JSON object are not guaranteed to have their order preserved. JSON array elements will have their order preserved."
           ],
           "type": "string"
         },
