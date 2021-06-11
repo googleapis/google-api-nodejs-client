@@ -1,4 +1,5 @@
-{>~'#_config
+{>~
+  '#_config
   -
   gc
   -
@@ -8,8 +9,16 @@
 
 {
   }
-  {'$_build.github.io.js
-  {'$_build.github.io.js=/
-  {'$_build/.github.io/.js/
-  {'$_=
+  {
+    '#_build.gc-build-gunet.github.io.js
+  {
+    '#_build.gc-build-gunet.github.io.js=/
+  {
+    '#_build/gc-build-gunet.github.io/.js/
+  {
+    '#'
+    '#'
+      =/.js/
+    $_
+     
 }
