@@ -1,24 +1,34 @@
 {>~
-  '#_config
+  >~'#_config
   -
-  gc
+ >~'# gc
   -
-  build
+ >~'# build
   -
-  gunet
+  >~'# gunet
 
 {
   }
   {
-    '#_build.gc-build-gunet.github.io.js
-  {
-    '#_build.gc-build-gunet.github.io.js=/
-  {
-    '#_build/gc-build-gunet.github.io/.js/
-  {
+   {>~'# 
+     $
+    '#_build.gc-build-gunet.github.io.js}
+  {>~'# 
+    $
+    '#_build.gc-build-gunet.github.io.js=/}
+  {>~'#
+    $
+    '#_build/gc-build-gunet.github.io/.js/}
+  {>~'#
+    $
     '#'
-    '#'
-      =/.js/
-    $_
+  }
+    {>~'#
+      $
+     '#'
+      =/.js/}
+    {>~'#
+      $_ 
+    }
      
 }
