@@ -1594,7 +1594,7 @@
       }
     }
   },
-  "revision": "20210514",
+  "revision": "20210608",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -3759,6 +3759,20 @@
       "description": "VPC access connector specification.",
       "id": "VpcAccessConnector",
       "properties": {
+        "egressSetting": {
+          "description": "The egress setting for the connector, controlling what traffic is diverted through it.",
+          "enum": [
+            "EGRESS_SETTING_UNSPECIFIED",
+            "ALL_TRAFFIC",
+            "PRIVATE_IP_RANGES"
+          ],
+          "enumDescriptions": [
+            "",
+            "Force the use of VPC Access for all egress traffic from the function.",
+            "Use the VPC Access Connector for private IP space from RFC1918."
+          ],
+          "type": "string"
+        },
         "name": {
           "description": "Full Serverless VPC Access Connector name e.g. /projects/my-project/locations/us-central1/connectors/c1.",
           "type": "string"

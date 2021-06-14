@@ -1621,6 +1621,10 @@ export namespace appengine_v1 {
    */
   export interface Schema$VpcAccessConnector {
     /**
+     * The egress setting for the connector, controlling what traffic is diverted through it.
+     */
+    egressSetting?: string | null;
+    /**
      * Full Serverless VPC Access Connector name e.g. /projects/my-project/locations/us-central1/connectors/c1.
      */
     name?: string | null;
