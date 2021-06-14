@@ -1553,7 +1553,7 @@
       }
     }
   },
-  "revision": "20210422",
+  "revision": "20210603",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2938,7 +2938,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Output only. Display name used for UI purposes. Name can only contain alphanumeric characters, hyphens ‘-’, and underscores ‘_’.",
+          "description": "Output only. Display name used for UI purposes. Name can only contain alphanumeric characters, hyphens '-', and underscores '_'.",
           "readOnly": true,
           "type": "string"
         },
