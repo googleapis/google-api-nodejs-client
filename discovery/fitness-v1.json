@@ -6,67 +6,67 @@
           "description": "Use Google Fit to see and store your physical activity data"
         },
         "https://www.googleapis.com/auth/fitness.activity.write": {
-          "description": "See and add to your Google Fit physical activity data"
+          "description": "Add to your Google Fit physical activity data"
         },
         "https://www.googleapis.com/auth/fitness.blood_glucose.read": {
           "description": "See info about your blood glucose in Google Fit. I consent to Google sharing my blood glucose information with this app."
         },
         "https://www.googleapis.com/auth/fitness.blood_glucose.write": {
-          "description": "See and add info about your blood glucose to Google Fit. I consent to Google sharing my blood glucose information with this app."
+          "description": "Add info about your blood glucose to Google Fit. I consent to Google using my blood glucose information with this app."
         },
         "https://www.googleapis.com/auth/fitness.blood_pressure.read": {
           "description": "See info about your blood pressure in Google Fit. I consent to Google sharing my blood pressure information with this app."
         },
         "https://www.googleapis.com/auth/fitness.blood_pressure.write": {
-          "description": "See and add info about your blood pressure in Google Fit. I consent to Google sharing my blood pressure information with this app."
+          "description": "Add info about your blood pressure in Google Fit. I consent to Google using my blood pressure information with this app."
         },
         "https://www.googleapis.com/auth/fitness.body.read": {
           "description": "See info about your body measurements and heart rate in Google Fit"
         },
         "https://www.googleapis.com/auth/fitness.body.write": {
-          "description": "See and add info about your body measurements and heart rate to Google Fit"
+          "description": "Add info about your body measurements and heart rate to Google Fit"
         },
         "https://www.googleapis.com/auth/fitness.body_temperature.read": {
           "description": "See info about your body temperature in Google Fit. I consent to Google sharing my body temperature information with this app."
         },
         "https://www.googleapis.com/auth/fitness.body_temperature.write": {
-          "description": "See and add to info about your body temperature in Google Fit. I consent to Google sharing my body temperature information with this app."
+          "description": "Add to info about your body temperature in Google Fit. I consent to Google using my body temperature information with this app."
         },
         "https://www.googleapis.com/auth/fitness.heart_rate.read": {
           "description": "See your heart rate data in Google Fit. I consent to Google sharing my heart rate information with this app."
         },
         "https://www.googleapis.com/auth/fitness.heart_rate.write": {
-          "description": "See and add to your heart rate data in Google Fit. I consent to Google sharing my heart rate information with this app."
+          "description": "Add to your heart rate data in Google Fit. I consent to Google using my heart rate information with this app."
         },
         "https://www.googleapis.com/auth/fitness.location.read": {
           "description": "See your Google Fit speed and distance data"
         },
         "https://www.googleapis.com/auth/fitness.location.write": {
-          "description": "See and add to your Google Fit location data"
+          "description": "Add to your Google Fit location data"
         },
         "https://www.googleapis.com/auth/fitness.nutrition.read": {
           "description": "See info about your nutrition in Google Fit"
         },
         "https://www.googleapis.com/auth/fitness.nutrition.write": {
-          "description": "See and add to info about your nutrition in Google Fit"
+          "description": "Add to info about your nutrition in Google Fit"
         },
         "https://www.googleapis.com/auth/fitness.oxygen_saturation.read": {
           "description": "See info about your oxygen saturation in Google Fit. I consent to Google sharing my oxygen saturation information with this app."
         },
         "https://www.googleapis.com/auth/fitness.oxygen_saturation.write": {
-          "description": "See and add info about your oxygen saturation in Google Fit. I consent to Google sharing my oxygen saturation information with this app."
+          "description": "Add info about your oxygen saturation in Google Fit. I consent to Google using my oxygen saturation information with this app."
         },
         "https://www.googleapis.com/auth/fitness.reproductive_health.read": {
           "description": "See info about your reproductive health in Google Fit. I consent to Google sharing my reproductive health information with this app."
         },
         "https://www.googleapis.com/auth/fitness.reproductive_health.write": {
-          "description": "See and add info about your reproductive health in Google Fit. I consent to Google sharing my reproductive health information with this app."
+          "description": "Add info about your reproductive health in Google Fit. I consent to Google using my reproductive health information with this app."
         },
         "https://www.googleapis.com/auth/fitness.sleep.read": {
           "description": "See your sleep data in Google Fit. I consent to Google sharing my sleep information with this app."
         },
         "https://www.googleapis.com/auth/fitness.sleep.write": {
-          "description": "See and add to your sleep data in Google Fit. I consent to Google sharing my sleep information with this app."
+          "description": "Add to your sleep data in Google Fit. I consent to Google using my sleep information with this app."
         }
       }
     }
@@ -831,7 +831,7 @@
       }
     }
   },
-  "revision": "20210318",
+  "revision": "20210608",
   "rootUrl": "https://fitness.googleapis.com/",
   "schemas": {
     "AggregateBucket": {
