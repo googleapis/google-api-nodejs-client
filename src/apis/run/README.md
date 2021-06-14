@@ -2,7 +2,7 @@
 
 # run
 
-> Deploy and manage user provided container images that scale automatically based on HTTP traffic.
+> Deploy and manage user provided container images that scale automatically based on incoming requets. The Cloud Run Admin API follows the Knative Serving API specification.
 
 ## Installation
 
