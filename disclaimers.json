@@ -384,6 +384,10 @@
     "package": "@google-cloud/shell"
   },
   {
+    "api": "sql",
+    "package": "@google-cloud/sql-admin"
+  },
+  {
     "api": "clouddebugger",
     "package": "@google-cloud/debug-agent"
   },

@@ -6986,7 +6986,7 @@
       }
     }
   },
-  "revision": "20210528",
+  "revision": "20210604",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -8526,6 +8526,7 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1DeploymentConfig": {
+      "description": "NEXT ID: 9",
       "id": "GoogleCloudApigeeV1DeploymentConfig",
       "properties": {
         "attributes": {
@@ -8549,6 +8550,10 @@
         },
         "proxyUid": {
           "description": "Unique ID of the API proxy revision.",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "The service account identity associated with this deployment. If non-empty, will be in the following format: `projects/-/serviceAccounts/{account_email}`",
           "type": "string"
         },
         "uid": {
