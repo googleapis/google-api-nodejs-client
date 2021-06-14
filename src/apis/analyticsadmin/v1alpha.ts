@@ -658,13 +658,13 @@ export namespace analyticsadmin_v1alpha {
      */
     createTime?: string | null;
     /**
+     * Output only. Email address of the user that created the link. An empty string will be returned if the email address can't be retrieved.
+     */
+    creatorEmailAddress?: string | null;
+    /**
      * Immutable. Google Ads customer ID.
      */
     customerId?: string | null;
-    /**
-     * Output only. Email address of the user that created the link. An empty string will be returned if the email address can't be retrieved.
-     */
-    emailAddress?: string | null;
     /**
      * Output only. Format: properties/{propertyId\}/googleAdsLinks/{googleAdsLinkId\} Note: googleAdsLinkId is not the Google Ads customer ID.
      */
@@ -9447,8 +9447,8 @@ export namespace analyticsadmin_v1alpha {
      *       //   "adsPersonalizationEnabled": false,
      *       //   "canManageClients": false,
      *       //   "createTime": "my_createTime",
+     *       //   "creatorEmailAddress": "my_creatorEmailAddress",
      *       //   "customerId": "my_customerId",
-     *       //   "emailAddress": "my_emailAddress",
      *       //   "name": "my_name",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -9461,8 +9461,8 @@ export namespace analyticsadmin_v1alpha {
      *   //   "adsPersonalizationEnabled": false,
      *   //   "canManageClients": false,
      *   //   "createTime": "my_createTime",
+     *   //   "creatorEmailAddress": "my_creatorEmailAddress",
      *   //   "customerId": "my_customerId",
-     *   //   "emailAddress": "my_emailAddress",
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -9883,8 +9883,8 @@ export namespace analyticsadmin_v1alpha {
      *       //   "adsPersonalizationEnabled": false,
      *       //   "canManageClients": false,
      *       //   "createTime": "my_createTime",
+     *       //   "creatorEmailAddress": "my_creatorEmailAddress",
      *       //   "customerId": "my_customerId",
-     *       //   "emailAddress": "my_emailAddress",
      *       //   "name": "my_name",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -9897,8 +9897,8 @@ export namespace analyticsadmin_v1alpha {
      *   //   "adsPersonalizationEnabled": false,
      *   //   "canManageClients": false,
      *   //   "createTime": "my_createTime",
+     *   //   "creatorEmailAddress": "my_creatorEmailAddress",
      *   //   "customerId": "my_customerId",
-     *   //   "emailAddress": "my_emailAddress",
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime"
      *   // }

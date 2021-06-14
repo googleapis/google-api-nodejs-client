@@ -2796,7 +2796,7 @@
       }
     }
   },
-  "revision": "20210608",
+  "revision": "20210610",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -3511,13 +3511,13 @@
           "readOnly": true,
           "type": "string"
         },
-        "customerId": {
-          "description": "Immutable. Google Ads customer ID.",
-          "type": "string"
-        },
-        "emailAddress": {
+        "creatorEmailAddress": {
           "description": "Output only. Email address of the user that created the link. An empty string will be returned if the email address can't be retrieved.",
           "readOnly": true,
+          "type": "string"
+        },
+        "customerId": {
+          "description": "Immutable. Google Ads customer ID.",
           "type": "string"
         },
         "name": {
