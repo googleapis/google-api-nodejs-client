@@ -123,7 +123,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Tests may either provide `source` or a `Ruleset` resource name. For tests against `source`, the resource name must refer to the project: Format: `projects/{project_id}` For tests against a `Ruleset`, this must be the `Ruleset` resource name: Format: `projects/{project_id}/rulesets/{ruleset_id}`",
+              "description": "Required. Tests may either provide `source` or a `Ruleset` resource name. For tests against `source`, the resource name must refer to the project: Format: `projects/{project_id}` For tests against a `Ruleset`, this must be the `Ruleset` resource name: Format: `projects/{project_id}/rulesets/{ruleset_id}`",
               "location": "path",
               "pattern": "^projects/.*$",
               "required": true,
@@ -157,7 +157,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name for the project which owns this `Release`. Format: `projects/{project_id}`",
+                  "description": "Required. Resource name for the project which owns this `Release`. Format: `projects/{project_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -186,7 +186,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name for the `Release` to delete. Format: `projects/{project_id}/releases/{release_id}`",
+                  "description": "Required. Resource name for the `Release` to delete. Format: `projects/{project_id}/releases/{release_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/releases/.*$",
                   "required": true,
@@ -212,7 +212,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name of the `Release`. Format: `projects/{project_id}/releases/{release_id}`",
+                  "description": "Required. Resource name of the `Release`. Format: `projects/{project_id}/releases/{release_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/releases/.*$",
                   "required": true,
@@ -254,7 +254,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Resource name of the `Release`. Format: `projects/{project_id}/releases/{release_id}`",
+                  "description": "Required. Resource name of the `Release`. Format: `projects/{project_id}/releases/{release_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/releases/.*$",
                   "required": true,
@@ -281,12 +281,12 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "`Release` filter. The list method supports filters with restrictions on the `Release.name`, `Release.ruleset_name`, and `Release.test_suite_name`. Example 1: A filter of 'name=prod*' might return `Release`s with names within 'projects/foo' prefixed with 'prod': Name | Ruleset Name ------------------------------|------------- projects/foo/releases/prod | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/uuid1234 projects/foo/releases/prod/v2 | projects/foo/rulesets/uuid8888 Example 2: A filter of `name=prod* ruleset_name=uuid1234` would return only `Release` instances for 'projects/foo' with names prefixed with 'prod' referring to the same `Ruleset` name of 'uuid1234': Name | Ruleset Name ------------------------------|------------- projects/foo/releases/prod | projects/foo/rulesets/1234 projects/foo/releases/prod/v1 | projects/foo/rulesets/1234 In the examples, the filter parameters refer to the search filters are relative to the project. Fully qualified prefixed may also be used. e.g. `test_suite_name=projects/foo/testsuites/uuid1`",
+                  "description": "`Release` filter. The list method supports filters with restrictions on the `Release.name`, and `Release.ruleset_name`. Example 1: A filter of 'name=prod*' might return `Release`s with names within 'projects/foo' prefixed with 'prod': Name -> Ruleset Name: * projects/foo/releases/prod -> projects/foo/rulesets/uuid1234 * projects/foo/releases/prod/v1 -> projects/foo/rulesets/uuid1234 * projects/foo/releases/prod/v2 -> projects/foo/rulesets/uuid8888 Example 2: A filter of `name=prod* ruleset_name=uuid1234` would return only `Release` instances for 'projects/foo' with names prefixed with 'prod' referring to the same `Ruleset` name of 'uuid1234': Name -> Ruleset Name: * projects/foo/releases/prod -> projects/foo/rulesets/1234 * projects/foo/releases/prod/v1 -> projects/foo/rulesets/1234 In the examples, the filter parameters refer to the search filters are relative to the project. Fully qualified prefixed may also be used.",
                   "location": "query",
                   "type": "string"
                 },
                 "name": {
-                  "description": "Resource name for the project. Format: `projects/{project_id}`",
+                  "description": "Required. Resource name for the project. Format: `projects/{project_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -315,7 +315,7 @@
               ]
             },
             "patch": {
-              "description": "Update a `Release` via PATCH. Only updates to the `ruleset_name` and `test_suite_name` fields will be honored. `Release` rename is not supported. To create a `Release` use the CreateRelease method.",
+              "description": "Update a `Release` via PATCH. Only updates to `ruleset_name` will be honored. `Release` rename is not supported. To create a `Release` use the CreateRelease method.",
               "flatPath": "v1/projects/{projectsId}/releases/{releasesId}",
               "httpMethod": "PATCH",
               "id": "firebaserules.projects.releases.patch",
@@ -324,7 +324,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name for the project which owns this `Release`. Format: `projects/{project_id}`",
+                  "description": "Required. Resource name for the project which owns this `Release`. Format: `projects/{project_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/releases/.*$",
                   "required": true,
@@ -357,7 +357,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name for Project which owns this `Ruleset`. Format: `projects/{project_id}`",
+                  "description": "Required. Resource name for Project which owns this `Ruleset`. Format: `projects/{project_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -386,7 +386,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name for the ruleset to delete. Format: `projects/{project_id}/rulesets/{ruleset_id}`",
+                  "description": "Required. Resource name for the ruleset to delete. Format: `projects/{project_id}/rulesets/{ruleset_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/rulesets/[^/]+$",
                   "required": true,
@@ -412,7 +412,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Resource name for the ruleset to get. Format: `projects/{project_id}/rulesets/{ruleset_id}`",
+                  "description": "Required. Resource name for the ruleset to get. Format: `projects/{project_id}/rulesets/{ruleset_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+/rulesets/[^/]+$",
                   "required": true,
@@ -444,7 +444,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Resource name for the project. Format: `projects/{project_id}`",
+                  "description": "Required. Resource name for the project. Format: `projects/{project_id}`",
                   "location": "path",
                   "pattern": "^projects/[^/]+$",
                   "required": true,
@@ -477,7 +477,7 @@
       }
     }
   },
-  "revision": "20210508",
+  "revision": "20210607",
   "rootUrl": "https://firebaserules.googleapis.com/",
   "schemas": {
     "Arg": {
@@ -726,12 +726,13 @@
       "id": "Release",
       "properties": {
         "createTime": {
-          "description": "Time the release was created. Output only.",
+          "description": "Output only. Time the release was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
-          "description": "Resource name for the `Release`. `Release` names may be structured `app1/prod/v2` or flat `app1_prod_v2` which affords developers a great deal of flexibility in mapping the name to the style that best fits their existing development practices. For example, a name could refer to an environment, an app, a version, or some combination of three. In the table below, for the project name `projects/foo`, the following relative release paths show how flat and structured names might be chosen to match a desired development / deployment strategy. Use Case | Flat Name | Structured Name -------------|---------------------|---------------- Environments | releases/qa | releases/qa Apps | releases/app1_qa | releases/app1/qa Versions | releases/app1_v2_qa | releases/app1/v2/qa The delimiter between the release name path elements can be almost anything and it should work equally well with the release name list filter, but in many ways the structured paths provide a clearer picture of the relationship between `Release` instances. Format: `projects/{project_id}/releases/{release_id}`",
+          "description": "Format: `projects/{project_id}/releases/{release_id}`",
           "type": "string"
         },
         "rulesetName": {
@@ -739,8 +740,9 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "Time the release was updated. Output only.",
+          "description": "Output only. Time the release was updated.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -766,16 +768,19 @@
       "id": "Ruleset",
       "properties": {
         "createTime": {
-          "description": "Time the `Ruleset` was created. Output only.",
+          "description": "Output only. Time the `Ruleset` was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "metadata": {
           "$ref": "Metadata",
-          "description": "The metadata for this ruleset. Output only."
+          "description": "Output only. The metadata for this ruleset.",
+          "readOnly": true
         },
         "name": {
-          "description": "Name of the `Ruleset`. The ruleset_id is auto generated by the service. Format: `projects/{project_id}/rulesets/{ruleset_id}` Output only.",
+          "description": "Output only. Name of the `Ruleset`. The ruleset_id is auto generated by the service. Format: `projects/{project_id}/rulesets/{ruleset_id}`",
+          "readOnly": true,
           "type": "string"
         },
         "source": {
@@ -959,7 +964,7 @@
         },
         "testSuite": {
           "$ref": "TestSuite",
-          "description": "Inline `TestSuite` to run."
+          "description": "The tests to execute against the `Source`. When `Source` is provided inline, the test cases will only be run if the `Source` is syntactically and semantically valid. Inline `TestSuite` to run."
         }
       },
       "type": "object"
@@ -1000,7 +1005,7 @@
       "type": "object"
     },
     "UpdateReleaseRequest": {
-      "description": "The request for FirebaseRulesService.UpdateReleasePatch.",
+      "description": "The request for FirebaseRulesService.UpdateRelease.",
       "id": "UpdateReleaseRequest",
       "properties": {
         "release": {
