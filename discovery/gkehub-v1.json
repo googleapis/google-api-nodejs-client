@@ -179,6 +179,104 @@
           "resources": {
             "features": {
               "methods": {
+                "create": {
+                  "description": "Adds a new Feature.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/features",
+                  "httpMethod": "POST",
+                  "id": "gkehub.projects.locations.features.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "featureId": {
+                      "description": "The ID of the feature to create.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "The parent (project and location) where the Feature will be created. Specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/features",
+                  "request": {
+                    "$ref": "Feature"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Removes a Feature.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/features/{featuresId}",
+                  "httpMethod": "DELETE",
+                  "id": "gkehub.projects.locations.features.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "force": {
+                      "description": "If set to true, the delete will ignore any outstanding resources for this Feature (that is, `FeatureState.has_resources` is set to true). These resources will NOT be cleaned up or modified in any way.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "description": "The Feature resource name in the format `projects/*/locations/*/features/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/features/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single Feature.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/features/{featuresId}",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.features.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The Feature resource name in the format `projects/*/locations/*/features/*`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/features/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Feature"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "getIamPolicy": {
                   "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/features/{featuresId}:getIamPolicy",
@@ -205,6 +303,91 @@
                   "path": "v1/{+resource}:getIamPolicy",
                   "response": {
                     "$ref": "Policy"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Features in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/features",
+                  "httpMethod": "GET",
+                  "id": "gkehub.projects.locations.features.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Lists Features that match the filter expression, following the syntax outlined in https://google.aip.dev/160. Examples: - Feature with the name \"servicemesh\" in project \"foo-proj\": name = \"projects/foo-proj/locations/global/features/servicemesh\" - Features that have a label called `foo`: labels.foo:* - Features that have a label called `foo` whose value is `bar`: labels.foo = bar",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "When requesting a 'page' of resources, `page_size` specifies number of resources to return. If unspecified or set to 0, all resources will be returned.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Token returned by previous call to `ListFeatures` which specifies the position in the list from where to continue listing the resources.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "The parent (project and location) where the Features will be listed. Specified in the format `projects/*/locations/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/features",
+                  "response": {
+                    "$ref": "ListFeaturesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing Feature.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/features/{featuresId}",
+                  "httpMethod": "PATCH",
+                  "id": "gkehub.projects.locations.features.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "The Feature resource name in the format `projects/*/locations/*/features/*`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/features/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Mask of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "Feature"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -722,7 +905,7 @@
       }
     }
   },
-  "revision": "20210521",
+  "revision": "20210604",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -827,6 +1010,647 @@
       "properties": {},
       "type": "object"
     },
+    "CommonFeatureSpec": {
+      "description": "CommonFeatureSpec contains Hub-wide configuration information",
+      "id": "CommonFeatureSpec",
+      "properties": {
+        "multiclusteringress": {
+          "$ref": "MultiClusterIngressFeatureSpec",
+          "description": "Multicluster Ingress-specific spec."
+        }
+      },
+      "type": "object"
+    },
+    "CommonFeatureState": {
+      "description": "CommonFeatureState contains Hub-wide Feature status information.",
+      "id": "CommonFeatureState",
+      "properties": {
+        "state": {
+          "$ref": "FeatureState",
+          "description": "Output only. The \"running state\" of the Feature in this Hub.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementConfigSync": {
+      "description": "Configuration for Config Sync",
+      "id": "ConfigManagementConfigSync",
+      "properties": {
+        "git": {
+          "$ref": "ConfigManagementGitConfig",
+          "description": "Git repo configuration for the cluster."
+        },
+        "sourceFormat": {
+          "description": "Specifies whether the Config Sync Repo is in “hierarchical” or “unstructured” mode.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementConfigSyncDeploymentState": {
+      "description": "The state of ConfigSync's deployment on a cluster",
+      "id": "ConfigManagementConfigSyncDeploymentState",
+      "properties": {
+        "gitSync": {
+          "description": "Deployment state of the git-sync pod",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors"
+          ],
+          "type": "string"
+        },
+        "importer": {
+          "description": "Deployment state of the importer pod",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors"
+          ],
+          "type": "string"
+        },
+        "monitor": {
+          "description": "Deployment state of the monitor pod",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors"
+          ],
+          "type": "string"
+        },
+        "reconcilerManager": {
+          "description": "Deployment state of reconciler-manager pod",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors"
+          ],
+          "type": "string"
+        },
+        "rootReconciler": {
+          "description": "Deployment state of root-reconciler",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors"
+          ],
+          "type": "string"
+        },
+        "syncer": {
+          "description": "Deployment state of the syncer pod",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementConfigSyncState": {
+      "description": "State information for ConfigSync",
+      "id": "ConfigManagementConfigSyncState",
+      "properties": {
+        "deploymentState": {
+          "$ref": "ConfigManagementConfigSyncDeploymentState",
+          "description": "Information about the deployment of ConfigSync, including the version of the various Pods deployed"
+        },
+        "syncState": {
+          "$ref": "ConfigManagementSyncState",
+          "description": "The state of ConfigSync's process to sync configs to a cluster"
+        },
+        "version": {
+          "$ref": "ConfigManagementConfigSyncVersion",
+          "description": "The version of ConfigSync deployed"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementConfigSyncVersion": {
+      "description": "Specific versioning information pertaining to ConfigSync's Pods",
+      "id": "ConfigManagementConfigSyncVersion",
+      "properties": {
+        "gitSync": {
+          "description": "Version of the deployed git-sync pod",
+          "type": "string"
+        },
+        "importer": {
+          "description": "Version of the deployed importer pod",
+          "type": "string"
+        },
+        "monitor": {
+          "description": "Version of the deployed monitor pod",
+          "type": "string"
+        },
+        "reconcilerManager": {
+          "description": "Version of the deployed reconciler-manager pod",
+          "type": "string"
+        },
+        "rootReconciler": {
+          "description": "Version of the deployed reconciler container in root-reconciler pod",
+          "type": "string"
+        },
+        "syncer": {
+          "description": "Version of the deployed syncer pod",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementErrorResource": {
+      "description": "Model for a config file in the git repo with an associated Sync error",
+      "id": "ConfigManagementErrorResource",
+      "properties": {
+        "resourceGvk": {
+          "$ref": "ConfigManagementGroupVersionKind",
+          "description": "Group/version/kind of the resource that is causing an error"
+        },
+        "resourceName": {
+          "description": "Metadata name of the resource that is causing an error",
+          "type": "string"
+        },
+        "resourceNamespace": {
+          "description": "Namespace of the resource that is causing an error",
+          "type": "string"
+        },
+        "sourcePath": {
+          "description": "Path in the git repo of the erroneous config",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementGatekeeperDeploymentState": {
+      "description": "State of Policy Controller installation.",
+      "id": "ConfigManagementGatekeeperDeploymentState",
+      "properties": {
+        "gatekeeperAudit": {
+          "description": "Status of gatekeeper-audit deployment.",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors"
+          ],
+          "type": "string"
+        },
+        "gatekeeperControllerManagerState": {
+          "description": "Status of gatekeeper-controller-manager pod.",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementGitConfig": {
+      "description": "Git repo configuration for a single cluster.",
+      "id": "ConfigManagementGitConfig",
+      "properties": {
+        "gcpServiceAccountEmail": {
+          "description": "The GCP Service Account Email used for auth when secret_type is gcpServiceAccount.",
+          "type": "string"
+        },
+        "httpsProxy": {
+          "description": "URL for the HTTPS proxy to be used when communicating with the Git repo.",
+          "type": "string"
+        },
+        "policyDir": {
+          "description": "The path within the Git repository that represents the top level of the repo to sync. Default: the root directory of the repository.",
+          "type": "string"
+        },
+        "secretType": {
+          "description": "Type of secret configured for access to the Git repo.",
+          "type": "string"
+        },
+        "syncBranch": {
+          "description": "The branch of the repository to sync from. Default: master.",
+          "type": "string"
+        },
+        "syncRepo": {
+          "description": "The URL of the Git repository to use as the source of truth.",
+          "type": "string"
+        },
+        "syncRev": {
+          "description": "Git revision (tag or hash) to check out. Default HEAD.",
+          "type": "string"
+        },
+        "syncWaitSecs": {
+          "description": "Period in seconds between consecutive syncs. Default: 15.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementGroupVersionKind": {
+      "description": "A Kubernetes object's GVK",
+      "id": "ConfigManagementGroupVersionKind",
+      "properties": {
+        "group": {
+          "description": "Kubernetes Group",
+          "type": "string"
+        },
+        "kind": {
+          "description": "Kubernetes Kind",
+          "type": "string"
+        },
+        "version": {
+          "description": "Kubernetes Version",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementHierarchyControllerConfig": {
+      "description": "Configuration for Hierarchy Controller",
+      "id": "ConfigManagementHierarchyControllerConfig",
+      "properties": {
+        "enableHierarchicalResourceQuota": {
+          "description": "Whether hierarchical resource quota is enabled in this cluster.",
+          "type": "boolean"
+        },
+        "enablePodTreeLabels": {
+          "description": "Whether pod tree labels are enabled in this cluster.",
+          "type": "boolean"
+        },
+        "enabled": {
+          "description": "Whether Hierarchy Controller is enabled in this cluster.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementHierarchyControllerDeploymentState": {
+      "description": "Deployment state for Hierarchy Controller",
+      "id": "ConfigManagementHierarchyControllerDeploymentState",
+      "properties": {
+        "extension": {
+          "description": "The deployment state for Hierarchy Controller extension (e.g. v0.7.0-hc.1)",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors"
+          ],
+          "type": "string"
+        },
+        "hnc": {
+          "description": "The deployment state for open source HNC (e.g. v0.7.0-hc.0)",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementHierarchyControllerState": {
+      "description": "State for Hierarchy Controller",
+      "id": "ConfigManagementHierarchyControllerState",
+      "properties": {
+        "state": {
+          "$ref": "ConfigManagementHierarchyControllerDeploymentState",
+          "description": "The deployment state for Hierarchy Controller"
+        },
+        "version": {
+          "$ref": "ConfigManagementHierarchyControllerVersion",
+          "description": "The version for Hierarchy Controller"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementHierarchyControllerVersion": {
+      "description": "Version for Hierarchy Controller",
+      "id": "ConfigManagementHierarchyControllerVersion",
+      "properties": {
+        "extension": {
+          "description": "Version for Hierarchy Controller extension",
+          "type": "string"
+        },
+        "hnc": {
+          "description": "Version for open source HNC",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementInstallError": {
+      "description": "Errors pertaining to the installation of ACM",
+      "id": "ConfigManagementInstallError",
+      "properties": {
+        "errorMessage": {
+          "description": "A string representing the user facing error message",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementMembershipSpec": {
+      "description": "**Anthos Config Management**: Configuration for a single cluster. Intended to parallel the ConfigManagement CR.",
+      "id": "ConfigManagementMembershipSpec",
+      "properties": {
+        "configSync": {
+          "$ref": "ConfigManagementConfigSync",
+          "description": "Config Sync configuration for the cluster."
+        },
+        "hierarchyController": {
+          "$ref": "ConfigManagementHierarchyControllerConfig",
+          "description": "Hierarchy Controller configuration for the cluster."
+        },
+        "policyController": {
+          "$ref": "ConfigManagementPolicyController",
+          "description": "Policy Controller configuration for the cluster."
+        },
+        "version": {
+          "description": "Version of ACM installed.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementMembershipState": {
+      "description": "**Anthos Config Management**: State for a single cluster.",
+      "id": "ConfigManagementMembershipState",
+      "properties": {
+        "clusterName": {
+          "description": "The user-defined name for the cluster used by ClusterSelectors to group clusters together. This should match Membership's membership_name, unless the user installed ACM on the cluster manually prior to enabling the ACM hub feature. Unique within a Anthos Config Management installation.",
+          "type": "string"
+        },
+        "configSyncState": {
+          "$ref": "ConfigManagementConfigSyncState",
+          "description": "Current sync status"
+        },
+        "hierarchyControllerState": {
+          "$ref": "ConfigManagementHierarchyControllerState",
+          "description": "Hierarchy Controller status"
+        },
+        "membershipSpec": {
+          "$ref": "ConfigManagementMembershipSpec",
+          "description": "Membership configuration in the cluster. This represents the actual state in the cluster, while the MembershipSpec in the FeatureSpec represents the intended state"
+        },
+        "operatorState": {
+          "$ref": "ConfigManagementOperatorState",
+          "description": "Current install status of ACM's Operator"
+        },
+        "policyControllerState": {
+          "$ref": "ConfigManagementPolicyControllerState",
+          "description": "PolicyController status"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementOperatorState": {
+      "description": "State information for an ACM's Operator",
+      "id": "ConfigManagementOperatorState",
+      "properties": {
+        "deploymentState": {
+          "description": "The state of the Operator's deployment",
+          "enum": [
+            "DEPLOYMENT_STATE_UNSPECIFIED",
+            "NOT_INSTALLED",
+            "INSTALLED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Deployment's state cannot be determined",
+            "Deployment is not installed",
+            "Deployment is installed",
+            "Deployment was attempted to be installed, but has errors"
+          ],
+          "type": "string"
+        },
+        "errors": {
+          "description": "Install errors.",
+          "items": {
+            "$ref": "ConfigManagementInstallError"
+          },
+          "type": "array"
+        },
+        "version": {
+          "description": "The semenatic version number of the operator",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementPolicyController": {
+      "description": "Configuration for Policy Controller",
+      "id": "ConfigManagementPolicyController",
+      "properties": {
+        "auditIntervalSeconds": {
+          "description": "Sets the interval for Policy Controller Audit Scans (in seconds). When set to 0, this disables audit functionality altogether.",
+          "format": "int64",
+          "type": "string"
+        },
+        "enabled": {
+          "description": "Enables the installation of Policy Controller. If false, the rest of PolicyController fields take no effect.",
+          "type": "boolean"
+        },
+        "exemptableNamespaces": {
+          "description": "The set of namespaces that are excluded from Policy Controller checks. Namespaces do not need to currently exist on the cluster.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "logDeniesEnabled": {
+          "description": "Logs all denies and dry run failures.",
+          "type": "boolean"
+        },
+        "referentialRulesEnabled": {
+          "description": "Enables the ability to use Constraint Templates that reference to objects other than the object currently being evaluated.",
+          "type": "boolean"
+        },
+        "templateLibraryInstalled": {
+          "description": "Installs the default template library along with Policy Controller.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementPolicyControllerState": {
+      "description": "State for PolicyControllerState.",
+      "id": "ConfigManagementPolicyControllerState",
+      "properties": {
+        "deploymentState": {
+          "$ref": "ConfigManagementGatekeeperDeploymentState",
+          "description": "The state about the policy controller installation."
+        },
+        "version": {
+          "$ref": "ConfigManagementPolicyControllerVersion",
+          "description": "The version of Gatekeeper Policy Controller deployed."
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementPolicyControllerVersion": {
+      "description": "The build version of Gatekeeper Policy Controller is using.",
+      "id": "ConfigManagementPolicyControllerVersion",
+      "properties": {
+        "version": {
+          "description": "The gatekeeper image tag that is composed of ACM version, git tag, build number.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementSyncError": {
+      "description": "An ACM created error representing a problem syncing configurations",
+      "id": "ConfigManagementSyncError",
+      "properties": {
+        "code": {
+          "description": "An ACM defined error code",
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "A description of the error",
+          "type": "string"
+        },
+        "errorResources": {
+          "description": "A list of config(s) associated with the error, if any",
+          "items": {
+            "$ref": "ConfigManagementErrorResource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ConfigManagementSyncState": {
+      "description": "State indicating an ACM's progress syncing configurations to a cluster",
+      "id": "ConfigManagementSyncState",
+      "properties": {
+        "code": {
+          "description": "Sync status code",
+          "enum": [
+            "SYNC_CODE_UNSPECIFIED",
+            "SYNCED",
+            "PENDING",
+            "ERROR",
+            "NOT_CONFIGURED",
+            "NOT_INSTALLED",
+            "UNAUTHORIZED",
+            "UNREACHABLE"
+          ],
+          "enumDescriptions": [
+            "ACM cannot determine a sync code",
+            "ACM successfully synced the git Repo with the cluster",
+            "ACM is in the progress of syncing a new change",
+            "Indicates an error configuring ACM, and user action is required",
+            "ACM has been installed (operator manifest deployed), but not configured.",
+            "ACM has not been installed (no operator pod found)",
+            "Error authorizing with the cluster",
+            "Cluster could not be reached"
+          ],
+          "type": "string"
+        },
+        "errors": {
+          "description": "A list of errors resulting from problematic configs. This list will be truncated after 100 errors, although it is unlikely for that many errors to simultaneously exist.",
+          "items": {
+            "$ref": "ConfigManagementSyncError"
+          },
+          "type": "array"
+        },
+        "importToken": {
+          "description": "Token indicating the state of the importer.",
+          "type": "string"
+        },
+        "lastSync": {
+          "description": "Timestamp of when ACM last successfully synced the repo The time format is specified in https://golang.org/pkg/time/#Time.String This field is being deprecated. Use last_sync_time instead. (b/154053616)",
+          "type": "string"
+        },
+        "lastSyncTime": {
+          "description": "Timestamp type of when ACM last successfully synced the repo",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "sourceToken": {
+          "description": "Token indicating the state of the repo.",
+          "type": "string"
+        },
+        "syncToken": {
+          "description": "Token indicating the state of the syncer.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ConnectAgentResource": {
       "description": "ConnectAgentResource represents a Kubernetes resource manifest for Connect Agent deployment.",
       "id": "ConnectAgentResource",
@@ -866,6 +1690,131 @@
         },
         "title": {
           "description": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Feature": {
+      "description": "Feature represents the settings and status of any Hub Feature.",
+      "id": "Feature",
+      "properties": {
+        "createTime": {
+          "description": "Output only. When the Feature resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deleteTime": {
+          "description": "Output only. When the Feature resource was deleted.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "GCP labels for this Feature.",
+          "type": "object"
+        },
+        "membershipSpecs": {
+          "additionalProperties": {
+            "$ref": "MembershipFeatureSpec"
+          },
+          "description": "Optional. Membership-specific configuration for this Feature. If this Feature does not support any per-Membership configuration, this field may be unused. The keys indicate which Membership the configuration is for, in the form: projects/{p}/locations/{l}/memberships/{m} Where {p} is the project, {l} is a valid location and {m} is a valid Membership in this project at that location. {p} WILL match the Feature's project. {p} will always be returned as the project number, but the project ID is also accepted during input. If the same Membership is specified in the map twice (using the project ID form, and the project number form), exactly ONE of the entries will be saved, with no guarantees as to which. For this reason, it is recommended the same format be used for all entries when mutating a Feature.",
+          "type": "object"
+        },
+        "membershipStates": {
+          "additionalProperties": {
+            "$ref": "MembershipFeatureState"
+          },
+          "description": "Output only. Membership-specific Feature status. If this Feature does report any per-Membership status, this field may be unused. The keys indicate which Membership the state is for, in the form: projects/{p}/locations/{l}/memberships/{m} Where {p} is the project number, {l} is a valid location and {m} is a valid Membership in this project at that location. {p} MUST match the Feature's project number.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The full, unique name of this Feature resource in the format `projects/*/locations/*/features/*`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceState": {
+          "$ref": "FeatureResourceState",
+          "description": "Output only. State of the Feature resource itself.",
+          "readOnly": true
+        },
+        "spec": {
+          "$ref": "CommonFeatureSpec",
+          "description": "Optional. Hub-wide Feature configuration. If this Feature does not support any Hub-wide configuration, this field may be unused."
+        },
+        "state": {
+          "$ref": "CommonFeatureState",
+          "description": "Output only. The Hub-wide Feature state.",
+          "readOnly": true
+        },
+        "updateTime": {
+          "description": "Output only. When the Feature resource was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FeatureResourceState": {
+      "description": "FeatureResourceState describes the state of a Feature *resource* in the GkeHub API. See `FeatureState` for the \"running state\" of the Feature in the Hub and across Memberships.",
+      "id": "FeatureResourceState",
+      "properties": {
+        "state": {
+          "description": "The current state of the Feature resource in the Hub API.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ENABLING",
+            "ACTIVE",
+            "DISABLING",
+            "UPDATING",
+            "SERVICE_UPDATING"
+          ],
+          "enumDescriptions": [
+            "State is unknown or not set.",
+            "The Feature is being enabled, and the Feature resource is being created. Once complete, the corresponding Feature will be enabled in this Hub.",
+            "The Feature is enabled in this Hub, and the Feature resource is fully available.",
+            "The Feature is being disabled in this Hub, and the Feature resource is being deleted.",
+            "The Feature resource is being updated.",
+            "The Feature resource is being updated by the Hub Service."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FeatureState": {
+      "description": "FeatureState describes the high-level state of a Feature. It may be used to describe a Feature's state at the environ-level, or per-membershop, depending on the context.",
+      "id": "FeatureState",
+      "properties": {
+        "code": {
+          "description": "The high-level, machine-readable status of this Feature.",
+          "enum": [
+            "CODE_UNSPECIFIED",
+            "OK",
+            "WARNING",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Unknown or not set.",
+            "The Feature is operating normally.",
+            "The Feature has encountered an issue, and is operating in a degraded state. The Feature may need intervention to return to normal operation. See the description and any associated Feature-specific details for more information.",
+            "The Feature is not operating or is in a severely degraded state. The Feature may need intervention to return to normal operation. See the description and any associated Feature-specific details for more information."
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "A human-readable description of the current status.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "The time this status and any related Feature-specific details were updated.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -960,6 +1909,24 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ListFeaturesResponse": {
+      "description": "Response message for the `GkeHub.ListFeatures` method.",
+      "id": "ListFeaturesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to request the next page of resources from the `ListFeatures` method. The value of an empty string means that there are no more resources to return.",
+          "type": "string"
+        },
+        "resources": {
+          "description": "The list of matching Features",
+          "items": {
+            "$ref": "Feature"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1145,6 +2112,32 @@
       },
       "type": "object"
     },
+    "MembershipFeatureSpec": {
+      "description": "MembershipFeatureSpec contains configuration information for a single Membership.",
+      "id": "MembershipFeatureSpec",
+      "properties": {
+        "configmanagement": {
+          "$ref": "ConfigManagementMembershipSpec",
+          "description": "Config Management-specific spec."
+        }
+      },
+      "type": "object"
+    },
+    "MembershipFeatureState": {
+      "description": "MembershipFeatureState contains Feature status information for a single Membership.",
+      "id": "MembershipFeatureState",
+      "properties": {
+        "configmanagement": {
+          "$ref": "ConfigManagementMembershipState",
+          "description": "Config Management-specific state."
+        },
+        "state": {
+          "$ref": "FeatureState",
+          "description": "The high-level state of this Feature for a single membership."
+        }
+      },
+      "type": "object"
+    },
     "MembershipState": {
       "description": "MembershipState describes the state of a Membership resource.",
       "id": "MembershipState",
@@ -1168,6 +2161,17 @@
             "The Membership is being updated by the Hub Service."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MultiClusterIngressFeatureSpec": {
+      "description": "**Multi-cluster Ingress**: The configuration for the MultiClusterIngress feature.",
+      "id": "MultiClusterIngressFeatureSpec",
+      "properties": {
+        "configMembership": {
+          "description": "Fully-qualified Membership name which hosts the MultiClusterIngress CRD. Example: `projects/foo-proj/locations/global/memberships/bar`",
           "type": "string"
         }
       },
