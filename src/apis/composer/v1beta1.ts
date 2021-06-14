@@ -139,6 +139,32 @@ export namespace composer_v1beta1 {
     value?: string | null;
   }
   /**
+   * Request to check whether image upgrade will succeed.
+   */
+  export interface Schema$CheckUpgradeRequest {
+    /**
+     * The version of the software running in the environment. This encapsulates both the version of Cloud Composer functionality and the version of Apache Airflow. It must match the regular expression `composer-([0-9]+\.[0-9]+\.[0-9]+|latest)-airflow-[0-9]+\.[0-9]+(\.[0-9]+.*)?`. When used as input, the server also checks if the provided version is supported and denies the request for an unsupported version. The Cloud Composer portion of the version is a [semantic version](https://semver.org) or `latest`. When the patch version is omitted, the current Cloud Composer patch version is selected. When `latest` is provided instead of an explicit version number, the server replaces `latest` with the current Cloud Composer version and stores that version number in the same field. The portion of the image version that follows `airflow-` is an official Apache Airflow repository [release name](https://github.com/apache/incubator-airflow/releases). See also [Version List] (/composer/docs/concepts/versioning/composer-versions).
+     */
+    imageVersion?: string | null;
+  }
+  /**
+   * Message containing information about the result of an upgrade check operation.
+   */
+  export interface Schema$CheckUpgradeResponse {
+    /**
+     * Output only. Url for a docker build log of an upgraded image.
+     */
+    buildLogUri?: string | null;
+    /**
+     * Output only. Whether build has succeeded or failed on modules conflicts.
+     */
+    containsPypiModulesConflict?: string | null;
+    /**
+     * Output only. Extract from a docker image build log containing information about pypi modules conflicts.
+     */
+    pypiConflictBuildLogExtract?: string | null;
+  }
+  /**
    * The configuration of Cloud SQL instance that is used by the Apache Airflow software.
    */
   export interface Schema$DatabaseConfig {
@@ -611,6 +637,149 @@ export namespace composer_v1beta1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Check if an upgrade operation on the environment will succeed. In case of problems detailed info can be found in the returned Operation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/composer.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const composer = google.composer('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await composer.projects.locations.environments.checkUpgrade({
+     *     // The resource name of the environment to check upgrade for, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     *     environment:
+     *       'projects/my-project/locations/my-location/environments/my-environment',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "imageVersion": "my_imageVersion"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkUpgrade(
+      params: Params$Resource$Projects$Locations$Environments$Checkupgrade,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    checkUpgrade(
+      params?: Params$Resource$Projects$Locations$Environments$Checkupgrade,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    checkUpgrade(
+      params: Params$Resource$Projects$Locations$Environments$Checkupgrade,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkUpgrade(
+      params: Params$Resource$Projects$Locations$Environments$Checkupgrade,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    checkUpgrade(
+      params: Params$Resource$Projects$Locations$Environments$Checkupgrade,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    checkUpgrade(callback: BodyResponseCallback<Schema$Operation>): void;
+    checkUpgrade(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Environments$Checkupgrade
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Environments$Checkupgrade;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Environments$Checkupgrade;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://composer.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+environment}:checkUpgrade').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['environment'],
+        pathParams: ['environment'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
     }
 
     /**
@@ -1448,6 +1617,18 @@ export namespace composer_v1beta1 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Environments$Checkupgrade
+    extends StandardParameters {
+    /**
+     * The resource name of the environment to check upgrade for, in the form: "projects/{projectId\}/locations/{locationId\}/environments/{environmentId\}"
+     */
+    environment?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CheckUpgradeRequest;
+  }
   export interface Params$Resource$Projects$Locations$Environments$Create
     extends StandardParameters {
     /**
