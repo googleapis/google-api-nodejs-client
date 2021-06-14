@@ -1042,7 +1042,7 @@ export namespace notebooks_v1 {
      */
     description?: string | null;
     /**
-     * Output only. Display name used for UI purposes. Name can only contain alphanumeric characters, hyphens ‘-’, and underscores ‘_’.
+     * Output only. Display name used for UI purposes. Name can only contain alphanumeric characters, hyphens '-', and underscores '_'.
      */
     displayName?: string | null;
     /**
