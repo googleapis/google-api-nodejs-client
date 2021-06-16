@@ -26,7 +26,8 @@ describe(__filename, () => {
   before(() => {
     nock.disableNetConnect();
   });
-  const cacheToken = process.env.GITHUB_TOKEN;
+  const cacheGitHubToken = process.env.GITHUB_TOKEN;
+  const cacheCodeBotToken = process.env.CODE_BOT_TOKEN;
   let changeSets: ChangeSet[] = [];
   let stdout = '';
 
@@ -48,7 +49,8 @@ describe(__filename, () => {
     changeSets = [];
     nock.cleanAll();
     sandbox.restore();
-    process.env.GITHUB_TOKEN = cacheToken;
+    process.env.GITHUB_TOKEN = cacheGitHubToken;
+    process.env.CODE_BOT_TOKEN = cacheCodeBotToken;
   });
 
   it('should run synth', async () => {
@@ -74,6 +76,7 @@ describe(__filename, () => {
         modified:   src/apis/blogger/v1.ts
     `;
     process.env.GITHUB_TOKEN = '12345';
+    process.env.CODE_BOT_TOKEN = '12345';
     const scope = nock('https://api.github.com')
       .post('/repos/googleapis/google-api-nodejs-client/pulls')
       .reply(200);
@@ -81,9 +84,14 @@ describe(__filename, () => {
     scope.done();
   });
 
-  it('should throw if no token is provided', async () => {
+  it('should throw if no github token is provided', async () => {
     process.env.GITHUB_TOKEN = '';
     await assert.rejects(synth.synth, /please include a GITHUB_TOKEN/);
+  });
+
+  it('should throw if no code bot token is provided', async () => {
+    process.env.CODE_BOT_TOKEN = '';
+    await assert.rejects(synth.synth, /please include a CODE_BOT_TOKEN/);
   });
 
   it('should create a changelog', () => {
