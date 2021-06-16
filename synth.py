@@ -30,6 +30,3 @@ s.copy(templates, excludes=[
   '.kokoro/publish.sh',
   '.kokoro/release/publish.cfg'
 ])
-subprocess.run(['npm', 'install'])
-subprocess.run(['npm', 'run', 'update-disclaimers'])
-subprocess.run(['npm', 'run', 'submit-prs'])
