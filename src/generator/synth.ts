@@ -47,9 +47,13 @@ export async function synth(options: SynthOptions = {}) {
   const statusFiles = status.split('\n').map(x => x.slice(3));
   const apiDir = path.resolve('./src/apis');
   const files = fs.readdirSync(apiDir);
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) {
+  const githubToken = process.env.GITHUB_TOKEN;
+  if (!githubToken) {
     throw new Error('please include a GITHUB_TOKEN');
+  }
+  const codeBotToken = process.env.CODE_BOT_TOKEN;
+  if (!codeBotToken) {
+    throw new Error('please include a CODE_BOT_TOKEN');
   }
   // only set these while running in the GitHub Actions environment
   if (process.env.GITHUB_ACTIONS) {
@@ -95,10 +99,11 @@ export async function synth(options: SynthOptions = {}) {
   const prefix = getPrefix(totalSemverity);
   await execa('git', ['push', 'origin', branch, '--force']);
   try {
+    // Open the pull request with the YOSHI_CODE_BOT_TOKEN
     await gaxios.request({
       method: 'POST',
       headers: {
-        Authorization: `token ${token}`,
+        Authorization: `token ${codeBotToken}`,
       },
       url: 'https://api.github.com/repos/googleapis/google-api-nodejs-client/pulls',
       data: {
