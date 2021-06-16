@@ -938,7 +938,7 @@
     "query": {
       "methods": {
         "search": {
-          "description": "The Cloud Search Query API provides the search method, which returns the most relevant results from a user query. The results can come from G Suite Apps, such as Gmail or Google Drive, or they can come from data that you have indexed from a third party. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).",
+          "description": "The Cloud Search Query API provides the search method, which returns the most relevant results from a user query. The results can come from Google Workspace apps, such as Gmail or Google Drive, or they can come from data that you have indexed from a third party. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).",
           "flatPath": "v1/query/search",
           "httpMethod": "POST",
           "id": "cloudsearch.query.search",
@@ -957,7 +957,7 @@
           ]
         },
         "suggest": {
-          "description": "Provides suggestions for autocompleting the query. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).",
+          "description": "Provides suggestions for autocompleting the query. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).",
           "flatPath": "v1/query/suggest",
           "httpMethod": "POST",
           "id": "cloudsearch.query.suggest",
@@ -980,7 +980,7 @@
         "sources": {
           "methods": {
             "list": {
-              "description": "Returns list of sources that user can use for Search and Suggest APIs. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [G Suite domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).",
+              "description": "Returns list of sources that user can use for Search and Suggest APIs. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).",
               "flatPath": "v1/query/sources",
               "httpMethod": "GET",
               "id": "cloudsearch.query.sources.list",
@@ -1916,7 +1916,7 @@
       }
     }
   },
-  "revision": "20210406",
+  "revision": "20210608",
   "rootUrl": "https://cloudsearch.googleapis.com/",
   "schemas": {
     "AuditLoggingSettings": {
