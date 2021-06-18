@@ -405,6 +405,10 @@ import {
   remotebuildexecution,
 } from './remotebuildexecution';
 import {VERSIONS as resellerVersions, reseller} from './reseller';
+import {
+  VERSIONS as resourcesettingsVersions,
+  resourcesettings,
+} from './resourcesettings';
 import {VERSIONS as retailVersions, retail} from './retail';
 import {VERSIONS as runVersions, run} from './run';
 import {
@@ -691,6 +695,7 @@ export const APIS: APIList = {
   redis: redisVersions,
   remotebuildexecution: remotebuildexecutionVersions,
   reseller: resellerVersions,
+  resourcesettings: resourcesettingsVersions,
   retail: retailVersions,
   run: runVersions,
   runtimeconfig: runtimeconfigVersions,
@@ -913,6 +918,7 @@ export class GeneratedAPIs {
   redis = redis;
   remotebuildexecution = remotebuildexecution;
   reseller = reseller;
+  resourcesettings = resourcesettings;
   retail = retail;
   run = run;
   runtimeconfig = runtimeconfig;

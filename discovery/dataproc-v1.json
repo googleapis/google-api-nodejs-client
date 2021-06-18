@@ -2260,7 +2260,7 @@
       }
     }
   },
-  "revision": "20210521",
+  "revision": "20210604",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2742,6 +2742,7 @@
             "CREATING",
             "RUNNING",
             "ERROR",
+            "ERROR_DUE_TO_UPDATE",
             "DELETING",
             "UPDATING",
             "STOPPING",
@@ -2753,6 +2754,7 @@
             "The cluster is being created and set up. It is not ready for use.",
             "The cluster is currently running and healthy. It is ready for use.",
             "The cluster encountered an error. It is not ready for use.",
+            "The cluster has encountered an error while being updated. Jobs can still be submitted to the cluster, but it can no longer be updated.",
             "The cluster is being deleted. It cannot be used.",
             "The cluster is being updated. It continues to accept and process jobs.",
             "The cluster is being stopped. It cannot be used.",
