@@ -1004,7 +1004,7 @@
       }
     }
   },
-  "revision": "20210524",
+  "revision": "20210607",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
@@ -1219,7 +1219,7 @@
           "type": "array"
         },
         "autoUpdateMode": {
-          "description": "This feature is not generally available yet.",
+          "description": "Controls the auto-update mode for the app.",
           "enum": [
             "AUTO_UPDATE_MODE_UNSPECIFIED",
             "AUTO_UPDATE_DEFAULT",
@@ -1227,10 +1227,10 @@
             "AUTO_UPDATE_HIGH_PRIORITY"
           ],
           "enumDescriptions": [
-            "This feature is not generally available yet.",
-            "This feature is not generally available yet.",
-            "This feature is not generally available yet.",
-            "This feature is not generally available yet."
+            "Unspecified. Defaults to AUTO_UPDATE_DEFAULT.",
+            "The app is automatically updated with low priority to minimize the impact on the user.The app is updated when all of the following constraints are met: The device is not actively used. The device is connected to an unmetered network. The device is charging.The device is notified about a new update within 24 hours after it is published by the developer, after which the app is updated the next time the constraints above are met.",
+            "The app is not automatically updated for a maximum of 90 days after the app becomes out of date.90 days after the app becomes out of date, the latest available version is installed automatically with low priority (see AUTO_UPDATE_DEFAULT). After the app is updated it is not automatically updated again until 90 days after it becomes out of date again.The user can still manually update the app from the Play Store at any time.",
+            "The app is updated as soon as possible. No constraints are applied.The device is notified immediately about a new update after it becomes available."
           ],
           "type": "string"
         },
@@ -1713,6 +1713,13 @@
           "description": "Reports for apps installed on the device. This information is only available when application_reports_enabled is true in the device's policy.",
           "items": {
             "$ref": "ApplicationReport"
+          },
+          "type": "array"
+        },
+        "appliedPasswordPolicies": {
+          "description": "The password requirements currently applied to the device. The applied requirements may be slightly different from those specified in passwordPolicies in some cases. fieldPath is set based on passwordPolicies.",
+          "items": {
+            "$ref": "PasswordRequirements"
           },
           "type": "array"
         },
@@ -3019,17 +3026,23 @@
             "NUMERIC_COMPLEX",
             "ALPHABETIC",
             "ALPHANUMERIC",
-            "COMPLEX"
+            "COMPLEX",
+            "COMPLEXITY_LOW",
+            "COMPLEXITY_MEDIUM",
+            "COMPLEXITY_HIGH"
           ],
           "enumDescriptions": [
             "There are no password requirements.",
-            "The device must be secured with a low-security biometric recognition technology, at minimum. This includes technologies that can recognize the identity of an individual that are roughly equivalent to a 3-digit PIN (false detection is less than 1 in 1,000).",
-            "A password is required, but there are no restrictions on what the password must contain.",
-            "The password must contain numeric characters.",
-            "The password must contain numeric characters with no repeating (4444) or ordered (1234, 4321, 2468) sequences.",
-            "The password must contain alphabetic (or symbol) characters.",
-            "The password must contain both numeric and alphabetic (or symbol) characters.",
-            "The password must meet the minimum requirements specified in passwordMinimumLength, passwordMinimumLetters, passwordMinimumSymbols, etc. For example, if passwordMinimumSymbols is 2, the password must contain at least two symbols."
+            "The device must be secured with a low-security biometric recognition technology, at minimum. This includes technologies that can recognize the identity of an individual that are roughly equivalent to a 3-digit PIN (false detection is less than 1 in 1,000).This, when applied on personally owned work profile devices on Android 12 device-scoped, will be treated as COMPLEXITY_LOW for application. See PasswordQuality for details.",
+            "A password is required, but there are no restrictions on what the password must contain.This, when applied on personally owned work profile devices on Android 12 device-scoped, will be treated as COMPLEXITY_LOW for application. See PasswordQuality for details.",
+            "The password must contain numeric characters.This, when applied on personally owned work profile devices on Android 12 device-scoped, will be treated as COMPLEXITY_MEDIUM for application. See PasswordQuality for details.",
+            "The password must contain numeric characters with no repeating (4444) or ordered (1234, 4321, 2468) sequences.This, when applied on personally owned work profile devices on Android 12 device-scoped, will be treated as COMPLEXITY_MEDIUM for application. See PasswordQuality for details.",
+            "The password must contain alphabetic (or symbol) characters.This, when applied on personally owned work profile devices on Android 12 device-scoped, will be treated as COMPLEXITY_HIGH for application. See PasswordQuality for details.",
+            "The password must contain both numeric and alphabetic (or symbol) characters.This, when applied on personally owned work profile devices on Android 12 device-scoped, will be treated as COMPLEXITY_HIGH for application. See PasswordQuality for details.",
+            "The password must meet the minimum requirements specified in passwordMinimumLength, passwordMinimumLetters, passwordMinimumSymbols, etc. For example, if passwordMinimumSymbols is 2, the password must contain at least two symbols.This, when applied on personally owned work profile devices on Android 12 device-scoped, will be treated as COMPLEXITY_HIGH for application. In this case, the requirements in passwordMinimumLength, passwordMinimumLetters, passwordMinimumSymbols, etc are not applied. See PasswordQuality for details.",
+            "Password satisfies one of the following: pattern PIN with repeating (4444) or ordered (1234, 4321, 2468) sequencesEnforcement varies among different Android versions, management modes and password scopes. See PasswordQuality for details.",
+            "Password satisfies one of the following: PIN with no repeating (4444) or ordered (1234, 4321, 2468) sequences, length at least 4 alphabetic, length at least 4 alphanumeric, length at least 4Enforcement varies among different Android versions, management modes and password scopes. See PasswordQuality for details.",
+            "Password satisfies one of the following:On Android 12 and above: PIN with no repeating (4444) or ordered (1234, 4321, 2468) sequences, length at least 8 alphabetic, length at least 6 alphanumeric, length at least 6Enforcement varies among different Android versions, management modes and password scopes. See PasswordQuality for details."
           ],
           "type": "string"
         },
@@ -3236,7 +3249,7 @@
           "type": "array"
         },
         "appAutoUpdatePolicy": {
-          "description": "The app auto update policy, which controls when automatic app updates can be applied.",
+          "description": "Deprecated. Use autoUpdateMode instead.When autoUpdateMode is set to AUTO_UPDATE_POSTPONED or AUTO_UPDATE_HIGH_PRIORITY, this field has no effect.The app auto update policy, which controls when automatic app updates can be applied.",
           "enum": [
             "APP_AUTO_UPDATE_POLICY_UNSPECIFIED",
             "CHOICE_TO_THE_USER",
@@ -4078,7 +4091,7 @@
           "enumDescriptions": [
             "Follow the default update behavior for the device, which typically requires the user to accept system updates.",
             "Install automatically as soon as an update is available.",
-            "Install automatically within a daily maintenance window. This also configures Play apps to be updated within the window. This is strongly recommended for kiosk devices because this is the only way apps persistently pinned to the foreground can be updated by Play.",
+            "Install automatically within a daily maintenance window. This also configures Play apps to be updated within the window. This is strongly recommended for kiosk devices because this is the only way apps persistently pinned to the foreground can be updated by Play.If autoUpdateMode is set to AUTO_UPDATE_HIGH_PRIORITY for an app, then the maintenance window is ignored for that app and it is updated as soon as possible even outside of the maintenance window.",
             "Postpone automatic install up to a maximum of 30 days."
           ],
           "type": "string"
