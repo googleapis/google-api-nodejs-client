@@ -343,6 +343,10 @@ export namespace paymentsresellersubscription_v1 {
      * Output only. System generated timestamp when the subscription is most recently updated. UTC timezone.
      */
     updateTime?: string | null;
+    /**
+     * Optional. Details about the previous subscription that this new subscription upgrades/downgrades from. Only populated if this subscription is an upgrade/downgrade from another subscription.
+     */
+    upgradeDowngradeDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionUpgradeDowngradeDetails;
   }
   /**
    * Describes the details of a cancelled subscription.
@@ -352,6 +356,19 @@ export namespace paymentsresellersubscription_v1 {
      * The reason of the cancellation.
      */
     reason?: string | null;
+  }
+  /**
+   * Details about the previous subscription that this new subscription upgrades/downgrades from.
+   */
+  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionUpgradeDowngradeDetails {
+    /**
+     * Required. Specifies the billing cycle spec for the new upgraded/downgraded subscription.
+     */
+    billingCycleSpec?: string | null;
+    /**
+     * Required. The previous subscription id to be replaced. This is not the full resource name, use the subscription_id segment only.
+     */
+    previousSubscriptionId?: string | null;
   }
   /**
    * Request to revoke a cancellation request.
@@ -935,7 +952,8 @@ export namespace paymentsresellersubscription_v1 {
      *       //   "redirectUri": "my_redirectUri",
      *       //   "serviceLocation": {},
      *       //   "state": "my_state",
-     *       //   "updateTime": "my_updateTime"
+     *       //   "updateTime": "my_updateTime",
+     *       //   "upgradeDowngradeDetails": {}
      *       // }
      *     },
      *   });
@@ -955,7 +973,8 @@ export namespace paymentsresellersubscription_v1 {
      *   //   "redirectUri": "my_redirectUri",
      *   //   "serviceLocation": {},
      *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upgradeDowngradeDetails": {}
      *   // }
      * }
      *
@@ -1402,7 +1421,8 @@ export namespace paymentsresellersubscription_v1 {
      *   //   "redirectUri": "my_redirectUri",
      *   //   "serviceLocation": {},
      *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upgradeDowngradeDetails": {}
      *   // }
      * }
      *
@@ -1554,7 +1574,8 @@ export namespace paymentsresellersubscription_v1 {
      *         //   "redirectUri": "my_redirectUri",
      *         //   "serviceLocation": {},
      *         //   "state": "my_state",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "upgradeDowngradeDetails": {}
      *         // }
      *       },
      *     });
@@ -1574,7 +1595,8 @@ export namespace paymentsresellersubscription_v1 {
      *   //   "redirectUri": "my_redirectUri",
      *   //   "serviceLocation": {},
      *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upgradeDowngradeDetails": {}
      *   // }
      * }
      *
