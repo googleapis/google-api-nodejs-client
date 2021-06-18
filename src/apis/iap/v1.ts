@@ -135,6 +135,10 @@ export namespace iap_v1 {
      * The URI to be redirected to when access is denied.
      */
     accessDeniedPageUri?: string | null;
+    /**
+     * Whether to generate a troubleshooting URL on access denied events to this application.
+     */
+    generateTroubleshootingUri?: boolean | null;
   }
   /**
    * Access related settings for IAP protected apps.
