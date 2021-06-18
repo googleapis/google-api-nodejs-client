@@ -179,11 +179,208 @@ export namespace sts_v1 {
      */
     token_type?: string | null;
   }
+  /**
+   * Request message for IntrospectToken.
+   */
+  export interface Schema$GoogleIdentityStsV1IntrospectTokenRequest {
+    /**
+     * Required. The OAuth 2.0 security token issued by the Security Token Service API.
+     */
+    token?: string | null;
+    /**
+     * Optional. The type of the given token. Supported values are `urn:ietf:params:oauth:token-type:access_token` and `access_token`.
+     */
+    tokenTypeHint?: string | null;
+  }
+  /**
+   * Response message for IntrospectToken.
+   */
+  export interface Schema$GoogleIdentityStsV1IntrospectTokenResponse {
+    /**
+     * A boolean value that indicates whether the provided access token is currently active.
+     */
+    active?: boolean | null;
+    /**
+     * The client identifier for the OAuth 2.0 client that requested the provided token.
+     */
+    client_id?: string | null;
+    /**
+     * The expiration timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token will expire.
+     */
+    exp?: string | null;
+    /**
+     * The issued timestamp, measured in the number of seconds since January 1 1970 UTC, indicating when this token was originally issued.
+     */
+    iat?: string | null;
+    /**
+     * The issuer of the provided token.
+     */
+    iss?: string | null;
+    /**
+     * A list of scopes associated with the provided token.
+     */
+    scope?: string | null;
+    /**
+     * The unique user ID associated with the provided token. For Google Accounts, this value is based on the Google Account's user ID. For federated identities, this value is based on the identity pool ID and the value of the mapped `google.subject` attribute.
+     */
+    sub?: string | null;
+    /**
+     * The human-readable identifier for the token principal subject. For example, if the provided token is associated with a workload identity pool, this field contains a value in the following format: `principal://iam.googleapis.com/projects//locations//workloadIdentityPools//subject/`
+     */
+    username?: string | null;
+  }
 
   export class Resource$V1 {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Gets information about a Google OAuth 2.0 access token issued by the Google Cloud [Security Token Service API](https://cloud.google.com/iam/docs/reference/sts/rest).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sts.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const sts = google.sts('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sts.introspect({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "token": "my_token",
+     *       //   "tokenTypeHint": "my_tokenTypeHint"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "active": false,
+     *   //   "client_id": "my_client_id",
+     *   //   "exp": "my_exp",
+     *   //   "iat": "my_iat",
+     *   //   "iss": "my_iss",
+     *   //   "scope": "my_scope",
+     *   //   "sub": "my_sub",
+     *   //   "username": "my_username"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    introspect(
+      params: Params$Resource$V1$Introspect,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    introspect(
+      params?: Params$Resource$V1$Introspect,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleIdentityStsV1IntrospectTokenResponse>;
+    introspect(
+      params: Params$Resource$V1$Introspect,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    introspect(
+      params: Params$Resource$V1$Introspect,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1IntrospectTokenResponse>,
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1IntrospectTokenResponse>
+    ): void;
+    introspect(
+      params: Params$Resource$V1$Introspect,
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1IntrospectTokenResponse>
+    ): void;
+    introspect(
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1IntrospectTokenResponse>
+    ): void;
+    introspect(
+      paramsOrCallback?:
+        | Params$Resource$V1$Introspect
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1IntrospectTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1IntrospectTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1IntrospectTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleIdentityStsV1IntrospectTokenResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$V1$Introspect;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Introspect;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sts.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/introspect').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleIdentityStsV1IntrospectTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleIdentityStsV1IntrospectTokenResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -335,6 +532,12 @@ export namespace sts_v1 {
     }
   }
 
+  export interface Params$Resource$V1$Introspect extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleIdentityStsV1IntrospectTokenRequest;
+  }
   export interface Params$Resource$V1$Token extends StandardParameters {
     /**
      * Request body metadata
